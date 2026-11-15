@@ -1,0 +1,851 @@
+{
+  "schema": "moli.legacy-scene-contract-stage156.v1",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "tools": {
+    "rea": "6.7.0",
+    "ghidra": "12.1.4",
+    "analysis_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+  },
+  "scope": "source-bound scene/cache preparation, label and ordered masked-state consumers; full game incomplete",
+  "facts": {
+    "scene": {
+      "consumer": "0x4ef870",
+      "fields": [
+        "identityA",
+        "identityB",
+        "width",
+        "height",
+        "positionX",
+        "positionY",
+        "headerWord4",
+        "headerWord8",
+        "checksumMode",
+        "positiveConditionalValue",
+        "resourceSelector",
+        "wireField12"
+      ],
+      "chain": [
+        "0x45f530",
+        "0x45f760",
+        "0x45f2a0",
+        "0x4649b0",
+        "0x45f2f0"
+      ],
+      "cache_header": "MAP + byte1 + LE32 wire6 + LE32 wire7 + LE32 width + LE32 height",
+      "cache_body": "three zeroed LE16 planes on creation",
+      "reuse": "same cache identity and all20 header bytes match, unless identityA==2",
+      "identityB_zero": "skip cache preparation",
+      "mode": "wire8 ->45f2a0 param7 ->4649b0 param4 ->00957e88",
+      "position": "two sourced coordinates and float32 times64; facing is not written here",
+      "conditional": "wire9 only sets native conditional globals if >0; timing/unit/other consumers unmodeled"
+    },
+    "masked_state": {
+      "records": [
+        {
+          "id": "state-4efad0",
+          "operation_id": "receive-00567d04",
+          "tag": "E(9",
+          "consumer": "0x4efad0",
+          "evidence_id": "ev_665311da496bd2772ebd2c77bf39d7ae13d13e6810dc454a725fe17c6786d066",
+          "fields": [
+            {
+              "id": "field-01",
+              "ordinal": 1,
+              "mask": 3,
+              "native_storage": "0xf5354c",
+              "kind": "int32",
+              "native_wrapped_value": true
+            },
+            {
+              "id": "field-02",
+              "ordinal": 2,
+              "mask": 5,
+              "native_storage": "0xf5355c",
+              "kind": "int32",
+              "native_wrapped_value": true
+            },
+            {
+              "id": "field-03",
+              "ordinal": 3,
+              "mask": 9,
+              "native_storage": "0xf5356c",
+              "kind": "int32",
+              "native_wrapped_value": true
+            },
+            {
+              "id": "field-04",
+              "ordinal": 4,
+              "mask": 17,
+              "native_storage": "0xf5357c",
+              "kind": "int32",
+              "native_wrapped_value": true
+            },
+            {
+              "id": "field-05",
+              "ordinal": 5,
+              "mask": 33,
+              "native_storage": "0xf535a8",
+              "kind": "int32"
+            },
+            {
+              "id": "field-06",
+              "ordinal": 6,
+              "mask": 65,
+              "native_storage": "0xf535ac",
+              "kind": "int32"
+            },
+            {
+              "id": "field-07",
+              "ordinal": 7,
+              "mask": 129,
+              "native_storage": "0xf535b0",
+              "kind": "int32"
+            },
+            {
+              "id": "field-08",
+              "ordinal": 8,
+              "mask": 257,
+              "native_storage": "0xf535b4",
+              "kind": "int32"
+            },
+            {
+              "id": "field-09",
+              "ordinal": 9,
+              "mask": 513,
+              "native_storage": "0xf535b8",
+              "kind": "int32"
+            },
+            {
+              "id": "field-10",
+              "ordinal": 10,
+              "mask": 1025,
+              "native_storage": "0xf535bc",
+              "kind": "int32"
+            },
+            {
+              "id": "field-11",
+              "ordinal": 11,
+              "mask": 2049,
+              "native_storage": "0xf535c0",
+              "kind": "int32"
+            },
+            {
+              "id": "field-12",
+              "ordinal": 12,
+              "mask": 4097,
+              "native_storage": "0xf535c4",
+              "kind": "int32"
+            },
+            {
+              "id": "field-13",
+              "ordinal": 13,
+              "mask": 8193,
+              "native_storage": "0xf5358c",
+              "kind": "int32",
+              "native_wrapped_value": true
+            },
+            {
+              "id": "field-14",
+              "ordinal": 14,
+              "mask": 16385,
+              "native_storage": "0xf5359c",
+              "kind": "int32",
+              "native_wrapped_value": true
+            },
+            {
+              "id": "field-15",
+              "ordinal": 15,
+              "mask": 32769,
+              "native_storage": "0xf53534",
+              "kind": "int32"
+            },
+            {
+              "id": "field-16",
+              "ordinal": 16,
+              "mask": 65537,
+              "native_storage": "0xf535c8",
+              "kind": "int32"
+            },
+            {
+              "id": "field-17",
+              "ordinal": 17,
+              "mask": 131073,
+              "native_storage": "0xf535cc",
+              "kind": "int32"
+            },
+            {
+              "id": "field-18",
+              "ordinal": 18,
+              "mask": 262145,
+              "native_storage": "0xf535d0",
+              "kind": "int32"
+            },
+            {
+              "id": "field-19",
+              "ordinal": 19,
+              "mask": 524289,
+              "native_storage": "0xf535d4",
+              "kind": "int32"
+            },
+            {
+              "id": "field-20",
+              "ordinal": 20,
+              "mask": 1048577,
+              "native_storage": "0xf535d8",
+              "kind": "int32"
+            },
+            {
+              "id": "field-21",
+              "ordinal": 21,
+              "mask": 2097153,
+              "native_storage": "0xf535dc",
+              "kind": "int32"
+            },
+            {
+              "id": "field-22",
+              "ordinal": 22,
+              "mask": 4194305,
+              "native_storage": "0xf535e0",
+              "kind": "int32"
+            },
+            {
+              "id": "field-23",
+              "ordinal": 23,
+              "mask": 8388609,
+              "native_storage": "0xf5360c",
+              "kind": "int32"
+            },
+            {
+              "id": "field-24",
+              "ordinal": 24,
+              "mask": 16777217,
+              "native_storage": "0xf53610",
+              "kind": "int32"
+            },
+            {
+              "id": "field-25",
+              "ordinal": 25,
+              "mask": 33554433,
+              "native_storage": "0xf53614",
+              "kind": "int32"
+            },
+            {
+              "id": "field-26",
+              "ordinal": 26,
+              "mask": 67108865,
+              "native_storage": "0xf53618",
+              "kind": "int32"
+            },
+            {
+              "id": "field-27",
+              "ordinal": 27,
+              "mask": 134217729,
+              "native_storage": "0xf53624",
+              "kind": "int32"
+            },
+            {
+              "id": "field-28",
+              "ordinal": 28,
+              "mask": 268435457,
+              "native_storage": "0xf53628",
+              "kind": "int32"
+            },
+            {
+              "id": "field-29",
+              "ordinal": 29,
+              "mask": 536870913,
+              "native_storage": "0xf53630",
+              "kind": "bytes",
+              "token_bytes": 255,
+              "maximum_decoded_bytes": 16,
+              "overlong": "keep-prior-value"
+            },
+            {
+              "id": "field-30",
+              "ordinal": 30,
+              "mask": 1073741825,
+              "native_storage": "0xf53641",
+              "kind": "bytes",
+              "token_bytes": 255,
+              "maximum_decoded_bytes": 16,
+              "overlong": "keep-prior-value"
+            }
+          ]
+        },
+        {
+          "id": "state-4f0000",
+          "operation_id": "receive-00567d00",
+          "tag": "F8%",
+          "consumer": "0x4f0000",
+          "evidence_id": "ev_fdf63797f7f2011f9a96d31502434eaf4a7ecc0752fc140669028a43d1e7eddb",
+          "fields": [
+            {
+              "id": "field-01",
+              "ordinal": 1,
+              "mask": 3,
+              "native_storage": "0xf535fc",
+              "kind": "int32"
+            },
+            {
+              "id": "field-02",
+              "ordinal": 2,
+              "mask": 5,
+              "native_storage": "0xf53600",
+              "kind": "int32"
+            },
+            {
+              "id": "field-03",
+              "ordinal": 3,
+              "mask": 9,
+              "native_storage": "0xf53604",
+              "kind": "int32"
+            },
+            {
+              "id": "field-04",
+              "ordinal": 4,
+              "mask": 17,
+              "native_storage": "0xf53608",
+              "kind": "int32"
+            },
+            {
+              "id": "field-05",
+              "ordinal": 5,
+              "mask": 33,
+              "native_storage": "0xf535e4",
+              "kind": "int32"
+            },
+            {
+              "id": "field-06",
+              "ordinal": 6,
+              "mask": 65,
+              "native_storage": "0xf535e8",
+              "kind": "int32"
+            },
+            {
+              "id": "field-07",
+              "ordinal": 7,
+              "mask": 129,
+              "native_storage": "0xf535ec",
+              "kind": "int32"
+            },
+            {
+              "id": "field-08",
+              "ordinal": 8,
+              "mask": 257,
+              "native_storage": "0xf535f0",
+              "kind": "int32"
+            },
+            {
+              "id": "field-09",
+              "ordinal": 9,
+              "mask": 513,
+              "native_storage": "0xf535f4",
+              "kind": "int32"
+            },
+            {
+              "id": "field-10",
+              "ordinal": 10,
+              "mask": 1025,
+              "native_storage": "0xf535f8",
+              "kind": "int32"
+            },
+            {
+              "id": "field-11",
+              "ordinal": 11,
+              "mask": 2049,
+              "native_storage": "0xf5362c",
+              "kind": "int32"
+            },
+            {
+              "id": "field-12",
+              "ordinal": 12,
+              "mask": 4097,
+              "native_storage": "0xf5361c",
+              "kind": "int32"
+            },
+            {
+              "id": "field-13",
+              "ordinal": 13,
+              "mask": 8193,
+              "native_storage": "0xf53530",
+              "kind": "int32"
+            },
+            {
+              "id": "field-14",
+              "ordinal": 14,
+              "mask": 16385,
+              "native_storage": "0xf53620",
+              "kind": "int32"
+            },
+            {
+              "id": "field-15",
+              "ordinal": 15,
+              "mask": 32769,
+              "native_storage": "0xf53538",
+              "kind": "int32"
+            },
+            {
+              "id": "field-16",
+              "ordinal": 16,
+              "mask": 65537,
+              "native_storage": "0xf536a4",
+              "kind": "int32"
+            },
+            {
+              "id": "field-17",
+              "ordinal": 17,
+              "mask": 131073,
+              "native_storage": "0xf53694",
+              "kind": "int32"
+            },
+            {
+              "id": "field-18",
+              "ordinal": 18,
+              "mask": 262145,
+              "native_storage": "0xf53698",
+              "kind": "int32",
+              "nonpositive_replacement": 100,
+              "native_actor_copy": "unmodeled pointer00f5e8dc+0x284"
+            }
+          ]
+        }
+      ],
+      "flag_parser": "first pipe field, at most127B,510f00 base62 with minus anywhere and int32 wrap; empty=-1",
+      "selection": "(flags & ((1<<ordinal)|1)) !=0; bit0 selects all",
+      "numbers": "next selected pipe field<=127B; empty/missing=-1; default-C ASCII whitespace/sign/decimal prefix,32bit wrap",
+      "strings": "selected token<=255B, inner-unescape; decoded length<=16 updates, longer retains prior",
+      "last_recordB": "nonpositive field18 ->100; native optional actor+0x284 write not modeled"
+    },
+    "inner_escape": {
+      "source": "0x511000/0x510fd0",
+      "pairs": [
+        [
+          "n",
+          10
+        ],
+        [
+          "c",
+          44
+        ],
+        [
+          "z",
+          124
+        ],
+        [
+          "y",
+          92
+        ]
+      ],
+      "unknown": "discard slash, keep following byte",
+      "trailing_slash": "C terminator becomes end; final slash disappears",
+      "high_bytes": "copy pair unchanged; source trailing lead before C terminator remains raw byte"
+    },
+    "label": {
+      "consumer": "0x4ef9d0",
+      "passes": "inner-unescape whole input, take first pipe token<=255B, inner-unescape that token again",
+      "value": "first result length<25 else literal3questionmarks",
+      "code": "second pipe token<=31B, default-C decimal; empty or negative ->-1",
+      "scope": "unassigned scene/global label, no Unicode or account semantics"
+    }
+  },
+  "independent_policy": {
+    "cache": "prepare existing supplied identity/cache or create zero map; pure bytes, no filesystem/path/variant ownership. Protocol holds only current active cache, host can supply persisted prior cache explicitly.",
+    "budgets": "positive cache dimensions and existing MAP01 bounds32MiB/4Mi cells; invalid/matching-header-but-short body rejected; source zero/nonpositive cache dimensions are unsafe/unmodeled.",
+    "skipped_cache": "identityB0 clears only active projection; no map bytes allocated, raw dimensions preserved",
+    "state": "initial unobserved fields null, retain unselected/overlong string fields, snapshots own bytes; do not emulate wrapped storage or native actor writes",
+    "projection_factory": "createLegacyGameWorldProtocol enables source-bound scene/label/masked-state projection; existing createLegacyGameProtocol keeps raw text/catalog semantics and prior explicit map behavior.",
+    "lifecycle": "validation before current cache/state replacement; next errors fail-close and clear keys/queue/world; reset-bootstrap retains state as source reset only clears readiness.",
+    "native": "source scene guard/UI/viewport/resource loading/renderer, semantic stat names and other business consumers unmodeled"
+  },
+  "api": {
+    "scene": [
+      "LEGACY_GAME_SCENE_PROFILE",
+      "LegacyGameSceneError",
+      "prepareLegacyGameSceneTransition(args12,previousIdentity=null,previousCacheBytes=null)"
+    ],
+    "state": [
+      "LEGACY_GAME_STATE_CATALOG",
+      "LEGACY_GAME_STATE_PROFILE",
+      "LegacyGameStateError",
+      "decodeLegacyGameStateRecord(operationId,bytes)",
+      "decodeLegacyGameSceneLabel(bytes)",
+      "createLegacyGameState()"
+    ],
+    "protocol": [
+      "createLegacyGameWorldProtocol()",
+      "copyGameState().scene/label/records",
+      "message.effect scene-transition/scene-label/masked-state-update"
+    ]
+  },
+  "validation": "Original synthetic Python vectors and standalone scene→notice→request→patch→state flow; full Node/neutral/generated builds required before stage delivery",
+  "unknown": [
+    "attribute and label higher game names",
+    "native scene guard/refresh/viewport/actor/resource/renderer",
+    "persistent cache path/variant ownership",
+    "remaining business, movement/battle and full control/auth",
+    "current version and real platform/official acceptance"
+  ],
+  "functions": [
+    {
+      "id": "ev_14f6c9663eccb017acd5fae4b1a8325432dccf980c566b26b33a89e146d11042",
+      "entry": "0x45f530",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x45f75f",
+            "start": "0x45f530"
+          }
+        ],
+        "span_bytes": 560,
+        "total_bytes": 560
+      },
+      "assembly_rows": 188,
+      "pseudocode_characters": 2214,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_3f97e214430b1ccdd57b17254065a082833d8fa08424139034632a2522bf0c60",
+      "entry": "0x4649b0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x464a24",
+            "start": "0x4649b0"
+          }
+        ],
+        "span_bytes": 117,
+        "total_bytes": 117
+      },
+      "assembly_rows": 36,
+      "pseudocode_characters": 627,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_4d8e030e16c18230e09578813c122041363415c1dd2c89e7fc796d3df582cd60",
+      "entry": "0x510fd0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x510ff3",
+            "start": "0x510fd0"
+          }
+        ],
+        "span_bytes": 36,
+        "total_bytes": 36
+      },
+      "assembly_rows": 12,
+      "pseudocode_characters": 296,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_657b8fed94eb2e8bf92779c6a9b7167219a5e8dc3e3c5355db1677a1c94ea996",
+      "entry": "0x510e50",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x510e9c",
+            "start": "0x510e50"
+          }
+        ],
+        "span_bytes": 77,
+        "total_bytes": 77
+      },
+      "assembly_rows": 24,
+      "pseudocode_characters": 296,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_665311da496bd2772ebd2c77bf39d7ae13d13e6810dc454a725fe17c6786d066",
+      "entry": "0x4efad0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4efff4",
+            "start": "0x4efad0"
+          }
+        ],
+        "span_bytes": 1317,
+        "total_bytes": 1317
+      },
+      "assembly_rows": 432,
+      "pseudocode_characters": 6873,
+      "value_flow_truncated": true
+    },
+    {
+      "id": "ev_70039984b81a8de76085456e3cee30211bb831ec0000286b840c0874355bae52",
+      "entry": "0x51c63d",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x51c647",
+            "start": "0x51c63d"
+          }
+        ],
+        "span_bytes": 11,
+        "total_bytes": 11
+      },
+      "assembly_rows": 4,
+      "pseudocode_characters": 80,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_7a7514acee6cd497ae90450a2f6f71a71aaeb58f802c00bf9adf91ead7efea3f",
+      "entry": "0x51c5b2",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x51c63c",
+            "start": "0x51c5b2"
+          }
+        ],
+        "span_bytes": 139,
+        "total_bytes": 139
+      },
+      "assembly_rows": 59,
+      "pseudocode_characters": 867,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_87bb6ae1275ca29117c5bfb6331389b6a31efa9326f7d3a4fef5a41a34e00de8",
+      "entry": "0x45f170",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x45f1b5",
+            "start": "0x45f170"
+          }
+        ],
+        "span_bytes": 70,
+        "total_bytes": 70
+      },
+      "assembly_rows": 17,
+      "pseudocode_characters": 381,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_8b6b588d9c77252675bcdc29b23059ac704a62c8e892a9c71c431952cd0b02fb",
+      "entry": "0x4ef870",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4ef9c7",
+            "start": "0x4ef870"
+          }
+        ],
+        "span_bytes": 344,
+        "total_bytes": 344
+      },
+      "assembly_rows": 96,
+      "pseudocode_characters": 1379,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_96466f17aec78e9314c639fe22070b8ca1a973cb9b729c1440ace6f6d6dc48c3",
+      "entry": "0x510f80",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x510fcc",
+            "start": "0x510f80"
+          }
+        ],
+        "span_bytes": 77,
+        "total_bytes": 77
+      },
+      "assembly_rows": 24,
+      "pseudocode_characters": 296,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_a362d4aae74c44cfe2cd116d6f92e87646ca298c03b2f14d6cee70387a872922",
+      "entry": "0x45f1c0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x45f24c",
+            "start": "0x45f1c0"
+          }
+        ],
+        "span_bytes": 141,
+        "total_bytes": 141
+      },
+      "assembly_rows": 29,
+      "pseudocode_characters": 366,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_a861f03023d43f0f89f34c1a7eaec906e8bd84af387ec3c568eca251f9353dc8",
+      "entry": "0x4ef9d0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4efac1",
+            "start": "0x4ef9d0"
+          }
+        ],
+        "span_bytes": 242,
+        "total_bytes": 242
+      },
+      "assembly_rows": 82,
+      "pseudocode_characters": 1970,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_d9f5d1edae336fc2defc0395957ef327450eeff69689beaf271ad8f5ecd5bcd5",
+      "entry": "0x5111a0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x5111b7",
+            "start": "0x5111a0"
+          }
+        ],
+        "span_bytes": 24,
+        "total_bytes": 24
+      },
+      "assembly_rows": 10,
+      "pseudocode_characters": 119,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_de5c0313814c506cc6f0421d1a411078a9f0017d24d89280a1f2ce77c136dff9",
+      "entry": "0x511000",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x511055",
+            "start": "0x511000"
+          }
+        ],
+        "span_bytes": 86,
+        "total_bytes": 86
+      },
+      "assembly_rows": 43,
+      "pseudocode_characters": 907,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_eb935c47a48ef2c5e73d891985d13a380b0312f695e37137115ea55a032931be",
+      "entry": "0x45f760",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x45f84f",
+            "start": "0x45f760"
+          }
+        ],
+        "span_bytes": 240,
+        "total_bytes": 240
+      },
+      "assembly_rows": 95,
+      "pseudocode_characters": 1170,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_f884a1322bc572a31cab1a994cf48a6fb4d666d2ebc128d93bd2fe83a7914a8b",
+      "entry": "0x45f2a0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x45f2ef",
+            "start": "0x45f2a0"
+          }
+        ],
+        "span_bytes": 80,
+        "total_bytes": 80
+      },
+      "assembly_rows": 21,
+      "pseudocode_characters": 499,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_fdf63797f7f2011f9a96d31502434eaf4a7ecc0752fc140669028a43d1e7eddb",
+      "entry": "0x4f0000",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4f020c",
+            "start": "0x4f0000"
+          }
+        ],
+        "span_bytes": 525,
+        "total_bytes": 525
+      },
+      "assembly_rows": 187,
+      "pseudocode_characters": 2433,
+      "value_flow_truncated": false
+    }
+  ]
+}

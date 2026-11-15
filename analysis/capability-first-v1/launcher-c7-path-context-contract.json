@@ -1,0 +1,1131 @@
+{
+  "schema": "moli.launcher-c7-path-context.contract.v1",
+  "classification": "事实/推测/待验证分别登记",
+  "requirement": "沿全部能力先REA成规流程，关闭原L01 SS-U1的同C7路径、filename、registry和catalog路径来源，保留原五组/三profile与完整后续缺口。",
+  "capability": "L01",
+  "parent": {
+    "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+    "bytes": 77125,
+    "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+  },
+  "source": {
+    "path": "build/analysis/launcher-update-recovery-v1/old-source/POLCN_Launcher.analysis-only.exe",
+    "bytes": 4105728,
+    "sha256": "c7ba69f77809fe589fd5dcccc78fcd4f33d4b6f76325d00a27f37032bbb32384",
+    "profile": "launcher-historical-c7ba"
+  },
+  "source_review": {
+    "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+    "bytes": 61119,
+    "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+  },
+  "source_profile": "launcher-historical-c7ba",
+  "scope_preserved": {
+    "original_groups": [
+      "配置读取",
+      "区域目录初始化",
+      "来源选择",
+      "首次配置",
+      "失效恢复"
+    ],
+    "original_profiles": [
+      "launcher-legacy-601b",
+      "launcher-updated-c82f",
+      "launcher-historical-c7ba"
+    ],
+    "owners": [
+      "shared/launcher-catalog.mjs",
+      "shared/launcher-first-config.mjs"
+    ],
+    "dependencies": [
+      "X01"
+    ],
+    "implementation_batch": "D1",
+    "registered_protocol_entries": [
+      "LCH-CATALOG-001",
+      "UPD-CATALOG-001",
+      "CFG-GAME-001"
+    ],
+    "full_scope": "40/81/37/10/6"
+  },
+  "facts": [
+    {
+      "id": "CP-F01",
+      "classification": "事实",
+      "claim": "仅补L01原SS-U1的同C7七个必要节点；五组、三profile、原两个owner、X01/D1与三登记保持。C82同地址函数不是本版证据。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/before/analysis/capability-first-v1/capability-matrix.json",
+            "bytes": 948474,
+            "sha256": "467b2a8ef1d7329c1083f2d1ad2604fa5314164e3e867dd81064d51b945cd7fa"
+          },
+          "pointer": "/capabilities/0",
+          "canonical_sha256": "213da88dc143a70373ae6a5446cc35a4047fc5d73771eb45ef97235c54a10134"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/remaining/0",
+          "canonical_sha256": "09092142c0ca85243fcc402be1ff6bbb8ba84af56a5993d5b17a3b766feb02fb"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/source",
+          "canonical_sha256": "7d0943ecb6058bdadef9fd12cbb3b084466dcdb8a56835bfafc47e8b4f6b4cca"
+        }
+      ]
+    },
+    {
+      "id": "CP-F02",
+      "classification": "事实",
+      "claim": "4347C0实际接受input/output两参并先清output；input逻辑字节长度须1..259，拒绝首/末byte空间分类、任意byte<0x20或0x7f、按CharNextA划分的点/双点段、MBCS引号、设备前缀及不满足驱动器绝对路径/合法UNC的输入。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/13",
+          "canonical_sha256": "25d77be5a6c579c1e7081c05b9fdd0fe71a3a145a3f561a9dc2260b53884b086"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/8",
+          "canonical_sha256": "0cd661edb661014168aa778ba8be44ba2e1a061a9c6307a47d3f8e5f5a99cdc2"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/3",
+          "canonical_sha256": "d3c0bc83eda0596c558a18ebc34e1e4fb3a32f576d0374dc68c5b9f8f04955d8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/7",
+          "canonical_sha256": "5b32eab71a090cd43373b0289d53a29dd1672624988f5b84f60f4a0e9184c28b"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/10",
+          "canonical_sha256": "02994a7a2d47d275b1b48f3ba15fdfe7948982b12781dd804526b0443614804c"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/11",
+          "canonical_sha256": "4c4f4ff3717aed5455d56bcd8dc785fc8f67058564373242b1da6251dcb76cc2"
+        }
+      ]
+    },
+    {
+      "id": "CP-F03",
+      "classification": "事实",
+      "claim": "4347C0的GetFullPathNameA返回须0<r<260；再次确认绝对形态，长度>=4且末byte为反斜杠时逐个去除，保留三byte驱动根；GetFileAttributesA须非-1且有0x10目录位，才发布规范目录并返回1。此处没有额外拒绝目录0x400位。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/13",
+          "canonical_sha256": "25d77be5a6c579c1e7081c05b9fdd0fe71a3a145a3f561a9dc2260b53884b086"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/10",
+          "canonical_sha256": "02994a7a2d47d275b1b48f3ba15fdfe7948982b12781dd804526b0443614804c"
+        }
+      ]
+    },
+    {
+      "id": "CP-F04",
+      "classification": "事实",
+      "claim": "4340A0拒绝空、.、..、首/末byte空间分类、控制byte、末byte为点及保留设备基名。扫描以CharNextA前进，单byte位置的<>:\"/\\|?*被拒；并非对所有DBCS尾byte做同一标点检查。外层431B80另限文件名1..244byte。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/12",
+          "canonical_sha256": "68ea659155b8b6e4e32e4770179fdd8f6e2c853e4583d34d4c522286cf1b74a4"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/15",
+          "canonical_sha256": "b5286551efb3dec7242038aad4c4d416c3752ddd258343f6c2b5ec96f345bcb3"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/8",
+          "canonical_sha256": "0cd661edb661014168aa778ba8be44ba2e1a061a9c6307a47d3f8e5f5a99cdc2"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/3",
+          "canonical_sha256": "d3c0bc83eda0596c558a18ebc34e1e4fb3a32f576d0374dc68c5b9f8f04955d8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/reused_parent_bodies/0",
+          "canonical_sha256": "96f8c790048456d0c500cc3c15191d708230e14bc16ff8a938366fbb9de29774"
+        }
+      ]
+    },
+    {
+      "id": "CP-F05",
+      "classification": "事实",
+      "claim": "433990先按MBCS首个点截取基名，再不区分大小写检查CON/PRN/AUX/NUL；四byte基名的COM1..9、LPT1..9也拒绝。435520是Right(n)，故4340A0的点检查是尾点，不是禁止所有前导点。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/9",
+          "canonical_sha256": "bd8bfe0d4281de56bad2f0bba8024ea49a627da0179c5ec35ec71a7cb57182fa"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/15",
+          "canonical_sha256": "b5286551efb3dec7242038aad4c4d416c3752ddd258343f6c2b5ec96f345bcb3"
+        }
+      ]
+    },
+    {
+      "id": "CP-F06",
+      "classification": "事实",
+      "claim": "5A2235的FID多候选标签graph/alnum不是真实契约；它调用5A2248的alpha规则（单byte ctype0x103或多字节alpha标志）。5A1F45→5A1F58使用ctype8空间规则，调用者送入首/末unsigned byte；不得用Unicode trim或graph分类直接替换。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/25",
+          "canonical_sha256": "dd99be27186ff4120152f4ff05ee05b4b74495ef4e00f37224c6b82b3593043b"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/26",
+          "canonical_sha256": "e780842f70f8e4540ac5aaa652bd2a579778a64a1f3b3c0ddc91ab1ffb29f6b5"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/23",
+          "canonical_sha256": "b36f84a7568b94841d11bf26cf919aced744544aab377addc35e4ddfa63407a2"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/24",
+          "canonical_sha256": "fc9aabd78b62187f8aa886cef47095c4e0ef9623c86e6faeed88d7685374662d"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/8",
+          "canonical_sha256": "0cd661edb661014168aa778ba8be44ba2e1a061a9c6307a47d3f8e5f5a99cdc2"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/10",
+          "canonical_sha256": "02994a7a2d47d275b1b48f3ba15fdfe7948982b12781dd804526b0443614804c"
+        }
+      ]
+    },
+    {
+      "id": "CP-F07",
+      "classification": "事实",
+      "claim": "431B80先规范目录、审定文件名、补分隔并限制候选<260byte；GetFullPathNameA成功后，4337E0(candidate,directory,0)须为严格后代，且433B80的OS分支须通过，才发布lexical candidate。相等、仅相似前缀不能通过。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/reused_parent_bodies/0",
+          "canonical_sha256": "96f8c790048456d0c500cc3c15191d708230e14bc16ff8a938366fbb9de29774"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/reused_parent_bodies/1",
+          "canonical_sha256": "0664f9d76dc0db0e640c7a68d551a0264a54fd6f721eb1e7570955c506abee2a"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/reused_parent_bodies/2",
+          "canonical_sha256": "796e5d8cefa280bf4bf55fac657cba41c44947267a08ab0fd97bdcc1e2281ec0"
+        }
+      ]
+    },
+    {
+      "id": "CP-F08",
+      "classification": "事实",
+      "claim": "433B80取不到GetFinalPathNameByHandleA时，432E90分别扫描目录及候选的驱动根/UNC share起点和各反斜杠前缀；任何有效属性带0x400返回1并导致拒绝。属性返回-1本身不产生该拒绝，因此这不是文件存在性保证。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/reused_parent_bodies/2",
+          "canonical_sha256": "796e5d8cefa280bf4bf55fac657cba41c44947267a08ab0fd97bdcc1e2281ec0"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/4",
+          "canonical_sha256": "64aa3ca6b8b73c4dd60d25a4a8ad800501b07685d36c408d5a6f52b41edc0f35"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/11",
+          "canonical_sha256": "4c4f4ff3717aed5455d56bcd8dc785fc8f67058564373242b1da6251dcb76cc2"
+        }
+      ]
+    },
+    {
+      "id": "CP-F09",
+      "classification": "事实",
+      "claim": "API存在时4332D0按CreateFileA(access0,share7,OPEN_EXISTING3,flags0x02000000)打开路径，查询32768byte final-name缓冲、关闭handle；0或>=32768失败，成功复制结果后以435870规范。打开/查询失败不会回落到无API属性分支。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/reused_parent_bodies/2",
+          "canonical_sha256": "796e5d8cefa280bf4bf55fac657cba41c44947267a08ab0fd97bdcc1e2281ec0"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/6",
+          "canonical_sha256": "040f51ee7f608fb6f3a3b2d924d0c902735606a120c1af79dbf94f58bf1496a8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/16",
+          "canonical_sha256": "433eadee36c689c895d72e40fa487072e20eabb7a7c3159d1ccef017651b174e"
+        }
+      ]
+    },
+    {
+      "id": "CP-F10",
+      "classification": "事实",
+      "claim": "435870把\\\\?\\UNC\\前缀改为普通双反斜杠，其他\\\\?\\前缀去四byte，之后去除长度>=4时的末反斜杠并返回433DA0绝对形态判断。它的bool返回在provider void伪代码中丢失，保留独立ABI视图。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/16",
+          "canonical_sha256": "433eadee36c689c895d72e40fa487072e20eabb7a7c3159d1ccef017651b174e"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/10",
+          "canonical_sha256": "02994a7a2d47d275b1b48f3ba15fdfe7948982b12781dd804526b0443614804c"
+        }
+      ]
+    },
+    {
+      "id": "CP-F11",
+      "classification": "事实",
+      "claim": "434FE0先查候选属性；存在则直接4332D0。缺失时按MBCS最后反斜杠拆下非空尾段，向前累计suffix，保留驱动根或合法UNC并查父项。找到首个存在祖先后解析其final-name再追加未存在suffix；不能剥到合法根/出现空尾段或final解析失败则false。最终4337E0检查的是最终目录关系，不保证ConfigEXE已存在。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/14",
+          "canonical_sha256": "1c5443765df5caf5fcd1af317b1299db11172eecfe543521eefe0f09e4c9be74"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/15",
+          "canonical_sha256": "b5286551efb3dec7242038aad4c4d416c3752ddd258343f6c2b5ec96f345bcb3"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/6",
+          "canonical_sha256": "040f51ee7f608fb6f3a3b2d924d0c902735606a120c1af79dbf94f58bf1496a8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/11",
+          "canonical_sha256": "4c4f4ff3717aed5455d56bcd8dc785fc8f67058564373242b1da6251dcb76cc2"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/reused_parent_bodies/1",
+          "canonical_sha256": "0664f9d76dc0db0e640c7a68d551a0264a54fd6f721eb1e7570955c506abee2a"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/reused_parent_bodies/2",
+          "canonical_sha256": "796e5d8cefa280bf4bf55fac657cba41c44947267a08ab0fd97bdcc1e2281ec0"
+        }
+      ]
+    },
+    {
+      "id": "CP-F12",
+      "classification": "事实",
+      "claim": "40B900以emptyAllowed=0调用435F00和436100。key长度1..240byte，无边缘空间/控制byte，不以反斜杠起止、无引号，按CharNextA切分的反斜杠段非空且非./..、无段边空间，MBCS斜杠也拒绝。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "f27742c2498f38134176092e75f9d38cc4f4b23fedbf0fe61d7d242ea97a9a10"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/18",
+          "canonical_sha256": "1caf9def4262d29d696cd3237dec0713616b83a4bd29b85f4546b732b7beeabf"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/8",
+          "canonical_sha256": "0cd661edb661014168aa778ba8be44ba2e1a061a9c6307a47d3f8e5f5a99cdc2"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/3",
+          "canonical_sha256": "d3c0bc83eda0596c558a18ebc34e1e4fb3a32f576d0374dc68c5b9f8f04955d8"
+        }
+      ]
+    },
+    {
+      "id": "CP-F13",
+      "classification": "事实",
+      "claim": "registry value-name长度1..255byte，无边缘空间/控制byte、MBCS反斜杠/斜杠/引号，且不等于./..；不新增其他未见的字段约束。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "f27742c2498f38134176092e75f9d38cc4f4b23fedbf0fe61d7d242ea97a9a10"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/19",
+          "canonical_sha256": "1b416ec1b1af118bc11ceb4d9a385283058243bd5a73f8dbd91762bab297d67c"
+        }
+      ]
+    },
+    {
+      "id": "CP-F14",
+      "classification": "事实",
+      "claim": "40B900先清output，RegOpenKeyExA(HKCU,access1)成功才Query；260byte缓冲清零但Query最大cb=259，随后总是CloseKey。仅Query成功、type1或2、0<cb<260且data[cb-1]==0进入字符串路径；未要求cb等于首个NUL的strlen+1。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "f27742c2498f38134176092e75f9d38cc4f4b23fedbf0fe61d7d242ea97a9a10"
+        }
+      ]
+    },
+    {
+      "id": "CP-F15",
+      "classification": "事实",
+      "claim": "type2另行ExpandEnvironmentStringsA，原始返回阈值1..259才继续；type1不展开。两者最终都以4347C0规范为实际目录，helper按EAX返回成败。40BE30在当前helper返回0后才尝试旧key/value，二者不成再进原profile分支；不是沿用601b open/query不同的fallback策略。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "f27742c2498f38134176092e75f9d38cc4f4b23fedbf0fe61d7d242ea97a9a10"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/13",
+          "canonical_sha256": "25d77be5a6c579c1e7081c05b9fdd0fe71a3a145a3f561a9dc2260b53884b086"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/reused_parent_bodies/3",
+          "canonical_sha256": "6c22b80f207218a29d69883dfada3d708f965ffc8cec34173c02124c0f6a00a1"
+        }
+      ]
+    },
+    {
+      "id": "CP-F16",
+      "classification": "事实",
+      "claim": "433180从43F610初始化的空buffer，经43F910取GetModuleFileNameA(HMODULE0)；GetModuleFileNameA首次容量不足时扩容重取一次，0/再不足失败。caller另限最终length1..259，输出module path，若请求parent则最后MBCS反斜杠索引须>=3，取其前缀。分配/copy失败仍是false路径，不宣称所有内存分配都成功。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/5",
+          "canonical_sha256": "f542ae68065b5eff65c2901a71661903b5bc12f363a7e47b0b237eaab446e772"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/20",
+          "canonical_sha256": "04d52ae991b0b57f6ff12c63dc07b6eeedae483f424139437b46ae932844d47d"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/22",
+          "canonical_sha256": "b5f6fb85e7e865e244fe24c690e094f96e22ff7a75ad570ecd8a8838ff25a3e7"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/21",
+          "canonical_sha256": "8fb7a2f58ffd31733b9e401528e00a01803e838185e3b5a8d8d00a79ab738ede"
+        }
+      ]
+    },
+    {
+      "id": "CP-F17",
+      "classification": "事实",
+      "claim": "408D60把输出slot0写成自身module parent并全路径化/确认目录，再将\\XML全路径化写slot1，经4076E0→同版mbsicmp验证位于slot0加分隔符的MBCS不区分大小写前缀下。XML属性缺失且create参数非0才CreateDirectoryA，失败仅ERROR_ALREADY_EXISTS183可继续重查；有效XML目录须(attr&0x410)==0x10。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/0",
+          "canonical_sha256": "6083100983db6cc8487fc8c4c36e1ff2a7d4985a2a29391c4d618faeec512fe8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/5",
+          "canonical_sha256": "f542ae68065b5eff65c2901a71661903b5bc12f363a7e47b0b237eaab446e772"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/compiled_literals",
+          "canonical_sha256": "049ccf7acca1e9e2230e926530412b9ae6fdcefa7d2c39ff8c02b1e96aea6c02"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/derived_helpers/0",
+          "canonical_sha256": "67bca83b5aa2079926e562bc4c6fd48dcc19a9f4910cd2d292e005d09447535a"
+        }
+      ]
+    },
+    {
+      "id": "CP-F18",
+      "classification": "事实",
+      "claim": "后续依次构造slot2 GameList.xml、slot3 RegionList.xml、slot4 GameList.xml.new、slot5 RegionList.xml.new。40DA30→435C10用filename1..244及4340A0，再GetFullPathNameA和parent加分隔的MBCS前缀判断；属性-1或(attr&0x410)==0允许，现有目录/reparse项拒绝。各slot可先写后遇后续失败，不能称整个六slot失败时清空/原子。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/0",
+          "canonical_sha256": "6083100983db6cc8487fc8c4c36e1ff2a7d4985a2a29391c4d618faeec512fe8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/2",
+          "canonical_sha256": "806b4bb10aa3756019a7cfc43fa061a59b6edc9c823b574593a6f0518ad70d3d"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/17",
+          "canonical_sha256": "3f3f098072d1f7de697e4d2c8a42d1fcc2d81bc6aed5bfc46aec02cc1d61ae64"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/bodies/12",
+          "canonical_sha256": "68ea659155b8b6e4e32e4770179fdd8f6e2c853e4583d34d4c522286cf1b74a4"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/compiled_literals",
+          "canonical_sha256": "049ccf7acca1e9e2230e926530412b9ae6fdcefa7d2c39ff8c02b1e96aea6c02"
+        }
+      ]
+    },
+    {
+      "id": "CP-F19",
+      "classification": "事实",
+      "claim": "4347C0、4332D0/435870、40B900、408D60、40DA30的返回寄存器与必要输出参数根据调用/汇编独立审定。原provider签名及Evidence未改；normal cookie路径沿既有同版证据保留，不以void伪代码丢失布尔结果。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-c7-path-context-v1/source-review.json",
+            "bytes": 61119,
+            "sha256": "56227d4423f0a7041070bf8b255cf547d6f413b4ebd0ae9a8083689afe1c2126"
+          },
+          "pointer": "/ABI_views",
+          "canonical_sha256": "7ea73c7c383aaeb477ecb0388224ebb2c3f5345f93762277d3d91cda420c43a3"
+        }
+      ]
+    }
+  ],
+  "inferences": [
+    {
+      "id": "CP-I1",
+      "classification": "推测",
+      "claim": "只有在OS返回本合同指定的属性/handle/final-name/环境值时，缺失尾项或目录关系才产生相应准入结果；未观察原OS、符号链接目标或实际Config启动效果。",
+      "premises": [
+        "CP-F7",
+        "CP-F8",
+        "CP-F9",
+        "CP-F11"
+      ],
+      "native_reproduction_captured": false
+    }
+  ],
+  "operations": [
+    {
+      "id": "CP-O01",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "来源选择",
+      "trigger": "catalog/Config请求目录标准化",
+      "source_rule": "按逻辑字节/MBCS/绝对形态及OS目录属性判断。",
+      "publication_or_effect": "只在true时发布规范目录；起始清output。",
+      "failure_cancel_recovery": "输入/OS失败false；不把目录位检查改为原处没有的reparse拒绝。",
+      "fact_ids": [
+        "CP-F02",
+        "CP-F03",
+        "CP-F06"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "CP-O02",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "首次配置",
+      "trigger": "431B80收到ConfigEXE与目录",
+      "source_rule": "filename规则、词法严格后代与OS关系依次通过。",
+      "publication_or_effect": "发布lexical launch candidate；不等于CreateProcess成功。",
+      "failure_cancel_recovery": "空/边界/尾点/设备名/关系失败不发布。",
+      "fact_ids": [
+        "CP-F04",
+        "CP-F05",
+        "CP-F06",
+        "CP-F07"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "CP-O03",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "首次配置",
+      "trigger": "final-name API不可取得",
+      "source_rule": "逐前缀attributes；有效0x400才拒绝。",
+      "publication_or_effect": "无所见reparse时可继续，文件缺失另由后续creator决定。",
+      "failure_cancel_recovery": "属性-1不自行等于存在或失败；不套API存在分支。",
+      "fact_ids": [
+        "CP-F08"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "CP-O04",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "首次配置",
+      "trigger": "final-name API可取得",
+      "source_rule": "打开/查询/规范目录与候选现有祖先+suffix，再作严格后代。",
+      "publication_or_effect": "只发布通过关系检查的候选。",
+      "failure_cancel_recovery": "API存在但open/query失败直接false；handle总按已开分支关闭。",
+      "fact_ids": [
+        "CP-F09",
+        "CP-F10",
+        "CP-F11"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "CP-O05",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "来源选择",
+      "trigger": "loader选本版当前registry key/value",
+      "source_rule": "审定key/value及type/cb/末NUL；type2展开后目录标准化。",
+      "publication_or_effect": "返回Boolean与规范目录，caller按失败才试旧registry。",
+      "failure_cancel_recovery": "任何helper失败均返回0；profile fallback保留本版caller。",
+      "fact_ids": [
+        "CP-F12",
+        "CP-F13",
+        "CP-F14",
+        "CP-F15"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "CP-O06",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "配置读取",
+      "trigger": "构造catalog源布局",
+      "source_rule": "取自身module parent→全路径→XML子目录/受控创建→四文件路径。",
+      "publication_or_effect": "六slot布局按顺序发布；布尔表示整链成功。",
+      "failure_cancel_recovery": "失败可保留已写slot；不当host事务，不证明磁盘效果。",
+      "fact_ids": [
+        "CP-F16",
+        "CP-F17",
+        "CP-F18",
+        "CP-F19"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "CP-D1",
+      "merge_into": "SS-D3 / LF-D3 / LP-D1",
+      "change": "同一shared core携带source profile、byte length、MBCS及alpha/space observation；C7/C82算法分别有源后复用原语，不创建第三套路径核心。",
+      "implemented": false
+    },
+    {
+      "id": "CP-D2",
+      "merge_into": "SS-D3 / LP-D2..3",
+      "change": "原host端口表达API缺失/存在失败、prefix attributes、final ancestor与suffix、registry type/cb/expand及module目录观测；纯data snapshots不冒充真实OS结果。",
+      "implemented": false
+    },
+    {
+      "id": "CP-D3",
+      "merge_into": "SS-D1..5",
+      "change": "保留原两owner和X01/D1，以独立目录源适配表达顺序/partial slot；目标持久化事务和Config异步效果通过既有端口统一开发/接受。",
+      "implemented": false
+    }
+  ],
+  "selected_supersession": {
+    "parent_pointer": "/remaining/0",
+    "id": "SS-U1",
+    "status": "closed-selected-required-same-C7-source-context",
+    "selected_source_closed": true,
+    "reason": "七个原具名节点及影响结果的filename/path/registry/module-source子规则已有同版完整记录和原PE核验。",
+    "does_not_close": [
+      "SS-U2原完整多版初始化/EH/必要变体与conditional准入",
+      "SS-U3实际host/Config效果及完整接受",
+      "L03 LS-U3",
+      "L07当前消费者"
+    ]
+  },
+  "remaining": [
+    {
+      "id": "CP-U1",
+      "classification": "待验证",
+      "preserves": "SS-U2",
+      "need": "旧4015A0完整EH、原多版初始化/必要变体及LF-U4条件准入仍待；本轮C7 catalog自身module目录来源已闭，未因此关闭其他profile或Config INI来源。L03 LS-U3和L07当前消费者不变。"
+    },
+    {
+      "id": "CP-U2",
+      "classification": "待验证",
+      "preserves": "SS-U3",
+      "need": "目标端口实现、MBCS/OS观测、Config真实效果和取消/关闭/后台/IME/预算/持久化及完整接受待验；SDK原设置请求未答复，不重发/绕过，无测试账号答复保留。"
+    }
+  ],
+  "acceptance": {
+    "parent_cases_retained": 20,
+    "supplement_cases": [
+      {
+        "id": "CP-A01",
+        "context": "directory0/259/260byte、首末space/control、dot段、设备前缀、驱动绝对形态与UNC非空share",
+        "expected": "按源byte/MBCS准入；失败output空；不以Unicode字符数取代byte数。",
+        "fact_ids": [
+          "CP-F02",
+          "CP-F03",
+          "CP-F06"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CP-A02",
+        "context": "驱动根C:\\与多个末反斜杠；有效目录含/不含0x400",
+        "expected": "去末反斜杠保留根；4347C0只要求0x10目录，其他OS关系阶段另审。",
+        "fact_ids": [
+          "CP-F03"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CP-A03",
+        "context": "filename前导点、尾点、.和..；CON.txt/COM1.bin/COM0及244/245byte",
+        "expected": "前导点本身未被禁；尾点/保留设备名拒绝；外层与435C10均有长度上限。",
+        "fact_ids": [
+          "CP-F04",
+          "CP-F05"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CP-A04",
+        "context": "DBCS尾byte等于禁用标点、首末byte分类与内嵌控制byte",
+        "expected": "CharNextA的标点扫描与byte级控制/边缘规则分别使用源上下文。",
+        "fact_ids": [
+          "CP-F02",
+          "CP-F04",
+          "CP-F06"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CP-A05",
+        "context": "词法候选等于dir、只有相似前缀、实际严格后代",
+        "expected": "allowEquality=0；只有后代继续OS分支。",
+        "fact_ids": [
+          "CP-F07"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CP-A06",
+        "context": "API缺失；前缀attributes-1、有效普通项、有效0x400",
+        "expected": "前两者不触发432E90的reparse拒绝，任一有效0x400拒绝。",
+        "fact_ids": [
+          "CP-F08"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CP-A07",
+        "context": "API存在而CreateFile失败、query0/32768、成功extended UNC/drive结果",
+        "expected": "失败不改走fallback；成功按435870再检查绝对形态和后代。",
+        "fact_ids": [
+          "CP-F09",
+          "CP-F10"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CP-A08",
+        "context": "候选缺失两尾段、存在祖先，或空尾段/不合法根/final目录越界",
+        "expected": "按顺序累计suffix；只有合法final关系通过，候选存在性不由此保证。",
+        "fact_ids": [
+          "CP-F07",
+          "CP-F11"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CP-A09",
+        "context": "registry key240/241、value255/256、空key/value与分隔/控制byte",
+        "expected": "以emptyAllowed=0及本版输入谓词决定是否触发RegOpen。",
+        "fact_ids": [
+          "CP-F12",
+          "CP-F13"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CP-A10",
+        "context": "Query类型1/2/其他、cb0/259/260、末NUL及较早内嵌NUL",
+        "expected": "只按源列出的type/cb/末byte约束；不额外推定strlen一致约束。",
+        "fact_ids": [
+          "CP-F14"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CP-A11",
+        "context": "type2 Expand返回0/259/260；当前/旧helper各阶段失败",
+        "expected": "0/260失败，259允许进入目录验证；当前helper任何false可走旧helper，二者失败才profile。",
+        "fact_ids": [
+          "CP-F15"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CP-A12",
+        "context": "module getter初次0、容量不足后重试、返回最终260、parent最后分隔索引<3",
+        "expected": "依43F910一次resize重取与433180上限/parent条件处理；分配失败也保留失败结果。",
+        "fact_ids": [
+          "CP-F16"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CP-A13",
+        "context": "XML不存在且create0/1、Create失败183/其他、最终目录/reparse属性",
+        "expected": "仅create非0尝试创建，183可重查，最终mask须0x10；不把命令提交当磁盘创建成功。",
+        "fact_ids": [
+          "CP-F17"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CP-A14",
+        "context": "四catalog文件缺失、已有普通文件、目录/reparse项及后续slot失败",
+        "expected": "缺失可作为路径；目录/reparse拒绝；保留顺序partial发布，完整调用false不等于六slot全空。",
+        "fact_ids": [
+          "CP-F18",
+          "CP-F19"
+        ],
+        "executed": false
+      }
+    ],
+    "supplement_cases_executed": 0,
+    "original_program_cases_executed": 0
+  },
+  "reused_current_path_contract": {
+    "path": "analysis/capability-first-v1/launcher-config-path-contract.json",
+    "bytes": 28388,
+    "sha256": "f685da9e70819e19bdb9430669c8f74c482c4781d089b2d308f00bb79c83d3e9"
+  },
+  "probes_reexecuted": false,
+  "new_target_tests": 0,
+  "summary": {
+    "selected_original_SS_U1_roots": 7,
+    "new_native_records": 26,
+    "new_native_body_bytes": 9482,
+    "reused_native_records_freshly_mapped": 1,
+    "reused_verified_parent_bodies": 5,
+    "range_windows": 27,
+    "range_bytes": 10201,
+    "decoded_instructions": 3517,
+    "fresh_literal_reads": 2,
+    "compiled_literals": 7,
+    "ABI_views": 6,
+    "derived_helper_windows": 1,
+    "derived_helper_bytes": 35,
+    "derived_helper_instructions": 13,
+    "total_retained_REA_records": 86,
+    "new_target_tests": 0,
+    "facts": 19,
+    "conditional_inferences": 1,
+    "operations": 6,
+    "implementation_deltas": 3,
+    "supplemental_acceptance_cases_not_executed": 14,
+    "selected_SS_U1_source_closed": true,
+    "required_source_contexts_open": [
+      "SS-U2"
+    ],
+    "host_contexts_open": [
+      "SS-U3"
+    ]
+  },
+  "selected_SS_U1_source_closed": true,
+  "whole_L01_specification_ready": false,
+  "source_capability_readiness_promoted": false,
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "original_VM_SDK_program_setting_account_or_official_actions": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "stopping_rule": "已证路径/registry/目录helper停止扩展与重复反编译；后续只沿原矩阵必要上下文推进。跨profile共同算法以独立证据后复用，完整平台接受单列。",
+  "limitations": [
+    "Fresh PE mapping and instruction-boundary agreement are static checks, not execution.",
+    "No C82 same-address record or address-delta substitution was used.",
+    "SS-U2 full startup/EH/required variants and SS-U3 host acceptance remain open."
+  ],
+  "validation_record_path": "build/analysis/launcher-c7-path-context-v1/validation.json",
+  "execution_record": {
+    "path": "build/analysis/launcher-c7-path-context-v1/execution-record.json",
+    "bytes": 2300,
+    "sha256": "936d8080f8c2e76f71a75ddca9bc7fe3f4d8d3adf287fc583082c8ab22ac5cbf"
+  }
+}

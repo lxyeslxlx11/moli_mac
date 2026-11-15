@@ -1,0 +1,193 @@
+{
+  "recorded_utc": "2026-10-26T01:53:36.405450+00:00",
+  "vm": "Windows 11",
+  "vm_path": "/Users/lx/Parallels/Windows 11.pvm",
+  "authorization": {
+    "renewed_single_probe_utc": "2026-10-26T00:58:00Z",
+    "prior_possible_activation_disclosed": true,
+    "renewed_allowance_consumed": true,
+    "both_win7_confirmed_by_user_utc": "2026-10-26T01:20:00Z",
+    "user_requested_no_repeated_compatibility_check": true,
+    "launcher_win7_saved_and_reopened_before_handoff": true,
+    "game_compatibility_not_reopened_after_user_confirmation": true,
+    "admin_checkbox_observed_enabled_during_user_handoff": "user change; not modified by assistant"
+  },
+  "sample": {
+    "path": "C:/MoliOffline/launcher-probe/POLCN_Launcher.exe",
+    "working_directory": "C:/MoliOffline/launcher-probe",
+    "sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+    "bytes": 599040,
+    "source": "User POLCN_Setup.exe offline extraction; authenticity against authoritative official bytes not established",
+    "permitted_embedded_updater_sha256": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976"
+  },
+  "recovery_preflight": {
+    "snapshot": "Moli-before-launcher-probe-20261026-v22",
+    "guid": "{7d7de628-ef85-4b19-873d-99071422ea2b}",
+    "reference": "../vm-install-v22/native-snapshot-verification.json",
+    "recheck_utc_range": [
+      "2026-10-26T01:00:25Z",
+      "2026-10-26T01:01:00Z"
+    ],
+    "metadata_and_two_inactive_parent_disk_hashes_match": true,
+    "active_leaf_not_compared_with_cold_hash": true,
+    "three_source_files_v21_iso_v18_dependency_and_embedded_updater_match": true,
+    "new_snapshot_created": false,
+    "restore_boot_tested": false
+  },
+  "input_preflight": {
+    "ordinary_file_selection_responded": true,
+    "empty_explorer_window_closed_normally": true,
+    "english_commands_checked_in_full_before_submission": true,
+    "three_named_process_query_before_launch_rows": 0,
+    "scope": "Tool input recovered during this turn; no claim about physical keyboard root cause."
+  },
+  "launch": {
+    "command": "$p=start-process $l -workingdirectory $d -verb runas -passthru",
+    "intentional_submissions_this_renewed_probe": 1,
+    "submitted_utc": "2026-10-26T01:27:02.434Z",
+    "uac_click_utc": "2026-10-26T01:28:04.205Z",
+    "uac_full_path_verified": "C:\\MoliOffline\\launcher-probe\\POLCN_Launcher.exe",
+    "uac_publisher": "Unknown",
+    "uac_accepted": true,
+    "other_uac_accepted": false,
+    "pid": 2132
+  },
+  "observations": [
+    {
+      "utc_approx": "2026-10-26T01:28:37Z",
+      "window_title": "POLCN_Launcher",
+      "text": "网络错误：12007",
+      "background": "正在检查更新 progress window",
+      "action": "Close button; no update/login/game action"
+    },
+    {
+      "utc": "2026-10-26T01:28:57.647Z",
+      "action": "Requested normal X close of network-error dialog"
+    },
+    {
+      "utc_approx": "2026-10-26T01:29:01Z",
+      "window_title": "错误",
+      "text": "更新检查失败!",
+      "action": "Normal X close requested about 01:29:19 UTC"
+    },
+    {
+      "utc_approx": "2026-10-26T01:29:22Z",
+      "text": "No sample window visible; ordinary PowerShell prompt visible"
+    }
+  ],
+  "exit": {
+    "has_exited": true,
+    "exit_code": -1,
+    "guest_start_local": "2026-10-26 09:28:05",
+    "guest_exit_local": "2026-10-26 09:29:19",
+    "guest_utc_offset_hours": 8,
+    "start_utc": "2026-10-26T01:28:05Z",
+    "exit_utc": "2026-10-26T01:29:19Z",
+    "timestamp_precision": "Seconds, as displayed by returned System.Diagnostics.Process object",
+    "runtime_seconds": 74,
+    "runtime_le_90_seconds": true,
+    "submission_to_exit_seconds_approx": 137,
+    "submission_to_exit_le_90_seconds": false,
+    "all_descendant_lifetimes_within_limit": "unverified; no continuous descendant collection",
+    "method": "Normal window closes followed by read-only Process object query; no force kill, shutdown, restart or sample retry",
+    "timing_contract_violated": true,
+    "timing_contract_scope": "The agreed maximum was 90 seconds for the bounded observation; approximately 137 seconds elapsed from submission through UAC to exit. The 74-second target lifetime does not make the experiment compliant."
+  },
+  "post_checks": {
+    "utc_approx_range": [
+      "2026-10-26T01:34:00Z",
+      "2026-10-26T01:40:00Z"
+    ],
+    "named_processes": [
+      "POLCN_Launcher",
+      "LauncherUpdater",
+      "cg_se_3000"
+    ],
+    "named_process_rows": 0,
+    "named_query_error_action": "SilentlyContinue",
+    "direct_children_parent_pid": 2132,
+    "direct_children_query_rows": 0,
+    "direct_children_query": "Get-CimInstance Win32_Process with ParentProcessId=2132; Name/ProcessId only",
+    "directory_new_metadata": [
+      {
+        "path": "Log.htm",
+        "bytes": 619,
+        "attributes": "Archive",
+        "content_read": false
+      }
+    ],
+    "original_file_hashes_after_run": [
+      {
+        "path": "POLCN_Launcher.exe",
+        "bytes": 599040,
+        "sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+        "observed_equal": true
+      },
+      {
+        "path": "XML/GameList.xml",
+        "bytes": 4377,
+        "sha256": "be8f1213d77bd294fbb79b2fb51a5e7fecdc9aa3c0854db7a6d821fad20ef85a",
+        "observed_equal": true
+      },
+      {
+        "path": "XML/RegionList.xml",
+        "bytes": 6205,
+        "sha256": "0c94ca78c40c1940f241940a97aabef7849e9ad3285310046f346b69128a8438",
+        "observed_equal": true
+      }
+    ],
+    "root_and_XML_force_listing_other_entries": [
+      "XML directory",
+      "POLCN_Launcher.exe",
+      "XML/GameList.xml",
+      "XML/RegionList.xml"
+    ],
+    "updater_file_not_present_in_this_listing": true,
+    "limits": "Post-run negative queries do not prove no prior transient children, no other system/registry writes, or all descendants monitored."
+  },
+  "prior_uncertainty_audit": {
+    "time_range_utc": [
+      "2026-10-26T00:39:00Z",
+      "2026-10-26T00:44:00Z"
+    ],
+    "log": "Application",
+    "ids": [
+      1000,
+      1001
+    ],
+    "providers": [
+      "Application Error",
+      "Windows Error Reporting"
+    ],
+    "data_exact_names": [
+      "POLCN_Launcher.exe",
+      "LauncherUpdater.exe"
+    ],
+    "result": "NoMatchingEventsFound",
+    "limit": "Does not prove prior possible activation never executed; no full system logs or event bodies exported."
+  },
+  "result": "Initial update-check error observed and launcher exited after normal closes; main login UI and updater process execution not demonstrated.",
+  "inference": {
+    "label": "inference, not a captured request trace",
+    "text": "12007 is consistent with WinINet server-name resolution failure in an offline VM; no actual destination/request/API mapping was captured.",
+    "source": "https://learn.microsoft.com/en-us/windows/win32/wininet/wininet-errors"
+  },
+  "not_performed": [
+    "Network enablement or server connection",
+    "Login or credentials",
+    "Active update or game launch",
+    "Other sample runs or elevation",
+    "Reading Log.htm contents",
+    "Memory/shared-memory dumps or network capture",
+    "Installing missing components",
+    "Changes to Gatekeeper, TPM, SecureBoot or account settings"
+  ],
+  "pending_tool_calls": false,
+  "product_code_changed": false,
+  "product_tests_rerun": false,
+  "reporting": {
+    "result_reporting_delayed": true,
+    "assessment": "The parent requested actual execution/end status repeatedly before the result was returned. Reporting was delayed; this is a process failure, not a successful timing check."
+  },
+  "overall_acceptance": "NOT_FULL_PASS: bounded offline error observed and normal exit confirmed; 90-second agreement violated and result reporting delayed. Login/game compatibility not demonstrated."
+}

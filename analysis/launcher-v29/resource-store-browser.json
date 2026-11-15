@@ -1,0 +1,85 @@
+{
+  "schema": "moli.launcher-v29.resource-store-browser.v1",
+  "browser": "155.0.8059.85",
+  "driver": "Playwright1.62.1; Browser plugin not available",
+  "proof": {
+    "passed": true,
+    "checks": [
+      {
+        "name": "two Python-produced snapshots preserve digest and canonical binding bytes",
+        "passed": true
+      },
+      {
+        "name": "empty native IndexedDB and first complete-record CAS commit",
+        "passed": true
+      },
+      {
+        "name": "caller and reader payload mutation cannot alter committed native storage",
+        "passed": true
+      },
+      {
+        "name": "two real concurrent transactions with one revision have exactly one winner",
+        "passed": true
+      },
+      {
+        "name": "invalid new payload never replaces native persisted version",
+        "passed": true
+      },
+      {
+        "name": "abort after actual put success rolls back the native transaction",
+        "passed": true
+      },
+      {
+        "name": "injected write failure aborts a real transaction and retains the old record",
+        "passed": true
+      },
+      {
+        "name": "cancellation at actual native completion reports committed rather than false rollback",
+        "passed": true
+      },
+      {
+        "name": "deadline observed after native completion reports committed with an explicit flag",
+        "passed": true
+      },
+      {
+        "name": "corrupt native stored bytes are rejected and never overwritten automatically",
+        "passed": true
+      },
+      {
+        "name": "unknown native database shape is retained and explicitly refused",
+        "passed": true
+      },
+      {
+        "name": "future native database version is refused without deletion or downgrade",
+        "passed": true
+      }
+    ],
+    "details": {
+      "concurrent_revision": 3,
+      "late_cancel": {
+        "revision": 4,
+        "committed": true,
+        "cancellationTooLate": true,
+        "deadlineExceededAfterCommit": false,
+        "trust": "unverified"
+      },
+      "late_deadline": {
+        "revision": 5,
+        "committed": true,
+        "cancellationTooLate": false,
+        "deadlineExceededAfterCommit": true,
+        "trust": "unverified"
+      }
+    }
+  },
+  "errors": [],
+  "consoleLogs": [],
+  "requests": {
+    "total": 51,
+    "origins": [
+      "http://127.0.0.1:62543"
+    ]
+  },
+  "server_connection_attempts": 0,
+  "scope": "Actual Chrome IndexedDB transactions, two Python vectors, real CAS/rollback/late completion plus explicit injected putfailure. Temporary browser context and original bytes only. Not native Windows or official resource acceptance."
+}

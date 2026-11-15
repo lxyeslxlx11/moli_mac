@@ -1,0 +1,57 @@
+{
+  "schema": "moli.launcher-v20.artifact-output-incident.v1",
+  "recorded_utc": "2026-10-27T04:43:16.395777+00:00",
+  "cause": "An owned old regression runner retained hard-coded stage19 receipt and temporary screenshot output paths. It was executed against current stage65 sources before being copied/retargeted.",
+  "prior_receipt": {
+    "path": "analysis/launcher-v19/browser-validation.json",
+    "bytes": 3750,
+    "sha256": "256e8ac7c8dc519ea9784d760768d52f3086d5472357f6319c2d16bdd1f1104a"
+  },
+  "prior_receipt_exact_content_recoverable": false,
+  "historical_summary_still_preserved": [
+    "analysis/launcher-v19/validation.json",
+    "analysis/launcher-v19/browser-run.log",
+    "analysis/launcher-v19/visual-review.json",
+    "analysis/delivery-manifest-stage64.json"
+  ],
+  "historical_summary": {
+    "scenario_checks": 17,
+    "measurement_records": 1,
+    "requests": 429,
+    "actual_composite_deadline_ms": 10052
+  },
+  "new_observation": "analysis/launcher-v20/config-session-regression-incident-run.json",
+  "temporary_screenshots": [
+    {
+      "original_path": "/private/tmp/moli-launcher-v19-browser-kT9e0i/desktop-initial.png",
+      "original_sha256": "154c215f7e1c487bc1468e943869cc2e4a442eb801dbf674b4fa04cf92571dab",
+      "current_sha256": "590483a58c61088a92fe1028e506548dd24f412776a570a8eb12757b99391665",
+      "original_still_matches": false,
+      "current_run_copy": "/private/tmp/moli-launcher-v20-browser-AtzJkZ/config-regression/desktop-initial.png"
+    },
+    {
+      "original_path": "/private/tmp/moli-launcher-v19-browser-kT9e0i/desktop-profiles.png",
+      "original_sha256": "bdb47126d950087f74c23ea4c37e57765dc7cede2df14fccbbf9d4e8ca9f637e",
+      "current_sha256": "3e4bad9417b891ae3e35952541da38d2d1af3f6d565f1f2d8355f5b12aa96da1",
+      "original_still_matches": false,
+      "current_run_copy": "/private/tmp/moli-launcher-v20-browser-AtzJkZ/config-regression/desktop-profiles.png"
+    },
+    {
+      "original_path": "/private/tmp/moli-launcher-v19-browser-kT9e0i/mobile-initial.png",
+      "original_sha256": "407625918ed11b8b927d6006ae1f0726030d8075802d86533587431f9574b1ea",
+      "current_sha256": "407625918ed11b8b927d6006ae1f0726030d8075802d86533587431f9574b1ea",
+      "original_still_matches": true,
+      "current_run_copy": "/private/tmp/moli-launcher-v20-browser-AtzJkZ/config-regression/mobile-initial.png"
+    },
+    {
+      "original_path": "/private/tmp/moli-launcher-v19-browser-kT9e0i/mobile-profiles.png",
+      "original_sha256": "24e9107cb009725be78c12fb36ee0bea25eff9682abe1ba921d2172d4e95431a",
+      "current_sha256": "4909e399516a911bf163c930a911b8a73c5074176af67529856bb0ea4eb2dee4",
+      "original_still_matches": false,
+      "current_run_copy": "/private/tmp/moli-launcher-v20-browser-AtzJkZ/config-regression/mobile-profiles.png"
+    }
+  ],
+  "source_and_original_sample_effect": "No source or original material mutation by the runner; only the one historical JSON receipt and owned temp screenshots. Stage65 source edits are separately recorded in baseline.",
+  "remediation": "Keep original identities and unchanged historical summary/log/manifest; move new observation to stage20, old receipt becomes explicit incident pointer. No claim of hash restoration. Retarget/copy all future runners before execution.",
+  "recovery_limits": "Original per-origin detailed receipt and any changed screenshot pixels are unavailable from current project backups; existing historical summary/logs and inline prior conversation images remain distinct evidence."
+}

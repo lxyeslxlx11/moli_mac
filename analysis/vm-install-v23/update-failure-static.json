@@ -1,0 +1,343 @@
+{
+  "schema": "moli.launcher.update-failure.static.v1",
+  "recorded_utc": "2026-10-26T01:53:36.408795+00:00",
+  "scope": "Read-only static analysis of existing samples and cached REA results. No sample execution, network, VM settings change, Log.htm content read, or account/session inspection in this closeout.",
+  "sample": {
+    "original_sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+    "unpacked_analysis_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "unpacked_bytes": 1735168,
+    "image_base": "0x400000",
+    "installer_sha256": "dc90bb88e35a82a649f1c026bd0b7b6e7039ddbe5e872f40ffebfb4b16b0fb11"
+  },
+  "tools": {
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4 cached REA backend",
+    "GNU objdump": "2.47.20260726",
+    "Rizin": "0.9.1; malformed/misaligned short pd output was not used for branch conclusions"
+  },
+  "rea_sources": [
+    {
+      "function": "FUN_004015a0",
+      "evidence_id": "ev_4ea494bd8b8e5faa814b6cf1b3bee5baca6625e3e7de0fc364901b54a7ee8e17",
+      "dossier_sha256": "c31c584a2cdd52a1ce2f86d36044ef1685e30a8d64ccb87643f6847568e6508c",
+      "temporary_path": "/private/tmp/moli-analysis/polcn/function-updater.json"
+    },
+    {
+      "function": "FUN_0041ab70",
+      "evidence_id": "ev_55ecff2200e634057c076604a9418249b9eec6b5d2d1f6757606e0f1bc81cf7f",
+      "dossier_sha256": "474725532fb917a9d97ae2a62eb2bae0f9914063576742625d64761697bbb2a4",
+      "temporary_path": "/private/tmp/moli-analysis/stage3-http/helper-function-authorized.json"
+    }
+  ],
+  "anchors": [
+    {
+      "id": "INITIAL-HTTP-CALL",
+      "kind": "bytes",
+      "va": "0x401991",
+      "file_offset": "0xd91",
+      "expected_hex": "e8da910100",
+      "text": null,
+      "matched": true
+    },
+    {
+      "id": "RESULT-COMPARE-ZERO",
+      "kind": "bytes",
+      "va": "0x40199f",
+      "file_offset": "0xd9f",
+      "expected_hex": "83bd30f5ffff00",
+      "text": null,
+      "matched": true
+    },
+    {
+      "id": "NONZERO-CONTINUE",
+      "kind": "bytes",
+      "va": "0x4019a6",
+      "file_offset": "0xda6",
+      "expected_hex": "752b",
+      "text": null,
+      "matched": true
+    },
+    {
+      "id": "FAILURE-LOG-TEXT",
+      "kind": "bytes",
+      "va": "0x4019a8",
+      "file_offset": "0xda8",
+      "expected_hex": "6874194b00",
+      "text": null,
+      "matched": true
+    },
+    {
+      "id": "FAILURE-LOG-CALL",
+      "kind": "bytes",
+      "va": "0x4019ad",
+      "file_offset": "0xdad",
+      "expected_hex": "e8de960100",
+      "text": null,
+      "matched": true
+    },
+    {
+      "id": "FAILURE-DIALOG-TEXT",
+      "kind": "bytes",
+      "va": "0x4019bc",
+      "file_offset": "0xdbc",
+      "expected_hex": "688c194b00",
+      "text": null,
+      "matched": true
+    },
+    {
+      "id": "FAILURE-DIALOG-CALL",
+      "kind": "bytes",
+      "va": "0x4019c7",
+      "file_offset": "0xdc7",
+      "expected_hex": "e8ce970200",
+      "text": null,
+      "matched": true
+    },
+    {
+      "id": "EXIT-MINUS-ONE",
+      "kind": "bytes",
+      "va": "0x4019cc",
+      "file_offset": "0xdcc",
+      "expected_hex": "6aff",
+      "text": null,
+      "matched": true
+    },
+    {
+      "id": "EXIT-CALL",
+      "kind": "bytes",
+      "va": "0x4019ce",
+      "file_offset": "0xdce",
+      "expected_hex": "e8b7be0400",
+      "text": null,
+      "matched": true
+    },
+    {
+      "id": "ERROR-CODE-FIELD",
+      "kind": "bytes",
+      "va": "0x41af01",
+      "file_offset": "0x1a301",
+      "expected_hex": "8b4208",
+      "text": null,
+      "matched": true
+    },
+    {
+      "id": "NETWORK-ERROR-FORMAT-REF",
+      "kind": "bytes",
+      "va": "0x41af05",
+      "file_offset": "0x1a305",
+      "expected_hex": "68d8634b00",
+      "text": null,
+      "matched": true
+    },
+    {
+      "id": "NETWORK-ERROR-FORMAT-CALL",
+      "kind": "bytes",
+      "va": "0x41af0e",
+      "file_offset": "0x1a30e",
+      "expected_hex": "e8fd2cffff",
+      "text": null,
+      "matched": true
+    },
+    {
+      "id": "NETWORK-ERROR-DISPLAY-CALL",
+      "kind": "bytes",
+      "va": "0x41af23",
+      "file_offset": "0x1a323",
+      "expected_hex": "e8d3960100",
+      "text": null,
+      "matched": true
+    },
+    {
+      "id": "ERROR-PATH-ZERO",
+      "kind": "bytes",
+      "va": "0x41af30",
+      "file_offset": "0x1a330",
+      "expected_hex": "c7458c00000000",
+      "text": null,
+      "matched": true
+    },
+    {
+      "id": "INITIAL-PATH",
+      "kind": "string_gb18030",
+      "va": "0x4b1940",
+      "file_offset": "0xb0b40",
+      "expected_hex": "2f4c61756e636865722f6c61756e636865725f6d64352e64617400",
+      "text": "/Launcher/launcher_md5.dat",
+      "matched": true
+    },
+    {
+      "id": "INITIAL-HOST",
+      "kind": "string_gb18030",
+      "va": "0x4b195c",
+      "file_offset": "0xb0b5c",
+      "expected_hex": "6c61756e63682e706f6c6368696e612e636f6d2e636e00",
+      "text": "launch.polchina.com.cn",
+      "matched": true
+    },
+    {
+      "id": "EMPTY-REQUEST-TEXT",
+      "kind": "string_gb18030",
+      "va": "0x4b1863",
+      "file_offset": "0xb0a63",
+      "expected_hex": "00",
+      "text": "",
+      "matched": true
+    },
+    {
+      "id": "FAILURE-LOG-LITERAL",
+      "kind": "string_gb18030",
+      "va": "0x4b1974",
+      "file_offset": "0xb0b74",
+      "expected_hex": "b8fcd0c2bcecb2e9caa7b0dca3a100",
+      "text": "更新检查失败！",
+      "matched": true
+    },
+    {
+      "id": "FAILURE-DIALOG-LITERAL",
+      "kind": "string_gb18030",
+      "va": "0x4b198c",
+      "file_offset": "0xb0b8c",
+      "expected_hex": "b8fcd0c2bcecb2e9caa7b0dca3a100",
+      "text": "更新检查失败！",
+      "matched": true
+    },
+    {
+      "id": "NETWORK-ERROR-FORMAT",
+      "kind": "string_gb18030",
+      "va": "0x4b63d8",
+      "file_offset": "0xb55d8",
+      "expected_hex": "cdf8c2e7b4edcef3a3ba256400",
+      "text": "网络错误：%d",
+      "matched": true
+    },
+    {
+      "id": "QUERY-FORMAT",
+      "kind": "string_gb18030",
+      "va": "0x4b62fc",
+      "file_offset": "0xb54fc",
+      "expected_hex": "25733f72746d3d256c6c6400",
+      "text": "%s?rtm=%lld",
+      "matched": true
+    },
+    {
+      "id": "HTTP-SCHEME",
+      "kind": "string_gb18030",
+      "va": "0x4b6308",
+      "file_offset": "0xb5508",
+      "expected_hex": "687474703a2f2f00",
+      "text": "http://",
+      "matched": true
+    }
+  ],
+  "error_path": [
+    {
+      "label": "fact",
+      "confidence": "high",
+      "detail": "First update request at401991 calls41ab70 with launch.polchina.com.cn, /Launcher/launcher_md5.dat, empty request text and an output string."
+    },
+    {
+      "label": "fact",
+      "confidence": "high",
+      "detail": "Helper error path formats exception field+8 through network-error format at4b63d8; calls display at41af23 and stores zero at41af30. No runtime API trace was collected."
+    },
+    {
+      "label": "fact",
+      "confidence": "high",
+      "detail": "40199f compares helper result with zero. Nonzero jumps4019d3; zero logs at4019ad, displays update-check failure at4019c7 and calls REA-identified _exit(-1) at4019ce."
+    },
+    {
+      "label": "inference",
+      "confidence": "moderate",
+      "detail": "Observed error12007 and exit-1 are consistent with this static path and WinINet name-resolution failure; actual request destination/API/response was not captured.",
+      "definition_source": "https://learn.microsoft.com/en-us/windows/win32/wininet/wininet-errors"
+    }
+  ],
+  "normal_offline_skip": {
+    "label": "not_established",
+    "checked_scope": "FUN_004015a0 initial command parsing, ID/GAME branches joining4017e9, first-request failure/success branches and related string/config evidence.",
+    "finding": "No normal offline skip was identified in the checked path. Local XML availability occurs later and does not bypass the first request. The offline-upgrade-patch help string at file0xb17d8 (offline word0xb1825) is not a mode selector. Negative string search does not exclude every alternative entry in the entire program.",
+    "prohibited_or_not_attempted": [
+      "patching branch",
+      "forging response",
+      "suppressing validation",
+      "registry/argument guessing",
+      "running updater"
+    ]
+  },
+  "static_requests": [
+    {
+      "host": "launch.polchina.com.cn",
+      "path": "/Launcher/launcher_md5.dat",
+      "caller_va": "0x401991",
+      "purpose": "Initial launcher digest text for comparison with current executable"
+    },
+    {
+      "host": "launch.polchina.com.cn",
+      "path": "/Launcher/launcher_url.dat",
+      "caller_va": "0x401b51",
+      "purpose": "Conditional response-supplied update locator when launcher comparison differs"
+    },
+    {
+      "host": "launch.polchina.com.cn",
+      "path": "/Launcher/xml_md5.dat",
+      "caller_va": "0x4020a8",
+      "purpose": "XML catalog digest text"
+    },
+    {
+      "host": "launch.polchina.com.cn",
+      "path": "/Launcher/GameList.xml",
+      "caller_va": "0x40229b",
+      "purpose": "Conditional local GameList.xml replacement"
+    },
+    {
+      "host": "launch.polchina.com.cn",
+      "path": "/Launcher/RegionList.xml",
+      "caller_va": "0x402457",
+      "purpose": "Conditional local RegionList.xml replacement"
+    }
+  ],
+  "request_data": {
+    "label": "static_facts_and_limits",
+    "scheme": "http:// literal, not HTTPS in the examined constructor",
+    "query": "%s?rtm=%lld; appended int64 value, exact time units/semantics unconfirmed",
+    "initial_explicit_body": "Empty CString at4b1863, built40197d/401982. Optional SendRequest path requires nonempty text. No explicit account/password body in this examined update call.",
+    "observable_categories": [
+      "DNS hostname lookup",
+      "HTTP resource path and rtm query",
+      "source network address and ordinary HTTP metadata"
+    ],
+    "unknown": [
+      "actual emitted headers/user-agent",
+      "WinINet cookie/proxy/authentication defaults and existing state",
+      "redirect targets",
+      "server-provided update URL and payload identity",
+      "current availability, legitimacy and permission for endpoints"
+    ],
+    "privacy_limit": "Empty application request text is not proof of no credential/cookie/system-state transmission. No network request was made in this closeout."
+  },
+  "potential_automatic_actions": {
+    "label": "static_conditional_behavior_not_observed_this_run",
+    "details": [
+      "At launcher comparison mismatch, launcher_url.dat supplies the next locator; further host(s) cannot be fixed from these literals alone.",
+      "Resource143 (0x8f) can be written as ./LauncherUpdater.exe via41b610; launcher CreateProcessA call401d46 can start it before user login/update clicks.",
+      "Identified embedded updater SHA256 4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976. Existing PE evidence identifies POL_Launcher.pak/POL_Launcher.new strings and CopyFileA/DeleteFileA/CreateProcessA imports; the independent consumer analysis closes token consumption and an HTTP OpenURL/status path. Complete file replacement/relaunch control flow was not newly closed here; download/replacement/execution remains a potential consequence, not an observed outcome.",
+      "Conditional XML catalog downloads can overwrite local GameList.xml and RegionList.xml."
+    ],
+    "reference": "../protocol-v3/updater/consumer-evidence.json",
+    "limit": "No automatic child lifetime/actual download was continuously captured in the v23 run. Do not assume network enablement restricts execution to fixed binaries or fixed hosts."
+  },
+  "verification": {
+    "new_byte_and_literal_anchors_passed": 22,
+    "new_byte_and_literal_anchors_total": 22,
+    "cached_http_anchors": "../protocol-v3/http-helper/verified-http-chain.json",
+    "product_tests": "Not rerun: no product code changed",
+    "dynamic_retry": "Not performed",
+    "Log_htm": "619-byte metadata already recorded; contents not needed for these static conclusions and not read."
+  },
+  "minimum_next_proposal": {
+    "status": "proposal_only_not_authorized_or_executed",
+    "purpose": "Determine whether the first public update manifest exists and what data it contains without enabling VM NAT or executing samples.",
+    "operation": "If separately approved, one host-side read-only request to exactly http://launch.polchina.com.cn/Launcher/launcher_md5.dat, no credentials/cookies/proxy authentication, no redirect following, bounded size/time, data only and no automatic subsequent URL fetch or execution. This is a simplified request and may not reproduce launcher behavior; rtm semantics and service permission must be addressed before attempting equivalence.",
+    "stop": "Any authentication, TLS/security bypass, redirect, different host, executable payload, extra terms or access refusal: stop and report. A subsequent VM network or sample run needs a new concrete scope."
+  }
+}

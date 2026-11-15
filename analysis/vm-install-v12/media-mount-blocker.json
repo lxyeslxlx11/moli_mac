@@ -1,0 +1,142 @@
+{
+  "observed_utc": "2026-10-25T16:59:58.616109+00:00",
+  "phase": "v12",
+  "target": "MoliRestoreTest-ARM64-20261025-v9",
+  "actual_license_consent": "User confirmed the linked actual ARM64 Eula.txt; this is approval, not proof of a runtime acceptance click.",
+  "desktop_seen": true,
+  "new_login_submitted": false,
+  "tool_runtime_reset": "Previous JS app binding was undefined; no UI action executed by that call. Normal cua.getApp rebound exact UTM test clone.",
+  "ui_observations": [
+    {
+      "action": "Read exact clone window and screenshot",
+      "result": "Windows desktop and previous ordinary PowerShell still visible; no new login needed for current session"
+    },
+    {
+      "action": "Raise and click Drives toolbar entry",
+      "result": "UTM later displayed no empty removable drive alert"
+    },
+    {
+      "action": "Dismiss alert first attempt",
+      "result": "Tool detected app changed; action not performed; state re-read"
+    },
+    {
+      "action": "Dismiss alert after fresh state",
+      "result": "Alert dismissed; UTM library showed selected test clone Started, Edit disabled"
+    },
+    {
+      "action": "Window menu select exact test-clone title",
+      "result": "Returned to running clone window; capture state 0. No guest input, shutdown or reset."
+    }
+  ],
+  "exact_alert": "未找到空的可移动驱动器。确保你至少有一个未使用的可移动驱动器。",
+  "config_checks": [
+    {
+      "bundle": "/Users/lx/Documents/code/moli-mac/build/utm/MoliRestoreTest-ARM64-20261025-v9.utm",
+      "name": "MoliRestoreTest-ARM64-20261025-v9",
+      "uuid": "52490BAF-23BC-4E29-A39A-AA9F4E11A1F9",
+      "config_sha256": "2f657b4963adc7180e75fe3de152505449e2e643921d1d471ba5ffc18646159c",
+      "network": [],
+      "sharing": {
+        "ClipboardSharing": false,
+        "DirectoryShareMode": "None",
+        "DirectoryShareReadOnly": false
+      },
+      "usb_sharing": false,
+      "drive_summary": [
+        {
+          "identifier": "3CDE64AC-478C-4853-85AF-77DE92D646AB",
+          "image_name": "3CDE64AC-478C-4853-85AF-77DE92D646AB.qcow2",
+          "image_type": "Disk",
+          "interface": "NVMe",
+          "read_only": false
+        },
+        {
+          "identifier": "DB62EA51-5009-4ED1-ADFD-D80FD123B251",
+          "image_name": "Windows11_Client_arm64_zh-cn_26300_9457.qcow2",
+          "image_type": "CD",
+          "interface": "USB",
+          "read_only": true
+        },
+        {
+          "identifier": "EE8771ED-1F3E-45F6-AABE-E21D720C4E2E",
+          "image_name": "netkvm-w11-arm64-0.1.274.qcow2",
+          "image_type": "CD",
+          "interface": "USB",
+          "read_only": true
+        },
+        {
+          "identifier": "897A5D83-11BC-44A2-AEE4-F0B510C006DE",
+          "image_name": "moli-base-drivers-w11-arm64-0.1.274.qcow2",
+          "image_type": "CD",
+          "interface": "USB",
+          "read_only": true
+        }
+      ]
+    },
+    {
+      "bundle": "/Users/lx/Documents/code/moli-mac/build/utm/MoliOffline-ARM64-20261025.utm",
+      "name": "MoliOffline-ARM64-20261025",
+      "uuid": "087A27D7-88CC-4E08-8FB7-0FE852DAA3C8",
+      "config_sha256": "c7c980a646028c867429f2bc047361bcc92e9e396d871c1b438f1e58c14f8743",
+      "network": [],
+      "sharing": {
+        "ClipboardSharing": false,
+        "DirectoryShareMode": "None",
+        "DirectoryShareReadOnly": false
+      },
+      "usb_sharing": false,
+      "drive_summary": [
+        {
+          "identifier": "3CDE64AC-478C-4853-85AF-77DE92D646AB",
+          "image_name": "3CDE64AC-478C-4853-85AF-77DE92D646AB.qcow2",
+          "image_type": "Disk",
+          "interface": "NVMe",
+          "read_only": false
+        },
+        {
+          "identifier": "DB62EA51-5009-4ED1-ADFD-D80FD123B251",
+          "image_name": "Windows11_Client_arm64_zh-cn_26300_9457.qcow2",
+          "image_type": "CD",
+          "interface": "USB",
+          "read_only": true
+        },
+        {
+          "identifier": "EE8771ED-1F3E-45F6-AABE-E21D720C4E2E",
+          "image_name": "netkvm-w11-arm64-0.1.274.qcow2",
+          "image_type": "CD",
+          "interface": "USB",
+          "read_only": true
+        },
+        {
+          "identifier": "897A5D83-11BC-44A2-AEE4-F0B510C006DE",
+          "image_name": "moli-base-drivers-w11-arm64-0.1.274.qcow2",
+          "image_type": "CD",
+          "interface": "USB",
+          "read_only": true
+        }
+      ]
+    }
+  ],
+  "iso_sha256": "3e1a87c8f6ff50bca52003d17de3a41c5ec200f6bcb90ad50a66bea79a192e31",
+  "iso_mounted": false,
+  "tool_started": false,
+  "uac_or_runtime_eula_clicked": false,
+  "login_security_changed": false,
+  "authenticode_status": "not run; file not yet delivered to guest",
+  "blocker": {
+    "type": "technical dependency and new-login authorization boundary",
+    "operation": "Provide prepared readonly Autologon CD to test clone through standard UTM drive configuration",
+    "cause": "All current CDs have ImageName and are internal, not external/removable. Current running VM Edit is disabled.",
+    "status": "paused before shutdown/configuration change; no approval denial and no uncertain mutation",
+    "already_approved": "Normal shutdown/restart and bounded readonly-CD swap under prior plan; actual accompanying EULA now consented",
+    "remaining": "Coordinate a fresh Windows login by user or new specific one-time login approval before ending the current usable session; prior login authorization consumed.",
+    "scope_limit": "Do not add a fifth drive as though already approved; preserve original four-drive plan or explicitly describe any changed device scope."
+  },
+  "official_sources": [
+    "https://github.com/utmapp/UTM/blob/v5.0.8/Configuration/UTMQemuConfigurationDrive.swift",
+    "https://github.com/utmapp/UTM/blob/v5.0.8/Platform/Shared/VMRemovableDrivesView.swift",
+    "https://github.com/utmapp/UTM/blob/v5.0.8/Scripting/UTMScriptingConfigImpl.swift",
+    "https://docs.getutm.app/basics/controls/"
+  ],
+  "forbidden_actions_performed": false
+}

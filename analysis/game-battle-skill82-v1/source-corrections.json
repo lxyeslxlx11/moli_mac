@@ -1,0 +1,56 @@
+{
+  "schema": "moli.skill82-corrections-stage202.v1",
+  "prior_manifest": {
+    "path": "analysis/delivery-manifest-stage201.json",
+    "bytes": 574593,
+    "sha256": "8f5d9c00790e3844bec15b29117337c99281de412afbfd292f48962aae46ebe8"
+  },
+  "changed_old_reference_and_peer_files": [],
+  "corrections": [
+    "New reference syntax initially omitted a space in a Python conditional expression; its parse failure was retained and corrected before generating evidence.",
+    "The initial independent remove-status trace used the effect-child container for a preexisting C status node stored in the linked-node container. Original1050 deletion removes that node; the new reference now uses remove_link. Product deletion semantics were already correct; the first actual/expected state mismatch and logs are retained.",
+    "The first new source TCP harness passed only shared exports, omitting the explicit WeChat session adapter required by the existing helper. Session creation failed before any protocol requests. The adapter import was restored in the new test; all41 actual TCP modes pass in the full regression. Product code was not changed for this harness failure.",
+    "Initial browser growth probes assumed every actor frame was4px, but authored frame1004 is12px. The corrected probe requires17px and observes the actual Canvas through an owned OffscreenCanvas with willReadFrequently. Four growth flows were rerun; the final cohort reuses11 unaffected successful flows. No readiness, product state or product timing was injected."
+  ],
+  "sealed_historical_evidence_unchanged": true,
+  "initial_failed_observations": [
+    {
+      "path": "build/analysis/game-battle-skill82-v1/vector-generation-first.log",
+      "bytes": 254,
+      "sha256": "361c64d591cd34e1bd2eeb581ff1a68e00c785fbd7f6197810b084446403c146"
+    },
+    {
+      "path": "build/analysis/game-battle-skill82-v1/core-first.log",
+      "bytes": 1714,
+      "sha256": "8f0f0f184407194ad9542fcb09e009dd0e2ab8c2171d40c59070d2fe293b4fbe"
+    },
+    {
+      "path": "build/analysis/game-battle-skill82-v1/first-state-mismatch.json",
+      "bytes": 6524,
+      "sha256": "15d3794325020c080f9a6bb784ba75ad714220222eb25cc8876a5a967b198f23"
+    },
+    {
+      "path": "build/analysis/game-battle-skill82-v1/reference-status199.json",
+      "bytes": 6592,
+      "sha256": "7e0802d47ddc41edb789990b3ad81a0d3e2a9e67790d9d3f6ab92a2e97abfa39"
+    },
+    {
+      "path": "build/analysis/game-battle-skill82-v1/source-tcp-first.log",
+      "bytes": 33430,
+      "sha256": "18754539cb1d73f348b986de48fce2d2610e92232eeecba73b5f4d798d212122"
+    },
+    {
+      "path": "build/analysis/game-battle-skill82-v1/source-tcp-diagnostic.log",
+      "bytes": 2110,
+      "sha256": "477b6448f6c6ea90f2ed8c658551ebe1abde79d2f707b9c2bb57e0833a1b0538"
+    },
+    {
+      "path": "build/analysis/game-battle-skill82-v1/browser-local-first-report.json",
+      "bytes": 18988,
+      "sha256": "e087ed4a6a0ea39fc4816b05232671b4bfd7e10daf7bd5737753a71e92a5a813"
+    }
+  ],
+  "phase_complete": false,
+  "full_goal_complete": false,
+  "goal_status": "active"
+}

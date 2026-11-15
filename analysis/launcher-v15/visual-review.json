@@ -1,0 +1,137 @@
+{
+  "schema": "moli.launcher-v15.visual-review.v1",
+  "recorded_utc": "2026-10-27T01:54:19.653937+00:00",
+  "scope": "Manual review of actual local configuration UI screenshots with original synthetic data only. Temporary scripts/images remain outside delivery; metadata retained under explicit project documentation requirements.",
+  "url": "http://127.0.0.1:4173/web/launcher.html",
+  "runtime": {
+    "browser": "Chrome155.0.8059.85",
+    "playwright": "1.62.1",
+    "routing": "Browser plugin not available; frontend-testing-debugging fallback to existing regular Playwright",
+    "headless": true
+  },
+  "review": {
+    "status": "passed-final-screenshots",
+    "desktop": "1280x1000 initial/restored configuration: meaningful content, navy/mint existing style, readable controls and cache source/status; cache continuation is below viewport and scrollable.",
+    "narrow": "390x844 initial and centered full cache panel: single header in DOM, no horizontal overflow, four controls153x46, source/status readable. Fresh narrow context begins at navigation, not desktop resize only.",
+    "page_identity": "Exact title Moli · 本地登录器配置 and /web/launcher.html asserted, h1/options visible, no vite-error-overlay or nextjs-portal.",
+    "console": "Final UI125 + fresh narrow25 + encoding50 source GETs; console warn/error and pageerror arrays empty in all three receipts."
+  },
+  "initial_capture_issue": {
+    "observation": "First resized narrow capture contained an extra bottom header band. Original capture retained in temporary directory. Cause not established; no product CSS change made for this artifact.",
+    "initial_path": "/private/tmp/moli-launcher-v15-ui-cpxg3kyq/mobile-first-resized-initial.png",
+    "followup": "Final resize capture waited two animation frames; independent fresh narrow context asserted header count1/top0/no overflow. Final first viewport/cache captures were reviewed clean.",
+    "status": "final-captures-clean; initial-paint-cause-unknown"
+  },
+  "failed_fresh_narrow_runs": {
+    "sessions": [
+      26618,
+      35774
+    ],
+    "exit_code": 1,
+    "first_wait_ms": 4000,
+    "diagnostic_wait_ms": 12000,
+    "wait_change_reason": "Readiness wait was aligned to the existing cache10s total operation budget; page assertions unchanged. Diagnostic still failed before backlog fix.",
+    "diagnostic_dom": {
+      "title": "Moli · 本地登录器配置",
+      "ready": "complete",
+      "cache": "正在检查本机缓存…",
+      "source": "尚未读取配置。",
+      "indexedDBAvailable": true
+    },
+    "console_messages": [
+      "Failed to load resource: net::ERR_CONNECTION_RESET",
+      "Failed to load resource: net::ERR_CONNECTION_RESET",
+      "Failed to load resource: net::ERR_CONNECTION_RESET",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    "request_failures": [
+      {
+        "url": "http://127.0.0.1:4173/shared/launcher-channel.mjs",
+        "error": "net::ERR_CONNECTION_RESET"
+      },
+      {
+        "url": "http://127.0.0.1:4173/shared/launcher-login.mjs",
+        "error": "net::ERR_CONNECTION_RESET"
+      },
+      {
+        "url": "http://127.0.0.1:4173/shared/launcher-flow.mjs",
+        "error": "net::ERR_CONNECTION_RESET"
+      },
+      {
+        "url": "http://127.0.0.1:4173/shared/launcher-update.mjs",
+        "error": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    "diagnostic_raw_path": "/private/tmp/moli-launcher-v15-ui-cpxg3kyq/mobile-failure.json",
+    "root_cause_evidence": "server-burst-check.json: identical Handler, queue5 six of16 vs queue64 sixteen of16; final same-port16/16. Live service and directGET200 did not imply burst success; log blocking not proven.",
+    "final_runs": "ui-validation.json and mobile-validation.json rerun together after normal server restart, both terminal0; encoding-validation.json independently passed afterward."
+  },
+  "temporary_scripts": [
+    {
+      "path": "/private/tmp/moli-launcher-v15-ui-cpxg3kyq/qa.mjs",
+      "bytes": 18249,
+      "sha256": "904c8ed1ea8ae5782a370227c9d34e3f9d48eb92a4bc12c9aeddbaa5d86f35a5"
+    },
+    {
+      "path": "/private/tmp/moli-launcher-v15-ui-cpxg3kyq/mobile-qa.mjs",
+      "bytes": 5064,
+      "sha256": "11f5b78ddfa0029d4045655bd0e48c4892d7c0652e955209d2307713edb9841e"
+    },
+    {
+      "path": "/private/tmp/moli-launcher-v15-ui-cpxg3kyq/encoding-qa.mjs",
+      "bytes": 4421,
+      "sha256": "80265fbcbcddd9537f3310faf7f747bb9d44261c4e47db15298d70988910ad5a"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "/private/tmp/moli-launcher-v15-ui-cpxg3kyq/desktop-initial.png",
+      "bytes": 122881,
+      "sha256": "9adb94c03559b46fd0e2ebf83d36a35801b63175b5a7980b41f9a1bb58a10936",
+      "width": 1280,
+      "height": 1000
+    },
+    {
+      "path": "/private/tmp/moli-launcher-v15-ui-cpxg3kyq/desktop-cache-restored.png",
+      "bytes": 126930,
+      "sha256": "a657d27fc7f471f1b649912e767400cf03f53a4f3b7591828f487a57149810aa",
+      "width": 1280,
+      "height": 1000
+    },
+    {
+      "path": "/private/tmp/moli-launcher-v15-ui-cpxg3kyq/mobile-first-viewport.png",
+      "bytes": 59396,
+      "sha256": "77b93cb67beafc51b4c478252dd7e61205f76f7937586c0e56750006f3e72aa4",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "path": "/private/tmp/moli-launcher-v15-ui-cpxg3kyq/mobile-cache-restored.png",
+      "bytes": 63109,
+      "sha256": "f0a8d39aede884f9e739ca89c88d47ac0823e82de56da595d5099c48248e26fa",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "path": "/private/tmp/moli-launcher-v15-ui-cpxg3kyq/mobile-fresh-first.png",
+      "bytes": 57071,
+      "sha256": "2e3c10babd6e0d08a00e0c974e2143764a4420c195a65656b1e9556c078d9bba",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "path": "/private/tmp/moli-launcher-v15-ui-cpxg3kyq/mobile-fresh-cache.png",
+      "bytes": 62576,
+      "sha256": "067271d14b0485679d0744c0ef4c20e1b65595cdc66e48604464d7210ce5d2ee",
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "not_verified": [
+    "Safari",
+    "Physical mobile devices",
+    "WeChat miniprogram",
+    "Official files/endpoints/accounts/session/game",
+    "HTTP bootstrap wiring to this page"
+  ]
+}

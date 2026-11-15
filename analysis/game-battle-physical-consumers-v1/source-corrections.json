@@ -1,0 +1,126 @@
+{
+  "schema": "moli.physical-consumers-corrections-stage205.v1",
+  "corrections": [
+    {
+      "id": "reaction-rng-parent-position",
+      "classification": "事实",
+      "native_source": "41f310 and41f2d0;40a120 cases26/160",
+      "issue": "Existing reaction26/160 reused the unrelated escape particle factory,adding two random offsets and a parent link. This spent modeled RNG and could alter later effect sequences.",
+      "fix": "Add independent reactionPuff at the exact body position,no modeled random draws,no parent. Keep random escape12/13 factory unchanged.",
+      "changed_runtime_files": [
+        "shared/legacy-game-battle-playback.mjs",
+        "shared/legacy-game-battle-strike-playback.mjs"
+      ],
+      "reference": {
+        "path": "analysis/game-battle-physical-consumers-v1/reference-correction.json",
+        "bytes": 19244,
+        "sha256": "a93310c3ca74d255866d36128defff188ecc5db50d4a0121898b01d708db9cb7"
+      }
+    },
+    {
+      "id": "new-regression-screen-assumption",
+      "classification": "事实",
+      "issue": "The first new property assertion incorrectly added body screenOffset to the smoke screen position. Source41f2d0 publishes truncated world coordinates.",
+      "fix": "Correct only the new assertion; runtime already used the source screen contract.",
+      "first_run": {
+        "log": {
+          "path": "build/analysis/game-battle-physical-consumers-v1/affected-core-first.log",
+          "bytes": 23389,
+          "sha256": "0b3c397b68b6d7383abc066a23997ad1c8430a935d85eb5f73dc7075fa89df2c"
+        },
+        "tests": 205,
+        "pass_count": 204,
+        "fail_count": 1
+      },
+      "corrected_property_log": {
+        "path": "build/analysis/game-battle-physical-consumers-v1/reaction-smoke-test-final.log",
+        "bytes": 235,
+        "sha256": "98461da785c10a067f99662761a301bda6aa643115ba883bf49195a5cdd51e00"
+      },
+      "final_full_suite": "test-results.json"
+    },
+    {
+      "id": "unseeded-callbacks",
+      "classification": "事实",
+      "issue": "Canonical REA analyze421f90 returned invalid_input; containing-procedure queries for421f90/41a660 report not_in_procedure.",
+      "fix": "Inspect original source mappings and use the existing owned callback exporter in a fresh separate Ghidra project. Two derived219/224-byte callbacks are byte-bound and excluded from canonical counts.",
+      "process": {
+        "path": "build/analysis/game-battle-physical-consumers-v1/derived-process-receipt.json",
+        "bytes": 1727,
+        "sha256": "c0e5510a58344b6016adc93054203eeb8354c72a2879963e4db64449f1d0afba"
+      },
+      "original_modified": false,
+      "original_executed": false,
+      "global_REA_profile_changed": false
+    },
+    {
+      "id": "source-constant-correction",
+      "classification": "事实",
+      "issue": "A provisional heading note assumed52d4f0=-45. Original float32 bytes decode to135.0. The assertion stopped before the first public extractor copy,so that attempted replay never started.",
+      "fix": "Use135.0 in unfinished projectile specification;no projectile capability was enabled. Copy the deterministic extractors and replay successfully after checking the actual value.",
+      "byte_read": {
+        "path": "build/analysis/game-battle-physical-consumers-v1/read_bytes-52d4f0.json",
+        "bytes": 8311,
+        "sha256": "67e1356c0536cb5c4e7c634a077dadb5fa12f26bf72c67b1b5923354a92f0386"
+      },
+      "mapping": {
+        "path": "build/analysis/game-battle-physical-consumers-v1/address_to_file_offset-52d4f0.json",
+        "bytes": 8027,
+        "sha256": "8fe2eb654ebc8dba7e411876666a6d814a24f3928e62b7ea88c07377b5397c47"
+      },
+      "first_not_started_logs": [
+        {
+          "path": "build/analysis/game-battle-physical-consumers-v1/inventory-replay-first-not-started.log",
+          "bytes": 222,
+          "sha256": "8ba422ecb2408489dad0c4a9b1fb062af32d6affe3dcccc7c40ebb6dae3f712a"
+        },
+        {
+          "path": "build/analysis/game-battle-physical-consumers-v1/closure-replay-first-not-started.log",
+          "bytes": 227,
+          "sha256": "a6ac7f49f614b32c84f765e386534a94e175d13719880e01272be8c28e6d9153"
+        }
+      ],
+      "corrected_replay_logs": [
+        {
+          "path": "build/analysis/game-battle-physical-consumers-v1/inventory-replay.log",
+          "bytes": 603,
+          "sha256": "fc9e6feaa4063f8e82b4b3a04a7c7d7362e1c3c7c77e8d8d7fd3f55905cf6469"
+        },
+        {
+          "path": "build/analysis/game-battle-physical-consumers-v1/closure-replay.log",
+          "bytes": 864,
+          "sha256": "c362f506db932d1890a36dd8b7725543a1fd08ad19a24185741954abc0338495"
+        }
+      ]
+    },
+    {
+      "id": "source-index-scope",
+      "classification": "事实",
+      "issue": "Whole-function244 cases include unrelated handlers;117 candidate cases follow only explicit literal/alias/goto edges and leave general fallthrough/dynamic expressions unresolved.",
+      "fix": "Publish compact separate scopes and keep all original obligations open. Newly resolved9 direct helper entries do not establish full source closure.",
+      "source_map": {
+        "path": "analysis/game-battle-physical-consumers-v1/consumer-map.json",
+        "bytes": 128657,
+        "sha256": "bd6e90e604b1a3d3c223f05ffd1126c96f14b58c39b3ff81f1fa9e2e77f16cb7"
+      }
+    },
+    {
+      "id": "constructor-copy-order",
+      "classification": "事实",
+      "issue": "During review the draft41b2a0 contract grouped class/variant/level with tuple/RID as if all were copied before visual children. Native source has distinct copy timing across41b2a0,41a8c0 and41ab20.",
+      "fix": "Correct the source contract before acceptance:41b2a0 copies class/variant/level after children;41a8c0 does so after its first animation and before the visual child;41ab20 does so after its body-callback initialization loop. No unfinished constructor has been enabled or ported from the incorrect draft.",
+      "source_contract": {
+        "path": "analysis/game-battle-physical-consumers-v1/implementation-spec.json",
+        "bytes": 11764,
+        "sha256": "29c53c69d40ed65d7f893375f4e95684e910b66203abde32796c64cdab0a523b"
+      },
+      "runtime_change": false
+    }
+  ],
+  "no_threshold_or_timeout_changes": true,
+  "no_reference_coverage_reduction": true,
+  "no_historical_failure_hidden": true,
+  "no_original_byte_patches": true,
+  "native_global_rng_unverified": true,
+  "full_family_still_required": true
+}

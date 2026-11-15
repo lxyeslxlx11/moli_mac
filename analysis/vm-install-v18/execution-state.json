@@ -1,0 +1,27 @@
+{
+  "utc": "2026-10-25T22:12:01.542559+00:00",
+  "authorization": "2026-10-25 22:06 UTC user approved exact bounded isolation, private recovery point, fixed five-file readonly CD and one ordinary no-argument cg_se_3000.exe run <=90s. No credentials, elevation, installer/launcher/updater, servers, captures or security bypass.",
+  "ui_check": {
+    "observed_by": "cua.listApps",
+    "approx_utc": "2026-10-25T22:08:00Z",
+    "result": "The Mac is locked and automatic unlock could not unlock it. Ask the user to unlock the Mac manually before continuing.",
+    "interpretation": "Tool-reported access failure; actual screen not independently observed. No UI action/retry/alternate route."
+  },
+  "media": "Prepared and verified only; see media-validation.json",
+  "preparation_failure": {
+    "script": "prepare_media_v18.py",
+    "result": "Guard rejected /tmp symlink before source copy or ISO creation",
+    "verification": "/tmp -> private/tmp; receipt and ISO absent",
+    "fix": "New prepare_media_v18_1.py uses the standard /private/tmp physical path, retains guard for every component; subsequent build/readback succeeded. Not an approval denial."
+  },
+  "actions_not_executed": [
+    "VM isolation/shared-network or clipboard/file/USB changes",
+    "Normal shutdown/restart",
+    "Cold recovery copy or restore boot test",
+    "Guest mount/import/hash",
+    "Sample execution"
+  ],
+  "sample_execution_count": 0,
+  "gatekeeper": "No change in this phase; last verified enabled in v17",
+  "pending": "User manual Mac unlock / normal screen access. Existing bounded authorization remains unused for dependent VM operations."
+}

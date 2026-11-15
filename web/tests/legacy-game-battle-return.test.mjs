@@ -1,0 +1,2 @@
+import test from'node:test';import * as api from'../../shared/index.mjs';import{createWeChatLegacyGameSession}from'../../adapters/wechat/legacy-game-session.mjs';import{returnTCPModes,runReturnTCP}from'../../analysis/game-battle-return-v1/tcp-flow.mjs';
+for(const mode of returnTCPModes)test('actual source ordinary battle return/capture/resumed movement OS TCP '+mode,{timeout:30000},async()=>{console.log('battle-return-tcp '+JSON.stringify(await runReturnTCP({...api,createWeChatLegacyGameSession},mode)));});

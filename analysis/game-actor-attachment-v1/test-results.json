@@ -1,0 +1,457 @@
+{
+  "schema": "moli.actor-attachment-tests-stage174.v1",
+  "new_Node": 27,
+  "full_Node": 1328,
+  "targeted": {
+    "core": {
+      "tests": 21,
+      "pass": 21,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "log": {
+        "path": "build/analysis/game-actor-attachment-v1/prepared-target.log",
+        "bytes": 2519,
+        "sha256": "01e48f88fe9c5b1cf0cf5fe426e5e273beb947bf406cbfe2e7224a10f82331f0"
+      }
+    },
+    "network": {
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "log": {
+        "path": "build/analysis/game-actor-attachment-v1/tcp-first.log",
+        "bytes": 542,
+        "sha256": "3b823e2b2e2be47c40341b97c94c060c0dfe63e96ff004792909494935370607"
+      }
+    },
+    "tests": 27,
+    "pass_count": 27
+  },
+  "full": {
+    "command": [
+      "node",
+      "--test",
+      "shared/tests/game-config.test.mjs",
+      "shared/tests/game-patch.test.mjs",
+      "shared/tests/install-inventory.test.mjs",
+      "shared/tests/launcher-catalog-cache.test.mjs",
+      "shared/tests/launcher-catalog.test.mjs",
+      "shared/tests/launcher-channel.test.mjs",
+      "shared/tests/launcher-current-channel.test.mjs",
+      "shared/tests/launcher-current-login.test.mjs",
+      "shared/tests/launcher-current-record.test.mjs",
+      "shared/tests/launcher-file-digest.test.mjs",
+      "shared/tests/launcher-first-config.test.mjs",
+      "shared/tests/launcher-flow.test.mjs",
+      "shared/tests/launcher-galaxies.test.mjs",
+      "shared/tests/launcher-handoff.test.mjs",
+      "shared/tests/launcher-launch.test.mjs",
+      "shared/tests/launcher-local.test.mjs",
+      "shared/tests/launcher-login.test.mjs",
+      "shared/tests/launcher-manifest-current.test.mjs",
+      "shared/tests/launcher-manifest.test.mjs",
+      "shared/tests/launcher-message10.test.mjs",
+      "shared/tests/launcher-patch-current.test.mjs",
+      "shared/tests/launcher-patch.test.mjs",
+      "shared/tests/launcher-preferences.test.mjs",
+      "shared/tests/launcher-process.test.mjs",
+      "shared/tests/launcher-regions.test.mjs",
+      "shared/tests/launcher-replies.test.mjs",
+      "shared/tests/launcher-resource-cache.test.mjs",
+      "shared/tests/launcher-resource-import.test.mjs",
+      "shared/tests/launcher-resources.test.mjs",
+      "shared/tests/launcher-text.test.mjs",
+      "shared/tests/launcher-update-ack.test.mjs",
+      "shared/tests/launcher-update-arguments.test.mjs",
+      "shared/tests/launcher-update-current.test.mjs",
+      "shared/tests/launcher-update-journal.test.mjs",
+      "shared/tests/launcher-update.test.mjs",
+      "shared/tests/launcher.test.mjs",
+      "shared/tests/legacy-game-actor-attachment.test.mjs",
+      "shared/tests/legacy-game-actor-context.test.mjs",
+      "shared/tests/legacy-game-actor-ride.test.mjs",
+      "shared/tests/legacy-game-actor-spin.test.mjs",
+      "shared/tests/legacy-game-actors.test.mjs",
+      "shared/tests/legacy-game-animation.test.mjs",
+      "shared/tests/legacy-game-character-creation.test.mjs",
+      "shared/tests/legacy-game-character-options.test.mjs",
+      "shared/tests/legacy-game-characters.test.mjs",
+      "shared/tests/legacy-game-client-config.test.mjs",
+      "shared/tests/legacy-game-client.test.mjs",
+      "shared/tests/legacy-game-envelope.test.mjs",
+      "shared/tests/legacy-game-frame.test.mjs",
+      "shared/tests/legacy-game-input-runtime.test.mjs",
+      "shared/tests/legacy-game-local-bootstrap.test.mjs",
+      "shared/tests/legacy-game-local-movement.test.mjs",
+      "shared/tests/legacy-game-login.test.mjs",
+      "shared/tests/legacy-game-map.test.mjs",
+      "shared/tests/legacy-game-message.test.mjs",
+      "shared/tests/legacy-game-motion.test.mjs",
+      "shared/tests/legacy-game-navigation.test.mjs",
+      "shared/tests/legacy-game-payload.test.mjs",
+      "shared/tests/legacy-game-render.test.mjs",
+      "shared/tests/legacy-game-resource-library.test.mjs",
+      "shared/tests/legacy-game-scene-frame.test.mjs",
+      "shared/tests/legacy-game-scene.test.mjs",
+      "shared/tests/map01.test.mjs",
+      "shared/tests/rd-runs.test.mjs",
+      "shared/tests/resources.test.mjs",
+      "web/tests/file-io.test.mjs",
+      "web/tests/launcher-bootstrap-current.test.mjs",
+      "web/tests/launcher-bootstrap-platform.test.mjs",
+      "web/tests/launcher-bootstrap.test.mjs",
+      "web/tests/launcher-catalog-data.test.mjs",
+      "web/tests/launcher-catalog-refresh.test.mjs",
+      "web/tests/launcher-catalog-text.test.mjs",
+      "web/tests/launcher-current-patch.test.mjs",
+      "web/tests/launcher-current-record.test.mjs",
+      "web/tests/launcher-current-session.test.mjs",
+      "web/tests/launcher-file-io.test.mjs",
+      "web/tests/launcher-galaxies.test.mjs",
+      "web/tests/launcher-game-patch-source.test.mjs",
+      "web/tests/launcher-game-patch.test.mjs",
+      "web/tests/launcher-http.test.mjs",
+      "web/tests/launcher-launch.test.mjs",
+      "web/tests/launcher-loopback.test.mjs",
+      "web/tests/launcher-node-stream.test.mjs",
+      "web/tests/launcher-page-profile.test.mjs",
+      "web/tests/launcher-patch-ports.test.mjs",
+      "web/tests/launcher-patch-relay.test.mjs",
+      "web/tests/launcher-patch-ui.test.mjs",
+      "web/tests/launcher-platform-control.test.mjs",
+      "web/tests/launcher-preferences.test.mjs",
+      "web/tests/launcher-resource-store.test.mjs",
+      "web/tests/launcher-session.test.mjs",
+      "web/tests/launcher-target-bootstrap.test.mjs",
+      "web/tests/launcher-wechat-bootstrap-host.test.mjs",
+      "web/tests/launcher-wechat-cache-host.test.mjs",
+      "web/tests/launcher-wechat-cache.test.mjs",
+      "web/tests/launcher-wechat-file.test.mjs",
+      "web/tests/launcher-wechat-host.test.mjs",
+      "web/tests/launcher-wechat-http.test.mjs",
+      "web/tests/launcher-wechat-patch.test.mjs",
+      "web/tests/launcher-wechat-resource-cache-host.test.mjs",
+      "web/tests/launcher-wechat-resource-store.test.mjs",
+      "web/tests/launcher-wechat-resources-host.test.mjs",
+      "web/tests/launcher-wechat.test.mjs",
+      "web/tests/legacy-game-actor-attachment-tcp.test.mjs",
+      "web/tests/legacy-game-actor-context-tcp.test.mjs",
+      "web/tests/legacy-game-actor-ride-tcp.test.mjs",
+      "web/tests/legacy-game-actor-spin-tcp.test.mjs",
+      "web/tests/legacy-game-character-creation-session.test.mjs",
+      "web/tests/legacy-game-character-creation-tcp.test.mjs",
+      "web/tests/legacy-game-character-options-session.test.mjs",
+      "web/tests/legacy-game-character-options-tcp.test.mjs",
+      "web/tests/legacy-game-characters-session.test.mjs",
+      "web/tests/legacy-game-characters-tcp.test.mjs",
+      "web/tests/legacy-game-client-browser-ports.test.mjs",
+      "web/tests/legacy-game-client-tcp.test.mjs",
+      "web/tests/legacy-game-local-bootstrap-tcp.test.mjs",
+      "web/tests/legacy-game-session-tcp.test.mjs",
+      "web/tests/legacy-game-session.test.mjs"
+    ],
+    "started_utc": "2026-11-04T00:45:55.297474+00:00",
+    "finished_utc": "2026-11-04T00:46:10.982188+00:00",
+    "exit_code": 0,
+    "tests": 1328,
+    "pass": 1328,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "log": {
+      "path": "build/analysis/game-actor-attachment-v1/node-full.log",
+      "bytes": 137873,
+      "sha256": "8ac610871f8de076f63166f0369d167e6e5e0356a46db3cae1aab9275fc19b67"
+    },
+    "node": "v26.9.0"
+  },
+  "independent_reference": {
+    "cases": 1760,
+    "scene_frames": 540,
+    "unique_scene_rasters": 200,
+    "vectors": {
+      "path": "analysis/game-actor-attachment-v1/original-vectors.json",
+      "bytes": 2073608,
+      "sha256": "71649f0894e1a1fb0aecdde9b29d5adfbbba5b5b59bf62f74054eb05809a3d7f"
+    },
+    "generator": {
+      "path": "analysis/game-actor-attachment-v1/generate_vectors.py",
+      "bytes": 12743,
+      "sha256": "68556e0d592090459cd93a6511c4b93000d99423f7ba12c1978600757fbe1d98"
+    }
+  },
+  "prepared_renderer_comparison": {
+    "frames": 12,
+    "source": "actual borrowed prepared sprites vs actual resource-library deferred actor pixels, same owned actors",
+    "test": {
+      "path": "build/analysis/game-actor-attachment-v1/prepared-target.log",
+      "bytes": 2519,
+      "sha256": "01e48f88fe9c5b1cf0cf5fe426e5e273beb947bf406cbfe2e7224a10f82331f0"
+    }
+  },
+  "generated_And_neutral": {
+    "command": [
+      "node",
+      "--test",
+      "analysis/game-actor-attachment-v1/portable-test.mjs",
+      "analysis/game-actor-attachment-v1/bundle-test.mjs"
+    ],
+    "tests": 14,
+    "pass": 14,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "log": {
+      "path": "build/analysis/game-actor-attachment-v1/neutral-generated.log",
+      "bytes": 1803,
+      "sha256": "f5c398da5bfdf92daf1592335ad2e5788c638af7b7249565051b77163b0144f1"
+    },
+    "neutral": 7,
+    "generated_App_Page": 7
+  },
+  "builds": [
+    {
+      "report": {
+        "path": "build/wechat-app-stage174-final/build-report.json",
+        "bytes": 21229,
+        "sha256": "f99f6fd32b34f1e4c1b9272eb741dd8acc5a42915ef109eae3f887c712a03519"
+      },
+      "inputs": 115,
+      "external_imports": 0,
+      "native_platform_acceptance": false,
+      "outputs": 11
+    },
+    {
+      "report": {
+        "path": "build/wechat-app-local-stage174-final/build-report.json",
+        "bytes": 21272,
+        "sha256": "602170990ab7945f25c9e35d416457e38b808dd3533b8bdfd4989288656073ab"
+      },
+      "inputs": 115,
+      "external_imports": 0,
+      "native_platform_acceptance": false,
+      "outputs": 11
+    },
+    {
+      "report": {
+        "path": "build/wechat-app-resources-stage174-final/build-report.json",
+        "bytes": 21280,
+        "sha256": "90208790b84916c312a397ccd62f8fa9c78ff14bd0a989963ed8c2096092c628"
+      },
+      "inputs": 115,
+      "external_imports": 0,
+      "native_platform_acceptance": false,
+      "outputs": 11
+    },
+    {
+      "report": {
+        "path": "build/wechat-game-stage174-final/build-report.json",
+        "bytes": 15411,
+        "sha256": "594ffd65f3261aab70d1ecdb954504f8d05bb525eab92183ae5e33e189b77737"
+      },
+      "inputs": 90,
+      "external_imports": 0,
+      "native_platform_acceptance": false,
+      "bundle": {
+        "path": "build/wechat-game-stage174-final/game.js",
+        "bytes": 928593,
+        "sha256": "4831dca22f76aa264903485d9a15e8ff5ffb105880d214b4677844241000ffc1"
+      },
+      "native_game_Page_implemented": false
+    }
+  ],
+  "actual_TCP": {
+    "path": "analysis/game-actor-attachment-v1/network-validation.json",
+    "bytes": 7969,
+    "sha256": "fe5fd64d8eec9a1874e9374118c57efdd66b87f6543e141bb255692e61ab2eae"
+  },
+  "browser": {
+    "reports": [
+      {
+        "report": {
+          "path": "analysis/game-actor-attachment-v1/browser-validation.json",
+          "bytes": 9622,
+          "sha256": "8b2078ac3c88a463d48111cd361a405b7cd4ecb3fe1a8acd061609ad122302ed"
+        },
+        "cases": 7,
+        "passed": true,
+        "browser": "156.0.8078.80",
+        "screenshots": [
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/regression/desktop-picker.png",
+            "bytes": 55952,
+            "sha256": "4c4b3296a099fd02d4633d4f06606c3e0c816ac3c93517b8560f21b1354625a8"
+          },
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/regression/desktop-retry-scene.png",
+            "bytes": 73176,
+            "sha256": "585262d5d2425b8b09e3764733c0fa4ea5dc50f04ba170169293237bd359fa0b"
+          },
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/regression/desktop-scene.png",
+            "bytes": 50720,
+            "sha256": "d7b55fc103fd116675c2185923ca25c4e457d0a1ba421d3ef1f7d8c9bea9c81b"
+          },
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/regression/mobile-picker.png",
+            "bytes": 45204,
+            "sha256": "8cb0688464d4530203fd8ea764e49d096aa68d9c332578f26adbbd63fd683f84"
+          },
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/regression/mobile-scene.png",
+            "bytes": 38544,
+            "sha256": "20ee32c068427cc43947fa2e5feebc4eb74b6a6f88c2d8b87b72db21ece1c8b5"
+          }
+        ],
+        "console_errors": 0,
+        "app_console_warnings": 0,
+        "qa_readback_advisories": 0,
+        "external_requests": 0
+      },
+      {
+        "report": {
+          "path": "analysis/game-actor-attachment-v1/browser-attachment.json",
+          "bytes": 37815,
+          "sha256": "f899084a30b53fe4faec4ea34e39137901e7cbdb422cb86880f36680e8b18d98"
+        },
+        "cases": 4,
+        "passed": true,
+        "browser": "156.0.8078.80",
+        "screenshots": [
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/attachment/desktop-attached-mounted.png",
+            "bytes": 54039,
+            "sha256": "809c68ed301ae7f7756132011fa875f87469c60727461a52ed07e2de4b517875"
+          },
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/attachment/desktop-attached-recreated.png",
+            "bytes": 54054,
+            "sha256": "5c82a1c14cc0d99811a2dab3b76369d2210e29c0098bcdc018cfa9b7d46c63e9"
+          },
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/attachment/desktop-attached-relocated.png",
+            "bytes": 54053,
+            "sha256": "443efbb79df9d4d0976cc89bacee0347c59fde4f7de9a83e9c99901a9bb002df"
+          },
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/attachment/desktop-attached-resumed.png",
+            "bytes": 53901,
+            "sha256": "0d632b2b09e70dc794417059851998fe3baa0c4e131e2f75bc5b633aa3e25424"
+          },
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/attachment/desktop-attached-spin.png",
+            "bytes": 53915,
+            "sha256": "56fbaa3cd3af84e539ad774652bb9b1e855470d1ad45ae9d00c793d2daaa3fab"
+          },
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/attachment/desktop-attached.png",
+            "bytes": 54047,
+            "sha256": "95b6943e3012dd20a64ec6a065a1c7e9a15d4b6aea535f4769138fe2b8a163dc"
+          },
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/attachment/mobile-attached-mounted.png",
+            "bytes": 41547,
+            "sha256": "94f3ca36b84c2ff9f85711f8567f1d11df9dfc2addf0881e8210457fd8013590"
+          },
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/attachment/mobile-attached-recreated.png",
+            "bytes": 41419,
+            "sha256": "4adce632257580eae1ebd30f89e9974cf63ccd0fdca7e9426fa6026e6c04c0a4"
+          },
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/attachment/mobile-attached-resumed.png",
+            "bytes": 41111,
+            "sha256": "ad7ffac9d3b7a34a4b8c29b8604163fbb730542f0fd478befa727d96e1bbabe4"
+          },
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/attachment/mobile-attached-spin.png",
+            "bytes": 41182,
+            "sha256": "093dabfae839823bd549896027f882b32e17cde7d3d7de451c3367f025fbd517"
+          },
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/attachment/mobile-attached.png",
+            "bytes": 41271,
+            "sha256": "24fb6c92917ba951618f1e6044c41e32790f6aca673c1c87c8fa6f0ba949d55b"
+          },
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/attachment/mobile-close-attached-exit.png",
+            "bytes": 41311,
+            "sha256": "19d67e5a63b91883a3c9280174ae2d8bbe54f6d60900c309c552f4b5a491e3f8"
+          },
+          {
+            "path": "build/analysis/game-actor-attachment-v1/screenshots/attachment/mobile-picker.png",
+            "bytes": 44929,
+            "sha256": "b87298cb55b814f62ccf3676ed3dfb5116a5a0027c65f7f5ca8e6284bc750b90"
+          }
+        ],
+        "console_errors": 0,
+        "app_console_warnings": 0,
+        "qa_readback_advisories": 2,
+        "external_requests": 0
+      }
+    ],
+    "cases": 11,
+    "screenshots_inspected": 18,
+    "contact_sheet": {
+      "path": "build/analysis/game-actor-attachment-v1/screenshots/contact-sheet.png",
+      "bytes": 570963,
+      "sha256": "a8546ea9cc67b131d43aa7119d16aea47cc20177f4cacbca1169bbe19255e1c3"
+    },
+    "qa_readback_advisories": 2
+  },
+  "failures_and_corrections": [
+    {
+      "kind": "previous supported boundary",
+      "detail": "Previous ride regression expected nonzero60 attachment to be unsupported. Its retained missing-exception failure demonstrates changed behavior; update it to require an owned hidden child and preserve normal/body/exit checks. All21 new core tests passed on their first run."
+    },
+    {
+      "kind": "coverage completion",
+      "detail": "After initial1327 full tests, added a real12-frame comparison between borrowed prepared-sprite output and actual resource-library deferred output. New core21 and final1328 full tests pass, current product unchanged."
+    },
+    {
+      "kind": "QA semantics",
+      "detail": "Browser events are driven by owned original peer control pipes through actual packets. Their wall-clock timing differs from deterministic reference ticks, so browser hashes are observations; exact540-frame expected pixels are asserted in core/TCP/neutral tests instead."
+    },
+    {
+      "kind": "QA preparation",
+      "detail": "Corrected pause/resume sequencing before executing the browser script. Used existing Chrome contact-sheet capability, no dependency install or product rendering setting change."
+    }
+  ],
+  "retained_failure_artifacts": [
+    {
+      "path": "build/analysis/game-actor-attachment-v1/ride-spin-first.log",
+      "bytes": 4832,
+      "sha256": "8121adf7ff685bb7a8c3f2ab3cc3d8d7c35be96f012704554e248f4c9709abd4"
+    }
+  ],
+  "reviewed_product_diff": {
+    "path": "build/analysis/game-actor-attachment-v1/reviewed-product.patch",
+    "bytes": 23062,
+    "sha256": "7df3968d6b7be3485e891b5bbe8023f3a4a32a2193384ccc4e6f14ee31c112fe"
+  },
+  "reviewed_new_core": {
+    "path": "shared/legacy-game-actor-attachment.mjs",
+    "bytes": 1896,
+    "sha256": "39e4a41023d28ac6533b48685c1869b4e9c230eb568f8e06406dc8d24e9ea3c9"
+  },
+  "review_notes": [
+    "Exact source60 local/remote normal/body/aux34 writes and EAX constructor return; no packet-position/facing invention",
+    "Ordinary43bfeb hook and43d150 current body/mount AP sum; source8 to attached3 otherwise0; actual facing",
+    "One independent attachment helper/mode0/flags34, code0 only draw; cached bitmap suppressed on code1/-1",
+    "Type1/root/type0 order, shared1024 slots, hidden/resource1/root-1 effects and duplicate-vs-outside culling",
+    "60 same-resource cache reuse, paused-session release, actor/scene/owner closure and provider reentrancy",
+    "Ride and spin pause attachment helpers then resume exact cached animation; no native allocator leak assertion",
+    "1760 pure anchors/540 full scenes,1300 actual TCP rasters,12 prepared-vs-deferred actor frames",
+    "Current115-input App/90-input API builds,7neutral/7generated,11Chrome and18 viewed images",
+    "Other43d150 UI/status/name/party, full game/current/native WeChat/official goal stays active"
+  ],
+  "source_closed": true,
+  "persistent_web_game_page": true,
+  "native_game_Page": false,
+  "current_version_compatibility": "unverified",
+  "official_authentication": false,
+  "full_goal_complete": false
+}

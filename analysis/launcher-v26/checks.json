@@ -1,0 +1,37 @@
+{
+  "schema": "moli.launcher-v26.checks.v1",
+  "syntax": {
+    "Node": [
+      "shared/game-patch.mjs",
+      "shared/launcher-update.mjs",
+      "shared/examples/game-patch.mjs",
+      "shared/tests/game-patch.test.mjs"
+    ],
+    "PythonAST": [
+      "analysis/launcher-v26/patch_oracle.py"
+    ]
+  },
+  "source_anchors": {
+    "count": 28,
+    "passed": 28,
+    "negative_cases": 3,
+    "record": "patch-anchor-audit.json"
+  },
+  "core_tests": {
+    "grammar_vectors": 31,
+    "candidate_scenarios": 10,
+    "new_tests": 21,
+    "total": 457,
+    "pass": 457,
+    "fail": 0
+  },
+  "browser": "core-browser.json",
+  "example": "example.log",
+  "runtime": {
+    "Node": "26.9.0",
+    "Chrome": "155.0.8059.85",
+    "Playwright": "1.62.1",
+    "Python": "3.9.6"
+  },
+  "static_only_native": true
+}

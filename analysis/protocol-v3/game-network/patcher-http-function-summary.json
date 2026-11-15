@@ -1,0 +1,237 @@
+{
+  "sample_sha256": "195f3afda41f342147b0616a4c005a4cb308ae6869b52c4a558fded5f5d9aaa8",
+  "provider": {
+    "id": "ghidra",
+    "name": "Ghidra",
+    "version": "12.1.4"
+  },
+  "evidence_id": "ev_2c835ca1925c857f24136de13aa5095ace229467e1979ada924f75b310407ba5",
+  "raw_evidence_retained_only_in_tmp": "/tmp/moli-analysis/patcher-http-function.json",
+  "raw_evidence_sha256": "0848851781b7631bf95e16c2812d80987175896542e70c6e6dbad5c753acc4de",
+  "procedure": {
+    "address": "0x407cb0",
+    "name": "FUN_00407cb0",
+    "classification": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null,
+      "provenance": "ghidra-function-manager"
+    },
+    "body": {
+      "available": true,
+      "provenance": "ghidra-function-body-address-set",
+      "ranges": [
+        {
+          "start": "0x407cb0",
+          "end": "0x407fff"
+        },
+        {
+          "start": "0x40804b",
+          "end": "0x40810d"
+        }
+      ],
+      "total_bytes": 1043,
+      "span_bytes": 1118,
+      "non_contiguous": true,
+      "contains_entry": true
+    },
+    "signature": "undefined __thiscall FUN_00407cb0(void * this, undefined4 * param_1, int * param_2, int param_3, int param_4, int param_5)",
+    "locals": [
+      {
+        "description": "undefined local_10 @ Stack[-0x10]:1",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined local_101c @ Stack[-0x101c]:1",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_1020 @ Stack[-0x1020]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_1024 @ Stack[-0x1024]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_1028 @ Stack[-0x1028]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_102c @ Stack[-0x102c]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_1030 @ Stack[-0x1030]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_1034 @ Stack[-0x1034]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_1038 @ Stack[-0x1038]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_103c @ Stack[-0x103c]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_1040 @ Stack[-0x1040]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_1044 @ Stack[-0x1044]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_1048 @ Stack[-0x1048]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_104c @ Stack[-0x104c]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_1050 @ Stack[-0x1050]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_1054 @ Stack[-0x1054]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_1058 @ Stack[-0x1058]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_105c @ Stack[-0x105c]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_14 @ Stack[-0x14]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_18 @ Stack[-0x18]:4",
+        "provenance": "ghidra-function-database"
+      },
+      {
+        "description": "undefined4 local_8 @ Stack[-0x8]:4",
+        "provenance": "ghidra-function-database"
+      }
+    ]
+  },
+  "incoming_references": [
+    {
+      "from": "0x477950",
+      "to": "0x407cb0",
+      "type": "DATA"
+    }
+  ],
+  "direct_caller_count": 0,
+  "wininet_call_references": [
+    {
+      "source_va": "0x407d50",
+      "source_file_offset": 29008,
+      "target": "EXTERNAL:0xb3",
+      "api": "WININET.DLL::InternetCloseHandle",
+      "reference_type": "COMPUTED_CALL",
+      "call": true
+    },
+    {
+      "source_va": "0x407d61",
+      "source_file_offset": 29025,
+      "target": "EXTERNAL:0xb3",
+      "api": "WININET.DLL::InternetCloseHandle",
+      "reference_type": "COMPUTED_CALL",
+      "call": true
+    },
+    {
+      "source_va": "0x407d72",
+      "source_file_offset": 29042,
+      "target": "EXTERNAL:0xb3",
+      "api": "WININET.DLL::InternetCloseHandle",
+      "reference_type": "COMPUTED_CALL",
+      "call": true
+    },
+    {
+      "source_va": "0x407d88",
+      "source_file_offset": 29064,
+      "target": "EXTERNAL:0xb4",
+      "api": "WININET.DLL::InternetOpenA",
+      "reference_type": "COMPUTED_CALL",
+      "call": true
+    },
+    {
+      "source_va": "0x407e40",
+      "source_file_offset": 29248,
+      "target": "EXTERNAL:0xb8",
+      "api": "WININET.DLL::InternetConnectA",
+      "reference_type": "COMPUTED_CALL",
+      "call": true
+    },
+    {
+      "source_va": "0x407eca",
+      "source_file_offset": 29386,
+      "target": "EXTERNAL:0xb5",
+      "api": "WININET.DLL::HttpOpenRequestA",
+      "reference_type": "COMPUTED_CALL",
+      "call": true
+    },
+    {
+      "source_va": "0x407f0e",
+      "source_file_offset": 29454,
+      "target": "EXTERNAL:0xb2",
+      "api": "WININET.DLL::HttpSendRequestA",
+      "reference_type": "COMPUTED_CALL",
+      "call": true
+    },
+    {
+      "source_va": "0x407f51",
+      "source_file_offset": 29521,
+      "target": "EXTERNAL:0xb6",
+      "api": "WININET.DLL::HttpQueryInfoA",
+      "reference_type": "COMPUTED_CALL",
+      "call": true
+    },
+    {
+      "source_va": "0x407f97",
+      "source_file_offset": 29591,
+      "target": "EXTERNAL:0xb7",
+      "api": "WININET.DLL::InternetReadFile",
+      "reference_type": "COMPUTED_CALL",
+      "call": true
+    },
+    {
+      "source_va": "0x407fe2",
+      "source_file_offset": 29666,
+      "target": "EXTERNAL:0xb7",
+      "api": "WININET.DLL::InternetReadFile",
+      "reference_type": "COMPUTED_CALL",
+      "call": true
+    }
+  ],
+  "limitations": [
+    "Unresolved computed or indirect flows without target addresses are not represented as reference edges.",
+    "Thunk and external classifications are Ghidra FunctionManager observations; they do not resolve targetless calls.",
+    "Pseudocode and assembly are Ghidra-specific representations, not original source or Hopper-equivalent text.",
+    "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+    "Ghidra Listing reports a terminal call at 0x407ffe to 0x40801b FUN_0040801b (external=false, thunk=false, hasNoReturn=false); fallthrough is excluded by Ghidra's flow model. The reason for the terminal flow is not established by this observation.",
+    "Ghidra Listing reports a terminal call at 0x40810d with no resolved callee; its no-return basis is unknown."
+  ],
+  "interpretation": {
+    "facts": [
+      "The procedure has a WinINet HTTP request/read implementation.",
+      "Its only reported incoming reference is data at VA0x477950, not a direct caller."
+    ],
+    "inferences": [
+      "Data pointer at0x477950 is consistent with a dispatch-table slot."
+    ],
+    "unproven": [
+      "No complete entry-to-this-slot runtime resolution was established.",
+      "This helper is not evidence of the game wire protocol."
+    ]
+  }
+}

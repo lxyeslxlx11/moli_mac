@@ -1,0 +1,1886 @@
+{
+  "schema": "moli.launcher-modern-startup.contract.v1",
+  "classification": "事实/推测/待验证分列的局部来源补充规格",
+  "capability": "L01",
+  "requirement": "全部能力先REA规格、再统一门槛后合并开发；本轮只补原现代启动五组的必要普通来源与局部文件失败。",
+  "parent": {
+    "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+    "bytes": 77125,
+    "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+  },
+  "closed_C7_path_supplement": {
+    "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+    "bytes": 47926,
+    "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+  },
+  "legacy_startup_supplement": {
+    "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+    "bytes": 40405,
+    "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+  },
+  "source_profiles": {
+    "C7": {
+      "id": "launcher-historical-c7ba",
+      "source": {
+        "path": "build/analysis/launcher-update-recovery-v1/old-source/POLCN_Launcher.analysis-only.exe",
+        "bytes": 4105728,
+        "sha256": "c7ba69f77809fe589fd5dcccc78fcd4f33d4b6f76325d00a27f37032bbb32384"
+      },
+      "anchors": {
+        "id": "launcher-historical-c7ba",
+        "app": "0x4301d0",
+        "frame": "0x42dfd0",
+        "child": "0x403050",
+        "precreate": "0x40b390",
+        "create": "0x40ae10",
+        "factory": "0x406240",
+        "worker": "0x4069b0",
+        "early": "0x40ae30",
+        "bootstrap": "0x4090d0",
+        "complete": "0x40a1d0",
+        "destroy": "0x404420",
+        "INI": "0x43ac30",
+        "deferred": "0x2b78",
+        "early_latch": "0x2b79",
+        "job_handle": "0x2b7c",
+        "job_pointer": "0x2b80",
+        "profile_context": "0x75f0",
+        "namespace": "0x75f8",
+        "startup_code": "0x75fc"
+      }
+    },
+    "C82": {
+      "id": "launcher-updated-c82f",
+      "source": {
+        "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+        "bytes": 4111872,
+        "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+      },
+      "anchors": {
+        "id": "launcher-updated-c82f",
+        "app": "0x431000",
+        "frame": "0x42e180",
+        "child": "0x403040",
+        "precreate": "0x40b4e0",
+        "create": "0x40af60",
+        "factory": "0x406290",
+        "worker": "0x406a00",
+        "early": "0x40af80",
+        "bootstrap": "0x4091c0",
+        "complete": "0x40a320",
+        "destroy": "0x404410",
+        "INI": "0x43ba60",
+        "deferred": "0x2bc0",
+        "early_latch": "0x2bc1",
+        "job_handle": "0x2bc4",
+        "job_pointer": "0x2bc8",
+        "profile_context": "0x7638",
+        "namespace": "0x7640",
+        "startup_code": "0x7644"
+      }
+    }
+  },
+  "source_review": {
+    "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+    "bytes": 91591,
+    "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+  },
+  "scope_preserved": {
+    "capabilities": 40,
+    "registry_entries": 81,
+    "historical_requirements": 37,
+    "consumer_groups": 10,
+    "source_profiles": 6,
+    "original_scope": "配置读取、区域目录初始化、来源选择、首次配置与失效恢复",
+    "required_groups": [
+      "配置读取",
+      "区域目录初始化",
+      "来源选择",
+      "首次配置",
+      "失效恢复"
+    ],
+    "L01_profiles": [
+      "launcher-legacy-601b",
+      "launcher-updated-c82f",
+      "launcher-historical-c7ba"
+    ],
+    "original_owners": [
+      "shared/launcher-catalog.mjs",
+      "shared/launcher-first-config.mjs"
+    ],
+    "original_dependencies": [
+      "X01"
+    ],
+    "original_batch": "D1",
+    "registered_protocol_entries": [
+      "LCH-CATALOG-001",
+      "UPD-CATALOG-001",
+      "CFG-GAME-001"
+    ]
+  },
+  "facts": [
+    {
+      "id": "MS-F01",
+      "classification": "事实",
+      "claim": "本补充对应原L01五组×两现代profile十格；不替换601b行，不新增能力、owner、依赖或批次。同C7路径SS-U1与旧601b局部EH/普通结果的已闭范围保持；整个SS-U2、L01与统一门槛尚未闭合。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/scope_preserved",
+          "canonical_sha256": "191658244c093bae256ab0709a69bc185a4c4cc08af5464000566fa68779aa47"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/remaining/1",
+          "canonical_sha256": "23d4d5ea23df606611dfee735cd65c5500a06d9955645886ad8581db85c32a9a"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+            "bytes": 47926,
+            "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+          },
+          "pointer": "/selected_supersession",
+          "canonical_sha256": "cef0795577266918a851345488ab6ac5b935980c810593e82ec444c7414ed114"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/selected_supersession",
+          "canonical_sha256": "d2b83b3c0355da949f25589c2c2fc099f01fc01cc3fc997c8e6b495b01ad295f"
+        }
+      ]
+    },
+    {
+      "id": "MS-F02",
+      "classification": "事实",
+      "claim": "C7 App4301D0与C82 App431000分别绑定有界ID:十进制输入、activation/mutex、既有实例窗口属性筛选和普通Frame创建。Frame分别分配0x7720/0x7768字节；装载资源128失败删除Frame并清App两个别名，普通成功继续show/update及ACK helper后返回1。C82为既有完整派生视图，未冒称本轮native查询。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/17",
+          "canonical_sha256": "a110c23650e7dc1a7f0b2f8f083abe6deeaa4db5867fb8c3d940598bdf9a1ffb"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/reused_derived_views/0",
+          "canonical_sha256": "e8a182b6aa13b10b1bf4d7fe292a50987fc4480f70d648001cdcfb34f32da953"
+        }
+      ]
+    },
+    {
+      "id": "MS-F03",
+      "classification": "事实",
+      "claim": "Frame42DFD0/42E180分别拥有+120的Child；Child403050/403040拥有Main+1A8、loading+80及download+2A08/+2A38。15×A4 game、40×19C region和15路径分别构造；profile/namespace/startup-code分别为C7+75F0/+75F8/+75FC，C82+7638/+7640/+7644。初始word+2B78/+2BC0为100h，即deferred字节0、early latch1；job handle/pointer均0。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/16",
+          "canonical_sha256": "6e3750615e8c215b0c3f90d14496bde1d4d47a1fea3b522e4ee14c23967dd2c6"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/28",
+          "canonical_sha256": "b48bf29b476a12e8d8f98f674cce9dd93f5d69b21f4aa0b836943cb19ed07e80"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/0",
+          "canonical_sha256": "a3fd822910c56692a01f0a3265433d32d18d080d4d3d50bea779f9c0c51f626b"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/20",
+          "canonical_sha256": "189dbab54dd3e2a21608ac8c7c5461d0e96e4fe5080172fbf172ebe4fc711fea"
+        }
+      ]
+    },
+    {
+      "id": "MS-F04",
+      "classification": "事实",
+      "claim": "INI构造43AC30/43BA60从各自framework-helper对象+8取HMODULE，传GetModuleFileNameA(260)，以strlen向后找原字节反斜杠并追加PlayOnline.ini，保存于INI+4。源未检查该API返回值；只闭普通有效module路径，不能替换为HMODULE0，也未给未分析的现代helper套用旧版函数名。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/19",
+          "canonical_sha256": "34a3f284dc91d9e206aea47035de5329b6ae8f1c7c74e32d84db2d4117bfd21b"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/29",
+          "canonical_sha256": "8d3a90aaf89ac572f9e06e34868ca12856ebb3bb13a3b486cc8a99ab13208b34"
+        }
+      ]
+    },
+    {
+      "id": "MS-F05",
+      "classification": "事实",
+      "claim": "Child PreCreate40B390/40B4E0均由实际vtable slot25绑定：base失败返回false；准备loading和命令上下文后尝试本地pair恢复。恢复失败置deferred=1、保留窗口并返回true；恢复成功才检查mode0路径布局，其布尔结果决定本次PreCreate。GAME:写startup数值并形成Game%d namespace；它与App的ID:不是同一字段。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/12",
+          "canonical_sha256": "78b9a832392c7c82afe933644a6b3110bd1bf4b832340657dc116b957d18d0c9"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/27",
+          "canonical_sha256": "7d1661ea7669a15008896950a5d5c89ca281016ebfab9f9847b6b2b1cf7e999d"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/precreate_vtable_slots",
+          "canonical_sha256": "a73211ad460403e9ddefc3ba8e75b3c1718d3bb497e4b98e7384b5d7e1f071a6"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/5",
+          "canonical_sha256": "18252f7de3025d2c50d9d32e9e24e869787998858786e703d68f8b4d184fd9ec"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/reused_C82_audits/0",
+          "canonical_sha256": "c3fe157c4e1a2470eb47e86f3c98b0fd7745183dd67dc057b800574279292deb"
+        }
+      ]
+    },
+    {
+      "id": "MS-F06",
+      "classification": "事实",
+      "claim": "bootstrap4090D0/4091C0在namespace后追加Settings作为section，NoMinHelper默认0，Game/Region/Galaxy/GameID/Galaxy/GameList/RegionList/GalaxyList/UserMode默认-1；Galaxy确实读取并写同字段两次。UserMode只有1/2跳过模式dialog，其他值进入后仅modal结果1选1、其他选2，并发profile写请求；未观察写入成功。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/7",
+          "canonical_sha256": "25e7c0d5c13cb911ff05a0eda301de8fedcc7bc6db9655c289d2c20ae725d603"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/24",
+          "canonical_sha256": "c333c603d8f367cedb23372a303335d0ac2718364da40e23fe69c2cdde9d0a27"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/settings_and_ABI",
+          "canonical_sha256": "e31d18d37496e7e5228d3d287fe8bbda3ceb27be29665fc2429f38fe4df46439"
+        }
+      ]
+    },
+    {
+      "id": "MS-F07",
+      "classification": "事实",
+      "claim": "WM_CREATE真实map分别绑定40AE10/40AF60：base结果-1即-1，否则调用任务factory后返回0。factory普通启动失败不因此把WM_CREATE变成-1。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/10",
+          "canonical_sha256": "496edebb50f006efa3f8ed45928430d322db820d4aa1bdb6265d48ca545fa282"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/25",
+          "canonical_sha256": "6f46b66500e341bc78961316ec1ca184c876f06a48ac7a729bc2ff9e426d508a"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/message_bindings/0",
+          "canonical_sha256": "f4f414f8bc6a5f24a92f16dada1edbbc82944b76f8c74439ade1ac21cf22befd"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/message_bindings/3",
+          "canonical_sha256": "0eb96e65378d1c540b7121117b7089dd30a664a3d03485bef5860fba5e3a120a"
+        }
+      ]
+    },
+    {
+      "id": "MS-F08",
+      "classification": "事实",
+      "claim": "factory406240/406290只在当前job handle和pointer均0时继续；mode1布局失败只报状态。布局成功删除两个.new临时文件（删除返回未分支），分配64字节job并设refs2/cancel0/owner HWND，11个string初始空，result+34=0、launcher-prerequisite+38=1、updater-ready+3C=0；捕获五路径到+20..30：XML目录、现Game、现Region、新Game、新Region，并非六个布局槽全部捕获。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/2",
+          "canonical_sha256": "1a619e76f1e8b63ccce1aad63957f54217ba8b45ec569ebbff636d08856cd6b3"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/22",
+          "canonical_sha256": "f26d666d60bbc5e6fd1baa4fc3382832fc79ab2ef8c05a3d68993053aea4611a"
+        }
+      ]
+    },
+    {
+      "id": "MS-F09",
+      "classification": "事实",
+      "claim": "_beginthreadex非零才将job/handle发布到C7+2B80/+2B7C或C82+2BC8/+2BC4；普通返回0会释放两次并报错，两个owner字段保持0。原分配为null或抛出等分支并未因此成为完整可恢复合同。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/2",
+          "canonical_sha256": "1a619e76f1e8b63ccce1aad63957f54217ba8b45ec569ebbff636d08856cd6b3"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/22",
+          "canonical_sha256": "f26d666d60bbc5e6fd1baa4fc3382832fc79ab2ef8c05a3d68993053aea4611a"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/13",
+          "canonical_sha256": "64704742136ea322579c5f60132dcac2ac0279ba4abd2668a381f62ccb2b73f5"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-catalog-install-contract.json",
+            "bytes": 17714,
+            "sha256": "6aff5238454eb3eccc611698efd2ee478b85c7e6005645fc52fb633fd0dc342c"
+          },
+          "pointer": "/facts/19",
+          "canonical_sha256": "2eb52f4691acbcc516f9946d261600481994c4201ac28f27d13303a5f7d2e59a"
+        }
+      ]
+    },
+    {
+      "id": "MS-F10",
+      "classification": "事实",
+      "claim": "worker4069B0/406A00取得module文件digest与服务器digest文本，对后者trim空格/CR/LF，长度至少32时截取32并小写比较。不同digest路径还需两非空stream token、长度分别<256/<32、stream错误状态及源URL谓词通过才设置updater-ready；不能据此发明第二token含义或新增网络字段。实际HTTP/服务接受未验证。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/4",
+          "canonical_sha256": "5d7946932ebaaca584adf51c06d69ab713959ff9ebf372ab78e4da3c924fe60b"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/23",
+          "canonical_sha256": "8ca405b3f7a51cd456b54e8813e1c5a3164c39fbfebad58d7ec69a956f63ffcf"
+        }
+      ]
+    },
+    {
+      "id": "MS-F11",
+      "classification": "事实",
+      "claim": "launcher-prerequisite为真且updater-ready为0的普通路径，在新XML清单/两.new文件工作之前，经cancel0和owner HWND非零检查发布80CC(0,0)。updater-ready路径跳过这轮普通catalog工作；已缓存目录可能先行bootstrap。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/4",
+          "canonical_sha256": "5d7946932ebaaca584adf51c06d69ab713959ff9ebf372ab78e4da3c924fe60b"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/23",
+          "canonical_sha256": "8ca405b3f7a51cd456b54e8813e1c5a3164c39fbfebad58d7ec69a956f63ffcf"
+        }
+      ]
+    },
+    {
+      "id": "MS-F12",
+      "classification": "事实",
+      "claim": "两worker的39字节非连续body缺口由各自真实EH3表绑定：maxstate41、一个try、范围3..5、catch-high6、一个.PAVCFileException@@ handler，catch对象EBP-80h。catch调用对象helper、将保存结果置0并返回continuation，continuation恢复state2后汇入module-file处理之后。此为局部有类型恢复，不是覆盖全worker的catch-all，也未穷尽所有cleanup实际效果。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/4",
+          "canonical_sha256": "5d7946932ebaaca584adf51c06d69ab713959ff9ebf372ab78e4da3c924fe60b"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/23",
+          "canonical_sha256": "8ca405b3f7a51cd456b54e8813e1c5a3164c39fbfebad58d7ec69a956f63ffcf"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/worker_typed_catch",
+          "canonical_sha256": "13974c8d7e288657aa180bc151ceaf9e1636493bee1deee48dbcf82b5711a089"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/fresh_derived_code",
+          "canonical_sha256": "02c3d455923ed75f7663f74c418eb40a6d2f8d0e9c87d415e9962addeb269111"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/read_windows",
+          "canonical_sha256": "a62fc65218509d1dbaeb3604a8330da160cc40815b6ce58d853a4b05afb8482c"
+        }
+      ]
+    },
+    {
+      "id": "MS-F13",
+      "classification": "事实",
+      "claim": "普通worker在请求间及发布前检查cancel；保存result+34，正常尾部在cancel0/owner非零时发80C9(wParam布尔结果,lParam0)，并释放worker引用。消息参数不携job generation；检查与队列实际送达不是同一观察。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/4",
+          "canonical_sha256": "5d7946932ebaaca584adf51c06d69ab713959ff9ebf372ab78e4da3c924fe60b"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/23",
+          "canonical_sha256": "8ca405b3f7a51cd456b54e8813e1c5a3164c39fbfebad58d7ec69a956f63ffcf"
+        }
+      ]
+    },
+    {
+      "id": "MS-F14",
+      "classification": "事实",
+      "claim": "early handler40AE30/40AF80仅在latch非零时先清latch，再在deferred为0时调用bootstrap。deferred为1则留待完成路径；bootstrap失败报状态也不会重新设置这次one-shot latch。实际map以80CC绑定该handler。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/11",
+          "canonical_sha256": "443a064d44a3aa16e23786fe103953923e750252d2041e0e8ece8ffed07131c7"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/26",
+          "canonical_sha256": "df936cd2c968c8008076e057cba8405c61ac785e9c27f035edf0e1fd923f79c5"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/message_bindings/1",
+          "canonical_sha256": "8aba05f90539d5f694640ca462aa0e17901b7c52e8bc2ef38b2dc5f8a75191db"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/message_bindings/4",
+          "canonical_sha256": "70113c5d807b70e6575dc29ccdb326e19732d4186cd7dc63b1cf874db03598c7"
+        }
+      ]
+    },
+    {
+      "id": "MS-F15",
+      "classification": "事实",
+      "claim": "bootstrap先调用本版catalog loader，再创建Main及download两个dialog；第二创建失败会请求销毁第一，返回AL=false；完成普通初始化才AL=true。C7 provider的void签名保留，以调用者和实际AL指令还原布尔视图，未修改分析工具元数据。LastRun/date发保存请求不代表真正持久化。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/7",
+          "canonical_sha256": "25e7c0d5c13cb911ff05a0eda301de8fedcc7bc6db9655c289d2c20ae725d603"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/24",
+          "canonical_sha256": "c333c603d8f367cedb23372a303335d0ac2718364da40e23fe69c2cdde9d0a27"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/14",
+          "canonical_sha256": "85101e6ea67a5d92cacd67978f2b67d5d3c0a8dcc14e09c7966f0577021aa072"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/reused_C82_audits/0",
+          "canonical_sha256": "c3fe157c4e1a2470eb47e86f3c98b0fd7745183dd67dc057b800574279292deb"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/settings_and_ABI",
+          "canonical_sha256": "e31d18d37496e7e5228d3d287fe8bbda3ceb27be29665fc2429f38fe4df46439"
+        }
+      ]
+    },
+    {
+      "id": "MS-F16",
+      "classification": "事实",
+      "claim": "completion40A1D0/40A320取当前owner job；null即返回。有handle则Wait(0)、Close并清handle，随后清owner pointer，再处理消息结果。wParam为0按job标志报失败并释放owner，不伪造catalog成功；80C9实际map与C82既有完整派生视图均绑定。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/9",
+          "canonical_sha256": "9b9cb09946d71da6b560c029a83e57d043c5186a8fd944eb039552bc3223a4e4"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/reused_derived_views/1",
+          "canonical_sha256": "988dd1f192aed115ea5ba562dd217ab2fb80b7d50ec296d671bacce307e6e736"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/message_bindings/2",
+          "canonical_sha256": "4db0cfff61548740a585c8157f7c65c7f0170aeee8083e39bedcbccf673b87b7"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/message_bindings/5",
+          "canonical_sha256": "73990d3f20d0aabaf5ff2c7edf3dc0e18ecde5a0554ba69a93bb0717f0ed91fd"
+        }
+      ]
+    },
+    {
+      "id": "MS-F17",
+      "classification": "事实",
+      "claim": "普通catalog完成会重算mode0布局并比较五个捕获路径，随后验证新pair。文件比较返回0表示相同，1可表示差异或比较错误；两文件均0才走保持当前选择/UI的分支，不能把compare=1等同已证内容变化。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/9",
+          "canonical_sha256": "9b9cb09946d71da6b560c029a83e57d043c5186a8fd944eb039552bc3223a4e4"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/reused_derived_views/1",
+          "canonical_sha256": "988dd1f192aed115ea5ba562dd217ab2fb80b7d50ec296d671bacce307e6e736"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/3",
+          "canonical_sha256": "a6ccece184b9f6d198fc9a7132085a9e5fef860a014b8b4dcb4d4041a34b6a80"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/6",
+          "canonical_sha256": "bd96f5159214fcdf5d18b7c619f100c2d0ee0d07bb2e2df41da148b515038fca"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/reused_C82_audits/0",
+          "canonical_sha256": "c3fe157c4e1a2470eb47e86f3c98b0fd7745183dd67dc057b800574279292deb"
+        }
+      ]
+    },
+    {
+      "id": "MS-F18",
+      "classification": "事实",
+      "claim": "非同一pair经本版提交helper成功后，磁盘提交与当前UI刷新分开：已初始化时若process guard、Main busy字节或step非零可跳过UI刷新。C7 guard409AA0只读三个process handles2B3C/2B40/2B48；C82 guard409BF0只读2B84/2B88/2B90。两者不等于catalog job或登录busy的通用判定。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/9",
+          "canonical_sha256": "9b9cb09946d71da6b560c029a83e57d043c5186a8fd944eb039552bc3223a4e4"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/reused_derived_views/1",
+          "canonical_sha256": "988dd1f192aed115ea5ba562dd217ab2fb80b7d50ec296d671bacce307e6e736"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/15",
+          "canonical_sha256": "197581615d32e102818d6298b200fb20c55f620b473ef2829e45b1746a013380"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/8",
+          "canonical_sha256": "1f98259f4b8b5aae59c3d1ffe3bd32191a2e4c76e8c2aa1310961a2bd6964fbd"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-host-routing-contract.json",
+            "bytes": 8438,
+            "sha256": "aca0fbfe061e58bdf31747798bf13b20be3b9ac153210c11c8485a9026a6de98"
+          },
+          "pointer": "/facts/9",
+          "canonical_sha256": "c8870c70bfc289e5649ad010de4a7db1c4698736d0f165b30e398380780df73e"
+        }
+      ]
+    },
+    {
+      "id": "MS-F19",
+      "classification": "事实",
+      "claim": "本地pair恢复失败所留deferred=1，在新pair验证/提交完成路径调用bootstrap，成功才清deferred；既有界面安全刷新走独立loader/选择重建路径。若新旧文件比较都相同则保持分支，本处理器没有保证补一次deferred bootstrap。只在观察到的后续普通清理路径删除两个.new并释放owner，不承诺所有前置失败也删除。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/9",
+          "canonical_sha256": "9b9cb09946d71da6b560c029a83e57d043c5186a8fd944eb039552bc3223a4e4"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/reused_derived_views/1",
+          "canonical_sha256": "988dd1f192aed115ea5ba562dd217ab2fb80b7d50ec296d671bacce307e6e736"
+        }
+      ]
+    },
+    {
+      "id": "MS-F20",
+      "classification": "事实",
+      "claim": "updater-ready完成分支可准备资源143的助手、校验/重命名、用runas请求ShellExecuteEx，并以PID与创建时间组成named event、保存process handle、请求232B/100ms timer。这里只交接原L02/L08 owner；助手创建/退出/事件实际效果与游戏启动接受不在本补充完成范围。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/9",
+          "canonical_sha256": "9b9cb09946d71da6b560c029a83e57d043c5186a8fd944eb039552bc3223a4e4"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/reused_derived_views/1",
+          "canonical_sha256": "988dd1f192aed115ea5ba562dd217ab2fb80b7d50ec296d671bacce307e6e736"
+        }
+      ]
+    },
+    {
+      "id": "MS-F21",
+      "classification": "事实",
+      "claim": "Child析构404420/404410对job置cancel1并清owner HWND，有handle时最多等5000ms后关闭（未以等待结果证明线程终止），释放owner并清两slot；还关闭保留的process/event handles。关闭handle并非终止process，也不撤回已排队消息。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "c337776fb4ea48c1af7a60f716d01510c88f2e12628e17de2fa2e0d122bdcd9d"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/21",
+          "canonical_sha256": "2ace1d96175fcdcbea3107f33f89315e6c55a37284480de7d16420688ead4bb8"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-catalog-install-contract.json",
+            "bytes": 17714,
+            "sha256": "6aff5238454eb3eccc611698efd2ee478b85c7e6005645fc52fb633fd0dc342c"
+          },
+          "pointer": "/facts/20",
+          "canonical_sha256": "e1ec3ecd9730d83a02190f8d97c1bf8d380f28acacf1b6dd4f2283f240bb4368"
+        }
+      ]
+    },
+    {
+      "id": "MS-F22",
+      "classification": "事实",
+      "claim": "普通bootstrap末尾C7直接请求SetActiveWindow(Main)，C82先判断GetForegroundWindow属于Main或Frame再请求激活。此版本差异独立绑定；web/mobile/WeChat焦点能力及真实前后台效果仍需目标host设计和接受。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/7",
+          "canonical_sha256": "25e7c0d5c13cb911ff05a0eda301de8fedcc7bc6db9655c289d2c20ae725d603"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-modern-startup-v1/source-review.json",
+            "bytes": 91591,
+            "sha256": "908cf0815af01da7f12d3c9062a4f4aa133154f1b6d6d6bd4e0b3270d283822c"
+          },
+          "pointer": "/bodies/24",
+          "canonical_sha256": "c333c603d8f367cedb23372a303335d0ac2718364da40e23fe69c2cdde9d0a27"
+        }
+      ]
+    }
+  ],
+  "inferences": [
+    {
+      "id": "MS-I1",
+      "classification": "推测",
+      "conditions": "已排队旧消息在owner slot被清并启动新job后送达，且没有尚未观察的外部序列约束。",
+      "claim": "消息不带job身份而完成handler取当前slot，存在旧通知影响新owner的条件；未运行该交错，不能写成已复现故障。",
+      "fact_ids": [
+        "MS-F13",
+        "MS-F16",
+        "MS-F21"
+      ]
+    },
+    {
+      "id": "MS-I2",
+      "classification": "推测",
+      "conditions": "目标平台以异步任务、原ContextOwner/Clock/store/Host端口提供同一业务结果。",
+      "claim": "两版普通流程可共享任务状态、来源快照与发布规则，保留profile策略及原子存储设计；任务身份是独立实现控制，不是新增官服协议字段。",
+      "fact_ids": [
+        "MS-F01",
+        "MS-F08",
+        "MS-F13",
+        "MS-F18",
+        "MS-F22"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "MS-O01",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "配置读取",
+      "source_context": {
+        "id": "launcher-historical-c7ba",
+        "app": "0x4301d0",
+        "frame": "0x42dfd0",
+        "child": "0x403050",
+        "precreate": "0x40b390",
+        "create": "0x40ae10",
+        "factory": "0x406240",
+        "worker": "0x4069b0",
+        "early": "0x40ae30",
+        "bootstrap": "0x4090d0",
+        "complete": "0x40a1d0",
+        "destroy": "0x404420",
+        "INI": "0x43ac30",
+        "deferred": "0x2b78",
+        "early_latch": "0x2b79",
+        "job_handle": "0x2b7c",
+        "job_pointer": "0x2b80",
+        "profile_context": "0x75f0",
+        "namespace": "0x75f8",
+        "startup_code": "0x75fc"
+      },
+      "trigger": "创建Child/INI并成功bootstrap",
+      "rule": "以本版framework module路径建立INI来源，namespace后缀Settings，按各key默认和字段身份读取。",
+      "effect": "保存请求与实际持久化分列；UserMode仅1/2直接使用，否则按modal结果选1/2。",
+      "failure_and_recovery": "模块路径失败/截断及持久化失败不得臆造成功，目标Host政策和实际readback另待。",
+      "fact_ids": [
+        "MS-F03",
+        "MS-F04",
+        "MS-F06",
+        "MS-F15"
+      ],
+      "selected_normal_source_bound": true,
+      "whole_original_group_closed": false,
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "MS-O02",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "区域目录初始化",
+      "source_context": {
+        "id": "launcher-historical-c7ba",
+        "app": "0x4301d0",
+        "frame": "0x42dfd0",
+        "child": "0x403050",
+        "precreate": "0x40b390",
+        "create": "0x40ae10",
+        "factory": "0x406240",
+        "worker": "0x4069b0",
+        "early": "0x40ae30",
+        "bootstrap": "0x4090d0",
+        "complete": "0x40a1d0",
+        "destroy": "0x404420",
+        "INI": "0x43ac30",
+        "deferred": "0x2b78",
+        "early_latch": "0x2b79",
+        "job_handle": "0x2b7c",
+        "job_pointer": "0x2b80",
+        "profile_context": "0x75f0",
+        "namespace": "0x75f8",
+        "startup_code": "0x75fc"
+      },
+      "trigger": "PreCreate→WM_CREATE→普通worker→early/completion消息",
+      "rule": "本地pair失败先保留loading等新pair；已有pair可经one-shot early消息先初始化，完成后再比较和条件刷新。",
+      "effect": "job单owner/refs2，五路径快照，digest/目录下载分阶段，发布前检查cancel。",
+      "failure_and_recovery": "普通线程创建失败不等于WM_CREATE失败；局部CFileException转换仅适用原try范围。",
+      "fact_ids": [
+        "MS-F05",
+        "MS-F07",
+        "MS-F08",
+        "MS-F09",
+        "MS-F10",
+        "MS-F11",
+        "MS-F12",
+        "MS-F13",
+        "MS-F14"
+      ],
+      "selected_normal_source_bound": true,
+      "whole_original_group_closed": false,
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "MS-O03",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "来源选择",
+      "source_context": {
+        "id": "launcher-historical-c7ba",
+        "app": "0x4301d0",
+        "frame": "0x42dfd0",
+        "child": "0x403050",
+        "precreate": "0x40b390",
+        "create": "0x40ae10",
+        "factory": "0x406240",
+        "worker": "0x4069b0",
+        "early": "0x40ae30",
+        "bootstrap": "0x4090d0",
+        "complete": "0x40a1d0",
+        "destroy": "0x404420",
+        "INI": "0x43ac30",
+        "deferred": "0x2b78",
+        "early_latch": "0x2b79",
+        "job_handle": "0x2b7c",
+        "job_pointer": "0x2b80",
+        "profile_context": "0x75f0",
+        "namespace": "0x75f8",
+        "startup_code": "0x75fc"
+      },
+      "trigger": "命令GAME:、profile字段、当前/新pair及完成时重算布局",
+      "rule": "保留App ID与GAME数值/namespace区别、目录来源和捕获五路径，禁止以ordinal/raw Code互相代替。",
+      "effect": "同文件保留当前选择；非同文件（包括比较错误）进入原后续验证/提交分支。",
+      "failure_and_recovery": "路径来源变动拒绝该完成发布；文件相同并不撤销此前early初始化。",
+      "fact_ids": [
+        "MS-F02",
+        "MS-F03",
+        "MS-F05",
+        "MS-F08",
+        "MS-F16",
+        "MS-F17"
+      ],
+      "selected_normal_source_bound": true,
+      "whole_original_group_closed": false,
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "MS-O04",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "首次配置",
+      "source_context": {
+        "id": "launcher-historical-c7ba",
+        "app": "0x4301d0",
+        "frame": "0x42dfd0",
+        "child": "0x403050",
+        "precreate": "0x40b390",
+        "create": "0x40ae10",
+        "factory": "0x406240",
+        "worker": "0x4069b0",
+        "early": "0x40ae30",
+        "bootstrap": "0x4090d0",
+        "complete": "0x40a1d0",
+        "destroy": "0x404420",
+        "INI": "0x43ac30",
+        "deferred": "0x2b78",
+        "early_latch": "0x2b79",
+        "job_handle": "0x2b7c",
+        "job_pointer": "0x2b80",
+        "profile_context": "0x75f0",
+        "namespace": "0x75f8",
+        "startup_code": "0x75fc"
+      },
+      "trigger": "已证本版bootstrap与现有Config owner的交接",
+      "rule": "bootstrap先catalog后两dialog，UserMode非法值经过模式dialog；保留本版焦点政策。",
+      "effect": "只将来源/模式/目录状态交给原shared/launcher-first-config.mjs及既有Host合同。",
+      "failure_and_recovery": "第二dialog失败请求销毁第一；Config真实进程、后台恢复与目标平台支持未在本轮执行。",
+      "fact_ids": [
+        "MS-F01",
+        "MS-F06",
+        "MS-F15",
+        "MS-F22"
+      ],
+      "selected_normal_source_bound": true,
+      "whole_original_group_closed": false,
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "MS-O05",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "失效恢复",
+      "source_context": {
+        "id": "launcher-historical-c7ba",
+        "app": "0x4301d0",
+        "frame": "0x42dfd0",
+        "child": "0x403050",
+        "precreate": "0x40b390",
+        "create": "0x40ae10",
+        "factory": "0x406240",
+        "worker": "0x4069b0",
+        "early": "0x40ae30",
+        "bootstrap": "0x4090d0",
+        "complete": "0x40a1d0",
+        "destroy": "0x404420",
+        "INI": "0x43ac30",
+        "deferred": "0x2b78",
+        "early_latch": "0x2b79",
+        "job_handle": "0x2b7c",
+        "job_pointer": "0x2b80",
+        "profile_context": "0x75f0",
+        "namespace": "0x75f8",
+        "startup_code": "0x75fc"
+      },
+      "trigger": "局部文件异常、失败完成、新pair、owner关闭或updater交接",
+      "rule": "区分文件异常转换、任务失败、磁盘提交和UI刷新；deferred成功bootstrap后才清。",
+      "effect": "按原owner释放/临时文件清理分支退役；updater交给原L02/L08。",
+      "failure_and_recovery": "5000ms等待与CloseHandle不证明任务终止；无消息generation、全面事务/异常恢复及真实效果仍待。",
+      "fact_ids": [
+        "MS-F09",
+        "MS-F12",
+        "MS-F13",
+        "MS-F16",
+        "MS-F18",
+        "MS-F19",
+        "MS-F20",
+        "MS-F21"
+      ],
+      "selected_normal_source_bound": true,
+      "whole_original_group_closed": false,
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "MS-O06",
+      "profile": "launcher-updated-c82f",
+      "original_group": "配置读取",
+      "source_context": {
+        "id": "launcher-updated-c82f",
+        "app": "0x431000",
+        "frame": "0x42e180",
+        "child": "0x403040",
+        "precreate": "0x40b4e0",
+        "create": "0x40af60",
+        "factory": "0x406290",
+        "worker": "0x406a00",
+        "early": "0x40af80",
+        "bootstrap": "0x4091c0",
+        "complete": "0x40a320",
+        "destroy": "0x404410",
+        "INI": "0x43ba60",
+        "deferred": "0x2bc0",
+        "early_latch": "0x2bc1",
+        "job_handle": "0x2bc4",
+        "job_pointer": "0x2bc8",
+        "profile_context": "0x7638",
+        "namespace": "0x7640",
+        "startup_code": "0x7644"
+      },
+      "trigger": "创建Child/INI并成功bootstrap",
+      "rule": "以本版framework module路径建立INI来源，namespace后缀Settings，按各key默认和字段身份读取。",
+      "effect": "保存请求与实际持久化分列；UserMode仅1/2直接使用，否则按modal结果选1/2。",
+      "failure_and_recovery": "模块路径失败/截断及持久化失败不得臆造成功，目标Host政策和实际readback另待。",
+      "fact_ids": [
+        "MS-F03",
+        "MS-F04",
+        "MS-F06",
+        "MS-F15"
+      ],
+      "selected_normal_source_bound": true,
+      "whole_original_group_closed": false,
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "MS-O07",
+      "profile": "launcher-updated-c82f",
+      "original_group": "区域目录初始化",
+      "source_context": {
+        "id": "launcher-updated-c82f",
+        "app": "0x431000",
+        "frame": "0x42e180",
+        "child": "0x403040",
+        "precreate": "0x40b4e0",
+        "create": "0x40af60",
+        "factory": "0x406290",
+        "worker": "0x406a00",
+        "early": "0x40af80",
+        "bootstrap": "0x4091c0",
+        "complete": "0x40a320",
+        "destroy": "0x404410",
+        "INI": "0x43ba60",
+        "deferred": "0x2bc0",
+        "early_latch": "0x2bc1",
+        "job_handle": "0x2bc4",
+        "job_pointer": "0x2bc8",
+        "profile_context": "0x7638",
+        "namespace": "0x7640",
+        "startup_code": "0x7644"
+      },
+      "trigger": "PreCreate→WM_CREATE→普通worker→early/completion消息",
+      "rule": "本地pair失败先保留loading等新pair；已有pair可经one-shot early消息先初始化，完成后再比较和条件刷新。",
+      "effect": "job单owner/refs2，五路径快照，digest/目录下载分阶段，发布前检查cancel。",
+      "failure_and_recovery": "普通线程创建失败不等于WM_CREATE失败；局部CFileException转换仅适用原try范围。",
+      "fact_ids": [
+        "MS-F05",
+        "MS-F07",
+        "MS-F08",
+        "MS-F09",
+        "MS-F10",
+        "MS-F11",
+        "MS-F12",
+        "MS-F13",
+        "MS-F14"
+      ],
+      "selected_normal_source_bound": true,
+      "whole_original_group_closed": false,
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "MS-O08",
+      "profile": "launcher-updated-c82f",
+      "original_group": "来源选择",
+      "source_context": {
+        "id": "launcher-updated-c82f",
+        "app": "0x431000",
+        "frame": "0x42e180",
+        "child": "0x403040",
+        "precreate": "0x40b4e0",
+        "create": "0x40af60",
+        "factory": "0x406290",
+        "worker": "0x406a00",
+        "early": "0x40af80",
+        "bootstrap": "0x4091c0",
+        "complete": "0x40a320",
+        "destroy": "0x404410",
+        "INI": "0x43ba60",
+        "deferred": "0x2bc0",
+        "early_latch": "0x2bc1",
+        "job_handle": "0x2bc4",
+        "job_pointer": "0x2bc8",
+        "profile_context": "0x7638",
+        "namespace": "0x7640",
+        "startup_code": "0x7644"
+      },
+      "trigger": "命令GAME:、profile字段、当前/新pair及完成时重算布局",
+      "rule": "保留App ID与GAME数值/namespace区别、目录来源和捕获五路径，禁止以ordinal/raw Code互相代替。",
+      "effect": "同文件保留当前选择；非同文件（包括比较错误）进入原后续验证/提交分支。",
+      "failure_and_recovery": "路径来源变动拒绝该完成发布；文件相同并不撤销此前early初始化。",
+      "fact_ids": [
+        "MS-F02",
+        "MS-F03",
+        "MS-F05",
+        "MS-F08",
+        "MS-F16",
+        "MS-F17"
+      ],
+      "selected_normal_source_bound": true,
+      "whole_original_group_closed": false,
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "MS-O09",
+      "profile": "launcher-updated-c82f",
+      "original_group": "首次配置",
+      "source_context": {
+        "id": "launcher-updated-c82f",
+        "app": "0x431000",
+        "frame": "0x42e180",
+        "child": "0x403040",
+        "precreate": "0x40b4e0",
+        "create": "0x40af60",
+        "factory": "0x406290",
+        "worker": "0x406a00",
+        "early": "0x40af80",
+        "bootstrap": "0x4091c0",
+        "complete": "0x40a320",
+        "destroy": "0x404410",
+        "INI": "0x43ba60",
+        "deferred": "0x2bc0",
+        "early_latch": "0x2bc1",
+        "job_handle": "0x2bc4",
+        "job_pointer": "0x2bc8",
+        "profile_context": "0x7638",
+        "namespace": "0x7640",
+        "startup_code": "0x7644"
+      },
+      "trigger": "已证本版bootstrap与现有Config owner的交接",
+      "rule": "bootstrap先catalog后两dialog，UserMode非法值经过模式dialog；保留本版焦点政策。",
+      "effect": "只将来源/模式/目录状态交给原shared/launcher-first-config.mjs及既有Host合同。",
+      "failure_and_recovery": "第二dialog失败请求销毁第一；Config真实进程、后台恢复与目标平台支持未在本轮执行。",
+      "fact_ids": [
+        "MS-F01",
+        "MS-F06",
+        "MS-F15",
+        "MS-F22"
+      ],
+      "selected_normal_source_bound": true,
+      "whole_original_group_closed": false,
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "MS-O10",
+      "profile": "launcher-updated-c82f",
+      "original_group": "失效恢复",
+      "source_context": {
+        "id": "launcher-updated-c82f",
+        "app": "0x431000",
+        "frame": "0x42e180",
+        "child": "0x403040",
+        "precreate": "0x40b4e0",
+        "create": "0x40af60",
+        "factory": "0x406290",
+        "worker": "0x406a00",
+        "early": "0x40af80",
+        "bootstrap": "0x4091c0",
+        "complete": "0x40a320",
+        "destroy": "0x404410",
+        "INI": "0x43ba60",
+        "deferred": "0x2bc0",
+        "early_latch": "0x2bc1",
+        "job_handle": "0x2bc4",
+        "job_pointer": "0x2bc8",
+        "profile_context": "0x7638",
+        "namespace": "0x7640",
+        "startup_code": "0x7644"
+      },
+      "trigger": "局部文件异常、失败完成、新pair、owner关闭或updater交接",
+      "rule": "区分文件异常转换、任务失败、磁盘提交和UI刷新；deferred成功bootstrap后才清。",
+      "effect": "按原owner释放/临时文件清理分支退役；updater交给原L02/L08。",
+      "failure_and_recovery": "5000ms等待与CloseHandle不证明任务终止；无消息generation、全面事务/异常恢复及真实效果仍待。",
+      "fact_ids": [
+        "MS-F09",
+        "MS-F12",
+        "MS-F13",
+        "MS-F16",
+        "MS-F18",
+        "MS-F19",
+        "MS-F20",
+        "MS-F21"
+      ],
+      "selected_normal_source_bound": true,
+      "whole_original_group_closed": false,
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "MS-D1",
+      "merge_into": [
+        "SS-D01",
+        "SS-D02"
+      ],
+      "batch": [
+        "D0",
+        "D1"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "change": "复用一个catalog任务/来源快照/结果模型，分别保留cached early bootstrap、deferred first bootstrap、目录刷新与updater交接；两profile策略数据化，不复制两套核心。",
+      "implemented": false
+    },
+    {
+      "id": "MS-D2",
+      "merge_into": [
+        "SS-D03"
+      ],
+      "batch": [
+        "D1",
+        "D5"
+      ],
+      "owner": [
+        "SourceValueContext",
+        "TextEncodingAndLocalStateStore"
+      ],
+      "change": "显式携带本版module/INI、namespace、捕获路径、raw Code/ordinal来源、默认值和保存回执；现代Settings后缀与模式分支不套旧版偏移。",
+      "implemented": false
+    },
+    {
+      "id": "MS-D3",
+      "merge_into": [
+        "SS-D04"
+      ],
+      "batch": [
+        "D1",
+        "D5",
+        "D6"
+      ],
+      "owner": [
+        "ContextOwner",
+        "ClockDomains",
+        "HostCapabilitiesAndLifecycle"
+      ],
+      "change": "沿既有取消/退役接口给目标任务加本地身份和生命周期检查，区分排队、线程/进程handle、磁盘提交与UI应用；不能移植阻塞wait或把身份作为官服字段。",
+      "implemented": false
+    },
+    {
+      "id": "MS-D4",
+      "merge_into": [
+        "SS-D05"
+      ],
+      "batch": [
+        "D5",
+        "D6"
+      ],
+      "owner": [
+        "original platform acceptance"
+      ],
+      "change": "补原五组×两现代profile边界接受：early/complete顺序、无缓存、typed-file-failure、比较错误、busy提交、取消/迟到消息、模块/存储/焦点与完整Config真实效果。",
+      "implemented": false
+    }
+  ],
+  "selected_supersession": {
+    "parent_pointer": "/remaining/1",
+    "parent_id": "SS-U2",
+    "selected_closed": [
+      "C7/C82 App→Frame→Child ordinary startup, PreCreate/WM_CREATE/message source bindings",
+      "C7/C82 normal INI/module and Settings/UserMode provenance",
+      "C7/C82 catalog task capture/early cached bootstrap/complete refresh/cancel ordinary rules",
+      "C7/C82 selected module-file CFileException typed catch and continuation"
+    ],
+    "still_open": [
+      "原必要变体与LF-U4条件准入：296/30721/30734、四非App菜单及未准入import/export仅按正向owner扩展",
+      "原其他必要源上下文、called-helper/外层异常与未覆盖的真实恢复效果",
+      "SS-U3原Host/Config/平台生命周期、真实持久化/后台效果及完整接受"
+    ],
+    "whole_SS_U2_source_closed": false,
+    "whole_L01_ready": false,
+    "C7_SS_U1_source_closed_preserved": true,
+    "legacy_selected_local_EH_source_closed_preserved": true,
+    "does_not_close": [
+      "L03 LS-U3",
+      "L07 current same-version game consumer"
+    ]
+  },
+  "remaining": [
+    {
+      "id": "MS-U1",
+      "classification": "待验证",
+      "preserves": "SS-U2",
+      "need": "已闭selected modern普通链/局部typed-file路径停止重复展开；原必要变体、LF-U4条件入口及其他原required上下文仍须按实际owner审定，不将条件材料自动变成已证需求或无穷helper清单。"
+    },
+    {
+      "id": "MS-U2",
+      "classification": "待验证",
+      "preserves": "SS-U3",
+      "need": "来源first Config、取消/关闭/后台、预算/IME/存储/焦点及完整三端实际接受；SDK服务端口原设置请求未答复，保持pending且不绕过；无测试账号，当前同版官方接受未完成。"
+    },
+    {
+      "id": "MS-U3",
+      "classification": "待验证",
+      "need": "分配/其他异常、module API失常、文件删除/提交/durability及队列交错真实效果未执行。typed catch只闭已指明局部源，不证明全面故障恢复、线程终止或所有异常/事务。"
+    }
+  ],
+  "acceptance": {
+    "parent_cases_retained": 20,
+    "CP_supplement_cases_retained": 14,
+    "SR_supplement_cases_retained": 12,
+    "supplement_cases": [
+      {
+        "id": "MS-A01",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "两个profile各自App普通/已有实例/Frame装载失败",
+        "expected": "各按本版创建/清别名/activation分支，不能以窗口出现代替完整启动。",
+        "fact_ids": [
+          "MS-F02",
+          "MS-F03"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A02",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "有效framework module路径与HMODULE0不同",
+        "expected": "INI使用对象+8提供的module，保存原来源。",
+        "fact_ids": [
+          "MS-F04"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A03",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "模块路径返回0、截断或没有反斜杠",
+        "expected": "明确源未校验范围及目标失败政策，不模拟未初始化内存。",
+        "fact_ids": [
+          "MS-F04"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A04",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "有/无GAME:，App ID:与GAME数值不同",
+        "expected": "namespace、startup-code及App ID保持独立来源。",
+        "fact_ids": [
+          "MS-F02",
+          "MS-F03",
+          "MS-F05"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A05",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "缺省所有Settings以及非缺省Galaxy",
+        "expected": "NoMinHelper默认0，其余-1，Galaxy实际两次读取；section为namespace+Settings。",
+        "fact_ids": [
+          "MS-F06"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A06",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "UserMode为1/2/其他，modal为1/0/-1/其他",
+        "expected": "1/2跳dialog，仅modal1选1，否则2；保存请求与完成分开。",
+        "fact_ids": [
+          "MS-F06"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A07",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "base PreCreate失败、本地pair缺失、已有pair但路径失败",
+        "expected": "分别false、deferred1且true、按mode0失败false。",
+        "fact_ids": [
+          "MS-F05"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A08",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "WM_CREATE base-1与factory普通启动失败",
+        "expected": "base-1返回-1；其余返回0，不伪造task成功。",
+        "fact_ids": [
+          "MS-F07",
+          "MS-F09"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A09",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "job pointer/handle任一非零或两者均0",
+        "expected": "前者不重启，后者mode1布局/refs2/五路径准备，线程0释放两引用。",
+        "fact_ids": [
+          "MS-F08",
+          "MS-F09"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A10",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "digest不足32/相等/不同，metadata空或超长token",
+        "expected": "按源前提选择普通catalog/updater/失败，不新增token语义。",
+        "fact_ids": [
+          "MS-F10",
+          "MS-F11"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A11",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "模块文件阶段CFileException与其他类型/范围",
+        "expected": "只在两原try3..5适用局部保存0/continuation；其他不能当catch-all。",
+        "fact_ids": [
+          "MS-F12"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A12",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "cached pair存在，80CC重复或bootstrap失败",
+        "expected": "latch先清、至多一次；文件未变不影响已发生bootstrap。",
+        "fact_ids": [
+          "MS-F11",
+          "MS-F14",
+          "MS-F17"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A13",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "本地pair缺失，80CC先到，再收到新pair完成",
+        "expected": "early跳bootstrap，完成在规定提交分支成功bootstrap才清deferred。",
+        "fact_ids": [
+          "MS-F05",
+          "MS-F14",
+          "MS-F19"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A14",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "loader失败、第一dialog失败、第二dialog失败",
+        "expected": "AL失败分开；第二失败请求销毁第一，不当初始化完成。",
+        "fact_ids": [
+          "MS-F15"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A15",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "completion时owner为空、handle未signal、wParam0",
+        "expected": "空owner不处理；Wait0/Close不证明线程终止，失败分支释放并保留原因。",
+        "fact_ids": [
+          "MS-F16"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A16",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "捕获五路径与当前mode0任一不同或pair验证失败",
+        "expected": "拒绝该发布，临时文件清理以实际到达分支表达，不保证全失败路径删除。",
+        "fact_ids": [
+          "MS-F08",
+          "MS-F16",
+          "MS-F17",
+          "MS-F19"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A17",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "两个文件相同、一个不同或比较错误",
+        "expected": "只双0走保持；compare1不能标为已证内容差异，deferred相同分支不臆造bootstrap。",
+        "fact_ids": [
+          "MS-F17",
+          "MS-F19"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A18",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "新pair提交成功而process/Main busy或step非零",
+        "expected": "磁盘提交与UI应用分开，busy guard不扩为所有任务busy。",
+        "fact_ids": [
+          "MS-F18"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A19",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "取消发生于检查前/检查后、旧消息在新slot存在时到达",
+        "expected": "按已证检查/引用规则；目标独立身份策略及交错实际结果另验。",
+        "fact_ids": [
+          "MS-F13",
+          "MS-F16",
+          "MS-F21"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A20",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "析构等待超时、worker未结束、process/event仍被引用",
+        "expected": "关闭handle与终止任务分列，保留未完成/迟到观察。",
+        "fact_ids": [
+          "MS-F21"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A21",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "updater准备/创建/事件/timer失败及普通交接",
+        "expected": "分别记录原L02/L08结果；不以runas请求或timer建立标助手/游戏成功。",
+        "fact_ids": [
+          "MS-F20"
+        ],
+        "executed": false
+      },
+      {
+        "id": "MS-A22",
+        "profiles": [
+          "launcher-historical-c7ba",
+          "launcher-updated-c82f"
+        ],
+        "context": "C7/C82分别在前台、后台、目标Host无焦点/Config能力",
+        "expected": "保留本版焦点gate，执行原Host/Config接受后才评估目标兼容。",
+        "fact_ids": [
+          "MS-F15",
+          "MS-F22"
+        ],
+        "executed": false
+      }
+    ],
+    "supplement_cases_executed": 0
+  },
+  "primary_references": [
+    {
+      "purpose": "EH3/try/catch schema interpretation only; no target execution claim",
+      "url": "https://github.com/llvm/llvm-project/blob/llvmorg-20.1.8/llvm/lib/CodeGen/AsmPrinter/WinException.cpp",
+      "fixed_copy": {
+        "path": "build/analysis/launcher-startup-recovery-v1/LLVM-WinException-20.1.8.cpp",
+        "bytes": 53759,
+        "sha256": "671b9072e602e8d97cb455a8e150897059c84a30b3f7ae060e80d5c762ce78af"
+      }
+    }
+  ],
+  "summary": {
+    "new_native_records": 12,
+    "new_native_body_bytes": 6997,
+    "new_required_native_records": 11,
+    "new_required_native_body_bytes": 6468,
+    "new_diagnostic_records_not_requirement_coverage": 1,
+    "diagnostic_bytes": 529,
+    "reused_complete_native_records": 18,
+    "reused_derived_views": 2,
+    "native_range_windows": 32,
+    "native_range_bytes": 33345,
+    "native_instruction_boundaries": 9656,
+    "reused_derived_windows": 2,
+    "reused_derived_bytes": 4292,
+    "reused_derived_instructions": 1175,
+    "fresh_derived_code_windows": 4,
+    "fresh_derived_code_bytes": 158,
+    "fresh_derived_instructions": 40,
+    "fresh_REA_read_windows": 12,
+    "worker_typed_catch_contexts": 2,
+    "message_bindings": 6,
+    "precreate_vtable_slots": 2,
+    "profile_settings_call_sites": 20,
+    "reused_C82_source_audits": 4,
+    "C7_retained_REA_records": 106,
+    "C82_retained_REA_records": 166,
+    "new_target_tests": 0,
+    "facts": 22,
+    "conditional_inferences": 2,
+    "selected_modern_profile_group_cells": 10,
+    "parent_required_profile_group_cells": 15,
+    "operations": 10,
+    "implementation_deltas": 4,
+    "supplement_acceptance_cases_not_executed": 22,
+    "selected_modern_normal_startup_and_typed_file_failure_source_bound": true,
+    "whole_SS_U2_source_closed": false,
+    "required_source_contexts_open": [
+      "SS-U2"
+    ],
+    "host_contexts_open": [
+      "SS-U3"
+    ]
+  },
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "whole_SS_U2_source_closed": false,
+  "whole_L01_specification_ready": false,
+  "source_capability_readiness_promoted": false,
+  "new_target_tests": 0,
+  "original_VM_SDK_program_setting_account_or_official_actions": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "stopping_rule": "Selected ordinary two-profile flow/source/EH gap is specification-bounded. Reuse retained bodies/audits. Expand only a positive ordinary owner whose missing rule changes original required capability; no generic helper inventories, repeated known Config/path/hash queries or target implementation before unified gate.",
+  "validation_record_path": "build/analysis/launcher-modern-startup-v1/validation.json",
+  "execution_record": {
+    "path": "build/analysis/launcher-modern-startup-v1/execution-record.json",
+    "bytes": 3310,
+    "sha256": "d64faf27f9ee844daa20d2846550e6edc88b5f7fdc6907325a48ce23778e8a29"
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "schema": "moli.launcher-v18.static-spec.v1",
+  "recorded_utc": "2026-10-27T03:26:59.804469+00:00",
+  "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "tool_versions": {
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "independent_anchor_check": "Python PE parser, struct/hashlib; no sample execution"
+  },
+  "private_bundle": {
+    "path": "build/analysis/launcher-v18/rea-evidence.json",
+    "bytes": 80559282,
+    "sha256": "89b063a366e3a0e9e114798337ae9051d771944c5d463e756466d7665e0c112a",
+    "records": 258,
+    "new_records": 5
+  },
+  "closed_snapshot": {
+    "path": "build/analysis/launcher-v18/rea-snapshot.json",
+    "bytes": 155695051,
+    "sha256": "eafaeb79d735e1eb66e03b332a38389747d7968c1fcb2db1816b45229922a4cd",
+    "state": "closed after export"
+  },
+  "new_functions": [
+    {
+      "entry": "0x459cbf",
+      "name": "getSystemCP",
+      "ranges": [
+        {
+          "end": "0x459d3a",
+          "start": "0x459cbf"
+        }
+      ],
+      "evidence_id": "ev_1ffc16603709f5452c314defdc1aad093e78ad98199601a6edc29d16fab941f8"
+    },
+    {
+      "entry": "0x463a40",
+      "name": "_ProcessCodePage",
+      "ranges": [
+        {
+          "end": "0x463ae3",
+          "start": "0x463a40"
+        }
+      ],
+      "evidence_id": "ev_709919f085830503a8f33548ebdee56bff20d532b0c65121a5701b0d0eb0ea5f"
+    }
+  ],
+  "xref_evidence": [
+    {
+      "address": "0x4b155c",
+      "id": "ev_4dce5ea4a57da901e834c74ab30fcfdd1a6dc608188acb80795cfe7c5f897261",
+      "references": [
+        "0x428d95",
+        "0x4302a6",
+        "0x434380",
+        "0x446d2a"
+      ]
+    },
+    {
+      "address": "0x4b132c",
+      "id": "ev_afffe1f3cfc263ab922be09b0fa6b6ae2803df3df154e90d71e8f862e93927a6",
+      "references": [
+        "0x40ca0f",
+        "0x40d4fb",
+        "0x433ae7",
+        "0x433d29",
+        "0x443900",
+        "0x4486bd",
+        "0x4486f1",
+        "0x44874e",
+        "0x45b2a0",
+        "0x45b8d3",
+        "0x4605a3",
+        "0x4616cb",
+        "0x461a84",
+        "0x4622d8",
+        "0x4642ff",
+        "0x46430e",
+        "0x464809",
+        "0x466103",
+        "0x46711a"
+      ]
+    },
+    {
+      "address": "0x4b119c",
+      "id": "ev_bb2f9eb31657d05e0a0a628d279754854133b67231fcdd276f41d144d0bfedd3",
+      "references": [
+        "0x459d0b",
+        "0x463adc"
+      ]
+    }
+  ],
+  "reused_evidence": [
+    {
+      "function": "0x43434f",
+      "id": "ev_67ede91140a641d2f682de860f45f0bb1257576efdbb40eb8295a28dadc7311a",
+      "fact": "DDX_Text saves from GetWindowTextLengthA/GetWindowTextA into CString<char>."
+    },
+    {
+      "function": "0x43429f",
+      "id": "ev_d2c01de912bd671cf71c9aaba961436e5dd3d82610465b4a1f302ecee0592444",
+      "fact": "DDV_MaxChars compares CString byte count; launcher DDX passes16 for each credential."
+    }
+  ],
+  "facts": [
+    {
+      "classification": "fact",
+      "text": "Fixed image imports GetACP and the observed direct IAT references are within CRT getSystemCP and _ProcessCodePage. This does not establish a hard-coded credential code page."
+    },
+    {
+      "classification": "fact",
+      "text": "The retained UI binding/direct-byte submission path uses the ANSI control APIs, not the catalog XML decoder."
+    }
+  ],
+  "independent_policy": [
+    {
+      "classification": "independent-policy",
+      "text": "New UI accepts only1..16 printable ASCII characters, without trim/case conversion. It rejects non-ASCII instead of guessing an ACP or silently substituting bytes."
+    }
+  ],
+  "unknowns": [
+    "Actual runtime ACP/IME conversion and non-ASCII credential compatibility are unverified.",
+    "Two GetACP call sites are CRT paths, not proof of complete dynamic API or locale behavior.",
+    "Original static bytes and fresh local peer tests do not prove official authentication, terms applicability or game handoff."
+  ],
+  "fixed_audit": {
+    "anchors": [
+      {
+        "address": "0x459d0b",
+        "file_offset": 364811,
+        "bytes": "ff159c114b00",
+        "iat": "0x4b119c",
+        "symbol": "GetACP",
+        "passed": true
+      },
+      {
+        "address": "0x463adc",
+        "file_offset": 405212,
+        "bytes": "ff159c114b00",
+        "iat": "0x4b119c",
+        "symbol": "GetACP",
+        "passed": true
+      },
+      {
+        "address": "0x434380",
+        "file_offset": 210816,
+        "bytes": "ff155c154b00",
+        "iat": "0x4b155c",
+        "symbol": "GetWindowTextA",
+        "passed": true
+      }
+    ],
+    "negative_sample_hash_rejected": true
+  },
+  "scope": "Static offline only; no original program, VM, account or official game service."
+}

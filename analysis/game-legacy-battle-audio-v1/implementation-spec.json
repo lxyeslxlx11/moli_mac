@@ -1,0 +1,42 @@
+{
+  "stage": 288,
+  "sample_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "facts": {
+    "catalog": "507dfa..50eb87 defines270 records,IDs1..468 with holes,260 distinct relative se/*.wav paths;70-byte rows andFFFF sentinel.4802 admitted data-copy instructions and188 static input ranges are rebound to PE bytes.",
+    "sound_call": "510000 validates0..500 and the loaded sound index,ignores an ID with nonzero cooldown,uses64 unprotected ring voices,restarts or replaces its slot,plays once,and assigns5 cooldown updates.",
+    "pan": "x/5 uses signed truncation and clamps0..127;disabled pan uses64;y is unused.50f5a0 writes mirrored logarithmic attenuation based on odd127..1,5000/log(100),then overwrites endpoints with-10000/+10000.",
+    "gain": "The existing source level table and default15/15 effect volume apply.All270 source pitch offsets are0,so this owner retains each wave's sample rate.",
+    "updates": "510b50 decrements each nonzero per-ID cooldown once per invocation.44fc72 calls510be0,which calls510b50."
+  },
+  "inference": {
+    "owned_frame_cadence": "The portable owner advances the cooldown once at the start of each distinct committed battle output,then consumes its retained body/animation event order and input sounds.This preserves the owned consumer order;full native application scheduling remains unverified."
+  },
+  "interfaces": {
+    "shared": ["legacyGameSound(id)", "legacyGameSoundPan(x,enabled=true)", "createLegacyGameBattleAudio().advance(frame)/close()"],
+    "frame_identity": "A safe positive generation/step pair;duplicates and older generations produce no update.New generations retain global per-ID cooldown storage.",
+    "events": "callbacks.body.events of kind sound,value=id,position[0]=x;then input.sounds at center320.",
+    "output": "Immutable ordered cue metadata,independent channel attenuation and a0..63 voice slot.No files,DOM,wx,network or audio-device objects enter shared code.",
+    "host": "AudioHost.battle(frame) is called by both browser and wx owners from the existing BattleCanvasHost.onFrame port after a valid frame is presented."
+  },
+  "portable_output_choices": {
+    "files": "Caller-selected loose WAVs under the configured Bin/binfolder resource directory.No game audio files are bundled.",
+    "decoding": "Existing bounded8/16-bit mono/stereo PCM reader,scratch samples and file bytes wiped after use;32MiB decoded sound LRU cache and64 output reservations.",
+    "spatial_output": "For off-center sounds,copy a stereo PCM buffer with the native independent channel gains;mono duplicates to both channels.No equal-power panner approximation.",
+    "asynchrony": "Within one frame,wait for its selected decodes and preserve source order.Reservations,new generations,pause,return and closure cancel stale output;reads taking at least5 subsequent owned updates are dropped.",
+    "failure": "soundoff,missing/bad WAV or unavailable output ports produce no sound and do not change gameplay."
+  },
+  "validation_scope": {
+    "independent": "All270 ID records and absent IDs,128 pan cells and integer coordinate boundaries,40 complete selected-frame states,5-update suppression and64-slot reuse.",
+    "product": "Authored WAVs contain a distinct PCM tag per selected path.The actual impact106 fixture's10001 animation signal emits sound1;menu cues56/57 and spatial hit1 are checked on browser and source/generated Page entries,both audible and muted."
+  },
+  "remaining": [
+    "Protected/looping ambient voices,other native sound owners,settings changes and whole-application audio cadence.",
+    "The existing WeChat whole-resource ZIP importer currently inherits the updater's64-entry profile;full resource imports need a separate complete implementation and acceptance.",
+    "Actual WeChat/device audio output,physical phone play,current-version handoff and official-account compatibility.",
+    "Original37 requirements and10 incomplete consumer groups,remaining normal gameplay,UI and source contexts."
+  ],
+  "full_goal_complete": false,
+  "original_execution": 0,
+  "VM_actions": 0,
+  "official_sessions": 0
+}

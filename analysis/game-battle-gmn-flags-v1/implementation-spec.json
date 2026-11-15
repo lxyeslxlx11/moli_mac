@@ -1,0 +1,44 @@
+{
+  "stage": 297,
+  "source": "固定37c4模块；REA6.7.0／Ghidra12.1.4，完整身份及原字节核对见source-check.json。",
+  "facts": [
+    "身体动作164只写actor+309为255，165只写309为0，然后各调用434a30推进一次。",
+    "actor+310覆盖值、308颜色掩码、300原动画颜色及30f对象alpha均不由这两个分支修改。",
+    "最终506e80按309／310选择动画绘图标志；165关闭覆盖，未恢复旧的309值，也不清除310。",
+    "434a30推进动作读指针，存在下一动作时装载；到达结束或索引200时选择身体状态231。",
+    "164／165是身体队列动作编号，不是新增GMN协议操作码。"
+  ],
+  "implementation": [
+    "在既有GMN附近的身体回调模块接通164／165，分别设置body.drawFlagMask为255／0，再调用已有pop。",
+    "保留drawFlagValue、原动画、命名调色板及独立颜色覆盖；复用已有最终队列投影和RGBA8绘制。",
+    "保留原身体的substate7及慢帧门控，绘制不推进身体或动画。"
+  ],
+  "validation": {
+    "independent_original_queues": 32,
+    "owned_body_callbacks": 128,
+    "complete_RGBA_frames": 160,
+    "coverage": [
+      "原绘图flags0..15及当前来源覆盖值0／4。",
+      "162→164→165→163交错，分别验证颜色覆盖和绘图覆盖。",
+      "关闭覆盖后恢复原flags；即使初值为mask4，165仍写0。",
+      "覆盖开关不重新计算原动画已经处理的翻转偏移。",
+      "substate7、慢帧及队列尾231；原动画快照和绘制只读。",
+      "未知原绘图位在164下被完整覆盖，165后仍进入原显式绘制边界。"
+    ],
+    "compiled_API": "同一三项测试和portable-test.mjs比较源码／生成API。",
+    "regression": "新构建、完整适当回归及既有实际材料产品路径。"
+  },
+  "producer_status": {
+    "normal_protocol_producer_proven": false,
+    "current_GMN21_queues": "既有独立实现的GMN21队列未新增164／165，未向协议注入这两个动作。",
+    "search_scope": "固定样本已初始化.text的两项PUSH imm32搜索均完整且无匹配；不排除MOV、表驱动或其他生产者。",
+    "consumer_scope": "本阶段通过现有原创身体队列入口验证消费者，不据此宣称正常协议生产链或完整GMN玩法闭合。"
+  },
+  "limits": [
+    "大函数value-flow仍截断，较宽的a4字节初搜也未穷尽；不作全程序可达性或别名闭合声明。",
+    "独立RGBA8策略沿用已验证实现，原GPU／DDRAW精度仍未验。",
+    "特殊图形、其余控制／调度／UI、现行交接及真实平台保持未完成。"
+  ],
+  "goal_status": "active",
+  "full_goal_complete": false
+}

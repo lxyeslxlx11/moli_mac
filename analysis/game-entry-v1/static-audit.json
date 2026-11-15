@@ -1,0 +1,240 @@
+{
+  "schema": "moli.game-entry-v1.static-audit.v1",
+  "sample_sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+  "tools": "REA6.7.0/Ghidra12.1.4",
+  "analysis_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "snapshot_reused_records": 7,
+  "new_records": 33,
+  "total_records": 40,
+  "new_pseudocode_functions": [
+    {
+      "key": "entry",
+      "id": "ev_4ba5685f66f0dec659654e6c2f2cdd0c85920c7ac96b6f4a8179fae872bed25f",
+      "private_pseudocode_sha256": "68b100c207a40a10687fe104bf078883627af6ac117f4fc4c468489f6c54a35a"
+    },
+    {
+      "key": "startup",
+      "id": "ev_192af2627b47ee88b48294787ca892846cd950a6d32dbf47cfcc7dfceb2c7bd9",
+      "private_pseudocode_sha256": "f8b939136b662d08d318418f114e0c17278b58e3062bbe58d685e833e9f2ffc4"
+    },
+    {
+      "key": "dispatch",
+      "id": "ev_87daf829a8960beca4a05809a5c43c9e277745c64a1c9a32095c535120310a88",
+      "private_pseudocode_sha256": "0b0562f13c264c4cedeb5d03a7a26a035433b5dc316447954dca79d99f6c7c4c"
+    },
+    {
+      "key": "owner",
+      "id": "ev_57e7de892c96ad0feef7b1236ae33d5554bd4ebab670c4f5dc09d354e3e5c1ee",
+      "private_pseudocode_sha256": "171778b9cd6422e18157631271294a615c14c3033188eda4642077cb8cf2b65b"
+    },
+    {
+      "key": "init",
+      "id": "ev_2183362be86d275850e143ba025a9e6ea7ac9a488703bc4607f0f3bfd9682aef",
+      "private_pseudocode_sha256": "d4de4d88894c76a9e688f3274eadecddc76752ffa5f7e63de99c6b64dd737a9f"
+    },
+    {
+      "key": "setter",
+      "id": "ev_502970f1af8ab58995ac9325676c776553e88369f386801b2d87410bebadada1",
+      "private_pseudocode_sha256": "f09e89e44688433e060c7c1bfd3bed0206a0b47f42e3ef2f3726169ccacce074"
+    }
+  ],
+  "source_anchors": [
+    {
+      "address": "0x11e6d1e",
+      "evidence_id": "ev_cd9b1ff9df497097ea121012fd0ac088a1e080c789ee178dc67d07b09205f1a6",
+      "mapping_evidence_id": "ev_5b8ec94620cb7abbde0cb55f1dc2daac3256b0ffe48115647003f602c0c43118",
+      "instruction": "CALL 0x011f14f7",
+      "bytes_hex": "e8d4a70000",
+      "file_offset": 621854,
+      "flow": {
+        "kind": "call",
+        "conditional": false,
+        "computed": false,
+        "direct_destinations": [
+          "0x11f14f7"
+        ],
+        "classification_evidence": [
+          {
+            "source": "ghidra-listing-flow-type",
+            "value": "UNCONDITIONAL_CALL"
+          }
+        ]
+      },
+      "source_match": true
+    },
+    {
+      "address": "0x11e6d23",
+      "evidence_id": "ev_09cab56d5658660552b6166f80c15596b6d7039596b62be43feafa5cef767328",
+      "mapping_evidence_id": "ev_84290eb6515d5d60ecf694583a8dc92b9a79af4517e0f1d2756e2e03f3165975",
+      "instruction": "JMP 0x011e6bb1",
+      "bytes_hex": "e989feffff",
+      "file_offset": 621859,
+      "flow": {
+        "kind": "call",
+        "conditional": false,
+        "computed": false,
+        "direct_destinations": [
+          "0x11e6bb1"
+        ],
+        "classification_evidence": [
+          {
+            "source": "ghidra-listing-flow-type",
+            "value": "CALL_TERMINATOR"
+          }
+        ]
+      },
+      "source_match": true
+    },
+    {
+      "address": "0x11e6cc6",
+      "evidence_id": "ev_e5b4e67ba636dae46bed0046958be3feb8420437d37926c3e467a213e704e5c9",
+      "mapping_evidence_id": "ev_1bce61f003271aa5b00ef408220dfd382fe6cedc9cfb5d77aea8455515c57ec6",
+      "instruction": "CALL 0x01179000",
+      "bytes_hex": "e83523f9ff",
+      "file_offset": 621766,
+      "flow": {
+        "kind": "call",
+        "conditional": false,
+        "computed": false,
+        "direct_destinations": [
+          "0x1179000"
+        ],
+        "classification_evidence": [
+          {
+            "source": "ghidra-listing-flow-type",
+            "value": "UNCONDITIONAL_CALL"
+          }
+        ]
+      },
+      "source_match": true
+    },
+    {
+      "address": "0x119591a",
+      "evidence_id": "ev_4421ed41cd9a6755d63dbd829f151fb985f81edad05f287bd8a61fc3e18e0708",
+      "mapping_evidence_id": "ev_44a693022466360b89d5f594487905db86864dbe1ecbb0ef8ba9bc3c99d32d0f",
+      "instruction": "MOV dword ptr [0x01265dbc],EDX",
+      "bytes_hex": "8915bc5d2601",
+      "file_offset": 289050,
+      "flow": {
+        "kind": "fallthrough",
+        "conditional": false,
+        "computed": false,
+        "direct_destinations": [],
+        "classification_evidence": [
+          {
+            "source": "ghidra-listing-flow-type",
+            "value": "FALL_THROUGH"
+          }
+        ]
+      },
+      "source_match": true
+    },
+    {
+      "address": "0x1195923",
+      "evidence_id": "ev_52d5994683e4c1c2d383c692f7b56d3da090f5b1b116e28bacadad1ff83f153d",
+      "mapping_evidence_id": "ev_04fe135b36841f019c1389052a72260571c5d72873f80458d0822d89a8d589b5",
+      "instruction": "MOV [0x01265db8],EAX",
+      "bytes_hex": "a3b85d2601",
+      "file_offset": 289059,
+      "flow": {
+        "kind": "fallthrough",
+        "conditional": false,
+        "computed": false,
+        "direct_destinations": [],
+        "classification_evidence": [
+          {
+            "source": "ghidra-listing-flow-type",
+            "value": "FALL_THROUGH"
+          }
+        ]
+      },
+      "source_match": true
+    },
+    {
+      "address": "0x1197031",
+      "evidence_id": "ev_25b8f8259e0e3aa7ce7252b7ea0d30faecb699b17800f6437cf26b1c5a3931fc",
+      "mapping_evidence_id": "ev_ba9fd7c55d14ca1c90c61f2d78fa97c03419517417a01b87544f07566878da04",
+      "instruction": "CALL dword ptr [0x01265dbc]",
+      "bytes_hex": "ff15bc5d2601",
+      "file_offset": 294961,
+      "flow": {
+        "kind": "call",
+        "conditional": false,
+        "computed": true,
+        "direct_destinations": [],
+        "classification_evidence": [
+          {
+            "source": "ghidra-listing-flow-type",
+            "value": "COMPUTED_CALL"
+          }
+        ]
+      },
+      "source_match": true
+    },
+    {
+      "address": "0x1197056",
+      "evidence_id": "ev_3690f0022e484a7940f28c4763cf4cf827056b9c457782b9b710bc86c932665b",
+      "mapping_evidence_id": "ev_ccc50c8acccf110c463ad1de7192a12ea636aa4d7f141fe111a80680739567db",
+      "instruction": "CALL dword ptr [0x01265db8]",
+      "bytes_hex": "ff15b85d2601",
+      "file_offset": 294998,
+      "flow": {
+        "kind": "call",
+        "conditional": false,
+        "computed": true,
+        "direct_destinations": [],
+        "classification_evidence": [
+          {
+            "source": "ghidra-listing-flow-type",
+            "value": "COMPUTED_CALL"
+          }
+        ]
+      },
+      "source_match": true
+    }
+  ],
+  "reused_1179000_dossier": "ev_4e8766888aa30fff07d6967975aeccf90cc4297ce865f66a77a4fdd9fb2dc454",
+  "callback_slots": {
+    "static_va": "0x1265db8",
+    "rva": "0xe65db8",
+    "header_bytes": 8,
+    "analysis_bytes_hex": "0000000000000000",
+    "read_evidence_id": "ev_4aed79eb986a0ebee6943e56f5d8d6e8d8de8ec6c25519db7196761fcc11d2de",
+    "typed_reference_evidence_ids": [
+      "ev_a22891a8969ad676b2eef8e2577cfc3cabbeea9adfe9cb6789984a5d11804910",
+      "ev_78814be109902339af9848df8e3c026c14831049cc7ce2fb9d0bfb63fedf853a"
+    ]
+  },
+  "private_artifacts": [
+    {
+      "path": "build/analysis/game-entry-v1/rea-evidence.json",
+      "bytes": 4538004,
+      "sha256": "312f0836f538b6a4d260699e1737b6a1b9c6b6367806bc998ebaf8995e8774b8",
+      "private": true
+    },
+    {
+      "path": "build/analysis/game-entry-v1/rea-snapshot.json",
+      "bytes": 8786967,
+      "sha256": "738a2f06444651048a2e96f8e368e06cc6d22ccdba4d23c81530df68a1dbe1ed",
+      "private": true
+    }
+  ],
+  "facts": [
+    "PE entry11e6d1e calls security-cookie initializer then encoded JMP11e6bb1; Ghidra classifies latter CALL_TERMINATOR, preserved as provider/raw distinction",
+    "CRT startup calls1179000 at11e6cc6, establishing source control-flow from PE entry to previous cached commandline helper",
+    "1179000 calls11970f0 ->11967d0; owner calls maintenance parser1194850 before later indirect callback",
+    "Source has debugger-dependent branches; no detection/state changes or forced-path observations performed",
+    "1195380 obtains callback outputs of runtime SetFunctionAddresses and writes1265dbc at119591a and1265db8 at1195923",
+    "1197031 CALL through1265dbc and1197056 CALL through1265db8 are computed with no resolved static target; static zero is not a runtime value",
+    "Original .text/data blocks are uninitialized in Ghidra; no substitution with zero code or protected-payload reconstruction"
+  ],
+  "unknowns": [
+    "Actual registered callback pointers/owner/activation during normal run",
+    "Game argv/CGSharedMem/resource/socket/frame/auth/state consumers",
+    "Runtime normal-flow result and official/mobile/WeChat/playable game acceptance"
+  ],
+  "next": "Validate original metadata observer first; current Mac locked, no guest commands. Observe natural normal path only, no debugger/protection bypass.",
+  "target_executed": false,
+  "exported_closed": true,
+  "full_goal_complete": false
+}

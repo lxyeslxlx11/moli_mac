@@ -1,0 +1,67 @@
+{
+  "schema": "moli.current-launcher-channel.plan.v1",
+  "recorded_utc": "2026-10-30T12:38:40.225748+00:00",
+  "requirement": "reports/development-plan.md#stage110",
+  "objective": "REA current launcher transport/pre-auth handshake, implement evidenced gaps, then continue game consumers",
+  "authorization": "Existing user authorization for networking tests, Windows/tools and required dependencies; no new vendor execution or account operation in this phase",
+  "source": {
+    "packed_sha256": "6d459ddbdf80a86cf7a1e41b99ab7fb575b42842d7163522efb3c9fa6e6ac987",
+    "analysis_sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+    "snapshot": "build/analysis/launcher-current-login-v1/rea-snapshot.json",
+    "prior_records": 106
+  },
+  "sequence": [
+    "Trace current CChannel context creation and protocol/key-exchange send/receive",
+    "Compare byte contract with existing shared channel implementation",
+    "Acquire fresh bounded public catalog from the statically evidenced URL and bind one pre-auth target to its consumer role",
+    "Only after that, one bounded credential-free hello observation if the source contract supports it",
+    "Implement evidence-supported differences and verify; maintain full original scope"
+  ],
+  "public_catalog_url": "http://launch.polchina.com.cn/Launcher/RegionList.xml",
+  "network_probe": {
+    "planned": false,
+    "source_and_target_binding_required": true,
+    "target": {
+      "region_ordinal": 9,
+      "region_code": "33",
+      "game_code": 11,
+      "bip_ordinal": 0,
+      "host": "221.122.108.12",
+      "port": 9030,
+      "source_path": "Regionlist/Regions/Region[9]/BList/BIP[0]",
+      "catalog_sha256": "467eeac27d1127fba828c515dba708b9efaf4d884053a767187b3c96fa5acd58"
+    },
+    "maximum_connections": 1,
+    "connections_used": 1,
+    "maximum_duration_ms": 10000,
+    "maximum_outbound_bytes": 8,
+    "allowed_payload": "Only the source-proven pre-auth hello; no public-key answer, account request or game data",
+    "retain_raw_challenge": false,
+    "retry": false,
+    "maximum_retained_inbound_bytes": 784,
+    "native_source_binding": {
+      "context": "0x588690→0x58c9b0 cipher selector1/key8",
+      "hello": "0x5912e0→0x5910d0",
+      "client_receive": "0x591100→0x590c80",
+      "catalog_role": "0x40bf80 BList/BIP/Port into count/host/port arrays consumed by0x4291d0→0x424cf0→0x5875e0",
+      "peer_constraints": "0x590bb0/0x590c80 and0x58ff50/0x58ff20 rejectzero/one, requirepeer<p; exactg2/pconst"
+    },
+    "allowance_note": "Conservatively consumed before one socket call; never replay after an uncertain interruption.",
+    "probe_started_utc": "2026-10-30T12:56:46.426Z",
+    "source_and_target_binding_verified": true,
+    "result": "challenge-validated",
+    "actual_elapsed_ms": 1483.317,
+    "actual_outbound_requested_bytes": 8,
+    "actual_inbound_bytes": 529,
+    "actual_close_event_observed": true
+  },
+  "vendor_execution": false,
+  "credentials_or_sessions": false,
+  "security_or_network_configuration_change": false,
+  "full_goal_complete": false,
+  "implementation": {
+    "source_bounded_handshake_profile": "Explicit current profile preserves generic arithmetic APIs, enforces exact generator/modulus,<=256B fields,784B input and native1<peer<p",
+    "integration": "Shared flow and web session accept an explicit handshakeProfile current option; existing generic fixture contracts remain available",
+    "validation": "Independent Python pow/struct vectors including group mismatch, nativep-1 boundary and flow/session propagation"
+  }
+}

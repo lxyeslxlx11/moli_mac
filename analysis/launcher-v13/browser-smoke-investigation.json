@@ -1,0 +1,28 @@
+{
+  "schema": "moli.launcher-v13.browser-smoke-investigation.v1",
+  "recorded_utc": "2026-10-27T00:55:10.407362+00:00",
+  "initial_failures": [
+    {
+      "command": "node build/analysis/launcher-v13/browser-http-smoke.mjs",
+      "session_id": 50031,
+      "result": "exit1 afterapplicationbyteassertions;positive requestfailed /binary net::ERR_ABORTED",
+      "counted_as_pass": false
+    },
+    {
+      "command": "same runner with extra requestfinished/positive-result diagnostics",
+      "result": "exit1;positive requestfailed /empty net::ERR_ABORTED",
+      "counted_as_pass": false,
+      "private_record_bytes": 10594,
+      "private_record_sha256": "d144e42f7c4458b0404bb4e31a945c7e84c5490ae5d803ac0c26886dafb12a4d"
+    }
+  ],
+  "diagnostic": "browser-transport-diagnostic.json",
+  "diagnostic_cases": 18,
+  "diagnostic_failures": 0,
+  "diagnostic_scope": "Native/native-signal/adapter × binary/empty/chunks × Playwright interception off/on; all expectedlengths matched. Independent original loopbackserver/context eachrun.",
+  "final": "browser-http-smoke.json",
+  "final_checks": 6,
+  "final_input_change": "Wait fornetworkidle afterpositivebytechecks before asserting recordedbrowserfailures; no product or byteassertionchange toresolveCDP event.",
+  "root_cause": "Undetermined. Diagnostic and final success do not prove thewait is a root-causefix or thatinitialtransport failuresneverhappened.",
+  "side_effect_bounds": "Owned original loopbackfixtures only; failed runners confirmedterminal/closed in finally before freshcontext; no official request, native target, VM, account or file update."
+}

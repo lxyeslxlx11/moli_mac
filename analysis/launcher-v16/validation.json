@@ -1,0 +1,188 @@
+{
+  "schema": "moli.launcher-v16.validation.v1",
+  "recorded_utc": "2026-10-27T02:11:55.287153+00:00",
+  "stage": 61,
+  "status": "passed-bounded-non-secret-UserMode-plans",
+  "scope": "REA fixed-sample UserMode/dialog/Profile boundary plus independent non-secret initialization/change effects. No real account/configuration, target/VM execution, official request, actual persistence or game operation. Full ordered goal remains incomplete.",
+  "preflight": {
+    "previous_manifest": "analysis/delivery-manifest-stage60.json",
+    "previous_files_verified_before_edit": 746,
+    "target_and_snapshot_sha256_verified": true,
+    "git_repository": false,
+    "baseline": "build/analysis/launcher-v16/baseline/"
+  },
+  "static": {
+    "tools": {
+      "REA": "6.7.0",
+      "Ghidra": "12.1.4"
+    },
+    "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "new_function_dossiers": 8,
+    "new_records": 14,
+    "total_records": 253,
+    "new_native_sample": false,
+    "session": "closed after export/snapshot; final binary_session open=false cleanup_pending=false",
+    "spec": "analysis/launcher-v16/static-spec.json",
+    "fixed_operands": 29,
+    "fixed_direct_calls": 14,
+    "fixed_IAT_calls": 5,
+    "fixed_data_comparisons": 10,
+    "negative_identities_rejected": 3,
+    "audit": "analysis/launcher-v16/mode-operand-audit.json",
+    "name_lookup": "dlgUserMode procedure literal had no matches, exact WritePrivateProfileStringA name unresolved; numeric pointer/IAT and independent PE operands used instead. No API-absence or missing-dependency conclusion."
+  },
+  "node": {
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "runtime": "v26.9.0",
+    "tests": 300,
+    "passed": 300,
+    "failed": 0,
+    "skipped": 0,
+    "new_tests": 12,
+    "log": "analysis/launcher-v16/node-tests.log"
+  },
+  "independent_vectors": {
+    "language": "Python3",
+    "count": 54,
+    "generator": "analysis/launcher-v16/make_mode_vectors.py",
+    "generator_matches_retained_JSON": true,
+    "browser_results_equal": true,
+    "scope": "Fixed native mode branches plus separate strict cancellation/confirmation/own-property/section policies; not original runtime equivalence."
+  },
+  "browser": {
+    "environment": "Playwright1.62.1/Chrome155.0.8059.85 headless fresh private context",
+    "routing": "Browser plugin not available; existing regular Playwright fallback",
+    "viewport": {
+      "width": 1280,
+      "height": 1000
+    },
+    "actual_checks": 5,
+    "mode_vectors": 54,
+    "source_loopback_GETs": 48,
+    "console_warn_error": 0,
+    "pageerror": 0,
+    "requestfailed": 0,
+    "request_interception": false,
+    "receipt": "analysis/launcher-v16/browser-mode-smoke.json",
+    "tested": [
+      "Existing actual configuration page title/URL/h1/options/CSP and no framework overlay",
+      "54 mode plans through actual browser ESM",
+      "Immutable effects, explicit buffer reset and invalid input codes",
+      "Owned candidate cache save/restore and existing offline plan after core changes",
+      "Existing original graphic fixture canvas"
+    ],
+    "screenshot_review": {
+      "path": "/private/tmp/moli-launcher-v16-mode-tn93B0/configuration-after-core-change.png",
+      "sha256": "e81404b379f362006aa68fd1bf8050f0e974c82249e646f193fc31139477308f",
+      "reviewed": true,
+      "finding": "Existing desktop configuration/restored cache/controls readable, no error overlay; no new mode controls claimed. Temporary file not part of delivery."
+    },
+    "temporary_script": {
+      "path": "/private/tmp/moli-launcher-v16-mode-tn93B0/qa.mjs",
+      "sha256": "1b0214cb458df68c2e160fed2accdd905582387bfb4e63ddd55e1a7c21860fbd"
+    }
+  },
+  "implementation": {
+    "exports": [
+      "planLauncherUserModeInitialization",
+      "planLauncherUserModeChange"
+    ],
+    "non_secret_only": true,
+    "native_rule_boundaries": [
+      "Stored1/2 only; initialization mode2 preserves initial username retention",
+      "2-to1 confirmation; accepted changes including same-mode clear both inputs",
+      "UserMode integer write intent only"
+    ],
+    "independent_policies": [
+      "Explicit cancel/undecided confirmation has no reset or write instead of native all-non1-modal-results-to2",
+      "Own data properties and explicit settingsSection1..256 excluding ASCII control/DEL/brackets",
+      "Plans contain no account bytes, no I/O or memory-erasure claim; no persistence/authentication proof"
+    ]
+  },
+  "syntax": {
+    "ESM": [
+      "shared/index.mjs",
+      "shared/launcher-local.mjs",
+      "shared/tests/launcher-local.test.mjs"
+    ],
+    "ESM_exit_codes": [
+      0,
+      0,
+      0
+    ],
+    "python_AST": [
+      "analysis/launcher-v16/verify_mode_rules.py",
+      "analysis/launcher-v16/make_mode_vectors.py"
+    ],
+    "python_AST_passed": true
+  },
+  "preservation": {
+    "changed_previous_files": [
+      "README.md",
+      "analysis/protocol-v2/spec-matrix.json",
+      "reports/analysis-methods.md",
+      "reports/architecture-and-milestones.md",
+      "reports/development-plan.md",
+      "reports/known-issues.md",
+      "reports/launcher-static.md",
+      "reports/logic-protocol-spec.md",
+      "reports/module-interfaces.md",
+      "reports/resource-formats.md",
+      "reports/validation.md",
+      "shared/README.md",
+      "shared/index.mjs",
+      "shared/launcher-local.mjs",
+      "shared/tests/launcher-local.test.mjs",
+      "web/README.md"
+    ],
+    "unchanged_previous_files": 730,
+    "native_hash_unchanged": 17,
+    "web_non_README_hash_unchanged": 31,
+    "vendor_hash_unchanged": 7,
+    "local_server_hash_unchanged": true,
+    "original_sample_hash_unchanged": true
+  },
+  "documentation": {
+    "updated_files": [
+      "README.md",
+      "reports/analysis-methods.md",
+      "reports/architecture-and-milestones.md",
+      "reports/development-plan.md",
+      "reports/known-issues.md",
+      "reports/launcher-static.md",
+      "reports/logic-protocol-spec.md",
+      "reports/module-interfaces.md",
+      "reports/resource-formats.md",
+      "reports/validation.md",
+      "shared/README.md",
+      "web/README.md"
+    ],
+    "local_link_check": "passed",
+    "local_links_checked": 932,
+    "explicit_launcher_anchors_checked": 89
+  },
+  "matrix": {
+    "revision": 9,
+    "IDs": 20,
+    "IDs_statuses_dependencies_unchanged": true,
+    "AUTH_SESSION": "unknown",
+    "UPD_INTEGRITY": "unknown"
+  },
+  "dependencies": {
+    "existing": "REA6.7.0/Ghidra12.1.4/Node26.9.0/Python3/Playwright1.62.1/Chrome155",
+    "new_installations": 0,
+    "configuration_changes": 0
+  },
+  "not_verified": [
+    "Actual mode UI or Profile mapping/write/durability",
+    "Real account remembrance outside bounded checked paths, other APIs and indirect calls",
+    "Actual terms/input codepage/service-session/opaque lifecycle",
+    "HTTP bootstrap page wiring/official source trust/native update transaction",
+    "Original target/VM/account or official connection",
+    "Full launcher/game/official compatibility",
+    "Safari/physical mobile/miniprogram",
+    "Full stage60 14-case/narrow/GB18030 suites not rerun; prior receipts retained",
+    "Unchanged Swift/Python resource suites not rerun"
+  ],
+  "next": "Continue actual launcher local consent/account persistence and service lifecycle evidence/independent adapters; do not begin ordered game phase or mark complete from mode/candidate UI."
+}

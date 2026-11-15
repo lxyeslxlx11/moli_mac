@@ -1,0 +1,67 @@
+{
+  "schema": "moli.launcher-v27.implementation-spec.v1",
+  "source": "static-spec.json",
+  "modules": {
+    "shared/launcher.mjs": "Retain decoded PatchEXE body as patcherText; existing files.patcher normalized metadata remains.",
+    "shared/launcher-patch.mjs": "Pure raw byte producer and native exit-code policy.",
+    "shared/game-patch.mjs": "Sequential candidate generator, reused by existing synchronous batch API.",
+    "web/launcher-game-patch.mjs": "Bound catalog/selection/directory plan and explicit-origin async preparation."
+  },
+  "producer": {
+    "input": "own data directoryBytes/patcherBytes/codeTextBytes/addressBytes/portBytes, alreadyPatched:boolean, caseProfile:ascii; actual Uint8Arrays",
+    "transform": "ASCII/C uppercase of PatchEXE, then all .EXE -> .BAK.EXE replacements",
+    "command": "directory + backslash + transformedPatchEXE + space + originalPIP + space + originalPPort + NUL; raw/unquoted",
+    "cwd": "directory + NUL",
+    "packagedSource": "original Code text + backslash + original PatchEXE + NUL; relative metadata only",
+    "disposition": [
+      "already-patched",
+      "no-patcher",
+      "patch-requested"
+    ],
+    "ownership": "owned output bytes; no filesystem/process actions",
+    "budgets": "4096B each field;32767B NUL-inclusive construction; Code is explicit digits <=14",
+    "limits": "ASCII/C patcher case only; raw directory bytes can be explicit windows936/UTF8, not actual ACP evidence."
+  },
+  "native_exit": {
+    "100": "completed, mark current catalog game flag",
+    "101": "source-failed, stop",
+    "102": "retry at most3 attempts, then retry-exhausted",
+    "other": "unexpected-exit",
+    "scope": "bookkeeping only, file integrity and session authentication remain unverified"
+  },
+  "binding": {
+    "identity": "both catalog MD5s, distinct gameOrdinal/referenceOrdinal/regionOrdinal, original Code, PatchEXE declared body, canonical metadata, directory and explicit path encoding; optional Galaxy selection is validated",
+    "source": "selected PIP/PPort only; BIP is not permission for patch HTTP",
+    "missing_source": "reject requested patch; no native hardcoded fallback",
+    "no_original_process": "plan exposes original copy/hidden/wait/delete observations but executes none"
+  },
+  "iterator": {
+    "factory": "createGamePatchCandidateRun({manifestBytes,files}) snapshots immediately",
+    "step": "next() yields frozen blockOrdinal/operation/directory/name/targetPath/expectedMd5; next(packageBytes) advances",
+    "complete": "done=true,value contains owned final files and reports only after all operations succeed",
+    "cancel": "return() drops pending computation; no partial candidate exposed, no JS heap-erasure guarantee",
+    "sync": "applyGamePatchCandidates drives the same generator using unique supplied archives; extra/missing packages remain errors"
+  },
+  "async": {
+    "api": "prepareLauncherGamePatch(input)",
+    "options": "catalogs,gameOrdinal,referenceOrdinal,optionalgalaxyOrdinal,directoryText,pathEncoding,alreadyPatched,files,allowedOrigins,epochSeconds; optional actual AbortSignal/timeoutMs/fetchImpl",
+    "snapshot": "configuration and files owned before first await; subsequent caller mutation cannot rebind request or candidate",
+    "manifest": "http://configured-origin/cg50/Update.TXT?t=<epochSeconds>",
+    "package": "http://same-origin/cg50/<path>/<name>.bz2?time=<epochSeconds>; empty path retains double slash",
+    "time_profile": "explicit nonnegative signed32 seconds; no implicit wall clock",
+    "deadline": "one total monotonic1..60000ms budget, remaining budget passed to every GET and checked after decode",
+    "HTTP": "existing credentials-omit, no-store, no-referrer, redirects-rejected client and explicit origin allowlist; no implicit fallback/retry",
+    "transport_budgets": "manifest fetched with1MiB catalog cap then256KiB grammar cap; each ZIP32MiB, aggregate64MiB through iterator",
+    "URL_policy": "raw path names with ?/#/% or whitespace rejected as unsupported portable transport syntax; no guessed URL encoding",
+    "result": "game-patch-candidate or explicit skip disposition; candidate/requests/binding/processPlan; trust/authentication unverified,replacement/file operations/execution not-performed"
+  },
+  "retained_v26_policies": "strict final MD5, relativeASCII candidate paths, budgets, all ZIP entry CRC and input preservation remain independent policies, not native filesystem rollback.",
+  "run": "node web/examples/launcher-game-patch-local.mjs",
+  "validation": "32 Python producer +21exit vectors;32sourceanchors/3negatives;8fixedconfigcommands;478Node/new21;Chrome11flows/13patchGETs and prior31grammar/10candidate regressions.",
+  "not_implemented": [
+    "Browser login-page update UI and candidate persistence/selection",
+    "Original CopyFile/SetAttributes/CreateProcess/wait/Delete or Windows rollback",
+    "Officialsource trust/actualpatches/realaccounts/officialgameconnectivity",
+    "NativeDBCS/actualACP/process failure semantics/physicalmobile/Safari/WeChat/gameimplementation"
+  ]
+}

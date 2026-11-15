@@ -1,0 +1,82 @@
+{
+  "schema": "moli.launcher-v20.implementation-spec.v1",
+  "recorded_utc": "2026-10-27T05:00:09.717670+00:00",
+  "native_evidence": {
+    "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "reused": [
+      "../launcher-v8/static-spec.json",
+      "../launcher-v18/static-spec.json"
+    ],
+    "facts": "ANSI GetWindowTextA/CString<char> controls feed raw byte fields, DDV16-byte check; actual runtime ACP/IME unknown. No new native question or duplicate REA producer."
+  },
+  "shared_api": {
+    "module": "shared/launcher-text.mjs",
+    "exports": [
+      "LAUNCHER_TEXT_ENCODINGS",
+      "LAUNCHER_TEXT_LIMITS",
+      "LauncherTextError",
+      "encodeLauncherCredential",
+      "decodeLauncherProfileName"
+    ],
+    "environment": "Pure ECMAScript strings/Map/typed arrays; no DOM,Node,TextEncoder,TextDecoder,filesystem,storage or network.",
+    "profiles": [
+      "ascii",
+      "windows-936",
+      "utf-8"
+    ],
+    "profile_input": "Explicit own data property encoding; no default ACP/locale/XML inference. ASCII is only the UI default.",
+    "credential": "Primitive scalar string up to64 UTF16 units, encoded1..16 bytes; rejects C0/DEL/C1 controls, NUL and unpaired surrogates. Preserves case/spaces/normalization exactly, no best-fit or replacement.",
+    "profile_names": "Actual owned Uint8Array/ArrayBuffer1..41B, strict decode + exact byte re-encode; no replacement/fallback. Caller data never mutated. Sorting remains original raw bytes outside the codec.",
+    "windows936": "Pinned Microsoft/Unicode table2.01/Unicode2.0,21791 unique double mappings,129 single mappings (ASCII plus80=Euro). Undefined pairs rejected; no GB18030 four-byte, PUA extensions or Windows best-fit claim.",
+    "UTF8": "Canonical1..4B scalar encoding, rejects overlong/continuation/surrogate/out-of-range sequences; BOM preserved as scalar, no NFC/NFKC.",
+    "errors": [
+      "TEXT_ENCODING",
+      "TEXT_INPUT",
+      "TEXT_CONTROL",
+      "TEXT_UNREPRESENTABLE",
+      "TEXT_LENGTH",
+      "TEXT_BYTES",
+      "TEXT_ROUNDTRIP"
+    ],
+    "error_metadata": "Controlled fixed messages/code and bounded byteLength/null only; never input text or provider errors."
+  },
+  "UI": {
+    "runtime_schema": "moli.loopback.v3 advertises exact supported credentialEncodings, not actual target ACP. Native wire fields unchanged.",
+    "default": "Explicitly reset to ASCII on load/reload even under zh-CN and UTF8 XML; no profile persistence.",
+    "selection": "User explicitly selects account/name profile; switch clears username/password, consent, candidate session/result. Profile locked during review/config/text I/O/session; invalid/locked synthetic changes restore owned value.",
+    "byte_counts": "Live1..16B validation;8 Chinese chars in936=16B,9=18 rejected;5 Chinese UTF8 chars=15B,6=18 rejected;4 astral emoji=16B.",
+    "ownership": "Request captures the selected encoding before async session. Name rendering uses that capture; candidate handlers bind session owner and cannot select undecodable names or stale sessions.",
+    "identity": "The same exact encoded username bytes feed license MD5 identity and request10. XML decoding/cache encoding is independent; account profile/inputs not stored.",
+    "name_display": "Literal textContent; invalid/unknown encoding gets bounded byte-count placeholder with selection disabled, no automatic reinterpretation.",
+    "example": "node web/examples/launcher-browser-local.mjs --text-profile windows-936|utf-8; caller must explicitly choose matching UI profile; original public Chinese inputs only."
+  },
+  "independent_evidence": {
+    "reference": "encoding-reference.json",
+    "producer": "encoding_oracle.py using stdlib gbk/utf8 + struct/hashlib",
+    "mapped_double_bytes": 21791,
+    "unassigned_pairs": 2149,
+    "UTF8_scalars": 1037,
+    "node_tests": 369,
+    "new_node_tests": 11,
+    "encoding_browser_checks": 9,
+    "encoding_browser_requests": 244,
+    "encoding_browser_complete_original_requests": 6,
+    "configuration_regression_scenarios": 17,
+    "regression_measurements": 1,
+    "configuration_regression_requests": 440,
+    "expected_regression_aborts": [
+      {
+        "path": "/bootstrap/catalog-digests",
+        "reason": "net::ERR_ABORTED"
+      }
+    ],
+    "regression_deadline_ms": 10043
+  },
+  "artifact_incident": "artifact-output-incident.json; historical detailed receipt/pixels not reconstructed; separate current revalidation.",
+  "remaining": [
+    "actual machine ACP/IME/Windows best-fit and other code pages",
+    "actual applicable terms/account persistence, identity/opaque lifetime and official acceptance",
+    "game consumer/gameplay, native update transaction/official trust",
+    "Safari, physical/remote mobile and WeChat mini-program"
+  ]
+}

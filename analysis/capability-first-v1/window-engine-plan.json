@@ -1,0 +1,20 @@
+{
+  "schema": "moli.capability-window-engine-plan.v1",
+  "requirement": "A2/A3: derive shared window contracts before capability-based implementation",
+  "baseline": "build/analysis/capability-entry-inventory-v1/next-baseline.json",
+  "workflow": "reports/development-plan.md#capability-first-workflow",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "existing_evidence": ["build/analysis/game-battle-input-v1/469670-new.json", "build/analysis/game-battle-input-v1/468190-new.json", "build/analysis/capability-entry-inventory-v1/derived-entry-functions.json", "build/analysis/game-work-context-v1/function-468e50.json"],
+  "questions": [
+    "Separate shared presentation from generic event dispatch and business callbacks",
+    "Trace current-window owner writes and save/restore around initializer/frame/destructor/control callbacks",
+    "Derive exact event masks, active-control and type guards",
+    "Close create/reuse, deferred close, normal destruction and reset order",
+    "Explain aliased windows36/37 and the type0 non-code callback field through source guards",
+    "Record per-business overrides and remaining semantic packages"
+  ],
+  "method": ["Reuse and source-bind retained REA records", "Find only missing writer/dispatch evidence", "Batch source-anchored helpers in an independent analysis copy when needed", "Verify all new instruction bytes", "Publish contracts and unresolved scope in the existing capability documents"],
+  "runtime_implementation": false,
+  "original_execution": false,
+  "full_goal_complete": false
+}

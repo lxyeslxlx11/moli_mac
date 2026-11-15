@@ -1,0 +1,2 @@
+import test from'node:test';import*as api from'../../shared/index.mjs';import{createWeChatLegacyGameSession}from'../../adapters/wechat/legacy-game-session.mjs';import{pair73TCPModes,runPair73TCP}from'../../analysis/game-battle-pair73-v1/tcp-flow.mjs';
+for(const mode of pair73TCPModes)test('73 pair actual source OS TCP '+mode,{timeout:50000},async()=>console.log('pair73-source-tcp '+JSON.stringify(await runPair73TCP({...api,createWeChatLegacyGameSession},mode))));

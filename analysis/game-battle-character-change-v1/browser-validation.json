@@ -1,0 +1,803 @@
+{
+  "schema": "moli.battle-character-change-browser-stage194.v1",
+  "flow": "Actual game.html file inputs -> ordinary source upgrade/character entry -> real CBC/linked/mixed packets/owned callbacks -> actual body values/parent-driven child resources -> next C and displayed HP/MP -> next round/ordinary return/movement",
+  "bridgeLifetimeMilliseconds": 30000,
+  "BrowserPlugin": "absent; Browser plugin not available; existing regular Playwright fallback",
+  "playwright": "1.64.1",
+  "browser": "156.0.8078.80",
+  "productFiles": [
+    {
+      "path": "adapters/node/launcher-loopback.mjs",
+      "bytes": 11901,
+      "sha256": "3bc9154b69977c8570e9e549cc6cf9cac092dcf96d226ddc1beebfc84db8daf9"
+    },
+    {
+      "path": "shared/index.mjs",
+      "bytes": 23591,
+      "sha256": "9ccb76c310b14548914e94dd335ffaa654dced1f568dd23ca662083114a79955"
+    },
+    {
+      "path": "shared/legacy-game-battle-change.mjs",
+      "bytes": 2540,
+      "sha256": "ab6b05110819410dc704252c03323232cadc111328c60ad6ac17815ff2e79ce1"
+    },
+    {
+      "path": "shared/legacy-game-battle-character-change.mjs",
+      "bytes": 2399,
+      "sha256": "0dc51e79f750e61236b4d994b265bdc99a852997f988bd3050de778391d4b044"
+    },
+    {
+      "path": "shared/legacy-game-battle.mjs",
+      "bytes": 17791,
+      "sha256": "605cabfc6ddff48f800d18e9b2984490de8d8dd5e71b1b33d41f1c0999d31ff1"
+    },
+    {
+      "path": "shared/legacy-game-battle-entry.mjs",
+      "bytes": 5925,
+      "sha256": "1ba805a676821903d363b1478aefa4a53e1a8b40b8c499d5bf3f6ff7dc948ee8"
+    },
+    {
+      "path": "shared/legacy-game-battle-body.mjs",
+      "bytes": 16788,
+      "sha256": "eea21da62e6164c2348d695704e3806b8f90d751b207ba1c35040ebf91453f2b"
+    },
+    {
+      "path": "shared/legacy-game-battle-commands.mjs",
+      "bytes": 19177,
+      "sha256": "afca2e6980375d9789505f4f1c7cbaa721f3cd1008578747abc3c30ca0c5d510"
+    },
+    {
+      "path": "shared/legacy-game-battle-playback.mjs",
+      "bytes": 22145,
+      "sha256": "b7624de097c13eb070ead1f59472d4cb3dd3ca394cc873c57e1ddd69e87ae172"
+    },
+    {
+      "path": "shared/legacy-game-battle-strike-playback.mjs",
+      "bytes": 12532,
+      "sha256": "e5c43968035f6492fa554b48af96dc8cbe8814874271fb2d1b0f33b616690c5d"
+    },
+    {
+      "path": "shared/legacy-game-client.mjs",
+      "bytes": 23459,
+      "sha256": "7fd20e0c7ae69e4c6f9ea058843833402ceb6ed44c0752eeedb027957d13b258"
+    },
+    {
+      "path": "web/legacy-game-battle-canvas.mjs",
+      "bytes": 5555,
+      "sha256": "fc7ae6ec41cb7c30e50016ceb4022fa73b5087d3cbd32f47ef45f2008a8ccb03"
+    },
+    {
+      "path": "web/legacy-game-client.mjs",
+      "bytes": 6651,
+      "sha256": "545e7bde55f7deab924203e4bfa0cf4c3f74fa012a66f0737ef7e666fb57a35a"
+    },
+    {
+      "path": "web/game-app.mjs",
+      "bytes": 11009,
+      "sha256": "17c55f152b00ae5165952957a90bc388c85aff5926128c2554ba522ebf701dcd"
+    },
+    {
+      "path": "web/game.html",
+      "bytes": 4238,
+      "sha256": "99003aa44f63287aa4fa34070419156043d3547f51ca4cf75c1df13f53899c45"
+    },
+    {
+      "path": "web/game.css",
+      "bytes": 2277,
+      "sha256": "ec2ecb4f564e12dfe2573a4791a0fe922026a388e739c65cbdc9dbf8856d34f0"
+    }
+  ],
+  "checks": [
+    {
+      "mode": "plain",
+      "mobile": false,
+      "url": "http://127.0.0.1:63419/web/game.html",
+      "pageIdentity": true,
+      "notBlank": true,
+      "frameworkOverlay": false,
+      "actualFileInputs": true,
+      "normalSourceStartup": true,
+      "actualSourceCBCVitals": {
+        "0": [
+          61,
+          90,
+          7,
+          12
+        ],
+        "10": [
+          100,
+          100,
+          10,
+          10
+        ]
+      },
+      "snapshots": [
+        {
+          "label": "first-round",
+          "phase": 2,
+          "round": 1,
+          "localSlot": 0,
+          "actors": [
+            {
+              "slot": 0,
+              "name": "Hero",
+              "local": true,
+              "vitals": [
+                61,
+                90,
+                7,
+                12
+              ]
+            },
+            {
+              "slot": 10,
+              "name": "Enemy",
+              "local": false,
+              "vitals": [
+                100,
+                100,
+                10,
+                10
+              ]
+            }
+          ]
+        }
+      ],
+      "currentLocalSlot": 0,
+      "receivedP0": 0,
+      "displayedValuesVerified": true,
+      "mouseOrTouch": "mouse",
+      "actualBattleCanvas640x480": true,
+      "rounds": 1,
+      "normalReturn": true,
+      "ordinaryViewport320x240Preserved": true,
+      "resumedExactMovement": true,
+      "closedOwners": true,
+      "receipt": {
+        "mode": "plain",
+        "normal_startup_requests_verified": 5,
+        "commands_verified": [
+          "G"
+        ],
+        "exit_requests_verified": 1,
+        "movement_requests_verified": 2,
+        "no_duplicate_or_invented_actions": true,
+        "official_session": false,
+        "original_execution": false
+      },
+      "screenshots": [
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/plain-setup.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/plain-result.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/plain-returned.png"
+      ]
+    },
+    {
+      "mode": "attachment",
+      "mobile": true,
+      "url": "http://127.0.0.1:63470/web/game.html",
+      "pageIdentity": true,
+      "notBlank": true,
+      "frameworkOverlay": false,
+      "actualFileInputs": true,
+      "normalSourceStartup": true,
+      "actualSourceCBCVitals": {
+        "0": [
+          61,
+          90,
+          7,
+          12
+        ],
+        "10": [
+          100,
+          100,
+          10,
+          10
+        ]
+      },
+      "snapshots": [
+        {
+          "label": "first-round",
+          "phase": 2,
+          "round": 1,
+          "localSlot": 0,
+          "actors": [
+            {
+              "slot": 0,
+              "name": "Hero",
+              "local": true,
+              "vitals": [
+                61,
+                90,
+                7,
+                12
+              ]
+            },
+            {
+              "slot": 10,
+              "name": "Enemy",
+              "local": false,
+              "vitals": [
+                100,
+                100,
+                10,
+                10
+              ]
+            }
+          ]
+        }
+      ],
+      "currentLocalSlot": 0,
+      "receivedP0": 0,
+      "displayedValuesVerified": true,
+      "mouseOrTouch": "touch",
+      "actualBattleCanvas640x480": true,
+      "rounds": 1,
+      "normalReturn": true,
+      "ordinaryViewport320x240Preserved": true,
+      "resumedExactMovement": true,
+      "closedOwners": true,
+      "receipt": {
+        "mode": "attachment",
+        "normal_startup_requests_verified": 5,
+        "commands_verified": [
+          "G"
+        ],
+        "exit_requests_verified": 1,
+        "movement_requests_verified": 2,
+        "no_duplicate_or_invented_actions": true,
+        "official_session": false,
+        "original_execution": false
+      },
+      "screenshots": [
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/attachment-setup.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/attachment-result.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/attachment-returned.png"
+      ]
+    },
+    {
+      "mode": "linked",
+      "mobile": false,
+      "url": "http://127.0.0.1:63489/web/game.html",
+      "pageIdentity": true,
+      "notBlank": true,
+      "frameworkOverlay": false,
+      "actualFileInputs": true,
+      "normalSourceStartup": true,
+      "actualSourceCBCVitals": {
+        "0": [
+          70,
+          100,
+          10,
+          10
+        ],
+        "10": [
+          61,
+          90,
+          7,
+          12
+        ]
+      },
+      "snapshots": [
+        {
+          "label": "first-round",
+          "phase": 2,
+          "round": 1,
+          "localSlot": 0,
+          "actors": [
+            {
+              "slot": 0,
+              "name": "Hero",
+              "local": true,
+              "vitals": [
+                70,
+                100,
+                10,
+                10
+              ]
+            },
+            {
+              "slot": 10,
+              "name": "Enemy",
+              "local": false,
+              "vitals": [
+                61,
+                90,
+                7,
+                12
+              ]
+            }
+          ]
+        }
+      ],
+      "currentLocalSlot": 0,
+      "receivedP0": 0,
+      "displayedValuesVerified": true,
+      "mouseOrTouch": "mouse",
+      "actualBattleCanvas640x480": true,
+      "rounds": 1,
+      "normalReturn": true,
+      "ordinaryViewport320x240Preserved": true,
+      "resumedExactMovement": true,
+      "closedOwners": true,
+      "receipt": {
+        "mode": "linked",
+        "normal_startup_requests_verified": 5,
+        "commands_verified": [
+          "G"
+        ],
+        "exit_requests_verified": 1,
+        "movement_requests_verified": 2,
+        "no_duplicate_or_invented_actions": true,
+        "official_session": false,
+        "original_execution": false
+      },
+      "screenshots": [
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/linked-setup.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/linked-result.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/linked-returned.png"
+      ]
+    },
+    {
+      "mode": "rider-zero",
+      "mobile": false,
+      "url": "http://127.0.0.1:63514/web/game.html",
+      "pageIdentity": true,
+      "notBlank": true,
+      "frameworkOverlay": false,
+      "actualFileInputs": true,
+      "normalSourceStartup": true,
+      "actualSourceCBCVitals": {
+        "0": [
+          70,
+          100,
+          10,
+          10
+        ],
+        "10": [
+          61,
+          90,
+          7,
+          12
+        ]
+      },
+      "snapshots": [
+        {
+          "label": "first-round",
+          "phase": 2,
+          "round": 1,
+          "localSlot": 0,
+          "actors": [
+            {
+              "slot": 0,
+              "name": "Hero",
+              "local": true,
+              "vitals": [
+                70,
+                100,
+                10,
+                10
+              ]
+            },
+            {
+              "slot": 10,
+              "name": "Enemy",
+              "local": false,
+              "vitals": [
+                61,
+                90,
+                7,
+                12
+              ]
+            }
+          ]
+        }
+      ],
+      "currentLocalSlot": 0,
+      "receivedP0": 0,
+      "displayedValuesVerified": true,
+      "mouseOrTouch": "mouse",
+      "actualBattleCanvas640x480": true,
+      "rounds": 1,
+      "normalReturn": true,
+      "ordinaryViewport320x240Preserved": true,
+      "resumedExactMovement": true,
+      "closedOwners": true,
+      "receipt": {
+        "mode": "rider-zero",
+        "normal_startup_requests_verified": 5,
+        "commands_verified": [
+          "G"
+        ],
+        "exit_requests_verified": 1,
+        "movement_requests_verified": 2,
+        "no_duplicate_or_invented_actions": true,
+        "official_session": false,
+        "original_execution": false
+      },
+      "screenshots": [
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/rider-zero-setup.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/rider-zero-result.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/rider-zero-returned.png"
+      ]
+    },
+    {
+      "mode": "multi",
+      "mobile": true,
+      "url": "http://127.0.0.1:63536/web/game.html",
+      "pageIdentity": true,
+      "notBlank": true,
+      "frameworkOverlay": false,
+      "actualFileInputs": true,
+      "normalSourceStartup": true,
+      "actualSourceCBCVitals": {
+        "0": [
+          40,
+          100,
+          6,
+          10
+        ],
+        "10": [
+          100,
+          100,
+          10,
+          10
+        ]
+      },
+      "snapshots": [
+        {
+          "label": "first-round",
+          "phase": 2,
+          "round": 1,
+          "localSlot": 0,
+          "actors": [
+            {
+              "slot": 0,
+              "name": "Hero",
+              "local": true,
+              "vitals": [
+                40,
+                100,
+                6,
+                10
+              ]
+            },
+            {
+              "slot": 10,
+              "name": "Enemy",
+              "local": false,
+              "vitals": [
+                100,
+                100,
+                10,
+                10
+              ]
+            }
+          ]
+        }
+      ],
+      "currentLocalSlot": 0,
+      "receivedP0": 0,
+      "displayedValuesVerified": true,
+      "mouseOrTouch": "touch",
+      "actualBattleCanvas640x480": true,
+      "rounds": 1,
+      "normalReturn": true,
+      "ordinaryViewport320x240Preserved": true,
+      "resumedExactMovement": true,
+      "closedOwners": true,
+      "receipt": {
+        "mode": "multi",
+        "normal_startup_requests_verified": 5,
+        "commands_verified": [
+          "G"
+        ],
+        "exit_requests_verified": 1,
+        "movement_requests_verified": 2,
+        "no_duplicate_or_invented_actions": true,
+        "official_session": false,
+        "original_execution": false
+      },
+      "screenshots": [
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/multi-setup.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/multi-result.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/multi-returned.png"
+      ]
+    },
+    {
+      "mode": "mixed",
+      "mobile": false,
+      "url": "http://127.0.0.1:63560/web/game.html",
+      "pageIdentity": true,
+      "notBlank": true,
+      "frameworkOverlay": false,
+      "actualFileInputs": true,
+      "normalSourceStartup": true,
+      "actualSourceCBCVitals": {
+        "0": [
+          70,
+          100,
+          7,
+          10
+        ],
+        "10": [
+          60,
+          100,
+          6,
+          10
+        ]
+      },
+      "snapshots": [
+        {
+          "label": "first-round",
+          "phase": 2,
+          "round": 1,
+          "localSlot": 0,
+          "actors": [
+            {
+              "slot": 0,
+              "name": "Hero",
+              "local": true,
+              "vitals": [
+                70,
+                100,
+                7,
+                10
+              ]
+            },
+            {
+              "slot": 10,
+              "name": "Enemy",
+              "local": false,
+              "vitals": [
+                60,
+                100,
+                6,
+                10
+              ]
+            }
+          ]
+        }
+      ],
+      "currentLocalSlot": 0,
+      "receivedP0": 0,
+      "displayedValuesVerified": true,
+      "mouseOrTouch": "mouse",
+      "actualBattleCanvas640x480": true,
+      "rounds": 1,
+      "normalReturn": true,
+      "ordinaryViewport320x240Preserved": true,
+      "resumedExactMovement": true,
+      "closedOwners": true,
+      "receipt": {
+        "mode": "mixed",
+        "normal_startup_requests_verified": 5,
+        "commands_verified": [
+          "H|A"
+        ],
+        "exit_requests_verified": 1,
+        "movement_requests_verified": 2,
+        "no_duplicate_or_invented_actions": true,
+        "official_session": false,
+        "original_execution": false
+      },
+      "screenshots": [
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/mixed-setup.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/mixed-result.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/mixed-returned.png"
+      ]
+    },
+    {
+      "mode": "feedback",
+      "mobile": true,
+      "url": "http://127.0.0.1:63588/web/game.html",
+      "pageIdentity": true,
+      "notBlank": true,
+      "frameworkOverlay": false,
+      "actualFileInputs": true,
+      "normalSourceStartup": true,
+      "actualSourceCBCVitals": {
+        "0": [
+          55,
+          120,
+          9,
+          20
+        ],
+        "10": [
+          100,
+          110,
+          10,
+          15
+        ]
+      },
+      "snapshots": [
+        {
+          "label": "first-round",
+          "phase": 2,
+          "round": 1,
+          "localSlot": 0,
+          "actors": [
+            {
+              "slot": 0,
+              "name": "Hero",
+              "local": true,
+              "vitals": [
+                61,
+                90,
+                7,
+                12
+              ]
+            },
+            {
+              "slot": 10,
+              "name": "Enemy",
+              "local": false,
+              "vitals": [
+                100,
+                100,
+                10,
+                10
+              ]
+            }
+          ]
+        },
+        {
+          "label": "actual-next-C",
+          "phase": 4,
+          "round": 1,
+          "localSlot": 0,
+          "actors": [
+            {
+              "slot": 0,
+              "name": "Hero",
+              "local": true,
+              "vitals": [
+                57,
+                110,
+                8,
+                15
+              ]
+            },
+            {
+              "slot": 10,
+              "name": "Enemy",
+              "local": false,
+              "vitals": [
+                100,
+                110,
+                10,
+                15
+              ]
+            }
+          ]
+        },
+        {
+          "label": "second-round",
+          "phase": 2,
+          "round": 2,
+          "localSlot": 0,
+          "actors": [
+            {
+              "slot": 0,
+              "name": "Hero",
+              "local": true,
+              "vitals": [
+                55,
+                120,
+                9,
+                20
+              ]
+            },
+            {
+              "slot": 10,
+              "name": "Enemy",
+              "local": false,
+              "vitals": [
+                100,
+                110,
+                10,
+                15
+              ]
+            }
+          ]
+        }
+      ],
+      "currentLocalSlot": 0,
+      "receivedP0": 0,
+      "displayedValuesVerified": true,
+      "mouseOrTouch": "touch",
+      "actualBattleCanvas640x480": true,
+      "rounds": 2,
+      "normalReturn": true,
+      "ordinaryViewport320x240Preserved": true,
+      "resumedExactMovement": true,
+      "closedOwners": true,
+      "receipt": {
+        "mode": "feedback",
+        "normal_startup_requests_verified": 5,
+        "commands_verified": [
+          "G",
+          "G"
+        ],
+        "exit_requests_verified": 1,
+        "movement_requests_verified": 2,
+        "no_duplicate_or_invented_actions": true,
+        "official_session": false,
+        "original_execution": false
+      },
+      "screenshots": [
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/feedback-setup.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/feedback-next-C.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/feedback-result.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/feedback-returned.png"
+      ]
+    },
+    {
+      "mode": "unsupported",
+      "mobile": false,
+      "pageIdentity": true,
+      "notBlank": true,
+      "frameworkOverlay": false,
+      "noFabricatedCompletion": true,
+      "noRepeatedCallbacks": true,
+      "noVitalMutation": true,
+      "snapshots": [
+        {
+          "label": "unsupported-CFP",
+          "phase": 6,
+          "round": 0,
+          "localSlot": 0,
+          "actors": [
+            {
+              "slot": 0,
+              "name": "Hero",
+              "local": true,
+              "vitals": [
+                70,
+                100,
+                10,
+                10
+              ]
+            },
+            {
+              "slot": 10,
+              "name": "Enemy",
+              "local": false,
+              "vitals": [
+                100,
+                100,
+                10,
+                10
+              ]
+            }
+          ]
+        }
+      ],
+      "receipt": {
+        "mode": "unsupported",
+        "normal_startup_requests_verified": 5,
+        "commands_verified": [
+          "G"
+        ],
+        "exit_requests_verified": 0,
+        "movement_requests_verified": 0,
+        "no_duplicate_or_invented_actions": true,
+        "official_session": false,
+        "original_execution": false
+      },
+      "screenshots": [
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/unsupported-setup.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44/unsupported-waiting.png"
+      ]
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "externalRequests": 0,
+  "passed": true,
+  "originalSyntheticFixturesOnly": true,
+  "noInjectedReadinessOrGameState": true,
+  "originalExecution": false,
+  "officialSession": false,
+  "nativeWeChatOrDeviceAcceptance": false,
+  "screenshotDirectory": "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-character-change-product-LmzC44"
+}

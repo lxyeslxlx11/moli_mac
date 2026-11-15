@@ -1,0 +1,63 @@
+{
+  "disposition": "game-patch-candidate",
+  "binding": {
+    "gameOrdinal": 0,
+    "referenceOrdinal": 0,
+    "regionOrdinal": 0,
+    "gameCodeText": "0011",
+    "gameName": "Original Patch A",
+    "regionName": "Original Local",
+    "patcher": "patch.exe",
+    "patcherText": "patch.exe",
+    "directoryText": "C:\\Original Folder\\Client",
+    "pathEncoding": "ascii",
+    "gameListMd5": "afeb5cb2a1304727b94feabc3c6cdae9",
+    "regionListMd5": "44da599c44fdcf11d7113c94fc329a17"
+  },
+  "requests": [
+    {
+      "url": "http://127.0.0.1:57936/cg50/Update.TXT?t=1234567890",
+      "kind": "catalog"
+    },
+    {
+      "url": "http://127.0.0.1:57936/cg50/Bin/first.bin.bz2?time=1234567890",
+      "kind": "package"
+    },
+    {
+      "url": "http://127.0.0.1:57936/cg50/Bin/final.bin.bz2?time=1234567890",
+      "kind": "package"
+    }
+  ],
+  "operations": [
+    {
+      "blockOrdinal": 0,
+      "operation": "create",
+      "disposition": "updated",
+      "targetPath": "Bin/first.bin",
+      "actualMd5": "7fb55ed0b7a30342ba6da306428cae04",
+      "md5Verified": true,
+      "removedPath": null,
+      "archiveEntryCount": 1
+    },
+    {
+      "blockOrdinal": 1,
+      "operation": "append",
+      "disposition": "updated",
+      "targetPath": "Bin/final.bin",
+      "actualMd5": "f2a3305c1ebe9aa814b794df4fade31b",
+      "md5Verified": true,
+      "removedPath": "Bin/first.bin",
+      "archiveEntryCount": 1
+    }
+  ],
+  "files": [
+    {
+      "path": "Bin/final.bin",
+      "bytes": 12
+    }
+  ],
+  "trust": "unverified",
+  "authentication": "unverified",
+  "replacement": "not-performed",
+  "execution": "not-performed"
+}

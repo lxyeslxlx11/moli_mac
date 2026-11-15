@@ -1,0 +1,95 @@
+{
+  "schema": "moli.launcher-v11.native-md5-review.v1",
+  "sample_sha256": "62dbd66e6eac296862e214a2d92e5332b87cd811bb4f555dd5d49fe8e426b0a4",
+  "method": "Independent read-only Listing expression tracing; no target execution. Constants, pre-round Boolean sums, message word, rotate and feed-forward reviewed modulo2^32.",
+  "rounds": 64,
+  "constants_matched": 64,
+  "message_indices_matched": 64,
+  "rotates_matched": 64,
+  "pre_round_sums_matched": 64,
+  "final_state_adds_matched": 4,
+  "round_ranges": [
+    {
+      "rounds": [
+        1,
+        16
+      ],
+      "constant_sites": [
+        "0x403814",
+        "0x403a41"
+      ],
+      "word_rule": "i",
+      "rotations": [
+        7,
+        12,
+        17,
+        22
+      ]
+    },
+    {
+      "rounds": [
+        17,
+        32
+      ],
+      "constant_sites": [
+        "0x403a64",
+        "0x403c6f"
+      ],
+      "word_rule": "(5*i+1)%16",
+      "rotations": [
+        5,
+        9,
+        14,
+        20
+      ]
+    },
+    {
+      "rounds": [
+        33,
+        48
+      ],
+      "constant_sites": [
+        "0x403c8e",
+        "0x403e4b"
+      ],
+      "word_rule": "(3*i+5)%16",
+      "rotations": [
+        4,
+        11,
+        16,
+        23
+      ]
+    },
+    {
+      "rounds": [
+        49,
+        64
+      ],
+      "constant_sites": [
+        "0x403e70",
+        "0x404057"
+      ],
+      "word_rule": "(7*i)%16",
+      "rotations": [
+        6,
+        10,
+        15,
+        21
+      ]
+    }
+  ],
+  "source_evidence_ids": [
+    "ev_6d4324101f9176af7108e582feeca0206db8bc07897648600ddf94e10ebcfcbd",
+    "ev_9b256e6ec3e5f0174f9d3766724b590c7a75bd1396afea98bdc7127429cf5b2b",
+    "ev_a84c0c31cad51487680493fe424f8781db0017b276950fadd281d007c86fa1bc",
+    "ev_d75e92f111f6d0ba6b6f22a9e5caad97bc318bb34b2cc939f9206c4991094ef2"
+  ],
+  "format_evidence_id": "ev_728e138332d334ed55d2b56f39d5ab696f25f77c6ca5ab0925584c28fc43401b",
+  "format_bytes": "%x,0%x,00 withNULs at40c124/40c128/40c12c",
+  "body_gap": "4037cd..cf not in body; JMP4037cb skips to4037d0. Checked entry path only.",
+  "stack_alias": "ESP+58 reused at403a2f;403a60 reads a temporary, not extra message word.",
+  "unknowns": [
+    "No proof of actual file I/O, runtime exceptions or manifest/source trust."
+  ],
+  "indexing": "word_rule uses zero-based global i; constant T[i+1] uses sin(i+1)"
+}

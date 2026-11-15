@@ -1,0 +1,46 @@
+{
+  "schema": "moli.business-license-status.v1",
+  "stage": 44,
+  "user_confirmed_utc": "2026-10-26 11:57 UTC",
+  "edition": "Business",
+  "edition_evidence": "user explicitly confirmed 商业版 via parent delegation; accepted, no edition re-verification",
+  "supersedes": "stage43 unknown-edition status only; prior UI lock and CLI integrity findings remain historical evidence",
+  "official_conditions": [
+    {
+      "url": "https://kb.parallels.com/en/131167",
+      "fact": "Official2026 Tech Guarantee explicitly includes Business subscriptions among licenses eligible for latest-version upgrades while the subscription remains valid; this is conditional policy, not a lookup of this user entitlement."
+    },
+    {
+      "url": "https://kb.parallels.com/en/130247",
+      "fact": "Business/Enterprise update rollout may be delayed, and company IT administrators can disable major upgrades; do not treat Business label as proof deployment is authorized."
+    },
+    {
+      "url": "https://docs.parallels.com/landing/parallels-desktop-developers-guide/command-line-interface-utility",
+      "fact": "Business is within documented CLI editions, subject to actual installation, license and Tools/normal-interface prerequisites."
+    }
+  ],
+  "remaining_unknown": [
+    "current subscription active/expired state",
+    "renewal/expiration date",
+    "specific current major-version coverage/upgrade activation acceptance",
+    "company policy on major upgrades"
+  ],
+  "UI_access": "Last single check stage43 reportedlocked; Business reply is not new unlock/control evidence, so no further UI probe made",
+  "not_requested": [
+    "edition re-identification",
+    "license key",
+    "account token or password",
+    "credential-store or license-file read"
+  ],
+  "minimum_next": "When normal screen access is restored, inspect only current subscription status/date and displayed upgrade coverage; no need to ask the user to identify edition again. If normal UI cannot safely show these fields, record unknown rather than infer or install.",
+  "operations_this_stage": {
+    "public_official_readonly_search": true,
+    "GUI_queries": 0,
+    "CLI_or_guest_command": 0,
+    "software_download_or_install": 0,
+    "purchase_or_terms_acceptance": 0,
+    "security_network_changes": 0,
+    "pending_calls": false
+  },
+  "validation": "Policy/user-evidence reconciliation only; no code changes, new tests or previous test reruns."
+}

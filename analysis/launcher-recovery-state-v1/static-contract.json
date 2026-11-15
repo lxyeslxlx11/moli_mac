@@ -1,0 +1,104 @@
+{
+  "schema": "moli.launcher-recovery-state-static-contract-stage141.v1",
+  "source_evidence": "analysis/launcher-recovery-state-v1/source-check.json",
+  "context_roles_from_reused_constructor": {
+    "0x00": "target launcher",
+    "0x18": "download",
+    "0x30": "staging",
+    "0x48": "backup",
+    "0x60": "journal",
+    "0x78": "failed"
+  },
+  "facts": [
+    {
+      "owner": "0x40ebd0",
+      "classification": "fact",
+      "claim": "Null output-stage pointer returnsAL0. Otherwise sets stage0. First GetFileAttributesW==0xffffffff jumps toAL1 without inspecting GetLastError. This is an absent-like query branch, not proven absence. Present-like journal is checked again with mask0x410; CreateFileW/ReadFile16/CloseHandle then existing magic/version/xor/stage1..5 checks. Read/open/bad header returnsAL0; trailing bytes not inspected."
+    },
+    {
+      "owner": "0x40ee10",
+      "classification": "fact",
+      "claim": "First deletes journal.new via0x40f110 allowMissing1; failure stops before reading journal. Successful journal reader chooses stage0/1/2..4/5 branches below. Successful selected cleanup returnsAL1; required cleanup/journal deletion failure returnsAL0. Does not independently establish present target identity or account/game success."
+    },
+    {
+      "owner": "0x40d8f0",
+      "classification": "fact",
+      "claim": "Presence helper is only GetFileAttributesW!=0xffffffff. It does not test0x410 or GetLastError and is not a regular-file validator."
+    },
+    {
+      "owner": "0x40f110",
+      "classification": "fact",
+      "claim": "Delete helper succeeds for missing-like query only when allowMissing is nonzero and GetLastError==2. Other invalid attributes fail, including error3. Existing mask0x410 objects are rejected. Otherwise actual DeleteFileW success is required. Null error-output pointer suppresses diagnostics, not failure AL0."
+    },
+    {
+      "owner": "0x40d910",
+      "classification": "fact",
+      "claim": "Move helper requires source attributes neither invalid nor0x410 and destination attributes invalid. Then MoveFileExW(source,destination,8);AL1 only actual call success. Destination invalid query is not a proven absence check. No overwrite flag or independent handle/file identity claim."
+    },
+    {
+      "owner": "0x40db60",
+      "classification": "fact",
+      "claim": "Initial backup attributes invalid returnsAL1 without moving. Otherwise regular backup required. Existing target is rechecked for0x410, failed-path deletion is attempted with ignored result, then target->failed via0x40d910. Next backup->target via0x40d910. If second move fails and failed is present-like while target invalid, attempts MoveFileExW(failed,target,8), still returnsAL0. On backup->target success, failed cleanup is best effort and function returnsAL1."
+    }
+  ],
+  "recovery_branches": [
+    {
+      "stage": "0 (reader absent-like query)",
+      "condition": "backup attributes valid",
+      "action": "fail: unexpected backup without journal",
+      "does_not_mean": "all invalid queries are file-not-found"
+    },
+    {
+      "stage": "0",
+      "condition": "backup attributes invalid",
+      "action": "required cleanup download/staging/failed with allowMissing1; no journal deletion; AL1 on cleanup success",
+      "does_not_mean": "target exists, is regular or is a usable launcher"
+    },
+    {
+      "stage": "1",
+      "condition": "backup presence helper true",
+      "action": "invoke restore helper; fail ifAL0; then require target presence helper and common cleanup",
+      "does_not_mean": "stage1 universally means no backup"
+    },
+    {
+      "stage": "1",
+      "condition": "backup presence helper false",
+      "action": "require target presence helper; common cleanup download/staging/failed then journal allowMissing0",
+      "does_not_mean": "presence helper enforces a regular target"
+    },
+    {
+      "stage": "2,3,4",
+      "condition": "first backup GetFileAttributesW invalid",
+      "action": "fail: rollback-required transaction has no visible backup; no implicit commit"
+    },
+    {
+      "stage": "2,3,4",
+      "condition": "first backup attributes valid",
+      "action": "presence helper requery; when true invoke restore helper; then require target presence helper and common cleanup",
+      "does_not_mean": "requeries are atomic or restoration is guaranteed"
+    },
+    {
+      "stage": "5",
+      "condition": "first target attributes valid and mask0x410 clear",
+      "action": "required cleanup backup/download/staging/failed allowMissing1, then journal allowMissing0",
+      "does_not_mean": "publisher identity, executed ACK or future target validity"
+    },
+    {
+      "stage": "5",
+      "condition": "first target not regular by that check",
+      "action": "if backup attributes valid invoke restore helper and requireAL1; then requery target and require only attributes!=invalid; common cleanup",
+      "does_not_mean": "final fallback target check includes0x410; it only checks query sentinel"
+    }
+  ],
+  "implementation_decision": {
+    "existing_header_parser": "shared/launcher-update-journal.mjs remains exact16B stage1..5 metadata only.",
+    "new_product_code": false,
+    "reason": "No header discrepancy found. New facts require real filesystem observations and effects; no supported Win32 execution port exists in current web/mobile-web/WeChat core. Do not add an unwired pretend recovery executor or convert recorded phase to current success.",
+    "existing_current_candidate_caller": "web/launcher-bootstrap.mjs prepare calls decodeWin32LauncherUpdatePackage and returns update object, so stage140 declaration validation is on actual candidate path."
+  },
+  "unknowns": [
+    "Runtime effects, filesystem access failures and races, actual recovery/rollback outcome.",
+    "No-return helper assumptions, full EH/alias/other-entry flow.",
+    "Original game business consumers, playable implementation, authenticated platform/official acceptance."
+  ]
+}

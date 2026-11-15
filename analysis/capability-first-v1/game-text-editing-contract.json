@@ -1,0 +1,445 @@
+{
+  "schema": "moli.capability.game-text-editing-contract.v1",
+  "requirement": "全部需求能力先成规再按共享所有者实现；本组关闭已证普通编辑动作，并归并其呈现、历史及实际调用来源。",
+  "source": {
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+    "kind": "固定旧版；不等同现行受保护客户端",
+    "tools": {
+      "REA": "6.7.0",
+      "Ghidra": "12.1.4"
+    }
+  },
+  "capabilities": [
+    "G07",
+    "G10",
+    "G15",
+    "X01",
+    "X02"
+  ],
+  "source_check": "analysis/capability-first-v1/game-text-editing-source-check.json",
+  "source_verifier": "analysis/capability-first-v1/derive_game_text_editing.py",
+  "dispatch": {
+    "entry": "0x452350",
+    "key_base": "0x72869c",
+    "queries_consume": false,
+    "actions": [
+      {
+        "key": "0x26",
+        "name": "Up",
+        "mask": "0x10",
+        "callee": "0x4443a0",
+        "gate": "Ctrl及Shift均未按住"
+      },
+      {
+        "key": "0x28",
+        "name": "Down",
+        "mask": "0x10",
+        "callee": "0x4445a0",
+        "gate": "Ctrl及Shift均未按住"
+      },
+      {
+        "key": "0x25",
+        "name": "Left",
+        "mask": "0x10",
+        "callee": "0x444310",
+        "gate": "Ctrl及Shift均未按住"
+      },
+      {
+        "key": "0x27",
+        "name": "Right",
+        "mask": "0x10",
+        "callee": "0x444350",
+        "gate": "Ctrl及Shift均未按住"
+      },
+      {
+        "key": "0x08",
+        "name": "Backspace",
+        "mask": "0x10",
+        "callee": "0x444760",
+        "gate": "不在方向修饰键门槛内"
+      },
+      {
+        "key": "0x2e",
+        "name": "Delete",
+        "mask": "0x10",
+        "callee": "0x444860",
+        "gate": "不在方向修饰键门槛内"
+      },
+      {
+        "key": "0x09",
+        "name": "Tab",
+        "mask": "0x10",
+        "callee": "0x507690",
+        "gate": "源调用为单字节RET"
+      },
+      {
+        "key": "0x0d",
+        "name": "Enter",
+        "mask": "0x10",
+        "callee": "0x444930",
+        "gate": "实际行为由文本目标/预编辑决定"
+      },
+      {
+        "key": "0x23",
+        "name": "End",
+        "mask": "0x04",
+        "callee": "0x403200",
+        "gate": "首次触发，进入另一套窗口操作"
+      }
+    ],
+    "order": "按数组顺序分别检查；同次多键可以依次生效，不能改为首个命中即返回或统一消耗事件。"
+  },
+  "facts": [
+    {
+      "id": "source-roles",
+      "kind": "事实",
+      "entries": [
+        "0x451d60",
+        "0x4441e0",
+        "0x4456d0",
+        "0x451a80",
+        "0x452350"
+      ],
+      "rule": "451db0..452165引用属于451d60的IME/候选呈现；4441e0是光标闪烁，4456d0是临时提示滚动，451a80是游戏时钟投影。真正的编辑分派为452350，不能按地址邻近或函数名称代替职责证据。"
+    },
+    {
+      "id": "modifiers-and-order",
+      "kind": "事实",
+      "entries": [
+        "0x452350"
+      ],
+      "rule": "Ctrl槽7286ad和Shift槽7286ac的按住位0x02均为零时才执行四方向组；退格/删除/Tab/Enter/End在该组之外。方向、退格、删除和Enter使用0x10重复触发，End使用0x04首次触发。查询不清位；同一源调用中多键按固定顺序作用于前一步更新的状态。"
+    },
+    {
+      "id": "horizontal",
+      "kind": "事实",
+      "entries": [
+        "0x444310",
+        "0x444350",
+        "0x4450a0",
+        "0x445120"
+      ],
+      "rule": "左右均要求目标非零、预编辑串728488为空。左移还要求光标>0，直接减前缀分类辅助返回值；右移要求光标<字节长度，按当前字节高位决定加1或2。它们操作字节位置并重置闪烁20，不是Unicode字符或字形移动；异常前缀返回3等未外推成自动修复。"
+    },
+    {
+      "id": "vertical-layout",
+      "kind": "事实",
+      "entries": [
+        "0x4443a0",
+        "0x4445a0",
+        "0x4450a0"
+      ],
+      "rule": "上下要求目标非零、预编辑为空；在检测最大行数>1前先重置闪烁20。按CR或布局宽度+0x148构建行长，固定宽度边界落在孤立高位字节时少取1字节。用光标<下一个行末的严格条件确定所在行，保留源列偏移和末行处理；不等同像素换行或通用富文本上下移动。"
+    },
+    {
+      "id": "vertical-targets",
+      "kind": "事实",
+      "entries": [
+        "0x4443a0",
+        "0x4445a0"
+      ],
+      "rule": "上移在前一行足够长时减前行长度；否则按源宽度/CR向前寻找。下移在下一行可容纳列偏移时加当前行长度，否则用当前行长-列偏移-1+下一行长计算增量，末段行长含终止字节。目标前缀分类为3时再减1。源的满行边界和单行无移动分支分别保留，不自行替换成统一min/max规则。"
+    },
+    {
+      "id": "backspace",
+      "kind": "事实",
+      "entries": [
+        "0x444760"
+      ],
+      "rule": "要求目标非零且光标>0；没有预编辑为空的检查。保存光标后的完整后缀，删去前缀分类给出的字节数并拼回后缀，长度和光标同步递减；光标负值归0，首字节为空时长度归0，最后重置闪烁20。"
+    },
+    {
+      "id": "delete",
+      "kind": "事实",
+      "entries": [
+        "0x444860",
+        "0x445120"
+      ],
+      "rule": "要求目标非零且光标<长度；也没有预编辑为空检查。按当前位置字节高位取1/2，搬移其后的后缀，长度减少、光标不变；空串归零长度，最后重置闪烁20。退格、删除与方向操作的预编辑门槛不能合并。"
+    },
+    {
+      "id": "tab-and-end",
+      "kind": "事实",
+      "entries": [
+        "0x452350",
+        "0x507690",
+        "0x403200"
+      ],
+      "rule": "Tab的源目标507690仅C3/RET，本分支未产生焦点循环。End先查询4ea6b0(2)：任一活动槽非零时调用4ea5b0(100)清两槽并播放39，否则调用4ea460(99)。它不是光标跳到行末。既有另一套窗口合同继续定义正常open/close条件。"
+    },
+    {
+      "id": "alternate-positive-producer",
+      "kind": "事实",
+      "entries": [
+        "0x403200",
+        "0x4ea460"
+      ],
+      "rule": "End给出99号另一套窗口的具体输入生产者。原表55a3a4的20字节行记录id99、callback402d90、group2；该正向链不证明97个callback字段的实际统一消费者或全部活动生产者已闭合。"
+    },
+    {
+      "id": "enter-default",
+      "kind": "事实",
+      "entries": [
+        "0x444930",
+        "0x4f2c80"
+      ],
+      "rule": "Enter先要求预编辑为空；默认目标60fda8长度为0时立即返回。非空时更新内存历史/必要的本地保存，再调用已有4f2c80(text,current_mode)，随后清当时全局目标的长度、光标与首字节；本层不以成功结果为清空条件。"
+    },
+    {
+      "id": "history-ring",
+      "kind": "事实",
+      "entries": [
+        "0x444930",
+        "0x443d60"
+      ],
+      "rule": "默认历史有64个0x121字节槽。先保存旧写索引并将新索引加1/越63归0；与旧索引的文本相同时恢复旧索引，不重复复制保存；不同时复制到新槽并调用443d60(newIndex)。之后浏览索引置-1。443d60返回失败不回滚内存历史，也不阻止本层继续调用聊天入口。"
+    },
+    {
+      "id": "history-writer",
+      "kind": "事实",
+      "entries": [
+        "0x443d60"
+      ],
+      "rule": "chathis.dat的本源写方按index*0x121定位并块写0x121字节，再按0x4840定位写4字节索引，任一打开/块写失败返回0并按路径关闭，正常返回1。源调用的流接口及参数可追溯，记录未保证终止字节后的零填充；本组未读取真实历史文件，也未闭合加载、创建或损坏恢复，不能将写方布局称为完整格式验收。"
+    },
+    {
+      "id": "enter-business-boundary",
+      "kind": "事实",
+      "entries": [
+        "0x4f2c80"
+      ],
+      "rule": "复用既有366字节完整聊天入口及旧协议来源，不重新反编译。该入口有本地节流/等待分支，可能返回而不走发送；因此Enter后的清空与历史更新不证明已发包、服务器已接受或登录有效。现有协议登记字段未增加。"
+    },
+    {
+      "id": "enter-other-targets",
+      "kind": "事实",
+      "entries": [
+        "0x444930",
+        "0x444b80"
+      ],
+      "rule": "目标为c5db88/c1e180/c22060/c20280/c43b88/c15880之一时，Enter经既有字节插入器加入CR。特殊c081b8目标按原比较/验证分支生成提示，清自己的文本/长度/光标并显式恢复默认目标；其业务校验规则继续归所属能力，不能把所有字段的Enter统一成聊天发送或换行。"
+    },
+    {
+      "id": "caret",
+      "kind": "事实",
+      "entries": [
+        "0x4441e0"
+      ],
+      "rule": "光标显示要求目标非零；默认目标另要求c1016c非零。计数>19时进入显示分支，调用后递增，>39归0；不满足外层条件时不递增。正常输入/编辑置20使其进入显示半周期。这是调用次数，不是毫秒；同一布局的IME/属性分支决定光标绘制位置，计数仍按源调用推进。"
+    },
+    {
+      "id": "IME-presentation",
+      "kind": "事实",
+      "entries": [
+        "0x451d60"
+      ],
+      "rule": "输入法状态标题、组合文字、属性高亮和候选共用字体和呈现队列。属性 1/3 开启首个高亮段，2/0 结束。组合结果提交沿 452200 的另一条输入消息路径。",
+      "frame_contract": "/fixed_se_active_ime_presentation"
+    },
+    {
+      "id": "candidate-layout",
+      "kind": "事实",
+      "entries": [
+        "0x451d60"
+      ],
+      "rule": "原生候选按页和总数过滤，以绝对选择索引决定背景。页内编号、布局步距及文字队列沿实际帧入口。",
+      "frame_contract": "/fixed_se_active_ime_presentation/candidate_frame"
+    },
+    {
+      "id": "IME-query-return",
+      "kind": "事实",
+      "entries": [
+        "0x451d10"
+      ],
+      "rule": "451d10的伪代码呈现void，不能据此否认实际返回寄存器语义。实际指令把GetKeyboardLayout(0)结果压栈交ImmIsIME，随后直接RET，不覆盖EAX；调用者按该API结果选择呈现分支。该结果表示布局的IME属性，不等于正在组合、IME开启或账号状态。"
+    },
+    {
+      "id": "rolling-notices",
+      "kind": "事实",
+      "entries": [
+        "0x445530",
+        "0x4456d0",
+        "0x445610",
+        "0x445670"
+      ],
+      "rule": "两临时文字区分别用GetTickCount的无符号差严格>10判断，每个合资格调用最多推进一步。两辅助体将水平位置减1，越过-2-所存宽度后重置位置并加圈数；第一类圈数>3关闭，第二类>2关闭，纵向位置分别设置0x3c/0x4c。两区独立时间/计数，不能换成每帧一步或循环追赶，也不承担全局焦点恢复。 已进入的外层分支在辅助体清除active后仍执行本次绘制，下次调用再按active决定是否进入。"
+    },
+    {
+      "id": "invocation-and-owners",
+      "kind": "事实",
+      "entries": [
+        "0x437b30",
+        "0x5015a0",
+        "0x501a50"
+      ],
+      "rule": "已绑定18个编辑分派调用、20个IME呈现调用及16个光标调用，另有11个历史/提示服务调用，来源均保留完整旧记录和具体条件上下文。5015a0的1/4/13分支为分派→所属UI→呈现→光标；其他父函数按各自子状态调用，不能抽象为所有游戏状态每帧恰好一次。其余分支的原生焦点/合成键等宿主副作用未执行，也未由本编辑合同直接转为跨端需求。"
+    }
+  ],
+  "fixed_se_active_ime_presentation": {
+    "classification": "事实。固定 SE 输入法的候选来源、组合帧准入和入队。推测。所选局部写入的相对栈范围。设计。复用共享输入及呈现。",
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "report": "reports/game-static.md#battle-266-ime-presentation",
+    "validation_report": "reports/validation.md#battle-266-ime-presentation-validation",
+    "validation": "build/analysis/battle-266-ime-presentation-v1/validation.json",
+    "source_evidence": "build/analysis/battle-266-ime-presentation-v1/rea-evidence.json",
+    "local_comparison": "build/analysis/battle-266-ime-presentation-v1/stage306-probe.json",
+    "related_battle_rules": ["BF-D7", "BF-T36", "BF-U1"],
+    "composition_source": {
+      "normal_messages": "45DD80 的消息 0x10F 在 45E252 将参数交 452200。所选成功读按标志 0x800 取已确认字节并逐字节调 444B80，按 8 和 0x10 分别更新 728488 的组合串及 728588 的属性。长度非负路径将复制量上限设为 255，并在该长度后写零。消息 0x10E 在 45E23D 清组合串首字节。",
+      "candidate_ownership": "消息 0x282 的子事件 3、5 调 ImmGetCandidateListA 查询第 0 组需要的字节数，退役此前在 728694 的表。非零长度分配并登记新缓冲，再请求内容。长度为零及事件 4 走清指针。实际返回错误与活动宿主顺序按对应证据验收。"
+    },
+    "composition_frame": {
+      "admission": "451D10 的返回值来自 ImmIsIME(GetKeyboardLayout(0))。451E59 检查该返回非零、728488 首字节非零及当前编辑指针 60FF08 非空。C4BFD0 的分支仅控制之前的状态说明。显示与提交沿各自入口。",
+      "queue": "451EB2 经 44F1B0 将组合串放入频道 0。第一项用 5388F0 的优先级 210 进入绘制队列，频道后项经 272 字节记录的链接追加。",
+      "measure_and_highlight": "445170 用 14 档 24 字节字号表。高位为 1 的非零源字节跨两字节取双宽，其余非零字节取单宽。451F0F 及后续从组合字节和属性同步推进，取首个 1/3 为开始，2/0 结束。按当时编辑目标位置和文字宽度提交初始区域及合资格高亮。"
+    },
+    "candidate_frame": {
+      "columns": "728694 非空且 +0x14 的页大小非零时循环。+8 是总数，+0x0C 是绝对选择，+0x10 是页起点，+0x14 是页大小。+0x18 起为字符串偏移数组，每项相对候选缓冲起点。候选编号为页内下标加 1，仅在页起点加下标小于总数时消费字符串。",
+      "text_and_geometry": "452093、4520F3 分别将当前编号和候选文字送到频道 4，首项排绘制优先级 226。候选间距累计 max(到 NUL 的字节数, 2) 除以 2 后截断的单元，格步长取活动字号表行高。边界终点用 445170 的实际字节字宽。4521D1 在绝对索引等于选择值时按 0xD9/0 提交背景，其余按 0xD8/0xFC。",
+      "capacity": "5070E0 的矩形经 506AC0 排 40 字节项目，正常将该项 +0x24 写 2。原指令在队列满返回 -2 时仍执行一次按返回值的类型写入，推导地址为 F631AC。开发验收需用已有容量和呈现回执处理满队列，正常项目以有效返回为前提。"
+    },
+    "frame_write_scope": {
+      "battle_frame": "analysis/capability-first-v1/game-battle-functional-specification.json#/result_tuple_storage_lifecycle/rid_frame_266/callback_stack_reuse/adjacent_frame_producers/frame_intervening_writes",
+      "anchor": "ESP before 44FC66 on selected 10/6 frames",
+      "candidate_decimal_buffer": [-372, -360],
+      "lowest_selected_stack": -516,
+      "nearest_skl266_interval_end": -1612,
+      "covered_writes": "候选编号落入所选帧的局部数字区。文字、候选和矩形提交进入全局表。对已核正常来源和队列条件，所列写入与 SKL266 三字分开。",
+      "remaining": "原系统内部栈、消息重入、有效输入法的实际显示及三个暂存字实读继续按适用证据。"
+    },
+    "implementation": {
+      "reuse": ["shared/legacy-game-text.mjs", "web/legacy-game-text-raster.mjs"],
+      "design": "D0 复用已有字体数据、字节量宽和帧队列。沿字节、频道和编辑目标的合资格来源接入，而后复用 D4 的 SourceValueContext 追踪战斗三字。D5 覆盖三端实际焦点、宿主组合、候选、取消及成功提交。组合状态与编辑目标代次匹配后才可继续显示或提交。",
+      "observed_gap": "stage306 的字号表与原 14 行匹配，组合样例的 210 批次可建立。候选所需优先级 226 返回 LEGACY_TEXT_BATCH。需让同一帧保留两个已证文字频道及候选矩形的排序。"
+    },
+    "acceptance": [
+      "以输入法布局、有无组合串、当前编辑目标和状态说明开关组合，核三项显示准入与已确认字节独立提交。",
+      "同页用单字节和双字节候选及不同长度，核页末、绝对选择、页内编号、两个文字优先级和背景。按实际回执验无有效记录和满队列。",
+      "用开始、更新、关闭、焦点变换和迟到通知核当前候选来源及退役。三端按实际可见候选、组合串、一次提交和取消验收。",
+      "BF-T36 复用同一组帧输入，核局部十进制编号、正常全局队列和 SKL266 的逐字最后写入。实际原版与可重入宿主路径沿适用证据。"
+    ],
+    "original_executed": false,
+    "target_ime_acceptance_executed": false,
+    "full_analysis_gate_passed": false
+  },
+  "bounded_inventory": {
+    "clipboard_procedure_name_matches": 0,
+    "scope": "仅提供者过程名中的Clipboard字面搜索；固定452350分派没有Ctrl-C/V/A/X入口，不能据此证明整个程序没有剪贴板或通用选区。",
+    "no_clipboard_capability_proof": false,
+    "real_clipboard_read": false,
+    "complete_selection_or_clipboard_source": false
+  },
+  "dependencies": [
+    {
+      "kind": "推测，待实现",
+      "batch": "D0",
+      "rule": "共用字节目标、位置/长度、按键槽和有来源的编辑调用顺序；按字段的实际预编辑门槛处理移动与删除，复用已证插入/边界辅助。"
+    },
+    {
+      "kind": "推测，待实现",
+      "batch": "D3",
+      "rule": "Enter通过所属业务提交边界，保持历史更新/本地拒绝/清空的来源顺序；失败展示与服务端接受各有证据，不因本地UI行为伪造成功。"
+    },
+    {
+      "kind": "推测，待实现",
+      "batch": "D0/D5",
+      "rule": "光标按源调用计数，临时提示按两个独立毫秒时钟；平台IME展示和输入端口分别适配。标准选区/剪贴板如作为平台新增能力，需有独立需求与验收，不能冒充已证旧版规则。"
+    },
+    {
+      "kind": "推测，待实现",
+      "batch": "D0/D3",
+      "rule": "复用End的明确另一套窗口输入生产者和既有活动槽合同；继续从正向边补其他活动生产者及真正callback消费，避免重复同一无入边搜索。"
+    }
+  ],
+  "remaining": [
+    "业务关闭、取消、重入及所有者丢失/销毁的完整恢复，别名写入和其它描述符模式；共用普通编辑规则不关闭全部窗口生命周期。",
+    "输入法异常返回、畸形布局/字节边界、完整字体/掩码样式、设备实际输入与原生候选渲染的跨端等价性。",
+    "通用选区/剪贴板是否有其它来源；本轮仅限定过程名搜索和固定分派，不为未知能力编造实现或擅自增加需求。",
+    "本地历史的加载/创建/损坏恢复及其它持久化入口，特殊目标业务验证和完整聊天频道/记录命令。",
+    "另一套97回调实际消费及其它生产者、完整游戏状态调度，宠物服务端状态发布和其它普通/战斗能力。",
+    "同版真实登录、网页/微信/手机设备及官方业务接受；无测试账号的现状保持。"
+  ],
+  "question_answers": [
+    {
+      "question": 1,
+      "status": "answered-for-source-roles",
+      "result": "引用定位到呈现/光标/提示/游戏时钟，真实编辑控制器从实际调用反查为452350。"
+    },
+    {
+      "question": 2,
+      "status": "partially-answered",
+      "result": "普通分派/移动/删除/Enter和正常呈现已成规；通用选区、剪贴板及异常输入不外推。"
+    },
+    {
+      "question": 3,
+      "status": "partially-answered",
+      "result": "3个实际父函数和调用锚已绑定；完整游戏状态/所有者关闭重入继续按业务补证。"
+    },
+    {
+      "question": 4,
+      "status": "answered",
+      "result": "38域/81登记/37历史要求/10组及所有实现和验收门槛保持；D0/D3/D5依赖已登记。"
+    }
+  ],
+  "acceptance": {
+    "source": "本合同范围内已审查并核验",
+    "specification": "普通分派和编辑/呈现已成规；完整生命周期与全需求仍未闭合",
+    "shared_implementation": "本轮未改",
+    "local_product": "本轮未运行",
+    "actual_platform_device": "未验收",
+    "same_version_official": "未验收"
+  },
+  "original_execution": false,
+  "real_clipboard_keyboard_or_account_observed": false,
+  "VM_operations": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "shared_clock_input_review": {
+    "specification": {
+      "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+      "bytes": 39736,
+      "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+    },
+    "source_inputs": {
+      "path": "build/analysis/shared-clock-input-review-v1/source-inputs.json",
+      "bytes": 4173,
+      "sha256": "a4736ed0e2a48266f6b187b091571609393987fd2a0ab28881a02ad2d03e9148"
+    },
+    "validation_record_path": "build/analysis/shared-clock-input-review-v1/validation.json",
+    "source_summary": {
+      "views": 19,
+      "reused_complete_native_views": 16,
+      "new_complete_native_views": 0,
+      "reused_derived_views": 3,
+      "body_ranges": 19,
+      "body_bytes": 6799,
+      "derived_instructions": 1163,
+      "direct_E8_CALLs": 147,
+      "new_native_queries": 0,
+      "native_views": 16,
+      "derived_views": 3,
+      "cold_instructions": 2060,
+      "extra_cold_helper_bytes": 220,
+      "extra_cold_helper_instructions": 75,
+      "literal_bytes": 20,
+      "calendar_division_domain": 2592000,
+      "source_fact_groups": 10,
+      "architecture_inferences": 2,
+      "independent_design_groups": 4,
+      "stale_prior_repeat_topics_resolved": 3,
+      "current_code_inputs": 10,
+      "proposed_not_executed_cases": 10
+    },
+    "scope": "Selected same37c4 shared keyboard/numeric/calendar/frame/audio rules, current code deltas and finite remaining categories",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "shared_reference": "analysis/capability-first-v1/game-entry-review-contract.json#/shared_clock_input_review",
+    "all_input_lifetimes_or_global_timing_closed": false
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "schema": "moli.current-record.implementation-spec.v1",
+  "status": "Current record profile implemented and source/original Node fixtures passed; live acceptance unverified",
+  "requirement": "reports/development-plan.md#stage111",
+  "source_analysis_sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+  "source_packed_sha256": "6d459ddbdf80a86cf7a1e41b99ab7fb575b42842d7163522efb3c9fa6e6ac987",
+  "facts": [
+    {
+      "kind": "fact",
+      "procedures": [
+        "0x588690",
+        "0x58c9b0",
+        "0x5a349f",
+        "0x58ce30",
+        "0x58cd40"
+      ],
+      "claim": "Observed CCE initialization uses selector1/key8, both crypt directions on and zero-initialized compression field; callback/accept setters do not change compression."
+    },
+    {
+      "kind": "fact",
+      "procedures": [
+        "0x58a060",
+        "0x589ec0",
+        "0x58c230",
+        "0x592300"
+      ],
+      "claim": "Current queued BE16 frame is sent by selector1 record writer. Writer caps plaintext32712, pads ceil(n/8)*8+8 (including8 for n0), zero fills and emits BE32(cipher bytes),BE32(original bytes). Assembly0x59239f..0x5923a8 confirms ceil-plus-extra block."
+    },
+    {
+      "kind": "fact",
+      "procedures": [
+        "0x589a20",
+        "0x592090"
+      ],
+      "claim": "Current reader accepts 0<=cipherLength<=32760 divisible8 and0<=plainLength<=cipherLength. Header0/0 consumes8 and emits an empty prefix; padding bytes are not validated or stripped."
+    },
+    {
+      "kind": "fact",
+      "procedures": [
+        "0x58b640",
+        "0x58b5c0",
+        "0x591ea0",
+        "0x591f20",
+        "0x591ad0",
+        "0x591a40",
+        "0x5919b0",
+        "0x591be0",
+        "0x591d00"
+      ],
+      "claim": "Derived8B key schedules standard Blowfish P/S once where allocation succeeds; blocks use LE32 I/O and unchanged schedules across records. Raw-key fallback recomputes the same schedule, with no key increment. All1042 source Pi words match prior independently verified constants."
+    }
+  ],
+  "version_difference": {
+    "source_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "procedure": "0x472e70",
+    "historical_evidence_id": "ev_539905042c3d0f3a62e34cc605da75696c4dad58b39024c6ad0991c2e5e69d6a",
+    "private_bundle_sha256": "33e5329ee206d0df7eb708f3e8a04b9717fd99076a7816fa1d4a97a5ce7b2fd5",
+    "padding": "floor(n/8)*8+8",
+    "source_new_version_difference": true
+  },
+  "implementation_policy": {
+    "apis": [
+      "LAUNCHER_CURRENT_RECORD_PROFILE",
+      "createLauncherCurrentRecordCodec",
+      "createLauncherCurrentRecordStream"
+    ],
+    "current_flow": "handshakeProfile current selects both current handshake and record paths; generic/default preserves previous record bytes and lower bound8",
+    "limits": "8B key, <=32712 outgoing plaintext, <=32760 ciphertext, <=64KiB stream chunks, exact record API and bounded aggregate stream",
+    "source_boundaries": "Current decoder accepts native zero-cipher empty records and arbitrary declared plaintext prefix; writer uses ceil-plus-extra padding",
+    "independent_policy": "Typed errors/close and reject oversized single outgoing record instead of native partial queue consumption; do not implement compression/other cipher selectors"
+  },
+  "validation_plan": [
+    "Python PyCryptodome independent record vectors and maximum hash",
+    "Current request golden bytes fail before implementation",
+    "Every current record split including a zero-cipher record",
+    "Current flow and web session choose exact current record bytes with public synthetic key exchange fixtures",
+    "Existing generic channel/flow/session and current handshake regressions"
+  ],
+  "network_observation": "No new external observation or account operation planned; stage110 pre-auth receipt remains separate",
+  "not_verified": [
+    "Live encrypted-record/account acceptance",
+    "Peer identity or accepted session",
+    "Original game consumer/protocol/gameplay",
+    "Browser/mobile/WeChat and official compatibility"
+  ],
+  "full_goal_complete": false,
+  "implementation_files": [
+    "shared/launcher-channel.mjs",
+    "shared/launcher-flow.mjs",
+    "shared/index.mjs"
+  ],
+  "tests": "analysis/launcher-current-record-v1/test-results.json",
+  "source_check": "analysis/launcher-current-record-v1/source-check.json",
+  "test_account_available": false
+}

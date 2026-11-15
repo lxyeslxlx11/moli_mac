@@ -1,0 +1,38 @@
+✔ TCP factory performs no connection until explicit open and rejects non-allowlisted tuples (7.950959ms)
+✔ actual large socket reads are owned plain chunks no larger than64KiB (7.782417ms)
+✔ actual writes snapshot an offset view before caller mutation and preserve sequential order (0.693209ms)
+✔ one pending read is enforced and explicit close settles the original pending read (0.462667ms)
+✖ operation AbortSignal cancels a pending actual read and closes its socket (4.232417ms)
+✔ already-aborted connection and write do not create a connection or send a payload (1.187958ms)
+✔ native connection refusal exposes a controlled code without endpoint/provider text (0.511042ms)
+✔ allowlist snapshot is stable after source array and endpoint mutation (0.558541ms)
+✔ invalid native hosts, ports, accessors and sparse allowlists are rejected before I/O (0.287959ms)
+✔ write budget and native byte-brand checks run before any socket write (0.625291ms)
+ℹ Error: Test "operation AbortSignal cancels a pending actual read and closes its socket" at web/tests/launcher-node-stream.test.mjs:72:1 generated asynchronous activity after the test ended. This activity created the error "LauncherSessionError: The stream is closed." and would have caused the test to fail, but instead triggered an unhandledRejection event.
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 134.8995
+
+✖ failing tests:
+
+test at web/tests/launcher-node-stream.test.mjs:72:1
+✖ operation AbortSignal cancels a pending actual read and closes its socket (4.232417ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(socket)
+  
+      at TestContext.<anonymous> (file:///Users/lx/Documents/code/moli-mac/web/tests/launcher-node-stream.test.mjs:78:51)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

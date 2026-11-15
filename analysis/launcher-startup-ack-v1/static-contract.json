@@ -1,0 +1,75 @@
+{
+  "schema": "moli.launcher-startup-ack-static-contract-stage140.v1",
+  "source_evidence": "analysis/launcher-startup-ack-v1/source-check.json",
+  "classification": "selected static facts; runtime results unknown",
+  "facts": [
+    {
+      "owner": "updater0x402a00",
+      "claim": "LoadLibraryExW flag2 then FindResourceW(type10,namePOLCN_LAUNCHER_ACK_PROTOCOL). Exactly21ASCII POLCN_LAUNCHER_ACK_V1 or22bytes with final NUL declares capability. Malformed returnsAL0; absent errors1812/1813/1814 returnAL1 capability0; other inspection errors returnAL0."
+    },
+    {
+      "owner": "updater0x406920",
+      "claim": "Create manual-reset initially-unsignalled Local\\POLCN_Launcher_UpdateAck_%lu_%08lX; fields are updater PID and DWORD(GetTickCount XOR QPC.LowPart XOR QPC.HighPart). Journal stage4 precedes launching the candidate."
+    },
+    {
+      "owner": "updater0x4064c0",
+      "claim": "Quoted target prefix uses helper0x40f680; appends ID:updaterOwnPid and, only for non-null event-name input, UPDATEACK:eventName. CreateProcessW has explicit application target and target-directory helper. Full quoting-helper semantics not newly proved."
+    },
+    {
+      "owner": "launcher0x431d80",
+      "claim": "CommandLineToArgvW; first case-sensitive argv token from index1 with prefixUPDATEACK: wins. Suffix32..128WCHAR, exact31WCHAR Local\\POLCN_Launcher_UpdateAck_ prefix, remaining ASCII hex or underscore. First invalid matching token stops; later duplicate does not rescue it. Consumer does not enforce producer PID_8hex field shape."
+    },
+    {
+      "owner": "launcher0x431d80",
+      "claim": "OpenEventW(2,0,name), SetEvent then CloseHandle; argv LocalFree. Raw leading-space UPDATEACK substring is diagnostic only when no matching token was found."
+    },
+    {
+      "owner": "launcher0x431000 call0x43146c",
+      "claim": "After process/single-instance gates, frame creation and UpdateWindow, logs frame-painted and calls ACK. It precedes account/game verification. ACK failure logs; does not itself change the selected init success return1."
+    },
+    {
+      "owner": "updater0x406920",
+      "claim": "WaitForMultipleObjects handles[event,childProcess], waitAll=false,50ms; continue only timeout0x102 and DWORD elapsed<30000. ReturnAL true only result0(event); result1(child exit) logs exit code. Failure branch may TerminateProcess still-running child with0x5b4 and wait5000. These are static calls, never executed here."
+    },
+    {
+      "owner": "updater0x4071c0 reused selected callsites",
+      "claim": "After installation, capabilityfalse legacy branch writes stage5/cleans before launch without ACK. Capabilitytrue call0x4081a6->0x406920: AL0 invokes0x406f10 at0x4081bd; ALtrue invokes0x406eb0 at0x4081f7. Commit-cleanup failure logs; selected branch has no rollback call."
+    },
+    {
+      "owner": "updater0x406eb0/0x406f10",
+      "claim": "Commit helper writes stage5 then three cleanup calls. Recovery helper invokes existing0x40ee10 and, on recovery success, relaunches via0x4064c0 with null ACK name and closes returned handles. No startup ACK wait for restored launcher; recovery/restart/file success not guaranteed."
+    }
+  ],
+  "selected_wait_results": [
+    {
+      "result": 0,
+      "meaning": "event selected",
+      "return_AL": true,
+      "does_not_prove": "child remains alive or account/game succeeds"
+    },
+    {
+      "result": 1,
+      "meaning": "child process selected",
+      "return_AL": false
+    },
+    {
+      "result": "0x102 before30000ms",
+      "meaning": "continue50ms polling/pump branch"
+    },
+    {
+      "result": "timeout limit or other result",
+      "meaning": "failure cleanup; selected still-running child termination branch exists"
+    }
+  ],
+  "product_decision": {
+    "owner": "shared/launcher-update.mjs decodeWin32LauncherUpdatePackage",
+    "implemented": "selected resource declaration validation + frozen metadata through current public decoder",
+    "not_implemented": "Win32 process/events/filesystem transaction, fabricated browser lifecycle equivalent, auth or game fields"
+  },
+  "limitations": [
+    "Static ACK is frame-painted event, not publisher or account authentication.",
+    "Exact native language fallback and commandline helper behavior are not emulated by this byte profile.",
+    "New dossiers complete; reused updater entry high-pcode truncation/EH/alias/races remain.",
+    "No original binary or full decompilation in public deliverables."
+  ]
+}

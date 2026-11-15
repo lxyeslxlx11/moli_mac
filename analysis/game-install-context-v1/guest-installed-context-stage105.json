@@ -1,0 +1,111 @@
+{
+  "schema": "moli.normal-installed-context.v1",
+  "recorded_utc": "2026-10-30T03:12:43.969185+00:00",
+  "evidence_method": "Actual CUA Windows PowerShell results and interactive installer screenshots, transcribed as selected non-sensitive facts; no private account identifiers, raw chat or vendor artwork retained.",
+  "authorization": "analysis/game-install-context-v1/authorization-stage105.json",
+  "installer": {
+    "guest_path": "E:/CrossGate_Setup.exe",
+    "sha256": "e593e47fa09ac03e2213c7dc7bb80575e0295f0dc48a0e1edc73c4ac1982f983",
+    "explicit_launches": 1,
+    "accepted_UACs": 1,
+    "initial_pid": 6368,
+    "finished_page_observed": true,
+    "finished_option": "安装“易玩通”娱乐平台",
+    "finished_option_initially_checked": true,
+    "finished_option_confirmed_unchecked_before_finish": true,
+    "finish_clicks": 1,
+    "window_closed": true,
+    "WaitForExit_0": true,
+    "HasExited": true,
+    "ExitCode": 0,
+    "new_binding_terms_page_seen_in_observed_wizard_route": false
+  },
+  "registry_after": {
+    "key": "HKCU/SOFTWARE/SECN/PlayOnline/CrossGatePUK3",
+    "value": "Path",
+    "views": [
+      {
+        "view_bits": 32,
+        "type": "REG_SZ",
+        "data": "C:/Program Files (x86)/PlayOnline/魔力宝贝",
+        "reg_exit_code": 0
+      },
+      {
+        "view_bits": 64,
+        "type": "REG_SZ",
+        "data": "C:/Program Files (x86)/PlayOnline/魔力宝贝",
+        "reg_exit_code": 0
+      }
+    ],
+    "manual_registry_writes": 0
+  },
+  "directory": {
+    "path_from_actual_registry": "C:/Program Files (x86)/PlayOnline/魔力宝贝",
+    "Test_Path": true,
+    "recursive_force_file_count": 2369,
+    "recursive_file_bytes_sum": 2629576143,
+    "selected_files": [
+      {
+        "relative_path": "CG5Reg.exe",
+        "bytes": 13824,
+        "sha256": "c3baedb2f82a2da785e8d27e5d49560175f09f5a38319edb935995b8e7e228a9",
+        "matches_retained_source": true
+      },
+      {
+        "relative_path": "cg_se_3000.exe",
+        "bytes": 2904064,
+        "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+        "matches_retained_source": true
+      },
+      {
+        "relative_path": "MFC71.dll",
+        "bytes": 1060864,
+        "sha256": "a08ab5280687d699ccd307196e72847b23d0a475744ef7c73654defee0fb2cf2",
+        "matches_retained_source": true
+      },
+      {
+        "relative_path": "msvcr71.dll",
+        "bytes": 348160,
+        "sha256": "c4d4339df314a27ff75a38967b7569d9962337b8d4cd4b0db3aba5ff72b2bfbb",
+        "matches_retained_source": true
+      }
+    ],
+    "uninstaller_files_metadata_only": [
+      {
+        "relative_path": "unins000.dat",
+        "bytes": 367944
+      },
+      {
+        "relative_path": "unins000.exe",
+        "bytes": 3124229
+      }
+    ],
+    "retained_app_aggregate": {
+      "file_count": 2367,
+      "bytes": 2626083970
+    },
+    "aggregate_consistent_with_retained_app_plus_two_uninstaller_files": true,
+    "whole_directory_hash_manifest_compared": false
+  },
+  "process_check_after": {
+    "prefix_pattern": "^(CrossGate|POLCN|cg_se_3000|LauncherUpdater|CG5Reg)",
+    "count": 0,
+    "note": "A point-in-time process count plus observed deselection; not a complete trace of every transient child."
+  },
+  "own_actions": {
+    "explicit_game_launches": 0,
+    "explicit_platform_or_launcher_launches": 0,
+    "CG5Reg_executions": 0,
+    "uninstaller_executions": 0,
+    "policy_or_security_changes": 0,
+    "account_or_credential_actions": 0,
+    "memory_reads": 0,
+    "old_script_or_Restore_replays": 0
+  },
+  "scope_limits": [
+    "Normally installed context and four selected identities are now verified. Installer completion is not game execution, callback consumer recovery, playable client or official compatibility.",
+    "Uninstall files were only listed; uninstall or snapshot restore was not performed.",
+    "The game file has the same identity as the fixed static sample; its missing original .text file-byte boundary is not resolved by installation.",
+    "The prior game profile path remains different. Any later profile must be explicitly bound to this verified installed identity, without moving/faking files or registry."
+  ]
+}

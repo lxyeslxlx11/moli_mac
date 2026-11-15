@@ -1,0 +1,19 @@
+{
+  "stage": 272,
+  "previous_goal_turn": "progress",
+  "previous_checkpoint": {
+    "path": "analysis/game-legacy-battle-character-queue-v1/checkpoint-audit.json",
+    "sha256": "ae127045bdef8f70c8b9b1da1fa517ec484a8346f7988d8057a86ba262274a70"
+  },
+  "baseline_files": 4135,
+  "requirements": [
+    "Verify A/P receive, first ACK round seeding, twenty-slot mark and input initialization against fixed PE with REA.",
+    "Follow matching, stale and future ACK and P local-seat/control updates through real entry and RID0 registration across the round boundary.",
+    "Fix demonstrated faults in the shared consumer and validate source/generated/local TCP routes.",
+    "Preserve original 37 requirements and 10 incomplete groups; update existing canonical docs and evidence."
+  ],
+  "original_execution": 0,
+  "VM_actions": 0,
+  "official_sessions": 0,
+  "identified_fault": "markAck checked C rows rather than current body registrations; RID0 B slot5 was omitted from markedSlots before next C. Reproduced by a failing normal-entry test."
+}

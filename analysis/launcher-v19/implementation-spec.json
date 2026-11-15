@@ -1,0 +1,87 @@
+{
+  "schema": "moli.launcher-v19.implementation-spec.v1",
+  "recorded_utc": "2026-10-27T04:14:36.771542+00:00",
+  "native_evidence": "reused-native-spec.json",
+  "scope": "Unify explicit XML/cache/local HTTP initialization with real original-only browser launcher I/O; no original executable/VM/account/official game action.",
+  "target_binding": {
+    "module": "web/launcher-target.mjs",
+    "factory": "bindLauncherSessionTarget({catalogs,gameOrdinal,referenceOrdinal,allowedEndpoints})",
+    "validation": "Re-validate owned raw pair, digests and parsed model; select only referenced available non-Galaxy region;0..14 numeric message code; reject no BIP and any unapproved tuple; no pruning or URL grants.",
+    "identity": "Request gameCode is numeric original Game.Code; license gameCodeText preserves exact parsed digit text, including leading zeros. Duplicate Code entries keep game ordinal. No UI-index/+1 conversion.",
+    "output": "Frozen game/region ordinals/names, exact Code text, numeric Code, ordered owned address/port endpoints and catalog digest identity; trust/authentication unverified.",
+    "errors": [
+      "TARGET_INPUT",
+      "TARGET_REGION",
+      "TARGET_GAME",
+      "TARGET_EMPTY",
+      "TARGET_DENIED"
+    ]
+  },
+  "bootstrap_source": {
+    "module": "adapters/node/launcher-bootstrap-source.mjs",
+    "purpose": "Serve only explicitly injected owned original source bytes at fixed local routes; no filesystem input, upstream proxy, arbitrary routes or official defaults.",
+    "required_bytes": [
+      "localLauncherBytes",
+      "localGameListBytes",
+      "localRegionListBytes",
+      "launcherDigestBytes",
+      "catalogDigestBytes",
+      "gameListBytes",
+      "regionListBytes"
+    ],
+    "optional_bytes": [
+      "packageBytes"
+    ],
+    "options": "Explicit utf-8/gb18030 and boolean allowBareAmpersands. Own data properties; copy inputs, fixed responses return copies, dispose clears owned buffers.",
+    "budgets": {
+      "launcher_and_package_each": 33554432,
+      "local_and_remote_XML_each": 1048576,
+      "metadata_each": 4096,
+      "aggregate": 37748736
+    },
+    "empty_policy": "Local reference bodies may be empty; remote XML and metadata must be nonempty.",
+    "runtime_descriptor": "moli.local-bootstrap.v1, same-origin fixed localInputs and5 existing bootstrap endpoints; optional package locator is same-origin /bootstrap/package plus original positive progress100. This is original fixture service data, not a new native field.",
+    "server_schema": "moli.loopback.v2 adds optional bootstrap descriptor. Legacy optional gameCode metadata remains validated but session UI no longer uses it; selected XML Code is authoritative.",
+    "transport_guards": "Existing loopback bind/Host/Sec-Fetch-Site/source paths/CSP/Origin/capability/endpoint and byte/time limits preserved."
+  },
+  "configuration_UI": {
+    "module": "web/login-catalog.mjs",
+    "inputs": [
+      "explicit bounded XML file pair",
+      "explicit existing candidate-cache restoration",
+      "explicit local HTTP prepare button if source configured"
+    ],
+    "initial_state": "No candidate, account/review/start disabled. No cache open/restore or protocol socket at page load.",
+    "local_files": "Existing1MiB owned file adapter, explicit encoding and bare-ampersand switch, whole-pair digest/structure validation before target.",
+    "bootstrap": "Local launcher/XML references load via existing explicit-origin GET client; existing prepare self-update-first branch runs; whole candidate pair applies only when catalogs-prepared. Self-update branch displays validated candidate only, with no catalog/session target or execution.",
+    "deadline": "One10,000ms monotonic deadline covers local-reference loading plus prepare; remaining time passed to every client call and prepare; absolute time checked before apply.",
+    "cache": "Existing launcher-local profile, source pair/MD5/encoding/compatibility only. Explicit check then CAS save/restore; info check never applies; reload does not auto-restore. Unknown/corrupt/conflict state never auto-overwrites or deletes; current validated model survives failed info/save. Late successful commit reports saved, not rolled back.",
+    "invalidation": "Configuration/file/options/game/region changes clear old selected target, user/password DOM values, text pages/consent and candidate session. Busy/review locks configuration controls; separate cancel aborts own operation and generation/signal guards reject late results.",
+    "manual_scope": "Manual file/cache paths are explicit development paths; they do not prove native self-update completion, official source trust or current server compatibility.",
+    "error_handling": "Controlled visible status, no source payload/provider exception/account values in messages."
+  },
+  "session_UI": {
+    "change": "Uses bound target endpoints and numeric configured Code; license review receives preserved Code text. No runtime-code +1 policy remains in UI.",
+    "counter": "Independent current-page0..UInt32 counter increments per constructed attempt; two same-page attempts verified with0 then1, not a complete native counter lifecycle proof.",
+    "unsupported": "Actual ACP/non-ASCII and unconfigured license slots remain unsupported/unverified. No real account store or game handoff."
+  },
+  "testing": {
+    "node_new_cases": 11,
+    "node_total": 358,
+    "browser_scenarios": 17,
+    "browser_measurements": 1,
+    "actual_composite_deadline_ms": 10052,
+    "browser_requests": 429,
+    "expected_aborted_requests": 1,
+    "unanticipated_errors": 0,
+    "independent_python_final_browser_connections": 6,
+    "independent_python_complete_requests": 5,
+    "browser_negative_fixture": "Only cancellation/timeout cases hold original local responses with Playwright routes; successful end-to-end protocol cases use actual HTTP/IndexedDB/native WebSocket/TCP."
+  },
+  "not_verified": [
+    "actual ACP/IME and non-ASCII",
+    "real applicable terms/account persistence, service identity/authentication/opaque lifecycle",
+    "trusted official update/native replacement/rollback or remote/mobile transport",
+    "game consumer/play/Safari/physical devices/WeChat/official compatibility"
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "schema": "moli.launcher-v10.validation.v1",
+  "recorded_utc": "2026-10-26T23:56:38.547851+00:00",
+  "scope": "Fixed launcher static local license/profile metadata and pure review/input reset. Public synthetic inputs only.",
+  "node": {
+    "version": "v26.9.0",
+    "tests": 215,
+    "pass": 215,
+    "fail": 0,
+    "skipped": 0,
+    "new_tests": 15,
+    "previous_tests": 200,
+    "log": "node-tests.log",
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs"
+  },
+  "independent": {
+    "python_hashlib_vectors": 23,
+    "node_crypto_comparisons": 4080,
+    "md5_rounds": 64,
+    "md5_check": "md5-schedule-check.json",
+    "code11_resources_hashed": 4,
+    "vectors": "original-local-vectors.json"
+  },
+  "static": {
+    "new_distinct_functions": 42,
+    "scope_functions": 33,
+    "new_records": 66,
+    "records": 192,
+    "session": "exported/snapshotted/closed",
+    "spec": "static-spec.json"
+  },
+  "review": {
+    "issues_found": 2,
+    "fixed": [
+      "Availability custom iterator/sparse values: four own indexed booleans",
+      "TypedArray metadata spoofing: intrinsic length budget before internal byte copy"
+    ],
+    "independent_confirmation": "Both reproductions and3 filtered tests passed. Budget precedes copy.",
+    "final_regressions": "Iterator/hole/inherited/subclass/Proxy cases in15 new tests. Proxy primitive TypeError later normalized to INVALID_INPUT and full215/browser6 rerun."
+  },
+  "browser": {
+    "checks": 6,
+    "requests": 38,
+    "errors": 0,
+    "all_loopback_get": true,
+    "browser": "155.0.8059.85",
+    "receipt": "browser-local-smoke.json",
+    "actual_scope": "Synthetic local digest/review/reset and existing pages. No new UI, real terms or storage action."
+  },
+  "syntax": {
+    "esm_files": 3,
+    "python_ast_files": 2,
+    "passed": true
+  },
+  "example": {
+    "path": "example-output.json",
+    "exit_code": 0,
+    "scope": "Original placeholder pages/public input; state/page IDs/lengths/intent value only; persistedfalse/authenticationunverified"
+  },
+  "sources": [
+    {
+      "path": "shared/launcher-local.mjs",
+      "bytes": 7731,
+      "sha256": "5654e462e05de65e722f9f6cdfab4ad037c83030cb5090908bedaac405cb889a"
+    },
+    {
+      "path": "shared/index.mjs",
+      "bytes": 10639,
+      "sha256": "44043f8e25d023042a9c7614a8622604008085d5117508ca2dc937a8bb7e4809"
+    },
+    {
+      "path": "shared/tests/launcher-local.test.mjs",
+      "bytes": 12404,
+      "sha256": "61d9e5d0aa1cae3946b465f59ac4b7ecc751e3e6871516bb7974d06113787e07"
+    },
+    {
+      "path": "shared/examples/launcher-local.mjs",
+      "bytes": 1124,
+      "sha256": "c83eecd87684f82fd6bb38d33a10b8ba18fa85597fdfcc83cfd69a98ce8e5def"
+    },
+    {
+      "path": "analysis/launcher-v10/build_local_vectors.py",
+      "bytes": 1157,
+      "sha256": "f71f60c0dbf99d4f1b96c1002ef63fa4b855eb1822470a7ac385bdd134494058"
+    },
+    {
+      "path": "analysis/launcher-v10/verify_md5_schedule.py",
+      "bytes": 2230,
+      "sha256": "73b1166c3b3edf8d2cb065046f27eb61174a56f8e3f1ee55429edccdcd645653"
+    },
+    {
+      "path": "analysis/launcher-v10/original-local-vectors.json",
+      "bytes": 3465,
+      "sha256": "446434347d6ec3282b8342db7b0f1f7d1a7a4ac537025c7e10ef8cf1170b1bea"
+    }
+  ],
+  "dependencies": {
+    "new_installs": 0,
+    "added_capability": "Original pure JS one-block MD5 compatibility key for1..16B username",
+    "reused": [
+      "REA6.7.0/Ghidra12.1.4",
+      "Python hashlib",
+      "Node26.9.0",
+      "Playwright1.62.1/Chrome155"
+    ],
+    "primary_sources": [
+      "https://www.rfc-editor.org/rfc/rfc1321.html",
+      "https://learn.microsoft.com/en-us/cpp/atl-mfc-shared/reference/cstringdata-class?view=msvc-170"
+    ]
+  },
+  "verification_corrections": [
+    "Static helper initially used subject.sha256; corrected to actual subject.digest.sha256 then reran. Initial failure not counted.",
+    "After adding Proxy negatives a native TypeError failed1 regression; normalized error and final215/215 plus browser6 passed."
+  ],
+  "not_verified": [
+    "Actual Windows codepage/input notifications/modal dispatch",
+    "Actual terms content/version/provenance/applicability/display/user decision/storage adapter",
+    "INI semantics/durability or disk remembered account persistence",
+    "Trusted updater transform/rollback, full service session/opaque lifetime and real transport",
+    "Game REA/implementation for this goal and official compatibility",
+    "Safari/phone/miniprogram/old real-file narrow suite; unchanged graphics Python/Swift not rerun"
+  ],
+  "preservation": {
+    "native_files": 17,
+    "all_match_stage54": true,
+    "fixed_original_and_unpacked_launcher_hashes_match": true,
+    "private_bundle_and_snapshot_hashes_match": true,
+    "original_execution": false,
+    "vm_operations": false,
+    "real_profile_reads": false,
+    "real_terms_acceptance": false,
+    "storage_write": false,
+    "official_network": false,
+    "git_repository": false
+  },
+  "documentation": {
+    "files": [
+      "README.md",
+      "shared/README.md",
+      "web/README.md",
+      "reports/development-plan.md",
+      "reports/launcher-static.md",
+      "reports/logic-protocol-spec.md",
+      "reports/architecture-and-milestones.md",
+      "reports/module-interfaces.md",
+      "reports/resource-formats.md",
+      "reports/validation.md",
+      "reports/known-issues.md",
+      "reports/analysis-methods.md"
+    ],
+    "relative_local_links_checked": 694,
+    "missing": []
+  }
+}

@@ -1,0 +1,27 @@
+<view class="card" wx:if="{{inventory}}">
+  <view class="section-title">物品与装备</view>
+  <view class="hint" role="status">{{inventory.notice}}</view>
+  <view wx:for="{{inventory.groups}}" wx:for-item="group" wx:key="name" class="commerce-section">
+    <view class="line">{{group.name}}</view>
+    <view class="inventory-slots">
+      <button wx:for="{{group.rows}}" wx:for-item="entry" wx:key="slot" size="mini"
+        class="inventory-slot {{entry.selected ? 'inventory-selected' : ''}} {{entry.target ? 'inventory-target' : ''}}"
+        disabled="{{entry.disabled}}" data-action="select" data-slot="{{entry.slot}}" data-revision="{{entry.revision}}" bindtap="onInventory">
+        {{entry.label}} · {{entry.name}}{{entry.quantity > 0 ? ' × ' + entry.quantity : ''}}
+      </button>
+    </view>
+  </view>
+  <view wx:if="{{inventory.description}}" class="line commerce-text">{{inventory.description}}</view>
+  <view class="controls">
+    <button wx:if="{{inventory.canUse}}" size="mini" data-action="use" bindtap="onInventory">使用</button>
+    <button wx:if="{{inventory.canMove}}" size="mini" data-action="move" bindtap="onInventory">移动整组</button>
+    <button wx:if="{{inventory.canDrop}}" size="mini" data-action="drop" bindtap="onInventory">丢弃</button>
+    <button wx:if="{{inventory.confirmingDrop}}" size="mini" type="warn" disabled="{{inventory.busy}}"
+      data-action="confirm-drop" bindtap="onInventory">确认丢弃</button>
+    <button wx:if="{{inventory.canClear}}" size="mini" data-action="clear" bindtap="onInventory">取消选择</button>
+  </view>
+  <form wx:if="{{inventory.canSplit}}" class="controls" bindsubmit="onInventorySplit">
+    <input class="field commerce-amount" type="number" name="amount" value="1" maxlength="10" placeholder="移动数量" />
+    <button size="mini" form-type="submit">移动指定数量</button>
+  </form>
+</view>

@@ -1,0 +1,148 @@
+{
+  "policy": "moli-fixed-two-drive-preinstall-v1",
+  "passed": true,
+  "vm_bundle": "/Users/lx/Documents/code/moli-mac/build/utm/MoliOffline-ARM64-20261025.utm",
+  "checks": [
+    {
+      "check": "bundle.real_directory",
+      "passed": true
+    },
+    {
+      "check": "baseline.dictionary",
+      "passed": true
+    },
+    {
+      "check": "baseline.config_sha256",
+      "passed": true
+    },
+    {
+      "check": "baseline.disk_basename",
+      "passed": true
+    },
+    {
+      "check": "baseline.disk_sha256",
+      "passed": true
+    },
+    {
+      "check": "baseline.disk_bytes",
+      "passed": true
+    },
+    {
+      "check": "baseline.system",
+      "passed": true
+    },
+    {
+      "check": "baseline.sharing",
+      "passed": true
+    },
+    {
+      "check": "baseline.network",
+      "passed": true
+    },
+    {
+      "check": "baseline.usb_sharing",
+      "passed": true
+    },
+    {
+      "check": "config.known_root_keys",
+      "passed": true
+    },
+    {
+      "check": "config.Backend",
+      "passed": true
+    },
+    {
+      "check": "config.ConfigurationVersion",
+      "passed": true
+    },
+    {
+      "check": "config.Display",
+      "passed": true
+    },
+    {
+      "check": "config.Input",
+      "passed": true
+    },
+    {
+      "check": "config.Network",
+      "passed": true
+    },
+    {
+      "check": "config.Serial",
+      "passed": true
+    },
+    {
+      "check": "config.Sound",
+      "passed": true
+    },
+    {
+      "check": "config.Sharing",
+      "passed": true
+    },
+    {
+      "check": "config.System",
+      "passed": true
+    },
+    {
+      "check": "config.QEMU",
+      "passed": true
+    },
+    {
+      "check": "Information.known_keys",
+      "passed": true
+    },
+    {
+      "check": "Information.identity",
+      "passed": true
+    },
+    {
+      "check": "Drive.exact_original_system_and_readonly_internal_cd",
+      "passed": true
+    },
+    {
+      "check": "Data.real_directory",
+      "passed": true
+    },
+    {
+      "check": "Data.exact_internal_files",
+      "passed": true
+    },
+    {
+      "check": "Data.file_0.regular_single_link",
+      "passed": true
+    },
+    {
+      "check": "Data.file_1.regular_single_link",
+      "passed": true
+    },
+    {
+      "check": "Data.file_2.regular_single_link",
+      "passed": true
+    },
+    {
+      "check": "Data.file_3.regular_single_link",
+      "passed": true
+    }
+  ],
+  "disk_metadata": [
+    {
+      "role": "system",
+      "bytes": 393216,
+      "allocated_bytes": 397312
+    },
+    {
+      "role": "readonly_cd",
+      "bytes": 8849653760,
+      "allocated_bytes": 8863744000
+    }
+  ],
+  "limitations": [
+    "Reads config.plist, before-install.json and metadata only; no disk contents read.",
+    "Does not prove runtime isolation, media equivalence or unchanged system-disk contents.",
+    "Does not exclude ancestor-directory symlinks, races or later/global overrides.",
+    "The older blank-VM audit intentionally rejects this added read-only CD."
+  ],
+  "config_sha256": "1206383b36fc281a3d98ce6f00180931bde52a2780bca4f5687d23d0565cd9fd",
+  "before_install_sha256": "2032bf20e64559a556e9b7b598b54d4db42ab53804dbcd620c47e1f49cc4a749",
+  "failed_checks": []
+}

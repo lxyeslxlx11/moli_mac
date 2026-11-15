@@ -1,0 +1,48 @@
+{
+  "schema": "moli.capability.game-training-services-plan.v1",
+  "requirement": "全部需求能力先成规，再按依赖批次开发；复用NPC/人物/宠物训练与共同对话来源，集中核容量、价格、提交、取消和失效。",
+  "capabilities": [
+    "G12",
+    "G10",
+    "X01",
+    "X02"
+  ],
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "baseline": "build/analysis/capability-game-pet-publication-v1/next-baseline.json",
+  "questions": [
+    "复用同版Q?m分派与既有治疗/人物学习遗忘及两套宠物训练解析，按实际字段/标志核报价、余额、容量及列表映射。",
+    "跟踪window54真实控件/模式切换和确认/取消/关闭重入，区分条件、显示行、原槽、外层对话身份与本地动作。",
+    "结合人物/宠物资料发布核失效和回复/成功边界，比较既有共享实现并登记实际差异，不在统一分析完成前新增功能。",
+    "保留完整需求及六维验收，按D0/D3依赖复用一份核心、缩小重复分析范围；未证业务/平台条件继续列出。"
+  ],
+  "original_execution": false,
+  "VM_operations": false,
+  "account_or_official_session_observed": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "question_review": [
+    {
+      "question": 1,
+      "status": "answered-for-listed-source-modes",
+      "contract": "analysis/capability-first-v1/game-training-services-contract.json"
+    },
+    {
+      "question": 2,
+      "status": "answered-for-window52-and54-normal-paths",
+      "contract": "analysis/capability-first-v1/game-training-services-contract.json"
+    },
+    {
+      "question": 3,
+      "status": "partially-answered",
+      "contract": "analysis/capability-first-v1/game-training-services-contract.json"
+    },
+    {
+      "question": 4,
+      "status": "answered",
+      "contract": "analysis/capability-first-v1/game-training-services-contract.json"
+    }
+  ]
+}

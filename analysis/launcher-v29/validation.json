@@ -1,0 +1,172 @@
+{
+  "schema": "moli.launcher-v29.validation.v1",
+  "recorded_utc": "2026-10-27T10:00:12.701827+00:00",
+  "stage": 74,
+  "result": "Explicit own resource snapshot/save/check/restore and CAS transaction integrated with actual login UI; restored resource bytes feed existing launcher context. Full launcher/game/platform/official goal incomplete.",
+  "preflight": "preflight.json",
+  "native_evidence": {
+    "reuse": "evidence-reuse.json",
+    "new_queries": 0,
+    "new_native_facts": 0,
+    "last_saved_REA_sessions_closed": true
+  },
+  "independent_reference": {
+    "oracle": "resource_snapshot_oracle.py",
+    "vectors": "original-resources.json",
+    "cases": 2,
+    "coverage": "PythonMD5/JSON binding key and original binary/empty58B resources; no official asset."
+  },
+  "node": {
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "tests": 501,
+    "passed": 501,
+    "new_tests": 10,
+    "failed": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "duration_ms": 11875.295459,
+    "log": "node-tests.log",
+    "focused_initial": "resource-tests.log",
+    "focused_final": "resource-tests-final.log",
+    "syntax": "syntax-checks.json"
+  },
+  "browser": {
+    "browser": "155.0.8059.85",
+    "driver": "Playwright1.62.1; Browser plugin not available",
+    "nativeIDB": {
+      "record": "resource-store-browser.json",
+      "checks": 12,
+      "HTTP_module_requests": 51,
+      "session_connections": 0,
+      "late_cancel": {
+        "revision": 4,
+        "committed": true,
+        "cancellationTooLate": true,
+        "deadlineExceededAfterCommit": false,
+        "trust": "unverified"
+      },
+      "late_deadline": {
+        "revision": 5,
+        "committed": true,
+        "cancellationTooLate": false,
+        "deadlineExceededAfterCommit": true,
+        "trust": "unverified"
+      },
+      "injected_putfailure_not_realquota": true
+    },
+    "UI": {
+      "record": "ui-cache-browser.json",
+      "checks": 13,
+      "requests": 299,
+      "screenshots": 7,
+      "actual_independent_original_exchanges": 2
+    },
+    "patch_regression": {
+      "record": "patch-ui-regression.json",
+      "checks": 13,
+      "requests": 201,
+      "actual_independent_original_exchanges": 2
+    },
+    "default_Galaxy_regression": {
+      "record": "plain-regression-browser.json",
+      "checks": 6,
+      "requests": 118,
+      "actual_independent_original_exchanges": 3
+    },
+    "errors": [],
+    "unexpected_console": [],
+    "external_requests": 0,
+    "six_checks": "visual-review.json",
+    "limits": "Real native Chrome IDB, original HTTP/FileList/WS/TCP in temporary contexts only. No nativeWindows/device/game/official acceptance."
+  },
+  "example": {
+    "command": "node web/examples/launcher-browser-game-patch-local.mjs",
+    "url": "http://127.0.0.1:4174/",
+    "log": "ui-example.log",
+    "browser_record": "ui-example-browser.json",
+    "saved_reloaded_restored_revision": 1,
+    "original_peer_verified": true,
+    "connections": 1,
+    "exit_code": 0,
+    "closed_normally": true
+  },
+  "implementation_contract": "implementation-spec.json",
+  "review": "review-notes.json",
+  "dependencies": {
+    "new_acquisitions": 0,
+    "capabilities": "Existing Node/Python/PyCryptodome/Pako/Chrome/Playwright and native browserIndexedDB sufficient; no security/VM/global config changes."
+  },
+  "matrix": {
+    "revision": 22,
+    "ids": 20,
+    "status_changes": [],
+    "dependencies_changed": false,
+    "scope": "UPD-GAME/LCH-CATALOG own snapshot storage evidence expanded only; native/source trust/game acceptance incomplete."
+  },
+  "authorization": {
+    "original_EXE_or_VM_executions": 0,
+    "original_installed_files_modified": 0,
+    "real_accounts_or_sessions_read": 0,
+    "official_game_requests": 0,
+    "official_assets_added": false,
+    "global_configuration_changes": 0
+  },
+  "requirement_index": "Current development/R1 query still exits2 for missing mandatory requirement-index; project development-plan remains truth. No global knowledge writes.",
+  "remaining": [
+    "Audit actual launcher-own gate against current evidence and separate gameconsumer joint verification from static/implementation gaps",
+    "Native/source-authenticity/actualACP/EH/full-size storage/platform and official acceptance",
+    "Game REA and implementation still required by full ordered goal"
+  ],
+  "goal_complete": false,
+  "delivery_checks_passed": true,
+  "preservation": {
+    "previous_files": 1089,
+    "unchanged_previous_files": 1071,
+    "planned_baseline_files": 18,
+    "baseline_targets_only": true,
+    "unchanged_native_files": 17,
+    "unchanged_prior_shared_product_files": 82,
+    "previous_manifest_unchanged_sha256": "5e178ce012a0b69ede3d66b1db147a17fff050274111164a3bd5abc66df85761"
+  },
+  "documentation": {
+    "files": 44,
+    "local_links_checked": 1968,
+    "explicit_anchors_checked": 224,
+    "errors": []
+  },
+  "delivery_manifest": "../delivery-manifest-stage74.json",
+  "tested_product_files": [
+    {
+      "path": "shared/launcher-resources.mjs",
+      "sha256": "0ed27718c113feb0361d055e4ee4371d3ef1579c68364a2b95e30d844a547784"
+    },
+    {
+      "path": "shared/index.mjs",
+      "sha256": "f87b10e47cf21c5f33007abd50452258de2fd730a4d90a1dda1016ee190eeb2c"
+    },
+    {
+      "path": "web/launcher-resource-store.mjs",
+      "sha256": "8d2c0fc8d2c71653812c3eb90a3dbc7ac8597042b7b19d8c04bb09cd3d3956ec"
+    },
+    {
+      "path": "web/launcher-patch-state.mjs",
+      "sha256": "948ac81d560453c66ada6cd56f734ceb04fc9f739edadfdc92722d7a177b6930"
+    },
+    {
+      "path": "web/login-patch-cache.mjs",
+      "sha256": "0c41d206ea6b54875a62c1a8e7b90da0e7e06e691d5787aa00bd14c9dfe0adb6"
+    },
+    {
+      "path": "web/login-patch.mjs",
+      "sha256": "4275fc4939d80238923ea46ecc9b27b9cdcf3184a9f08e2e1cc781bc4e1bb855"
+    },
+    {
+      "path": "web/login-app.mjs",
+      "sha256": "65eb99e73030ceb695fb6f5d3cd487c20d8f9acef2c66e75659b7811c1d59970"
+    },
+    {
+      "path": "web/login.html",
+      "sha256": "77e1cdb51691e24ebbf5f37dcdd4ed8726173bcf24b4c3a83c5e4c82eb5ca0c2"
+    }
+  ]
+}

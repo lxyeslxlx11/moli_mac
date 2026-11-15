@@ -1,0 +1,213 @@
+{
+  "schema": "moli.capability.launcher-modal-recovery-contract.v1",
+  "source": {
+    "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+    "bytes": 4111872,
+    "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+  },
+  "source_check": "analysis/capability-first-v1/launcher-modal-recovery-source-check.json",
+  "capabilities": [
+    "L01",
+    "L02",
+    "L03",
+    "L04",
+    "L08"
+  ],
+  "facts": [
+    {
+      "id": "modal-admission",
+      "procedures": [
+        "0x422270",
+        "0x422fc0",
+        "0x426150",
+        "0x4278c0",
+        "0x41e420"
+      ],
+      "claim": "Preset choose/save-current and manual directory entry check the Main modal/busy/preparation and process gates on their selected paths and hold+10f2 across ordinary modal work. Note editing instead gates the selected row and uses the common dialog owner; no common+10f2 check is added to it. Ordinary login case3 checks busy,so the business modal latch is not a universal command guard.",
+      "kind": "fact"
+    },
+    {
+      "id": "owner-disable-restore",
+      "procedures": [
+        "0x44f422",
+        "0x44fa8b",
+        "0x45136f",
+        "0x44f59c",
+        "0x44fa42"
+      ],
+      "claim": "PreModal requests modeless disable and resolves the caller-supplied owner,recording an extra enabled top owner when needed. DoModal disables its returned non-desktop owner only when enabled and remembers that change. The normal tail reenables the remembered owner,conditionally restores activation,calls the destruction slot and PostModal. PostModal detaches,conditionally reenables a still-existing saved extra owner and requests modeless enable. These are selected API requests and normal source ordering,not observed OS success.",
+      "kind": "fact"
+    },
+    {
+      "id": "create-and-early-end",
+      "procedures": [
+        "0x44f422",
+        "0x44f147",
+        "0x44f2ba",
+        "0x44f3c5",
+        "0x44f606"
+      ],
+      "claim": "Missing template returns-1 before modal setup. Creation initializes result+68 to-1 and sets continue bit0x10 before creating the window. EndDialog marks+9c and ends the loop before the OS call. A first create failure only retries the alternate module while+9c is zero; ending during initialization suppresses that retry. The creation tail can destroy an ended window and report no live handle while the modal result still carries the explicit completion value.",
+      "kind": "fact"
+    },
+    {
+      "id": "loop-and-result",
+      "procedures": [
+        "0x44bad6",
+        "0x44ff3b",
+        "0x45034f",
+        "0x44fe62",
+        "0x448a36",
+        "0x4490b4",
+        "0x44f59c"
+      ],
+      "claim": "The selected loop sets modal bits0x18,peeks without an HWND filter and delegates thread pumping. The App+5c thunk and fallback both reach44fe62,whose GetMessageA is unfiltered and whose normal branch translates/dispatches messages not consumed by pretranslation. ContinueModal reads+60 bit0x10; EndModalLoop stores+68,clears that bit and posts a null wake message. Normal loop exit clears0x18 and returns+68. Idle message0x36a and WM_TIMER timer-ID0x36a are distinct namespaces; a modal loop is not a global pause of Main timers.",
+      "kind": "fact"
+    },
+    {
+      "id": "accept-and-cancel",
+      "procedures": [
+        "0x44f983",
+        "0x44f7a0",
+        "0x44f606",
+        "0x4490b4",
+        "0x422890",
+        "0x4228c0",
+        "0x422800"
+      ],
+      "claim": "Four source-bound modal vtables share Continue/EndModalLoop and base Cancel2. Directory uses the prior validated command callback then delegates to base OK; preset choose,editor and note have their own OK overrides. Base OK requires UpdateData(1) success before EndDialog1; base Cancel directly ends with2. Existing focus/name/record/note validation remains in each override. A Cancel return is not a generic rollback of all owner state.",
+      "kind": "fact"
+    },
+    {
+      "id": "business-publication",
+      "procedures": [
+        "0x422270",
+        "0x427020",
+        "0x4278c0",
+        "0x426150"
+      ],
+      "claim": "Prior contracts retain separate commits: completed preset-list edits copy back before outer result testing and survive cancel; accepted isolated editor candidates publish after their required persistence step. Note writes occur only on accepted modal completion,using the selected index/key path. Manual install validates/persists before per-game path publication,while earlier dialog scratch writes remain outside that commit. Normal latch restoration does not prove exception-unwind rollback.",
+      "kind": "fact"
+    },
+    {
+      "id": "login-error-prompt",
+      "procedures": [
+        "0x422a70",
+        "0x449c73",
+        "0x40e800",
+        "0x4316c0",
+        "0x423c30"
+      ],
+      "claim": "The ordinary error completion requires busy,clears preset pending state and calls Stop before showing a prompt; a deferred close suppresses that prompt. The wrapper uses Main HWND and the actual MessageBoxA import with three stack arguments,despite its conflicting W label.40e800 is a byte-string assignment helper,not itself a popup. The existing reply lease can remain held while its UI path executes; this does not introduce a new protocol message or guarantee every event ordering.",
+      "kind": "fact"
+    },
+    {
+      "id": "XML-delete-ownership",
+      "procedures": [
+        "0x4059f0",
+        "0x437a00",
+        "0x437a60",
+        "0x437a90",
+        "0x437b30",
+        "0x437ba0",
+        "0x437bd0",
+        "0x437980",
+        "0x437900",
+        "0x437c70"
+      ],
+      "claim": "Seven document/node/attribute vtable slot0 targets bind the deleting destructors. Node destruction saves next sibling before virtual deleting each child with flag1,then frees its own value. Element clear resets first/last children and unlinks/deletes attributes around its embedded+34 sentinel; element destruction then destroys that sentinel and the base node. Document/declaration owned strings are released by their selected destructors; the delete flag controls final object release.",
+      "kind": "fact"
+    },
+    {
+      "id": "reload-and-diagnostics",
+      "procedures": [
+        "0x438580",
+        "0x438750",
+        "0x43a260",
+        "0x43ae40"
+      ],
+      "claim": "File load deletes old children and resets first/last/cursor before opening the newly assigned filename. This is not rollback to the old local tree on failure. It does not reset the document error flag before opening; open failure calls first-error SetError2,zero-length file returnsfalse without Parse,and nonempty input invokes Parse. Direct Parse resets diagnostics but appends into the existing child list. Return pointer,file-load boolean and error flag remain different observations; old diagnostic state can matter when Parse was never entered.",
+      "kind": "fact"
+    },
+    {
+      "id": "link-and-catalog-gate",
+      "procedures": [
+        "0x438540",
+        "0x40bf80",
+        "0x4384a0"
+      ],
+      "claim": "The selected link helper overwrites parent/previous/next and appends the supplied node; it does not itself clone or detach it from another owner. Catalog callers still require both load booleans and named root containers before resetting shared rows. Failed local tree reloads and shared catalog publication are different boundaries; after admission population is in place,not a proved whole transaction.",
+      "kind": "fact"
+    }
+  ],
+  "documented_platform_contracts": [
+    {
+      "kind": "fact",
+      "authority": "documented-platform-behavior",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/dlgbox/dlgbox-programming-considerations",
+      "claim": "Default unhandled WM_CLOSE posts an IDCANCEL button command unless an existing Cancel control is disabled.",
+      "original_runtime_verified": false
+    },
+    {
+      "kind": "fact",
+      "authority": "documented-platform-behavior",
+      "url": "https://learn.microsoft.com/en-us/cpp/mfc/reference/cdialog-class?view=msvc-170",
+      "claim": "Default modal OnCancel returns IDCANCEL; OnOK validates data before closing. Modal processing participates in PreTranslateMessage.",
+      "original_runtime_verified": false
+    },
+    {
+      "kind": "fact",
+      "authority": "documented-platform-behavior",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-messageboxa",
+      "claim": "MessageBoxA creates a modal prompt. Its default application modality restricts owner interaction without establishing a global thread pause.",
+      "original_runtime_verified": false
+    }
+  ],
+  "scope_refinement": [
+    "Common modal ownership and each business commit/cancel policy are separate.",
+    "Selected node deletion/reload and catalog publication are separate from arbitrary invalid-memory or OS fault outcomes.",
+    "Default OS close/Cancel/MessageBox semantics are cited documentation,not original runtime acceptance."
+  ],
+  "inferences": [
+    {
+      "kind": "inference",
+      "implementation_added": false,
+      "claim": "D1 should preserve per-owner modal input gating while allowing background work through its own valid state/identity checks. Edit candidates,completed list writes,local XML trees and shared catalog publication need different commit boundaries. A global modal boolean or blanket cancel rollback would lose these source distinctions. The channel nested-pump guard helps only on its selected same-stack path; platform owner disappearance and callbacks already acquired still need explicit handling."
+    }
+  ],
+  "requirement_answers": [
+    {
+      "question": 1,
+      "status": "answered-bounded-source",
+      "result": "Four selected modal families,normal owner restore,result/creation/Cancel and retained publication policies bound."
+    },
+    {
+      "question": 2,
+      "status": "partially-answered",
+      "result": "Normal thread pumping and error-stop-before-prompt now bound against the retained channel guard/lease rules; arbitrary posted commands,owner loss,cross-thread and all exceptional schedules remain."
+    },
+    {
+      "question": 3,
+      "status": "answered-bounded-source",
+      "result": "Actual deleting slots,recursive child/attribute clear,diagnostic/reload split and catalog gate bound on the selected normal/failure source paths."
+    },
+    {
+      "question": 4,
+      "status": "answered-bounded-source",
+      "result": "Shared modal/edit/tree ownership implications recorded; no product implementation or acceptance claims added."
+    }
+  ],
+  "remaining": [
+    "Other admitted modal/business entries,actual owner loss/posted-command and cross-thread interleavings,global exits and all exceptional/unwind/callback-throw paths affecting required behavior.",
+    "Actual OS/locale/IME/filesystem/profile behavior and bounded invalid/truncated XML inputs; dynamic menu targets and three resource uses remain in the discovery review.",
+    "Game actual alternate dispatch,graphics/input/shared owners and remaining full capability conditions.",
+    "Independent implementation and actual platform/device/account/official acceptance remain outside this static package."
+  ],
+  "original_execution": false,
+  "account_or_session_observed": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "official_acceptance": false,
+  "full_goal_complete": false
+}

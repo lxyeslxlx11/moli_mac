@@ -1,0 +1,66 @@
+{
+  "schema": "moli.launcher-v23.checks.v1",
+  "syntax": [
+    {
+      "path": "shared/launcher-process.mjs",
+      "node_check": true
+    },
+    {
+      "path": "shared/tests/launcher-process.test.mjs",
+      "node_check": true
+    },
+    {
+      "path": "shared/examples/launcher-process.mjs",
+      "node_check": true
+    },
+    {
+      "path": "shared/index.mjs",
+      "node_check": true
+    },
+    {
+      "path": "analysis/launcher-v23/process_oracle.py",
+      "python_ast": true
+    }
+  ],
+  "source_negatives": [
+    {
+      "case": "one-byte-sample-change",
+      "rejected": true,
+      "reason": "sample SHA256 mismatch"
+    },
+    {
+      "case": "wrong-identity",
+      "rejected": true,
+      "reason": "sample SHA256 mismatch"
+    },
+    {
+      "case": "wrong-literal",
+      "rejected": true,
+      "reason": "literal mismatch"
+    }
+  ],
+  "example": {
+    "command": "D:\\Original\\OriginalClient.exe --original --region 2 animeinfobin:1 animebin:2",
+    "cwd": "D:\\Original",
+    "resourceRows": 2,
+    "clientCreationRequested": true,
+    "upstreamReady": "unverified",
+    "authentication": "unverified",
+    "gameAcceptance": "unverified",
+    "execution": "not-performed"
+  },
+  "new_dependencies": 0,
+  "existing_preview_session_48946": {
+    "terminal_exit": 1,
+    "summary": {
+      "originalPeerVerified": false,
+      "stopped": false
+    },
+    "port4174_listening": false,
+    "cause": "Not assigned from output; not passing evidence. No restart or new original peer needed for core-only phase."
+  },
+  "initial_test_failure": {
+    "log": "process-tests-initial.log",
+    "kind": "Test expectation projected extra oracle bytes_hex field not exposed in group metadata; whole command bytes matched. Removed only that metadata projection, retained initial log. Product unchanged."
+  }
+}

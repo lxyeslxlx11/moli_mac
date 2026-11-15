@@ -1,0 +1,47 @@
+{
+  "schema": "moli.game-text-observer-runtime-v1.transfer-preparation.v1",
+  "recorded_utc": "2026-11-01T06:24:09.088406+00:00",
+  "plan": {
+    "path": "analysis/game-text-observer-runtime-v1/plan.json",
+    "bytes": 3892,
+    "sha256": "d4a744f2ba16fc5931b367132d21212927432c2fb71ec0bc025e8245392a0558"
+  },
+  "sources": [
+    {
+      "path": "analysis/game-text-observer-runtime-v1/fixed_transfer.py",
+      "bytes": 7368,
+      "sha256": "1d9f5b4e87381de59ca994e7ed1430fe4c38ee21fe75317fd093e42589b30f09"
+    },
+    {
+      "path": "analysis/game-text-observer-runtime-v1/test_fixed_transfer.py",
+      "bytes": 3820,
+      "sha256": "b32c87db7d827838d4cc9620fae0b71a0ab82abe5d1eb50b232bf51acb43ecc1"
+    }
+  ],
+  "actual_host_tests": {
+    "command": "python3 -B -m unittest discover -s analysis/game-text-observer-runtime-v1 -p 'test_fixed_transfer.py' -v",
+    "tests": 5,
+    "passed": 5,
+    "exit_code": 0,
+    "scope": "Original loopback HTTP: exact binary/once, route/method/range, wrong peer, upload length/hash/full bytes, exclusive output, nonfixture/unknown bind rejection. Servers closed and request threads joined."
+  },
+  "current_network_observations": {
+    "host": "ifconfig vnic0 absent; selected ifconfig-a project10.211.55.* result bridge100=10.211.55.2, exit0",
+    "guest": "Actual Get-NetIPAddress output10.211.55.3 and127.0.0.1 plus new prompt",
+    "changed_network_settings": false
+  },
+  "observer": {
+    "path": "build/analysis/game-text-observer-v1/tool/text-observer.exe",
+    "bytes": 146798,
+    "sha256": "163864829f3b47eaa0b640c44b5de1d46f0e44658919b7c4e51974e5b83732f5"
+  },
+  "production_modes": {
+    "send-observer": "One GET /text-observer.exe of fixed146798B/163864... only",
+    "receive-fixture": "One POST /fixture-text.bin of exact6624B matching actual-base original fixture oracle, byte-for-byte; fixed private output with xb; no vendor/credential/arbitrary file upload"
+  },
+  "binding": "Only127.0.0.1/127.0.0.1 or freshly checked10.211.55.2/10.211.55.3; no0.0.0.0",
+  "timing": "Loop TTL10..600seconds and per-socket3second timeout; not a proof of hard end-to-end deadline",
+  "real_guest_transfer_started": false,
+  "real_guest_fixture_or_observer_run": false,
+  "full_goal_complete": false
+}

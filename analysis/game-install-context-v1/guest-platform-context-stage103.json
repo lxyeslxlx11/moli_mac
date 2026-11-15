@@ -1,0 +1,39 @@
+{
+  "schema": "moli.guest-platform-context.v1",
+  "recorded_utc": "2026-10-29T18:34:45.096900+00:00",
+  "method": "CUA existing Windows11 foreground NoProfile terminal. Each reviewed complete ASCII command submitted once, screenshot read after Return; no clipboard transfer or alternate VM control.",
+  "scope": {
+    "root": "HKCU",
+    "subkey": "SOFTWARE\\SECN\\Launcher",
+    "value": "InstallDir",
+    "views": [
+      32,
+      64
+    ]
+  },
+  "queries": [
+    {
+      "command": "reg query HKCU\\SOFTWARE\\SECN\\Launcher /v InstallDir /reg:32; $lastexitcode",
+      "view": 32,
+      "observed_error": "错误: 系统找不到指定的注册表项或值。",
+      "observed_exit_code": 1
+    },
+    {
+      "command": "reg query HKCU\\SOFTWARE\\SECN\\Launcher /v InstallDir /reg:64; $lastexitcode",
+      "view": 64,
+      "observed_error": "错误: 系统找不到指定的注册表项或值。",
+      "observed_exit_code": 1
+    }
+  ],
+  "final_terminal_state": "Empty prompt, no pending command, no menu/modal; English input, existing VM session retained.",
+  "classification": {
+    "facts": "Both explicit view queries returned the displayed missing-key-or-value error and exit1 for this guest user at observation.",
+    "inference": "Consistent with a missing platform path for the selected static installer predicate.",
+    "not_established": "Does not distinguish absent key versus absent value, prove system-wide installation absence, or establish future elevated installer identity/view/result or nested postinstall order."
+  },
+  "new_installer_or_vendor_program_execution": 0,
+  "registry_writes": 0,
+  "policy_or_network_changes": 0,
+  "prior_snapshot_and_media": "stage102 prepared media/snapshot retained; not restored or re-created.",
+  "pending_question": "Only the already-issued stage102 unknown-source installer/UAC action-time confirmation remains pending; no manual unlock/focus/command request and no repeat question."
+}

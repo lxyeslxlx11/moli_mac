@@ -1,0 +1,376 @@
+{
+  "schema": "moli.capability.game-graphics-lifetime-contract.v1",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "source_check": "analysis/capability-first-v1/game-graphics-lifetime-source-check.json",
+  "capabilities": [
+    "G03",
+    "G06",
+    "X01",
+    "X02"
+  ],
+  "source_layouts": {
+    "status": "source-memory-layout-not-a-file-format-or-product-ABI",
+    "generic_object_requested_bytes": 800,
+    "auxiliary_requested_bytes": 36,
+    "generic_object_fields": {
+      "+0x00": "previous pointer",
+      "+0x04": "next pointer",
+      "+0x08": "callback pointer",
+      "+0x0c": "auxiliary pointer",
+      "+0x14": "type byte",
+      "+0x15": "priority byte",
+      "+0x1c": "pending-removal int32",
+      "+0x24": "flags word",
+      "+0x2c": "callback action-state int32",
+      "+0x30/+0x34": "x/y int32",
+      "+0x38/+0x3c": "extent increments int32",
+      "+0x170": "logical wrapper used by common eligibility comparison;not a plain ready int32",
+      "+0x174/+0x178/+0x17c": "copied wrapped value components int32/int32/byte",
+      "+0x1d0": "tile-mode int32"
+    },
+    "auxiliary_fields": {
+      "+0x00": "style signed int16",
+      "+0x02": "counter signed int16",
+      "+0x04/+0x08": "width/height int32",
+      "+0x0c/+0x10": "center x/y int32",
+      "+0x14/+0x18": "current half extents int32",
+      "+0x1c": "graphics base int32",
+      "+0x20": "selector signed int16;upper padding not reinterpreted"
+    },
+    "input_domain_notes": "4e94d0 uses descriptor style only when unsigned<1000,otherwise-2.4ea7c0 stores its full caller style asint16 but usesint32 constructor branches;other caller domains must not be guessed."
+  },
+  "facts": [
+    {
+      "id": "generic-registration",
+      "classification": "fact",
+      "functions": [
+        "0x4ea7c0",
+        "0x409e70",
+        "0x409fe0"
+      ],
+      "claim": "4ea7c0 requests a type3 generic object and36B auxiliary block,ORs flags6,stores4ea9b0 at object+8 and priority byte0xd4 at+15.409fe0 loads/calls object+8 with that object pointer. This binds a graphics callback consumer,not the97 business-table callback column."
+    },
+    {
+      "id": "construction-and-fields",
+      "classification": "fact",
+      "functions": [
+        "0x4ea7c0",
+        "0x409e70"
+      ],
+      "claim": "Creator records x/y at+30/+34,auxiliary style word/counter0,width/height,center/extents,velocities and observed graphics/palette selectors. Optional tiled geometry follows the source signed arithmetic in64/48 units;do not generalize its negative-input behavior to ordinary ceil."
+    },
+    {
+      "id": "animation-and-readiness",
+      "classification": "fact",
+      "functions": [
+        "0x4ea9b0",
+        "0x4e94d0"
+      ],
+      "claim": "Callback actionState+2c=0 draws/expands a rectangle and increments a16-bit counter. When the signed counter is>9,styles-1/-2 select state1;nonnegative styles select state2. A later callback in state1,or after the state2 drawing path,constructs logical value1 via4032f0 andcopies temporary+4/+8/+12 into object+174/+178/+17c before403320 cleanup.4e94d0 binds its comparison to the wrapper at object+170 and admits input only when logical value>0."
+    },
+    {
+      "id": "draw-completion-is-per-call",
+      "classification": "fact",
+      "functions": [
+        "0x4ea9b0"
+      ],
+      "claim": "State1 only performs the logical1 write. State2 selects the tiled506ac0 path for style<4 with nonzero tile mode,otherwise48e8d0. Logical1 is written even if the tile loops do not iterate. Other action states return. Readiness helpers are called again on subsequent state1/2 callbacks;this is not a one-time Boolean store or an elapsed-milliseconds animation contract."
+    },
+    {
+      "id": "selection-cache-marker-free",
+      "classification": "fact",
+      "functions": [
+        "0x4ea5b0",
+        "0x4e94d0",
+        "0x40a090",
+        "0x409fe0",
+        "0x40a0a0"
+      ],
+      "claim": "The prior close helper changes active slots. Inactive4e94d0 separately calls null-safe40a090(cache),clears the cache and consumes dirty once(return2).40a090 only writes object+1c=1.409fe0 later unlinks eligible marked nodes before40a0a0 passes nonnull auxiliary+0c then the object itself to51bd85. Clearing a row cache therefore precedes actual generic-record reclamation."
+    },
+    {
+      "id": "pump-gates-and-order",
+      "classification": "fact",
+      "functions": [
+        "0x409fe0"
+      ],
+      "claim": "Both callback and removal require bit40000 clear,or global58f6b4!=1,or phase58f6b8==0. Phase advances modulo4 per dispatcher call. A callback-marked current node is not rechecked for deletion until a later visit;callback traversal reads next after callback,whereas removal saves next before freeing. This is not proof of arbitrary callback/list reentrancy safety."
+    },
+    {
+      "id": "bulk-clear-is-marking",
+      "classification": "fact",
+      "functions": [
+        "0x40a0c0",
+        "0x464c70",
+        "0x40a090"
+      ],
+      "claim": "40a0c0 captures the current first node,calls464c70,then marks every tracked list node+1c=1.464c70 visits399x399 flag/pointer pairs;only flag byte1 is cleared andits pointer is sent to40a090. Pointer slots andother flag values are not cleared. This closed call subtree marks records;it does not invoke40a0a0 or synchronously free the generic list."
+    },
+    {
+      "id": "two-callback-domains",
+      "classification": "fact",
+      "claim": "All97 nonnull business callback addresses are distinct andhave no exact-address overlap withclassic callbacks/controls or main slots. None is a resolved target in the3506 selected647-root index entries. The object callback4ea9b0 consumer above does not resolve the missing business dispatcher;these finite zero results do not prove unused/unreachable code."
+    },
+    {
+      "id": "reuse-and-retention",
+      "classification": "fact",
+      "claim": "The matching1667-record snapshot supplied the three original helper parents;9 complete native-facet views were retained andchecked against those exact parent records. All1667 imported records are unchanged in the1676-record export. There was no new analyze_function/decompilation. The failed4ea9b0 canonical lookup andthe720-byte independently seeded body retain different authority."
+    }
+  ],
+  "inferences": [
+    {
+      "classification": "inference",
+      "claim": "A portable owner should model active selection,cached object,logical readiness,pending removal andfinal reclamation separately,using one shared callback/mark/sweep lifecycle."
+    },
+    {
+      "classification": "inference",
+      "claim": "Reuse these shared rules across business windows;do not create one lifetime implementation per UI table or treat source call-count animation as a platform timer without a scheduling contract."
+    }
+  ],
+  "module_contract_proposal": {
+    "status": "specified-boundaries-not-implemented",
+    "responsibilities": [
+      "versioned generic object owner",
+      "source-order callback dispatch",
+      "deferred removal andauxiliary ownership",
+      "source-call animation/ready transitions",
+      "render command port"
+    ],
+    "inputs": [
+      "explicit source update opportunity",
+      "owned object selection/close/mark intent",
+      "admitted geometry/style andresource references"
+    ],
+    "outputs": [
+      "queued draw commands",
+      "logical readiness",
+      "deferred reclamation events"
+    ],
+    "invariants": [
+      "closing selection alone does not free a cached object",
+      "a nonparticipating return0 may still mark andclear a cache",
+      "a current callback marker is not an immediate in-callback free",
+      "generic graphics callbacks andbusiness table callbacks retain distinct contracts"
+    ]
+  },
+  "requirement_answers": [
+    {
+      "question": 1,
+      "status": "answered-bounded-logical-writers-and-consumer",
+      "result": "Construction,derived animation branches,three logical1 writer families andthe+170 input comparison are source-bound;physical tuple/RNG andfull allocator/failure policy remain separate."
+    },
+    {
+      "question": 2,
+      "status": "answered-bounded-mark-unlink-reclaim",
+      "result": "Single mark,bulk marker/grid,pump gates/traversal andauxiliary-before-object reclamation are bound;complete native OS/runtime/reset andarbitrary reentrant callback safety are not claimed."
+    },
+    {
+      "question": 3,
+      "status": "partially-answered",
+      "result": "Actual generic object+8 callback consumer identified;97 business callback consumer remains unknown within anexplicit graph/table search boundary."
+    },
+    {
+      "question": 4,
+      "status": "answered-bounded-contract",
+      "result": "Shared lifetime boundaries andremaining discovery/business/platform dependencies published without runtime changes or scope reduction."
+    }
+  ],
+  "remaining": [
+    {
+      "id": "business-callback-dispatch",
+      "question": "Find the actual97-callback producer/consumer through a concrete new alias/module/registration edge;do not rerun the same selected graph orliteral negative scans as new evidence."
+    },
+    {
+      "id": "shared-restore-and-business-owners",
+      "question": "Complete active/restore/deferred/text-focus writers,per-business callback init/error/cancel/reentry andall admitted version/resource/menu dependencies."
+    },
+    {
+      "id": "physical-runtime-boundaries",
+      "question": "Retain physical wrapped tuple/RNG effects,source allocation failures,full reset/IME/keyboard andsource-to-platform scheduling differences;this logical package is not full platform equivalence."
+    },
+    {
+      "id": "positive-business-frontiers",
+      "question": "Next reuse the concrete21 sender caller/reference frontiers plus518d70 andef35e0/eadf88 consumers;keep the unresolved97-table branch explicit without repeating its zero-result checks."
+    },
+    {
+      "id": "implementation-and-acceptance",
+      "question": "Unified38-domain specifications,grouped shared implementation,real web/mobile/WeChat,current normal handoff andappropriate official/account acceptance remain incomplete."
+    }
+  ],
+  "original_execution": false,
+  "account_or_session_observed": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "official_acceptance": false,
+  "full_goal_complete": false,
+  "resource_capability_unification": {
+    "specification": {
+      "path": "build/analysis/resource-capability-unification-v1/specification.json",
+      "bytes": 103990,
+      "sha256": "18d3fe8d246a7acdc013e52e417a81ce1a8aae26919caba85430cf06ec503b47"
+    },
+    "source_inputs": {
+      "path": "build/analysis/resource-capability-unification-v1/source-inputs.json",
+      "bytes": 6464,
+      "sha256": "c3d219d397fa5b84c7cd6a39253b69c7dd17d63838d1107f635277522bbd3bbb"
+    },
+    "source_summary": {
+      "reused_complete_native_views": 24,
+      "body_ranges": 24,
+      "body_bytes": 19811,
+      "direct_E8_CALLs": 131,
+      "new_native_queries": 0,
+      "independently_redecoded_native_bodies": 2,
+      "independently_redecoded_native_instructions": 347,
+      "independently_redecoded_native_bytes": 1116,
+      "current_code_files": 12,
+      "current_code_anchors": 85,
+      "fact_groups": 12,
+      "new_product_protocol_fields": 0
+    },
+    "validation_record_path": "build/analysis/resource-capability-unification-v1/validation.json",
+    "contract": "analysis/capability-first-v1/game-entry-review-contract.json",
+    "source_check": "analysis/capability-first-v1/game-entry-review-source-check.json",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "remaining_required_groups": [
+      {
+        "id": "RR-R1",
+        "capabilities": [
+          "G06",
+          "G05",
+          "X03"
+        ],
+        "need": "沿505D70/506030/446B80缓存块几何和源/目标裁剪验证非4倍宽度等必要资源域；明确所需后端、16/24输出与硬件精度的边界。",
+        "next_action": "复用本轮上传ABI，旧记录优先，只追明确缓存分块/表面创建/实际draw参数；不重做RD/命名表或穷举所有驱动。"
+      },
+      {
+        "id": "RR-R2",
+        "capabilities": [
+          "G06",
+          "G04",
+          "G05",
+          "X03"
+        ],
+        "need": "完整资源版本绑定、必要文件失败/短读/恢复及剩余地图/人物/场景消费者；保留37c4与当前游戏消费者未闭合。",
+        "next_action": "按明确资源选择/解析域/晚到场景边补证；不重复已核全素材或把23.cut缺失当整体CUT缺失。"
+      },
+      {
+        "id": "RR-R3",
+        "capabilities": [
+          "X03",
+          "X04",
+          "X05",
+          "X06"
+        ],
+        "need": "当前微信官方文件/选择器/存储合同与真实大包、临时路径、后台/重新打开、物理手机验收。",
+        "next_action": "有可访问官方合同或实际wx环境后核对；不以TCMPP/第三方镜像/Node端口替代，也不索取游戏账号完成纯资源测试。"
+      },
+      {
+        "id": "RR-R4",
+        "capabilities": [
+          "X03",
+          "G06",
+          "G08"
+        ],
+        "need": "总资源所有者的并发/临时峰值预算、持久化与版本身份、导入总期限和取消回执的独立设计/实现。",
+        "next_action": "在D0统一资源所有权/存储适配，不把32MiB单层或单次60秒扩大为全局保证；必要设备指标另测。"
+      },
+      {
+        "id": "RR-R5",
+        "capabilities": [
+          "X01",
+          "X07",
+          "X08",
+          "G20"
+        ],
+        "need": "完整40域必要规则与后续共享实现、真实平台和同版接受；邮件发送者投递/拒绝/结果保持原缺口。",
+        "next_action": "本组条件规格保留，下一组按实际正向边补缓存几何与邮件结果；不扩大未激活97回调分支。"
+      }
+    ],
+    "selected_scope": "Resource byte formats/selected upload ABI and independent file/cache ownership; not all cached graphic object callbacks or actual platform acceptance."
+  },
+  "resource_cache_geometry": {
+    "specification": {
+      "path": "build/analysis/resource-cache-geometry-v1/specification.json",
+      "bytes": 31678,
+      "sha256": "f972a692525e7b2b56fa5b54798ce895be7e6c0707b6df9664dad0a3d58e4606"
+    },
+    "source_inputs": {
+      "path": "build/analysis/resource-cache-geometry-v1/source-inputs.json",
+      "bytes": 3040,
+      "sha256": "f9a9d7e0b195aa45c5138918c4a0d82d31e0f5cd4e474b3807cf77104757132b"
+    },
+    "source_summary": {
+      "reused_complete_native_views": 15,
+      "new_complete_native_views": 1,
+      "body_ranges": 16,
+      "body_bytes": 10268,
+      "direct_E8_CALLs": 59,
+      "independently_redecoded_bodies": 4,
+      "independently_redecoded_instructions": 488,
+      "independently_redecoded_bytes": 1574,
+      "literal_instruction_sites": 28,
+      "derived_dimension_examples": 36,
+      "new_native_queries": 1
+    },
+    "validation_record_path": "build/analysis/resource-cache-geometry-v1/validation.json",
+    "contract": "analysis/capability-first-v1/game-entry-review-contract.json",
+    "source_check": "analysis/capability-first-v1/game-entry-review-source-check.json",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "remaining_required_groups": [
+      {
+        "id": "CG-R1",
+        "capabilities": [
+          "G06",
+          "X03"
+        ],
+        "need": "非4倍宽度完整scratch/调色板尾部与所需设备输出、剩余缩放/后端精度及资源版本域；继续保留现有显式宽度限制。",
+        "next_evidence": "只在实际所需资源或明确调用条件出现时补相应scratch/设备链；不重复507230/5074D0/505D70和已证上传体。"
+      },
+      {
+        "id": "CG-R2",
+        "capabilities": [
+          "G06",
+          "G04",
+          "G05",
+          "X02"
+        ],
+        "need": "完整场景/颜色/队列消费者及特殊命令、迟到图像和上下文重入；当前普通局部规则不替代其它能力。"
+      },
+      {
+        "id": "CG-R3",
+        "capabilities": [
+          "X03",
+          "X04",
+          "X05",
+          "X06"
+        ],
+        "need": "总预算、持久化/版本身份、真实微信文件/生命周期和物理手机，沿资源统一合同继续。"
+      },
+      {
+        "id": "CG-R4",
+        "capabilities": [
+          "G20",
+          "G15",
+          "X01",
+          "X07",
+          "X08"
+        ],
+        "need": "完整40域规格、邮件投递/拒绝/结果等原缺口，以及后续实现与实际平台/同版接受；没有测试账号，不反复索取。"
+      }
+    ]
+  }
+}

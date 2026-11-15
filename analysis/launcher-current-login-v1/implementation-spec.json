@@ -1,0 +1,104 @@
+{
+  "schema": "moli.current-launcher-login.implementation-spec.v1",
+  "status": "Selected source-supported state projection implemented and targeted checks passed; full launcher/game goal incomplete",
+  "requirement": "reports/development-plan.md#stage109",
+  "source": {
+    "packed_sha256": "6d459ddbdf80a86cf7a1e41b99ab7fb575b42842d7163522efb3c9fa6e6ac987",
+    "analysis_sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+    "tool": "REA6.7.0/Ghidra12.1.4",
+    "prior_snapshot": "build/analysis/launcher-current-runtime-v4/rea-snapshot.json"
+  },
+  "facts": [
+    {
+      "id": "REQUEST-UNCHANGED",
+      "classification": "fact",
+      "procedure": "0x588c00",
+      "evidence_id": "ev_95c42128b47001577888d569730786de7f68870e76cc9a167e93f3d79922b8b2",
+      "statement": "Type10,45-byte bounded body, two <=18-byte length-prefixed byte fields and two big-endian UInt32 words. Existing request codec can be reused at this serialization boundary; transport/accepted authentication is not established."
+    },
+    {
+      "id": "REPLY-FIVE-COLUMNS",
+      "classification": "fact",
+      "procedure": "0x588d00",
+      "evidence_id": "ev_a7969fe1ca4c3b9104089058d48209f5af9f649e572ae1bf09df47a9fd122bbd",
+      "statement": "Type11 decoder consumes the two words, <=32-byte field, <=64 names, five bounded UInt32 arrays and two tail words."
+    },
+    {
+      "id": "REPLY-ADAPTER-DROPS-W0",
+      "classification": "fact",
+      "procedure": "0x5878d0",
+      "evidence_id": "ev_62066c35e31a0fde662c9aa8ad3135bd1909bb1aa6c3cdf34b404ec726cf7346",
+      "statement": "The intermediate virtual adapter drops the first word-array pointer/count when forwarding to AAChannel; the UI receives W1..W4, not a changed four-array wire format."
+    },
+    {
+      "id": "CALLBACK-ABI-TAILS",
+      "classification": "fact",
+      "procedures": [
+        "0x4316c0",
+        "0x423c30"
+      ],
+      "evidence_id": "ev_c44c4b8aa2988d8d98f750787c8500490ea8699e77dbb4e358a00c3ccc509efc",
+      "statement": "Recovered pseudocode lists15/9 parameters, but callback RET0x40 and the ten pushes at0x4317a5..0x4317c9 establish16 callback/10 UI-consumer stack arguments; the extra [EBP+0x44] tail must not be discarded. This is a decompiler signature omission, not a changed reply format."
+    },
+    {
+      "id": "RAW-WORD-TO-INT16",
+      "classification": "fact",
+      "procedure": "0x423c30",
+      "locations": [
+        "0x42444c",
+        "0x424450"
+      ],
+      "evidence_id": "ev_829a1516dcb6ebd9ae92e40173e7c8d2723a3d06970db73d24cf86e66e4a74fd",
+      "statement": "The state column is stored through a16-bit read and write."
+    },
+    {
+      "id": "PROFILE-SELECTION-GATE",
+      "classification": "fact",
+      "procedure": "0x41e420",
+      "range": "0x41ea60..0x41ea86 inclusive",
+      "evidence_id": "ev_5b76d1e6929bc382020d6673ced716e2dfd893ff0fa3ab29f8f249ee82269250",
+      "statement": "Selection checks only the signed low16 state for0/-4, then rejects billing!=0 AND expired!=0. No full-word sign-extension check exists on this path."
+    },
+    {
+      "id": "AA-CHANNEL-BINDING",
+      "classification": "fact",
+      "locations": [
+        "0x43135a",
+        "0x43138c",
+        "0x5d69c4"
+      ],
+      "evidence_id": "ev_3d780efc173101d9493860b29bc76dd38870a575423c11ba3809e93ad1563efb",
+      "table_evidence_id": "ev_9d0d46887d44a7ae2b446a81e439dc81425d555d2bb1f2faf0d902e6fd20b039",
+      "statement": "Application construction stores the AAChannel object at app+0xd8; vtable+0xc is0x587820 and+0x14 is0x4316c0, connecting the selected request/reply paths to this launcher."
+    },
+    {
+      "id": "GAME-START-PRODUCER",
+      "classification": "fact",
+      "procedures": [
+        "0x410c00",
+        "0x40b750"
+      ],
+      "evidence_id": "ev_fc2b98e255fe07984b88d83fd310a71b9167e34a21fb3b917d5d88509ddca46b",
+      "statement": "Normal selected-profile path prepares a mapping and CreateProcessA; mapping writer opens/creates256-byte mapping and writes only the NUL-terminated prefix. Static producer evidence does not establish game consumption."
+    }
+  ],
+  "change": {
+    "owner": [
+      "shared/launcher-login.mjs",
+      "shared/launcher-handoff.mjs"
+    ],
+    "public_api_changes": false,
+    "current_discrepancy": "Both modules require a canonical sign-extended stateWord, rejecting valid UInt32 values whose low16 is0/-4. The source-native selection gate has no such restriction.",
+    "required_behavior": "Preserve the raw UInt32 stateWord and derive the signed low16 state; apply the native state/billing/expiry gates to profile selection and handoff. Continue validating UInt32 input and all existing name/opaque/bounds/ownership requirements.",
+    "retired_error": "PROFILE_STATE_ENCODING is no longer emitted by these projections; its historical strict policy is superseded here.",
+    "fixtures": "48 original synthetic type11 vectors generated by Python struct, including W0 sentinels and raw upper-bit variants; no account data"
+  },
+  "limits": [
+    "No vendor execution, live account or IPC inspection",
+    "No new authentication, encryption, game-consumer or official-compatibility claim",
+    "Remaining strict name/count bounds are documented supported-input constraints, not native validation guarantees",
+    "UI limits and request serialization budgets remain separate; no protocol field is invented"
+  ],
+  "full_goal_complete": false,
+  "verification": "analysis/launcher-current-login-v1/test-results.json"
+}

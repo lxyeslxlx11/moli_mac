@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; font-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+    <meta name="referrer" content="no-referrer">
+    <title>Moli · 离线资源核验</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">M</span><span>Moli</span></div>
+      <a class="tool-link" href="./launcher.html">登录器配置</a>
+      <a class="tool-link" href="./game.html">游戏</a>
+      <p class="privacy-note"><span aria-hidden="true" class="status-dot"></span>文件仅在本机读取，不上传</p>
+    </header>
+    <main>
+      <div class="page-heading">
+        <div><h1>离线资源核验</h1><p>依据本地样本观察，检查 RD v0 / v2 的原始索引像素。</p></div>
+        <p class="scope-note">官方联网未实现、兼容性未验证。</p>
+      </div>
+      <div class="workspace">
+        <aside class="controls-panel" aria-label="资源文件与记录">
+          <section aria-labelledby="files-title">
+            <h2 id="files-title">选择配对文件</h2>
+            <p class="section-note">使用你有权读取的本地文件。保留原件，仅读取选定记录。</p>
+            <div class="file-control">
+              <label for="index-file"><span>图形索引</span><span class="file-kind">GraphicInfo</span></label>
+              <input id="index-file" type="file" accept=".bin,.Bin" aria-describedby="index-file-name index-limit">
+              <p class="file-name" id="index-file-name">尚未选择</p>
+              <p class="field-hint" id="index-limit">40 字节记录；索引上限 64 MiB。</p>
+            </div>
+            <div class="file-control">
+              <label for="graphic-file"><span>图形数据</span><span class="file-kind">Graphic</span></label>
+              <input id="graphic-file" type="file" accept=".bin,.Bin" aria-describedby="graphic-file-name graphic-limit">
+              <p class="file-name" id="graphic-file-name">尚未选择</p>
+              <p class="field-hint" id="graphic-limit">按记录范围读取，不把整份数据载入内存。</p>
+            </div>
+          </section>
+          <section class="record-section" aria-labelledby="record-title">
+            <h2 id="record-title">选择记录</h2>
+            <form id="inspect-form" novalidate>
+              <label class="field-label" for="record-ordinal">记录序号 <span>从 0 开始，不等于图像 ID</span></label>
+              <div class="record-picker">
+                <button id="previous-record" type="button" aria-label="上一条记录" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+                <input id="record-ordinal" type="number" inputmode="numeric" min="0" step="1" value="0" required aria-describedby="record-total">
+                <button id="next-record" type="button" aria-label="下一条记录" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+              </div>
+              <p class="field-hint" id="record-total">选择配对文件后读取索引。</p>
+              <button class="button-primary" id="inspect-button" type="submit" disabled>核验并查看</button>
+            </form>
+          </section>
+          <section class="fixture-section">
+            <button id="load-fixture" type="button" class="button-secondary">载入原创合成夹具</button>
+            <p class="field-hint">用于检验显示与解析流程，不是官方游戏资源。</p>
+          </section>
+          <p class="boundary-note">此工具不执行程序、不解释调色板，也不解码压缩版本。</p>
+        </aside>
+        <section class="viewer-panel" aria-labelledby="viewer-title">
+          <div class="viewer-heading">
+            <div><h2 id="viewer-title">原始像素平面</h2><p>灰度检查 · 颜色与方向尚未确认</p></div>
+            <label class="scale-control" for="view-scale">显示比例<select id="view-scale"><option value="fit">适合画布</option><option value="1">1:1 像素</option><option value="2">2 倍</option><option value="4">4 倍</option><option value="8">8 倍</option></select></label>
+          </div>
+          <div class="canvas-stage" id="canvas-stage" tabindex="0" aria-label="灰度像素画布，可滚动查看放大的图像">
+            <canvas id="pixel-canvas" role="img" aria-label="尚未载入像素"></canvas>
+            <div class="empty-state" id="empty-state" hidden><span aria-hidden="true">—</span><p>尚无可显示的像素</p><p>选择配对文件，或载入原创合成夹具。</p></div>
+          </div>
+          <div class="status-line" id="inspection-status" role="status" aria-live="polite" aria-atomic="true"><span class="status-icon" aria-hidden="true"></span><span id="status-text">准备加载原创合成夹具。</span></div>
+          <dl class="metadata-grid" id="metadata" aria-label="当前记录摘要">
+            <div><dt>来源</dt><dd id="meta-source">—</dd></div>
+            <div><dt>尺寸</dt><dd id="meta-size">—</dd></div>
+            <div><dt>记录 / ID</dt><dd id="meta-record">—</dd></div>
+            <div><dt>RD 版本</dt><dd id="meta-version">—</dd></div>
+            <div><dt>读取范围</dt><dd id="meta-range">—</dd></div>
+            <div><dt>调色板原始字节</dt><dd id="meta-palette">—</dd></div>
+          </dl>
+          <p class="interpretation-note">每个索引字节按 0–255 映射为灰度，按头部尺寸逐行排列。通过结构检查不代表已还原官方颜色、坐标方向或游戏渲染规则。</p>
+        </section>
+      </div>
+    </main>
+    <footer><span>共享解析核心 · 浏览器文件适配</span><span>本阶段仅离线研究</span></footer>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+{
+  "schema": "moli.launcher-current-updater-v1.validation.v1",
+  "recorded_utc": "2026-10-28T08:33:02.509032+00:00",
+  "result": "bounded-current-candidate-profile-passed; normal-native-startup-and-full-goal-unfinished",
+  "source_evidence": {
+    "unique_records": 29,
+    "functions": 18,
+    "static_only": true,
+    "provider": "Ghidra12.1.4",
+    "closed": true,
+    "ledger": "analysis/launcher-current-updater-v1/static-audit.json"
+  },
+  "implementation": {
+    "files": [
+      "shared/launcher-update.mjs",
+      "shared/index.mjs"
+    ],
+    "test_file": "shared/tests/launcher-update-current.test.mjs",
+    "api": "decodeWin32LauncherUpdatePackage",
+    "old_decoder_behavior_retained": true,
+    "source_authentication": "unverified",
+    "replacement": "not-performed",
+    "profile": "32MiB/printable-ASCII/single-EXE/header-only"
+  },
+  "tests": {
+    "node_version": "v26.9.0",
+    "python_version": "3.9.6",
+    "original_python_vectors": 28,
+    "new_tests": 32,
+    "targeted_tests_passed": 49,
+    "full": {
+      "files": 40,
+      "tests": 548,
+      "passed": 548,
+      "failed": 0,
+      "skipped": 0,
+      "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+      "exit_code": 0,
+      "log": {
+        "path": "build/analysis/launcher-current-updater-v1/node-full.log",
+        "bytes": 52873,
+        "sha256": "0998cc227a7a518ae7ea3a7a1ff20800893c47bc906511742a7ae25fe323c9e4"
+      }
+    },
+    "real_current_candidate": "passed with byte-for-byte existing candidate and independent Python comparison"
+  },
+  "delivery": {
+    "previous_manifest_verified_at_preflight": 1298,
+    "unchanged_previous_files": 1284,
+    "changed_existing": [
+      "README.md",
+      "reports/analysis-methods.md",
+      "reports/architecture-and-milestones.md",
+      "reports/development-plan.md",
+      "reports/known-issues.md",
+      "reports/launcher-static.md",
+      "reports/logic-protocol-spec.md",
+      "reports/module-interfaces.md",
+      "reports/resource-formats.md",
+      "reports/validation.md",
+      "reports/vm-environment.md",
+      "shared/README.md",
+      "shared/index.mjs",
+      "shared/launcher-update.mjs"
+    ],
+    "unchanged_previous_product_files": 175,
+    "unchanged_native_files": 17,
+    "new_stage_files": 9,
+    "new_test_files": 1,
+    "new_doc_links_checked": 40,
+    "manifest": "analysis/delivery-manifest-stage88.json"
+  },
+  "runtime": {
+    "mac_access": "locked/automatic unlock failed; manual unlock request pending",
+    "guest_commands_submitted": 0,
+    "new_candidate_executed": false,
+    "vm_transferred": false,
+    "settings_changed": []
+  },
+  "attempt_notes": [
+    "Initial inline real-sample Node probe misindexed stdin argv; ENOENT before any receipt/candidate change, corrected argv2..5 passed.",
+    "One functions.exec JavaScript syntax error occurred before tool execution, corrected query succeeded.",
+    "Source baseline copies reconstructed from exact patch and compared to stage87 source hashes before saving; all12 documentation baselines matched before edits."
+  ],
+  "not_run": [
+    "New branch real browser/Safari/mobile/WeChat device validation",
+    "native build and Windows package update/startup ACK",
+    "Full PE/signature/loader and filesystem fault matrix",
+    "Game consumer/protocol/play and official interoperability"
+  ],
+  "goal_status": "active",
+  "goal_complete": false
+}

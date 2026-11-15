@@ -1,0 +1,127 @@
+{
+  "utc": "2026-10-25T19:04:12.974483+00:00",
+  "target": "/Users/lx/Parallels/Windows 11.pvm",
+  "sources": {
+    "VmInfo.pvi": {
+      "sha256": "5e8484deb3ba729e22fcfc6b8f9f698659764626afc8e35b35f2efa4ad67228c",
+      "bytes": 14283,
+      "mtime_utc": "2026-10-25T19:02:15.962345+00:00"
+    },
+    "parallels.log": {
+      "sha256": "4dc49283b7cd44fd198a253df21f498f20d30400b69d2f3dfc3dfe6a530cdf0a",
+      "bytes": 291192,
+      "mtime_utc": "2026-10-25T19:02:22.713716+00:00"
+    },
+    "parallels-tools.log": {
+      "sha256": "5b660b51abd85b8637465104ac898ea2aaccb99f46b18ac89b90471088ea8be1",
+      "bytes": 210286,
+      "mtime_utc": "2026-10-25T18:51:35.758580+00:00"
+    },
+    "config.pvs": {
+      "sha256": "6f4de0f61480ee164f5266c29fc07e418290778a58243035e6283a196a2d3c72",
+      "bytes": 29299,
+      "mtime_utc": "2026-10-25T19:02:20.951053+00:00"
+    }
+  },
+  "actions": "Read current app AX/screenshots, named VM metadata and limited status log lines. No guest commands, config toggles, credentials, restarts or game actions.",
+  "screen": "Please wait changed to black screen around 19:04 UTC; final screenshot still black, no desktop/login visible.",
+  "guest_cached_metadata": {
+    "DisplayVersion": "24H2",
+    "RealOsVersion": "10.0.26100",
+    "patch": "0.4349",
+    "ProductEdition_numeric_not_decoded": 48,
+    "RealOsType": "Microsoft Windows, 64bit, 4 cpu(s), page: 4096b",
+    "EngineTypeStr": "AppleHV",
+    "Started": "0; not used as current UI status"
+  },
+  "log_evidence": [
+    {
+      "file": "parallels.log",
+      "line": 2476,
+      "fact": "VmStateRunning; CpuInitialized result 0x0"
+    },
+    {
+      "file": "parallels.log",
+      "line": 2495,
+      "time_as_logged": "10-26 02:51:43.526",
+      "fact": "Virtual machine is ready to boot"
+    },
+    {
+      "file": "parallels.log",
+      "line": 2574,
+      "fact": "MonitorArm VCPU0 OnExitBootServices"
+    },
+    {
+      "file": "parallels.log",
+      "line": 2723,
+      "fact": "TOOLS_READY"
+    },
+    {
+      "file": "parallels-tools.log",
+      "line": 1388,
+      "fact": "DDInstall64_6.NTarm64"
+    },
+    {
+      "file": "parallels-tools.log",
+      "line": 1563,
+      "fact": "Update Device Driver exit(00000000)"
+    }
+  ],
+  "time_note": "Original logs use local 10-26 02:51; host file metadata is 10-25 18:51 UTC. Current observations are UTC.",
+  "disk_activity": [
+    {
+      "utc": "2026-10-25T18:58:26Z",
+      "bytes": 14895022080,
+      "mtime_utc": "2026-10-25T18:58:19.091236Z"
+    },
+    {
+      "utc": "2026-10-25T19:01:16Z",
+      "bytes": 14899216384,
+      "mtime_utc": "2026-10-25T19:01:16.511397Z"
+    }
+  ],
+  "actual_ui": {
+    "network_source": "Shared Network (Recommended)",
+    "network_conditioner": false,
+    "isolate_windows_from_mac": false,
+    "clipboard_sync": "Bidirectional",
+    "mirror_mac_windows_user_folders": true,
+    "share_mac_cloud_folders": true,
+    "share_mac_volumes": true,
+    "custom_mac_folders": false,
+    "access_windows_folders_from_mac": true,
+    "share_onedrive_with_mac": true,
+    "usb_external_device_categories": "All seven permitted; not evidence of physical passthrough",
+    "share_smart_card_readers": false,
+    "devices_usb_menu": "Configure only; no physical devices observed",
+    "cpu_memory": "Automatic: 4 CPUs, 8 GB RAM",
+    "mounted_cd_label": "26100.4349.250607-1500.ge_release_svc_refresh_CLIENTCONSUMER_RET_A64FRE_zh-cn.iso"
+  },
+  "inferences": [
+    "ARM engine/driver/A64 image support ARM64; not a guest desktop query.",
+    "Recent Tools installation and boot are consistent with setup activity, but wait root cause is unknown."
+  ],
+  "unverified": [
+    "Desktop responsiveness",
+    "OOBE/update completion",
+    "Edition/activation/license",
+    "Actual network/clipboard/directory transfer",
+    "Game compatibility"
+  ],
+  "privacy": "No unattended ISO, VM memory, credential/license stores or complete logs read/copied.",
+  "proposal_not_executed": [
+    "At a safe Windows setup point: Network Source Disconnect",
+    "Security Isolate Windows from Mac",
+    "Verify clipboard and both directory-sharing directions off",
+    "No physical USB passthrough; retain ARM virtual USB controller",
+    "Restore recorded individual selections only on request; no Restore defaults"
+  ],
+  "scope": "No Gatekeeper, Mac global security, PIN, TPM, Secure Boot or VM configuration changes.",
+  "final_observation_utc": "2026-10-25T19:06:10.339029+00:00",
+  "denied_action": {
+    "target": "Existing Parallels Windows 11; Devices > Keyboard > Ctrl+Alt+Delete",
+    "state": "denied before execution",
+    "reason": "Automatic review: sends Windows secure attention sequence and may enter login/credential screen; outside read-only scope.",
+    "followup": "Menu cancelled with supported Cancel action; no alternate input or retry. Requires new specific confirmation; credentials remain excluded."
+  }
+}

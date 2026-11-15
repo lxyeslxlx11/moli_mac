@@ -1,0 +1,75 @@
+{
+  "schema": "moli.rea-game-preflight.v1",
+  "recorded_utc": "2026-11-01T07:56:30.725526+00:00",
+  "new_record_count": 1,
+  "export_record_count": 4,
+  "private_export_path": "build/analysis/game-text-observer-runtime-v1/stage119/rea-evidence.json",
+  "private_export_sha256": "1e00ba9063ed3b5f28c1e2412d63eb3cd8e834ba4fba16451f1d08f4dc352cd4",
+  "new_evidence": {
+    "analysis_profile": null,
+    "authority": "shipped-artifact",
+    "confidence": "observed",
+    "environment": null,
+    "evidence_id": "ev_b89a0eb5df785f745442c82cd0ebea341c2310b2e7056b639d45dd28a90c1682",
+    "evidence_links": [],
+    "limitations": [
+      "The executable version and supported formats are reported as unknown because no reliable version probe was performed.",
+      "A non-zero process exit is preserved as an observed command result.",
+      "When both are available, pre-run and post-run digests detect artifact changes across the provider call but cannot prove the exact bytes consumed during the call."
+    ],
+    "locations": [
+      {
+        "kind": "artifact-path",
+        "path": "/Users/lx/Documents/code/moli-mac/build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/cg_se_3000.exe"
+      }
+    ],
+    "normalized_result": {
+      "artifact_changed": false,
+      "artifact_sha256_after": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+      "completion_status": "complete",
+      "exit_code": 0,
+      "output_truncated": false,
+      "signal": null,
+      "stderr": "",
+      "stdout": "\n/Users/lx/Documents/code/moli-mac/build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/cg_se_3000.exe:     file format pei-i386\narchitecture: i386, flags 0x0000012f:\nHAS_RELOC, EXEC_P, HAS_LINENO, HAS_DEBUG, HAS_LOCALS, D_PAGED\nstart address 0x011e6d1e\n\n"
+    },
+    "operation": "inspect_with_objdump",
+    "parameters": {
+      "command_arguments": [
+        "-f",
+        "/Users/lx/Documents/code/moli-mac/build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/cg_se_3000.exe"
+      ],
+      "follow_debug_links": false,
+      "operation": "file_headers",
+      "path": "/Users/lx/Documents/code/moli-mac/build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/cg_se_3000.exe",
+      "provider_executable": "/opt/homebrew/opt/binutils/bin/objdump"
+    },
+    "predicate_type": "rea.reverse-engineering.command-observation",
+    "provider": {
+      "id": "gnu.objdump",
+      "name": "GNU objdump",
+      "version": null
+    },
+    "raw_result": {
+      "artifact_changed": false,
+      "artifact_sha256_after": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+      "completion_status": "complete",
+      "exit_code": 0,
+      "output_truncated": false,
+      "signal": null,
+      "stderr": "",
+      "stdout": "\n/Users/lx/Documents/code/moli-mac/build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/cg_se_3000.exe:     file format pei-i386\narchitecture: i386, flags 0x0000012f:\nHAS_RELOC, EXEC_P, HAS_LINENO, HAS_DEBUG, HAS_LOCALS, D_PAGED\nstart address 0x011e6d1e\n\n"
+    },
+    "relationship_coverage": null,
+    "subject": {
+      "architecture": null,
+      "digest": {
+        "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126"
+      },
+      "format": "unknown",
+      "local_path": "/Users/lx/Documents/code/moli-mac/build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/cg_se_3000.exe",
+      "name": "cg_se_3000.exe"
+    }
+  },
+  "scope": "REA file_headers invokes -f only; imported DLL names came from the separate direct GNU objdump -p receipt, not this REA result. No binary execution or runtime consumer recovery."
+}

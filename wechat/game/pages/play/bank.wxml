@@ -1,0 +1,41 @@
+<view class="card" wx:if="{{bank}}">
+  <view class="section-title">{{bank.title}}</view>
+  <view class="controls" wx:if="{{bank.tabs.length}}">
+    <button wx:for="{{bank.tabs}}" wx:key="id" size="mini" type="{{bank.tab === item.id ? 'primary' : 'default'}}"
+      disabled="{{bank.busy}}" data-action="tab" data-option="{{item.id}}" data-revision="{{bank.revision}}"
+      data-version="{{bank.version}}" bindtap="onBank">{{item.label}}</button>
+  </view>
+  <block wx:if="{{bank.tab === 'gold'}}">
+    <view class="line">持有金币 {{bank.wallet === null ? '等待同步' : bank.wallet}} · 仓储余额 {{bank.balance === null ? '等待同步' : bank.balance}}</view>
+    <view class="controls">
+      <button size="mini" type="{{bank.direction === 'deposit-gold' ? 'primary' : 'default'}}" disabled="{{bank.busy}}"
+        data-action="direction" data-option="deposit-gold" data-revision="{{bank.revision}}" data-version="{{bank.version}}" bindtap="onBank">存入金币</button>
+      <button size="mini" type="{{bank.direction === 'withdraw-gold' ? 'primary' : 'default'}}" disabled="{{bank.busy}}"
+        data-action="direction" data-option="withdraw-gold" data-revision="{{bank.revision}}" data-version="{{bank.version}}" bindtap="onBank">取出金币</button>
+    </view>
+  </block>
+  <block wx:else>
+    <picker wx:for="{{bank.mounts}}" wx:key="*this" range="{{bank.sources}}" range-key="label" value="{{bank.sourceIndex}}"
+      disabled="{{bank.busy || !bank.sources.length}}" data-action="from" data-revision="{{bank.revision}}" data-version="{{item}}" bindchange="onBank">
+      <view class="choice storage-choice">{{bank.fromLabel || '选择来源槽位'}}</view>
+    </picker>
+    <picker wx:for="{{bank.mounts}}" wx:key="*this" range="{{bank.destinations}}" range-key="label" value="{{bank.targetIndex}}"
+      disabled="{{bank.busy || !bank.destinations.length}}" data-action="to" data-revision="{{bank.revision}}" data-version="{{item}}" bindchange="onBank">
+      <view class="choice storage-choice">{{bank.toLabel || '选择目标槽位'}}</view>
+    </picker>
+    <view wx:if="{{bank.description}}" class="line commerce-text">{{bank.description}}</view>
+  </block>
+  <block wx:if="{{bank.tab !== 'pet'}}">
+    <input wx:for="{{bank.mounts}}" wx:key="*this" class="field" type="number" value="{{bank.amount}}" maxlength="10" disabled="{{bank.busy || !bank.maximum}}"
+      placeholder="{{bank.tab === 'gold' ? '金币金额' : '移动数量，留空表示整组'}}"
+      data-action="amount" data-revision="{{bank.revision}}" data-version="{{item}}" bindinput="onBank" />
+    <view wx:if="{{bank.tab === 'gold' || bank.maximum}}" class="hint">可操作数量 {{bank.maximum}}</view>
+  </block>
+  <view wx:if="{{bank.notice}}" class="hint" role="status">{{bank.notice}}</view>
+  <view class="controls">
+    <button type="primary" size="mini" disabled="{{!bank.canSubmit}}" data-action="submit"
+      data-revision="{{bank.revision}}" data-version="{{bank.version}}" bindtap="onBank">确认转移</button>
+    <button size="mini" disabled="{{bank.sending}}" data-action="close"
+      data-revision="{{bank.revision}}" data-version="{{bank.version}}" bindtap="onBank">关闭{{bank.title}}</button>
+  </view>
+</view>

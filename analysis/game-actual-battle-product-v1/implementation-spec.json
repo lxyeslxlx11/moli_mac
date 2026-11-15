@@ -1,0 +1,132 @@
+{
+  "stage": 296,
+  "facts": [
+    "沿用既有源码证据支持的 >HY、C、TfD 和地图补丁格式，只更改原创本机对端中的数值。",
+    "产品读取实际本地 ZIP 的原字节：1072 个文件、2549171845 字节，使用 stage290 的显式资源参数；文件名后缀不代表服务器版本。",
+    "实际角色 100010 有 160 个动作，覆盖 8 个方向的 0、1、2、5、6 动作及 24 个原始信号帧；没有修改动画事件、时长、颜色或其他素材。",
+    "实际背景 300653 对应 group4/index618381，大小 640×480。CUT59510/59526、地图格布局及战斗角色配置由原创对端选取，未声称是观察到的原服场景。"
+  ],
+  "implementation_scope": "新增实际素材验证工具及本机验收证据；shared、web、微信和 native 的运行时代码保持 stage295 状态。",
+  "references": [
+    {
+      "path": "analysis/game-legacy-material-compat-v1/material-profile.json",
+      "bytes": 7911,
+      "sha256": "ba471ceef7a235b4b852565425ac6fc5d2f8948683be969f1a83cfd056c58775"
+    },
+    {
+      "path": "analysis/game-battle-web-v1/source-check.json",
+      "bytes": 5490,
+      "sha256": "25292f51b2728f2edc5b364ce743a14826674eea8404192e725ca0f8cfb56fdf"
+    },
+    {
+      "path": "analysis/game-battle-entry-v1/source-check.json",
+      "bytes": 22703,
+      "sha256": "b22ca50417c44bce24ace71e60f43467b71676690d1c2949b9a6a9fce0b34429"
+    },
+    {
+      "path": "analysis/game-legacy-minimap-v1/source-check.json",
+      "bytes": 11515,
+      "sha256": "422a2dcfc6ce6c5cd74bf5036f8f27e27be49c17a1f9ed94a310f88cb519272c"
+    },
+    {
+      "path": "analysis/game-battle-draw-style-v1/source-check.json",
+      "bytes": 6534,
+      "sha256": "1cde0d6e88e550d1bb5ffe22496ba521df30bf32777f3e35c32ef2344d11be27"
+    }
+  ],
+  "flow": [
+    "选择新的启动资料和实际 ZIP",
+    "请求版本、返回人物列表、切换外观并进入人物",
+    "显示实际素材的普通场景",
+    "接收原创战斗配置并点击防御",
+    "消费 SKL106，检查回合1、目标HP58、施法者MP5",
+    "接收退出通知并验证退出请求",
+    "恢复普通Canvas、显示地图并发送两次预期移动请求",
+    "断开连接并关闭本阶段所有者"
+  ],
+  "independent_peer": {
+    "base": "analysis/game-browser-owner-v1/original_peer.py",
+    "mode": "battle-status-impact-106",
+    "changes": [
+      "在临时 scene-vectors 中选择 TfD 的模式、CUT 和地图图块编号。",
+      "仅把 impact C 的既有角色常量从 100095 改为 100010。",
+      "仅把 status 战斗入场的既有背景常量从 1000 改为 300653。"
+    ],
+    "unchanged": [
+      "信封与载荷编解码",
+      "bootstrap、人物、版本与入场请求断言",
+      "战斗字段结构和 SKL106 结果",
+      "防御、退出和移动请求断言",
+      "磁盘中的原始原创对端文件",
+      "实际 ZIP、所有图片与动画事件字节"
+    ]
+  },
+  "product_acceptance": {
+    "cuts": [
+      59510,
+      59526
+    ],
+    "surfaces": [
+      "desktop-web",
+      "mobile-web-touchsimulation",
+      "Page-source-Node",
+      "Page-generated-Node"
+    ],
+    "expected_round": 1,
+    "expected_vitals": [
+      [
+        0,
+        70,
+        100,
+        5,
+        10
+      ],
+      [
+        10,
+        58,
+        100,
+        10,
+        10
+      ]
+    ],
+    "expected_requests": "基础9个请求，加实际观察到的保活请求。",
+    "expected_guards": 1,
+    "expected_exit": true,
+    "expected_movement": 2
+  },
+  "frontend_QA": {
+    "browser": "Browser plugin not available;existing Playwright1.64.1/Chrome",
+    "route": "/web/game.html",
+    "viewports": [
+      [
+        1100,
+        850
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "screenshots": "/tmp/moli-stage296-qa/",
+    "checks": [
+      "URL/title/nonblank firstviewport",
+      "No horizontaloverflow/frameworkerroroverlay",
+      "Real character/guard/movement/disconnectcontrols",
+      "Actualsprites/background andresultvalues",
+      "No relevantconsoleerror/pageexception/warning"
+    ]
+  },
+  "verification_policy": "重建190输入API和248输入Page，核对输入与产物身份。运行时代码未改，本阶段未重复3710项旧回归；最终复核stage295的1669个冻结输入及新增8条实际素材产品流程。",
+  "full_scope": {
+    "requirements": 37,
+    "incomplete_groups": 10,
+    "full_goal_complete": false,
+    "goal_status": "active"
+  },
+  "remaining": [
+    "GMN164/165等控制生产者与特殊图形",
+    "其余RID、自身、混合、空目标、本地停止，以及完整调度和UI",
+    "完整原场景、现行交接及真实平台验收"
+  ],
+  "timing_diagnostic": "源码Page与生成Page帧数相近，但生成Page的Node vm执行耗时较长；同一个CJS产物在直接Node与vm上下文做受控完整背景绘制比较，全部RGBA摘要相同。Math注入只部分缓解，未将此诊断当作真实微信性能。"
+}

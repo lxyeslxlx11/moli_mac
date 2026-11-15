@@ -1,0 +1,59 @@
+{
+  "schema": "moli.game-runtime-stage125.v1",
+  "classification": "fact",
+  "status": "completed_observation_no_snapshot",
+  "authorization": "analysis/game-text-observer-runtime-v1/authorization-stage122.json",
+  "plan": "analysis/game-text-observer-runtime-v1/game-startup-plan-stage119.md",
+  "preflight": "analysis/game-text-observer-runtime-v1/game-guest-preflight-stage125.json",
+  "trigger_submitted_once": true,
+  "trigger": ". $probe119",
+  "guest_start_marker": "2026-11-01T17:36:41.4199383+08:00",
+  "observed_start_result": true,
+  "reader_invocations": 1,
+  "whole_goal_complete": false,
+  "pid": 5136,
+  "reader": {
+    "profile": "game-installed",
+    "result": "MOLI_TEXT_OBSERVER_V1 stopped code=TEXT_ZERO",
+    "exit_code": 1,
+    "implication": "The fixed read completed but all bytes were zero. Reader stopped before output creation; postrun Test-Path returned False.",
+    "read_span_bytes": 1753452,
+    "successful_consumer_bytes": false
+  },
+  "game_has_exited": true,
+  "game_exit_code_signed": -1073741819,
+  "game_exit_code_hex": "0xc0000005",
+  "guest_end_marker": "2026-11-01T17:36:57.0539053+08:00",
+  "marker_duration_seconds": 15.633967,
+  "normal_close_request": "Not entered: process had exited during natural WaitForExit. No force termination.",
+  "new_uac_observed": false,
+  "new_terms_observed": false,
+  "account_actions": 0,
+  "restarts_or_reruns": 0,
+  "process_start_time": "2026-11-01T17:36:47.9234205+08:00",
+  "process_exit_time": "2026-11-01T17:36:57.0468305+08:00",
+  "process_duration_seconds": 9.12341,
+  "postrun_output_exists": false,
+  "postrun_same_name_process_count": 0,
+  "event_query": {
+    "log": "Application",
+    "ids": [
+      1000,
+      1001
+    ],
+    "start": "2026-11-01T17:36:45.9234205+08:00",
+    "end": "2026-11-01T17:37:12.0468305+08:00",
+    "assignment": "$ev125=Get-WinEvent -FilterHashtable $ef125",
+    "assignment_returned_prompt": true,
+    "target_projection_output": "Unverified; no event metadata or message captured. The ordinary input interruption is not proof of no events, query failure, or no loader fault.",
+    "cancel_request": "Ordinary Ctrl+C sent; actual cancellation/new prompt not observed."
+  },
+  "postrun_hashes": "Not acquired; only pre-run file digests are verified in this phase.",
+  "scope_limits": [
+    "No code snapshot created or returned.",
+    "TEXT_ZERO establishes all-zero bytes only at the one successful fixed read, not at all times.",
+    "No module base/page map or snapshot digest printed on this stopped branch; do not infer them.",
+    "No stack/faulting module or reason for access violation is established.",
+    "No authentication, normal launcher-to-game entry, game consumers, gameplay or platform compatibility acceptance."
+  ]
+}

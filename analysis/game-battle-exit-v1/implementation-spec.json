@@ -1,0 +1,94 @@
+{
+  "schema": "moli.battle-exit-spec-stage188.v1",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "classification": "source-derived contract before implementation",
+  "full_requirement": "Complete the original launcher/game and web/mobile/WeChat goal, including every action, exit7/8/9 and real main9 ordinary return. Partial exit must not clear battle pending or claim full gameplay.",
+  "source_contracts": [
+    {
+      "classification": "fact",
+      "rule": "437b30/7 clears command mask and sets stop, traverses callbacks, drains remaining CHT/BST, clears22 body pointers, captures the current battle framebuffer via5029b0, sets display2 and fade-init, then falls through8 in the same invocation.",
+      "sources": [
+        "0x437b30",
+        "0x436cf0",
+        "derived:0x4260b0",
+        "0x5029b0"
+      ]
+    },
+    {
+      "classification": "fact",
+      "rule": "8 uses505030(12 or14,8,float2).5029f0/6 clears480 velocities and x offsets, updates the parity-paired rows in native order with counter clamped241, finishes only when row241 leaves [-640,640]. Type14 selects5029f0/7, with vertical positions and a descending479..1 copy loop that excludes0. Padding cell480 is not copied or used for completion.",
+      "sources": [
+        "0x505030",
+        "0x5029f0 assembly503157..503227"
+      ]
+    },
+    {
+      "classification": "fact",
+      "rule": "A completed8 calls501a10(9,1), marks pool objects deleted via40a0c0, resets ordinary projection via440570, zeroes numeric9250cc and emits4f67f0(0); its confirmed tag is $!~ with one int32 field. Substate9 instead501a30 requests main7 and has no such fade/request.",
+      "sources": [
+        "0x437b30",
+        "0x40a0c0",
+        "0x440570",
+        "0x4f67f0",
+        "analysis/game-legacy-message-v1/dispatch-catalog.json"
+      ]
+    },
+    {
+      "classification": "fact",
+      "rule": "4f3430 admits the ordinary battle branch only when C5ec18==0; nonzero takes a different main9/request branch.5015a0 initializes this global to0. Direct observed references include reads and resets; no complete proof of every indirect writer is claimed.",
+      "sources": [
+        "0x4f3430",
+        "0x5015a0",
+        "xrefs:0xc5ec18"
+      ]
+    },
+    {
+      "classification": "fact",
+      "rule": "Main state 9 calls 501A50. Case 1 requests 11. Waiting, cleanup, capture, ordinary rebuild and entry fade follow their source owners. 502950 consumes the pending scene palette through 44A3F0. Native audio and DirectDraw use their corresponding output ports.",
+      "scene_palette_follow": "analysis/capability-first-v1/game-presentation-functional-specification.json#/fixed_se_scene_palette_follow",
+      "sources": [
+        "0x5015a0",
+        "0x501a50",
+        "0x502950",
+        "0x50f550",
+        "0x44ab50"
+      ]
+    },
+    {
+      "classification": "fact found during implementation review",
+      "rule": "4f36d0 ACK mark40 checks actual mainState10 and the current round. Existing world routing hardcoded9; route from the owned entry mainState while pending and keep9 for non-owned ordinary context.",
+      "sources": [
+        "0x4f36d0",
+        "shared/legacy-game-protocol.mjs"
+      ]
+    },
+    {
+      "classification": "fact verified during abort review",
+      "rule": "423660 and434770 scan raw uppercase triplets and advance4, not just parsed opcodes. Preflight also checks raw remaining callback/global streams; embedded CHT/BST remains a side-effect dependency. Successful cleanup drains the global cursor; no full CHT/BST handling is claimed.",
+      "sources": [
+        "0x423660",
+        "0x434770",
+        "0x436cf0",
+        "derived:0x4260b0"
+      ]
+    }
+  ],
+  "intended_implementation": [
+    "Pure source exit12/14 numerical fade and captured-row composition with independent address-based and pixel references",
+    "Explicit owned exit7/8 for admitted ordinary branch0, callback/pointer cleanup and captured actual last battle frame, real9/1 boundary and exact4f67f0(0) request",
+    "Require real CHT/BST drain before cleanup; preserve unavailable when those side effects remain unported, and never reset queues as a substitute",
+    "Client owns full640x480 presented/captured bytes and request Promise; cancellation/retry/reentry/close cannot replay cleanup, fade or send",
+    "Actual source/generated TCP and build/lifecycle checks, canonical docs and original full phase progress retained"
+  ],
+  "required_remaining": [
+    "Actual main9 ordinary rebuild/capture/fade and return to playing",
+    "Native ordinary pool deprojection440570 and numeric9250cc ownership; boundary metadata does not claim those full native side effects",
+    "Exit9 requested-main7 branch and type14 source control ownership",
+    "Full CHT/BST side-effect consumers and all other SKL/command/body/effect paths",
+    "Native menu/audio/hit and real web/touch/WeChat gamePage/DevTools/device",
+    "Other complete gameplay/current/official compatibility"
+  ],
+  "phase_complete": false,
+  "full_goal_complete": false,
+  "goal_status": "active"
+}

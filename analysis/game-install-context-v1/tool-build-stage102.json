@@ -1,0 +1,52 @@
+{
+  "schema": "moli.inno-debug.build-observation.v1",
+  "recorded_utc": "2026-10-29T17:28:12.855731+00:00",
+  "tool_sha256": "18b238441a41d451c84852dace5820716440a3bc3f442a4ad76b0523544c4f2e",
+  "tool_bytes": 787592,
+  "tool_version": "innoextract1.9 with debug output; three checksum-pinned Homebrew build compatibility patches",
+  "configure_exit_code_observed": 0,
+  "build_exit_code_observed": 0,
+  "build_command": "cmake --build build/analysis/game-install-context-v1/inno-debug-build --parallel 2",
+  "configure_command": "cmake -S build/analysis/game-install-context-v1/innoextract-1.9 -B build/analysis/game-install-context-v1/inno-debug-build -DDEBUG=ON -DUSE_LTO=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5",
+  "global_install": false,
+  "target_executed": false,
+  "private_outputs": [
+    {
+      "installer": "CrossGate_Setup.exe",
+      "argv": [
+        "/Users/lx/Documents/code/moli-mac/build/analysis/game-install-context-v1/inno-debug-build/innoextract",
+        "--debug",
+        "--info",
+        "--color=0",
+        "--progress=0",
+        "/Users/lx/Documents/code/moli-mac/moli/CrossGate_Setup.exe"
+      ],
+      "exit_code": 0,
+      "stdout_bytes": 792250,
+      "stdout_sha256": "56f3bf6b601ed98be1e133cb443865dac69c77bca6ab08555531da0f218a98aa",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "installer": "POLCN_Setup.exe",
+      "argv": [
+        "/Users/lx/Documents/code/moli-mac/build/analysis/game-install-context-v1/inno-debug-build/innoextract",
+        "--debug",
+        "--info",
+        "--color=0",
+        "--progress=0",
+        "/Users/lx/Documents/code/moli-mac/moli/POLCN_Setup.exe"
+      ],
+      "exit_code": 0,
+      "stdout_bytes": 6419,
+      "stdout_sha256": "a676723e7bfc7f032a8ddb94f473c04178565f2c445e0a923edd4d426e2bf697",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "limits": [
+    "Static metadata only; Pascal code and Windows installer actions never run.",
+    "Debug output stays in private build; license text/compiled code not copied into public records.",
+    "Inno6.1 support is preliminary; does not establish all script semantics."
+  ]
+}

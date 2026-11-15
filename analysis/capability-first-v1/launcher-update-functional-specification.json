@@ -1,0 +1,1253 @@
+{
+  "schema": "moli.launcher-update-functional-specification.v1",
+  "classification": "original-six-by-three-source-review-with-explicit-remaining-binding",
+  "capability": "L05",
+  "requirement": "先分析全部需求能力，复用已证规则，必要规格与统一设计足够后才按组开发。",
+  "document_catalog": {
+    "source": {
+      "path": "build/analysis/launcher-update-functional-specification-v1/source-review.json",
+      "bytes": 273283,
+      "sha256": "c3f652573ad6d8468c076969443b49d7d51d0604a955a62db753bc99df827afd"
+    },
+    "original": {
+      "path": "analysis/capability-first-v1/launcher-functional-specification.json",
+      "bytes": 111980,
+      "sha256": "68ebb9f01779d04be26ed66a5a8ae16f2246cac514a8161c5c6af53bf0a13bc6"
+    },
+    "legacy_digest": {
+      "path": "analysis/launcher-v12/static-spec.json",
+      "bytes": 21985,
+      "sha256": "0045aae30b93d6604aeb365667f5a4849e133e8ef375fa6bd4fb85bd16eced53"
+    },
+    "legacy_http": {
+      "path": "analysis/launcher-v13/static-spec.json",
+      "bytes": 16812,
+      "sha256": "0f4b29eb5ad3f3bb7718f1a069e1446dd110102363779e9bf0c9acff303d888b"
+    },
+    "legacy_catalog": {
+      "path": "analysis/launcher-v14/static-spec.json",
+      "bytes": 8279,
+      "sha256": "1b55ecca2855090786ea6283bcdebbd623c3ae0aa223945fbfe96886d1777704"
+    },
+    "C7_metadata": {
+      "path": "analysis/launcher-current-metadata-v1/implementation-spec.json",
+      "bytes": 30602,
+      "sha256": "c53f5da8c2bf5f76d4709635be982d164fcb4b96ba0c86762e447c2763facfb8"
+    },
+    "C7_catalog": {
+      "path": "analysis/launcher-current-catalog-v1/implementation-spec.json",
+      "bytes": 26886,
+      "sha256": "8e1997d0af64fb8de1cdcd916f707423c63841b618d3233723c24ff2fe471f6c"
+    },
+    "C82_refresh": {
+      "path": "analysis/launcher-current-refresh-v1/implementation-spec.json",
+      "bytes": 4304,
+      "sha256": "5dc1fa34e580d2eea5877b193ce5f91a84bb0b642ee951b0dafb4f4388c2131b"
+    },
+    "arguments": {
+      "path": "analysis/launcher-update-arguments-v1/implementation-spec.json",
+      "bytes": 3307,
+      "sha256": "1336dba0c262b39ace189fe43dc130a8ece0db2943b9bea41ecec9656372b165"
+    },
+    "updater": {
+      "path": "analysis/launcher-current-updater-v1/implementation-spec.json",
+      "bytes": 4181,
+      "sha256": "9ca64458a21a0ff2bc7c2caac2a19e4c5fa6068ccae8a9a0e30fd4c588d94d28"
+    },
+    "handoff": {
+      "path": "analysis/launcher-handoff-ready-v1/static-contract.json",
+      "bytes": 6959,
+      "sha256": "11359aa71577424559b520319c9d57e17b9865e17d5e41e1988be89abd3c8b0e"
+    },
+    "ACK": {
+      "path": "analysis/launcher-startup-ack-v1/static-contract.json",
+      "bytes": 4462,
+      "sha256": "2374bb1fd9ceea3113dca877f8173c49437a4383a2fe9a8697b873d04892a773"
+    },
+    "recovery": {
+      "path": "analysis/launcher-recovery-state-v1/static-contract.json",
+      "bytes": 5980,
+      "sha256": "babbdc32e99f0b4f635843b9f0371863970b6fd3fcaa6e9235bd205ead794ef9"
+    },
+    "startup": {
+      "path": "analysis/capability-first-v1/launcher-startup-final-reconciliation.json",
+      "bytes": 49579,
+      "sha256": "c2784dd329b6f0f082588a05c4d139d5e3d21b91f8f89a0784129c4f4bf96874"
+    },
+    "lifecycle": {
+      "path": "analysis/capability-first-v1/launcher-lifecycle-contract.json",
+      "bytes": 42929,
+      "sha256": "bae36e960285b56e727c0c3f988dfaf0ddcd68bae9296cb9e4cf266c00b3c984"
+    },
+    "host": {
+      "path": "analysis/capability-first-v1/shared-target-contract.json",
+      "bytes": 68467,
+      "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+    },
+    "audit": {
+      "path": "build/analysis/capability-specification-audit-v1/specification.json",
+      "bytes": 203121,
+      "sha256": "3680ddcd860f9f6b48fa0df113977962a1f82de0bfb21167509cf04154232b06"
+    },
+    "target_update": {
+      "path": "shared/launcher-update.mjs",
+      "bytes": 20697,
+      "sha256": "06b80dd2f27c20c8a11dbfce679258190e7378a30d87a2c7aea6ccf8d26fa929"
+    },
+    "target_arguments": {
+      "path": "shared/launcher-update-arguments.mjs",
+      "bytes": 5112,
+      "sha256": "7bb4a12101910148c8a2fcc560880643febc9c5293e0e96f07e4fd30d28c51aa"
+    },
+    "target_journal": {
+      "path": "shared/launcher-update-journal.mjs",
+      "bytes": 3066,
+      "sha256": "2a09c9ac34fb07dff6490dba6d54aeff0a29feb0f72b8595082c9053bdd0bae1"
+    }
+  },
+  "scope_preserved": {
+    "original_groups": [
+      "摘要",
+      "清单",
+      "下载候选",
+      "更新器参数",
+      "接管",
+      "重新启动"
+    ],
+    "original_profiles": [
+      "launcher-legacy-601b",
+      "launcher-updated-c82f",
+      "launcher-historical-c7ba"
+    ],
+    "owners": [
+      "shared/launcher-update.mjs",
+      "shared/launcher-update-arguments.mjs",
+      "shared/launcher-update-journal.mjs"
+    ],
+    "dependencies": [
+      "L01"
+    ],
+    "implementation_batch": "D1",
+    "inventory": "40/81/37/10/6"
+  },
+  "source_review": {
+    "document": "source",
+    "pointer": ""
+  },
+  "facts": [
+    {
+      "id": "UF-F01",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "保持原L05六组×601b/C82/C7三个profile、三个owner、L01依赖和D1批次。v26是相邻游戏Patcher规格，不能作为本自更新器消费者闭合证据。普通离线UPX解压只产生分析派生件；安装包、父EXE和子EXE均未运行。",
+      "source_refs": [
+        {
+          "document": "original",
+          "pointer": "/original_capability_reviews/4"
+        },
+        {
+          "document": "source",
+          "pointer": "/extraction"
+        }
+      ]
+    },
+    {
+      "id": "UF-F02",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "601b BIN_DATA143在文件偏移904860含46080B、SHA256 4c46fced…9284976更新器；普通UPX5.2.1 -d输出86016B、62dbd66e…26b0a4。其4098FB CRT经初始化表/40A0D0、401B00、401B60、401C60、WM_CREATE401DD0到child virtual+6C的401180；不是把PE entry或空WM_PAINT当更新业务。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/3"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/22"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/18"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/15"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/12"
+        },
+        {
+          "document": "source",
+          "pointer": "/derived_views"
+        }
+      ]
+    },
+    {
+      "id": "UF-F03",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "旧父4015A0获取launcher_md5.dat后依次按单字符SP、LF、CR处理边缘，再截32，原指令所证比较规范为大写。摘要不同才读launcher_url.dat前两个格式化token URL/size；这些元数据不是来源认证。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/41"
+        },
+        {
+          "document": "legacy_digest",
+          "pointer": ""
+        }
+      ]
+    },
+    {
+      "id": "UF-F04",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "旧目录xml_md5.dat含Game/Region两个摘要token，分别比较/拉取/写入。v13 WinInet查询状态失败仍读取，成功且>=400才拒绝；每块最多1023B并按CString的首NUL截断。v14直接分文件写，OPEN_ALWAYS且无截短，部分Delete/Open结果未分支，没有现代pair journal或写后重新MD5保证。",
+      "source_refs": [
+        {
+          "document": "legacy_digest",
+          "pointer": ""
+        },
+        {
+          "document": "legacy_http",
+          "pointer": ""
+        },
+        {
+          "document": "legacy_catalog",
+          "pointer": ""
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/41"
+        }
+      ]
+    },
+    {
+      "id": "UF-F05",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "旧父参数格式LauncherUpdater.exe %d %s %s %s %s，URL/目标路径内部SP→pipe，后两项保留size/摘要文本。第一项实际来自GetWindowThreadProcessId(hwnd,NULL)返回值，不能标为已证进程PID。CreateProcessA结果只影响日志，原指令随后仍_exit(0)。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/41"
+        },
+        {
+          "document": "source",
+          "pointer": "/api_bindings"
+        }
+      ]
+    },
+    {
+      "id": "UF-F06",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "旧子401180以流提取五token；第一项和size经atoi要求非0、URL/路径/摘要要求非空，URL/路径pipe→SP。OpenProcess实际压栈为OpenProcess(0,0x1F0FFF,sourceID)，随后WaitForSingleObject(handle,INFINITE)，返回均未检查。不能把字段名或等待调用升级为父进程已退出；也不能套用现代32hex/范围/URI guard。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/12"
+        },
+        {
+          "document": "source",
+          "pointer": "/api_bindings"
+        }
+      ]
+    },
+    {
+      "id": "UF-F07",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "旧子一次WinInet下载到POL_Launcher.pak(wb+)；OpenURL flags84000002，状态查询失败或<400可读，>=400失败。size只作进度分母，未见累计archive大小等于声明size的门槛；fwrite返回未校验，无现代Range续传/三次重试规则。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/12"
+        }
+      ]
+    },
+    {
+      "id": "UF-F08",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "旧ZIP先GoFirst，再打开当前条目，读到固定POL_Launcher.new；支持store0/deflate8，已读完整时CloseCurrent核CRC。新文件经1024B分块MD5，规范大写后与输入摘要比较。没有把现代单条目、文件名/PE header、64MiB或扩展比门槛移到旧版。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/10"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/1"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/7"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/9"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/20"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/13"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/8"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/16"
+        }
+      ]
+    },
+    {
+      "id": "UF-F09",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "旧子摘要相同时依次DeleteFile(target)、CopyFile(new,target,FALSE)、DeleteFile(new)，BOOL未校验，无已证备份/journal/恢复。重启格式原件40B724为%s ID:%d，ID同样来自GetWindowThreadProcessId(hwnd,NULL)。CreateProcessA成败分支最后均exit(0)；失败路径exit(-1)。worker native非连续体不含公共exit/EH尾部，另以原件派生窗单列，避免错认伪码地址为退出码。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/12"
+        },
+        {
+          "document": "source",
+          "pointer": "/derived_views"
+        },
+        {
+          "document": "source",
+          "pointer": "/literals"
+        }
+      ]
+    },
+    {
+      "id": "UF-F10",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "旧401180实际typed EH表仅在state7..8捕获CInternetException，在10..12捕获CException；Zip/File异常的catchable类型链分别核原件。哈希与替换state14..17不在这两组handler范围内，不能宣称所有I/O异常均进入同一清理。原件派生视图不计为provider完整native。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/legacy_typed_EH"
+        },
+        {
+          "document": "source",
+          "pointer": "/derived_views"
+        }
+      ]
+    },
+    {
+      "id": "UF-F11",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "C7 4069B0摘要从SP/CR/LF集合trim后截32，与本地小写MD5作区分大小写比较；locator只消费前两token。C82 406A00保留独立profile和相应来源合同，不能用601b的大写规范覆盖现代实现。C7元数据HTTP包装使用4000缓存扰动、8MiB预算、15秒检查与状态200..399等已留存规则。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/42"
+        },
+        {
+          "document": "C7_metadata",
+          "pointer": ""
+        },
+        {
+          "document": "C82_refresh",
+          "pointer": ""
+        }
+      ]
+    },
+    {
+      "id": "UF-F12",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "C7 xml_md5.dat响应体不参与目录hash选择，只由成功返回门控后续GameList/RegionList获取。C7/C82目录候选验证、完整raw比较、marker/双backup/ordered move和恢复各按同版合同；恢复与内存重新发布相互分开，不是两个清单的一次原子事务。",
+      "source_refs": [
+        {
+          "document": "C7_metadata",
+          "pointer": ""
+        },
+        {
+          "document": "C7_catalog",
+          "pointer": ""
+        },
+        {
+          "document": "C82_refresh",
+          "pointer": ""
+        },
+        {
+          "document": "startup",
+          "pointer": ""
+        }
+      ]
+    },
+    {
+      "id": "UF-F13",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "C7 406540与C82 406590分别绑定：非0UInt32 PID，URL至255B、有限HTTP/S首host检查，盘符绝对路径4..259B，size文本1..10十进制且值1..268435456，32hex摘要；拒pipe/引号/control/DEL/边缘SP。复制URL/path后内部SP→pipe，原size前导零与MD5大小写保留。C7 builder已在较早metadata档案存在，本轮重复请求只计复用，不计新源函数。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/46"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/43"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/45"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/48"
+        },
+        {
+          "document": "arguments",
+          "pointer": ""
+        },
+        {
+          "document": "source",
+          "pointer": "/query_accounting"
+        }
+      ]
+    },
+    {
+      "id": "UF-F14",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "C7 40A1D0/40AEC0和C82 40A320/40B010各自构造Local\\POLCN_UpdateHandoff_PID_creationTime手动reset事件，以runas/mask440启动、要求process handle并设232B/100ms timer；ready且child仍运行才请求旧窗口WM_CLOSE，不是替换/提交成功。unsigned tick差60000为ready等待阈值；失败清handle/event和恢复相应UI。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/44"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/47"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/49"
+        },
+        {
+          "document": "handoff",
+          "pointer": ""
+        }
+      ]
+    },
+    {
+      "id": "UF-F15",
+      "classification": "事实",
+      "evidence_kind": "derived-comparison-of-distinct-immutable-artifacts",
+      "claim": "814080B子更新器22d56137与7eb173b0是不同完整hash；全文件逐字节只有26个已分类header/debug差异，所选18个完整函数的原件窗逐一相同。新的Range/callback规则可经明确字节对应复用于这两个固定子样本，不能推广到任意新版。 C7在原文件3027992偏移完整内嵌22d，C82在3034136完整内嵌7eb，各仅一处匹配。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/modern_distinct_file_comparison"
+        },
+        {
+          "document": "source",
+          "pointer": "/modern_embedded_bindings"
+        }
+      ]
+    },
+    {
+      "id": "UF-F16",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "现代404430 partial身份用URL、换行、size数值文本、换行、MD5文本组成UTF16LE字节，交16B摘要链及32hex格式器，拼接目标download path、点、digest和.partial。大小写/文本参与身份；不假定与传输URI规范化相同。实际摘要链的MD5 IV、64B更新、80padding/LE bit长度和16B输出已定位。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/27"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/34"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/29"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/36"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/37"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/24"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/28"
+        },
+        {
+          "document": "source",
+          "pointer": "/literals"
+        }
+      ]
+    },
+    {
+      "id": "UF-F17",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "现代404990 partial只接受普通非reparse文件、64位长度high为0且不超过声明archive大小；sink真实4047C0先防超出剩余，再WriteFile并要求BOOL且written==requested，之后才加计数/发布UI进度。provider无该procedure，用实际callback常量和原件4047C0..404983派生窗保留，没有改工具元数据造函数。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/40"
+        },
+        {
+          "document": "source",
+          "pointer": "/derived_views/5"
+        },
+        {
+          "document": "source",
+          "pointer": "/api_bindings"
+        }
+      ]
+    },
+    {
+      "id": "UF-F18",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "414660仅非0offset走Range；415C50 header callback先在HTTP状态行清状态/valid标记，再对大小写无关Content-Range: bytes前缀解析三整数和%n。原指令要求解析数3、n>0、下一字符CR、start==请求offset、end==总长-1、total==请求总长才置valid。伪码因变参缺失剪掉该分支，结论来自完整原指令。415FF0对3xx body仅消费丢弃，只有206且valid才投递sink；HTTP200且未投递数据返回11供上层重启。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/32"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/25"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/26"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/38"
+        }
+      ]
+    },
+    {
+      "id": "UF-F19",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "offset0由4150C0普通fetch；HTTP默认仅200成功，源当前配置的可选开关另允许其他2xx。源URL/有效URL前缀与共同传输选项分别检查；414350当前配置允许redirect、最大3、connect5秒、低速1字节/秒5秒、总timeout0，含no-cache header和固定UA。非0offset成功还要求有效HTTP206、Content-Range合法及投递字节等于remaining；溢出、sink失败和取消分别返回。传输库本体未扩展盘点。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/31"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/30"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/23"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/35"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/38"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/32"
+        }
+      ]
+    },
+    {
+      "id": "UF-F20",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "404990最多三尝试：第一次立即，第二/三次按20/30×100ms等待并检查4029D0取消flag。transfer11清partial再从0试；配置/初始化错误3/4或普通4xx(408/429除外)终止并标删除；其他中断可保留累计字节重试，累计碰到全长但无成功结果时清空再试。精确长度且transfer1才成功，之后FlushFileBuffers/Close，再MoveFileExW flag8到download路径。取消先返回保留partial；fatal删除只是API请求，未观察OS实际结果。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/40"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/33"
+        }
+      ]
+    },
+    {
+      "id": "UF-F21",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "现代候选按既有405C40/405AB0要求恰一普通ZIP条目、basename .exe、输出1..64MiB和扩展比、CRC/MD5及MZ/PE32/i386/GUI头；这些是字节/头部谓词，不是运行证明。父进程身份、ready、journal1..5、备份替换和恢复按4071C0及既有READY/ACK/recovery合同，成功启动与ACK提交分开。",
+      "source_refs": [
+        {
+          "document": "updater",
+          "pointer": ""
+        },
+        {
+          "document": "handoff",
+          "pointer": ""
+        },
+        {
+          "document": "ACK",
+          "pointer": ""
+        },
+        {
+          "document": "recovery",
+          "pointer": ""
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/39"
+        }
+      ]
+    },
+    {
+      "id": "UF-F22",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "已证C82新启动431D80取首个UPDATEACK: token，32..128WCHAR及固定前缀/hex或underscore检查，OpenEvent/Set/Close；431000在frame已绘制后调用。更新器按候选ACK资源声明选择等待策略，支持时stage4后launch、WaitForMultipleObjects与30秒tick判定；ACK成功后才提交，失败走恢复，提交清理失败不等同回滚。此C82消费者不能按相似地址自动算作C7消费者闭合。",
+      "source_refs": [
+        {
+          "document": "ACK",
+          "pointer": ""
+        },
+        {
+          "document": "recovery",
+          "pointer": ""
+        }
+      ]
+    }
+  ],
+  "inferences": [
+    {
+      "classification": "推测",
+      "claim": "MD5初始化/64B更新/填充/16B输出及既有独立MD5核心支持复用，但不据此声称新目标全部libcurl/zlib/MD5机器指令已形式等价。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies"
+        }
+      ]
+    }
+  ],
+  "profile_group_cells": [
+    {
+      "profile": "launcher-legacy-601b",
+      "group": "摘要",
+      "source_rule_fact_ids": [
+        "UF-F03"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "group": "清单",
+      "source_rule_fact_ids": [
+        "UF-F04"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "group": "下载候选",
+      "source_rule_fact_ids": [
+        "UF-F07",
+        "UF-F08",
+        "UF-F10"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "group": "更新器参数",
+      "source_rule_fact_ids": [
+        "UF-F05",
+        "UF-F06"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "group": "接管",
+      "source_rule_fact_ids": [
+        "UF-F05",
+        "UF-F06",
+        "UF-F10"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "group": "重新启动",
+      "source_rule_fact_ids": [
+        "UF-F09",
+        "UF-F10"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "group": "摘要",
+      "source_rule_fact_ids": [
+        "UF-F11"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "group": "清单",
+      "source_rule_fact_ids": [
+        "UF-F12"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "group": "下载候选",
+      "source_rule_fact_ids": [
+        "UF-F15",
+        "UF-F16",
+        "UF-F17",
+        "UF-F18",
+        "UF-F19",
+        "UF-F20",
+        "UF-F21"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "group": "更新器参数",
+      "source_rule_fact_ids": [
+        "UF-F13"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "group": "接管",
+      "source_rule_fact_ids": [
+        "UF-F14",
+        "UF-F21"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "group": "重新启动",
+      "source_rule_fact_ids": [
+        "UF-F21",
+        "UF-F22"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-historical-c7ba",
+      "group": "摘要",
+      "source_rule_fact_ids": [
+        "UF-F11"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-historical-c7ba",
+      "group": "清单",
+      "source_rule_fact_ids": [
+        "UF-F12"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-historical-c7ba",
+      "group": "下载候选",
+      "source_rule_fact_ids": [
+        "UF-F15",
+        "UF-F16",
+        "UF-F17",
+        "UF-F18",
+        "UF-F19",
+        "UF-F20",
+        "UF-F21"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-historical-c7ba",
+      "group": "更新器参数",
+      "source_rule_fact_ids": [
+        "UF-F13"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-historical-c7ba",
+      "group": "接管",
+      "source_rule_fact_ids": [
+        "UF-F14",
+        "UF-F21"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": true,
+      "remaining_source_ids": [],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "profile": "launcher-historical-c7ba",
+      "group": "重新启动",
+      "source_rule_fact_ids": [
+        "UF-F21",
+        "UF-F22"
+      ],
+      "input_and_preconditions": "原请求/元数据/profile与当前生命周期前提按对应事实；不跨版移用guard。",
+      "state_owner_and_sequence": "父准备/目录job、child partial/候选/journal和新启动ACK各自拥有状态；顺序按本profile事实及来源合同。",
+      "success_and_failure": "源返回、UI退出请求、文件API请求和真实提交分别判定；未检查的源BOOL不得补成成功保证。",
+      "cancel_close_reentry": "依赖L01和既有lifecycle合同；现代下载取消保留partial；late completion及目标host准入仍按统一A4审定。",
+      "fixed_profile_required_source_rules_specified": false,
+      "remaining_source_ids": [
+        "UF-U1"
+      ],
+      "owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    }
+  ],
+  "acceptance_cases": [
+    {
+      "id": "UF-T01",
+      "case": "旧父线程ID token与子OpenProcess实际压栈/等待返回未检查；不得当现代PID门槛。",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "UF-T02",
+      "case": "旧摘要单字符trim/大写与C7集合trim/区分大小写；locator额外token及原size文本。",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "UF-T03",
+      "case": "旧目录Game成功/Region失败、OPEN_ALWAYS旧尾、NUL分块及状态查询失败。",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "UF-T04",
+      "case": "旧ZIP首条目store/deflate、CRC失败、摘要不匹配、state7/10/14的typed异常覆盖差异。",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "UF-T05",
+      "case": "旧替换三个API失败和CreateProcess失败：请求与真实效果、exit0分别列出。",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "UF-T06",
+      "case": "现代参数PID0、255/256URL、4/259/260路径、0/256MiB/+1、前导零与MD5大小写。",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "UF-T07",
+      "case": "partial身份中换行、UTF16LE、URL/摘要大小写和size数值规范；已有完成/超长/非普通文件。",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "UF-T08",
+      "case": "sink超出预算、短写/WriteFile失败；计数不发布与fatal删除请求。",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "UF-T09",
+      "case": "206精确Content-Range、错误start/end/total、无CR、3xx状态重置、200忽略Range从0重试。",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "UF-T10",
+      "case": "三个attempt、2秒/3秒退避、408/429/5xx、普通4xx、transfer3/4、取消保留与flush/finalize失败。",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "UF-T11",
+      "case": "现代候选条目数/name/size/扩展比/CRC/MD5/PE header边界与旧profile不相互污染。",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "UF-T12",
+      "case": "ready事件已存在/启动失败/无handle/timer失败/60秒/child先退出；ready不等于提交。",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "UF-T13",
+      "case": "ACK首token非法/重复token/事件缺失/新进程早退/30秒未ACK；提交清理失败不虚构回滚。",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "UF-T14",
+      "case": "journal0..5、missing/异常属性、backup与failed move部分失败和实际存储readback。",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "UF-T15",
+      "case": "C7实际ACK入口绑定后补同版启动顺序；资源字面量不作consumer证据。",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "UF-T16",
+      "case": "三端接管/恢复/重载契约与生命周期generation：按独立宿主语义设计后接受。",
+      "status": "specified-not-executed"
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "owner": "shared/launcher-update-arguments.mjs",
+      "decision": "保留现代codec；legacy first token/guard单独profile，不改名成已证PID。"
+    },
+    {
+      "owner": "shared/launcher-update.mjs",
+      "decision": "现有ZIP候选核心复用；既有32MiB/ASCII独立限制与源64MiB/原字节覆盖差异显式列入D1。"
+    },
+    {
+      "owner": "shared/launcher-update-journal.mjs",
+      "decision": "复用已证stage/recovery纯模型；真实持久化readback和宿主交接另设计，API调用不算耐崩溃保证。"
+    }
+  ],
+  "supersession": {
+    "old_404990_retry_policy_unknown": "本合同UF-F16..20已补固定22d/7eb的partial/Range/重试/取消源规则；真实HTTP和OS故障接受未运行。",
+    "v26_self_update_attribution": "旧evidence引用继续保留；v26是游戏Patcher，不计入本域消费者闭合。"
+  },
+  "remaining": [
+    {
+      "id": "UF-U1",
+      "kind": "required-source-binding",
+      "capability": "L05",
+      "profile": "launcher-historical-c7ba",
+      "need": "将固定C7新启动UPDATEACK消费入口与实际启动caller/顺序绑定，或用同源证据证明本变体不适用。C82 431D80/431000及C7里的ACK标记字节不能替代该生产/消费链。",
+      "next_positive_edge": "从C7实际ACK资源/字符串引用或CRT绑定的App启动链追到消费者；先查其他匹配历史档案，不泛扫所有MFC helpers。"
+    },
+    {
+      "id": "UF-U2",
+      "kind": "independent-host-design",
+      "capability": "L05",
+      "supersedes_generic_gap": "CA-N2",
+      "need": "Web/移动网页/微信如何发布新资源版本、交接活动会话、重载/重启及readback恢复，须在既有shared-target端口所有权下形成一致方案。纯candidate解包不覆盖原接管/重新启动需求。",
+      "gate": "统一A4；不通过把Windows EXE直接执行语义搬进网页解决。"
+    },
+    {
+      "id": "UF-U3",
+      "kind": "implementation-after-unified-gate",
+      "need": "按D1复用已正确纯核心，只补分profile规则、partial/传输、接管/恢复与源未检查返回值对应的显式独立策略；不在此阶段改产品。"
+    },
+    {
+      "id": "UF-U4",
+      "kind": "actual-layered-acceptance",
+      "need": "真实文件/崩溃恢复、三端生命周期/SDK、同版账号和官方接受未运行；无测试账号、同版游戏消费者缺证保留。"
+    }
+  ],
+  "summary": {
+    "complete_native_bodies": 50,
+    "new_complete_native_bodies": 39,
+    "new_complete_native_bytes": 16095,
+    "reused_complete_native_bodies": 11,
+    "native_windows": 54,
+    "native_bytes": 51875,
+    "native_instructions": 13855,
+    "separate_derived_windows": 7,
+    "derived_bytes": 845,
+    "derived_instructions": 276,
+    "modern_fresh_records": 17,
+    "modern_new_native_functions": 16,
+    "modern_negative_containing_queries": 1,
+    "redundant_C7_builder_query_already_in_older_bundle": 1,
+    "target_execution": false,
+    "product_changes": false,
+    "product_tests_or_builds": false,
+    "reviewed_cells": 18,
+    "source_rule_cells_specified": 17,
+    "source_local_ready_before": 18,
+    "source_local_ready_after": 18
+  },
+  "whole_L05_specification_ready": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "official_acceptance": false,
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "new_target_tests": 0,
+  "new_VM_SDK_settings_account_or_official_actions": false,
+  "stopping_rule": "已证现代Range及旧child普通规则停止扩展；下一查询仅针对UF-U1实际同源入口，统一门槛前不开发新功能。",
+  "validation_record_path": "build/analysis/launcher-update-functional-specification-v1/validation.json"
+}

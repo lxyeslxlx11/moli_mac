@@ -1,0 +1,1367 @@
+{
+  "schema": "moli.launcher-game-patch-functional-specification.v1",
+  "classification": "original-five-by-two-source-composition-reviewed-payload-and-host-gaps-open",
+  "requirement": "All-capability-first REA specification before original D1 implementation;L06 complete scope is preserved.",
+  "document_catalog": {
+    "source": {
+      "path": "build/analysis/launcher-game-patch-functional-specification-v1/source-review.json",
+      "bytes": 64347,
+      "sha256": "7436063b4b9fecf938df25e6530c78fae45474a99cd577e29e29b0af9ea418ef"
+    },
+    "composition_input": {
+      "path": "build/analysis/launcher-game-patch-functional-specification-v1/specification-content.json",
+      "bytes": 30920,
+      "sha256": "bc793e1fda48722e02581153ef330db36321a22423b3e45f89a65b1f66ae54d6"
+    },
+    "original": {
+      "path": "analysis/capability-first-v1/launcher-functional-specification.json",
+      "bytes": 111980,
+      "sha256": "68ebb9f01779d04be26ed66a5a8ae16f2246cac514a8161c5c6af53bf0a13bc6"
+    },
+    "v26_static": {
+      "path": "analysis/launcher-v26/static-spec.json",
+      "bytes": 42417,
+      "sha256": "8d79728f22c7076a61ae3b902c86bfc3ac46ab9ad247417a902494ee8088084e"
+    },
+    "v26_target": {
+      "path": "analysis/launcher-v26/implementation-spec.json",
+      "bytes": 4178,
+      "sha256": "65d4098ddda3bbf2f98358b886dc72154732702b5ad15cf3c541560d914c1d1e"
+    },
+    "v27_static": {
+      "path": "analysis/launcher-v27/static-spec.json",
+      "bytes": 13653,
+      "sha256": "ca3efd98eae6a1a583062c2878a1a5cc5e5f3c3d6df0746d6c3aa92a607ed7dc"
+    },
+    "v27_target": {
+      "path": "analysis/launcher-v27/implementation-spec.json",
+      "bytes": 5070,
+      "sha256": "cde428225a712ebdee6e3cd7e72ee0e83a82822e931c5b314e3da80a26c3c319"
+    },
+    "current_patch": {
+      "path": "analysis/launcher-current-patch-v1/implementation-spec.json",
+      "bytes": 13725,
+      "sha256": "80777be0bdb535d3a3ba5898eb0c462c6eda7625584ed694533bd59c93daedc0"
+    },
+    "missing_patcher": {
+      "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+      "bytes": 28641,
+      "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+    },
+    "paths": {
+      "path": "analysis/capability-first-v1/launcher-config-path-contract.json",
+      "bytes": 28388,
+      "sha256": "f685da9e70819e19bdb9430669c8f74c482c4781d089b2d308f00bb79c83d3e9"
+    },
+    "startup_reconciliation": {
+      "path": "analysis/capability-first-v1/launcher-startup-final-reconciliation.json",
+      "bytes": 49579,
+      "sha256": "c2784dd329b6f0f082588a05c4d139d5e3d21b91f8f89a0784129c4f4bf96874"
+    },
+    "host_design": {
+      "path": "analysis/capability-first-v1/shared-update-host-design.json",
+      "bytes": 49890,
+      "sha256": "5a063be1a03c404ffd1704810798d04159b8fec8a4ff1037c4891db2e82c762d"
+    },
+    "target_contract": {
+      "path": "analysis/capability-first-v1/shared-target-contract.json",
+      "bytes": 68467,
+      "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+    },
+    "game_patch_owner": {
+      "path": "shared/launcher-game-patch.mjs",
+      "bytes": 10162,
+      "sha256": "521cbbd318e05f94d796494bfc3fe300b1debf1e047acc2eb84dccf49703e155"
+    },
+    "current_patch_owner": {
+      "path": "shared/launcher-patch-current.mjs",
+      "bytes": 8826,
+      "sha256": "86a22afb67ae5007f21ea6e3425996af94e9d4ac2182ed8dc7e70219e4ef7bbc"
+    },
+    "candidate_owner": {
+      "path": "shared/game-patch.mjs",
+      "bytes": 12481,
+      "sha256": "41f2eeefc4439cb02bddddade51035cddb8f8784b67003a4e0659ea4bbde2880"
+    }
+  },
+  "scope_preserved": {
+    "capability": "L06",
+    "original_requirement_scope": "补丁操作、候选校验、事务提交、中断和恢复",
+    "original_groups": [
+      "补丁操作",
+      "候选校验",
+      "事务提交",
+      "中断",
+      "恢复"
+    ],
+    "original_profiles": [
+      "launcher-legacy-601b",
+      "launcher-updated-c82f"
+    ],
+    "original_owner_dependency_batch_profile_fields": {
+      "existing_implementation_owners": [
+        "shared/launcher-game-patch.mjs",
+        "shared/launcher-patch-current.mjs",
+        "shared/game-patch.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L05",
+        "X03"
+      ],
+      "implementation_batch": "D1",
+      "source_profiles": [
+        "launcher-legacy-601b",
+        "launcher-updated-c82f"
+      ]
+    },
+    "inventory": "40/81/37/10/6",
+    "source_local_ready_capabilities": 19,
+    "profile_group_cells": 10,
+    "child_not_added_as_third_parent_profile": true
+  },
+  "identities": {
+    "PUK3": {
+      "path": "build/analysis/launcher-game-patch-functional-specification-v1/material/Patcher_PUK3.analysis-only.exe",
+      "bytes": 578560,
+      "sha256": "195f3afda41f342147b0616a4c005a4cb308ae6869b52c4a558fded5f5d9aaa8"
+    },
+    "legacy": {
+      "path": "build/analysis/launcher-session-functional-specification-v1/legacy-material/POLCN_Launcher.analysis-only.exe",
+      "bytes": 1735168,
+      "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31"
+    },
+    "current": {
+      "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+      "bytes": 4111872,
+      "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+    }
+  },
+  "toolchain": {
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "LLVM": "Apple LLVM 21.0.0"
+  },
+  "facts": [
+    {
+      "id": "GP-F01",
+      "classification": "事实",
+      "claim": "原L06仍为补丁操作、候选校验、事务提交、中断、恢复五组，两版父登录器601b/c82f，10格；关联消费者为另一个固定195f PUK3。三个SHA-256分别核实，不能以父profile名、PatchEXE字段或.pat扩展名证明实际payload就是195f。",
+      "source_refs": [
+        {
+          "document": "original",
+          "pointer": "/original_capability_reviews/5"
+        },
+        {
+          "document": "source",
+          "pointer": "/sources"
+        },
+        {
+          "document": "source",
+          "pointer": "/sample_relocation"
+        }
+      ]
+    },
+    {
+      "id": "GP-F02",
+      "classification": "事实",
+      "claim": "旧601b把原Code文本、PatchEXE、所选region的PIP/PPort用于补丁准备；完成标志或空PatchEXE跳过。缺失安装目标的源路径为Code/PatchEXE。备份名经过本版大小写转换及.EXE替换.BAK.EXE，启动command为未加quote的原拼接文本；独立ASCII政策不能覆盖native locale/MBCS全部输入。",
+      "source_refs": [
+        {
+          "document": "v27_static",
+          "pointer": "/facts"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/10"
+        }
+      ]
+    },
+    {
+      "id": "GP-F03",
+      "classification": "事实",
+      "claim": "旧406110中CreateProcessA成功后WaitForSingleObject传INFINITE，再读exit并删除备份。100写本版所选game准备标志后返回；102累计至3次尝试；101及其它非102退出走提示、局部界面恢复和_exit(-1)。该同步等待不是current的timer状态机。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/10"
+        },
+        {
+          "document": "startup_reconciliation",
+          "pointer": "/facts/5"
+        },
+        {
+          "document": "source",
+          "pointer": "/api_bindings"
+        }
+      ]
+    },
+    {
+      "id": "GP-F04",
+      "classification": "事实",
+      "claim": "current40F430先检查现有进程handle，再判所选game已准备或空PatchEXE；返回0/1/2分别为无需、pending/已接受、失败。缺失目标时源是moduleDir+反斜杠+原Code+.pat，CopyFileA允许覆盖；此分支没有把.pat当ZIP或做完整哈希验证。复制成功但后续启动失败不删除刚复制的目标。",
+      "source_refs": [
+        {
+          "document": "missing_patcher",
+          "pointer": "/facts"
+        },
+        {
+          "document": "paths",
+          "pointer": "/facts"
+        }
+      ]
+    },
+    {
+      "id": "GP-F05",
+      "classification": "事实",
+      "claim": "current40EC40为备份路径总加quote，按字节处理quote前及尾部反斜杠，并传显式applicationName；地址/端口沿本版校验。40B010每250ms查询，失败或259保留pending；DWORD elapsed达到1800000仅提示一次，随后继续观察，没有以这条超时分支终止child。",
+      "source_refs": [
+        {
+          "document": "current_patch",
+          "pointer": "/facts"
+        },
+        {
+          "document": "missing_patcher",
+          "pointer": "/facts"
+        }
+      ]
+    },
+    {
+      "id": "GP-F06",
+      "classification": "事实",
+      "claim": "current408460处理实际退出时删除备份；100只在有效所选game时记准备成功，无有效选择另报0x585。102的第1/2次直接回40EC40重试，第3次耗尽；101与其它值分别失败。直接重试不重进40F430清计数或重做Code.pat复制。",
+      "source_refs": [
+        {
+          "document": "current_patch",
+          "pointer": "/facts"
+        },
+        {
+          "document": "missing_patcher",
+          "pointer": "/facts"
+        }
+      ]
+    },
+    {
+      "id": "GP-F07",
+      "classification": "事实",
+      "claim": "固定195f的清单规则复用v26：整体trim指定空白，以}顺序分块，再按已证CR/TAB/SP和精确{+LF规则清理；按LF拆行、首条create/append/replaceto大小写敏感，后续key:value要求恰好两段，首个重复key保留。未知块、缺字段、空字段按原操作分支解释，不能用常见INI/JSON语义代替。",
+      "source_refs": [
+        {
+          "document": "v26_static",
+          "pointer": "/facts"
+        },
+        {
+          "document": "v26_target",
+          "pointer": "/manifest_grammar"
+        }
+      ]
+    },
+    {
+      "id": "GP-F08",
+      "classification": "事实",
+      "claim": "固定195f从配置源按既有后端/候选次序取得Update.TXT，生成/cg50/path/name.bz2?time=请求；下载暂存.download。后续按ZIP而不是BZip2识别和遍历内容。create/replaceto与append的解压/命名chunk处理范围不同，沿v26完整规则复用；本轮不再枚举HTTP或ZIP库helper。",
+      "source_refs": [
+        {
+          "document": "v26_static",
+          "pointer": "/facts"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/0"
+        }
+      ]
+    },
+    {
+      "id": "GP-F09",
+      "classification": "事实",
+      "claim": "固定195f的create/replaceto以已有目标的原MD5匹配作为skip条件；所证MD5文件映射使用低32位长度。下载后的MD5记录不等于最终强制核验；replaceto可能先请求删除旧名。独立候选的严格路径、最终MD5与预算属于明确的独立政策，不是native全输入域行为。",
+      "source_refs": [
+        {
+          "document": "v26_static",
+          "pointer": "/facts"
+        },
+        {
+          "document": "v26_target",
+          "pointer": "/independent_policies"
+        }
+      ]
+    },
+    {
+      "id": "GP-F10",
+      "classification": "事实",
+      "claim": "append410910会以m模式打开目标，OPEN_ALWAYS可在下载前创建文件；403790的r/a/w/m分别使用所证读/追加/截断写/保留写模式。40FD30从命名chunk读入后定位old文件尾并写入，再MoveFileA到新名，ReadFile/WriteFile实际字节数、SetFilePointer和MoveFileA结果在这条链未用于完整成功判定。调用者4112C7执行40FD30后不测试其结果，后续411302仍设置本次返回标志。因此不能推导“move失败一定触发main重试”或“输入磁盘失败时未修改”。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/6"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/2"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/1"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/9"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/8"
+        }
+      ]
+    },
+    {
+      "id": "GP-F11",
+      "classification": "事实",
+      "claim": "main409240逐operation调用vtable执行槽并测试AL；false时最多3次尝试。第3次false记录后仍汇入40A8FC进度/下一项路径；普通循环结束40AA64设置100。故普通AL失败并不必然改变最终100，100不能证明全部操作或文件完整。此结论不扩展到未处理异常/进程被外部终止。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/7"
+        }
+      ]
+    },
+    {
+      "id": "GP-F12",
+      "classification": "事实",
+      "claim": "PE入口4152C7的10字节派生视图先CALL41579A再跳41514B；不以这条CALL推定前置helper全部语义。完整CRT体在41523E调用409240并保留其结果，普通非managed分支将结果交同一_exit；managed返回支也保留该结果。CRT body含两个非连续范围327字节，不能把中间53字节间隙算入本体或以伪代码标签代替字节控制流。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/derived_entry"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/3"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/7"
+        }
+      ]
+    },
+    {
+      "id": "GP-F13",
+      "classification": "事实",
+      "claim": "main409240通过CreateThread传408B40。该UI线程将408850注册为Game Update Program窗口过程，创建显示更新窗口并运行GetMessage/TranslateMessage/DispatchMessage循环；这是实际回调绑定，不是仅凭按钮文案猜测。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/7"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/4"
+        },
+        {
+          "document": "source",
+          "pointer": "/api_bindings"
+        }
+      ]
+    },
+    {
+      "id": "GP-F14",
+      "classification": "事实",
+      "claim": "408850的WM_DESTROY直接把101传_exit；WM_COMMAND低字9且高字0时确认返回1走同一出口，其他结果返回。WM_SYSCOMMAND精确F060的确认返回2吞掉关闭，其余沿DefWindowProcA处理。所证owned链在该出口前不先等待当前补丁操作完成或运行批次回滚；不是可恢复持久化取消确认，也不是整个CRT所有onexit回调均不存在的证明。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/5"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/4"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/3"
+        }
+      ]
+    },
+    {
+      "id": "GP-F15",
+      "classification": "事实",
+      "claim": "既有纯candidate iterator快照输入，只在全部成功时暴露owned final files；return丢弃待计算candidate。异步preparer的总deadline、固定输入和显式transport政策与原每项尝试/磁盘副作用分列。这些是内存候选合同，不是原磁盘事务、堆擦除、底层IO已停止或持久化提交证据。",
+      "source_refs": [
+        {
+          "document": "v27_target",
+          "pointer": "/iterator"
+        },
+        {
+          "document": "v27_target",
+          "pointer": "/async"
+        }
+      ]
+    },
+    {
+      "id": "GP-F16",
+      "classification": "事实",
+      "claim": "现有UH已把发布、未知结果回查、历史receipt、旧root lease、内容接入/代码重载与新boot确认分开；UC-P08/P10原13方法、14端口62方法总合同保持。该独立方案尚未通过完整网页/移动网页/微信Host与预算接受，不能补称native提供了全批原子事务或故障恢复。",
+      "source_refs": [
+        {
+          "document": "host_design",
+          "pointer": "/independent_design"
+        },
+        {
+          "document": "target_contract",
+          "pointer": "/ports"
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "GP-O01",
+      "name": "选择与父进程profile绑定",
+      "owners": [
+        "catalog",
+        "patch-process"
+      ],
+      "facts": [
+        "GP-F01",
+        "GP-F02",
+        "GP-F04"
+      ],
+      "result": "保持两个父profile和独立child身份；实际payload另行核实。"
+    },
+    {
+      "id": "GP-O02",
+      "name": "准备复制与备份启动",
+      "owners": [
+        "patch-process"
+      ],
+      "facts": [
+        "GP-F02",
+        "GP-F03",
+        "GP-F04",
+        "GP-F05"
+      ],
+      "result": "legacy raw command/Code路径与current quoted/moduleDir+Code.pat不能混用。"
+    },
+    {
+      "id": "GP-O03",
+      "name": "清单选择与操作列表",
+      "owners": [
+        "patch-manifest"
+      ],
+      "facts": [
+        "GP-F07",
+        "GP-F08"
+      ],
+      "result": "仅在消费者身份满足195f时使用其精确语法、URL和ZIP规则。"
+    },
+    {
+      "id": "GP-O04",
+      "name": "已有内容校验与下载候选",
+      "owners": [
+        "patch-candidate"
+      ],
+      "facts": [
+        "GP-F08",
+        "GP-F09"
+      ],
+      "result": "区分原skip条件、日志MD5与独立最终校验。"
+    },
+    {
+      "id": "GP-O05",
+      "name": "create/append/replaceto副作用",
+      "owners": [
+        "patch-candidate",
+        "resource-store"
+      ],
+      "facts": [
+        "GP-F09",
+        "GP-F10"
+      ],
+      "result": "保留执行次序、原文件可能部分变化及被忽略结果；独立实现不运行原shell命令。"
+    },
+    {
+      "id": "GP-O06",
+      "name": "每项失败和批末状态",
+      "owners": [
+        "patch-process"
+      ],
+      "facts": [
+        "GP-F11",
+        "GP-F12"
+      ],
+      "result": "3次AL失败可继续；100只表达所证原状态，不升级为完整性receipt。"
+    },
+    {
+      "id": "GP-O07",
+      "name": "父进程等待与退出分派",
+      "owners": [
+        "patch-process",
+        "selection"
+      ],
+      "facts": [
+        "GP-F03",
+        "GP-F05",
+        "GP-F06"
+      ],
+      "result": "legacy同步wait与current poll分别保持；102最多3次，current warning不终止。"
+    },
+    {
+      "id": "GP-O08",
+      "name": "原child关闭与进程中断",
+      "owners": [
+        "patch-process",
+        "resource-store"
+      ],
+      "facts": [
+        "GP-F10",
+        "GP-F13",
+        "GP-F14"
+      ],
+      "result": "确认/WM_DESTROY退出101不等于rollback；不承诺当前磁盘操作完成。"
+    },
+    {
+      "id": "GP-O09",
+      "name": "独立candidate中断",
+      "owners": [
+        "patch-candidate"
+      ],
+      "facts": [
+        "GP-F15"
+      ],
+      "result": "只撤销内存candidate计算；底层实际IO退役交宿主合同。"
+    },
+    {
+      "id": "GP-O10",
+      "name": "持久化提交与未知回查",
+      "owners": [
+        "resource-store"
+      ],
+      "facts": [
+        "GP-F11",
+        "GP-F15",
+        "GP-F16"
+      ],
+      "result": "单一候选结果与content commit分开，未知结果先权威回查再重放。"
+    },
+    {
+      "id": "GP-O11",
+      "name": "旧root恢复与重新接入",
+      "owners": [
+        "resource-store",
+        "session"
+      ],
+      "facts": [
+        "GP-F06",
+        "GP-F10",
+        "GP-F16"
+      ],
+      "result": "parent retry/备份清理不等于内容回滚；旧内容恢复以新CAS revision提交。"
+    },
+    {
+      "id": "GP-O12",
+      "name": "完成分层",
+      "owners": [
+        "patch-process",
+        "resource-store",
+        "session"
+      ],
+      "facts": [
+        "GP-F01",
+        "GP-F11",
+        "GP-F12",
+        "GP-F16"
+      ],
+      "result": "进程100、候选校验、内容提交、实际新root/新build就绪和官方接受分别记录。"
+    }
+  ],
+  "profile_group_cells": [
+    {
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "补丁操作",
+      "operation_ids": [
+        "GP-O01",
+        "GP-O02",
+        "GP-O03",
+        "GP-O05"
+      ],
+      "fact_ids": [
+        "GP-F01",
+        "GP-F02",
+        "GP-F03",
+        "GP-F04",
+        "GP-F05",
+        "GP-F07",
+        "GP-F08",
+        "GP-F09",
+        "GP-F10"
+      ],
+      "parent_source_rules_composed": true,
+      "associated_child_rules": "fixed195f source only;payload association remains explicit",
+      "native_whole_batch_atomic_or_restorative_guarantee": false,
+      "original_requirement_specification_ready": false,
+      "remaining_ids": [
+        "GP-U01"
+      ]
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "候选校验",
+      "operation_ids": [
+        "GP-O04",
+        "GP-O06",
+        "GP-O12"
+      ],
+      "fact_ids": [
+        "GP-F01",
+        "GP-F08",
+        "GP-F09",
+        "GP-F11",
+        "GP-F12",
+        "GP-F16"
+      ],
+      "parent_source_rules_composed": true,
+      "associated_child_rules": "fixed195f source only;payload association remains explicit",
+      "native_whole_batch_atomic_or_restorative_guarantee": false,
+      "original_requirement_specification_ready": false,
+      "remaining_ids": [
+        "GP-U01"
+      ]
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "事务提交",
+      "operation_ids": [
+        "GP-O05",
+        "GP-O06",
+        "GP-O10",
+        "GP-O12"
+      ],
+      "fact_ids": [
+        "GP-F01",
+        "GP-F09",
+        "GP-F10",
+        "GP-F11",
+        "GP-F12",
+        "GP-F15",
+        "GP-F16"
+      ],
+      "parent_source_rules_composed": true,
+      "associated_child_rules": "fixed195f source only;payload association remains explicit",
+      "native_whole_batch_atomic_or_restorative_guarantee": false,
+      "original_requirement_specification_ready": false,
+      "remaining_ids": [
+        "GP-U01",
+        "GP-U02"
+      ]
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "中断",
+      "operation_ids": [
+        "GP-O07",
+        "GP-O08",
+        "GP-O09"
+      ],
+      "fact_ids": [
+        "GP-F03",
+        "GP-F05",
+        "GP-F06",
+        "GP-F10",
+        "GP-F13",
+        "GP-F14",
+        "GP-F15"
+      ],
+      "parent_source_rules_composed": true,
+      "associated_child_rules": "fixed195f source only;payload association remains explicit",
+      "native_whole_batch_atomic_or_restorative_guarantee": false,
+      "original_requirement_specification_ready": false,
+      "remaining_ids": [
+        "GP-U01",
+        "GP-U02"
+      ]
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "恢复",
+      "operation_ids": [
+        "GP-O02",
+        "GP-O07",
+        "GP-O10",
+        "GP-O11"
+      ],
+      "fact_ids": [
+        "GP-F02",
+        "GP-F03",
+        "GP-F04",
+        "GP-F05",
+        "GP-F06",
+        "GP-F10",
+        "GP-F11",
+        "GP-F15",
+        "GP-F16"
+      ],
+      "parent_source_rules_composed": true,
+      "associated_child_rules": "fixed195f source only;payload association remains explicit",
+      "native_whole_batch_atomic_or_restorative_guarantee": false,
+      "original_requirement_specification_ready": false,
+      "remaining_ids": [
+        "GP-U01",
+        "GP-U02"
+      ]
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "补丁操作",
+      "operation_ids": [
+        "GP-O01",
+        "GP-O02",
+        "GP-O03",
+        "GP-O05"
+      ],
+      "fact_ids": [
+        "GP-F01",
+        "GP-F02",
+        "GP-F03",
+        "GP-F04",
+        "GP-F05",
+        "GP-F07",
+        "GP-F08",
+        "GP-F09",
+        "GP-F10"
+      ],
+      "parent_source_rules_composed": true,
+      "associated_child_rules": "fixed195f source only;payload association remains explicit",
+      "native_whole_batch_atomic_or_restorative_guarantee": false,
+      "original_requirement_specification_ready": false,
+      "remaining_ids": [
+        "GP-U01"
+      ]
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "候选校验",
+      "operation_ids": [
+        "GP-O04",
+        "GP-O06",
+        "GP-O12"
+      ],
+      "fact_ids": [
+        "GP-F01",
+        "GP-F08",
+        "GP-F09",
+        "GP-F11",
+        "GP-F12",
+        "GP-F16"
+      ],
+      "parent_source_rules_composed": true,
+      "associated_child_rules": "fixed195f source only;payload association remains explicit",
+      "native_whole_batch_atomic_or_restorative_guarantee": false,
+      "original_requirement_specification_ready": false,
+      "remaining_ids": [
+        "GP-U01"
+      ]
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "事务提交",
+      "operation_ids": [
+        "GP-O05",
+        "GP-O06",
+        "GP-O10",
+        "GP-O12"
+      ],
+      "fact_ids": [
+        "GP-F01",
+        "GP-F09",
+        "GP-F10",
+        "GP-F11",
+        "GP-F12",
+        "GP-F15",
+        "GP-F16"
+      ],
+      "parent_source_rules_composed": true,
+      "associated_child_rules": "fixed195f source only;payload association remains explicit",
+      "native_whole_batch_atomic_or_restorative_guarantee": false,
+      "original_requirement_specification_ready": false,
+      "remaining_ids": [
+        "GP-U01",
+        "GP-U02"
+      ]
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "中断",
+      "operation_ids": [
+        "GP-O07",
+        "GP-O08",
+        "GP-O09"
+      ],
+      "fact_ids": [
+        "GP-F03",
+        "GP-F05",
+        "GP-F06",
+        "GP-F10",
+        "GP-F13",
+        "GP-F14",
+        "GP-F15"
+      ],
+      "parent_source_rules_composed": true,
+      "associated_child_rules": "fixed195f source only;payload association remains explicit",
+      "native_whole_batch_atomic_or_restorative_guarantee": false,
+      "original_requirement_specification_ready": false,
+      "remaining_ids": [
+        "GP-U01",
+        "GP-U02",
+        "GP-U03"
+      ]
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "恢复",
+      "operation_ids": [
+        "GP-O02",
+        "GP-O07",
+        "GP-O10",
+        "GP-O11"
+      ],
+      "fact_ids": [
+        "GP-F02",
+        "GP-F03",
+        "GP-F04",
+        "GP-F05",
+        "GP-F06",
+        "GP-F10",
+        "GP-F11",
+        "GP-F15",
+        "GP-F16"
+      ],
+      "parent_source_rules_composed": true,
+      "associated_child_rules": "fixed195f source only;payload association remains explicit",
+      "native_whole_batch_atomic_or_restorative_guarantee": false,
+      "original_requirement_specification_ready": false,
+      "remaining_ids": [
+        "GP-U01",
+        "GP-U02",
+        "GP-U03"
+      ]
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "GP-D01",
+      "reuse": "既有catalog/PUK3清单、ZIP、三操作pure核心与owned输入",
+      "change": "按父profile选择已有正确规则，只补已证差异；不重写正确核心。",
+      "owners": [
+        "shared/launcher-game-patch.mjs",
+        "shared/launcher-patch-current.mjs",
+        "shared/game-patch.mjs"
+      ]
+    },
+    {
+      "id": "GP-D02",
+      "reuse": "current quote/path/poll/exit reducer",
+      "change": "MP来源必须使用实际moduleDir+原Code.pat，修正仍保留legacy派生字段的计划；0/1/2、直接102重试与copy残留分别表达。",
+      "owners": [
+        "shared/launcher-patch-current.mjs",
+        "shared/launcher-game-patch.mjs"
+      ]
+    },
+    {
+      "id": "GP-D03",
+      "reuse": "candidate强制最终MD5、所有权和既有预算",
+      "change": "原native兼容结果与独立完整性政策分别命名；任何100不得直接产生已验证manifest或commit receipt。",
+      "owners": [
+        "shared/launcher-game-patch.mjs",
+        "shared/game-patch.mjs"
+      ]
+    },
+    {
+      "id": "GP-D04",
+      "reuse": "UC-P08/P10、UH六格式与13方法细化",
+      "change": "只有完整Host准入后实现持久化事务、未知结果回查、reader drain和新root确认；内存candidate返回不称提交。",
+      "owners": [
+        "shared/launcher-game-patch.mjs",
+        "shared/launcher-patch-current.mjs",
+        "shared/game-patch.mjs"
+      ]
+    },
+    {
+      "id": "GP-D05",
+      "reuse": "原创Async/AbortSignal与明确父进程状态",
+      "change": "区分取消请求、child退出101、底层IO完成和旧callback退役；继续复用LS-U3已回答部分，仅补必要普通重绑准入。",
+      "owners": [
+        "shared/launcher-game-patch.mjs",
+        "shared/launcher-patch-current.mjs"
+      ]
+    },
+    {
+      "id": "GP-D06",
+      "reuse": "原D1批次/依赖，不移动能力owner",
+      "change": "全能力规格和统一A1..A4门槛前不写产品代码；目标实现后按来源与宿主分层接受。",
+      "owners": [
+        "shared/launcher-game-patch.mjs",
+        "shared/launcher-patch-current.mjs",
+        "shared/game-patch.mjs"
+      ]
+    }
+  ],
+  "installed_payload_association": {
+    "source_review": {
+      "path": "build/analysis/launcher-patch-payload-association-v1/source-review.json",
+      "bytes": 6583,
+      "sha256": "1189c4372f65a950560d9959ecb02a375a7ed6d35af4a29e9515ea0323a614a5"
+    },
+    "facts": [
+      "主安装包实际提取的tmp/POLCN_Setup.exe长度2192048、SHA-1匹配成员表。独立提供的同名安装器长度2192044。两份容器的四条成员记录一致，最终交付的登录器、GameList.xml及RegionList.xml逐字节一致。",
+      "同一主包app/Patcher_PUK3.exe的实际字节等于GP固定195f REA样本。随包GameList五条中四条魔力配置选择这个PatchEXE，原Code为4、1、11、11，保留两个11的不同条目。",
+      "两个保留的游戏更新清单各含378项操作。相关补丁器、配置程序及三个游戏EXE的create声明一致，并与主包五份实际制品的长度及MD5相符。",
+      "旧登录器归档成员匹配601b分析映像的原打包文件。现行C82所对应的6d45打包文件与同一GameList摘要已在既有stage108更新后磁盘读回中同时出现。该次RegionList摘要更新，仍按实际版本使用。"
+    ],
+    "conditions": "在对应游戏选择解析到这份安装且目标补丁器仍为已核195f时，成功的备份复制保留这些字节。原有两版源路径、复制、进程创建和结束条件继续适用。实际进程映像与成功更新需单独验收。",
+    "missing_source_paths": {
+      "legacy": ["1/Patcher_PUK3.exe", "11/Patcher_PUK3.exe", "4/Patcher_PUK3.exe"],
+      "current": ["1.pat", "11.pat", "4.pat"]
+    },
+    "remaining": "已核分发成员和两份更新清单未列出这些回退制品。缺文件时的实际提供者、同版载荷身份及运行结果仍待证。",
+    "retained_REA_reused": true,
+    "new_REA_queries": 0
+  },
+  "remaining": [
+    {
+      "id": "GP-U01",
+      "kind": "source-payload-association",
+      "status": "open",
+      "requirement": "主包已安装 PatchEXE 绑定到 195f。C82 与 F5A 的备份命令、固定 195f 的参数入口及退出 102 后的重试已有规格。缺文件时旧 Code/PatchEXE、新 Code.pat 的实际供应制品与消费者身份，以及实际进程选择仍待证。",
+      "next_evidence": "复用 installed_patcher_argument_handoff。用对应分发制品或正常运行的文件与进程身份核对实际复制来源及所选消费者。"
+    },
+    {
+      "id": "GP-U02",
+      "kind": "independent-host-admission",
+      "status": "open",
+      "requirement": "UF-U2/UH-U01..04的完整发布恢复、实际单writer、reader/IO drain、容量和SDK接受。",
+      "next_evidence": "原Host门槛与25案例；复用现有网页原语结果，不以新native helper补Host缺口。"
+    },
+    {
+      "id": "GP-U03",
+      "kind": "selected-current-lifecycle",
+      "status": "open",
+      "requirement": "LS-U3普通modal新binding/必要quit callback准入和实际宿主回调退役仍开放；parent Stop不自动等于child终止。",
+      "next_evidence": "仅针对已命名合法producer/投递/退役条件补证，不重开已闭Stop/busy/handle规则。"
+    },
+    {
+      "id": "GP-U04",
+      "kind": "external-acceptance",
+      "status": "open",
+      "requirement": "完整网页/移动网页/微信、同版客户端和官方账号接受；目前没有测试账号。",
+      "next_evidence": "实现与独立环境通过后执行实际接受；不以配置地址、build或child exit替代。"
+    }
+  ],
+  "acceptance_cases": [
+    {
+      "id": "GP-T01",
+      "name": "双父profile与固定child身份",
+      "expected": "分别给601b/c82f与195f，禁止把Code.pat名字当identity",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T02",
+      "name": "旧版缺失patcher来源",
+      "expected": "保留raw Code/PatchEXE和本版cwd/大小写域",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T03",
+      "name": "当前缺失patcher来源",
+      "expected": "moduleDir+原Code.pat，复制成功后启动失败保留copy事实",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T04",
+      "name": "busy先于skip",
+      "expected": "现有handle与已准备/空PatchEXE并存时仍遵守原返回",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T05",
+      "name": "quote差异",
+      "expected": "旧raw command与current总quote/反斜杠逐profile核对",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T06",
+      "name": "清单块语法",
+      "expected": "空白/未知命令/重复key/空值分别沿固定195f规则",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T07",
+      "name": "ZIP与URL",
+      "expected": ".bz2请求不触发BZip2假设；ZIP所有相关条目与命名chunk分开",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T08",
+      "name": "前MD5与后MD5",
+      "expected": "已有匹配skip；原后置日志与独立强制校验产生不同接受层",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T09",
+      "name": "append预下载副作用",
+      "expected": "OPEN_ALWAYS可创建，不能声称下载失败磁盘未触及",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T10",
+      "name": "append短读写及move失败",
+      "expected": "原忽略结果与独立完整性失败分开，不自动虚构main重试",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T11",
+      "name": "每项三失败仍批末100",
+      "expected": "操作false三次记录后可继续，100不生成完整性凭证",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T12",
+      "name": "CRT普通退出",
+      "expected": "main100/101/102保持结果进入所证普通CRT退出链",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T13",
+      "name": "child取消按钮",
+      "expected": "确认1退出101，取消返回保持运行",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T14",
+      "name": "child关闭窗口",
+      "expected": "F060确认2吞掉，WM_DESTROY直接退出101",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T15",
+      "name": "legacy同步wait",
+      "expected": "INFINITE后按exit分派，不能套用current poll",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T16",
+      "name": "current查询失败和259",
+      "expected": "保持pending，不提前完成或重启",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T17",
+      "name": "current三十分钟提示",
+      "expected": "只提示一次并继续poll，不捏造kill",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T18",
+      "name": "current102直接重试",
+      "expected": "仅前两次，不重置计数或重复制Code.pat",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T19",
+      "name": "current100无有效选择",
+      "expected": "0x585错误，不写其他game行准备状态",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T20",
+      "name": "candidate中断",
+      "expected": "只丢pending candidate，不能证明底层IO已停止",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T21",
+      "name": "content commit结果未知",
+      "expected": "权威回查并保持预算/lease，不盲目重放或假定失败",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T22",
+      "name": "恢复与新revision",
+      "expected": "旧root恢复新CAS，保留历史receipt与新head",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T23",
+      "name": "完成与重载分层",
+      "expected": "进程/候选/提交/实际新boot和官方接受分别打点",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "GP-T24",
+      "name": "原版本来源和完整Host",
+      "expected": "实际payload核identity，完整资源预算和三端恢复接受另跑",
+      "status": "specified-not-executed"
+    }
+  ],
+  "source_rule_corrections": [
+    "main per-item failure is not aggregate101;normal loop can still100",
+    "4038D0 is WriteFile wrapper,not move helper",
+    "40FD30 result is not tested by410910;no evidence that move failure triggers retry",
+    "child window destroy/cancel is process101,not a rollback receipt",
+    "current payload association is not established byCode.pat suffix"
+  ],
+  "review_scope_complete": true,
+  "whole_L06_original_specification_ready": false,
+  "source_gate_reason": "已安装分发中的PatchEXE关联有实际材料证据。缺文件的供应制品与必要生命周期及宿主规则仍是统一规格的未决条件。",
+  "stopping_rule": "No more generic PUK3/ZIP/HTTP/CRT inventories. Reuse GP-F01..16 and follow only GP-U01..04 with positive required evidence. Continue original all40 capability-first workflow;D1 remains gated.",
+  "summary": {
+    "new_REA_queries": 3,
+    "new_complete_native_bodies": 3,
+    "new_complete_native_bytes": 1355,
+    "reused_complete_native_bodies_independently_checked": 8,
+    "native_windows": 14,
+    "native_bytes": 19004,
+    "native_instructions": 5359,
+    "derived_windows": 1,
+    "derived_bytes": 10,
+    "derived_instructions": 2,
+    "retained_PUK3_native_inventory_before": 35,
+    "retained_PUK3_native_inventory_after": 38,
+    "new_product_changes_tests_builds_VM_SDK_network_account_actions": false,
+    "facts": 16,
+    "operations": 12,
+    "profile_group_cells": 10,
+    "implementation_delta_groups": 6,
+    "specified_not_executed_cases": 24,
+    "remaining_groups": 4,
+    "source_local_ready_before": 19,
+    "source_local_ready_after": 19
+  },
+  "supersession": {
+    "selected_prior_LO_O19_failure_and_cancel_notes": "GP-F10..14 now specify the required owned operation/CRT/UI edges;older generic native-cancel/aggregate-failure unknowns are superseded only for fixed195f.",
+    "original_current_MP_rules": "reuse;do not reopen parent path,Code.pat-copy or direct102-retry rules",
+    "parent_child_association": "explicit remaining GP-U01;never infer arbitrary copied payload from suffix or caller hash"
+  },
+  "implementation_gate_passed": false,
+  "all_capability_analysis_complete": false,
+  "full_goal_complete": false,
+  "host_conformance_passed": false,
+  "official_acceptance": false,
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "new_target_tests_or_builds": 0,
+  "new_VM_SDK_network_account_actions": false,
+  "validation_record_path": "build/analysis/launcher-game-patch-functional-specification-v1/validation.json",
+  "f5a_patch_completion": {
+    "classification": "fixed-F5A-source-fact",
+    "source_sha256": "f5abc77a1d6c7b1875bae8cdea948469424a8e683d72939e2118d1a38de06842",
+    "source_review": "build/analysis/launcher-f5a-patch-completion-v1/source-review.json",
+    "affected_capabilities": ["L06", "L08"],
+    "submission_dependency": "reports/launcher-static.md#f5a-login-owner",
+    "catalog_result": {
+      "producer": "0x406AD0",
+      "selection": "处理时读取 +0x7768，按 0 <= index < count 校验。有效的退出 100 将 164 字节记录的 +0x2DCD 对应字节置 1，再以成功、100 调用 428C10。索引无效时发失败、0x585。",
+      "cleanup": "备份路径准备成功时先请求 DeleteFileA。随后继续按进程退出码与所选索引处理。"
+    },
+    "continuation": {
+      "handler": "0x428C10",
+      "pending": "439B70 在补丁待处理分支置 +0x1AA6。结果入口在该字节为零时返回，非零时先清字节。",
+      "failure": "按 +0x1135 更新 +0x1136，清 +0x1135，经 42F490 和 431BE0 收尾。",
+      "success": "按托盘登记结果处理通知，两条所选路径均写阶段 3 并同步调用 439B70。",
+      "reuse": "同一选择且进程槽空闲时，40DB40 读取已置位的准备字节，沿返回 0 分支继续。活动准备路径沿既有 41ED30 提交准入。"
+    },
+    "login_admission": {
+      "classification": "fixed-F5A-source-fact-and-selected-composition",
+      "source_review": "build/analysis/launcher-f5a-patch-login-admission-v1/source-review.json",
+      "affected_capabilities": ["L03", "L06", "L08"],
+      "pending_stage": "439BFB 调用 41FBD0。待补丁分支先在 439C42 置 +0x1AA6，再在 439C49 写阶段。第一索引在范围内、第二索引按无符号比较小于 15 且有符号表值大于零时写 2，其余写 1。",
+      "successful_continuation": "4099C3 先清子视图 +0x2CDC。所选 428C10 消费待处理位后在 428D44 写阶段 3，再经 439B70 续接。41ED30 按现行 +0x1058 和已尝试位判断本次投递。",
+      "posted_admission": "428D80 对匹配编号先消费待处理位。阶段 3、待补丁位为零及其他主窗条件通过后，408280 再检查子视图 +0x2CDC、+0x2CE0、+0x2CE8 均为零。随后才检查窗口和表单。",
+      "implementation_batches": ["D1", "D5"],
+      "acceptance_cases": [
+        "第一索引越界、第二索引 15 或表项非正写阶段 1。三个条件均满足写阶段 2。",
+        "等待期间普通确认按当前阶段分派。匹配的排队提交在后续准入之前消费。",
+        "成功先释放补丁任务槽，再消费待处理标记并恢复阶段 3。准备按现行编号处理首次与已经尝试两种状态。",
+        "匹配消息到达时另一个任务槽仍占用，或主窗或提交按钮禁用，消费后结束。其余满足准入的路径复用同一普通提交。"
+      ],
+      "actual_launcher_modal_delivery_and_rebinding_verified": false
+    },
+    "host_notification": {
+      "title": "游戏更新完成",
+      "duration_request_ms": 10000,
+      "cleanup_timer_id": 876,
+      "cleanup_interval_request_ms": 12000,
+      "temporary_registration": "419030 登记成功或已有图标时可请求通知。旧 +0x1AB5 与当前 +0x1AB4 均为零时置临时清理标记 +0x1AA8。提示请求后该标记非零则申请 876。",
+      "cleanup": "WM_TIMER 在 429A50 消费 876，先撤定时器。临时标记非零且 +0x1AB4 为零时调用 42EFC0，按登记状态请求移除图标，并清临时标记。"
+    },
+    "implementation_batches": ["D1", "D5", "D6"],
+    "reuse": ["shared/launcher-patch-current.mjs"],
+    "acceptance_cases": [
+      "有效退出 100 先发布所选目录记录再消费结果。索引为负或达到 count 时发 0x585。",
+      "待处理标记已清的结果从控制器入口返回。有效活动失败按原次序收尾。",
+      "托盘登记成功和失败均续接阶段 3。同一已准备条目沿现有跳过补丁分支。",
+      "分别核对新临时图标、已登记图标、临时标记已清及 876 到达时主窗仍持有图标的情况。"
+    ],
+    "target_cases_executed": false,
+    "fallback_artifact_and_child_identity_verified": false,
+    "same_version_game_consumer_verified": false
+  },
+  "f5a_patch_fallback": {
+    "path_preflight": "analysis/capability-first-v1/launcher-functional-specification.json#/current_game_process_producer/distribution_supplement/path_preflight",
+    "retry_and_directory_recovery": {
+      "classification": "固定 F5A 来源事实、条件推导及独立复刻规格",
+      "report": "reports/launcher-static.md#f5a-patch-retry-directory",
+      "validation": "build/analysis/launcher-patch-retry-directory-v1/validation.json",
+      "capabilities": ["L06", "L08", "X03"],
+      "implementation_batches": ["D0", "D1", "D5", "D6"],
+      "native_rules": {
+        "prepare": "439BEA 进入 40DB40。通过三个进程槽和所选目录行检查后，用当前目录与 PatchEXE 生成目标。目标就位后在 40DEF3 清计数，生成备份名，40DFFC 调用备份入口 40D3A0。准备失败在 439C3B 发提示；活动补丁在 439C42 发布待处理标记。",
+        "poll": "定时器 9001 在 40987A 读取控制器的当前补丁句柄。确认退出后撤定时器，释放并清槽，4099CD 再分派原始退出字。406B48 至 406B65 从当时控制器的目录和备份名合成待删除路径，所查完成分支继续处理退出码。",
+        "direct_retry": "退出 102 在 406BEA 把计数加一，计数小于 3 时从 406C24 回 40D3A0。备份入口从当时的控制器字段重拼路径，取目录 +0x2C9C、补丁器名 +0x2CC4、备份名 +0x2D0C；重新查询备份属性，取地址 +0x2CB8 和端口 +0x2CBC。40D90F 保存新句柄。此分支保留已有计数并从备份开始。下一次准备失败用其错误码和详情在 406C3C 发结果；第三次 102 把 102 交给结果入口。",
+        "terminal_result": "退出 100 在分派时校验活动条目，有效时发布该行的准备位，失效时先重置选中再给 0x585。428C10 只消费待处理位有效的结果，继续前先清该位。431BE0 的重选条件为 2、3、161，耗尽的 102 及选择失效的 0x585 都显示失败。",
+        "directory_recovery": "有效重选动作经 42CB10 投递，请求带当时的条目索引和阶段。428EF0 清请求标记，再按这两项匹配；42E770 通过既有选择器准入和路径写入后，在 42E90E 恢复阶段 3 并于 42E918 回 439B70。新一轮若仍需补丁，40DB40 读取此时的活动条目和已发布目录，等目标就位再清计数。"
+      },
+      "conditional_inference": "旧定时器消息若在新句柄就位后被分派，按所选处理体查询当前槽。正常 Windows 投递和合并顺序仍待验。0x8241 的所选准入以索引和阶段为条件；满足相同值的实际跨准备投递继续在原版用例核验。",
+      "existing_implementation": {
+        "exit_and_poll": "shared/launcher-patch-current.mjs",
+        "shared_resource_binding": "shared/launcher-resources.mjs",
+        "web_candidate": "web/launcher-patch-state.mjs",
+        "wechat_candidate": "adapters/wechat/launcher-resources.mjs",
+        "composition_probe": "build/analysis/launcher-patch-retry-directory-v1/stage306-probe.json",
+        "observed": "C82 计划解释第 1、2 次 102 为重试，第 3 次为耗尽，100 的失效选中为 0x585。现有网页准备状态保留新目录的已选结果，清除晚到旧候选的字节；同目录的另一条同 Code 行也有独立绑定。匹配的缓存读回仍需显式选择。C82 数据计划仍标记包内来源为旧版派生待证。"
+      },
+      "target_delta": {
+        "D0": "复用现有资源绑定、读回和操作退役。原业务请求可以跨补丁重试，补丁的每次尝试及目录重新准备各自带当前身份。只在目录保存及所选候选的读回得到确认后更新活动入口，未确认期间保留完整的旧资源根。",
+        "D1": "沿同一准备所有者组合失败续接。区分同目录重试、备份准备失败、重试耗尽、重新选目录。按已证的来源配置规划回退路径和错误分派；由准备入口消费已确认的新绑定。",
+        "D5": "复用现有网页和微信资源所有者及 UC-P12 的提交读回。取消、失配和已退役尝试的通知只清理其自身工作。",
+        "D6": "验收实际备用制品、子进程身份、原版消息顺序及三端同版衔接。"
+      },
+      "acceptance_extensions": [
+        {"uses": ["GP-T03", "GP-T18"], "case": "首次目标就位后最多三次尝试。前两次 102 各重新查备份属性，失败报告实际备份错误，耗尽报告 102。"},
+        {"uses": ["LP-A09", "LP-A12"], "case": "错误 2、3、161 可进入所选重选动作。关闭提示、取消选择或确认写入失败保持旧资源；成功读回后用新绑定重新准备。"},
+        {"uses": ["LP-A12", "UC-P12"], "case": "第二次补丁尝试替换第一句柄，以及重新选择同 Code 或同目录时，按各自宿主身份核对实际读回，拒绝已退役的结果。"}
+      ],
+      "remaining": ["GP-U01", "GP-U02", "GP-U03", "GP-U04"],
+      "actual_original_or_full_target_cases_executed": false
+    },
+    "installation_and_backup_preflight": {
+      "source_review": "build/analysis/launcher-inno-provisioning-v1/source-review.json",
+      "report": "reports/launcher-static.md#f5a-installation-and-backup-preflight",
+      "affected_capabilities": ["L06", "L08"],
+      "implementation_batch": "D1",
+      "rules": [
+        "两份安装包的声明均包含卸载器记录、两个同一载荷位置的登录器条目和两份 XML。唯一安装后运行项以空参数启动登录器，无等待，静默安装跳过。所核 IFPS 函数用于向导和链接点击。",
+        "F5A 备份准备先查属性。错误 2 或 3 时进入复制，其余查询错误结束该次准备。已存在的备份先删除，删除失败时结束该次准备并报告实际错误。",
+        "备份复制采用 CopyFileA(TRUE)。成功后尝试设属性 2，再请求定时器。定时器失败报告 8 并尝试清备份。进程创建失败先捕获其错误，再撤销定时器并尝试清备份。",
+        "完成路径先尝试删除已定位的备份，再按进程退出码处理。102 的计数仍小于 3 时重进备份准备并重新查询属性。"
+      ],
+      "source_derived_acceptance_cases": [
+        "属性查询报 2 或 3，进入无覆盖复制。",
+        "属性查询报其他错误，报告该错误并结束本次准备。",
+        "存在备份时先删除。删除成功才进入无覆盖复制，失败报告删除错误。",
+        "定时器失败报告 8，尝试删除本次备份并结束本次准备。",
+        "进程创建失败后撤销定时器、尝试删除备份，并保留创建错误回执。",
+        "退出 102 的下一次尝试重新查属性，即使上一次完成路径的删除未成功。"
+      ],
+      "source_derived_cases_executed": false,
+      "actual_fallback_artifact_proven": false,
+      "actual_child_identity_proven": false
+    },
+    "source_profile": "launcher-distribution-f5a",
+    "source_sha256": "f5abc77a1d6c7b1875bae8cdea948469424a8e683d72939e2118d1a38de06842",
+    "source_review": "build/analysis/launcher-f5a-patch-fallback-v1/source-review.json",
+    "report": "reports/launcher-static.md#f5a-patch-fallback",
+    "implementation_batch": "D1",
+    "rules": [
+      {
+        "id": "F5A-PF01",
+        "condition": "普通补丁器准备已生成有效目标",
+        "rule": "所选游戏目录与 PatchEXE 生成目标。PathFileExistsA 返回真时直接准备备份，返回假时构造回退源。",
+        "anchors": ["0x439BEA", "0x40DB40", "0x40DDC0", "0x40DDEE", "0x40DDF6"]
+      },
+      {
+        "id": "F5A-PF02",
+        "condition": "从登录器模块路径分出回退目录",
+        "rule": "GetModuleFileNameA(NULL) 提供 ANSI 路径。长度 1–259 字节，最后反斜杠索引至少为 2。索引为 2 且第二字节为冒号时保留该反斜杠。目录拼接只在缺少末尾反斜杠时补入。固定 C82 的对应分支要求最后反斜杠索引至少为 3。",
+        "anchors": ["0x44EE95", "0x441CAE", "0x441CE6", "0x441CF6", "0x441D00", "0x406101", "0x406128", "C82:0x43403A"]
+      },
+      {
+        "id": "F5A-PF03",
+        "condition": "目标检查返回假且回退路径有效",
+        "rule": "选中目录行的字符串与 .pat 拼在模块目录之后。CopyFileA 以 FALSE 参数复制到目标。路径准备失败记录 0xA1，复制失败记录 GetLastError。目标准备成功后清零重试计数并转换备份名称。",
+        "anchors": ["0x40DE58", "0x40DE66", "0x40DE79", "0x40DEC7", "0x40DF23", "0x40DEF3", "0x40DFF2"]
+      },
+      {
+        "id": "F5A-PF04",
+        "condition": "目标补丁器已就位",
+        "rule": "另以 CopyFileA(TRUE) 建立备份。CreateProcessA 的应用路径为备份，工作目录为游戏安装目录。启动失败取消定时器并尝试删除备份，已复制到游戏目录的目标保留。",
+        "anchors": ["0x40D3A0", "0x40D619", "0x40D808", "0x40D82A", "0x40D848"]
+      },
+      {
+        "id": "F5A-PF05",
+        "condition": "备份启动后的轮询及退出",
+        "rule": "定时器 9001 请求 250 ms 间隔。GetExitCodeProcess 查询失败或退出码为 259 时保留待处理。运行分支达到 1800000 ms 后提示一次并继续。真实退出后清进程句柄并尝试删除备份。100 在所选游戏有效时完成准备。102 递增计数，计数小于 3 时直接回备份启动。",
+        "anchors": ["0x40D763", "0x5DE260", "0x4098EB", "0x409888", "0x4099CD", "0x406B65", "0x406B71", "0x406BE5", "0x406C24"]
+      }
+    ],
+    "catalog_association": {
+      "classification": "按 C82 同步长原始 Code 字段与 F5A 所选行字段的地址和调用差异推导",
+      "catalog_receipt": "build/analysis/launcher-f5a-patch-fallback-v1/catalog.json",
+      "configured_codes": ["4", "1", "11", "11"],
+      "expected_fallback_names": ["1.pat", "11.pat", "4.pat"],
+      "verified_fallback_payloads": [],
+      "scope": "留存 11 月版安装器成员、更新 ZIP、随包 GameList 与已核原分发目录。"
+    },
+    "implementation_difference": "沿用现有命令构造、轮询和尝试标识。以来源版本确定模块目录与 Code 的回退路径。现有 packagedSourceRelativeBytes 仍沿旧目录形状。回退复制、备份启动及退出后的重试各按自己的完成点交接。",
+    "source_derived_acceptance_cases": [
+      "目标已存在，直接准备备份。",
+      "F5A 模块路径在盘符根目录，保留末尾反斜杠，再拼所选 Code 和 .pat。C82 对应路径门槛失败。",
+      "普通回退复制失败，报告系统错误并结束本次准备。",
+      "回退已复制到目标且子进程创建失败，尝试清理备份，目标留在游戏目录。",
+      "运行中达到一次性提醒门槛后仍保留轮询。真实退出 100 需要有效选择。",
+      "退出 102 前两次直接再启动，第三次耗尽。前两次复用已就位的目标及原计数。"
+    ],
+    "runtime_fallback_and_child_identity_verified": false,
+    "source_capability_readiness_promoted": false,
+    "implementation_gate_passed": false,
+    "official_joint_acceptance_proven": false
+  },
+  "installed_patcher_argument_handoff": {
+    "classification": "事实",
+    "source_review": "build/analysis/launcher-patcher-argument-handoff-v1/source-review.json",
+    "validation": "reports/validation.md#installed-patcher-argument-handoff-validation",
+    "installed_child_sha256": "195f3afda41f342147b0616a4c005a4cb308ae6869b52c4a558fded5f5d9aaa8",
+    "condition": "对应选择成功将这份已核的安装补丁器复制为备份，且创建的进程映像确为该备份。",
+    "producer_rules": {
+      "C82": {
+        "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+        "quote_and_append": ["0x40EF33", "0x40EF4B", "0x40EF73"],
+        "create_process": "0x40F0A8",
+        "retry_comparison": "0x408575",
+        "retry_call": "0x4085B4 -> 0x40EC40"
+      },
+      "F5A": {
+        "sha256": "f5abc77a1d6c7b1875bae8cdea948469424a8e683d72939e2118d1a38de06842",
+        "quote_and_append": ["0x40D693", "0x40D6AB", "0x40D6D3"],
+        "create_process": "0x40D808",
+        "retry_comparison": "0x406BE5",
+        "retry_call": "0x406C24 -> 0x40D3A0"
+      },
+      "application_name": "备份文件路径",
+      "command_line_order": ["加引号的备份路径", "单个空格", "地址字段", "单个空格", "端口字段"],
+      "current_directory": "游戏安装目录"
+    },
+    "consumer_rules": {
+      "narrow_argv_setup": "0x453F25 读取命令行，0x4542B4 的模式 1 调用 0x4543D8 并写入 argc 和 argv。argc 包含程序名，排除末尾空指针。",
+      "minimum_argc": 3,
+      "entry_copied_argv_indices": [1, 2],
+      "insufficient_argc_exit": 102,
+      "entry_and_exit_anchors": ["0x40924C", "0x409251", "0x409256", "0x409297", "0x4092B2", "0x41523E", "0x4152B9"],
+      "limit": "计数门槛只判断参数个数。内容为空的带引号参数仍计一个参数，业务校验另按原规则处理。"
+    },
+    "retry": "父进程观察到真实退出 102 后计数加一。计数小于 3 时重新准备备份并启动，第三次耗尽。",
+    "focused_probe": "build/analysis/launcher-patcher-argument-handoff-v1/focused-probe.json",
+    "selected_ASCII_cases_passed": 5,
+    "existing_C82_tests_passed": 7,
+    "actual_fallback_payload_identity_proven": false,
+    "actual_child_execution_proven": false
+  }
+}

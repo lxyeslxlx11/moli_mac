@@ -1,0 +1,52 @@
+{
+  "schema": "moli.vc71-official-source.v1",
+  "recorded_utc": "2026-10-30T11:11:19.095822+00:00",
+  "publisher_distribution_page": "https://knowledge.broadcom.com/external/article/341598/msvcr71dll-is-removed-during-installatio.html",
+  "article_updated": "2025-03-19, actual rendered page",
+  "download": "Actual normal browser attachment get_app clicked; Playwright download path returned. No login or new agreement shown.",
+  "attachment_name": "55513_VMware_vc71_redists_x86.zip",
+  "attachment_bytes": 1380480,
+  "attachment_sha256": "a9e4d0d89ad60a1a598c1eb6ffb6b95fa8fd4aa52f33152781f9b05e4f00abce",
+  "bundle_name": "VMware_vc71_redists_x86.exe",
+  "bundle_bytes": 1636552,
+  "bundle_sha256": "a9cc35ecff05024546fa1af6e47bb4af7a0c8a69a70beb6449ed07a6d5995bff",
+  "static_tool": "7-Zip26.04/arm64",
+  "extraction": "Two bounded MSCF candidates, privateCAB1->a0/MSI->Core.cab; three selected runtime members extracted. No vendor executable or installer run.",
+  "mac_signature_result": {
+    "tool": "osslsigncode",
+    "exit_code": 1,
+    "content_digests_match": true,
+    "VMware_signer_and_2018_timestamp_present": true,
+    "trust_chain": "Local signing issuer chain unavailable; not a valid-signature claim. SHA256 timestamp chain verified separately, SHA1 timestamp chain incomplete.",
+    "trust_store_changes": false,
+    "raw_results_private": [
+      "build/dependencies/vc71-stage108/bundle-signature.stdout",
+      "build/dependencies/vc71-stage108/bundle-signature.stderr"
+    ]
+  },
+  "other_routes": [
+    "Microsoft2003SP1 official blog download now404; not installed",
+    "Host direct Broadcom HTML fetch403; ordinary public browser page/attachment worked, no credentials or protection changes"
+  ],
+  "qualification": "vc71-static-stage108.json",
+  "guest_transfer_or_library_loading": {
+    "read_only_D_media_available": true,
+    "file_hashes_match": 4,
+    "windows_outer_bundle_signature": "Valid",
+    "app_local_copy_or_loading": "Exact3 app-local File.Copy completed, full guest hashes match; actual DLL loading not yet observed",
+    "receipt": "vc71-guest-media-stage108.json",
+    "normal_flow_result": "After exact3 app-local copy and backup, original9280→updater10436→restarted launcher9012, V2.01 UI, changed parent/RegionList file hashes; actual module load paths and updater exit not captured"
+  },
+  "windows_signature_result": {
+    "command": "Get-AuthenticodeSignature 'd:\\VMware_vc71_redists_x86.exe' | fl status,statusmessage",
+    "status": "Valid",
+    "status_message": "签名已通过验证。",
+    "actual_returned_prompt": true,
+    "observation_guest_local": "2026-10-30 19:21",
+    "scope": "Outer official bundle only; not individual-DLL signatures or successful DLL loading",
+    "bundle_executed": false,
+    "trust_store_or_security_changes": false
+  },
+  "updated_utc": "2026-10-30T12:00:46.610874+00:00",
+  "app_local_runtime_receipt": "vc71-remediation-runtime-stage108.json"
+}

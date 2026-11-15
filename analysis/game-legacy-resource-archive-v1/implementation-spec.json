@@ -1,0 +1,50 @@
+{
+  "stage": 289,
+  "purpose": "Provide complete selected game resources through a lazy byte-range file port on browser and wx,independently of updater package processing.",
+  "observed_problem": {
+    "updater_archive": "64 entries and32MiB input/output;the former game Page reused this whole-memory decoder and1024-file patch candidates.",
+    "actual_material": "1071 Bin files totaling2547446075 bytes,plus the1569280-byte fixed client;largest bank943552437 bytes.",
+    "original_source_file_contract": "The existing source-bound startup and resource library read cg_se_6000.exe and loose relative resource files through stat/read(offset,length).The new ZIP is an independent local transport adapter."
+  },
+  "format": {
+    "reference": "https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT",
+    "version": "6.3.10",
+    "features": "Single-disk ZIP/ZIP64,stored and raw Deflate,optional64-bit end records even with non-sentinel32-bit fields,32/64-bit descriptors with/without signatures,prefixes and comments.",
+    "directory": "Read the footer and bounded central directory;retain metadata and validate local headers/descriptors on first file access.No whole package or whole stored bank is loaded.",
+    "integers": "All positions and sizes use exact safe JavaScript integers;64-bit values combine two unsigned32-bit words.Neither archive offsets nor byte ranges are narrowed through bitwise operations.",
+    "root": "An explicit rootPrefix takes priority;otherwise a unique source-defined cg_se_6000.exe path identifies the installation root.Packages without that module retain the archive root,so Bin is never arbitrarily stripped.UTF8 outer roots are supported;addressable game paths retain the existing relative ASCII contract.",
+    "CRC": "Full stored-entry reads verify CRC.Partial stored reads provide exact checked ranges like selected loose Files;they do not claim whole-entry CRC verification.Deflate scans to the end and verifies output length,input consumption and full CRC before returning a requested slice."
+  },
+  "interfaces": {
+    "input": "createLegacyGameResourceArchive({size,read(offset,length),close()},options) takes ownership of an explicit selected range file,including initialization failure.",
+    "output": "{count,port:{stat(path),read(path,offset,length)},inspect(),close()} matches existing resource consumers.Returned bytes belong to the caller.Metadata,cache and late reads are cleared on closure.",
+    "browser": "createBrowserLegacyGameResourceArchive wraps File.slice().arrayBuffer();the game page offers folder or ZIP selection and clears the alternative.Provided resource ownership transfers to the existing browser client.",
+    "wechat": "The dedicated archive picker retains the selected native file and requests bounded FileSystemManager.readFile ranges.The existing JSON/launcher readers and updater behavior are preserved.",
+    "packer": "python3 tools/pack-game-resources.py --root GAME_ROOT --output NEW_ZIP [--receipt JSON] writes a deterministic stored ZIP/ZIP64 and per-file SHA manifest without modifying sources or overwriting an existing output."
+  },
+  "engineering_budgets": {
+    "entries": 65536,
+    "central_directory_bytes": 33554432,
+    "single_read_bytes": 33554432,
+    "Deflate_cache_bytes": 33554432,
+    "Deflate_input_chunk_bytes": 65536,
+    "large_Deflate": "Larger entries are scanned with bounded buffers and are not retained whole.For large random-access graphic banks,the supplied stored packer avoids repeated cold Deflate scans."
+  },
+  "acceptance": [
+    "All1072 original packed files independently pass streaming SHA-256 and CRC verification.",
+    "Source and generated APIs compare3216 real material slices,read the complete fixed client and prepare v2 startup fields identically.",
+    "A sparse ZIP64 puts an actual marker after4GiB;bounded reads preserve its offset.",
+    "Actual Chromium desktop/touch and source/generated Node wx Page use2.55GB authored sparse ZIP64 packages containing all260 unique sound paths,then complete battle and movement.",
+    "Stored,Deflate and muted archive paths plus the existing folder flow remain separate acceptance cases."
+  ],
+  "remaining": [
+    "Actual WeChat chooser/file-size/storage behavior,device resource reads and physical phone acceptance.",
+    "Large Deflate bank cold-read performance and prefixed ZIP64 extension sectors larger than the retained footer search window.",
+    "Resource-version compatibility,complete native application scheduling,remaining game consumers and current official handoff/account acceptance.",
+    "Original37 requirements and10 incomplete consumer groups remain intact."
+  ],
+  "full_goal_complete": false,
+  "original_execution": 0,
+  "VM_actions": 0,
+  "official_sessions": 0
+}

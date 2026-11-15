@@ -1,0 +1,176 @@
+{
+  "schema": "moli.own-fixture-transfer.host-validation.stage101.v1",
+  "recorded_utc": "2026-10-29T15:35:42.922342+00:00",
+  "scope": "Host loopback integration only; payloads read as bytes, no PE execution, no guest download or Windows API acceptance.",
+  "script": {
+    "path": "analysis/game-entry-runtime-v1/fixture_transfer.py",
+    "bytes": 5322,
+    "sha256": "09caa80117b476e97ce6bcc9a765dd124fff3e83b66177ba04c7599244d1beb5"
+  },
+  "checks": [
+    {
+      "case": "HEAD entry-fixture.exe",
+      "status": 200,
+      "metadata_exact": true,
+      "empty_body": true
+    },
+    {
+      "case": "HEAD callback-probe.exe",
+      "status": 200,
+      "metadata_exact": true,
+      "empty_body": true
+    },
+    {
+      "case": "GET /",
+      "status": 404,
+      "empty_body": true
+    },
+    {
+      "case": "GET /FILES.SHA256",
+      "status": 404,
+      "empty_body": true
+    },
+    {
+      "case": "GET /../../config.pvs",
+      "status": 404,
+      "empty_body": true
+    },
+    {
+      "case": "GET /entry-fixture.exe?extra=1",
+      "status": 404,
+      "empty_body": true
+    },
+    {
+      "case": "POST /entry-fixture.exe",
+      "status": 405,
+      "empty_body": true
+    },
+    {
+      "case": "GET /entry-fixture.exe with rejected headers",
+      "status": 400,
+      "empty_body": true
+    },
+    {
+      "case": "GET /entry-fixture.exe with rejected headers",
+      "status": 400,
+      "empty_body": true
+    },
+    {
+      "case": "GET entry-fixture.exe",
+      "status": 200,
+      "bytes": 133408,
+      "sha256_exact": true
+    },
+    {
+      "case": "duplicate GET entry-fixture.exe",
+      "status": 410,
+      "empty_body": true
+    },
+    {
+      "case": "GET callback-probe.exe",
+      "status": 200,
+      "bytes": 143326,
+      "sha256_exact": true
+    },
+    {
+      "case": "automatic close after two responses",
+      "process_exit_code": 0,
+      "response_count": 2
+    },
+    {
+      "case": "listener no longer accepts connections",
+      "connect_ex_errno": 61
+    }
+  ],
+  "check_count": 14,
+  "passed": true,
+  "server_events": [
+    {
+      "allowed_get_peer": "127.0.0.1",
+      "bind": "127.0.0.1",
+      "event": "ready",
+      "names": [
+        "callback-probe.exe",
+        "entry-fixture.exe"
+      ],
+      "ttl_seconds": 10
+    },
+    {
+      "bytes": 133408,
+      "event": "response_sent",
+      "name": "entry-fixture.exe",
+      "sha256": "77878c9ac7ce086b2f4d8c6c189cabf765da2c36751d62fb9ce27b2a4493edd3"
+    },
+    {
+      "bytes": 143326,
+      "event": "response_sent",
+      "name": "callback-probe.exe",
+      "sha256": "417595a96f0189353d47e8f1f86776e95ad4e0054d3123b3892b305e10dc6699"
+    },
+    {
+      "event": "closed",
+      "guest_hashes_and_execution_verified": false,
+      "reason": "two_responses_sent",
+      "response_count": 2
+    }
+  ],
+  "active_listener_after_test": false,
+  "NAT_guest_reachability": "not tested",
+  "NAT_peer_restriction": "Mac-origin GET denied; allowed Windows guest GET not tested.",
+  "TTL_expiry_without_downloads": "Actual NAT-bound process exited naturally after ten-second TTL; socket refusal confirmed; socket requests can overrun deadline by their bounded timeouts.",
+  "Windows_fixture_and_observer_execution": false,
+  "full_goal_complete": false,
+  "NAT_host_checks": [
+    {
+      "case": "Mac HEAD on NAT endpoint entry-fixture.exe",
+      "status": 200,
+      "metadata_exact": true,
+      "body_empty": true
+    },
+    {
+      "case": "Mac HEAD on NAT endpoint callback-probe.exe",
+      "status": 200,
+      "metadata_exact": true,
+      "body_empty": true
+    },
+    {
+      "case": "Mac-origin GET denied on guest-only NAT endpoint",
+      "status": 403,
+      "body_empty": true
+    },
+    {
+      "case": "natural TTL closure with zero GET responses",
+      "exit_code": 0,
+      "configured_ttl_seconds": 10,
+      "elapsed_seconds": 10.113,
+      "signals_sent": false
+    },
+    {
+      "case": "NAT listener closed",
+      "connect_ex_errno": 61
+    }
+  ],
+  "NAT_host_check_count": 5,
+  "host_total_checks": 19,
+  "NAT_host_server_events": [
+    {
+      "allowed_get_peer": "10.211.55.3",
+      "bind": "10.211.55.2",
+      "event": "ready",
+      "names": [
+        "callback-probe.exe",
+        "entry-fixture.exe"
+      ],
+      "ttl_seconds": 10
+    },
+    {
+      "event": "closed",
+      "guest_hashes_and_execution_verified": false,
+      "reason": "stopped_or_expired",
+      "response_count": 0
+    }
+  ],
+  "host_validation_snapshot_only": true,
+  "later_actual_guest_results": "analysis/game-entry-runtime-v1/windows-observer-stage101.json",
+  "historical_transfer_source_retained": "build/analysis/game-entry-runtime-v1/stage101-source-baseline/fixture_transfer.py"
+}

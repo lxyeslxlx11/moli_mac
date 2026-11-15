@@ -1,0 +1,114 @@
+{
+  "schema": "moli.launcher-v30.gate-audit.v1",
+  "requirement_source": "../../reports/development-plan.md#当前用户需求",
+  "objective_preserved": "REAlauncher -> implementlauncher -> REAgame -> implementgame, including crossplatform/official final acceptance. No success redefinition.",
+  "previous_turn_classification": "progress",
+  "items": [
+    {
+      "requirement": "sample-identity",
+      "status": "bounded-pass",
+      "evidence": [
+        "static-spec.json",
+        "first-config-source-audit.json"
+      ],
+      "limits": "Originalsource authenticity/currentofficialversion not proved."
+    },
+    {
+      "requirement": "catalog-initialize-select-cache",
+      "status": "bounded-pass",
+      "evidence": [
+        "../launcher-v19/validation.json",
+        "../launcher-v25/validation.json",
+        "../launcher-v29/validation.json",
+        "fixed-config-regression.json"
+      ],
+      "limits": "Exact profile/rawCode/ordinals preserved; actualWindowssettings and new serverconfiguration remain unverified."
+    },
+    {
+      "requirement": "local-text-input-mode-encoding",
+      "status": "bounded-pass",
+      "evidence": [
+        "../launcher-v10/validation.json",
+        "../launcher-v20/validation.json",
+        "../launcher-v21/validation.json"
+      ],
+      "limits": "Always explicit localfourpage review and nonsecretUserMode persist; actual terms/accountpersistence/ACP/IME not asserted."
+    },
+    {
+      "requirement": "launcher-wire-flow-actualIO",
+      "status": "bounded-pass",
+      "evidence": [
+        "../launcher-v17/validation.json",
+        "../launcher-v18/validation.json",
+        "../launcher-v29/validation.json",
+        "refresh-browser-verified.json"
+      ],
+      "limits": "Original independent loopback peer only; no official authentication result or allmode/EH claim."
+    },
+    {
+      "requirement": "update-candidates-resource-storage",
+      "status": "bounded-pass",
+      "evidence": [
+        "../launcher-v26/validation.json",
+        "../launcher-v27/validation.json",
+        "../launcher-v29/validation.json",
+        "ui-cache-browser.json"
+      ],
+      "limits": "Limitedcandidate bytebudget, exactorigin and IDB policy; fullinstallation/nativecommit/source trust incomplete."
+    },
+    {
+      "requirement": "firstConfig-producer",
+      "status": "bounded-pass",
+      "evidence": [
+        "static-spec.json",
+        "first-config-refresh-tests-final.log",
+        "fixed-config-regression.json"
+      ],
+      "limits": "Previously missing specification now closed; actual Config utility settings consumer is unverified, no process/profile writes."
+    },
+    {
+      "requirement": "onlyRefresh-process-mapping-producer",
+      "status": "bounded-pass",
+      "evidence": [
+        "../launcher-v23/validation.json",
+        "refresh-browser-verified.json"
+      ],
+      "limits": "Actual mode UI/input/feedback now covers native branch. Game acceptance and OS process/mapping not performed."
+    },
+    {
+      "requirement": "game-context-consumer",
+      "status": "joint-pending",
+      "evidence": [
+        "../protocol-v2/spec-matrix.json"
+      ],
+      "limits": "Requires version-bound game argv/CGSharedMem read, terminators/field handling, resource use and later authenticated session semantics."
+    },
+    {
+      "requirement": "targetplatform-production-scale",
+      "status": "platform-pending",
+      "evidence": [
+        "../launcher-v29/validation.json",
+        "../protocol-v2/spec-matrix.json"
+      ],
+      "limits": "Mobileviewport is not physicaldevice/WeChat. Browser TCP production design/fullsize storage remain required by full goal."
+    },
+    {
+      "requirement": "official-source-account-acceptance",
+      "status": "external-pending",
+      "evidence": [
+        "../protocol-v2/spec-matrix.json"
+      ],
+      "limits": "Requires appropriate authorization and actual acceptance evidence; not replaced by localtests/candidates/configaddresses."
+    }
+  ],
+  "findings_closed_this_phase": [
+    "Actual onlyRefresh UI/adapter hardcoded0 omission fixed and verified.",
+    "FirstConfig native lookup/conditions/command/wait/write-continuation specification and independent producer were incomplete; now proved and tested."
+  ],
+  "launcher_own_observed_contract_accepted": true,
+  "full_launcher_complete": false,
+  "full_goal_complete": false,
+  "game_joint_analysis_entry": "ready-for-static-consumer-validation; not a declaration of full launcher/official compatibility",
+  "basis": "Project step2 explicitly separates launcher-own module acceptance from subsequent gameconsumer joint validation to avoid circular gate. Platform/size/native/actualauth limitations remain requirements and tracked, not waived.",
+  "next_action": "Hash the configured Code11 cg_se_3000 sample, reuse existing REA game evidence, follow argv/CGSharedMem consumers and only then resource/network/game semantics. No original execution/realIPC/official request; no invented authfields."
+}

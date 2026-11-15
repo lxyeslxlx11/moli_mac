@@ -1,0 +1,23 @@
+{
+  "stage": 250,
+  "previous_checkpoint": {
+    "path": "analysis/game-legacy-battle-physical-missing-v1/checkpoint-audit.json",
+    "sha256": "41cc1e8e8814c6fff8a360fa49a3c4464319a85f4d423f28471a6c6e58219ba7"
+  },
+  "baseline_files": 3994,
+  "requirement": "实现 SKL98 变体 12、13 协作者 FF 的记录边界和正常回合续接，并核对动作 32 与缺席换位的组合。",
+  "source": "analysis/game-legacy-battle-assist-terminator-v1/source-check.json",
+  "scope": [
+    "固定旧版预读在协作者 FF 后保留施法者依赖和 255 主槽，直接返回且不检查附带 RID。后续 RID 按独立记录解析。",
+    "把协作者 FF 与有效槽缺席、空命中列表分开。共享层从已解码边界完成该条命令，省去原版未激活的队列，保留后续命令。",
+    "核验同所有者、独立后续和终止回合。验证变体 7 已交换的状态 32 角色在后续目标缺席时保留原阵位。",
+    "用原创 TCP 对端经网页与微信 Page 真实入口验证两种 FF 场景。"
+  ],
+  "remaining": [
+    "原版 FF 回调游标的动态结果与变体 12 空命中动作 84",
+    "真实设备、现行版本与官方验收"
+  ],
+  "VM_actions": 0,
+  "original_execution": 0,
+  "official_sessions": 0
+}

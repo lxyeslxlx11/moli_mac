@@ -1,0 +1,1084 @@
+{
+  "schema": "moli.capability.game-graphics-lifetime-source-check.v1",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "tools": {
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4-retained",
+    "verifier": "Python3/PE-section-mapping"
+  },
+  "inputs": [
+    {
+      "path": "build/analysis/capability-game-graphics-lifetime-v1/recovered-helper-records.json",
+      "bytes": 446102,
+      "sha256": "46d73af50d9e0ca26efaa7c7243113066f4f37303ccc9f8e2ce062f6f029e201"
+    },
+    {
+      "path": "build/analysis/capability-game-graphics-lifetime-v1/evidence-membership-audit.json",
+      "bytes": 8308,
+      "sha256": "7ab7eac0a3168bb2a4135bce83e9ff7e63aba614ab48305a46344ebf6b8688a3"
+    },
+    {
+      "path": "build/analysis/capability-game-graphics-lifetime-v1/retained-generic-object-inventory.json",
+      "bytes": 1198516,
+      "sha256": "a006374c7a6dd135568d50db5d55eb5807e4965838f814fa9abcb4aedb40d83a"
+    },
+    {
+      "path": "build/analysis/capability-game-graphics-lifetime-v1/alternate-callback-incoming-selected-graph.json",
+      "bytes": 228789,
+      "sha256": "a358d1d3b05f765e55ba9899ee9b953aeab03cdc59b29d77be24bcfabd7013f3"
+    },
+    {
+      "path": "build/analysis/game-battle-commands-v1/409e70-retained.json",
+      "bytes": 1126340,
+      "sha256": "55378ad04e310b49c911efb08965d1a0d3d47b0763182c6ad8e1c89628511ba1"
+    },
+    {
+      "path": "build/analysis/game-battle-commands-v1/409fe0-retained.json",
+      "bytes": 404869,
+      "sha256": "dd090ae5a1c357e7c45f57a6c214a160ef2fe35760b52c36fad556d32930b644"
+    },
+    {
+      "path": "build/analysis/game-battle-commands-v1/40a090-retained.json",
+      "bytes": 1348581,
+      "sha256": "cc54416f98a6863c5ccdc500203eb3a325c35e8a047d68a5569c436fb9dada8e"
+    },
+    {
+      "path": "build/analysis/game-battle-shared-storage-v1/producers/4ea7c0-dossier.json",
+      "bytes": 359594,
+      "sha256": "a4c61b14e42e515b2136feae90ac0f3338710c7777a73a3aaaf2191b89dd7410"
+    },
+    {
+      "path": "build/analysis/capability-business-map-v1/function-4e94d0.json",
+      "bytes": 969895,
+      "sha256": "5316caf498c1ce4c5e9602dec0864458265bac8c90dbf567c95a52d484567a3f"
+    },
+    {
+      "path": "build/analysis/game-battle-shared-storage-v1/presentation/derived-window.json",
+      "bytes": 62010,
+      "sha256": "f69b5b6d3e424eb52b8d44e14692e6472f5ca710088a13c51eb1b7b97056aa18"
+    }
+  ],
+  "summary": {
+    "reused_native_dossiers": 8,
+    "canonical_ranges": 8,
+    "canonical_body_bytes": 1899,
+    "reused_derived_callbacks": 1,
+    "derived_instructions": 250,
+    "derived_bytes": 720,
+    "independent_PE_relative_CALL_sites": 10,
+    "cached_view_records": 9,
+    "recovered_existing_parent_dossiers": 3,
+    "new_native_dossiers": 0,
+    "new_decompilations": 0,
+    "alternate_table_bytes": 1980,
+    "alternate_nonnull_callbacks": 97,
+    "selected_graph_callback_incoming": 0
+  },
+  "bodies": [
+    {
+      "entry": "0x409e70",
+      "evidence_id": "ev_cc31618dde856bade36f501b98d37ed4863dc154fa245a375e43cfb8846ca6c1",
+      "kind": "reused-canonical-dossier",
+      "retained_source": {
+        "path": "build/analysis/game-battle-commands-v1/409e70-retained.json",
+        "bytes": 1126340,
+        "sha256": "55378ad04e310b49c911efb08965d1a0d3d47b0763182c6ad8e1c89628511ba1"
+      },
+      "record_pointer": "",
+      "ranges": [
+        {
+          "start": "0x409e70",
+          "end": "0x409fd1",
+          "bytes": 354,
+          "file_offset": 37488,
+          "sha256": "095987142340a7b4bc05a50dc3962216dcccf0e8de3e0b72320d4eb92acfb0ab",
+          "original_PE_bytes_match": true
+        }
+      ],
+      "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "parameters_sha256": "d2a0d7b50dd5863c7862a2f45a35b7942283013603d4e915310d36aa459615ad",
+      "pseudocode_sha256": "a1f2c62c74f56e5da3aeb836bd9beda02b72d1c61a0a12617c7e731ada4c9171",
+      "assembly_sha256": "3dc8169f59e29288b49a04f6b6b1c2e4ed0a0ecec8768c449eb4178cf1e72334",
+      "direct_callee_entries": [
+        "EXTERNAL:0xb2",
+        "0x51bcf8",
+        "0x51bd85"
+      ],
+      "source_relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "limitations": [
+          "Ghidra's caller inventory omits sources of 7 call reference(s) into this function's body."
+        ],
+        "limited_directions": [
+          "callers"
+        ],
+        "status": "partial"
+      },
+      "all_callees_or_business_effects_reviewed": false
+    },
+    {
+      "entry": "0x409fe0",
+      "evidence_id": "ev_c511602d03da956ac59322aa2fe0687ffb273423d5c961a306db47a9366596a6",
+      "kind": "reused-canonical-dossier",
+      "retained_source": {
+        "path": "build/analysis/game-battle-commands-v1/409fe0-retained.json",
+        "bytes": 404869,
+        "sha256": "dd090ae5a1c357e7c45f57a6c214a160ef2fe35760b52c36fad556d32930b644"
+      },
+      "record_pointer": "",
+      "ranges": [
+        {
+          "start": "0x409fe0",
+          "end": "0x40a086",
+          "bytes": 167,
+          "file_offset": 37856,
+          "sha256": "bdf6220e671488944b3cbbb07f1fdb23a53be937d010eafbc00f43d6d6550637",
+          "original_PE_bytes_match": true
+        }
+      ],
+      "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "parameters_sha256": "34ab1b66dc97f5bf5b7904894b6bc16f09824c6df30b4c7660aaf65a33eead0b",
+      "pseudocode_sha256": "f51e1eb82b3078382a73dbf60ac6120235cc93448c67e9789feade20889f42e8",
+      "assembly_sha256": "49c533ab554238fbe1795c15beb598dc7bb4dfc5e85b73f6ea4c732ec6b80d2d",
+      "direct_callee_entries": [
+        "0x40a0a0"
+      ],
+      "source_relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "limitations": [
+          "Ghidra's callee inventory omits targets of 1 call reference(s) or decoded call(s) without destinations."
+        ],
+        "limited_directions": [
+          "callees"
+        ],
+        "status": "partial"
+      },
+      "all_callees_or_business_effects_reviewed": false
+    },
+    {
+      "entry": "0x40a090",
+      "evidence_id": "ev_904de88123a00aa2e5ceccc76547522f9fa662c89e1938a290fbb5aabaa088a5",
+      "kind": "reused-canonical-dossier",
+      "retained_source": {
+        "path": "build/analysis/game-battle-commands-v1/40a090-retained.json",
+        "bytes": 1348581,
+        "sha256": "cc54416f98a6863c5ccdc500203eb3a325c35e8a047d68a5569c436fb9dada8e"
+      },
+      "record_pointer": "",
+      "ranges": [
+        {
+          "start": "0x40a090",
+          "end": "0x40a09f",
+          "bytes": 16,
+          "file_offset": 38032,
+          "sha256": "e97e9252e2e8d05db0bcd595fce92b2fe6e8ff5ea440a959e493dcad11be2a9b",
+          "original_PE_bytes_match": true
+        }
+      ],
+      "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "parameters_sha256": "662dab9bc2d9ece5bf93d30018ae28a7b93d4a8471edf85b1971225b7d506111",
+      "pseudocode_sha256": "80a35c377c98d3924c34da5f70b17ed2d04c678c4ee15df83305b9a6228104fb",
+      "assembly_sha256": "e2f9aef4779b1375c9440ef6ed1ca46d34527fbbe6fbd2aca3c4f3fbc3551033",
+      "direct_callee_entries": [],
+      "source_relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "limitations": [
+          "Ghidra's caller inventory omits sources of 44 call reference(s) into this function's body."
+        ],
+        "limited_directions": [
+          "callers"
+        ],
+        "status": "partial"
+      },
+      "all_callees_or_business_effects_reviewed": false
+    },
+    {
+      "entry": "0x40a0a0",
+      "evidence_id": "ev_bfbe32f2c23597751ac8cadfa2cf8edf08edd25c4b91b2f644d3166f0cd92fe2",
+      "kind": "reused-canonical-dossier",
+      "retained_source": {
+        "path": "build/analysis/capability-game-graphics-lifetime-v1/recovered-helper-records.json",
+        "bytes": 446102,
+        "sha256": "46d73af50d9e0ca26efaa7c7243113066f4f37303ccc9f8e2ce062f6f029e201"
+      },
+      "record_pointer": "/records/0/record",
+      "ranges": [
+        {
+          "start": "0x40a0a0",
+          "end": "0x40a0bf",
+          "bytes": 32,
+          "file_offset": 38048,
+          "sha256": "b3a338ad95a5bd91077d7af944bf61000bec4dd9eed0404bc136acbc65d4cc65",
+          "original_PE_bytes_match": true
+        }
+      ],
+      "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "parameters_sha256": "0c0cce07a55afad6cbc14c59e73886a862608a4a4cafae0455f955374268e31a",
+      "pseudocode_sha256": "b5338ec75e5095642dd74a7356b554004fb3f0dd8c2b03de3c6b46b0119411f8",
+      "assembly_sha256": "b6b994c58969e79c91325f79eb66475fa2ef59b0259503ede96113e8019455d7",
+      "direct_callee_entries": [
+        "0x51bd85"
+      ],
+      "source_relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      },
+      "all_callees_or_business_effects_reviewed": false
+    },
+    {
+      "entry": "0x40a0c0",
+      "evidence_id": "ev_248f449f5febef131d010c2d931f9340ef35e0d545054c4b3e8dcb510c12d7af",
+      "kind": "reused-canonical-dossier",
+      "retained_source": {
+        "path": "build/analysis/capability-game-graphics-lifetime-v1/recovered-helper-records.json",
+        "bytes": 446102,
+        "sha256": "46d73af50d9e0ca26efaa7c7243113066f4f37303ccc9f8e2ce062f6f029e201"
+      },
+      "record_pointer": "/records/1/record",
+      "ranges": [
+        {
+          "start": "0x40a0c0",
+          "end": "0x40a0ea",
+          "bytes": 43,
+          "file_offset": 38080,
+          "sha256": "0836605c45465a999c60e527ca52972b5e5f6f0b1b9a4dd3e0f868900ea05905",
+          "original_PE_bytes_match": true
+        }
+      ],
+      "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "parameters_sha256": "327b8a1ea158f7acdc517bcb044579bb57fa6d1ed7d7245a65dbcc70e3c90d0f",
+      "pseudocode_sha256": "038734dfc08508f9688621fc62282661e802443540aaea2c107e1c1080726536",
+      "assembly_sha256": "756a70ee1cfd0ae3266aa3ccbff1a63bbca35a0b0cd90692789f61f7d8232542",
+      "direct_callee_entries": [
+        "0x464c70"
+      ],
+      "source_relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "limitations": [
+          "Ghidra's caller inventory omits sources of 1 call reference(s) into this function's body."
+        ],
+        "limited_directions": [
+          "callers"
+        ],
+        "status": "partial"
+      },
+      "all_callees_or_business_effects_reviewed": false
+    },
+    {
+      "entry": "0x464c70",
+      "evidence_id": "ev_7720764ff4eadf018c5563516e4d079d375fb8344fea5bebeb15b7da4c930c5b",
+      "kind": "reused-canonical-dossier",
+      "retained_source": {
+        "path": "build/analysis/capability-game-graphics-lifetime-v1/recovered-helper-records.json",
+        "bytes": 446102,
+        "sha256": "46d73af50d9e0ca26efaa7c7243113066f4f37303ccc9f8e2ce062f6f029e201"
+      },
+      "record_pointer": "/records/2/record",
+      "ranges": [
+        {
+          "start": "0x464c70",
+          "end": "0x464cb1",
+          "bytes": 66,
+          "file_offset": 409712,
+          "sha256": "3e39e30899467a102a4b4b7b97853156d8fb827fc5349ccd7758e7afd3063e65",
+          "original_PE_bytes_match": true
+        }
+      ],
+      "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "parameters_sha256": "98d13631ac0c40d9616cd61446a3245c4796e36d6ef84e6a6e8dd2b6b3b08997",
+      "pseudocode_sha256": "f05dae99e9c51cfe48e1e43cf013a7c34dd86a34ec262444c611d1617eec5261",
+      "assembly_sha256": "eebd2f11ff0172689b4ddfe4d52cf23466d6c32f4871eaed7be07aa0f1c38e11",
+      "direct_callee_entries": [
+        "0x40a090"
+      ],
+      "source_relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      },
+      "all_callees_or_business_effects_reviewed": false
+    },
+    {
+      "entry": "0x4e94d0",
+      "evidence_id": "ev_15b680838335c8ef5a97c295105bf2a6b386c35bf99e7e2b663926e46bc20b0c",
+      "kind": "reused-canonical-dossier",
+      "retained_source": {
+        "path": "build/analysis/capability-business-map-v1/function-4e94d0.json",
+        "bytes": 969895,
+        "sha256": "5316caf498c1ce4c5e9602dec0864458265bac8c90dbf567c95a52d484567a3f"
+      },
+      "record_pointer": "",
+      "ranges": [
+        {
+          "start": "0x4e94d0",
+          "end": "0x4e97ae",
+          "bytes": 735,
+          "file_offset": 952528,
+          "sha256": "296538daa1fdbe0c5114cb9b65b7db2276321c928b3fed235ec76b0e4e7e7952",
+          "original_PE_bytes_match": true
+        }
+      ],
+      "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "parameters_sha256": "9f2b7dec5cf43c842b5b88f20716028a499f4e5048a46c50eea08c9bdcd7bc01",
+      "pseudocode_sha256": "f245df0d013bf0054a5f883e5680c6955c7c34e6820dbdeaa134d1c33a4f1c06",
+      "assembly_sha256": "ae2bc6f37bfe1fb6ecca27c2d1b03896abc25b30d62f055d00e8f436bf3f81b7",
+      "direct_callee_entries": [
+        "0x4033d0",
+        "0x40a090",
+        "0x4e9d00",
+        "0x4ea5b0",
+        "0x4ea7a0",
+        "0x4ea7c0",
+        "0x4eac80",
+        "0x510000",
+        "0x51b2f7"
+      ],
+      "source_relationship_coverage": {
+        "status": "partial",
+        "limitations": [
+          "Ghidra's caller inventory omits sources of 1 call reference(s) into this function's body.",
+          "Ghidra's callee inventory omits targets of 1 call reference(s) or decoded call(s) without destinations."
+        ],
+        "limited_directions": [
+          "callers",
+          "callees"
+        ],
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ]
+      },
+      "all_callees_or_business_effects_reviewed": false
+    },
+    {
+      "entry": "0x4ea7c0",
+      "evidence_id": "ev_cd91f62c345f1c6383dcc86f82a4acd8c3b9d25ae1fa69f36c4830d996aaeff3",
+      "kind": "reused-canonical-dossier",
+      "retained_source": {
+        "path": "build/analysis/game-battle-shared-storage-v1/producers/4ea7c0-dossier.json",
+        "bytes": 359594,
+        "sha256": "a4c61b14e42e515b2136feae90ac0f3338710c7777a73a3aaaf2191b89dd7410"
+      },
+      "record_pointer": "",
+      "ranges": [
+        {
+          "start": "0x4ea7c0",
+          "end": "0x4ea9a5",
+          "bytes": 486,
+          "file_offset": 957376,
+          "sha256": "bbb28ad5603a550ae7e0ca09b3f2e11aeb5fd2142314dcd0669a2e7dc4446e22",
+          "original_PE_bytes_match": true
+        }
+      ],
+      "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "parameters_sha256": "1973aa3e20fefd53262c7ee54e4f235fb143a018f408a60304fcad49409fd5aa",
+      "pseudocode_sha256": "4b9dfcf79bb826dbac6c8419f51dee812d6ef6c5a8d6cf9c1380077e456e70da",
+      "assembly_sha256": "6ba84f0857d437ed73bbcaea467b1e77a1b0c572a885c446e4ad45484d0df669",
+      "direct_callee_entries": [
+        "0x409e70"
+      ],
+      "source_relationship_coverage": {
+        "status": "complete",
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ]
+      },
+      "all_callees_or_business_effects_reviewed": false
+    }
+  ],
+  "derived_body": {
+    "entry": "0x4ea9b0",
+    "kind": "reused-analyst-seeded-derived-static",
+    "canonical_dossier": false,
+    "file": {
+      "path": "build/analysis/game-battle-shared-storage-v1/presentation/derived-window.json",
+      "bytes": 62010,
+      "sha256": "f69b5b6d3e424eb52b8d44e14692e6472f5ca710088a13c51eb1b7b97056aa18"
+    },
+    "selector": "/entries/0",
+    "instructions": 250,
+    "bytes": 720,
+    "ranges": [
+      {
+        "start": "0x4ea9b0",
+        "end": "0x4eac7f",
+        "bytes": 720,
+        "file_offset": 957872,
+        "sha256": "8d08384a6bdb00e8b617a40e9e1f3d2f971ffead1b03c2d55bb8cb3211696294",
+        "every_instruction_matches_original_PE": true
+      }
+    ],
+    "pseudocode_sha256": "8587762f6f41213925cf616c26e09472f2c83fe6653ed9759adb00f853d495d0",
+    "native_lookup_failure": "Existing presentation/4ea9b0-dossier.json is a failed canonical lookup,not a function dossier;the separately admitted720B view is reused."
+  },
+  "semantic_anchors": [
+    {
+      "entry": "0x409e70",
+      "groups": [
+        {
+          "pattern": "FUN_0051bcf8(1,800)",
+          "pseudocode_line_indices_0_based": [
+            10
+          ]
+        },
+        {
+          "pattern": "FUN_0051bcf8(1,param_2)",
+          "pseudocode_line_indices_0_based": [
+            17
+          ]
+        },
+        {
+          "pattern": "piVar2[2] = 0",
+          "pseudocode_line_indices_0_based": [
+            33
+          ]
+        },
+        {
+          "pattern": "piVar2[3]",
+          "pseudocode_line_indices_0_based": [
+            18
+          ]
+        },
+        {
+          "pattern": "FUN_0051bd85",
+          "pseudocode_line_indices_0_based": [
+            20
+          ]
+        }
+      ],
+      "authority": "Root-reviewed interpretation; string matches locate the relevant source,not automatic semantic or runtime proof."
+    },
+    {
+      "entry": "0x409fe0",
+      "groups": [
+        {
+          "pattern": "piVar2[7] == 0",
+          "pseudocode_line_indices_0_based": [
+            9
+          ]
+        },
+        {
+          "pattern": "piVar2[2]",
+          "pseudocode_line_indices_0_based": [
+            10,
+            12
+          ]
+        },
+        {
+          "pattern": "0x40000U",
+          "pseudocode_line_indices_0_based": [
+            11,
+            16
+          ]
+        },
+        {
+          "pattern": "DAT_0058f6b4",
+          "pseudocode_line_indices_0_based": [
+            11,
+            16
+          ]
+        },
+        {
+          "pattern": "DAT_0058f6b8",
+          "pseudocode_line_indices_0_based": [
+            11,
+            16,
+            27,
+            28,
+            29
+          ]
+        },
+        {
+          "pattern": "FUN_0040a0a0",
+          "pseudocode_line_indices_0_based": [
+            20
+          ]
+        },
+        {
+          "pattern": "*piVar2 + 4",
+          "pseudocode_line_indices_0_based": [
+            17
+          ]
+        }
+      ],
+      "authority": "Root-reviewed interpretation; string matches locate the relevant source,not automatic semantic or runtime proof."
+    },
+    {
+      "entry": "0x40a090",
+      "groups": [
+        {
+          "pattern": "param_1 != 0",
+          "pseudocode_line_indices_0_based": [
+            4
+          ]
+        },
+        {
+          "pattern": "param_1 + 0x1c",
+          "pseudocode_line_indices_0_based": [
+            5
+          ]
+        }
+      ],
+      "authority": "Root-reviewed interpretation; string matches locate the relevant source,not automatic semantic or runtime proof."
+    },
+    {
+      "entry": "0x40a0a0",
+      "groups": [
+        {
+          "pattern": "param_1 + 0xc",
+          "pseudocode_line_indices_0_based": [
+            4,
+            5
+          ]
+        },
+        {
+          "pattern": "FUN_0051bd85",
+          "pseudocode_line_indices_0_based": [
+            5,
+            7
+          ]
+        }
+      ],
+      "authority": "Root-reviewed interpretation; string matches locate the relevant source,not automatic semantic or runtime proof."
+    },
+    {
+      "entry": "0x40a0c0",
+      "groups": [
+        {
+          "pattern": "DAT_0058f6b0",
+          "pseudocode_line_indices_0_based": [
+            6
+          ]
+        },
+        {
+          "pattern": "FUN_00464c70",
+          "pseudocode_line_indices_0_based": [
+            7
+          ]
+        },
+        {
+          "pattern": "iVar1 + 0x1c",
+          "pseudocode_line_indices_0_based": [
+            10
+          ]
+        },
+        {
+          "pattern": "DAT_0058f6ac",
+          "pseudocode_line_indices_0_based": [
+            8,
+            12
+          ]
+        }
+      ],
+      "authority": "Root-reviewed interpretation; string matches locate the relevant source,not automatic semantic or runtime proof."
+    },
+    {
+      "entry": "0x464c70",
+      "groups": [
+        {
+          "pattern": "DAT_00ae2ba0",
+          "pseudocode_line_indices_0_based": [
+            8
+          ]
+        },
+        {
+          "pattern": "DAT_00b09984",
+          "pseudocode_line_indices_0_based": [
+            9
+          ]
+        },
+        {
+          "pattern": "puVar1[iVar2] == '\\x01'",
+          "pseudocode_line_indices_0_based": [
+            13
+          ]
+        },
+        {
+          "pattern": "FUN_0040a090",
+          "pseudocode_line_indices_0_based": [
+            15
+          ]
+        },
+        {
+          "pattern": "iVar2 < 399",
+          "pseudocode_line_indices_0_based": [
+            19
+          ]
+        },
+        {
+          "pattern": "0xba5108",
+          "pseudocode_line_indices_0_based": [
+            21
+          ]
+        }
+      ],
+      "authority": "Root-reviewed interpretation; string matches locate the relevant source,not automatic semantic or runtime proof."
+    },
+    {
+      "entry": "0x4ea7c0",
+      "groups": [
+        {
+          "pattern": "FUN_00409e70(3,0x24)",
+          "pseudocode_line_indices_0_based": [
+            10
+          ]
+        },
+        {
+          "pattern": "iVar2 + 8",
+          "pseudocode_line_indices_0_based": [
+            16
+          ]
+        },
+        {
+          "pattern": "LAB_004ea9b0",
+          "pseudocode_line_indices_0_based": [
+            16
+          ]
+        },
+        {
+          "pattern": "puVar1[1] = 0",
+          "pseudocode_line_indices_0_based": [
+            66
+          ]
+        },
+        {
+          "pattern": "param_5 == -1",
+          "pseudocode_line_indices_0_based": [
+            67
+          ]
+        },
+        {
+          "pattern": "param_5 == -2",
+          "pseudocode_line_indices_0_based": [
+            75
+          ]
+        }
+      ],
+      "authority": "Root-reviewed interpretation; string matches locate the relevant source,not automatic semantic or runtime proof."
+    },
+    {
+      "entry": "0x4e94d0",
+      "groups": [
+        {
+          "pattern": "param_1 == 0",
+          "pseudocode_line_indices_0_based": [
+            33
+          ]
+        },
+        {
+          "pattern": "FUN_0040a090",
+          "pseudocode_line_indices_0_based": [
+            36
+          ]
+        },
+        {
+          "pattern": "FUN_004ea7c0",
+          "pseudocode_line_indices_0_based": [
+            60
+          ]
+        },
+        {
+          "pattern": "FUN_004033d0(0)",
+          "pseudocode_line_indices_0_based": [
+            70
+          ]
+        },
+        {
+          "pattern": "return 2",
+          "pseudocode_line_indices_0_based": [
+            41
+          ]
+        },
+        {
+          "pattern": "return 1",
+          "pseudocode_line_indices_0_based": [
+            128
+          ]
+        }
+      ],
+      "authority": "Root-reviewed interpretation; string matches locate the relevant source,not automatic semantic or runtime proof."
+    },
+    {
+      "entry": "0x4ea9b0",
+      "groups": [
+        {
+          "pattern": "param_1 + 0x2c",
+          "pseudocode_line_indices_0_based": [
+            26,
+            39,
+            42
+          ]
+        },
+        {
+          "pattern": "iVar7 == 0",
+          "pseudocode_line_indices_0_based": [
+            29,
+            71
+          ]
+        },
+        {
+          "pattern": "9 < psVar4[1]",
+          "pseudocode_line_indices_0_based": [
+            36
+          ]
+        },
+        {
+          "pattern": "iVar7 == 1",
+          "pseudocode_line_indices_0_based": [
+            50
+          ]
+        },
+        {
+          "pattern": "iVar7 != 2",
+          "pseudocode_line_indices_0_based": [
+            58
+          ]
+        },
+        {
+          "pattern": "FUN_00506ac0",
+          "pseudocode_line_indices_0_based": [
+            106
+          ]
+        },
+        {
+          "pattern": "FUN_0048e8d0",
+          "pseudocode_line_indices_0_based": [
+            132
+          ]
+        },
+        {
+          "pattern": "FUN_004032f0(1)",
+          "pseudocode_line_indices_0_based": [
+            51,
+            116,
+            134
+          ]
+        },
+        {
+          "pattern": "param_1 + 0x174",
+          "pseudocode_line_indices_0_based": [
+            53,
+            118,
+            136
+          ]
+        },
+        {
+          "pattern": "param_1 + 0x178",
+          "pseudocode_line_indices_0_based": [
+            52,
+            119,
+            135
+          ]
+        },
+        {
+          "pattern": "param_1 + 0x17c",
+          "pseudocode_line_indices_0_based": [
+            54,
+            117,
+            137
+          ]
+        }
+      ],
+      "authority": "Root-reviewed interpretation; string matches locate the relevant source,not automatic semantic or runtime proof."
+    }
+  ],
+  "relative_CALL_byte_proofs": [
+    {
+      "address": "0x4ea7c5",
+      "target": "0x409e70",
+      "bytes": 5,
+      "file_offset": 957381,
+      "sha256": "4d2fc29337df05a7948b4c9c06afdd59ce42b6b2416c8a3d3b68c4bab48e1567"
+    },
+    {
+      "address": "0x40a05c",
+      "target": "0x40a0a0",
+      "bytes": 5,
+      "file_offset": 37980,
+      "sha256": "7f969aab6f306856aff15cefda8f953bdf03f9ceac35d3bcd48dc0195aa91179"
+    },
+    {
+      "address": "0x40a0ad",
+      "target": "0x51bd85",
+      "bytes": 5,
+      "file_offset": 38061,
+      "sha256": "da79a92131fc679b00ff69796370d1f249baf2b4831729910d80ef73a186be40"
+    },
+    {
+      "address": "0x40a0b6",
+      "target": "0x51bd85",
+      "bytes": 5,
+      "file_offset": 38070,
+      "sha256": "2cc7f822578d3a0d524dcdf7047da8cecd466c93d385b71eec73a0775c5a864a"
+    },
+    {
+      "address": "0x40a0c9",
+      "target": "0x464c70",
+      "bytes": 5,
+      "file_offset": 38089,
+      "sha256": "da218a9a2276820a5773fe1a3b4ac0533446572560419b8adf41378a86d0304d"
+    },
+    {
+      "address": "0x464c8c",
+      "target": "0x40a090",
+      "bytes": 5,
+      "file_offset": 409740,
+      "sha256": "116c6047bf485817db33a317538e3fd257f94e7567b6b326a64c3c23ac91b7a5"
+    },
+    {
+      "address": "0x4e9629",
+      "target": "0x4033d0",
+      "bytes": 5,
+      "file_offset": 952873,
+      "sha256": "6c25dd7973d68c38d0dd452e6915b3d3663383991946b94140f554eb1a12d8de"
+    },
+    {
+      "address": "0x4eab1c",
+      "target": "0x4032f0",
+      "bytes": 5,
+      "file_offset": 958236,
+      "sha256": "0c41da2dd8d764e184906b7f04515e78a2d4d1dd622fca4959de04a308a3679a"
+    },
+    {
+      "address": "0x4eab90",
+      "target": "0x4032f0",
+      "bytes": 5,
+      "file_offset": 958352,
+      "sha256": "6509c5186508f5427c48768c34f7804b9b240f989dccebe9ff4cdc70d59d3afc"
+    },
+    {
+      "address": "0x4eabca",
+      "target": "0x4032f0",
+      "bytes": 5,
+      "file_offset": 958410,
+      "sha256": "827223307ac0c629cc7e83225c4689e166adfb262860f749ec477332fdc094bd"
+    }
+  ],
+  "pointer_binding_proofs": [
+    {
+      "address": "0x4ea7ee",
+      "role": "creator stores4ea9b0 into object+8",
+      "bytes": 7,
+      "sha256": "6927f08ff5fc772ff844cf2aa77712ba9f62d96efbb2640bce873315e3aebdcb"
+    },
+    {
+      "address": "0x40a024",
+      "role": "generic dispatcher calls EAX loaded from object+8",
+      "bytes": 2,
+      "sha256": "491e503ba40e8d303d46b4b51b14826ae08e8c8c3ded6f1441ef1d5d53c42534"
+    },
+    {
+      "address": "0x4e9623",
+      "role": "common helper binds ECX to graphicsObject+170 before comparison",
+      "bytes": 6,
+      "sha256": "83e62dcaefc5df6df5437f69175801f7c99bd98d9fb79c573e575ea4f900fde4"
+    }
+  ],
+  "cached_views": [
+    {
+      "entry": "0x40a0a0",
+      "facet": "procedure",
+      "path": "build/analysis/capability-game-graphics-lifetime-v1/view-40a0a0-procedure.json",
+      "evidence_id": "ev_bf546e818832e8383a4ba62202e1ad41b8de9f835f83bccc9fca4642560383cf",
+      "parent_evidence_id": "ev_bfbe32f2c23597751ac8cadfa2cf8edf08edd25c4b91b2f644d3166f0cd92fe2",
+      "evidence_record_sha256": "49b57c7ecc233b58d3173a53bb3ebee85b138337f335d364f35e4cd81afc738f",
+      "file": {
+        "path": "build/analysis/capability-game-graphics-lifetime-v1/view-40a0a0-procedure.json",
+        "bytes": 18803,
+        "sha256": "08b6f97aee0625c57d21c61bce0723cd1f776571008a2f15daaf0dbe4eea4096"
+      },
+      "exhausted": true,
+      "exact_original_parent_facet_match": true
+    },
+    {
+      "entry": "0x40a0a0",
+      "facet": "pseudocode",
+      "path": "build/analysis/capability-game-graphics-lifetime-v1/view-40a0a0-pseudocode.json",
+      "evidence_id": "ev_95c4f47fcb8a6e49b41f30ebc084713930a4a7776b070cdece3a36d486d02d25",
+      "parent_evidence_id": "ev_bfbe32f2c23597751ac8cadfa2cf8edf08edd25c4b91b2f644d3166f0cd92fe2",
+      "evidence_record_sha256": "abf76e2b4b538f505990e5cf233f4ca4f40c714f6efe320424f24f8e7c57616d",
+      "file": {
+        "path": "build/analysis/capability-game-graphics-lifetime-v1/view-40a0a0-pseudocode.json",
+        "bytes": 18097,
+        "sha256": "b5b678ebe18c40c9fc880f9ebf95cf96a336a7cbf229f43ebb3497020c4d9a92"
+      },
+      "exhausted": true,
+      "exact_original_parent_facet_match": true
+    },
+    {
+      "entry": "0x40a0a0",
+      "facet": "assembly",
+      "path": "build/analysis/capability-game-graphics-lifetime-v1/view-40a0a0-assembly.json",
+      "evidence_id": "ev_f4ebb6555b6db7d0eb965f470994d9c60dc4ed3c41e420162119f00016743e02",
+      "parent_evidence_id": "ev_bfbe32f2c23597751ac8cadfa2cf8edf08edd25c4b91b2f644d3166f0cd92fe2",
+      "evidence_record_sha256": "1c7bf575c75a78e2ac59972137d233c62038e76cb2734ec3228431af3cf1ab83",
+      "file": {
+        "path": "build/analysis/capability-game-graphics-lifetime-v1/view-40a0a0-assembly.json",
+        "bytes": 18461,
+        "sha256": "0cf90c9359e3fb6e6422000bbd225895333fcb8c6e7e6f4ac753d870a9d53f42"
+      },
+      "exhausted": true,
+      "exact_original_parent_facet_match": true
+    },
+    {
+      "entry": "0x40a0c0",
+      "facet": "procedure",
+      "path": "build/analysis/capability-game-graphics-lifetime-v1/view-40a0c0-procedure.json",
+      "evidence_id": "ev_e636b8e5511930968d707f2d722ba4dceadb2e0191f36289061507a61b9cab23",
+      "parent_evidence_id": "ev_248f449f5febef131d010c2d931f9340ef35e0d545054c4b3e8dcb510c12d7af",
+      "evidence_record_sha256": "72f575d2a6052cf46fe282d23033ef76bca12c5428f49cdf2055ad4e8bdf78c6",
+      "file": {
+        "path": "build/analysis/capability-game-graphics-lifetime-v1/view-40a0c0-procedure.json",
+        "bytes": 19139,
+        "sha256": "5070a0a87187b75b6edc315b15b2043f9facc9891035273bfb7ba88c47e37273"
+      },
+      "exhausted": true,
+      "exact_original_parent_facet_match": true
+    },
+    {
+      "entry": "0x40a0c0",
+      "facet": "pseudocode",
+      "path": "build/analysis/capability-game-graphics-lifetime-v1/view-40a0c0-pseudocode.json",
+      "evidence_id": "ev_924f25ae8d52c2228912ae4f84b6db1c3fc0ca81cc1094d2a1f51bb0feb32daa",
+      "parent_evidence_id": "ev_248f449f5febef131d010c2d931f9340ef35e0d545054c4b3e8dcb510c12d7af",
+      "evidence_record_sha256": "a8b4a801e51e30e43cda4383a10214e7a5078fe878db84d68abdeb84b77d9a34",
+      "file": {
+        "path": "build/analysis/capability-game-graphics-lifetime-v1/view-40a0c0-pseudocode.json",
+        "bytes": 18675,
+        "sha256": "702426ee1f9ac4eb400f0468483b31735059c5c37dcdf010047b773f5de6d07f"
+      },
+      "exhausted": true,
+      "exact_original_parent_facet_match": true
+    },
+    {
+      "entry": "0x40a0c0",
+      "facet": "assembly",
+      "path": "build/analysis/capability-game-graphics-lifetime-v1/view-40a0c0-assembly.json",
+      "evidence_id": "ev_f039efbc6cee4f1593fa796bb85e3403f2b1593ccf5d105cfcda330837d0b638",
+      "parent_evidence_id": "ev_248f449f5febef131d010c2d931f9340ef35e0d545054c4b3e8dcb510c12d7af",
+      "evidence_record_sha256": "70d5a02e95784095cc567ee38ac7ddf8a0d129962a44344bbf192cdaf1ccba54",
+      "file": {
+        "path": "build/analysis/capability-game-graphics-lifetime-v1/view-40a0c0-assembly.json",
+        "bytes": 18941,
+        "sha256": "f688f346f78646bbf257954f250ccd7a97da991f60f54708bad005e638c1c057"
+      },
+      "exhausted": true,
+      "exact_original_parent_facet_match": true
+    },
+    {
+      "entry": "0x464c70",
+      "facet": "procedure",
+      "path": "build/analysis/capability-game-graphics-lifetime-v1/view-464c70-procedure.json",
+      "evidence_id": "ev_a077361b713d97dc45412f2eeaaebf0734bc4ae0f4c9194713df378e55deeb2d",
+      "parent_evidence_id": "ev_7720764ff4eadf018c5563516e4d079d375fb8344fea5bebeb15b7da4c930c5b",
+      "evidence_record_sha256": "941c5803eff08f855233395946d5630e551c393defe1d2c968cff93d8d18f686",
+      "file": {
+        "path": "build/analysis/capability-game-graphics-lifetime-v1/view-464c70-procedure.json",
+        "bytes": 18803,
+        "sha256": "9fc182ded840903ffffe1c9f011e096c3190e32bb9ac1b3a3c824f8f4747a18a"
+      },
+      "exhausted": true,
+      "exact_original_parent_facet_match": true
+    },
+    {
+      "entry": "0x464c70",
+      "facet": "pseudocode",
+      "path": "build/analysis/capability-game-graphics-lifetime-v1/view-464c70-pseudocode.json",
+      "evidence_id": "ev_e40b6f9b14deee02721d50eee660b2690671089ac1690bfcfdd1db144aae54c3",
+      "parent_evidence_id": "ev_7720764ff4eadf018c5563516e4d079d375fb8344fea5bebeb15b7da4c930c5b",
+      "evidence_record_sha256": "1263ab43df2563d19a14c3f8c5ebb54bc0b6ff874cbe652f3f8c44a10e2d3182",
+      "file": {
+        "path": "build/analysis/capability-game-graphics-lifetime-v1/view-464c70-pseudocode.json",
+        "bytes": 18685,
+        "sha256": "d9adeed2cc683e289c19387e1cd471fd15a1c6d9f87c9de9f9b722a1d0c7a1e7"
+      },
+      "exhausted": true,
+      "exact_original_parent_facet_match": true
+    },
+    {
+      "entry": "0x464c70",
+      "facet": "assembly",
+      "path": "build/analysis/capability-game-graphics-lifetime-v1/view-464c70-assembly.json",
+      "evidence_id": "ev_736b699be2532db884235d8509484f0a9c7102422c87cb9151ecf02e2c00cdb4",
+      "parent_evidence_id": "ev_7720764ff4eadf018c5563516e4d079d375fb8344fea5bebeb15b7da4c930c5b",
+      "evidence_record_sha256": "0268416fb2927caf08fd0fdfa7e578db2e64e1127eff8abd6d9e0992f5d79949",
+      "file": {
+        "path": "build/analysis/capability-game-graphics-lifetime-v1/view-464c70-assembly.json",
+        "bytes": 19166,
+        "sha256": "70acd532cd975abae5596c70d1393cd52e0e7c9f6892d631052ee0fcdea9cdce"
+      },
+      "exhausted": true,
+      "exact_original_parent_facet_match": true
+    }
+  ],
+  "evidence_membership": {
+    "path": "build/analysis/capability-game-graphics-lifetime-v1/evidence-membership-audit.json",
+    "bytes": 8308,
+    "sha256": "7ab7eac0a3168bb2a4135bce83e9ff7e63aba614ab48305a46344ebf6b8688a3"
+  },
+  "generic_object_reference_inventory": {
+    "path": "build/analysis/capability-game-graphics-lifetime-v1/retained-generic-object-inventory.json",
+    "bytes": 1198516,
+    "sha256": "a006374c7a6dd135568d50db5d55eb5807e4965838f814fa9abcb4aedb40d83a"
+  },
+  "alternate_selected_graph_check": {
+    "path": "build/analysis/capability-game-graphics-lifetime-v1/alternate-callback-incoming-selected-graph.json",
+    "bytes": 228789,
+    "sha256": "a358d1d3b05f765e55ba9899ee9b953aeab03cdc59b29d77be24bcfabd7013f3"
+  },
+  "alternate_table": {
+    "address": "0x559c10",
+    "bytes": 1980,
+    "file_offset": 1405968,
+    "sha256": "278bf3df4ac0e87a33d7fa2324da7f43bc4e9ed12133cb3f774035adf20d5451",
+    "all_rows_match_fixed_PE": true,
+    "reused_table_read_evidence_id": "ev_2fe6e36e9dcb11e6140262f1823faa6f856bda06b37c8d7e5329bb3fd0ed8b53",
+    "reused_table_read_record_opened": false
+  },
+  "reused_contracts": [
+    {
+      "path": "analysis/capability-first-v1/alternate-window-contract.json",
+      "bytes": 11372,
+      "sha256": "8c902d081945fd652f6f0ed049b17d3a4e20c870d78e60dbf07c210ed3d40961"
+    },
+    {
+      "path": "analysis/capability-first-v1/game-dispatch-findings.json",
+      "bytes": 3893,
+      "sha256": "d571d8aa5ed4ee4f276d548151be2ce2581260317cba2b334cbe6d1f8f849c95"
+    },
+    {
+      "path": "analysis/capability-first-v1/game-entry-review-contract.json",
+      "bytes": 94819,
+      "sha256": "8eda871220024131786e085822755ee8961f41ee61f5c10a36b226e95ad9cb71"
+    }
+  ],
+  "native_current_export_records": 1676,
+  "inherited_records_unchanged": 1667,
+  "new_operations": {
+    "inspect_analysis_view": 9
+  },
+  "all_selected_body_and_table_bytes_match_original_PE": true,
+  "limits": [
+    "Literal field offsets and source logical wrapper roles are distinguished;this does not reconstruct physical random tuple storage.",
+    "The source allocator/free entries51bcf8/51bd85 remain explicit native boundaries; this package does not newly decompile CRT/OS internals or prove all allocation failure behavior.",
+    "The97 business callbacks have zero overlap/incoming only within the selected647-root CALL index;indirect,graph-external,alias/module andcomplete jump coverage remain unknown.",
+    "Source images/resources,graphics output,glyphs,frame timing andplatform/runtime equivalence are not executed or accepted here."
+  ],
+  "original_execution": false,
+  "runtime_features_changed": false
+}

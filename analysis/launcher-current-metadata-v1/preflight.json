@@ -1,0 +1,57 @@
+{
+  "schema": "moli.launcher-current-metadata-v1.preflight.v1",
+  "recorded_utc": "2026-10-28T12:17:52.202093+00:00",
+  "previous_turn_classification": "progress:11newREA function dossiers,2pure APIs,actual558Node andChromeESM checks; all tasks terminal and REA closed",
+  "previous_manifest": {
+    "path": "analysis/delivery-manifest-stage91.json",
+    "sha256": "4c27055f2615a377a25fdf43e5ed2b204c3108f0e9020da3abd533536922abbe",
+    "files_verified": 1346
+  },
+  "requirement": "reports/development-plan.md",
+  "objective_retained": true,
+  "baseline_files_saved": [
+    "README.md",
+    "reports/development-plan.md",
+    "reports/known-issues.md",
+    "reports/validation.md",
+    "reports/analysis-methods.md",
+    "reports/vm-environment.md",
+    "reports/launcher-static.md",
+    "reports/logic-protocol-spec.md",
+    "reports/module-interfaces.md",
+    "reports/architecture-and-milestones.md",
+    "reports/resource-formats.md",
+    "shared/README.md",
+    "web/README.md",
+    "shared/launcher-manifest.mjs",
+    "shared/index.mjs",
+    "web/launcher-bootstrap.mjs"
+  ],
+  "pending_windows_gate": "stage90 process-only RemoteSigned request still unanswered; no dependent action or policy change",
+  "slice": "New launcher metadata consumers and explicit current-profile implementation; preserve existing legacy profile/defaults until source contract is proven.",
+  "questions": [
+    {
+      "question": "How are remote launcher digest boundaries/case compared with the local digest?",
+      "source": "retained worker0x4069b0, new callee0x407680",
+      "needed": "instruction-backed trim/truncate/case/localformat"
+    },
+    {
+      "question": "How are locator tokens and archive length validated before updater handoff?",
+      "source": "retained worker + builder0x406540; stage88 updaterargv0x40dd30",
+      "needed": "exact two-token meaning/limits and fail conditions"
+    },
+    {
+      "question": "What does current catalog HTTP branch consume and in which order?",
+      "source": "worker0x4069b0 and context initialization0x409aa0/HTTP helper0x4335b0",
+      "needed": "explicit response buffers, return conditions, whether catalog digest body affects selection; do not transfer oldprofile"
+    }
+  ],
+  "analysis_target_sha256": "c7ba69f77809fe589fd5dcccc78fcd4f33d4b6f76325d00a27f37032bbb32384",
+  "snapshot": {
+    "path": "build/analysis/launcher-current-catalog-v1/rea-snapshot.json",
+    "bytes": 43220921,
+    "sha256": "1ad6019688cc1ff20bde61e1e2eb62a831e517296a558d1ac551a172c9d0a9c1"
+  },
+  "goal_status": "active",
+  "goal_complete": false
+}

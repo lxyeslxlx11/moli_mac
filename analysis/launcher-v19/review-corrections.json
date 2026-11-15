@@ -1,0 +1,41 @@
+{
+  "schema": "moli.launcher-v19.review-corrections.v1",
+  "root_review_only": true,
+  "production_integration_correction": {
+    "source": "reused-native-spec.json and target-binding tests",
+    "issue": "The former standalone UI demonstration used runtime requestCode+1 for license text. Integrating real XML Code11 must use original text11, not12 or selected ordinal.",
+    "result": "Original Code digit text/leading zeros and duplicate ordinals preserved; request11 and Game11_License verified; old game0 ui-ascii fixture remains separate historical test profile."
+  },
+  "test_corrections": [
+    {
+      "evidence": "focused-tests-initial.log",
+      "initial": "21/23 passed. Galaxy negative used unknown empty GList, and catalog version assertion used nonexistent .version.",
+      "correction": "Use nonempty supported Galaxylist detection and documented declaredVersion; no production parser/target checks weakened.",
+      "final": "23/23 focused;358/358 whole suite."
+    },
+    {
+      "evidence": [
+        "browser-validation-initial.json",
+        "fieldset-diagnostic.json"
+      ],
+      "initial": "Playwright1.62.1 fieldset.isDisabled returnedfalse even though native disabled property/attribute and descendant input :disabled were true.",
+      "correction": "Assert actual username control disabled state plus native fieldset property in waits; no production gating change.",
+      "final": "17 browser scenarios plus1 measured deadline pass."
+    }
+  ],
+  "preview_lifecycle": {
+    "prior_pid": 48049,
+    "action": "Exact own Node example confirmed by ps/lsof with listening-only TCP; normal SIGINT, session36396 exit0, stoppedtrue/connections0/verificationfalse; port4174 released.",
+    "scope": "Owned original prototype only; no VM/security/unknown executable action."
+  },
+  "browser_expected_abort": {
+    "count": 1,
+    "entries": [
+      {
+        "path": "/bootstrap/catalog-digests",
+        "reason": "net::ERR_ABORTED"
+      }
+    ],
+    "scope": "Held local metadata cancellation/timeout negative cases, preserved separately from unexpected failures."
+  }
+}

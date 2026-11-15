@@ -1,0 +1,46 @@
+{
+  "recorded_utc": "2026-10-25T09:55:14.476738+00:00",
+  "python": "3.9.6",
+  "script_sha256": "23170329905b3e02f7184150fe22db8c037222bdbca1dff03ee2ee40d2122307",
+  "operator_script_sha256": "23170329905b3e02f7184150fe22db8c037222bdbca1dff03ee2ee40d2122307",
+  "operator_and_archived_bytes_equal": true,
+  "test_sha256": "30090162beafb6f2f67f13fa805b73c9a3e9278895e8df1f74e223fcd77df18a",
+  "safety_assert_count": 0,
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis/vm-install-v7",
+        "-p",
+        "test_cold_baseline.py",
+        "-v"
+      ],
+      "test_methods": 15,
+      "exit_code": 0
+    },
+    {
+      "mode": "optimized",
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis/vm-install-v7",
+        "-p",
+        "test_cold_baseline.py",
+        "-v"
+      ],
+      "test_methods": 15,
+      "exit_code": 0
+    }
+  ],
+  "scope": "Synthetic temporary files only. lsof/cp/chmod runners mocked. No actual VM read, change, clone, preflight or UI action.",
+  "test_result_source": "Captured subprocess unittest output saved as adjacent normal/optimized logs."
+}

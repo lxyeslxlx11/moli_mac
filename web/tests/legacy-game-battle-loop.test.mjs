@@ -1,0 +1,2 @@
+import test from'node:test';import * as api from'../../shared/index.mjs';import {createWeChatLegacyGameSession}from'../../adapters/wechat/legacy-game-session.mjs';import {loopTCPModes,runLoopTCP}from'../../analysis/game-battle-loop-v1/tcp-flow.mjs';
+for(const mode of loopTCPModes)test('actual source automatic M/round ownership and OS TCP '+mode,{timeout:30000},async()=>{console.log('battle-loop-tcp '+JSON.stringify(await runLoopTCP({...api,createWeChatLegacyGameSession},mode)));});

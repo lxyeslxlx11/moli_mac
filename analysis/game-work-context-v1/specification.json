@@ -1,0 +1,32 @@
+{
+  "schema": "moli.work-context-specification.v1",
+  "stage": 306,
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "tools": {"REA": "6.7.0", "Ghidra": "12.1.4"},
+  "source_check": "analysis/game-work-context-v1/source-check.json",
+  "facts": [
+    {"anchors": ["0x54164c", "0x54168c", "derived0x471e00", "derived0x471f00"], "behavior": "Static window controls bind back and context callbacks. Context control requires gate byte bit7 clear,43b420 false,state4f0000 field15 nonzero,time4f2ae0 remaining positive,and selected skill kind nonzero. The7-byte factor table only proves tiers0..6; independent implementation supports positive tiers1..6 without extrapolation."},
+    {"anchors": ["derived0x471f00", "0x4706d0", "derived0x472a10"], "behavior": "When c5e948 is0,context toggle sends4f7b50(displayX,displayY,61 or62) then immediately writes5e2778 to1 or0. Selecting a normal manufacture level increments c5e948; work windows also acquire it. Independent controls allow toggling only with a selected skill in the level screen. Back from recipes releases this branch and returns to levels."},
+    {"anchors": ["0x4f0290", "0x4f28b0", "derived0x472a10", "derived0x4731a0", "0x470dc0"], "behavior": "Kind1 roster query adds100 to skill slot when context active. Recipe receive stamps current context independently of wire slot. Selecting a craft level requeries when stored and current context differ. Mismatched recipe table cannot select a recipe. Expiry reset requeries a visible recipe list."},
+    {"anchors": ["derived0x476170", "derived0x47a960", "derived0x47abc0", "0x4799d0"], "behavior": "Final work request4f7c70 uses skill slot+100 in active context for manufacture,item work,decoration,target work,gathering and direct kind5. Initial and repeated4f79b0 people queries keep the ordinary slot."},
+    {"anchors": ["0x55b024", "0x4748e0", "0x475360", "0x475e50", "0x4799d0"], "behavior": "Context timing factors are100,95,90,85,80,75,70. Manufacture/repair truncate signed int32 factor*duration/100; decoration/gathering use unsigned product division. Duration notice4f8940 uses truncated seconds. MP cost formula is unchanged. Item repair/appraisal rank is main rank+boolean(context)."},
+    {"anchors": ["0x4f2ae0", "0x451be0", "0x4ea400", "0x470660", "0x501a50"], "behavior": "Reuse existing timer owner: nonpositive received seconds clamp0 before int32*1000; nonzero mode enables elapsed subtraction,negative remaining clamps0 and disables mode. Ordinary UI expiry sends62,resets context and refreshes mismatched visible recipes. Closing last skill window sends62 and resets context. Main-state reset writes0 without requiring a fabricated reply."},
+    {"anchors": ["derived0x472a10", "analysis/game-actor-ride-v1/source-check.json"], "behavior": "Kind5 uses enabled named level,ordinary gates,and4f7c70(slot+context100,selectedLevel,-1,empty). MP is required only when local actor auxiliary+38 child is absent; the existing actor ride mapping owns that child. The callback stays in the level screen; no kind5 Lor result dispatch or optimistic actor/MP update is evidenced."}
+  ],
+  "implementation_design": [
+    "Keep context in the existing player-skill owner so roster queries,recipe stamps and craft controls share one current value.",
+    "Reuse existing game timer and actor ride snapshots; do not create duplicate clocks or pretend a sent direct skill succeeded.",
+    "Expose semantic controls for context toggle and recipe back navigation in web,mobile web and Page; maintain existing normal modes.",
+    "Unavailable tier/time/actor prerequisites remain unavailable. Native window counters are represented by existing owned phases rather than emulating globals."
+  ],
+  "unverified": [
+    "Official server compatibility and real-account acceptance.",
+    "All native window aliases/counter interleavings and native animation/presentation identity.",
+    "Tier values outside the seven file-backed table bytes.",
+    "Special native window IDs7fd4/7fd5 exclude skill98; independent product has no such native windows.",
+    "Native type5 labels for every possible server-provided identifier; product displays received skill name and neutral request status."
+  ],
+  "full_goal_complete": false,
+  "original_requirements": 37,
+  "incomplete_requirement_groups": 10
+}

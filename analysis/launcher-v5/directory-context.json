@@ -1,0 +1,422 @@
+{
+  "scope": "Fixed-sample static directory flow only; no registry/profile access or Windows execution",
+  "sample": {
+    "name": "POLCN_Launcher.unpacked.exe",
+    "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "bytes": 1735168
+  },
+  "sources": {
+    "cached_rea_function": "0x4015a0..0x405199",
+    "evidence_id": "ev_4ea494bd8b8e5faa814b6cf1b3bee5baca6625e3e7de0fc364901b54a7ee8e17",
+    "dossier_sha256": "c31c584a2cdd52a1ce2f86d36044ef1685e30a8d64ccb87643f6847568e6508c",
+    "tools": "REA 6.7.0 / Ghidra 12.1.4 cached dossier, GNU objdump 2.47.20260726 cached disassembly, Python 3.9.6 bounded verifier"
+  },
+  "catalog": {
+    "sha256": "be8f1213d77bd294fbb79b2fb51a5e7fecdc9aa3c0854db7a6d821fad20ef85a",
+    "bytes": 4377,
+    "code11_records": 2,
+    "RegKey": "Software\\SECN\\PlayOnline\\CrossGatePUK3",
+    "RegValue": "Path",
+    "old_key_tags_absent": true,
+    "ini_section": "Path",
+    "ini_key": "Game11"
+  },
+  "anchors": [
+    {
+      "id": "ini_object_ctor",
+      "va": "0x401227",
+      "file_offset": "0x627",
+      "expected_hex": "e8f4370200"
+    },
+    {
+      "id": "code_attribute",
+      "va": "0x4030aa",
+      "file_offset": "0x24aa",
+      "expected_hex": "68dc204b00"
+    },
+    {
+      "id": "code_string_field",
+      "va": "0x4030cd",
+      "file_offset": "0x24cd",
+      "expected_hex": "8d8c01801b0000"
+    },
+    {
+      "id": "regkey_name",
+      "va": "0x403297",
+      "file_offset": "0x2697",
+      "expected_hex": "6804214b00"
+    },
+    {
+      "id": "regkey_store",
+      "va": "0x40330f",
+      "file_offset": "0x270f",
+      "expected_hex": "8d8c106c1b0000"
+    },
+    {
+      "id": "regvalue_name",
+      "va": "0x40331b",
+      "file_offset": "0x271b",
+      "expected_hex": "680c214b00"
+    },
+    {
+      "id": "regvalue_store",
+      "va": "0x403393",
+      "file_offset": "0x2793",
+      "expected_hex": "8d8c0a701b0000"
+    },
+    {
+      "id": "oldregkey_store",
+      "va": "0x403417",
+      "file_offset": "0x2817",
+      "expected_hex": "8d8c01641b0000"
+    },
+    {
+      "id": "oldregvalue_store",
+      "va": "0x40349b",
+      "file_offset": "0x289b",
+      "expected_hex": "8d8c10681b0000"
+    },
+    {
+      "id": "current_key_empty_fallback",
+      "va": "0x403bf1",
+      "file_offset": "0x2ff1",
+      "expected_hex": "0f86d3000000"
+    },
+    {
+      "id": "requested_reg_access",
+      "va": "0x403bfe",
+      "file_offset": "0x2ffe",
+      "expected_hex": "683f000f00"
+    },
+    {
+      "id": "current_key_source",
+      "va": "0x403c17",
+      "file_offset": "0x3017",
+      "expected_hex": "8d8c106c1b0000"
+    },
+    {
+      "id": "current_hive_hkcu",
+      "va": "0x403c24",
+      "file_offset": "0x3024",
+      "expected_hex": "6801000080"
+    },
+    {
+      "id": "current_open",
+      "va": "0x403c29",
+      "file_offset": "0x3029",
+      "expected_hex": "ff151c104b00",
+      "api": "RegOpenKeyExA"
+    },
+    {
+      "id": "open_error_to_old",
+      "va": "0x403c31",
+      "file_offset": "0x3031",
+      "expected_hex": "0f8593000000",
+      "branch_target": "0x403cca"
+    },
+    {
+      "id": "current_value_source",
+      "va": "0x403c6e",
+      "file_offset": "0x306e",
+      "expected_hex": "8d8c01701b0000"
+    },
+    {
+      "id": "current_query",
+      "va": "0x403c82",
+      "file_offset": "0x3082",
+      "expected_hex": "ff1520104b00",
+      "api": "RegQueryValueExA"
+    },
+    {
+      "id": "query_error_skips_old",
+      "va": "0x403c8a",
+      "file_offset": "0x308a",
+      "expected_hex": "7539",
+      "branch_target": "0x403cc5"
+    },
+    {
+      "id": "current_to_dir_array",
+      "va": "0x403c9f",
+      "file_offset": "0x309f",
+      "expected_hex": "8d8c8a346c0000"
+    },
+    {
+      "id": "dir_array_assignment",
+      "va": "0x403ca6",
+      "file_offset": "0x30a6",
+      "expected_hex": "e865800000"
+    },
+    {
+      "id": "old_key_nonempty_check",
+      "va": "0x403cf3",
+      "file_offset": "0x30f3",
+      "expected_hex": "0f8689010000"
+    },
+    {
+      "id": "old_hive_hkcu",
+      "va": "0x403d26",
+      "file_offset": "0x3126",
+      "expected_hex": "6801000080"
+    },
+    {
+      "id": "old_open",
+      "va": "0x403d2b",
+      "file_offset": "0x312b",
+      "expected_hex": "ff151c104b00",
+      "api": "RegOpenKeyExA"
+    },
+    {
+      "id": "old_query",
+      "va": "0x403d88",
+      "file_offset": "0x3188",
+      "expected_hex": "ff1520104b00",
+      "api": "RegQueryValueExA"
+    },
+    {
+      "id": "migration_create",
+      "va": "0x403dce",
+      "file_offset": "0x31ce",
+      "expected_hex": "ff1500104b00",
+      "api": "RegCreateKeyA"
+    },
+    {
+      "id": "migration_set",
+      "va": "0x403e25",
+      "file_offset": "0x3225",
+      "expected_hex": "ff1510104b00",
+      "api": "RegSetValueExA"
+    },
+    {
+      "id": "migration_dir_array",
+      "va": "0x403e42",
+      "file_offset": "0x3242",
+      "expected_hex": "8d8c8a346c0000"
+    },
+    {
+      "id": "path_ready_skips_ini_read",
+      "va": "0x403eb4",
+      "file_offset": "0x32b4",
+      "expected_hex": "0f854a010000",
+      "branch_target": "0x404004"
+    },
+    {
+      "id": "ini_code_component",
+      "va": "0x403f04",
+      "file_offset": "0x3304",
+      "expected_hex": "8d9401801b0000"
+    },
+    {
+      "id": "ini_section_prefix",
+      "va": "0x403f15",
+      "file_offset": "0x3315",
+      "expected_hex": "68c8214b00"
+    },
+    {
+      "id": "ini_path_key",
+      "va": "0x403f42",
+      "file_offset": "0x3342",
+      "expected_hex": "68d0214b00"
+    },
+    {
+      "id": "ini_read_wrapper",
+      "va": "0x403f69",
+      "file_offset": "0x3369",
+      "expected_hex": "e8f20b0200"
+    },
+    {
+      "id": "ini_value_to_dir_array",
+      "va": "0x403fca",
+      "file_offset": "0x33ca",
+      "expected_hex": "8d8c8a346c0000"
+    },
+    {
+      "id": "ini_write_wrapper",
+      "va": "0x4040ae",
+      "file_offset": "0x34ae",
+      "expected_hex": "e8ed0d0200"
+    },
+    {
+      "id": "selection_dir_array",
+      "va": "0x404c2c",
+      "file_offset": "0x402c",
+      "expected_hex": "8d8c90346c0000"
+    },
+    {
+      "id": "selected_cwd",
+      "va": "0x404c3a",
+      "file_offset": "0x403a",
+      "expected_hex": "81c1181b0000"
+    },
+    {
+      "id": "selected_cwd_assign",
+      "va": "0x404c40",
+      "file_offset": "0x4040",
+      "expected_hex": "e8ab700000"
+    },
+    {
+      "id": "selected_exe_path",
+      "va": "0x404ce2",
+      "file_offset": "0x40e2",
+      "expected_hex": "81c11c1b0000"
+    },
+    {
+      "id": "selected_cwd_other_branch",
+      "va": "0x404d30",
+      "file_offset": "0x4130",
+      "expected_hex": "81c1181b0000"
+    },
+    {
+      "id": "selection_callback_cwd",
+      "va": "0x4055c8",
+      "file_offset": "0x49c8",
+      "expected_hex": "81c1181b0000"
+    },
+    {
+      "id": "selection_callback_cwd_alt",
+      "va": "0x405676",
+      "file_offset": "0x4a76",
+      "expected_hex": "81c1181b0000"
+    },
+    {
+      "id": "module_path_api",
+      "va": "0x424a84",
+      "file_offset": "0x23e84",
+      "expected_hex": "ff1568134b00",
+      "api": "GetModuleFileNameA"
+    },
+    {
+      "id": "module_directory_delimiter",
+      "va": "0x424ad3",
+      "file_offset": "0x23ed3",
+      "expected_hex": "83f85c"
+    },
+    {
+      "id": "ini_basename",
+      "va": "0x424aea",
+      "file_offset": "0x23eea",
+      "expected_hex": "6838734b00"
+    },
+    {
+      "id": "ini_path_assign",
+      "va": "0x424b0e",
+      "file_offset": "0x23f0e",
+      "expected_hex": "e8fd71feff"
+    },
+    {
+      "id": "profile_read_api",
+      "va": "0x424bd8",
+      "file_offset": "0x23fd8",
+      "expected_hex": "ff15e0124b00",
+      "api": "GetPrivateProfileStringA"
+    },
+    {
+      "id": "profile_write_api",
+      "va": "0x424ed0",
+      "file_offset": "0x242d0",
+      "expected_hex": "ff15d8124b00",
+      "api": "WritePrivateProfileStringA"
+    },
+    {
+      "id": "launch_cwd_consumer",
+      "va": "0x407e3e",
+      "file_offset": "0x723e",
+      "expected_hex": "05181b0000"
+    },
+    {
+      "id": "profile_default_argument",
+      "va": "0x424bbd",
+      "file_offset": "0x23fbd",
+      "expected_hex": "8d4d14"
+    },
+    {
+      "id": "profile_key_argument",
+      "va": "0x424bc6",
+      "file_offset": "0x23fc6",
+      "expected_hex": "8d4d10"
+    },
+    {
+      "id": "profile_section_argument",
+      "va": "0x424bcf",
+      "file_offset": "0x23fcf",
+      "expected_hex": "8d4d0c"
+    },
+    {
+      "id": "profile_write_value",
+      "va": "0x424eb5",
+      "file_offset": "0x242b5",
+      "expected_hex": "8d4d10"
+    },
+    {
+      "id": "profile_write_key",
+      "va": "0x424ebe",
+      "file_offset": "0x242be",
+      "expected_hex": "8d4d0c"
+    },
+    {
+      "id": "profile_write_section",
+      "va": "0x424ec7",
+      "file_offset": "0x242c7",
+      "expected_hex": "8d4d08"
+    }
+  ],
+  "strings": [
+    {
+      "va": "0x4b20dc",
+      "file_offset": "0xb12dc",
+      "ascii": "Code"
+    },
+    {
+      "va": "0x4b2104",
+      "file_offset": "0xb1304",
+      "ascii": "RegKey"
+    },
+    {
+      "va": "0x4b210c",
+      "file_offset": "0xb130c",
+      "ascii": "RegValue"
+    },
+    {
+      "va": "0x4b2118",
+      "file_offset": "0xb1318",
+      "ascii": "OldRegKey"
+    },
+    {
+      "va": "0x4b2124",
+      "file_offset": "0xb1324",
+      "ascii": "OldRegValue"
+    },
+    {
+      "va": "0x4b21c8",
+      "file_offset": "0xb13c8",
+      "ascii": "Game"
+    },
+    {
+      "va": "0x4b21d0",
+      "file_offset": "0xb13d0",
+      "ascii": "Path"
+    },
+    {
+      "va": "0x4b7338",
+      "file_offset": "0xb6538",
+      "ascii": "PlayOnline.ini"
+    }
+  ],
+  "field_mapping": {
+    "record_stride": "0xa4",
+    "RegKey": "0x1b6c",
+    "RegValue": "0x1b70",
+    "OldRegKey": "0x1b64",
+    "OldRegValue": "0x1b68",
+    "Code_as_text": "0x1b80",
+    "per_record_path": "0x6c34 + ordinal * 4",
+    "current_cwd": "0x1b18",
+    "current_exe_path": "0x1b1c"
+  },
+  "limitations": [
+    "RegOpen failure reaches generic old-key fallback; successful open followed by query failure skips old-key fallback. Both can reach INI when path-ready flag is zero.",
+    "Code11 catalog has no OldRegKey/OldRegValue; generic migration not evidence it occurs for Code11.",
+    "No current VM registry/profile values read. No full program proof of all future writers.",
+    "Module filename is supplied by framework module helper; normal main-module layout implies adjacent PlayOnline.ini, unusual module/runtime path unresolved.",
+    "No proof of authentication, valid game resources, successful dynamic handoff, or crash cause."
+  ]
+}

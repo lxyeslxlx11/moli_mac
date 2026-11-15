@@ -1,0 +1,33 @@
+{
+  "schema": "moli.runtime-install-v1.parallels-error-summary.v1",
+  "client_date": "2026-10-28 Asia/Shanghai",
+  "source": "Local macOS DiagnosticReports, one exact current Parallels report; selected non-sensitive fields only.",
+  "source_basename": "prl_client_app-2026-10-28-021217.ips",
+  "source_sha256": "c1e2849c03badd185e8ac6689f7b1c6ba321489d77cb7a8d25162b9a76e4aa93",
+  "timestamp": "2026-10-28 02:12:17.00 +0800",
+  "application": "prl_client_app",
+  "version": "26.3.3",
+  "cpu_type": "ARM-64",
+  "translated": false,
+  "exception": {
+    "type": "EXC_BAD_ACCESS",
+    "signal": "SIGSEGV",
+    "subtype": "KERN_INVALID_ADDRESS at 0x28"
+  },
+  "termination": {"namespace": "SIGNAL", "code": 11},
+  "triggered_thread_first_frames": [
+    {"module": "QtWidgets", "symbol": "QWidget::window() const", "image_offset": 234456},
+    {"module": "QtWidgets", "symbol": "QStyleOption::init(QWidget const*)", "image_offset": 508792},
+    {"module": "QtWidgets", "symbol": "QComboBoxPrivateContainer::setItemView(QAbstractItemView*)", "image_offset": 993520},
+    {"module": "QtWidgets", "symbol": "QComboBoxPrivateContainer::QComboBoxPrivateContainer(QAbstractItemView*, QComboBox*)", "image_offset": 992568},
+    {"module": "QtWidgets", "symbol": null, "image_offset": 991040},
+    {"module": "QtWidgets", "symbol": null, "image_offset": 1024412},
+    {"module": "QtWidgets", "symbol": "QWidget::event(QEvent*)", "image_offset": 301232},
+    {"module": "QtWidgets", "symbol": "QComboBox::event(QEvent*)", "image_offset": 1023712}
+  ],
+  "facts": "A Parallels critical-error report appeared after the native Devices/Network parent action. This exact local report records a Qt combo/widget stack. After closing the report, ordinary app inventory and the existing Windows desktop remained accessible.",
+  "inference": "The observed failure concerns host-side combo/widget handling. The stack alone does not isolate the initiating defect or show that automation, permissions, network configuration, or signing caused it.",
+  "unverified": ["repeatability", "manual network selection", "whether another Parallels component restarted internally", "guest network connectivity"],
+  "privacy": "No raw report, memory, registers, arguments, account identifiers, UUIDs or screenshots copied into project artifacts; no report sent.",
+  "response": "Stop this failing menu path, preserve current VM and snapshot, request minimal ordinary human network adjustment; no force quit, restore, CLI, permission or security workaround."
+}

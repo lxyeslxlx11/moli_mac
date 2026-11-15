@@ -1,0 +1,66 @@
+{
+  "schema": "moli.vc71-static-qualification.v1",
+  "source": "Broadcom/VMware official KB341598, actual normal browser attachment download",
+  "bundle_sha256": "a9cc35ecff05024546fa1af6e47bb4af7a0c8a69a70beb6449ed07a6d5995bff",
+  "bundle_architecture": "PE32/x86",
+  "parser": {
+    "package": "pefile",
+    "version": "2024.8.26",
+    "source": "https://files.pythonhosted.org/packages/54/16/12b82f791c7f50ddec566873d5bdd245baa1491bac11d15ffb98aecc8f8b/pefile-2024.8.26-py3-none-any.whl",
+    "wheel_bytes": 74766,
+    "wheel_sha256": "76f8b485dcd3b1bb8166f1128d395fa3d87af26360c2358fb75b80019b957c6f",
+    "mode": "Verified wheel zipimport in task process only; no global install/config"
+  },
+  "updater_sha256": "62dbd66e6eac296862e214a2d92e5332b87cd811bb4f555dd5d49fe8e426b0a4",
+  "dlls": [
+    {
+      "name": "mfc71.dll",
+      "bytes": 1060864,
+      "sha256": "4da5efdc46d126b45daeee8bc69c0ba2aa243589046b7dfd12a7e21b9bee6a32",
+      "machine": "0x14c",
+      "optional_header_magic": "0x10b",
+      "requested_imports": 214,
+      "missing_requested_exports": [],
+      "dependent_dlls": [
+        "MSVCR71.dll",
+        "KERNEL32.dll",
+        "GDI32.dll",
+        "USER32.dll",
+        "SHLWAPI.dll"
+      ],
+      "export_forwarders": []
+    },
+    {
+      "name": "msvcp71.dll",
+      "bytes": 499712,
+      "sha256": "df96156f6a548fd6fe5672918de5ae4509d3c810a57bffd2a91de45a3ed5b23b",
+      "machine": "0x14c",
+      "optional_header_magic": "0x10b",
+      "requested_imports": 5,
+      "missing_requested_exports": [],
+      "dependent_dlls": [
+        "MSVCR71.dll",
+        "KERNEL32.dll"
+      ],
+      "export_forwarders": []
+    },
+    {
+      "name": "msvcr71.dll",
+      "bytes": 348160,
+      "sha256": "8094af5ee310714caebccaeee7769ffb08048503ba478b879edfef5f1a24fefe",
+      "machine": "0x14c",
+      "optional_header_magic": "0x10b",
+      "requested_imports": 39,
+      "missing_requested_exports": [],
+      "dependent_dlls": [
+        "KERNEL32.dll"
+      ],
+      "export_forwarders": []
+    }
+  ],
+  "limits": [
+    "Requested exports are present statically, not a Windows loader/ABI runtime result",
+    "Only selected DLLs and their listed imports; no recursive OS DLL validation",
+    "Mac osslsigncode exit1: content digests match but local signing issuer chain unavailable; not a valid-signature claim"
+  ]
+}

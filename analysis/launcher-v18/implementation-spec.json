@@ -1,0 +1,104 @@
+{
+  "schema": "moli.launcher-v18.implementation-spec.v1",
+  "recorded_utc": "2026-10-27T03:34:20.925999+00:00",
+  "native_spec": "static-spec.json",
+  "native_sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "original_only": true,
+  "credential_profile": {
+    "name": "printable-ascii",
+    "range": "U+0020..U+007E",
+    "length_bytes": [
+      1,
+      16
+    ],
+    "normalization": "none; case and spaces preserved",
+    "unknown": "Not a complete ACP/IME encoder; non-ASCII rejected."
+  },
+  "browser_transport": {
+    "module": "web/launcher-websocket.mjs",
+    "factory": "createBrowserLauncherTransport",
+    "required": [
+      "origin",
+      "token",
+      "endpoints"
+    ],
+    "optional": "WebSocket constructor for platform tests; browser default is native WebSocket",
+    "origin": "exact canonical http://127.0.0.1:port, no credentials/path/query",
+    "endpoints": "explicit1..10 numeric127.0.0.1 address/port pairs, copied before use; selected endpoint must be in list",
+    "methods": [
+      "openStream(endpoint,{signal?})",
+      "read({signal?})",
+      "write(bytes,{signal?})",
+      "close()"
+    ],
+    "ownership": "input views are copied before send; reads return owned nonempty Uint8Array; late/stale/cancelled data not applied",
+    "backpressure": "one pending read and one pending write; writes await bridge TCP write completion acknowledgement, not peer authentication",
+    "read_limits": {
+      "message_bytes": 65536,
+      "queued_and_total_bytes": 4194304,
+      "message_events": 16384
+    },
+    "end": "explicit EOF drains queued bytes then read returns null; unexpected close/invalid control is a controlled failure; cancel rejects pending operations and closes WebSocket"
+  },
+  "loopback_bridge": {
+    "module": "adapters/node/launcher-loopback.mjs",
+    "factory": "createLauncherLoopbackServer({endpoints,gameCode,port?,label?})",
+    "bind": "127.0.0.1 only, default ephemeral port; CLI default4174; no default target or gameCode",
+    "http": "GET only; exact Host and browser Sec-Fetch-Site policy; root302 canonicalizes/web/login.html; source whitelist web/shared and suffix html/css/mjs/js/svg; no symlinks, original binaries, analysis or upload",
+    "runtime": "same-origin /runtime.json provides copied endpoints, slot and fresh process-only random32B capability; no CORS, no persistent token/logging",
+    "upgrade": "exact Host/Origin, /stream, single moli-launcher-v1 subprotocol, at most8 active clients",
+    "authorization_message": "independent local JSON v1 + exact capability + endpointOrdinal; validated before opening TCP; not an official protocol field",
+    "control_messages": [
+      "ready",
+      "written + ordinal",
+      "eof",
+      "failed + controlled BRIDGE code"
+    ],
+    "binary_messages": "actual launcher bytes unchanged; no encryption/credential processing in bridge",
+    "limits": {
+      "message_bytes": 65536,
+      "total_bytes_each_direction": 4194304,
+      "inbound_messages": 8192,
+      "connection_deadline_ms": 10000,
+      "compression": false
+    },
+    "cleanup": "normal WebSocket close plus owned TCP abort/close;250ms owned socket termination fallback, server.close tears down only its own ports; no VM/program control",
+    "snapshot": "activeStreams, connectionAttempts, peerEOFs; no payload/capability/account fields"
+  },
+  "ui": {
+    "entry": "/web/login.html via new dedicated loopback server",
+    "flow": [
+      "explicit in-page retention mode",
+      "username/password ASCII validation",
+      "read4 explicitly selected local UTF-8 text files or explicitly choose original test texts",
+      "read pages0..3 and separately accept/decline",
+      "explicit start",
+      "actual WebSocket→TCP exchange using default browser WebCrypto",
+      "display4 original profile rows or empty/rejected/cancelled result",
+      "explicit supported choice; no IPC/game launch"
+    ],
+    "files": "each nonempty≤64KiB UTF-8 fatal decode, NUL rejected, textContent rendering, no file name or content persisted",
+    "consent": "forcePrompt true, recordedVersion0, native resource slot gameCode+1; unsupported resource slots block review; accept is current-page-only, write intent discarded; no real terms supplied",
+    "retention": "default mode2 false/false; explicit2→1 confirmation clears both inputs and consent; mode1 starts username true/password false, each user-controlled; no localStorage/sessionStorage/IndexedDB writes",
+    "request_counter": "independent current-page policy starts0 and increments per constructed session; not evidence of full native counter lifecycle",
+    "reset": "default password cleared on session construction, default username cleared after attempt; user edits or new text review clear old candidate session, DOM rows and selection; new async reads have generation guards",
+    "presentation": "ASCII profile names rendered as literal text, other name bytes get bounded unknown-encoding label; never display opaque field/key/private exponent or treat candidates as authenticated"
+  },
+  "primary_sources": [
+    {
+      "url": "https://github.com/websockets/ws/blob/8.22.0/README.md",
+      "usage": "server package options, binary message and upgrade API; browser uses native WebSocket"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/apps/design/globalizing/use-utf8-code-page",
+      "usage": "ANSI API/codepage distinction, not proof of actual sample runtime ACP"
+    }
+  ],
+  "not_implemented": [
+    "official authentication/service identity, real account/password persistence or original applicable terms",
+    "catalog/bootstrap integration into session page; source/update trust or native replacement rollback",
+    "remote mobile HTTPS/WSS transport, Safari, WeChat mini program and physical devices",
+    "IPC/game consumer, gameplay, official compatibility"
+  ],
+  "authorization": "Current static/offline/original-loopback implementation only. No original executable, VM, real account or official game traffic."
+}

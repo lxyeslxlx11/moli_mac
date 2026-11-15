@@ -1,0 +1,216 @@
+{
+  "schema": "moli.launcher-v30.first-config-source-audit.v1",
+  "passed": true,
+  "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "image_base": "0x400000",
+  "anchors": [
+    {
+      "kind": "bytes",
+      "address": "0x4b29b4",
+      "file_offset": 727988,
+      "expected_hex": "5f436f6e66696700",
+      "meaning": "read suffix"
+    },
+    {
+      "kind": "bytes",
+      "address": "0x4b29bc",
+      "file_offset": 727996,
+      "expected_hex": "47616d6500",
+      "meaning": "read prefix"
+    },
+    {
+      "kind": "bytes",
+      "address": "0x4b29fc",
+      "file_offset": 728060,
+      "expected_hex": "5c00",
+      "meaning": "command separator"
+    },
+    {
+      "kind": "bytes",
+      "address": "0x4b2a00",
+      "file_offset": 728064,
+      "expected_hex": "5f436f6e66696700",
+      "meaning": "write suffix"
+    },
+    {
+      "kind": "bytes",
+      "address": "0x4b2a08",
+      "file_offset": 728072,
+      "expected_hex": "47616d6500",
+      "meaning": "write prefix"
+    },
+    {
+      "kind": "bytes",
+      "address": "0x4b2144",
+      "file_offset": 725828,
+      "expected_hex": "436f6e66696745584500",
+      "meaning": "XML field"
+    },
+    {
+      "kind": "bytes",
+      "address": "0x4b7350",
+      "file_offset": 746832,
+      "expected_hex": "256400",
+      "meaning": "profile integer string format"
+    },
+    {
+      "kind": "bytes",
+      "address": "0x407a7a",
+      "file_offset": 28282,
+      "expected_hex": "6a01",
+      "meaning": "Profile integer default1"
+    },
+    {
+      "kind": "bytes",
+      "address": "0x407c79",
+      "file_offset": 28793,
+      "expected_hex": "6aff",
+      "meaning": "wait indefinitely"
+    },
+    {
+      "kind": "bytes",
+      "address": "0x407c88",
+      "file_offset": 28808,
+      "expected_hex": "6a00",
+      "meaning": "write zero after wait returns"
+    },
+    {
+      "kind": "bytes",
+      "address": "0x407c53",
+      "file_offset": 28755,
+      "expected_hex": "6a006a006a006a006a00",
+      "meaning": "environment/flags/handles/attributes zero"
+    },
+    {
+      "kind": "bytes",
+      "address": "0x407c69",
+      "file_offset": 28777,
+      "expected_hex": "6a00",
+      "meaning": "applicationName null"
+    },
+    {
+      "kind": "bytes",
+      "address": "0x407c6b",
+      "file_offset": 28779,
+      "expected_hex": "ff156c134b00",
+      "meaning": "CreateProcessA IAT"
+    },
+    {
+      "kind": "bytes",
+      "address": "0x407c82",
+      "file_offset": 28802,
+      "expected_hex": "ff1564134b00",
+      "meaning": "WaitForSingleObject IAT"
+    },
+    {
+      "kind": "bytes",
+      "address": "0x424f77",
+      "file_offset": 148343,
+      "expected_hex": "ff15d8124b00",
+      "meaning": "WritePrivateProfileStringA IAT"
+    },
+    {
+      "kind": "relative-call",
+      "address": "0x407a6b",
+      "file_offset": 28267,
+      "expected_hex": "e870b70100",
+      "target": "0x4231e0",
+      "meaning": "MD5 current global15a0 byte string"
+    },
+    {
+      "kind": "relative-call",
+      "address": "0x407b2f",
+      "file_offset": 28463,
+      "expected_hex": "e81cd20100",
+      "target": "0x424d50",
+      "meaning": "Profile integer lookup"
+    },
+    {
+      "kind": "relative-call",
+      "address": "0x407b6e",
+      "file_offset": 28526,
+      "expected_hex": "e80d1c0000",
+      "target": "0x409780",
+      "meaning": "ConfigEXE length-zero test"
+    },
+    {
+      "kind": "relative-call",
+      "address": "0x407d3d",
+      "file_offset": 28989,
+      "expected_hex": "e8bed10100",
+      "target": "0x424f00",
+      "meaning": "Profile write helper"
+    },
+    {
+      "kind": "relative-call",
+      "address": "0x40978a",
+      "file_offset": 35722,
+      "expected_hex": "e8c1250000",
+      "target": "0x40bd50",
+      "meaning": "empty tests logical CString length"
+    },
+    {
+      "kind": "relative-call",
+      "address": "0x40362e",
+      "file_offset": 10798,
+      "expected_hex": "e8dd860000",
+      "target": "0x40bd10",
+      "meaning": "store parsed ConfigEXE record+1b88"
+    },
+    {
+      "kind": "relative-call",
+      "address": "0x404e7a",
+      "file_offset": 17018,
+      "expected_hex": "e8716e0000",
+      "target": "0x40bcf0",
+      "meaning": "copy current ConfigEXE+1b44"
+    },
+    {
+      "kind": "relative-branch",
+      "address": "0x407b5c",
+      "file_offset": 28508,
+      "expected_hex": "0f84bd020000",
+      "target": "0x407e1f",
+      "meaning": "zero lookup skips config"
+    },
+    {
+      "kind": "relative-branch",
+      "address": "0x407b78",
+      "file_offset": 28536,
+      "expected_hex": "0f85a1020000",
+      "target": "0x407e1f",
+      "meaning": "empty ConfigEXE skips config"
+    },
+    {
+      "kind": "relative-branch",
+      "address": "0x407c73",
+      "file_offset": 28787,
+      "expected_hex": "0f84dd000000",
+      "target": "0x407d56",
+      "meaning": "create failure reaches error then continues"
+    },
+    {
+      "kind": "relative-branch",
+      "address": "0x407d51",
+      "file_offset": 29009,
+      "expected_hex": "e9ba000000",
+      "target": "0x407e10",
+      "meaning": "write path rejoins CString cleanup"
+    }
+  ],
+  "negative_claims": [
+    {
+      "name": "wrong-default",
+      "rejected": true
+    },
+    {
+      "name": "wrong-read-prefix",
+      "rejected": true
+    },
+    {
+      "name": "wrong-config-suffix",
+      "rejected": true
+    }
+  ],
+  "evidence": "Retained REA Listing/helper observations crosschecked with original file mapping and relativecall/branch decode; no original instruction rewriting."
+}

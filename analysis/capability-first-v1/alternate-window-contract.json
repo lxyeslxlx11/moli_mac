@@ -1,0 +1,1327 @@
+{
+  "schema": "moli.capability-alternate-window-contract.v1",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "source_check": "analysis/capability-first-v1/business-map-source-check.json",
+  "entry_map": "analysis/capability-first-v1/business-entry-map.json",
+  "capability": "X02",
+  "related_capabilities": [
+    "G08",
+    "G09",
+    "G10",
+    "G11",
+    "G12",
+    "G13",
+    "G14",
+    "G15",
+    "G16",
+    "G17",
+    "G18",
+    "B01",
+    "B02",
+    "B03",
+    "B04",
+    "G19"
+  ],
+  "offsets": "Offsets with 0x prefix are hexadecimal; slot IDs, counts and byte lengths are decimal.",
+  "facts": [
+    {
+      "id": "row-layout-and-lookup",
+      "kind": "fact",
+      "functions": [
+        "0x4ea7a0",
+        "0x4ea460",
+        "0x4e94d0"
+      ],
+      "rules": [
+        "Table0x559c10..0x55a3cc has99 rows of20 bytes: id@0, callback@4, group byte@8, cached graphics-object pointer@12, dirty low byte@16; upper bytes are not reinterpreted.",
+        "0x4ea7a0 linearly compares row IDs and returns row index or-1; rows0/100 exist with null callbacks, IDs13/97 are absent.",
+        "Open0x4ea460 and ID-activity query0x4ea6f0 admit unsigned1..99 then require lookup success; this does not add a lookup guard to other slot helpers. Table membership alone does not authorize sentinel opening.",
+        "The cached graphics object and dirty flag are distinct from the classic224-byte window object and84-byte sidecar."
+      ]
+    },
+    {
+      "id": "open-and-restore",
+      "kind": "fact",
+      "functions": [
+        "0x4ea460",
+        "0x4ea6f0",
+        "0x4eae60"
+      ],
+      "rules": [
+        "In main state10, opening IDs1/2/18/14/20/17 returns0; other guards and table lookup still apply.",
+        "For a nonzero requested row group, if restore flag0xc1dd94 is0, it is assigned the Boolean result of0x4ea6f0(1). This helper is an activity query, not an allocator.",
+        "Group2 changes primary slot0xc2056c to the requested ID, sets its dirty byte1 and clears secondary slot0xc20570; an unchanged primary returns0.",
+        "For groups0/1, lookup of current primary must succeed. If current primary is nonzero and group2, clear both slots before assigning slots[group]; otherwise update only the differing slot. A changed selection sets dirty1 and returns1.",
+        "0x4eae60 calls open(1) when the restore flag is nonzero, then clears that flag. These are alternate row group rules, not classic group bitmasks."
+      ]
+    },
+    {
+      "id": "close-and-slot-helpers",
+      "kind": "fact",
+      "functions": [
+        "0x4ea5b0",
+        "0x4ea660",
+        "0x4ea6b0",
+        "0x4ea6f0",
+        "0x4ea3e0"
+      ],
+      "rules": [
+        "close(100) clears both active slots. If previous secondary was1, it returns1 immediately; otherwise a bit4 flag at0x7286b7 determines whether to call restore helper.",
+        "For ordinary IDs, close rejects invalid or unregistered rows. A matching group2 primary clears both slots, optionally restores id1 and returns0. A failed group2 primary comparison falls through to the group-indexed comparison at 4ea62c. For group2 that address is the adjacent word0xc20574.",
+        "A match in the group-indexed branch clears that word and returns1, with restoration subject to group and previous secondary. Groups0/1 normally address the two active slots. See the selected historical rules below.",
+        "Close does not itself call a graphics-object cleanup; inactive callback processing is a separate path.",
+        "0x4ea660 with an admitted nonzero ID below100 clears each slot that differs from that ID; its Boolean return follows the source comparisons, not a general success contract.",
+        "0x4ea6b0(2) tests either slot nonzero; other arguments index the slot base directly without a source bounds guard. Complete caller-domain validation remains open.",
+        "0x4ea3e0 clears0xc450a8,0xf5f050,0xc1dd94 only; it is not a generic clear-all active-window operation."
+      ]
+    },
+    {
+      "id": "common-business-helper",
+      "kind": "fact",
+      "functions": [
+        "0x4e94d0",
+        "0x4ea7c0",
+        "0x4033d0"
+      ],
+      "rules": [
+        "0x4e94d0 receives an active/inactive value, per-business descriptor, optional initializer and flags; it looks up descriptor id at+0x10.",
+        "For inactive input0, if the row graphics cache is nonzero, call0x40a090(cache) and clear it. If dirty was nonzero, clear dirty and return2 exactly once; otherwise return0.",
+        "For active input with no cached object, call0x4ea7c0 using descriptor geometry/style, write cache, play source sound and call an optional initializer. The callback is invoked after the creation attempt even if it returned0; then the cache is re-read and zero returns0.",
+        "Before input handling, assembly0x4e9623 binds ECX to graphicsObject+0x170 and calls0x4033d0(0); signed SETLE proves logicalValue<=0 returns0 from this helper. This is not a generic input-consumed guard.",
+        "The helper resets hover-tab byte+0xa1 to0xff, inspects up to5 six-word tab records when tab-count is nonzero, records a hit, and on raw left-down changes selected-tab byte+0xa0.",
+        "It updates hovered window id0xc43828 when body hit succeeds and close-widget hover bit0x40 is absent. If flags&1 and close-widget result&1, it calls close(id) and plays the source close sound.",
+        "Observed helper return values0/1/2 mean skipped/no participation, participating, and one-shot inactive dirty cleanup respectively; the actual dispatcher that supplies active/inactive to every table callback is not yet closed.",
+        "After its active close-button branch calls close(id), this helper still returns1 in that invocation; it does not immediately substitute the inactive return2 path."
+      ]
+    },
+    {
+      "id": "alternate-input-is-a-different-mask",
+      "kind": "fact",
+      "functions": [
+        "0x4e9d00",
+        "0x4eac80",
+        "0x4035a0"
+      ],
+      "rules": [
+        "0x4e9d00 checks widget hit rectangle at descriptor+8/+12 through+width/+height; outside returns0.",
+        "On hit it starts mask0x40, then maps raw edge1/2 to masks1/4, held1/2 to2/8, repeat1/2 to0x10/0x20, and double edges0x10/0x20 to0x80/0x100.",
+        "The same raw mouse globals are reused as classic input, but bit encodings differ. For example alternate0x40 is ordinary hit, while classic0x40 is mode4 stored-coordinate hit.",
+        "0x4eac80 compares wrapped logical pointer coordinates to bounds; lower-bound helper0x4035a0 implements argument<=point. A nonnegative fifth argument also invokes a drawing helper; input hit calls use-1."
+      ]
+    },
+    {
+      "id": "shared-text-focus",
+      "kind": "fact",
+      "functions": [
+        "0x4ea170",
+        "0x4e6b00",
+        "0x4ea400"
+      ],
+      "rules": [
+        "0x4ea170 only compares the global text-focus pointer0x60ff08 with its argument; it is not a window-active query.",
+        "Alternate id2 callback0x4e6b00 uses inactive return2 to query focus against0xc5f5fc, conditionally call0x445220(&0x60fda8), then clear0xc5f5fc. Its byte-bound body is retained in the647-entry map; the helper call is not expanded into an unproved reset policy.",
+        "0x4ea400 still processes shared work-context conditions and then calls classic driver0x46ab90; two framework state effects cannot be assumed independent merely because the UI tables differ."
+      ]
+    },
+    {
+      "id": "source-bound-toggle-and-shared-restore",
+      "kind": "fact",
+      "functions": [
+        "0x4ea740",
+        "0x461d00",
+        "0x461e00",
+        "0x4eadc0"
+      ],
+      "source": "game-dispatch-findings.json",
+      "rules": [
+        "Lookup direct-call subset now has6 verified sites in5 bodies; derived4ea740 is82 bytes, not a canonical dossier.",
+        "4ea740 toggles by row graphics-cache presence; its1/0 return ignores open/close results.",
+        "Existing461d00/461e00 snapshot the id1 activity flag only if restore flag0; deferred4eadc0 action3 invokes restore. The battle entry producer and selected ordinary frame ordering are bound in battle_action_and_timed_restore; actual table-callback dispatch remains open."
+      ]
+    }
+  ],
+  "event_masks": {
+    "kind": "fact",
+    "producer": "0x4e9d00",
+    "table": [
+      [
+        "0x1",
+        "left-down"
+      ],
+      [
+        "0x2",
+        "left-held"
+      ],
+      [
+        "0x4",
+        "right-down"
+      ],
+      [
+        "0x8",
+        "right-held"
+      ],
+      [
+        "0x10",
+        "left-repeat"
+      ],
+      [
+        "0x20",
+        "right-repeat"
+      ],
+      [
+        "0x40",
+        "current-point-hit"
+      ],
+      [
+        "0x80",
+        "left-double-down"
+      ],
+      [
+        "0x100",
+        "right-double-down"
+      ]
+    ],
+    "classic_producer": "0x46a1f0",
+    "encodings_interchangeable": false
+  },
+  "source_search_bounds": {
+    "kind": "fact",
+    "target": "callback column consumer / active-inactive dispatcher",
+    "evidence": [
+      "build/analysis/capability-business-map-v1/alternate-table-literal-candidates.json",
+      "build/analysis/capability-business-map-v1/alternate-header-literal-candidates.json",
+      "build/analysis/capability-business-map-v1/first-alternate-callback-xrefs.json"
+    ],
+    "result": "The selected default-space xrefs and executable-section literal/E8 scans have not located a direct table-callback consumer.",
+    "proves_callbacks_unreachable": false,
+    "proves_framework_unused": false
+  },
+  "proposed_shared_design": [
+    {
+      "kind": "inference",
+      "claim": "Share raw host mouse snapshots and text-focus ownership, while keeping source-specific event encodings and lifecycle rules separate."
+    },
+    {
+      "kind": "inference",
+      "claim": "Model selection/dirty/graphics cleanup as distinct steps and preserve per-business return2 handling and side effects."
+    }
+  ],
+  "pending": [
+    {
+      "kind": "pending",
+      "id": "dispatch-reachability",
+      "question": "97 个 Item 行回调已绑定首个参数的转交，两版表尾引用已归属工具栏横坐标初始化。继续沿具名注册、调用或匹配运行材料核对普通帧对回调列的读取、活动参数实际生产及逐行顺序，复用已证槽位和图形规则。"
+    },
+    {
+      "kind": "pending",
+      "id": "per-business-effects",
+      "question": "Classify97 callbacks and all nested tables/hooks; close conditions, slots, levels/MP/time, replies, error cleanup and reentry."
+    },
+    {
+      "kind": "pending",
+      "id": "graphics-lifetime",
+      "question": "Close graphics-object+0x170 writers,0x40a090 lifetime and callback0x4ea9b0 animation/draw ownership; keep logical-value and physical RNG evidence separate."
+    },
+    {
+      "kind": "pending",
+      "id": "shared-writers",
+      "question": "Complete active/restore/text-focus/hovered-window writer scope, reset/reopen and cross-framework ordering."
+    },
+    {
+      "kind": "pending",
+      "id": "source-platforms",
+      "question": "Other source versions/modules and real platform/current official acceptance remain separate."
+    }
+  ],
+  "completion": {
+    "observed_common_rules_source_bound": true,
+    "full_framework_dispatch_closed": false,
+    "all_business_semantics_closed": false,
+    "all_required_capabilities_analyzed": false,
+    "implementation_gate_passed": false,
+    "runtime_implementation_changed": false,
+    "full_goal_complete": false
+  },
+  "supplemental_source_check": "analysis/capability-first-v1/dispatch-binding-source-check.json",
+  "dispatch_supplement": "analysis/capability-first-v1/game-dispatch-findings.json",
+  "item_normal_slot_producers": {
+    "classification": "fixed-Item-ordinary-input-and-state-slot-producers",
+    "source_review": "build/analysis/legacy-item-window-input-route-v1/source-review.json",
+    "se_comparison": "analysis/capability-first-v1/game-text-editing-contract.json",
+    "report": "reports/game-static.md#legacy-item-normal-slot-producers",
+    "affected_capabilities": ["X02", "G12", "G18", "G19"],
+    "development_batches": ["D0", "D3"],
+    "rules": [
+      "固定 Item 主状态 9 子状态 3 及主状态 10 的所选键盘调用在经典帧前执行。End 首次位触发后，按两个活动槽是否都为零请求打开 99 或关闭 100。固定 SE 对应键分支使用同一请求规则。",
+      "Item 的关闭 100 保存原副槽后清两槽。原副槽不为 1 且 Escape 首次位已置时检查恢复标记。恢复标记非零时请求打开 1，调用返回后清标记。主状态 10 在打开器内拒绝 1。",
+      "Item 主状态 11 的所选分支在本地对象指针为空时检查活动槽。有活动槽则先调用关闭 100，再创建对象并保存返回指针。已有对象时进入复用分支。",
+      "窗口 29 局部回调的一条命中分支先用描述符 ID 请求关闭，再请求打开 19。29 的普通准入及表回调实际分派仍待证。"
+    ],
+    "source_derived_cases": [
+      "两槽为空且 End 首次位已置，主槽变为 99，副槽为 0，99 行标记置 1。",
+      "End 按住而首次位已被清除，本次键分支无打开或关闭请求。",
+      "任一槽有窗口且只有 End 首次位，关闭 100 清两槽，随后请求音效 0x39。",
+      "主状态 9 的 End 和 Escape 首次位同时有效，原副槽不为 1 且恢复标记非零，关闭后同步将 1 放入副槽并清恢复标记。",
+      "End 和 Escape 首次位同时有效且原副槽为 1，关闭后两槽为空，所选关闭分支不调用恢复帮助函数。",
+      "主状态 10 的关闭满足恢复条件时请求打开 1，打开器返回 0，恢复标记仍在调用返回后清除。",
+      "主状态 11 已有活动槽且本地对象为空时先关闭再创建。复用已有对象时跳过这段初始化。"
+    ],
+    "source_derived_cases_executed": false,
+    "actual_alternate_frame_dispatch_proven": false,
+    "current_version_equivalence_proven": false
+  },
+  "item_classic_window_reentry": {
+    "rebuild_modes": {
+      "classification": "固定 Item 经典窗口状态选择与留存 SE 对照",
+      "report": "reports/game-static.md#legacy-item-classic-rebuild-modes",
+      "sources": {
+        "item": {
+          "path": "build/analysis/game-release-current-v1/legacy-members/cg_item_6000.exe",
+          "bytes": 2213376,
+          "sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9"
+        },
+        "se": {
+          "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+          "bytes": 1569280,
+          "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+        }
+      },
+      "source_review": {
+        "path": "build/analysis/legacy-item-classic-rebuild-modes-v1/source-review.json",
+        "bytes": 45649,
+        "sha256": "82b55e3489481e3179d4cc338afdbdff7c33a16153da2511972ebd80b7949910"
+      },
+      "static_cases": {
+        "path": "build/analysis/legacy-item-classic-rebuild-modes-v1/source-derived-cases.json",
+        "bytes": 7707,
+        "sha256": "8532b3da772922b92313982fd026e124e5dca4e2a896bbd13718c3108b0972f0"
+      },
+      "local_comparison": {
+        "path": "build/analysis/legacy-item-classic-rebuild-modes-v1/local-comparison.json",
+        "bytes": 1604,
+        "sha256": "49aae26257bf523d788db7b37a0fac5f53cc399ad9b76d4287e27e8e6acc8cb4"
+      },
+      "validation": "build/analysis/legacy-item-classic-rebuild-modes-v1/validation.json",
+      "direct_capabilities": [
+        "G03",
+        "X02"
+      ],
+      "related_capabilities": [
+        "G12",
+        "G18",
+        "G19",
+        "G20",
+        "B01",
+        "B04"
+      ],
+      "implementation_batches": [
+        "D0",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "evidence_for_alternate_dispatch": {
+        "bounded_scan": {
+          "file": {
+            "path": "build/analysis/alternate-window-dispatch-entry-v1/edge-candidates.json",
+            "bytes": 8088,
+            "sha256": "47e553e11af1ce3499f0b113681c845784495468e6dc1de75b874092eb3912e5"
+          },
+          "counts": {
+            "item": {
+              "table_and_tail_candidates": 43,
+              "callback_column_operand_candidates": 0,
+              "direct_call_or_jump_to_known_callback": 0
+            },
+            "se": {
+              "table_and_tail_candidates": 22,
+              "callback_column_operand_candidates": 0,
+              "direct_call_or_jump_to_known_callback": 0
+            }
+          },
+          "scope": "32-bit encoded operands and direct destinations in the selected LLVM linear listing. Dynamic and computed references may be missed."
+        },
+        "remaining": "继续按原合同等待业务帧到回调列的调用、活动参数来源或匹配运行材料。"
+      },
+      "dispatcher": {
+        "entry": "0x56B866",
+        "main_state": "0x11D4CB4",
+        "substate": "0x11D4CD8",
+        "tables": [
+          "0x56B9CE",
+          "0x56B9EA",
+          "0x56BA02"
+        ],
+        "modes": [
+          {
+            "states": [
+              "5"
+            ],
+            "rule": "调用 517E86、4AE406、4AE4A0。4AE406 清 21/22/23/40 的恢复标记。4AE4A0 清 68 个池指针和 68 个附属记录活动指针，按偏好打开默认窗，之后进入已有保存标记扫描。"
+          },
+          {
+            "states": [
+              "7",
+              "11"
+            ],
+            "rule": "4B0C5C 捕获活动窗口标记，4B0AD4 依次析构，4AE47D 发出图鉴、个人邮件、家族邮件等已有保存调用。此入口在提示或画面切换前执行。"
+          },
+          {
+            "states": [
+              "9/1"
+            ],
+            "rule": "仅对 21、40、22、23 的非空活动指针写标记 1。随后析构并经 4AE70A 重建。"
+          },
+          {
+            "states": [
+              "9/4",
+              "9/200"
+            ],
+            "rule": "捕获 68 个记录中有活动指针的标记，再析构。重建由后续状态决定。"
+          },
+          {
+            "states": [
+              "9/204"
+            ],
+            "rule": "直接调用 4AE70A 重建。"
+          },
+          {
+            "states": [
+              "9/250",
+              "9/252"
+            ],
+            "rule": "捕获、析构，再调用 4AE70A。重读当前子状态仍为 250 时，前八个计数字节分别加一并保留低八位。"
+          },
+          {
+            "states": [
+              "10/1"
+            ],
+            "rule": "调用 4AF15D 清记录与选择性重开。"
+          }
+        ]
+      },
+      "caller_sequence": [
+        {
+          "sites": [
+            "0x58C952",
+            "0x58CCD7"
+          ],
+          "rule": "状态 5 在既有缓存装入后准备窗口。9/100 在写 101 前调用窗口处理，此时 100 走默认分支。"
+        },
+        {
+          "sites": [
+            "0x4968D7",
+            "0x58CA04"
+          ],
+          "rule": "手动注销首次画面准备和断线子阶段 0 在各自流程先调用窗口处理，再继续原提示和连接流程。"
+        },
+        {
+          "sites": [
+            "0x58D8C5",
+            "0x58D9BC",
+            "0x58D9C4",
+            "0x58DA21"
+          ],
+          "rule": "9/3 普通帧之后重读 636C18，值为 1 时请求关闭另一套槽位 100，普通路径仍处于 9/3 时，经典窗口处理走默认分支，随后推进子状态。下一次进入 9/4 时捕获和析构。"
+        },
+        {
+          "sites": [
+            "0x58D4EE",
+            "0x58D510",
+            "0x58D538"
+          ],
+          "rule": "9/11 的等待计数小于 30 时增加计数；达到 30 后先写子状态 1，再调用窗口处理。进入时仍为 9/1 则选择性捕获、析构和普通重建。"
+        },
+        {
+          "sites": [
+            "0x45BE9B",
+            "0x45BEE4",
+            "0x45BEF8",
+            "0x45BF06"
+          ],
+          "rule": "10/1 的转换帮助返回 1 时，本分支先处理经典帧。窗口调用时仍为 10/1 则选择性重开。返回后重读并递增子状态。其余返回值走本分支的另一处普通经典帧调用。"
+        }
+      ],
+      "startup_and_selective_reopen": {
+        "startup_entry": "0x4AE4A0",
+        "reset": "清两个各 68 项的活动指针表。窗口附属记录步长 84，活动指针位于 +0x0C，恢复标记位于 +0x50。清占用表，重设当前活动字段和选择键，再请求默认窗口。",
+        "startup_preferences": {
+          "always": [
+            6
+          ],
+          "0xCD8660": {
+            "0": 1,
+            "1": 2,
+            "2": 3
+          },
+          "0xCB2D08": {
+            "0": 4,
+            "1": 5
+          },
+          "0xED351C": {
+            "0": 35,
+            "1": 57
+          }
+        },
+        "reopen_entry": "0x4AF15D",
+        "reopen_requests": "清两个活动指针表、计数与单个辅助字段。先请求 6、2，再按 ED351C 请求 35 或 57。随后按 21、40、22 的次序处理恢复标记。",
+        "marks": "21、40 按各自非零标记请求并在返回后清标记。40 的创建调用前保存 EB906C，调用后恢复。22 或 23 任一标记非零时只请求 22，调用返回后清两项。",
+        "empty_fallback": "尾部重读 22、23 两项活动指针，均为零时调用 4F30C4。恢复标记消费与实际创建结果分别判定。",
+        "SE_reuse": "复用 SD-11 至 SD-14 的共用捕获、析构和选择性重开规则。SE 的 467EC0 对 22/23 也合并为 22，普通 469590 分别处理。状态入口、偏好及其它宿主效果按各自样本核对。"
+      },
+      "persistence_requests": {
+        "entry": "0x4AE47D",
+        "ordered_selected_calls": {
+          "0x587a01": "data/album.dat",
+          "0x588a4c": "mail.dat",
+          "0x588dab": "guildmail.dat"
+        },
+        "rule": "状态 7 或 11 捕获及析构后，在 4AE485、4AE48A、4AE48F 依次尝试保存图鉴、个人邮件及家族邮件。沿现有格式与保存合同接入结果。",
+        "source": {
+          "path": "build/analysis/legacy-item-album-mail-lifecycle-v1/source-review.json",
+          "bytes": 17384,
+          "sha256": "e517478ebd5aa7b0f8ecf8b372800a5ea8a5b8b6e4ee4138ee9b4dbe8b5ec397"
+        },
+        "original_IO_results_observed": false
+      },
+      "implementation": {
+        "D0": "使用已有窗口和帧调度所有者保存活动实例、恢复标记及占用，分别接收析构、清指针和创建结果。窗口恢复标记与另一套窗口的活动槽按各自来源处理。",
+        "D2": "现有场景、注销和返回所有者按已发布的状态调用正确分支。复用 30 次等待、场景重建、淡入和普通激活。",
+        "D3": "训练、工艺和图鉴复用同一窗口生命周期。图鉴及邮件的保存交既有缓存所有者，按宿主实际回执记录。",
+        "D4": "由已有战斗阶段在 10/1 转换通过且经典帧处理后请求选择性重开，再推进子阶段。",
+        "existing_ports": [
+          "UC-P01",
+          "UC-P05",
+          "UC-P09",
+          "UC-P12"
+        ]
+      },
+      "acceptance": {
+        "game_flow": "analysis/capability-first-v1/game-flow-functional-specification.json",
+        "game_flow_cases": [
+          "GF-A05",
+          "GF-A07",
+          "GF-A08",
+          "GF-A11",
+          "GF-A15",
+          "GF-A18"
+        ],
+        "window_rules": "analysis/capability-first-v1/game-dispatch-findings.json",
+        "window_cases": [
+          "SD-CASE-12",
+          "SD-CASE-13",
+          "SD-CASE-14",
+          "SD-CASE-15",
+          "SD-CASE-16"
+        ],
+        "rule": "复用初始与默认偏好、活动位捕获、普通与选择性重开、创建失败、析构后的保存和 29/30 次等待的原用例。",
+        "formal_cases_executed": false
+      },
+      "alternate_callback_dispatch_proven": false,
+      "current_paired_game_consumer_proven": false,
+      "source_capability_readiness_promoted": false,
+      "implementation_gate_passed": false,
+      "product_code_changed": false
+    },
+    "classification": "fixed-Item-classic-window-retirement-and-restoration-on-state-transition",
+    "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+    "source_review": "build/analysis/legacy-item-classic-window-reentry-v1/source-review.json",
+    "report": "reports/game-static.md#legacy-item-classic-window-reentry",
+    "capabilities": ["G03", "G12", "G18", "X02"],
+    "ingress": "所选主状态 9 分支在恢复字为空时保存窗口 1 活动，写子状态 200 后进入 0x58DBF1。通过零值门槛与角色记录查询后，按计数进入 250 或 252。两支都调用经典窗口重建。",
+    "retirement": "记录 68 个经典窗口中非零活动字段到 +0x50。关闭对象时先调用 +0x38，再保存坐标和清活动、指针及占用。清完 28 个占用字节后，工作上下文非零则发 +5D 动作 62，返回后清上下文。",
+    "restoration": "重置指针、活动及计数，按偏好请求默认窗口。扫描标记 1，21/22/23/40 的组内请求按 21、40、22、23 消费非零标记。40 打开时保存和恢复 EB906C，22 打开前写 EBA87C=1。33、34 按各自扫描位置请求，清除其余选中标记。",
+    "counter_update": "重建后再次读取当前子状态，等于 250 时将 ED41C0 前八个字节逐个加一并保留低字节。",
+    "source_derived_cases_verified": true,
+    "actual_alternate_frame_dispatch_proven": false,
+    "current_version_equivalence_proven": false
+  },
+  "item_window_one_restore": {
+    "classification": "事实",
+    "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+    "source_review": "build/analysis/legacy-item-window-one-restore-v1/source-review.json",
+    "report": "reports/game-static.md#legacy-item-window-one-restore",
+    "capabilities": ["G03", "B01", "X02"],
+    "state": {
+      "restore_latch": "0xCBAF5C",
+      "window_one_group": 1,
+      "window_one_active_slot": "0xCBD73C",
+      "capture": "七处已核写入都在标记为零时调用 0x56BFFE(1)，将窗口 1 的活动判断写回。非零标记继续保留。"
+    },
+    "ordinary_frame": {
+      "entry": "主状态 9 子阶段 3 在 0x58D873 调 0x4A46D8。所选条件经 0x4A49CF 进入 0x4A49E0。",
+      "schedule": "0x4A55F0 从该帧的路径检查设置 0xC9C4D4。所选模式 3 将路径下标写到 0xC9C4D8，所选模式 1 写下标加一。",
+      "dispatch": "0x4A57B5 只处理待办非零的动作。进度字 0xC9C4D2 非零且有符号剩余字大于零时减一。剩余小于等于零时按模式调用，返回后清待办和剩余字。",
+      "mode1": "0x4A5AB9 要求 0xED4244 为零，按标记规则保存窗口 1，再调用 !DS 发送入口，写子阶段 200 并调用 0x58DBF1。",
+      "mode3": "0x4A5BEA 按同一规则保存窗口 1，再调用 !DS 发送入口并在收尾写 0xB7FD24=1。"
+    },
+    "additional_capture_sites": [
+      "0x56BC0D 的另一套窗口非零组打开分支。",
+      "TfD 的 0x572D6C 在主状态 9 的所选条件下保存后进入重建准备。",
+      ">HY 的 0x578B33 和 0x578C87 共同要求 0x9C1D38 为零。前者读取非零 0xED44D0，后者要求 0xED44D0 为零、第二实参大于零、0x11D4CA8 非零且 0x11C91EA 的 0x100 位未置。",
+      "0x58D8E5 在所选迟发转换中于清 0x6B1690 前保存。"
+    ],
+    "consumption": [
+      "0x56CB2A 的延后动作 3 路径在标记非零时请求打开 1，调用返回后清标记。",
+      "0x484EC5 在 0x6B1690 与标记均非零时请求打开 1，随后清两个字段。>HY 的所选分支和普通帧所选迟发转换先清 0x6B1690 再调此函数，当前调用保留标记。",
+      "表行 40 和 41 各自收到公共函数 0x56A1C2 的返回 2 后，若标记非零且主状态不为 10，则请求打开 1，返回后清标记。主状态为 10 时保留标记。",
+      "所选初始化清理在 0x56BB14 将标记清零。"
+    ],
+    "proposed_acceptance_cases": [
+      "标记为零，分别让副槽为 1 和其它值，观察新标记为 1 和 0。已有非零标记在后续生产分支保持。",
+      "路径检查产生模式 1 或 3。剩余为正且无进度时保留待办，有进度扣至零时进入对应分支，返回后清待办和剩余。",
+      "同一非零标记分别进入 >HY 的所选零计时调用及延后动作 3，前者保留，后者在打开请求返回后清除。",
+      "表行 40 或 41 的公共函数返回 2 时，主状态 10 保留非零标记，普通合资格主状态请求恢复后清除。"
+    ],
+    "target_cases_executed": false,
+    "actual_alternate_frame_dispatch_proven": false,
+    "current_version_equivalence_proven": false
+  },
+  "item_work_retirement": {
+    "classification": "fixed-Item-source-conditional-inactive-work-window-retirement",
+    "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+    "source_review": "build/analysis/legacy-item-work-retirement-v1/source-review.json",
+    "report": "reports/game-static.md#legacy-item-work-retirement",
+    "scope": [
+      "G18",
+      "X02"
+    ],
+    "common_helper": {
+      "entry": "0x56a1c2",
+      "descriptor_table": "0x5f1f58",
+      "row_count": 99,
+      "row_stride": 20,
+      "rule": "非活动输入 0 时，若表行图形对象存在，先给对象 +0x1c 写回收标志 1 并清表行指针。表行标记非零时清标记并返回 2，否则返回 0。所选回调只在共同函数返回 2 时执行这里的退役分支。"
+    },
+    "state": {
+      "primary_slot": "0xcbd738",
+      "secondary_slot": "0xcbd73c",
+      "work_context_byte": "0x67f580",
+      "one_shot_marker": "0xed42a0",
+      "signed_comparison_value": "0x11c9074",
+      "classic_enable": "经典窗口 10 的控件索引 6 绑定 0x4bced0。所选启用分支发 +5D 的 61 动作后将工作上下文字节置 1。",
+      "selected_marker_producers": "窗口 31 在 0x553814 和 0x553881 调用 +>L 发送包装器，紧接着将一次性标记置 1。"
+    },
+    "rules": {
+      "consume-marker-then-active-context": "命中主副配对条件时保留上下文和标记。其余情况先检查一次性标记，非零时只清该标记。标记为零且上下文字节非零时发 62 并清上下文字节。",
+      "active-context": "命中主槽配对时保留上下文。其余情况按上下文字节非零发送 62 并清上下文字节。",
+      "paired-primary-signed-count": "命中主槽配对时，计数字大于 0 保留，计数字为 0 或负数时发送 62 并清上下文字节。其余情况按上下文字节非零发送并清上下文字节。",
+      "local_object_cleanup": "列出的局部对象指针非零时给对象 +0x1c 标记回收并清对应指针。窗口 26 在该尾部请求关闭窗口 27。"
+    },
+    "release_request": {
+      "tag": "+5D",
+      "action": 62,
+      "coordinate_operands": [
+        "0xa08b50",
+        "0xa08b68"
+      ],
+      "sender": "0x57e580",
+      "rule": "经现有三整数发送包装器请求解除，调用返回后清上下文字节。"
+    },
+    "paths": [
+      {
+        "window_id": 19,
+        "table_row": "0x5f1fa8",
+        "callback": "0x564e93",
+        "cleanup_branch": [
+          "0x5651f5",
+          "0x5652a6"
+        ],
+        "paired_primary": [
+          25,
+          29,
+          34,
+          38
+        ],
+        "paired_secondary": [
+          31
+        ],
+        "context_rule": "consume-marker-then-active-context",
+        "local_graphics_object_slot": null,
+        "subsequent_close_request": null,
+        "release_send_sites": [
+          "0x565289"
+        ]
+      },
+      {
+        "window_id": 25,
+        "table_row": "0x5f2034",
+        "callback": "0x5579e7",
+        "cleanup_branch": [
+          "0x557b5e",
+          "0x557bc6"
+        ],
+        "paired_primary": [
+          19,
+          26
+        ],
+        "paired_secondary": [],
+        "context_rule": "active-context",
+        "local_graphics_object_slot": null,
+        "subsequent_close_request": null,
+        "release_send_sites": [
+          "0x557bb2"
+        ]
+      },
+      {
+        "window_id": 26,
+        "table_row": "0x5f2048",
+        "callback": "0x556e9d",
+        "cleanup_branch": [
+          "0x5570bc",
+          "0x55715e"
+        ],
+        "paired_primary": [
+          25
+        ],
+        "paired_secondary": [],
+        "context_rule": "consume-marker-then-active-context",
+        "local_graphics_object_slot": "0xed4360",
+        "subsequent_close_request": 27,
+        "release_send_sites": [
+          "0x557115"
+        ]
+      },
+      {
+        "window_id": 28,
+        "table_row": "0x5f2098",
+        "callback": "0x5552f0",
+        "cleanup_branch": [
+          "0x5553c2",
+          "0x555486"
+        ],
+        "paired_primary": [
+          25,
+          29
+        ],
+        "paired_secondary": [],
+        "context_rule": "paired-primary-signed-count",
+        "local_graphics_object_slot": "0xed4354",
+        "subsequent_close_request": null,
+        "release_send_sites": [
+          "0x555416",
+          "0x555450"
+        ]
+      },
+      {
+        "window_id": 31,
+        "table_row": "0x5f20ac",
+        "callback": "0x553219",
+        "cleanup_branch": [
+          "0x553519",
+          "0x5535ca"
+        ],
+        "paired_primary": [
+          19
+        ],
+        "paired_secondary": [
+          32
+        ],
+        "context_rule": "consume-marker-then-active-context",
+        "local_graphics_object_slot": "0xed4344",
+        "subsequent_close_request": null,
+        "release_send_sites": [
+          "0x55358b"
+        ]
+      },
+      {
+        "window_id": 33,
+        "table_row": "0x5f20d4",
+        "callback": "0x5520ce",
+        "cleanup_branch": [
+          "0x5521a0",
+          "0x55225b"
+        ],
+        "paired_primary": [
+          31
+        ],
+        "paired_secondary": [],
+        "context_rule": "paired-primary-signed-count",
+        "local_graphics_object_slot": "0xed4338",
+        "subsequent_close_request": null,
+        "release_send_sites": [
+          "0x5521eb",
+          "0x552225"
+        ]
+      },
+      {
+        "window_id": 38,
+        "table_row": "0x5f2138",
+        "callback": "0x54d36d",
+        "cleanup_branch": [
+          "0x54d3ba",
+          "0x54d44b"
+        ],
+        "paired_primary": [
+          19
+        ],
+        "paired_secondary": [],
+        "context_rule": "consume-marker-then-active-context",
+        "local_graphics_object_slot": "0xed4330",
+        "subsequent_close_request": null,
+        "release_send_sites": [
+          "0x54d40c"
+        ]
+      },
+      {
+        "window_id": 39,
+        "table_row": "0x5f214c",
+        "callback": "0x54c965",
+        "cleanup_branch": [
+          "0x54ca37",
+          "0x54caf2"
+        ],
+        "paired_primary": [
+          38
+        ],
+        "paired_secondary": [],
+        "context_rule": "paired-primary-signed-count",
+        "local_graphics_object_slot": "0xed432c",
+        "subsequent_close_request": null,
+        "release_send_sites": [
+          "0x54ca82",
+          "0x54cabc"
+        ]
+      }
+    ],
+    "source_derived_cases": [
+      "非活动表行标记首次非零时返回 2，清后下一次仍非活动时返回 0。",
+      "窗口 19 的主槽为 29 或副槽为 31，保留工作上下文。",
+      "窗口 26 主槽不匹配且一次性标记置位时只清标记，局部对象仍按规则标记回收，随后请求关闭窗口 27。",
+      "窗口 31 副槽为 32 时保留上下文，局部对象仍按规则标记回收。",
+      "窗口 28 主槽为 25 且计数字为 0 时，即使上下文字节为 0 仍发 62。",
+      "窗口 33 主槽为 31 且计数字大于 0 时保留工作上下文，局部对象仍按规则标记回收。"
+    ],
+    "development_batches": [
+      "D0",
+      "D3"
+    ],
+    "actual_alternate_frame_dispatch_proven": false,
+    "source_capability_readiness_promoted": false,
+    "product_code_changed": false
+  },
+  "item_work_pair": {
+    "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+    "source_review": {
+      "path": "build/analysis/legacy-item-work-window-pair-v1/source-review.json",
+      "bytes": 8638,
+      "sha256": "a0f96add8d3bb49bc65296942fb917c6abf0a75493a1e89be0b3bdddeb94dd41"
+    },
+    "report": "reports/game-static.md#legacy-item-work-window-pair",
+    "affected_capabilities": ["G18", "X02"],
+    "development_batches": ["D0", "D3"],
+    "source_rules": [
+      "Window 19 uses 0x564E93. The selected active path requires the selected item index at [EBP-4] to be nonnegative, the business row flag to equal 1, and ED560C bit 0 to be set. The business row uses [EBP-0x198] with stride 0x49FC.",
+      "The branch stores the selected low byte at ED1553, clears ED4364 and closes the current ID at 5FB0E8, which is 19 in the file. The row discriminator at 1123B0C plus the business row offset selects two ordered open calls, 29 then 30, for value 255. Other values select open 25.",
+      "Windows 19, 25 and 29 use the primary slot. Windows 1 and 30 use the secondary slot. The selected input bit path in window 29 closes the ID at 603748, which is 29 in the file, and opens 19 in the primary slot.",
+      "For window 29 with inactive input, the common helper clears the cached graphic when present and returns 2 after consuming a nonzero row mark. The selected result-2 branch handles ED5304 and requests close 30. The result-0 branch returns through the callback tail.",
+      "Opening a nonzero-group row with a clear restore flag records whether window 1 is active. Closing active secondary 30 requests the restore helper. With a nonzero flag the helper attempts open 1 and clears the flag afterward. Main state 10 denies open 1."
+    ],
+    "case_pointer": "/cases",
+    "source_derived_cases_executed": false,
+    "actual_alternate_frame_dispatch_proven": false,
+    "current_version_equivalence_proven": false
+  },
+  "item_album_toolbar_and_slot_reset": {
+    "source_review": "build/analysis/legacy-item-album-menu-v1/source-review.json",
+    "item_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+    "se_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "capabilities": ["G19", "X02"],
+    "shared_dependency": ["G09"],
+    "development_batches": ["D0", "D3"],
+    "registered_row_1": {"table_address": "0x5f1f6c", "callback": "0x569327", "group": 1},
+    "toolbar": {
+      "input": "0x569adb",
+      "draw": "0x569e22",
+      "admission_dword": "0x5fb334",
+      "button_descriptor": "0xed5080",
+      "hit_test": "0x56b1a1",
+      "hit_result_mask": 1,
+      "mouse_event_mask": 1,
+      "activity_query": "0x56bffe",
+      "window_group": 0,
+      "toggle": "0x56c15a",
+      "request_if_23_active": 23,
+      "request_if_only_24_active": 24,
+      "request_if_neither_active": 23,
+      "selected_when_either_active": true
+    },
+    "startup_geometry": {
+      "source_review": "build/analysis/legacy-item-window-startup-v1/source-review.json",
+      "capabilities": ["X02", "G19"],
+      "development_batches": ["D0", "D3"],
+      "startup": "PE 入口经 5B58AB 和 5B59B1 在调用 49EC00 前按顺序执行 [5C9000, 5C9164) 内的非零初始化指针。5C90A0 初始化窗口 1 的 ED4EC0，登记行回调 569327 将其交给 56A1C2。",
+      "geometry": "5C90A4、A8、AC 先设置基准纵坐标、收起偏移和当前偏移。5C90C8 经 5699C7 → 5699D1 写 ED5080。图鉴按钮横坐标为 ED4F88 + 480，尺寸 80×24。映像默认宽 640、高 24 时基准纵坐标为 456，初始偏移为 24。",
+      "local_update": "569ADB 在准入有效且当前偏移非负、命中底部条带时按每次更新减 2，钳位至零。未命中恢复收起偏移。准入为零时恢复收起偏移并清增量后返回。准入有效时按偏移是否等于收起值发布 EC1808。",
+      "consumption": "569D8A 将当前偏移写到 ED5080 + 0x20。569D95 的命中与 56A01B 的绘制接收 ED5080。",
+      "acceptance_cases": [
+        "窗口 1 和图鉴描述符在主程序入口之前初始化，命中与绘制使用同一图鉴描述符。",
+        "文件默认值下从收起偏移 24 开始，连续十二次合资格的局部更新降为零。",
+        "离开条带时恢复收起偏移并发布 EC1808 为零。准入失效时恢复偏移并提前返回。"
+      ],
+      "ordinary_frame_consumer_proven": false,
+      "current_version_equivalence_proven": false
+    },
+    "keyboard_row_9": {
+      "state_indices": [17, 68],
+      "item_row": "0x5d0170",
+      "item_callback": "0x56b600",
+      "se_row": "0x538fa8",
+      "se_callback": "0x4e9f90",
+      "window_requested": 23
+    },
+    "inventory_slot_reset": {
+      "dispatcher": "0x57f79e",
+      "receiver_guard_zero": "0x9c1d38",
+      "current_slot": "0x5fa83c",
+      "match_function": "0x55fb08",
+      "condition": "current slot >= 0 and equals the affected slot",
+      "reset_function": "0x55fac7",
+      "ordered_writes": [
+        {"address": "0x5fa83c", "value": -1},
+        {"address": "0xed437c", "value": 0},
+        {"address": "0xcbf448", "value": 0},
+        {"address": "0xcbf44c", "value": 0},
+        {"address": "0xcb33dc", "value": 0},
+        {"address": "0x5fb334", "value": 1}
+      ],
+      "sources": [
+        {"tag": "?<E", "handler": "0x577280", "match_sites": ["0x5772c8"], "order": "each of 28 ordinals before its record read"},
+        {"tag": "?l)", "handler": "0x5776e9", "match_sites": ["0x577751"], "order": "read explicit slot, check it, then read its record"},
+        {"tag": "@Y)", "handler": "0x57813f", "match_sites": ["0x578161", "0x57816d"], "order": "call 0x58b255, then check both slots in argument order"}
+      ]
+    },
+    "normal_toolbar_dispatch_proven": false,
+    "current_version_equivalence_proven": false,
+    "source_capability_readiness_promoted": false,
+    "product_code_changed": false
+  },
+  "item_disconnect_recovery": {
+    "specification": "analysis/capability-first-v1/game-flow-functional-specification.json#/item_disconnect_recovery",
+    "scope": "固定 Item 的状态 11 在首次创建断线提示前处理活动槽。已有对象沿复用路径，确认后标记回收。业务窗口帧回调的准入仍待证。"
+  },
+  "item_classic_frame_dispatch": {
+    "source_review": {
+      "path": "build/analysis/legacy-item-frame-dispatch-v1/source-review.json",
+      "bytes": 14333,
+      "sha256": "e0d6748b48e0772d5aa3adb777c9932c4fb9a96f8804a2290c49cbdac21ef827"
+    },
+    "report": "reports/game-static.md#legacy-item-classic-frame-dispatch",
+    "classic_post_control_shortcuts": "analysis/capability-first-v1/game-social-family-album-functional-specification.json#/legacy_item_classic_album_ingress",
+    "historical_source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+    "affected_capabilities": [
+      "X02",
+      "G12",
+      "G18",
+      "G19"
+    ],
+    "implementation_batches": [
+      "D0",
+      "D3"
+    ],
+    "main_state_entry": {
+      "9": "0x58cc52",
+      "10": "0x45bbd8"
+    },
+    "substate": {
+      "address": "0x11d4cd8",
+      "case_map": "build/analysis/legacy-item-frame-dispatch-v1/source-review.json#/projected_substate_calls"
+    },
+    "classic_frame_entry": "0x56bb20",
+    "classic_frame_consumer": "0x4b34c4",
+    "verified_direct_sites": 15,
+    "classic_callback_lifecycle": {
+      "source_review": {
+        "path": "build/analysis/legacy-item-classic-callback-order-v1/source-review.json",
+        "bytes": 9171,
+        "sha256": "d985d4e6eef6129aea82cca28b63f8ad4ebcc23b99eced45316f4c900121ef3f"
+      },
+      "report": "reports/game-static.md#legacy-item-classic-callback-order",
+      "affected_capabilities": ["X02", "G12", "G18"],
+      "rules": [
+        "4AF678 将描述符 +0x24/+0x28/+0x2C 装到对象 +0x30/+0x34/+0x38。成功新建时，先写活动表，再临时切换当前对象并调用 +0x30(-1)。恢复原当前对象后发布附属记录 +0x0C。",
+        "4B34C4 先进入 4B3301，再由 4B268D 整理活动表的 68 格。扫描中填补空格，标记 0x8000 的对象先退役再摘除。0x2000 的活动对象在前项有符号优先级大于或等于自身时向前移动，随后清该标记。",
+        "帧输入初值为 1。每个窗口先计算窗口命中或拖动值，再调用 +0x30。按 36 字节步长处理 +0x18 为 1 的控件。命中或拖动值非零时，以 0 传入 +0x34。其余路径传入 +0x30 的返回值。以 +0x34 的返回值继续下一个窗口。",
+        "4AF2C5 在释放控件和对象之前调用 +0x38 并清附属记录的活动指针。所选 Q?m 关闭消息经 4B0C9D(3) 在收包内同步关闭匹配组。经典训练窗 37、52、54 的组字节为 2，经典工艺窗 10 的组字节为 4。",
+        "帧前状态 3 进入 4。在该帧的所选命中路径，已有输入回调接收 (4, 0, 原上下文)，随后 4B66FB 清理。状态 4 保留至下次进入 4B3301 时，所选路径以 (2, 0, 原上下文) 结束后清理。"
+      ],
+      "acceptance_cases": [
+        "新建时核对活动表、临时当前指针、初始化参数及初始化返回后的附属记录发布。",
+        "活动表含空格、待关闭窗、同优先级重新插入请求时核对退役先于普通分派、相等值的顺序及最终计数。",
+        "两个经典窗按整理后的次序执行，分别核对无命中、命中和拖动结束帧的输入值，以及 +0x34 返回值对下一窗口的影响。",
+        "训练关闭消息匹配角色与模式时，同步退役当时的掩码匹配窗，并按窗 10 的组字节保留其槽。"
+      ],
+      "control_admission": {
+        "classification": "固定 Item 与 SE 的普通经典控件输入",
+        "source_review": "build/analysis/legacy-pet-training-controls-v1/source-review.json",
+        "source_training": "analysis/capability-first-v1/game-training-services-contract.json#/classic_pet_training_wait_owner/controls",
+        "capabilities": ["X02", "G12", "G18", "G19"],
+        "implementation_batches": ["D0", "D3"],
+        "rule": "Item 4B34C4 与 SE 46AB90 先清输入消费字，再调用输入状态和活动窗口整理。窗口 +0x30 返回后，从索引 0 起依序读取运行控件 +0x18。两版控件分派各自在普通输入分支以消费字和矩形条件生成事件位，并在真正调用 +0x20 前再读参与值。控件返回非零可置本轮消费。下一次经典窗口遍历重新执行相同顺序。特殊输入状态仍按原规则。",
+        "retirement": "标记 0x8000 的窗口进入下一次合资格活动表整理时先退役。Item 9/252 一轮有两次经典遍历，沿各次实际活动表、输入状态与原外层清理验证。",
+        "acceptance": {"training": "OS-A24", "album": "SF-A27", "work": "沿经典工艺的逐项输入、同帧及退役用例"},
+        "alternate_table_dispatch_proven": false,
+        "target_cases_executed": false
+      },
+      "target_cases_executed": false,
+      "actual_alternate_window_dispatch_proven": false
+    },
+    "specified_acceptance_cases": [
+      "主状态 9 的子状态 20 写入 3 并直接落入该帧。子状态 3、20 均先处理延后动作和恢复，再检查 End、更新窗口并调用工作时钟。",
+      "主状态 9 的子状态 204 按 591192 的返回值决定是否清槽和更新经典帧，随后走共同 End 检查。子状态 205 的所选过渡走同一尾部。",
+      "主状态 9 的子状态 11、205 先进入工作时钟入口。子状态 250、251 的共同尾部先查 End、再更新窗口、最后调用时钟入口。",
+      "主状态 9 的子状态 252 按 double_window_update 验收两次图形对象与经典窗口更新，以及中间绘制和外层输入清理。",
+      "主状态 10 的子状态 1 在 591192 返回 1 时走 End、经典帧、End，其他值走经典帧、End。4、5、6 走 End、经典帧、工作时钟。"
+    ],
+    "double_window_update": {
+      "classification": "固定 Item 的静态事实及按调用正常返回推导的顺序",
+      "report": "reports/game-static.md#legacy-item-double-window-frame",
+      "validation": "reports/validation.md#legacy-item-double-window-frame-validation",
+      "source_review": "build/analysis/legacy-item-double-window-frame-v1/source-review.json",
+      "local_projection": "build/analysis/legacy-item-double-window-frame-v1/local-projection.json",
+      "affected_capabilities": ["X02", "G03", "G12", "G18", "G19"],
+      "implementation_batches": ["D0", "D2", "D3"],
+      "source_state": [9, 252],
+      "next_substate": 20,
+      "implementation_owners": {
+        "D0": ["shared/legacy-game-runtime.mjs", "shared/legacy-game-clock.mjs"],
+        "D2": ["shared/legacy-game-state.mjs"],
+        "D3": ["shared/legacy-game-craft.mjs", "shared/legacy-game-work-context.mjs"]
+      },
+      "rules": [
+        "58D37E 先调用经典窗口重建。58D3D3、58D3EC 执行第一次对象遍历和经典帧。58D3F1 置绘制标志 0，58D3FB 使用当前列表绘制，58D400 在该调用正常返回后置 1。",
+        "58D40A 重新采样 GetTickCount，58D41D 将其按无符号值转为帧时钟。随后清绘制计数、7C4160 和六个暂存字，再于 58D440、58D454 执行第二次对象遍历和经典帧。58D4BC 发布子状态 20。",
+        "每次经典帧都按当时的工作上下文、窗口槽和输入状态执行。活动表整理先于控件，经典快捷键在控件之后读键位和活动槽。外层分派返回后才到 4874C7 的条件指针清理和 4874E9 的键盘清理。",
+        "D0 保留同一外层更新中的两次对象遍历、各自的经典回调、中间绘制和外层输入消费。D2 负责发布状态 20。D3 在同一规格下接业务入口并保留各自的激活条件。"
+      ],
+      "acceptance_cases": [
+        "所选绘制条件使 593524 提前返回时，仍恢复绘制标志 1、更新帧时钟、清列表、执行第二次更新并发布 20。",
+        "第一次经典回调登记的合资格过渡在第二次对象遍历开始推进，第二次经典回调登记的过渡等到下次合资格遍历。起始计数为 9 时第二次尝试创建，起始计数为 10 时第一次尝试创建、第二次可释放已标记对象。",
+        "第一遍标记关闭且保持活动表登记的窗口由第二遍列表整理退役。沿 SF-A27，以仍有效的 D 或 Y 首次按下位分别检查两次延后请求、首遍同步建窗后第二遍标记关闭，以及两遍之间输入状态已变化的结果。",
+        "重建已解除的工作上下文在两遍检查中均跳过发送。若第一遍前有已到期的活动上下文且之后未重新启用，则第一遍发送、清标记并按条件重查配方，第二遍跳过。时长为正且保持不变时两遍均跳过。"
+      ],
+      "alternate_table_dispatch_proven": false,
+      "current_version_equivalence_proven": false,
+      "target_cases_executed": false
+    },
+    "target_cases_executed": false,
+    "alternate_table_dispatch_proven": false,
+    "normal_album_shortcut_ingress_proven": true,
+    "current_version_equivalence_proven": false,
+    "product_code_changed": false
+  },
+  "item_ordinary_frame_hit_selection": {
+    "source_review": "build/analysis/legacy-item-frame-hit-selection-v1/source-review.json",
+    "report": "reports/game-static.md#legacy-item-frame-hit-selection",
+    "projection": "build/analysis/legacy-item-frame-hit-selection-v1/projection.json",
+    "capabilities": ["X02", "G07"],
+    "related_capabilities": ["G05"],
+    "existing_batches": ["D0", "D3"],
+    "frame_admission": "5D4498 != 0 after the active-state dispatcher",
+    "ordered_calls": ["0x56f37f", "0x5926c0", "0x56f787"],
+    "pointer_repeat": {
+      "cleared_one_shot_word": "0xed560c",
+      "repeat_word": "0xed5610",
+      "button_masks": [1, 2],
+      "first_condition": "unsigned elapsed > 500 ms with no prior repeat",
+      "next_condition": "unsigned elapsed minus prior repeat >= 100 ms",
+      "reset_condition": "elapsed <= 500 ms clears that bit and prior repeat"
+    },
+    "draw_list": {
+      "index_base": "0x1200d18",
+      "index_bytes": 4,
+      "descriptor_base": "0x11d8d18",
+      "descriptor_bytes": 40,
+      "capacity": 4096,
+      "fixed_marker_priorities": [5, 6, 20],
+      "optional_marker": {"guard": "1204D3C != 0", "priority": 2},
+      "admission": "trim the current count for the required 3 or 4 slots before appending markers",
+      "sort": "unsigned priority ascending, signed row index descending on ties"
+    },
+    "hit_selection": {
+      "first": "eligible text rectangles in increasing index order",
+      "text_result": "0xed545c",
+      "then": "eligible draw records from the end of the sorted list",
+      "draw_result": "0xed5fdc",
+      "selected_rectangles_include_boundary": true,
+      "draw_result_written_before_feedback_sort": true,
+      "object_tooltip_condition": "EC1808 == 0 and 5FB334 != 0",
+      "one_shot_list_lookup": "0x48ebdd",
+      "repeat_list_lookup": "0x48ec2b"
+    },
+    "acceptance_cases": [
+      "Text hit takes precedence over an overlapping draw record. Equal-priority eligible draw hits choose the lower row index.",
+      "Compare 500 and 501 ms for first repeat, and 99 and 100 ms since the previous repeat.",
+      "From 4096 input rows, retain 4093 before three markers or 4092 before four markers.",
+      "One-shot and repeat lookups read the published draw record with their respective mask."
+    ],
+    "outer_click_lookup_callers_proven": false,
+    "alternate_frame_dispatch_proven": false,
+    "current_version_equivalence_proven": false,
+    "product_code_changed": false
+  },
+  "item_graphics_readiness": {
+    "classification": "固定历史 Item 的静态事实与条件推导",
+    "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+    "source_review": "build/analysis/legacy-item-alternate-window-graphics-v1/source-review.json",
+    "report": "reports/game-static.md#legacy-item-alternate-window-graphics",
+    "fixed_SE_reference": "analysis/capability-first-v1/game-graphics-lifetime-contract.json",
+    "capabilities": ["X02", "G12", "G18", "G19"],
+    "implementation_batches": ["D0", "D3"],
+    "row_bindings": {"table": "0x5f1f58", "rows": 99, "callback_offset": 4, "bound_calls": 97, "common_helper": "0x56a1c2"},
+    "rules": [
+      "按描述符 +0x10 的 ID 查表。活动且行缓存为空时，56A1C2 以无符号小于 1000 的样式原值或 -2 请求 56C20F，将返回值发布到行 +0x0C。请求后播放 0x38 并调用可选初始化，之后重读缓存。",
+      "56C20F 申请类型 3 和 36 字节附属块，将 56C47F 写入对象 +0x08。40F15E 调用对象回调。新对象的计数和逻辑就绪值初始为 0。",
+      "按入场后的合资格图形回调计数，旧计数 10 时根据样式写对象阶段 1 或 2。新阶段在下一次合资格回调发布逻辑值 1。56A1C2 读取 +0x170 对应的逻辑值，大于 0 时进入后续命中处理。",
+      "非活动调用先标记缓存对象退役并清指针。行 +0x10 非零时清字节并返回 2，后续调用在该字节为零时返回 0。对象实际释放沿图形遍历。"
+    ],
+    "acceptance_cases": [
+      "初建的样式 0、999、1000 和 -1 分别从第 11 次合资格回调切换阶段，第 12 次发布就绪。",
+      "模拟创建返回 0，记录音效、可选初始化及重读顺序。初始化保持缓存为空时返回 0。",
+      "失活前存在缓存和行标记时，首次清缓存并返回 2，再次返回 0，图形回收在后续合资格遍历。"
+    ],
+    "table_callback_entry_in_ordinary_frame_proven": false,
+    "current_version_equivalence_proven": false,
+    "target_cases_executed": false
+  },
+  "focus_and_slot_handoffs": {
+    "classification": "固定历史 Item 与 SE 的静态分支及局部控件分派",
+    "source_review": {
+      "path": "build/analysis/alternate-window-focus-slots-v1/source-review.json",
+      "bytes": 20384,
+      "sha256": "64d9cdbbfecb35640d10c4998b1336d657aa555bf7d117fec7d6e30fc272adb2"
+    },
+    "report": "reports/game-static.md#alternate-window-focus-slots",
+    "capabilities": ["X02", "G18"],
+    "implementation_batches": ["D0", "D3"],
+    "rules": [
+      "Item 56B84C 和 SE 4EA190 检查共享文本目标是否等于默认地址。两份样本各有六处局部路径在相等时跳过槽位筛选，其余情况下先执行筛选。",
+      "Item 56BE45 和 SE 4EA660 接受无符号 ID 1 至 99。逐槽比较并清除与指定 ID 不同的槽，匹配槽保留。即使槽原来为零，不同也使返回值为 1。这六处均直接继续执行后续调用。",
+      "ID 32、22、15、16、6 的后续调用请求打开该窗口。ID 2 的所选路径则从该窗口的文本目标槽读取指针，并发布到全局文本焦点。",
+      "Item 在启动指针 5C9084 的初始化链把 5622DA 登记到窗口 5 控件索引 9 的 +0x1C。所选活动分支调用 56A0A5，以 18 个 0x28 字节记录为扫描上限，命中结果含 0x10 且记录回调非空时调用。5622DA 请求打开 6 后返回 0，扫描继续。"
+    ],
+    "source_derived_cases": "build/analysis/alternate-window-focus-slots-v1/source-review.json#/specified_cases",
+    "slot_retirement_rule": "筛选只更新两活动槽。图形退役及业务清理继续依据共用非活动回调结果。",
+    "remaining_source": "业务帧到 99 行回调表的调用及活动参数来源需具名新调用边或适用的运行证据。训练 55–59、67 的正常激活及其需求适用性保持待证。",
+    "actual_frame_table_dispatch_proven": false,
+    "active_parameter_source_proven": false,
+    "current_version_equivalence_proven": false,
+    "target_cases_executed": false
+  },
+  "battle_action_and_timed_restore": {
+    "source_review": "build/analysis/battle-window-restore-order-v1/source-review.json",
+    "report": "reports/game-static.md#battle-window-restore-order",
+    "capabilities": ["G01", "G03", "B01", "B04", "X02"],
+    "implementation_batches": ["D0", "D2", "D3", "D4"],
+    "battle_entry_action": {"value": 3, "item_site": "0x45bcc2", "se_site": "0x437bf8"},
+    "receive_actions": {">_U": 1, ">xG": 2},
+    "fade_return": [9, 1],
+    "ordinary_order": ["deferred action", "timed restore"],
+    "timed_restore_with_clear_flag": "计时字非零且经典准入字段和过渡指针为零时请求经典索引39的过渡及音效0x38。",
+    "classic_scene_label_window": {
+      "classification": "固定 Item 与 SE 的静态来源规格",
+      "source_review": {
+        "path": "build/analysis/legacy-window-restore-overlay-v1/source-review.json",
+        "bytes": 63552,
+        "sha256": "63d637359e6429b98500bf32b058822312b496dac55c4621b4a04c3d6886a5b9"
+      },
+      "report": "reports/game-static.md#legacy-scene-label-window",
+      "capabilities": ["G01", "G03", "B01", "B04", "X02"],
+      "clock_publication": {
+        "sample": "GetTickCount",
+        "main_9_selected_substates": [103, 204, 252],
+        "Item": {"word": "0x6b1690", "writers": ["0x58cec9", "0x58d1af", "0x58d389"]},
+        "SE": {"word": "0x614888", "writers": ["0x501c6f", "0x501ee5", "0x502074"]},
+        "order": "103 和 204 在所选转换完成后、发布 20 前采样。252 在窗口重建返回后采样。经典窗口创建不重置该值。"
+      },
+      "admission": {
+        "Item": {"entry": "0x484ec5", "active_pointer": "0xcae050", "transition_pointer": "0x6b1698"},
+        "SE": {"entry": "0x44eb10", "active_pointer": "0xc10e88", "transition_pointer": "0x614890"},
+        "zero_clock": "标记非空过渡对象并清过渡指针，保留窗口 1 恢复标记。所选普通帧的迟发转换先清计时字，再执行该调用。",
+        "saved_window_one": "计时字和恢复标记均非零时，尝试打开另一套窗口 1。调用正常返回后清恢复标记和计时字。",
+        "classic_window": "计时字非零、恢复标记为零，且经典 39 活动指针与过渡指针均为空时请求打开。通用过渡请求在分配前请求一次 0x38，调用方保存返回指针后再请求一次 0x38。",
+        "fallback": "分配失败清过渡输出并同步尝试创建经典 39，过渡返回指针为零。通过独立活动指针确认窗口创建结果。",
+        "completion": "合资格过渡回调计数从 0 开始，第 11 次尝试创建。随后标记过渡对象并清输出指针，经典对象独立发布。"
+      },
+      "label_input": {
+        "tag": "Ta>",
+        "stored_label": {"Item": "0x9f4fd8", "SE": "0x957e50"},
+        "limit_bytes": 24,
+        "fallback_ascii": "???",
+        "create_callback": "描述符 +0x24 安装至经典对象 +0x30。收到 -1 时复制当时保存的标签，量宽后把控件横坐标写为 (窗宽减文字宽) 的有符号算术右移一位。",
+        "alternate_callback": "两版第二套窗口 1 的局部回调也读同一标签，在共用处理结果为 0 或 2 时直接返回，其余所选分支量宽并排队绘制。普通帧对该表回调的实际调度继续待证。"
+      },
+      "expiration": {
+        "callback": {"Item": "0x4e6d68", "SE": "0x491100"},
+        "source_test": "当前 GetTickCount 的无符号 32 位值大于或等于 (启动采样值加 2000) 的低 32 位。",
+        "on_expiry": "给活动经典对象置 0x8000，清计时字，请求音效 0x39。回调返回 1，当次帧继续，后续合资格经典窗口整理调用退役回调并清活动指针。",
+        "absolute_clock_and_creation_delay_preserved": true
+      },
+      "shared_cases": ["GF-A11", "GF-A18", "SD-CASE-09", "SD-CASE-10", "SD-CASE-15"],
+      "source_projections": "build/analysis/legacy-window-restore-overlay-v1/source-cases.json",
+      "validation": "reports/validation.md#legacy-scene-label-window-validation",
+      "actual_alternate_frame_dispatch_proven": false,
+      "original_or_target_cases_executed": false,
+      "current_version_equivalence_proven": false
+    },
+    "remaining_source": "恢复两次读取之间的实际写入、另一套表回调调度和当前同版适用性。",
+    "actual_frame_table_dispatch_proven": false,
+    "target_cases_executed": false
+  },
+  "alternate_window_selection_and_cleanup": {
+    "classification": "固定 SE 与 Item 的静态证据及有明确调用次序的合成推演",
+    "capabilities": [
+      "X02",
+      "G12",
+      "G18",
+      "G19"
+    ],
+    "implementation_batches": [
+      "D0",
+      "D3"
+    ],
+    "report": "reports/game-static.md#alternate-window-selection-and-cleanup",
+    "validation": "reports/validation.md#alternate-window-selection-and-cleanup-validation",
+    "source_review": {
+      "path": "build/analysis/legacy-item-alternate-dispatch-v1/source-review.json",
+      "bytes": 185546,
+      "sha256": "cf7475613593261cb853a88417c06e021480331d1eefde33376c7c1a73c854bd"
+    },
+    "source_projections": {
+      "path": "build/analysis/legacy-item-alternate-dispatch-v1/projected-cases.json",
+      "bytes": 13554,
+      "sha256": "533c627fd6259b4882e674649f4ae8c31e589ebc2bc9800d8f4417ae1907e0a7"
+    },
+    "profiles": {
+      "Item": {
+        "source": {
+          "path": "build/analysis/game-release-current-v1/legacy-members/cg_item_6000.exe",
+          "bytes": 2213376,
+          "sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9"
+        },
+        "table": "0x5f1f58",
+        "slots": [
+          "0xcbd738",
+          "0xcbd73c"
+        ],
+        "adjacent_word": "0xcbd740",
+        "occupancy": "0x56bea4",
+        "selection_by_id": "0x56bffe",
+        "graphics_ready_by_id": "0x56c078",
+        "graphics_ready_by_slot": "0x56bee2",
+        "toggle_by_cache": "0x56c15a",
+        "open": "0x56bb80",
+        "close": "0x56bd22",
+        "local_handler": "0x56a1c2"
+      },
+      "SE": {
+        "source": {
+          "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+          "bytes": 1569280,
+          "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+        },
+        "table": "0x559c10",
+        "slots": [
+          "0xc2056c",
+          "0xc20570"
+        ],
+        "adjacent_word": "0xc20574",
+        "occupancy": "0x4ea6b0",
+        "selection_by_id": "0x4ea6f0",
+        "toggle_by_cache": "0x4ea740",
+        "open": "0x4ea460",
+        "close": "0x4ea5b0",
+        "local_handler": "0x4e94d0"
+      }
+    },
+    "facts": {
+      "occupancy_and_selection": [
+        "两版占用查询参数 2 检查两个槽中是否任一非零。其它参数直接用作索引。按 ID 查询只接受 1..99 的已登记 ID，按表 group 比较所选槽，第 2 组读取主槽。",
+        "Item 的 End 动作和状态 11 首次建提示都使用占用查询。普通所选恢复路径对窗口 1 使用按 ID 查询，副槽选中时即可记恢复标记。图鉴工具栏用按 ID 查询决定请求目标和按钮选中态。",
+        "Item 的 56C078 对已选 ID 还要求行缓存非空，缓存对象 +0x170 对应有符号逻辑值至少为 1。56BEE2(2) 有非零主槽时只检查主槽，主槽为空才检查副槽。源函数存在，普通调用者继续待证。"
+      ],
+      "cache_toggle_and_retirement": [
+        "两版切换先查表行，再读缓存。缓存为空时请求打开并返回 1，打开器的结果不传播。缓存非空时请求关闭、请求音效 0x39，返回 0。Item 对首次非空的路径重新读取缓存，第二次为空时直接返回 -1。",
+        "第 2 组主槽匹配时，关闭先清两槽，按原副槽判断是否恢复，最后返回 0。两版主槽比较失配时落入 group 索引分支，用 group=2 读取相邻资料字。相等才写零并可能恢复。所选师范资料也写这些相邻地址，独立实现保留该源码边界。",
+        "槽位清除后行缓存和标记可继续存在。非活动处理先标记图形对象退役并清行缓存，再消费行标记。标记非零时清标记并返回 2。标记已清时返回 0。",
+        "活动且无缓存时先尝试分配，接着请求音效并调用非空初始化器，再重读缓存和图形逻辑值。合资格的活动关闭请求仍走共同函数返回 1，非活动清理由之后的调用消费。"
+      ],
+      "item_callback_argument": [
+        "原 Item 表 97 个非空回调的辅助调用前都从 [EBP+8] 取值并把它作为首参数传给 56A1C2。56A1C2 按传入描述符的 +0x10 查行，首参等于零走非活动路径。",
+        "94 个描述符的文件内 ID 与回调所属行一致。1、53、54 的 ID 字段在文件字节之外。窗口 1 的启动写入沿已有初始化证据。"
+      ],
+      "training_preview": [
+        "两版训练 55、56、57 的初始化器将分配结果写入同一预览指针。58 与 59 各用独立指针，67 无该初始化器。",
+        "所选非活动返回 2 的六个训练窗都将与经典训练共用的活动模式写成 -1。55–59 按当时所读指针标记退役并清指针，58、59 在该分支另外请求音效 0x39，67 只执行模式清理。"
+      ],
+      "work_pair": [
+        "Item 窗口 29 收到共同函数返回 2 后清自己的预览指针，再请求关闭 30。窗口 30 在返回 2 后请求关闭 29。已换到主槽 19 时后续对 29 的关闭请求按实际槽判断。",
+        "窗口 19、25、26、28、31、33、38、39 的上下文保留、解除及一次性标记沿原 item_work_retirement。"
+      ],
+      "album_return": [
+        "两版图鉴详情 24 返回时先置恢复标记再请求打开 23。共同函数在 23 的行缓存为空时调用初始化器，按恢复标记将页置零或从当前选择以有符号除以 15 得页。23 非活动返回 2 时清恢复标记。",
+        "24 的非活动返回 2 路径先调用图鉴保存入口，随后在详情预览非空时标记退役并清指针。"
+      ]
+    },
+    "inferences": [
+      "若旧训练窗先清理再初始化新窗，共用槽保留新预览。若调换两次调用，旧窗会清理当时槽中的新预览。两种都作为有条件的源规则用例，实际普通帧次序待证。",
+      "返回图鉴列表时，缓存仍在会跳过本次初始化。由已证关闭和初始化规则得出，需实际帧验证恢复条件。"
+    ],
+    "local_baseline": {
+      "stage": "stage306",
+      "training_reused": [
+        "shared/legacy-game-map-dialog.mjs",
+        "shared/legacy-game-map-pet-training.mjs"
+      ],
+      "work_reused": [
+        "shared/legacy-game-craft.mjs",
+        "shared/legacy-game-work-context.mjs"
+      ],
+      "tested_scope": "现有训练、治疗、技能等级与工艺结果的共享核心回归",
+      "product_accepts_alternate_rules": false
+    },
+    "item_dispatch_candidates": {
+      "classification": "事实：固定 Item 的候选、指令与表结构。待验证：普通帧调用、活动实参来源及当前同版。",
+      "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+      "source_review": "build/analysis/item-alternate-candidate-review-v1/source-review.json",
+      "report": "reports/game-static.md#item-alternate-dispatch-candidates",
+      "validation": "build/analysis/item-alternate-candidate-review-v1/validation.json",
+      "roles": {
+        "0x5f0324": "经典窗口 64 的类型 3 控件资料中八字节条目的文本指针，目标 0x5F1F44 距第二套窗口表起点 20 字节。经典构造由 0x5F1668 取描述符，再读描述符 +0x20 的控件表。",
+        "0x56a14e": "0x56A0A5 处理窗内命中，按 40 字节控件步长调用 +0x1C。窗口 5 提供 18 条控件，索引 9 在启动登记 0x5622DA，所选命中时可请求打开 6。",
+        "0x56a3a1": "共同助手读取第三个栈参数。活动窗初次尝试创建并请求音效后，若初始化器非空则调用，随后重查缓存。窗 55 传入地址 0x5288CB。",
+        "0x56c1f6": "在 99 条、每条 20 字节的表内读取 +0 的窗口 ID。匹配返回索引，未找到返回 -1。"
+      },
+      "selected_activity_forwarding": "固定 Item 的 14、19、23、24、29、30、55–59、67 共十二个登记回调均把外层首参原样传给 0x56A1C2。局部零值路径清缓存并消费一次性标记。外层怎样计算首参及遍历新旧窗仍待证。",
+      "related_requirements": ["EA-U1", "EA-U2", "OS-U1", "OS-A26", "WK-U1", "WK-T27", "SF-U1", "SF-A28"],
+      "resume_on": "有身份一致的普通调用点、运行中向该表发起的间接调用及首参，或能连通注册和调用的配套模块时继续。原有局部控件或注册范围可直接引用。",
+      "ordinary_callback_dispatch_proven": false,
+      "activity_parameter_producer_proven": false,
+      "current_version_equivalence_proven": false,
+      "product_code_changed": false
+    },
+    "remaining": "普通帧对 99 行回调列的实际消费、活动参数生产、已选回调的调用次序，以及训练六个构造入口和图鉴工具栏准入须具名正向入口或适用材料。固定 Item 的三处候选已各自确定局部用途，十二条登记已接到共用首参消费，继续复用既有表尾和图鉴资料。",
+    "ordinary_callback_dispatch_proven": false,
+    "current_version_equivalence_proven": false,
+    "target_cases_executed": false,
+    "product_code_changed": false
+  },
+  "table_end_and_classic_album": {
+    "source_review": {
+      "path": "build/analysis/legacy-se-classic-album-ingress-v1/source-review.json",
+      "bytes": 15364,
+      "sha256": "46b195ef42d4062978677d85a4d9e85e0f92be66dafb951e96cb148ab0742252"
+    },
+    "table_end_exclusive": {
+      "SE": "0x55a3cc",
+      "Item": "0x5f2714"
+    },
+    "first_dword_after_table": 392,
+    "coordinate_initializers": {
+      "SE": {"pointer": "0x5330a0", "read": "0x4e8cb0", "write": "0x4e8cc4", "descriptor": "0xc5f608"},
+      "Item": {"pointer": "0x5c90a0", "read": "0x5692be", "write": "0x5692c3", "descriptor": "0xed4ec0"}
+    },
+    "classic_ingress": "analysis/capability-first-v1/game-social-family-album-functional-specification.json#/legacy_se_classic_album_ingress",
+    "ordinary_callback_dispatch_proven": false
+  }
+}

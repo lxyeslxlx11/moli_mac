@@ -1,0 +1,247 @@
+{
+  "stage": 280,
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "rea": "6.7.0",
+  "provider": "Ghidra12.1.4",
+  "evidence": {
+    "ledger": {
+      "path": "build/analysis/game-legacy-battle-reentry-v1/rea-evidence.json",
+      "bytes": 12923,
+      "sha256": "c183b3c62da9f92547e522eafc1a4f5e1f6bb4fe21c9c242352aecc2151d0cd9"
+    },
+    "closure": {
+      "path": "build/analysis/game-legacy-battle-reentry-v1/rea-closed.json",
+      "bytes": 53,
+      "sha256": "43b2cb3403240ad3badd80c1c3d6d619c698b2bd88f33215983ac0b46320a0c8"
+    }
+  },
+  "previous": [
+    {
+      "path": "analysis/game-battle-return-v1/source-check.json",
+      "bytes": 22269,
+      "sha256": "e95a31c69cabf7c6d6ad3d5577f833c932604df716cb73e67c04cb9a81e9a8c6"
+    },
+    {
+      "path": "analysis/game-battle-entry-v1/source-check.json",
+      "bytes": 22703,
+      "sha256": "b22ca50417c44bce24ace71e60f43467b71676690d1c2949b9a6a9fce0b34429"
+    }
+  ],
+  "memory": [
+    {
+      "address": "0x501a50",
+      "file_offset": 1052240,
+      "bytes": 164,
+      "sha256": "0de769ad629e2181b4e27a23f2c9c07dd16b5ab71f06fdd8feda851bc7239140",
+      "evidence": "ev_12edd101728f7966d0725fe8d08731ed310b3f328398fb7a27850bbaf520a474"
+    },
+    {
+      "address": "0x437b30",
+      "file_offset": 225072,
+      "bytes": 240,
+      "sha256": "85e2127cf9204021b11ad941171c285b1ad06307febb023a6b4e8927d6622464",
+      "evidence": "ev_7efb9ef2d09718b4b675c4219876391b09f0ccf4eafe7d5ef27b089a0f159197"
+    },
+    {
+      "address": "0x433b70",
+      "file_offset": 208752,
+      "bytes": 82,
+      "sha256": "af20ee84ba52df1d015da159256a5836fd60fc581cd7120c4c2fa34f974a6123",
+      "evidence": "ev_9dce9abd40a3e826cd60fa92995d62fe3b2f6f4ce3ebfff80bd7952cd8aedb35"
+    }
+  ],
+  "carried_windows": [
+    {
+      "address": "0x501a50",
+      "file_offset": 1052240,
+      "bytes": 3171,
+      "sha256": "ef3ea8f8465d01c0fa0f9efd1ee727b4bec236a3960154d005e0d505586766cb",
+      "evidence_id": "ev_630871844eb6a7c6a4f6b443a125a9e0826e46ed4f8d50c86e6f9a47ec09803d"
+    },
+    {
+      "address": "0x437b30",
+      "file_offset": 225072,
+      "bytes": 2858,
+      "sha256": "47423d0ed9e32aac40393262d7f9342344d4bdeba5783afc701689ce7cf1c515",
+      "evidence_id": "ev_1740ea6e405b7da000375747f6a13b3954069e0a1acad7dcea941743493f364f"
+    },
+    {
+      "address": "0x433b70",
+      "file_offset": 208752,
+      "bytes": 82,
+      "sha256": "af20ee84ba52df1d015da159256a5836fd60fc581cd7120c4c2fa34f974a6123",
+      "evidence_id": "ev_9dce9abd40a3e826cd60fa92995d62fe3b2f6f4ce3ebfff80bd7952cd8aedb35"
+    }
+  ],
+  "operands": [
+    {
+      "address": "0x437b80",
+      "file_offset": 225152,
+      "bytes": 6,
+      "meaning": "entry clears frame/readiness work"
+    },
+    {
+      "address": "0x437be0",
+      "file_offset": 225248,
+      "bytes": 6,
+      "meaning": "entry clears the previous actor-control work"
+    },
+    {
+      "address": "0x437be6",
+      "file_offset": 225254,
+      "bytes": 6,
+      "meaning": "entry clears the previous round work"
+    },
+    {
+      "address": "0x437bec",
+      "file_offset": 225260,
+      "bytes": 6,
+      "meaning": "entry arms the first acknowledgement"
+    },
+    {
+      "address": "0x433b7b",
+      "file_offset": 208763,
+      "bytes": 5,
+      "meaning": "reset clears32 words of the battle table"
+    },
+    {
+      "address": "0x433b89",
+      "file_offset": 208777,
+      "bytes": 5,
+      "meaning": "reset clears22 words of battle-control work"
+    },
+    {
+      "address": "0x433b97",
+      "file_offset": 208791,
+      "bytes": 6,
+      "meaning": "reset clears its table counter"
+    },
+    {
+      "address": "0x433b9d",
+      "file_offset": 208797,
+      "bytes": 6,
+      "meaning": "reset clears completion work"
+    },
+    {
+      "address": "0x433ba3",
+      "file_offset": 208803,
+      "bytes": 6,
+      "meaning": "reset clears the previous stop flag"
+    },
+    {
+      "address": "0x433ba9",
+      "file_offset": 208809,
+      "bytes": 6,
+      "meaning": "reset clears previous control work"
+    }
+  ],
+  "calls": [
+    {
+      "call": "0x437bd1",
+      "target": "0x40a0c0",
+      "offset": 225233
+    },
+    {
+      "call": "0x437bd6",
+      "target": "0x433b70",
+      "offset": 225238
+    },
+    {
+      "call": "0x433b71",
+      "target": "0x433b30",
+      "offset": 208753
+    },
+    {
+      "call": "0x433bbb",
+      "target": "0x489880",
+      "offset": 208827
+    },
+    {
+      "call": "0x502534",
+      "target": "0x4ff430",
+      "offset": 1055028
+    },
+    {
+      "call": "0x502539",
+      "target": "0x440450",
+      "offset": 1055033
+    },
+    {
+      "call": "0x5023d3",
+      "target": "0x505030",
+      "offset": 1054675
+    }
+  ],
+  "return_contract": {
+    "path": "analysis/game-battle-return-v1/implementation-spec.json",
+    "bytes": 4267,
+    "sha256": "91110a9694b9663c972c2d5fa80d159db4ae78f81338de12456b0c3fa82d0530"
+  },
+  "movement_oracle": {
+    "authority": "Independent original Python movement/pointer/message references",
+    "inputs": [
+      {
+        "path": "analysis/game-input-runtime-v1/original-vectors.json",
+        "bytes": 5528144,
+        "sha256": "f32b0631efb802e6d6d6c3d8460835b5052cb47e506e14c0ea89e63113793cbd"
+      },
+      {
+        "path": "analysis/game-input-runtime-v1/generate_vectors.py",
+        "bytes": 10221,
+        "sha256": "28da12112388522b5683c6d50e79fc64c55fdbfd9405dc228709900aa372bf10"
+      },
+      {
+        "path": "analysis/game-legacy-local-movement-v1/original-vectors.json",
+        "bytes": 1155313,
+        "sha256": "d51d707169c5f532290f8cf9624ecc86de45c831624a6eed386fb055f634964c"
+      },
+      {
+        "path": "analysis/game-legacy-local-movement-v1/generate_vectors.py",
+        "bytes": 20769,
+        "sha256": "3d6ade68b068396377c2af4baaa29effd64ffada933bce2d3b8957e255f26845"
+      },
+      {
+        "path": "analysis/game-legacy-message-v1/generate_vectors.py",
+        "bytes": 7012,
+        "sha256": "ee97bb3f0ba0a4b3c5b319990a7b2d0673e37b076d3f5d03b0cfb2f45c86fb53"
+      }
+    ],
+    "fixture": {
+      "path": "analysis/game-legacy-battle-reentry-v1/original-fixture.json",
+      "bytes": 1044,
+      "sha256": "73c6ea1f273048de57cb5ae79cb14dbe1ef9c629768616c564c5352d9324027e"
+    },
+    "map_cells": 144,
+    "map_flags": 0,
+    "first_arrival_frames": 52,
+    "settle_frames": 64,
+    "second_origin": [
+      5,
+      3
+    ],
+    "second_destination": [
+      8,
+      3
+    ],
+    "requests": [
+      "!0b 5 3 cc 1B ",
+      "!0b 7 3 c 1B "
+    ],
+    "final_position": [
+      512.0,
+      192.0
+    ]
+  },
+  "facts": [
+    "Fresh entry calls pool deletion and battle table reset; re-arms first acknowledgement and clears previous round/stop work.",
+    "Ordinary battle preparation removes local/remote ordinary bodies; the retained return contract reconstructs fresh bodies and capture before committing input."
+  ],
+  "inference": "An actual product second battle must exercise these existing generation, body, round and return owners with fresh values and the same socket.",
+  "original_runtime_observed": false,
+  "native_device_and_official_acceptance": false,
+  "extent_limit": "Selected original bytes and pinned retained source ranges; no whole-game or original runtime claim."
+}

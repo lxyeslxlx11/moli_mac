@@ -1,0 +1,142 @@
+{
+  "schema": "moli.fault-layout-stage126.v1",
+  "classification": "derived-from-shipped-PE-and-event-fields",
+  "sample_path": "/Users/lx/Documents/code/moli-mac/build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/cg_se_3000.exe",
+  "sample_sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+  "sample_bytes": 2904064,
+  "parser": "Independent Python3 struct/hashlib reads of DOS/PE32/COFF/section headers; target not executed.",
+  "pe_offset": 336,
+  "optional_header_offset": 360,
+  "image_base": 4194304,
+  "image_bytes": 17018880,
+  "preferred_image_end_exclusive": 21213184,
+  "entry_point_rva": 14576926,
+  "entry_point_preferred_va": 18771230,
+  "sections": [
+    {
+      "name": ".text",
+      "section_header_file_offset": 584,
+      "virtual_size": 1753452,
+      "rva": 4096,
+      "preferred_va": 4198400,
+      "raw_size": 0,
+      "raw_offset": 0
+    },
+    {
+      "name": ".rdata",
+      "section_header_file_offset": 624,
+      "virtual_size": 167642,
+      "rva": 1761280,
+      "preferred_va": 5955584,
+      "raw_size": 167936,
+      "raw_offset": 4096
+    },
+    {
+      "name": ".data",
+      "section_header_file_offset": 664,
+      "virtual_size": 12026208,
+      "rva": 1929216,
+      "preferred_va": 6123520,
+      "raw_size": 0,
+      "raw_offset": 0
+    },
+    {
+      "name": "_RDATA",
+      "section_header_file_offset": 704,
+      "virtual_size": 10208,
+      "rva": 13959168,
+      "preferred_va": 18153472,
+      "raw_size": 0,
+      "raw_offset": 0
+    },
+    {
+      "name": ".reloc",
+      "section_header_file_offset": 744,
+      "virtual_size": 155548,
+      "rva": 13971456,
+      "preferred_va": 18165760,
+      "raw_size": 0,
+      "raw_offset": 0
+    },
+    {
+      "name": ".text1",
+      "section_header_file_offset": 784,
+      "virtual_size": 786432,
+      "rva": 14127104,
+      "preferred_va": 18321408,
+      "raw_size": 770048,
+      "raw_offset": 172032
+    },
+    {
+      "name": ".adata",
+      "section_header_file_offset": 824,
+      "virtual_size": 65536,
+      "rva": 14913536,
+      "preferred_va": 19107840,
+      "raw_size": 53248,
+      "raw_offset": 942080
+    },
+    {
+      "name": ".data1",
+      "section_header_file_offset": 864,
+      "virtual_size": 196608,
+      "rva": 14979072,
+      "preferred_va": 19173376,
+      "raw_size": 139264,
+      "raw_offset": 995328
+    },
+    {
+      "name": ".reloc1",
+      "section_header_file_offset": 904,
+      "virtual_size": 65536,
+      "rva": 15175680,
+      "preferred_va": 19369984,
+      "raw_size": 40960,
+      "raw_offset": 1134592
+    },
+    {
+      "name": ".pdata",
+      "section_header_file_offset": 944,
+      "virtual_size": 1769472,
+      "rva": 15241216,
+      "preferred_va": 19435520,
+      "raw_size": 1720320,
+      "raw_offset": 1175552
+    },
+    {
+      "name": ".rsrc",
+      "section_header_file_offset": 984,
+      "virtual_size": 8192,
+      "rva": 17010688,
+      "preferred_va": 21204992,
+      "raw_size": 8192,
+      "raw_offset": 2895872
+    }
+  ],
+  "load_config": {
+    "directory_header_file_offset": 536,
+    "rva": 0,
+    "bytes": 0,
+    "fields": "not parsed"
+  },
+  "raw_fault_fields": [
+    {
+      "event_fault_offset_hex": "0xb7e8152",
+      "fits_file_offset": false,
+      "fits_rva": false,
+      "fits_preferred_image_va": false
+    },
+    {
+      "event_fault_offset_hex": "0xb88db30",
+      "fits_file_offset": false,
+      "fits_rva": false,
+      "fits_preferred_image_va": false
+    }
+  ],
+  "interpretation": "Neither raw event FaultOffset field directly selects a file offset, image RVA or preferred image VA in this fixed PE. The module is reported unknown and runtime base/map was not captured, so no static procedure address can be derived.",
+  "limitations": [
+    "Do not interpret unknown-module FaultOffset as a proved absolute VA or subtract an invented load base.",
+    "PE32 Load Config values describe this file only; they neither explain invalid-handler detection nor prove runtime mitigation state.",
+    "No new game consumer code, protected payload extraction, live-memory read or protection change."
+  ]
+}

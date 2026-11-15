@@ -1,0 +1,152 @@
+{
+  "schema": "moli.rea-fault-layout-stage126.v1",
+  "classification": "fact, selected REA artifact metadata",
+  "question": "Can the two unknown-module event FaultOffset fields directly locate a procedure in the fixed shipped PE?",
+  "evidence_id": "ev_cf3e5ba7e26d0bb865730c76714fafe462337a54644bc96a07bcb8dfc7c6fee8",
+  "operation": "inspect_with_objdump",
+  "parameters": {
+    "command_arguments": [
+      "-h",
+      "/Users/lx/Documents/code/moli-mac/build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/cg_se_3000.exe"
+    ],
+    "follow_debug_links": false,
+    "operation": "section_headers",
+    "path": "/Users/lx/Documents/code/moli-mac/build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/cg_se_3000.exe",
+    "provider_executable": "/opt/homebrew/opt/binutils/bin/objdump"
+  },
+  "provider": {
+    "id": "gnu.objdump",
+    "name": "GNU objdump",
+    "version": null
+  },
+  "independent_version_probe": {
+    "executable": "/opt/homebrew/opt/binutils/bin/objdump",
+    "arguments": [
+      "--version"
+    ],
+    "exit_code": 0,
+    "version_first_line": "GNU objdump (GNU Binutils) 2.47.20260726",
+    "limit": "Separate host version probe; REA provider.version remains null."
+  },
+  "subject": {
+    "architecture": null,
+    "digest": {
+      "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126"
+    },
+    "format": "unknown",
+    "local_path": "/Users/lx/Documents/code/moli-mac/build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/cg_se_3000.exe",
+    "name": "cg_se_3000.exe"
+  },
+  "result": {
+    "exit_code": 0,
+    "completion_status": "complete",
+    "output_truncated": false,
+    "artifact_changed": false,
+    "artifact_sha256_after": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126"
+  },
+  "raw_stdout_file_format": "pei-i386",
+  "sections": [
+    {
+      "index": 0,
+      "name": ".text",
+      "objdump_size_hex": "0x00000000",
+      "vma_hex": "0x00401000",
+      "file_offset_hex": "0x00000000",
+      "contents_flag": false
+    },
+    {
+      "index": 1,
+      "name": ".rdata",
+      "objdump_size_hex": "0x00028eda",
+      "vma_hex": "0x005ae000",
+      "file_offset_hex": "0x00001000",
+      "contents_flag": true
+    },
+    {
+      "index": 2,
+      "name": ".data",
+      "objdump_size_hex": "0x00000000",
+      "vma_hex": "0x005d7000",
+      "file_offset_hex": "0x00000000",
+      "contents_flag": false
+    },
+    {
+      "index": 3,
+      "name": "_RDATA",
+      "objdump_size_hex": "0x00000000",
+      "vma_hex": "0x01150000",
+      "file_offset_hex": "0x00000000",
+      "contents_flag": false
+    },
+    {
+      "index": 4,
+      "name": ".reloc",
+      "objdump_size_hex": "0x00000000",
+      "vma_hex": "0x01153000",
+      "file_offset_hex": "0x00000000",
+      "contents_flag": false
+    },
+    {
+      "index": 5,
+      "name": ".text1",
+      "objdump_size_hex": "0x000bc000",
+      "vma_hex": "0x01179000",
+      "file_offset_hex": "0x0002a000",
+      "contents_flag": true
+    },
+    {
+      "index": 6,
+      "name": ".adata",
+      "objdump_size_hex": "0x0000d000",
+      "vma_hex": "0x01239000",
+      "file_offset_hex": "0x000e6000",
+      "contents_flag": true
+    },
+    {
+      "index": 7,
+      "name": ".data1",
+      "objdump_size_hex": "0x00022000",
+      "vma_hex": "0x01249000",
+      "file_offset_hex": "0x000f3000",
+      "contents_flag": true
+    },
+    {
+      "index": 8,
+      "name": ".reloc1",
+      "objdump_size_hex": "0x0000a000",
+      "vma_hex": "0x01279000",
+      "file_offset_hex": "0x00115000",
+      "contents_flag": true
+    },
+    {
+      "index": 9,
+      "name": ".pdata",
+      "objdump_size_hex": "0x001a4000",
+      "vma_hex": "0x01289000",
+      "file_offset_hex": "0x0011f000",
+      "contents_flag": true
+    },
+    {
+      "index": 10,
+      "name": ".rsrc",
+      "objdump_size_hex": "0x00002000",
+      "vma_hex": "0x01439000",
+      "file_offset_hex": "0x002c3000",
+      "contents_flag": true
+    }
+  ],
+  "private_export": {
+    "path": "build/analysis/game-text-observer-runtime-v1/stage126/rea-evidence.json",
+    "bytes": 5283,
+    "sha256": "53913b65d5bd961ed641ce5f2ccd279a0e1e8dbf965fe170c73c03003a53110e",
+    "records": 1,
+    "unknowns": 0
+  },
+  "independent_pe_check": "analysis/game-text-observer-runtime-v1/fault-layout-stage126.json",
+  "boundaries": [
+    "Raw output pei-i386 is preserved separately from REA subject.format=unknown and architecture=null.",
+    "Objdump Size is preserved verbatim; it is not substituted for PE VirtualSize. Original .text has VirtualSize1753452 and SizeOfRawData0.",
+    "Neither raw event field selects a proved static procedure; runtime loaded base/map was not captured.",
+    "One section-header command, no target execution or new game consumer evidence. Native binary session closed after export."
+  ]
+}

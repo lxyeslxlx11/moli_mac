@@ -1,0 +1,133 @@
+{
+  "schema": "moli.wechat-host-tests-stage143.v1",
+  "node": "v26.9.0",
+  "new_Node_cases": 10,
+  "full": {
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "exit_code": 0,
+    "tests": 719,
+    "pass": 719,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "generated_project_checks": {
+    "command": "node --test analysis/launcher-wechat-host-v1/bundle-test.mjs",
+    "exit_code": 0,
+    "tests": 2,
+    "pass": 2,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "scope": "Actual generated CommonJS/App/Page/lifecycle modules in separate CJS scopes without DOM/crypto/performance/Buffer APIs; Node wx facade maps only fixed original loopback peer.",
+    "actual_native_WeChat": false
+  },
+  "covered": [
+    "Null config no IO; exact config/extra-field/accessor and codec checks",
+    "Explicit game/region/filtered source Galaxy ordinals, closed/missing/denied gates",
+    "Private input excluded from all render data; four-page confirmation/invalidation and widget key clearing",
+    "Explicit windows-936 byte bounds; no ACP inference",
+    "Independent original Python normal/wrong-group exchange; restricted profile preserved",
+    "Hide/unload/App lifecycle cancel and generation late-result suppression"
+  ],
+  "builds": [
+    {
+      "directory": "build/wechat-app",
+      "report": {
+        "path": "build/wechat-app/build-report.json",
+        "bytes": 9413,
+        "sha256": "61c12671c614f1919aa05cbfd6506add5f59f75ef867d3917c43c356a779e457"
+      },
+      "inputs": 46,
+      "outputs": 10,
+      "bytes": 312056,
+      "configured": false,
+      "external_imports": 0,
+      "native_compile_or_render": false
+    },
+    {
+      "directory": "build/wechat-app-fixture",
+      "report": {
+        "path": "build/wechat-app-fixture/build-report.json",
+        "bytes": 9458,
+        "sha256": "0b685673089e90f678b330f2d1779b84fe006415d21536d9125ea6733202a460"
+      },
+      "inputs": 46,
+      "outputs": 10,
+      "bytes": 313314,
+      "configured": true,
+      "external_imports": 0,
+      "native_compile_or_render": false
+    }
+  ],
+  "build_commands": [
+    "node tools/build-wechat-app.mjs",
+    "node tools/build-wechat-app.mjs --config build/analysis/launcher-wechat-host-v1/original-config.json --outdir build/wechat-app-fixture"
+  ],
+  "logs": [
+    {
+      "path": "build/analysis/launcher-wechat-host-v1/node-full-verified.log",
+      "bytes": 69070,
+      "sha256": "1ac1e391f5ebcbe49e93686559be3ad7097a28fc1038e1b19b4067e21eb2394e"
+    },
+    {
+      "path": "build/analysis/launcher-wechat-host-v1/bundle-test.log",
+      "bytes": 330,
+      "sha256": "fb84b36e4377362c82fe002b27bc32297791f7ce80f7601c7184804ca259a114"
+    },
+    {
+      "path": "build/analysis/launcher-wechat-host-v1/build-default-verified.log",
+      "bytes": 110,
+      "sha256": "22f7346f9c8228b53f08daf49e706f7d30baf0d52fae698397cbf74b19c957c2"
+    },
+    {
+      "path": "build/analysis/launcher-wechat-host-v1/build-fixture-verified.log",
+      "bytes": 117,
+      "sha256": "183978a9cda609895529ac90145a07bc5b40988af4ff2b05bdfb175d3528a7f7"
+    }
+  ],
+  "retained_failures": [
+    {
+      "log": {
+        "path": "build/analysis/launcher-wechat-host-v1/host-first.log",
+        "bytes": 2093,
+        "sha256": "e47b91f2aecc3bac936c21da496e77148f9f4bc2b980bd14be2e012cc123a7a1"
+      },
+      "counts": {
+        "tests": 10,
+        "pass": 9,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "reason": "VM harness merged two CJS modules into one global scope. Fixed module scope, no production workaround."
+    },
+    {
+      "log": {
+        "path": "build/analysis/launcher-wechat-host-v1/host-status-before.log",
+        "bytes": 2177,
+        "sha256": "0817e3ba51a3add6489ed966853474117f1187292aa34c4b27a2c3df6599267c"
+      },
+      "counts": {
+        "tests": 10,
+        "pass": 9,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "reason": "New assertion reproduced stale accepted hint after input change. Production hint fixed then full719 passes."
+    }
+  ],
+  "native_tool_receipt": "analysis/launcher-wechat-host-v1/native-ui-audit.json",
+  "not_performed": [
+    "Native WeChat compiled/rendered page or screenshot",
+    "Actual phone/AppID/domain/runtime acceptance",
+    "Production upload/release",
+    "VM/vendor/CDB/new dump/game-server/account actions"
+  ],
+  "full_goal_complete": false
+}

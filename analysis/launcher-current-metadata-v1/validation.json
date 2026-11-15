@@ -1,0 +1,196 @@
+{
+  "schema": "moli.launcher-current-metadata-v1.validation.v1",
+  "recorded_utc": "2026-10-28T12:53:03.953562+00:00",
+  "requirement": "reports/development-plan.md",
+  "result": "implemented-and-verified-bounded-current-metadata-and-http-profile",
+  "target": {
+    "bytes": 1496576,
+    "sha256": "71180e5bdda771e7d57dd27d2b879beddee55d61b957dadf7a2da60c907cb69a",
+    "md5": "b34278635899e7c1e4aa4cb67b48001a"
+  },
+  "source": {
+    "anchors": 12,
+    "new_functions": 12,
+    "new_records": 20,
+    "records": 51,
+    "exported_closed": true,
+    "binary_executed": false
+  },
+  "products": {
+    "changed": [
+      "shared/launcher-manifest.mjs",
+      "shared/index.mjs",
+      "web/launcher-bootstrap.mjs"
+    ],
+    "new_tests": [
+      "shared/tests/launcher-manifest-current.test.mjs",
+      "web/tests/launcher-bootstrap-current.test.mjs"
+    ],
+    "legacy_factory_and_default_page_profile": "preserved; full regression passed",
+    "native": "unchanged"
+  },
+  "vectors": {
+    "generator": "analysis/launcher-current-metadata-v1/make_vectors.py",
+    "digest": 22,
+    "locator": 37,
+    "plans": 4,
+    "total": 63,
+    "exclusions": 0
+  },
+  "node": {
+    "version": "26.9.0",
+    "targeted_tests": 25,
+    "targeted_pass": 25,
+    "full_test_files": 43,
+    "full": {
+      "tests": 583,
+      "pass": 583,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "full_duration_ms": 11931.649416,
+    "target_process_exit": 0,
+    "full_process_exit": 0
+  },
+  "chrome": {
+    "report": "analysis/launcher-current-metadata-v1/browser-validation.json",
+    "browser": "155.0.8059.85",
+    "driver": "Existing Playwright 1.62.1",
+    "vectors": 63,
+    "extra_ownership_checks": 2,
+    "checks": 9,
+    "requests": 69,
+    "errors": 0,
+    "failures": 0,
+    "process_exit": 0,
+    "context_browser_and_fixture_closed": true
+  },
+  "logs": [
+    {
+      "path": "build/analysis/launcher-current-metadata-v1/target-tests-initial.log",
+      "bytes": 5991,
+      "sha256": "02fd1699b0350309ae725b81e043127195e1124e3860662534a54e7687c9c269",
+      "private": true
+    },
+    {
+      "path": "build/analysis/launcher-current-metadata-v1/node-tests.log",
+      "bytes": 134214,
+      "sha256": "8d32badbe1905199fc9903d5f446e141856aa9b23685256688b4c67743852b30",
+      "private": true
+    },
+    {
+      "path": "build/analysis/launcher-current-metadata-v1/browser-check.log",
+      "bytes": 128,
+      "sha256": "2f4ed661dd6742dd111ead2b5a311feeb57864e651a6321f5931899995674598",
+      "private": true
+    },
+    {
+      "path": "build/analysis/launcher-current-metadata-v1/browser-validation-initial.json",
+      "bytes": 15511,
+      "sha256": "b5a0c997e2a3d3111c571026ae0f6f24cc8f263b1882e73f1ff4736e5b4b8b42",
+      "private": true
+    },
+    {
+      "path": "build/analysis/launcher-current-metadata-v1/legacy-regression-before-fix.log",
+      "bytes": 1263,
+      "sha256": "3d60b68b61d83d2b0a6d32fcc88c55a593ee0f2abb58d61ea66e7a4856403183",
+      "private": true
+    },
+    {
+      "path": "build/analysis/launcher-current-metadata-v1/target-tests-final.log",
+      "bytes": 6223,
+      "sha256": "744f6dbd379acd23a86a7ba734884455f8f4f7c4b7ac197ccb5427a680c6c0f0",
+      "private": true
+    },
+    {
+      "path": "build/analysis/launcher-current-metadata-v1/node-tests-final.log",
+      "bytes": 134403,
+      "sha256": "459bf8338ebf75621cfec8de5bc13a50d1a90e507e16d264deb643eea08d69e8",
+      "private": true
+    },
+    {
+      "path": "build/analysis/launcher-current-metadata-v1/browser-check-final.log",
+      "bytes": 128,
+      "sha256": "2f4ed661dd6742dd111ead2b5a311feeb57864e651a6321f5931899995674598",
+      "private": true
+    },
+    {
+      "path": "build/analysis/launcher-current-metadata-v1/browser-check.mjs",
+      "bytes": 13651,
+      "sha256": "2cc86c913419c1208d6dd0e332d97a5d2aefcdec1cabe5f4a8c14b60341bd3b6",
+      "private": true
+    }
+  ],
+  "preparation_corrections": [
+    "First combined apply_patch used an outdated index export context; patch validation rejected it and the manifest source was verified equal to its baseline before correct application.",
+    "A new Python generator line was corrected before invocation; the generator then produced all 63 original vectors once.",
+    "A functions.exec string containing unescaped template backticks was rejected by the JS parser before tools ran; no mutation occurred from that call.",
+    "One exploratory fixture read used fixtures/ rather than helpers/ and failed read-only; the actual existing helper was then read.",
+    "A combined documentation patch used an incorrect known-issues title and was rejected before any file changed; all four targets were verified equal to baseline before correcting the title and reapplying.",
+    "Updating the new final test count with a global string replacement also changed historical source hashes containing 582 in two reports. A byte-level history comparison detected this before delivery; only those two old bodies were restored from the verified baseline, preserving their new stage92 additions. All historical bodies are checked again below.",
+    "The first delivery link check ran before its own delivery-check.json existed and stopped before writing either final artifact; the final check allows only the two planned output paths and verifies their existence after creation."
+  ],
+  "windows": {
+    "last_actual": "stage90",
+    "new_ui_reads": 0,
+    "new_commands": 0,
+    "current_launcher_executions": 0,
+    "policy_changes": 0,
+    "gate": "process-only RemoteSigned specific question unanswered"
+  },
+  "not_verified": [
+    "Rendered product UI (unchanged)",
+    "Windows policy, normal launcher execution, file replacement/recovery",
+    "Safari/mobile/WeChat device and official game/network acceptance",
+    "Complete launcher authentication/normal startup chain and current native file transaction/recovery",
+    "Game runtime consumers/communication protocol and independently playable game",
+    "Fresh official metadata probe or current-latest-version status"
+  ],
+  "goal_status": "active",
+  "goal_complete": false,
+  "final_test_failures": 0,
+  "review_corrections": [
+    {
+      "issue": "Refactoring the common factory read cacheTick in legacy calls that previously ignored the option, including getters.",
+      "reproduction": "One new legacy contract test failed before the fix; captured in legacy-regression-before-fix.log.",
+      "fix": "Current factory extracts cacheTick separately; legacy factory only destructures its original httpClient field.",
+      "verification": "Final targeted25, full583 and actual Chrome all passed; default legacy calls retain the former option behavior."
+    }
+  ],
+  "prior_runs": [
+    {
+      "name": "initial-targets",
+      "tests": 24,
+      "passed": 24,
+      "exit": 0
+    },
+    {
+      "name": "full-before-review",
+      "tests": 582,
+      "passed": 582,
+      "exit": 0
+    },
+    {
+      "name": "legacy-regression-before-fix",
+      "tests": 1,
+      "passed": 0,
+      "failed": 1,
+      "exit": 1
+    },
+    {
+      "name": "initial-Chrome",
+      "vectors": 63,
+      "checks": 9,
+      "requests": 69,
+      "errors": 0,
+      "failures": 0,
+      "exit": 0
+    }
+  ],
+  "historical_source_hashes_restored": [
+    "reports/launcher-static.md",
+    "reports/logic-protocol-spec.md"
+  ]
+}

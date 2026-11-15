@@ -1,0 +1,62 @@
+{
+  "observed_utc": "2026-10-25T14:40:41.457917+00:00",
+  "vm_config_checks": {
+    "MoliOffline-ARM64-20261025.utm": {
+      "exact_expected": true,
+      "sha256": "c7c980a646028c867429f2bc047361bcc92e9e396d871c1b438f1e58c14f8743",
+      "network_devices": 0,
+      "clipboard": false,
+      "directory_mode": "None",
+      "usb_sharing": false
+    },
+    "MoliOffline-ARM64-20261025-windows-v8.utm": {
+      "exact_expected": true,
+      "sha256": "c7c980a646028c867429f2bc047361bcc92e9e396d871c1b438f1e58c14f8743",
+      "network_devices": 0,
+      "clipboard": false,
+      "directory_mode": "None",
+      "usb_sharing": false
+    },
+    "MoliRestoreTest-ARM64-20261025-v9.utm": {
+      "exact_expected": true,
+      "sha256": "2f657b4963adc7180e75fe3de152505449e2e643921d1d471ba5ffc18646159c",
+      "network_devices": 0,
+      "clipboard": false,
+      "directory_mode": "None",
+      "usb_sharing": false
+    }
+  },
+  "metadata_checks": {
+    "MoliOffline-ARM64-20261025.utm": {
+      "changed_paths": [
+        "Data/3CDE64AC-478C-4853-85AF-77DE92D646AB.qcow2"
+      ],
+      "sampled_files": 7
+    },
+    "MoliOffline-ARM64-20261025-windows-v8.utm": {
+      "changed_paths": [],
+      "sampled_files": 7
+    },
+    "MoliRestoreTest-ARM64-20261025-v9.utm": {
+      "changed_paths": [
+        "Data/3CDE64AC-478C-4853-85AF-77DE92D646AB.qcow2",
+        "Data/efi_vars.fd",
+        "Data/tpmdata"
+      ],
+      "sampled_files": 7
+    }
+  },
+  "baseline_last_full_hash_evidence": "../vm-install-v9/stage-validation.json",
+  "limitations": [
+    "This pass compares full saved config and filesystem metadata; does not reread mutable disk contents or secrets.",
+    "Baseline hashes were fully checked in v9; this pass proves unchanged sampled metadata only, not a new full hash.",
+    "Guest runtime isolation is not network-capture validation.",
+    "Original VM may continue normal writes while running; no original guest action performed in v10."
+  ],
+  "baseline_open_handles_check": {
+    "exit_code": 1,
+    "stdout_empty": true,
+    "stderr_empty": true,
+    "passed": true
+  }
+}

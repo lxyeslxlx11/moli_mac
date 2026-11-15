@@ -1,0 +1,474 @@
+{
+  "schema": "moli.indirect-flow-stage132.v1",
+  "classification": "fact: original-file static observations; inference and runtime unknowns are separate",
+  "sample_sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+  "sample_bytes": 2904064,
+  "tools": {
+    "rea": "6.7.0",
+    "ghidra": "12.1.4",
+    "analysis_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+  },
+  "prior_evidence": {
+    "stage96_audit": "analysis/game-entry-v1/static-audit.json",
+    "stage131_runtime": "analysis/game-text-observer-runtime-v1/cdb-summary-stage131.json",
+    "stage131_static": "analysis/game-text-observer-runtime-v1/rea-stack-correlation-stage131.json",
+    "known_setter_registration_chain": "Already observed at stage96; revalidated here, not counted as a newly recovered game consumer.",
+    "module_handle_writer": {
+      "evidence_id": "ev_4e8766888aa30fff07d6967975aeccf90cc4297ce865f66a77a4fdd9fb2dc454",
+      "instructions": [
+        "0x117902b PUSH0",
+        "0x117902d CALL[GetModuleHandleA import]",
+        "0x1179033 MOV[0x1265ecc],EAX"
+      ],
+      "source": "verified complete stage96 private bundle"
+    }
+  },
+  "dossiers": [
+    {
+      "evidence_id": "ev_ef55b6a5d7652b7e4c0c2a8d74b8f5d21b98ed0105af8fea8ba291af1b13ba36",
+      "address": "0x1195380",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x1195380",
+            "end": "0x1195aba"
+          }
+        ],
+        "total_bytes": 1851,
+        "span_bytes": 1851,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "native_flow": {
+        "available": true,
+        "operations_retained": 3000,
+        "truncated": true,
+        "omitted_operations_lower_bound": 1
+      },
+      "types_are_default_decompiler_observations": true
+    },
+    {
+      "evidence_id": "ev_a1337067ad7981a3555110c2dc9886243235245f99185f64291c86df014d8be3",
+      "address": "0x11bccc0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x11bccc0",
+            "end": "0x11bcd1c"
+          },
+          {
+            "start": "0x11bcd51",
+            "end": "0x11bcd62"
+          }
+        ],
+        "total_bytes": 111,
+        "span_bytes": 163,
+        "non_contiguous": true,
+        "contains_entry": true
+      },
+      "native_flow": {
+        "available": true,
+        "operations_retained": 24,
+        "truncated": false,
+        "omitted_operations_lower_bound": 0
+      },
+      "types_are_default_decompiler_observations": true
+    },
+    {
+      "evidence_id": "ev_d4d7181db60978a1efe1b0426003ed517615dd32c2c72cb28d7b0de30d151db3",
+      "address": "0x1196710",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x1196710",
+            "end": "0x11967c8"
+          }
+        ],
+        "total_bytes": 185,
+        "span_bytes": 185,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "native_flow": {
+        "available": true,
+        "operations_retained": 52,
+        "truncated": false,
+        "omitted_operations_lower_bound": 0
+      },
+      "types_are_default_decompiler_observations": true
+    },
+    {
+      "evidence_id": "ev_baa07a1b90e4201eb91e470d67dd704d0add17fba569ce4c62dbbd3876849aa6",
+      "address": "0x1195fe0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x1195fe0",
+            "end": "0x1196413"
+          }
+        ],
+        "total_bytes": 1076,
+        "span_bytes": 1076,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "native_flow": {
+        "available": true,
+        "operations_retained": 836,
+        "truncated": false,
+        "omitted_operations_lower_bound": 0
+      },
+      "types_are_default_decompiler_observations": true
+    },
+    {
+      "evidence_id": "ev_1e304d79ecff5ef5f9e1f133b30e9942aef1569d1c82d28f6ab6bb438bb3dfd0",
+      "address": "0x1195c30",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x1195c30",
+            "end": "0x1195d66"
+          }
+        ],
+        "total_bytes": 311,
+        "span_bytes": 311,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "native_flow": {
+        "available": true,
+        "operations_retained": 164,
+        "truncated": false,
+        "omitted_operations_lower_bound": 0
+      },
+      "types_are_default_decompiler_observations": true
+    }
+  ],
+  "registration": {
+    "source_evidence": "ev_ef55b6a5d7652b7e4c0c2a8d74b8f5d21b98ed0105af8fea8ba291af1b13ba36",
+    "export_lookup": {
+      "call": "0x11957f8",
+      "resolver": "0x1196710",
+      "module_base_slot": "0x1265ed0",
+      "name_string_va": "0x124e0e8",
+      "name": "SetFunctionAddresses",
+      "resolver_evidence": "ev_d4d7181db60978a1efe1b0426003ed517615dd32c2c72cb28d7b0de30d151db3"
+    },
+    "registration_call": "0x1195908",
+    "pointer_slot": "[EBP-0x70]",
+    "caller_stack_argument_count": 21,
+    "caller_cleanup_bytes": 84,
+    "push_order_one_based_argument_roles": {
+      "callback_wrapper": 11,
+      "initialization_output_pointer": 16,
+      "entry_output_pointer": 17,
+      "cleanup_output_pointer": 18
+    },
+    "pointer_copy": [
+      {
+        "address": "0x119590e",
+        "effect": "ECX = [EBP-0x54] output slot"
+      },
+      {
+        "address": "0x1195911",
+        "effect": "[EBP-0xd4] = ECX"
+      }
+    ],
+    "initialization_call": "0x1195a3f",
+    "runtime_target_established_by_static_evidence": false
+  },
+  "startup_record": {
+    "base_relative_to_candidate_parent_ebp": "-0xac",
+    "passed_at": "0x1195a38-0x1195a3f",
+    "written_span_bytes": 56,
+    "word_bytes": 4,
+    "fields": [
+      {
+        "instruction": "0x1195985",
+        "offset": 0,
+        "source_expression": "0x1265edc"
+      },
+      {
+        "instruction": "0x119598f",
+        "offset": 4,
+        "source_expression": "0x1265ee0"
+      },
+      {
+        "instruction": "0x119599f",
+        "offset": 8,
+        "source_expression": "ECX"
+      },
+      {
+        "instruction": "0x11959a8",
+        "offset": 12,
+        "source_expression": "EDX"
+      },
+      {
+        "instruction": "0x11959b1",
+        "offset": 16,
+        "source_expression": "EAX"
+      },
+      {
+        "instruction": "0x11959bd",
+        "offset": 20,
+        "source_expression": "ECX"
+      },
+      {
+        "instruction": "0x11959c6",
+        "offset": 24,
+        "source_expression": "EDX"
+      },
+      {
+        "instruction": "0x11959d6",
+        "offset": 28,
+        "source_expression": "EAX"
+      },
+      {
+        "instruction": "0x1195a06",
+        "offset": 32,
+        "source_expression": "ECX"
+      },
+      {
+        "instruction": "0x1195a12",
+        "offset": 36,
+        "source_expression": "EDX"
+      },
+      {
+        "instruction": "0x1195a25",
+        "offset": 40,
+        "source_expression": "EAX"
+      },
+      {
+        "instruction": "0x1195a31",
+        "offset": 44,
+        "source_expression": "0x1266000"
+      },
+      {
+        "instruction": "0x1195a2e",
+        "offset": 48,
+        "source_expression": "ECX"
+      },
+      {
+        "instruction": "0x1195a18",
+        "offset": 52,
+        "source_expression": "0xffffffff"
+      }
+    ],
+    "field_meanings": {
+      "0": "address0x1265edc",
+      "4": "address0x1265ee0",
+      "8": "value loaded from global0x126601c",
+      "12": "value from caller local[EBP-0x3c]",
+      "16": "value from caller local[EBP-0x44]",
+      "20": "value loaded from global0x1265ec8",
+      "24": "address of local[EBP-0x38]",
+      "28": "result of function0x118dd10",
+      "32": "selected module handle: global0x1265db0 or GetModuleHandleA(NULL)",
+      "36": "value loaded from global0x124a71c",
+      "40": "address of local[EBP-0xc8]",
+      "44": "address0x1266000",
+      "48": "value from local[EBP-0x74]",
+      "52": "initial value0xffffffff"
+    },
+    "contract_scope": "Only the caller's observed Win32 initialization-record writes. Not a wire frame, portable game ABI, account structure, or proven game consumer contract."
+  },
+  "callback_wrapper": {
+    "evidence": "ev_a1337067ad7981a3555110c2dc9886243235245f99185f64291c86df014d8be3",
+    "address": "0x11bccc0",
+    "registration_data_reference": "0x11958d0 PUSH0x11bccc0",
+    "normal_path": [
+      {
+        "address": "0x11bccf6",
+        "effect": "write one zero byte to the second incoming pointer"
+      },
+      {
+        "address": "0x11bccfc",
+        "effect": "write one zero DWORD at second pointer+4"
+      },
+      {
+        "address": "0x11bcd0e",
+        "effect": "call first incoming pointer with second incoming pointer as argument"
+      }
+    ],
+    "write_span_minimum_bytes": 8,
+    "bytes_1_through_3_proven_zero": false,
+    "inferred_role": "SEH-framed callback wrapper, supported by handler setup and argument forwarding; specific runtime callback target unknown",
+    "empty_direct_caller_list_does_not_prove_unused": true
+  },
+  "module_source": {
+    "mapper": {
+      "evidence_id": "ev_baa07a1b90e4201eb91e470d67dd704d0add17fba569ce4c62dbbd3876849aa6",
+      "address": "0x1195fe0",
+      "observed_operations": [
+        "consume a length-prefixed source and call0x1195ac0 to produce a temporary buffer",
+        "read PE-shaped headers, request VirtualAlloc and copy headers/section ranges",
+        "call relocation/import helpers, derive section permissions and invoke VirtualProtect",
+        "write allocated base to0x1265ed0 at0x11963f3 and entry VA to0x1265ed4"
+      ],
+      "runtime_allocated_base_not_observed": true
+    },
+    "resolver": {
+      "evidence_id": "ev_d4d7181db60978a1efe1b0426003ed517615dd32c2c72cb28d7b0de30d151db3",
+      "address": "0x1196710",
+      "observed_operations": [
+        "use base+e_lfanew and the export-directory-shaped offset",
+        "compare a selected name with __stricmp",
+        "use name ordinal and function-address arrays, return base+selected RVA or zero"
+      ],
+      "inference": "PE32 exported-name resolver for the registration name supplied by caller"
+    },
+    "section_source": {
+      "evidence_id": "ev_1e304d79ecff5ef5f9e1f133b30e9942aef1569d1c82d28f6ab6bb438bb3dfd0",
+      "address": "0x1195c30",
+      "observed_operations": [
+        "read module-base global0x1265ecc and enumerate PE-shaped section records",
+        "test section flags/size and compare an8-byte constructed marker",
+        "matching branch loads the section VA into EAX; no-match path loads zero"
+      ],
+      "decompiler_discrepancy": "Default decompiler output declares void, while assembly loads EAX and caller0x11953d8 consumes EAX. Do not treat recovered void signature as an authoritative API.",
+      "marker_or_payload_recovered": false
+    }
+  },
+  "instruction_anchors": [
+    {
+      "evidence_id": "ev_0f07eb433ec29271447d78ee011e137e9f9e70bd54d7e869a4c56bbf650f22d2",
+      "address": "0x1195800",
+      "bytes": "894590",
+      "length": 3,
+      "disassembly": "MOV dword ptr [EBP + -0x70],EAX",
+      "file_offset": 288768,
+      "source_match": true
+    },
+    {
+      "evidence_id": "ev_55cea36d3592abb11f6f883a23a80ca58b8f937dfe495a2d2f76d85472ac25aa",
+      "address": "0x1195898",
+      "bytes": "8d45ac",
+      "length": 3,
+      "disassembly": "LEA EAX,[EBP + -0x54]",
+      "file_offset": 288920,
+      "source_match": true
+    },
+    {
+      "evidence_id": "ev_150a77dba211dcb9d9a882169efd738dcda39132f2f587fd97588b83235f2ebb",
+      "address": "0x11958d0",
+      "bytes": "68c0cc1b01",
+      "length": 5,
+      "disassembly": "PUSH 0x11bccc0",
+      "file_offset": 288976,
+      "source_match": true
+    },
+    {
+      "evidence_id": "ev_a15adda226907a8af4af18694dce3235ff518a88f314ace3d427d7c60cd774a7",
+      "address": "0x1195908",
+      "bytes": "ff5590",
+      "length": 3,
+      "disassembly": "CALL dword ptr [EBP + -0x70]",
+      "file_offset": 289032,
+      "source_match": true
+    },
+    {
+      "evidence_id": "ev_9fafbbe1f5d488e195c82e64f2433e0f64b8fe600ca35305e3232ab9e651f835",
+      "address": "0x119590e",
+      "bytes": "8b4dac",
+      "length": 3,
+      "disassembly": "MOV ECX,dword ptr [EBP + -0x54]",
+      "file_offset": 289038,
+      "source_match": true
+    },
+    {
+      "evidence_id": "ev_6d0f59ceb65e0a394fb3260c8f40a4abd072f84bb12bbe7d88aec27220fb1410",
+      "address": "0x1195911",
+      "bytes": "898d2cffffff",
+      "length": 6,
+      "disassembly": "MOV dword ptr [EBP + 0xffffff2c],ECX",
+      "file_offset": 289041,
+      "source_match": true
+    },
+    {
+      "evidence_id": "ev_bc0e26e75d014bb362d653efade7537c42c80e1edc1a593d8b1b48202fadae54",
+      "address": "0x11963f3",
+      "bytes": "8915d05e2601",
+      "length": 6,
+      "disassembly": "MOV dword ptr [0x01265ed0],EDX",
+      "file_offset": 291827,
+      "source_match": true
+    },
+    {
+      "evidence_id": "ev_73cdc0c47238d76f8ac064d4a95895a8ff18b288a62ccac04b600786b4fe40a9",
+      "address": "0x11bccf6",
+      "bytes": "c60000",
+      "length": 3,
+      "disassembly": "MOV byte ptr [EAX],0x0",
+      "file_offset": 449782,
+      "source_match": true
+    },
+    {
+      "evidence_id": "ev_8daa143a1a824ddea6ff11641a15ba5b5ec7f6c68dccab0df0db8d74a9b1d547",
+      "address": "0x11bccfc",
+      "bytes": "c7410400000000",
+      "length": 7,
+      "disassembly": "MOV dword ptr [ECX + 0x4],0x0",
+      "file_offset": 449788,
+      "source_match": true
+    },
+    {
+      "evidence_id": "ev_1bacd730bc1b0bd1b66f1c0a9acfe4d2592d9b99925a183881ba303a3692d6ed",
+      "address": "0x11bcd0e",
+      "bytes": "ff5508",
+      "length": 3,
+      "disassembly": "CALL dword ptr [EBP + 0x8]",
+      "file_offset": 449806,
+      "source_match": true
+    }
+  ],
+  "xrefs": {
+    "evidence_id": "ev_0d0bb7929d808748145874e2940218d0a2a2f0440833256932356b7ef36fb3a5",
+    "address": "0x1265ed0",
+    "references": [
+      "0x11957f1",
+      "0x1195807",
+      "0x11963f3",
+      "0x1197069",
+      "0x11971da"
+    ],
+    "limitation": "Bare xrefs are not typed or unique-writer proof; selected mapper write separately inspected."
+  },
+  "private_bundle": {
+    "path": "build/analysis/game-text-observer-runtime-v1/stage132/rea-indirect-flow.bundle.json",
+    "bytes": 5415008,
+    "sha256": "d9f61c4cbd27611592a9ba5ef539197f1f15e5dfe860706a59767d73d1720283",
+    "record_count": 16,
+    "ids_not_in_verified_stage96_and131": 15,
+    "complete_decompiler_and_instruction_records_kept_private": true
+  },
+  "limitations": [
+    "The setter high-pcode value-flow is truncated at3000 operations with omitted-operation lower bound1; neither complete def-use nor complete memory alias closure is claimed.",
+    "Ghidra signatures/calling conventions are default low-confidence observations. Instruction bytes and call-site data flow take precedence over void/parameter prototypes.",
+    "The known source is an initialization/registration layer. No protected payload was decoded, simulated, extracted or rebuilt; source originals unchanged.",
+    "Both runtime stacks warn following frames may be wrong. Static correspondence does not establish a genuine unwind or identify either unlisted fault address's owner.",
+    "An allocated image need not appear in ordinary loader module lists, but the static mapper does not prove that the specific crash VA belongs to its allocation."
+  ],
+  "original_game_consumer_recovered": false,
+  "game_protocol_fields_added": false,
+  "product_code_changed": false,
+  "root_cause_established": false,
+  "full_goal_complete": false,
+  "rea_final_session": {
+    "open": false,
+    "cleanup_pending": false
+  },
+  "original_instruction_byte_comparisons": {
+    "count": 10,
+    "passed": true
+  }
+}

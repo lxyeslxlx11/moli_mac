@@ -1,0 +1,56 @@
+{
+  "schema": "moli.actor-ride-contract-stage173.v1",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "source_bytes": 1569280,
+  "tool": "REA6.7.0/Ghidra12.1.4",
+  "analysis_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "classification": "static facts and independent reconstruction; native execution not observed",
+  "source_functions": {
+    "local70": "0x4ffe10",
+    "remote70": "0x43e610",
+    "body_mapping": "0x5013b0",
+    "resource_normalization": "0x500a70",
+    "state1_state2": "0x439080",
+    "mounted_action": "0x439a70",
+    "motion": "0x43c700",
+    "root": "0x462cc0",
+    "child": "0x462fc0",
+    "compound_traversal": "0x463120",
+    "deferred_delete": "0x40a090",
+    "attachment60_constructor_only": "0x438bc0",
+    "ordinary_callback": "retained original objdump0x43ba10..0x43bff3; no guessed provider procedure"
+  },
+  "facts": [
+    "70 parameter1>=0 creates/reuses aux38 child(flags0x234/action0/priority10/callback0), normalizes child resource, maps normal body with5013b0, setsstate1/counter0, childaction1 iff current bodyaction1; packet position/facing ignored",
+    "70 parameter1<0 setsstate2/counter0; local ignores repeated state2, remote restarts; child action reset from current body0/1; parameter2 is not an attachment",
+    "Normal resource source is distinct from temporary body; source60 updates both normal/body,80 only temporary body and shared special state; mount survives80",
+    "State1/2 call43c700 even for local and apply deferred facing before rendering; parentaction11/mode0 once, childmode0 once, effectmode0 once",
+    "Entry h=(c-15)^2-225, clamp to previous childY only when c>15 and previousY<=h; x=trunc(previousX*c/30). Compare h to current childY after stepping child; finish only c+1>=16 and h>=currentY",
+    "Exit c0 fast-forwards until h<=previousY or c15; x=previousX-trunc(originalCounter*previousX/30). Clamp h0 when working c>15 and h>=0. Finish working c+1>15 and h>=0",
+    "Effect110096(entry)/110097(exit) is reused if already present, action0/facing0/flags0x34; entry start465/end462,exit start463/end457. Exit start sound occurs only when post-fastforward counter remains0",
+    "Special logical depthY is float32(bodyY+float32(0.001)), root sortflag0; ordinary mounted uses normal depth/ownflag. Native epsilon bytes6f12833a at52d91c are file-backed",
+    "Ordinary mounted loop mode selects child action except remote recordTypeFlags0x100 path, parent helper keeps existing queue/cadence count, child steps once with same mode and staticFlip false. Parent screen offset uses current child attachmentX/Y; mounted path bypasses ordinary culling",
+    "439a70 maps child action to mounted body action:0->0,1->1,2..4->3,5..6->5,8/10->8,9->9,other->body0/child0, for114000..114169; other resource classes choose0/11",
+    "462fc0 type1 chain is traversed before root, type0 after root by463120; children do not consume root slots. Child pool1024 shared per frame; final equal-priority draw queue reverses insertion order",
+    "40a090 sets delete marker+1c=1; independent owned players may close after queued immutable commands are captured. Cleanup4ff430 uses inverted zero predicates for aux34/38; this static fact does not prove a runtime leak",
+    "438bc0 returns allocation pointer in EAX despite decompiler void signature; constructor evidence does not close source60 attachment rendering",
+    "439080 computes body screen coordinates before43c700 motion; root logical depth uses the post-motion position. Independent local input test verifies pre-motion screen and owner synchronization for subsequent ticks.",
+    "Normal source metadata exposes raw and resolved IDs separately; source60 normalization is applied before mounted-body mapping. Child resource changes reuse player identity and cached AP until the next helper step."
+  ],
+  "implementation_safety": [
+    "Reject source arithmetic overflow outside the supported bounded integer domain; no claim of native overflow/x87 bit identity",
+    "Preserve explicit unsupported attachment/party/source contexts instead of drawing invented ordinary output",
+    "Close all independent owned child players on owner lifecycle rather than reproducing questionable native orphaning"
+  ],
+  "unknowns": [
+    "source60 attachment rendering",
+    "party and remaining effects/input/UI/reset",
+    "native allocator behavior and full x87 identity",
+    "current9baa/6e2ff consumer equivalence",
+    "native WeChat device gamePage",
+    "official-server acceptance without an available test account"
+  ],
+  "phase_complete": true,
+  "full_goal_complete": false,
+  "phase_status": "source70/state1/state2 and ordinary mounted composite/owned lifecycle verified; full goal active"
+}

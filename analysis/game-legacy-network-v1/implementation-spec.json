@@ -1,0 +1,119 @@
+{
+  "schema": "moli.legacy-game-envelope-contract-stage152.v1",
+  "profile": "legacy-se6000-37c4-envelope-v1",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "scope": "outer wire envelope; payload remains opaque; independent legacy profile only",
+  "facts": [
+    {
+      "claim": "Sender writes AF EF, transformed payload length as x86 little-endian word at offset2, transformed payload at4, EF AF suffix; callback sees length+6 bytes.",
+      "function": "0x4fce00",
+      "evidence": "ev_927800ed78fb04882782b77fda74840cb97f122371617a6462322401c8e082b8",
+      "anchors": [
+        "0x4fce2f",
+        "0x4fce37",
+        "0x4fce41",
+        "0x4fce58",
+        "0x4fce5e",
+        "0x4fce7e"
+      ]
+    },
+    {
+      "claim": "Receiver scans for first AF, needs8 bytes from that candidate, compares EF then MOVSX16 length, checks complete payload/trailer, consumes prefix+6+length.",
+      "function": "0x4ee470",
+      "evidence": "ev_1b6684fdc97bcedfd5d8c2ec8abe75c6677c71f43120c9a514a328c68bd1f081",
+      "anchors": [
+        "0x4ee4c3",
+        "0x4ee4d9",
+        "0x4ee4e4"
+      ]
+    },
+    {
+      "claim": "No AF returns incomplete without consuming; AF followed by non-EF consumes through AF once8-byte guard passes. Complete bad trailer leaves native queue blocked.",
+      "function": "0x4ee470",
+      "evidence": "ev_1b6684fdc97bcedfd5d8c2ec8abe75c6677c71f43120c9a514a328c68bd1f081"
+    },
+    {
+      "claim": "Receive append cap0x40000; queue consumption is a separate helper.",
+      "function": [
+        "0x4ee330",
+        "0x4ee3d0"
+      ],
+      "evidence": [
+        "ev_a272d1a911a7c021d93ea2c9c792b2979a93c458eed3e9498e285f6180d28109",
+        "ev_683e2eb98a5d4cfd3a108c45cae75cf84bdb91bf85bb2708a22645d0ea166670"
+      ]
+    },
+    {
+      "claim": "Polling receive appends then invokes frame consumer; transformed received text reaches4f8a40. Outgoing sender invokes405110 before envelope construction.",
+      "function": [
+        "0x4edef0",
+        "0x4fce00"
+      ],
+      "evidence": [
+        "ev_5fd8bc4bf691062dea2ac1b7cdc4127f04dc060ef8e32b86446ec64bcecce480",
+        "ev_927800ed78fb04882782b77fda74840cb97f122371617a6462322401c8e082b8"
+      ]
+    }
+  ],
+  "layout": [
+    {
+      "offset": 0,
+      "bytes": 2,
+      "value": "afef"
+    },
+    {
+      "offset": 2,
+      "bytes": 2,
+      "format": "uint16 little-endian; native receive sign-extends"
+    },
+    {
+      "offset": 4,
+      "bytes": "length",
+      "format": "opaque transformed wire payload"
+    },
+    {
+      "offset": "4+length",
+      "bytes": 2,
+      "value": "efaf"
+    }
+  ],
+  "independent_policy": {
+    "payload_domain": "0..32767; writer word can represent65535 but receiver MOVSX unsafe for high-bit values, therefore independent writer/reader reject them",
+    "small_payload_guard": "0/1-byte payload envelopes encode as6/7 bytes; reader waits until8 candidate bytes available, does not flush at EOF",
+    "budget": 262144,
+    "ownership": "append copies input, frame owns payload, consumed/closed/error state wiped",
+    "malformed": "complete bad trailer or high-bit length is terminal error and clears reader; differs from native -1/head blocking or undefined pointer access",
+    "input_budget": "reject without changing previously queued bytes; arbitrary chunk framing, one event per next call",
+    "finish": "caller drains then finishes; remaining noise/incomplete envelope => terminal incomplete error",
+    "no_auto_resync_on_bad_trailer": true
+  },
+  "api": [
+    "LEGACY_GAME_ENVELOPE_PROFILE",
+    "LegacyGameEnvelopeError",
+    "encodeLegacyGameEnvelope(bytes)",
+    "createLegacyGameEnvelopeReader(): append(bytes), next(), finish(), close(), inspect()"
+  ],
+  "ordinal_reference": {
+    "url": "https://raw.githubusercontent.com/wine-mirror/wine/master/dlls/wsock32/wsock32.spec",
+    "authority": "Wine ABI reference only; raw PE imports prove ordinal numbers, not names",
+    "map": {
+      "3": "closesocket",
+      "4": "connect",
+      "16": "recv",
+      "19": "send",
+      "18": "select",
+      "151": "__WSAFDIsSet"
+    },
+    "correction": "early private key xref_connect actually points at ordinal3/closesocket; not used as connect evidence"
+  },
+  "unknown": [
+    "405110/4051f0 payload transforms and key setup",
+    "text token grammar and message consumers",
+    "identity/authentication and real handshake",
+    "current9baa/6e2ff version equivalence",
+    "renderer/movement/battle and platform/official acceptance"
+  ],
+  "implementation_is_independent": true,
+  "protected_payload_recovery": false,
+  "source_program_execution": false
+}

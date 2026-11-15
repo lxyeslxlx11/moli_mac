@@ -1,0 +1,46 @@
+{
+  "schema": "moli.current-launcher-login.tests.v1",
+  "recorded_utc": "2026-10-30T12:28:15.971898+00:00",
+  "node_version": "v26.9.0",
+  "python_version": "3.9.6",
+  "before_fix": {
+    "new_regression_exit_code": 1,
+    "observed_error": "PROFILE_STATE_ENCODING",
+    "private_log": "build/analysis/launcher-current-login-v1/regression-before.log"
+  },
+  "after_fix": {
+    "exit_code": 0,
+    "tests": 78,
+    "pass": 78,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "command": [
+      "node",
+      "--test",
+      "--test-reporter=tap",
+      "shared/tests/launcher-current-login.test.mjs",
+      "shared/tests/launcher-login.test.mjs",
+      "shared/tests/launcher-handoff.test.mjs",
+      "shared/tests/launcher-launch.test.mjs",
+      "web/tests/launcher-session.test.mjs",
+      "web/tests/launcher-launch.test.mjs"
+    ],
+    "private_log": "build/analysis/launcher-current-login-v1/regression-after.log"
+  },
+  "synthetic_vectors": {
+    "count": 48,
+    "generator": "analysis/launcher-current-login-v1/build_state_vectors.py",
+    "data": "analysis/launcher-current-login-v1/state-vectors.json",
+    "native_oracle": "Python struct UInt32 little-endian storage followed by signed16 read; not the JavaScript implementation"
+  },
+  "source_verification": {
+    "anchors_passed": 5,
+    "wrong_identity_rejected": true,
+    "result": "analysis/launcher-current-login-v1/source-verification.json"
+  },
+  "scope": "Byte projection and Node adapter regressions only; no browser, device, official account or game compatibility verification",
+  "passed": true,
+  "full_goal_complete": false
+}

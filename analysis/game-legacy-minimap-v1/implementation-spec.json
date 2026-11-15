@@ -1,0 +1,45 @@
+{
+  "stage": 291,
+  "source": "Fixed37c4,REA6.7.0/Ghidra12.1.4;retained analysis plus new minimap dossiers and complete original-byte checks.",
+  "correction": "The selected archive already contains341 CUT files and337 AUT files.The missing23.cut belongs to an authored test selector and is not evidence of a missing general CUT distribution.",
+  "source_functions": {
+    "window": "463780;three arguments are cache identityB,centerX,centerY.Stack-probe distortion is resolved from original instructions;map width/height come from the20-byte cache header.",
+    "frame": "4636a0 selects107x107,54x54,27x27 grids;mode1 refreshes raw RGB,other modes refresh indexed data when dirty.",
+    "AUT": "4649b0 selects resourceSelector unless-1,then identityB.464bc0 reads up to477603 raw RGB bytes from fixed bin/PUK2/cutdat/%d.aut.",
+    "ordinary_palette": "452960 scans final runtime image indices;groups0/1/2 produce colors for1000..19999 and220000..265535(mapped minus200000).Later eligible indices overwrite earlier colors;other groups zero direct16-bit slots.",
+    "representative_color": "44b610 averages RGB of nonzero image pixel indices using the explicit original palette.44b720 starts with candidate0,then strictly closer indices16..239;ties keep the earlier candidate.",
+    "object_grid": "463780 uses loaded flag0x4000,ground color first,then row-major objects.Nonzero object color spreads right/up by tileWidth/tileHeight when collisionClass0;other classes set one cell.",
+    "raster": "448bb0/4494a0 draw a four-pixel diamond stencil per grid cell on transparent backing.Zero color becomes RGB000001.The player stencil sits at(2*n+1,n+1);each mode has its own clock,marker color is chosen before a1000ms unsigned deadline toggle."
+  },
+  "implementation": [
+    "Shared pure grid,representative-color,raster,marker and alpha-overlay functions;source-supported zoom dimensions and explicit palette/AUT inputs.",
+    "The world copies the minimap window through bounded map-cache strips,including original zero padding and actual map revision/center/selector.",
+    "The resource library owns bounded on-demand tile colors and explicit AUT reads;it does not generate guessed map colors or reuse stale unread AUT tails.",
+    "One thin minimap owner is shared by web and wx hosts.Asynchronous resource preparation is generation-checked;completed overlays are composited synchronously into the next ordinary frame.",
+    "Browser/Page offer show-hide and range controls.The independent UI defaults hidden and places the overlay at the top right;native palette/hardware/window placement and complete global cadence are not asserted."
+  ],
+  "ownership": "Minimap snapshots,grids,AUT bytes and temporary pixels are owned and cleared on replacement/close.Main game requests are not replayed by minimap preparation.Missing minimap material is a visible unavailable state.",
+  "acceptance": [
+    "Meaningful independent original palette/grid/raster/blink/ownership cases and source/generated comparisons.",
+    "Actual CUT/AUT paired material through mode1 static and animated scene paths,navigation and minimap colors.",
+    "Web desktop/touch and source/generated Page controls,scene reload,hide/show/range and disposal.",
+    "Appropriate full regression,build input/output hashes and13 canonical documentation updates."
+  ],
+  "remaining": [
+    "Full native scheduler,hardware palette and16/24-bit rendering backend equivalence.",
+    "Unobserved gameplay/RID/self/mixed/empty/local-stop contexts,current handoff and full resource-version compatibility.",
+    "Native WeChat/physical-phone/file/audio and official-account/server acceptance;37 original requirements and10 incomplete groups remain."
+  ],
+  "goal_status": "active",
+  "full_goal_complete": false,
+  "original_execution": 0,
+  "VM_actions": 0,
+  "official_sessions": 0,
+  "observed_material_boundary": {
+    "selector": 59529,
+    "static_scene_and_minimap": "positive local product flows",
+    "animation_113058": "decodes54frames but actual scene rejects unsupported paletteSelector320 with LEGACY_SCENE_FRAME_DRAW_STYLE",
+    "candidate_probe": "418 selected CUT animation candidates have nonzero palette selectors;no style is discarded or treated as selector0",
+    "follow_up": "trace nonzero animation palette selection and its actual resource-version relation before extending drawing"
+  }
+}

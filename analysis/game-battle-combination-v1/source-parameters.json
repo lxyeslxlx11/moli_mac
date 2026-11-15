@@ -1,0 +1,72 @@
+{
+  "schema": "moli.combination-parameters-stage220.v1",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "opcode": 8,
+  "main": "0x4260b0 analyst-seeded retained main;CMB entry0x426447",
+  "phases": [
+    "prepare and activate arrival",
+    "wait70 arrivals then reset owner counter",
+    "activate ordered actors;banner before last hit",
+    "434b90 actual wait/reface/release"
+  ],
+  "owner_counter": "body+0x106c points to owning command;command data0",
+  "pending": "body+0x1038=1 for nonE000 except final actor0;both reset helpers clear",
+  "category": "actor+0x103c=-1;strong4347e0 also1040=-1",
+  "result_gate": {
+    "partial": "signal<20000 && pending==1 && !(flags&0x2000)",
+    "full": "(signal<20000 && pending!=1) || (flags&0x2000)"
+  },
+  "accumulator": "signed32 sum only when !(flags&E000);stored in each actor result tuple",
+  "RID3": "436e60 inserts two metadata tuples plus exact original tuple",
+  "scratch": "native stack fourth cell uninitialized before first RID3;portable0 is explicitly tagged unknown",
+  "last_E000": "4349e0 writes -1 at current target action",
+  "banner": {
+    "constructor": "0x420c50 canonical505B",
+    "callback": "0x420e50 analyst-seeded617B171instructions;not canonical REA",
+    "movement": "0x4210e0 canonical90B",
+    "condition": "!(controlFlags&0x404) && count>1",
+    "count_cap": 10,
+    "nodes": "9 unless cappedcount10 then10",
+    "priority": 11,
+    "draw_priority": 205,
+    "x": [
+      0,
+      34,
+      54,
+      66,
+      88,
+      108,
+      131,
+      152,
+      171,
+      0
+    ],
+    "mirror": [
+      0,
+      8,
+      7,
+      6,
+      5,
+      4,
+      3,
+      2,
+      1,
+      9
+    ],
+    "start": "lastActor>9 ? [-203,96,90] : [672,384,270]",
+    "states": 6,
+    "integer_boxes": 2,
+    "life_threshold": 240,
+    "speed_deceleration": [
+      0.7,
+      0.3
+    ]
+  },
+  "maximum_nonoverlapping_command_members": 20,
+  "completeNativeCombination": false,
+  "completeBattleGameplay": false
+}

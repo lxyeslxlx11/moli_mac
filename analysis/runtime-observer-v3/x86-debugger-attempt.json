@@ -1,0 +1,57 @@
+{
+  "schema": "moli.runtime-observer-v3.x86-debugger-attempt.v1",
+  "recorded_utc": "2026-10-27T19:36:26.528241+00:00",
+  "source": "Fresh CUA whole command and console results. No screenshots, account identifiers or raw register dump saved.",
+  "entry": "cmd.exe /d /c D:\\run86.cmd",
+  "cdb_path": "C:\\Program Files (x86)\\Windows Kits\\10\\Debuggers\\x86\\cdb.exe",
+  "cdb_sha256": "6ca9dd8ee2d764087c4a561ecfee05cdf17751dfd9c2f21700211a897cd68129",
+  "Windows_Authenticode": "Valid",
+  "version": "10.0.26100.9457 X86",
+  "fixture_sha256": "01588841278dcb7360c91333f0f7c5ec81aec84625ca274be54ad9011aaf10eb",
+  "fixture_created_under_debugger": true,
+  "actual_image_base": "0x00970000",
+  "module_end": "0x00976000",
+  "base_matches_lm": true,
+  "actual_untimed_return_site_events": [
+    {
+      "api": "GetCommandLineW",
+      "instruction_pointer_rva": 4143
+    },
+    {
+      "api": "CreateFileMappingW",
+      "instruction_pointer_rva": 4407
+    },
+    {
+      "api": "OpenFileMappingW",
+      "instruction_pointer_rva": 4498
+    },
+    {
+      "api": "MapViewOfFile",
+      "instruction_pointer_rva": 4581
+    },
+    {
+      "api": "UnmapViewOfFile",
+      "instruction_pointer_rva": 4662
+    },
+    {
+      "api": "CloseHandle",
+      "instruction_pointer_rva": 4681
+    },
+    {
+      "api": "CloseHandle",
+      "instruction_pointer_rva": 4697
+    }
+  ],
+  "seven_sites_match_REA_and_static_bytes": true,
+  "callback_first_line_interleaved_with_warning": "Timestamp verification warning appeared between GetCommandLineW label and following 102f value. Six later lines intact. This is a normalized visual transcription, not a directly machine-parseable raw log.",
+  "script_comment_error": "A semicolon in the first $$ comment split the command and caused Could not resolve error at HA256.... Other commands executed and all seven records were observed. Use a period rather than semicolon in subsequent CDB comment.",
+  "native_debugger_output_privacy_limit": "CDB automatically printed initial general registers and module metadata for this original fixture. Only selected metadata is retained. This run does not prove a general collector suppresses raw registers.",
+  "debugger_return": "MOLI_CDB_X86_EXIT83=0 and PowerShell prompt observed without manual stop/kill.",
+  "target_exit_code": null,
+  "target_exit_code_limit": "-G skipped final break and no target exit code was printed. Debugger zero is not target zero.",
+  "event_timing_recorded": false,
+  "existing_timed_contract_pass_claimed": false,
+  "general_API_entry_collector_or_original_game_compatibility_claimed": false,
+  "original_launcher_game_executed": false,
+  "next": "Make target-exit event visible in one bounded original-fixture lifecycle followup; do not repeat already-passing product tests."
+}

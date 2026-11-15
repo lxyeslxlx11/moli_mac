@@ -1,0 +1,137 @@
+{
+  "schema": "moli.stage113.tests.v1",
+  "recorded_utc": "2026-10-30T15:41:52.229437+00:00",
+  "passed": true,
+  "tools": {
+    "Node": "v26.9.0",
+    "Python": "3.9.6"
+  },
+  "initial_before_capacity_change": {
+    "command": [
+      "node",
+      "--test",
+      "web/tests/launcher-game-patch-source.test.mjs",
+      "web/tests/launcher-game-patch.test.mjs",
+      "shared/tests/launcher-patch.test.mjs",
+      "web/tests/launcher-catalog-data.test.mjs"
+    ],
+    "exit_code": 0,
+    "tests": 31,
+    "pass": 31,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "private_log": "build/analysis/launcher-current-entry-v1/regression-initial.log"
+  },
+  "final": {
+    "command": [
+      "node",
+      "--test",
+      "web/tests/launcher-game-patch-source.test.mjs",
+      "web/tests/launcher-game-patch.test.mjs",
+      "shared/tests/launcher-patch.test.mjs",
+      "web/tests/launcher-catalog-data.test.mjs",
+      "shared/tests/game-patch.test.mjs",
+      "shared/tests/launcher-resources.test.mjs",
+      "web/tests/launcher-resource-store.test.mjs",
+      "web/tests/launcher-patch-ui.test.mjs"
+    ],
+    "exit_code": 0,
+    "tests": 79,
+    "pass": 79,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "private_log": "build/analysis/launcher-current-entry-v1/regression.log",
+    "test_files": 8
+  },
+  "modified_product_sources": [
+    {
+      "path": "shared/index.mjs",
+      "before_sha256": "6098931265305a66af2acea6a59e1e348c16f9a5075980de2a19b8316959cc6e",
+      "after_sha256": "59f74eedf76b9c418fd8f5a9a516c3931eaab7dd3499ba0f312739f744f7ef3d"
+    },
+    {
+      "path": "shared/game-patch.mjs",
+      "before_sha256": "7d9cf891140cdd69e9b637a60b7906f953118ebe0be7ec6fac59ff9811b5cbb2",
+      "after_sha256": "358b24a8a9f097f6c72e98d68bcd51c9bb06369d5d87795e8d953339fcd07e62"
+    },
+    {
+      "path": "web/launcher-game-patch.mjs",
+      "before_sha256": "cd7fd0615165e1d94e90387c55843e68822f5ff569a3e5ccfd4abdb4722e2ae6",
+      "after_sha256": "2625d28ed2af1e11fc5bbf72bf64f35afbc5689e583a86b2bfd6ebf1b072d430"
+    },
+    {
+      "path": "shared/launcher-resources.mjs",
+      "before_sha256": "0ed27718c113feb0361d055e4ee4371d3ef1579c68364a2b95e30d844a547784",
+      "after_sha256": "4adf44d95a5819d768794885fce6f14477c360804c8c85c66f012be1439c9364"
+    }
+  ],
+  "new_product_or_test_sources": [
+    {
+      "path": "shared/launcher-patch-sources.mjs",
+      "bytes": 1910,
+      "sha256": "eac542766fab15444f039c21224a1329f89275c501fdf16c545c74608ced867d"
+    },
+    {
+      "path": "web/tests/launcher-game-patch-source.test.mjs",
+      "bytes": 11734,
+      "sha256": "1c6189ac2c4cc5252102f4d2c9a38eafd781655dc839a2f872e78e4e3c112604"
+    }
+  ],
+  "new_tests_added": 11,
+  "meaningful_coverage": [
+    "Exact fingerprint/address/port source profile; frozen owned records",
+    "Default preservation and explicit profile, metadata, ordinal and independent-origin gates",
+    "Manifest/archive stay on selected alternate despite caller mutation; owned ZIP/MD5 candidate",
+    "Selected-source failure, skip and cancellation do not switch sources or add requests",
+    "257 and512 original blocks accepted;513 rejected under joint512 block/operation bound",
+    "Existing native producer/exit vectors, loopback patch GETs, transaction failures and whole deadlines",
+    "Legacy default binding key and canonical resources.v1 remain readable",
+    "Pinned source0/source1 have distinct keys and conditional resources.v2 preserves source identity",
+    "Actual page state rejects cross-source cached candidate and preserves matching-source selected bytes",
+    "Schema/profile/ordinal pairing and accessors rejected; existing cache/store/state regressions"
+  ],
+  "fixture_policy": "New tests use original synthetic catalogs/manifests and existing original synthetic ZIP vectors; no official payload fixture",
+  "browser_mobile_wechat_or_official_acceptance": false,
+  "full_goal_complete": false,
+  "before_cache_owner_review": {
+    "command": [
+      "node",
+      "--test",
+      "web/tests/launcher-game-patch-source.test.mjs",
+      "web/tests/launcher-game-patch.test.mjs",
+      "shared/tests/launcher-patch.test.mjs",
+      "web/tests/launcher-catalog-data.test.mjs",
+      "shared/tests/game-patch.test.mjs"
+    ],
+    "exit_code": 0,
+    "tests": 53,
+    "pass": 53,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "private_log": "build/analysis/launcher-current-entry-v1/regression-before-cache.log"
+  },
+  "cache_regression_before_owner_fix": {
+    "command": [
+      "node",
+      "--test",
+      "web/tests/launcher-game-patch-source.test.mjs"
+    ],
+    "exit_code": 1,
+    "tests": 11,
+    "pass": 8,
+    "fail": 3,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "private_log": "build/analysis/launcher-current-entry-v1/cache-before-fix.log",
+    "expected_failure": true,
+    "root_cause": "Binding projection dropped source profile/ordinal, merging cache keys and allowing cross-source page restore"
+  },
+  "browser_indexeddb_v2_persistence_or_platform_acceptance": false
+}

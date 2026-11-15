@@ -1,0 +1,141 @@
+{
+  "schema": "moli.installed-legacy-launcher.rea-bridge.v1",
+  "recorded_utc": "2026-10-30T06:55:25.949742+00:00",
+  "classification": "Fact: static identity bridge to observed installed files; no observed vendor lifecycle this turn",
+  "source_records": [
+    "analysis/game-install-context-v1/platform-installed-stage107.json",
+    "analysis/game-install-context-v1/source-recheck-stage107.json",
+    "analysis/game-install-context-v1/launcher-unpack-stage107.json"
+  ],
+  "packed_sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+  "unpacked_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "tools": {
+    "static_extraction": "innoextract1.9",
+    "ordinary_offline_decompression": "UPX5.2.1",
+    "resource_provider": {
+      "id": "rea-pe-resources",
+      "name": "REA PE resource parser",
+      "version": "1"
+    },
+    "native_provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "analysis_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+  },
+  "embedded_updater": {
+    "type": "BIN_DATA",
+    "id": 143,
+    "language_id": 2052,
+    "code_page": 1252,
+    "file_offset": 904860,
+    "bytes": 46080,
+    "sha256": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+    "matches_installed_updater": true,
+    "evidence_id": "ev_8e3b8d92d20482f369f7e9f6baf8763be737f8352f9a3e56a7d98199dd60c4f5",
+    "complete_resource_inventory": {
+      "examined_entries": 325,
+      "resources": 156
+    }
+  },
+  "native_handoff": {
+    "procedure": "0x4015a0",
+    "body_end_inclusive": "0x405199",
+    "call_site": "0x401d46",
+    "owner_evidence_id": "ev_c16eb7fda72fda6b17dd990934141385609376e0e2b6bf8cf50786704b7d50a4",
+    "pseudocode_evidence_id": "ev_bdc5cb0619525058e2434b60640c55040319a54ddb869589b060fc3e94f3bf8e",
+    "instructions_evidence_id": "ev_e80478eb2db1adc38b34aaf166d64da553dbadc9db9c09facd7260a9ca585aac",
+    "facts": [
+      "The fixed old launcher uses the five-slot updater command format; first integer comes from the observed API return source, not a verified correct parent PID.",
+      "Selected handoff passes null working directory/environment and zero flags; the updater inherits its launch context.",
+      "Fresh static correlation supports explicitly supplying the real launcher installation directory as the parent working directory during a later normal launch."
+    ],
+    "byte_anchors": [
+      {
+        "address": "0x401be0",
+        "file_offset": 4064,
+        "bytes_hex": "ff1570164b00",
+        "role": "API return source IAT call",
+        "matches": true
+      },
+      {
+        "address": "0x401d0a",
+        "file_offset": 4362,
+        "bytes_hex": "68d41a4b00",
+        "role": "five-slot format pointer",
+        "matches": true
+      },
+      {
+        "address": "0x401d46",
+        "file_offset": 4422,
+        "bytes_hex": "ff156c134b00",
+        "role": "CreateProcessA IAT call",
+        "matches": true
+      },
+      {
+        "address": "0x401ccd",
+        "file_offset": 4301,
+        "bytes_hex": "e87e730000",
+        "direct_target": "0x409050",
+        "matches": true
+      },
+      {
+        "address": "0x401ce2",
+        "file_offset": 4322,
+        "bytes_hex": "e869730000",
+        "direct_target": "0x409050",
+        "matches": true
+      },
+      {
+        "address": "0x401d16",
+        "file_offset": 4374,
+        "bytes_hex": "e8f5be0000",
+        "direct_target": "0x40dc10",
+        "matches": true
+      },
+      {
+        "address": "0x4b1ad4",
+        "file_offset": 724180,
+        "bytes": 35,
+        "ascii_format": "LauncherUpdater.exe %d %s %s %s %s",
+        "nul_terminated": true,
+        "matches": true
+      }
+    ],
+    "existing_spec": "reports/logic-protocol-spec.md: second-stage producer and third-stage consumer tables",
+    "scope": "Reconfirmed existing static contract, no new protocol field or runtime behavior declared"
+  },
+  "private_evidence": [
+    {
+      "path": "build/analysis/game-install-context-v1/stage107/rea-path-evidence.json",
+      "bytes": 344282,
+      "sha256": "9c34081c23ed2af1a682500be0c272830862ebf8fa6768dead84c5913dd474c4"
+    },
+    {
+      "path": "build/analysis/game-install-context-v1/stage107/rea-handoff-instructions.json",
+      "bytes": 295113,
+      "sha256": "92a388247dcc9d7147532b2ae5751315a1d3ac86224b4ba5e0ece7da75a29911"
+    },
+    {
+      "path": "build/analysis/game-install-context-v1/stage107/rea-evidence-bundle.json",
+      "bytes": 40110053,
+      "sha256": "43b1d53b1390446a6e491a5b022ee6c2a164b2be437e14c52f51ce6c158c62cb"
+    },
+    {
+      "path": "build/analysis/game-install-context-v1/stage107/rea-snapshot.json",
+      "bytes": 79443397,
+      "sha256": "1d36677fcb537aa7763ca54bc3b3780cbd10e5f162ca5ff1822e2cb2a7550734"
+    }
+  ],
+  "exported_records_including_imported_history": 102,
+  "new_records_not_all_102": true,
+  "session_closed_with_snapshot": true,
+  "limitations": [
+    "Packed original PE resource request correctly failed on unbacked resource range; no partial success was used. Ordinary UPX output identity matched the historical analysis source before retrying.",
+    "599040/46080 old pair is distinct from later1666048/814080 pair. Newer updater journal/ACK rules are not assigned to the installed old pair.",
+    "Raw pseudocode and vendor binary bytes remain private temporary/build material.",
+    "No installed XML hash readback, current vendor process count, Win7 new-path setting, automatic updater completion, original game consumer, authentication or platform/official compatibility is proven.",
+    "No product module or interface change; protocol matrix remains7observed/13unknown."
+  ]
+}

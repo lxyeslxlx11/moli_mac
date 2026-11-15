@@ -1,0 +1,204 @@
+{
+  "schema": "moli.actor-context-contract-stage171.v1",
+  "phase": 171,
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "tools": {
+    "rea": "6.7.0",
+    "ghidra": "12.1.4",
+    "profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+  },
+  "classification": {
+    "facts": "Static fixed37c4 category/record construction and ordinary callback/helper instructions",
+    "derived": "Portable per-actor known-field binding and owning graphic filter for the supported ordinary path",
+    "unverified": "Complete native actor/UI/party/child state, all unmodeled flag writers, current9baa/6e2ff, native devices and official service"
+  },
+  "source_facts": {
+    "category": "43f380 parameter13 is C0 column1. The common PUSH of the normalization argument remains on the remote path: 4f1baa ESP+20 refers to pre-push ESP+1c, not local branch mode15 at ESP+20. Do not confuse those stack slots.",
+    "type_flags": "4401b0: category1 ->8; 6/13/27 ->17;32 ->33;71 ->257; others ->1. Assigned only on initial character record registration. Graphic/value object registration43fcd0 assigns2. Existing record type survives later unit refresh.",
+    "draw_flags": "440180: category1/32 ->0x100,3 ->0x200,otherwise0x1000.43f380 ORs0x400000 when base has0x1000 and value7 has both0x100/0x40; writes record draw field and ORs it into body+24.43fcd0 writes draw0x400 and ORs body0x400. Body category flags accumulate across unit refreshes.",
+    "body": "43c000 initializes body+24=0x34. Local4ff3b0 ORs0x80. This work adds proven source body bits to the explicit remaining context; it does not erase unresolved bits supplied by that context.",
+    "motion_word": "43f380 truncates value8 to record+40 low16 and ORs flag11/12 into record+42 masks0x40/0x80. Only those proven masks are bound; mode/party/high gate writers remain explicit.",
+    "initial_facing": "For newly registered remote characters,43f380 sets facing0 only when category>3,DAT_00957e88(sceneMode)==0 and4fdb40(normalizedResource)==0.4fdb40 returns1 exactly for100000<=resource<200000. Source4ef870 maps wire field8 to45f2a0 param7,then4649b0 param4 writes957e88.45eef0 initializes it to0 through45f2a0 on explicit main5 preparation. Animation runtime.soundScene is a separate input and is not its producer. The retained sound consumer4fd0d0 reads DAT_00f5f17c for its9 suppression condition, not957e88.",
+    "range": "43ba10 body0x400 branch removes a nonlocal actor outside inclusive local logical X/Y +/-16.403490 is subtract,403440 add,4033e0 compares actor<lower,403580 compares upper<actor. Wrapped physical storage is not implemented.",
+    "dedup": "440860 keys current graphic index(actor+20), logical X,Y. Returns1 for a duplicate among stored triples; stores new triples only while count<100. The 101st distinct key is not stored, so later repetitions of that unrecorded key are not suppressed.",
+    "reset": "440850 sets dedup count0;501a50 ordinary case3 calls it before409fe0 actor callbacks. Per-frame filtering is not persistent across source frames.",
+    "boundary": "43ba10 remains decoded callback code without a Ghidra procedure. Reuse its retained original objdump and exact instruction checks; do not create or guess a procedure."
+  },
+  "implementation": {
+    "source_metadata": "Actor owner records proven initial type, current controlled draw bits, accumulated body bits and known low-word/flag masks from actual construction/unit updates. Metadata is immutable in public snapshots, cleared with owners and recreated with source local/scene keys.",
+    "binding": "A pure resolver merges proven fields into the explicit unresolved actor context. Known record type overrides its full16 bits, controlled draw mask0x401700 replaces only those bits, body source bits are ORed, and only known motion masks replace their bits. Unindexed=false is bound from known local construction/indexed records. Gate/special/frozen/child and other unresolved bits remain explicit; no hidden source defaults.",
+    "runtime": "Actor scene mode is initially unknown, set to source-proven0 on explicit character-entry preparation, then updated from actual parsed scene.fields[8] before beginScene. configureSceneMode(mode) updates future constructors without rewriting existing facing. Only mode0/category>3 requires normalized resource for this branch. No new wire/startup field or guessed runtime defaults.",
+    "frame": "Internal bindActorSource enables source resolution and the body0x400 ordinary range/dedup handler. Legacy explicit source-provider behavior remains supported. Animation helper events/phase advance before culling, then visible actors join source depth order; out-of-range remote owners/players are disposed, duplicates remain alive. Missing local coordinates or unsupported compound handlers fail explicitly.",
+    "lifecycle": "A bounded100-entry graphic filter is fresh for every source actor frame and closed on success/failure. Deferred frame-key removals occur after lease checks and composition, independently disposing players. No fabricated removal network message or source packet."
+  },
+  "acceptance": [
+    "Independent Python category/flag/facing and inclusive range/100-entry dedup vectors",
+    "Mixed local/character/graphic/value actor frames and source depth/pixels, ownership, error and byte-mask tests",
+    "Actual original TCP and persistent game page with mixed entities",
+    "Full Node, neutral/generated WeChat bundles and all canonical documents"
+  ],
+  "remaining": [
+    "Unresolved record gate/special/frozen/child/global input and party producers",
+    "Complete native main9/UI/reset and remaining handlers",
+    "Production startup/digest/Chinese encoding and native WeChat host",
+    "Battle/effects/remaining gameplay/current version/device/official acceptance"
+  ],
+  "goal_status": "active",
+  "full_goal_complete": false,
+  "functions": [
+    {
+      "entry": "0x440850",
+      "id": "ev_16e1976bce78f6a3f1ea627d5be36ec4dc24ca888df0ffdccf1cacb948921508",
+      "requested": "0x440850"
+    },
+    {
+      "entry": "0x440860",
+      "id": "ev_199427f3384529504296edceb1e23595cf1865de6c1090b7f4141f7bfc8329c9",
+      "requested": "0x440860"
+    },
+    {
+      "entry": "0x4fdb40",
+      "id": "ev_8aa034c4a89363c86adba987d6618fa19a52c96184b4f98cf451213bd879ab23",
+      "requested": "0x4fdb40"
+    },
+    {
+      "entry": "0x403580",
+      "id": "ev_ccd58e3b020aa8e0163c4429d8fa9e1aec4c9f4fe7c264d61181813d5d5a7d69",
+      "requested": "0x403580"
+    }
+  ],
+  "reused_functions": [
+    {
+      "entry": "0x4033e0",
+      "id": "ev_151c5d60302aa76fcd6894abd3fc10201a038075e27d0407df0490e8b79dc375"
+    },
+    {
+      "entry": "0x403440",
+      "id": "ev_4c45021861bbc854befa0fc93855a487deab95d83e823f1b7b5905ea5efd1164"
+    },
+    {
+      "entry": "0x403490",
+      "id": "ev_a3b719d7d72eacf804674ab655a53ce3b09ab814d05c5ea5d06d8ba6e216846d"
+    },
+    {
+      "entry": "0x409e70",
+      "id": "ev_cc31618dde856bade36f501b98d37ed4863dc154fa245a375e43cfb8846ca6c1"
+    },
+    {
+      "entry": "0x439080",
+      "id": "ev_92178296493e5452914dec3ab94b9cf7bb783518655431e05560b6510a470a07"
+    },
+    {
+      "entry": "0x43b9d0",
+      "id": "ev_056180b8cc7b5b79f0fccd1e98ea26bef8c88835fcb8b6e31fe013c780e0c629"
+    },
+    {
+      "entry": "0x43c000",
+      "id": "ev_6cc89791ee741db32b17713b90554d485f603b66a7073fd959e8329c05205f76"
+    },
+    {
+      "entry": "0x43c700",
+      "id": "ev_2ae7af2f30a53492c1e999dd32533ebd0cbbba2a12b5206975876243838cf45b"
+    },
+    {
+      "entry": "0x43f070",
+      "id": "ev_05a7e3b7a2264895f5c06ac0965a06b16f157f7ae120dcdc2b3b965b566f3436"
+    },
+    {
+      "entry": "0x43f380",
+      "id": "ev_100070ef688a9747010435452f785f9d5b3d04d48e9cf104e6573b3137790af2"
+    },
+    {
+      "entry": "0x43fcd0",
+      "id": "ev_4731598eaf7fb715aab5ef25cfec3a183f08f9e0edc8ef47e1a3d1f15ee987fe"
+    },
+    {
+      "entry": "0x4400e0",
+      "id": "ev_bb7565d1186a741c7bff7fe9100ad17de95937a3b1bde72a1fda05522f818ca0"
+    },
+    {
+      "entry": "0x440180",
+      "id": "ev_2ec084ab1c262806c152059396466d5ea5c582f21ad614dd30af78fa184c7f66"
+    },
+    {
+      "entry": "0x4401b0",
+      "id": "ev_c8e60b0c76b41423a3fa2367cec7ed7b8dff71b5f4dd115ba17c4ea8edf880ba"
+    },
+    {
+      "entry": "0x440280",
+      "id": "ev_47bb1e8d35384afc10629f64d07081ecb243eb8bede8a4fd3fa5cd8a18d14983"
+    },
+    {
+      "entry": "0x4403f0",
+      "id": "ev_05aaa11546a8f2901a81912f588dd96295809799cb698ba4c01a02175a52bb71"
+    },
+    {
+      "entry": "0x4405a0",
+      "id": "ev_af193d899977a71cace507f517bd6708a410bc1a6f5824985bbb7d174e24d5ad"
+    },
+    {
+      "entry": "0x443a50",
+      "id": "ev_d4fb9626c72da516491a4575210fb6ebbe416f808026ab7d6ecf4955058e8ca5"
+    },
+    {
+      "entry": "0x443a80",
+      "id": "ev_c00b112f6644a9962b8908f9396ec37f5c6aae5a24bbd891c1110c206a46686e"
+    },
+    {
+      "entry": "0x45eef0",
+      "id": "ev_4d6bed4c6424cf030073e514b31ef005a2ce7817f6a3015deee20634e12edb92"
+    },
+    {
+      "entry": "0x45f2a0",
+      "id": "ev_f884a1322bc572a31cab1a994cf48a6fb4d666d2ebc128d93bd2fe83a7914a8b"
+    },
+    {
+      "entry": "0x4649b0",
+      "id": "ev_1059ab3f49176edc8c2d67066398a73ac6e8942aad915aec23684dc2b0c4fd0b"
+    },
+    {
+      "entry": "0x4ef870",
+      "id": "ev_8b6b588d9c77252675bcdc29b23059ac704a62c8e892a9c71c431952cd0b02fb"
+    },
+    {
+      "entry": "0x4f16d0",
+      "id": "ev_50c72c1f5e21230f7b2021d1c7d11541250d40ef914723a5ad50a3d5e6d9e1b8"
+    },
+    {
+      "entry": "0x4f2010",
+      "id": "ev_6de0edaa2f644599966243daef389f58d564066b1da4c990c594341620e2c743"
+    },
+    {
+      "entry": "0x4fd0d0",
+      "id": "ev_ae4e51c7d0f556e0bcb55449d186d0728dc4fc9e9addab5ff15581f9f5703a6f"
+    },
+    {
+      "entry": "0x4ff750",
+      "id": "ev_1bd1fa10270b74e5484a537657bc057496b6ebdce7679da7eb9b9b069c6b3a9a"
+    },
+    {
+      "entry": "0x501a50",
+      "id": "ev_630871844eb6a7c6a4f6b443a125a9e0826e46ed4f8d50c86e6f9a47ec09803d"
+    }
+  ],
+  "new_records": 79,
+  "new_operations": {
+    "address_to_file_offset": 37,
+    "inspect_native_instruction": 37,
+    "analyze_function": 4,
+    "read_bytes": 1
+  },
+  "interfaces": {
+    "core": "legacyGameActorRecordTypeFlags/categoryDrawFlags/InitialFacing are bounded pure fixed-source functions; resolveLegacyGameActorFrameSource(actor,baseline) reads immutable sourceFrame metadata and merges only proven fields/masks",
+    "actors": "configureSceneMode(mode) updates the actual source scene mode used only by future remote constructors; prepareCharacterEntry sets source-proven0. snapshot sourceFrame carries sticky type/current draw/body OR/motion masks and facingBound; copyState exposes sourceSceneMode",
+    "world": "Actual accepted scene message updates actor mode directly from scene.fields[8] before beginScene; no external actor runtime setter or new wire/startup fields. Existing source entry/scene ownership retained",
+    "frame": "bindActorSource internal frame option enables source metadata binding and ordinary graphic filter. graphicCulling is explicit in the pure plan; legacy explicit source path remains unchanged. Animation/phase/events precede culling; far remotes deferred for owned removal, duplicates retained.",
+    "client": "Owning client enables per-actor binding; source scene mode comes from the actual world packet, independently of animation runtime.soundScene. Startup schema/context remain explicit and unknown fields are not defaulted.",
+    "filter": "Fresh per-source-frame filter owns local coordinates and at most100 keys(graphicIndex,X,Y); inclusive16-cell range;100-key overflow is not persisted/deduplicated; close clears owned state."
+  },
+  "phase_status": "bounded source-backed per-actor known fields/constructor scene mode and ordinary graphic range/dedup verified; full native/game/current/WeChat/official remain active"
+}

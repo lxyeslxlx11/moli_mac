@@ -1,0 +1,457 @@
+{
+  "schema": "moli.launcher-quit-hook-contract.v1",
+  "classification": "selected-positive-setter-and-quit-consumer-source-closed-ordinary-reentry-and-host-open",
+  "requirement": "LS-U3:actual ordinary installation/consumer of optional quit callback at44FD1F result+3c;ordinary modal replacement admission remains separate.",
+  "document_catalog": {
+    "source": {
+      "path": "build/analysis/launcher-quit-hook-v1/source-review.json",
+      "bytes": 45076,
+      "sha256": "7487702400f71f05609828662db107558a18d0de695b879898d01c9f83920adc"
+    },
+    "session": {
+      "path": "analysis/capability-first-v1/launcher-session-functional-specification.json",
+      "bytes": 77719,
+      "sha256": "3fb04e1f227938110d1f141e9fedf4da02339e4a80f49cddf78ca10283fef010"
+    },
+    "reentry": {
+      "path": "analysis/capability-first-v1/launcher-callback-reentry-contract.json",
+      "bytes": 42134,
+      "sha256": "5c50ed323dc7c3984e58f809ba78aa07e260022c4b3ce350ac273c1a31681a97"
+    },
+    "exit": {
+      "path": "analysis/capability-first-v1/launcher-exit-admission-contract.json",
+      "bytes": 35696,
+      "sha256": "b9b5a13a058cb43804b9d3a255a16afd9dab3892bc1622d716d3b8bd253ffa39"
+    },
+    "legacy_failure": {
+      "path": "analysis/capability-first-v1/launcher-legacy-failure-contract.json",
+      "bytes": 43426,
+      "sha256": "78d80d554a20f44584221a7753c8671ac0f0db2ddb29735b1ca29259920eb9cd"
+    },
+    "derived_material": {
+      "path": "analysis/capability-first-v1/launcher-derived-material-contract.json",
+      "bytes": 31942,
+      "sha256": "d69517a1ac87e01c8f954e74fb6def583ec3f2bba336c161a5651af8ac0c1b02"
+    },
+    "game_patch": {
+      "path": "analysis/capability-first-v1/launcher-game-patch-functional-specification.json",
+      "bytes": 38049,
+      "sha256": "856cb143dfac6148af87d43c16fbeb73c9e787bdfe4548052630dcaa14ac92b1"
+    },
+    "target_contract": {
+      "path": "analysis/capability-first-v1/shared-target-contract.json",
+      "bytes": 68467,
+      "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+    },
+    "shared_update": {
+      "path": "analysis/capability-first-v1/shared-update-host-design.json",
+      "bytes": 49890,
+      "sha256": "5a063be1a03c404ffd1704810798d04159b8fec8a4ff1037c4891db2e82c762d"
+    },
+    "login_owner": {
+      "path": "shared/launcher-login.mjs",
+      "bytes": 8016,
+      "sha256": "1933e1366a5d2e029ad217db4f1546146c6a0e6d47018e82d1c06b59404ea621"
+    },
+    "flow_owner": {
+      "path": "shared/launcher-flow.mjs",
+      "bytes": 11893,
+      "sha256": "550dbdeced62e3461dbcceeeff30eacf5a64ded4e0838ce189da8d93357b724e"
+    }
+  },
+  "source": {
+    "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+    "bytes": 4111872,
+    "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+  },
+  "tools": {
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "LLVM": "Apple LLVM 21.0.0"
+  },
+  "scope_preserved": {
+    "affected_capabilities": [
+      "L03",
+      "L06",
+      "L08"
+    ],
+    "inventory": "40/81/37/10/6",
+    "source_local_ready_capabilities": 19,
+    "new_source_profile_or_product_scope_added": false
+  },
+  "facts": [
+    {
+      "id": "QH-F01",
+      "classification": "事实",
+      "claim": "本批仅补固定c82f登录器的LS-U3具名quit hook来源：App Init431000、getter44FD1F、OLE Init45C46F、quit45A8A6与所选callback。原L03两父profile、L06两父profile和L08平台范围保留；601b及固定195f的退出规则不由此替换。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/sources"
+        },
+        {
+          "document": "session",
+          "pointer": "/original_scope_reference"
+        },
+        {
+          "document": "game_patch",
+          "pointer": "/scope_preserved"
+        }
+      ]
+    },
+    {
+      "id": "QH-F02",
+      "classification": "事实",
+      "claim": "431000普通初始化直接调用45C46F并测试返回值；仅非0后才继续分配/构造AAChannel、587100初始化及主Frame。App要求的是本函数非0，不自动证明每条非0路径都调用了OleInitialize或写过hook。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/7"
+        },
+        {
+          "document": "source",
+          "pointer": "/ordinary_App_init_binding"
+        }
+      ]
+    },
+    {
+      "id": "QH-F03",
+      "classification": "事实",
+      "claim": "setter与quit均调用44FD1F；该9B getter调用452F8E，然后返回其结果对象+4字段。结论绑定此实际getter与+3c字段，不凭FID类型名扩展为所有TLS/module lifetime规则，也不假定任意当前模块切换后仍返回同一个对象。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/4"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/0"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/8"
+        }
+      ]
+    },
+    {
+      "id": "QH-F04",
+      "classification": "事实",
+      "claim": "45C46F检查452F5B所取对象byte+14。为0时调用OleInitialize(NULL)：有符号HRESULT<0则调用45C502(0)后返回0；非负则写thread-state+100=1，将44FD1F所得对象+3c写成45C570，并在+40为空时分配0x44对象、存入并调用473671。byte+14非0分支则写thread-state+100=FFFFFFFF并返回1，本体不走上述hook setter。所证条件不声明当前运行时flag或filter登记结果。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/0"
+        },
+        {
+          "document": "source",
+          "pointer": "/api_bindings"
+        }
+      ]
+    },
+    {
+      "id": "QH-F05",
+      "classification": "事实",
+      "claim": "45A8A6仅在getter结果与其+3c callback均非空时调用callback；实际两次PUSH1使实参为(1,1)，先经过间接调用检查再调用。callback正常返回后才tail到PostQuitMessage；嵌套44BAD6的所选caller传exitCode0并返回-1。外层Run调用App+68仍沿已有EA-F11/F12，不等同在本hook内释放登录通道。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/8"
+        },
+        {
+          "document": "exit",
+          "pointer": "/facts/10"
+        },
+        {
+          "document": "exit",
+          "pointer": "/facts/11"
+        },
+        {
+          "document": "source",
+          "pointer": "/api_bindings"
+        }
+      ]
+    },
+    {
+      "id": "QH-F06",
+      "classification": "事实",
+      "claim": "45C570以第一个参数非0调用45C502(第二参数)，故所选quit走45C502(1)。第一个参数为0才进入GetTickCount/超过60000后的CoFreeUnusedLibraries分支；该另一路不是本次quit(1,1)分支。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/3"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/2"
+        }
+      ]
+    },
+    {
+      "id": "QH-F07",
+      "classification": "事实",
+      "claim": "45C502在检查参数前，先依次调用472C66、4728B8、472852。472C66先查询472D3A，其非0返回才tail到原PE import所绑定OleFlushClipboard；实际条件值及外部效果未运行。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/2"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/6"
+        },
+        {
+          "document": "source",
+          "pointer": "/api_bindings"
+        }
+      ]
+    },
+    {
+      "id": "QH-F08",
+      "classification": "事实",
+      "claim": "4728B8在module对象+24链上按next+20遍历，所选锁组0内逐项同步调用472896。472852在锁组0B内循环取module对象+40链头，先调用CSimpleList::Remove，再对非空项以flag1调用虚槽0。所证的是这两条实际分派/移除规则；实际链是否非空、元素类型及间接副作用必须以原需求中的登记来源绑定，不能由通用库名推定。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/1"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/5"
+        }
+      ]
+    },
+    {
+      "id": "QH-F09",
+      "classification": "事实",
+      "claim": "45C502的参数非0会在前三项调用后直接返回。仅参数0路径才处理getter+40对象的虚槽+4删除/清槽，并在thread-state+100==1时调用CoFreeUnusedLibraries、OleUninitialize和清+100。因此quit(1,1)跳过的是这些本地零参分支；此前已调用的资源链及外部函数效果仍保留，不能据此宣称整个退出没有清理或重入。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/2"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/3"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/8"
+        },
+        {
+          "document": "source",
+          "pointer": "/api_bindings"
+        }
+      ]
+    }
+  ],
+  "inferences": [
+    {
+      "id": "QH-I01",
+      "classification": "推测",
+      "basis": [
+        "QH-F02",
+        "QH-F03",
+        "QH-F04",
+        "QH-F05"
+      ],
+      "claim": "普通App Init确有安装该callback的正向路径；在mode0、OleInitialize非负、普通创建完成且quit取回相应module对象的前提下，quit会调用45C570(1,1)。静态路径组合不等于已观察的Windows执行。"
+    },
+    {
+      "id": "QH-I02",
+      "classification": "推测",
+      "basis": [
+        "QH-F05",
+        "QH-F07",
+        "QH-F08",
+        "QH-F09"
+      ],
+      "claim": "源hook有实际资源动作；独立宿主应沿既有OwnerLifecycle/HostCapabilities明确资源退役、回调正常返回与外层退出顺序。所选hook身份/分支已回答，LS-U3的普通modal替换binding准入和实际消息/销毁接受仍独立。"
+    }
+  ],
+  "operations": [
+    {
+      "id": "QH-O01",
+      "name": "初始化条件与hook安装",
+      "facts": [
+        "QH-F02",
+        "QH-F03",
+        "QH-F04"
+      ],
+      "owner": "App-init/module-context",
+      "normal": "按所证flag/HRESULT分支保存hook与filter字段。",
+      "ending": "失败返回0或alternate nonzero branch分别表达。"
+    },
+    {
+      "id": "QH-O02",
+      "name": "嵌套quit回调调用",
+      "facts": [
+        "QH-F03",
+        "QH-F05",
+        "QH-F06"
+      ],
+      "owner": "nested-modal/quit",
+      "normal": "符合callback非空条件时以(1,1)同步调用，正常返回才PostQuit。",
+      "ending": "callback未返回时不声称PostQuit或外层App退出已完成。"
+    },
+    {
+      "id": "QH-O03",
+      "name": "所选清理前缀",
+      "facts": [
+        "QH-F07",
+        "QH-F08"
+      ],
+      "owner": "registered-native-resources",
+      "normal": "条件OleFlushClipboard、factory遍历和移除后虚槽0按原次序。",
+      "ending": "只有实际登记来源才能确定具体元素和间接效果。"
+    },
+    {
+      "id": "QH-O04",
+      "name": "局部零参/非零参清理区别",
+      "facts": [
+        "QH-F06",
+        "QH-F09"
+      ],
+      "owner": "OLE-module/thread-state",
+      "normal": "quit(1,1)走非零参数返回；零参删除/filter/COM-uninitialize分支分别成规。",
+      "ending": "不把本地跳过分支推成所有资源均未处理。"
+    },
+    {
+      "id": "QH-O05",
+      "name": "登录borrow与外层退出分层",
+      "facts": [
+        "QH-F05",
+        "QH-F09"
+      ],
+      "owner": "existing L03 flow/host owners",
+      "normal": "既有EA通道Stop/slot0删除与LR borrow退还合同复用。",
+      "ending": "普通modal替换binding、实际消息和Host drain另验。"
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "QH-D01",
+      "reuse": "现有UC-P09/P14和LR/EA取消、borrow、外层Run规则",
+      "change": "将有条件资源hook、正常返回、PostQuit及后续App退出分层，保留原D1/D5所有者。"
+    },
+    {
+      "id": "QH-D02",
+      "reuse": "独立资源/调用所有权与Host退役合同",
+      "change": "资源回调可有副作用；按已拥有对象和physical drain处理实际宿主，不凭native进程退出码制造完成凭证。"
+    },
+    {
+      "id": "QH-D03",
+      "reuse": "固定C82与其他profile已闭来源、GP/UH方案",
+      "change": "本批只关闭selected hook setter/consumer问题；不重开generic MFC/OLE，也不因未运行设备将其重新列为缺函数。"
+    }
+  ],
+  "remaining": [
+    {
+      "id": "QH-U01",
+      "maps_to": "LS-U3",
+      "kind": "required-ordinary-entry-admission",
+      "status": "open",
+      "question": "旧callback持borrow跨实际modal时，能形成替换binding的合法普通producer/投递准入仍需正向来源；不以人为Submit或任意消息交错证明。"
+    },
+    {
+      "id": "QH-U02",
+      "maps_to": "LS-U3 runtime-condition",
+      "kind": "actual-context-and-owned-resource-effects",
+      "status": "open",
+      "question": "当前module flag、getter上下文及资源链实际成员/间接效果须按已准入原需求的具体对象确定。",
+      "source_readiness_blocker_by_itself": false,
+      "rule": "仅有具体必要对象/producer证据时扩展；不创建所有OLE对象或任意全交错审计要求。"
+    },
+    {
+      "id": "QH-U03",
+      "maps_to": "LS-U3/LS-U4 and existing Host gaps",
+      "kind": "target-implementation-and-actual-acceptance",
+      "status": "open",
+      "question": "独立资源/通道排空、网页/移动网页/微信的实际取消关闭及当前同版/账号官方接受未完成。"
+    }
+  ],
+  "acceptance_cases": [
+    {
+      "id": "QH-T01",
+      "name": "mode0初始化非负",
+      "expected": "在对应getter对象上记录hook45C570；+40原有/空两分支分别观察",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "QH-T02",
+      "name": "mode0初始化负值",
+      "expected": "45C502(0)后返回0，App不进入后续channel/frame构造",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "QH-T03",
+      "name": "alternate mode",
+      "expected": "非0mode分支返回1但本体不安装该hook，不能把所有nonzero等同setter执行",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "QH-T04",
+      "name": "callback空/非空",
+      "expected": "空跳过；非空传1,1且正常返回后才PostQuit",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "QH-T05",
+      "name": "清理前缀顺序",
+      "expected": "条件剪贴板处理、factory遍历、先移除链项再调用slot0保持原次序",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "QH-T06",
+      "name": "非零与零参分支",
+      "expected": "非零跳过所证filter删除和COM-uninitialize分支；先前resource动作仍存在",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "QH-T07",
+      "name": "callback未正常返回",
+      "expected": "不声明PostQuit、外层App退出或通道drain已经发生",
+      "status": "specified-not-executed"
+    },
+    {
+      "id": "QH-T08",
+      "name": "真实普通关闭与退役",
+      "expected": "只用合法producer验证modal、old borrow、资源效果和Host关闭；结果与static branch分层",
+      "status": "specified-not-executed"
+    }
+  ],
+  "selected_supersession": {
+    "source": "EA-F13/LS-U3 optional quit callback ordinary setter and selected consumer identity",
+    "answer": "45C46F branch writes45C570 to44FD1F result+3c;45A8A6 invokes(1,1),with required prefix and local-zero-branch distinction now source-bound.",
+    "ordinary_modal_replacement_admission_closed": false,
+    "all_runtime_resource_effects_closed": false
+  },
+  "summary": {
+    "new_REA_queries": 7,
+    "new_complete_native_bodies": 7,
+    "new_complete_native_bytes": 477,
+    "reused_complete_native_bodies_independently_checked": 2,
+    "native_windows": 9,
+    "native_bytes": 1679,
+    "native_instructions": 531,
+    "new_product_changes_tests_builds_VM_SDK_network_account_actions": false,
+    "facts": 9,
+    "inferences": 2,
+    "operations": 5,
+    "implementation_delta_groups": 3,
+    "specified_not_executed_cases": 8,
+    "source_local_ready_before": 19,
+    "source_local_ready_after": 19
+  },
+  "selected_quit_hook_setter_and_consumer_rules_closed": true,
+  "whole_LS_U3_closed": false,
+  "whole_L03_specification_ready": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "new_target_tests_or_builds": 0,
+  "new_VM_SDK_network_account_actions": false,
+  "stopping_rule": "Selected setter/quit branch and direct prefix are answered. Do not inventory otherOLE/MFC helpers;only original necessary ordinary producer/context or actual Host evidence warrants follow-up.",
+  "validation_record_path": "build/analysis/launcher-quit-hook-v1/validation.json"
+}

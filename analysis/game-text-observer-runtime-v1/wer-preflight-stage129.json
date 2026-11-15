@@ -1,0 +1,127 @@
+{
+  "schema": "moli.wer-preflight-stage129.v1",
+  "recorded_utc": "2026-11-02T07:59:31.470157+00:00",
+  "classification": "FACT: bounded read-only guest prerequisites; no diagnostic configuration, game execution or new consumer evidence.",
+  "method": "Original ordinary PowerShell through CUA; full typed command readback before one Return, output and new prompt observed. Minute-level guest screen times, not independently synchronized timestamps.",
+  "vm_uuid": "{0a440763-a14c-4cbe-b6df-abfa4fe079a3}",
+  "plan": "analysis/game-text-observer-runtime-v1/game-wer-plan-stage128.md",
+  "registry": {
+    "hive": "HKEY_LOCAL_MACHINE",
+    "api": "Microsoft.Win32.RegistryKey.OpenBaseKey; OpenSubKey(path) default read-only access",
+    "view_order": [
+      "Registry64",
+      "Registry32"
+    ],
+    "view_identity_readback": [
+      "Registry64",
+      "Registry32"
+    ],
+    "view_identity_guest_minute": "2026-11-02 15:54 +08:00",
+    "parent_path": "SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting\\LocalDumps",
+    "parent_array_count": 2,
+    "parent_exists": [
+      false,
+      false
+    ],
+    "parent_guest_minute": "2026-11-02 15:29 +08:00",
+    "application_path": "SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting\\LocalDumps\\cg_se_3000.exe",
+    "application_array_count": 2,
+    "application_exists": [
+      false,
+      false
+    ],
+    "application_guest_minute": "2026-11-02 15:30 +08:00",
+    "aedebug_path": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AeDebug",
+    "aedebug_array_count": 2,
+    "aedebug_key_exists": [
+      true,
+      true
+    ],
+    "aedebug_guest_minute": "2026-11-02 15:34 +08:00",
+    "auto_fallback_query": {
+      "command": "$dk129 | % {$_.GetValue(\"Auto\",\"ABSENT\")}",
+      "output": [
+        "ABSENT",
+        "ABSENT"
+      ],
+      "guest_minute": "2026-11-02 15:50 +08:00"
+    },
+    "auto_membership_query": {
+      "command": "$dk129 | % {$_.GetValueNames() -contains \"Auto\"}",
+      "output": [
+        false,
+        false
+      ],
+      "guest_minute": "2026-11-02 15:51 +08:00",
+      "unrelated_value_names_displayed": false
+    },
+    "read_errors_or_access_denials_observed": false,
+    "registry_writes": 0,
+    "limits": [
+      "Absence in two logical views does not prove they are distinct physical keys or that future writes alias.",
+      "No explicit Auto value was present at query time; this is not proof that a future WER dump will be generated or that all debugger mechanisms were audited."
+    ],
+    "handle_cleanup": {
+      "command": "$dk129 | % {$_.Dispose()}; $h64129.Dispose(); $h32129.Dispose()",
+      "submitted_once": true,
+      "actual_result": "No output/error and a new empty original PowerShell prompt.",
+      "guest_minute": "2026-11-02 15:58 +08:00",
+      "read_only_handles_closed": 4
+    }
+  },
+  "lab": {
+    "path": "C:\\MoliOffline\\game-wer-stage128",
+    "command": "Test-Path -LiteralPath \"C:/MoliOffline/game-wer-stage128\" -ErrorAction Stop",
+    "exists": false,
+    "guest_minute": "2026-11-02 15:55 +08:00",
+    "created": false
+  },
+  "disk": {
+    "drive": "C",
+    "command": "(Get-PSDrive C -ErrorAction Stop).Free",
+    "free_bytes": 230298329088,
+    "guest_minute": "2026-11-02 15:56 +08:00",
+    "plan_minimum_bytes": 536870912,
+    "meets_plan_minimum_at_query_time": true,
+    "not_a_reservation_or_write_limit": true
+  },
+  "game": {
+    "path": "C:\\Program Files (x86)\\PlayOnline\\魔力宝贝\\cg_se_3000.exe",
+    "actual_bytes": 2904064,
+    "metadata_guest_minute": "2026-11-02 15:57 +08:00",
+    "metadata_command": "Get-Item -LiteralPath $gx119 -ErrorAction Stop | select FullName,Length",
+    "process_count": 0,
+    "process_count_guest_minute": "2026-11-02 15:56 +08:00",
+    "process_count_command": "([Diagnostics.Process]::GetProcessesByName(\"cg_se_3000\")).Count",
+    "last_hash_receipt": "analysis/game-text-observer-runtime-v1/diagnostic-readiness-stage128.json",
+    "last_hash_guest_minute": "2026-11-02 15:09 +08:00",
+    "sha256_last_read": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+    "hash_freshly_queried_stage129": false,
+    "compatibility_setting_freshly_queried_stage129": false
+  },
+  "execution_confirmation": {
+    "state": "Stage128 action-time question pending; no answer received.",
+    "source": "CUA Computer Use Confirmation Policy: installs or runs software from an unrecognized source, Confirmation Required at Action time.",
+    "prior_vm_network_tools_authorization_retained": true,
+    "new_question_stage129": false,
+    "new_user_manual_operation_request": false,
+    "automatic_continuation_is_not_confirmation": true
+  },
+  "remaining_before_execution": [
+    "Receive reply to existing stage128 action-time question.",
+    "Freshly verify target VM, ordinary input, game identity/Win7 flag/process zero and disk/key/directory state.",
+    "Create and verify the one named recovery point specified in stage128 plan.",
+    "Only then perform the exact per-app setup, one ordinary launch and owned-key restoration; none performed yet."
+  ],
+  "not_executed_this_stage": [
+    "New snapshot or VM lifecycle change",
+    "Lab/dump/symbol directory creation",
+    "Registry or permissions change, UAC or elevation",
+    "Game, reader, fixture or debugger execution",
+    "Dump acquisition, live attachment or memory read",
+    "Network/sharing/security/policy/keyboard definition change"
+  ],
+  "product_or_protocol_implementation_change": false,
+  "root_cause_or_game_consumer_recovered": false,
+  "full_goal_complete": false
+}

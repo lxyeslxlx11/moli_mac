@@ -1,0 +1,199 @@
+{
+  "schema": "moli.actor-spin-contract-stage172.v1",
+  "phase": 172,
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "tools": {
+    "rea": "6.7.0",
+    "ghidra": "12.1.4",
+    "profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+  },
+  "classification": {
+    "facts": "Fixed37c4 native local/remote action80 producer,439080 state3 assembly and source float constants",
+    "derived": "Independent portable actor-owned spin callback and real client frame/lifecycle binding",
+    "unverified": "Full native x87 identity, ride/state1/2/party/child handlers, all input context, current version/devices/official service"
+  },
+  "source_facts": {
+    "producer": "4ffe10 local case80 and43e610 remote case80 set body+2c=3, normalize parameter1 into body+2a8 and clear auxiliary+3c counter. They do not write normal f536a0/remote record resource, change facing, clear motion or consume parameter2.",
+    "spin": "439080 case3 counters0..360 inclusive set action3, save initial body facing at counter0 and derive the rotating facing from initialFacing-trunc(((360-counter+8)%120)/15), with source signed remainder8. Base projected screen coordinates use source+0.5 then truncation. Geometry uses raw source single/double constants at52d908..52d927, independently byte checked.",
+    "finish": "For counter>360, first call4fd0d0(action4,speed100,mode1,staticFlip0). Only return1 resets body specialState0/counter0/action0; then always call4fd0d0 again with mode0 and current action. Counter increments afterward, so successful finish retains counter1. Static/frozen return0 is not a fabricated completion.",
+    "draw": "439080 returns1 after its own462cc0 root and causes43ba10 to exit before ordinary motion, range/dedup and local queue flag1. Spin root has default sortFlag0 even for local; logical depth coordinates remain the actual actor position, screen offsets alone change.",
+    "local_sources": "Local case60 updates normal f536a0;80 changes only body. Normal local source globals and temporary body resource/facing must not be conflated during ready scene reconstruction or unit refresh. Local461660 movement and4ff5a0 position/velocity synchronization continue independently of the special callback; facing assignment must follow real source movement/turn writes rather than copy the special body's rotated facing back to its normal source. After completion the body keeps its final spin facing until an actual facing writer; normal globals are not copied into it on every idle frame.462410 compares requested direction against actual body+2b8, even when the normal source already equals that direction.",
+    "boundary": "43ba10 remains outside the provider's procedure body; use retained exact callback disassembly. State1/2, ride/child rendering and unobserved gates remain explicit and unfinished. No target execution is inferred from static bytes.",
+    "local_dispatch_guard": "4f2010 at4f2176 reads current body+2a8 and skips local action dispatch when that body resource is0. Keep this actual body guard; separating normal globals must not mechanically replace every body read with a normal-resource read."
+  },
+  "implementation": {
+    "core": "A platform-free bounded spin planner owns no I/O. The actor owns state,counter,initialFacing and updates source metadata only from actual action80 and supported callback results.",
+    "frame": "Source-bound frames branch to the actual spin handler after existing gates; use source helper return codes, phase, events and ordinary resource provider but no ordinary motion/culling/static-flip/local sort flag. Complete then rejoin ordinary callbacks on the next source frame.",
+    "world": "Keep source local normal resource/facing separate from transient body; track actual local movement/turn facing assignments, preserve current spin body between writers, and reconstruct from normal globals on a ready scene change.",
+    "lifecycle": "Restart80 resets the source counter, blocked callbacks do not advance it, scene/remove/close release owners/players; no synthetic network packets or new startup/wire fields.",
+    "unknown": "Untracked compound states and explicit frozen/gates retain their stated scope; do not silently treat an unknown handler as ordinary."
+  },
+  "acceptance": [
+    "Independent source arithmetic across all supported facing/counter boundaries and actual animation return cases",
+    "Actual owning client source80 to full spin/one-shot/ordinary scene rasters and ownership, including local normal-source reconstruction",
+    "Actual original TCP and persistent desktop/mobile browser flows, full Node, neutral and generated projects",
+    "Canonical documentation/history, delivery hashes and active full goal audit"
+  ],
+  "remaining": [
+    "Special state1/2, ride/party/child and other record/global input producers/handlers",
+    "Complete native main9/UI/reset, production startup/digest/Chinese and native WeChat gamePage host",
+    "Battle/effects/remaining gameplay/current version/actual devices/official acceptance"
+  ],
+  "phase_status": "source-backed action80/state3 rotation, finish/probe and normal/body source ownership verified; full native/game/current/WeChat/official remain active",
+  "goal_status": "active",
+  "full_goal_complete": false,
+  "reused_functions": [
+    {
+      "entry": "0x409e70",
+      "id": "ev_cc31618dde856bade36f501b98d37ed4863dc154fa245a375e43cfb8846ca6c1"
+    },
+    {
+      "entry": "0x439080",
+      "id": "ev_92178296493e5452914dec3ab94b9cf7bb783518655431e05560b6510a470a07"
+    },
+    {
+      "entry": "0x439a70",
+      "id": "ev_dc502d1f5ee3cd00e2b884c1b95f7bd5d8440758a2d18b85799763cf00cfee7e"
+    },
+    {
+      "entry": "0x43c000",
+      "id": "ev_6cc89791ee741db32b17713b90554d485f603b66a7073fd959e8329c05205f76"
+    },
+    {
+      "entry": "0x43c700",
+      "id": "ev_2ae7af2f30a53492c1e999dd32533ebd0cbbba2a12b5206975876243838cf45b"
+    },
+    {
+      "entry": "0x43e610",
+      "id": "ev_dbcd240f41332b0a3452f47f3133af9dbd4f6c7e884db5ce3bac4873f138938b"
+    },
+    {
+      "entry": "0x440280",
+      "id": "ev_47bb1e8d35384afc10629f64d07081ecb243eb8bede8a4fd3fa5cd8a18d14983"
+    },
+    {
+      "entry": "0x461660",
+      "id": "ev_d6736df8cd9004ddb16b82a67879c2f0d1099e0164afa5fcb02a46b95c5b25e1"
+    },
+    {
+      "entry": "0x462110",
+      "id": "ev_92470e1845938d278d605679805b3353d599769733fe702506e803d2dfca9d10"
+    },
+    {
+      "entry": "0x462410",
+      "id": "ev_4033c03625a0dae668445bfe888b8f14029569e51566eabebc010474f0943b47"
+    },
+    {
+      "entry": "0x462cc0",
+      "id": "ev_45887fbdfd71d92e5efab6a22afceabaf3302a33bfcb5c6ff479dc394e3d630d"
+    },
+    {
+      "entry": "0x462fc0",
+      "id": "ev_454a2d74767d5651c8c84700b8868eb795690fa027c7d4311877dad838715d98"
+    },
+    {
+      "entry": "0x463d70",
+      "id": "ev_c673b8425db87f3fb743eee5c4d151081efa2bb8cf615b7022787193ef4f26f8"
+    },
+    {
+      "entry": "0x4f16d0",
+      "id": "ev_50c72c1f5e21230f7b2021d1c7d11541250d40ef914723a5ad50a3d5e6d9e1b8"
+    },
+    {
+      "entry": "0x4f2010",
+      "id": "ev_6de0edaa2f644599966243daef389f58d564066b1da4c990c594341620e2c743"
+    },
+    {
+      "entry": "0x4fd0d0",
+      "id": "ev_ae4e51c7d0f556e0bcb55449d186d0728dc4fc9e9addab5ff15581f9f5703a6f"
+    },
+    {
+      "entry": "0x4fdaf0",
+      "id": "ev_a1074ad8b0f626188ed65c963a0627622a03e09755a7f39ae96481a34a760e86"
+    },
+    {
+      "entry": "0x4ff160",
+      "id": "ev_3c017d6b7d39cea40d003d050125c09b29b9ec88956b72cbc1ba1bb3d0366f33"
+    },
+    {
+      "entry": "0x4ff3b0",
+      "id": "ev_b862e42213b352b02be1546e803a82452efe422e8ee8326bc4b4a93888e2705f"
+    },
+    {
+      "entry": "0x4ff430",
+      "id": "ev_ae4122b6e387c9012cfb5506b789418abab745ddf8f83a39157022a53046be6a"
+    },
+    {
+      "entry": "0x4ff510",
+      "id": "ev_5330c53d1e9af85bda48ca19a097d5d5408f571d140fd704a2c1c0d09f63eecd"
+    },
+    {
+      "entry": "0x4ff5a0",
+      "id": "ev_e2a141981bf51f47158039a7f0f9e6f16e4c26ca4713c11f9a3dbf65f7d74a57"
+    },
+    {
+      "entry": "0x4ff700",
+      "id": "ev_6f97ca611abc55ce55bd7b38f497dc19199f5e71356d8f43e7a57a2310bd923d"
+    },
+    {
+      "entry": "0x4ff720",
+      "id": "ev_f991b723a334c8f1d9867f73be6952eb142a29947558f46032b762322792dc91"
+    },
+    {
+      "entry": "0x4ffc70",
+      "id": "ev_81128217848264a05778ee2447d55201be8888f31e7165d0ccca870b51d6f7b1"
+    },
+    {
+      "entry": "0x4ffe10",
+      "id": "ev_ff7b5634615bb91d7d417e88e96796c67a81feb930cfa79642be34342bd5789b"
+    },
+    {
+      "entry": "0x500a70",
+      "id": "ev_6a9d4b8f0bd7fb32659905a3a5a270a2b5ad6ecac5b6a78c81903ce23f973d63"
+    },
+    {
+      "entry": "0x501a50",
+      "id": "ev_630871844eb6a7c6a4f6b443a125a9e0826e46ed4f8d50c86e6f9a47ec09803d"
+    }
+  ],
+  "new_records": 26,
+  "new_function_entries": 0,
+  "new_operations": {
+    "address_to_file_offset": 4,
+    "inspect_native_instruction": 18,
+    "read_bytes": 4
+  },
+  "constants": {
+    "address": "0x52d908",
+    "bytes": 32,
+    "offset": 1228552,
+    "values": {
+      "yScale": 0.6000000238418579,
+      "xScale": 1.75,
+      "radians": 0.017453292519444445,
+      "baseY": -1.399999976158142,
+      "screenBias": 0.5
+    },
+    "angles": [
+      45,
+      0,
+      315,
+      270,
+      225,
+      180,
+      135,
+      90
+    ]
+  },
+  "interfaces": {
+    "core": "planLegacyGameActorSpin({counter,initialFacing,facingCode}) and legacyGameActorSpinOutcome(counter,probeCode) are pure strict fixed-source projections. Counter domain0..2147483646, facing-1..7; reject unsafe source overflow/array domains. x87 bit identity unverified.",
+    "actors": "Owned specialSpin null or {state,counter,initialFacing}; source80 resets it, completion retains state0/counter1. Snapshots also expose local-only normalRawResourceId/normalFacingCode and sourceControlUnmodeled for observed unresolved ride/attachment operations. Body/global fields remain distinct.",
+    "frame": "sourceSpin optional boolean in pure plan requires actual owned state in the client binding; dynamic helperCalls null there, actual frame reports1 or2 calls. Existing gates precede source-spin; explicit unowned states remain unsupported. Probe/follow-up, event coordinates, phase, sort0 and no ordinary culling/motion follow native branch.",
+    "world": "Normal source globals initialize/reconstruct local body; unit refresh and actual facing writes update them. Internal WeakMap bridge records real movement/turn assignments and passes actual body facing for source turn comparison; public movement result shape retained. Idle commits never overwrite a body with completed spin history without a real writer.",
+    "lifecycle": "Source actions drive all state; restart/remove/scene/close do not synthesize packets or source fields. Unsupported ride/attachment ordinary handlers remain explicit; source spin handler itself bypasses those child/culling branches."
+  }
+}

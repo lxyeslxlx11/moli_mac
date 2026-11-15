@@ -1,0 +1,149 @@
+{
+  "schema": "moli.launcher-wechat-tests-stage142.v1",
+  "node": "v26.9.0",
+  "before": {
+    "command": "node --test build/analysis/launcher-wechat-v1/before/web/tests/launcher-platform-control.test.mjs",
+    "baseline_driver_files": "Private copies of untouched stage141 driver/data; same shared sources; fixed-finally original harness.",
+    "exit_code": 1,
+    "tests": 3,
+    "pass": 0,
+    "fail": 3,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "new_Node_cases": {
+    "controller": 4,
+    "WeChat": 19,
+    "total": 23
+  },
+  "full": {
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "exit_code": 0,
+    "tests": 709,
+    "pass": 709,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "bundle_test": {
+    "command": "node --test analysis/launcher-wechat-v1/bundle-test.mjs",
+    "exit_code": 0,
+    "tests": 1,
+    "pass": 1,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "scope": "CommonJS in a VM with no DOM/browser/Node runtime APIs; Node-backed fake wx supplies native-shaped APIs and original loopback TCP oracle.",
+    "not_proof_of": "Actual WeChat DevTools, phone runtime, domain/quota/JS support or authenticated official login."
+  },
+  "build": {
+    "command": "node tools/build-wechat-launcher.mjs",
+    "exit_code": 0,
+    "report": {
+      "path": "build/wechat-launcher/build-report.json",
+      "bytes": 6407,
+      "sha256": "097b29d96962504718c79048b9af42a1fc2bd33a9e4cf1777e4f76ab1791f089"
+    },
+    "bundle": {
+      "path": "build/wechat-launcher/launcher.js",
+      "bytes": 119241,
+      "sha256": "0fafbd5124c3680a6c4a98ea012fb1d3f852f121c5b569ab7eb789487864507c"
+    },
+    "source_inputs": 37,
+    "external_imports": 0,
+    "tool": "esbuild0.25.12",
+    "format": "cjs",
+    "target": "es2020",
+    "private_generated_only": true
+  },
+  "oracle_scope": {
+    "peer": "analysis/launcher-current-page-v1/original_peer.py",
+    "inputs": "Public original SyntheticU1/SyntheticP1 only",
+    "checks": [
+      "Current handshake and three writes/login request verified independently",
+      "Wrong group rejected without entropy request",
+      "Existing restricted-row gate preserved",
+      "Public session cancel/EOF/error/limits/late callbacks and local clock rollback/floor tests"
+    ],
+    "actual_native_WeChat": false,
+    "official_server_requests": 0
+  },
+  "private_logs": [
+    {
+      "path": "build/analysis/launcher-wechat-v1/controller-before-fixed.log",
+      "bytes": 2961,
+      "sha256": "c098c1d22929ee93ccb3cb7af0fe73b08a0b6c9568da8eeee43825a4757f8bfe"
+    },
+    {
+      "path": "build/analysis/launcher-wechat-v1/node-full-verified.log",
+      "bytes": 68139,
+      "sha256": "66d1a813dfc99602deaf86bbd8335b5fdf986a51a6a46d67f486c0dda7d3718a"
+    },
+    {
+      "path": "build/analysis/launcher-wechat-v1/bundle-test-verified.log",
+      "bytes": 222,
+      "sha256": "691bef4fe884bde26f04b5ecb36f299f719c53f1aaf2b9775c1f518e6f9ab277"
+    }
+  ],
+  "retained_failures": [
+    {
+      "log": {
+        "path": "build/analysis/launcher-wechat-v1/controller-before.log",
+        "bytes": 3119,
+        "sha256": "989d18e6d06de4cdbdf4f2cd22bd6440c7a6eda882c2cc80d5e43e81b38ccadb"
+      },
+      "reason": "Original failing before-test omitted finally cancellation. One exact owned Node test was terminated normally; not a complete test run."
+    },
+    {
+      "log": {
+        "path": "build/analysis/launcher-wechat-v1/targeted-first.log",
+        "bytes": 4503,
+        "sha256": "01c9450da0565f4ec7e91f91e8629b6eb8ca03ca89fda0ba8492a779a9d2603b"
+      },
+      "reason": "12/15 pass; byte ownership Reflect.apply missing third argument corrected."
+    },
+    {
+      "log": {
+        "path": "build/analysis/launcher-wechat-v1/targeted-second.log",
+        "bytes": 2863,
+        "sha256": "bf631c76e8eefa9712c0d29142ce0abfcbdd129b0bac335085fc8e8e6b080e52"
+      },
+      "reason": "17/18 pass; incorrect fixture selection ordinal0 retained restricted gate."
+    },
+    {
+      "log": {
+        "path": "build/analysis/launcher-wechat-v1/targeted-final.log",
+        "bytes": 3148,
+        "sha256": "cf40d8bd3eb53a527d82a3ad1d6d10e90c9fa2fd2edc66319df7cbfab7fd6d10"
+      },
+      "reason": "20/21 pass; ordinal1 was also restricted, then choose declared passing row; product gate unchanged."
+    },
+    {
+      "log": {
+        "path": "build/analysis/launcher-wechat-v1/targeted-verified.log",
+        "bytes": 2107,
+        "sha256": "6a13d3646e6c74f578ef9035ef88454e6dd76990dbd6e7733dfb62c46e8176d9"
+      },
+      "reason": "21/21 passed before bundle test split and clock correction; superseded by final709+1 checks."
+    },
+    {
+      "log": {
+        "path": "build/analysis/launcher-wechat-v1/node-full.log",
+        "bytes": 67919,
+        "sha256": "4eb41dad76d50e016b1305b16d7afcff9f572f1f610926c145e7ebc6047cc2a8"
+      },
+      "reason": "706passed prior to official clock correction; superseded by709 after three new clock cases."
+    }
+  ],
+  "not_performed": [
+    "Rendered browser/page or native mini-program/device validation",
+    "Complete WeChat host/HTTP/catalog/resources",
+    "Vendor/VM/CDB/dump actions",
+    "Official server/account acceptance",
+    "Game business implementation/playability"
+  ],
+  "full_goal_complete": false
+}

@@ -1,0 +1,625 @@
+{
+  "schema": "moli.wechat-host-profile.v1",
+  "classification": "工具实测准备与设置门槛；无SDK运行证据",
+  "status": "original-probe-prepared-SDK-execution-awaiting-explicit-tool-scope",
+  "requirement": "按原X03/X05/X06补微信宿主能力分析；先完成全部必要需求规格再开发，平台实证与原程序/官方接受分层。",
+  "original_capabilities": {
+    "X03": {
+      "id": "X03",
+      "title": "跨端资源包、读取、缓存与预算",
+      "requirement_scope": "资源选择、ZIP/ZIP64/按需读取、版本归属、持久化、取消及大文件预算",
+      "existing_implementation_owners": [
+        "shared/legacy-game-resource-archive.mjs",
+        "shared/launcher-resource-cache.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "implementation_batch": "D0",
+      "source_profiles": [
+        "game-legacy-37c4",
+        "platform"
+      ],
+      "registered_protocol_entries": [
+        "GAME-LEGACY-RESOURCE-RUNTIME-001"
+      ]
+    },
+    "X05": {
+      "id": "X05",
+      "title": "微信Page、开发者工具与真机",
+      "requirement_scope": "Page/Canvas、字体/音频/文件/网络/调度、生命周期及iOS/Android设备",
+      "existing_implementation_owners": [
+        "wechat/game/pages/play/index.js"
+      ],
+      "dependencies": [
+        "L08",
+        "G03",
+        "B04",
+        "X06"
+      ],
+      "implementation_batch": "D5",
+      "source_profiles": [
+        "platform"
+      ],
+      "registered_protocol_entries": []
+    },
+    "X06": {
+      "id": "X06",
+      "title": "平台传输、错误与连接生命周期",
+      "requirement_scope": "原始流适配、网页桥接/微信传输、断线/取消/后台恢复及可用配置",
+      "existing_implementation_owners": [
+        "adapters/node/launcher-stream.mjs",
+        "adapters/wechat/launcher-stream.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "implementation_batch": "D0",
+      "source_profiles": [
+        "platform"
+      ],
+      "registered_protocol_entries": [
+        "NET-DEPENDENCIES-001",
+        "NET-RECOVERY-001"
+      ]
+    }
+  },
+  "observed_tool": {
+    "app": "/Applications/wechatwebdevtools.app",
+    "version": "2.02.2609250",
+    "electron_shell_version": "36.6.0",
+    "skill_version": "0.3.11",
+    "bundle_signature_verified": true,
+    "signature_team": "FN2V63AD2J",
+    "signature_authority": [
+      "Developer ID Application: Tencent Technology (Shanghai) Company Limited (FN2V63AD2J)",
+      "Developer ID Certification Authority",
+      "Apple Root CA"
+    ],
+    "CLI_installed_and_compatible": true,
+    "actual_WeChat_base_library_SDKVersion": null,
+    "version_relation": null,
+    "login_expired": null,
+    "CLI_token_required": null
+  },
+  "source_inputs": [
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/implementation-plan.json",
+      "bytes": 19093,
+      "sha256": "6e6a154e67e41482520913452e48999fb0eb3fdee91c6c1a1d6129e2e23d895b"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/preparation-validation.json",
+      "bytes": 2912,
+      "sha256": "eecc7b28c2594dae2b20a06260fa8ac045823956b9072067398425414f173661"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/preparation-validation-v2.json",
+      "bytes": 2912,
+      "sha256": "c5647dfac9514e0bee1317cff4a28327adc713b63a2c5408c678c6132aafc578"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/installation-check.json",
+      "bytes": 631,
+      "sha256": "3bb9361f42f23a1f401fa4ceeb23fe571f9c0c136006d066b78bb185f2bf24f8"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/tool-status.json",
+      "bytes": 639,
+      "sha256": "0126385c883b20d0f2f651f16148fff0c0cdc734275e249c9cf4dbfa42754d3f"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/authorization-ui-observation.json",
+      "bytes": 666,
+      "sha256": "7a34342c9440d658383320f9c6e3b8ba80625a95f8d17db077003dc7585f673d"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/auth-task-check-1.json",
+      "bytes": 671,
+      "sha256": "81819fa530d8d03bcffe62e30c74ff70365a443c4e6b8b913c80a00d483bbc20"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/auth-task-check-2.json",
+      "bytes": 842,
+      "sha256": "c0b305d9c747e343529ebc16d48af68fcac06b764232b0d83852528c9b9c3d36"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/pending-task-current.json",
+      "bytes": 844,
+      "sha256": "bd4432dc4074c92b22dec187d5bb0568f0e99b4893c8e837340226b7fedac5b1"
+    },
+    {
+      "path": "/Applications/wechatwebdevtools.app/Contents/Info.plist",
+      "bytes": 2656,
+      "sha256": "e6d1786452cc63e2ff62c574a187d8fc35c6e11ba4550c538fc18828802f6cae"
+    },
+    {
+      "path": "/Applications/wechatwebdevtools.app/Contents/MacOS/cli",
+      "bytes": 1794,
+      "sha256": "d15485d9eae6ad078cc583433e97bdbe4ace2c1c77dd2a4f1c29226787c65410"
+    },
+    {
+      "path": "/Applications/wechatwebdevtools.app/Contents/Resources/app.asar.unpacked/package.json",
+      "bytes": 11054,
+      "sha256": "cede0bf796459b2a11c66e79ad9112b9ad0f1035f9bd4e8477cd81de177e8c93"
+    },
+    {
+      "path": "/usr/local/bin/wechatide",
+      "bytes": 1382,
+      "sha256": "ff661ec1578d3a165096dcc32c056b49ca044c5bb87f6702f3fcf10bb01e0243"
+    },
+    {
+      "path": "/Applications/wechatwebdevtools.app/Contents/Resources/app.asar.unpacked/wechatide-skill/SKILL.md",
+      "bytes": 10931,
+      "sha256": "ca52735c502cee495380eae4ba2679931320d5c326c077c1b11fa90930578805"
+    },
+    {
+      "path": "/Applications/wechatwebdevtools.app/Contents/Resources/app.asar.unpacked/wechatide-skill/skills/automator/SKILL.md",
+      "bytes": 6391,
+      "sha256": "7e5b7958140efd047fd656201ba48c0a7eecf17c1f913561dc82eacdc0da44c7"
+    },
+    {
+      "path": "/Applications/wechatwebdevtools.app/Contents/Resources/app.asar.unpacked/wechatide-skill/skills/initializer/SKILL.md",
+      "bytes": 3176,
+      "sha256": "3532cebc9bdefc081f9eab98c9413e31c630225dae1cd3ecf0cfdf814c6a2f5c"
+    },
+    {
+      "path": "/Applications/wechatwebdevtools.app/Contents/Resources/app.asar.unpacked/wechatide-skill/references/environment-readiness.md",
+      "bytes": 11136,
+      "sha256": "18e4205b2e37b0b2c319310002ef407ad3c7726e15ee8ed0047d40e7de036a78"
+    },
+    {
+      "path": "/Applications/wechatwebdevtools.app/Contents/Resources/app.asar.unpacked/wechatide-skill/references/approval-policy.md",
+      "bytes": 2216,
+      "sha256": "af1534ba05339210ce0d03df56355139ef66fe527597f2ce594fa23efc4fa6a5"
+    },
+    {
+      "path": "/Applications/wechatwebdevtools.app/Contents/Resources/app.asar.unpacked/wechatide-skill/references/async-task-polling.md",
+      "bytes": 3056,
+      "sha256": "5d41b98adfa7c966a58ab23d6895e770f2eda6d8dc730cc5c54b73d51dd9b615"
+    },
+    {
+      "path": "analysis/capability-first-v1/shared-target-contract.json",
+      "bytes": 68467,
+      "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+    },
+    {
+      "path": "analysis/capability-first-v1/browser-host-profile.json",
+      "bytes": 22336,
+      "sha256": "5f164e6a44945a89eff56426c51db7a542c23a6e53e83fcddf04708872e4b151"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/probe-project/app.js",
+      "bytes": 387,
+      "sha256": "97144ef100a44ce88f70f23410e4f405ba4419fd47744fac0d1ec1359bfb921b"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/probe-project/app.json",
+      "bytes": 150,
+      "sha256": "00679cda9d4249e487f2af416eb8b827b1f7684ee8138561c60f7c0ad0a600ad"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/probe-project/app.wxss",
+      "bytes": 457,
+      "sha256": "67c4e08ecd6167db3c4b998c3529899f0b365b982427dd912b066b6892f64a11"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/probe-project/pages/park/index.js",
+      "bytes": 276,
+      "sha256": "5d64be9d0c7f0eb3dcedc9f3e753f22af02db5f9b74746616076cab126ae626f"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/probe-project/pages/park/index.wxml",
+      "bytes": 292,
+      "sha256": "8d991cc9d3f408ae86f9b57351bf9698d72d45d4f4fa02ab685f51331c679665"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/probe-project/pages/probe/index.js",
+      "bytes": 12813,
+      "sha256": "818aaac26547b3edd0a1d855ac9a53f78f61a42e943f61fa00d69dddb40d002b"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/probe-project/pages/probe/index.wxml",
+      "bytes": 694,
+      "sha256": "e576df26d110a2aae68ceb2aaa024c68a9676d18aa655a9d72288454e23c80d6"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/probe-project/probe-config.js",
+      "bytes": 66,
+      "sha256": "cde7cdb4e65ee22c2f6d67f19e7df5217a9638e7ab50c4097582c70f528a88dd"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/probe-project/project.config.json",
+      "bytes": 292,
+      "sha256": "414e27da6129c20247d49206df042b6f9fefafef7121dbcd21c3014417400fae"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/tcp-peer.mjs",
+      "bytes": 2682,
+      "sha256": "e457ea1c2d5682aae04f3ff18a474eb5b9245c06d81ddccdfb3f8cdceca14d43"
+    }
+  ],
+  "preparation_validation": {
+    "path": "build/analysis/wechat-host-conformance-v1/preparation-validation-v2.json",
+    "bytes": 2912,
+    "sha256": "c5647dfac9514e0bee1317cff4a28327adc713b63a2c5408c678c6132aafc578"
+  },
+  "pending_task_record": {
+    "path": "build/analysis/wechat-host-conformance-v1/pending-task-current.json",
+    "bytes": 844,
+    "sha256": "bd4432dc4074c92b22dec187d5bb0568f0e99b4893c8e837340226b7fedac5b1"
+  },
+  "authorization_UI": {
+    "path": "build/analysis/wechat-host-conformance-v1/authorization-ui-observation.json",
+    "bytes": 666,
+    "sha256": "7a34342c9440d658383320f9c6e3b8ba80625a95f8d17db077003dc7585f673d"
+  },
+  "tool_status": {
+    "path": "build/analysis/wechat-host-conformance-v1/tool-status.json",
+    "bytes": 639,
+    "sha256": "0126385c883b20d0f2f651f16148fff0c0cdc734275e249c9cf4dbfa42754d3f"
+  },
+  "task_query_records": [
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/auth-task-check-1.json",
+      "bytes": 671,
+      "sha256": "81819fa530d8d03bcffe62e30c74ff70365a443c4e6b8b913c80a00d483bbc20"
+    },
+    {
+      "path": "build/analysis/wechat-host-conformance-v1/auth-task-check-2.json",
+      "bytes": 842,
+      "sha256": "c0b305d9c747e343529ebc16d48af68fcac06b764232b0d83852528c9b9c3d36"
+    }
+  ],
+  "external_documentation_navigation": [
+    {
+      "url": "https://developers.weixin.qq.com/miniprogram/dev/devtools/auto/quick-start.html",
+      "result": "web open failed non-retryable;not source support for SDK behavior"
+    },
+    {
+      "url": "https://www.npmjs.com/package/miniprogram-automator",
+      "result": "HTTP403;package not installed or used"
+    }
+  ],
+  "facts": [
+    {
+      "id": "WH-F01",
+      "classification": "事实：本机安装工具",
+      "rule": "开发者工具package为2.02.2609250；严格bundle签名校验通过，官方签名身份单独记录。Electron36.6.0是壳版本，不能用作微信基础库SDKVersion。"
+    },
+    {
+      "id": "WH-F02",
+      "classification": "事实：CLI安装诊断",
+      "rule": "wechatide-skill0.3.11随工具提供，安装诊断compatible=true，/usr/local/bin/wechatide已可执行；没有补软链、安装包或修改全局工具。"
+    },
+    {
+      "id": "WH-F03",
+      "classification": "事实：首次client门槛",
+      "rule": "check_wechatide_status返回auth任务pending；AX仅观察到Codex客户端授权弹窗，明确允许后开启服务端口。尚未确认versionRelation/loginExpired/CLI token要求，不把pending当连接成功。"
+    },
+    {
+      "id": "WH-F04",
+      "classification": "事实：同任务查询失败",
+      "rule": "两次同auth任务查询均exit1；后次准确错误要求auth并启动WechatIDE server。未证明任务终态，也没有重发status/auth、改端口设置或读取令牌。"
+    },
+    {
+      "id": "WH-F05",
+      "classification": "事实：原创探针静态准备",
+      "rule": "9文件独立touristappid小程序及本机TCP对端脚本完成JSON/JS语法、相对依赖、允许范围及原4769公共路径不变检查。准备成功不代表SDK运行或开发者工具导入成功。"
+    },
+    {
+      "id": "WH-F06",
+      "classification": "设计：待执行SDK样例",
+      "rule": "计划1MiB合成文件/8范围/零长/真实回调/rename与fd、8×4 opaque Canvas/字体度量/20前台RAF、Page导航和257B localhost TCP。高偏移只对小文件EOF参数观察，不证明4GiB背文件能力。"
+    },
+    {
+      "id": "WH-F07",
+      "classification": "设计与待验证：完整要求保留",
+      "rule": "原14端口/62方法/22完整用例、全资源manifest/预算、真机iOS/Android/IME/音频/App后台/持久化恢复及当前同版/官方要求保持；本次SDK实际用例执行数0。"
+    }
+  ],
+  "complete_case_crosswalk": [
+    {
+      "id": "UC-T01",
+      "complete_original_case": {
+        "id": "UC-T01",
+        "kind": "required-not-executed",
+        "case": "source/host deadline separation including candidate and accepted-request10s timers"
+      },
+      "planned_probe_fragments": [],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T02",
+      "complete_original_case": {
+        "id": "UC-T02",
+        "kind": "required-not-executed",
+        "case": "cancel at every precommit/pending/committed race boundary"
+      },
+      "planned_probe_fragments": [],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T03",
+      "complete_original_case": {
+        "id": "UC-T03",
+        "kind": "required-not-executed",
+        "case": "two publisher expectedRevision conflict and lost final callback"
+      },
+      "planned_probe_fragments": [],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T04",
+      "complete_original_case": {
+        "id": "UC-T04",
+        "kind": "required-not-executed",
+        "case": "recover corrupt/incomplete candidate and last valid active manifest"
+      },
+      "planned_probe_fragments": [],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T05",
+      "complete_original_case": {
+        "id": "UC-T05",
+        "kind": "required-not-executed",
+        "case": "zero/short/out-of-range/over2^32 exact range reads without whole-file fallback"
+      },
+      "planned_probe_fragments": [
+        "1MiB positioned reads/short/EOF/zero/numeric argument outcomes"
+      ],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T06",
+      "complete_original_case": {
+        "id": "UC-T06",
+        "kind": "required-not-executed",
+        "case": "copy/view/transfer/pin and inflight-after-cancel budget accounting"
+      },
+      "planned_probe_fragments": [
+        "real callback after probe-owned logical retirement;not full budget accounting"
+      ],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T07",
+      "complete_original_case": {
+        "id": "UC-T07",
+        "kind": "required-not-executed",
+        "case": "active old reader while new snapshot commits"
+      },
+      "planned_probe_fragments": [
+        "descriptor after owned rename only;not snapshot publication/CAS"
+      ],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T08",
+      "complete_original_case": {
+        "id": "UC-T08",
+        "kind": "required-not-executed",
+        "case": "logical delete callback tail versus future admission/physical pool removal"
+      },
+      "planned_probe_fragments": [],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T09",
+      "complete_original_case": {
+        "id": "UC-T09",
+        "kind": "required-not-executed",
+        "case": "classic/alternate masks,held/repeat/release and source clear points"
+      },
+      "planned_probe_fragments": [],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T10",
+      "complete_original_case": {
+        "id": "UC-T10",
+        "kind": "required-not-executed",
+        "case": "composition end after focus/epoch change and pointercancel inverse viewport"
+      },
+      "planned_probe_fragments": [],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T11",
+      "complete_original_case": {
+        "id": "UC-T11",
+        "kind": "required-not-executed",
+        "case": "source u32 wrap/absolute deadlines/wall clock and background rebase"
+      },
+      "planned_probe_fragments": [
+        "foreground Date/RAF samples only;not source origin or OS background rebase"
+      ],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T12",
+      "complete_original_case": {
+        "id": "UC-T12",
+        "kind": "required-not-executed",
+        "case": "shared RNG/audio cadence versus independent local boxed stream"
+      },
+      "planned_probe_fragments": [],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T13",
+      "complete_original_case": {
+        "id": "UC-T13",
+        "kind": "required-not-executed",
+        "case": "113/260 raw dual-cursor order and source byte-counter wrap"
+      },
+      "planned_probe_fragments": [],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T14",
+      "complete_original_case": {
+        "id": "UC-T14",
+        "kind": "required-not-executed",
+        "case": "missing RID/foreign scratch versus known native context,never portablezero proof"
+      },
+      "planned_probe_fragments": [],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T15",
+      "complete_original_case": {
+        "id": "UC-T15",
+        "kind": "required-not-executed",
+        "case": "107 raw two-word text versus logical-vitals event"
+      },
+      "planned_probe_fragments": [],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T16",
+      "complete_original_case": {
+        "id": "UC-T16",
+        "kind": "required-not-executed",
+        "case": "98FF waiting/default ITM cursor versus fabricated normal completion"
+      },
+      "planned_probe_fragments": [],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T17",
+      "complete_original_case": {
+        "id": "UC-T17",
+        "kind": "required-not-executed",
+        "case": "sourcecopy/start/retry102 effects and portable snapshot publication distinction"
+      },
+      "planned_probe_fragments": [],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T18",
+      "complete_original_case": {
+        "id": "UC-T18",
+        "kind": "required-not-executed",
+        "case": "restart requested/committed/new boot bound/mismatch states"
+      },
+      "planned_probe_fragments": [],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T19",
+      "complete_original_case": {
+        "id": "UC-T19",
+        "kind": "required-not-executed",
+        "case": "Page hide/unload/App root drain and abrupt termination recovery"
+      },
+      "planned_probe_fragments": [
+        "Page navigate/hide/show only;not App/OS termination/recovery"
+      ],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T20",
+      "complete_original_case": {
+        "id": "UC-T20",
+        "kind": "required-not-executed",
+        "case": "browser/mobile and actual WeChat iOS/Android full resource/IME/audio/network flow"
+      },
+      "planned_probe_fragments": [
+        "simulator Canvas metric and localhost bytes only;not actual iOS/Android full flow"
+      ],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T21",
+      "complete_original_case": {
+        "id": "UC-T21",
+        "kind": "required-not-executed",
+        "case": "current corresponding handoff/login/game business/disconnect with authorized account"
+      },
+      "planned_probe_fragments": [],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    },
+    {
+      "id": "UC-T22",
+      "complete_original_case": {
+        "id": "UC-T22",
+        "kind": "required-not-executed",
+        "case": "full original37/10 contexts and40 capabilities remain required"
+      },
+      "planned_probe_fragments": [],
+      "actual_SDK_case_executed": false,
+      "complete_case_passed": false
+    }
+  ],
+  "pending_scope": {
+    "requested": true,
+    "response_received": false,
+    "setting_effects": [
+      "authorize Codex client",
+      "enable IDE service port"
+    ],
+    "agent_clicked_allow": false,
+    "agent_modified_settings": false,
+    "SDK_probe_executed": false,
+    "rollback_proposal": "Only after explicit scope approval,close the newly enabled port through normal settings after the test;client approval record may remain."
+  },
+  "next_actions": [
+    "等待当前设置变更确认；不依赖确认的静态规格工作可继续。",
+    "获准后按正常界面处理已有授权，先查询同task，再核实际version/login/token状态；不要重发未知任务。",
+    "仅在状态满足后启动本次原创peer/project，采集真实SDK回执；失败/不支持与完整未测均明确保留。"
+  ],
+  "summary": {
+    "original_project_files": 9,
+    "source_inputs": 31,
+    "facts": 7,
+    "planned_range_cases": 8,
+    "fixture_file_bytes": 1048576,
+    "local_peer_bytes": 257,
+    "complete_original_cases": 22,
+    "actual_SDK_cases_executed": 0,
+    "complete_original_cases_passed": 0,
+    "approval_UI_observations": 1,
+    "task_query_failures": 2,
+    "source_capability_readiness_promoted": false
+  },
+  "original_scope_preserved": true,
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "full_product_suites_or_builds_run": false,
+  "original_VM_game_account_or_official_actions": false,
+  "global_tool_security_or_approval_configuration_changed": false,
+  "SDK_probe_executed": false,
+  "physical_device_or_game_acceptance": false,
+  "host_conformance_passed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "execution_record": {
+    "path": "build/analysis/wechat-host-conformance-v1/execution-record.json",
+    "bytes": 1651,
+    "sha256": "00dfe5f8ab0bba6111afbc7a4dd695dee3c97a3186892dd5797b4e121be8746e"
+  }
+}

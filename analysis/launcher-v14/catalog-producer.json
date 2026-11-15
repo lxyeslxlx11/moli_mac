@@ -1,0 +1,66 @@
+{
+  "schema": "moli.launcher-v14.catalog-producer.v1",
+  "source_evidence_id": "ev_52a2de0a9ca8c751d34c84d12e3503b05ae9476914325edaa8f0ae32d0dfb4dc",
+  "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "procedure": {
+    "available": true,
+    "contains_entry": true,
+    "non_contiguous": false,
+    "provenance": "ghidra-function-body-address-set",
+    "ranges": [
+      {
+        "end": "0x405199",
+        "start": "0x4015a0"
+      }
+    ],
+    "span_bytes": 15354,
+    "total_bytes": 15354
+  },
+  "focused_range": [
+    "0x401eae",
+    "0x4025ec"
+  ],
+  "file_object": "EBP-204;CFile::CFile430c63@401eb4",
+  "response_object": "EBP-1f4",
+  "gameList": {
+    "http": "0x40229b",
+    "http_zero_exit": "0x4022d8",
+    "delete": "0x4022ef",
+    "open": "0x402307",
+    "flags": "0x3001",
+    "response_strlen": "0x402318",
+    "write": "0x402333",
+    "close": "0x40233e",
+    "reset_helper": "0x402349",
+    "later_xml_parse": "0x402569",
+    "parse_zero_exit": "0x402599"
+  },
+  "regionList": {
+    "http": "0x402457",
+    "http_zero_exit": "0x402494",
+    "delete": "0x4024ab",
+    "open": "0x4024c3",
+    "flags": "0x3001",
+    "response_strlen": "0x4024d4",
+    "write": "0x4024ef",
+    "close": "0x4024fa",
+    "reset_helper": "0x402505",
+    "later_xml_parse": "0x4025b7",
+    "parse_zero_exit": "0x4025e7"
+  },
+  "direct_file_hash_calls": [
+    "0x40187b",
+    "0x401f1c",
+    "0x401fb9"
+  ],
+  "facts": [
+    "Game write/close/reset precedes Region HTTP branch; Region HTTP zero exits before common parsing.",
+    "Producer has no explicit return-value branch after Delete/Open/Write/Close. Write/Close helpers can throw; no-return-check is not no-error-handling.",
+    "No further direct4230a0 call afterthese writes inthis producer; both XMLparse calls happenafterupdates."
+  ],
+  "inference": "The scoped normal path can retain changed GameList when later Region download/parse fails; no pair transaction/rollback call is visible inthis caller path. Static reachability, not diskexecution/global absenceproof.",
+  "unknowns": [
+    "FullEH andallcalledhelper rollback behavior",
+    "Native disk state/durability/permissions/trust and actualservers"
+  ]
+}

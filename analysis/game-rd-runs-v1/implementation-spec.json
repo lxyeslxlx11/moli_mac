@@ -1,0 +1,85 @@
+{
+  "schema": "moli.game-rd-runs-contract.v1",
+  "state": "implemented-and-locally-verified-structural-model; native-game-consumer-unverified",
+  "scope": "structural-model-only; game consumer and colors unverified",
+  "input_versions": [
+    1,
+    3
+  ],
+  "header_bytes": {
+    "1": 16,
+    "3": 20
+  },
+  "fields": {
+    "magic": "RD",
+    "version": "u8@2",
+    "byte3": "opaque",
+    "width": "u32le@4",
+    "height": "u32le@8",
+    "compressed_record_length": "u32le@12 exactly input bytes",
+    "palette_bytes_v3": "u32le@16 positive multiple3 <=768"
+  },
+  "commands": {
+    "0": "literal count low nibble",
+    "1": "literal count low nibble then one big-endian extension byte",
+    "8": "repeat low-nibble count, next byte value",
+    "9": "repeat next byte value, then count extension1",
+    "a": "repeat next byte value, then count extension2",
+    "c": "unknown-valued run low-nibble count",
+    "d": "unknown-valued run extension1",
+    "e": "unknown-valued run extension2"
+  },
+  "unsupported": "0x2 literal extension2 was not observed in retained corpus model; all other opcodes reject",
+  "count_policy": "strictly positive, no output overrun or underrun, all encoded bytes consumed",
+  "limits": {
+    "input_bytes": 33554432,
+    "pixels": 4194304,
+    "palette_bytes": 768
+  },
+  "output": "owned index bytes plus independent known masks for pixel and opaque palette positions; unknown byte storage zero must not be interpreted as known color/index",
+  "not_implemented": [
+    "color/alpha/direction/origin/animation",
+    "main-game business consumers",
+    "network gameplay and official acceptance"
+  ],
+  "references": [
+    "../resources-v2/probe_graphics.py",
+    "../resources-v2/notes-graphics.md",
+    "https://github.com/moosewoler/cgg-viewer/blob/master/CrossGateGraphics.py"
+  ],
+  "api": {
+    "entry": "decodeRDRunModel(input, {record}?)",
+    "error": "RDRunError.code",
+    "record": "optional own data UInt32 byteLength/width/height; supplied values must match",
+    "ownership": "attached nonshared Uint8Array/ArrayBuffer copied after input budget check; independent mutable output arrays; temporary copy wiped",
+    "known_masks": "1 literal or explicit repeat; 0 C/D/E position. Not an alpha mask.",
+    "error_codes": [
+      "INPUT",
+      "INPUT_BUDGET",
+      "OPTIONS",
+      "RECORD",
+      "TRUNCATED",
+      "MAGIC",
+      "VERSION",
+      "DIMENSIONS",
+      "PIXEL_BUDGET",
+      "LENGTH",
+      "RECORD_MISMATCH",
+      "PALETTE",
+      "OPCODE",
+      "ZERO_COUNT",
+      "OVERRUN",
+      "UNDERRUN"
+    ],
+    "error_prefix": "RD_RUN_"
+  },
+  "verified_local_corpus": {
+    "indexed_records": 27854,
+    "compressed_compared": 27785,
+    "accepted": 27751,
+    "rejected_unchanged": 34,
+    "raw_v0_v2": "existing decoder unchanged; 69 raw records outside new API",
+    "unknown_pixel_positions": 142343812,
+    "unknown_palette_positions": 1163863
+  }
+}

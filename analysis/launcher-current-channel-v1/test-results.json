@@ -1,0 +1,49 @@
+{
+  "schema": "moli.current-channel.tests.v1",
+  "recorded_utc": "2026-10-30T13:02:54.153091+00:00",
+  "node_version": "v26.9.0",
+  "python_version": "3.9.6",
+  "before_implementation": {
+    "exit_code": 1,
+    "first_regression": "Changed modulus case accepted as challenge-ready despite requested current profile",
+    "private_log": "build/analysis/launcher-current-channel-v1/regression-before.log"
+  },
+  "final": {
+    "exit_code": 0,
+    "tests": 78,
+    "pass": 78,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "command": [
+      "node",
+      "--test",
+      "--test-reporter=tap",
+      "shared/tests/launcher-current-channel.test.mjs",
+      "shared/tests/launcher-channel.test.mjs",
+      "shared/tests/launcher-flow.test.mjs",
+      "web/tests/launcher-session.test.mjs",
+      "web/tests/launcher-current-session.test.mjs",
+      "analysis/launcher-current-channel-v1/preauth-probe.test.mjs"
+    ],
+    "private_log": "build/analysis/launcher-current-channel-v1/regression-final.log"
+  },
+  "independent_vectors": {
+    "valid": 3,
+    "invalid": 8,
+    "oracle": "Python pow/struct, public original test exponents/keys only",
+    "all_challenge_splits_tested": 530,
+    "native_p_minus_one_covered": true
+  },
+  "probe_qualification": {
+    "tests": 6,
+    "passed": 6,
+    "private_log": "build/analysis/launcher-current-channel-v1/probe-qualification.log",
+    "before_target_connection": true
+  },
+  "source_ranges_checked": 3,
+  "scope": "Synthetic byte/Node adapter tests plus explicitly separate single pre-auth target receipt; no browser, device, account or game compatibility proof",
+  "passed": true,
+  "full_goal_complete": false
+}

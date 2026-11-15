@@ -1,0 +1,182 @@
+{
+  "schema": "moli.game-code-fingerprint-stage138.v1",
+  "recorded_utc": "2026-11-03T06:50:02.994039+00:00",
+  "classification": "fact: bounded ended-process dump byte availability and exact fixed-reference comparison; unknown code ownership remains unknown",
+  "prepared_scope": "stage137 two fixed32B points; private stage138 intended-CDB-query.json prepared before execution",
+  "access_and_preflight": "analysis/game-text-observer-runtime-v1/access-stage138.json",
+  "original_game": {
+    "source_path": "build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/cg_se_3000.exe",
+    "source_bytes": 2904064,
+    "source_sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+    "image_base": "0x400000",
+    "recorded_game_module_base": "0x00400000"
+  },
+  "source_rehashed_this_stage": true,
+  "dump": {
+    "guest_path": "C:/MoliOffline/game-wer-stage128/dumps/cg_se_3000.exe(1).5304.dmp",
+    "source_pid": 5304,
+    "bytes": 16924391,
+    "sha256_before_and_after": "1568b7ca899f80a656aa1541bae95a35e6c45fc876c08f19e86f352a6339820e",
+    "matches_stage131": true,
+    "raw_dump_exported": false
+  },
+  "tool": {
+    "guest_path": "C:/Program Files (x86)/Windows Kits/10/Debuggers/x86/cdb.exe",
+    "sha256": "6ca9dd8ee2d764087c4a561ecfee05cdf17751dfd9c2f21700211a897cd68129",
+    "signature": "Valid",
+    "identity_rechecked_this_stage": true,
+    "version_from_hash_bound_stage131": "10.0.26100.9457 (WinBuild.160101.0800)",
+    "version_read_this_stage": false
+  },
+  "execution": {
+    "CDB_invocations": 1,
+    "mode": "offline -z existing ended-process dump",
+    "arguments": [
+      "-sins",
+      "-snul",
+      "-noshell",
+      "-nosqm",
+      "-y",
+      "C:\\MoliOffline\\game-wer-stage128\\symbols",
+      "-i",
+      "C:\\MoliOffline\\game-wer-stage128\\symbols",
+      "-z",
+      "C:\\MoliOffline\\game-wer-stage128\\dumps\\cg_se_3000.exe(1).5304.dmp",
+      "-c",
+      "db 0b7c7cc0 L20; db 0b7c8152 L20; q"
+    ],
+    "arguments_fully_readback_before_Return": true,
+    "argument_count": 12,
+    "pre_call_time_marker_guest_iso": "2026-11-03T14:42:31.3476825+08:00",
+    "post_exit_observation_guest_iso": "2026-11-03T14:43:19.4577073+08:00",
+    "exact_process_lifetime_captured": false,
+    "exit_code": 0,
+    "returned_prompt_observed": true,
+    "requested_dump_bytes": 64,
+    "captured_dump_bytes": 32,
+    "not_captured_bytes": 32,
+    "pointer_following_or_other_ranges": false
+  },
+  "log": {
+    "guest_path": "C:/MoliOffline/game-wer-stage128/cdb-code-stage138.txt",
+    "bytes": 8880,
+    "line_count": 74,
+    "sha256": "4216bfd37d6a335c2e3e6615739e5f7c90bf7987445c91aa7b61f2a1bc6ef73e",
+    "full_log_stays_guest": true,
+    "displayed_data_rows": 4,
+    "projection": "Only four exact-address log lines, characters0..56 containing address+hex; ASCII columns excluded.",
+    "raw_log_exported": false
+  },
+  "fixed_comparisons": [
+    {
+      "guest_dump_address": "0x0b7c7cc0",
+      "source_va": "0x11bccc0",
+      "file_offset": 449728,
+      "section": ".text1",
+      "bytes": 32,
+      "reference_sha256": "83cc94e8b291ac7e7c08661fc3ec85edc1d8a65fb97a2ad6c5a2425984de783d",
+      "dump_bytes_captured": 0,
+      "dump_bytes_not_captured": 32,
+      "result": "not-comparable-not-captured",
+      "exact_match": null,
+      "not_captured_is_not_zero": true
+    },
+    {
+      "guest_dump_address": "0x0b7c8152",
+      "source_va": "0x11bd152",
+      "file_offset": 450898,
+      "section": ".text1",
+      "bytes": 32,
+      "reference_sha256": "a466c64d99f8b448df1d2c768771f10f3674865a41da9ced7c395fda94382407",
+      "dump_bytes_captured": 32,
+      "dump_bytes_not_captured": 0,
+      "dump_sha256_from_visible_hex_transcribed_on_host": "9df6ca27bb03f774a997f2204dba253e2cffb987468b0e7b128a6b46e4ba6c1e",
+      "guest_direct_binary_range_hash_read": false,
+      "result": "fixed-reference-mismatch",
+      "exact_match": false,
+      "differing_byte_count": 31,
+      "differing_offsets": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ]
+    }
+  ],
+  "static_only_exact_pattern_search": {
+    "source_bytes_searched": 2904064,
+    "source_sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+    "patterns": [
+      {
+        "pattern": "complete-fixed-fault-range",
+        "bytes": 32,
+        "sha256": "9df6ca27bb03f774a997f2204dba253e2cffb987468b0e7b128a6b46e4ba6c1e",
+        "exact_match_count": 0,
+        "file_offsets": []
+      },
+      {
+        "pattern": "fixed-fault-range-suffix-from-byte6",
+        "bytes": 26,
+        "sha256": "7040da4a555a712bf75c1861ff2fb76d53c1ab701ae55e3a94393bced0e39900",
+        "exact_match_count": 0,
+        "file_offsets": []
+      }
+    ],
+    "limits": "Only these exact fixed patterns in this original file. No architecture/function inference, transformations, pointer following, or new dump reads."
+  },
+  "conclusions": {
+    "candidate_delta": "0x0a60b000",
+    "ordinary_main_image_relocation_proven": false,
+    "source_wrapper_identity_proven": false,
+    "fault_code_owner_proven": false,
+    "reliable_whole_call_chain_proven": false,
+    "root_cause_proven": false,
+    "new_game_business_consumer_found": false,
+    "reason": "Initialization candidate not captured; fixed fault32 does not equal arithmetic source candidate. Single opaque pointer difference does not bind an image.",
+    "prior_stack_warning_still_applies": true
+  },
+  "postflight": {
+    "game_and_CDB_process_count": 0,
+    "dump_sha256_unchanged": true,
+    "empty_prompt_observed": true
+  },
+  "activity_counts": {
+    "game_launches": 0,
+    "reader_launches": 0,
+    "new_dump_captures": 0,
+    "debugger_attachments": 0,
+    "new_REA_sessions": 0,
+    "product_changes": 0,
+    "tests_this_stage": 0,
+    "builds_this_stage": 0,
+    "manual_requests": 0
+  },
+  "next": "Do not reuse this arbitrary delta as code ownership or rerun the finite comparison. Need independently source/module/behavior-bound game consumers or reliable protocol reference; no invented fields, protected-image reconstruction, repeated account/PDB request or repeated game launch."
+}

@@ -1,0 +1,37 @@
+✔ TCP factory performs no connection until explicit open and rejects non-allowlisted tuples (8.500833ms)
+✔ actual large socket reads are owned plain chunks no larger than64KiB (7.808375ms)
+✔ actual writes snapshot an offset view before caller mutation and preserve sequential order (0.82ms)
+✔ one pending read is enforced and explicit close settles the original pending read (0.551959ms)
+✖ operation AbortSignal cancels a pending actual read and closes its socket (0.932959ms)
+✔ already-aborted connection and write do not create a connection or send a payload (0.83975ms)
+✔ native connection refusal exposes a controlled code without endpoint/provider text (0.486ms)
+✔ allowlist snapshot is stable after source array and endpoint mutation (0.459834ms)
+✔ invalid native hosts, ports, accessors and sparse allowlists are rejected before I/O (0.211375ms)
+✔ write budget and native byte-brand checks run before any socket write (0.500125ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 130.402
+
+✖ failing tests:
+
+test at web/tests/launcher-node-stream.test.mjs:72:1
+✖ operation AbortSignal cancels a pending actual read and closes its socket (0.932959ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/lx/Documents/code/moli-mac/web/tests/launcher-node-stream.test.mjs:78:26)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

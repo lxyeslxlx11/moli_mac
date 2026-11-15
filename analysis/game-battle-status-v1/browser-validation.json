@@ -1,0 +1,396 @@
+{
+  "schema": "moli.battle-status-browser-stage192.v1",
+  "flow": "Actual game.html file inputs -> ordinary source upgrade/character entry -> real PSN packets/owned callbacks -> displayed HP/MP or KO -> next round/ordinary return/movement",
+  "BrowserPlugin": "absent; Browser plugin not available; existing regular Playwright fallback",
+  "playwright": "1.64.1",
+  "browser": "156.0.8078.80",
+  "productFiles": [
+    {
+      "path": "shared/index.mjs",
+      "bytes": 23405,
+      "sha256": "d38495a37605303f252093256fd408bf04300d47b675b7a93fd120e84f62b2c5"
+    },
+    {
+      "path": "shared/legacy-game-battle-status.mjs",
+      "bytes": 2912,
+      "sha256": "74e643aceb756e086286880410b47bd916b5e0ad745aab33045119f0e62a86fb"
+    },
+    {
+      "path": "shared/legacy-game-battle-body.mjs",
+      "bytes": 14323,
+      "sha256": "cdc036e083150db8982731885431a3da1ea7c90fb19307fa24275ca373d0d545"
+    },
+    {
+      "path": "shared/legacy-game-battle-commands.mjs",
+      "bytes": 17564,
+      "sha256": "4315d60b88f3e1e38ddbcd33e29ae66945ed19a4b968aa7993894516896cba09"
+    },
+    {
+      "path": "shared/legacy-game-battle-playback.mjs",
+      "bytes": 18606,
+      "sha256": "913a93ccae9a11f0ae1a606ce8e9b1c8066b1038ac909241e9ee2e34d3221d5f"
+    },
+    {
+      "path": "shared/legacy-game-battle-strike-playback.mjs",
+      "bytes": 12532,
+      "sha256": "e5c43968035f6492fa554b48af96dc8cbe8814874271fb2d1b0f33b616690c5d"
+    },
+    {
+      "path": "shared/legacy-game-client.mjs",
+      "bytes": 23459,
+      "sha256": "7fd20e0c7ae69e4c6f9ea058843833402ceb6ed44c0752eeedb027957d13b258"
+    },
+    {
+      "path": "web/legacy-game-battle-canvas.mjs",
+      "bytes": 5555,
+      "sha256": "fc7ae6ec41cb7c30e50016ceb4022fa73b5087d3cbd32f47ef45f2008a8ccb03"
+    },
+    {
+      "path": "web/legacy-game-client.mjs",
+      "bytes": 6651,
+      "sha256": "545e7bde55f7deab924203e4bfa0cf4c3f74fa012a66f0737ef7e666fb57a35a"
+    },
+    {
+      "path": "web/game-app.mjs",
+      "bytes": 11009,
+      "sha256": "17c55f152b00ae5165952957a90bc388c85aff5926128c2554ba522ebf701dcd"
+    },
+    {
+      "path": "web/game.html",
+      "bytes": 4238,
+      "sha256": "99003aa44f63287aa4fa34070419156043d3547f51ca4cf75c1df13f53899c45"
+    },
+    {
+      "path": "web/game.css",
+      "bytes": 2277,
+      "sha256": "ec2ecb4f564e12dfe2573a4791a0fe922026a388e739c65cbdc9dbf8856d34f0"
+    }
+  ],
+  "checks": [
+    {
+      "mode": "damage",
+      "mobile": false,
+      "url": "http://127.0.0.1:57233/web/game.html",
+      "pageIdentity": true,
+      "notBlank": true,
+      "frameworkOverlay": false,
+      "actualFileInputs": true,
+      "normalSourceStartup": true,
+      "actualSourcePSNVitals": {
+        "0": [
+          70,
+          100,
+          10,
+          10
+        ],
+        "10": [
+          88,
+          100,
+          10,
+          10
+        ]
+      },
+      "displayedValuesVerified": true,
+      "mouseOrTouch": "mouse",
+      "actualBattleCanvas640x480": true,
+      "rounds": 1,
+      "normalReturn": true,
+      "ordinaryViewport320x240Preserved": true,
+      "resumedExactMovement": true,
+      "closedOwners": true,
+      "receipt": {
+        "mode": "damage",
+        "normal_startup_requests_verified": 5,
+        "commands_verified": [
+          "H|A"
+        ],
+        "exit_requests_verified": 1,
+        "movement_requests_verified": 2,
+        "no_duplicate_or_invented_actions": true,
+        "official_session": false,
+        "original_execution": false
+      },
+      "screenshots": [
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/damage-setup.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/damage-result.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/damage-returned.png"
+      ]
+    },
+    {
+      "mode": "heal",
+      "mobile": true,
+      "url": "http://127.0.0.1:57259/web/game.html",
+      "pageIdentity": true,
+      "notBlank": true,
+      "frameworkOverlay": false,
+      "actualFileInputs": true,
+      "normalSourceStartup": true,
+      "actualSourcePSNVitals": {
+        "0": [
+          82,
+          100,
+          10,
+          10
+        ],
+        "10": [
+          100,
+          100,
+          10,
+          10
+        ]
+      },
+      "displayedValuesVerified": true,
+      "mouseOrTouch": "touch",
+      "actualBattleCanvas640x480": true,
+      "rounds": 1,
+      "normalReturn": true,
+      "ordinaryViewport320x240Preserved": true,
+      "resumedExactMovement": true,
+      "closedOwners": true,
+      "receipt": {
+        "mode": "heal",
+        "normal_startup_requests_verified": 5,
+        "commands_verified": [
+          "H|A"
+        ],
+        "exit_requests_verified": 1,
+        "movement_requests_verified": 2,
+        "no_duplicate_or_invented_actions": true,
+        "official_session": false,
+        "original_execution": false
+      },
+      "screenshots": [
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/heal-setup.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/heal-result.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/heal-returned.png"
+      ]
+    },
+    {
+      "mode": "MP",
+      "mobile": false,
+      "url": "http://127.0.0.1:57279/web/game.html",
+      "pageIdentity": true,
+      "notBlank": true,
+      "frameworkOverlay": false,
+      "actualFileInputs": true,
+      "normalSourceStartup": true,
+      "actualSourcePSNVitals": {
+        "0": [
+          70,
+          100,
+          6,
+          10
+        ],
+        "10": [
+          100,
+          100,
+          10,
+          10
+        ]
+      },
+      "displayedValuesVerified": true,
+      "mouseOrTouch": "mouse",
+      "actualBattleCanvas640x480": true,
+      "rounds": 1,
+      "normalReturn": true,
+      "ordinaryViewport320x240Preserved": true,
+      "resumedExactMovement": true,
+      "closedOwners": true,
+      "receipt": {
+        "mode": "MP",
+        "normal_startup_requests_verified": 5,
+        "commands_verified": [
+          "H|A"
+        ],
+        "exit_requests_verified": 1,
+        "movement_requests_verified": 2,
+        "no_duplicate_or_invented_actions": true,
+        "official_session": false,
+        "original_execution": false
+      },
+      "screenshots": [
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/MP-setup.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/MP-result.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/MP-returned.png"
+      ]
+    },
+    {
+      "mode": "chain",
+      "mobile": true,
+      "url": "http://127.0.0.1:57300/web/game.html",
+      "pageIdentity": true,
+      "notBlank": true,
+      "frameworkOverlay": false,
+      "actualFileInputs": true,
+      "normalSourceStartup": true,
+      "actualSourcePSNVitals": {
+        "0": [
+          70,
+          100,
+          6,
+          10
+        ],
+        "10": [
+          100,
+          100,
+          10,
+          10
+        ]
+      },
+      "displayedValuesVerified": true,
+      "mouseOrTouch": "touch",
+      "actualBattleCanvas640x480": true,
+      "rounds": 1,
+      "normalReturn": true,
+      "ordinaryViewport320x240Preserved": true,
+      "resumedExactMovement": true,
+      "closedOwners": true,
+      "receipt": {
+        "mode": "chain",
+        "normal_startup_requests_verified": 5,
+        "commands_verified": [
+          "H|A"
+        ],
+        "exit_requests_verified": 1,
+        "movement_requests_verified": 2,
+        "no_duplicate_or_invented_actions": true,
+        "official_session": false,
+        "original_execution": false
+      },
+      "screenshots": [
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/chain-setup.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/chain-result.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/chain-returned.png"
+      ]
+    },
+    {
+      "mode": "KO",
+      "mobile": false,
+      "url": "http://127.0.0.1:57314/web/game.html",
+      "pageIdentity": true,
+      "notBlank": true,
+      "frameworkOverlay": false,
+      "actualFileInputs": true,
+      "normalSourceStartup": true,
+      "actualSourcePSNVitals": {
+        "0": [
+          70,
+          100,
+          10,
+          10
+        ]
+      },
+      "displayedValuesVerified": true,
+      "mouseOrTouch": "mouse",
+      "actualBattleCanvas640x480": true,
+      "rounds": 1,
+      "normalReturn": true,
+      "ordinaryViewport320x240Preserved": true,
+      "resumedExactMovement": true,
+      "closedOwners": true,
+      "receipt": {
+        "mode": "KO",
+        "normal_startup_requests_verified": 5,
+        "commands_verified": [
+          "H|A"
+        ],
+        "exit_requests_verified": 1,
+        "movement_requests_verified": 2,
+        "no_duplicate_or_invented_actions": true,
+        "official_session": false,
+        "original_execution": false
+      },
+      "screenshots": [
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/KO-setup.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/KO-result.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/KO-returned.png"
+      ]
+    },
+    {
+      "mode": "feedback",
+      "mobile": true,
+      "url": "http://127.0.0.1:57326/web/game.html",
+      "pageIdentity": true,
+      "notBlank": true,
+      "frameworkOverlay": false,
+      "actualFileInputs": true,
+      "normalSourceStartup": true,
+      "actualSourcePSNVitals": {
+        "0": [
+          61,
+          100,
+          7,
+          10
+        ],
+        "10": [
+          63,
+          100,
+          1,
+          10
+        ]
+      },
+      "displayedValuesVerified": true,
+      "mouseOrTouch": "touch",
+      "actualBattleCanvas640x480": true,
+      "rounds": 2,
+      "normalReturn": true,
+      "ordinaryViewport320x240Preserved": true,
+      "resumedExactMovement": true,
+      "closedOwners": true,
+      "receipt": {
+        "mode": "feedback",
+        "normal_startup_requests_verified": 5,
+        "commands_verified": [
+          "H|A",
+          "H|A"
+        ],
+        "exit_requests_verified": 1,
+        "movement_requests_verified": 2,
+        "no_duplicate_or_invented_actions": true,
+        "official_session": false,
+        "original_execution": false
+      },
+      "screenshots": [
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/feedback-setup.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/feedback-result.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/feedback-returned.png"
+      ]
+    },
+    {
+      "mode": "unsupported",
+      "mobile": false,
+      "pageIdentity": true,
+      "notBlank": true,
+      "frameworkOverlay": false,
+      "noFabricatedCompletion": true,
+      "noRepeatedCallbacks": true,
+      "noVitalMutation": true,
+      "receipt": {
+        "mode": "unsupported",
+        "normal_startup_requests_verified": 5,
+        "commands_verified": [
+          "H|A"
+        ],
+        "exit_requests_verified": 0,
+        "movement_requests_verified": 0,
+        "no_duplicate_or_invented_actions": true,
+        "official_session": false,
+        "original_execution": false
+      },
+      "screenshots": [
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/unsupported-setup.png",
+        "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd/unsupported-waiting.png"
+      ]
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "externalRequests": 0,
+  "passed": true,
+  "originalSyntheticFixturesOnly": true,
+  "noInjectedReadinessOrGameState": true,
+  "originalExecution": false,
+  "officialSession": false,
+  "nativeWeChatOrDeviceAcceptance": false,
+  "screenshotDirectory": "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-battle-status-product-3qyLbd"
+}

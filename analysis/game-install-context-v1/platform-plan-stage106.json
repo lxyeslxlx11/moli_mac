@@ -1,0 +1,50 @@
+{
+  "schema": "moli.normal-platform-install.plan.v1",
+  "recorded_utc": "2026-10-30T03:36:38.724772+00:00",
+  "status": "prepared; fresh guest preflight and actual wizard still required",
+  "purpose": "Establish normal platform InstallDir and verified original launcher files after the game was normally installed, without fabricated registry or direct-game launch.",
+  "requirement": "reports/development-plan.md#stage106",
+  "prior_delivery": "analysis/delivery-manifest-stage105.json",
+  "prior_entries_revalidated": 1503,
+  "target": {
+    "guest_path": "E:/POLCN_Setup.exe",
+    "bytes": 2192044,
+    "sha256": "dc90bb88e35a82a649f1c026bd0b7b6e7039ddbe5e872f40ffebfb4b16b0fb11",
+    "authenticode_prior": "NotSigned; not a publisher authentication claim",
+    "recognized_source_byte_correspondence": "analysis/launcher-provenance-v1/source-assessment-and-run-plan.json",
+    "source_assessment": "analysis/game-install-context-v1/source-assessment-stage102.json"
+  },
+  "authorization_basis": "Existing explicit Windows/network/tool and missing-dependency authorization continues in this project VM. Fixed platform installer bytes were independently matched to the recognized vendor-listed archive; this does not inherit the unknown-origin game installer approval or replay an old launcher quota.",
+  "static_expected": {
+    "version": "1.7.9",
+    "default_directory": "{autopf}/易玩通/“易玩通”娱乐平台",
+    "required_privilege": "administrator",
+    "registry": "HKCU/SOFTWARE/SECN/Launcher; InstallDir={app}",
+    "postinstall": "POLCN_Launcher.exe, optional postinstall; inspect and deselect before finish",
+    "license_field_present": true
+  },
+  "normal_execution": {
+    "explicit_installer_launch_limit": 1,
+    "exact_installation_UAC_only": true,
+    "mode": "interactive; no silent flags or policy changes",
+    "before_start": [
+      "Fresh current window and empty own terminal",
+      "Full guest installer size/hash and readonly media identity",
+      "Fresh platform InstallDir32/64 and exact default parents; stop for any unexpected prior installation",
+      "Preserve installed game identity and existing recovery point; do not restore or reinstall game"
+    ],
+    "on_actual_binding_terms": "Display actual terms, preserve exact local review target as needed, and request action-time confirmation before acceptance. Existing broad authorization is not acceptance.",
+    "finish": "Deselect optional launcher execution, finish once, retain original installer lifecycle, and read back actual InstallDir views and selected installed files.",
+    "excluded": [
+      "No original game/launcher/updater launch in this platform-installation plan",
+      "No fabricated Path/InstallDir/IPC, compatibility spoof for guards, or protected code recovery",
+      "No account/credential actions or unexpected security/UAC",
+      "No prlctl, old current.ps1/Restore, consumed quotas, forced kill, reboot or automatic rollback",
+      "No changed network/sharing/security policy or license acceptance by silent mode"
+    ]
+  },
+  "recovery": "Existing stage102 snapshot retained, metadata checked in stage105; restore boot and independent backup not verified. Unexpected destination conflicts stop before writes.",
+  "execution_count": 0,
+  "new_terms_accepted": false,
+  "full_goal_complete": false
+}

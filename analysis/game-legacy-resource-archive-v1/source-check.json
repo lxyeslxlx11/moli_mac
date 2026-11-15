@@ -1,0 +1,121 @@
+{
+  "stage": 289,
+  "recorded_utc": "2026-11-07T13:13:02.509986+00:00",
+  "implementation_kind": "independent local resource transport over the existing source-bound loose-file stat/read contract",
+  "source_bound_startup": {
+    "path": "analysis/game-legacy-startup-materials-v1/source-check.json",
+    "bytes": 6431,
+    "sha256": "316fec8cc2dc385819f8a5b9013ab1ef838f7027076a9ed1187caea70564b79b"
+  },
+  "module": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "unchanged_updater_and_patch_contracts": [
+    {
+      "path": "shared/launcher-update.mjs",
+      "bytes": 20697,
+      "sha256": "06b80dd2f27c20c8a11dbfce679258190e7378a30d87a2c7aea6ccf8d26fa929"
+    },
+    {
+      "path": "shared/launcher-resource-import.mjs",
+      "bytes": 1878,
+      "sha256": "3b41b6b1ee33a2c783bcd7e0af8f50004c7b6d991466e9182cae4211fa577773"
+    },
+    {
+      "path": "shared/game-patch-data.mjs",
+      "bytes": 448,
+      "sha256": "7b290f41cce899a5e973cdd8b1ca0e4e326373a1e50bdd8620c6405c33e4ec49"
+    },
+    {
+      "path": "adapters/wechat/launcher-local-file.mjs",
+      "bytes": 4105,
+      "sha256": "e9bce697cce57fb3da0482e395ff8be7f4704d89308d3b090db6d76e7c316267"
+    }
+  ],
+  "format_reference": {
+    "title": "PKWARE ZIP APPNOTE",
+    "version": "6.3.10",
+    "url": "https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT",
+    "sections": [
+      "4.3.7",
+      "4.3.9",
+      "4.3.12",
+      "4.3.14",
+      "4.3.15",
+      "4.3.16",
+      "4.5.3"
+    ]
+  },
+  "original_fixture_writer": {
+    "implementation": "Python zipfile",
+    "python": "3.9.6",
+    "system_zlib": "1.2.12",
+    "cases": 25,
+    "fixture": {
+      "path": "analysis/game-legacy-resource-archive-v1/original-fixtures.json",
+      "bytes": 5731786,
+      "sha256": "472739b329db308123b16f49af66108d7aa8cd7548a4131e3e3e17f9c08526df"
+    }
+  },
+  "actual_material": {
+    "files": 1072,
+    "content_bytes": 2549015355,
+    "archive": {
+      "path": "build/analysis/game-legacy-resource-archive-v1/full-material.zip",
+      "bytes": 2549171845,
+      "sha256": "6ff08fd6251c748afaaa36a894b027a4992bdcc1e1a615d3f739809c5d6d2c8e"
+    },
+    "manifest": {
+      "path": "build/analysis/game-legacy-resource-archive-v1/full-material-pack.json",
+      "bytes": 171146,
+      "sha256": "414336769acc3f3dd0dd8a6f53ce0e575fd87ddc3dd9532b4f44422bba96b93e"
+    },
+    "content_check": {
+      "path": "build/analysis/game-legacy-resource-archive-v1/full-material-content-check.json",
+      "bytes": 201,
+      "sha256": "1ce56562030a5a8caff024a128639b02f5e124209e3ef1fe62d6054935e3e3d2"
+    },
+    "largest_file_bytes": 943552437
+  },
+  "authored_product_packages": {
+    "stored": {
+      "manifest": {
+        "path": "build/analysis/game-legacy-resource-archive-v1/product-stored.json",
+        "bytes": 60575,
+        "sha256": "1151593fa7f1b622830c871459ada871fa25b4a93e0a5cb1d44c1b173a32e376"
+      },
+      "archive_bytes": 2550364946,
+      "files": 273
+    },
+    "deflated": {
+      "manifest": {
+        "path": "build/analysis/game-legacy-resource-archive-v1/product-deflated.json",
+        "bytes": 60055,
+        "sha256": "b74f94f69633309aefa1ace9b9369a045c0539316ce33c2a9371aad48046d576"
+      },
+      "archive_bytes": 2549072312,
+      "files": 273
+    }
+  },
+  "facts": [
+    "The former game import inherited64-entry/32MiB updater and1024-file candidate contracts.Those modules remain byte-identical.",
+    "All1072 original packed files pass independent streaming SHA-256 and CRC checks.",
+    "The resource API retains requested ranges and uses JavaScript safe integer offsets;large stored banks stay on the selected file."
+  ],
+  "design": [
+    "ZIP/ZIP64 is a local cross-platform resource transport;it is not a new game network field or a claim about the original game reading ZIP.",
+    "A unique source module path can identify a wrapper root;otherwise the chosen archive root remains in effect.",
+    "Local headers and full stored-entry CRCs are checked on use;partial stored reads retain loose-file range semantics."
+  ],
+  "unverified": [
+    "The official wx documentation pages were unavailable in this tool session;the implementation reuses the existing readFile position/length API shape and is verified under Node-shaped ports.",
+    "Actual wx chooser/storage/large-file behavior and physical devices.",
+    "Whole-game/current-version/official-account compatibility and large cold Deflate-bank performance."
+  ],
+  "REA_new_session": false,
+  "original_execution": 0,
+  "VM_actions": 0,
+  "official_sessions": 0
+}

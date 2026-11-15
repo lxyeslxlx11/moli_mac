@@ -1,0 +1,363 @@
+{
+  "schema": "moli.vc71-app-local-remediation.runtime.v1",
+  "recorded_utc": "2026-10-30T11:31:04.924160+00:00",
+  "status": "App-local runtime repair, original→updater→restarted launcher, V2.01 UI and changed file hashes observed; own transient subscriptions/admin session cleaned; updater exit and official/game compatibility not verified",
+  "plan": "vc71-remediation-plan-stage108.json",
+  "guest_media": "vc71-guest-media-stage108.json",
+  "administrator_session": {
+    "pid": 9208,
+    "NoProfile": true,
+    "expected_Microsoft_Windows_UAC": "actual normal Yes click accepted at guest19:22",
+    "title": "管理员: Windows PowerShell",
+    "working_prompt": "C:\\WINDOWS\\system32",
+    "closed": true,
+    "normal_close_guest_local": "2026-10-30 19:58"
+  },
+  "installed_directory": "C:\\Program Files (x86)\\易玩通\\“易玩通”娱乐平台",
+  "fresh_original_four": {
+    "observation_guest_local": "2026-10-30 19:25",
+    "hashes": {
+      "polcn_launcher.exe": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+      "launcherupdater.exe": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+      "xml\\gamelist.xml": "be8f1213d77bd294fbb79b2fb51a5e7fecdc9aa3c0854db7a6d821fad20ef85a",
+      "xml\\regionlist.xml": "0c94ca78c40c1940f241940a97aabef7849e9ad3285310046f346b69128a8438"
+    },
+    "all_four_full_path_and_hash_match": true,
+    "returned_prompt": true
+  },
+  "fresh_destination_dll_absence": {
+    "observation_guest_local": "2026-10-30 19:28",
+    "mfc71.dll": false,
+    "msvcp71.dll": false,
+    "msvcr71.dll": false,
+    "returned_prompt": true
+  },
+  "related_process_point_count": {
+    "observation_guest_local": "2026-10-30 19:29",
+    "count": 0,
+    "returned_prompt": true
+  },
+  "backup": {
+    "path": "C:\\MoliOffline\\stage108-vc71-originals",
+    "initial_Test_Path": false,
+    "initial_observation_guest_local": "2026-10-30 19:30",
+    "created": true,
+    "copy_executed": true,
+    "hashes_read_back": true,
+    "created_guest_local": "2026-10-30 19:31",
+    "copy_guest_local": "2026-10-30 19:32",
+    "copy_primitive": "File.Copy(String,String), no overwrite",
+    "hashes_guest_local": "2026-10-30 19:35",
+    "full_hashes_match": true,
+    "returned_prompt": true,
+    "hashes_by_original_relative_path": {
+      "polcn_launcher.exe": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+      "launcherupdater.exe": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+      "xml\\gamelist.xml": "be8f1213d77bd294fbb79b2fb51a5e7fecdc9aa3c0854db7a6d821fad20ef85a",
+      "xml\\regionlist.xml": "0c94ca78c40c1940f241940a97aabef7849e9ad3285310046f346b69128a8438"
+    },
+    "layout": "Four distinct leaf names in private backup directory; XML2 map back to XML/ original relative paths",
+    "inventory": [
+      {
+        "name": "GameList.xml",
+        "bytes": 4377,
+        "attributes": "Archive"
+      },
+      {
+        "name": "LauncherUpdater.exe",
+        "bytes": 46080,
+        "attributes": "Hidden, Archive"
+      },
+      {
+        "name": "polcn_launcher.exe",
+        "bytes": 599040,
+        "attributes": "Archive"
+      },
+      {
+        "name": "RegionList.xml",
+        "bytes": 6205,
+        "attributes": "Archive"
+      }
+    ],
+    "enumeration_limit": "First non-Force gci returned only3 visible files; explicit -Force inventory found4 and hidden updater. Re-ran hash query with -Force, all4 full hashes returned. No duplicate backup copy or attribute change."
+  },
+  "input_incident": "Combined 147-character process/array/absence line lost middle DLL characters; actual whole line inspected, cancelled with Ctrl+C before Return, ^C and empty prompt visible. Replaced with short separate queries and correct3-name actual readback. No malformed command executed.",
+  "dependency_copy_executed": true,
+  "new_explicit_vendor_starts": 1,
+  "original_game_starts": 0,
+  "updated_utc": "2026-10-30T12:00:46.610874+00:00",
+  "dependency_copy": {
+    "copy_guest_local": "2026-10-30 19:36",
+    "hash_receipt_guest_local": "2026-10-30 19:38",
+    "primitive": "File.Copy(String,String), no overwrite",
+    "exact_three_from_D_to_installed_directory": true,
+    "displayed_errors": false,
+    "returned_prompt": true,
+    "full_Path_Hash_matches": true,
+    "payloads": [
+      {
+        "name": "mfc71.dll",
+        "bytes": 1060864,
+        "sha256": "4da5efdc46d126b45daeee8bc69c0ba2aa243589046b7dfd12a7e21b9bee6a32",
+        "machine": "0x14c",
+        "optional_header_magic": "0x10b",
+        "requested_imports": 214,
+        "missing_requested_exports": [],
+        "dependent_dlls": [
+          "MSVCR71.dll",
+          "KERNEL32.dll",
+          "GDI32.dll",
+          "USER32.dll",
+          "SHLWAPI.dll"
+        ],
+        "export_forwarders": []
+      },
+      {
+        "name": "msvcp71.dll",
+        "bytes": 499712,
+        "sha256": "df96156f6a548fd6fe5672918de5ae4509d3c810a57bffd2a91de45a3ed5b23b",
+        "machine": "0x14c",
+        "optional_header_magic": "0x10b",
+        "requested_imports": 5,
+        "missing_requested_exports": [],
+        "dependent_dlls": [
+          "MSVCR71.dll",
+          "KERNEL32.dll"
+        ],
+        "export_forwarders": []
+      },
+      {
+        "name": "msvcr71.dll",
+        "bytes": 348160,
+        "sha256": "8094af5ee310714caebccaeee7769ffb08048503ba478b879edfef5f1a24fefe",
+        "machine": "0x14c",
+        "optional_header_magic": "0x10b",
+        "requested_imports": 39,
+        "missing_requested_exports": [],
+        "dependent_dlls": [
+          "KERNEL32.dll"
+        ],
+        "export_forwarders": []
+      }
+    ],
+    "system_DLL_PATH_security_changes": false,
+    "outer_VMware_installer_executed": false,
+    "library_loading_proven": false
+  },
+  "lifecycle_preflight": {
+    "guest_local": "2026-10-30 19:39..19:43",
+    "initial_subscribers": 0,
+    "initial_events": 0,
+    "registered": [
+      {
+        "source": "molirstart108",
+        "id": 1,
+        "class": "Win32_ProcessStartTrace",
+        "max_trigger_count": 16
+      },
+      {
+        "source": "molirstop108",
+        "id": 2,
+        "class": "Win32_ProcessStopTrace",
+        "max_trigger_count": 16
+      }
+    ],
+    "where": "processname like 'POLCN[_]Launcher%' or processname like 'LauncherUpdater%'",
+    "two_ids_actually_read_back": true,
+    "returned_prompt": true,
+    "unrelated_process_events": false,
+    "persistent_audit_security_changes": false
+  },
+  "normal_launch": {
+    "host_submission_utc": "2026-10-30T11:44:53.162Z",
+    "guest_submission_iso": "2026-10-30T19:44:53.2197827+08:00",
+    "pid": 9280,
+    "explicit_installed_cwd": true,
+    "additional_vendor_UAC": false,
+    "direct_updater_starts": 0,
+    "original_game_starts": 0,
+    "timeline": [
+      {
+        "elapsed_host_seconds": 12.827,
+        "observation": "Usage-mode selection dialog visible; Internet-cafe and home options"
+      },
+      {
+        "elapsed_host_seconds": 29.484,
+        "action": "Selected Internet-cafe mode via normal button",
+        "observation": "V2.01 main launcher UI visible, mode label Internet-cafe; original game list and account area; no credentials entered or account request submitted; temporary remember-username checkbox unchecked"
+      },
+      {
+        "elapsed_host_seconds": 52.325,
+        "action": "Normal top-right close button",
+        "observation": "Launcher UI disappeared; no force termination"
+      },
+      {
+        "elapsed_host_seconds": 97.321,
+        "observation": "Returned PID9280 HasExited=True ExitCode=0; related launcher/updater process point count0 and returned prompt"
+      }
+    ],
+    "budget_note": "Main UI observed and normal close requested/visibly completed within90s. Process ExitCode/count receipt arrived at97.321s; do not claim full process-state verification within90s or infer exact exit timestamp without actual trace.",
+    "protocol_or_official_compatibility_verified": false,
+    "library_module_list_captured": false,
+    "update_or_restart_success_proven": "Observed original→updater→restarted-launcher link and changed parent/RegionList full file hashes; not full transaction atomicity, updater exit, or runtime mapped image hash"
+  },
+  "lifecycle": {
+    "observed_guest_local": "2026-10-30 19:47..19:49",
+    "start_events": 3,
+    "stop_events": 2,
+    "events_in_displayed_queue_order": [
+      {
+        "source": "molirstop108",
+        "ProcessName": "POLCN_Launcher",
+        "ProcessID": 9280,
+        "ParentProcessID": 0,
+        "ExitStatus": 0,
+        "TIME_CREATED": "134378342939518218",
+        "provider_time_utc": "2026-10-30T11:44:53.951821+00:00"
+      },
+      {
+        "source": "molirstart108",
+        "ProcessName": "POLCN_Launcher.exe",
+        "ProcessID": 9280,
+        "ParentProcessID": 9208,
+        "TIME_CREATED": "134378342939518216",
+        "provider_time_utc": "2026-10-30T11:44:53.951821+00:00"
+      },
+      {
+        "source": "molirstart108",
+        "ProcessName": "LauncherUpdater.exe",
+        "ProcessID": 10436,
+        "ParentProcessID": 9280,
+        "TIME_CREATED": "134378342939518217",
+        "provider_time_utc": "2026-10-30T11:44:53.951821+00:00"
+      },
+      {
+        "source": "molirstart108",
+        "ProcessName": "polcn_launcher.exe",
+        "ProcessID": 9012,
+        "ParentProcessID": 10436,
+        "TIME_CREATED": "134378342970348942",
+        "provider_time_utc": "2026-10-30T11:44:57.034894+00:00"
+      },
+      {
+        "source": "molirstop108",
+        "ProcessName": "polcn_launcher",
+        "ProcessID": 9012,
+        "ParentProcessID": 0,
+        "ExitStatus": 0,
+        "TIME_CREATED": "134378343462787817",
+        "provider_time_utc": "2026-10-30T11:45:46.278781+00:00"
+      }
+    ],
+    "fact": "Original PID9280 created updater PID10436, which created launcher PID9012. Both launcher PIDs have actual stop status0. The UI normal-close is consistent with9012 stop.",
+    "limits": [
+      "No updater stop/exit status or loaded image hash observed",
+      "Stop ProcessName for both launcher PIDs is basename without extension; the initial exact .exe filter would not match these actual values",
+      "Updater stop-name representation is not observed; do not generalize the parent observation to a proven updater truncation cause",
+      "Stop ParentProcessID=0 is the actual event field, not a replacement for the known start-event parent links",
+      "Adjacent provider100ns values are not physical execution durations; raw timestamps retained as strings",
+      "No SID, command-line, IPC, environment or credential fields output"
+    ],
+    "returned_prompt": true
+  },
+  "postrun": {
+    "guest_local": "2026-10-30 19:51",
+    "four_full_Path_Hash_read_back": true,
+    "returned_prompt": true,
+    "hashes": {
+      "polcn_launcher.exe": "6d459ddbdf80a86cf7a1e41b99ab7fb575b42842d7163522efb3c9fa6e6ac987",
+      "LauncherUpdater.exe": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+      "XML/GameList.xml": "be8f1213d77bd294fbb79b2fb51a5e7fecdc9aa3c0854db7a6d821fad20ef85a",
+      "XML/RegionList.xml": "467eeac27d1127fba828c515dba708b9efaf4d884053a767187b3c96fa5acd58"
+    },
+    "changed": [
+      "polcn_launcher.exe",
+      "XML/RegionList.xml"
+    ],
+    "unchanged": [
+      "LauncherUpdater.exe",
+      "XML/GameList.xml"
+    ],
+    "new_parent_image_version_equality_to_prior_samples": "Exact full SHA/bytes equals retained public payload; freshly rehashed in updated-source-bridge-stage108.json",
+    "file_trace_or_atomicity_verified": false,
+    "inventory_guest_local": "2026-10-30 19:53",
+    "inventory": [
+      {
+        "name": "LauncherUpdater.exe",
+        "bytes": 46080
+      },
+      {
+        "name": "LauncherUpdater.log",
+        "bytes": 330
+      },
+      {
+        "name": "Log.htm",
+        "bytes": 829
+      },
+      {
+        "name": "mfc71.dll",
+        "bytes": 1060864
+      },
+      {
+        "name": "msvcp71.dll",
+        "bytes": 499712
+      },
+      {
+        "name": "msvcr71.dll",
+        "bytes": 348160
+      },
+      {
+        "name": "PlayOnline.ini",
+        "bytes": 225
+      },
+      {
+        "name": "polcn_launcher.exe",
+        "bytes": 1666048
+      },
+      {
+        "name": "unins000.dat",
+        "bytes": 8590
+      },
+      {
+        "name": "unins000.exe",
+        "bytes": 3129349
+      },
+      {
+        "name": "Update_Log.htm",
+        "bytes": 768
+      }
+    ],
+    "inventory_scope": "Top-level files including hidden, metadata only; XML content/logs/INI not read, no transient-file absence inference"
+  },
+  "cleanup": {
+    "unregister_guest_local": "2026-10-30 19:54",
+    "remove_own_events_guest_local": "2026-10-30 19:56",
+    "count_receipt_guest_local": "2026-10-30 19:58",
+    "sources": [
+      "molirstart108",
+      "molirstop108"
+    ],
+    "actual_subscriber_count": 0,
+    "actual_queue_count": 0,
+    "returned_empty_prompt": true,
+    "own_admin_console_normally_closed": true,
+    "original_ordinary_terminal_preserved": true,
+    "no_force_termination_or_vm_reset": true
+  },
+  "interpretation": {
+    "facts": [
+      "Exact3 app-local dependencies added and full copy hashes verified",
+      "Fresh original4 backed up and full backup hashes verified, including hidden updater",
+      "Normal parent9280 created updater10436 which created launcher9012",
+      "UI reached usage-mode choice and V2.01 Internet-cafe main screen; no credentials or game launch",
+      "Post-run parent changed from599040B/109b…ef0e to1666048B/6d459…c987; RegionList full hash changed; updater/GameList unchanged"
+    ],
+    "inference": "The three-runtime repair enabled progression past the earlier early exit in this test. No per-DLL loader trace or isolation of each library proves the exclusive original cause.",
+    "unverified": [
+      "Updater10436 stop/exit code",
+      "Loaded mapped image/module hashes and concrete DLL load paths",
+      "Complete downloaded package/network transcript, file-operation ordering/atomicity, updater ACK/crash rollback",
+      "Authentication/game IPC or consumer, gameplay, target-platform and official compatibility"
+    ]
+  }
+}

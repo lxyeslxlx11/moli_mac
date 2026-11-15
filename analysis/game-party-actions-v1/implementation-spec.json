@@ -1,0 +1,31 @@
+{
+  "schema": "moli.party-actions-contract-stage179.v1",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "source_bytes": 1569280,
+  "analysis_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "tool": "REA6.7.0/Ghidra12.1.4",
+  "facts": [
+    "43d150 aux04 is separate from primary/transient/side icons. Source mode-change byte body2ec and primary100 determine create/rebuild/remove/retain; allocation43e210 has action0/facing0/priority10/flags20. Creation jumps directly to43d5a2 without animating or submitting that frame.",
+    "When mode15 is1 or2 creation selects body2e8; otherwise literal103100 (192bc). Dirty2ec is set by C0 when prior body2e8 differs from raw incoming value16, not merely when mode15 changes; a fresh zeroed body resets mode15/value16/child state.",
+    "Without dirty rebuild, primary100 absent removes an existing child. With leader100, missing child creates unless primary400+4000 are both set and8000 absent. Existing child with400 set removes; otherwise it advances and draws. Preserve native alternating create/remove cases rather than smoothing them.",
+    "On a retained badge, copy unshifted parent screen and world position to child, run helper once, then query CURRENT child offsets/origins. Queued signed-short anchor is parentX+offsetX-originX and parentY+source body height+offsetY-originY. NULL style means palette0/flags0/colorffffffff, even if animation frame style differs. It precedes the other type1 child submissions and shares1024 slots.",
+    "467060 toggles party at a strict unsigned (lastShortcutTick+500 modulo32)<now gate, sharing native global614884. Join uses facing0..7 to offset current local display by table53d4d4 and requires43f2d0 target: active indexed body, matching body DISPLAY, recordTypeFlags&28 nonzero and primary400 clear; local primary100 must also be clear. Leave skips facing/neighbor/own-leader checks. Both require input/movement/coordination guards clear.",
+    "Producer4f77d0 sends exactly three int32 fields with tag*Cc: current local displayX/displayY and join1 or leave0. No optimistic membership/mode mutation occurs in467060. Native614884 is in PE .data zero-fill tail; Ghidra initialized-memory read is00000000 and there is no authoritative original file mapping for that virtual address.",
+    "Kk0/receive-00567cc0 calls4f3310 with mode/result. Mode1/result1 ORs local member200 without changing party mode. Mode0/result1 clears local200, sets party mode0, calls500500 (owned rows/queues and force/leader removal), then4f8340 sends /Re with local TARGET X/Y and sign-extended low byte of native facingf536ac. Other combinations do not change membership/mode; native pending wordf5f16c clears in the ordinary gate0 path.",
+    "Current shared/session/client byte codecs already know *Cc, Kk0 and /Re descriptors. The new path must use those exact operations and the actual session queue, preserve request order and late-close cleanup, and retain ordinary party source ownership from stage178."
+  ],
+  "independent_boundaries": [
+    "Safe owned child handles replace native pointers; rebuild frees old owned player rather than reproducing an overwrite leak",
+    "Only ordinary entered-world commands are exposed. Unknown pre-source actor/context, invalid facing, bounds or incomplete target context remain typed or explicitly blocked",
+    "Fresh independent shortcut owner starts at0 from observed PE zero-fill semantics; no claim that other unimplemented shortcuts have been observed",
+    "Local project requirements-index supplements the pre-implementation plan without modifying external knowledge rules"
+  ],
+  "unknowns": [
+    "Other UI shortcuts sharing614884, modal/transition native924f30 gates outside ordinary entered-world profile, other party commands and complete party UI",
+    "Battle/pet-shadow/active compound transitions, native x87 equality and invalid pointer aliases; full interactions/corrections/reset/production startup/remaining gameplay",
+    "Native WeChat gamePage/device, current-version consumer compatibility and real official sessions; no real test account"
+  ],
+  "phase_complete": true,
+  "full_goal_complete": false,
+  "goal_status": "active"
+}

@@ -1,0 +1,390 @@
+{
+  "schema_version": 1,
+  "observed_utc": "2026-10-25T03:43:10.314400+00:00",
+  "scope": "Read-only static evidence review; no client execution, driver installation, server connection, VM mutation or protocol implementation by this review",
+  "tools": {
+    "python": "3.9.6",
+    "historical_innoextract": "1.9",
+    "historical_rea": "6.7.0",
+    "objdump_review": "GNU objdump 2.47.20260726"
+  },
+  "installer_identity": [
+    {
+      "file": "CrossGate_Setup.exe",
+      "sha256": "e593e47fa09ac03e2213c7dc7bb80575e0295f0dc48a0e1edc73c4ac1982f983",
+      "bytes": 1104268439,
+      "source": "analysis/input-manifest.json",
+      "rehash_this_stage": false
+    },
+    {
+      "file": "POLCN_Setup.exe",
+      "sha256": "dc90bb88e35a82a649f1c026bd0b7b6e7039ddbe5e872f40ffebfb4b16b0fb11",
+      "bytes": 2192044,
+      "source": "analysis/input-manifest.json",
+      "rehash_this_stage": false
+    }
+  ],
+  "sample_origin_authenticity": "Unverified; hashes identify supplied bytes, not official provenance/current release",
+  "modules": [
+    {
+      "file": "CG5Reg.exe",
+      "source": "analysis/game/modules.json",
+      "sha256": "c3baedb2f82a2da785e8d27e5d49560175f09f5a38319edb935995b8e7e228a9",
+      "bytes": 13824,
+      "hash_matches_prior": true,
+      "machine": "0x14c",
+      "machine_file_offset": "0xfc",
+      "optional_magic": "0x10b",
+      "optional_magic_file_offset": "0x110"
+    },
+    {
+      "file": "Config.exe",
+      "source": "analysis/game/modules.json",
+      "sha256": "9389add9c04cbc6bd313a34098ed94aef11a866ba721c6ccf7f984973efa0f7d",
+      "bytes": 61440,
+      "hash_matches_prior": true,
+      "machine": "0x14c",
+      "machine_file_offset": "0xfc",
+      "optional_magic": "0x10b",
+      "optional_magic_file_offset": "0x110"
+    },
+    {
+      "file": "MFC71.dll",
+      "source": "analysis/game/modules.json",
+      "sha256": "a08ab5280687d699ccd307196e72847b23d0a475744ef7c73654defee0fb2cf2",
+      "bytes": 1060864,
+      "hash_matches_prior": true,
+      "machine": "0x14c",
+      "machine_file_offset": "0x11c",
+      "optional_magic": "0x10b",
+      "optional_magic_file_offset": "0x130"
+    },
+    {
+      "file": "Patcher_PUK3.exe",
+      "source": "analysis/game/modules.json",
+      "sha256": "195f3afda41f342147b0616a4c005a4cb308ae6869b52c4a558fded5f5d9aaa8",
+      "bytes": 578560,
+      "hash_matches_prior": true,
+      "machine": "0x14c",
+      "machine_file_offset": "0x124",
+      "optional_magic": "0x10b",
+      "optional_magic_file_offset": "0x138"
+    },
+    {
+      "file": "cg_item_6000.exe",
+      "source": "analysis/game/modules.json",
+      "sha256": "06447ec8e108ffc4153a1720e729d74cc37c39aee0da268ab7b144ba17d9a7e2",
+      "bytes": 2625536,
+      "hash_matches_prior": true,
+      "machine": "0x14c",
+      "machine_file_offset": "0x12c",
+      "optional_magic": "0x10b",
+      "optional_magic_file_offset": "0x140"
+    },
+    {
+      "file": "cg_se_3000.exe",
+      "source": "analysis/game/modules.json",
+      "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+      "bytes": 2904064,
+      "hash_matches_prior": true,
+      "machine": "0x14c",
+      "machine_file_offset": "0x154",
+      "optional_magic": "0x10b",
+      "optional_magic_file_offset": "0x168"
+    },
+    {
+      "file": "cg_se_6000.exe",
+      "source": "analysis/game/modules.json",
+      "sha256": "6e2ff83274561047129ef61cbda8b718e3806f68aeb5d36f3a9b5cd08df60a4a",
+      "bytes": 1757184,
+      "hash_matches_prior": true,
+      "machine": "0x14c",
+      "machine_file_offset": "0x11c",
+      "optional_magic": "0x10b",
+      "optional_magic_file_offset": "0x130"
+    },
+    {
+      "file": "d3drm.dll",
+      "source": "analysis/game/modules.json",
+      "sha256": "58226b8e12c98ef437af103273c21e88b659acd8328bd4c55fddbae97ab8fad2",
+      "bytes": 350208,
+      "hash_matches_prior": true,
+      "machine": "0x14c",
+      "machine_file_offset": "0xfc",
+      "optional_magic": "0x10b",
+      "optional_magic_file_offset": "0x110"
+    },
+    {
+      "file": "d3dx9_43.dll",
+      "source": "analysis/game/modules.json",
+      "sha256": "0b28546be22c71834501f7d7185ede5d79742457331c7ee09efc14490dd64f5f",
+      "bytes": 1998168,
+      "hash_matches_prior": true,
+      "machine": "0x14c",
+      "machine_file_offset": "0xfc",
+      "optional_magic": "0x10b",
+      "optional_magic_file_offset": "0x110"
+    },
+    {
+      "file": "msvcr71.dll",
+      "source": "analysis/game/modules.json",
+      "sha256": "c4d4339df314a27ff75a38967b7569d9962337b8d4cd4b0db3aba5ff72b2bfbb",
+      "bytes": 348160,
+      "hash_matches_prior": true,
+      "machine": "0x14c",
+      "machine_file_offset": "0xf4",
+      "optional_magic": "0x10b",
+      "optional_magic_file_offset": "0x108"
+    },
+    {
+      "file": "app/POLCN_Launcher.exe",
+      "source": "reports/launcher-static.md",
+      "sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+      "bytes": 599040,
+      "hash_matches_prior": true,
+      "machine": "0x14c",
+      "machine_file_offset": "0x104",
+      "optional_magic": "0x10b",
+      "optional_magic_file_offset": "0x118"
+    },
+    {
+      "file": "POLCN_Launcher.unpacked.exe",
+      "source": "reports/launcher-static.md",
+      "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+      "bytes": 1735168,
+      "hash_matches_prior": true,
+      "machine": "0x14c",
+      "machine_file_offset": "0x104",
+      "optional_magic": "0x10b",
+      "optional_magic_file_offset": "0x118"
+    }
+  ],
+  "inventory_review": [
+    {
+      "file": "analysis/crossgate-inventory.txt",
+      "sha256": "5cfee8c996bf7c0c98970a55fa5a8d440b2fba6e3eac458e16d3d6d3365dea67",
+      "entries": 2368,
+      "sys_inf_cat_entries": [],
+      "apex_entries": [
+        {
+          "line": 2357,
+          "path": "app/ApexClient.Dat"
+        }
+      ]
+    },
+    {
+      "file": "analysis/polcn-inventory.txt",
+      "sha256": "82c1930222b90255a6da007f4f55b22b88db8d6cc54333e06e4ad223e9cc939c",
+      "entries": 4,
+      "sys_inf_cat_entries": [],
+      "apex_entries": []
+    }
+  ],
+  "device_io_imports": [
+    {
+      "file": "cg_se_3000.exe",
+      "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+      "source": "analysis/protocol-v3/game-network/cg_se_3000.exe.network-imports.json",
+      "dll": "KERNEL32.dll",
+      "symbol": "DeviceIoControl",
+      "descriptor_offset": "0x1132e8",
+      "lookup_offset": "0x1135f4",
+      "iat_va": "0x1249294",
+      "iat_file_offset": "0xf3294"
+    },
+    {
+      "file": "cg_item_6000.exe",
+      "sha256": "06447ec8e108ffc4153a1720e729d74cc37c39aee0da268ab7b144ba17d9a7e2",
+      "source": "analysis/protocol-v3/game-network/cg_item_6000.exe.network-imports.json",
+      "dll": "KERNEL32.dll",
+      "symbol": "DeviceIoControl",
+      "descriptor_offset": "0xea2e8",
+      "lookup_offset": "0xea5f4",
+      "iat_va": "0x1395294",
+      "iat_file_offset": "0xca294"
+    }
+  ],
+  "device_io_limit": "DeviceIoControl imports/call candidates alone do not identify a proprietary driver, kernel dependency, anti-cheat, call reachability or handle origin",
+  "device_io_call_candidates": [
+    {
+      "file": "cg_se_3000.exe",
+      "va": "0x11dea7a",
+      "file_offset": "0x8fa7a",
+      "preceding_control_code": "0x900a8"
+    },
+    {
+      "file": "cg_se_3000.exe",
+      "va": "0x11e21cb",
+      "file_offset": "0x931cb",
+      "preceding_control_code": "0x900a8"
+    }
+  ],
+  "graphics_literals": [
+    {
+      "file": "cg_se_3000.exe",
+      "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+      "file_offset": "0x3d84",
+      "literal": "DDRAW.DLL",
+      "matches_bytes": true
+    },
+    {
+      "file": "cg_se_3000.exe",
+      "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+      "file_offset": "0x3db0",
+      "literal": "DirectDrawCreate",
+      "matches_bytes": true
+    },
+    {
+      "file": "cg_se_3000.exe",
+      "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+      "file_offset": "0x3e20",
+      "literal": "DINPUT.DLL",
+      "matches_bytes": true
+    },
+    {
+      "file": "cg_se_3000.exe",
+      "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+      "file_offset": "0x3e4c",
+      "literal": "DirectInputCreateA",
+      "matches_bytes": true
+    },
+    {
+      "file": "cg_se_3000.exe",
+      "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+      "file_offset": "0x290d6",
+      "literal": "DSOUND.dll",
+      "matches_bytes": true
+    },
+    {
+      "file": "cg_se_3000.exe",
+      "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+      "file_offset": "0x29142",
+      "literal": "WINMM.dll",
+      "matches_bytes": true
+    },
+    {
+      "file": "cg_se_3000.exe",
+      "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+      "file_offset": "0xeb9a",
+      "literal": "DirectSoundCreate Start",
+      "matches_bytes": true
+    }
+  ],
+  "d3drm_import": {
+    "file": "d3drm.dll",
+    "sha256": "58226b8e12c98ef437af103273c21e88b659acd8328bd4c55fddbae97ab8fad2",
+    "dll": "DDRAW.dll",
+    "symbol": "DirectDrawCreate",
+    "descriptor_file_offset": "0x4cd5c",
+    "dll_name_file_offset": "0x4d4ec",
+    "symbol_file_offset": "0x4d4da",
+    "iat_rva": "0x1010",
+    "iat_va": "0x6db91010",
+    "iat_file_offset": "0x410",
+    "prior_objdump_lines": [
+      182,
+      186
+    ],
+    "direct_pe_read_reproduced": true
+  },
+  "unknowns": [
+    "app/ApexClient.Dat listed at crossgate-inventory.txt:2357 (488 KiB) has not been extracted/reviewed in this stage; no independent hash/format claim",
+    "Packed original .text sections have zero raw bytes; dynamic loads, embedded resources, installer scripts and later updates not exhaustively analyzed",
+    "No client runtime, graphics/input/audio compatibility or mandatory kernel-driver dependency verification",
+    "VM driver package NetKVM is not a component of the game installer; its ARM64 identity does not prove game compatibility"
+  ],
+  "vm_graphics_config_evidence": {
+    "source": "analysis/vm-install-v5/driver-cd-config.json",
+    "config_sha256": "97cb2df7e4554cb742d6026ab02388f4333b847c75620a7c5798e2de585c3ce8",
+    "display_hardware": "virtio-ramfb",
+    "accelerated_card_suffix_gl": false,
+    "minimal_netkvm_media_includes_graphics_driver": false,
+    "not_runtime_graphics_test": true
+  },
+  "primary_sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/arm/apps-on-arm-x86-emulation",
+      "retrieved_date_utc": "2026-10-25",
+      "claim": "Windows 11 Arm supports x86/x64 user-mode emulation; kernel components must be Arm64",
+      "page_updated": "2025-11-07"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/arm/faq",
+      "retrieved_date_utc": "2026-10-25",
+      "claim": "Kernel-mode and user-mode print drivers must be native Arm64; x86/x64 setup cannot install Arm64 drivers",
+      "page_updated": "2025-11-07"
+    },
+    {
+      "url": "https://docs.getutm.app/settings-qemu/system/",
+      "retrieved_date_utc": "2026-10-25",
+      "claim": "Apple Silicon virtualization requires aarch64 guest; x86 guest on Arm uses emulation; forced multicore strong-on-weak has correctness caveat"
+    },
+    {
+      "url": "https://docs.getutm.app/guest-support/windows/",
+      "retrieved_date_utc": "2026-10-25",
+      "claim": "Windows QEMU DirectX acceleration is experimental, game compatibility limited, requires -gl card and graphics driver"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/ddraw/nf-ddraw-directdrawcreate",
+      "retrieved_date_utc": "2026-10-25",
+      "claim": "DirectDrawCreate is DirectDraw object API; supports modes with emulated or hardware-only features; API presence alone not hardware dependency",
+      "page_updated": "2024-02-22"
+    }
+  ],
+  "source_evidence_hashes": [
+    {
+      "file": "analysis/input-manifest.json",
+      "sha256": "a3903a8fc9d2212c70076d4e51a91402c12c0418c21499e4d3b3bfcec61a40fb"
+    },
+    {
+      "file": "analysis/game/modules.json",
+      "sha256": "e5b6d01024acc2e7bd8f61b1250468138dc223516aec2514732ad401521464d4"
+    },
+    {
+      "file": "analysis/game/pe-sections.json",
+      "sha256": "9fd52b4dbb9ed9e9f04bed418354ae13620cb7b0f12c634c77ea3c6658fba4cf"
+    },
+    {
+      "file": "analysis/game/d3drm.dll.objdump.txt",
+      "sha256": "c290eb99cb97a3d60c50ec41b4924d16416e1cb7e139217cac9a70123d86ed03"
+    },
+    {
+      "file": "analysis/game/cg_se_3000.exe.strings.json",
+      "sha256": "73e4521fe582271a68ef89c8c5f6752f99ba8f2b9aea805fe894f610e9fa5f02"
+    },
+    {
+      "file": "analysis/protocol-v3/game-network/packed-boundary.json",
+      "sha256": "06dc891fc6bd8d08f7f39f78f1dc140f39b30ebad4ea8a0153ab7f7a59604b14"
+    },
+    {
+      "file": "analysis/protocol-v3/game-network/cg_se_3000.exe.network-imports.json",
+      "sha256": "84c2b8510adfc94bdb8ae76a767ca2598d97baa0a9233c07279c433fb299645a"
+    },
+    {
+      "file": "analysis/protocol-v3/game-network/cg_item_6000.exe.network-imports.json",
+      "sha256": "0c4971879afc139a46a46ddfb062b659aa70526b5654b5273675c99b557171b6"
+    },
+    {
+      "file": "analysis/vm-install-v5/driver-cd-config.json",
+      "sha256": "abfdc73edeb33ec68790c1c806915e1a6b02db6dd1b853934fd6611890d978d3"
+    }
+  ],
+  "verification": {
+    "module_hash_and_pe_architecture_matches": 12,
+    "module_count": 12,
+    "graphics_literal_matches": 7,
+    "graphics_literal_count": 7,
+    "inventory_entry_counts": [
+      2368,
+      4
+    ],
+    "tests_added": 0,
+    "client_runtime_test": "not run",
+    "official_online_compatibility": "not run",
+    "local_document_links_checked": 53,
+    "missing_local_document_links": 0,
+    "source_evidence_hashes_rechecked": 9,
+    "source_evidence_hash_mismatches": 0,
+    "apex_known_temporary_file_present": false
+  }
+}

@@ -1,0 +1,409 @@
+{
+  "schema": "moli.game-entry-runtime-v1.resume-stage101.v1",
+  "recorded_utc": "2026-10-29T15:00:28.709724+00:00",
+  "objective": "REA launcher, implement launcher, REA game, implement game; web/mobile-web/WeChat and official acceptance retained",
+  "goal_status_fresh_at_start": "active; resumed after stage100 blocked",
+  "old_blocked_counts_reused": false,
+  "old_Mac_lock_resolved": true,
+  "new_manual_question_sent": false,
+  "previous_unlock_request_no_longer_needed": true,
+  "previous_goal_turn_classification": "no progress",
+  "current_progress": "Fresh ordinary Windows volume query and launcher SHA returned; assumed fixed game path actually PathNotFound, changing next action to targeted project directory discovery",
+  "prior_delivery": {
+    "path": "analysis/delivery-manifest-stage100.json",
+    "bytes": 258445,
+    "sha256": "a838ca76ba989374cef9d3fcb53b2dba98601f12c1055202ec61b348afbe4917",
+    "files": 1441,
+    "all_rehashed_unchanged": true
+  },
+  "preedit_baseline_docs": [
+    "README.md",
+    "reports/development-plan.md",
+    "reports/game-static.md",
+    "reports/logic-protocol-spec.md",
+    "reports/architecture-and-milestones.md",
+    "reports/validation.md",
+    "reports/known-issues.md",
+    "reports/analysis-methods.md",
+    "reports/vm-environment.md",
+    "reports/module-interfaces.md",
+    "reports/resource-formats.md",
+    "analysis/game-entry-v1/probe/README.md"
+  ],
+  "Windows_readbacks": [
+    {
+      "command": "get-volume",
+      "result": "D MOLICUR89; CD-ROM; Healthy/OK;1.5MB; prompt returned",
+      "scope": "No guest member hashes or open-handle proof"
+    },
+    {
+      "command": "get-filehash c:/molioffline/launcher-probe/polcn_launcher.exe",
+      "sha256": "6d459ddbdf80a86cf7a1e41b99ab7fb575b42842d7163522efb3c9fa6e6ac987",
+      "prompt_returned": true,
+      "length_freshly_queried": false
+    },
+    {
+      "command": "get-filehash c:/molioffline/launcher-probe/cg_se_3000.exe",
+      "result": "Resolve-Path PathNotFound / ObjectNotFound / ItemNotFoundException; prompt returned",
+      "meaning": "No file at that exact assumed path; not proof no game file exists elsewhere or game compatibility failure"
+    },
+    {
+      "command": "get-childitem c:/molioffline -directory|select name,attributes",
+      "items": [
+        {
+          "name": "client-probe",
+          "attributes": "Directory"
+        },
+        {
+          "name": "current-stage89",
+          "attributes": "Directory"
+        },
+        {
+          "name": "launcher-probe",
+          "attributes": "Directory"
+        }
+      ],
+      "scope": "Nonrecursive visible first-level directory names; hidden items not excluded by proof; no file payload read",
+      "prompt_returned": true
+    },
+    {
+      "command": "get-filehash c:/molioffline/client-probe/cg_se_3000.exe",
+      "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+      "prompt_returned": true,
+      "game_moved_or_started": false,
+      "meaning": "Fixed sample exists in client-probe; normal installed game launch context remains unverified; do not move it to satisfy observer game path"
+    },
+    {
+      "command": "@(get-process polcn_launcher,launcherupdater,cg_se_3000 -ea silentlycontinue).count",
+      "output": "0",
+      "prompt_returned": true,
+      "scope": "Selected names only with SilentlyContinue"
+    },
+    {
+      "command": "@(get-process entry-fixture,callback-probe -ea silentlycontinue).count; get-executionpolicy",
+      "outputs": [
+        "0",
+        "Restricted"
+      ],
+      "prompt_returned": true,
+      "policy_changed": false,
+      "scope": "Selected names only; policy read-only"
+    }
+  ],
+  "input_recovery": {
+    "ordinary_typeText": "Intermittent no response/incomplete text; no incomplete command submitted",
+    "new_NoProfile_terminal_starts": 1,
+    "native_menu_items_verified": 22,
+    "new_menu_items_saved": 0,
+    "A_draft": "setValue displayed A without enabling Save; Shift0->1->0 returned to0; draft canceled and Preferences closed normally",
+    "CUA_kernel_resets": 1,
+    "working_route": "pressKey per reviewed ASCII key with durationMs150; full line verified before one150ms Return in actual idle PowerShell, no modal. Native menu Enter used first hashes; later menu click did not open and helper stopped before submission. Do not hold Return or replay a submitted line.",
+    "root_cause": "Not established; duration route verified after USB prompt disappeared, not a causal proof",
+    "hold_Return_caveat": "One500ms Return while Mac selected in USB dialog closed prompt and delivered two empty Enter lines to idle guest; no launch command submitted. Never hold Return across a dialog; use one native Enter after fresh complete-line check."
+  },
+  "transient_UI": {
+    "Coherence": "Unexpected onboarding briefly appeared; action guard reported user changed app. Fresh binding returned original Windows11 window; cause unknown, no successful onboarding click claimed",
+    "USB": "USB2 Controller Hub #3 prompt; Mac selected, Remember unchecked. Click Mac did not confirm dismissal immediately.500ms Return closed prompt; Windows passthrough not selected or asserted verified",
+    "Preferences_closed": true,
+    "System_Settings_closed": "After own close action getAX returned noWindowsAvailable"
+  },
+  "host_input_diagnostics": {
+    "slow_keys": "off; not changed",
+    "sticky_keys": "off; not changed",
+    "full_keyboard_access": "off; not changed",
+    "input_menu_in_menu_bar": "already on; not changed",
+    "ioreg_IOHIDSystem": "Exit0, no numeric secure-input fields returned; does not prove secure-input off",
+    "screen_keyboard": "Temporarily off->on; direct AssistiveControl launch had spawn error162, later no useful key controls/inventory marked not running. Restored off via actual close confirmation and UI off readback",
+    "screen_keyboard_original_state_restored": true,
+    "permissions_or_security_changed": false,
+    "SystemUIServer_getApp": "timeoutReached; no status-bar result claimed",
+    "raw_account_UI_or_screenshots_saved": false
+  },
+  "current_original_or_own_PE_starts": {
+    "original": 0,
+    "own_R1_observer": 4,
+    "own_R1_fixture_failed_creation_attempts": 1,
+    "own_R2_observer": 1,
+    "own_R2_fixture_starts": 2,
+    "own_R2_positive_observations": 1
+  },
+  "current_ps1_Restore_or_used_launch_replay": 0,
+  "own_stage96_ISO_attached_transferred": false,
+  "current_guest_source_hashes_complete": false,
+  "next": "Finish normal-game installation context preflight; keep existing files/settings and original lifecycle limits; no game profile/path guard relaxation or old script replay.",
+  "Apple_source": "https://support.apple.com/en-gb/guide/mac-help/mchlp1015/mac",
+  "full_goal_complete": false,
+  "canonical_docs_and_final_validation": "13 canonical docs updated; validation-stage101.json records delivery checks, no product/official acceptance",
+  "observer_game_profile_readiness": "Not ready: compiled game profile is launcher-probe, which is absent. Observed same-hash client-probe copy is not proof of legitimate normal launch context. Own fixture profile remains separately prepared and unexecuted.",
+  "additional_guest_metadata_preflight": {
+    "method": "Each complete fixed ASCII PowerShell line visually checked; one Return150ms in the actual idle PowerShell; returned prompt and metadata observed through CUA. No file contents or account data read.",
+    "parent": {
+      "path": "C:/MoliOffline",
+      "attributes": "Directory",
+      "observed_reparsepoint_attribute": false
+    },
+    "own_destination": {
+      "path": "C:/MoliOffline/observer-fixture",
+      "test_path": false,
+      "created": false
+    },
+    "retained_stage89_root": [
+      {
+        "name": "XML",
+        "attributes": "Directory"
+      },
+      {
+        "name": "installed.json",
+        "bytes": 427,
+        "attributes": "Archive"
+      },
+      {
+        "name": "LauncherUpdater.exe",
+        "bytes": 46080,
+        "attributes": "Archive"
+      },
+      {
+        "name": "observation.json",
+        "bytes": 2477,
+        "attributes": "Archive"
+      },
+      {
+        "name": "observe-attempt.json",
+        "bytes": 210,
+        "attributes": "Archive"
+      },
+      {
+        "name": "original.json",
+        "bytes": 2128,
+        "attributes": "Archive"
+      },
+      {
+        "name": "POLCN_Launcher.exe",
+        "bytes": 599040,
+        "attributes": "Archive"
+      }
+    ],
+    "retained_stage89_XML": [
+      {
+        "name": "GameList.xml",
+        "bytes": 4377,
+        "attributes": "Archive"
+      },
+      {
+        "name": "RegionList.xml",
+        "bytes": 6205,
+        "attributes": "Archive"
+      }
+    ],
+    "launcher_probe_root": [
+      {
+        "name": "XML",
+        "attributes": "Directory"
+      },
+      {
+        "name": "LauncherUpdater.exe",
+        "bytes": 814080,
+        "attributes": "Archive"
+      },
+      {
+        "name": "LauncherUpdater.log",
+        "bytes": 1169,
+        "attributes": "Archive"
+      },
+      {
+        "name": "Log.htm",
+        "bytes": 747,
+        "attributes": "Archive"
+      },
+      {
+        "name": "PlayOnline.ini",
+        "bytes": 44,
+        "attributes": "Archive"
+      },
+      {
+        "name": "POLCN_Launcher.exe",
+        "bytes": 1666048,
+        "attributes": "Archive"
+      }
+    ],
+    "limitations": [
+      "Metadata is not a backup hash/content or restore validation.",
+      "LauncherUpdater.log name and length do not identify a recovery-journal header, state, commit, ACK or cleanup.",
+      "No game file is present at the compiled game-profile path; the same-hash client-probe copy is not normal-launch context evidence."
+    ],
+    "journal_header_or_lifecycle_proven": false,
+    "old_backups_replaced_or_Restore_replayed": false
+  },
+  "host_CD_preflight_stage101": {
+    "index": 0,
+    "enabled": true,
+    "connected": true,
+    "source": "build/analysis/launcher-current-runtime-v1/MoliCurrent-stage89.iso",
+    "interface_type": 2,
+    "stack_index": 1,
+    "new_own_iso_sha256": "1b0d9b3ccaaf755a4dd100e9ee3f21635c72519b921a5ae34c2883df1abaf249",
+    "new_own_iso_bytes": 921600,
+    "new_own_iso_mode": "0400",
+    "PVD_volume_id_trimmed_space_NUL": "MOLIENTRY96",
+    "method": "Read-only XML-selected CD fields and local ISO SHA256/PVD; not a guest mount/safe-ejection result."
+  },
+  "updated_utc": "2026-10-29T17:10:00.354434+00:00",
+  "media_UI_attempt": {
+    "existing_device_only": true,
+    "source_confirmed_in_configuration": "MoliCurrent-stage89.iso",
+    "native_submenu_click_errors": [
+      "AXError.invalidUIElement",
+      "AXError.failure"
+    ],
+    "not_approval_rejections": true,
+    "source_combo_did_not_expand": "Observed after direct AX/coordinate clicks, longer press and ordinary combo keyboard attempts; no image picker or new source selected.",
+    "display_ratio_trial": "Half-coordinate test focused the warning banner; no evidence that a Retina scaling change fixes input.",
+    "source_changed": false,
+    "close_configuration_attempt_result": "Mac locked; close not confirmed. Last confirmed configuration window remained open.",
+    "new_hardware_or_power_action": false,
+    "configuration_close_after_access_restored": "Own Window Sharing close, subsequent actual Windows main window and original terminal state returned; source not changed."
+  },
+  "new_lock_after_actual_progress": {
+    "tool": "cua_repl",
+    "result": "Mac locked; automatic unlock could not unlock it",
+    "fresh_resumed_goal_turn": 1,
+    "reuse_old_stage98_100_blocked_counts": false,
+    "one_new_manual_unlock_question_sent": true,
+    "Windows_click_or_command_question_sent": false,
+    "no_credentials_requested": true,
+    "independent_work_continued": [
+      "pinned own transfer source and nineteen host protocol checks",
+      "REA selected updater path audit with fourteen new Evidence IDs and four source anchors"
+    ],
+    "resolved_by_actual_live_CUA_access": true,
+    "manual_unlock_question_no_longer_pending": true
+  },
+  "own_transfer_preparation": {
+    "script": "analysis/game-entry-runtime-v1/fixture_transfer.py",
+    "host_validation": "analysis/game-entry-runtime-v1/transfer-host-validation-stage101.json",
+    "host_checks": 19,
+    "NAT_bind_probe_without_listen": true,
+    "legacy_vnic0_vnic1_absent": true,
+    "NAT_host_service_test_and_expiry_verified": true,
+    "guest_get_or_copy": "Two GETs, atomic destination creation and full guest SHA256/size/path/attribute readbacks verified; no guest execution yet.",
+    "active_listener": false,
+    "positive_allowed_guest_peer_case": "not tested",
+    "guest_HEAD_and_memory_downloads": true,
+    "transport_process_natural_exit_code": 0,
+    "transport_listener_refused_after_close": true,
+    "response_log": [
+      {
+        "event": "response_sent",
+        "name": "entry-fixture.exe",
+        "bytes": 133408,
+        "sha256": "77878c9ac7ce086b2f4d8c6c189cabf765da2c36751d62fb9ce27b2a4493edd3"
+      },
+      {
+        "event": "response_sent",
+        "name": "callback-probe.exe",
+        "bytes": 143326,
+        "sha256": "417595a96f0189353d47e8f1f86776e95ad4e0054d3123b3892b305e10dc6699"
+      },
+      {
+        "event": "closed",
+        "reason": "two_responses_sent",
+        "response_count": 2,
+        "guest_hashes_and_execution_verified": false
+      }
+    ]
+  },
+  "launcher_path_REA": "analysis/launcher-update-recovery-v1/path-audit-stage101.json",
+  "UI_resume_followup": {
+    "current_VM_helper_identity_matched_by_second_identifier_component": true,
+    "raw_VM_or_account_identifiers_saved": false,
+    "helper_bundle_id_ambiguous_with_retained_v19_copy": true,
+    "selected_only_current_PVM_app_path": true,
+    "historical_copy_opened": false,
+    "current_app_entry_request_result": "timeoutReached; outcome not inferred from submission",
+    "subsequent_console_window_menu_offscreen": "cannotClickOffscreenElement; exposed Cancel action restored original Windows main window and same idle terminal.",
+    "unknown_or_other_VM_started": false,
+    "VM_power_or_restore_action": false,
+    "Windows_manual_focus_requested": false
+  },
+  "input_recovery_additional": {
+    "equals_key_rendered_as_plus": true,
+    "bad_line_submitted": false,
+    "bad_line_cancelled": "Ctrl+C150ms visibly produced ^C and new prompt",
+    "substitution": "Use explicit Set-Variable instead of assignment operators; retain per-character150ms and whole-line inspection.",
+    "scroll_latest_output": "Terminal prompt missing from old viewport; scroll down then latest prompt actually observed. Do not treat an offscreen prompt as an ongoing process."
+  },
+  "Windows_transfer_readbacks": {
+    "fresh_ipv4": [
+      "10.211.55.3",
+      "127.0.0.1"
+    ],
+    "parent_attributes": "Directory",
+    "own_destination_test_before_creation": false,
+    "own_destination_creation": "New-Item Directory without Force, actual directory output observed; no previous content overwritten.",
+    "own_destination": "C:/MoliOffline/observer-fixture",
+    "HEAD_status": 200,
+    "payloads_in_distinct_cleared_memory_variables": [
+      {
+        "name": "entry-fixture.exe",
+        "bytes": 133408
+      },
+      {
+        "name": "callback-probe.exe",
+        "bytes": 143326
+      }
+    ],
+    "destination_files_written": true,
+    "guest_file_hashes_verified": true,
+    "guest_PE_execution": false,
+    "write_method": "Each file opened FileMode.CreateNew, FileAccess.Write, FileShare.None inside try/finally; no Force/overwrite, buffers written and disposed, actual idle prompts without error.",
+    "guest_files": [
+      {
+        "path": "C:/MoliOffline/observer-fixture/callback-probe.exe",
+        "bytes": 143326,
+        "sha256": "417595a96f0189353d47e8f1f86776e95ad4e0054d3123b3892b305e10dc6699",
+        "algorithm": "SHA256",
+        "attributes": "Archive"
+      },
+      {
+        "path": "C:/MoliOffline/observer-fixture/entry-fixture.exe",
+        "bytes": 133408,
+        "sha256": "77878c9ac7ce086b2f4d8c6c189cabf765da2c36751d62fb9ce27b2a4493edd3",
+        "algorithm": "SHA256",
+        "attributes": "Archive"
+      }
+    ],
+    "destination_attributes": "Directory",
+    "reparsepoint_attribute_observed": false
+  },
+  "own_observer_runtime": "analysis/game-entry-runtime-v1/windows-observer-stage101.json",
+  "normal_access_currently_restored": true,
+  "current_manual_question_pending": false,
+  "own_windows_qualification": "analysis/game-entry-runtime-v1/windows-observer-stage101.json",
+  "additional_guest_metadata_preflight_stage101_end": {
+    "updater_path": "C:/MoliOffline/launcher-probe/LauncherUpdater.exe",
+    "updater_sha256": "22d56137a48d3c95f4a779c5c68ba85b3ea4fe2439e3e561159d003c697ce479",
+    "journal_exact_candidate_path": "C:/MoliOffline/launcher-probe/POLCN_Launcher.exe.update.journal",
+    "journal_TestPath_result": false,
+    "journal_payload_read": false,
+    "ACK_or_commit_or_recovery_proven": false,
+    "native_registry_Path": "PathNotFound at HKCU/Software/SECN/PlayOnline/CrossGatePUK3",
+    "registry32_Path": "specified key/value not found; reg.exe exit1",
+    "INI_selected_Path_Game11_lines": "zero matches under current Get-Content decoding; no blanket absence/encoding conclusion",
+    "normal_game_install_context_resolved": false
+  },
+  "record_kind": "Incremental stage101 record; named preparation/attempt entries are historical snapshots, current_state_stage101_end is the final state.",
+  "current_state_stage101_end": {
+    "normal_access_restored": true,
+    "pending_manual_question": false,
+    "own_tool_selected_Windows_cases_accepted": true,
+    "runtime_report": "analysis/game-entry-runtime-v1/windows-observer-stage101.json",
+    "current_transfer_server_active": false,
+    "original_program_starts": 0,
+    "effective_policy_last_readback": "Restricted",
+    "normal_game_install_context_established": false,
+    "owned_temp_keyboard_menu_entries_pending": 22,
+    "canonical_docs_updated": 13,
+    "full_goal_status": "active",
+    "full_goal_complete": false
+  }
+}

@@ -1,0 +1,2907 @@
+{
+  "schema": "moli.capability.game-shop-services-contract.v1",
+  "status": "grouped-ordinary-shop-rules-and-owner-frontier-recorded",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4"
+  },
+  "capabilities": [
+    "G09",
+    "G10",
+    "G11",
+    "X01",
+    "X02"
+  ],
+  "plan": "analysis/capability-first-v1/game-shop-services-plan.json",
+  "source_check": "analysis/capability-first-v1/game-shop-services-source-check.json",
+  "facts": [
+    {
+      "id": "nine-entry-modes-six-shop-modes",
+      "kind": "fact",
+      "entries": [
+        "0x4f4410",
+        "0x48fce0",
+        "0x4a8fd0",
+        "0x4a92a0",
+        "0x4a9c80",
+        "0x4aa0b0",
+        "0x4a96b0",
+        "0x4a99b0"
+      ],
+      "rules": [
+        "当前Q?m经典路径内，wire6/7/0x14/0x16/0x1c/0x1f分别进入买/卖/鉴定/修理/兑换/折算，内部模式为0/1/4/5/2/3，共用经典window53。模式编号不是界面行号。",
+        "wire5商人菜单、0x1b兑换菜单、0x1e给予/领取菜单使用共同window52；它们与六类报价资料分开。没有据未证的另一套表项增加必做UI。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json",
+        "analysis/capability-first-v1/game-service-selection-contract.json"
+      ]
+    },
+    {
+      "id": "merchant-display-to-action-map",
+      "kind": "fact",
+      "entries": [
+        "0x492b90",
+        "0x492b10"
+      ],
+      "rules": [
+        "商人flags的bit1添加买入/action1，bit2添加卖出/action2，最后总添加离开/action3；动作映射保存在C5BD18。回调只接受0<=显示序号<2，并格式化映射中的有符号byte，而非显示序号+1。",
+        "flags0只有离开，第一行发送3；flags1的两行发送1/3；flags2的两行发送2/3；flags3前三行中仅前两行发送1/2，第三行离开不发送。不能按按钮文字统一离开语义。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json"
+      ]
+    },
+    {
+      "id": "exchange-and-handoff-menu-actions",
+      "kind": "fact",
+      "entries": [
+        "0x492e10",
+        "0x492ea0",
+        "0x492f60",
+        "0x492cd0"
+      ],
+      "rules": [
+        "兑换菜单回调仅接受显示序号0，发送文本1；第二行离开及负序号不发送。",
+        "给予/领取菜单的graphic/title/flag/message已由既有解析绑定；flag选择给予或领取标题/动作。其共同回调接受序号0/1并发送序号+1，即1/2；第二行离开会发送2。",
+        "共同window52移动关闭会调用负序号，但这些业务回调的显式范围门槛不发送负序号。492cd0来源是旧派生视图，不是新规范REA记录。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json",
+        "analysis/capability-first-v1/game-training-services-contract.json",
+        "analysis/game-battle-shared-storage-v1/map-special-dialogs-source-check.json"
+      ]
+    },
+    {
+      "id": "buy-quote-and-capacity",
+      "kind": "fact",
+      "entries": [
+        "0x4a8fd0",
+        "0x4aa910",
+        "0x4ad970"
+      ],
+      "rules": [
+        "买入为5个头字段加每行6字段，最多20行；既有名称/图形/单价/说明/低byte装备资格/堆叠量字段继续复用。装备资格0用于提示，并非该路径的买入拒绝。",
+        "普通逐次增加在存在行及当前量<20下加1；所需格数按ceil(数量/堆叠量)累计，非正堆叠量在该容量辅助路径回退为2。费用及空背包格的确认门槛与单击加量门槛分别处理。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json",
+        "analysis/game-battle-shared-storage-v1/map-shop-source-check.json"
+      ]
+    },
+    {
+      "id": "sale-quote-and-first-slot-match",
+      "kind": "fact",
+      "entries": [
+        "0x4a92a0",
+        "0x4accd0",
+        "0x4ae8f0",
+        "0x4af170"
+      ],
+      "rules": [
+        "卖出为3个头字段加每行10字段，最多20行；按背包绝对槽8..27取首条匹配报价。availability低byte为0不可选，数量初值取已报价的有符号byte，非正回退1；0x100/0x200承担标签/呈现差异。",
+        "原路径费用为单价乘所选数量，金币上限1000000出现在选中、加量和帧相关路径，不能据此编造所有最终确认都再核一次的门槛。加入选择的一处分支先以一份单价做上限比较，再赋整份报价量；不将其改写成按完整数量提前核总价。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json",
+        "analysis/game-battle-shared-storage-v1/map-shop-source-check.json"
+      ]
+    },
+    {
+      "id": "appraise-and-repair-single-amount",
+      "kind": "fact",
+      "entries": [
+        "0x4a9c80",
+        "0x4aa0b0",
+        "0x4ac140",
+        "0x4abd10"
+      ],
+      "rules": [
+        "鉴定/修理为2个头字段加每行7字段，最多20行，依次复用名称/图形/费用/绝对槽/flags/替代标签/说明。按背包槽首匹配，普通可用量与上限为1。",
+        "进入确认层前比较费用与当前金币；最终序列化只发所选物品绝对槽，不附加买卖的数量对。显示资格、确认费用与最终格式分开。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json",
+        "analysis/game-battle-shared-storage-v1/shop-service-source-check.json"
+      ]
+    },
+    {
+      "id": "exchange-payment-and-freed-bag-slots",
+      "kind": "fact",
+      "entries": [
+        "0x4a96b0",
+        "0x4ab290",
+        "0x4aa910",
+        "0x4ad970",
+        "0x4ad450"
+      ],
+      "rules": [
+        "兑换为7个头字段加每行5字段，复用名称/图形/费用/堆叠量/说明；货币code与28byte标签独立。非正堆叠量回退1。货币余额统计全部28个占用且code匹配的物品槽。",
+        "因支付而释放的背包格仅统计8..27，按升序消耗到首个部分支付的堆叠停止；装备槽的余额贡献不自动变成空背包格。",
+        "加量在容量不足时可搜索一次跨过多份数量，以完整支付足够的货币堆叠；减量也可能一次减多份以保持容量关系。此为普通正货币域的所查规则，没有据此补造原版统一正数拒绝。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json",
+        "analysis/game-battle-shared-storage-v1/shop-exchange-source-check.json"
+      ]
+    },
+    {
+      "id": "conversion-count-and-control-specific-bounds",
+      "kind": "fact",
+      "entries": [
+        "0x4a99b0",
+        "0x4ab4c0",
+        "0x4ad970",
+        "0x4ad450"
+      ],
+      "rules": [
+        "折算复用15字段资料；内部模式3、数量C4382C、折算值C43E5C。branch0逐次增加受countLimit、quotaLimit-quotaCount和常量999约束。",
+        "非零branch从持有匹配物品取得可用量，并受字段12/15等分支条件限制；加1前比较旧折算值<金币。在普通正rate域，这可得到ceil(金币/rate)式上界，不能替换成floor。该分支加量没有读取字段14。",
+        "数量0处按减量有原生回绕捷径，取quota差/可用量/999的较小值，之后的非零减量为减1；现有独立直接输入明确不重放此控件捷径。原int32算术与独立实现有界输入分开。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json",
+        "analysis/game-battle-shared-storage-v1/shop-conversion-source-check.json"
+      ]
+    },
+    {
+      "id": "live-data-owner-and-distinct-cache-strides",
+      "kind": "fact",
+      "entries": [
+        "0x4efad0",
+        "0x4f25a0",
+        "0x4f2c40"
+      ],
+      "rules": [
+        "金币E(9消费者4efad0在既有mask条件内发布F53624；物品?l消费者4f25a0的字段11/13对应code/数量，活体记录步长0x65c。报价UI缓存步长0x658，与活体记录不能当作同一个数组。",
+        "4f2c40是受全局门槛控制的物品移动处理，会调用移动/两个槽刷新及两个状态更新；它不是单调递增的槽位revision函数。完整别名、晚到资料和调用先后仍未由本组闭合。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json"
+      ]
+    },
+    {
+      "id": "selection-order-and-quantity-events",
+      "kind": "fact",
+      "entries": [
+        "0x4accd0",
+        "0x4ad970",
+        "0x4ad450",
+        "0x4ae8f0",
+        "0x4ae4c0",
+        "0x4af170"
+      ],
+      "rules": [
+        "选择位集C3B294、所选映射C1E168与原报价数量分别存在；不可用行不能选择，拖拽可重排选中呈现。提交遍历报价源顺序，不直接把界面重排顺序当线路顺序。",
+        "加量回调先在hover相关事件求资格，实际重复加量使用param2&0x400；买入可减到0，卖出/鉴修普通减量止于1。兑换/折算的多份跳变及失败重置保留各自条件，不把所有模式合成一种无条件+1/-1模型。",
+        "滚动单步、翻页五行和滚动条均会重建呈现；跨端可用直接数字输入表达业务，但不能将不同输入轨迹当原生控件等价事实。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json"
+      ]
+    },
+    {
+      "id": "preview-is-a-separate-state",
+      "kind": "fact",
+      "entries": [
+        "0x4ac140"
+      ],
+      "rules": [
+        "确认入口要求C07F7C>=1及左键事件bit2。买入重新比较当前金币并调用437410检查空格，鉴修重新比较费用；卖出/兑换各走自己的预览构造，不存在本体所有模式统一再核金币上限的分支。",
+        "该入口把名称/图形/数量复制到C1F6DC族预览存储，安装C08094=4abd10，并设置父窗口bit2以显示本地确认层。此处不是把父窗口标0x8000关闭。",
+        "本轮直接核对4acbac的六分支表及全部目标指令。预览快照并不证明最终发送也使用该快照。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json"
+      ]
+    },
+    {
+      "id": "accepted-overlay-serializes-current-globals",
+      "kind": "fact",
+      "entries": [
+        "0x4abd10"
+      ],
+      "rules": [
+        "最终回调仅在有符号char参数为0继续。买入/兑换按20报价行的存在及数量!=0格式化零基报价行|数量；卖出使用报价所存绝对槽|数量；鉴修为槽号列表；折算为1|当前C4382C。列表经既有转义后由4f8240发送，随后标父窗口0x8000。",
+        "该体读取当前选择全局量，并非预览复制。所查完整体没有直接读取F53624、调用437410或重查余额/配额/容量的分支；这是本体选定发送链的事实，不外推全部辅助函数/服务器均无校验。",
+        "不从初始打开确认层的门槛发明最终回调的非空/正数量拒绝；状态失效时的组合顺序另列待证。4ac11c六分支表、格式常量及目标指令均核原件。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json"
+      ]
+    },
+    {
+      "id": "back-cancel-and-leave-are-distinct",
+      "kind": "fact",
+      "entries": [
+        "0x4af390",
+        "0x4abd10",
+        "0x4acbd0"
+      ],
+      "rules": [
+        "覆盖层确认调用C08094(0)，返回调用C08094(1)，随后均清父窗口bit2。返回参数1使最终回调直接返回，因此只撤预览，不发送购物取消。",
+        "外层取消控件则发送button2及既有已证空文本并标0x8000，和菜单中的离开不同。5849c8沿用旧零初始化取消文本证据，没有从PE文件不存在的BSS字节补零，也不声称其运行期永不可写。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json"
+      ]
+    },
+    {
+      "id": "window53-invalidation-falls-through",
+      "kind": "fact",
+      "entries": [
+        "0x4ab510",
+        "0x4abbd0"
+      ],
+      "rules": [
+        "window53在初始化分支按内部模式重建，卖/鉴/修安装4ae4c0，折算安装4ae2f0，买/兑换使用既有4ae160。",
+        "距离(2,2)及owner C21920与活动标识55e4d4不等分别设置0x8000，但距离判断后没有统一提前返回；同次回调仍可能处理费用/余额及子控件更新。",
+        "兑换每帧从28槽重算货币余额并在变化时重建；折算按分支刷新可用量。C07F7C在各模式可代表容量、选中计数或持有量，不赋一个全局固定业务含义。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json",
+        "analysis/capability-first-v1/game-service-invalidation-contract.json"
+      ]
+    },
+    {
+      "id": "slot-byte-counters-are-not-revisions",
+      "kind": "fact",
+      "entries": [
+        "0x4a92a0",
+        "0x4a9c80",
+        "0x4aa0b0",
+        "0x4a96b0",
+        "0x4a99b0",
+        "0x4a8f90"
+      ],
+      "rules": [
+        "卖出/鉴定/修理/兑换/折算解析在打开53前增加全部28个byte计数C5E94C，买入不做；53析构在全局内部mode>0时减少全部28个byte计数。普通配对效果可用占用期间的共享计数描述，不能等同单调槽revision。",
+        "析构仅在owner匹配当前活动时置活动为-1，计数条件则读取全局内部模式而非每窗口缓存。重入/模式覆盖的完整所有权尚未闭合，不从普通配对推定所有交错都安全。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json"
+      ]
+    },
+    {
+      "id": "selected-item-kind9-has-concrete-owner",
+      "kind": "fact",
+      "entries": [
+        "0x4ae4c0",
+        "0x4a8f70",
+        "0x4a8e20",
+        "0x4ae3e0"
+      ],
+      "rules": [
+        "所选物品动态行以4a8f70注册kind9、用户索引和4a8e20；阶段2/4临时将C3B2AC绑定到window53缓存C11320，调用4ae3e0后恢复原owner。没有为这两个阶段补造cache非零守卫。",
+        "4ae3e0先检查C5E9C8，非零则清标志返回；否则读取索引，清所选数量/位/映射，夹限滚动并重建费用/计数/行。它复用完整旧规范记录，不新取第六个派生体。",
+        "C5E9C8全部写入者及其他kind9取消/退役顺序仍待证；一个实际商店用途不证明所有kind9或所有拖拽都已关闭。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json"
+      ]
+    },
+    {
+      "id": "independent-core-policies-remain-explicit",
+      "kind": "fact",
+      "entries": [],
+      "rules": [
+        "现有shared核心按六类报价解析，采用完整字段形状、有界数字、未知金币拒绝、槽revision固定到开窗资料及实时堆叠量夹限等独立政策；这些并非所有原生解析器显式守卫。",
+        "现有submitShop会重新quoteShop，再构造响应并清当前对话；因此提交会重查金币/容量/货币/槽revision，和原版两阶段确认及延迟标记销毁的时序有差异。",
+        "直接数量输入、折算边界和立即清对话也有明确实现选择；本组仅记录差异，未改产品代码或通过本地策略宣称原版/同版服务器接受。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json",
+        "shared/legacy-game-map-shop.mjs",
+        "shared/legacy-game-map-dialog.mjs",
+        "shared/legacy-game-map-npc-services.mjs"
+      ]
+    },
+    {
+      "id": "source-reuse-is-not-full-capability-closure",
+      "kind": "fact",
+      "entries": [],
+      "rules": [
+        "63个源视图由39个复用规范入口、19个复用派生入口和5个指针锚定新派生入口组成；43份完整旧原记录逐份使用原工厂验收，未验收或导入整个旧快照。派生体native_profile=null，独立副本未改原REA元数据。",
+        "九入口/六模式普通规则及选定关闭/拖拽链已可追溯；全局异常交错、其他能力和真实跨端/同版接受仍待完成。38域/81协议登记/37历史要求/10组保留，函数数和字节数不作为完成比例。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-shop-services-source-check.json"
+      ]
+    }
+  ],
+  "remaining": [
+    {
+      "id": "quote-preview-owner-and-late-publication",
+      "kind": "pending",
+      "capabilities": [
+        "G09",
+        "G10",
+        "G11",
+        "X02"
+      ],
+      "need": "预览到最终提交之间物品/金币/货币、mode/owner覆盖和晚到资料的完整先后；原生当前全局序列化与独立submit重查/立即清理的差异如何纳入必要合同。",
+      "next_evidence": "复用已证发送/资料发布入口与共同窗口，沿具体写入/切换和退役消费者追踪；不重做六类普通解析或用本地revision伪装原生所有权。",
+      "selected_normal_composition": {
+        "specification_path": "build/analysis/shared-occupancy-composition-v1/specification.json",
+        "source_rules_bound": [
+          "OC-F1",
+          "OC-F2",
+          "OC-F3",
+          "OC-F4",
+          "OC-F5",
+          "OC-F6",
+          "OC-F7",
+          "OC-F8"
+        ],
+        "original_need_retained": true,
+        "all_interleavings_or_runtime_accepted": false
+      }
+    },
+    {
+      "id": "shared-counters-and-drag-retirement",
+      "kind": "pending",
+      "capabilities": [
+        "G09",
+        "G11",
+        "X02"
+      ],
+      "need": "共享28byte与所选逐槽选择账目、重建清零及C5E9C8读/消费已绑定；其它实际生产、多窗口重开与必要复合占用的全局先后尚未因此闭合。",
+      "next_evidence": "沿本批SW-R1/R2及原窗口/输入合同审查实际相关操作；不再重取4AE3E0或把C5E9C8当图形指针/计数。",
+      "selected_normal_composition": {
+        "specification_path": "build/analysis/shared-occupancy-composition-v1/specification.json",
+        "source_rules_bound": [
+          "OC-F1",
+          "OC-F2",
+          "OC-F3",
+          "OC-F4",
+          "OC-F5",
+          "OC-F6",
+          "OC-F7",
+          "OC-F8"
+        ],
+        "original_need_retained": true,
+        "all_interleavings_or_runtime_accepted": false
+      }
+    },
+    {
+      "id": "ordinary-domain-versus-adversarial-input-and-version",
+      "kind": "pending",
+      "capabilities": [
+        "G11",
+        "X01"
+      ],
+      "need": "必要版本/资料域中的异常数量、无效索引、int32算术与配额跨帧边界；另一套实际资料/激活依赖仍按前组前沿维护。",
+      "next_evidence": "先界定需求所用版本和有效资料条件；必要边界从实际生产/消费补证，不扩展无关保护/RNG内部或无依据协议字段。"
+    },
+    {
+      "id": "unified-capability-and-host-gate",
+      "kind": "pending",
+      "capabilities": [
+        "X01",
+        "X02"
+      ],
+      "need": "其余能力与A4统一规格/依赖复核尚未完成；网页/移动网页/微信实际平台和同版服务器接受各须独立验收。",
+      "next_evidence": "依当前40域统一规格继续P08及具体必要共享规则；SW已证原语和六类普通报价解析直接复用，设备/同版接受另验。"
+    }
+  ],
+  "source_summary": {
+    "selected_source_views": 63,
+    "unique_reused_native_entries": 39,
+    "native_source_body_bytes": 14961,
+    "native_listing_boundaries": 4853,
+    "reused_derived_views": 19,
+    "reused_derived_body_bytes": 14318,
+    "reused_derived_instructions": 3984,
+    "new_derived_views": 5,
+    "new_derived_body_bytes": 2598,
+    "new_derived_instructions": 810,
+    "declared_source_body_bytes": 31877,
+    "direct_E8_CALL_occurrences_verified": 602,
+    "unique_E8_CALL_sites_verified": 602,
+    "original_complete_native_records_factory_validated": 43,
+    "old_helper_ID_bindings_verified": 52,
+    "classic_descriptors": 2,
+    "classic_controls_identity_checked": 69,
+    "jump_tables": 2,
+    "nine_entry_modes_bound": true,
+    "new_REA_records": 0,
+    "runtime_features_changed": false,
+    "all_capability_analysis_complete": false
+  },
+  "question_answers": [
+    {
+      "question": 1,
+      "status": "nine-modes-six-quote-families-and-selected-owners-bound",
+      "facts": [
+        "nine-entry-modes-six-shop-modes",
+        "live-data-owner-and-distinct-cache-strides"
+      ],
+      "remaining": [
+        "quote-preview-owner-and-late-publication"
+      ]
+    },
+    {
+      "question": 2,
+      "status": "ordinary-format-controls-and-independent-policy-separated",
+      "facts": [
+        "exchange-payment-and-freed-bag-slots",
+        "conversion-count-and-control-specific-bounds",
+        "selection-order-and-quantity-events",
+        "independent-core-policies-remain-explicit"
+      ],
+      "remaining": [
+        "ordinary-domain-versus-adversarial-input-and-version"
+      ]
+    },
+    {
+      "question": 3,
+      "status": "two-stage-confirm-cancel-and-selected-drag-bound-global-order-open",
+      "facts": [
+        "preview-is-a-separate-state",
+        "accepted-overlay-serializes-current-globals",
+        "window53-invalidation-falls-through",
+        "slot-byte-counters-are-not-revisions",
+        "selected-item-kind9-has-concrete-owner"
+      ],
+      "remaining": [
+        "quote-preview-owner-and-late-publication",
+        "shared-counters-and-drag-retirement"
+      ]
+    },
+    {
+      "question": 4,
+      "status": "dependencies-and-proposed-cases-recorded-unified-gate-open",
+      "facts": [
+        "source-reuse-is-not-full-capability-closure"
+      ],
+      "remaining": [
+        "unified-capability-and-host-gate"
+      ]
+    }
+  ],
+  "implementation_dependencies": [
+    {
+      "batch": "D0",
+      "kind": "inference",
+      "requirement": "统一活体物品/金币、报价/预览/当前选择、mode/活动owner与窗口延迟退役；占用计数、资料revision和重入身份保持独立。"
+    },
+    {
+      "batch": "D3",
+      "kind": "inference",
+      "requirement": "复用六类报价/格式与余额/容量计算，菜单动作按实际映射；明确提交重查和直接输入等政策，按需求决定必要源兼容差异，不复制六套共享交易核心。"
+    },
+    {
+      "batch": "D5",
+      "kind": "inference",
+      "requirement": "网页/移动网页/微信薄层表达数量/预览/返回/离开，业务动作与原生事件位/像素布局分离；实际平台流程另验。"
+    }
+  ],
+  "proposed_acceptance_cases": [
+    {
+      "id": "merchant-flags-map",
+      "kind": "proposed-not-executed",
+      "expectation": "分别核flags0/1/2/3的显示行与发送动作；卖出单独显示时第一行发2，两项都显示时第三行离开不发送。"
+    },
+    {
+      "id": "menu-leave-levels",
+      "kind": "proposed-not-executed",
+      "expectation": "兑换第二行不发送；给予/领取第二行发送2；共同负序号不被这三个菜单回调发送。"
+    },
+    {
+      "id": "buy-equipment-and-stack",
+      "kind": "proposed-not-executed",
+      "expectation": "装备资格提示不自动阻买；普通0..20与堆叠容量回退2及等额金币边界分开。"
+    },
+    {
+      "id": "sale-selection-and-wire-order",
+      "kind": "proposed-not-executed",
+      "expectation": "报价按背包首匹配、初量与可用位控制；重排呈现后仍按源报价顺序，卖出使用绝对槽。"
+    },
+    {
+      "id": "service-fee-and-slots",
+      "kind": "proposed-not-executed",
+      "expectation": "鉴修选择量1，预览费用比较和槽号列表；取消预览不发送外层button2。"
+    },
+    {
+      "id": "exchange-space-jump",
+      "kind": "proposed-not-executed",
+      "expectation": "货币可来自28槽，释放格仅8..27；加减一次多份以跨过支付堆叠界限，部分支付不计空格。"
+    },
+    {
+      "id": "conversion-domain",
+      "kind": "proposed-not-executed",
+      "expectation": "普通正rate的旧折算值比较与ceil边界、999/配额条件、数量0减量捷径及独立直接输入政策分别验收。"
+    },
+    {
+      "id": "preview-late-state",
+      "kind": "proposed-not-executed",
+      "expectation": "预览快照后当前选择/金币/物品变化，分别断言原生已证最终读取和独立重查政策，不提前编造源拒绝。"
+    },
+    {
+      "id": "cancel-and-invalidation",
+      "kind": "proposed-not-executed",
+      "expectation": "覆盖层返回、外层取消、距离隐藏后继续更新、owner不匹配和延迟析构分别保留。"
+    },
+    {
+      "id": "counters-drag-and-reentry",
+      "kind": "proposed-not-executed",
+      "expectation": "普通计数配对不是revision；商店kind9阶段2/4临时owner、抑制标志和清选择效果按实际来源，重入顺序另验。"
+    }
+  ],
+  "original_execution": false,
+  "VM_operations": false,
+  "account_or_official_session_observed": false,
+  "runtime_features_changed": false,
+  "ordinary_nine_mode_source_rules_bound": true,
+  "full_shop_exception_or_global_lifecycle_closed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "inventory_selection_ownership": {
+    "specification": {
+      "path": "build/analysis/inventory-selection-ownership-v1/specification.json",
+      "bytes": 66929,
+      "sha256": "5bcdecb4e6a5ffd630adfeb7512c64b789c25fcb7fd98a4f08901a6cab2ed4c1"
+    },
+    "source_inputs": {
+      "path": "build/analysis/inventory-selection-ownership-v1/source-inputs.json",
+      "bytes": 6185,
+      "sha256": "5f606b286ded6b31721cdbae7cf9e23186768fa9ea62942a3e261fc3da13d858"
+    },
+    "validation_record_path": "build/analysis/inventory-selection-ownership-v1/validation.json",
+    "scope": "Normal selection maps/occupancy/release/reorder, selected live/cache/amount/close paths and correction of an interior alternate publish address; not all source/current/device acceptance.",
+    "source_summary": {
+      "views": 37,
+      "reused_complete_native_views": 13,
+      "new_complete_native_views": 2,
+      "reused_derived_views": 12,
+      "new_derived_views": 10,
+      "body_ranges": 37,
+      "body_bytes": 21459,
+      "derived_instructions": 5011,
+      "direct_E8_CALLs": 443,
+      "new_native_queries": 18,
+      "cold_instructions": 6540,
+      "typed_global_reference_instructions": 66,
+      "typed_refs_outside_selected_bodies": 60,
+      "source_map_item_bytes": 20,
+      "source_map_pet_bytes": 5,
+      "shared_counter_bytes": 28,
+      "successful_canonical_function_dossiers": 2,
+      "failed_canonical_function_requests": 2,
+      "resolve_queries": 11,
+      "typed_instruction_queries": 3,
+      "new_native_requests_total": 18,
+      "new_derived_exports": 10,
+      "reused_complete_views": 25,
+      "source_fact_groups": 11,
+      "borrowed_rule_groups": 4,
+      "current_code_observation_groups": 3,
+      "implementation_delta_groups": 3,
+      "proposed_cases_not_executed": 12
+    },
+    "canonical_ledger": {
+      "schema": "moli.selection.canonical-ledger.v1",
+      "imported_records_preserved": 133,
+      "exported_records": 149,
+      "new_records": 16,
+      "new_record_operations": {
+        "inspect_native_instruction": 3,
+        "resolve_containing_procedure": 11,
+        "analyze_function": 2
+      },
+      "primitive_entries": 72,
+      "native_function_errors": 2,
+      "complete_record_authentication": 15,
+      "REA_closed": true
+    },
+    "facts": [
+      {
+        "id": "SW-F1",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "4CCC20是旧另一套窗口回调内部的发布片段",
+        "source_refs": [
+          {
+            "entry": "0x4cc5f0",
+            "kind": "derived",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/capability-entry-inventory-v1/derived-entry-functions.json",
+              "bytes": 18823193,
+              "sha256": "071ca5def7a48ae7053dbbaec3927008c8d48c8b149d042be6ccc0da19cf8bda"
+            },
+            "pointer": "/entries/412",
+            "record_sha256": "7deb3db4dc8b6312b6356ba62eba271a91d7f07cb2d4852ba7bd5a300abbbe39",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4cc5f0",
+                "end": "0x4cd468",
+                "bytes": 3705,
+                "file_offset": 834032,
+                "sha256": "44f46bde56adfb652c9ce54edb611ea5b131a602bd00e3e0233d7b666ae8182e"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "旧57字节读窗4CCC20..4CCC58落在已保留的4CC5F0派生体3705字节内；它不是单独函数。原647根索引将该体登记为alternate-window-52。",
+          "4CCC3E直接CALL4F7DC0；所选主状态为0的发布分支随后把C444FC置1、播放本地声音并记录GetTickCount。不能把这个读窗继续当作缺失的资料变化/撤回函数，也不在4CCC20/4CCD00单独种函数。",
+          "规范REA的not_in_procedure/undecodable仅说明该分析库未识别；完整旧派生体及每条原指令都已复用匹配。"
+        ],
+        "limits": [
+          "另一套实际全局dispatch/用户激活尚未证实；本批只审查其被误列的发布上下文，不扩展全部回调。"
+        ],
+        "whole_capability_or_runtime_accepted": false
+      },
+      {
+        "id": "SW-F2",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "20/5选择位置存的是有符号字节源槽号",
+        "source_refs": [
+          {
+            "entry": "0x4a2290",
+            "kind": "derived",
+            "role": "new-required-derived-export",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/derived-selection-helpers.json",
+              "bytes": 459858,
+              "sha256": "21c0c520761aa87b0a759fa905f4a27d3db7409fc5b02c20b877530d3596f764"
+            },
+            "pointer": "/entries/0",
+            "record_sha256": "482ade5e04b6305fc2528b036c5efbd9cf5433843cc2fcc345b745159d4a274d",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a2290",
+                "end": "0x4a22a5",
+                "bytes": 22,
+                "file_offset": 661136,
+                "sha256": "974663583a97d0200f472d5c8a7da7239896644f703a733c9f3f4ac9713191ef"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a23a0",
+            "kind": "derived",
+            "role": "new-required-derived-export",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/derived-selection-helpers.json",
+              "bytes": 459858,
+              "sha256": "21c0c520761aa87b0a759fa905f4a27d3db7409fc5b02c20b877530d3596f764"
+            },
+            "pointer": "/entries/1",
+            "record_sha256": "06bc3634208147aac926ecd09090f23ed92cc830ead781b0247552bbeab903a3",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a23a0",
+                "end": "0x4a23b5",
+                "bytes": 22,
+                "file_offset": 661408,
+                "sha256": "4d6669702f0077ccd84389e7f7907e38ab9fb15b3fc489a123c0743a5a4ad35a"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "4A2290读取C3AB18+position，4A23A0读取C22558+position；MOVSX和分支证明按signed8读取，任意负字节返回-1，非负返回原槽号。两个体均22字节。",
+          "20个物品位置和5个宠物位置来自所选发布/析构等调用者的循环，不是这两个原语的内部上界检查；不能把旧伪代码遗漏实参解释为无参数getter。",
+          "这是本地状态布局；原slot|offerPosition两段线路字节字段保持，不增加新报文或请求ID。"
+        ],
+        "limits": [],
+        "whole_capability_or_runtime_accepted": false
+      },
+      {
+        "id": "SW-F3",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "物品选择、释放和交换分别改变不同账目",
+        "source_refs": [
+          {
+            "entry": "0x4a21e0",
+            "kind": "derived",
+            "role": "new-required-derived-export",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/derived-map-writers.json",
+              "bytes": 13935,
+              "sha256": "b09d79e07bb568fc0539da4b83c575f92ff4320200053631e33a55cd06c3a599"
+            },
+            "pointer": "/entries/0",
+            "record_sha256": "45920429b327c7b31bfa4dcfc1d24737a2f2ba96a3e7e3236a372ade6ab82c46",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a21e0",
+                "end": "0x4a2215",
+                "bytes": 54,
+                "file_offset": 660960,
+                "sha256": "995ce8e05732f5313b91dfe09b9e4856734c71d4b3284199b70369cfeed6334b"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a2220",
+            "kind": "native",
+            "role": "new-required-native-observation",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/function-4a2220.json",
+              "bytes": 155116,
+              "sha256": "95a36d250d4d5352430f575c44d933902b6b0feeb20cd8cbe38d4566fabf649b"
+            },
+            "pointer": "/structuredContent",
+            "record_sha256": "1e9d7c8ba5edc75d50a76a5d9495bf046dc1970edb67010688ad87e96330ed3e",
+            "evidence_id": "ev_6dd4aedfd53383f34a31d8c599e6a0280c7631dc9df38ebc08ea1454f39f124e",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x4a2220",
+                "end": "0x4a2251",
+                "bytes": 50,
+                "file_offset": 661024,
+                "sha256": "a8e3b4a095010b27f4938baf635fedcf521eaa1c091047a5fa1630a6a9db649f"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a2260",
+            "kind": "derived",
+            "role": "new-required-derived-export",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/derived-map-writers.json",
+              "bytes": 13935,
+              "sha256": "b09d79e07bb568fc0539da4b83c575f92ff4320200053631e33a55cd06c3a599"
+            },
+            "pointer": "/entries/1",
+            "record_sha256": "1f1f239401b958af90879550c22fdccf3ccf90ad907eae129f9af86f19b8af5b",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a2260",
+                "end": "0x4a2283",
+                "bytes": 36,
+                "file_offset": 661088,
+                "sha256": "a925908f74747fa7097e9410189d10ad228448867ee69aade0f3a681bba8714a"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "4A21E0只在目标位置的signed8值为负时写入sourceSlot的低byte，置C439C8[sourceSlot]=1并递增C5E94C[sourceSlot]，返回1；位置已占用则返回0。它不自查来源存在、资格、重复源槽或索引上界。",
+          "4A2220在位置负时返回-1；否则先保存源槽，写位置FF、清C439C8[sourceSlot]、递减该源槽共享byte计数，再返回原槽。无线路调用；递减无零值保护，原byte算术可回绕。",
+          "4A2260仅交换两个位置byte；不会压缩空洞或搬移源槽的选择标记/占用计数。调用者先释放再赋新值，不是有回滚承诺的事务。"
+        ],
+        "limits": [],
+        "whole_capability_or_runtime_accepted": false
+      },
+      {
+        "id": "SW-F4",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "宠物选择独立于物品占用计数",
+        "source_refs": [
+          {
+            "entry": "0x4a2310",
+            "kind": "derived",
+            "role": "new-required-derived-export",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/derived-map-writers.json",
+              "bytes": 13935,
+              "sha256": "b09d79e07bb568fc0539da4b83c575f92ff4320200053631e33a55cd06c3a599"
+            },
+            "pointer": "/entries/2",
+            "record_sha256": "4d679d6269d10f92eb494a55e132a989617ab15578bffa060d2ceb45ff0ad413",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a2310",
+                "end": "0x4a2337",
+                "bytes": 40,
+                "file_offset": 661264,
+                "sha256": "5617913d5e0753b92d7f2df6543d9ca845ee015ea8e23318daf508539f577390"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a2340",
+            "kind": "native",
+            "role": "new-required-native-observation",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/function-4a2340.json",
+              "bytes": 111822,
+              "sha256": "7383709cefa965c05a23d69002c3dcae479fb1b1c7a1c3a3dac6659db802c745"
+            },
+            "pointer": "/structuredContent",
+            "record_sha256": "d5367776884bbd7f1e1e3414a56233c46140ce6558cb32fa7537fd53043073c9",
+            "evidence_id": "ev_b8d2dbf710ef9230c116d9962d083927fc552cae939058005bbc3ab9d1d1465d",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x4a2340",
+                "end": "0x4a2363",
+                "bytes": 36,
+                "file_offset": 661312,
+                "sha256": "44160c8a6a15a0ffb6fe2e405a9197b2950376cb2baaf24b6f65c00d95df453f"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a2370",
+            "kind": "derived",
+            "role": "new-required-derived-export",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/derived-map-writers.json",
+              "bytes": 13935,
+              "sha256": "b09d79e07bb568fc0539da4b83c575f92ff4320200053631e33a55cd06c3a599"
+            },
+            "pointer": "/entries/3",
+            "record_sha256": "69f3e2df1dedb91491c7ce4b1f4e74dfbc992c1c3f5b86559c4f3eab7394060a",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a2370",
+                "end": "0x4a2393",
+                "bytes": 36,
+                "file_offset": 661360,
+                "sha256": "84690f1421812e7daefe82ed8b3f8b519934c1d850eacd42b1b1605165bf60a2"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "4A2310仅在目标位置为负时写sourceSlot低byte并置C3AB2C[sourceSlot]=1，返回1；已占用返回0。",
+          "4A2340在空位置返回-1，否则写FF、清该源宠物选择byte并返回源槽；没有物品C5E94C计数更新。4A2370仅交换两位置byte。",
+          "原语不等于全部UI资格；存在/候选映射和重复选择判断仍由所选调用者负责。"
+        ],
+        "limits": [],
+        "whole_capability_or_runtime_accepted": false
+      },
+      {
+        "id": "SW-F5",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "初始化、结果隐藏与析构有各自效果",
+        "source_refs": [
+          {
+            "entry": "0x4a23c0",
+            "kind": "native",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/capability-game-trade-storage-v1/reused-trade-storage-native.json",
+              "bytes": 31792254,
+              "sha256": "64b7c9b1c7f096348ca2760f4516df97637af6b88140131676232ed650c54c75"
+            },
+            "pointer": "/records/33",
+            "record_sha256": "213dec3c1114fc41d5b58801b749fce0966bbc29cf5899dd072574c5d1c73ea4",
+            "evidence_id": "ev_49e2571ad500506b396787fc8f5a4dd294803b27f377286607c4c78e4f476d8e",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x4a23c0",
+                "end": "0x4a23dc",
+                "bytes": 29,
+                "file_offset": 661440,
+                "sha256": "ff90d04d37b2d2a59cf4c905b9a85a59e655501e0201a5bc0489510fd510b1a2"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a2480",
+            "kind": "native",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/retained-old-records.json",
+              "bytes": 11303468,
+              "sha256": "aac94c15ddb8d3687ab6c4a97bfd09e1238f1862dfcd501d78056ec9748c7bca"
+            },
+            "pointer": "/records/0",
+            "record_sha256": "76e8cfbc8bf5e09ccb83ca7d42cfe28fca5622795279944c427faf36d8aa9e52",
+            "evidence_id": "ev_d4c571ed6135a83d0edfbe4f28527dc4fc4235a65a97b28e96f7659c90b95e29",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x4a2480",
+                "end": "0x4a24ab",
+                "bytes": 44,
+                "file_offset": 661632,
+                "sha256": "ec332c9b3dc9ded206562f305a04e4893db243527a1828230829334e76df71a9"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a2540",
+            "kind": "derived",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/retained-old-records.json",
+              "bytes": 11303468,
+              "sha256": "aac94c15ddb8d3687ab6c4a97bfd09e1238f1862dfcd501d78056ec9748c7bca"
+            },
+            "pointer": "/records/2",
+            "record_sha256": "7d8e34d0ed9a50ca5ed3a7629ba756a68a3e7e246d73fccc109f094bc1345b8e",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a2540",
+                "end": "0x4a2b5a",
+                "bytes": 1563,
+                "file_offset": 661824,
+                "sha256": "338deebac2a9e178cbcd7e5236c754fe79117f36fe47ef0d27de7eccfde52205"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a24b0",
+            "kind": "derived",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/retained-old-records.json",
+              "bytes": 11303468,
+              "sha256": "aac94c15ddb8d3687ab6c4a97bfd09e1238f1862dfcd501d78056ec9748c7bca"
+            },
+            "pointer": "/records/1",
+            "record_sha256": "b77d520c1ef53a9b062ab752b4518a5308ea3545f26d06de5fa2f632dc8bdd23",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a24b0",
+                "end": "0x4a2530",
+                "bytes": 129,
+                "file_offset": 661680,
+                "sha256": "5069f5e9c6548bd7f5b5d8e9c5a73aea57651bc28421c376586e6061008c261b"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "经典43的初始化参数-1路径清本地/对方阶段和编辑状态，清28个源物品选择byte、5个源宠物选择byte，将20/5位置写FF；该路径没有同步退还原C5E94C占用。",
+          "4A23C0清C5E9B8并请求经典43。4A2480置C5E9B8=1，若窗口存在就标8000并播放39；标隐藏不等于当场析构。",
+          "4A24B0会隐藏属于43的数字提示；C5E9B8为0时发送取消参数0，然后逐20/5位置调用释放、播放39并把该抑制byte清0。不能把重复初始化、服务器结果隐藏和普通析构合为同一幂等操作。"
+        ],
+        "limits": [],
+        "whole_capability_or_runtime_accepted": false
+      },
+      {
+        "id": "SW-F6",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "共享28byte占用与UI准入、重建分别绑定",
+        "source_refs": [
+          {
+            "entry": "0x4a3bc0",
+            "kind": "derived",
+            "role": "new-required-derived-export",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/derived-selection-helpers.json",
+              "bytes": 459858,
+              "sha256": "21c0c520761aa87b0a759fa905f4a27d3db7409fc5b02c20b877530d3596f764"
+            },
+            "pointer": "/entries/2",
+            "record_sha256": "6d569063fc6672304e8c12a3a8804dd9b4cb8ca8ebc3f2694c88a4bca259571b",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a3bc0",
+                "end": "0x4a42f1",
+                "bytes": 1842,
+                "file_offset": 667584,
+                "sha256": "e2d8cbefae444c3e7b762544e0ee1af84cd9dfd2852382701cec5a0321146bb0"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a49d0",
+            "kind": "derived",
+            "role": "new-required-derived-export",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/derived-selection-helpers.json",
+              "bytes": 459858,
+              "sha256": "21c0c520761aa87b0a759fa905f4a27d3db7409fc5b02c20b877530d3596f764"
+            },
+            "pointer": "/entries/4",
+            "record_sha256": "ce2e7eb81e58c431b25a102b4d27210574c6289c5ec699ff00347843708e9b0e",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a49d0",
+                "end": "0x4a50a7",
+                "bytes": 1752,
+                "file_offset": 671184,
+                "sha256": "8834654847548ea8033b2380219d1279fe95ecfeb27c73c032139cdc835f72c9"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a2220",
+            "kind": "native",
+            "role": "new-required-native-observation",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/function-4a2220.json",
+              "bytes": 155116,
+              "sha256": "95a36d250d4d5352430f575c44d933902b6b0feeb20cd8cbe38d4566fabf649b"
+            },
+            "pointer": "/structuredContent",
+            "record_sha256": "1e9d7c8ba5edc75d50a76a5d9495bf046dc1970edb67010688ad87e96330ed3e",
+            "evidence_id": "ev_6dd4aedfd53383f34a31d8c599e6a0280c7631dc9df38ebc08ea1454f39f124e",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x4a2220",
+                "end": "0x4a2251",
+                "bytes": 50,
+                "file_offset": 661024,
+                "sha256": "a8e3b4a095010b27f4938baf635fedcf521eaa1c091047a5fa1630a6a9db649f"
+              }
+            ]
+          },
+          {
+            "entry": "0x469540",
+            "kind": "native",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/capability-window-rebuild-v1/new-native-records.json",
+              "bytes": 2339954,
+              "sha256": "bfcb742b8755abba45223321eb4bbcbdd214cf283761c6b0c734d91e5ac34899"
+            },
+            "pointer": "/records/3",
+            "record_sha256": "5f57c1941f59688d7640ccaaec22f4a4db22722f58bcea27c2994d08512e59bc",
+            "evidence_id": "ev_54abadef4f7062a2bc7f848ebbc1a65682bd3cefcdb58a3091cc6fb27348694f",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x469540",
+                "end": "0x46957f",
+                "bytes": 64,
+                "file_offset": 428352,
+                "sha256": "911efed93066296de0e6bf151ddd7fc19439224764cddd0d1f0b902eaf940309"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "4A3BC0在所选背包命中/拖拽路径测试C5E954[0..19]==0，即C5E94C的绝对8..27范围；源物品存在、trade bit0和C439C8另有各自判断，不能仅以计数为0代替资格。",
+          "所选物品添加/释放以byte增减实际sourceSlot；商店已有合同则按其mode增加/减少全部28byte。它们是共享占用而非单调revision。",
+          "469540以7次DWORD清全部28byte，并另清一组输入/恢复字段；不因此证明所有窗口的选择表/回调都已析构或任何交错始终平衡。"
+        ],
+        "limits": [],
+        "whole_capability_or_runtime_accepted": false
+      },
+      {
+        "id": "SW-F7",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "资料变化后的选择检查发生在具体UI路径",
+        "source_refs": [
+          {
+            "entry": "0x4a3bc0",
+            "kind": "derived",
+            "role": "new-required-derived-export",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/derived-selection-helpers.json",
+              "bytes": 459858,
+              "sha256": "21c0c520761aa87b0a759fa905f4a27d3db7409fc5b02c20b877530d3596f764"
+            },
+            "pointer": "/entries/2",
+            "record_sha256": "6d569063fc6672304e8c12a3a8804dd9b4cb8ca8ebc3f2694c88a4bca259571b",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a3bc0",
+                "end": "0x4a42f1",
+                "bytes": 1842,
+                "file_offset": 667584,
+                "sha256": "e2d8cbefae444c3e7b762544e0ee1af84cd9dfd2852382701cec5a0321146bb0"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a4300",
+            "kind": "derived",
+            "role": "new-required-derived-export",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/derived-selection-helpers.json",
+              "bytes": 459858,
+              "sha256": "21c0c520761aa87b0a759fa905f4a27d3db7409fc5b02c20b877530d3596f764"
+            },
+            "pointer": "/entries/3",
+            "record_sha256": "9610fd1cd9e041f20006d0322249c857d684aaa4ac2174badfce5f99488e1f2c",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a4300",
+                "end": "0x4a4711",
+                "bytes": 1042,
+                "file_offset": 669440,
+                "sha256": "bbf8110806ccfa4febe595c28b1dd221f6d3175cb838f270acebbf4d2f1c184d"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a49d0",
+            "kind": "derived",
+            "role": "new-required-derived-export",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/derived-selection-helpers.json",
+              "bytes": 459858,
+              "sha256": "21c0c520761aa87b0a759fa905f4a27d3db7409fc5b02c20b877530d3596f764"
+            },
+            "pointer": "/entries/4",
+            "record_sha256": "ce2e7eb81e58c431b25a102b4d27210574c6289c5ec699ff00347843708e9b0e",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a49d0",
+                "end": "0x4a50a7",
+                "bytes": 1752,
+                "file_offset": 671184,
+                "sha256": "8834654847548ea8033b2380219d1279fe95ecfeb27c73c032139cdc835f72c9"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a5220",
+            "kind": "derived",
+            "role": "new-required-derived-export",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/derived-selection-helpers.json",
+              "bytes": 459858,
+              "sha256": "21c0c520761aa87b0a759fa905f4a27d3db7409fc5b02c20b877530d3596f764"
+            },
+            "pointer": "/entries/5",
+            "record_sha256": "2379530c45dfb762c2306b6a5098aba8b9cd1d99978e6e1becc7e093728845e2",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a5220",
+                "end": "0x4a56cf",
+                "bytes": 1200,
+                "file_offset": 673312,
+                "sha256": "0dee6debb4de8eb5d99c6a74edc4d3650f7f31f6cf7abf82ff4b7187757bb9f2"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a47a0",
+            "kind": "derived",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/capability-game-trade-storage-v1/derived-missing-functions.json",
+              "bytes": 274192,
+              "sha256": "516a87aec6f8e9536e26473781c3ea5488e94d9a600fdce49dfdc8c29a1e4796"
+            },
+            "pointer": "/entries/1",
+            "record_sha256": "afdf2ad10b6b6c226a3541bb72b7dbce6ce0e75ff7c3dd813678d2fdacb31fd7",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a47a0",
+                "end": "0x4a486e",
+                "bytes": 207,
+                "file_offset": 670624,
+                "sha256": "e0580d7c97ff724ffe2eb698b06bdebeb2098268c48f5a9a27e27d42a50c2a83"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a5760",
+            "kind": "derived",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/capability-game-trade-storage-v1/derived-missing-functions.json",
+              "bytes": 274192,
+              "sha256": "516a87aec6f8e9536e26473781c3ea5488e94d9a600fdce49dfdc8c29a1e4796"
+            },
+            "pointer": "/entries/2",
+            "record_sha256": "b6e677f7e9b33a1ae75dde79149c16caad3d4f0a8efe3948d6fefba11c920ed9",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a5760",
+                "end": "0x4a581d",
+                "bytes": 190,
+                "file_offset": 674656,
+                "sha256": "d0b86608bacaae7ef25378375fbbe7b15beeb810f5157b7b9b591183bd49120f"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "所选个人/已选物品与宠物通路分别处理来源存在、已选标记、raw mask与编辑状态C1DDB8；sourceSlot、显示行和offerPosition保持独立。不能把所有输入归并成一个canSelect条件。",
+          "4A49D0所选后段遍历20位置，对非负映射且活体存在、trade bit0丢失的条目调用4A2220。该条件不包含活体不存在的条目，不能扩写成所有资料变化立即撤回。",
+          "4A5220所选绘制循环遇到映射负值或宠物不存在时画空项；本循环未写选择表。用户移除/替换分支仍可释放；不外推整个程序永不清失效宠物。",
+          "4A47A0/4A5760分别调用这四个具体辅助并更新数量/共享金额相关输出；旧显示/缓存与活体字段不能简单换成每槽revision。"
+        ],
+        "limits": [
+          "本批未验证所有异常坐标、拖拽局部栈表尾部、其它回调或实际设备命中；只绑定所选正常路径与明确条件。"
+        ],
+        "whole_capability_or_runtime_accepted": false
+      },
+      {
+        "id": "SW-F8",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "资料发布先后和缓存搬移不等于交易撤回",
+        "source_refs": [
+          {
+            "entry": "0x4f25a0",
+            "kind": "native",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/retained-old-records.json",
+              "bytes": 11303468,
+              "sha256": "aac94c15ddb8d3687ab6c4a97bfd09e1238f1862dfcd501d78056ec9748c7bca"
+            },
+            "pointer": "/records/11",
+            "record_sha256": "78ddccf35cba8ec4d25a19ed8cdbb33c4e812a8dcfa6857ded2fd7a2bdd26646",
+            "evidence_id": "ev_ed08fcf26018c7977998806d9c5ee9a0363d3d053e5a879005359097dafc35c3",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x4f25a0",
+                "end": "0x4f28ac",
+                "bytes": 781,
+                "file_offset": 989600,
+                "sha256": "1f93919e1320509a669992f5ccffe5ee20fb85bfb2ff59450c3e2d686dac8869"
+              }
+            ]
+          },
+          {
+            "entry": "0x4f2c40",
+            "kind": "native",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/retained-old-records.json",
+              "bytes": 11303468,
+              "sha256": "aac94c15ddb8d3687ab6c4a97bfd09e1238f1862dfcd501d78056ec9748c7bca"
+            },
+            "pointer": "/records/12",
+            "record_sha256": "6d0223042e6b7b67031290f1d264b41f24da0d8e9d0c7d946d4b6cace3a91d44",
+            "evidence_id": "ev_89c58848106ad251584c84cb87ff1f82e1af5b7766c32a4af8999f69ca90dfa5",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x4f2c40",
+                "end": "0x4f2c7d",
+                "bytes": 62,
+                "file_offset": 991296,
+                "sha256": "b75b1586ed34d1d389c6bbe6522f522cffa51172d5f00ae5e3486e8d58131224"
+              }
+            ]
+          },
+          {
+            "entry": "0x4cbce0",
+            "kind": "native",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/retained-old-records.json",
+              "bytes": 11303468,
+              "sha256": "aac94c15ddb8d3687ab6c4a97bfd09e1238f1862dfcd501d78056ec9748c7bca"
+            },
+            "pointer": "/records/9",
+            "record_sha256": "ed69f58e1aca999b05544537a8b736de0bba1349711759aef20597ceb57fdae8",
+            "evidence_id": "ev_fa5dc8d090bb1b46b87db47af814d8a735236f26739e3dcac77c5a0e710e2edc",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x4cbce0",
+                "end": "0x4cbdf9",
+                "bytes": 282,
+                "file_offset": 831712,
+                "sha256": "425a5707d79f32179f65bf075754f57c88ba2cc9c9b9b188c0c4947087083719"
+              }
+            ]
+          },
+          {
+            "entry": "0x4cc550",
+            "kind": "derived",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/capability-game-trade-storage-v1/derived-missing-functions.json",
+              "bytes": 274192,
+              "sha256": "516a87aec6f8e9536e26473781c3ea5488e94d9a600fdce49dfdc8c29a1e4796"
+            },
+            "pointer": "/entries/5",
+            "record_sha256": "c637226674f7024b9a3d527fb450bcf8df29ef83c0ab659467a48011ccb1c896",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4cc550",
+                "end": "0x4cc5e3",
+                "bytes": 148,
+                "file_offset": 833872,
+                "sha256": "cd8fdc4bd6a44a652f11e1c519e833e201dc7edf610c3432e01f11eca12f6870"
+              }
+            ]
+          },
+          {
+            "entry": "0x4c69a0",
+            "kind": "native",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/retained-old-records.json",
+              "bytes": 11303468,
+              "sha256": "aac94c15ddb8d3687ab6c4a97bfd09e1238f1862dfcd501d78056ec9748c7bca"
+            },
+            "pointer": "/records/7",
+            "record_sha256": "0f308c35a10c397fad92e0200735b92db69928bef224660b7e627bc10c84dc58",
+            "evidence_id": "ev_58dd1f39578c98d56dd6ef4d5da3ed73bacf6ac591be904f9331ef1c4b862eaa",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x4c69a0",
+                "end": "0x4c6b14",
+                "bytes": 373,
+                "file_offset": 810400,
+                "sha256": "54691dd3ead8e21a9039aef7e82bcf1002265753a25668f0f7aa967aa6a7f054"
+              }
+            ]
+          },
+          {
+            "entry": "0x4c80b0",
+            "kind": "native",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/retained-old-records.json",
+              "bytes": 11303468,
+              "sha256": "aac94c15ddb8d3687ab6c4a97bfd09e1238f1862dfcd501d78056ec9748c7bca"
+            },
+            "pointer": "/records/8",
+            "record_sha256": "119f3bb3047ff0c926535e57d4bae279fb3d6d827671275ad23b67fcf04da6e1",
+            "evidence_id": "ev_2717af10b044a578d39ec72051aac909eae0320e93dbc309fd4331e91e1d31fb",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x4c80b0",
+                "end": "0x4c814a",
+                "bytes": 155,
+                "file_offset": 816304,
+                "sha256": "097d32462e7fd6d5ecac003f22f38590933d345c67e12f87795cf856ed09f6ae"
+              }
+            ]
+          },
+          {
+            "entry": "0x4efad0",
+            "kind": "native",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/retained-old-records.json",
+              "bytes": 11303468,
+              "sha256": "aac94c15ddb8d3687ab6c4a97bfd09e1238f1862dfcd501d78056ec9748c7bca"
+            },
+            "pointer": "/records/10",
+            "record_sha256": "8bf23ff0d42451a7ddec479224a6ea1fc23905c49db7cf4abc5f83e223398b55",
+            "evidence_id": "ev_665311da496bd2772ebd2c77bf39d7ae13d13e6810dc454a725fe17c6786d066",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x4efad0",
+                "end": "0x4efff4",
+                "bytes": 1317,
+                "file_offset": 978640,
+                "sha256": "dff1913f1abb4e26800fae3e39870eaaafdc365226b07382d97d7a4658e2a693"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "复用已证14字段物品发布与4E1D20顺序：处理槽通知先于名称提取结果；有效背包更新再刷新本地两种缓存。缓存记录0x64C/0x644与活体0x65C不同。",
+          "4F2C40先交换活体，再对两槽通知，最后依次搬移交易/仓储缓存。两个缓存搬移均限定8..27，但不能据辅助边界宣称整个原接收路径已做安全上界检查。",
+          "金币发布4EFAD0所选mask分支写F53624；该条赋值不是已发布报价/本地阶段的撤回回执。以上直接路径和UI检查应分层，不添加猜测ACK/关联ID，也不把独立revision误作原版守卫。"
+        ],
+        "limits": [],
+        "whole_capability_or_runtime_accepted": false
+      },
+      {
+        "id": "SW-F9",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "数量提示保存的是可被后续生产改写的端点全局量",
+        "source_refs": [
+          {
+            "entry": "0x47b900",
+            "kind": "native",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/capability-game-trade-storage-v1/reused-trade-storage-native.json",
+              "bytes": 31792254,
+              "sha256": "64b7c9b1c7f096348ca2760f4516df97637af6b88140131676232ed650c54c75"
+            },
+            "pointer": "/records/23",
+            "record_sha256": "8cc9f78f2a217d8e38c79abe2c90ebfb60364a51c525c56a5a9fe465b5877a0d",
+            "evidence_id": "ev_fea5c08b9c26212b93128757ba3fae1b988b6a3cf785205fbe5b4873c1468c8a",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x47b900",
+                "end": "0x47ba16",
+                "bytes": 279,
+                "file_offset": 503040,
+                "sha256": "e50a37da626d9f019dedfb7a0456016fc41170fdffbedbfcd34a019d9b4ecd3a"
+              }
+            ]
+          },
+          {
+            "entry": "0x47b7e0",
+            "kind": "native",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/capability-game-trade-storage-v1/reused-trade-storage-native.json",
+              "bytes": 31792254,
+              "sha256": "64b7c9b1c7f096348ca2760f4516df97637af6b88140131676232ed650c54c75"
+            },
+            "pointer": "/records/18",
+            "record_sha256": "5ba7b3c97c8961502086ba9432f020daf5ee0254ae60a59e7b231b8dcaf6208f",
+            "evidence_id": "ev_cdd70769e0907b15a38781a54021c62bd99733d2e49de75029124ef3fa46024d",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x47b7e0",
+                "end": "0x47b8f8",
+                "bytes": 281,
+                "file_offset": 502752,
+                "sha256": "e5c7b89bd28208eac6f9c2332ccd1f53833f10e625d4c75e16f74b001b95ff79"
+              }
+            ]
+          },
+          {
+            "entry": "0x49c090",
+            "kind": "derived",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/capability-game-trade-storage-v1/reused-trade-storage-native.json",
+              "bytes": 31792254,
+              "sha256": "64b7c9b1c7f096348ca2760f4516df97637af6b88140131676232ed650c54c75"
+            },
+            "pointer": "/derived_records/26",
+            "record_sha256": "6529142131dac14f6b8c536c3bfcef9c4b440f721fce8f474ae83b9ded83ebe2",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x49c090",
+                "end": "0x49c733",
+                "bytes": 1700,
+                "file_offset": 636048,
+                "sha256": "c869d673defd848014739eba965dd2e4cecffc982e935a7fcdb6a2aa93876e43"
+              }
+            ]
+          },
+          {
+            "entry": "0x49c740",
+            "kind": "derived",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/capability-game-trade-storage-v1/reused-trade-storage-native.json",
+              "bytes": 31792254,
+              "sha256": "64b7c9b1c7f096348ca2760f4516df97637af6b88140131676232ed650c54c75"
+            },
+            "pointer": "/derived_records/27",
+            "record_sha256": "5fe68de5d267a2e92e3624ceeaba3b6bb7495aac5172615980a4ebf642e4fdad",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x49c740",
+                "end": "0x49cd18",
+                "bytes": 1497,
+                "file_offset": 637760,
+                "sha256": "ee2ab2850f598fe50a7496e8af3bb78367aae23d2659471286886431ad5b1449"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "47B900先要求非负且不同的from/to；正常来源覆盖背包8..27与仓储100..119。两端>7、来源数量正、目标为空且按7286AD mask0x02/C5E940计算的偏好允许时，把C3B2CC=from、C43F58=to后开数量提示；否则写同样端点并直接提交-1。",
+          "C3B2CC/C43F58在这条链中是源/目标槽全局量，不是窗口指针或请求代次。数量框上限和初值取打开时数量，47B7E0实际提交重新读取当前两端点，而非捕获的打开快照。",
+          "两端<100直接复用普通移动；涉及仓储时先选存在的41窗口，否则38，复用其标识格式化I|from|to|amount。该提交体不重新检查来源堆叠、空目标或资格。",
+          "49C090/49C740所选银行两面板按其资格/占用/拖拽分支调用同一47B900，不新增另一套移动协议。"
+        ],
+        "limits": [
+          "数量框活动期间另一用户操作是否能正常再次改端点、所有owner丢失/重开和异常索引域，需按已准入调度组合继续审核；函数条件不证明这些场景可达。"
+        ],
+        "whole_capability_or_runtime_accepted": false
+      },
+      {
+        "id": "SW-F10",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "C5E9C8是一次性抑制移除，不是对象指针",
+        "source_refs": [
+          {
+            "entry": "0x4ae3e0",
+            "kind": "native",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/capability-game-shop-services-v1/drag-refresh-native-search.json",
+              "bytes": 813303,
+              "sha256": "807eb576a7473302fe18ba45e557605559ae827062325426eff27fe848eaf6e8"
+            },
+            "pointer": "/records/0",
+            "record_sha256": "12d353c93f7d5baeb1516deefd0f90e58c167c5faee0e60259f24403beaa7d79",
+            "evidence_id": "ev_899cfc49e40835662d777e3f88fc36cb998456ed4dde76d02e6c87bcbfa343e4",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x4ae3e0",
+                "end": "0x4ae4b5",
+                "bytes": 214,
+                "file_offset": 710624,
+                "sha256": "0f326a202d7a81e90810f19ca18618be0c340ef7f6044113348e74ca3a6afc88"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "4AE3E0读byte C5E9C8；非零时先写0并立即返回。零时继续按当前选择映射清报价活动字和C3B294所选bit、将行映射写FF、约束滚动位置并调用现有重算/刷新辅助。",
+          "此byte与交易关闭抑制C5E9B8、28byte占用计数和图形待删指针分开。两处精确typed引用及原CMP/MOV byte指令可核；不据此宣布已穷尽生产者/别名或普通/异常所有生命周期。"
+        ],
+        "limits": [
+          "本批未绑定非零值的全部真实生产与激活；只有需求相关正向写边出现才补证，不把精确xref无写1当全局没有。"
+        ],
+        "whole_capability_or_runtime_accepted": false
+      },
+      {
+        "id": "SW-F11",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "经典与条件另一套发布的clock副作用不同",
+        "source_refs": [
+          {
+            "entry": "0x4a2cf0",
+            "kind": "derived",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/retained-old-records.json",
+              "bytes": 11303468,
+              "sha256": "aac94c15ddb8d3687ab6c4a97bfd09e1238f1862dfcd501d78056ec9748c7bca"
+            },
+            "pointer": "/records/4",
+            "record_sha256": "2434bffc13ad170344cdb56578b64b53029243dc50f7a658dece8ae470d1fff4",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a2cf0",
+                "end": "0x4a2f87",
+                "bytes": 664,
+                "file_offset": 663792,
+                "sha256": "57489dbbf01f891e154ff75fe52146bc3c4dad11ac6a63ea723e52b848d92024"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a3050",
+            "kind": "derived",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/retained-old-records.json",
+              "bytes": 11303468,
+              "sha256": "aac94c15ddb8d3687ab6c4a97bfd09e1238f1862dfcd501d78056ec9748c7bca"
+            },
+            "pointer": "/records/6",
+            "record_sha256": "437270fe2c10b5e416143651146814d6276f340fa044df5a02461dadd2a7bece",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a3050",
+                "end": "0x4a31a8",
+                "bytes": 345,
+                "file_offset": 664656,
+                "sha256": "c16700cd636581a6f292b6b0bd5985d8cf7f9571fa7aa2cf9b5ec095c234a9b0"
+              }
+            ]
+          },
+          {
+            "entry": "0x4a2f90",
+            "kind": "derived",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/inventory-selection-ownership-v1/retained-old-records.json",
+              "bytes": 11303468,
+              "sha256": "aac94c15ddb8d3687ab6c4a97bfd09e1238f1862dfcd501d78056ec9748c7bca"
+            },
+            "pointer": "/records/5",
+            "record_sha256": "466d2750e6c62acbe909d04e566bfdb68fef3df0df015483b81baebfc73df84d",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4a2f90",
+                "end": "0x4a304f",
+                "bytes": 192,
+                "file_offset": 664464,
+                "sha256": "43d447ac6ac2b663c89d74f07391602acfeadbca079c2197fd5d6e62bf20740d"
+              }
+            ]
+          },
+          {
+            "entry": "0x4cc5f0",
+            "kind": "derived",
+            "role": "reused-original-complete",
+            "source": {
+              "path": "build/analysis/capability-entry-inventory-v1/derived-entry-functions.json",
+              "bytes": 18823193,
+              "sha256": "071ca5def7a48ae7053dbbaec3927008c8d48c8b149d042be6ccc0da19cf8bda"
+            },
+            "pointer": "/entries/412",
+            "record_sha256": "7deb3db4dc8b6312b6356ba62eba271a91d7f07cb2d4852ba7bd5a300abbbe39",
+            "evidence_id": null,
+            "native_profile": null,
+            "ranges": [
+              {
+                "start": "0x4cc5f0",
+                "end": "0x4cd468",
+                "bytes": 3705,
+                "file_offset": 834032,
+                "sha256": "44f46bde56adfb652c9ce54edb611ea5b131a602bd00e3e0233d7b666ae8182e"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "经典4A2CF0按原20/5位置getter序列化非负源槽与实际位置，保留空洞；它不更新614884。条件另一套4CC5F0所选发布分支会写共享tick。不能由同一发送器推两种入口时序相同。",
+          "经典确认按钮的1→2与2→0仍有严格500ms条件；独立撤回控件保留自身无该本体计时门槛的路径。两种撤回不能靠按钮名合并。"
+        ],
+        "limits": [],
+        "whole_capability_or_runtime_accepted": false
+      }
+    ],
+    "borrowed_rule_references": [
+      {
+        "file": {
+          "path": "build/analysis/inventory-selection-ownership-v1/before/analysis/capability-first-v1/game-entry-review-contract.json",
+          "bytes": 860193,
+          "sha256": "54bd533ae9a3c7b09b65bf2e7d1636102dc35e7dd3a07e801bc4786f3fcb5197"
+        },
+        "original_workspace_path": "analysis/capability-first-v1/game-entry-review-contract.json",
+        "pointer": "/chat_state_storage/facts/0",
+        "id": "CS-01",
+        "canonical_sha256": "477cae910e6632b1588a3a025a57108b13856d7064cada98d2e1853950984942",
+        "original_value": {
+          "id": "CS-01",
+          "classification": "事实",
+          "basis": "fixed37c4-retained-REA-and-original-instruction-bytes",
+          "title": "物品选择失效的尾目标已复用闭合",
+          "clauses": [
+            "4E1D20仅在561AEC非负且等于更新槽时尾跳4E1CF0；后者43字节本体将561AEC置-1，C5EAC4/C221C8/C221CC/C16214置0，5625E4置1，无进一步CALL。",
+            "这闭合MR-PENDING-02中已定位的尾目标与六个直接写入；本体没有直接写已知邮件附件C1FC28/C44DE4。完整别名/区域初始化和全局晚到效果仍不能由这条边代替。"
+          ],
+          "source_anchors": [
+            {
+              "entry": "0x4e1cf0",
+              "token": "DAT_00561aec",
+              "lines": [
+                7
+              ]
+            },
+            {
+              "entry": "0x4e1cf0",
+              "token": "DAT_00c221c8",
+              "lines": [
+                9
+              ]
+            },
+            {
+              "entry": "0x4e1cf0",
+              "token": "DAT_005625e4",
+              "lines": [
+                12
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "file": {
+          "path": "build/analysis/inventory-selection-ownership-v1/before/analysis/capability-first-v1/game-entry-review-contract.json",
+          "bytes": 860193,
+          "sha256": "54bd533ae9a3c7b09b65bf2e7d1636102dc35e7dd3a07e801bc4786f3fcb5197"
+        },
+        "original_workspace_path": "analysis/capability-first-v1/game-entry-review-contract.json",
+        "pointer": "/mail_delivery_results/facts/6",
+        "id": "MR-07",
+        "canonical_sha256": "e60a2484635bc3583a77a30dc0ad07f57041f82fdf3196ad4ecc04da475f5fbc",
+        "original_value": {
+          "id": "MR-07",
+          "classification": "事实",
+          "basis": "fixed37c4-selected-static-source-and-original-bytes",
+          "title": "单项物品资料发布的实际副作用",
+          "clauses": [
+            "4F25A0在924F30==0时按正文14字段一组读取槽/物品资料；先对读到的槽调用4E1D20，再尝试取名称。若终止取字段失败，先前这个调用仍已发生。",
+            "解转义后的名称为空则只清活动word；非空写活动和各资料字段，包括F53D1E标志word。槽>=8的所选更新随后触发4CBCE0/4C69A0；下一组同样先调用4E1D20再检查提取结果。",
+            "本体按物理槽更新，没有邮件请求ID或投递结果归属。完整非法槽/输入域及辅助链仍分开保留，不能把所有物品变化都归因于邮件。"
+          ],
+          "source_anchors": [
+            {
+              "entry": "0x4f25a0",
+              "token": "FUN_004e1d20",
+              "lines": [
+                22,
+                161
+              ]
+            },
+            {
+              "entry": "0x4f25a0",
+              "token": "DAT_00f53d1e",
+              "lines": [
+                113
+              ]
+            },
+            {
+              "entry": "0x4f25a0",
+              "token": "FUN_004cbce0",
+              "lines": [
+                39,
+                156
+              ]
+            }
+          ],
+          "limits": []
+        }
+      },
+      {
+        "file": {
+          "path": "build/analysis/inventory-selection-ownership-v1/before/analysis/capability-first-v1/game-entry-review-contract.json",
+          "bytes": 860193,
+          "sha256": "54bd533ae9a3c7b09b65bf2e7d1636102dc35e7dd3a07e801bc4786f3fcb5197"
+        },
+        "original_workspace_path": "analysis/capability-first-v1/game-entry-review-contract.json",
+        "pointer": "/mail_delivery_results/facts/7",
+        "id": "MR-08",
+        "canonical_sha256": "f562381380203f0bacb1b6ca21490aa4832c7dd0e22589e0b21f84745e8b98a5",
+        "original_value": {
+          "id": "MR-08",
+          "classification": "事实",
+          "basis": "fixed37c4-selected-static-source-and-original-bytes",
+          "title": "交换资料先变更再触发所选通知",
+          "clauses": [
+            "4F2C40在924F30==0时先5009B0(a,b)，再分别4E1D20(a/b)，然后4CC550与4C80B0。",
+            "独立180字节指令视图证明5009B0仅先拒绝负a/b，交换F536CC+a/b*0x65C的整条资料；a或b<8时对应交换后标志word OR0x80，随后47F200(a,b)。本体未见上界检查；不把它当通用安全索引实现。",
+            "独立21字节4E1D20视图仅证明561AEC>=0且等于参数时尾跳4E1CF0；其它情况返回。4E1CF0完整效果尚未纳入本组，不能宣称已清全部邮件附件或证明对象最终失效。"
+          ],
+          "source_anchors": [
+            {
+              "entry": "0x4f2c40",
+              "token": "FUN_005009b0",
+              "lines": [
+                6
+              ]
+            },
+            {
+              "entry": "0x4f2c40",
+              "token": "FUN_004e1d20",
+              "lines": [
+                7,
+                8
+              ]
+            }
+          ],
+          "limits": []
+        }
+      },
+      {
+        "file": {
+          "path": "build/analysis/inventory-selection-ownership-v1/before/analysis/capability-first-v1/game-shop-services-contract.json",
+          "bytes": 24923,
+          "sha256": "2ba2f712b51ebed69ec4cf9468d5ba3b12b24ec89b902f029bd76df228d9b94a"
+        },
+        "original_workspace_path": "analysis/capability-first-v1/game-shop-services-contract.json",
+        "pointer": "/facts/14",
+        "id": "slot-byte-counters-are-not-revisions",
+        "canonical_sha256": "5d76decbfc153eefda1d28467c428ff2810b6e0e0148a8815a23f1c2ff8e8739",
+        "original_value": {
+          "id": "slot-byte-counters-are-not-revisions",
+          "kind": "fact",
+          "entries": [
+            "0x4a92a0",
+            "0x4a9c80",
+            "0x4aa0b0",
+            "0x4a96b0",
+            "0x4a99b0",
+            "0x4a8f90"
+          ],
+          "rules": [
+            "卖出/鉴定/修理/兑换/折算解析在打开53前增加全部28个byte计数C5E94C，买入不做；53析构在全局内部mode>0时减少全部28个byte计数。普通配对效果可用占用期间的共享计数描述，不能等同单调槽revision。",
+            "析构仅在owner匹配当前活动时置活动为-1，计数条件则读取全局内部模式而非每窗口缓存。重入/模式覆盖的完整所有权尚未闭合，不从普通配对推定所有交错都安全。"
+          ],
+          "evidence": [
+            "analysis/capability-first-v1/game-shop-services-source-check.json"
+          ]
+        }
+      }
+    ],
+    "current_code_observations": [
+      {
+        "id": "SW-C1",
+        "classification": "事实：当前原创源码静态读取",
+        "rule": "slotPairs按输入数组连续编号；当前trade核心未维护原20/5持久位置映射和逐槽byte占用。",
+        "scope": "所读核心完整文件；不作全项目/外部自定义端口不存在声明",
+        "source": {
+          "file": {
+            "path": "shared/legacy-game-player-trade.mjs",
+            "bytes": 11583,
+            "sha256": "d065d72c123b1e1727f59319cb90f3cfd6d8afc3fb4f74695eadda94fb5f699e"
+          },
+          "first_line_1": 104,
+          "last_line_1": 113,
+          "sha256": "f7a7d05c8e8b2a0c8b7e132f4c6ba50302b5caf6cd4fe9535ca1a8c09f1fbb8f",
+          "original_text": "\nfunction slotPairs(rows) {\n  return Uint8Array.from(rows.map(({ slot }, row) => slot + '|' + row).join('|'), char => char.charCodeAt(0));\n}\n\nexport function createLegacyGamePlayerTrade(readContext) {\n  let panel = null, resultCode = null, revision = 0, lastTick = 0;\n\n  function clearPeer() {\n    for (const row of [...panel.items, ...panel.pets]) clearBytes(row);\n"
+        }
+      },
+      {
+        "id": "SW-C2",
+        "classification": "事实：当前原创源码静态读取",
+        "rule": "offerStillCurrent检查物品revision/canTrade、宠物整表version/存在及报价金币可用；copy把结果作为offerStale显示。它不自动发withdraw或改变localPhase。",
+        "source": {
+          "file": {
+            "path": "shared/legacy-game-player-trade.mjs",
+            "bytes": 11583,
+            "sha256": "d065d72c123b1e1727f59319cb90f3cfd6d8afc3fb4f74695eadda94fb5f699e"
+          },
+          "first_line_1": 83,
+          "last_line_1": 90,
+          "sha256": "f944a160e1fab74cac7f2326a732d4d19db8112f4bf3baeb71cec5bdcb1c896c",
+          "original_text": "function offerStillCurrent(offer, { items, pets, gold }) {\n  if (!offer) return false;\n  return (offer.gold === 0 || (gold !== null && offer.gold <= gold)) &&\n    offer.items.every(({ slot, revision }) => items[slot]?.canTrade && items[slot].revision === revision) &&\n    (!offer.pets.length || (offer.petVersion === pets.version && offer.pets.every(({ slot }) => pets.records[slot]?.present)));\n}\n\nfunction offerRows(selected, available, limit, eligible, revisionFor) {\n"
+        }
+      },
+      {
+        "id": "SW-C3",
+        "classification": "事实：当前原创源码静态读取",
+        "rule": "publish按当前context和输入列表验证并保存报价，置phase1、更新lastTick；confirm只允许phase1且peer>=1，再查当前报价和cooldown。独立withdraw是另一动作。",
+        "source": {
+          "file": {
+            "path": "shared/legacy-game-player-trade.mjs",
+            "bytes": 11583,
+            "sha256": "d065d72c123b1e1727f59319cb90f3cfd6d8afc3fb4f74695eadda94fb5f699e"
+          },
+          "first_line_1": 224,
+          "last_line_1": 254,
+          "sha256": "2b37aa3c58f7169f95a6cf57df937be966f3ae974c4bb67de0ea23b719309bc5",
+          "original_text": "      case 'publish': {\n        if (panel.localPhase !== 0) fail('LEGACY_GAME_TRADE_PHASE');\n        const context = readContext(), gold = value?.gold;\n        if (!Number.isInteger(gold) || gold < 0 || (gold > 0 && (context.gold === null || gold > context.gold))) {\n          fail('LEGACY_GAME_TRADE_GOLD');\n        }\n        const items = offerRows(value.items, context.items, itemSlots, row => row.canTrade, row => row.revision);\n        const pets = offerRows(value.pets, context.pets.records, petSlots, row => row.present, () => context.pets.version);\n        wipeOffer(panel.offer);\n        panel.offer = { items, pets, gold, petVersion: context.pets.version };\n        panel.localPhase = 1;\n        revision++;\n        lastTick = tick;\n        return command('7dc0', slotPairs(items), slotPairs(pets), gold);\n      }\n      case 'withdraw':\n        if (panel.localPhase === 0) fail('LEGACY_GAME_TRADE_PHASE');\n        panel.localPhase = 0;\n        if (panel.remotePhase === 2) panel.remotePhase = 1;\n        revision++;\n        return command('7e50');\n      case 'confirm':\n        if (panel.localPhase !== 1 || panel.remotePhase < 1) fail('LEGACY_GAME_TRADE_PHASE');\n        if (!offerStillCurrent(panel.offer, readContext())) fail('LEGACY_GAME_TRADE_OFFER_STALE');\n        if (((lastTick + 500) >>> 0) >= tick) fail('LEGACY_GAME_TRADE_COOLDOWN');\n        panel.localPhase = 2;\n        revision++;\n        lastTick = tick;\n        return command('7e90', 1);\n      case 'close':\n        clear();\n"
+        }
+      }
+    ],
+    "implementation_deltas": [
+      {
+        "id": "SW-D1",
+        "classification": "独立设计/待实现",
+        "source_rules": [
+          "SW-F2",
+          "SW-F3",
+          "SW-F4",
+          "SW-F5",
+          "SW-F6"
+        ],
+        "owner_contract": "D0/CT-D1/CT-D3 with D3 inventory/trade/shop",
+        "need": "按共同逻辑槽占用owner维护物品/宠物位置与源槽，保留空洞、选择/释放/重排和不同计数；不按每个helper新建模块。资源RP租约与该逻辑byte占用分开。当前revision API保护继续明确标独立政策。"
+      },
+      {
+        "id": "SW-D2",
+        "classification": "独立设计/待实现",
+        "source_rules": [
+          "SW-F7",
+          "SW-F8",
+          "SW-F9",
+          "SW-F10"
+        ],
+        "owner_contract": "D0/IC-D1/CT-D4 and D3 amount/input/quote",
+        "need": "统一来源资料、UI资格/拖拽、数量端点、byte抑制与真正退役的所有者/调用顺序；独立窗口身份、错误恢复、越界和后台政策明确，不冒充原版已有守卫。"
+      },
+      {
+        "id": "SW-D3",
+        "classification": "独立设计/待实现",
+        "source_rules": [
+          "SW-F1",
+          "SW-F9",
+          "SW-F11"
+        ],
+        "owner_contract": "D1/D3 existing serializers and thin web/WeChat hosts",
+        "need": "复用已证slot|position和移动发送器，按准入来源入口保留发布/确认/撤回clock差异；现有连续编号、publish tick和confirm重查差异须显式归并，不增加线路字段。"
+      }
+    ],
+    "proposed_acceptance_cases": [
+      {
+        "id": "SW-AC1",
+        "classification": "原创合成用例提案",
+        "status": "not-executed",
+        "case": "源位置FF/80/00/1B分别读取为空/空/0/27；调用者正常范围与原语无上界检查分开。"
+      },
+      {
+        "id": "SW-AC2",
+        "classification": "原创合成用例提案",
+        "status": "not-executed",
+        "case": "空物品位置选入槽8后map/flag/counter有序更新；向非空位置赋值返回0且不重复计数。"
+      },
+      {
+        "id": "SW-AC3",
+        "classification": "原创合成用例提案",
+        "status": "not-executed",
+        "case": "释放一次清map/flag并按byte减计数，第二次返回-1；条件counter0时第一次减得到FF，独立安全政策另列。"
+      },
+      {
+        "id": "SW-AC4",
+        "classification": "原创合成用例提案",
+        "status": "not-executed",
+        "case": "带空洞的物品0/19、宠物0/4交换不压缩、不增减共享计数；发布实际位置保持。"
+      },
+      {
+        "id": "SW-AC5",
+        "classification": "原创合成用例提案",
+        "status": "not-executed",
+        "case": "经典43初始化和析构/结果隐藏分别执行；重复初始化不被误判为已释放旧占用。"
+      },
+      {
+        "id": "SW-AC6",
+        "classification": "原创合成用例提案",
+        "status": "not-executed",
+        "case": "商店全28占用与物品逐槽占用共同出现时按来源准入判断；全局重建清计数不自动证明选择表已析构。"
+      },
+      {
+        "id": "SW-AC7",
+        "classification": "原创合成用例提案",
+        "status": "not-executed",
+        "case": "已存在的已选物品trade bit0丢失触发所选UI释放；不存在物品/宠物的所选路径不被扩写为同一撤回。"
+      },
+      {
+        "id": "SW-AC8",
+        "classification": "原创合成用例提案",
+        "status": "not-executed",
+        "case": "物品名称提取终止前的4E1D20副作用保留；移动先交换活体再通知并搬两缓存。"
+      },
+      {
+        "id": "SW-AC9",
+        "classification": "原创合成用例提案",
+        "status": "not-executed",
+        "case": "数量提示开时上限与提交时当前端点分开；两个活体端点/含仓储端点以及41优先于38分别覆盖。"
+      },
+      {
+        "id": "SW-AC10",
+        "classification": "原创合成用例提案",
+        "status": "not-executed",
+        "case": "C5E9C8非零的第一次移除只消费抑制byte，后续正常路径才更新所选报价行；与C5E9B8结果关闭抑制分开。"
+      },
+      {
+        "id": "SW-AC11",
+        "classification": "原创合成用例提案",
+        "status": "not-executed",
+        "case": "经典发布不写tick、条件另一套发布写tick，以及确认按钮/独立撤回不同门槛分开验证。"
+      },
+      {
+        "id": "SW-AC12",
+        "classification": "原创合成用例提案",
+        "status": "not-executed",
+        "case": "当前offerStale显示/confirm拒绝不被误认为已发撤回；后续共享实现和三个宿主分别验收。"
+      }
+    ],
+    "remaining_required_gaps": [
+      {
+        "id": "SW-R1",
+        "kind": "required-source-composition",
+        "need": "数量框活动期间的正常重开/owner丢失、端点改写准入及跨窗口复合占用/非法数据域还需具体流程组合；本批原语和所选正常生产/提交已绑定。",
+        "next": "复用47B900/47B7E0与现有经典42/输入/主帧合同；只为会改变必要流程的正向边补证，不重查这些体或虚构4CCC20入口。"
+      },
+      {
+        "id": "SW-R2",
+        "kind": "conditional-activation",
+        "need": "另一套52的实际dispatch/需求相关激活和C5E9C8非零生产者尚未闭合。",
+        "next": "仅新正向注册/调用/写入且需求相关时扩展；保留条件，停止旧97零搜索和无界别名/辅助体遍历。"
+      },
+      {
+        "id": "SW-R3",
+        "kind": "implementation-delta",
+        "need": "SW-D1..D3及CT/IC/RP既有共同所有者差异尚未实现；当前trade核心仍采用独立输入列表/revision/时序政策。",
+        "next": "统一必要规格后按D0/D3成组复刻；不分成12个helper功能或三份平台规则。"
+      },
+      {
+        "id": "SW-R4",
+        "kind": "full-scope-and-external-acceptance",
+        "need": "其它40域必要规则、P08全部命令/变体/消费者及全平台/现行同版/官方接受仍未完成；无测试账号。",
+        "next": "优先复用本批46份规格/4个family字面和11条件清单，继续P08源规格到当前接受/拒绝矩阵；不反复索取账号或用本地源代设备接受。"
+      }
+    ],
+    "capabilities": [
+      "G09",
+      "G11",
+      "G13",
+      "X02"
+    ],
+    "scope_preserved": {
+      "capabilities": 40,
+      "registry_entries": 81,
+      "historical_composite_requirements": 37,
+      "consumer_groups": 10,
+      "profiles": 6
+    },
+    "selected_rules_source_recorded": true,
+    "whole_flow_or_all_aliases_closed": false,
+    "source_profile_rule": "Canonical/native and old/new analyst-derived views retain original distinct authorities; no seed at4CCC20.",
+    "superseded_selected_frontiers": [
+      "P05 raw4CCC20 as a missing standalone withdrawal consumer: old alternate52 publish context recovered.",
+      "Selection helpers4A3BC0/4A4300/4A49D0/4A5220 and signed8 getters, map assign/release/swap: selected rules now recorded.",
+      "C5E9C8 selected role: byte one-shot removal suppression, not an object pointer or shared occupancy count.",
+      "C3B2CC/C43F58 selected role: source/destination slot globals read at amount submission, not owner pointers."
+    ],
+    "battle_variant_inventory": {
+      "path": "build/analysis/inventory-selection-ownership-v1/lookup-battle-variant-contracts.json",
+      "bytes": 766875,
+      "sha256": "e714dad09422bb5199ab13ed492220303b03d6ed42f8186ed36b09cb65365df9"
+    },
+    "battle_inventory_scope": "4 family raw expressions,11 classCode conditions,46 existing specs metadata; not full class/variant/consumer proof.",
+    "next": "优先P08逐命令payload/class/variant/body/错误到保留规格及当前接受/拒绝矩阵；P05只核数量框活动的实际正常重开/owner丢失及必要复合占用。已证原语/4CCC20不重查，条件激活仅新正向边重开。",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "new_protocol_fields": 0,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false
+  },
+  "shared_occupancy_composition": {
+    "schema": "moli.shared-occupancy-composition.layer.v1",
+    "plan": {
+      "path": "build/analysis/shared-occupancy-composition-v1/implementation-plan.json",
+      "bytes": 3198,
+      "sha256": "bbc58683d66d7151ad7f63f30c11318deaf7bd4e362c2e23a1bb774e4cdfdd0e"
+    },
+    "specification": {
+      "path": "build/analysis/shared-occupancy-composition-v1/specification.json",
+      "bytes": 35590,
+      "sha256": "ea93307f50617a3b5fee6d37de939ec15a981f976be17ba91a9fdd2444cd4036"
+    },
+    "sources": {
+      "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+      "bytes": 73494,
+      "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+    },
+    "validation_path": "build/analysis/shared-occupancy-composition-v1/validation.json",
+    "summary": {
+      "reused_complete_native_records": 21,
+      "reused_derived_views": 5,
+      "source_body_bytes": 13123,
+      "cold_instructions": 4156,
+      "direct_E8_CALLs": 295,
+      "window_group_bindings": 6,
+      "new_REA_queries": 0,
+      "new_decompilations": 0,
+      "fact_groups": 8,
+      "case_rows": 9,
+      "conditional_pending_animation_rows": 2,
+      "implementation_delta_groups": 1,
+      "remaining_groups": 4
+    },
+    "facts": [
+      {
+        "id": "OC-F1",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "真实接收准入先于报价解析器",
+        "rules": [
+          "4F4410先要求924F30/C5EC18为0及9250C8装箱值读为0；关闭mask=-1仅当mode和actor匹配55E4D4/C440CC才468F00(3)并清活动。其它符合入口条件的消息才交48FCE0。",
+          "48FCE0在活动值非负时，未触发特定切换的六类shop mode0x6/0x7/0x14/0x16/0x1C/0x1F不进入重解析路径；同mode专门更新分支仅有0x15/0x17/0x20/0x21/0x22。其他活动mode仍在“活动>=0则返回”处拒绝。不能由直接调用两个解析器推定同样的正常接收路径。"
+        ],
+        "source_refs": [
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/7",
+            "canonical_sha256": "6e94209c436a2475071753b037c1be733236621584ec27a5d5fc26fe3203b600"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/0",
+            "canonical_sha256": "4ebc73e9dad08ba718064d7ab268d1aa37f2719e03e700fd008cb70b61f1e5f8"
+          }
+        ],
+        "original_runtime_observed": false,
+        "whole_capability_accepted": false
+      },
+      {
+        "id": "OC-F2",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "特定替换序列先同步销毁旧业务，再发布新mode",
+        "rules": [
+          "活动非负、48FCE0第三参数属于0x146/0x147/0x171/0x184/0x185/0x186且新mode!=0x20时，先468F00(2)、再468F00(3)，然后把活动置-1；此时尚未写新C221F0/C21920或新sequence/actor。旧53析构因此读旧shop mode。",
+          "468F00按mask&signed group遍历live pool，先置sidecar bit2、同步467FC0并将池槽清0；第二遍不会再析构已清槽。新活动及共同标识随后才写，再分派六parser。mask是组掩码，不是窗口ID或静默取消承诺。"
+        ],
+        "source_refs": [
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/0",
+            "canonical_sha256": "4ebc73e9dad08ba718064d7ab268d1aa37f2719e03e700fd008cb70b61f1e5f8"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/20",
+            "canonical_sha256": "20b0952dec97156f6a4e52df4f34da61688d0c92cb82c733dfbd9c86059338a5"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/19",
+            "canonical_sha256": "b244b7e47a4a8d67151d1cb3a451d6da6dd6c34ca526071830e5501e751a2dbb"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/8",
+            "canonical_sha256": "0d1cc069a3a3d8ca8a1c07e1bd011b48d21961f56f5d883f9d298694d8d6757c"
+          }
+        ],
+        "original_runtime_observed": false,
+        "whole_capability_accepted": false
+      },
+      {
+        "id": "OC-F3",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "六模式计数原语与调用次序复用，不改成revision",
+        "rules": [
+          "买/卖/兑换/折算/鉴定/修理分别写C221F0=0/1/2/3/4/5。mode1..5在完整所选解析尾部增加全部28个C5E94C byte，mode0不加；随后C21920=活动并调用46C6B0(53,1,0,0)。",
+          "53析构仅当C21920等于活动时清活动；不论这一比较是否相等，均独立按当前signed C221F0>0减全部28byte。它没有每个窗口缓存的mode/账目令牌，8位加减不是单调revision。"
+        ],
+        "source_refs": [
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/1",
+            "canonical_sha256": "8c4d4ac667dbaae9afb06dea4fdc8fe7bf718f5631ecd0da1f2fb4e5e9e4a639"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/2",
+            "canonical_sha256": "cdd744a9e47024654f14522e8acd508847fade39d9a7167e016489acca8cfd37"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/3",
+            "canonical_sha256": "697d44e1e5e8e0c0754badca035348be47319a11dfc4c0f4f0075c7e57fbeb87"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/4",
+            "canonical_sha256": "9faf5de05933fa2e83d04402c16a028fb21f68f309a7a906eda3a3b0e92e2484"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/5",
+            "canonical_sha256": "1b07ab8f838c8e0b00c4e9bbd98a62a0912585c261b4b1182a549b48c65d4731"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/6",
+            "canonical_sha256": "115153512bb3f566ffbaedcfdae377e7cc8aa3f0f3d19dd13845fe338878efe5"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/8",
+            "canonical_sha256": "0d1cc069a3a3d8ca8a1c07e1bd011b48d21961f56f5d883f9d298694d8d6757c"
+          }
+        ],
+        "original_runtime_observed": false,
+        "whole_capability_accepted": false
+      },
+      {
+        "id": "OC-F4",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "请求打开和实际构造跨越不同时间点",
+        "rules": [
+          "38/41/43/经典52/53都是group2，42是group4。46C6B0对同ID旧对象先置8000，读取其位置后调用46C560；不在该包装器内立即构造新窗口。",
+          "46C560保存窗口short ID与几何/动画参数；动画分配失败立即468190，否则46C4E0 counter0起第11次合资格回调才468190并标删动画。动画未保存shop mode/C21920的独立副本。",
+          "实际468190构造group2时先468F00(3)，然后才找同ID/分配/初始化。正常group2清理成功后不会把旧同ID当group4式清8000重用；新trade init发生在旧trade释放之后。其它组的同ID规则保持原合同。"
+        ],
+        "source_refs": [
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/23",
+            "canonical_sha256": "6e9dc1bf59e7a0799317167941883bd933d939ffc697219e83db151aaaa475e4"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/24",
+            "canonical_sha256": "f893ad0aae0a813e4e62d16370a055ab8937892e5c1d0c098971d809597a839d"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/25",
+            "canonical_sha256": "935404af599369d4eb1f4b0685db4528b0eb6dcaee81b9a7e39c8a38f8cc4d64"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/22",
+            "canonical_sha256": "8d549297ad45e7ef790a9fcf469def39d1b010e06e5d756e89b92e14fb6a571e"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/20",
+            "canonical_sha256": "20b0952dec97156f6a4e52df4f34da61688d0c92cb82c733dfbd9c86059338a5"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/tables",
+            "canonical_sha256": "57b5085de2e3ba654e9502065503f70e26e738836cf81a3c077b857c9e9bf748"
+          }
+        ],
+        "original_runtime_observed": false,
+        "whole_capability_accepted": false
+      },
+      {
+        "id": "OC-F5",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "交易逐槽账目与商店全域账目按实际退役组合",
+        "rules": [
+          "4A21E0仅目标offer position为空才写source slot byte、置选择并增加该slot占用；4A2220按实际映射释放/减byte，4A2340释放宠物映射而不减物品28byte。空洞/重复来源/界面资格继续沿SW原规则。",
+          "4A24B0先处理属于43的数字提示及C5E9B8取消抑制，再逐20/5位置释放，最后清抑制byte。4A2480只先置抑制并标8000；4A23C0清抑制并请求43，均不能替代真实析构。",
+          "4A2540(-1)清选择表/标志本身不退计数；它在所选正常group2构造路径位于旧owner析构之后。这解释该路径顺序，不承诺任意直接调用初始化器或所有frame token都幂等。"
+        ],
+        "source_refs": [
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/15",
+            "canonical_sha256": "0b4f84c9753b8367786ed71cbce1b0c3c473b2bcc41cc70d71e5009993da54c8"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/16",
+            "canonical_sha256": "6c7ecdec9a12d74b80e983744c636c11c006803417ab05792d588901ef7952ef"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/17",
+            "canonical_sha256": "63d221363366bdc56d1e2294a14d28fc2282fafd2fd6bd6cf3be8a853f4cb5e0"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/11",
+            "canonical_sha256": "0de6a38d4d3009e19a33e1410d03c0f0388d971479cd130d202e3b84d83c3652"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/10",
+            "canonical_sha256": "21c6992e3764c15dd51343b63ec6ad1f681b10b13b8bc5e1a928f3a89f225cdc"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/13",
+            "canonical_sha256": "b7ad83785e43f737e7d6bf812d93128bf53e1b5739fc1a9f4e654ac36b69dec7"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/12",
+            "canonical_sha256": "269f74bd00cb2144873add3115256223588b727016b7244f59d27685c0474edf"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/22",
+            "canonical_sha256": "8d549297ad45e7ef790a9fcf469def39d1b010e06e5d756e89b92e14fb6a571e"
+          }
+        ],
+        "original_runtime_observed": false,
+        "whole_capability_accepted": false
+      },
+      {
+        "id": "OC-F6",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "延后动画与已存在窗口的关闭范围不同",
+        "rules": [
+          "468F00仅遍历经典窗口池；46C6B0/46C560没有撤销先前同ID动画的所选分支。动画保存ID，结束时构造依赖当前共享shop资料；仅有先前开场动画而无live53时，同步清窗口不会调用53析构。",
+          "因此强制替换若跨两个仍在推进的动画，可用当前mode的析构次数与先前parser加计数次数形成不同条件组合。原字节规则可判定；是否实际出现相应服务器消息/回调时序不能由静态源确认，也不能宣称所有交错守恒。"
+        ],
+        "source_refs": [
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/20",
+            "canonical_sha256": "20b0952dec97156f6a4e52df4f34da61688d0c92cb82c733dfbd9c86059338a5"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/23",
+            "canonical_sha256": "6e9dc1bf59e7a0799317167941883bd933d939ffc697219e83db151aaaa475e4"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/24",
+            "canonical_sha256": "f893ad0aae0a813e4e62d16370a055ab8937892e5c1d0c098971d809597a839d"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/25",
+            "canonical_sha256": "935404af599369d4eb1f4b0685db4528b0eb6dcaee81b9a7e39c8a38f8cc4d64"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/8",
+            "canonical_sha256": "0d1cc069a3a3d8ca8a1c07e1bd011b48d21961f56f5d883f9d298694d8d6757c"
+          },
+          {
+            "file": {
+              "path": "analysis/capability-first-v1/game-graphics-lifetime-contract.json",
+              "bytes": 17199,
+              "sha256": "8d8e099945d3f6ef08e01e65b9990ef7649cabd7044077f68a54830c12ea506c"
+            },
+            "pointer": "/facts/0",
+            "canonical_sha256": "40e36073b6de7e8922da4d19358e7c0695e0c9da67750803803a069e0702547f"
+          },
+          {
+            "file": {
+              "path": "analysis/capability-first-v1/game-graphics-lifetime-contract.json",
+              "bytes": 17199,
+              "sha256": "8d8e099945d3f6ef08e01e65b9990ef7649cabd7044077f68a54830c12ea506c"
+            },
+            "pointer": "/facts/5",
+            "canonical_sha256": "9af29c8ddbcecaa506eaace5f7c7f52453bed54ac7ddbc86f29ab08fe0fd6f68"
+          }
+        ],
+        "original_runtime_observed": false,
+        "whole_capability_accepted": false
+      },
+      {
+        "id": "OC-F7",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "预览快照与当前资料/最终发送仍是不同所有者",
+        "rules": [
+          "预览4AC140复制展示内容并置父窗口bit2；4ABD10最终按当前选择全局构造发送，不改成不可变预览快照。该规则继续复用，不重新反编译报价家族或发送器。",
+          "本批实际接收准入约束了quote mode切换，并不暂停普通物品/金币发布。4AB510距离/owner失效标8000后仍继续所选费用/货币/控件逻辑；资料、可见预览、待删与真实析构分别记录。当前独立核心最终重查/立即clear不是自动等价。"
+        ],
+        "source_refs": [
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/9",
+            "canonical_sha256": "655f8475addba0ce7b5acdfb0ca54fbbab4a2e55f2d8dfc0818226a2db284196"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/before/analysis/capability-first-v1/game-shop-services-contract.json",
+              "bytes": 95557,
+              "sha256": "e476c576e00e88466928a7b5ea65ce47b9536532c7aa4eae8e67998ebd12fe01"
+            },
+            "pointer": "/facts/10",
+            "canonical_sha256": "bf04972a510cef02fe0f2e9d38f7e3f005bd4b3aedba65bc93bb670e31a9215e"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/before/analysis/capability-first-v1/game-shop-services-contract.json",
+              "bytes": 95557,
+              "sha256": "e476c576e00e88466928a7b5ea65ce47b9536532c7aa4eae8e67998ebd12fe01"
+            },
+            "pointer": "/facts/11",
+            "canonical_sha256": "a9fd7d02af8a6942501e5ab45826485b56cc7952086c7a37a448cadbcb74a476"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/before/analysis/capability-first-v1/game-shop-services-contract.json",
+              "bytes": 95557,
+              "sha256": "e476c576e00e88466928a7b5ea65ce47b9536532c7aa4eae8e67998ebd12fe01"
+            },
+            "pointer": "/facts/12",
+            "canonical_sha256": "c99650dfde7ef43fd029fe82cc27b20e456cd8754216bcdd8b7805ffc7b20b91"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/before/analysis/capability-first-v1/game-shop-services-contract.json",
+              "bytes": 95557,
+              "sha256": "e476c576e00e88466928a7b5ea65ce47b9536532c7aa4eae8e67998ebd12fe01"
+            },
+            "pointer": "/facts/8",
+            "canonical_sha256": "d3dda220ab522bd6c8be1048cb4d33962775b919d17394134226e4137c494a67"
+          }
+        ],
+        "original_runtime_observed": false,
+        "whole_capability_accepted": false
+      },
+      {
+        "id": "OC-F8",
+        "classification": "事实：固定37c4所选静态来源",
+        "title": "共同重建清零不等于逐个归还占用",
+        "rules": [
+          "467EC0先清68个窗口池指针/sidecar livePtr，调用469540以7DWORD清全部28byte并清操作owner/control/hook，再处理其余恢复。该体不是逐20位置释放的代替实现，也不证明任意外部持有的旧owner已安全退役。",
+          "正常同步分组关闭、8000后由46A0E0析构和整个pool重建要使用不同路径；同一物品占用、源资料revision、资源租约和业务活动标识继续分开。"
+        ],
+        "source_refs": [
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/18",
+            "canonical_sha256": "27498fcb85784bde15eb9716c745bb0316c7a7fc565c176384b590cc37a7f0fb"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/14",
+            "canonical_sha256": "627817b8fd641db2c270e3bb0cb0d1de2b7a30d3d4e1ab3c863b2f3ff45e7026"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/21",
+            "canonical_sha256": "84cc11a54b62b322d03b6d476985910c08a593e6bd49fdd2e8fba6628e3e1d45"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/11",
+            "canonical_sha256": "0de6a38d4d3009e19a33e1410d03c0f0388d971479cd130d202e3b84d83c3652"
+          },
+          {
+            "file": {
+              "path": "build/analysis/shared-occupancy-composition-v1/source-views.json",
+              "bytes": 73494,
+              "sha256": "d367ec1b8f4c953dec8846e4e99116bf3f32987e4abf5a777b6189bf949ce2b4"
+            },
+            "pointer": "/views/20",
+            "canonical_sha256": "20b0952dec97156f6a4e52df4f34da61688d0c92cb82c733dfbd9c86059338a5"
+          }
+        ],
+        "original_runtime_observed": false,
+        "whole_capability_accepted": false
+      }
+    ],
+    "admission_and_lifecycle_cases": [
+      {
+        "id": "OC-U1",
+        "classification": "所选实际接收条件",
+        "context": "active为六shop mode，第三参数非替换序列",
+        "events": [
+          "4F4410 gates pass",
+          "48FCE0 active branch returns"
+        ],
+        "effect": "不调用新shop parser，不改mode/28byte；不将直接parser组合当正常消息。",
+        "facts": [
+          "OC-F1"
+        ]
+      },
+      {
+        "id": "OC-U2",
+        "classification": "条件静态组合",
+        "context": "live53已有counted mode；新buy满足替换序列",
+        "events": [
+          "同步销毁旧53，以旧positive mode减28byte",
+          "置新mode0，parser不加",
+          "完成构造/关闭mode0不减"
+        ],
+        "per_byte_trace": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "facts": [
+          "OC-F2",
+          "OC-F3",
+          "OC-F4"
+        ]
+      },
+      {
+        "id": "OC-U3",
+        "classification": "条件静态组合",
+        "context": "live53已有buy；新counted mode满足替换序列",
+        "events": [
+          "同步销毁旧mode0不减",
+          "新positive parser加28byte",
+          "正常关闭新53减28byte"
+        ],
+        "per_byte_trace": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "facts": [
+          "OC-F2",
+          "OC-F3",
+          "OC-F4"
+        ]
+      },
+      {
+        "id": "OC-U4",
+        "classification": "所选实际接收条件",
+        "context": "mask=-1且mode/actor匹配；live53 positive mode",
+        "events": [
+          "468F00(3)同步析构读旧mode",
+          "活动清-1"
+        ],
+        "per_byte_trace": [
+          1,
+          0
+        ],
+        "facts": [
+          "OC-F1",
+          "OC-F3"
+        ]
+      },
+      {
+        "id": "OC-U5",
+        "classification": "条件静态组合",
+        "context": "新counted quote已获准且43仍live，源槽s被选一次，无其它占用",
+        "events": [
+          "parser给全部槽+1",
+          "实际group2构造关闭43，按其映射给s-1",
+          "新53初始化"
+        ],
+        "selected_slot_trace": [
+          1,
+          2,
+          1
+        ],
+        "other_slot_trace": [
+          0,
+          1,
+          1
+        ],
+        "facts": [
+          "OC-F3",
+          "OC-F4",
+          "OC-F5"
+        ]
+      },
+      {
+        "id": "OC-U6",
+        "classification": "条件静态组合",
+        "context": "live53 counted，43请求在现mode未被其它写改时完成构造",
+        "events": [
+          "group2构造先关闭53减全部28byte",
+          "新43初始化选择为空",
+          "后续选择槽s+1"
+        ],
+        "selected_slot_trace": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "facts": [
+          "OC-F3",
+          "OC-F4",
+          "OC-F5"
+        ]
+      },
+      {
+        "id": "OC-U7",
+        "classification": "推测：需同时满足已列源时序，非原版观察",
+        "context": "positive quote只有未完成动画且无live53；forced buy在其完成前到达，两个动画继续到构造",
+        "events": [
+          "新切换清窗口没有53析构",
+          "buy不加，当前mode0",
+          "两次构造间析构均读当前mode0，最终关闭也不减"
+        ],
+        "per_byte_trace": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "facts": [
+          "OC-F2",
+          "OC-F3",
+          "OC-F4",
+          "OC-F6"
+        ],
+        "native_protocol_timing_verified": false
+      },
+      {
+        "id": "OC-U8",
+        "classification": "推测：需同时满足已列源时序，非原版观察",
+        "context": "buy只有未完成动画且无live53；forced positive quote在其完成前到达，两个动画继续到构造",
+        "events": [
+          "positive parser加28byte",
+          "第一次构造读当前positive mode",
+          "第二次构造析构第一次53减1",
+          "最终关闭再减1，byte回绕"
+        ],
+        "per_byte_trace": [
+          0,
+          1,
+          1,
+          0,
+          255
+        ],
+        "facts": [
+          "OC-F2",
+          "OC-F3",
+          "OC-F4",
+          "OC-F6"
+        ],
+        "native_protocol_timing_verified": false
+      },
+      {
+        "id": "OC-U9",
+        "classification": "所选重建体事实",
+        "context": "进入467EC0共同重建",
+        "events": [
+          "清pool/sidecar",
+          "469540清28byte及操作字段"
+        ],
+        "effect": "不是按旧选择逐个递减；其它外部保留owner仍按其原合同。",
+        "facts": [
+          "OC-F8"
+        ]
+      }
+    ],
+    "current_code_observations": [
+      {
+        "id": "OC-C1",
+        "classification": "事实：当前原创源码静态",
+        "rules": [
+          "map-dialog已有mode/actor关闭匹配、六替换sequence、活动dialog与特殊bank更新分支，不能把这些已实现门槛当缺少解析器。当前表示是current/revision及立即clear，未由此证明原窗口/动画/共享byte计数的调度等价。",
+          "quoteLegacyGameMapShop按当前槽revision/数量/金币/容量重算，trade按自己的offer/publish/confirm政策执行。已证部分复用，只补共同owner/延后时序和具名差异。"
+        ],
+        "code_refs": [
+          {
+            "file": {
+              "path": "shared/legacy-game-map-dialog.mjs",
+              "bytes": 28511,
+              "sha256": "ad8bb221928db819f2541a7e38e040780f1546d9cf145e39c4ea342c14ebf44b"
+            },
+            "first_line_1": 282,
+            "last_line_1": 318,
+            "start_byte_0": 11373,
+            "end_byte_0_exclusive": 13072,
+            "sha256": "b1f5f57424b34f3ed83cf7015b40e5d8e9472645af2d823a9abe5c0ce0d68d77"
+          },
+          {
+            "file": {
+              "path": "shared/legacy-game-map-dialog.mjs",
+              "bytes": 28511,
+              "sha256": "ad8bb221928db819f2541a7e38e040780f1546d9cf145e39c4ea342c14ebf44b"
+            },
+            "first_line_1": 399,
+            "last_line_1": 430,
+            "start_byte_0": 17519,
+            "end_byte_0_exclusive": 19319,
+            "sha256": "f946b90d642fd3851fbe848205539cf56a7cc55f5aee0151d7a1ff0395a34a36"
+          },
+          {
+            "file": {
+              "path": "shared/legacy-game-map-shop.mjs",
+              "bytes": 11399,
+              "sha256": "b7e095f412274bc28ed76cb7ef0bbc4f6dfca370c7bddb196707f58d0c190196"
+            },
+            "first_line_1": 183,
+            "last_line_1": 218,
+            "start_byte_0": 8745,
+            "end_byte_0_exclusive": 10910,
+            "sha256": "ce2aa640a1abe2f455ab9f793ef9529bcf95c4a8ee8df35c221f08b9030a350c"
+          },
+          {
+            "file": {
+              "path": "shared/legacy-game-player-trade.mjs",
+              "bytes": 11583,
+              "sha256": "d065d72c123b1e1727f59319cb90f3cfd6d8afc3fb4f74695eadda94fb5f699e"
+            },
+            "first_line_1": 224,
+            "last_line_1": 254,
+            "start_byte_0": 8542,
+            "end_byte_0_exclusive": 10044,
+            "sha256": "2b37aa3c58f7169f95a6cf57df937be966f3ae974c4bb67de0ea23b719309bc5"
+          }
+        ]
+      }
+    ],
+    "implementation_deltas": [
+      {
+        "id": "OC-D1",
+        "owner": "existing SW-D1/SW-D2/CT with D0/D3",
+        "need": "复用已有接收/业务解析，统一真实group、活动/owner/mode、已存在窗口与未完成动画、逐槽/全域byte计数和不同退役；不把裸parser序列、revision或资源租约代替源规则。",
+        "implemented": false,
+        "new_protocol_fields": false
+      }
+    ],
+    "resolved_prior_subparts": [
+      {
+        "parent": "SW-R1/QP-R1 selected normal shared occupancy",
+        "status": "actual admission, group lifecycle and conditional count composition recorded"
+      },
+      {
+        "parent": "shop preview/owner frontier",
+        "status": "selected quote-mode admission bound; ordinary live data and source/current acceptance stay distinct"
+      }
+    ],
+    "remaining": [
+      {
+        "id": "OC-R1",
+        "kind": "conditional-source",
+        "need": "条件另一套52实际dispatch/C5E9C8非零生产仍保持SW-R2；本批经典52/group2不能替换另一套52。",
+        "next_source": "只在需求相关正向注册/写边出现时补，不重做97零搜索。"
+      },
+      {
+        "id": "OC-R2",
+        "kind": "context-and-acceptance",
+        "need": "OC-U7/U8的真实消息/动画时序、资源失败/异常域及所有未准入外部owner仍未接受；源码条件已具名，不再笼统追同六parser。",
+        "next_source": "已记录的source gates/graphics callbacks及将来的受控接受条件；不伪造native运行。"
+      },
+      {
+        "id": "OC-R3",
+        "kind": "whole-analysis-gate",
+        "need": "原40能力全部必要规格尚未整体复核；B01观察者/window32等、SO-GAP-01/02的具名用户路径和原全范围继续保留。",
+        "next_source": "当前统一矩阵及已保留4B4170、五个4706D0调用者相关合同，先复用来源。"
+      },
+      {
+        "id": "OC-R4",
+        "kind": "implementation-and-external-acceptance",
+        "need": "既有SW-D1/D2、CT-D与IC-D共同owner/clock/byte及薄适配差异尚未实现；三端和同版真实账号业务未验。",
+        "next_source": "统一source gate后按D0/D3成组开发与D5/D6验收。"
+      }
+    ],
+    "scope_preserved": {
+      "capabilities": 40,
+      "registry_entries": 81,
+      "historical_composite_requirements": 37,
+      "consumer_groups": 10,
+      "profiles": 6
+    },
+    "source_gate_passed": false,
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "full_goal_complete": false
+  }
+}

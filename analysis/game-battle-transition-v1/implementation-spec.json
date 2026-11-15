@@ -1,0 +1,39 @@
+{
+  "schema": "moli.battle-transition-contract-stage180.v1",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "source_bytes": 1569280,
+  "analysis_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "tool": "REA6.7.0/Ghidra12.1.4; Apple LLVM21 static COFF disassembly",
+  "facts": [
+    "4f3430 (>HY, two int32) is ordinary encounter entry when924f30=0 andc5ec18=0: positive mode sets599e0c pending,599e10 mode,599e14 iff2,bff2f0 iff3,ae2b9c iff2/4/5/6,background58fb30,first ack599d90=1 and resets both4-slot rings. Nonpositive mode does not clear a previously pending encounter. Other transition/modal branches remain distinct.",
+    "5015a0 main10 calls437b30; main9 calls501a50. Therefore main10 battle substate0..9 is distinct from world substate250..252. Retained legacy error names alone are not source battle semantics.",
+    "4f36d0 (?+e, bytes) branch order is first C, P, A; otherwise second byteU sets599dd0; otherwise first M queues. C and M each use4 buffers4096 bytes with separate modulo4 read/write indices. Source does not track a count, so four writes can alias read index as empty. Safe owned core bounds C/M to4095 and never reproduces memory overwrite.",
+    "P scans six %X fields from byte2 into599dc8/599dcc/599d28/599c9c/599ca0/599d5c; A scans two %X fields into599ce4/599c98. Partial successful assignments preserve unassigned old values. First A after entry copies599c98 to599d2c.436f50 marks body40 for existing slots0..19 only when main10 and599d2c==599c98.",
+    "C consumer433cd0 starts cursor2, reads header with433bd0, returns early if header20. Otherwise loops slot/name/10 integer values. Slot outside0..21 maps0; duplicates apply in source order; unseen slots0..21 are destroyed only after a non-end C record is consumed.",
+    "Per C row after slot/name: resource atbody2a8, linked resource ataux13a8, valuebody1d0, four logical wrapped values atbody174/184/1b4/1c4, raw status word, then two normalized resources consumed by422d60 and4232e0. Numeric values use uppercase-hex digit scanner433bd0 with wrapped int32 arithmetic, skips nonhex until a digit orbar, and consumes exactly one terminator after digits. Names use433c40 cap29, DBCS pair-aware truncation and511000 inner unescape.",
+    "22 int32 slot mapping words at5337b0 and22 four-int screen records at533808 were read viaREA and compared to originalPE; entry/target positions are layout facts, not current animation positions. Resource normalization reuses500a70 and the existing explicit resource context.",
+    "Native initial P/A words and ring indices reside in the PE zero-fill .data tail; logical fresh-owner zero initialization is derived from loader semantics, not a running process observation. Entry resets only proven fields and preserves prior P/A words until source messages replace them.",
+    "40a120 is a62225-byte battle actor callback with complete retained pseudocode/assembly but truncated native value flow; stdio transport refusal did not truncate the retained dossier. Native view procedure was read and full record exported.4365d0 command manager callback has bytes but no Ghidra function; retained1808B raw range and independent LLVM disassembly are not a function dossier.",
+    "Battle renderer, native command-manager/complete M execution, controls, effects/companions and timing remain required work. Receiving and decoding records is not battle gameplay acceptance."
+  ],
+  "implementation_boundaries": [
+    "Independent byte/core ownership replaces native pointers and wrapped integer storage; no protection or original program execution",
+    "Receive queues and C consumption are separate explicit operations; no invented rendering/tick/fade or optimistic action application",
+    "Initial core handles canonical protocol text and bounded malformed inputs; unmodeled native runtime branches are not accepted as gameplay",
+    "Current implementation checkpoint is battle records and actual world/client transition handling; original phase and full-game requirements remain active",
+    "Owned new-generation body reset is committed at explicit first C consumption, before applying records, following433b70 initialization; receive does not pretend to advance native fades or the main10 loop. A marking skips stale prior-generation rows."
+  ],
+  "unknowns": [
+    "Complete M manager/opcode dependency execution and full62225B actor state machine",
+    "Battle visuals/input/commands/sound/effects/pets and original frame timing",
+    "Native WeChat/gamePage/device, current consumer and official acceptance"
+  ],
+  "phase_complete": false,
+  "full_goal_complete": false,
+  "goal_status": "active",
+  "status": "in progress; source-backed receive/record foundation and actual ordinary-runtime stop are verified, original battle/render/interaction questions remain open",
+  "remaining_phase_requirements": [
+    "Stage180 remains in progress: actual main10 scheduling/fades, C record consumption in the real battle loop, battle actors/rendering/effects and controls are not implemented.",
+    "Complete M command-manager/opcode dispatch/dependencies, native actor40a120 states, action execution, exit/return transition and original timing are unresolved."
+  ]
+}

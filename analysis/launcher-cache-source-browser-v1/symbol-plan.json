@@ -1,0 +1,45 @@
+{
+  "schema": "moli.stage114.symbol-lookup-plan.v1",
+  "id": "stage114-matching-crossgate-public-symbols-once",
+  "recorded_utc": "2026-10-30T20:53:47.227651+00:00",
+  "purpose": "Try the exact current game CodeView identity against Microsoft public symbol store for potential game type/debug information",
+  "authority": "Existing user source-analysis and network-testing authorization; public read-only retrieval with no account",
+  "source_identity_record": "analysis/launcher-cache-source-browser-v1/game-source-check.json",
+  "source_game_sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+  "pdb": "CrossGate.pdb",
+  "guid": "ce363f7c-dd81-45c7-9944-f0402388bd13",
+  "age": 1,
+  "index_key": "CE363F7CDD8145C79944F0402388BD131",
+  "requests": [
+    {
+      "url": "https://msdl.microsoft.com/download/symbols/CrossGate.pdb/CE363F7CDD8145C79944F0402388BD131/CrossGate.pdb",
+      "alias": "uncompressed",
+      "maximum_bytes": 33554432
+    },
+    {
+      "url": "https://msdl.microsoft.com/download/symbols/CrossGate.pdb/CE363F7CDD8145C79944F0402388BD131/CrossGate.pd_",
+      "alias": "compressed",
+      "maximum_bytes": 33554432,
+      "only_if_previous_status": 404
+    }
+  ],
+  "maximum_requests": 2,
+  "whole_plan_deadline_ms": 15000,
+  "redirects": false,
+  "retries": 0,
+  "proxy": false,
+  "cookies_or_credentials": false,
+  "new_vendor_execution": false,
+  "system_or_analyzer_configuration_changes": false,
+  "private_payload_directory": "build/analysis/launcher-cache-source-browser-v1/symbols",
+  "response_identity_must_be_checked_before_use": true,
+  "references": [
+    "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/microsoft-public-symbols",
+    "https://learn.microsoft.com/en-us/windows/win32/debug/using-symstore"
+  ],
+  "result_scope": "Only exact public-store resource lookup; no global absence or code recovery claim",
+  "full_goal_complete": false,
+  "private_probe": "build/analysis/launcher-cache-source-browser-v1/probe-symbols.mjs",
+  "private_probe_sha256": "1014c2d1259e9edee6a93bcf6665187fc63f0439e9a96d548db2d1cc2536db6b",
+  "source_identity_record_sha256": "c6e1c0daef48d9907f18964cd9dc5abedba393d6908cdcb82d5811bfccb98a5c"
+}

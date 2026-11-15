@@ -1,0 +1,20 @@
+{
+  "stage": 251,
+  "previous_checkpoint": {
+    "path": "analysis/game-legacy-battle-assist-terminator-v1/checkpoint-audit.json",
+    "sha256": "829ff6eb15f3378cf251787fd523515533272f5450d1e12b7b3611ea2b4ca7eb"
+  },
+  "baseline_files": 4000,
+  "requirement": "根据固定旧版的实际角色注册表和读取时点处理物理技能，保留正确的命中结果和后续回合。",
+  "source": "analysis/game-legacy-battle-physical-registry-v1/source-check.json",
+  "scope": [
+    "核对普通 C、动作 49、M 预读、预约、清队列和完成等待的角色槽处理。",
+    "核对物理配对、串联及嵌套护卫，正变体施法者和 SKL266 最终保存的自身护卫。",
+    "对已解码记录中实际将解引用的空槽，原子结束本条，保留预约、原始字段边界和后续命令。",
+    "将已读但未采用的自身护卫与实际重定向区分，验证正常播放、同组续接、退场后空槽与跨平台 TCP 入口。"
+  ],
+  "remaining": ["原版空指针路径实际后果及异常游标", "未闭合的物理技能组合与消费者", "微信运行时、真机、现行版交接及官服"],
+  "VM_actions": 0,
+  "original_execution": 0,
+  "official_sessions": 0
+}

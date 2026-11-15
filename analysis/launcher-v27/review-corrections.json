@@ -1,0 +1,20 @@
+{
+  "schema": "moli.launcher-v27.review-corrections.v1",
+  "native_requery": {
+    "address": "0x412b10",
+    "count": 1,
+    "cause": "Analyzed in the same batch before cache lookup result was inspected. Old retained dossier existed.",
+    "scope": "Not counted as new function or independent proof; cached ID retained and later followups projected."
+  },
+  "implementation_review": [
+    "Optional PatchEXE metadata is null; adapter explicitly preserves empty declared text and returns no-patcher.",
+    "Canonical files.patcher loses original slash/edge-space text, so loader now separately retains patcherText and producer consumes that field.",
+    "Synchronous batch wrapper uses one manifest snapshot; avoids a second mutable input read when driving generator.",
+    "Cancellation fixture now sends ZIP prefix before delaying the suffix, to verify an active body-read cancellation; final Node478 and Chrome11 flows re-run with fresh receipts."
+  ],
+  "test_failures": 0,
+  "initial_new_tests": 20,
+  "final_new_tests": 21,
+  "final_catalog_focused_tests": 52,
+  "historical_receipts_modified": false
+}

@@ -1,0 +1,29 @@
+{
+  "observed_utc": "2026-10-25T14:44:31.903917+00:00",
+  "scope": "Synthetic fixtures under /tmp only; fixed real CLI roots not accessed; no real preflight or apply",
+  "tests": [
+    {
+      "mode": "normal",
+      "exit_code": 0,
+      "log": "/tmp/deliver-moli-stage16-tests-normal.log",
+      "tests": 21,
+      "passed": true
+    },
+    {
+      "mode": "optimized",
+      "exit_code": 0,
+      "log": "/tmp/deliver-moli-stage16-tests-optimized.log",
+      "tests": 21,
+      "passed": true
+    }
+  ],
+  "files": {
+    "/tmp/deliver_moli_stage16.py": "e9ce4a6c8821f91ee0133286c8d21246c5368403f62ad545faed274fbb71654c",
+    "/tmp/test_deliver_moli_stage16.py": "063c1ad8f808b9c7772fb11b7424bf015a2626cd069978e6ede30a66987f2a19"
+  },
+  "limitations": [
+    "No exclusive lock against concurrent directory renames or edits; existing-file compare/replace is not atomic CAS. Stop concurrent editing for delivery; failure requires inspection, no automatic retry.",
+    "Both manifest publications and exit 0 are needed. A later publication failure can leave the staging manifest and partially delivered target; staging manifest alone is not success. No directory-entry crash/power-loss guarantee.",
+    "Existing ordinary permission bits are preserved, but previous hash-only manifest cannot verify ACL, ownership or extended-attribute changes."
+  ]
+}

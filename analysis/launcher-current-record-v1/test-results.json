@@ -1,0 +1,47 @@
+{
+  "schema": "moli.current-record.tests.v1",
+  "recorded_utc": "2026-10-30T13:24:49.201520+00:00",
+  "node_version": "v26.9.0",
+  "python_version": "3.9.6",
+  "pycryptodome_version": "3.23.0",
+  "before_implementation": {
+    "exit_code": 1,
+    "private_log": "build/analysis/launcher-current-record-v1/regression-before.log",
+    "regression": "Current29B plaintext encrypted to32B under older floor rule; independent current oracle requires40B"
+  },
+  "final": {
+    "command": [
+      "node",
+      "--test",
+      "--test-reporter=tap",
+      "shared/tests/launcher-current-record.test.mjs",
+      "web/tests/launcher-current-record.test.mjs",
+      "shared/tests/launcher-channel.test.mjs",
+      "shared/tests/launcher-flow.test.mjs",
+      "shared/tests/launcher-current-channel.test.mjs",
+      "web/tests/launcher-session.test.mjs",
+      "web/tests/launcher-current-session.test.mjs"
+    ],
+    "exit_code": 0,
+    "tests": 78,
+    "pass": 78,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "private_log": "build/analysis/launcher-current-record-v1/regression-final.log"
+  },
+  "independent_vectors": {
+    "records": 13,
+    "maximum_digest": 1,
+    "decode_only": 3,
+    "flow_exchanges": 3,
+    "stream_splits": 65,
+    "original_public_constants_only": true
+  },
+  "source_ranges_checked": 4,
+  "passed": true,
+  "network_or_account_operation_in_phase": false,
+  "scope": "Source-selected uncompressed selector1/key8 byte contract and original Node fixtures; no live encrypted/account acceptance or platform proof",
+  "full_goal_complete": false
+}

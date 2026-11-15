@@ -1,0 +1,180 @@
+{
+  "schema": "moli.launcher.public-package-comparison.v1",
+  "recorded_utc": "2026-10-26T04:48:53.459080+00:00",
+  "download": {
+    "schema": "moli.public-launcher.download.v1",
+    "utc_started": "2026-10-26T04:44:54.665319+00:00",
+    "source_url": "http://launch.polchina.com.cn/Launcher/POLCN_Launcher.exe.zip",
+    "method": "GET",
+    "request_limit": 1,
+    "redirects_followed": 0,
+    "cookies_or_auth_sent": false,
+    "proxy_used": false,
+    "max_bytes": 33554432,
+    "deadline_seconds": 45,
+    "private_directory": "/Users/lx/Documents/code/moli-mac/build/analysis/public-launcher-20261026-ychl9df2",
+    "archive": "/Users/lx/Documents/code/moli-mac/build/analysis/public-launcher-20261026-ychl9df2/POLCN_Launcher.exe.zip",
+    "complete": true,
+    "source_trust": "Plain HTTP and public metadata linkage do not authenticate official bytes.",
+    "http_status": 200,
+    "content_type": "application/zip",
+    "declared_bytes": 580477,
+    "bytes": 580477,
+    "sha256": "737ec9012af4ed33eb07de85636e54cab1f645252096fabd9adf05d8f0d1f9aa",
+    "execution": "not performed",
+    "utc_finished": "2026-10-26T04:44:55.028307+00:00",
+    "elapsed_seconds": 0.363
+  },
+  "archive_validation": {
+    "archive_sha256": "737ec9012af4ed33eb07de85636e54cab1f645252096fabd9adf05d8f0d1f9aa",
+    "archive_bytes": 580477,
+    "checks": {
+      "path_traversal_and_absolute_names_rejected": true,
+      "links_special_files_rejected": true,
+      "case_unicode_collisions_rejected": true,
+      "encryption_rejected": true,
+      "entry_count": 1,
+      "declared_uncompressed_bytes": 599040,
+      "bounds_passed": true
+    },
+    "members": [
+      {
+        "name": "POLCN_Launcher.exe",
+        "bytes": 599040,
+        "compressed_bytes": 580309,
+        "external_mode_octal": "0o100664",
+        "is_directory": false,
+        "compression_method": 8,
+        "actual_bytes": 599040,
+        "sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+        "md5": "494fac15abf1ecef69c1c8732c19fba0",
+        "crc_checked_by_zipfile": true,
+        "old_original_sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+        "equals_original_bytes": true
+      }
+    ],
+    "payload_executed": false,
+    "filesystem_extraction_performed": false
+  },
+  "source_limit": "Public metadata linked the URL; one unauthenticated plain HTTP download cannot establish official provenance or safety.",
+  "private_storage": {
+    "directory_mode": "0700",
+    "zip_mode": "0400",
+    "files": [
+      "POLCN_Launcher.exe.zip",
+      "download.json"
+    ],
+    "binary_payload_materialized_on_disk": false,
+    "note": "Validated member was decompressed into bounded memory, not written or executed. Existing byte-identical original sample was used for PE read-only inspection."
+  },
+  "pe": {
+    "sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+    "md5": "494fac15abf1ecef69c1c8732c19fba0",
+    "machine": "0x14c",
+    "format": "PE32/i386",
+    "optional_header_magic": "0x10b",
+    "coff_timestamp_raw": 1691639626,
+    "coff_timestamp_utc": "2023-08-10T03:53:46+00:00",
+    "timestamp_limit": "Header value, not trusted release time; older report displayed UTC+8 11:53:46."
+  },
+  "signature": {
+    "security_directory_header_file_offset": "0x198",
+    "certificate_table_file_offset": 0,
+    "certificate_table_size": 0,
+    "embedded_authenticode_certificate_table_present": false,
+    "certificate_trust_or_revocation_validation": "Not applicable to absent embedded certificate table; no certificate trust proof. External catalog signatures were not evaluated.",
+    "assessment": "Unsigned in PE embedded Authenticode sense; absence alone does not establish maliciousness or official authenticity."
+  },
+  "version_resource": {
+    "tool": "Rizin 0.9.1 iVj",
+    "inspected_copy": "Byte-identical existing original POLCN_Launcher.exe",
+    "fixed_file_version": "1.5.8.2",
+    "fixed_product_version": "1.5.8.2",
+    "string_file_version": "1.5.8.2",
+    "string_product_version": "1.5.8.2",
+    "internal_name": "POLCN_Launcher.exe",
+    "original_filename": "POLCN_Launcher.exe",
+    "version_limit": "Self-declared resource; byte equality establishes same metadata as original, not vendor authentication."
+  },
+  "permissions_manifest": {
+    "resource": "RT_MANIFEST/1/1033",
+    "file_offset": "0x91eb0",
+    "bytes": 496,
+    "sha256": "550db666b4812a36a4688487b35807d85c2025cf8d058a708675b78c5ca6abe3",
+    "requested_execution_level": "requireAdministrator",
+    "uiAccess": false,
+    "reference": "../launcher-v4/manifest-context.json"
+  },
+  "comparison": {
+    "entire_member_equals_original_bytes": true,
+    "code_resource_import_manifest_differences": 0,
+    "downloaded_zip_contains_new_launcher_version_relative_to_original": false,
+    "basis": "Direct complete byte comparison plus SHA256/MD5 equality, not version-string comparison alone.",
+    "embedded_updater_original_sha256": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+    "reuse_existing_REA_analysis": true,
+    "references": [
+      "ghidra-updater-function-summary.json",
+      "../protocol-v3/updater/lifecycle/restart-context.json"
+    ],
+    "not_proved": [
+      "launcher_md5.dat currently agrees with downloaded binary; earlier raw digest not retained",
+      "current XML/RegionList contents or full current game resources",
+      "official authenticity/permission to interoperate",
+      "successful live launcher initialization or game compatibility"
+    ]
+  },
+  "closed_static_startup_prerequisites": [
+    {
+      "label": "fact",
+      "detail": "Manifest requires administrator; both EXEs Win7 compatibility is user-confirmed and was not rechecked."
+    },
+    {
+      "label": "fact",
+      "detail": "Initial update request failure follows401991->zero branch->failure dialog->_exit(-1); no normal offline skip found in inspected initializer."
+    },
+    {
+      "label": "fact",
+      "detail": "Updater producer/consumer roles, relative .pak/.new files, digest comparison and local replacement/restart main chain are documented; wait and exit-code anomalies remain."
+    },
+    {
+      "label": "fact",
+      "detail": "Code11 directory source HKCU Software/SECN/PlayOnline/CrossGatePUK3 Path, then PlayOnline.ini [Path] Game11 fallback, flows into game cwd. Presence/current validity not assumed."
+    },
+    {
+      "label": "fact",
+      "detail": "XML EXE/Argsline/PatchEXE/ConfigEXE and conditional config/patch/game CreateProcess roles documented. Code11 passport-refresh selection can skip actual game creation; not an authentication-success flag."
+    },
+    {
+      "label": "fact",
+      "detail": "Game command/shared-memory preparation is mapped statically; actual values and game consumers are not established."
+    }
+  ],
+  "remaining_protocol_gaps": [
+    "game argv and CGSharedMem consumers to socket path not closed",
+    "frame boundaries, encoding, message semantics, authentication and session state lack validated specification",
+    "complete legitimate local installation/resource/version prerequisites not verified",
+    "launcher live ready/authentication transitions and actual update/download chain not observed",
+    "browser/miniprogram transport adaptation and official acceptance/permission not verified"
+  ],
+  "minimum_blocker_and_next_scope": {
+    "safe_now": "Continue only evidence-supported offline specification/resource parsing and independent shared core; downloaded launcher introduces no code difference requiring reanalysis.",
+    "not_safe_to_assume": "No authority or evidence to claim official compatibility, run administrator auto-update on network, or treat unsigned HTTP payload as authenticated current code.",
+    "if_dynamic_is_needed": {
+      "exact_launcher": "POLCN_Launcher.exe SHA256 109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e from validated ZIP/source installer",
+      "exact_known_auto_child": "Embedded LauncherUpdater.exe SHA256 4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+      "purpose": "Observe legitimate initialization/ready path with known complete resources, then locate game-side handoff consumers; existing offline update failure cannot resolve it.",
+      "risk_and_missing_scope": "Launcher requires administrator and can contact update services, overwrite XML/EXE, create child processes or use existing Windows network state. No present fixed-payload/host policy, current manifest comparison, complete runtime resources or new elevated/network/game execution approval. Parent must define and obtain exact next scope; no VM changes, credentials or automatic run implied."
+    }
+  },
+  "verification": {
+    "zip_metadata_safety_and_crc_passed": true,
+    "complete_byte_comparison_passed": true,
+    "pe_signature_directory_and_manifest_checked": true,
+    "version_resource_read": true,
+    "project_code_changed": false,
+    "product_tests_rerun": false,
+    "network_requests_this_stage": 1,
+    "sample_execution_count": 0,
+    "vm_change_count": 0
+  }
+}

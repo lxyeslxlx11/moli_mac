@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-25",
+  "vm": "MoliOffline-ARM64-20261025",
+  "scope": "Read-only system checks after user reported completing Windows login; no game execution.",
+  "desktop": {
+    "observed": true,
+    "remaining_oobe_prompt_visible": false
+  },
+  "queries": [
+    {
+      "command": "cls;gcim win32_operatingsystem|fl caption,version,osarchitecture",
+      "executed": true,
+      "observed": {
+        "caption": "Microsoft Windows 11 家庭版",
+        "version": "10.0.26300",
+        "osarchitecture": "ARM 64 位处理器"
+      },
+      "evidence": "windows-edition-architecture.png"
+    },
+    {
+      "command": "get-netadapter|fl interfacedescription,driverversion,status",
+      "executed": true,
+      "observed": {
+        "InterfaceDescription": "Red Hat VirtIO Ethernet Adapter",
+        "DriverVersion": "100.100.104.27100",
+        "Status": "Up"
+      },
+      "evidence": "netkvm-version.png"
+    },
+    {
+      "command": "cls;cmd /c ver",
+      "executed": true,
+      "observed": "Microsoft Windows [版本 10.0.26300.9457]",
+      "evidence": "windows-full-build.png"
+    },
+    {
+      "command": "get-pnpdevice -presentonly|? status -ne ok|ft class,friendlyname,status",
+      "executed": true,
+      "observed": "Multiple unnamed Error rows and three named Error rows: PCI simple communications controller, PCI device, video controller. Screenshot preserves tail only.",
+      "evidence": "pnp-error-tail.png"
+    },
+    {
+      "command": "cls;gcim win32_pnpentity|? configmanagererrorcode -ne 0|group configmanagererrorcode|ft count,name",
+      "executed": true,
+      "observed": {
+        "count": 36,
+        "name": "CM_PROB_FAILED_INSTALL"
+      },
+      "evidence": "device-error-count.png"
+    },
+    {
+      "command": "cls;gcim win32_pnpentity|? configmanagererrorcode -ne 0|group hardwareid|ft count,name -wrap",
+      "executed": true,
+      "observed": "One group of 36 displaying {ACPI\\VEN_LNR0&DEV_0005, ACPI\\LNR0005, *LNR0005}; array grouping semantics not established. Do not infer all 36 have this ID.",
+      "evidence": "device-id-group.png"
+    },
+    {
+      "command": "cls;gcim win32_pnpentity|? configmanagererrorcode -ne 0|? name|fl name,hardwareid",
+      "executed": true,
+      "observed": [
+        {
+          "name": "PCI 简单通讯控制器",
+          "first_hardwareid": "PCI\\VEN_1AF4&DEV_1003&SUBSYS_00031AF4&REV_00"
+        },
+        {
+          "name": "PCI 设备",
+          "first_hardwareid": "PCI\\VEN_1AF4&DEV_1005&SUBSYS_00041AF4&REV_00"
+        },
+        {
+          "name": "视频控制器",
+          "first_hardwareid": "PCI\\VEN_1AF4&DEV_1050&SUBSYS_11001AF4&REV_01"
+        }
+      ],
+      "evidence": "device-pci-details.png"
+    },
+    {
+      "command": "cls;gcim win32_pnpsigneddriver|? devicename -like '*VirtIO Ethernet*'|fl driverversion,issigned,signer",
+      "executed": true,
+      "observed": {
+        "driverversion": "100.100.104.27100",
+        "issigned": true,
+        "signer": "Microsoft Windows Hardware Compatibility Publisher"
+      },
+      "evidence": "netkvm-windows-signature.png"
+    },
+    {
+      "command": "cls;get-tpm|fl tpmpresent,tpmready",
+      "executed": true,
+      "observed": "执行此命令需要管理员权限。",
+      "result": "no TPM health data returned; no elevation or security change performed"
+    }
+  ],
+  "limitations": [
+    "Network adapter Up and Win32_PnPSignedDriver.IsSigned are observed system metadata; full independent catalog membership/trust/revocation validation not performed.",
+    "36 nonzero device-problem rows found before reboot; not all devices healthy.",
+    "Activation entitlement, Secure Boot/TPM health, post-update build and normal reboot desktop recovery remain unverified."
+  ],
+  "ui_interruption": {
+    "event": "While typing a further read-only version query, the next observed guest page was Windows PIN sign-in; reason and timing are unknown.",
+    "query_submitted": false,
+    "handling": "Stopped input; requested user to unlock personally. No PIN/account-page screenshot saved, no credential read or intentionally entered.",
+    "state": "resolved: user reported unlocked; actual interactive guest session reobserved",
+    "later_observation": "Original partial version query was still in PowerShell input buffer (ending displayve); cancelled with Ctrl+C, no Return. Used cmd /c ver instead."
+  },
+  "pin_settings_branch": {
+    "user_authorized_scope": "Only current VM automatic screen/sleep/wake-login/screensaver triggers, keep credentials and account; no autologon.",
+    "observed_power_page": {
+      "plugged_in_turn_screen_off": "Never",
+      "plugged_in_sleep": "Never"
+    },
+    "settings_changed_by_assistant": false,
+    "signin_page_result": "URI submitted but page not confirmed; subsequent screenshot call timed out and kernel reconnected to PowerShell.",
+    "final_instruction": "User stated PIN-related settings already completed and cancelled this branch; no further lock/sleep/sign-in/PIN changes or verification attempted.",
+    "rollback": "None needed for assistant changes; no settings were changed."
+  },
+  "windows_update": {
+    "observed": "Windows Update displayed restart required (estimated 3 minutes).",
+    "action": "Focused Restart now by keyboard, pressed Space; guest went black beginning normal restart.",
+    "complete": false,
+    "state": "Normal update/reboot reached Windows PIN sign-in. User must unlock; no PIN entered or account-page capture saved.",
+    "progress_observations": [
+      "27% after Restart now",
+      "Stage 1 of 2, 100%",
+      "Windows lock screen reached after automatic reboot"
+    ],
+    "desktop_after_restart_verified": false
+  },
+  "final_status": "Waiting for user to sign in after normal update reboot; NAT remains temporarily enabled. No final offline baseline created."
+}

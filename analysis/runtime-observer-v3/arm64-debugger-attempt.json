@@ -1,0 +1,36 @@
+{
+  "schema": "moli.runtime-observer-v3.arm64-debugger-attempt.v1",
+  "recorded_utc": "2026-10-27T19:34:02.825251+00:00",
+  "source": "Fresh CUA complete command and Windows console readback; no raw UI/account data retained.",
+  "entry": "cmd.exe /d /c D:\\run.cmd",
+  "runner_sha256": "85d0958bcb78c7b74583dd18cff31194bfec9debc5a310c95ac5cf58a84cada7",
+  "fixture_created_under_debugger": true,
+  "runtime_base": "0x00c80000",
+  "module_end": "0x00c86000",
+  "base_derivation_agrees_with_lm": true,
+  "seven_breakpoints_enabled_at_expected_addresses": true,
+  "actual_breakpoint_addresses": [
+    "0x00c8102f",
+    "0x00c81137",
+    "0x00c81192",
+    "0x00c811e5",
+    "0x00c81236",
+    "0x00c81249",
+    "0x00c81259"
+  ],
+  "script_error": ".radix 16 is invalid CDB syntax. Correct n 16 was entered and returned base is 16. All breakpoint constants already used explicit hexadecimal.",
+  "warning": "Unable to retrieve exception chain; stack unwind may not be completely reliable. No stack was requested. Module timestamp verification warning observed.",
+  "result": "The initial g and one further ordinary g both stopped on WOW64 breakpoint 0x4000001f at the same native WOW64 location. Seven metadata callback records were not observed. r eip in selected x86 context returned 00000000. This ARM64 debugger test did not pass.",
+  "additional_command_error": ".effmach x86; r eip produced Extra character error; commands must be issued separately for this extension command. Separate r eip succeeded but returned zero.",
+  "session_end": "qd was reviewed in Microsoft documentation, submitted once, and returned to PowerShell. Runner printed MOLI_CDB_EXIT83=0. This is debugger exit status after detach, not target exit status.",
+  "post_detach_process_check": "Get-Process moli* returned no rows and a new prompt. Target exit code after detach was not captured.",
+  "automatic_exception_filter_changes": false,
+  "target_register_writes_or_memory_dumps_or_kill": false,
+  "original_launcher_game_executed": false,
+  "next": "Use already-installed official SDK x86 debugger after exact SHA256 and Windows Authenticode checks; correct radix syntax in a separate original source file.",
+  "sources": [
+    "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/debugging-arm64",
+    "https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/n--set-number-base-",
+    "https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/qd--quit-and-detach-"
+  ]
+}

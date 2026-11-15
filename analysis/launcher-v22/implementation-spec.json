@@ -1,0 +1,46 @@
+{
+  "schema": "moli.launcher-v22.implementation-spec.v1",
+  "recorded_utc": "2026-10-27T05:50:01.087326+00:00",
+  "native": "static-spec.json",
+  "pure_module": "shared/launcher-handoff.mjs",
+  "exports": [
+    "LAUNCHER_HANDOFF_LIMITS",
+    "LauncherHandoffError",
+    "encodeLauncherHandoffWrite",
+    "createLauncherHandoffLease"
+  ],
+  "contract": {
+    "input": "Own data gameCode0..14 and selected profile/raw name1..41 nonNUL bytes, opaque0..32 bytes, tailWordA unsigned32; actual non-shared U8/ArrayBuffer copied. Rechecks canonical signed16 state0/-4 and raw billing/expired gates, never trusts caller passes flag.",
+    "format": "gid:<raw name> glt:<opaque before firstNUL>:<uint32(tailA-80000000h), lowercase base32><space><NUL>. No trimming, text conversion or escaping.",
+    "write": "Prefix only, up to92B, fixed capacity256. Remaining mapping bytes are not cleared or fabricated. No native OS I/O.",
+    "no_mapping": "Native empty-name branches return empty write and not-required lease, never a usable mapping.",
+    "lease": "ready -> taken once or closed. takeWrite exposes lease-owned view; close wipes it including borrowed view and is idempotent. Snapshot contains metadata only. Caller-created copies are its responsibility; no claim of total JS/GC zeroization.",
+    "errors": "Fixed controlled codes/messages only, own descriptors reject getters/inherited data, no provider/input content or raw payload in errors."
+  },
+  "UI": {
+    "selection": "Use actual session.selectProfile result; prepare private pending lease, then wipe returned name/opaque copies. Display mappingName/byte count/unverified game state only; no payload/lease export or storage.",
+    "invalidation": "Username/password, encoding, configuration, text/mode changes and pagehide close pending lease; cancelled mode dialog preserves current pending selection.",
+    "pagehide_fix": "Reuse clearResult/closeModeDialog and reset status/text/input/consent, instead of only wiping memory while leaving a ready DOM claim.",
+    "consumer": "No game consumer called or implemented in this phase; no native mapping or executable/argv."
+  },
+  "verification": {
+    "Node": 390,
+    "new_Node": 10,
+    "source_anchors": 21,
+    "original_cases": 126,
+    "reply_projections": 42,
+    "handoff_browser_checks": 8,
+    "handoff_browser_requests": 135,
+    "handoff_independent_original_requests": 7,
+    "encoding_regression_checks": 9,
+    "encoding_requests": 262,
+    "configuration_regression_scenarios": 17,
+    "measurement_records": 1,
+    "configuration_requests": 473,
+    "deadline_ms": 10039,
+    "preload_delay_ms": 5500,
+    "expected_aborts": 1,
+    "unexpected_errors": 0
+  },
+  "remaining": "Game consumer/schema acceptance, argv/resources, official identity/opaque lifetime/update trust and target devices remain unverified."
+}

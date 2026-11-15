@@ -1,0 +1,83 @@
+{
+  "schema": "moli.launcher-v30.visual-review.v1",
+  "record": "refresh-browser-verified.json",
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 1100
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "checks": [
+    {
+      "name": "Page identity",
+      "passed": true,
+      "evidence": "Exact intended title and /web/login.html runtime."
+    },
+    {
+      "name": "Not blank",
+      "passed": true,
+      "evidence": "Meaningful main/first viewport observed at both sizes."
+    },
+    {
+      "name": "No framework overlay",
+      "passed": true,
+      "evidence": "No overlay selector or screenshot overlay."
+    },
+    {
+      "name": "Console health",
+      "passed": true,
+      "evidence": "No relevant pageerror/warn/error in verified run or regressions."
+    },
+    {
+      "name": "Screenshot evidence",
+      "passed": true,
+      "evidence": "Fresh exclusive-write capture; desktop/mobile firstviewport and checkbox controls plus mobile refresh-handoff viewed. No clipped/overlapping controls or horizontal overflow."
+    },
+    {
+      "name": "Interaction proof",
+      "passed": true,
+      "evidence": "9new/32oldflows, five independent originalrequests,24producer/9outcome vectors in actualChrome."
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-launcher-v30-l5qy2tkw/refresh-verified/desktop-first-viewport.png",
+      "sha256": "19386c966a4b669801d403a2d3f17d0103ffff3772c627f6ab622a42d60154e7"
+    },
+    {
+      "path": "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-launcher-v30-l5qy2tkw/refresh-verified/desktop-refresh-options.png",
+      "sha256": "21732322a6973aec0ffa0bbafb778749d5235c2edfa3aeb9ee0bf8ee53210581"
+    },
+    {
+      "path": "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-launcher-v30-l5qy2tkw/refresh-verified/desktop-refresh-handoff.png",
+      "sha256": "86b35aa5ca0fd5013e852667f94a3261a5d9f2641cdabda345e2edaad22051de"
+    },
+    {
+      "path": "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-launcher-v30-l5qy2tkw/refresh-verified/mobile-first-viewport.png",
+      "sha256": "41455325984bfe9cb10f5037e08e97833cb5491f2fef5c70ea21da15a4728189"
+    },
+    {
+      "path": "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-launcher-v30-l5qy2tkw/refresh-verified/mobile-refresh-controls.png",
+      "sha256": "f3f8cda64d7f6f9f330369f1512e2a80a52759c80754e0e3655e762e299becba"
+    },
+    {
+      "path": "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-launcher-v30-l5qy2tkw/refresh-verified/mobile-refresh-handoff.png",
+      "sha256": "9be8f737b5275e74e87230064ecaec1a13d3ff7184c45ab93a00c2ab83256172"
+    }
+  ],
+  "output_guard": {
+    "exclusiveCreate": true,
+    "collisionRejected": true,
+    "existingBytesPreserved": true,
+    "screenshotNotCalled": true
+  },
+  "final_runs_screenshot_paths_disjoint": true,
+  "initial_artifact_incident": "artifact-output-incident.json",
+  "initial_images_not_used_as_initial_run_proof": true,
+  "browser_path": "Browser plugin/skill absent; existing Playwright1.62.1 + Chrome155 fallback. No dependency change.",
+  "limits": "Controlled pagehide is not full BFCache; Chrome390px is not physicaldevice/WeChat/Safari. No nativeConfig/gameexecution or official compatibility."
+}

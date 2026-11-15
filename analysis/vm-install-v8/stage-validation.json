@@ -1,0 +1,41 @@
+{
+  "verified_utc": "2026-10-25T13:34:31.752787+00:00",
+  "prior_delivery_files": 313,
+  "product_files_preserved": 38,
+  "historical_analysis_files_preserved": 256,
+  "pre_os_files_hash_matched": 4,
+  "local_doc_links_checked": 361,
+  "missing_links": [],
+  "source_and_baseline_policy_checks_each": 22,
+  "source_files_still_closed": true,
+  "baseline_receipt_sha256": "538dcae59e03380184c438c723142ff85177e22511dd245c79bd2381d0e4d475",
+  "baseline_metadata_unchanged_since_hash": true,
+  "baseline_mode": "directories0700/files0600",
+  "baseline_payload_count": 7,
+  "tests": {
+    "root_rerun": {
+      "cold_baseline": 19,
+      "fixed_four_drive_policy": 12,
+      "failed": 0
+    },
+    "root_commands": [
+      "python3 -m unittest discover -s analysis/vm-install-v8 -p test_*.py -v",
+      "python3 -m unittest discover -s analysis/vm-install-v7 -p test_offline_four_drive.py -v"
+    ],
+    "additional_agent_runs": "19 tests normal and optimized; actual logs and receipt present",
+    "product_tests": "not rerun; unchanged, historical result only"
+  },
+  "not_run": [
+    "post-driver-reboot",
+    "restore-boot",
+    "x86/old graphics/game compatibility",
+    "game execution/network",
+    "real browser resource import"
+  ],
+  "remaining_failures": [
+    "34 device problem-code28 rows",
+    "Get-Tpm HRESULT 0x80284001"
+  ],
+  "approval_state": "No new denied or pending action; requested baseline copy succeeded",
+  "scope": "Product code unchanged; documentation/analysis/metadata only. VM/ISO/driver payloads excluded from delivery."
+}

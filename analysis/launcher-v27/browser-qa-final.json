@@ -1,0 +1,460 @@
+{
+  "schema": "moli.launcher-v27.browser-qa.v1",
+  "stage": 72,
+  "browser": "155.0.8059.85",
+  "driver": "Playwright1.62.1",
+  "fallback": "Browser plugin not provided; reused installed Playwright and Chrome.",
+  "entry_vectors": 32,
+  "exit_vectors": 21,
+  "prior_grammar_regression": 31,
+  "prior_candidate_regression": 10,
+  "cases": [
+    {
+      "name": "sequential-create-append",
+      "result": {
+        "disposition": "game-patch-candidate",
+        "binding": {
+          "gameOrdinal": 0,
+          "referenceOrdinal": 0,
+          "regionOrdinal": 0,
+          "gameCodeText": "0011",
+          "gameName": "Original Patch A",
+          "regionName": "Original Local",
+          "patcher": "patch.exe",
+          "patcherText": "patch.exe",
+          "directoryText": "C:\\Original Folder\\Client",
+          "pathEncoding": "ascii",
+          "gameListMd5": "afeb5cb2a1304727b94feabc3c6cdae9",
+          "regionListMd5": "6b51c471d3814fd4e6d0fa53594d30b8"
+        },
+        "files": [
+          {
+            "path": "Bin/final.bin",
+            "hex": "4669727374207365636f6e64"
+          }
+        ],
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "create",
+            "disposition": "updated",
+            "targetPath": "Bin/first.bin",
+            "actualMd5": "7fb55ed0b7a30342ba6da306428cae04",
+            "md5Verified": true,
+            "removedPath": null,
+            "archiveEntryCount": 1
+          },
+          {
+            "blockOrdinal": 1,
+            "operation": "append",
+            "disposition": "updated",
+            "targetPath": "Bin/final.bin",
+            "actualMd5": "f2a3305c1ebe9aa814b794df4fade31b",
+            "md5Verified": true,
+            "removedPath": "Bin/first.bin",
+            "archiveEntryCount": 1
+          }
+        ],
+        "requests": [
+          {
+            "url": "http://127.0.0.1:58616/cg50/Update.TXT?t=1234567890",
+            "kind": "catalog"
+          },
+          {
+            "url": "http://127.0.0.1:58616/cg50/Bin/first.bin.bz2?time=1234567890",
+            "kind": "package"
+          },
+          {
+            "url": "http://127.0.0.1:58616/cg50/Bin/final.bin.bz2?time=1234567890",
+            "kind": "package"
+          }
+        ],
+        "trust": "unverified",
+        "authentication": "unverified",
+        "replacement": "not-performed",
+        "execution": "not-performed"
+      },
+      "observed_requests": [
+        {
+          "method": "GET",
+          "url": "/cg50/Update.TXT?t=1234567890"
+        },
+        {
+          "method": "GET",
+          "url": "/cg50/Bin/first.bin.bz2?time=1234567890"
+        },
+        {
+          "method": "GET",
+          "url": "/cg50/Bin/final.bin.bz2?time=1234567890"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "create-deflate",
+      "result": {
+        "disposition": "game-patch-candidate",
+        "binding": {
+          "gameOrdinal": 0,
+          "referenceOrdinal": 0,
+          "regionOrdinal": 0,
+          "gameCodeText": "0011",
+          "gameName": "Original Patch A",
+          "regionName": "Original Local",
+          "patcher": "patch.exe",
+          "patcherText": "patch.exe",
+          "directoryText": "C:\\Original Folder\\Client",
+          "pathEncoding": "ascii",
+          "gameListMd5": "afeb5cb2a1304727b94feabc3c6cdae9",
+          "regionListMd5": "f82ee7a59accc34f08636be4dbef6046"
+        },
+        "files": [
+          {
+            "path": "keep.txt",
+            "hex": "6b656570"
+          },
+          {
+            "path": "Bin/new.bin",
+            "hex": "4f726967696e616c2067616d652070617463682063616e64696461746500ff"
+          },
+          {
+            "path": "Bin/extra.bin",
+            "hex": "6578747261"
+          }
+        ],
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "create",
+            "disposition": "updated",
+            "targetPath": "Bin/new.bin",
+            "actualMd5": "41ee20d9401d896f5f3d75988b830888",
+            "md5Verified": true,
+            "removedPath": null,
+            "archiveEntryCount": 2
+          }
+        ],
+        "requests": [
+          {
+            "url": "http://127.0.0.1:58624/cg50/Update.TXT?t=1234567890",
+            "kind": "catalog"
+          },
+          {
+            "url": "http://127.0.0.1:58624/cg50/Bin/new.bin.bz2?time=1234567890",
+            "kind": "package"
+          }
+        ],
+        "trust": "unverified",
+        "authentication": "unverified",
+        "replacement": "not-performed",
+        "execution": "not-performed"
+      },
+      "observed_requests": [
+        {
+          "method": "GET",
+          "url": "/cg50/Update.TXT?t=1234567890"
+        },
+        {
+          "method": "GET",
+          "url": "/cg50/Bin/new.bin.bz2?time=1234567890"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "append-deflate",
+      "result": {
+        "disposition": "game-patch-candidate",
+        "binding": {
+          "gameOrdinal": 0,
+          "referenceOrdinal": 0,
+          "regionOrdinal": 0,
+          "gameCodeText": "0011",
+          "gameName": "Original Patch A",
+          "regionName": "Original Local",
+          "patcher": "patch.exe",
+          "patcherText": "patch.exe",
+          "directoryText": "C:\\Original Folder\\Client",
+          "pathEncoding": "ascii",
+          "gameListMd5": "afeb5cb2a1304727b94feabc3c6cdae9",
+          "regionListMd5": "37e50ef8c405ff8c3842c33cd463f6da"
+        },
+        "files": [
+          {
+            "path": "Bin/new.bin",
+            "hex": "4f726967696e616c206261736520617070656e646564006279746573"
+          }
+        ],
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "append",
+            "disposition": "updated",
+            "targetPath": "Bin/new.bin",
+            "actualMd5": "20f56dad205c5c699f60d1131b7551a5",
+            "md5Verified": true,
+            "removedPath": "Bin/old.bin",
+            "archiveEntryCount": 2
+          }
+        ],
+        "requests": [
+          {
+            "url": "http://127.0.0.1:58632/cg50/Update.TXT?t=1234567890",
+            "kind": "catalog"
+          },
+          {
+            "url": "http://127.0.0.1:58632/cg50/Bin/new.bin.bz2?time=1234567890",
+            "kind": "package"
+          }
+        ],
+        "trust": "unverified",
+        "authentication": "unverified",
+        "replacement": "not-performed",
+        "execution": "not-performed"
+      },
+      "observed_requests": [
+        {
+          "method": "GET",
+          "url": "/cg50/Update.TXT?t=1234567890"
+        },
+        {
+          "method": "GET",
+          "url": "/cg50/Bin/new.bin.bz2?time=1234567890"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "replaceto-deflate",
+      "result": {
+        "disposition": "game-patch-candidate",
+        "binding": {
+          "gameOrdinal": 0,
+          "referenceOrdinal": 0,
+          "regionOrdinal": 0,
+          "gameCodeText": "0011",
+          "gameName": "Original Patch A",
+          "regionName": "Original Local",
+          "patcher": "patch.exe",
+          "patcherText": "patch.exe",
+          "directoryText": "C:\\Original Folder\\Client",
+          "pathEncoding": "ascii",
+          "gameListMd5": "afeb5cb2a1304727b94feabc3c6cdae9",
+          "regionListMd5": "2ba064ea02257e6fdaec58cff1a57d4d"
+        },
+        "files": [
+          {
+            "path": "Bin/new.bin",
+            "hex": "4f726967696e616c2067616d652070617463682063616e64696461746500ff"
+          }
+        ],
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "replaceto",
+            "disposition": "updated",
+            "targetPath": "Bin/new.bin",
+            "actualMd5": "41ee20d9401d896f5f3d75988b830888",
+            "md5Verified": true,
+            "removedPath": "Bin/old.bin",
+            "archiveEntryCount": 1
+          }
+        ],
+        "requests": [
+          {
+            "url": "http://127.0.0.1:58640/cg50/Update.TXT?t=1234567890",
+            "kind": "catalog"
+          },
+          {
+            "url": "http://127.0.0.1:58640/cg50/Bin/new.bin.bz2?time=1234567890",
+            "kind": "package"
+          }
+        ],
+        "trust": "unverified",
+        "authentication": "unverified",
+        "replacement": "not-performed",
+        "execution": "not-performed"
+      },
+      "observed_requests": [
+        {
+          "method": "GET",
+          "url": "/cg50/Update.TXT?t=1234567890"
+        },
+        {
+          "method": "GET",
+          "url": "/cg50/Bin/new.bin.bz2?time=1234567890"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "already-current",
+      "result": {
+        "disposition": "game-patch-candidate",
+        "binding": {
+          "gameOrdinal": 0,
+          "referenceOrdinal": 0,
+          "regionOrdinal": 0,
+          "gameCodeText": "0011",
+          "gameName": "Original Patch A",
+          "regionName": "Original Local",
+          "patcher": "patch.exe",
+          "patcherText": "patch.exe",
+          "directoryText": "C:\\Original Folder\\Client",
+          "pathEncoding": "ascii",
+          "gameListMd5": "afeb5cb2a1304727b94feabc3c6cdae9",
+          "regionListMd5": "c1b92dde09766de792b2528edd749b83"
+        },
+        "files": [
+          {
+            "path": "Bin/new.bin",
+            "hex": "4f726967696e616c2067616d652070617463682063616e64696461746500ff"
+          }
+        ],
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "create",
+            "disposition": "current",
+            "targetPath": "Bin/new.bin",
+            "actualMd5": "41ee20d9401d896f5f3d75988b830888",
+            "md5Verified": true
+          }
+        ],
+        "requests": [
+          {
+            "url": "http://127.0.0.1:58648/cg50/Update.TXT?t=1234567890",
+            "kind": "catalog"
+          }
+        ],
+        "trust": "unverified",
+        "authentication": "unverified",
+        "replacement": "not-performed",
+        "execution": "not-performed"
+      },
+      "observed_requests": [
+        {
+          "method": "GET",
+          "url": "/cg50/Update.TXT?t=1234567890"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "denied",
+      "result": {
+        "error": "HTTP_ORIGIN"
+      },
+      "observed_requests": [],
+      "passed": true
+    },
+    {
+      "name": "pre-aborted",
+      "result": {
+        "error": "GAME_PATCH_ABORTED"
+      },
+      "observed_requests": [],
+      "passed": true
+    },
+    {
+      "name": "completed-flag",
+      "result": {
+        "disposition": "already-patched",
+        "binding": {
+          "gameOrdinal": 0,
+          "referenceOrdinal": 0,
+          "regionOrdinal": 0,
+          "gameCodeText": "0011",
+          "gameName": "Original Patch A",
+          "regionName": "Original Local",
+          "patcher": "patch.exe",
+          "patcherText": "patch.exe",
+          "directoryText": "C:\\Original Folder\\Client",
+          "pathEncoding": "ascii",
+          "gameListMd5": "afeb5cb2a1304727b94feabc3c6cdae9",
+          "regionListMd5": "676457b284e017bd8c302d62b441f2a2"
+        },
+        "files": null,
+        "operations": null,
+        "requests": [],
+        "trust": "unverified",
+        "authentication": "unverified",
+        "replacement": "not-performed",
+        "execution": "not-performed"
+      },
+      "observed_requests": [],
+      "passed": true
+    },
+    {
+      "name": "no-patcher",
+      "result": {
+        "disposition": "no-patcher",
+        "binding": {
+          "gameOrdinal": 0,
+          "referenceOrdinal": 0,
+          "regionOrdinal": 0,
+          "gameCodeText": "0011",
+          "gameName": "Original Patch A",
+          "regionName": "Original Local",
+          "patcher": null,
+          "patcherText": "",
+          "directoryText": "C:\\Original Folder\\Client",
+          "pathEncoding": "ascii",
+          "gameListMd5": "24e43ad8891d71609395cbfddb33e5bb",
+          "regionListMd5": "1504bfbaf4b67b9e304b583444e5ff79"
+        },
+        "files": null,
+        "operations": null,
+        "requests": [],
+        "trust": "unverified",
+        "authentication": "unverified",
+        "replacement": "not-performed",
+        "execution": "not-performed"
+      },
+      "observed_requests": [],
+      "passed": true
+    },
+    {
+      "name": "bad-manifest",
+      "result": {
+        "error": "PATCH_NUL"
+      },
+      "observed_requests": [
+        {
+          "method": "GET",
+          "url": "/cg50/Update.TXT?t=1234567890"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "cancel-body",
+      "result": {
+        "error": "HTTP_ABORTED"
+      },
+      "observed_requests": [
+        {
+          "method": "GET",
+          "url": "/cg50/Update.TXT?t=1234567890"
+        },
+        {
+          "method": "GET",
+          "url": "/cg50/Bin/new.bin.bz2?time=1234567890"
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "cases_passed": 11,
+  "patch_requests": 13,
+  "total_requests": 346,
+  "origins": "Original ephemeral loopback fixture servers only; server request tuples compared independently with returned URLs.",
+  "page_errors": [],
+  "expected_abort_console": [],
+  "unexpected_console": [],
+  "external_requests": 0,
+  "new_UI": false,
+  "visual_or_physical_device_acceptance": false,
+  "all_passed": true,
+  "closed": "Temporary browser and fixture servers closed normally."
+}

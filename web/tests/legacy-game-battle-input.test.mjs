@@ -1,0 +1,2 @@
+import test from'node:test';import * as api from'../../shared/index.mjs';import {createWeChatLegacyGameSession}from'../../adapters/wechat/legacy-game-session.mjs';import {inputTCPModes,runInputTCP}from'../../analysis/game-battle-input-v1/tcp-flow.mjs';
+for(const mode of inputTCPModes)test('actual source basic battle input and byte command TCP '+mode,{timeout:30000},async()=>{console.log('battle-input-tcp '+JSON.stringify(await runInputTCP({...api,createWeChatLegacyGameSession},mode)));});

@@ -1,0 +1,120 @@
+{
+  "schema": "moli.detached-reflected-rid-spec.stage287.v1",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "classification": "fact from fixed historical sample unless explicitly marked pending",
+  "source": "analysis/game-legacy-battle-detached-rid-v1/source-check.json",
+  "wire": "unchanged106:code,cost,word,caster,(target,flags,amount,[RID1,RID2,RID3 if800000])*,FF",
+  "supported_context": {
+    "category": 106,
+    "RID_flag": "800000",
+    "metadata_owner_flag": "2000",
+    "required_registered_message_slot": 0,
+    "all_RID_hits_must_have2000": true,
+    "field_normalization": false
+  },
+  "storage": {
+    "factory": "421140 through409e70 fresh13b8 zero payload",
+    "producer101": "one421140 clone for each literal parent tuple,including all three RID suffix rows",
+    "one_RID_parent_rows": 4,
+    "clone_row0": "copy exactly one four-cell row with434af0",
+    "clone_row1": "slot=-1 sentinel;other cells zero",
+    "clone_row2": "zero",
+    "reader436ee0": "advance to1;read slot=-1 and resources0/0;advance to2;read resource0;advance to3",
+    "clone_row3": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "native_metadata": "41a030 with2000 uses registered owner slot and ignores suffix slot -1",
+    "native_rider": "422d60 resource0 removes13b4 and assigns body resource0;4232e0 attachment0 removes13b0",
+    "body14": "after metadata,ordinary zero-amount branch pops captured original target and sends573b to current tuple slot0;no HP change for this RID record",
+    "clones": "unregistered body pool;own105 deletes each clone"
+  },
+  "pops": {
+    "source": "434a30 checks index<200 and value!=-1;does not clamp to actionWrite",
+    "fresh_target_example": {
+      "actions": [
+        0,
+        119,
+        -1,
+        0,
+        0
+      ],
+      "after_four_pops": {
+        "index": 4,
+        "state": 0,
+        "busy": 1
+      }
+    },
+    "prior_storage": "raw action tail is retained;existing50 at cell4 runs and can complete naturally",
+    "manager": "existing original wait recovery remains active;new component trajectories use bounded540-callback waiting prefixes;real source/generated managers recover at7207 where needed"
+  },
+  "message": {
+    "resource": "573b",
+    "recipient": "registered body slot0,which can differ from the caster and original victim",
+    "required_before_queue": true,
+    "late_removal_error": "LEGACY_BATTLE_IMPACT_MESSAGE_TARGET_REMOVED",
+    "blank_graphic": "registered metadata owner gets resource0;software frame controller skips image index0,without substituting a parent image or claiming native reserved-graphic geometry"
+  },
+  "preflight": [
+    {
+      "reason": "impact-skill-detached-RID-storage",
+      "when": "106 RID without2000 or any low-level116 RID"
+    },
+    {
+      "reason": "impact-skill-detached-RID-slot0",
+      "when": "supported reflected106 RID but registered slot0 absent"
+    }
+  ],
+  "frontiers": [
+    {
+      "classification": "fact",
+      "context": "401 self-effect",
+      "sequence": "target self row and1adfa effect row share caster bank;211 reads the effect resource as a body index",
+      "native_runtime": "unobserved",
+      "implementation": "retain skill401-self-effect-tuple before mutation;stage275 already established this boundary"
+    },
+    {
+      "classification": "fact",
+      "context": "106 non-reflected RID",
+      "sequence": "436ee0 reads suffix sentinel slot -1;41a030 then indexes that slot",
+      "native_lookup": "unobserved",
+      "implementation": "retain explicit unavailable"
+    },
+    {
+      "classification": "fact",
+      "context": "116 level<9 RID",
+      "sequence": "after436ee0 advances3,the112 result loop has skipped the sentinel and can pass the200-row bank",
+      "native_later_lookup": "unobserved",
+      "implementation": "retain explicit unavailable"
+    }
+  ],
+  "verification": {
+    "independent_queues": 720,
+    "levels": 10,
+    "relations": 6,
+    "flag_patterns": 12,
+    "traces": 29,
+    "states": 15288,
+    "full_RGBA": 1030,
+    "naturally_settled_traces": 1,
+    "bounded_wait_prefix_traces": 28,
+    "source_generated_manager_cases": 29,
+    "natural_manager_cases": 1,
+    "recovered_manager_cases": 28,
+    "additional_meaningful_checks": [
+      "four clone ownership and separate5738/573b recipients",
+      "blank graphics in the visible renderer selector",
+      "existing rider/attachment removal",
+      "previous action50 beyond new sentinel",
+      "slot0 disappearance after preflight",
+      "atomic missing0/non-reflected106/low116 refusals"
+    ]
+  },
+  "original_execution": 0,
+  "VM_actions": 0,
+  "official_sessions": 0,
+  "completeSKL": false,
+  "full_goal_complete": false
+}

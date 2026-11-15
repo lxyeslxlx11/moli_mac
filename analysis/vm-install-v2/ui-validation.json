@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-25",
+  "final_checked_utc": "2026-10-25 02:30 UTC",
+  "vm": "MoliOffline-ARM64-20261025",
+  "scope": "same project VM and existing new internal disk; offline Windows installation only",
+  "edition": "Windows 11 家庭版, default retained as authorized; applicable license and activation not verified",
+  "terms_title": "微软软件许可条款 / WINDOWS 操作系统",
+  "terms_updated": "2024年4月",
+  "terms_url": "https://www.microsoft.com/en-us/useterms",
+  "first_acceptance": {
+    "executed": true,
+    "observation": "Alt+A passed the license page and showed the installation disk selection page; list was empty.",
+    "evidence": "virtio-no-disk.png"
+  },
+  "storage_diagnosis": {
+    "winpe_banner_version": "10.0.26100.9457",
+    "diskpart_version": "10.0.26100.1",
+    "command": "diskpart -> list disk -> exit",
+    "result": "没有可以显示的固定磁盘。",
+    "evidence": "virtio-list-disk.png",
+    "writes_or_format_commands": false
+  },
+  "normal_shutdown": {
+    "command": "wpeutil shutdown",
+    "confirmed": "UTM Stop disabled/Start enabled then home reports stopped"
+  },
+  "interface_change": {
+    "only_config_delta": "Drive[0].Interface: VirtIO -> NVMe",
+    "original_disk_id_retained": true,
+    "network_and_sharing_unchanged": true,
+    "qemu_security_settings_unchanged": true,
+    "config_sha256": "f93fc4e4da000f9738212ef6cd1ba1ee5968bcea441fd273b81c8d2324231d16"
+  },
+  "second_boot": {
+    "same_iso": true,
+    "same_default_home": true,
+    "same_displayed_license_version": true,
+    "installer_reached": true,
+    "nvme_guest_disk_detection_verified": false
+  },
+  "second_acceptance": {
+    "action": "utmApp.pressKey alt+a at the verified license page",
+    "status": "denied_before_execution",
+    "executed": false,
+    "review_reason": "自动审查将该快捷键视为接受法律/许可承诺，未将现有代理转交确认认定为对具体条款的明确授权。",
+    "retried_or_alternate_method_used": false,
+    "evidence": "license-action-blocked.png"
+  },
+  "final_state": "VM running idle at the license page, not stopped/paused; no OS installation or OOBE reached.",
+  "no_game_execution_or_credentials_or_guest_network": true,
+  "limitations": "First acceptance is actual UI success, not license entitlement verification. Download filename/page metadata and WinPE banner are distinct; installed OS version remains unverified.",
+  "screenshot_hashes": {
+    "virtio-no-disk.png": "6ff446f3c21ca3d35eb246d1abfec497bfca19e941a113bd83185d296f0c5ea2",
+    "virtio-list-disk.png": "d002498338dacf0625965bf03b79737131acc7748125384ec90cb6b95f67aaac",
+    "license-action-blocked.png": "afcad7103270cdff2ac0743e4ffed5ff80a44db92650a50cdd751383770d0438"
+  }
+}

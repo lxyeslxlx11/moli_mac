@@ -1,0 +1,15 @@
+{
+  "stage": 302,
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "source_check": "analysis/game-craft-recipes-v1/source-check.json",
+  "facts": "4f28b0 fills56 fixed recipe rows,each7 fields plus5 material triples;4ff030 resets only ids and context;long unescaped text preserves prior text.",
+  "implementation_slice": "existing kind1 automatic query -> existing @_i message -> skill-owned recipe state -> explicit readonly world/client projection; skill deletion resets the same owner",
+  "ownership": "Pure byte core owned by playerSkills;immutable numeric records and copied text snapshots;no platform globals.",
+  "updates": "Always process56 rows.Missing numeric fields become-1;empty strings replace old text;oversized strings retain old text.Reset preserves non-id fields and text,matching the partial source reset.",
+  "public_API": ["createLegacyGameCraftRecipes.apply(slot,bytes)", "createLegacyGameCraftRecipes.reset(slot)", "createLegacyGameCraftRecipes.copy(slot)", "playerSkills.applyCraft(slot,bytes)", "playerSkills.copyCraft(slot)", "battle/world/client.copyPlayerCraftRecipes(slot)"],
+  "policy": "Current ordinary context remains0.Slot validation,owned byte budget and version counters follow existing portable ownership patterns.Unknown numeric meanings retain original offsets.",
+  "validation_plan": "Independent Python fixed-layout reference with multi-update/reset traces;source and generated API,world encoded messages,client/session automatic query and recipe replies;appropriate complete regression.",
+  "pending": ["Craft selection/material assignment/submission/result UI","Nonzero ordinary context and context-switch requery","Actual WeChat/phone/current/official acceptance and full37 requirements/10 incomplete groups"],
+  "new_wire_fields": 0,
+  "full_goal_complete": false
+}

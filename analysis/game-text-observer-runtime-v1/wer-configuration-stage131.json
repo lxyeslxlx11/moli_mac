@@ -1,0 +1,50 @@
+{
+  "schema": "moli.wer-configuration-stage131.v1",
+  "classification": "fact: guest UI setup and actual readbacks",
+  "authorization": "authorization-stage131.json",
+  "preflight": "wer-preflight-stage131.json",
+  "guest_date": "2026-11-02",
+  "guest_offset": "+08:00",
+  "admin_tool": "Microsoft Windows PowerShell; expected UAC accepted at18:30",
+  "scope": "exact per-application LocalDumps keys only",
+  "key": "SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting\\LocalDumps\\cg_se_3000.exe",
+  "values": {
+    "DumpFolder": {
+      "kind": "ExpandString",
+      "value": "C:\\MoliOffline\\game-wer-stage128\\dumps"
+    },
+    "DumpCount": {
+      "kind": "DWord",
+      "value": 2
+    },
+    "DumpType": {
+      "kind": "DWord",
+      "value": 1
+    }
+  },
+  "views": [
+    {
+      "view": "Registry64",
+      "created_local_time": "18:36",
+      "values_written_local_time": "18:38",
+      "values_types_and_childcount_readback_local_time": "18:41",
+      "subkey_count": 0
+    },
+    {
+      "view": "Registry32",
+      "absent_after_64_write": true,
+      "created_and_written_local_time": "18:42",
+      "values_types_and_childcount_readback_local_time": "18:43",
+      "subkey_count": 0
+    }
+  ],
+  "alias_observation": "Registry32 app key remained absent after Registry64 write; two independently created logical keys",
+  "owned_views": [
+    "Registry64",
+    "Registry32"
+  ],
+  "restore_state": "restored; both logical game and parent keys absent at18:59",
+  "game_start_consumed_at_this_receipt": false,
+  "full_goal_complete": false,
+  "restoration_receipt": "wer-restoration-stage131.json"
+}

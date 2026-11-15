@@ -1,0 +1,41 @@
+{
+  "schema": "moli.launcher-wechat-cache-stage145.v1",
+  "requirement": "reports/development-plan.md#stage145",
+  "created_before_product_code": true,
+  "status": "implemented-local-JS-verified; native-official-gameplay-incomplete",
+  "source_policy": "Reuse current catalog byte/MD5/XML validation and source-bound bootstrap comparison. New cache container is an original local format, not new official protocol fields.",
+  "format": {
+    "magic": "MOLICAT1",
+    "header_bytes": 44,
+    "revision": "LE uint64 restricted to JS safe integer1..MAX_SAFE_INTEGER-1",
+    "flags": "offset16 encoding utf8=0/gb18030=1; offset17 bareAmp0/1; reserved18..19 zero",
+    "lengths": "offset20/24 LE uint32 game/region byte lengths each1..1048576",
+    "checksum": "offset28..43 MD5 of header0..27 followed by raw game/region bytes; unkeyed corruption check, not authenticity",
+    "payload": "game then region at44, no trailing bytes"
+  },
+  "store": "Explicit profile, two fixed managed files under native USER_DATA_PATH. Select newest complete validated record; same revision different records conflict. Write inactive slot/readback, same JS context exclusion and expectedRevision check. No deletion or claimed native atomic transaction.",
+  "write_uncertainty": "After native write is issued, timeout/cancel/error cannot prove noncommit: return CACHE_COMMIT_UNKNOWN, retain buffer and guard until callback, no retry/rollback. Actual device/durability/multiworker semantics unverified.",
+  "host": "Optional catalogCacheProfile, no automatic IO; explicit check/restore/save. Keep raw pair private, clear input/consent/selection on restore, preserve configured decoding/endpoint gates, compare raw bytes on next source-bound refresh.",
+  "validation": [
+    "Independent original Python container oracle",
+    "Corrupt/oversize/partial slot and revision conflicts",
+    "Native API-shaped bounded filesystem including asynchronous/late write",
+    "Actual host/Page/build without DOM and independent current peer"
+  ],
+  "native_gate": "Prior IDE_SERVICE_PORT_EXPLICITLY_DISABLED remains, no replay/settings change",
+  "full_goal_complete": false,
+  "parser_limits": "Each raw file<=1MiB and container<=2097196B, but all existing XML256KiB characters/nodes/fields/depth limits still apply.",
+  "actual_results": {
+    "new_Node_cases": 22,
+    "full_Node_passed": 773,
+    "generated_project_checks": 4,
+    "build_projects": 3,
+    "new_native_attempts": 0
+  },
+  "remaining": [
+    "Native filesystem/quotas/JS/lifecycle/AppID/device/render acceptance",
+    "Multiworker/process and power-loss behavior",
+    "Resource/patch ports, native update transaction, official authenticated acceptance",
+    "Game business consumers and verified playable implementation"
+  ]
+}

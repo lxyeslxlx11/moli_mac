@@ -1,0 +1,13 @@
+import test from'node:test';
+import{readFileSync}from'node:fs';
+import{verifySequenceModel}from'../../analysis/game-battle-special-context-v1/verify_model.mjs';
+import{verifySequenceCallbacks,verifySequenceParallel,verifySequenceLifetime,verifySequenceRID,verifySequenceBoundaries,verifySequenceManagers}from'../../analysis/game-battle-special-context-v1/verify_routes.mjs';
+import*as api from'../index.mjs';
+const vectors=()=>JSON.parse(readFileSync(new URL('../../analysis/game-battle-special-context-v1/original-vectors.json',import.meta.url)));
+test('105 independent queues,full owned states,RGBA and source hidden markers',async()=>console.log('sequence-model '+JSON.stringify(await verifySequenceModel(api,vectors()))));
+test('105 actual ten-level156/97/98 callbacks and one14 HP settlement',async()=>console.log('sequence-callbacks '+JSON.stringify(await verifySequenceCallbacks(api,vectors()))));
+test('105 one actual cursor across seven interleaved actor flows',async()=>console.log('sequence-parallel '+JSON.stringify(await verifySequenceParallel(api,vectors()))));
+test('105 actual self interruption preserves cursor across body clear',async()=>console.log('sequence-lifetime '+JSON.stringify(await verifySequenceLifetime(api,vectors()))));
+test('105 guard RID and stale fourth word',async()=>console.log('sequence-rid '+JSON.stringify(await verifySequenceRID(api,vectors()))));
+test('105 atomic field/capacity checks and two source graphic-zero hidden cases',async()=>console.log('sequence-boundaries '+JSON.stringify(await verifySequenceBoundaries(api,vectors()))));
+test('105 natural rounds,recovery and244 exit via real managers',async()=>console.log('sequence-managers '+JSON.stringify(await verifySequenceManagers(api,vectors()))));

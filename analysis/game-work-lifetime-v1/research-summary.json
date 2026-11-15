@@ -1,0 +1,234 @@
+{
+  "schema": "moli.work-lifetime-preserved-research.v1",
+  "stage": 307,
+  "recorded_utc": "2026-11-08T01:19:35.819622+00:00",
+  "decision": "Preserve research and defer branch implementation under the user-directed capability-first workflow.",
+  "capabilities": [
+    "G18",
+    "X02"
+  ],
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "tools": {
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4"
+  },
+  "analysis_authority": "27 entries were seeded in an independent static analysis copy from source pointer/call anchors. They are not canonical functions; byte identity does not prove all runtime preconditions.",
+  "byte_checks": {
+    "functions": 27,
+    "instruction_bytes": 31250,
+    "all_match_original": true,
+    "verification": {
+      "path": "build/analysis/game-work-lifetime-v1/source-research-byte-check.json",
+      "bytes": 11540,
+      "sha256": "4d3cb7252cff99d3ec43c2802fb0ba1a981e213deb9fda26a0ccd6e212aac2f9"
+    }
+  },
+  "facts": [
+    {
+      "claim": "An alternate skill window callback writes a shared work-level byte. Initial zero is not its complete lifetime. Classic work consumers are retained in earlier source evidence.",
+      "writer_entry": "0x4e5a50",
+      "writer_pointer": {
+        "va": "0x559c64",
+        "file_offset": 1406052,
+        "target": "0x4e5a50"
+      },
+      "explicit_byte_writes": [
+        {
+          "instruction_va": "0x4e5e51",
+          "file_offset": 938577,
+          "bytes_hex": "881d1bbdc500",
+          "meaning": "MOV byte ptr [0x00c5bd1b], BL"
+        },
+        {
+          "instruction_va": "0x4e5ef4",
+          "file_offset": 938740,
+          "bytes_hex": "881d1bbdc500",
+          "meaning": "MOV byte ptr [0x00c5bd1b], BL"
+        },
+        {
+          "instruction_va": "0x4e5f9a",
+          "file_offset": 938906,
+          "bytes_hex": "881d1bbdc500",
+          "meaning": "MOV byte ptr [0x00c5bd1b], BL"
+        },
+        {
+          "instruction_va": "0x4e5fcc",
+          "file_offset": 938956,
+          "bytes_hex": "881d1bbdc500",
+          "meaning": "MOV byte ptr [0x00c5bd1b], BL"
+        }
+      ],
+      "status": "fact-bounded-static"
+    },
+    {
+      "claim": "27 alternate window/helper entries retain derived pseudocode and per-instruction records; 31250 instruction bytes match the fixed PE.",
+      "status": "fact-byte-identity"
+    }
+  ],
+  "still_to_close": [
+    "All entry preconditions, aliases, reset paths and close/reentry ownership",
+    "Classic/alternate window conditions, MP/level, slot and timing differences",
+    "Unified target/gathering/text/decoration and window mutual-exclusion specification",
+    "Original runtime reachability and current-version relationships"
+  ],
+  "REA": {
+    "export": {
+      "path": "build/analysis/game-work-lifetime-v1/rea-evidence.json",
+      "bytes": 286376791,
+      "sha256": "4be7068d871e144efe409135d25f60d681351bd458be6eae35bdb489f5b36842"
+    },
+    "export_records": 1571,
+    "snapshot": {
+      "path": "build/analysis/game-work-lifetime-v1/rea.snapshot.json",
+      "bytes": 509048701,
+      "sha256": "07ad9b25dfaa8aa2600b791a380056b7fb2a2bb6e8d4ce1cc23b2215bf005f0b"
+    },
+    "snapshot_primitive_entries": 479,
+    "session_final": {
+      "path": "build/analysis/game-work-lifetime-v1/rea-session-final.json",
+      "bytes": 260,
+      "sha256": "f0e428edd8af6bef3498276fcccd59eae153b1c3ee6e26f6c00eb03529a47008"
+    },
+    "open": false,
+    "cleanup_pending": false
+  },
+  "no_original_execution": true,
+  "runtime_edited": false,
+  "specification_complete": false,
+  "full_goal_complete": false,
+  "alternate_work_unification": {
+    "specification": {
+      "path": "build/analysis/alternate-work-unification-v1/specification.json",
+      "bytes": 172070,
+      "sha256": "f601a2755ad77f51d1239ba9b8ffd9228b9fc748e3586583300fce1cda98774c"
+    },
+    "source_inputs": {
+      "path": "build/analysis/alternate-work-unification-v1/source-inputs.json",
+      "bytes": 20540,
+      "sha256": "d949d07a5d2fb54f2f7c55756d949e9068f48d5897b39a573e233b9e876cd8fb"
+    },
+    "source_summary": {
+      "views": 35,
+      "reused_complete_native_views": 4,
+      "reused_derived_views": 30,
+      "original_instruction_views": 1,
+      "new_native_queries": 0,
+      "body_ranges": 39,
+      "body_bytes": 38130,
+      "derived_instructions": 10598,
+      "fact_groups": 11,
+      "direct_E8_CALLs_verified": 619,
+      "level_literal_instruction_sites": 18,
+      "explicit_byte_writes": 4,
+      "modern_table_rows_verified": 16,
+      "new_product_protocol_fields": 0,
+      "all_native_nonCALL_independently_redecoded": false
+    },
+    "validation_record_path": "build/analysis/alternate-work-unification-v1/validation.json",
+    "contract": "analysis/capability-first-v1/game-entry-review-contract.json",
+    "source_check": "analysis/capability-first-v1/game-entry-review-source-check.json",
+    "conditional_alternate_activation_unproved": true,
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "question_status": [
+      {
+        "id": "AW-Q1",
+        "status": "answered-selected-source",
+        "boundary": "Fourwriter sites andselectedsignedconsumers;not globalaliaslifetime."
+      },
+      {
+        "id": "AW-Q2",
+        "status": "answered-retained-candidates",
+        "boundary": "Bytearraybase query/instructions disprove the knownwordstore candidate;not allpossibleoverlaps."
+      },
+      {
+        "id": "AW-Q3",
+        "status": "partial-unresolved-actual-dispatcher",
+        "boundary": "Slots/config/classicdriver separated; no newpositive activationedge."
+      },
+      {
+        "id": "AW-Q4",
+        "status": "conditional-comparison-recorded",
+        "boundary": "Selectedexistingresearch clauses only; not everyguard orrequired everyvisualfamily."
+      }
+    ],
+    "difference_matrix": [
+      {
+        "topic": "level-source",
+        "classic": "经典制造用C45D20；所选物品/装饰读shared signedbyte",
+        "alternate_conditional": "弹窗kind1..4先写sharedbyte再检查/请求",
+        "fact": "AW-01",
+        "runtime_or_full_business_equivalence_verified": false
+      },
+      {
+        "topic": "row-admission",
+        "classic": "472A10点击须名称及+8C非零",
+        "alternate_conditional": "11候选行；名称及kind/事件检查，+8C用于配色",
+        "fact": "AW-02",
+        "runtime_or_full_business_equivalence_verified": false
+      },
+      {
+        "topic": "kind5",
+        "classic": "472A10有直接请求分支",
+        "alternate_conditional": "所选弹窗点击分支仅1..4",
+        "fact": "AW-03",
+        "runtime_or_full_business_equivalence_verified": false
+      },
+      {
+        "topic": "handoff",
+        "classic": "经典计数/析构见OW合同",
+        "alternate_conditional": "槽/dirty、C5E9E8、模式及额外对象清理分开",
+        "fact": "AW-04",
+        "runtime_or_full_business_equivalence_verified": false
+      },
+      {
+        "topic": "wire-origins",
+        "classic": "所选caller显式context+100及对应level/target",
+        "alternate_conditional": "所选caller直接映射slot/sharedbyte，部分背包+8",
+        "fact": "AW-05",
+        "runtime_or_full_business_equivalence_verified": false
+      },
+      {
+        "topic": "timer",
+        "classic": "所选classic absolute deadline<=now",
+        "alternate_conditional": "所选alternate uint32 elapsed>duration",
+        "fact": "AW-06",
+        "runtime_or_full_business_equivalence_verified": false
+      },
+      {
+        "topic": "context-admission",
+        "classic": "现有classic计数/43B420等合同",
+        "alternate_conditional": "所选popup kind/factor/remaining门槛",
+        "fact": "AW-07",
+        "runtime_or_full_business_equivalence_verified": false
+      },
+      {
+        "topic": "activation",
+        "classic": "经典完整主帧链已核",
+        "alternate_conditional": "真正callback调度仍未闭合；保持条件规格",
+        "fact": "AW-10",
+        "runtime_or_full_business_equivalence_verified": false
+      }
+    ],
+    "remaining_required_groups": [
+      {
+        "id": "AW-GAP-01",
+        "need": "Actualalternate active/inactive dispatcher/registration/moduleedge andrequirements relevance; do not repeat prior97 zeroresult scan orrecursively expand allhelpers.",
+        "next_entries": []
+      },
+      {
+        "id": "AW-GAP-02",
+        "need": "Other original40-domain source/version/host requirements continue; conditionalmodernbranch detail waitsforpositiveactivation evidence. Fullcaller/error/reentry domains andrealplatform/currentofficialacceptance notpassed.",
+        "next_entries": []
+      }
+    ],
+    "historical_record_note": "Original27-entry research/REA receipts stayunchanged; this supplement records laterselectedunification andcontinuedactivationgap."
+  }
+}

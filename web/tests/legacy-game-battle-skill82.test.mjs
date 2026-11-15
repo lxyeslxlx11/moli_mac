@@ -1,0 +1,2 @@
+import test from'node:test';import * as api from'../../shared/index.mjs';import{createWeChatLegacyGameSession}from'../../adapters/wechat/legacy-game-session.mjs';import{skill82TCPModes,runSkill82TCP}from'../../analysis/game-battle-skill82-v1/tcp-flow.mjs';
+for(const mode of skill82TCPModes)test('actual82 scale/spin/metadata/target/shake/stop/round/return OS TCP '+mode,{timeout:40000},async()=>console.log('skill82-source-tcp '+JSON.stringify(await runSkill82TCP({...api,createWeChatLegacyGameSession},mode))));

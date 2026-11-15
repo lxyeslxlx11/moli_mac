@@ -1,0 +1,47 @@
+{
+  "schema": "moli.combination-corrections-stage220.v1",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "reset": {
+    "strong": "4347e0 sets1038=0 and1040=-1;old port omitted1040",
+    "weak": "4348e0 clears1038;does not claim strong category/level reset"
+  },
+  "unknown_state": "explicit -1 from4349e0 executes default common-tail only while actual CMB owner exists;not acceptance of arbitrary unknown states",
+  "provenance": "unknownFourthCells sourceBodyId belongs to queued old body and is preserved across RID replacement",
+  "model_iterations": [
+    "Removed manualScreen fixture override;source420c50/4210e0 use screen position",
+    "Implemented actual434b90 layout/busy checks and7201 recovery in independent cold model;never injected ready",
+    "Native action pop can load explicit -1;model no longer converts that to231"
+  ],
+  "tool_failures": [
+    "REA had no420e50 procedure;independent original copy seeded and617B byte-verified,not promoted canonical",
+    "First Ghidra command exited1 missing JAVA_HOME;next process-local official existing JDK command exited0",
+    "Large420c50 tool result exceeded argument limit;cached result saved in16k chunks without repeated analysis"
+  ],
+  "prior_models": "All136 old generators/goldens are to be checked against exact pre-edit3580-file view;no old golden rebaseline intended",
+  "renderer_gate_changed": false,
+  "wire_order_normalized": false,
+  "whole_native_equivalence": false,
+  "body14_lookup_gate": {
+    "source": "40a120 case14 line80 lookup is inside signal>9999 block",
+    "old_defect": "port looked up registered target before checking signal;scatter-last had already removed target during cooldown",
+    "observed": "frame92 next93 actor1 state14 signal0,target10 unregistered",
+    "correction": "lookup only while signal>9999;preserve hard failure for actual missing-target result access",
+    "evidence": "build/analysis/game-battle-combination-v1/scatter-lookup-review.json"
+  },
+  "TCP_fixture_correction": {
+    "initial_review": {
+      "path": "build/analysis/game-battle-combination-v1/initial-validation-review.json",
+      "bytes": 4078,
+      "sha256": "ce344e10b056d91959a13a31f73b4f9cde302aadaf4ed85f6de586b44411201c"
+    },
+    "source_initial": "1075/1076,one suppress input-phase failure",
+    "generated_initial": "63/64,same fixture failure",
+    "fix": "received P controlFlags410 combines ordinary input10 and banner-suppression400;other13 TCP modes and8 prior page cases unchanged",
+    "product_runtime_changed": false,
+    "final_full_suites_rerun_required": true
+  }
+}

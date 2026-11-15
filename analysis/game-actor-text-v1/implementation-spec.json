@@ -1,0 +1,37 @@
+{
+  "schema": "moli.actor-text-contract-stage176.v1",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "source_bytes": 1569280,
+  "tool": "REA6.7.0/Ghidra12.1.4",
+  "analysis_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "classification": "static source facts and independent reconstruction; original program execution unobserved",
+  "facts": [
+    "Global5e2770 controls0..5 label display.4ea000 increments and wraps above5 to0, then copies to profile bytef63064 and invokes persistence.505840 restores it from profile+314. Independent UI can cycle this local source option; a native persisted default is not inferred.",
+    "43d150 uses534598 format bytes257300 (%s), therefore label formatting copies the chosen C-string. Font1 and lane0 are passed to44f2c0; x is signed-short(parentX)-trunc(sourceWidth/2) with signed-short queue storage, y is signed-short(parentY-98). Actor/mount AP and icon previous offsets do not enter this label anchor.",
+    "Local mode1 uses globalf53630/color1,2 f53641/color4,3 f5eb10+f53628*28/color5,4 f53652/color2,5 f53673/color0. f53652/73 are global composite labels with32-byte caps and survive logical body recreation; they are not merely temporary body labels.",
+    "Remote body100 without80000 and resource nonzero selects c4/e1/144/102/123 for modes1..5 and colors0/1/4/5/2. Other body80200 contexts use white0 and e1 when body200 and nonempty, else c4, for any positive mode. Other graphic objects do not gain a guessed name consumer.",
+    "445170 clamps font indices outside0..13 to0; scans untilNUL, advances2 whenever current byte has80, otherwise1. Width comes from font-record+4 or+12. This is a byte-pair rule, not Unicode grapheme shaping. Unsafe dangling high-byte input is an explicit unsupported domain.",
+    "Font1 logical width7/14 and font metrics are static source data.44ecd0 requests CreateFontA height14,width0,weight400,charset1,pitch17 with literalfacecbcecce5. Actual raster glyphs depend on the supplied host font/decoder port, not a fabricated native font atlas.",
+    "44f2c0 stores signed-short x/y, color,font,lane and a copied NUL-terminated string in0x110-byte records (272 bytes). Text record limit4096 returns-2. First record in a lane schedules one generic type4 draw command at that lane priority; subsequent records link in insertion order. Empty text still consumes a record and may schedule the batch.",
+    "44f870 clears all6 lane tails each source iteration;44fb60 separately zeroes text-count.506030 case4 dispatches44f8b0. Actor lane0 priority210 draws each nonempty record in insertion order: if color80 clear, black shadow atx+1/y+1, then foreground table[color&7f] atx/y; transparent background. Empty records skip GDI calls.",
+    "Labels are scheduled by the ordinary hook independently of root filtering. Duplicate root-1 still queues labels, declared-resource1 suppresses its root composite rather than its already scheduled label. Outside-range removal and pre-hook gate/state1/2/3 skip labels. One global draw slot for a nonempty lane tail is reserved before later root/map image submissions.",
+    "Hr] (receive-00567ce8) dispatches4f06f0 with one byte-string payload. In ordinary receive context,48 triples of unescaped label/int/int are written atf5eb08,stride28; text starts+8. Negative first int writes-1/-1/empty. Original unchecked copy has20-byte text storage; independent implementation atomically rejects decoded text longer19 bytes.",
+    "4fef80 copies these48 records to a separated72a60 buffer,4fefb0 sorts that copy. Raw f5eb08 used for the selected label is not sorted. E(9 state-4efad0 field28 writes selected indexf53628; out-of-range selection remains explicit unsupported rather than reading unrelated native memory.",
+    "The decoded local byte labels and selected-label array are runtime-owned and cleared on owner close; no real account data, native font binary or vendor glyph atlas is included. A new logical body gets fresh render children while global labels remain owned by the actor state."
+  ],
+  "implementation_contract": [
+    "Shared text descriptors retain raw bytes; Unicode/host font selection is an explicit raster port concern. Source byte width determines centering independently of glyph mask width.",
+    "Ordinary name lane0/color0..11/font1 consumer enters actual draw plans and resource jobs; no standalone helper is considered completion.",
+    "Image and text queue budgets, alpha-mask clipping and malformed/closing/reentrant provider behavior must be meaningful regression cases.",
+    "Browser font rendering may be a host substitute and must remain distinguished from native GDI pixel acceptance. No wire encoding is invented from DEFAULT_CHARSET."
+  ],
+  "unknowns": [
+    "Native GDI font mapping/ACP and exact glyph pixels on each target",
+    "Other text lanes/menu/chat/speech, aux04/mode100 billboard and HP/party/UI consumers",
+    "Full local correction/input/reset/production startup/digest/Chinese and remaining gameplay",
+    "Native WeChat gamePage/device, current consumer recovery and official acceptance"
+  ],
+  "phase_complete": true,
+  "full_goal_complete": false,
+  "goal_status": "active"
+}

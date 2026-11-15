@@ -1,0 +1,91 @@
+{
+  "schema": "moli.current-launcher-channel.implementation-spec.v1",
+  "status": "Explicit current handshake profile implemented, source/synthetic/Node tests passed, one real pre-auth challenge matched; whole goal incomplete",
+  "requirement": "reports/development-plan.md#stage110",
+  "source_analysis_sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+  "public_group": "analysis/launcher-current-channel-v1/public-group.json",
+  "facts": [
+    {
+      "type": "fact",
+      "procedures": [
+        "0x588690",
+        "0x58c9b0"
+      ],
+      "claim": "Current CCE context passes cipher selector1/key-size8; source fields+0x3c/+0x40 control the handshake."
+    },
+    {
+      "type": "fact",
+      "procedures": [
+        "0x58b950",
+        "0x5912a0",
+        "0x5912e0"
+      ],
+      "claim": "Client emits exact8-byte BE hello(1,8) and enters state1."
+    },
+    {
+      "type": "fact",
+      "procedures": [
+        "0x591100",
+        "0x590bb0",
+        "0x590c80"
+      ],
+      "claim": "Client retains at most784 bytes, parses three nonempty1..256-byte ASCII-hex fields after status0, requires literal2 and byte-exact lower-case256-byte compiled modulus."
+    },
+    {
+      "type": "fact",
+      "procedures": [
+        "0x58ff50",
+        "0x58ff20",
+        "0x58fe30"
+      ],
+      "claim": "Client rejects peer0/1 and peer>=p; p-1 is allowed. Key derivation still requires enough shared hexadecimal material for8 bytes."
+    },
+    {
+      "type": "fact",
+      "procedures": [
+        "0x40bf80",
+        "0x4291d0",
+        "0x424cf0",
+        "0x5875e0"
+      ],
+      "claim": "BList/BIP text and Port populate the endpoint arrays selected for CChannel login; PIP/PPort is a separate patch path."
+    }
+  ],
+  "implementation": {
+    "files": [
+      "shared/launcher-channel.mjs",
+      "shared/launcher-flow.mjs",
+      "shared/index.mjs",
+      "web/launcher-session.mjs"
+    ],
+    "apis": [
+      "LAUNCHER_CURRENT_CHANNEL_PROFILE",
+      "decodeLauncherCurrentHandshakeChallenge",
+      "answerLauncherCurrentHandshake"
+    ],
+    "flow_and_session_option": "Explicit handshakeProfile=current applies this source-bound contract; omitted/generic preserves existing general arithmetic and synthetic fixture contracts",
+    "behavior": "Validate exact source group, native field/buffer limits and peer interval before entropy/public-answer/encrypted credential writes; the plaintext request frame is prepared locally by flow construction and cleared on failure. Reuse existing arithmetic and record primitives without asserting current record-cipher equivalence",
+    "independent_policies": [
+      "20 explicit nontrivial exponent bytes and typed errors instead of native pending states",
+      "Existing exact single-challenge/trailing-data and bounded global deadline policies remain explicit",
+      "No source-group check authenticates the server or account"
+    ]
+  },
+  "validation": [
+    "Independent Python pow/struct current-group vectors",
+    "Current-profile flow and session propagation, wrong group rejected before entropy/credential writes",
+    "Legacy channel/flow/session regression",
+    "Bounded loopback probe qualification before the single real target hello"
+  ],
+  "network_target_plan": "analysis/launcher-current-channel-v1/plan.json",
+  "not_verified": [
+    "Current encrypted-record implementation equivalence",
+    "Account authentication or accepted session",
+    "Game consumer/protocol/gameplay",
+    "Browser/mobile/WeChat and official compatibility"
+  ],
+  "full_goal_complete": false,
+  "tests": "analysis/launcher-current-channel-v1/test-results.json",
+  "runtime": "analysis/launcher-current-channel-v1/network-observation.json",
+  "node_primary_reference": "https://nodejs.org/download/release/v26.9.0/docs/api/net.html#socketsettimeouttimeout-callback"
+}

@@ -1,0 +1,11 @@
+import test from'node:test';
+import{readFileSync}from'node:fs';
+import*as api from'../index.mjs';
+import{verifySpecial96Model}from'../../analysis/game-battle-special96-v1/verify_model.mjs';
+import{verifySpecial96Callbacks,verifySpecial96Visibility,verifySpecial96Atomic,verifySpecial96Managers}from'../../analysis/game-battle-special96-v1/verify_routes.mjs';
+const v=()=>JSON.parse(readFileSync(new URL('../../analysis/game-battle-special96-v1/original-vectors.json',import.meta.url)));
+test('class96 independent queues,all owned states and full RGBA with explicit alpha boundary',async()=>console.log('special96-model '+JSON.stringify(await verifySpecial96Model(api,v()))));
+test('class96 actual93 assigns zero HP,ignores scalar and consumes one zero-box rand',async()=>console.log('special96-callbacks '+JSON.stringify(await verifySpecial96Callbacks(api,v()))));
+test('class96 visibility,teleport,three sounds and target freeze use actual callbacks',async()=>console.log('special96-visibility '+JSON.stringify(await verifySpecial96Visibility(api,v()))));
+test('class96 capacity and actual message are atomic;unused digits are not required',async()=>console.log('special96-atomic '+JSON.stringify(await verifySpecial96Atomic(api,v()))));
+test('class96 real managers separate natural rounds,source49 removal,recovery and244 exit',async()=>console.log('special96-managers '+JSON.stringify(await verifySpecial96Managers(api,v()))));

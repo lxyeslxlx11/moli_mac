@@ -1,0 +1,85 @@
+{
+  "schema": "moli.runtime-tool-readiness-v1.gui-focus-and-media-followup.v1",
+  "recorded_utc": "2026-10-27T18:53:50.793492+00:00",
+  "client_date": "2026-10-28 Asia/Shanghai",
+  "supersedes_initial_input_pending_status": "environment-observation.json records the state before the human focus reply.",
+  "human_focus_reply_received": true,
+  "duplicate_reply_to_same_question_not_counted_as_second_intervention": true,
+  "keyboard_proof": {
+    "initial_single_x_visible_in_IME": true,
+    "BackSpace_cleared_it_without_execution": true,
+    "Ctrl_Space_changed_guest_indicator_to_English": true,
+    "full_readonly_commands_reviewed_before_Return": true,
+    "typeText_early_prefix_was_waited_for_not_retyped": true
+  },
+  "standard_directory": {
+    "command": "Test-Path -LiteralPath 'C:\\Program Files (x86)\\Windows Kits\\10\\Debuggers'",
+    "result": false,
+    "limit": "This one standard directory only; not a global portable/SDK absence proof."
+  },
+  "guest_C_drive": {
+    "used_bytes": 31067611136,
+    "free_bytes": 242279370752,
+    "source": "Get-PSDrive -Name C | Select-Object Used,Free"
+  },
+  "native_media_navigation": {
+    "AX_CD_parent_click_closed_menu_without_picker": true,
+    "keyboard_menu_navigation_selected_nodes_observed": [
+      "USB",
+      "CD/DVD",
+      "previous ISO",
+      "Connect Image"
+    ],
+    "Return_sent_only_with_known_Connect_Image_selection": true,
+    "Mac_Open_dialog_and_GoTo_sheet_observed": true,
+    "exact_ISO_selected_before_Open": true,
+    "previous_source_basename": "moli-launcher-probe-v21.iso",
+    "current_source_basename": "WindowsSDK-10.0.26100.9457.iso",
+    "new_ISO_sha256_freshly_rechecked": "a364f38f35a2ade85ca676361643276b87ec494b103988ae20d7cbbdf94523ad",
+    "configuration_source_matches_exact_reviewed_path": true,
+    "CD_enabled": 1,
+    "CD_connected": 1,
+    "guest_drive": "D:",
+    "guest_MediaLoaded": true,
+    "network_menu_not_retried": true,
+    "new_critical_error_observed": false
+  },
+  "post_native_dialog_focus": {
+    "first_CD_query_text_not_visible": true,
+    "not_submitted_or_assumed_executed": true,
+    "one_click_at_observed_blank_terminal_region_restored_x_test": true,
+    "test_x_cleared_before_retyping_readonly_query": true,
+    "full_CD_query_then_executed_and_returned_D_true": true,
+    "limit": "Observed recovery for this transition; not an isolated root cause or universal input/DPI guarantee."
+  },
+  "installer_identity_in_Windows": {
+    "path": "D:\\WinSDKSetup.exe",
+    "Get_FileHash_SHA256": "b0bdbad38ae74c40ccae8cdbcf229807627fba2bc3100be28301c4ba884f755e",
+    "matches_host_reviewed_bytes": true,
+    "Get_AuthenticodeSignature_status": "Valid",
+    "StatusMessage": "Signature verified (Chinese system message).",
+    "limit": "Current Windows result for this one installer, not all SDK payloads or future revocation policy."
+  },
+  "initial_installer_launch": {
+    "command": "Start-Process -FilePath 'D:\\WinSDKSetup.exe' -WorkingDirectory 'D:\\' -PassThru | Select-Object Id",
+    "submitted_once": true,
+    "returned_process_id": 5724,
+    "RunAs_flag": false,
+    "arguments": null,
+    "lifecycle_and_UI_result": "Pending next fresh observation; process creation is not a current-live or installation-success claim.",
+    "license_accepted": false,
+    "UAC_accepted": false
+  },
+  "file_flags_after_media_change": {
+    "IsolatedVm": 1,
+    "ShareAllMacDisks": 0,
+    "ShareUserHomeDir": 0,
+    "network_connected": 0
+  },
+  "stage81_snapshot_name_still_present": true,
+  "restore_untested": true,
+  "original_launcher_game_or_synthetic_fixture_run": false,
+  "raw_terminal_or_account_screenshots_saved": false,
+  "credentials_read_or_entered": false,
+  "goal_complete": false
+}

@@ -1,0 +1,460 @@
+{
+  "stage": 271,
+  "recorded_utc": "2026-11-07T03:54:14.434346+00:00",
+  "source": {
+    "path": "analysis/game-legacy-battle-character-queue-v1/source-check.json",
+    "bytes": 8336,
+    "sha256": "69581d54a1b102db6d90df92f6a958b1a9847dcb63cfc6be4f83a5819bf5b049"
+  },
+  "targeted": {
+    "counts": {
+      "tests": 108,
+      "pass": 108,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "log": {
+      "path": "build/analysis/game-legacy-battle-character-queue-v1/targeted-return-final.log",
+      "bytes": 28878,
+      "sha256": "0ae479044f349cfcbdc18d4bdf25b79a1750a5e7f37ccbda27d6d305967ed47f"
+    }
+  },
+  "frozen_inputs": {
+    "receipt": {
+      "path": "build/analysis/game-legacy-battle-character-queue-v1/targeted-inputs.json",
+      "bytes": 37063,
+      "sha256": "c2156ba12a503d516b8125f28a2fd4641d87f51065ea22bcd4a99998824a8e2c"
+    },
+    "files": 325,
+    "unchanged": true
+  },
+  "replay": {
+    "source": {
+      "path": "build/analysis/game-legacy-battle-character-queue-v1/replay-source.log",
+      "bytes": 606,
+      "sha256": "5f171f889b844302841a01f4980c2705e9fa52ac76b48856b38738c7273a2868"
+    },
+    "generated": {
+      "path": "build/analysis/game-legacy-battle-character-queue-v1/replay-generated.log",
+      "bytes": 606,
+      "sha256": "5f171f889b844302841a01f4980c2705e9fa52ac76b48856b38738c7273a2868"
+    },
+    "runner": {
+      "path": "build/analysis/game-legacy-battle-character-queue-v1/replay.mjs",
+      "bytes": 456,
+      "sha256": "71a04877060c02a892b2baaa8b27a2339eb274abc3716b7483f6d76132e68062"
+    },
+    "equal": true,
+    "cases": [
+      {
+        "kind": "update",
+        "launched": 142,
+        "drained": 370,
+        "consumed": 371,
+        "callbacksAfterEnqueue": 228,
+        "phase": 4,
+        "ring": [
+          2,
+          2
+        ],
+        "round": 1,
+        "oldSourceId": 2,
+        "reflectedHP": 58,
+        "finalSlots": [
+          0,
+          2
+        ]
+      },
+      {
+        "kind": "end",
+        "launched": 142,
+        "drained": 370,
+        "consumed": 371,
+        "callbacksAfterEnqueue": 228,
+        "phase": 7,
+        "ring": [
+          2,
+          2
+        ],
+        "round": 1,
+        "oldSourceId": 2,
+        "reflectedHP": 58,
+        "finalSlots": [
+          0,
+          2,
+          10
+        ]
+      },
+      {
+        "kind": "notice",
+        "launched": 142,
+        "stopped": 143,
+        "phase": 7,
+        "ring": [
+          1,
+          2
+        ],
+        "round": 0
+      },
+      {
+        "kind": "ordered",
+        "launched": 142,
+        "drained": 370,
+        "consumed": 371,
+        "callbacksAfterEnqueue": 228,
+        "phase": 4,
+        "ring": [
+          0,
+          0
+        ],
+        "round": 3,
+        "oldSourceId": 2,
+        "reflectedHP": 58,
+        "finalSlots": [
+          0,
+          2
+        ]
+      }
+    ]
+  },
+  "tcp_entries": {
+    "tcp-web-final": {
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-character-queue-v1/tcp-web-final.log",
+        "bytes": 1448,
+        "sha256": "21d3777fe1dc180775912061a373477efac07015a9d1a5970662765905e43823"
+      },
+      "observations": [
+        {
+          "surface": "desktop-web",
+          "statusVariant": "casting-skl19-queued-update",
+          "queuedDuringMotion": true,
+          "firstRoundActors": [
+            [
+              0,
+              90,
+              100,
+              9,
+              10
+            ],
+            [
+              2,
+              90,
+              100,
+              9,
+              10
+            ]
+          ],
+          "nextRoundActors": [
+            [
+              0,
+              90,
+              100,
+              8,
+              10
+            ],
+            [
+              2,
+              90,
+              100,
+              9,
+              10
+            ]
+          ],
+          "completedRound": 1,
+          "nextCompletedRound": 2,
+          "resumedMovement": true
+        },
+        {
+          "surface": "mobile-web",
+          "statusVariant": "casting-skl19-queued-update",
+          "queuedDuringMotion": true,
+          "firstRoundActors": [
+            [
+              0,
+              90,
+              100,
+              9,
+              10
+            ],
+            [
+              2,
+              90,
+              100,
+              9,
+              10
+            ]
+          ],
+          "nextRoundActors": [
+            [
+              0,
+              90,
+              100,
+              8,
+              10
+            ],
+            [
+              2,
+              90,
+              100,
+              9,
+              10
+            ]
+          ],
+          "completedRound": 1,
+          "nextCompletedRound": 2,
+          "resumedMovement": true
+        }
+      ],
+      "transport": [
+        {
+          "queuedTCP": true,
+          "requests": 10,
+          "guards": 2,
+          "exit": true,
+          "movement": 2,
+          "official": false
+        },
+        {
+          "queuedTCP": true,
+          "requests": 10,
+          "guards": 2,
+          "exit": true,
+          "movement": 2,
+          "official": false
+        }
+      ]
+    },
+    "tcp-page-source-final": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-character-queue-v1/tcp-page-source-final.log",
+        "bytes": 741,
+        "sha256": "71dba3555090e9331f3c8e0069ff7cd4dbfa66db36b8f86d69d5f0b763f49eaa"
+      },
+      "observations": [
+        {
+          "surface": "wechat-page",
+          "statusVariant": "casting-skl19-queued-update",
+          "queuedDuringMotion": true,
+          "firstRoundActors": [
+            [
+              0,
+              90,
+              100,
+              9,
+              10
+            ],
+            [
+              2,
+              90,
+              100,
+              9,
+              10
+            ]
+          ],
+          "nextRoundActors": [
+            [
+              0,
+              90,
+              100,
+              8,
+              10
+            ],
+            [
+              2,
+              90,
+              100,
+              9,
+              10
+            ]
+          ],
+          "resumedMovement": true
+        }
+      ],
+      "transport": [
+        {
+          "queuedTCP": true,
+          "requests": 10,
+          "guards": 2,
+          "exit": true,
+          "movement": 2,
+          "official": false
+        }
+      ]
+    },
+    "tcp-page-generated-final": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-character-queue-v1/tcp-page-generated-final.log",
+        "bytes": 744,
+        "sha256": "c9087e862aac93760995d1cc4f3bf40acd52beafce585955f710bbe523dd5fff"
+      },
+      "observations": [
+        {
+          "surface": "wechat-page",
+          "statusVariant": "casting-skl19-queued-update",
+          "queuedDuringMotion": true,
+          "firstRoundActors": [
+            [
+              0,
+              90,
+              100,
+              9,
+              10
+            ],
+            [
+              2,
+              90,
+              100,
+              9,
+              10
+            ]
+          ],
+          "nextRoundActors": [
+            [
+              0,
+              90,
+              100,
+              8,
+              10
+            ],
+            [
+              2,
+              90,
+              100,
+              9,
+              10
+            ]
+          ],
+          "resumedMovement": true
+        }
+      ],
+      "transport": [
+        {
+          "queuedTCP": true,
+          "requests": 10,
+          "guards": 2,
+          "exit": true,
+          "movement": 2,
+          "official": false
+        }
+      ]
+    }
+  },
+  "tcp_controls": {
+    "control-registry-web": {
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-character-queue-v1/control-registry-web.log",
+        "bytes": 1150,
+        "sha256": "30738b37956e847ef57727b9f82cd5081f2a638464909800afe2866370f81f66"
+      }
+    },
+    "control-registry-page": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-character-queue-v1/control-registry-page.log",
+        "bytes": 594,
+        "sha256": "0ca2ff21e1c62e130b00a791e53590fa766f76329174a58ea996c3b9266714b2"
+      }
+    },
+    "control-reflection-page": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-character-queue-v1/control-reflection-page.log",
+        "bytes": 670,
+        "sha256": "3cc0ade1f6d1f5185843d58db94b933a1a5c4b8bf17467a0f94d0a3120284542"
+      }
+    }
+  },
+  "builds": {
+    "api": {
+      "report": {
+        "path": "build/wechat-game-stage271-api-final/build-report.json",
+        "bytes": 30990,
+        "sha256": "c95f0eff7874fe4234cdd635321eea6e48de4f23fba173a4186a0e0635ab3331"
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-character-queue-v1/build-api.log",
+        "bytes": 369,
+        "sha256": "ecebc57c48f9db4f1f7763e61abd99156b81315025fe6c421bdbf6d04c37f905"
+      },
+      "inputs": 179,
+      "outputs": 1,
+      "external_imports": 0
+    },
+    "page": {
+      "report": {
+        "path": "build/wechat-app-stage271-page-final/build-report.json",
+        "bytes": 44991,
+        "sha256": "47864263fb28f810edbd597f1ad321dd2e0a69d5db9b8af20c1446784c2b35c2"
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-character-queue-v1/build-page.log",
+        "bytes": 184,
+        "sha256": "40c1a71a706dbc00ddb6ce48f4f38472ef90f71eb51e21731ff7be33ff97b33b"
+      },
+      "inputs": 236,
+      "outputs": 26,
+      "external_imports": 0
+    }
+  },
+  "implementation_change": "No product runtime edits. Added normal-entry and TCP fixtures/tests for existing C scheduling.",
+  "full_regression_rerun": false,
+  "full_regression_reason": "Shared runtime, adapters and product pages are byte-identical to stage270; seven affected scheduling/playback test files and affected TCP modes passed.",
+  "original_runtime_verified": false,
+  "native_wechat_runtime_verified": false,
+  "physical_devices_verified": false,
+  "original_execution": 0,
+  "VM_actions": 0,
+  "official_sessions": 0,
+  "bounded_slice_complete": true,
+  "phase_complete": false,
+  "full_goal_complete": false
+}

@@ -1,0 +1,32 @@
+{
+  "utc": "2026-10-25T18:24:59.772894+00:00",
+  "action": "cua.getApp('/Applications/Parallels Desktop.app')",
+  "attempts": 1,
+  "intended_effect": "One standard app launch only",
+  "outcome": "Denied before execution by automatic approval review",
+  "reason_verbatim": "该调用会按路径选择/启动签名异常的 Parallels；最新用户指令已暂停所有启动，仅允许只读盘点，因此不得执行。",
+  "authorization_context": "Parent had transferred specific single normal-launch consent after signature-risk disclosure; approval review interpreted scope differently. No retry or alternative launch used.",
+  "not_performed": [
+    "No Gatekeeper change",
+    "No quarantine removal",
+    "No re-signing",
+    "No alternative launch",
+    "No VM start",
+    "No license/credential/secret read"
+  ],
+  "subsequent_events": [
+    {
+      "action": "Same standard getApp path retried once after newly transferred specific scope clarification",
+      "outcome": "Tool call aborted by user after 955.6 seconds; launch result initially uncertain; no duplicate launch thereafter"
+    },
+    {
+      "action": "Read-only app inventory after abort",
+      "outcome": "UTM and Parallels isRunning=false"
+    },
+    {
+      "action": "User later reported Parallels running; new read-only inventory and binding",
+      "outcome": "Parallels isRunning=true, UTM false; bound existing Windows 11 window, boot-logo/spinner visible; no VM startup/power action by assistant"
+    }
+  ],
+  "current_status": "Prior approval refusal and abort are historical; current user-started Parallels session successfully observed, Windows desktop not yet verified."
+}

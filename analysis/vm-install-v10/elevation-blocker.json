@@ -1,0 +1,10 @@
+{
+  "observed_utc": "2026-10-25T14:28:10.124231+00:00",
+  "target_vm": "MoliRestoreTest-ARM64-20261025-v9",
+  "action": "Click Yes on normal Windows UAC prompt for Microsoft Windows PowerShell launched for limited read-only TPM/device queries",
+  "status": "Denied by automatic approval review; not executed",
+  "reason": "点击 UAC 会把 PowerShell 提升为管理员，属于权限变更；现有授权覆盖只读 TPM/设备查询，但未明确授权此管理员权限提升及其完整作用域。",
+  "response": "Canceled UAC using Escape; opened ordinary non-elevated PowerShell via normal Run Enter. No retry, alternative elevation, security-setting change or credential input.",
+  "scope_requested_if_needed": "Only this clone, one Microsoft Windows PowerShell process for Get-Service TBS, Get-PnpDevice -PresentOnly -Class SecurityDevices, tpmtool getdeviceinformation, and explicit nonsecret Win32_Tpm properties. No modification commands, OwnerAuth, keys, logs export, account/PIN/TPM/SecureBoot changes, game, network or host sharing.",
+  "current_scope": "Perform only ordinary-permission read queries while retaining signed-in session."
+}

@@ -1,0 +1,24 @@
+<view class="card" wx:if="{{sceneService}}">
+  <view class="section-title">{{sceneService.title}}</view>
+  <view wx:for="{{sceneService.lines}}" wx:key="id" class="line commerce-text">{{item.text}}</view>
+  <view class="hint" wx:if="{{sceneService.balance}}">{{sceneService.balance}}</view>
+  <view class="hint" wx:if="{{sceneService.slots}}">{{sceneService.slots}}</view>
+  <view class="hint" wx:if="{{sceneService.notice}}" role="status">{{sceneService.notice}}</view>
+  <view wx:if="{{sceneService.review}}" class="line" role="status">{{sceneService.review.text}}</view>
+  <view wx:else>
+    <view wx:if="{{!sceneService.rows.length}}" class="hint">当前没有可选项目。</view>
+    <view wx:for="{{sceneService.rows}}" wx:key="id" class="service-option">
+      <button size="mini" disabled="{{sceneService.busy || item.disabled}}" data-action="select"
+        data-choice="{{item.id}}" data-revision="{{sceneService.revision}}" bindtap="onService">{{item.label}}</button>
+      <view wx:if="{{item.description}}" class="line commerce-text">{{item.description}}</view>
+    </view>
+  </view>
+  <view class="controls">
+    <button wx:if="{{sceneService.review}}" type="primary" disabled="{{sceneService.busy}}" data-action="confirm"
+      data-revision="{{sceneService.revision}}" bindtap="onService">{{sceneService.review.confirm}}</button>
+    <button wx:if="{{sceneService.review}}" size="mini" disabled="{{sceneService.busy}}" data-action="back"
+      data-revision="{{sceneService.revision}}" bindtap="onService">取消选择</button>
+    <button size="mini" disabled="{{sceneService.busy}}" data-action="leave"
+      data-revision="{{sceneService.revision}}" bindtap="onService">{{sceneService.leave}}</button>
+  </view>
+</view>

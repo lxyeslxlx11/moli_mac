@@ -1,0 +1,258 @@
+{
+  "schema": "moli.launcher-update-recovery.path-audit.stage101.v1",
+  "recorded_utc": "2026-10-29T15:52:08.795827+00:00",
+  "requirement": "reports/development-plan.md",
+  "target": {
+    "path": "build/analysis/launcher-current-runtime-v4/LauncherUpdater.new-embedded.analysis-only.exe",
+    "bytes": 814080,
+    "sha256": "7eb173b0b2c298d1ad12c5ebebefa37df81f8dc6d1dcecd256a1caf7e90c0fe1"
+  },
+  "tools": "REA6.7.0 / Ghidra12.1.4",
+  "analysis_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "imported_snapshot": "build/analysis/launcher-update-recovery-v1/rea-snapshot.json",
+  "observations_requested": 16,
+  "retained_record_ids": 49,
+  "new_record_ids": 14,
+  "already_retained_ids": 2,
+  "cache_hits_inferred": false,
+  "builder": {
+    "selector": "0x404010",
+    "containing_procedure": "0x403cf0",
+    "evidence_id": "ev_b8bfdcf522748bad7cb48dca28bb21261d40d9e1d53a5f4fbf2cd87a9be41ae2",
+    "helpers": [
+      {
+        "procedure": "0x40c360",
+        "evidence_id": "ev_f05042abed99dbaec36157077ca0338f9ce48cbb192b466a0a45bfc58d34f079"
+      },
+      {
+        "procedure": "0x40ae70",
+        "evidence_id": "ev_3714ae7e01830921c4b0c41c2d3c13a950f1f507e93605bad9c447d9b2badd5f"
+      },
+      {
+        "procedure": "0x40adf0",
+        "evidence_id": "ev_a77adc2f3106edd5d0c7b7c1950389dd9d10c6c4065490115c5aee1f8755246e"
+      }
+    ]
+  },
+  "facts": [
+    {
+      "classification": "\u4e8b\u5b9e",
+      "statement": "Selected accepted path branch builds the journal from the canonical full launcher path plus .update.journal, and the log from the launcher directory plus \\LauncherUpdater.log. These are separate native path roles.",
+      "evidence_ids": [
+        "ev_b8bfdcf522748bad7cb48dca28bb21261d40d9e1d53a5f4fbf2cd87a9be41ae2",
+        "ev_f05042abed99dbaec36157077ca0338f9ce48cbb192b466a0a45bfc58d34f079",
+        "ev_3714ae7e01830921c4b0c41c2d3c13a950f1f507e93605bad9c447d9b2badd5f",
+        "ev_a77adc2f3106edd5d0c7b7c1950389dd9d10c6c4065490115c5aee1f8755246e"
+      ]
+    },
+    {
+      "classification": "\u4e8b\u5b9e",
+      "statement": "Provider-defined strings also report .update.staging, .update.backup and .update.failed; their path construction uses the canonical launcher path in the selected branch.",
+      "evidence_ids": [
+        "ev_435aafa35b594108878cd750644e7d74fccf1c9f93e84c0ef8411709543d9b51",
+        "ev_b8bfdcf522748bad7cb48dca28bb21261d40d9e1d53a5f4fbf2cd87a9be41ae2"
+      ]
+    }
+  ],
+  "source_anchors": [
+    {
+      "kind": "journal UTF16 literal",
+      "address": "0x4b860c",
+      "file_offset": 749068,
+      "bytes_hex": "2e007500700064006100740065002e006a006f00750072006e0061006c000000",
+      "evidence_id": "ev_473563e808fca1590a959a62a0d732453e6eaec5d9cbfe80a693f6e6e5a131ea",
+      "mapping_evidence_id": "ev_b592a2e28186cb73a43bb063b2ae5908452b958d4e075c282ca1e6c54b0b0fab",
+      "source_match": true
+    },
+    {
+      "kind": "log UTF16 literal",
+      "address": "0x4b864c",
+      "file_offset": 749132,
+      "bytes_hex": "5c004c00610075006e00630068006500720055007000640061007400650072002e006c006f0067000000",
+      "evidence_id": "ev_b2652dcccc0d0a68917be9525c8f829bccb7072bc4a8f7d7aca9d3f94c51c863",
+      "mapping_evidence_id": "ev_86e31dc5a3a73541fe5d5b143a25ee53c2820ada8756de468c0e48ec0184037c",
+      "source_match": true
+    },
+    {
+      "kind": "journal literal reference",
+      "address": "0x40410c",
+      "file_offset": 13580,
+      "bytes_hex": "680c864b00",
+      "evidence_id": "ev_9be17a695434d50e85cb467832f0870487b97e6a5c887777d13b121e385fd3b9",
+      "mapping_evidence_id": "ev_9dd3a2d6f40b3d284b97275a24094f2295b1c31c22ccc276342553af34e3bf54",
+      "source_match": true
+    },
+    {
+      "kind": "log literal reference",
+      "address": "0x4041d0",
+      "file_offset": 13776,
+      "bytes_hex": "684c864b00",
+      "evidence_id": "ev_3d4a6c58790a317887bd6061dbb54049484b4585cdcd42e51dbb7ea91b51a32b",
+      "mapping_evidence_id": "ev_1b18e2db42b894c41a7c6cfe0af0c1a2c310b321ede1f7bddefcfa305bf2f1d7",
+      "source_match": true
+    }
+  ],
+  "expected_query_only": {
+    "classification": "\u63a8\u6d4b",
+    "premise": "If this exact updater owns the normal update context and the observed launcher path is the canonical target. The live updater file hash has not been refreshed.",
+    "candidate": "C:/MoliOffline/launcher-probe/POLCN_Launcher.exe.update.journal",
+    "not_an_observed_guest_file": true,
+    "later_guest_readback": "guest_readback_stage101 supersedes the earlier not-queried preparation snapshot"
+  },
+  "unknowns": [
+    {
+      "classification": "\u5f85\u9a8c\u8bc1",
+      "statement": "Fresh guest updater old identity and exact-candidate TestPath=False are recorded separately. No journal header was read; original commit/ACK/child lifecycle and fault recovery remain unverified."
+    },
+    {
+      "classification": "\u5f85\u9a8c\u8bc1",
+      "statement": "Game callback ownership/consumers, arguments/IPC/resources/socket/frame/auth/state and platform/official acceptance."
+    }
+  ],
+  "coverage_limits": [
+    "Ghidra template labels are inferred types; UTF16 literals and selected instruction references have raw source anchors.",
+    "Existing no-return/flow limitations of the selected function remain; no complete canonicalizer, string allocator fault matrix or recovery implementation is claimed.",
+    "A static path contract does not prove any current guest journal state or normal update/ACK outcome."
+  ],
+  "private_exports": [
+    {
+      "path": "build/analysis/launcher-update-recovery-v1/rea-evidence-stage101-paths.json",
+      "bytes": 401845,
+      "sha256": "af9a0111efb73231419fa7acb579cbe8ea6f1e2008e860e8ed04531931cd9849"
+    },
+    {
+      "path": "build/analysis/launcher-update-recovery-v1/rea-snapshot-stage101-paths.json",
+      "bytes": 403807,
+      "sha256": "445b963259098fcd2042d36a655cb0f2ba9f709a0c5d5493ec9e2da6482679a3"
+    }
+  ],
+  "exported_closed": true,
+  "target_executed": false,
+  "new_records": [
+    {
+      "operation": "address_to_file_offset",
+      "parameters": {
+        "address": "0x4041d0"
+      },
+      "evidence_id": "ev_1b18e2db42b894c41a7c6cfe0af0c1a2c310b321ede1f7bddefcfa305bf2f1d7"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x40ae70"
+      },
+      "evidence_id": "ev_3714ae7e01830921c4b0c41c2d3c13a950f1f507e93605bad9c447d9b2badd5f"
+    },
+    {
+      "operation": "inspect_native_instruction",
+      "parameters": {
+        "address": "0x4041d0"
+      },
+      "evidence_id": "ev_3d4a6c58790a317887bd6061dbb54049484b4585cdcd42e51dbb7ea91b51a32b"
+    },
+    {
+      "operation": "search_strings",
+      "parameters": {
+        "case_sensitive": false,
+        "mode": "literal",
+        "pattern": ".update."
+      },
+      "evidence_id": "ev_435aafa35b594108878cd750644e7d74fccf1c9f93e84c0ef8411709543d9b51"
+    },
+    {
+      "operation": "search_strings",
+      "parameters": {
+        "case_sensitive": false,
+        "mode": "literal",
+        "pattern": "LauncherUpdater.log"
+      },
+      "evidence_id": "ev_44641a4c97894eaab4836a63c92125239f7ca7be10c56ad71ae9d846e73adf26"
+    },
+    {
+      "operation": "read_bytes",
+      "parameters": {
+        "address": "0x4b860c",
+        "length": 32
+      },
+      "evidence_id": "ev_473563e808fca1590a959a62a0d732453e6eaec5d9cbfe80a693f6e6e5a131ea"
+    },
+    {
+      "operation": "address_to_file_offset",
+      "parameters": {
+        "address": "0x4b864c"
+      },
+      "evidence_id": "ev_86e31dc5a3a73541fe5d5b143a25ee53c2820ada8756de468c0e48ec0184037c"
+    },
+    {
+      "operation": "inspect_native_instruction",
+      "parameters": {
+        "address": "0x40410c"
+      },
+      "evidence_id": "ev_9be17a695434d50e85cb467832f0870487b97e6a5c887777d13b121e385fd3b9"
+    },
+    {
+      "operation": "address_to_file_offset",
+      "parameters": {
+        "address": "0x40410c"
+      },
+      "evidence_id": "ev_9dd3a2d6f40b3d284b97275a24094f2295b1c31c22ccc276342553af34e3bf54"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x40adf0"
+      },
+      "evidence_id": "ev_a77adc2f3106edd5d0c7b7c1950389dd9d10c6c4065490115c5aee1f8755246e"
+    },
+    {
+      "operation": "read_bytes",
+      "parameters": {
+        "address": "0x4b864c",
+        "length": 42
+      },
+      "evidence_id": "ev_b2652dcccc0d0a68917be9525c8f829bccb7072bc4a8f7d7aca9d3f94c51c863"
+    },
+    {
+      "operation": "address_to_file_offset",
+      "parameters": {
+        "address": "0x4b860c"
+      },
+      "evidence_id": "ev_b592a2e28186cb73a43bb063b2ae5908452b958d4e075c282ca1e6c54b0b0fab"
+    },
+    {
+      "operation": "xrefs",
+      "parameters": {
+        "address": "0x4b864c"
+      },
+      "evidence_id": "ev_cb456d7937fd82c6b38499f7517c7186f6ac0e1c4418d1df41c4739db07ce208"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x40c360"
+      },
+      "evidence_id": "ev_f05042abed99dbaec36157077ca0338f9ce48cbb192b466a0a45bfc58d34f079"
+    }
+  ],
+  "full_goal_complete": false,
+  "fresh_old_sample_bridge": {
+    "old_path": "build/analysis/launcher-update-recovery-v1/old-source/LauncherUpdater.old-embedded.analysis-only.exe",
+    "old_sha256": "22d56137a48d3c95f4a779c5c68ba85b3ea4fe2439e3e561159d003c697ce479",
+    "new_sha256": "7eb173b0b2c298d1ad12c5ebebefa37df81f8dc6d1dcecd256a1caf7e90c0fe1",
+    "bytes_each": 814080,
+    "different_bytes": 26,
+    "classified_comparison": "analysis/launcher-update-recovery-v1/byte-comparison.json",
+    "four_selected_path_anchors_equal": true,
+    "scope": "Selected static path construction, not full dynamic equivalence or transaction acceptance."
+  },
+  "guest_readback_stage101": {
+    "updater_path": "C:/MoliOffline/launcher-probe/LauncherUpdater.exe",
+    "full_sha256": "22d56137a48d3c95f4a779c5c68ba85b3ea4fe2439e3e561159d003c697ce479",
+    "matches_old_sample_not_new": true,
+    "exact_candidate_path_tested": "C:/MoliOffline/launcher-probe/POLCN_Launcher.exe.update.journal",
+    "TestPath": false,
+    "journal_payload_read": false,
+    "ordinary_log_payload_read": false,
+    "ACK_commit_recovery_proven": false
+  }
+}

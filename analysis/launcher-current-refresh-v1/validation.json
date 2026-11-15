@@ -1,0 +1,138 @@
+{
+  "schema": "moli.launcher-current-refresh-v1.validation.v1",
+  "recorded_utc": "2026-10-28T18:18:39.431Z",
+  "requirement": "reports/development-plan.md",
+  "result": "bounded-current-profile-catalog-refresh-implemented-and-verified",
+  "spec_preceded_product_edits": true,
+  "spec": {
+    "path": "analysis/launcher-current-refresh-v1/implementation-spec.json",
+    "bytes": 4304,
+    "sha256": "5dc1fa34e580d2eea5877b193ce5f91a84bb0b642ee951b0dafb4f4388c2131b"
+  },
+  "source": "analysis/launcher-current-runtime-v4/static-audit.json",
+  "products": {
+    "new_module": "web/launcher-catalog-refresh.mjs",
+    "existing_http_candidate_store_and_legacy_page": "unchanged; fixture only adds exact new ES module to its allowlist",
+    "identities": [
+      {
+        "path": "web/launcher-catalog-refresh.mjs",
+        "bytes": 9610,
+        "sha256": "1926ed77bab32b01f40c342cac5b26b4ad65b165b2f745341718187f4ea9fb55"
+      },
+      {
+        "path": "web/tests/launcher-catalog-refresh.test.mjs",
+        "bytes": 15158,
+        "sha256": "4a33ce02a03274d542607de264ac8e2be7671a05430fc29fc150817655685357"
+      },
+      {
+        "path": "web/tests/helpers/launcher-bootstrap-fixture.mjs",
+        "bytes": 4531,
+        "sha256": "4ba373e8e78503e2ca604cc7a313555dacde8c34b377bc683b7806845f584ff6"
+      },
+      {
+        "path": "analysis/launcher-current-refresh-v1/browser-check.mjs",
+        "bytes": 13830,
+        "sha256": "12bb6363f566dcb7b15d13362e320a94b28d636724310629df8cf2b1814242fb"
+      }
+    ],
+    "shared_non_readme_files_unchanged": 91,
+    "native_files_unchanged": 17
+  },
+  "node": {
+    "version": "26.9.0",
+    "target": {
+      "tests": 22,
+      "pass": 22,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 712.083209
+    },
+    "target_exit_code": 0,
+    "full_test_files": 44,
+    "full": {
+      "tests": 605,
+      "pass": 605,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 11724.971667
+    },
+    "full_process_exit_code": 0
+  },
+  "chrome": {
+    "browser": "155.0.8059.85",
+    "driver": "Installed Playwright1.62.1; existing headless Chrome fresh context",
+    "checks": 11,
+    "requests": 73,
+    "errors": 0,
+    "failures": 0,
+    "process_exit_code": 0,
+    "context_browser_fixture_closed": true,
+    "initial_attempt": {
+      "functional_checks": 11,
+      "network_failure_count": 1,
+      "failure": "one /games net::ERR_ABORTED caused zero-failures audit assertion to fail; process exit1",
+      "exact_case_or_root_cause": "not established; initial capture had no case label",
+      "test_harness_revision": "add per-case networkidle settlement and active-case label before reset; production module not changed",
+      "second_result": "11checks/73GET/errors0/failures0/exit0",
+      "inference_limit": "Synchronization difference is not proof of a product/network root cause. Initial report/log retained."
+    }
+  },
+  "coverage": {
+    "original_loopback_requests": true,
+    "model_fault_injection": "Node in-memory adapter for orchestration only, explicitly not IndexedDB proof",
+    "actual_indexeddb": "Chrome init/no-op/single change/invalid XML/CAS conflict/no-op revision race/precommit abort/late committed receipt/deadline/readback/two concurrent controllers",
+    "real_executable_update_or_recovery": false,
+    "unchanged_default_rendered_UI_retested": false
+  },
+  "logs": [
+    {
+      "path": "build/analysis/launcher-current-runtime-v4/refresh-tests-initial.log",
+      "bytes": 2152,
+      "sha256": "233e0f56a6646b7441b7a381ac4cd50bcca75df309d0b52fd64e3725ec8b995e",
+      "private": true
+    },
+    {
+      "path": "build/analysis/launcher-current-runtime-v4/node-tests.log",
+      "bytes": 58500,
+      "sha256": "0c1a8ffe0e09b6362dda9593440d00fe9e3b4f0bc95b03aca4d1dbb6745016ac",
+      "private": true
+    },
+    {
+      "path": "build/analysis/launcher-current-runtime-v4/browser-check-initial.log",
+      "bytes": 151,
+      "sha256": "6e750be64e66f0ac8388626f1c6407c5d96889cd094f33982f72ea17abb73f8d",
+      "private": true
+    },
+    {
+      "path": "build/analysis/launcher-current-runtime-v4/browser-validation-initial.json",
+      "bytes": 15603,
+      "sha256": "35a5e3460e0ab16963e59909a6363075351ec7b983c7a885fbdaeb1a8442297b",
+      "private": true
+    },
+    {
+      "path": "build/analysis/launcher-current-runtime-v4/browser-check-second.log",
+      "bytes": 67,
+      "sha256": "0364adece23ffdb0f9367127607f49b480a98c4642c9d1e2d7f9f1a4a73f3c09",
+      "private": true
+    },
+    {
+      "path": "build/analysis/launcher-current-runtime-v4/browser-validation.json",
+      "bytes": 15431,
+      "sha256": "5f82a5077f8b03fe1f59ff7a4cfaa6979456aba787dd64534c549de2ac312a64",
+      "private": true
+    }
+  ],
+  "check_preparation_failure": "An initial delivery validator incorrectly included shared/README.md among unchanged shared files and stopped on the deliberate documentation change. Scope corrected to91 non-README shared files, all verified; no product change.",
+  "not_verified": [
+    "Win32 original filesystem/journal crash-recovery fault matrix and current updater all branches",
+    "new embedded updater7eb173... semantic equivalence",
+    "full original child/main-window image/timing/commit/ACK",
+    "game consumer/auth/frame/movement/battle/recovery",
+    "mobile/WeChat real device and official interoperability"
+  ],
+  "full_goal_complete": false
+}

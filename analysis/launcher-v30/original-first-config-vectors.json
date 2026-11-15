@@ -1,0 +1,542 @@
+{
+  "schema": "moli.launcher-v30.original-first-config-vectors.v1",
+  "source": "Python hashlib and original synthetic bytes; lookup identity is account-derived but no real account is used.",
+  "vectors": [
+    {
+      "name": "original-first-config-0",
+      "input": {
+        "username_hex": "",
+        "codeText_hex": "3131",
+        "directory_hex": "433a5c4f726967696e616c20466f6c6465725c",
+        "configurer_hex": "",
+        "firstConfigWord": 0
+      },
+      "expected": {
+        "disposition": "flag-clear",
+        "section_hex": "643431643863643938663030623230346539383030393938656366383432376500",
+        "key_hex": "47616d6531315f436f6e66696700",
+        "command_hex": "",
+        "cwd_hex": ""
+      }
+    },
+    {
+      "name": "original-first-config-1",
+      "input": {
+        "username_hex": "",
+        "codeText_hex": "30303131",
+        "directory_hex": "433a5c4f726967696e616c",
+        "configurer_hex": "",
+        "firstConfigWord": 1
+      },
+      "expected": {
+        "disposition": "no-configuration-program",
+        "section_hex": "643431643863643938663030623230346539383030393938656366383432376500",
+        "key_hex": "47616d65303031315f436f6e66696700",
+        "command_hex": "",
+        "cwd_hex": ""
+      }
+    },
+    {
+      "name": "original-first-config-2",
+      "input": {
+        "username_hex": "",
+        "codeText_hex": "3131",
+        "directory_hex": "433a5c4f726967696e616c",
+        "configurer_hex": "",
+        "firstConfigWord": 4294967295
+      },
+      "expected": {
+        "disposition": "no-configuration-program",
+        "section_hex": "643431643863643938663030623230346539383030393938656366383432376500",
+        "key_hex": "47616d6531315f436f6e66696700",
+        "command_hex": "",
+        "cwd_hex": ""
+      }
+    },
+    {
+      "name": "original-first-config-3",
+      "input": {
+        "username_hex": "",
+        "codeText_hex": "30303131",
+        "directory_hex": "433a5c4f726967696e616c20466f6c6465725c",
+        "configurer_hex": "20746f6f6c732f436f6e6669672e65786520",
+        "firstConfigWord": 0
+      },
+      "expected": {
+        "disposition": "flag-clear",
+        "section_hex": "643431643863643938663030623230346539383030393938656366383432376500",
+        "key_hex": "47616d65303031315f436f6e66696700",
+        "command_hex": "",
+        "cwd_hex": ""
+      }
+    },
+    {
+      "name": "original-first-config-4",
+      "input": {
+        "username_hex": "",
+        "codeText_hex": "3131",
+        "directory_hex": "433a5c4f726967696e616c",
+        "configurer_hex": "20746f6f6c732f436f6e6669672e65786520",
+        "firstConfigWord": 1
+      },
+      "expected": {
+        "disposition": "configuration-requested",
+        "section_hex": "643431643863643938663030623230346539383030393938656366383432376500",
+        "key_hex": "47616d6531315f436f6e66696700",
+        "command_hex": "433a5c4f726967696e616c5c20746f6f6c732f436f6e6669672e6578652000",
+        "cwd_hex": "433a5c4f726967696e616c00"
+      }
+    },
+    {
+      "name": "original-first-config-5",
+      "input": {
+        "username_hex": "",
+        "codeText_hex": "30303131",
+        "directory_hex": "433a5c4f726967696e616c",
+        "configurer_hex": "20746f6f6c732f436f6e6669672e65786520",
+        "firstConfigWord": 4294967295
+      },
+      "expected": {
+        "disposition": "configuration-requested",
+        "section_hex": "643431643863643938663030623230346539383030393938656366383432376500",
+        "key_hex": "47616d65303031315f436f6e66696700",
+        "command_hex": "433a5c4f726967696e616c5c20746f6f6c732f436f6e6669672e6578652000",
+        "cwd_hex": "433a5c4f726967696e616c00"
+      }
+    },
+    {
+      "name": "original-first-config-6",
+      "input": {
+        "username_hex": "4f726967696e616c5531",
+        "codeText_hex": "3131",
+        "directory_hex": "433a5c4f726967696e616c20466f6c6465725c",
+        "configurer_hex": "",
+        "firstConfigWord": 0
+      },
+      "expected": {
+        "disposition": "flag-clear",
+        "section_hex": "623365366336643365336132616161383133636339383265616531363731636300",
+        "key_hex": "47616d6531315f436f6e66696700",
+        "command_hex": "",
+        "cwd_hex": ""
+      }
+    },
+    {
+      "name": "original-first-config-7",
+      "input": {
+        "username_hex": "4f726967696e616c5531",
+        "codeText_hex": "30303131",
+        "directory_hex": "433a5c4f726967696e616c",
+        "configurer_hex": "",
+        "firstConfigWord": 1
+      },
+      "expected": {
+        "disposition": "no-configuration-program",
+        "section_hex": "623365366336643365336132616161383133636339383265616531363731636300",
+        "key_hex": "47616d65303031315f436f6e66696700",
+        "command_hex": "",
+        "cwd_hex": ""
+      }
+    },
+    {
+      "name": "original-first-config-8",
+      "input": {
+        "username_hex": "4f726967696e616c5531",
+        "codeText_hex": "3131",
+        "directory_hex": "433a5c4f726967696e616c",
+        "configurer_hex": "",
+        "firstConfigWord": 4294967295
+      },
+      "expected": {
+        "disposition": "no-configuration-program",
+        "section_hex": "623365366336643365336132616161383133636339383265616531363731636300",
+        "key_hex": "47616d6531315f436f6e66696700",
+        "command_hex": "",
+        "cwd_hex": ""
+      }
+    },
+    {
+      "name": "original-first-config-9",
+      "input": {
+        "username_hex": "4f726967696e616c5531",
+        "codeText_hex": "30303131",
+        "directory_hex": "433a5c4f726967696e616c20466f6c6465725c",
+        "configurer_hex": "20746f6f6c732f436f6e6669672e65786520",
+        "firstConfigWord": 0
+      },
+      "expected": {
+        "disposition": "flag-clear",
+        "section_hex": "623365366336643365336132616161383133636339383265616531363731636300",
+        "key_hex": "47616d65303031315f436f6e66696700",
+        "command_hex": "",
+        "cwd_hex": ""
+      }
+    },
+    {
+      "name": "original-first-config-10",
+      "input": {
+        "username_hex": "4f726967696e616c5531",
+        "codeText_hex": "3131",
+        "directory_hex": "433a5c4f726967696e616c",
+        "configurer_hex": "20746f6f6c732f436f6e6669672e65786520",
+        "firstConfigWord": 1
+      },
+      "expected": {
+        "disposition": "configuration-requested",
+        "section_hex": "623365366336643365336132616161383133636339383265616531363731636300",
+        "key_hex": "47616d6531315f436f6e66696700",
+        "command_hex": "433a5c4f726967696e616c5c20746f6f6c732f436f6e6669672e6578652000",
+        "cwd_hex": "433a5c4f726967696e616c00"
+      }
+    },
+    {
+      "name": "original-first-config-11",
+      "input": {
+        "username_hex": "4f726967696e616c5531",
+        "codeText_hex": "30303131",
+        "directory_hex": "433a5c4f726967696e616c",
+        "configurer_hex": "20746f6f6c732f436f6e6669672e65786520",
+        "firstConfigWord": 4294967295
+      },
+      "expected": {
+        "disposition": "configuration-requested",
+        "section_hex": "623365366336643365336132616161383133636339383265616531363731636300",
+        "key_hex": "47616d65303031315f436f6e66696700",
+        "command_hex": "433a5c4f726967696e616c5c20746f6f6c732f436f6e6669672e6578652000",
+        "cwd_hex": "433a5c4f726967696e616c00"
+      }
+    },
+    {
+      "name": "original-first-config-12",
+      "input": {
+        "username_hex": "80fe01",
+        "codeText_hex": "3131",
+        "directory_hex": "433a5c4f726967696e616c20466f6c6465725c",
+        "configurer_hex": "",
+        "firstConfigWord": 0
+      },
+      "expected": {
+        "disposition": "flag-clear",
+        "section_hex": "383834613139303064663462373632653039336631623937313530393964666300",
+        "key_hex": "47616d6531315f436f6e66696700",
+        "command_hex": "",
+        "cwd_hex": ""
+      }
+    },
+    {
+      "name": "original-first-config-13",
+      "input": {
+        "username_hex": "80fe01",
+        "codeText_hex": "30303131",
+        "directory_hex": "433a5c4f726967696e616c",
+        "configurer_hex": "",
+        "firstConfigWord": 1
+      },
+      "expected": {
+        "disposition": "no-configuration-program",
+        "section_hex": "383834613139303064663462373632653039336631623937313530393964666300",
+        "key_hex": "47616d65303031315f436f6e66696700",
+        "command_hex": "",
+        "cwd_hex": ""
+      }
+    },
+    {
+      "name": "original-first-config-14",
+      "input": {
+        "username_hex": "80fe01",
+        "codeText_hex": "3131",
+        "directory_hex": "433a5c4f726967696e616c",
+        "configurer_hex": "",
+        "firstConfigWord": 4294967295
+      },
+      "expected": {
+        "disposition": "no-configuration-program",
+        "section_hex": "383834613139303064663462373632653039336631623937313530393964666300",
+        "key_hex": "47616d6531315f436f6e66696700",
+        "command_hex": "",
+        "cwd_hex": ""
+      }
+    },
+    {
+      "name": "original-first-config-15",
+      "input": {
+        "username_hex": "80fe01",
+        "codeText_hex": "30303131",
+        "directory_hex": "433a5c4f726967696e616c20466f6c6465725c",
+        "configurer_hex": "20746f6f6c732f436f6e6669672e65786520",
+        "firstConfigWord": 0
+      },
+      "expected": {
+        "disposition": "flag-clear",
+        "section_hex": "383834613139303064663462373632653039336631623937313530393964666300",
+        "key_hex": "47616d65303031315f436f6e66696700",
+        "command_hex": "",
+        "cwd_hex": ""
+      }
+    },
+    {
+      "name": "original-first-config-16",
+      "input": {
+        "username_hex": "80fe01",
+        "codeText_hex": "3131",
+        "directory_hex": "433a5c4f726967696e616c",
+        "configurer_hex": "20746f6f6c732f436f6e6669672e65786520",
+        "firstConfigWord": 1
+      },
+      "expected": {
+        "disposition": "configuration-requested",
+        "section_hex": "383834613139303064663462373632653039336631623937313530393964666300",
+        "key_hex": "47616d6531315f436f6e66696700",
+        "command_hex": "433a5c4f726967696e616c5c20746f6f6c732f436f6e6669672e6578652000",
+        "cwd_hex": "433a5c4f726967696e616c00"
+      }
+    },
+    {
+      "name": "original-first-config-17",
+      "input": {
+        "username_hex": "80fe01",
+        "codeText_hex": "30303131",
+        "directory_hex": "433a5c4f726967696e616c",
+        "configurer_hex": "20746f6f6c732f436f6e6669672e65786520",
+        "firstConfigWord": 4294967295
+      },
+      "expected": {
+        "disposition": "configuration-requested",
+        "section_hex": "383834613139303064663462373632653039336631623937313530393964666300",
+        "key_hex": "47616d65303031315f436f6e66696700",
+        "command_hex": "433a5c4f726967696e616c5c20746f6f6c732f436f6e6669672e6578652000",
+        "cwd_hex": "433a5c4f726967696e616c00"
+      }
+    },
+    {
+      "name": "original-first-config-18",
+      "input": {
+        "username_hex": "0102030405060708090a0b0c0d0e0f10",
+        "codeText_hex": "3131",
+        "directory_hex": "433a5c4f726967696e616c20466f6c6465725c",
+        "configurer_hex": "",
+        "firstConfigWord": 0
+      },
+      "expected": {
+        "disposition": "flag-clear",
+        "section_hex": "313930633463313035373836613231323164383530313839333931303861366300",
+        "key_hex": "47616d6531315f436f6e66696700",
+        "command_hex": "",
+        "cwd_hex": ""
+      }
+    },
+    {
+      "name": "original-first-config-19",
+      "input": {
+        "username_hex": "0102030405060708090a0b0c0d0e0f10",
+        "codeText_hex": "30303131",
+        "directory_hex": "433a5c4f726967696e616c",
+        "configurer_hex": "",
+        "firstConfigWord": 1
+      },
+      "expected": {
+        "disposition": "no-configuration-program",
+        "section_hex": "313930633463313035373836613231323164383530313839333931303861366300",
+        "key_hex": "47616d65303031315f436f6e66696700",
+        "command_hex": "",
+        "cwd_hex": ""
+      }
+    },
+    {
+      "name": "original-first-config-20",
+      "input": {
+        "username_hex": "0102030405060708090a0b0c0d0e0f10",
+        "codeText_hex": "3131",
+        "directory_hex": "433a5c4f726967696e616c",
+        "configurer_hex": "",
+        "firstConfigWord": 4294967295
+      },
+      "expected": {
+        "disposition": "no-configuration-program",
+        "section_hex": "313930633463313035373836613231323164383530313839333931303861366300",
+        "key_hex": "47616d6531315f436f6e66696700",
+        "command_hex": "",
+        "cwd_hex": ""
+      }
+    },
+    {
+      "name": "original-first-config-21",
+      "input": {
+        "username_hex": "0102030405060708090a0b0c0d0e0f10",
+        "codeText_hex": "30303131",
+        "directory_hex": "433a5c4f726967696e616c20466f6c6465725c",
+        "configurer_hex": "20746f6f6c732f436f6e6669672e65786520",
+        "firstConfigWord": 0
+      },
+      "expected": {
+        "disposition": "flag-clear",
+        "section_hex": "313930633463313035373836613231323164383530313839333931303861366300",
+        "key_hex": "47616d65303031315f436f6e66696700",
+        "command_hex": "",
+        "cwd_hex": ""
+      }
+    },
+    {
+      "name": "original-first-config-22",
+      "input": {
+        "username_hex": "0102030405060708090a0b0c0d0e0f10",
+        "codeText_hex": "3131",
+        "directory_hex": "433a5c4f726967696e616c",
+        "configurer_hex": "20746f6f6c732f436f6e6669672e65786520",
+        "firstConfigWord": 1
+      },
+      "expected": {
+        "disposition": "configuration-requested",
+        "section_hex": "313930633463313035373836613231323164383530313839333931303861366300",
+        "key_hex": "47616d6531315f436f6e66696700",
+        "command_hex": "433a5c4f726967696e616c5c20746f6f6c732f436f6e6669672e6578652000",
+        "cwd_hex": "433a5c4f726967696e616c00"
+      }
+    },
+    {
+      "name": "original-first-config-23",
+      "input": {
+        "username_hex": "0102030405060708090a0b0c0d0e0f10",
+        "codeText_hex": "30303131",
+        "directory_hex": "433a5c4f726967696e616c",
+        "configurer_hex": "20746f6f6c732f436f6e6669672e65786520",
+        "firstConfigWord": 4294967295
+      },
+      "expected": {
+        "disposition": "configuration-requested",
+        "section_hex": "313930633463313035373836613231323164383530313839333931303861366300",
+        "key_hex": "47616d65303031315f436f6e66696700",
+        "command_hex": "433a5c4f726967696e616c5c20746f6f6c732f436f6e6669672e6578652000",
+        "cwd_hex": "433a5c4f726967696e616c00"
+      }
+    }
+  ],
+  "outcomes": [
+    {
+      "input": {
+        "planDisposition": "flag-clear",
+        "processCreated": false,
+        "waitReturned": false
+      },
+      "expected": {
+        "disposition": "not-requested",
+        "waiting": false,
+        "writeRequested": false,
+        "writeValue": null,
+        "continueContextPreparation": true
+      }
+    },
+    {
+      "input": {
+        "planDisposition": "flag-clear",
+        "processCreated": true,
+        "waitReturned": false
+      },
+      "expected": {
+        "disposition": "not-requested",
+        "waiting": false,
+        "writeRequested": false,
+        "writeValue": null,
+        "continueContextPreparation": true
+      }
+    },
+    {
+      "input": {
+        "planDisposition": "flag-clear",
+        "processCreated": true,
+        "waitReturned": true
+      },
+      "expected": {
+        "disposition": "not-requested",
+        "waiting": false,
+        "writeRequested": false,
+        "writeValue": null,
+        "continueContextPreparation": true
+      }
+    },
+    {
+      "input": {
+        "planDisposition": "no-configuration-program",
+        "processCreated": false,
+        "waitReturned": false
+      },
+      "expected": {
+        "disposition": "not-requested",
+        "waiting": false,
+        "writeRequested": false,
+        "writeValue": null,
+        "continueContextPreparation": true
+      }
+    },
+    {
+      "input": {
+        "planDisposition": "no-configuration-program",
+        "processCreated": true,
+        "waitReturned": false
+      },
+      "expected": {
+        "disposition": "not-requested",
+        "waiting": false,
+        "writeRequested": false,
+        "writeValue": null,
+        "continueContextPreparation": true
+      }
+    },
+    {
+      "input": {
+        "planDisposition": "no-configuration-program",
+        "processCreated": true,
+        "waitReturned": true
+      },
+      "expected": {
+        "disposition": "not-requested",
+        "waiting": false,
+        "writeRequested": false,
+        "writeValue": null,
+        "continueContextPreparation": true
+      }
+    },
+    {
+      "input": {
+        "planDisposition": "configuration-requested",
+        "processCreated": false,
+        "waitReturned": false
+      },
+      "expected": {
+        "disposition": "create-failed-continue",
+        "waiting": false,
+        "writeRequested": false,
+        "writeValue": null,
+        "continueContextPreparation": true
+      }
+    },
+    {
+      "input": {
+        "planDisposition": "configuration-requested",
+        "processCreated": true,
+        "waitReturned": false
+      },
+      "expected": {
+        "disposition": "waiting",
+        "waiting": true,
+        "writeRequested": false,
+        "writeValue": null,
+        "continueContextPreparation": false
+      }
+    },
+    {
+      "input": {
+        "planDisposition": "configuration-requested",
+        "processCreated": true,
+        "waitReturned": true
+      },
+      "expected": {
+        "disposition": "profile-write-requested",
+        "waiting": false,
+        "writeRequested": true,
+        "writeValue": 0,
+        "continueContextPreparation": true
+      }
+    }
+  ]
+}

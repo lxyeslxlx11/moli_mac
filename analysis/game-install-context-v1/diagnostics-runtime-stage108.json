@@ -1,0 +1,49 @@
+{
+  "schema": "moli.updater-startup-diagnostics.runtime.v1",
+  "recorded_utc": "2026-10-30T11:11:19.095822+00:00",
+  "plan": "diagnostics-plan-stage108.json",
+  "guest_console": "Existing ordinary terminal; actual commands/results and returned prompts observed through CUA",
+  "event_window_local": [
+    "2026-10-30T18:19:00",
+    "2026-10-30T18:21:00"
+  ],
+  "channels": [
+    "Application",
+    "System"
+  ],
+  "query": "sv diagEvents108 @(Get-WinEvent -FilterHashtable $diagFilter108)",
+  "event_result": "Actual NoMatchingEventsFound error. No matching events for this bounded query, not evidence of no failure. No raw log/body exported.",
+  "input_recovery": "One131-character pending command lost me in .message; cancelled with actual ^C before submission. Shorter read-only query then executed; ordinary Ctrl+C and Return worked for these commands.",
+  "files": [
+    {
+      "name": "MFC71.dll",
+      "platform_directory_exists": false,
+      "game_directory_exists": true,
+      "syswow64_exists": false,
+      "path_match_count": 0
+    },
+    {
+      "name": "MSVCP71.dll",
+      "platform_directory_exists": false,
+      "game_directory_exists": false,
+      "syswow64_exists": false,
+      "path_match_count": 0
+    },
+    {
+      "name": "MSVCR71.dll",
+      "platform_directory_exists": false,
+      "game_directory_exists": true,
+      "syswow64_exists": false,
+      "path_match_count": 0
+    }
+  ],
+  "path_nonempty_entries": 7,
+  "path_values_exported": false,
+  "limits": [
+    "Selected directory/PATH presence, not all Windows redirection/activation-context/KnownDLL coverage",
+    "Dependencies are a loader-failure candidate; no child exception or exit status obtained from the initial run",
+    "No additional vendor execution or DLL installation in these diagnostic commands"
+  ],
+  "additional_vendor_starts": 0,
+  "new_manual_requests": 0
+}

@@ -1,0 +1,236 @@
+{
+  "schema": "moli.cdb-stack-stage132.v1",
+  "recorded_utc": "2026-11-02T13:34:44.073760+00:00",
+  "classification": "fact: bounded ended-process dump observations; static-frame correspondence is an inference",
+  "plan": "analysis/game-text-observer-runtime-v1/indirect-flow-plan-stage132.json",
+  "authorization_scope": "Continuation of stage131 approved offline local exception/module/stack analysis of the same PID5304 dump; no new game execution or capture",
+  "dump": {
+    "guest_path": "C:/MoliOffline/game-wer-stage128/dumps/cg_se_3000.exe(1).5304.dmp",
+    "source_pid": 5304,
+    "bytes": 16924391,
+    "sha256": "1568b7ca899f80a656aa1541bae95a35e6c45fc876c08f19e86f352a6339820e",
+    "current_hash_read_observed": true,
+    "matches_stage131": true
+  },
+  "tool": {
+    "guest_path": "C:/Program Files (x86)/Windows Kits/10/Debuggers/x86/cdb.exe",
+    "sha256": "6ca9dd8ee2d764087c4a561ecfee05cdf17751dfd9c2f21700211a897cd68129",
+    "authenticode_status": "Valid",
+    "identity_rechecked": true,
+    "version_from_hash_bound_stage131": "10.0.26100.9457 (WinBuild.160101.0800)",
+    "version_read_this_stage": false
+  },
+  "preflight": {
+    "game_and_cdb_process_count": 0,
+    "new_output_exists": false,
+    "local_symbol_directory_entry_count_including_hidden": 0,
+    "cwd_ntsd_ini_exists": false,
+    "cwd": "C:/MoliOffline/game-wer-stage128"
+  },
+  "execution": {
+    "starts": 1,
+    "mode": "offline -z existing dump",
+    "started_guest_iso": "2026-11-02T21:24:19.4881799+08:00",
+    "exact_end_time_captured": false,
+    "returned_prompt_observed": true,
+    "exit_code": 0,
+    "raw_line_count": 77,
+    "arguments": [
+      "-sins",
+      "-noshell",
+      "-nosqm",
+      "-y",
+      "C:\\MoliOffline\\game-wer-stage128\\symbols",
+      "-i",
+      "C:\\MoliOffline\\game-wer-stage128\\symbols",
+      "-z",
+      "C:\\MoliOffline\\game-wer-stage128\\dumps\\cg_se_3000.exe(1).5304.dmp",
+      "-c",
+      "dd 001af4b0 L0e; dd 001af488 L1; dd 001af4ec L2; dd 001af508 L2; q"
+    ],
+    "arguments_fully_read_back_before_single_invocation": true
+  },
+  "fixed_ranges": [
+    {
+      "start": "0x001af4b0",
+      "bytes": 56,
+      "source": "candidate EBP-0xac startup record"
+    },
+    {
+      "start": "0x001af488",
+      "bytes": 4,
+      "source": "candidate EBP-0xd4 initialization callback"
+    },
+    {
+      "start": "0x001af4ec",
+      "bytes": 8,
+      "source": "candidate EBP-0x70 registration function and EBP-0x6c cleanup output"
+    },
+    {
+      "start": "0x001af508",
+      "bytes": 8,
+      "source": "candidate EBP-0x54 initialization output and EBP-0x50 entry output"
+    }
+  ],
+  "requested_bytes": 76,
+  "observed_dwords": 19,
+  "numeric_rows": [
+    {
+      "address": "0x001af4b0",
+      "dwords": [
+        "0x01265edc",
+        "0x01265ee0",
+        "0x0124a848",
+        "0x0132fead"
+      ]
+    },
+    {
+      "address": "0x001af4c0",
+      "dwords": [
+        "0x01289000",
+        "0x00000000",
+        "0x001af524",
+        "0x01265fe4"
+      ]
+    },
+    {
+      "address": "0x001af4d0",
+      "dwords": [
+        "0x00400000",
+        "0x0000003c",
+        "0x001af494",
+        "0x01266000"
+      ]
+    },
+    {
+      "address": "0x001af4e0",
+      "dwords": [
+        "0x00000000",
+        "0xffffffff"
+      ]
+    },
+    {
+      "address": "0x001af488",
+      "dwords": [
+        "0x0b7c7cc0"
+      ]
+    },
+    {
+      "address": "0x001af4ec",
+      "dwords": [
+        "0x0b7fe670",
+        "0x0b7c7960"
+      ]
+    },
+    {
+      "address": "0x001af508",
+      "dwords": [
+        "0x0b7c7cc0",
+        "0x0b7d6fe0"
+      ]
+    }
+  ],
+  "candidate_frame": {
+    "ebp": "0x001af55c",
+    "source": "stage131 secondary stack numeric columns with following-frames warning",
+    "startup_record_base": "0x001af4b0",
+    "matches": [
+      {
+        "record_offset": "0x0",
+        "actual": "0x01265edc",
+        "expected": "0x01265edc",
+        "matched": true,
+        "basis": "literal address written at0x1195985"
+      },
+      {
+        "record_offset": "0x4",
+        "actual": "0x01265ee0",
+        "expected": "0x01265ee0",
+        "matched": true,
+        "basis": "literal address written at0x119598f"
+      },
+      {
+        "record_offset": "0x2c",
+        "actual": "0x01266000",
+        "expected": "0x01266000",
+        "matched": true,
+        "basis": "literal address written at0x1195a31"
+      },
+      {
+        "record_offset": "0x18",
+        "actual": "0x001af524",
+        "expected": "0x001af524",
+        "matched": true,
+        "basis": "candidate frame address of local[EBP-0x38]"
+      },
+      {
+        "record_offset": "0x28",
+        "actual": "0x001af494",
+        "expected": "0x001af494",
+        "matched": true,
+        "basis": "candidate frame address of local[EBP-0xc8]"
+      },
+      {
+        "record_offset": "0x20",
+        "actual": "0x00400000",
+        "expected": "0x00400000",
+        "matched": true,
+        "basis": "main image base from stage131 module record; selected module handle is only a candidate interpretation"
+      },
+      {
+        "record_offset": "0x34",
+        "actual": "0xffffffff",
+        "expected": "0xffffffff",
+        "matched": true,
+        "basis": "initial sentinel written at0x1195a18; this equality alone does not prove the record was unmodified"
+      }
+    ],
+    "initialization_copy": {
+      "candidate_local_minus_d4": "0x0b7c7cc0",
+      "candidate_output_local_minus_54": "0x0b7c7cc0",
+      "equal": true
+    },
+    "other_candidate_slots": {
+      "registration_local_minus_70": "0x0b7fe670",
+      "cleanup_local_minus_6c": "0x0b7c7960",
+      "entry_local_minus_50": "0x0b7d6fe0"
+    },
+    "inference": "The three literal addresses, two frame-relative pointers and equal callback slots support correspondence to the static initialization record and pointer-copy path. They do not validate the full unwind or code at those pointers."
+  },
+  "projection_correction": {
+    "initial_address_row_filter_returned": 6,
+    "fixed_substring_query_for_missing_address": "001af4c0",
+    "additional_rows_read": 1,
+    "all_planned_dwords_observed": true,
+    "cdb_reexecution": false,
+    "initial_filter_or_input_failure_cause_not_further_probed": true
+  },
+  "guest_private_output": {
+    "path": "C:/MoliOffline/game-wer-stage128/cdb-stack-record-stage132.txt",
+    "bytes": 8822,
+    "sha256": "89ec7a9c6fce8dbf9232b24536d89268fc4133e39dd33e421cd356eff929b446",
+    "metadata_read_observed": true,
+    "exported_to_host": false
+  },
+  "postflight": {
+    "game_and_cdb_process_count": 0,
+    "guest_clock_minute_observed": "2026-11-02T21:33+08:00",
+    "empty_prompt_observed": true,
+    "new_game_starts": 0,
+    "new_dump_captures": 0,
+    "live_debugger_attachment": false,
+    "pointer_following": false,
+    "code_or_string_read_commands": false,
+    "registry_or_security_changes": false
+  },
+  "limitations": [
+    "Candidate EBP depends on a stack that explicitly warns following frames may be wrong. Several local checks strengthen correspondence but do not prove a reliable full call chain.",
+    "The four pointer values are candidate registration/initialization/entry/cleanup slots based on static sources. Their targets, ownership and contents were not read.",
+    "No loader allocation base or runtime code-byte correspondence was established. Do not label either crash address as belonging to the statically observed mapper.",
+    "No account, credentials, protocol payload, protected code extraction, game consumer or crash root cause was recovered."
+  ],
+  "game_consumer_recovered": false,
+  "root_cause_established": false,
+  "game_protocol_fields_added": false,
+  "full_goal_complete": false
+}

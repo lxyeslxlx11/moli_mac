@@ -1,0 +1,92 @@
+{
+  "schema": "moli.launcher-provenance-v1.rea-archive.v1",
+  "evidence_id": "ev_7f17a440368b0a95fd1b3aaf360c74b11dfe6cac9ddd38b76eaa7eba9bd99e8b",
+  "inventory_evidence_id": "ev_f27ec5f7a83d203d11ec6678cc4d7ea0d94d5346fc4db5744e3fc962e12d60b9",
+  "provider": {
+    "id": "rea-artifact-graph",
+    "name": "REA safe artifact graph provider",
+    "version": "1"
+  },
+  "root_sha256": "4f13d51472ea5edec6e1e502ee7ea8eee0b1db356691781896366892cd41a45d",
+  "coverage": {
+    "status": "complete-within-substeps",
+    "substeps_completed": 1,
+    "observations_retained": 1,
+    "observations_omitted": 0,
+    "hypotheses_retained": 0,
+    "hypotheses_omitted": 0,
+    "unexplored_branches_retained": 0,
+    "unexplored_branches_omitted": 0,
+    "next_probes_retained": 0,
+    "next_probes_omitted": 0
+  },
+  "inventory_manifest": {
+    "manifest_id": "agm_da0e0534ec71f4c274f683e0bb2cb052baa619150d3508d0e22941e95fa8698b",
+    "root_artifact_id": "art_0522f80d2fb7980b075884d8fd02508f56fea65424ae3201d2e677d70fec5c65",
+    "root_sha256": "4f13d51472ea5edec6e1e502ee7ea8eee0b1db356691781896366892cd41a45d",
+    "root_format": "zip",
+    "graph_sha256": "484afac9e5c6a8df9394ee8f87188cad7d1a0ba2ecf83496f76e5e0d36b6a5e6",
+    "node_count": 2,
+    "occurrence_count": 2,
+    "edge_count": 1
+  },
+  "nodes": [
+    {
+      "artifact_id": "art_0522f80d2fb7980b075884d8fd02508f56fea65424ae3201d2e677d70fec5c65",
+      "format": "zip",
+      "sha256": "4f13d51472ea5edec6e1e502ee7ea8eee0b1db356691781896366892cd41a45d",
+      "size": 1682288,
+      "media_type": null,
+      "architecture": null,
+      "content_state": "materialized",
+      "limitations": []
+    },
+    {
+      "artifact_id": "art_9a46dd765cbec282397354cac180d5854e6b96d871bbc72f306cfba3b112151c",
+      "format": "pe",
+      "sha256": "dc90bb88e35a82a649f1c026bd0b7b6e7039ddbe5e872f40ffebfb4b16b0fb11",
+      "size": 2192044,
+      "media_type": null,
+      "architecture": null,
+      "content_state": "embedded",
+      "limitations": []
+    }
+  ],
+  "occurrences": [
+    {
+      "path": ".",
+      "artifact_format": "zip",
+      "entry_kind": "file",
+      "declared_size": 1682288,
+      "hash_status": "verified"
+    },
+    {
+      "path": "POLCN_Setup.exe",
+      "artifact_format": "pe",
+      "entry_kind": "file",
+      "declared_size": 2192044,
+      "hash_status": "verified"
+    }
+  ],
+  "contradictions": [],
+  "limitations": [
+    "Inspection derives bounded static hypotheses and next probes; it does not execute the artifact or claim format-specific semantics.",
+    "ZIP inventory lists central-directory entries only. Non-entry bytes, including an APK Signing Block before the central directory or a ZIP comment after it, are not occurrences."
+  ],
+  "bundle": {
+    "path": "build/analysis/launcher-provenance-v1/rea-archive-evidence.json",
+    "records": 2,
+    "bytes": 10733
+  },
+  "snapshot_attempt": {
+    "saved": false,
+    "error": "evidence_integrity_mismatch: Analysis snapshots require a concrete provider analysis profile",
+    "session_stayed_open_on_failed_save": true
+  },
+  "normal_close": {
+    "called_without_snapshot": true,
+    "result": null,
+    "closed": true
+  },
+  "binary_executed": false
+}

@@ -1,0 +1,149 @@
+{
+  "scope": "Owned loopback source GET burst,16 connections, no official target or resource",
+  "runtime_default_queue": 5,
+  "protocol": "HTTP/1.0",
+  "existing": {
+    "requests": 16,
+    "success": 11,
+    "failures": [
+      {
+        "error_type": "URLError",
+        "error": "<urlopen error [Errno 22] Invalid argument>",
+        "elapsed": 0.011
+      },
+      {
+        "error_type": "URLError",
+        "error": "<urlopen error [Errno 54] Connection reset by peer>",
+        "elapsed": 0.01
+      },
+      {
+        "error_type": "URLError",
+        "error": "<urlopen error [Errno 54] Connection reset by peer>",
+        "elapsed": 0.01
+      },
+      {
+        "error_type": "URLError",
+        "error": "<urlopen error [Errno 54] Connection reset by peer>",
+        "elapsed": 0.01
+      },
+      {
+        "error_type": "ConnectionResetError",
+        "error": "[Errno 54] Connection reset by peer",
+        "elapsed": 0.01
+      }
+    ],
+    "maximum_seconds": 0.016
+  },
+  "comparisons": [
+    {
+      "queue": 5,
+      "requests": 16,
+      "success": 6,
+      "failures": [
+        {
+          "error_type": "URLError",
+          "error": "<urlopen error [Errno 54] Connection reset by peer>",
+          "elapsed": 0.005
+        },
+        {
+          "error_type": "URLError",
+          "error": "<urlopen error [Errno 54] Connection reset by peer>",
+          "elapsed": 0.004
+        },
+        {
+          "error_type": "URLError",
+          "error": "<urlopen error [Errno 54] Connection reset by peer>",
+          "elapsed": 0.004
+        },
+        {
+          "error_type": "URLError",
+          "error": "<urlopen error [Errno 32] Broken pipe>",
+          "elapsed": 0.004
+        },
+        {
+          "error_type": "URLError",
+          "error": "<urlopen error [Errno 54] Connection reset by peer>",
+          "elapsed": 0.003
+        },
+        {
+          "error_type": "URLError",
+          "error": "<urlopen error [Errno 54] Connection reset by peer>",
+          "elapsed": 0.002
+        },
+        {
+          "error_type": "URLError",
+          "error": "<urlopen error [Errno 54] Connection reset by peer>",
+          "elapsed": 0.003
+        },
+        {
+          "error_type": "URLError",
+          "error": "<urlopen error [Errno 54] Connection reset by peer>",
+          "elapsed": 0.002
+        },
+        {
+          "error_type": "URLError",
+          "error": "<urlopen error [Errno 54] Connection reset by peer>",
+          "elapsed": 0.002
+        },
+        {
+          "error_type": "URLError",
+          "error": "<urlopen error [Errno 54] Connection reset by peer>",
+          "elapsed": 0.003
+        }
+      ],
+      "maximum_seconds": 0.008
+    },
+    {
+      "queue": 64,
+      "requests": 16,
+      "success": 16,
+      "failures": [],
+      "maximum_seconds": 0.01
+    }
+  ],
+  "updated_same_port": {
+    "queue": 64,
+    "requests": 16,
+    "success": 16,
+    "failures": [],
+    "maximum_seconds": 0.022
+  },
+  "restart": {
+    "previous_owned_pid": 33293,
+    "old_session": 90397,
+    "old_exit_code": 0,
+    "method": "SIGINT after exactcwd/command verification",
+    "new_session": 20345,
+    "new_listen": "p43671\ncPython\nf4",
+    "host": "127.0.0.1",
+    "port": 4173,
+    "scope": "App server queue only; handler/routes/CSP unchanged"
+  },
+  "route_boundary_checks": [
+    {
+      "path": "/web/launcher.html",
+      "status": 200,
+      "csp_connect_none": true
+    },
+    {
+      "path": "/shared/index.mjs",
+      "status": 200,
+      "csp_connect_none": true
+    },
+    {
+      "path": "/moli/POLCN_Setup.exe",
+      "status": 404,
+      "csp_connect_none": true
+    },
+    {
+      "path": "/analysis/input-manifest.json",
+      "status": 404,
+      "csp_connect_none": true
+    },
+    {
+      "path": "/web/../moli/POLCN_Setup.exe",
+      "status": 404,
+      "csp_connect_none": true
+    }
+  ]
+}

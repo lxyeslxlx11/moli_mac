@@ -1,0 +1,1168 @@
+{
+  "schema": "moli.legacy-local-navigation-contract-stage158.v1",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "tools": {
+    "rea": "6.7.0",
+    "ghidra": "12.1.4",
+    "analysis_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+  },
+  "scope": "Actual fixed37c4 graphic collision metadata, native directional path planner and ordinary local movement/frame/cache/tile-event projection. Full game remains incomplete.",
+  "facts": {
+    "graphics": "452460 reads seven40B GraphicInfo groups, uses recordID+prior group record count, converts source28/29bytes and30LE16 to runtime24/25/26; resourceID36->ordinal table.450100 capacity850000 zero initialized. Four conditional source overrides apply after load.463e60 primitive<20000 identity,20000..65535 +200000; >=65536 unchanged.",
+    "collision": "45f1c0 clips signed-short [x-30,y-20,x+21,y+31] to map.4648f0 mode1 uses plane2 &0x100; otherwise4603a0 uses mapped ground/object classes, mode0 plane2 bit4000 for zero ground, class4/runtimeclass2 overrides walkability, other blockers and northward object footprint, empty-cell and lowbyte1 final overrides.4607c0 blocks outside and only cellvalue1 inside.",
+    "path": "462650 uses source facing helper and candidate offsets0,+1,-1 restricted to initial direction±1, odd-direction corner checks,462520 orthogonal-to-diagonal merge, then x and y fallback. Route contains signed-short endpoint arrays, capacity100. A same-point request clears finalFacing but preserves prior route; outer capacity100 clears route, unsafe fallback overflow rejected independently. Not A*.",
+    "batching": "461b30 takes at most2 pending route steps;462bf0 and462c50 shift queues.461b70 sends lowercase byte+97 with current origin andscene field11 only when partyMode0 orflags100; pure ordinary projection requires explicit no-party context.",
+    "movement": "462110 targets display grid+direction at speed*source0.01f, float32 normalized velocity×4 and source facing;461660 squares frameScale1 velocity, advances orsnaps, updates grid atarrival and idle on followingtick, preserving animation1 phase.4ff5a0 collision rolls display back to prior actor grid but leaves target/scaled position/velocity independent.",
+    "missing_cache": "460820 for full51x51 windows scans 23 raw plane2 words in direction-leading strips atx19/41,y9..31 andy9/31,x19..41; firstzero produces clipped rectangles, atmost2.461e90 sends map requests andsets wait before target is consumed.463ea0 clears wait only after refreshed window is complete.",
+    "events": "461960 examines batch endpoints: lowbyte2 stops before entry(type3); lowbyte3/9/10/11/13 andconditional6/7/8 schedule type1 afterentry.451b60 derives selector from rawsource value;4a31b0 isfixed0.461ac0 decrements onprior arrival andexecutes nexttick.461d00/461e00 reset movement, setguard/sequence andsend004f6530 eventcode/sequence/x/y/direction. UI/audio/fade andresponses remain incomplete.",
+    "turn": "462410 checks idle/existing actor/differentface, native turn/action guards, strict unsigned lastTick+500 < currentTick;uppercase byte+65 is sent through004f6470. Source wrap behavior retained."
+  },
+  "catalog": "analysis/game-legacy-local-movement-v1/navigation-catalog.json",
+  "functions": [
+    {
+      "id": "ev_0267c6ff9efc7d91a9606c36a151b177e557c341501416d31aa5b5722bbc024c",
+      "entry": "0x462c50",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x462c7c",
+            "start": "0x462c50"
+          }
+        ],
+        "span_bytes": 45,
+        "total_bytes": 45
+      },
+      "assembly_rows": 15,
+      "pseudocode_characters": 360,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_0662b34fb7840c8fff7a4f8eb223cbe55fe97a474b5526576eb8a0a1c1bb9d17",
+      "entry": "0x463e40",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x463e59",
+            "start": "0x463e40"
+          }
+        ],
+        "span_bytes": 26,
+        "total_bytes": 26
+      },
+      "assembly_rows": 9,
+      "pseudocode_characters": 178,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_0744b28ede059f4a870a3bf9ca3d1d071fbb46a98f5f4ba0fbedaa2fe2485dee",
+      "entry": "0x4f6530",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4f6603",
+            "start": "0x4f6530"
+          }
+        ],
+        "span_bytes": 212,
+        "total_bytes": 212
+      },
+      "assembly_rows": 66,
+      "pseudocode_characters": 687,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_0954ba88699f3c45ef5e6da55671beba3bdce931adcdc0098277d39246950765",
+      "entry": "0x452460",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4528f0",
+            "start": "0x452460"
+          }
+        ],
+        "span_bytes": 1169,
+        "total_bytes": 1169
+      },
+      "assembly_rows": 324,
+      "pseudocode_characters": 6726,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_0f04a41bc3e4f7d0cabff8676c64765d3a9c74a948e7b3c8beecdc4311c61bad",
+      "entry": "0x4ffc30",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4ffc42",
+            "start": "0x4ffc30"
+          }
+        ],
+        "span_bytes": 19,
+        "total_bytes": 19
+      },
+      "assembly_rows": 5,
+      "pseudocode_characters": 119,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_14e17f759209545ce583994d15abc2717cc4eaf9a118a0bad620ccff240233e6",
+      "entry": "0x4603a0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x460778",
+            "start": "0x4603a0"
+          }
+        ],
+        "span_bytes": 985,
+        "total_bytes": 985
+      },
+      "assembly_rows": 308,
+      "pseudocode_characters": 5994,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_2046007f35917f229943f23e16d59e6fc02050c667033513738c3a16c8c9ba23",
+      "entry": "0x463e20",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x463e3a",
+            "start": "0x463e20"
+          }
+        ],
+        "span_bytes": 27,
+        "total_bytes": 27
+      },
+      "assembly_rows": 7,
+      "pseudocode_characters": 221,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_2bc6fb62b4909c2f1bb066258b036ba8d1234b8d8017ced2eab5602037205d6a",
+      "entry": "0x4a31b0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4a31b2",
+            "start": "0x4a31b0"
+          }
+        ],
+        "span_bytes": 3,
+        "total_bytes": 3
+      },
+      "assembly_rows": 2,
+      "pseudocode_characters": 49,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_2bffcc27ec7b59d708b1cc7c63c5112f04f9084a9827b11dec0180a203224ee0",
+      "entry": "0x461960",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x461ab5",
+            "start": "0x461960"
+          }
+        ],
+        "span_bytes": 342,
+        "total_bytes": 342
+      },
+      "assembly_rows": 100,
+      "pseudocode_characters": 1478,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_2ca2936871ddf4e7febdcf0a6c488d87db63f6a1daf325379630da4ccec76d42",
+      "entry": "0x4034c0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4034cc",
+            "start": "0x4034c0"
+          }
+        ],
+        "span_bytes": 13,
+        "total_bytes": 13
+      },
+      "assembly_rows": 3,
+      "pseudocode_characters": 105,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_326eb97cf04c0a130b4a9459b083fbdb76b3c825034376b84bc137d985f2591a",
+      "entry": "0x460f20",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4610e2",
+            "start": "0x460f20"
+          }
+        ],
+        "span_bytes": 451,
+        "total_bytes": 451
+      },
+      "assembly_rows": 97,
+      "pseudocode_characters": 2086,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_34ed4e21687e50037c731341e8ad735761743779a0a39bde3ce7b4799f499952",
+      "entry": "0x4624e0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x462512",
+            "start": "0x4624e0"
+          }
+        ],
+        "span_bytes": 51,
+        "total_bytes": 51
+      },
+      "assembly_rows": 16,
+      "pseudocode_characters": 155,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_3d8a15c4b722c0597721a67c7ca9a7df3c6b99d35111b8c65c1138a7b54cb829",
+      "entry": "0x463e60",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x463e96",
+            "start": "0x463e60"
+          }
+        ],
+        "span_bytes": 55,
+        "total_bytes": 55
+      },
+      "assembly_rows": 17,
+      "pseudocode_characters": 471,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_3f017f825331fa8cdaa9744fffb3a6df3c58c80970f1c9904dc3086b97ec58b3",
+      "entry": "0x45ffe0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x460178",
+            "start": "0x45ffe0"
+          }
+        ],
+        "span_bytes": 409,
+        "total_bytes": 409
+      },
+      "assembly_rows": 130,
+      "pseudocode_characters": 1534,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_4033c03625a0dae668445bfe888b8f14029569e51566eabebc010474f0943b47",
+      "entry": "0x462410",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4624d9",
+            "start": "0x462410"
+          }
+        ],
+        "span_bytes": 202,
+        "total_bytes": 202
+      },
+      "assembly_rows": 55,
+      "pseudocode_characters": 778,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_4a0f1e190c3de1333888769c36a5dafb882914f4cc58b84a32fbc327c7e54fdb",
+      "entry": "0x450100",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x45024b",
+            "start": "0x450100"
+          }
+        ],
+        "span_bytes": 332,
+        "total_bytes": 332
+      },
+      "assembly_rows": 97,
+      "pseudocode_characters": 1948,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_4c45021861bbc854befa0fc93855a487deab95d83e823f1b7b5905ea5efd1164",
+      "entry": "0x403440",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x40344b",
+            "start": "0x403440"
+          }
+        ],
+        "span_bytes": 12,
+        "total_bytes": 12
+      },
+      "assembly_rows": 3,
+      "pseudocode_characters": 105,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_4e70cc6c1dcad7cf7127bd01a8c3260c9dd4c0204bf63e302ac5d2d50e8b3205",
+      "entry": "0x461500",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x461541",
+            "start": "0x461500"
+          }
+        ],
+        "span_bytes": 66,
+        "total_bytes": 66
+      },
+      "assembly_rows": 20,
+      "pseudocode_characters": 323,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_50be71eef4c6bed219f9de4fbaf9fba94e67b6ae14517257a33b7c6b1ae2c5c6",
+      "entry": "0x461e90",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x461f3d",
+            "start": "0x461e90"
+          }
+        ],
+        "span_bytes": 174,
+        "total_bytes": 174
+      },
+      "assembly_rows": 44,
+      "pseudocode_characters": 788,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_50f3884c8d09017f52786110aa0113df2134ff9794fcaa50fc528ba909d403f5",
+      "entry": "0x461c60",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x461cf6",
+            "start": "0x461c60"
+          }
+        ],
+        "span_bytes": 151,
+        "total_bytes": 151
+      },
+      "assembly_rows": 47,
+      "pseudocode_characters": 916,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_5f2b9accf48ba2d553b6663d2c45f9541592bf54f883d71358036134b2bf255b",
+      "entry": "0x461550",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x46165c",
+            "start": "0x461550"
+          }
+        ],
+        "span_bytes": 269,
+        "total_bytes": 269
+      },
+      "assembly_rows": 75,
+      "pseudocode_characters": 1214,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_60f7995c45d064044231055ef661f9304849ec291996b9f31b024f0c8cd1f88c",
+      "entry": "0x4f6710",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4f677a",
+            "start": "0x4f6710"
+          }
+        ],
+        "span_bytes": 107,
+        "total_bytes": 107
+      },
+      "assembly_rows": 33,
+      "pseudocode_characters": 366,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_659f2abd601f01f94779a8a633d247ee763f2158a725c8c4265383f0ad570250",
+      "entry": "0x451b60",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x451b95",
+            "start": "0x451b60"
+          }
+        ],
+        "span_bytes": 54,
+        "total_bytes": 54
+      },
+      "assembly_rows": 21,
+      "pseudocode_characters": 254,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_684e230725b9b8b3f1732c4b464e01a422177c7d62c739a068e9f7c81d91b8d6",
+      "entry": "0x461ac0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x461b2c",
+            "start": "0x461ac0"
+          }
+        ],
+        "span_bytes": 109,
+        "total_bytes": 109
+      },
+      "assembly_rows": 28,
+      "pseudocode_characters": 513,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_68a2bd7e404fa8c5ed0e1f11b7ea7dd3a63a459c408d7fa636df2c4db9a55cd8",
+      "entry": "0x452f40",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x452f80",
+            "start": "0x452f40"
+          }
+        ],
+        "span_bytes": 65,
+        "total_bytes": 65
+      },
+      "assembly_rows": 20,
+      "pseudocode_characters": 211,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_6f05e038be570d6ed147f97735e4a734875491bfa50e683e3190eed1acc593e0",
+      "entry": "0x461d00",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x461db2",
+            "start": "0x461d00"
+          }
+        ],
+        "span_bytes": 179,
+        "total_bytes": 179
+      },
+      "assembly_rows": 41,
+      "pseudocode_characters": 631,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_7b3699d769ffb53309103caad30b6e1addc6815339dcd28b8704cb59285f152d",
+      "entry": "0x462520",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x46264f",
+            "start": "0x462520"
+          }
+        ],
+        "span_bytes": 304,
+        "total_bytes": 304
+      },
+      "assembly_rows": 98,
+      "pseudocode_characters": 1314,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_7f95e5c098cbee94d1169bc9607ab923cfc44a9a975338d2938c476d7864908b",
+      "entry": "0x4035c0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4035d1",
+            "start": "0x4035c0"
+          }
+        ],
+        "span_bytes": 18,
+        "total_bytes": 18
+      },
+      "assembly_rows": 6,
+      "pseudocode_characters": 111,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_81128217848264a05778ee2447d55201be8888f31e7165d0ccca870b51d6f7b1",
+      "entry": "0x4ffc70",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4ffc81",
+            "start": "0x4ffc70"
+          }
+        ],
+        "span_bytes": 18,
+        "total_bytes": 18
+      },
+      "assembly_rows": 6,
+      "pseudocode_characters": 123,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_86d42fce6d57915742235a600d53d71eec6ecc89ed999859c3109f43bd93df1c",
+      "entry": "0x461bf0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x461c5f",
+            "start": "0x461bf0"
+          }
+        ],
+        "span_bytes": 112,
+        "total_bytes": 112
+      },
+      "assembly_rows": 26,
+      "pseudocode_characters": 497,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_8aae1d8bb3594531447d614f7efae2dbd647e436fe4ea910c93dc5b010b4cc08",
+      "entry": "0x452ee0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x452f31",
+            "start": "0x452ee0"
+          }
+        ],
+        "span_bytes": 82,
+        "total_bytes": 82
+      },
+      "assembly_rows": 21,
+      "pseudocode_characters": 315,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_92470e1845938d278d605679805b3353d599769733fe702506e803d2dfca9d10",
+      "entry": "0x462110",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4622cb",
+            "start": "0x462110"
+          }
+        ],
+        "span_bytes": 444,
+        "total_bytes": 444
+      },
+      "assembly_rows": 119,
+      "pseudocode_characters": 1441,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_924dbd26889ff4b167f3dd67d22b1ffcf9aeb5dfbc35f3e0d6602a4610a92528",
+      "entry": "0x4648f0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4649a1",
+            "start": "0x4648f0"
+          }
+        ],
+        "span_bytes": 178,
+        "total_bytes": 178
+      },
+      "assembly_rows": 73,
+      "pseudocode_characters": 1301,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_9855376bba637660cb9af7243167a9288cd5859db71bd99f4d9c41f241e998bc",
+      "entry": "0x462bf0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x462c43",
+            "start": "0x462bf0"
+          }
+        ],
+        "span_bytes": 84,
+        "total_bytes": 84
+      },
+      "assembly_rows": 19,
+      "pseudocode_characters": 451,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_992ec6bed1e6c9b8f5c9d48e536d6a88c4a7ad09019a1168996b800808dc8125",
+      "entry": "0x403370",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x40337e",
+            "start": "0x403370"
+          }
+        ],
+        "span_bytes": 15,
+        "total_bytes": 15
+      },
+      "assembly_rows": 4,
+      "pseudocode_characters": 106,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_9bd9c15f0373eb199f9119bfc1aac5aba4bae06a7fa3b2e05c6a351922e5a465",
+      "entry": "0x4ffc50",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4ffc62",
+            "start": "0x4ffc50"
+          }
+        ],
+        "span_bytes": 19,
+        "total_bytes": 19
+      },
+      "assembly_rows": 5,
+      "pseudocode_characters": 119,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_a0f4be273776d4b0d3a7361da143b3a6966af31beca290b7651dffc3414a3eaf",
+      "entry": "0x45f170",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x45f1b5",
+            "start": "0x45f170"
+          }
+        ],
+        "span_bytes": 70,
+        "total_bytes": 70
+      },
+      "assembly_rows": 17,
+      "pseudocode_characters": 381,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_a3b719d7d72eacf804674ab655a53ce3b09ab814d05c5ea5d06d8ba6e216846d",
+      "entry": "0x403490",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x40349b",
+            "start": "0x403490"
+          }
+        ],
+        "span_bytes": 12,
+        "total_bytes": 12
+      },
+      "assembly_rows": 3,
+      "pseudocode_characters": 105,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_a505359a7a831e7c4daef5a83a9c3a718c53d3b5c8d2042fe248209a7460c5b3",
+      "entry": "0x460820",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x460c36",
+            "start": "0x460820"
+          }
+        ],
+        "span_bytes": 1047,
+        "total_bytes": 1047
+      },
+      "assembly_rows": 318,
+      "pseudocode_characters": 4330,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_a6bce69be30d8152767c33a9168c99c0f3bed39d1baefc8463da7da0e41cde54",
+      "entry": "0x45f250",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x45f296",
+            "start": "0x45f250"
+          }
+        ],
+        "span_bytes": 71,
+        "total_bytes": 71
+      },
+      "assembly_rows": 21,
+      "pseudocode_characters": 330,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_a88cf7e87214c267e340b3c28ff1f3b40c3ffa6dae8698690d6d49592bc96a76",
+      "entry": "0x461dc0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x461df3",
+            "start": "0x461dc0"
+          }
+        ],
+        "span_bytes": 52,
+        "total_bytes": 52
+      },
+      "assembly_rows": 13,
+      "pseudocode_characters": 189,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_b92ecdabd5b2475a62943f5e15af7fb0b347fac7ce3bb797f3b00bb13ba4013d",
+      "entry": "0x461b30",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x461b69",
+            "start": "0x461b30"
+          }
+        ],
+        "span_bytes": 58,
+        "total_bytes": 58
+      },
+      "assembly_rows": 16,
+      "pseudocode_characters": 315,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_c4f2e3ee2319ea0ef10f0a68bece19e8d4a440e53f697e4baaa38cfb054b4dd2",
+      "entry": "0x463ea0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4648e4",
+            "start": "0x463ea0"
+          }
+        ],
+        "span_bytes": 2629,
+        "total_bytes": 2629
+      },
+      "assembly_rows": 699,
+      "pseudocode_characters": 10916,
+      "value_flow_truncated": true
+    },
+    {
+      "id": "ev_c504822edccff1a14f556121d596213edb4b92fc3736108f7bf793b5001b08d0",
+      "entry": "0x4607c0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x460813",
+            "start": "0x4607c0"
+          }
+        ],
+        "span_bytes": 84,
+        "total_bytes": 84
+      },
+      "assembly_rows": 26,
+      "pseudocode_characters": 329,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_d0d8c5b96bd561700f2e5df001d3962061a1cbe040f2d7008073d0af7e4c4567",
+      "entry": "0x463e00",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x463e15",
+            "start": "0x463e00"
+          }
+        ],
+        "span_bytes": 22,
+        "total_bytes": 22
+      },
+      "assembly_rows": 6,
+      "pseudocode_characters": 119,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_d6736df8cd9004ddb16b82a67879c2f0d1099e0164afa5fcb02a46b95c5b25e1",
+      "entry": "0x461660",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x46189d",
+            "start": "0x461660"
+          }
+        ],
+        "span_bytes": 574,
+        "total_bytes": 574
+      },
+      "assembly_rows": 136,
+      "pseudocode_characters": 2092,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_d8b486a55b4a5644ced753b607240ccd4a5978f04d62bbed44c0f8ba4479301e",
+      "entry": "0x403330",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x40333e",
+            "start": "0x403330"
+          }
+        ],
+        "span_bytes": 15,
+        "total_bytes": 15
+      },
+      "assembly_rows": 4,
+      "pseudocode_characters": 107,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_d9f572649508e5c6660b6bf8109c1cd924bb4da2bdb7cc2f19e8fbb943870169",
+      "entry": "0x461e00",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x461e83",
+            "start": "0x461e00"
+          }
+        ],
+        "span_bytes": 132,
+        "total_bytes": 132
+      },
+      "assembly_rows": 32,
+      "pseudocode_characters": 497,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_e0eb1f79d4adf1e3ef8a9928f4e35ccecb8166cc540754fe071e4a98c9f1bf96",
+      "entry": "0x403430",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x40343e",
+            "start": "0x403430"
+          }
+        ],
+        "span_bytes": 15,
+        "total_bytes": 15
+      },
+      "assembly_rows": 4,
+      "pseudocode_characters": 107,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_f039551d8226184e4ffce47e023e899b7a586ad06c6e9b24b08df6a708d86a31",
+      "entry": "0x452fe0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x452ff8",
+            "start": "0x452fe0"
+          }
+        ],
+        "span_bytes": 25,
+        "total_bytes": 25
+      },
+      "assembly_rows": 7,
+      "pseudocode_characters": 134,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_f264f374288a6c402d0d35cda0c6279a0b92f21f8edc868db35a5b2b7986a2cf",
+      "entry": "0x4618a0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4618e6",
+            "start": "0x4618a0"
+          }
+        ],
+        "span_bytes": 71,
+        "total_bytes": 71
+      },
+      "assembly_rows": 22,
+      "pseudocode_characters": 417,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_f45f32c99ad4e251f624e7a345216a0e6a912a50336adcfd0e79e02cca164672",
+      "entry": "0x462650",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x462bed",
+            "start": "0x462650"
+          }
+        ],
+        "span_bytes": 1438,
+        "total_bytes": 1438
+      },
+      "assembly_rows": 436,
+      "pseudocode_characters": 6307,
+      "value_flow_truncated": false
+    }
+  ],
+  "independent_policy": {
+    "input": "Owned typed bytes, no DOM/Node/network/timer/filesystem. 40B whole graphics records andsource850000 capacity/7groups; reject source unsafe record/resource index domains, no stale fread/EOF duplicate emulation.",
+    "coordinates": "Native path stores signed shorts: bound modeled coordinates andwindow endpoints to signed16 nonoverflow domain. MAP budgets unchanged; collision windows<=2601 cells. Source path fallback beyond100 rejected before committing state.",
+    "context": "Require explicit source input/movement/coordination/turn/action gates, party mode/flags, event selector value, interaction sequence, arrival countdown andlast turn tick. Ordinary movement supports no-party andnonpositive arrival-countdown only; full native gates are not inferred from wire/authentication.",
+    "world": "World opt-in navigation context/optional graphic catalog, own known actor/speed/cache/position needed. Plans andlocal frame effects use actual current cache/state; expose request descriptors through existing encoder. Reentrant/closed/error cleanup owned. Raw protocol remains catalog mode.",
+    "gaps": "No native wrapped-storage recreation, x87 bit identity, party/ride/follower/attachment renderer/UI lifecycle or authenticated/current/platform acceptance."
+  },
+  "api": {
+    "graphics": [
+      "LEGACY_GAME_GRAPHIC_PROFILE",
+      "LegacyGameGraphicError",
+      "resolveLegacyGameMapGraphic",
+      "createLegacyGameGraphicCatalog"
+    ],
+    "navigation": [
+      "LEGACY_GAME_NAVIGATION_PROFILE",
+      "LegacyGameNavigationError",
+      "createLegacyGameCollisionGrid",
+      "createLegacyGameCollisionGridFromRectangle",
+      "legacyGameCollisionWindow",
+      "planLegacyGamePath",
+      "findLegacyGameMissingMapRectangles",
+      "classifyLegacyGameTileEventContext"
+    ],
+    "local": [
+      "LEGACY_GAME_LOCAL_MOVEMENT_PROFILE",
+      "LegacyGameLocalMovementError",
+      "createLegacyGameLocalMovement"
+    ],
+    "world": [
+      "configureLocalMovement(graphics,sourceContext)",
+      "requestLocalDestination(destination)",
+      "advanceLocalMovement(tick)",
+      "copyGameState().localMovement"
+    ],
+    "map": [
+      "readRectangle(coordinates)"
+    ],
+    "actor_motion": [
+      "synchronizePosition(position,display,target,velocity,moving)",
+      "source local-motion bridge"
+    ]
+  },
+  "unknown": [
+    "Actual host input/scene/UI gate bindings, source selector andcounter response lifecycle",
+    "Full party/ride/follower/attachments andarrival-countdown effects",
+    "Renderer/animation/palette/resources andremaining gameplay/battle/auth/control",
+    "Actual device/platform/native x87/frame timing, current version andofficial playable acceptance"
+  ]
+}

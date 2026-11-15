@@ -1,0 +1,47 @@
+{
+  "schema": "moli.installed-file-comparison-plan.v1",
+  "recorded_utc": "2026-10-30T03:01:25.901661+00:00",
+  "purpose": "Compare actual normally installed files after installer completion to retained fixed source; missing optional source entries are not invented.",
+  "selected_expected_files": [
+    {
+      "relative_path": "cg_se_3000.exe",
+      "bytes": 2904064,
+      "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126"
+    },
+    {
+      "relative_path": "CG5Reg.exe",
+      "bytes": 13824,
+      "sha256": "c3baedb2f82a2da785e8d27e5d49560175f09f5a38319edb935995b8e7e228a9"
+    },
+    {
+      "relative_path": "Patcher.exe",
+      "present_in_retained_app_root": false
+    },
+    {
+      "relative_path": "MFC71.dll",
+      "bytes": 1060864,
+      "sha256": "a08ab5280687d699ccd307196e72847b23d0a475744ef7c73654defee0fb2cf2"
+    },
+    {
+      "relative_path": "msvcr71.dll",
+      "bytes": 348160,
+      "sha256": "c4d4339df314a27ff75a38967b7569d9962337b8d4cd4b0db3aba5ff72b2bfbb"
+    },
+    {
+      "relative_path": "msvcp71.dll",
+      "present_in_retained_app_root": false
+    }
+  ],
+  "selected_installer_destination_observed": "C:/Program Files (x86)/PlayOnline/魔力宝贝",
+  "installer_required_space_display": "2.46GB",
+  "start_menu_observed": "易玩通/魔力宝贝",
+  "checks_after_install": [
+    "Deselect any postinstall automatic program launch before Finish.",
+    "Capture the original Process handle6368 lifecycle result, preserving any unavailable ExitCode as unavailable.",
+    "Read actual game Path registry value in explicit32/64 views before using it.",
+    "Read actual directory and selected file lengths/full hashes; changed identity requires new static evidence/profile."
+  ],
+  "not_acceptance": [
+    "Installer success is not game execution, protocol consumer, playable platform or official interoperability proof."
+  ]
+}

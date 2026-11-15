@@ -1,0 +1,3321 @@
+{
+  "schema": "moli.game-presentation-functional-specification.v1",
+  "classification": "paired original G06/G07 operation composition;source gaps separated from implementation andexternalacceptance",
+  "requirement": "REA all required capabilities to implementation-depth specification before grouped development;review original G06/G07 together,reuse current correct modules andprior evidence.",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "original_capabilities": {
+    "G06": {
+      "id": "G06",
+      "title": "图像、地图物件、动画与调色板",
+      "requirement_scope": "资源版本/文件家族、RD/CUT/AUT、动画、颜色/透明/加色、水面",
+      "existing_implementation_owners": [
+        "shared/legacy-game-resource-library.mjs",
+        "shared/legacy-game-animation.mjs",
+        "shared/legacy-game-render.mjs"
+      ],
+      "dependencies": [
+        "X01",
+        "X03"
+      ],
+      "implementation_batch": "D0",
+      "source_profiles": [
+        "game-legacy-37c4"
+      ],
+      "registered_protocol_entries": [
+        "GAME-LEGACY-INDEXED-RENDER-001",
+        "GAME-LEGACY-ANIMATION-001",
+        "GAME-LEGACY-SCENE-FRAME-001",
+        "GAME-LEGACY-RESOURCE-RUNTIME-001"
+      ]
+    },
+    "G07": {
+      "id": "G07",
+      "title": "字体、文字、HUD与小地图",
+      "requirement_scope": "字符编码、文本布局、姓名/值条/提示、地图投影",
+      "existing_implementation_owners": [
+        "shared/legacy-game-text-render.mjs",
+        "shared/legacy-game-vitals.mjs",
+        "shared/legacy-game-minimap.mjs"
+      ],
+      "dependencies": [
+        "G05",
+        "G06"
+      ],
+      "implementation_batch": "D2",
+      "source_profiles": [
+        "game-legacy-37c4"
+      ],
+      "registered_protocol_entries": []
+    }
+  },
+  "original_snapshots": {
+    "G06": {
+      "file": {
+        "path": "build/analysis/game-presentation-functional-specification-v1/before/analysis/capability-first-v1/capability-matrix.json",
+        "bytes": 900935,
+        "sha256": "9e8832aa40af2cadd4e9269939fdb60215c09a2195935845005b49c92f15d88a"
+      },
+      "pointer": "/capabilities/13"
+    },
+    "G07": {
+      "file": {
+        "path": "build/analysis/game-presentation-functional-specification-v1/before/analysis/capability-first-v1/capability-matrix.json",
+        "bytes": 900935,
+        "sha256": "9e8832aa40af2cadd4e9269939fdb60215c09a2195935845005b49c92f15d88a"
+      },
+      "pointer": "/capabilities/14"
+    }
+  },
+  "source_authentication": {
+    "path": "build/analysis/game-presentation-functional-specification-v1/source-authentication.json",
+    "bytes": 239917,
+    "sha256": "11398c2309eb3cf008161bbd327bb0ac278112f0024bddc67c12298e6e8f5765"
+  },
+  "source_supplement": {
+    "path": "build/analysis/game-presentation-functional-specification-v1/source-supplement.json",
+    "bytes": 2385,
+    "sha256": "a607973ef4c24255a5021fba565b86e1d3753ae8d1b5b3fa9501c3e888a96557"
+  },
+  "scratch_review": {
+    "path": "build/analysis/game-presentation-functional-specification-v1/scratch-review.json",
+    "bytes": 7531,
+    "sha256": "6a065d2a9503169c8ba1dfb0ad2b67432410ec7aa6a412eb7997ffa8bf114b46"
+  },
+  "focused_probe": {
+    "path": "build/analysis/game-presentation-functional-specification-v1/focused-probe.json",
+    "bytes": 2439,
+    "sha256": "c8c2598baf228925ebc9024ee7daf77b63f90de7b0dd1cfe4e795af0fe2968e3"
+  },
+  "retained_rule_nodes": [
+    {
+      "file": {
+        "path": "analysis/game-resource-runtime-v1/implementation-spec.json",
+        "bytes": 7708,
+        "sha256": "4626ef19e36bc72286a035b040d791e0bad43b8a499985eeb90d6b71d11912a4"
+      },
+      "pointer": "/implementation",
+      "canonical_sha256": "29f497dc3ccdf781f0c58489f78361f33ec1cb823e6682965381270b4f658ebe"
+    },
+    {
+      "file": {
+        "path": "analysis/game-resource-runtime-v1/implementation-spec.json",
+        "bytes": 7708,
+        "sha256": "4626ef19e36bc72286a035b040d791e0bad43b8a499985eeb90d6b71d11912a4"
+      },
+      "pointer": "/normal_resource_pipeline",
+      "canonical_sha256": "609f5b352be2218eea7788754bc994638efd178c283241badef43e47875653bf"
+    },
+    {
+      "file": {
+        "path": "analysis/game-legacy-render-v1/implementation-spec.json",
+        "bytes": 23449,
+        "sha256": "6a71a3240c4f6fa94a9c5f79084745d8ee1eb77979defcae02255a11d5ed5838"
+      },
+      "pointer": "/implementation",
+      "canonical_sha256": "2b4826b80e4a0d1601983ab98a16ac0f90138ff9fac00f3881bd223fdf0a5c98"
+    },
+    {
+      "file": {
+        "path": "analysis/game-legacy-render-v1/implementation-spec.json",
+        "bytes": 23449,
+        "sha256": "6a71a3240c4f6fa94a9c5f79084745d8ee1eb77979defcae02255a11d5ed5838"
+      },
+      "pointer": "/independent_limits",
+      "canonical_sha256": "9eb111ef1f38fcd5adf35396d282a3fd13a0ebee9d43f5d9d59fae567c835522"
+    },
+    {
+      "file": {
+        "path": "analysis/game-legacy-render-v1/implementation-spec.json",
+        "bytes": 23449,
+        "sha256": "6a71a3240c4f6fa94a9c5f79084745d8ee1eb77979defcae02255a11d5ed5838"
+      },
+      "pointer": "/supported_render_domain",
+      "canonical_sha256": "1210363beb9f70641c2dae4bc9c0507750933495dfc3b94f4818aea5a848a082"
+    },
+    {
+      "file": {
+        "path": "analysis/game-legacy-animation-v1/implementation-spec.json",
+        "bytes": 13857,
+        "sha256": "65d1b6f016959d1616359eceef2282fb2ce2eea4acb678ad52d1aa7e6dc7c722"
+      },
+      "pointer": "/implementation",
+      "canonical_sha256": "91a492c3ffe7fb2684c653e5ffc443d499553122a2246c399f93bbbca8531adc"
+    },
+    {
+      "file": {
+        "path": "analysis/game-legacy-scene-frame-v1/implementation-spec.json",
+        "bytes": 12526,
+        "sha256": "15804f80841d066309406da39b9a8238e93d8d9adbbe3af87fce8f3e6706a216"
+      },
+      "pointer": "/implementation",
+      "canonical_sha256": "dea2b5d0b26c6183d2cb25b464b0b30ce779361ea0d0c69f91767c7eefe714b6"
+    },
+    {
+      "file": {
+        "path": "analysis/game-animation-palette-source-v1/implementation-spec.json",
+        "bytes": 2229,
+        "sha256": "82469f10431767c7820e6fa519c6e335992163d0c284b9df301a80e895b13856"
+      },
+      "pointer": "/semantics",
+      "canonical_sha256": "1b75bf93383061bfd369ff85849229c43e56460f9c9e99ee97f9c5d3dbb6e41e"
+    },
+    {
+      "file": {
+        "path": "analysis/game-animation-palette-source-v1/implementation-spec.json",
+        "bytes": 2229,
+        "sha256": "82469f10431767c7820e6fa519c6e335992163d0c284b9df301a80e895b13856"
+      },
+      "pointer": "/ownership",
+      "canonical_sha256": "435bd05b116479eab99becc4bf0c335e27de87b7266197c11e9fa00fdbc0f78a"
+    },
+    {
+      "file": {
+        "path": "analysis/game-additive-render-v1/implementation-spec.json",
+        "bytes": 2483,
+        "sha256": "4630d9f39831d774f447d9e9b7d01e7b13bcbcaba4dd958cf0470fff64a0c143"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "4a4a7c1e4d78fb7d677a39f528ad78cac211885b2de9c10fbce821857fe34dff"
+    },
+    {
+      "file": {
+        "path": "analysis/game-vertex-color-v1/implementation-spec.json",
+        "bytes": 2855,
+        "sha256": "e552f1e7940cc2c72b12f64eb19c886c81fac66588cb7cd565f367455e47c50e"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "df3e6debde5b380a30f89732aa207a1fbb985cb89c786485cecda62bb178ee2c"
+    },
+    {
+      "file": {
+        "path": "analysis/game-battle-draw-style-v1/implementation-spec.json",
+        "bytes": 3270,
+        "sha256": "223212b0fec13a89f7018356f382d5bc8261425030a7568962d1d20736b8f665"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "7211d8dc2238be1ba21b3ad946c207851a91b196ee30f8f344b5a9788886c149"
+    },
+    {
+      "file": {
+        "path": "analysis/game-battle-draw-style-v1/implementation-spec.json",
+        "bytes": 3270,
+        "sha256": "223212b0fec13a89f7018356f382d5bc8261425030a7568962d1d20736b8f665"
+      },
+      "pointer": "/implementation",
+      "canonical_sha256": "61bf836905a0e123acab7d142cf070e99af948b94f45a9b7f55fbd791e99c16c"
+    },
+    {
+      "file": {
+        "path": "analysis/game-special-graphics-v1/implementation-spec.json",
+        "bytes": 3053,
+        "sha256": "e9bf56bdc8b4d12225533c35baff9074650d1d2d5302500e0474d2a755f1709e"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "0a7caf515280b8786426e5c21e1437b789f2ca9989a3b85910713fdba7a46415"
+    },
+    {
+      "file": {
+        "path": "analysis/game-special-graphics-v1/implementation-spec.json",
+        "bytes": 3053,
+        "sha256": "e9bf56bdc8b4d12225533c35baff9074650d1d2d5302500e0474d2a755f1709e"
+      },
+      "pointer": "/implementation",
+      "canonical_sha256": "4751ea02d986b214c075879275197bcb846280a45dd1197f30f4f77969641946"
+    },
+    {
+      "file": {
+        "path": "analysis/game-battle-water-v1/implementation-spec.json",
+        "bytes": 2431,
+        "sha256": "b828ce0bc5ca2ec560132d90772348e9c7a992e3080530a58ecbf31470c4982d"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "7de7e092616bf2147ff18ef478d0f5c7035536fc4c45178c49555a80bd1ec456"
+    },
+    {
+      "file": {
+        "path": "analysis/game-city-water-v1/implementation-spec.json",
+        "bytes": 3080,
+        "sha256": "ed320284a16e320f5d38d468b20fffac0bdbb527549c93a20d49b745d4a93e00"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "f6ec8dab2dc0d25af97a943dd5c2e46dfbd1ecc74eebb9e814ac453194becb1e"
+    },
+    {
+      "file": {
+        "path": "analysis/game-actor-text-v1/implementation-spec.json",
+        "bytes": 5230,
+        "sha256": "5d66f09c978e0fecefbe79418d0cded6257091dfcc5217eaa17d14b43e2395b5"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "bb463ad13fe1f13b8dd3db36e072680ac5f38990123a3d5a8777e61f9bfb38ff"
+    },
+    {
+      "file": {
+        "path": "analysis/game-actor-vitals-v1/implementation-spec.json",
+        "bytes": 3361,
+        "sha256": "140b4130aaaf5b5d877cd33dcb29b01cb205ce8d682e52e445c404649ac6c99b"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "c31292c4f2ab9babd18cda3ee4d4adf30bc6f1bf9b5f022bc3b694755b9d4453"
+    },
+    {
+      "file": {
+        "path": "analysis/game-legacy-minimap-v1/implementation-spec.json",
+        "bytes": 4372,
+        "sha256": "f7ddfd26c9f67f32a972ece7afc64be9b4ad178e38be4afc7596f20551e33188"
+      },
+      "pointer": "/implementation",
+      "canonical_sha256": "5f25954ae2ca76413d31e568883e25e0e6adb87344837081db2119ece73fe370"
+    },
+    {
+      "file": {
+        "path": "analysis/game-legacy-minimap-v1/implementation-spec.json",
+        "bytes": 4372,
+        "sha256": "f7ddfd26c9f67f32a972ece7afc64be9b4ad178e38be4afc7596f20551e33188"
+      },
+      "pointer": "/ownership",
+      "canonical_sha256": "dd9f395088c36758ed2a013207ca686d3f333f6efbd3605497e6342f02e07c9f"
+    },
+    {
+      "file": {
+        "path": "build/analysis/resource-capability-unification-v1/specification.json",
+        "bytes": 103990,
+        "sha256": "18d3fe8d246a7acdc013e52e417a81ce1a8aae26919caba85430cf06ec503b47"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "d3747ec7bd953d96a24806d5db02bc3827fefa3d97c47944c0b81387cf936148"
+    },
+    {
+      "file": {
+        "path": "build/analysis/resource-cache-geometry-v1/specification.json",
+        "bytes": 31678,
+        "sha256": "f972a692525e7b2b56fa5b54798ce895be7e6c0707b6df9664dad0a3d58e4606"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "0ab494139f8db8a7c4dda9b10b7f4e39fb376f0af659ea7bc44a7b3b0fae06fb"
+    },
+    {
+      "file": {
+        "path": "build/analysis/game-effect-consumers-v1/specification.json",
+        "bytes": 74844,
+        "sha256": "f2edfbec0c35366aae26ed8c7c6aeea6a62c54545e32c89ccad5d75350440b99"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "b2863843d3e830e69238b7111cc55609fbd00b53c68dd0689a9d3f0683140258"
+    },
+    {
+      "file": {
+        "path": "build/analysis/game-effect-consumers-v1/specification.json",
+        "bytes": 74844,
+        "sha256": "f2edfbec0c35366aae26ed8c7c6aeea6a62c54545e32c89ccad5d75350440b99"
+      },
+      "pointer": "/implementation_deltas",
+      "canonical_sha256": "39aa16ae19b047f11fe4ff2b67e6e331565eab91bf23c85a50c80523edc22508"
+    },
+    {
+      "file": {
+        "path": "build/analysis/game-effect-consumers-v1/specification.json",
+        "bytes": 74844,
+        "sha256": "f2edfbec0c35366aae26ed8c7c6aeea6a62c54545e32c89ccad5d75350440b99"
+      },
+      "pointer": "/timer_rules",
+      "canonical_sha256": "92f88d063fccfd0a68eab2f4d80c83921238ac5a1258b7a99e2f5c07032f25df"
+    },
+    {
+      "file": {
+        "path": "build/analysis/particle-lifecycle-contract-v1/specification.json",
+        "bytes": 67072,
+        "sha256": "2f69d795e3484b0927393d7a41c0225eb48d25259386db78cc8a45963b708417"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "d17b4dbebf098b75c53cfcb699764153ab2cbd6178aa92fb02b408b91df688c0"
+    },
+    {
+      "file": {
+        "path": "build/analysis/particle-lifecycle-contract-v1/specification.json",
+        "bytes": 67072,
+        "sha256": "2f69d795e3484b0927393d7a41c0225eb48d25259386db78cc8a45963b708417"
+      },
+      "pointer": "/implementation_deltas",
+      "canonical_sha256": "88b09d0f5d52c31e4d2f5ea6038ef9823c8a4a1f0c4bc5aad45fd236d2325a14"
+    },
+    {
+      "file": {
+        "path": "analysis/capability-first-v1/game-text-editing-contract.json",
+        "bytes": 17738,
+        "sha256": "522d2e63678bae67e3bc51ab2f5a8627613cad6f91d4f170afbb3ede852aface"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "aa1581498fc9f7b0558aa2ca08118ae73ceab0dc7e037906cb0e3b290de0966a"
+    },
+    {
+      "file": {
+        "path": "analysis/capability-first-v1/game-graphics-lifetime-contract.json",
+        "bytes": 17199,
+        "sha256": "8d8e099945d3f6ef08e01e65b9990ef7649cabd7044077f68a54830c12ea506c"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "728bcd76bed0b12374e078724768f16e96b521066ab0ab0e46fc25a2c3731ed6"
+    },
+    {
+      "file": {
+        "path": "analysis/capability-first-v1/game-actor-functional-specification.json",
+        "bytes": 71391,
+        "sha256": "e620c576ec34ca60b2c435eb6546c7d8f6ff28a0ec2761ff7fc1e8e4f44d8d22"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "3fe57880b4a7934932602d09c386d3fee90080cb67489c6cd44b9930cfa827c7"
+    },
+    {
+      "file": {
+        "path": "analysis/game-legacy-minimap-v1/source-check.json",
+        "bytes": 11515,
+        "sha256": "422a2dcfc6ce6c5cd74bf5036f8f27e27be49c17a1f9ed94a310f88cb519272c"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "97ecfeef08cd88663687f272f1edc36d6d8047c3305cc4d0411922aeee437019"
+    },
+    {
+      "file": {
+        "path": "analysis/game-legacy-resource-archive-v1/implementation-spec.json",
+        "bytes": 4771,
+        "sha256": "6d9536df4f312154fcfd5cbf7fa9a0e997df21344a04bed2a3eebf6fd9bd2445"
+      },
+      "pointer": "/format",
+      "canonical_sha256": "f3f0a1ff2e165a9a967f3a5eb3fac3ff0b5de0c65989de0be83aafb7233b729f"
+    },
+    {
+      "file": {
+        "path": "analysis/game-legacy-material-compat-v1/implementation-spec.json",
+        "bytes": 3050,
+        "sha256": "42ee5595b33f1b32d58feef8a55cc2c6c95781440d54550ca70b0a697abeddad"
+      },
+      "pointer": "/selection",
+      "canonical_sha256": "31d8195b5d1f8cc81bdb41a307a3981a5ce0b97f37fc67c68c30ab845386e5dd"
+    },
+    {
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports",
+      "canonical_sha256": "def2725fb4d7a7417b598afc0f7b0bb4bc377a01225fbb571d9786ed836741f9"
+    }
+  ],
+  "normative_rule_precedence": "Retained exact tables/order/bounds remain normative;the selected supersession below updates old gaps only. No derived view is promoted to canonical native Evidence.",
+  "facts": [
+    {
+      "id": "PR-F01",
+      "title": "Resource families and version identity",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x45cfd0",
+        "0x44eba0",
+        "0x452460",
+        "0x453720"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "Retain seven Graphic/GraphicInfo and Anime/AnimeInfo slots,required graphic groups0/3/6 and first animation group,coordinate aliases and cumulative physical-row graphic bases from the original resource path/catalog contract. A filename family is not a new RD pixel format.",
+        "Parameters first select filenames,then the final group3 coordinate alias;CUT/AUT use their fixed bin/PUK2/cutdat path rules. Resource IDs,physical rows,sourceIndex,final image slots and animation frame IDs remain separate.",
+        "The supplied installation has multiple resource families including341 CUT and337 AUT files under the prior material check. A missing23.cut is not a distribution-wide missing CUT claim. Actual material identity is not proof every version/consumer is accepted."
+      ]
+    },
+    {
+      "id": "PR-F02",
+      "title": "RD expansion and embedded palette bytes",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x453030",
+        "0x511470",
+        "0x447b10"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "511470 consumes RD magic,flags byte+2,signed width/height,16/20-byte header,raw or RLE input and optional appended palette. Outputs remain byte indices;8/16/24/32 modes are later surface conversions.",
+        "Retained opcode/zero-run/fill/end semantics remain normative. The independent exact expanded-byte count,safe multiplication/input/pixel budgets and used-color-known mask checks are deliberate bounds,not claims about all malformed native behavior.",
+        "Raw expansion writes width*height+palette bytes. Partial palette triples are not padded with guessed colors;referenced unknown entries remain an explicit failure."
+      ]
+    },
+    {
+      "id": "PR-F03",
+      "title": "Singleton scratch and cold/warm row addresses",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x453030",
+        "0x511470",
+        "0x5074d0",
+        "0x507230",
+        "0x505d70",
+        "0x4497c0",
+        "0x449a10"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "453030 selects decoded destination7287BC and separately reads the encoded descriptor into81D118.511470 does not zero unrelated trailing scratch on the selected raw path. These are shared source storage addresses,not per-image owning buffers.",
+        "5074D0 saves original dimensions in per-image low16 fields before507230 aligns the decode stride. A cold new head can upload with align4(width);an existing head requiring453030 again can use the tight RD width without another507230. Target surface pitch is a separate API result.",
+        "For positive width5,height2,cold rows read[8,13) and[0,5);warm rows[5,10) and[0,5). With a known13-byte pixel+palette prefix both are defined;with onlyten known pixels the cold tail is not established.",
+        "PE virtual initial-zero deductions do not prove live/reused scratch bytes. Complete required producer/alias/reuse context and trailing known extent remain a named G06 gap. The current width-divisible-by4 renderer restriction is an implementation boundary,not an RD format rule."
+      ]
+    },
+    {
+      "id": "PR-F04",
+      "title": "Native cache grid and allocation receipts",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x4457d0",
+        "0x4468b0",
+        "0x446a90",
+        "0x507b80",
+        "0x507cf0",
+        "0x507d30",
+        "0x507230"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "The logical block is64x48;physical D3D surfaces can include borders,power-of-two expansion and square constraints.4096 cache slots,owner/head links,cursor andtimestamps retain the exact CG initialization/reset rules.",
+        "507230 computes positive ceil(width/64)*ceil(height/48),allocates blocks rowwise and selects lastUsed<uint32(currentStamp-2) with strict unsigned comparison. An exhausted scan can leave a partial chain and void return;5074D0 returning1 is not proof all blocks exist.",
+        "Each block stamp is touched before the inclusive intersection test. Zero-area boundary contact can still cause upload work. Do not infer cache operations solely from visible pixels or replace source eviction with a generic two-frame rule."
+      ]
+    },
+    {
+      "id": "PR-F05",
+      "title": "CUT/AUT and ordinary map queue",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x45eef0",
+        "0x45f1c0",
+        "0x45f2a0",
+        "0x461660",
+        "0x462fc0",
+        "0x506030",
+        "0x505d70"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "Retain CUT18-byte physical records and20-byte runtime descriptors,diagonal ground/object traversal,multi-tile merge,type3 tail,actor roots,source rectangles and source ordinal ordering. AUT is raw RGB indexed through the active map width,not a guessed magic-header format.",
+        "506030 cases0/1 select full/original rectangles versus preserved rectangles. Negative source starts first adjust destination;right/bottom clip to original dimensions before per-block intersection/flip. Unscaled446E00 and scaled447330 retain separate arguments.",
+        "Object construction/suspension/reset and source input context remain delegated to G03/G04/G05. Deferred resource preparation may not replay already advanced world logic or manufacture transparent substitute sprites."
+      ]
+    },
+    {
+      "id": "PR-F06",
+      "title": "Animation resources,action state and AP",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x453720",
+        "0x453ad0",
+        "0x453bb0",
+        "0x453cc0",
+        "0x463d70",
+        "0x463120",
+        "0x506d50"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "Retain grouped 12-byte animation indices, 12/20-byte actions, 10-byte frames, last-record overwrites and source version normalization. AP indices have a version byte and 10-byte rows. Attachment data uses 8-byte rows. Frame and attachment graphic indices use the selected animation record's group base.",
+        "The native per-call resource/action/facing cache,next-frame/delay/cycle,freeze==1,one-shot retry255 and32-bit multiply before unsigned /100 remain exact retained rules. Actor+2B4 is a cached previous action,not the animation frame/time.",
+        "Geometry uses decoded actual image dimensions,frame offsets,negative(width+offset) flips andattachment projection. AP events are descriptors for the audio owner;producing an event is not a physical sound receipt."
+      ],
+      "coordinate_source_pointer": "/legacy_animation_coordinate_source"
+    },
+    {
+      "id": "PR-F07",
+      "title": "Default,current,embedded and named palettes",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x447b10",
+        "0x507170",
+        "0x453030",
+        "0x449730"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "CGP supplies672 BGR bytes into indices16..239 while32 fixed colors and source original/current168 distinctions remain. Native32 explicit mode protects opaque black as1;zero color-key remains transparent.",
+        "A named selector uses the native signed-range reinterpretation of uint16:1..1494 select the568310 resource table;other values resolve0/default. Resolve the table resource through final GraphicInfo,decode its full768B palette,then apply the rendered image embedded/default palette under the exact overlay/neutral rules.",
+        "Resource selector320 is now source explained;the old minimap material note that rejected it is a historical implementation observation. Do not drop nonzero palette selectors or reanalyze the already retained table."
+      ]
+    },
+    {
+      "id": "PR-F08",
+      "title": "Opacity,vertex color,scale and backend differences",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x446e00",
+        "0x447330",
+        "0x4494a0",
+        "0x4497c0",
+        "0x449a10",
+        "0x506030"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "The RR/additive/vertex/draw-style nodes retain channel transforms,ARGB/neutral overlays,source-alpha/additive selector,scale/crop and backend argument order. DDRAW skipping bit8 is a source branch,not identical to the D3D submission behavior.",
+        "The current RGBA compositor has a separate software point-sampling/rounding policy. Hardware edge/filter/channel precision and16/24-bit output are conditional required domains;shared RGBA output does not prove all native backend pixels.",
+        "The target may use the shared software carrier through RenderAudioSurfaces;its policy identity must accompany acceptance,and original backend differences remain explicitly reviewable."
+      ]
+    },
+    {
+      "id": "PR-F09",
+      "title": "Draw types,priority and scene publication",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x462cc0",
+        "0x462fc0",
+        "0x5059f0",
+        "0x506030",
+        "0x507580"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "Retain source command types0..8,their producer roles,priority/descending ordinal behavior and4096 total queue budget from the retained render/lifetime nodes. Logical marks,callback tails,unlink and physical release are separate operations.",
+        "Ordinary versus special auxiliary queue reservations and already scheduled text lanes are accounted before root/map submissions. Source skipped updates and selected presentation passes are different;image preparation happens only for the presented plan.",
+        "Resource retry,late image completion and cancellation cannot replay animation/events or attach pixels to a replaced scene. Shared owner/lease policy is an independent target contract with its own failure receipt."
+      ]
+    },
+    {
+      "id": "PR-F10",
+      "title": "Water marker,update and presentation clocks",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x5059f0",
+        "0x506820",
+        "0x506970",
+        "0x502810",
+        "0x4ff160",
+        "0x4ff3b0"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "Graphics3096..3105 set the water request before final queue cropping;normal/special retain4093/4092 object entries then append priority2,type8.506820 admits maps40000..41999 or59000/59001/59100 with9250C8==0;otherwise it resets amplitude.",
+        "The admitted presentation copies the same640x480 snapshot and redraws60 strips of8 pixels at sourceY=destY+12+trunc(wave[(phase+i)&63]*amplitude/100). It changes amplitude by2 up to100 per admitted pass,not per update.",
+        "Update phase advances0.25;presentation subtracts projected previous/current player-Y delta/8 and wraps0..64. Player position is not the camera owner. Battle/city source paths and saved previous position retain their distinct owner/order,including same-plan retries."
+      ]
+    },
+    {
+      "id": "PR-F11",
+      "title": "Weather/particle/timer consumers",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x4f44a0",
+        "0x465000",
+        "0x442720",
+        "0x443980",
+        "0x443330"
+      ],
+      "derived_entries": [
+        "0x4f4950",
+        "0x4422b0",
+        "0x442960",
+        "0x442b00",
+        "0x4437c0",
+        "0x4439d0"
+      ],
+      "clauses": [
+        "The EF/PL retained nodes define the actual Xne configuration receiver,conditional activation,registered timer/particle callbacks,RNG draw order,spawn/update/retirement and shared buffer reads.4F4950 remains a34-byte derived view,not a canonical native function.",
+        "Five other retained timer/effect callbacks are also analyst-seeded derivations. Their bound bytes and original parent/registration evidence remain separate authority from complete native Evidence.",
+        "Existing water/rain/resource scheduling primitives are reused. Exact shared RNG/clock/pool owner integration and real pixel/audio effects remain implementation/acceptance deltas,not another reason to requery known leaf helpers."
+      ]
+    },
+    {
+      "id": "PR-F12",
+      "title": "Resource snapshots,budgets and I/O publication",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x452460",
+        "0x453030",
+        "0x453720",
+        "0x409e70",
+        "0x409fe0"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "Original loose-file/stat/seek/read/load results and source version context remain distinct from the independent ZIP/ZIP64 transport. Bounded archive ranges,metadata decode and selected image demand are separate operations.",
+        "RP/UC contracts own immutable content identity,operation deadlines,stable range reads,aggregate BudgetAndLease,chunked commits/recovery and drain receipts. Existing single-object caps do not prove total peak memory.",
+        "Only a completed valid frame is published after the latest owner/context checks. A decoded image or a successful API callback is not a committed resource snapshot or an observed native filesystem/device result."
+      ]
+    },
+    {
+      "id": "PR-F13",
+      "title": "Byte encoding and source font metrics",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x445170",
+        "0x445120",
+        "0x44ecd0"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "445170 clamps font indices outside0..13 to0 and measures bytes untilNUL:highbit advances a pair anduses double width,otherwise single width. Native font tables supply14 metric rows;this is not Unicode grapheme measurement.",
+        "Font1 requests CreateFontA height14,width0,weight400,charset1,pitch17,face bytesCBCECCE5. DEFAULT_CHARSET alone doesnot establish the wire encoding. Actual glyphs and font fallback are host inputs.",
+        "Retain raw text bytes and explicit source-profile decoder/encoder ownership. Source width controls layout independently of returned alpha-mask width. Dangling highbytes and unrepresentable host input require explicit failure policy."
+      ]
+    },
+    {
+      "id": "PR-F14",
+      "title": "Text lanes,shadow and draw order",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x44f2c0",
+        "0x44f870",
+        "0x44f8b0",
+        "0x44fb60",
+        "0x506030"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "44F2C0 stores signed-short coordinates,font,color,lane andcopied NUL text in272-byte records;4096-record exhaustion returns-2. Empty text still consumes a record andcan schedule a lane command,but GDI drawing skips an empty run.",
+        "First lane entry schedules one generic type4 command;later entries link in insertion order.44F870 clears six lane tails while44FB60 separately resets the text count. Actor lane0 usespriority210;the existing secondary lane policy is explicit.",
+        "For each nonempty run,colorbit80 clear draws black shadow at+1,+1 then the foreground palette[color&7F]. Transparent background andpriority splitting remain exact;alpha mask pixels are provided by the host andnot a bundled native font atlas."
+      ]
+    },
+    {
+      "id": "PR-F15",
+      "title": "Name/selected label,value bars and party HUD",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x43d150",
+        "0x438a30",
+        "0x4ea000",
+        "0x4f06f0",
+        "0x4f1240",
+        "0x4f07d0",
+        "0x4fef80",
+        "0x4fefb0"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "Reuse G05 exact local/remote/other-object label predicates,modes0..5,color precedence,source signed-short centering atparentY-98,andglobal label survival. Hr] writes48 raw records;sorting acts on a copied bank,not the selected-label source bank.",
+        "438A30 uses addressed current/max pairs,wrappedSHL5/signedIDIV,int16 fill width,denominator0 skip andexplicit overflow domain. Resources3BDF0/3BDEF/3BDEE,priority207,box geometry andglobal visibility settings are not replaced by guessed generic progress bars.",
+        "Party slots,leader/membership/badge/follower and result-HUD business values remain their original G05/G14/B owners. Ordinary local publication andremote lookup rules are source distinct. This layer doesnot invent a successful business update or infer persisted defaults."
+      ]
+    },
+    {
+      "id": "PR-F16",
+      "title": "Byte editing and Enter business boundary",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x452350",
+        "0x444310",
+        "0x444350",
+        "0x4443a0",
+        "0x4445a0",
+        "0x444760",
+        "0x444860",
+        "0x444930",
+        "0x444b80",
+        "0x443d60"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "Retain the complete text-editing fact table:modifier/repeat bits,fixed multi-key order,horizontal/vertical byte positions andCR/column layout,distinct preedit guards for movement versusbackspace/delete. Tab native507690 isRET;End toggles the alternate window path ratherthan caret end.",
+        "Enter default history/optional persistence/chat call/clear,CR insertion for designated targets andspecial business validation retain their own target-specific order. Clearing input orwriting history doesnot prove a packet was sent or accepted.",
+        "History ring64x121 andwriter offsets are bounded source facts,not a complete load/corruption-recovery receipt. Modal business ownership andlifecycle remain delegated to X02 andthe corresponding original capability."
+      ]
+    },
+    {
+      "id": "PR-F17",
+      "title": "IME,candidate layout,caret and temporary notices",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x451d10",
+        "0x451d60",
+        "0x4441e0",
+        "0x445530",
+        "0x445610",
+        "0x445670",
+        "0x4456d0",
+        "0x437b30"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "451D10 leaves ImmIsIME return inEAX despitevoid pseudocode. Layout-IME capability doesnot mean actively composing.451D60 candidate total/selection/page/relative offsets,attribute highlights andbyte metrics are source presentation rules,not a generic selection orinsert operation.",
+        "Caret admitted calls increment their owncounter,display after19 andwrap after39;edit resets20. The source call context,not globalframes ormilliseconds,determines its cadence.",
+        "Each temporary notice uses its own unsigned tick difference strictly>10 andatmostone step per admitted call. Position wrap andcircle counts differ between thetwo regions;the alreadyentered outerbranch can stilldraw onceafteritshelper clearsactive.",
+        "Host composition/commit/focus-loss must be explicitly translated without doubleinsertion orstale targetpublication. Browser/WeChat IME candidate widgets are host effects andrequire their actual target acceptance."
+      ]
+    },
+    {
+      "id": "PR-F18",
+      "title": "Minimap projection,AUT and representative colors",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x463780",
+        "0x4636a0",
+        "0x463410",
+        "0x463360",
+        "0x463e40",
+        "0x463e60",
+        "0x463ea0"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "Retain zoom sizes107/54/27,map-window projection,zero-padded cache strips andloadedbit4000. AUT reads at most477603 raw RGB bytes,indexed with active map width;no header or stale unread tail is invented.",
+        "Representative color scans eligible final image slots andaverages nonzero pixel-index RGB againstoriginal palette;nearest candidates0 and16..239 use strictly closer updates. Runtime group,notGraphicInfofield32,selects eligibility.",
+        "Ground/AUT loaded gates andobject right/up spread onlyforcollisionClass0 precede32-bit four-pixel diamond painting. Black0 becomes000001;player stencil andthe independent host blink deadline remain explicit.",
+        "The target minimap owner has its own show/hide/range/placement policy andgeneration-checked async preparation. Complete overlay bytes,scene revision andlifetime are separate fromnative window/hardware placement."
+      ]
+    },
+    {
+      "id": "PR-F19",
+      "title": "Independent target policies are specifications,not acceptance",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x44fb60",
+        "0x506030"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "The shared14-port contract remains unchanged. RenderAudioSurfaces carries immutable top-leftRGBA8 output plus explicit software point/rounding policy;InputAndTextFocus carries source bytes,composition,target identity andfocus/cancel semantics.",
+        "The glyph port requires explicit source decoder andfont/mask identity,bounded owningalpha mask,origin andmetrics. Missing/unrepresentable input,font ormask fails beforepublishing an incomplete frame. Ahost substitute cannot be labeled nativeGDI pixelidentity.",
+        "HostCapabilitiesAndLifecycle/StableRangeSource provide actual available capabilities andreceipts;budget/profile values are not filled by unmeasured guesses. No currenttarget/device/official acceptance is inferred fromthis design."
+      ]
+    },
+    {
+      "id": "PR-F20",
+      "title": "Close,cancel and owner replacement",
+      "classification": "fact: retained fixed37c4 static evidence;independent target policies identified separately",
+      "complete_native_entries": [
+        "0x409e70",
+        "0x409fe0",
+        "0x40a090",
+        "0x40a0a0",
+        "0x40a0c0",
+        "0x44f870"
+      ],
+      "derived_entries": [],
+      "clauses": [
+        "Source logicalmark,callbacktail,unlink andphysicalfree remain the graphics lifecycle contract. Resource root retirement,textlane reset,glyph masks,minimapjobs andscene replacement retain separate owners.",
+        "Independent close is idempotent,invalidates pendingpublication anddrains/releases ownedstorage whenitsport acknowledges completion. Latepixels/IME/glyph/resource outcomes cannot attach tonewtargets orscenes.",
+        "Shared protocol values,gameplaystate andalreadyproducedrequest descriptors remain unchanged by a retry ofpresentation. No newwiregeneration ornative allocation success is invented."
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "PR-O01",
+      "capability": "G06",
+      "title": "Select source and resource version",
+      "source_rules": [
+        "PR-F01"
+      ],
+      "inputs": [
+        "source profile",
+        "material identity"
+      ],
+      "ordered_behavior": [
+        "Bind fixed37c4 rules andexplicit materialnamespace"
+      ],
+      "completion_failure_cancel": [
+        "Currentversion acceptance remains separate"
+      ]
+    },
+    {
+      "id": "PR-O02",
+      "capability": "G06",
+      "title": "Build seven resource-family plans",
+      "source_rules": [
+        "PR-F01"
+      ],
+      "inputs": [
+        "startup parameters/defaults"
+      ],
+      "ordered_behavior": [
+        "Apply exactpaths/aliases andrequired groups"
+      ],
+      "completion_failure_cancel": [
+        "Do not infer format fromfamilyname"
+      ]
+    },
+    {
+      "id": "PR-O03",
+      "capability": "G06",
+      "title": "Publish metadata ordinals and resource mapping",
+      "source_rules": [
+        "PR-F01",
+        "PR-F06"
+      ],
+      "inputs": [
+        "GraphicInfo/AnimeInfo groups"
+      ],
+      "ordered_behavior": [
+        "Use sourceIndex,cumulativephysicalrows andlastoverwrite rules"
+      ],
+      "completion_failure_cancel": [
+        "ID/ordinal/group remain distinct"
+      ]
+    },
+    {
+      "id": "PR-O04",
+      "capability": "G06",
+      "title": "Resolve coordinate/CUT/AUT paths",
+      "source_rules": [
+        "PR-F01",
+        "PR-F05"
+      ],
+      "inputs": [
+        "source selectors",
+        "explicit files"
+      ],
+      "ordered_behavior": [
+        "Apply finalgroup3 coordinatealias andfixedcutdat paths"
+      ],
+      "completion_failure_cancel": [
+        "Missingone selector is not whole-family absence"
+      ]
+    },
+    {
+      "id": "PR-O05",
+      "capability": "G06",
+      "title": "Handle required/optional file load results",
+      "source_rules": [
+        "PR-F01",
+        "PR-F12"
+      ],
+      "inputs": [
+        "stat/seek/read outcomes"
+      ],
+      "ordered_behavior": [
+        "Open requiredgroups in sourceorder",
+        "Retain optionalmissing semantics"
+      ],
+      "completion_failure_cancel": [
+        "Shortread/loadfailure distinct fromcompletecatalog"
+      ]
+    },
+    {
+      "id": "PR-O06",
+      "capability": "G06",
+      "title": "Open independent archive/range source",
+      "source_rules": [
+        "PR-F12"
+      ],
+      "inputs": [
+        "userselected files orZIP snapshot"
+      ],
+      "ordered_behavior": [
+        "Validate paths/container",
+        "Use boundedread ranges andstableidentity"
+      ],
+      "completion_failure_cancel": [
+        "ZIPtransport is independent oforiginal loosefiles"
+      ]
+    },
+    {
+      "id": "PR-O07",
+      "capability": "G06",
+      "title": "Commit resource identity/snapshot",
+      "source_rules": [
+        "PR-F12",
+        "PR-F20"
+      ],
+      "inputs": [
+        "candidate manifest",
+        "root/context/deadline"
+      ],
+      "ordered_behavior": [
+        "Validate completecandidate",
+        "Publish once underownercheck"
+      ],
+      "completion_failure_cancel": [
+        "Failure retains active snapshot;no partialcommit receipt"
+      ]
+    },
+    {
+      "id": "PR-O08",
+      "capability": "G06",
+      "title": "Decode RD header and output dimensions",
+      "source_rules": [
+        "PR-F02"
+      ],
+      "inputs": [
+        "RDbytes"
+      ],
+      "ordered_behavior": [
+        "Select flags/header/palettecount",
+        "Checkindependent multiplication/inputdomain"
+      ],
+      "completion_failure_cancel": [
+        "Sourceformat andsafebounds separated"
+      ]
+    },
+    {
+      "id": "PR-O09",
+      "capability": "G06",
+      "title": "Expand raw/RLE indices",
+      "source_rules": [
+        "PR-F02"
+      ],
+      "inputs": [
+        "selected compressedprefix"
+      ],
+      "ordered_behavior": [
+        "Apply originalopcode/zero/fill/endrules"
+      ],
+      "completion_failure_cancel": [
+        "Exactboundedoutput or typedfailure"
+      ]
+    },
+    {
+      "id": "PR-O10",
+      "capability": "G06",
+      "title": "Retain embedded palette/known colors",
+      "source_rules": [
+        "PR-F02",
+        "PR-F07"
+      ],
+      "inputs": [
+        "decodedindices",
+        "paletteprefix"
+      ],
+      "ordered_behavior": [
+        "Keepcomplete triples andknownmask",
+        "Rejectused unknowncolors"
+      ],
+      "completion_failure_cancel": [
+        "No guessedtailcolors"
+      ]
+    },
+    {
+      "id": "PR-O11",
+      "capability": "G06",
+      "title": "Update source scratch descriptor",
+      "source_rules": [
+        "PR-F03"
+      ],
+      "inputs": [
+        "decodedprefix",
+        "prior scratchknownextent/context"
+      ],
+      "ordered_behavior": [
+        "Publish actualwrittenprefix",
+        "Preserveunwritten bytes onlywhereprovided/derived"
+      ],
+      "completion_failure_cancel": [
+        "Unobservedtail remains named G06 gap"
+      ]
+    },
+    {
+      "id": "PR-O12",
+      "capability": "G06",
+      "title": "Select cold/warm stride and crop ranges",
+      "source_rules": [
+        "PR-F03",
+        "PR-F05"
+      ],
+      "inputs": [
+        "cachehead/currentimage",
+        "originalwidth/height"
+      ],
+      "ordered_behavior": [
+        "Save originaldimensions",
+        "Selectalign4 cold ortightredecode",
+        "Apply crop/flipbeforeblockintersection"
+      ],
+      "completion_failure_cancel": [
+        "Currentwidth4 render guard retained;notRDrestriction"
+      ]
+    },
+    {
+      "id": "PR-O13",
+      "capability": "G06",
+      "title": "Allocate/touch/evict cache blocks",
+      "source_rules": [
+        "PR-F04"
+      ],
+      "inputs": [
+        "positive dimensions",
+        "uintstamp",
+        "slotlinks"
+      ],
+      "ordered_behavior": [
+        "Traverse64x48 blocks",
+        "Applystrictunsignedreuse",
+        "Touch before inclusiveintersection"
+      ],
+      "completion_failure_cancel": [
+        "完成、部分分配及零块分别沿 legacy_graphics_partial_cache。保留同资源重入的链首判定、已分配块呈现和重新分配的条件。"
+      ]
+    },
+    {
+      "id": "PR-O14",
+      "capability": "G06",
+      "title": "Decode CUT mapobject records",
+      "source_rules": [
+        "PR-F05"
+      ],
+      "inputs": [
+        "CUTsource"
+      ],
+      "ordered_behavior": [
+        "18Bphysical to20Bruntime rules",
+        "Keep sourceorigins/collisionclasses"
+      ],
+      "completion_failure_cancel": [
+        "Independentmagic/count/budgetpolicyexplicit"
+      ]
+    },
+    {
+      "id": "PR-O15",
+      "capability": "G06",
+      "title": "Decode AUT raw color domain",
+      "source_rules": [
+        "PR-F05",
+        "PR-F18"
+      ],
+      "inputs": [
+        "active mapwidth",
+        "AUTprefix"
+      ],
+      "ordered_behavior": [
+        "Keep rawRGB/loadedmapaddressing"
+      ],
+      "completion_failure_cancel": [
+        "No fabricatedheader orstale tail"
+      ]
+    },
+    {
+      "id": "PR-O16",
+      "capability": "G06",
+      "title": "Traverse ground andstatic objects",
+      "source_rules": [
+        "PR-F05",
+        "PR-F09"
+      ],
+      "inputs": [
+        "mapplanes",
+        "renderwindow",
+        "CUTmetadata"
+      ],
+      "ordered_behavior": [
+        "Source diagonalorder",
+        "Ground/objectqueue descriptors"
+      ],
+      "completion_failure_cancel": [
+        "Source missingblock behavior retained"
+      ]
+    },
+    {
+      "id": "PR-O17",
+      "capability": "G06",
+      "title": "Advance/suspend map animations",
+      "source_rules": [
+        "PR-F05",
+        "PR-F06"
+      ],
+      "inputs": [
+        "visibleobject context",
+        "per-call timer"
+      ],
+      "ordered_behavior": [
+        "Use originalconstruction/update/suspend/reset"
+      ],
+      "completion_failure_cancel": [
+        "IO retries do notadvance twice"
+      ]
+    },
+    {
+      "id": "PR-O18",
+      "capability": "G06",
+      "title": "Merge actor/map queues andrectangles",
+      "source_rules": [
+        "PR-F05",
+        "PR-F09"
+      ],
+      "inputs": [
+        "rootdepth",
+        "type3tail",
+        "drawrequests"
+      ],
+      "ordered_behavior": [
+        "Source multi-tile/depth merge",
+        "Preservecrop/flip/priority/ordinal"
+      ],
+      "completion_failure_cancel": [
+        "Missingcontext notdefaulted"
+      ]
+    },
+    {
+      "id": "PR-O19",
+      "capability": "G06",
+      "title": "Load animation/action/frame/AP catalogs",
+      "source_rules": [
+        "PR-F06"
+      ],
+      "inputs": [
+        "versionedbytegroups"
+      ],
+      "ordered_behavior": [
+        "Grouped indexes/actions/frames/AP offsets"
+      ],
+      "completion_failure_cancel": [
+        "Retain originaloverwrite/base semantics"
+      ]
+    },
+    {
+      "id": "PR-O20",
+      "capability": "G06",
+      "title": "Advance action/facing animation",
+      "source_rules": [
+        "PR-F06"
+      ],
+      "inputs": [
+        "actualresource/action/facing",
+        "timer/delay"
+      ],
+      "ordered_behavior": [
+        "Applycache reset andnextframe/cycle rules"
+      ],
+      "completion_failure_cancel": [
+        "Actioncache isnotframeindex"
+      ]
+    },
+    {
+      "id": "PR-O21",
+      "capability": "G06",
+      "title": "Freeze/restart/one-shot animation",
+      "source_rules": [
+        "PR-F06",
+        "PR-F20"
+      ],
+      "inputs": [
+        "freeze",
+        "sameaction invalidation",
+        "one-shot"
+      ],
+      "ordered_behavior": [
+        "Apply sourcefreeze==1/retry255/restart rules"
+      ],
+      "completion_failure_cancel": [
+        "Actor30 correction belongsGA-D3;no duplicateowner"
+      ]
+    },
+    {
+      "id": "PR-O22",
+      "capability": "G06",
+      "title": "Publish attachment geometry/AP events",
+      "source_rules": [
+        "PR-F06",
+        "PR-F12"
+      ],
+      "inputs": [
+        "decodedimage/frameoffsets",
+        "APbytes"
+      ],
+      "ordered_behavior": [
+        "Calculateexactorigin/flip/attachment",
+        "Return owned descriptors once"
+      ],
+      "completion_failure_cancel": [
+        "APevent isnot physicalaudio receipt"
+      ]
+    },
+    {
+      "id": "PR-O23",
+      "capability": "G06",
+      "title": "Resolve default/embedded/named palettes",
+      "source_rules": [
+        "PR-F02",
+        "PR-F07"
+      ],
+      "inputs": [
+        "selector",
+        "GraphicInfo mapping",
+        "CGP/LUTcontext"
+      ],
+      "ordered_behavior": [
+        "Apply signedselector/tablelookup",
+        "Decode fullnamedpalette",
+        "Overlay per retained rules"
+      ],
+      "completion_failure_cancel": [
+        "No nonzeroselector discarded"
+      ]
+    },
+    {
+      "id": "PR-O24",
+      "capability": "G06",
+      "title": "Apply transparency/tint/opacity",
+      "source_rules": [
+        "PR-F07",
+        "PR-F08"
+      ],
+      "inputs": [
+        "paletteknownmask",
+        "colorflags/LUT"
+      ],
+      "ordered_behavior": [
+        "Retainblackkey/black1 andARGB/neutral transforms"
+      ],
+      "completion_failure_cancel": [
+        "UnknownsourceLUT explicit;no defaultcolor guess"
+      ]
+    },
+    {
+      "id": "PR-O25",
+      "capability": "G06",
+      "title": "Apply scale/additive/backend policy",
+      "source_rules": [
+        "PR-F08",
+        "PR-F09"
+      ],
+      "inputs": [
+        "drawstyle",
+        "sourcebackend",
+        "targetpolicy"
+      ],
+      "ordered_behavior": [
+        "Keep sourceDDRAW/D3D distinction",
+        "Use declared softwarecarrier"
+      ],
+      "completion_failure_cancel": [
+        "Hardwarepixel/16/24 domains require separateacceptance"
+      ]
+    },
+    {
+      "id": "PR-O26",
+      "capability": "G06",
+      "title": "Collect water marker before queuecrop",
+      "source_rules": [
+        "PR-F09",
+        "PR-F10"
+      ],
+      "inputs": [
+        "actualnumericgraphicindices",
+        "queuebudget"
+      ],
+      "ordered_behavior": [
+        "Mark3096..3105",
+        "Reserve auxiliarycommands",
+        "Appendtype8priority2"
+      ],
+      "completion_failure_cancel": [
+        "Croppedtrigger canstillrequestwater"
+      ]
+    },
+    {
+      "id": "PR-O27",
+      "capability": "G06",
+      "title": "Advance water andpresent strips",
+      "source_rules": [
+        "PR-F10"
+      ],
+      "inputs": [
+        "updatecalls",
+        "selectedpresentpass",
+        "playerprojection"
+      ],
+      "ordered_behavior": [
+        "Phaseupdate0.25",
+        "Present fromsame snapshot",
+        "Amplitude per admittedpass"
+      ],
+      "completion_failure_cancel": [
+        "Retry/suppressedpresentation notextraamplitudestep"
+      ]
+    },
+    {
+      "id": "PR-O28",
+      "capability": "G06",
+      "title": "Apply city/battle water gates",
+      "source_rules": [
+        "PR-F10"
+      ],
+      "inputs": [
+        "map/nativegate",
+        "old/currentplayer",
+        "sceneowner"
+      ],
+      "ordered_behavior": [
+        "Keep map/state/sourcepaths",
+        "Savepreviousposition atoriginalpoint"
+      ],
+      "completion_failure_cancel": [
+        "Camera doesnot replaceplayerowner"
+      ]
+    },
+    {
+      "id": "PR-O29",
+      "capability": "G06",
+      "title": "Compose weather/particle/timer effects",
+      "source_rules": [
+        "PR-F11",
+        "PR-F20"
+      ],
+      "inputs": [
+        "configuration",
+        "sourceRNG/clock/pool"
+      ],
+      "ordered_behavior": [
+        "RetainEF/PLconditionalactivation andcallbackorder",
+        "Use sharedhelper/retirement"
+      ],
+      "completion_failure_cancel": [
+        "Derivedauthority andunintegratedRNG explicit"
+      ]
+    },
+    {
+      "id": "PR-O30",
+      "capability": "G06",
+      "title": "Close/cancel resource anddraw owners",
+      "source_rules": [
+        "PR-F12",
+        "PR-F20"
+      ],
+      "inputs": [
+        "root/scene replacement",
+        "pendingI/O/lease"
+      ],
+      "ordered_behavior": [
+        "Invalidatepublication",
+        "Release/drainownedbytes andhandles"
+      ],
+      "completion_failure_cancel": [
+        "Lateframe cannotpublish to replacement"
+      ]
+    },
+    {
+      "id": "PR-O31",
+      "capability": "G07",
+      "title": "Select text encoding andfont descriptor",
+      "source_rules": [
+        "PR-F13",
+        "PR-F19"
+      ],
+      "inputs": [
+        "rawbytes",
+        "sourceprofile decoder",
+        "fontidentity"
+      ],
+      "ordered_behavior": [
+        "Keep rawbytes",
+        "Bind metrics separately fromglyphport"
+      ],
+      "completion_failure_cancel": [
+        "No encoding inferred fromDEFAULT_CHARSET"
+      ]
+    },
+    {
+      "id": "PR-O32",
+      "capability": "G07",
+      "title": "Measure/clamp byte-pair layout",
+      "source_rules": [
+        "PR-F13"
+      ],
+      "inputs": [
+        "fontindex",
+        "NULterminatedbytes"
+      ],
+      "ordered_behavior": [
+        "Clamp sourcefont0..13",
+        "Advance1/2bytes andmeasure sourcedmetrics"
+      ],
+      "completion_failure_cancel": [
+        "Danglingbytes followexplicit independent policy"
+      ]
+    },
+    {
+      "id": "PR-O33",
+      "capability": "G07",
+      "title": "Queue text into source lanes",
+      "source_rules": [
+        "PR-F14",
+        "PR-F20"
+      ],
+      "inputs": [
+        "runbytes/coordinates/font/color/lane"
+      ],
+      "ordered_behavior": [
+        "Signedshortcoordinates/272B record",
+        "Firstentryscheduleslane",
+        "Keep insertionorder"
+      ],
+      "completion_failure_cancel": [
+        "4096exhaustion andemptyrecord distinct"
+      ]
+    },
+    {
+      "id": "PR-O34",
+      "capability": "G07",
+      "title": "Compose foreground/shadow/priority",
+      "source_rules": [
+        "PR-F14",
+        "PR-F19"
+      ],
+      "inputs": [
+        "textlane",
+        "imagequeues",
+        "alphamasks"
+      ],
+      "ordered_behavior": [
+        "Images<=priority",
+        "Shadow+1 thenforeground",
+        "Images>priority"
+      ],
+      "completion_failure_cancel": [
+        "Nativefontpixels remainunverified"
+      ]
+    },
+    {
+      "id": "PR-O35",
+      "capability": "G07",
+      "title": "Validate andown raster masks",
+      "source_rules": [
+        "PR-F13",
+        "PR-F19",
+        "PR-F20"
+      ],
+      "inputs": [
+        "glyphportresult",
+        "maskorigin/dimensions"
+      ],
+      "ordered_behavior": [
+        "Checkidentity/size/alpha/owningcopy",
+        "Clip tooutput andrespectaggregatebudget"
+      ],
+      "completion_failure_cancel": [
+        "Missingport/invalidmask fails;cleanup onerror"
+      ]
+    },
+    {
+      "id": "PR-O36",
+      "capability": "G07",
+      "title": "Select local/remote names",
+      "source_rules": [
+        "PR-F15"
+      ],
+      "inputs": [
+        "displaymode",
+        "rawflags",
+        "resource",
+        "global/bodylabels"
+      ],
+      "ordered_behavior": [
+        "Apply exactsourcepredicates/colors",
+        "Centerusingbytewidth atY-98"
+      ],
+      "completion_failure_cancel": [
+        "Hiddenroot doesnot automaticallycancelalreadyqueuedlabel"
+      ]
+    },
+    {
+      "id": "PR-O37",
+      "capability": "G07",
+      "title": "Publish selected-label list andsettings",
+      "source_rules": [
+        "PR-F15",
+        "PR-F20"
+      ],
+      "inputs": [
+        "Hr]48records",
+        "selectedindex",
+        "UIcycle"
+      ],
+      "ordered_behavior": [
+        "Update rawbank",
+        "Sort onlycopiedbank",
+        "Persist onlyunderdesignatedowner"
+      ],
+      "completion_failure_cancel": [
+        "No nativepersisteddefault inferred"
+      ]
+    },
+    {
+      "id": "PR-O38",
+      "capability": "G07",
+      "title": "Render addressed value bars/HUD",
+      "source_rules": [
+        "PR-F15"
+      ],
+      "inputs": [
+        "fourvalues",
+        "visibilitysettings",
+        "resourcegeometry"
+      ],
+      "ordered_behavior": [
+        "WrappedSHL5/signeddivide",
+        "Background/fillsourceboxespriority207"
+      ],
+      "completion_failure_cancel": [
+        "Denominator0skip/overflow explicit;businessownersretainmeaning"
+      ]
+    },
+    {
+      "id": "PR-O39",
+      "capability": "G07",
+      "title": "Compose party/badge/result values",
+      "source_rules": [
+        "PR-F15"
+      ],
+      "inputs": [
+        "G05/G14/Bsourcepublication"
+      ],
+      "ordered_behavior": [
+        "Read originalowner values",
+        "Compose presentation withoutinventedack"
+      ],
+      "completion_failure_cancel": [
+        "No fullpartyorbattlebusiness claim"
+      ]
+    },
+    {
+      "id": "PR-O40",
+      "capability": "G07",
+      "title": "Admit byte editor andrepeat inputs",
+      "source_rules": [
+        "PR-F16",
+        "PR-F17",
+        "PR-F19"
+      ],
+      "inputs": [
+        "focusedtarget",
+        "repeat/modifierbits",
+        "preedit"
+      ],
+      "ordered_behavior": [
+        "Fixedsourcekeyorder",
+        "Distinctmovement/delete/preeditguards"
+      ],
+      "completion_failure_cancel": [
+        "No globallyonce-perframeassumption"
+      ]
+    },
+    {
+      "id": "PR-O41",
+      "capability": "G07",
+      "title": "Move/insert/delete by source bytes",
+      "source_rules": [
+        "PR-F16"
+      ],
+      "inputs": [
+        "cursor/length",
+        "targetbytes",
+        "CR/columns"
+      ],
+      "ordered_behavior": [
+        "Retainprefixclassification andverticalrules",
+        "Apply rawbyte insert/delete withsourcebounds"
+      ],
+      "completion_failure_cancel": [
+        "Host Unicode conversion mustroundtrip orfail"
+      ]
+    },
+    {
+      "id": "PR-O42",
+      "capability": "G07",
+      "title": "Handle Enter/history/business target",
+      "source_rules": [
+        "PR-F16",
+        "PR-F20"
+      ],
+      "inputs": [
+        "targetkind",
+        "text/history",
+        "chat/businessowner"
+      ],
+      "ordered_behavior": [
+        "Apply exacttargetbranch",
+        "History/persistence/send-call/clearorder"
+      ],
+      "completion_failure_cancel": [
+        "Clear/history isnot serveraccepted"
+      ]
+    },
+    {
+      "id": "PR-O43",
+      "capability": "G07",
+      "title": "Present composition andcandidates",
+      "source_rules": [
+        "PR-F17",
+        "PR-F19"
+      ],
+      "inputs": [
+        "IMEcapability",
+        "preeditattrs",
+        "candidatepage"
+      ],
+      "ordered_behavior": [
+        "Keep sourcehighlight/bytewidth rules",
+        "Host compositionstaysseparate fromcommittedbytes"
+      ],
+      "completion_failure_cancel": [
+        "No doublecommit ornativecandidatepixelclaim"
+      ]
+    },
+    {
+      "id": "PR-O44",
+      "capability": "G07",
+      "title": "Advance caret by admitted calls",
+      "source_rules": [
+        "PR-F17"
+      ],
+      "inputs": [
+        "target/gates",
+        "caretcount"
+      ],
+      "ordered_behavior": [
+        "Show after19",
+        "Increment/wrapafter39",
+        "Editreset20"
+      ],
+      "completion_failure_cancel": [
+        "Clock isnot globalelapsedtime"
+      ]
+    },
+    {
+      "id": "PR-O45",
+      "capability": "G07",
+      "title": "Advance temporary notices",
+      "source_rules": [
+        "PR-F17"
+      ],
+      "inputs": [
+        "eachnoticeactive/tick/position/width"
+      ],
+      "ordered_behavior": [
+        "Strictunsignedelapsed>10",
+        "Atmostone step",
+        "Preservelastadmitteddrawafterdeactivation"
+      ],
+      "completion_failure_cancel": [
+        "Independent counters andsourcecallclocks"
+      ]
+    },
+    {
+      "id": "PR-O46",
+      "capability": "G07",
+      "title": "Transfer text focus throughmodal close",
+      "source_rules": [
+        "PR-F16",
+        "PR-F19",
+        "PR-F20"
+      ],
+      "inputs": [
+        "modalowner",
+        "pendingcomposition/input"
+      ],
+      "ordered_behavior": [
+        "OriginalX02/businessowner closes/cancels",
+        "Restoretarget onlyafteridentitycheck"
+      ],
+      "completion_failure_cancel": [
+        "No stalecommit into closed/replacedfield"
+      ]
+    },
+    {
+      "id": "PR-O47",
+      "capability": "G07",
+      "title": "Read minimap window by maprevision",
+      "source_rules": [
+        "PR-F18",
+        "PR-F20"
+      ],
+      "inputs": [
+        "mode/zoom/center",
+        "cacheplanes"
+      ],
+      "ordered_behavior": [
+        "Source107/54/27 projection",
+        "Boundedzero-paddedstrips"
+      ],
+      "completion_failure_cancel": [
+        "Actualsceneidentity notcachedguess"
+      ]
+    },
+    {
+      "id": "PR-O48",
+      "capability": "G07",
+      "title": "Resolve loaded AUT colors",
+      "source_rules": [
+        "PR-F05",
+        "PR-F18"
+      ],
+      "inputs": [
+        "loadedcells",
+        "mapwidth",
+        "rawAUTprefix"
+      ],
+      "ordered_behavior": [
+        "Requireonlyaddressedloadedcolorbytes"
+      ],
+      "completion_failure_cancel": [
+        "Unreadtail cannotreuse unrelatedolddata"
+      ]
+    },
+    {
+      "id": "PR-O49",
+      "capability": "G07",
+      "title": "Build representative image colors",
+      "source_rules": [
+        "PR-F07",
+        "PR-F18"
+      ],
+      "inputs": [
+        "eligiblefinalslots",
+        "pixels",
+        "originalpalette"
+      ],
+      "ordered_behavior": [
+        "Average nonzeroindices",
+        "Strictnearest0/16..239",
+        "Spreadpercollisionclass"
+      ],
+      "completion_failure_cancel": [
+        "Runtimegroup differsfromfilefield32"
+      ]
+    },
+    {
+      "id": "PR-O50",
+      "capability": "G07",
+      "title": "Rasterize diamonds andplayer stencil",
+      "source_rules": [
+        "PR-F18",
+        "PR-F19"
+      ],
+      "inputs": [
+        "sourcegrid",
+        "palette32",
+        "marker/blinkpolicy"
+      ],
+      "ordered_behavior": [
+        "Sourcefour-pixeldiamonds/black1",
+        "Explicitmarker mode"
+      ],
+      "completion_failure_cancel": [
+        "Independentblink/hardwareposition stated"
+      ]
+    },
+    {
+      "id": "PR-O51",
+      "capability": "G07",
+      "title": "Publish minimap overlay safely",
+      "source_rules": [
+        "PR-F18",
+        "PR-F20"
+      ],
+      "inputs": [
+        "resourcejob",
+        "scene/center/revision",
+        "surface"
+      ],
+      "ordered_behavior": [
+        "Generationcheck asyncresult",
+        "Composite completeoverlay",
+        "Hide/close invalidatespendingwork"
+      ],
+      "completion_failure_cancel": [
+        "No staleoverlay orpartialpublish"
+      ]
+    },
+    {
+      "id": "PR-O52",
+      "capability": "G07",
+      "title": "Bind surfaces/input acrossalltargets",
+      "source_rules": [
+        "PR-F19",
+        "PR-F20"
+      ],
+      "inputs": [
+        "web/mobileweb/WeChatprofile",
+        "resource/font/inputports"
+      ],
+      "ordered_behavior": [
+        "One sharedcore withthinadapters",
+        "Verify eachsurface/lifecycle/focus separately"
+      ],
+      "completion_failure_cancel": [
+        "Actualdevice/current/official acceptance remainsopen"
+      ]
+    }
+  ],
+  "required_behavior_readiness": [
+    {
+      "capability": "G06",
+      "requirement": "资源版本/文件家族",
+      "operations": [
+        "PR-O01",
+        "PR-O02",
+        "PR-O03",
+        "PR-O04",
+        "PR-O05",
+        "PR-O06",
+        "PR-O07",
+        "PR-O30"
+      ],
+      "selected_fixed_source_operations_composed": true,
+      "whole_required_source_context_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G06",
+      "requirement": "RD/CUT/AUT",
+      "operations": [
+        "PR-O08",
+        "PR-O09",
+        "PR-O10",
+        "PR-O11",
+        "PR-O12",
+        "PR-O13",
+        "PR-O14",
+        "PR-O15",
+        "PR-O16",
+        "PR-O17",
+        "PR-O18",
+        "PR-O30"
+      ],
+      "selected_fixed_source_operations_composed": true,
+      "whole_required_source_context_ready": false,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G06",
+      "requirement": "动画",
+      "operations": [
+        "PR-O03",
+        "PR-O17",
+        "PR-O18",
+        "PR-O19",
+        "PR-O20",
+        "PR-O21",
+        "PR-O22",
+        "PR-O29",
+        "PR-O30"
+      ],
+      "selected_fixed_source_operations_composed": true,
+      "whole_required_source_context_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G06",
+      "requirement": "颜色/透明/加色",
+      "operations": [
+        "PR-O10",
+        "PR-O12",
+        "PR-O18",
+        "PR-O23",
+        "PR-O24",
+        "PR-O25",
+        "PR-O29",
+        "PR-O30"
+      ],
+      "selected_fixed_source_operations_composed": true,
+      "whole_required_source_context_ready": false,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G06",
+      "requirement": "水面",
+      "operations": [
+        "PR-O26",
+        "PR-O27",
+        "PR-O28",
+        "PR-O29",
+        "PR-O30"
+      ],
+      "selected_fixed_source_operations_composed": true,
+      "whole_required_source_context_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G07",
+      "requirement": "字符编码",
+      "operations": [
+        "PR-O31",
+        "PR-O32",
+        "PR-O35",
+        "PR-O40",
+        "PR-O41",
+        "PR-O42",
+        "PR-O43"
+      ],
+      "selected_fixed_source_operations_composed": true,
+      "whole_required_source_context_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G07",
+      "requirement": "文本布局",
+      "operations": [
+        "PR-O31",
+        "PR-O32",
+        "PR-O33",
+        "PR-O34",
+        "PR-O35",
+        "PR-O40",
+        "PR-O41",
+        "PR-O43",
+        "PR-O44",
+        "PR-O45",
+        "PR-O46",
+        "PR-O52"
+      ],
+      "selected_fixed_source_operations_composed": true,
+      "whole_required_source_context_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G07",
+      "requirement": "姓名/值条/提示",
+      "operations": [
+        "PR-O33",
+        "PR-O34",
+        "PR-O35",
+        "PR-O36",
+        "PR-O37",
+        "PR-O38",
+        "PR-O39",
+        "PR-O43",
+        "PR-O44",
+        "PR-O45",
+        "PR-O46",
+        "PR-O52"
+      ],
+      "selected_fixed_source_operations_composed": true,
+      "whole_required_source_context_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G07",
+      "requirement": "地图投影",
+      "operations": [
+        "PR-O47",
+        "PR-O48",
+        "PR-O49",
+        "PR-O50",
+        "PR-O51",
+        "PR-O52"
+      ],
+      "selected_fixed_source_operations_composed": true,
+      "whole_required_source_context_ready": true,
+      "implementation_or_dependency_acceptance": false
+    }
+  ],
+  "independent_target_design": [
+    {
+      "classification": "independent target policy,not implemented oraccepted",
+      "owner": "RenderAudioSurfaces",
+      "rules": [
+        "Immutable top-leftRGBA8 withdeclared softwarepoint/roundingpolicy andownedstorage.",
+        "Sourcebackend differences andunknownscratch remainvisible;do notclaimnativedevicepixels.",
+        "No repeatedworldlogic/AP/networkrequests onresourcepreparation retry."
+      ]
+    },
+    {
+      "classification": "independent target policy,not implemented oraccepted",
+      "owner": "InputAndTextFocus/TextEncodingAndLocalStateStore",
+      "rules": [
+        "Source rawbytes andexplicit strictcodec withroundtrip identity.",
+        "Composition separatefromcommittedinput;target/focus identitychecked beforecommit,close/reentry cancelsoldtarget.",
+        "Explicitfont/maskidentity,sourcebyte metrics,owningboundedalpha masks andtypedfailure;actualIME/fontacceptance pertarget."
+      ]
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "PR-D1",
+      "batch": "D0/D5",
+      "existing_ports": [
+        "SourceValueContext",
+        "ContextOwner",
+        "StableRangeSource",
+        "SnapshotStore",
+        "BudgetAndLease",
+        "OwnerLifecycle"
+      ],
+      "operations": [
+        "PR-O01",
+        "PR-O02",
+        "PR-O03",
+        "PR-O04",
+        "PR-O05",
+        "PR-O06",
+        "PR-O07",
+        "PR-O30"
+      ],
+      "change": "Bind original resource families/version namespace andRP stable read/commit/aggregatebudget contracts;reuse correct codecs andrange/archivepaths.",
+      "implemented": false
+    },
+    {
+      "id": "PR-D2",
+      "batch": "D0/D2",
+      "existing_ports": [
+        "SourceValueContext",
+        "ContextOwner",
+        "BudgetAndLease"
+      ],
+      "operations": [
+        "PR-O08",
+        "PR-O09",
+        "PR-O10",
+        "PR-O11",
+        "PR-O12",
+        "PR-O13",
+        "PR-O18",
+        "PR-O25"
+      ],
+      "change": "Preserve all valid RD widths. Resolve required scratch provenance/knownextent andbackend policy before extending non4rendering;do notzero-fill unknowntails orcall width4 aformatlimit.",
+      "partial_cache_handoff": "/legacy_graphics_partial_cache/implementation_handoff",
+      "startup_palette_handoff": "/fixed_se_startup_palette_publication/implementation_handoff",
+      "scene_palette_handoff": "/fixed_se_scene_palette_follow/implementation_handoff",
+      "packed_palette_handoff": "/fixed_se_palette_output_depth/implementation_handoff",
+      "explicit_palette_handoff": "/fixed_se_explicit_palette_upload/implementation_handoff",
+      "implemented": false
+    },
+    {
+      "id": "PR-D3",
+      "batch": "D0/D2/D4",
+      "existing_ports": [
+        "SharedUpdatePump",
+        "ClockDomains",
+        "SourceValueContext",
+        "RenderAudioSurfaces"
+      ],
+      "operations": [
+        "PR-O17",
+        "PR-O19",
+        "PR-O20",
+        "PR-O21",
+        "PR-O22"
+      ],
+      "change": "Compose animationcache invalidation,sourcecalltiming/AP with actors/scenes/battle;reuse correct action/frame/geometrycore anddo notadvance onresource retries.",
+      "implemented": false
+    },
+    {
+      "id": "PR-D4",
+      "batch": "D0/D3",
+      "existing_ports": [
+        "SourceValueContext",
+        "RenderAudioSurfaces",
+        "BudgetAndLease"
+      ],
+      "operations": [
+        "PR-O23",
+        "PR-O24",
+        "PR-O25"
+      ],
+      "change": "Reuse the existing palette, raster and startup byte-merge primitives. Derive the signed request byte from the first device key in the startup bytes and pass it to the existing graphics owner with the source profile. Track the effective tier, draw capability and pending recovery there. Apply the source-profile admission, device preparation and presentation rules, including input_driven_rebuild. Keep the Config.exe writer policy and the stage306 graphicsMode draw field separate from the startup request. Distinguish candidate creation from setup of a selected device and keep the file-attempt receipt independent of the resulting in-memory tier. Keep one declared target drawing policy and separate device pixel acceptance.",
+      "startup_tier_input_pointer": "/legacy_render_device_preferences/startup_tier_input/target_integration",
+      "implemented": false
+    },
+    {
+      "id": "PR-D5",
+      "batch": "D0/D2/D3",
+      "existing_ports": [
+        "SharedUpdatePump",
+        "ClockDomains",
+        "ContextOwner",
+        "RenderAudioSurfaces",
+        "OwnerLifecycle"
+      ],
+      "operations": [
+        "PR-O16",
+        "PR-O18",
+        "PR-O26",
+        "PR-O27",
+        "PR-O28",
+        "PR-O29"
+      ],
+      "change": "Integrate water/weather/particle/timer,RNG andqueue reservation withoriginalowners;reuseexistingwater/rain/effectprimitives.",
+      "implemented": false
+    },
+    {
+      "id": "PR-D6",
+      "batch": "D0/D2/D3",
+      "existing_ports": [
+        "InputAndTextFocus",
+        "TextEncodingAndLocalStateStore",
+        "SourceValueContext",
+        "ClockDomains",
+        "RenderAudioSurfaces"
+      ],
+      "operations": [
+        "PR-O31",
+        "PR-O32",
+        "PR-O33",
+        "PR-O34",
+        "PR-O35",
+        "PR-O36",
+        "PR-O37",
+        "PR-O40",
+        "PR-O41",
+        "PR-O42",
+        "PR-O43",
+        "PR-O44",
+        "PR-O45",
+        "PR-O46"
+      ],
+      "change": "Compose strictbyteencoding/glyphmask identity,sourceediting/IME/focus andnotice/caret clocks. Reuse sourcefontmetrics/label/text rastercore;do not fabricateGDIglyphs orduplicateEntercommit.",
+      "implemented": false
+    },
+    {
+      "id": "PR-D7",
+      "batch": "D0/D2/D3",
+      "existing_ports": [
+        "SourceValueContext",
+        "ContextOwner",
+        "RenderAudioSurfaces",
+        "SharedUpdatePump"
+      ],
+      "operations": [
+        "PR-O38",
+        "PR-O39",
+        "PR-O47",
+        "PR-O48",
+        "PR-O49",
+        "PR-O50",
+        "PR-O51"
+      ],
+      "change": "Compose actualHUD/minimap/party/business contexts withsourcepalette/loadedAUT andcurrentrevision;reuse correct grid/raster/labels/valuebar functions.",
+      "implemented": false
+    },
+    {
+      "id": "PR-D8",
+      "batch": "D5/D6",
+      "existing_ports": [
+        "OwnerLifecycle",
+        "BudgetAndLease",
+        "HostCapabilitiesAndLifecycle",
+        "InputAndTextFocus",
+        "RenderAudioSurfaces"
+      ],
+      "operations": [
+        "PR-O07",
+        "PR-O30",
+        "PR-O35",
+        "PR-O46",
+        "PR-O51",
+        "PR-O52"
+      ],
+      "change": "Bind andaccept actualweb/mobile/WeChat surface/input/file/font lifecycle,late-result rejection,drain andtotalbudget. Preserve alloriginaltargetscope.",
+      "implemented": false
+    }
+  ],
+  "selected_supersession": [
+    {
+      "old": "Historicalanimation/namedpalette/CUT deficits",
+      "now": "Use lateranimation/palette/CUT/material rules;nonzero selector320 isnotdiscarded andmissing23.cut isnota globalCUTdeficit."
+    },
+    {
+      "old": "Generic G06unknowndecoder/renderinggap",
+      "now": "Originaloperationtable composed;remaining sourcefrontier isrequirednon4scratch/context/backend/versiondomain,notanother RD/cachehelperrequery."
+    },
+    {
+      "old": "G07font/layout/editing/HUD/minimap scattered references",
+      "now": "Compose one originalfour-scope operations table withsharedportdesign;actualfont/IME/platformacceptance remainsunproven."
+    }
+  ],
+  "proposed_acceptance_cases": [
+    {
+      "id": "PR-A01",
+      "case": "Sevenfamilies/requiredoptionalgroup/cumulativeordinals/coordinateCUTAUT paths andsameversionidentity.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A02",
+      "case": "Filemissing/shortread/parsefailure/budgetfailure retainactive snapshot withoutpartialsuccess.",
+      "startup_palette_case": "/fixed_se_startup_palette_publication/acceptance_cases/3",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A03",
+      "case": "RDflags/raw/RLE/end/zero-fill/embeddedpartialpalette andallpositivewidthdomains.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A04",
+      "case": "Cold/warm5x2 known13byteprefix reads differ;tenknownpixels do notestablish trailingbytes.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A05",
+      "case": "Native64x48blocks/physicalsurfaceparameters/strictuintstampeviction/partialallocation receipt.",
+      "case_extensions": "/legacy_graphics_partial_cache/acceptance_cases/0",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A06",
+      "case": "Cropnegativeorigins/flip/scale/blockboundarycontact/cachetouchorder.",
+      "case_extensions": "/legacy_graphics_partial_cache/acceptance_cases/1",
+      "deferred_upload_case": "/legacy_graphics_partial_cache/deferred_upload/acceptance_cases/0",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A07",
+      "case": "CUTrecordtypes/multi-tile/ground/mapobject/actorqueue merge andmissingmapcontext.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A08",
+      "case": "Animationresource/action/facingcache,nextframe/freeze1/retry255/sameactionrestart/AP once.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A09",
+      "case": "Namedpalette320/signedselector/default/embeddedoverlay/blackkey/black1/knownmask.",
+      "deferred_upload_case": "/legacy_graphics_partial_cache/deferred_upload/acceptance_cases/1",
+      "scene_palette_cases": "/fixed_se_scene_palette_follow/acceptance_cases",
+      "packed_palette_cases": "/fixed_se_palette_output_depth/acceptance_cases",
+      "explicit_palette_cases": "/fixed_se_explicit_palette_upload/acceptance_cases",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A10",
+      "case": "Check opacity, additive drawing, vertex color and scaling with the declared target policy. Reuse the fixed-source cases in backend_selection_review.admission_and_presentation for startup, profile-specific messages and file effects, effective draw routing and recovery. Use legacy_render_device_preferences.device_preparation for candidate order, post-create setup failure, texture probing and file-result boundaries. Cover input_driven_rebuild for distinct draw/present requests, system Enter and deferred delivery.",
+      "startup_tier_input_pointer": "/legacy_render_device_preferences/startup_tier_input/acceptance_cases",
+      "fixed_first_config_cases": "analysis/capability-first-v1/launcher-functional-specification.json#/f5a_first_config/dialog_outcomes/acceptance",
+      "transition_rebuild_case": "/legacy_transition_background/graphics_rebuild/acceptance_cases/0",
+      "startup_palette_cases": "/fixed_se_startup_palette_publication/acceptance_cases",
+      "packed_palette_cases": "/fixed_se_palette_output_depth/acceptance_cases",
+      "explicit_palette_cases": "/fixed_se_explicit_palette_upload/acceptance_cases",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A11",
+      "case": "Waterrequestbeforecrop,type8reservation,640x480snapshot and60strips.",
+      "transition_background_case": "/legacy_transition_background/acceptance_cases/0",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A12",
+      "case": "Waterphase updateversusamplitude presentation,player/cameraowners,city/battle/mapchange/retry.",
+      "transition_background_case": "/legacy_transition_background/acceptance_cases/1",
+      "transition_rebuild_case": "/legacy_transition_background/graphics_rebuild/acceptance_cases/1",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A13",
+      "case": "EF/PLconfiguration/conditionalRNG/timer/particlepoolretirement underactualclockowners.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A14",
+      "case": "Bytefont14rows/NUL/highbit/danglingbyte/unrepresentableinput andfontfallbackpolicy.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A15",
+      "case": "Text4096records/signedshort/emptyrun/lanesreset/insertionorder/type4priority/shadow80.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A16",
+      "case": "Maskprovider identity/bounds/getter/reentry/close/clipping/failure releasesownedbytes.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A17",
+      "case": "Local/remote/othernamemodes,globalretention,48selectedlabels andcopiedsortbank.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A18",
+      "case": "Addressedvaluebars/zero divisor/overflow/geometry/visibility/party/resultowner publication.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A19",
+      "case": "Fixedkeyrepeat/modifierorder,preeditguards,bytehorizontal/vertical/delete/insert.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A20",
+      "case": "Entertargets/history/persistencefailure/chatcall/clear withoutassumedserverack.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A21",
+      "case": "IMEcapability/preeditattrs/candidates/commit/focusloss/replacedtarget andactualhost effects.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A22",
+      "case": "Caretadmittedcallcount,noticeunsigned>10/atmostonestep/lastadmitteddraw.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A23",
+      "case": "Minimap107/54/27/loadedAUT/ranges/colors/spread/diamonds/black1/playerstencil/blinkpolicy.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "PR-A24",
+      "case": "Asyncminimap/resource/fontlatecompletion,modalclose,scenechange andallthreehostlifecycle receipts.",
+      "status": "not-executed-as-full-native-or-target-case"
+    }
+  ],
+  "remaining": [
+    {
+      "id": "PR-U1",
+      "kind": "named-required-source-context",
+      "capabilities": [
+        "G06"
+      ],
+      "need": "Required non4scratchproducer/alias/reusesequence andknownextent beyondcurrentdecodedpixel/paletteprefix,plusrequiredbackend/versiondomain. Do notassumezeroorcontracttheoriginalresourcewidthscope.",
+      "next": "Onlya concrete requiredresource/callcontext justifiesfurtherREA;reuse CG/RR andthisscratchreview."
+    },
+    {
+      "id": "PR-U2",
+      "kind": "shared-integration-and-implementation",
+      "capabilities": [
+        "G06",
+        "G07",
+        "G05",
+        "X02",
+        "X03"
+      ],
+      "need": "PR-D1..8,originaldependencies andshared14ports areunintegrated;totalbudget/persistence/sourcecontext andmodalowners retain theiroriginalscope."
+    },
+    {
+      "id": "PR-U3",
+      "kind": "actual-target-and-official-acceptance",
+      "capabilities": [
+        "G06",
+        "G07",
+        "X04",
+        "X05",
+        "X07"
+      ],
+      "need": "Actualresource/font/IME/pixels/backend,web/mobile/WeChatdevices,currentpairedconsumer andofficialacceptance. Noaccount available;donotrepeatedlyrequestit."
+    },
+    {
+      "id": "PR-U4",
+      "kind": "other-original-capabilities",
+      "need": "Other40capabilityrequirements,37historical/10consumers/6profiles andA1..A4 remainunclosed;continue theirnecessaryoperation review withoutreopeningknownhelpers."
+    }
+  ],
+  "stopping_rule": "复用已有 RD、图形块、调色板、水面、文本及小地图的证据。只补会改变必要画面、状态或验收的具名问题。PR-U1 保留对应材料和后端条件。统一 A1–A4 通过后进入产品开发。",
+  "summary": {
+    "complete_native_records": 224,
+    "native_body_bytes": 163193,
+    "reused_complete_native_records": 224,
+    "new_REA_queries": 0,
+    "retained_derived_views": 6,
+    "derived_bytes": 2554,
+    "retained_rule_nodes": 35,
+    "facts": 20,
+    "operations": 52,
+    "G06_operations": 30,
+    "G07_operations": 22,
+    "original_scope_groups": 9,
+    "implementation_deltas": 8,
+    "full_acceptance_cases_not_executed": 24,
+    "pure_probe": "passed-existing-pure-module-boundaries"
+  },
+  "original_scope_preserved": true,
+  "local_G06_full_specification_ready": false,
+  "local_G07_full_specification_ready": true,
+  "G06_G07_dependencies_integrated": false,
+  "product_compatible_with_all_source_edges": false,
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "full_product_suites_or_builds_run": false,
+  "original_VM_official_network_account_device_actions": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "execution_record": {
+    "path": "build/analysis/game-presentation-functional-specification-v1/execution-record.json",
+    "bytes": 2720,
+    "sha256": "11a1f3faf061f0c894804c90d75d11434a4de4a84d07ded876e4da886f54dd2a"
+  },
+  "fixed_se_startup_palette_publication": {
+    "classification": "事实。固定 SE 启动入口、所选控制流和素材表。设计。共用调色与逻辑帧接线。",
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "source_review": "build/analysis/fixed-se-startup-palette-publication-v1/source-review.json",
+    "local_probe": "build/analysis/fixed-se-startup-palette-publication-v1/focused-probe.json",
+    "report": "reports/game-static.md#fixed-se-startup-palette-publication",
+    "validation": "reports/validation.md#fixed-se-startup-palette-publication-validation",
+    "related_requirements": ["G06", "X02"],
+    "related_rules_and_cases": ["CA-F2", "CA-F3", "CA-R1", "PR-D2", "PR-A02", "PR-A10"],
+    "entry": {
+      "startup": "44FB60 在普通帧循环前调用 450250。450250 的选定初始化路径经 450440 进入启动标识循环 4506A0。返回零时走初始化失败尾，返回成功才继续 45045A。",
+      "dispatch": "4506A0 从状态 0 开始，4544E0 的当次返回写 925084。45DD10 返回零时走 4505F0 清理及零返回。450746 按 ESI 读 450E98 的四字节目标表。4506F8 等四组检测位可在选定状态 0 至 4 时改走 25。"
+    },
+    "selected_states": [
+      {"state": 0, "target": "0x45074d", "request": [19, 1], "rule": "调用 44AB50 及请求 45079E，推进至 1。"},
+      {"state": 1, "target": "0x4507b5", "request": [23, 60], "rule": "选资源 0x3C41D，推进至 2。"},
+      {"state": 2, "target": "0x4507da", "rule": "6122F4 非零时保持状态 2，继续执行该轮共用帧。为零时记录 GetTickCount 并推进至 3。"},
+      {"state": 3, "target": "0x450801", "request": [19, 30], "rule": "当次无符号时钟必须严格大于记录值加 2000 的 uint32 结果，合格才请求并推进至 4。"},
+      {"state": 4, "target": "0x450835", "request": [19, 0], "rule": "等 6122F4 清零再请求，44A3F0 将步数归 1。按 452FE0 为 0x560B 写出的首值与 1 的有符号比较转状态 17 或 13。"},
+      {"state": 25, "target": "0x450cab", "request": [0, 1], "rule": "选定跳转先请求基础色并经 44AB50，再根据当次 4544E0 的正负继续。"}
+    ],
+    "asset_selection": {
+      "table": "534B18，步长 130。每行先读有符号 16 位版本门槛，随后取 NUL 结尾的文件名。",
+      "selected_paths": ["Bin/pal/palet_00.cgp", "Bin/pal/palet_black.cgp", "Bin/pal/palet_logo02J.cgp"],
+      "selected_indices": [0, 19, 23],
+      "selected_minimum_version": 0,
+      "layout": "复用 224×3 的 CGP BGR 色段与既有颜色转换。按当前素材版本、选择和实际读结果确认文件。"
+    },
+    "frame_publication": {
+      "shared_request_and_consumer": "沿 CA-F2/CA-F3 复用 44A3F0 与 44A430。启动经 450D59 消费，随后清本轮输入。普通帧另经 44FC96 消费。",
+      "timing": "启动在计算是否提交 506030 前已经调用 44A430。当次时钟超过帧目标且追赶计数未达 20 的选定分支可跳过绘制，已经执行的调色步仍保留。450DBC 的绘制分支可独立递增颜色修订。",
+      "completion": "新目标成功读入且步数保持时，44A430 在第 steps+1 次合资格消费跳到目标色，并清 6122F4 与 614388。重复同一目标时更改步数沿既有 CA-F3 处理。",
+      "failure": "版本重新比较失败或文件返回空句柄时，44A430 在提交活动索引、标志和过渡进度之前返回。请求保留，合资格的后续逻辑轮可重试。原有标志或后续资源结果决定等待是否继续。"
+    },
+    "implementation_handoff": {
+      "batch": ["D0", "D2"],
+      "reuse": ["shared/legacy-game-battle-palette.mjs", "shared/legacy-game-resource-library.mjs", "shared/legacy-game-client.mjs"],
+      "difference": "沿 PR-D2 接入来源表及启动资格。复用 0 与 13 的色彩运算和当前 CGP 检查，补 19 与 23 的按版本选材、活动色保留及同一逻辑帧推进，再提交实际绘制结果。",
+      "stage306_comparison": "原创数组对照通过 0 和 13。现有战斗入口拒绝 19 与 23，并拒绝零步数。共享运算可复用到待接的启动入口。",
+      "host": "复用 UC-P07 按素材身份读目标，UC-P13 取得对应画面提交结果。准备及实际绘制允许不同完成时刻。"
+    },
+    "acceptance_cases": [
+      {"case":"选定启动黑场与标识", "expected":"给定初始活动色 0 和有效素材，合资格的两次逻辑帧依次发布 19/1 与 23/60。观察 23 首步、60、61 和忙标志。绘制跳过分支仍按当轮推进。"},
+      {"case":"一次时钟读取及黑场恢复", "expected":"标识忙时继续等。清零时记录捕获值，在等于捕获值加 2000 时保留当前色，严格超过才请求 19/30，结束后用原 19/0 请求核步数归一和资料选路。"},
+      {"case":"帧首条件跳转", "expected":"选定检测位提前导向状态 25，沿 0/1、资源版本门槛、清理及场景交接校验。"},
+      {"case":"目标文件无法打开或版本不足", "expected":"保留已发布索引和上次调色进度。同一尚待的请求待适用素材后重试，只在有效提交后换活动色。核对绘制回执可独立处理旧有颜色。"}
+    ],
+    "remaining": "选定启动后续分支、地图和战斗返回的实际调用者及覆盖、实际原版画面与设备输出、现行同版和三端产品组合。",
+    "original_execution_observed": false,
+    "product_code_changed": false,
+    "full_G06_and_X02_specification_ready": false
+  },
+  "fixed_se_scene_palette_follow": {
+    "classification": "事实。固定 SE 的场景资料、调色与首帧次序。设计。D0/D2 复用共用颜色状态和当前场景回执。",
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "source_review": "build/analysis/fixed-se-scene-palette-follow-v1/source-review.json",
+    "target_comparison": "build/analysis/fixed-se-scene-palette-follow-v1/stage306-probe.json",
+    "report": "reports/game-static.md#fixed-se-scene-palette-follow",
+    "validation": "reports/validation.md#fixed-se-scene-palette-follow-validation",
+    "related_requirements": ["G03", "G06", "X02"],
+    "related_rules_and_cases": ["CA-F1", "CA-F2", "CA-F3", "CA-R1", "GF-D3", "GF-A10", "PR-D2", "PR-A09", "PR-A12", "WT-F05"],
+    "protocol_producer": {
+      "operation": "receive-00567c54",
+      "tag": "Ta>",
+      "consumer": "0x4ef9d0",
+      "rule": "复用现有一个字节串的解码及内层字段切分。第一个字段生成场景标签。第二个字段在 4EFA74 取至 31 字节，空、缺少或转出的有符号值为负则发布 -1，其余发布原非负值。4EFA5C 先向 F5F188 写 -2，再在本次处理结束前写最终请求。BFF334 继续沿独立的已有地图等待规则。"
+    },
+    "pending_selector": {
+      "owner": "0x502950",
+      "eligibility": "已核 13 处直接调用均在 501A50。两处调色调用分别是 502962、502986。5028A0 的已核捕获体在 502942 返回。",
+      "automatic": "F5F188 为 -1 时，以当时的 7283F0 为索引，向 44A3F0 提交步数 0，由共用入口归为 1。返回后写 7283EC=1，再将 F5F188 改为 -2。",
+      "explicit": "F5F188 非负时，以该值请求、同样传步数 0。返回后写 7283EC=0 和 F5F188=-2。请求被 44A3F0 的索引或版本门槛拒绝时，调用方仍切换跟随状态并消费该槽。",
+      "idle": "F5F188 低于 -1 时直接返回，保留当前请求和跟随状态。"
+    },
+    "calendar_follow": {
+      "owner": "0x451ba0",
+      "rule": "451B60 按现有日历投影分类，分类改变时更新 7283F0。先前的 7283EC 恰为 1 才以新索引和 3600 步请求 44A3F0。初始默认值生产继续沿 4F2BB0 与 CA-F1。",
+      "ordering": "501B01/501B06 在无中间调用的情况下先消费场景请求再更新分类。跟随恢复同轮又跨时段时，合格的新分类请求可替换旧默认请求。显式色下分类仍更新，之后恢复跟随可读取最新值。"
+    },
+    "ordinary_capture_and_present": {
+      "map_return": "9/20 在 50248B 调 5028A0。5028E1 调 506030，502907 调临时面复制。返回后 502490 写子状态 3，并落入普通帧。5024A6 消费待选颜色，5024BF 调移动，502507 更新日历分类。",
+      "device_rebuild": "45DC9A 在主状态 9 也调用同一捕获体。它沿该入口调用时的图形资料和活动颜色重做背景。",
+      "frame": "普通主循环先经 44FC66 维护接收，再在 44FC7A 分派状态。在 44FC96 调 44A430 处理活动色，后续合资格绘制分别经 44FE31 和 44FE3B 请求绘制及呈现。目标文件打开失败沿 CA-F3 保留已发布色与尚待请求。"
+    },
+    "implementation_handoff": {
+      "batch": ["D0", "D2"],
+      "reuse": ["shared/legacy-game-state.mjs", "shared/legacy-game-protocol.mjs", "shared/legacy-game-battle-palette.mjs", "shared/legacy-game-resource-library.mjs", "shared/legacy-game-client.mjs"],
+      "difference": "复用现有标签的 code、日历和颜色算术。补最新默认色、跟随状态和一次消费的选择，继续以同一来源版本校验色板。六组本机场景标签与普通帧对照均保留解码结果，普通软件帧的摘要一致。",
+      "target_lifecycle": "沿 GF-D3 为当前场景的有效帧接 UC-P13，使用相应源、素材和场景身份处理异步绘制。允许原版内层捕获与外层使用不同的活动颜色，只有当前场景的目标画面回执可推进目标端的输入恢复用例。"
+    },
+    "acceptance_cases": [
+      {"case":"Ta> 空值、负值及显式索引边界", "expected":"空值与负值恢复跟随。0、23、38 依适用版本进显式准入。39 请求被拒后仍观察原消费与跟随禁用，活动颜色仍可沿用。"},
+      {"case":"地图显式色跨时段及同帧恢复", "expected":"显式色继续时更新默认值并保留当前请求。恢复跟随先使用当前默认，如果同轮分类再变且请求合格，采样该轮最终的 3600 步请求。"},
+      {"case":"9/20 内层捕获及外层提交", "expected":"先内层捕获与临时面复制，再写 3，消费场景色、处理普通移动及分类，之后由共同发布在外层绘制前确认颜色。三端在当前场景首次成功呈现前后核实际输入回执。"},
+      {"case":"调色素材打开失败或场景变更", "expected":"按原资源与版本保存最近活动色及有效待选，核空读后重试。按目标端场景归属拒收晚到的旧绘制回执。"}
+    ],
+    "remaining": "原设备调色和实际帧像素、环境特定的源写入、当前同版、网页/移动/微信完整产品验收。",
+    "original_execution_observed": false,
+    "product_code_changed": false,
+    "full_G06_X02_specification_ready": false
+  },
+  "fixed_se_palette_output_depth": {
+    "classification": "事实。固定 SE 默认调色表和所选精灵上传。设计。D0/D2 复用索引解析与颜色所有者。",
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "source_review": "build/analysis/fixed-se-palette-output-depth-v1/source-review.json",
+    "target_comparison": "build/analysis/fixed-se-palette-output-depth-v1/stage306-probe.json",
+    "report": "reports/game-static.md#fixed-se-palette-output-depth",
+    "validation": "reports/validation.md#fixed-se-palette-output-depth-validation",
+    "related_requirements": ["G06", "X02"],
+    "related_rules_and_cases": ["CA-F3", "CA-R1", "RR05", "PR-D2", "PR-A09", "PR-A10"],
+    "surface_format": {
+      "read": "445CDB 取得表面格式成功后，将三次连续掩码读取保存到 6122EC、613944、6122C8。44D680 对每个 32 位掩码逐位计数。",
+      "shift_rule": "R、G、B 的右移量依次由 8 减对应置位数得到。B 从最低位置放入，G 左移 B 的位数，R 左移 G 与 B 的位数之和。给定常见且各通道不重叠的 RGB565 或 RGB555 掩码，组合后取 WORD。",
+      "frame_dispatch": "44A430 依据 534B10 的实际输出位深分流，16 调 44AA10，24 调 44AB00，32 调 44AAA0。CGP、RD 和命名调色来源沿已有字节格式。"
+    },
+    "table_updates": [
+      {"depth":16,"base":"0x614148","dynamic_entry":"0x44aa10","entry_bytes":2,
+       "rule":"449CF0 的 16 位初始转换建立 256 项。动态转换只刷新索引 16–239，保留 1–15、240–255 的既有表项。量化后的零 WORD 写为 1，尾部将索引 0 强制写为 0。"},
+      {"depth":24,"base":"0x613624","dynamic_entry":"0x44ab00","entry_bytes":3,
+       "rule":"449CF0 的 24 位初始转换与动态转换均写 256 个 BGR 三字节。全零颜色写为 01 00 00，尾部将索引 0 的三字节清零。"},
+      {"depth":32,"base":"0x611ec8","dynamic_entry":"0x44aaa0","entry_bytes":4,
+       "rule":"默认表按 00RRGGBB 写 256 项并清索引 0。写到全零颜色时，44AAD4 另向对应 16 位表项写 1，该处的 32 位颜色仍为 0。显式 32 位黑色处理沿已有 RR05。"}
+    ],
+    "sprite_upload": {
+      "entry": "449C80 在显式表参数为空时经 449CDB 调 4497C0。4497C0 按 534B10 及已有跳转表分派同一 RD 字节索引。",
+      "default_16": "4498F0 读 614148+2*index 的 WORD，4498F8 以两字节写入目标。",
+      "default_24": "449945 取 613624+3*index，随后写前两个字节和第三字节。像素循环按 3 递进。",
+      "output_bounds": "两条循环均按源行宽递减起点、按目标表面步幅递增。实际表面结果沿已有宿主验收范围。透明色键继续沿 4468B0 的所选零值设置。",
+      "explicit_table": "显式表参数非空经 449CA8 调 449A10。所选 16 位与 24 位分支分别按参数进行 2、3 字节查表。505FAC 的所选构造由 447B10 返回颜色对象，使用其 +0x10 表体。命名和内嵌来源沿 PR-A09 续核。"
+    },
+    "implementation_handoff": {
+      "batch": ["D0", "D2"],
+      "reuse": ["shared/legacy-game-render.mjs", "shared/legacy-game-battle-palette.mjs", "shared/legacy-game-resource-library.mjs"],
+      "difference": "沿现有颜色所有者使用来源已选位深，复用默认 32 位、显式 32 位、索引解码和资源缓存。规格增补 16/24 位输出字节、保留的表项、最低非零颜色和不同的像素写宽。",
+      "host": "UC-P13 按对应来源位深、素材与活动色验呈现回执，沿已有 PR-A09、PR-A10 在能运行的宿主验证实际表面。"
+    },
+    "acceptance_cases": [
+      {"case":"默认 16 位量化与保留项", "expected":"用 RGB565、RGB555 掩码分别验证 0、15、16、17、18、168、239、240。动态转换保留旧 15 与 240，近黑量化的零值成为 1，索引 0 清零。"},
+      {"case":"默认 24 位 BGR 与色键", "expected":"按 3 字节核暗色、黑、非零色、首末项及上传顺序。全零颜色用最低非零值，索引 0 清零。"},
+      {"case":"32 位默认色及显示恢复", "expected":"沿已有 RGBA 用例核默认黑、显式黑和透明键。原版 32 位表中保留零，按源码范围记录同位 16 位表的写入及之后重新初始化。"},
+      {"case":"上传的默认表和显式表", "expected":"分别核参数为空与非空；按目标深度定位消费表、行步幅及实际颜色。显式来源沿现有命名与嵌入色用例继续核。"}
+    ],
+    "paired_item_specification": "/fixed_item_palette_output_depth",
+    "explicit_table_specification": "/fixed_se_explicit_palette_upload",
+    "remaining": "原版表面掩码和设备输出、非完整色表的实际尾部、当前同版和三端产品验收。",
+    "original_execution_observed": false,
+    "physical_surface_observed": false,
+    "product_code_changed": false,
+    "full_G06_X02_specification_ready": false
+  },
+  "fixed_item_palette_output_depth": {
+    "classification": "固定 Item 的调色准备、动态表与默认上传，复用固定 SE 的对应规则",
+    "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+    "capabilities": ["G06", "X03"],
+    "related_rules_and_cases": ["PR-D2", "PR-A09", "PR-A10"],
+    "source_review": {
+      "path": "build/analysis/legacy-item-palette-output-v1/source-review.json",
+      "bytes": 19829,
+      "sha256": "2f5c8b546fd5c1763adc8c55184e9e37241ddf2921b5929b2d951d58a53360ae"
+    },
+    "local_comparison": {
+      "path": "build/analysis/legacy-item-palette-output-v1/stage306-probe.json",
+      "bytes": 1974,
+      "sha256": "a36ef888db3e5289a66cb4560d1739c0f8fcc3aa69cca455eac5afe0b2f4f9c4"
+    },
+    "report": "reports/game-static.md#fixed-item-palette-output-depth",
+    "validation": "reports/validation.md#fixed-item-palette-output-depth-validation",
+    "facts": {
+      "depth_and_masks": "4710C9 调 GetDeviceCaps 索引 12，4710CF 保存到 5CB678。471494 的具名全屏分支随后显式写 16。在所查非 8 位路径，471614 的表面 GetPixelFormat 返回 0 后，47162B 至 471648 保存 R、G、B 掩码。4807BE 对各掩码数位，右移量为 8 减该数，G 放在 B 位数之后，R 放在 G+B 位数之后。",
+      "preparation": "49FFF5 从图形重建调用 479BE0，返回零走既有系统 Enter 投递。479BE0 先写固定 32 个首末色。6AF0E8 为零时读 pal 目录下 palet_00.cgp 的中间 224 个 BGR 三元组，保存原表。随后将现行索引 168 的 RGB 清零。再次准备沿用中间色并重建所选表。",
+      "depth_8": "准备查看创建返回到上下文 +0x90 的调色板指针。8 位分支在 SetPalette 返回零时继续，失败提示返回 2 时以零退出。默认上传以一字节复制 RD 索引。",
+      "depth_16": "初次准备遍历 256 个索引，量化为 WORD。47AFFD 的动态分支重写 16–239，保持 1–15 和 240–255。量化为零的所写值变为 1，最终索引 0 清零。表起点 6B0F50。",
+      "depth_24": "初次准备和 47B15B 均写 256 个 BGR 三字节至 6B042C。全零变为 01 00 00，最终索引 0 的三字节清零。",
+      "depth_32": "准备条件为 32 及以上。实际默认上传和 47B0DA 动态分支按 32 选择。默认表 6AECD0 用 00RRGGBB。黑仍为零，此时还向相同索引的 16 位表写 WORD 1，32 位表的索引 0 最终清零。",
+      "upload": "479B7E 见显式表为空时经 479BC5 调 479403。锁定成功后的循环按所选位深读取 RD 单字节索引，16/24/32 位分别从三表取 2/3/4 字节，依源行步幅向前一行、按锁定结果的目标步幅推进。479403 的成功尾部与包装返回都调用所选 Unlock 槽。显式表非空经 479BA3 调 4797C0。",
+      "scope": "物理表面深度、锁定及释放结果待实测，初始计算用于源码已证的不重叠通道布局。"
+    },
+    "handoff": "D0/D2 复用 SE 的默认表、现有 CGP/RD 软件解码和资源所有者，按 PR-A09/A10 接来源位深、重建、输出字节和回执。沿同一测试覆盖 16 位保留项、24 位零规则和 32 位旁表写入。",
+    "explicit_table_specification": "/fixed_item_explicit_palette_upload",
+    "remaining": ["原版实际的位深、表面返回和像素", "非四倍宽具名来源、三端及当前同版"],
+    "original_execution_observed": false,
+    "physical_surface_observed": false,
+    "product_code_changed": false,
+    "full_G06_X03_specification_ready": false
+  },
+  "fixed_se_explicit_palette_upload": {
+    "classification": "事实。固定 SE 命名表、内嵌色表、查表和缓存标签。设计。D0/D2 复用已有颜色、图块与实际呈现回执。",
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "source_review": "build/analysis/fixed-se-explicit-palette-upload-v1/source-review.json",
+    "target_comparison": "build/analysis/fixed-se-explicit-palette-upload-v1/stage306-probe.json",
+    "report": "reports/game-static.md#fixed-se-explicit-palette-upload",
+    "validation": "reports/validation.md#fixed-se-explicit-palette-upload-validation",
+    "capabilities": ["G06", "X02"],
+    "related_rules_and_cases": ["RR05", "CA-R1", "PR-D2", "PR-A09", "PR-A10"],
+    "named_table": {
+      "selection": "5060CB 先调 507B20。它把有符号 16 位选择值低于 1 或达到表槽数的情况归零。有效槽按 568310 取载体映射，所核固定样本有 1495 槽。",
+      "preparation": "5076A0 用 453030 取载体 RD 色段。已有有效槽的所查解码失败路径令 F8F200=-1，并清该槽从 +0x804 起的 768 个字节。成功路径复制声明的色段。短色段的运行时尾部待证，目标解析沿已确认的可读三元组范围。",
+      "color": "槽内 +4 表直接取原色，+0x404 表先按通道 LUT 取色。16 位按现有 610668+0xC0 表的三通道 WORD 合成，24 位按 BGR，32 位按 00RRGGBB。所选两张 24 位表对全零颜色写 01 00 00，其余保留蓝字节。索引 0 保持透明零。",
+      "cache": "5076A0 末尾写调色编号及修订的两个 WORD。507B20 在指针、编号和修订相符时复用。505D70 有效命名槽按旗标 0x04 选择 +4 或 +0x404，再调 449C80。"
+    },
+    "embedded_or_original": {
+      "selection": "在选择值为 0 的路径，505D70 有 RD 内嵌色段时用类型 2 生成颜色对象。无内嵌且旗标 0x04 已设时，类型 0 使用 613224 的原颜色快照。该旗标同时决定是否使用通道 LUT。",
+      "upload": "505FAC 调 447B10 后存图像记录 +8。对象非空时用 +0x10 表体。无可用对象的本分支向 449C80 传空表并走默认上传。参数非空时 449A10 按目标位深用 RD 单字节索引读每项。",
+      "packed16": "445D9B 的所选表面准备建立 256 组三个 WORD，表内顺序为 B、G、R。447B10 的已绑定类型 0 普通色和类型 2 原始 BGR 支路按转换后的通道读字并合成。索引 0 在入口尾部清零。",
+      "packed24": "447B10 的八个原指令循环都按三字节写 BGR。其合并检查在全零时跳过蓝字节置 1，合并结果非零时将 B 写为 1。原颜色和内嵌来源所选 LUT 开关都落在这些循环。",
+      "packed32": "复用已有显式 00RRGGBB、零键与非零黑值。已绑定两类来源分别沿 16–239 的变换范围和内嵌色的三元组查表。"
+    },
+    "cache_publication": {
+      "match": "505D70 以块 +0x14、+0x16、+0x18 保存三个 WORD，分别是调色编号、修订及选择值。旗标 0x04 令前两个目标值为零。全部命中直接返回 1。",
+      "deferred": "满足 FAB228、图像记录 +0x0E 非零和块既有颜色编号非负的条件时使用本轮限额。计数达 10 直接返回 1，旧标签和旧表面待下次核对。",
+      "missing_named_slot": "非零选择值且命名槽指针为空时，505EEE 直接到 505FFB 更新三标签并返回 1。本分支跳过显式和默认上传。裁切前置路径可调用 44ABA0 处理表面。实际已有像素取决于进入该分支时的表面和裁切结果。",
+      "rd_failure": "5076A0 的命名载体解码失败会清所选原始色段并继续转换。505D70 的精灵 RD 解码失败会清暂存和索引并返回 0。两种失败各自验实际绘制和标签归属。"
+    },
+    "implementation_handoff": {
+      "batch": ["D0", "D2"],
+      "reuse": ["shared/legacy-game-named-palette.mjs", "shared/legacy-game-render.mjs", "shared/legacy-game-resource-library.mjs"],
+      "difference": "复用现有命名优先级、三元组边界与 32 位 RGBA。按来源记录显式 24 位的蓝字节规则和真实上传结果，沿同一块所有者接换色延后及重试。当前原创缺载体试次返回 LEGACY_ASSET_NAMED_PALETTE_REQUIRED。",
+      "host": "继续沿 UC-P13 将当前活动色表、缓存标签、像素实际提交结果一并带到对应场景回执。"
+    },
+    "acceptance_cases": [
+      {"case":"命名槽与旗标选择", "expected":"有效、无效和边界选择值走实际槽。用同一命名色检查 +4、+0x404 和旗标 0x04 的缓存与颜色次序。"},
+      {"case":"24 位两种零色规则", "expected":"给定 BGR 00 00 00 与 60 46 20，分别核 5076A0 的命名表及 447B10 的显式表。对有无 LUT、保留项及索引 0 使用所选真实出口。"},
+      {"case":"表面上传与下一轮补色", "expected":"同一 RD 索引比较默认与显式参数。给 12 个合资格旧块变色，检查前 10 次、延期块的旧标签及下一轮补色。"},
+      {"case":"失败和空槽", "expected":"分别检查载体解码失败、非零选择的空槽、零选择的显式对象缺失和精灵解码失败，按实际条件核表面、标签和返回值。"}
+    ],
+    "paired_item_specification": "/fixed_item_explicit_palette_upload",
+    "remaining": "原设备 16/24 位实际画面、短三元组尾部在运行中的可读来源、空槽与裁切的真实结果、当前同版与三端验收。",
+    "original_execution_observed": false,
+    "physical_surface_observed": false,
+    "product_code_changed": false,
+    "full_G06_X02_specification_ready": false
+  },
+  "fixed_item_explicit_palette_upload": {
+    "classification": "固定 Item 的静态事实、stage306 本机对照及 PR-A09/A10 的共用交接",
+    "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+    "capabilities": ["G06", "X03"],
+    "related_rules_and_cases": ["PR-D2", "PR-A09", "PR-A10"],
+    "source_review": {
+      "path": "build/analysis/legacy-item-explicit-palette-v1/source-review.json",
+      "bytes": 25194,
+      "sha256": "e3e010467470e0998fa99dd62a3c77d3a35cc93662a8356c038ee6302edc44af"
+    },
+    "local_regression": {
+      "path": "build/analysis/legacy-item-explicit-palette-v1/local-regression.log",
+      "bytes": 941,
+      "sha256": "2b49f6a72f0dd0284c00c5d1c1c7091f01ca31e74351c3775b1fd74b2fb1bff0",
+      "passed": 8
+    },
+    "report": "reports/game-static.md#fixed-item-explicit-palette-upload",
+    "validation": "reports/validation.md#fixed-item-explicit-palette-upload-validation",
+    "paired_se_specification": "/fixed_se_explicit_palette_upload",
+    "named_table": {
+      "selector": "593524 在所查精灵路径调用 596DF9。1495 槽以有符号选择值索引，1–1494 有效，其余写回零。604A98 的 5,980 个映射字节与 SE 的 568310 完全一致。",
+      "generation": "596574 按 8 字节记录和每槽 0xB04 字节分配。596DF9 比较槽首的调色编号、修订 WORD。失配进入 596699，槽记录 +4 为零时按映射找 RD 载体。解码失败设置最近图像号为 -1，清槽 +0x804 的 768 字节，再进入转换。",
+      "choice": "非零选择遇非空槽时，旗标 0x04 设定取槽 +4 的原色表，清除时取 +0x404 的变换表。5933AF 将所选指针作为上传的第七个参数。两表的 24 位循环将全零 BGR 的 B 写为 1，其余原样保留，索引 0 清零。",
+      "short_source": "59678D 至 5967C5 的短段清除使用 768 减报告长度，起点为槽 +0x804 加报告长度的三倍。实际短段的可读尾部和相邻状态按原版适用输入继续验。"
+    },
+    "embedded_or_original": {
+      "choice": "零选择检查图像记录 +8 的颜色对象。对象的两项颜色状态失配时，先标记旧对象可回收并清空持有指针。存在内嵌色段时 59343F 以类型 2 读像素宽乘高之后的字节。无内嵌色段且旗标 0x04 已设时，59347C 以类型 0 取 6B002C 原色快照。5934D8 传颜色对象 +0x10 或空值。",
+      "output": "4759F4 的已核 24 位原色与内嵌色分支在 BGR 组合非零时把 B 写为 1，全零保持零。索引 0 清零。479B7E 为空值走默认 479403，非空走 4797C0。显式路径的 Lock 返回零后，从 RD 单字节索引取 2、3、4 字节颜色并按目标表面步幅写入。8 位路径复制源索引。"
+    },
+    "cache_publication": {
+      "match": "59312B 检查块 +0x14、+0x16、+0x18 的颜色号、修订和选择值。旗标 0x04 已设时两个预期颜色值为零。三项匹配直接返回 1。",
+      "deferred": "593524 每次进入清计数。启用限制、图像色段标记非零、块旧色号非负同时成立时，失配处理先计数。计数已有 10 则返回 1 并保留旧标签和像素。",
+      "failure_and_publication": "精灵解码失败清暂存和最近图像号并返回 0。非零选择遇空槽跳过上传并写三项标签。调用上传的路径随后也写标签。零选择调用后以色段长度更新图像色段标记。表面写入结果需要独立回执。"
+    },
+    "implementation_handoff": {
+      "batch": ["D0", "D2", "D5"],
+      "reuse": ["shared/legacy-game-named-palette.mjs", "shared/legacy-game-render.mjs", "shared/legacy-game-resource-library.mjs"],
+      "difference": "沿同一颜色、图块和呈现所有者实现两版共用的来源选择、限额及标签规则。复用选择映射和现有 RGBA。按需要的原版位深与实际呈现端口验色。短色段沿已验证的范围和索引消费。",
+      "host": "沿 PR-A09/A10 和 UC-P13 分别核实际步幅、像素与标签。缺载体、空槽、解码失败及达到限额分支使用同一组输入。"
+    },
+    "acceptance_cases": [
+      {"case":"共享命名选择和标签", "expected":"核零、1、320、1494、1495 和 65535，比较两版映射、旗标 0x04、版本命中及同一精灵的多种颜色。"},
+      {"case":"零选择来源与原版字宽", "expected":"用同一 RD 索引比较内嵌色、原色快照与默认。16/24/32 位核实际字宽及隔行步幅，24 位比较两种黑色规则和索引 0。"},
+      {"case":"未上传的标签及延期", "expected":"分别核非零选择遇空槽、精灵解码失败、表面锁定失败，以及同次绘制第 11 个合资格失配块。分别断言实际写入、三项标签、返回和下一轮重试。"}
+    ],
+    "remaining": ["原版表面的实际位深、锁定返回和可见像素", "短色段尾部、具名非四倍宽素材及实际选择", "三端产品和当前同版验收"],
+    "original_execution_observed": false,
+    "physical_surface_observed": false,
+    "product_code_changed": false,
+    "full_G06_X03_specification_ready": false
+  },
+  "legacy_transition_background": {
+    "classification": "固定 SE 37c4 静态事实、限定推测、stage306 本机对照与待验证场景",
+    "capabilities": ["G03", "G06", "X02", "X03"],
+    "related_rules": ["PR-F09", "PR-F10", "PR-D5", "GF-D3"],
+    "report": "reports/game-static.md#legacy-transition-background",
+    "validation": "build/analysis/legacy-transition-background-v1/validation.json",
+    "source_evidence": "build/analysis/legacy-transition-background-v1/rea-evidence.json",
+    "facts": {
+      "queue": "5059F0 预留 4096 个队列位置的末尾 3 项，有待绘水面时预留 4 项。类型 8（水面）在有标记时以优先级 2 加入，类型 6、7、9 固定加入，优先级分别为 5、6、20。507200 按无符号优先级升序，同优先级按符号扩展后的索引降序。入队条件与执行 6、7 实际拷贝的条件分别判定。",
+      "queued_copy": "5067F4 的类型表将 6、7 分派至 506727、5067B3。两支路先检查字节 BFF320 非零。6 从 FAB22C 读到 [610668]+0x0C 的当前绘制面。每个轴从 [0,640) 或 [0,480) 开始，位移 d 正则目标起点 d、来源终点减 d，d 负则来源起点为 -d、目标起点 0，d 为零时不改矩形。X、Y 输入分别为 BB212C、BF2130。7 将当前绘制面整面复制入 FAB22C，目标为 (0,0)，源矩形传空指针。两次 vtable +0x1C 调用传 0x10，返回后直接推进队列。",
+      "gate_scope": "501674 在主分派前清 BFF320，9/3 在 5024A0 再清。9/20 经 50248B 进入 5028A0，保存、清零该字节，在 5028E1 执行内部队列后恢复进入时的值，再于 502907 整面复制入 FAB22C。随后 FAB228 写 1，调色板限额的值由独立规则维护。45FEE0 与 45FF20 的所查路径清位移词。交叉引用只覆盖当前提供者解析出的所列地址。",
+      "direct_scene_capture": "9/200 经 501C8D 调用 5029B0，在开始淡出前于 5029CA 整面复制当时的绘制面。9/205 的五次等待及准备完成后，501E2E 绘制新图，501E4A 直接复制新画面，501E7E 写 204，再按既有分支进入淡入。9/11 的三十次等待、重建及 F5F18C 等于 1 的条件成立时，502363 绘制，50237F 直接复制新画面，随后交既有类型 13 或 15 的逐行过渡。这些具名捕获在调用点直接设来源与目的面。",
+      "battle_background": "437A90 将背景排入队列并于 437ADF 调绘制，在 437AFB 整面复制入 FAB22C，随后于 437B20 保存当前背景图号 58FB30 到 599DF8。该路径的图号保存没有用复制调用的返回值作判定。437B30 在战斗子状态 2 至 6 比较两图号，有变化时重新构建。所选 44FB60 路径在 727360 等于 3 时先调用 423340，该函数在 4234CA 按战斗偏移、绘制尺寸及裁剪取 FAB22C，随后外层在 44FE31 消费绘制队列。",
+      "water_and_surface_lifetime": "类型 8 的原水面条件成立时，506891 把画面复制到同一个 FAB22C，再由 506931 从该面逐条回读 60 条。507B80 先以 640×480、参数 0 与 0x4000 调 446A90，空返回改调 4468B0，参数 0 与 0x800，二者返回值写同一个指针。两次失败返回 0。图形重建 45DB10 先调用 446590，发现该面非空时按 +0x08 释放并置空。"
+    },
+    "inference": "类型 8 与满足 BFF320 的类型 6 落在同一个有水面资格的绘制队列时，6 读取的是 8 刚写过的临时面。定序可从优先级和指针推导。已查的正常地图及回场完整捕获有直接入口。满足非零门槛及非零位移的正常事件仍需独立证据。",
+    "existing": {
+      "owners": ["shared/legacy-game-client.mjs", "shared/legacy-game-city-return.mjs", "shared/legacy-game-presentation.mjs", "web/legacy-game-battle-canvas.mjs", "web/legacy-game-server-return-canvas.mjs"],
+      "probe": "build/analysis/legacy-transition-background-v1/stage306-probe.json",
+      "observed": "现有城市过渡留住最后一次成功绘制的表面并清理被替换任务的迟到输出。普通战斗回场的现有共享客户端在 job.done 内先提交回场并发布 playing。用现有战斗 Canvas 函数、可计数 2D 绘制端口及原普通回场本机夹具复现宿主同步关闭。普通 runtimeRevision 从 1 到 2，Canvas 绘制及呈现序号均留在 236，战斗画布的最后一次 pump 返回空。此前 54 次过渡像素对照及操作恢复已完成。"
+    },
+    "implementation_handoff": {
+      "D0": "复用 UC-P06、UC-P13、城市帧及战斗 Canvas 既有所有者。将临时工作像素、用于过渡的快照身份和已提交的宿主帧分开验证，沿已有代次退役，迟到的旧帧释放原持有字节。",
+      "D2": "由 GF-D3 负责普通输入恢复与回场提交。复用现有准备帧、当前地图和角色重建。当前活动代成功提交对应普通画面时，才开放普通输入和派生界面，让三个宿主用同一回执确认。PR-D5 负责队列水面及图形顺序，沿已证路径接捕获与重放。",
+      "D5": "沿同一用例在网页、移动网页和微信核捕获、重绘、失败或迟到回执、旧任务退役及普通输入真正恢复的帧。"
+    },
+    "acceptance_cases": [
+      {"extends": ["PR-A11"], "check": "普通与有水面请求的 4096 队列核 3 或 4 项预留、优先级及共用临时面的拷贝顺序。分别施加零与非零 BFF320，再用零及正负的合法位移比较坐标与矩形。验证设备失败和过大位移的实际结果，按原返回证据确认结果。"},
+      {"extends": ["PR-A12", "GF-A10"], "check": "为旧图、新图、水面和战斗背景各用已区分的像素。沿普通 200 至 205、20 和城市分支核何时用绘制面以及当前临时面内容。覆盖背景图号不变和替换、被重建代退役、冷分配双失败与优先级交错。"},
+      {"extends": ["GF-A11"], "check": "从普通战斗回场比较首次准备、写像素、呈现回执、普通输入与普通窗口开放的顺序。覆盖画布拒绝、停用、重开、资源准备失败、同一活动场景重试及新场景替换。确认旧场景回执无法推进新场景。"}
+    ],
+    "remaining": "获得 BFF320 非零、正常位移生产和原版实际表面返回的直接证据后核剩余运行分支。普通 16/17 的完成帧和移动恢复已写入 GF-A10 对应规格。固定样本原版像素、实际设备、现行同版及三个产品宿主的终端验收继续沿原用例。",
+    "graphics_rebuild": {
+      "classification": "固定 SE 37c4 的静态事实、有限推测和 stage306 本机对照",
+      "capabilities": ["G03", "G06", "X02", "X03"],
+      "related_rules_and_cases": ["PR-O25", "PR-D4", "GF-D3", "PR-A10", "PR-A12", "GF-A10", "GF-A11"],
+      "report": "reports/game-static.md#legacy-transition-graphics-rebuild",
+      "validation": "build/analysis/legacy-transition-rebuild-v1/validation.json",
+      "source_evidence": "build/analysis/legacy-transition-rebuild-v1/rea-evidence.json",
+      "facts": {
+        "admission_and_retirement": "复用 PR-A10 已证的呈现待恢复、协作级别、档位不符与输入触发规则。45DB10 入口先保存 FAB228，再调用 446590，释放并清原临时面 FAB22C 与旧图形上下文指针。随后 4457D0 按已有规则初始化，首次返回 2 时切换窗口模式并重试一次。错误分支按原消息调用返回至后续步骤。507B80 尝试两种参数取得 640×480 临时面，仍沿原资源版本和缓存初始化顺序。",
+        "attempt_and_receipt": "45DBC2 调 507B80 后继续进入调色板准备，调用者在这里没有按 507B80 的返回值分支。两次临时面分配都失败的已证分支将 FAB22C 留空并返回零。45DBCE 的调色板准备返回 0 时，45DBE6 以 PostMessageA 投递系统 Enter，并在返回后继续当前路径。后续直接拷贝处从 FAB22C 取得地址后解引用，没有就地空指针或复制返回值判定。此顺序提供静态失败用例，实际重入、提示和设备故障结果待验证。",
+        "scene_recapture": "45DBE8 读当前主状态。等于 9 时经 45DC9A 调 5028A0。5028A0 从当前场景重新计算画面位置、读取活动地图并以其当前资料入队，通过 45FF20 清两个绘制位移词。它先清绘制面，暂时清 BFF320 与 FAB228，调 506030，恢复进入时的 BFF320 后于 502907 将新绘制面整面复制进新 FAB22C，随后写 FAB228=1、清队列并采样至 728368。所查重建入口的主状态 9 比较不按当前子状态分流。",
+        "battle_recapture": "主状态 10 在 45DBFC 起清队列、推进选定辅助状态，以当前 58FB30 在 (320,240) 和优先级 200 入队，再清绘制面。45DC42 暂写 FAB228=0，506030 后 45DC64 将新绘制面整面复制进新 FAB22C，45DC67 恢复进入 45DB10 时的 FAB228。该段不写 599DF8，也没有调用 437A90。普通战斗 437B30 在子状态 2 至 6 且当前图号异于 599DF8 时，会另沿 437A90 捕获并发布图号。",
+        "shared_tail_and_fields": "主状态 9、10 及其它主状态继续共用尾段。其它主状态绕过两条背景捕获。尾段按图形上下文恢复相应调色板，调用 507630、507580 重建图形记录，再清 C5FB28 和 C5FB2C，在 45DCF1 以本次 GetTickCount 写 728368。主状态 9 的捕获内部和主状态 10 的捕获尾各有一次较早的时钟写入。所查直接写入和针对 5681F8、F62D34、F60BA4、599DF8 的提供者交叉引用均未表明这里重新初始化过渡或清发布图号。"
+      },
+      "inference": "重建后若仍处于原过渡、没有新的状态生产者或提示重入改变它，下一次条带推进沿原初始化字与推进范围继续，在实际绘制时读取已替换的 FAB22C。淡出中重建后的背景来自此刻用于重绘的普通地图，可能已是新地图。战斗重建后，图号不一致仍可触发普通战斗的再捕获。该推导限定在已核查的控制流和直接全局引用，原版实际像素、驱动返回和重入未观察。",
+      "existing": {
+        "owners": ["shared/legacy-game-city-return.mjs", "shared/legacy-game-client.mjs", "shared/legacy-game-presentation.mjs", "web/legacy-game-city-return-canvas.mjs", "web/legacy-game-canvas.mjs", "adapters/wechat/legacy-game-host.mjs"],
+        "ordinary_canvas_comparison": "build/analysis/legacy-render-system-key-v1/focused-probe.json",
+        "probe": "build/analysis/legacy-transition-rebuild-v1/stage306-probe.json",
+        "observed": "同一受控正常回城流程中，旧画布完成五次等待绘制，在首次图形读取挂起期间关闭。释放读取后共享控制器已准备一个淡入帧，零旧画布新绘制。接手画布四次调度均没有下一帧，过渡保持 entering。独立的第四次淡入呈现抛错用例使实际客户端进入 failed，世界及资源库关闭，清理错误为零。两条使用实际 Canvas 适配函数与原创内存端口。"
+      },
+      "implementation_handoff": {
+        "D0": "复用 UC-P06、UC-P13 和既有工作代次。分别维护场景身份、有效背景来源、过渡推进及宿主呈现代次。替换宿主时由原帧所有者决定重新交付仍有效的未提交帧，或丢弃并用应有来源重获画面。晚到结果按同一所有者释放。按来源规则的逻辑推进独立于宿主重试。",
+        "D2": "沿 GF-D3 及 PR-D4 按当前主状态从已有普通地图或战斗背景计划重获像素。沿已证的普通和战斗规则保留过渡阶段、输入清理及各自时钟点。宿主回执按实际准备结果与实际提交结果推进，统一复用活动代的提交规则。",
+        "D5": "沿同一用例在网页、移动网页、微信核复制期间切换、读/分配失败、尾帧绘制失败、上下文替换、设备返回及活动场景下一帧。使用当前宿主可以确认的显示与调度回执。"
+      },
+      "acceptance_cases": [
+        {"extends": ["PR-A10"], "check": "以档位、协作级别或输入触发进入恢复。先核旧面发布及实际释放顺序，再分开观察首选分配、后备分配、双失败、调色板失败及排队系统 Enter。记录每次资源准备与捕获的结果，拒绝将原调用者无条件继续解释为该帧成功呈现。"},
+        {"extends": ["PR-A12", "GF-A10"], "check": "在 9/201、9/204 和已有战斗过渡用可区分的旧图、当前地图及战斗背景。核重新绘制的画面与临时面身份、FAB228 两分支、主状态 9 的位移与主状态 10 的图号，验证重建后的首个条带沿原进度在新面上推进。覆盖主状态或场景在重建间改变、图号匹配与不匹配、重复恢复和时钟尾部覆写。"},
+        {"extends": ["GF-A11"], "check": "暂停读图并替换画布，释放旧回调，核零迟到绘制和待交接帧的明确结果。再使绘制端在过渡中途失败，覆盖同代重试、重获素材及终止清理。每一已准备帧只推进一次原逻辑，只有当前宿主的有效绘制能开放普通输入。"}
+      ],
+      "remaining": "实际设备初始化、分配和复制返回，原过渡期间消息可见性、多个恢复互相交错、当前同版以及三端实际宿主的停用和恢复继续沿上述用例。",
+      "original_or_full_target_cases_executed": false
+    },
+    "original_or_full_target_cases_executed": false
+  },
+  "legacy_graphics_partial_cache": {
+    "classification": "固定 SE 37c4 原指令事实、条件推导与三端接线规格",
+    "capabilities": ["G06", "X03"],
+    "operations": ["PR-O12", "PR-O13"],
+    "report": "reports/game-static.md#legacy-graphics-partial-cache",
+    "validation": "build/analysis/legacy-graphics-partial-cache-v1/validation.json",
+    "source": {
+      "allocator": "固定 SE 507230 读取正尺寸，以 64×48 分块，沿环状槽游标扫描。507358 以无符号严格小于当前盖章值减 2 的条件选槽。遇到另一幅图的占用，先置空其链首并将其链上块设为可重新归属。5073B1 发布首块，5073C6 在已分配块之间写下一块。",
+      "completion": "达到所需块计数时，50747E 把末块 +0x10 写零。扫描回到起点时从 507465 分支到 50749F，该路径保留已经写过的头和中间链接。所查路径直到返回没有清末块 +0x10。如果一块也未分配，保持空链首。",
+      "admission": "5074D0 先检查图像条目范围和链首。链首非零转 507570 返回 1。链首为空时解码，成功先发布原尺寸，再调 507230，同样返回 1。该返回反映上述准入，分配后的覆盖范围由实际链确定。",
+      "draw": "506030 的普通和缩放支路在几何检查后读取链首。空链跳过块绘制，非空链迭代，分别在 506460 或 50624D 先更新块的使用盖章，再计算块相交、按需上传并绘制。506608 或 506438 用 +0x10 继续，直到遇到零值。",
+      "reentry": "其后遇到同一条目且链首仍非空时，5074D0 沿同一命中支路返回。空头时可再次解码和分配。另一个图像复用该链的块会清被替换条目的链首。507B80 的所选成功重建路径依次调用 507CF0 和 507D30 清槽归属、盖章及各条目链首。"
+    },
+    "inference": "若新尾此前的下一块指针为零，则所选绘制会在已有块后退出，即使后续帧预算已腾出，非空头本身也只走既有链。若新尾保留先前的非零指针，所查循环沿该指针前进。该结论以对应内存状态实际成立为条件，原版运行中这类状态的频率、像素和设备返回待验。",
+    "existing": {
+      "owners": ["shared/legacy-game-resource-library.mjs", "shared/legacy-game-draw-plan.mjs", "web/legacy-game-canvas.mjs", "adapters/wechat/legacy-game-host.mjs"],
+      "probe": "build/analysis/legacy-graphics-partial-cache-v1/stage306-probe.json",
+      "observed": "现有软件库按整图像与整帧获取，受控一条缓存时两幅图触发 LEGACY_ASSET_PINNED_BUDGET。请求结束释放占用，较小的下一计划可绘。实际 Canvas 适配函数在可控画布入口发送当帧已产生的一条请求，停止帧调度并报告错误，收到显式的较小新计划才呈现。"
+    },
+    "implementation_handoff": {
+      "D0": "复用现有资源库、位图解码、图像内容身份和绘制任务的占用释放。沿现有帧入口扩展结果覆盖范围，以本次有效块和对应资源身份判定局部与完整，按已有资源版本、绘制尝试及会话状态处理拒绝和迟到结果。",
+      "D2": "在原绘制与缓存所有者上接入已确认的有效块顺序。每次上传与提交按该块对应的矩形及已核字节，部分覆盖按实际可绘区域回执。空槽、失效与仍有效的部分命中分别沿上面的规则处理。恢复用已生成的绘制计划和当前资源条件，保留已发游戏请求及已推进世界帧。",
+      "D5": "共用 PR-A05、PR-A06。验证三端真实输出和剩余预算，区分可恢复的块资源不足、声明预算用尽和文件故障；在重建、释放占用或资源重新可用后复核恢复，继续沿现有取消、换场与旧内容退役验收。"
+    },
+    "acceptance_cases": [
+      {"extends": "PR-A05", "check": "同尺寸分别保留 0、1 或足够可复用槽。检查 5074D0 返回、原尺寸、已分配链与完整末块终止。再核同图下一帧命中、驱逐或重建清链后重新分配。另以构造的旧尾链接明确验证范围准入与释放，原程序实际分派独立验收。"},
+      {"extends": "PR-A06", "check": "同一部分块布局覆盖普通和缩放、恰好接触边界、裁剪不可见、后续图像继续与块上传失败。每项核块盖章、输出矩形、呈现回执和世界请求数。注入上轮读取迟到与资源重新可用，使用原计划恢复一次。"}
+    ],
+    "deferred_upload": {
+      "classification": "固定 SE 原指令事实、条件推导与三端差异",
+      "capabilities": ["G06", "X02", "X03"],
+      "operations": ["PR-O13", "PR-O18", "PR-O25"],
+      "report": "reports/game-static.md#legacy-graphics-deferred-upload",
+      "validation": "build/analysis/legacy-graphics-deferred-upload-v1/validation.json",
+      "native_rules": {
+        "match": "505D70 比较块 +0x14 和 +0x16 的有符号字及 +0x18 的原始 16 位选择器，依次对应当前两个调色板状态值和绘制命令的选择器。命令旗标 0x04 令前两个目标值为零。三者相同直接返回 1。",
+        "budget": "失配后，只有 FAB228 非零、图像记录 +0xE 非零以及块 +0x14 非负同时成立才使用计数。50603C 在每次 506030 入口清 F8F1EC。505DEF 比较 10，当前计数小于 10 则先加一再准备颜色，达到 10 则返回 1，保留块的颜色和标记。该计数衡量合资格处理次数。",
+        "draw_and_refresh": "两条块循环都在调用前写使用盖章，返回 0 跳过该块，返回 1 则按原几何继续提交，包括达到限额的分支。实际分支继续调用 449C80，返回后更新颜色与选择器标记。解码失败提前返回 0。下一次 506030 清计数并再次比较仍旧的块标记。",
+        "callers": "背景捕获 437AD9 和改变描绘模式提示 451746 在调用 506030 前写 FAB228=0，调用后各写 1。重建 45DB10 先取原值，45DC42 对所选子调用暂写 0，45DC67 恢复原值。三处的禁用只证明各自所选调用上的值。",
+        "end_of_pass": "50666C 见本次 F8F1EC 为零时，把 6122E4 的状态值写入 568308。计数非零则经过 506680 继续收尾。"
+      },
+      "inference": "对数值及块标记有效、已存在兼容表面的合资格块请求，第 11 个失配块继续使用此前缓存色彩参与绘制，其标记失配在下一次合资格请求时可再处理。实际裁剪、设备返回和队列顺序决定可见像素。状态值写入 568308 只作为所选分支回执。",
+      "baseline_probe": "build/analysis/legacy-graphics-deferred-upload-v1/stage306-probe.json",
+      "existing_behavior": "原创 12 幅嵌入色表图像在一次后续计划中全数换色，使用已持有图像，读取次数未增加。现有颜色快照、解码、转换和图像占用均可复用。",
+      "implementation_handoff": {
+        "D0": "在 PR-D2 的现有绘制所有者维护每次分派的处理计数、旧块颜色和所属来源。沿 UC-P06、UC-P13 验收退役和实际块使用。保留同一场景、资源代及现行颜色请求。",
+        "D2": "复用现有颜色转换和投影。按实际绘制遍历顺序对有效块应用已证限额。保留延后块的旧颜色和标记，在下一次合资格的绘制中比较并继续处理。背景捕获和重建按各自已证选择处理。",
+        "D5": "沿 PR-A06、PR-A09、PR-A10 验证块出现在普通与缩放画面的相对时机、上传失败以及重建后的缓存所有权。"
+      },
+      "acceptance_cases": [
+        {"extends": "PR-A06", "check": "同一次调用安排 12 个可见、缓存已准备且满足三项限额条件的失配块，以队列顺序核前十个处理、后两个旧颜色提交。下一次调用保留目标状态时仅有旧标记继续改变，再核缩放、裁剪及好坏块混合。"},
+        {"extends": "PR-A09", "check": "同配色、旗标 0x04、冷块标记、无嵌入色表、FAB228 为零及解码失败分别观察是否消费计数。显示和重建沿具名调用，按进入值、禁用和实际恢复核对。"}
+      ],
+      "original_or_full_target_cases_executed": false
+    },
+    "full_G06_or_X03_specification_ready": false,
+    "original_or_full_target_cases_executed": false
+  },
+  "legacy_animation_coordinate_source": {
+    "classification": "固定 SE 原字节事实、成功打开条件下的推导和本机 stage306 对照。",
+    "capabilities": ["G06", "X03"],
+    "operation": "PR-F06",
+    "report": "reports/game-static.md#animation-coordinate-alias",
+    "source_review": {
+      "path": "build/analysis/animation-coordinate-sharing-v1/source-review.json",
+      "bytes": 10160,
+      "sha256": "71f16771a4a2ecab787d4d91252b48b0c84248d01514a494563f46793c71d95f"
+    },
+    "native_rules": {
+      "animation_group": "启动入口 0x45048F 调 0x453720。后记录覆盖时，0x4538C4 写入该条动画记录所属的组。0x4504C5 在动画索引加载成功后调用 0x453BB0。",
+      "coordinate_group": "0x453BB0 清 0x921AB0 起始的七个句柄槽，然后按组处理。0x453AD0 在 0x453AEC 写入数据句柄，再处理索引。索引接受标记 1，按 10 字节记录将已存在动画 ID 的坐标偏移和数量写入同一张表，写点为 0x453B74 和 0x453B83。",
+      "alias": "0x453C24 只把坐标数据文件名送给 0x51D030 比较。匹配后在 0x453C45 至 0x453C6F 把本组的数据和索引名称复制到后续组，再于 0x453C81 写入本组句柄。后续组已有非零句柄时，0x453BEF 跳过本组加载和索引写入。0x51D030 在 [0xFF12EC]==0 时按 ASCII A–Z 折叠比较。",
+      "lookup": "0x453CC0 从最后保留的动画记录取组，于 0x453CE8 使用该组数据句柄，于 0x453D70 取该组图形基址。按偏移读取 8 字节行，0x453DF5 加图形基址，0x453E0A、0x453E12 写入坐标。"
+    },
+    "derived_alias_cases": {
+      "preconditions": "所选 ASCII 比较路径，数据成功打开，动画记录、图形基址及索引行均有效。原版期望由固定样本分支推导。",
+      "interleaved": {"paths": ["a.bin", "b.bin", "A.BIN"], "fixed_se_graphic_index": 2099, "stage306_graphic_index": 2088},
+      "same_data_different_indices": {"paths": ["a.bin", "A.BIN"], "fixed_se_graphic_index": 2032, "stage306_graphic_index": 2033},
+      "actual_selected_seven_groups": "所选七组指向同一数据和索引文件。按成功路径推导，原版应用一次索引，stage306 应用七次，参与的 1,518 条动画附件记录的有效偏移和数量相同。"
+    },
+    "implementation_handoff": "D0 保存动画索引的覆盖结果及各组图形基址，按固定来源执行坐标数据文件名别名和索引写入。D5 用同名不同索引、A/B/A、七组实档和两个资源根的独立退役验收。",
+    "host_storage": "analysis/capability-first-v1/shared-update-host-design.json#/resource_budget_retirement/animation_coordinate_storage",
+    "load_and_first_lookup": {
+      "classification": "固定 SE 留存 REA 与 PE 原指令事实、所选故障的条件推导、stage306 本机对照及跨端输入规则。",
+      "report": "reports/game-static.md#animation-load-and-first-lookup",
+      "validation": "reports/validation.md#animation-load-failure-validation",
+      "source_review": {
+        "path": "build/analysis/animation-load-failure-v1/source-review.json",
+        "bytes": 12306,
+        "sha256": "3afb1bf46149c74dbed0260f075bf7b1d6c200eebdc24ff435b462b8c0228227"
+      },
+      "receipt": {
+        "path": "build/analysis/animation-load-failure-v1/runtime.json",
+        "bytes": 9297,
+        "sha256": "32db9777252d5d46455a8b23c2ca426098e20e5bfc6fa8eb5f3dbddbf48ff78c"
+      },
+      "source_rules": {
+        "main_files": "0x453720 按组开索引并读记录，再开有索引的组的数据文件。组 0 索引或数据打开失败分别从 0x45395F、0x4539C8 取得同一结果 2。数据失败路径清理已登记的非空数据句柄。0x450497 处理非零结果，0x4504B1 返回启动失败，未进入坐标装载。",
+        "optional_empty_group": "0x453815 对非零组跳过打不开的索引。0x453926 只从索引通过读表后设置的槽打开对应动画数据。只存在数据的组不参与动画登记。",
+        "motion_index_eof": "在计数准入通过且正常文件 EOF 标记出现时，0x453844、0x453848 在本次 12 字节索引行写表前转出，保留已装的完整记录。声明长度后的宿主读取失败单独处理。",
+        "optional_motion_data_missing": "0x45393B 写零数据句柄，非零组经 0x453947 继续发布之前已读的索引记录。覆盖仍按最终记录所属组。首次冷读若进入 0x4533C0 的取流分支，0x45343D 将零句柄交给 seek。0x51B8EE 调 0x51E104，所选零句柄路径给 EnterCriticalSection 传 0x20。原版实际异常类型与时刻未执行。",
+        "coordinate_pair": "0x453AD0 先开坐标数据，若打不开则不请求索引。正常打开后先写数据句柄。索引打不开，或成功读到的标记字节不等于 1，均返回 0 且保留已写的数据句柄。0x453BB0 不按该返回中止，依既有别名规则继续，0x4504C5 后进入后续初始化。坏标记跳过偏移和数量写入。",
+        "attachment_first_use": "0x453CC0 无组句柄或数量为零时走成功返回。标记 1 后的索引读两次，其返回计数未用于写表门槛，0x453B88 在可能写字段后才查 EOF。附件取字节的 seek 和 fread 返回未用于证明实际读足。0x4536CB 所选附件失败返回会清理动作加载对象，0x4FD1EB 将这条普通调用的 0 结果映射为 -1。"
+      },
+      "target_policy": [
+        "D0 复用现有资源库和范围端口。组 0 的必要文件缺失拒绝候选。可选组没有索引时跳过数据。固定来源已验证完整读取的索引，在正常文件末尾承接完整的 12 字节记录前缀。宿主返回短于声明范围时沿原短读错误处理。",
+        "可选组只有索引时保留最终动画登记。对该记录的首次数据查找按现有受控加载错误结算；真正从未登记的编号仍返回空。已打开的其他组不受影响，以原根元数据复核读者，恢复时使用正确材料的新候选根。",
+        "坐标数据可用性与索引准入分别记录。不存在索引或读到非 1 标记时，在已选资源根内保留已确认的数据源，跳过该索引，保留其他组已写的索引值及别名顺序。标记 1 后的残行、空索引及失配的字节范围沿现有错误边界，禁止将没有完整来源的字段写成已验证附件。",
+        "D5 将实际可选组、主组缺失、可选半组覆盖、坐标缺失与坏标记各自验收。占用与归还沿 UC-P06、UC-P07、UC-P09。允许保留旧根可用，失败候选不得发布；查找失败及同源修复后的新根沿原回执核对。"
+      ],
+      "stage306_differences": [
+        "仅有可选索引时启动成功，覆盖主组编号的记录和独有编号均在首次查找报 LEGACY_ANIMATION_TRUNCATED，未受影响的主组编号仍可读。",
+        "完整索引行加不完整末行使初始化报 LEGACY_ANIMATION_INDEX_LENGTH。坐标缺文件时仍可读动作，现有调用按索引先读。带数据的非 1 标记使初始化报 LEGACY_ANIMATION_ATTACHMENT_INDEX。",
+        "坐标数据实际成员无法覆盖请求的记录时，初始化仍成功，首次查找报 LEGACY_ANIMATION_ATTACHMENT_RANGE。宿主对已声明范围的短读使初始化报 LEGACY_ASSET_SHORT_READ。"
+      ],
+      "original_executed": false,
+      "full_target_acceptance": false
+    },
+    "remaining": "原版异常回执、其它比较环境、原版句柄退役及三端完整验收待验证。所选缺档与首读路径已列入用例。",
+    "full_G06_or_X03_specification_ready": false
+  },
+  "legacy_render_device_preferences": {
+    "classification": "fixed-SE-and-Item-source-facts",
+    "affected_capabilities": ["G06", "X02"],
+    "source_review": "build/analysis/legacy-render-device-preferences-v1/source-review.json",
+    "acceptance_case": "PR-A10",
+    "implementation_delta": "PR-D4",
+    "source_profiles": {
+      "SE": {
+        "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+        "request": "0x613924",
+        "accepted": "0x6122F0",
+        "override": "0x6122E8",
+        "scan": "0x45D8EA",
+        "downgrade_write": "0x44651F",
+        "fallback_write": "0x445FC2"
+      },
+      "Item": {
+        "sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+        "request": "0x6B072C",
+        "accepted": "0x6AF0F8",
+        "override": "0x6AF0F0",
+        "scan": "0x49FCBD",
+        "downgrade_write": "0x4720D3",
+        "fallback_write": "0x472212"
+      }
+    },
+    "configuration": "将请求字段首地址交给 3Ddevice: 后的 %d 扫描。设备选择读取有符号低字节。两处非零覆盖字节的文件初始映像均为零填充。",
+    "first_config_file_producer": "analysis/capability-first-v1/launcher-functional-specification.json#/f5a_first_config/dialog_outcomes",
+    "startup_tier_input": {
+      "classification": "fixed-PE-static-startup-and-local-target-comparison",
+      "report": "reports/game-static.md#legacy-render-startup-tier-input",
+      "validation": "reports/validation.md#legacy-render-startup-tier-input-validation",
+      "source_review": {
+        "path": "build/analysis/legacy-render-next-startup-v1/source-review.json",
+        "bytes": 24411,
+        "sha256": "0639478c73125dc48559909783c02d25598714364e6e7ff7cebc46cc2b4b85bb"
+      },
+      "local_comparison": {
+        "path": "build/analysis/legacy-render-next-startup-v1/focused-probe.json",
+        "bytes": 8098,
+        "sha256": "4d967fac90feb206d1523d86fcdff3f2202d294304f0553bf054e022479f11f5"
+      },
+      "configuration_file_composition": {
+        "classification": "跨来源的固定文件衔接与本机文件端口核验",
+        "evidence": {
+          "path": "build/analysis/legacy-render-config-reload-v1/config-reload.json",
+          "bytes": 3713,
+          "sha256": "5963866c5e5c9c880b32a232c61647ac241d1596c71d789c628694febb4d4b96"
+        },
+        "acceptance_case": "PR-A10",
+        "implementation_delta": "PR-D4",
+        "related_batches": ["D0", "D3", "D5"],
+        "source_links": [
+          "reports/launcher-static.md#first-config-dialog-outcomes",
+          "reports/game-static.md#legacy-render-startup-tier-input",
+          "reports/game-static.md#legacy-render-device-preparation"
+        ],
+        "rules": [
+          "配置器按其工作目录读取或生成 Config.dat。两份历史游戏从各自进程工作目录打开同名文件，并合并首行及命令尾。",
+          "沿同一配置路径复用配置器编解码、游戏文件读取和文本合并。PR-D4 在合并后发布已证请求档位到图形所有者，保留已有绘制模式语义。",
+          "生成的 12 字节默认档和留存配置器分别匹配历史安装脚本的长度及 CRC32。留存发行 Config.dat 是另一组已按 SHA-256 绑定的 23 字节档位 4 输入。"
+        ],
+        "tested_local_combinations": [
+          ["留存发行配置 4、尾部 2、先前降档 1", 4],
+          ["配置缺失、尾部 2、先前降档 1", 2],
+          ["生成默认配置 1、尾部 4、先前降档 3", 1]
+        ],
+        "comparison_boundary": "每组预期档位按已证两版规则在覆盖值为零时推导。stage306 实测合并和文件调用，三个输出绘制模式均为 2。先前降档均为合成文件。",
+        "remaining": "取得所选档位的非零覆盖生产者、实际读取降档文件并关联档位的路径、或可分析的当前同版材料后复核。历史成员的同字节确认等待原始制品。",
+        "historical_members_extracted": false,
+        "runtime_override_producer_proven": false,
+        "update_dat_consumer_proven": false,
+        "current_version_equivalence_proven": false
+      },
+      "command_tail": {
+        "SE": ["0x51DDA5", "0x523B0A", "0x45CC90"],
+        "Item": ["0x5B39C9", "0x5BA153", "0x49EC00"],
+        "rule": "PE 入口取 GetCommandLineA。CRT 跳过程序名和尾随分隔空白，结果作为 WinMain 第三参。两版先保存该指针，再尝试从进程工作目录打开 Config.dat。"
+      },
+      "rules": [
+        "以 r 打开相对 Config.dat。打开失败时保留原命令尾指针。打开成功时先清 5120 字节缓冲，再按 256 字节容量读一次，最多 255 个文本字节且保留读到的行尾 LF。读结果未经分支检查，立即 EOF 或首字节前读失败时，零填充前缀仍可接命令尾。附加从第一个 NUL 起，不额外插入空白。",
+        "到达 SE 45CFD0 或 Item 49F122 的所选档位分支时，先将请求低字节置 1。只查合并输入里第一次出现的大小写敏感字面量 3Ddevice:，可以跨拼接点。首次匹配后从冒号下一字节调用 %d。没有数字时不写请求，继续后续检查，后面的同名键没有再尝试。",
+        "对已核的有符号 32 位十进制输入，转换会接受前导空白、可选符号和连续数字，存入四字节。图形候选读取有符号低字节，例如 258 为 2、255 为 −1、256 为 0、−253 为 3。低于 1 的提示与回退由既有设备前检处理。",
+        "SE 6122E8 与 Item 6AF0F0 的非零值随后覆盖请求低字节。所选范围已有零填充映像初值、读取及覆盖分支。普通帧用活动上下文里的请求和实际档位判断重建。所选降档和回退写文件后更新内存，启动读回仍等待实际消费证据。"
+      ],
+      "target_integration": "D0 复用现有启动输入和文本合并。沿来源配置在同一处计算请求低字节，把读失败分类接到选定启动入口。D3 由既有图形所有者接收并用于设备准入，保留 stage306 的 graphicsMode 绘制含义。D5 按现有文件端口区分不存在、确实无法打开及其他读取错误，观察产品结果。Config.exe 独立 1–4 读写接口继续用于配置工具。覆盖值的外部来源及上次输出读回由正向证据决定。",
+      "local_differences": [
+        "14 个本机成功样例的启动输入与预期合并文本相同，现有固定 SE 产品入口一直沿独立绘制上下文输出 graphicsMode 2，未发布档位字段。",
+        "其余一个组合中的模拟文件端口拒绝查询，prepareLegacyGameStartup 向上传递 EACCES。所核原程序 fopen 返回空时继续使用命令尾。产品端口后续需把这种结果与其他失败分类对齐。",
+        "本机对照的启动文件请求只涉及已选游戏映像和 Config.dat，带有既往输出的合成文件不参与。现有配置器模块拒绝未能转换的值和 1–4 之外的设置。"
+      ],
+      "acceptance_cases": [
+        "全新启动分别核配置档位 4 与命令尾 2 共存、无文件、打开失败、空文件及即时 EOF。读取时用合适的宿主回执，独立核对活动上下文与文件结果。",
+        "核重复键的第一次命中、无数字、大小写、跨拼接点命中、CRLF 与第二行、数值后续非数字及有符号低字节。以 255 和 256 验小于 1 的提示和回退。",
+        "以夹具提供零与非零覆盖，核默认、成功和失败转换后实际交给图形所有者的值。实际覆盖生产者另验。",
+        "用上次降档写入 1、现有配置为 4、尾部请求为 2 的用例核冷启动。已证输入链的结果为 4，当前同版和其他可能读回路径沿取得的真实消费者验证。"
+      ],
+      "remaining": ["覆盖字节的非零写入来源", "data\\update.dat 的其他可能读取及与请求字段的连接", "超出所选 int32/ASCII 范围的转换", "实际设备输出、三端和当前同版"],
+      "original_or_full_target_case_executed": false
+    },
+    "device_preparation": {
+      "classification": "fixed-SE-and-Item-static-rules",
+      "source_review": "build/analysis/legacy-render-override-producers-v1/source-review.json",
+      "case": "PR-A10",
+      "implementation_delta": "PR-D4",
+      "candidate_order": [4, 3, 2],
+      "rules": [
+        "已通过表面前检且请求大于 1 时，按有符号请求档位筛选 4、3、2。CreateDevice 返回非零时继续下一个合资格候选，所有合资格候选均未创建时走档位 1。首个返回 0 的候选写入实际档位，进入单次设备准备。",
+        "第一次 GetCaps 要求返回 0。能力位 0x400 缺失时跳过 SetRenderState(0x29, 1)，上下文 +0xBC 保持 0，设备继续准备。能力位存在时该调用返回 0 才将 +0xBC 置 1。",
+        "八次必要 SetRenderState、三次第 0 层 SetTextureStageState 和 SetViewport 都检查非零返回。第二次 GetCaps 以有符号负值触发回退。以上任一失败直接进入档位 1，释放设备、接口并清绘制能力，再尝试写入 1。",
+        "纹理探测的表面构造返回空时直接比较档位。取得表面后，第 0 层 SetTexture 或 GetTexture 返回非零会先释放临时表面再走档位 1。两次返回 0 且输出非空时释放返回引用和临时表面，再比较档位。GetTexture 返回 0 且输出为空的分支存在空指针解引用，实际设备能否产生该组合待验。",
+        "比较发生在设备准备及适用的纹理探测之后。实际档位与请求相同跳过写入，失配时请求创建或截断 data\\update.dat，写入 ASCII 档位。两个写入分支均在 WriteFile 返回后直接关闭句柄，随后发布内存档位。打开失败也到达相同的内存结果。"
+      ],
+      "startup_and_file_evidence": {
+        "confirmed_configuration_input": "Config.dat 可见首行与 WinMain 命令尾合并。固定 Config.exe 的 401180 写入、401480 读取 Config.dat。游戏只尝试合并输入的首个设备键，失败时保持默认 1，再检查运行时覆盖字节。",
+        "startup_tier_input_pointer": "/legacy_render_device_preferences/startup_tier_input",
+        "update_dat_path_references": {
+          "SE": ["0x445FB4", "0x44651A"],
+          "Item": ["0x4720CE", "0x47220D"]
+        },
+        "override_direct_reads": {
+          "SE": ["0x45D92D"],
+          "Item": ["0x49FD08", "0x49FD13"]
+        },
+        "coverage": "核对两份历史 PE 中精确路径及地址操作数、REA 类型引用，以及 12 个关联 PE 的 ASCII 和 UTF-16LE 文件字面量。当前固定 9baa 样本仅找到相同路径名，原 .text 无文件字节。计算地址、间接路径和实际文件读取仍待证。",
+        "target_integration": "沿现有启动输入与图形所有者处理活动上下文中的档位。文件回执独立于当前请求发布。跨启动读取、与配置合并或覆盖字节绑定，在取得对应消费者和来源证据后接入。"
+      },
+      "acceptance_cases": [
+        "请求 4，分别覆盖 4 直接成功、4 创建失败而 3 成功、4 和 3 创建失败而 2 成功、三档均失败。请求 3 时跳过档位 4。核对创建序列和写入字节。",
+        "已创建 4 或 3 后，分别施加首次 GetCaps 非零、能力位存在时的状态调用失败、必要设置失败和第二次 GetCaps 负值。检查直接回退至档位 1。分别核对第二次 GetCaps 正值及能力位缺失后继续准备。",
+        "分别覆盖纹理表面缺席、绑定失败、查询失败、查询返回有效引用。核对临时表面的退役、回退和比较时点。设备返回成功但空引用的边界留给宿主案例。",
+        "同档确认没有文件请求。降档与回退分别覆盖文件打开失败、写失败、短写和写完。核对文件请求及关闭顺序，并在下一次普通帧按已同步的两档位检查失配。全新启动仍以已证的 Config.dat 首行及命令尾作为输入。"
+      ],
+      "full_acceptance_executed": false
+    },
+    "file_outcomes": [
+      "所选实际档位与请求相同时沿原分支继续。",
+      "实际档位与请求不同时尝试创建并写 data\\update.dat。打开成功时按字符串长度写实际档位十进制文本并关句柄。打开失败与写入调用返回的分支均进入内存请求更新。",
+      "所选设备准备失败先退役设备和接口并清绘制能力，然后尝试写单字节 1。随后两档位置 1，返回 0。表面格式的前置回退另见 backend_selection_review.admission_and_presentation。"
+    ],
+    "item_rebuild": {
+      "ordinary_frame": "487379 进入初始准备。4873A8 比较请求和实际低字节，失配经 4873BF 进入重建。6B1154 非零且 4727A2 的 TestCooperativeLevel 返回 0 时，包装函数返回 1，经 487418 进入重建。",
+      "retirement": "49FF0E 先调用 4722FD 退役旧图形对象及清 6AD470，再调用 471042。",
+      "retry": "487B87 与 49FF0E 的所选调用在返回 2 时翻转窗口模式并重试一次。返回 1 或重试结果非零时请求关闭窗口。"
+    },
+    "acceptance_cases": [
+      "按来源检查默认值、成功十进制扫描的低字节和非零覆盖优先顺序。",
+      "分别覆盖档位相同、降档输出成功、文件打开失败和写入失败后的实际档位发布。",
+      "设备准备失败释放设备和接口后尝试写 1，再确认内存两档位为 1。",
+      "Item 档位失配重建先清旧上下文。返回 2 只翻转一次并再试，所选关闭条件按原调用者处理。"
+    ],
+    "runtime_override_producer_proven": false,
+    "update_dat_consumer_proven": false,
+    "actual_host_device_results_verified": false,
+    "current_version_equivalence_proven": false
+  },
+  "backend_selection_review": {
+    "classification": "fixed-SE-source-rules",
+    "operations": ["PR-O24", "PR-O25"],
+    "implementation_delta": "PR-D4",
+    "acceptance_case": "PR-A10",
+    "source_review": {
+      "path": "build/analysis/legacy-render-backend-selection-v1/source-review.json",
+      "bytes": 15700,
+      "sha256": "00e1c39ad57eaa49bb049e0f0f2d7eebf4efcfcefe48fcea18f2a6c99a313a6d"
+    },
+    "report": "reports/game-static.md#legacy-render-backend-selection",
+    "rules": [
+      "0x45CFD0 reads the merged configuration line and command tail, applies windowmode, initializes the request byte 0x613924 to 1, parses the decimal 3Ddevice value and applies the nonzero 0x6122E8 override.",
+      "0x4457D0 reads desktop BITSPIXEL. With display flag 0x8 clear, window mode requires 16 bits and mismatch returns 2. With flag 0x8 set, depth below 16 returns 1. The selected full-screen branch stores depth 16.",
+      "The D3D attempt requires context +0x68 equal to the chosen display depth, +0x64 equal to zero, and (+0x60 & 0xE0001) equal to zero. Display flag 0x1 forces tier 1. For admitted requests the candidate device order is 4, 3, 2, skipping tiers above the request.",
+      "The accepted device tier is recorded in 0x6122F0. The device capability bit 0x400 and successful state 0x29=1 enable context +0xBC. A device can be accepted with +0xBC zero, which selects the fallback draw branch for the two observed consumers.",
+      "0x446E00 and 0x447330 both require context +0x9C and +0xBC for the selected D3D drawing branch. The selected DirectDraw branch skips additive drawing.",
+      "Selected preparation failure at 0x445F46 clears the device, interface and draw capability, sets both tier bytes to 1 and returns success. The successful downgrade path writes the actual decimal tier and reconciles the request. Initialization return 2 causes one window-mode retry.",
+      "0x44FB60 can rebuild for request/actual mismatch or its qualified device-probe result. In selected 0x104 handling, the pending rebuild flag is consumed before Enter handling. The qualifying Enter toggles the window mode, rebuilds, then adjusts the window.",
+      "0x45DB10 calls 0x446590 to release the old graphics context before initialization. D0 uses the existing owner and rendering ports to carry effective source state and the declared target drawing policy."
+    ],
+    "recovery_probe": {
+      "capabilities": ["G06", "X02"],
+      "operation": "PR-O25",
+      "acceptance_case": "PR-A10",
+      "transition_graphics_rebuild": "/legacy_transition_background/graphics_rebuild",
+      "source_review": {
+        "path": "build/analysis/legacy-render-recovery-probe-v1/source-review.json",
+        "bytes": 13693,
+        "sha256": "140ee0bee5931f17944d759303833680073283c752fc0fde6038d4a1abc31350"
+      },
+      "report": "reports/game-static.md#legacy-render-recovery-probe",
+      "rules": [
+        "0x44596C calls DirectDrawCreateEx with a null device GUID and retries a nonzero result with DDCREATE_EMULATIONONLY at 0x445987. The IDirectDraw7 output is context +0x4.",
+        "The selected surface creation and attached-surface calls populate IDirectDrawSurface7 at +0x8 and +0xC. The IDirect3D7 query output is +0x9C. The device output at +0xA0 selects TnL HAL, HAL or RGB for tiers 4, 3 or 2.",
+        "0x446740 uses a client rectangle in screen coordinates for window mode 1 Blt. The other mode uses whole-surface Blt or Flip according to 0x4457B0. A nonzero presentation result writes 1 to 0x61434C.",
+        "The selected 0x45DDED call aggregates surface check results through 0x44CF60. The two context surfaces use IsLost. The caller sets 0x61434C when the aggregate is 1. Initialization at 0x445833 clears the flag.",
+        "The ordinary frame tests the flag at 0x44FBF9 and calls TestCooperativeLevel through 0x446890. A zero HRESULT admits the rebuild at 0x44FC0A. The request and actual tier mismatch has its own rebuild entry.",
+        "The constructor arguments at 0x44641A are width 256, height 256, 0 and 0x800. The actual surface descriptor is chosen inside 0x4468B0. A null construction result continues to the tier comparison.",
+        "A surface allows SetTexture and GetTexture at stage 0. A nonzero method result releases the temporary surface and enters the tier-1 fallback. Successful GetTexture with a nonnull output releases both references and records the counter. Successful GetTexture with a null output reaches the dereference at 0x446483 before incrementing."
+      ],
+      "acceptance_vectors": [
+        "Present failure and selected surface-check failure register recovery. The pending flag and cooperative-level result determine admission. Source context retirement precedes publication of a new context.",
+        "Separate surface construction null, SetTexture error, GetTexture error, successful nonnull output and successful null output in the source projection. Keep observed device return values distinct from the static branch rules."
+      ],
+      "actual_device_results_verified": false
+    },
+    "input_driven_rebuild": {
+      "classification": "两份固定历史样本的静态绘制忙、输入分派和重建规则，附现有 Canvas 入口对照",
+      "capabilities": [
+        "G06",
+        "X02"
+      ],
+      "operation": "PR-O25",
+      "implementation_delta": "PR-D4",
+      "acceptance_case": "PR-A10",
+      "batches": [
+        "D0",
+        "D3"
+      ],
+      "report": "reports/game-static.md#legacy-render-system-key-rebuild",
+      "source_review": {
+        "path": "build/analysis/legacy-render-system-key-v1/source-review.json",
+        "bytes": 69779,
+        "sha256": "64814ee5a4de2b840e879d3bff9a425e1ca5d6b39bb3c99c09f6655620c418c1"
+      },
+      "target_baseline": {
+        "path": "build/analysis/legacy-render-system-key-v1/focused-probe.json",
+        "bytes": 708,
+        "sha256": "c842136a696c62ea095d9c150e0a98e248e904c467c3d433019f7c448f74e7bf"
+      },
+      "focused_tests": {
+        "path": "build/analysis/legacy-render-system-key-v1/focused-tests.log",
+        "bytes": 3031,
+        "sha256": "8c917737a69f93451c3bcaa7cd66641d7089cb81fd3303e0e2380b357512a23a"
+      },
+      "validation_record_path": "build/analysis/legacy-render-system-key-v1/validation.json",
+      "profiles": {
+        "SE": {
+          "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+          "draw_pending": "0xf8f204",
+          "present_pending": "0x61434c",
+          "window_proc": "0x45dd80",
+          "input_entries": {
+            "0x100": "0x45e095",
+            "0x101": "0x45e116",
+            "0x104": "0x45e154",
+            "0x200": "0x45e30d"
+          },
+          "system_enter_guard": "0x727360 != 2 && 0x610668 != 0",
+          "window_mode": "0x925068",
+          "draw_pending_writes": [
+            "0x505d5e",
+            "0x50642e",
+            "0x5065fa"
+          ],
+          "rebuild": "0x45db10",
+          "adjust_window": "0x45d980",
+          "post_synthetic_enter": "0x45dbe6",
+          "frame_clock_write_after_enter": "0x45e1f8",
+          "associated_zero_write": "0x45e1f0"
+        },
+        "Item": {
+          "sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+          "draw_pending": "0x1204d44",
+          "present_pending": "0x6b1154",
+          "window_proc": "0x4a01bd",
+          "input_entries": {
+            "0x100": "0x4a051e",
+            "0x101": "0x4a0597",
+            "0x104": "0x4a0660",
+            "0x200": "0x4a07e7"
+          },
+          "system_enter_guard": "0x7c4168 != 2 && 0x6ad470 != 0",
+          "window_mode": "0x9c21f4",
+          "draw_pending_writes": [
+            "0x592c15",
+            "0x59300b",
+            "0x5930ae",
+            "0x593aa1",
+            "0x593d26"
+          ],
+          "rebuild": "0x49ff0e",
+          "adjust_window": "0x49fd62",
+          "post_synthetic_enter": "0x4a000d",
+          "frame_clock_write_after_enter": "0x4a06e7",
+          "associated_zero_write": "0x4a06ed"
+        }
+      },
+      "facts": [
+        "已核对的绘制分支只在包装函数返回 0x887601AE 即 DDERR_SURFACEBUSY 时把绘制待重建字写 1。两版的呈现或激活待恢复字由原普通帧检查及设备就绪判断消费，绘制待重建字由选定输入消息消费。",
+        "两版的 0x100、0x101、0x104 在原键处理之前检查绘制待重建字是否恰为 1。命中则先写 0，再调用重建。0x200 则先按当时的窗口尺寸处理指针位置，完成选定光标步骤后再检查同一字。",
+        "0x104 的 Enter 分支在第一轮可能的重建返回后重新读取图形上下文和状态字。上下文存在且该状态不等于 2 时，模式原值等于 1 则写 0，否则写 1，随后调用重建、调整窗口、采样 GetTickCount 并按各版顺序写时钟及相邻字段。由此推导同一消息可发生两次外层重建调用。每次内部仍可能按原返回值 2 规则重试。",
+        "重建先退役旧上下文并重新初始化，再进入各版的调色板准备。选定调色板准备返回 0 时，用 PostMessageA 投递同窗 0x104、wParam 0x0D、lParam 0。调用之后继续执行当前重建尾部，排队消息沿原泵的取消息、翻译和分派进入普通系统键入口。调色板提示期间的嵌套派发和投递结果仍需运行核验。"
+      ],
+      "current_canvas_comparison": "复用现有 Canvas 宿主与场景夹具。它登记六个指针相关监听，创建时取得一个 2D 上下文。合成呈现故障使宿主进入 stopped 并报告 LEGACY_CANVAS_FRAME。随后手动 pump 仍使用同一上下文和游戏 runtime 绘制。原输入消息消费、按来源模式切换与上下文代次仍为实现差异。",
+      "target_integration": "D0/D3 沿既有图形所有者、输入端口和合成器接线，共用绘制忙、呈现恢复和显式模式切换的次序。每次原定重建按原条件退役旧上下文。将宿主返回归入经实测的入口，保留现有 Canvas 代次与资源租约用于取消迟到帧。桌面、移动网页和微信沿同一状态所有者接各自实际能提供的事件。",
+      "acceptance_cases": [
+        "绘制返回 0、0x887601AE 及其他非零码分别驱动绘制标记，独立施加呈现失败或激活检测。用 0、1、2 的待重建字覆盖键按下、键抬起、系统键与鼠标移动。核对指针先按原尺寸处理，普通按键在重建返回后才检查准入。",
+        "用无标记或已有绘制标记的系统 Enter，配合上下文有无及状态 2 或其他值。按第一次重建返回的当前模式与上下文决定后续动作。核 0、1、2 次外层重建调用、先退役再重建、最后调整窗口及更新时间。",
+        "调色板准备成功和返回 0 时分别核调用和排队。覆盖投递失败、迟到消息、原图形代次已退役及队列中再收到的 Enter，核实际消息泵的送达次序及平台结果。"
+      ],
+      "remaining": "实际设备返回、窗口调整后的真实尺寸、原提示期间的送达与再入、现行同版及三端流程待验。原 PR-U1 仍保留覆盖值、文件后续消费、像素和适用素材等缺口。",
+      "original_runtime_observed": false,
+      "actual_target_host_recovery_observed": false,
+      "current_version_equivalence_proven": false,
+      "full_acceptance_executed": false
+    },
+    "pointer_position_admission": {
+      "classification": "两份固定历史样本的消息与坐标证据、现有网页事件对照和微信本机 Page 入口",
+      "capabilities": [
+        "X02",
+        "G06"
+      ],
+      "implementation_handoff": [
+        "D0",
+        "D5"
+      ],
+      "acceptance_case": "PR-A10",
+      "report": "reports/game-static.md#legacy-item-pointer-position",
+      "validation": "reports/validation.md#legacy-item-pointer-position-validation",
+      "source_review": {
+        "path": "build/analysis/legacy-item-pointer-position-v1/source-review.json",
+        "bytes": 47677,
+        "sha256": "fe2c9803a9de1316a3f347e595a6d36266f292b410f761d076f331d1ce907cb0"
+      },
+      "local_regressions": {
+        "path": "build/analysis/legacy-item-pointer-position-v1/local-tests.log",
+        "bytes": 11883,
+        "sha256": "6c0ca5172df8a32824295cf961d3640d4fdd518855d40f8f5abb6ca6d1ac2c63",
+        "passed": 37
+      },
+      "canvas_comparison": {
+        "path": "build/analysis/legacy-item-pointer-position-v1/pointer-probe.json",
+        "bytes": 597,
+        "sha256": "b30ca7a8063cb1fa1d4b4c34eddf2bf5cbd4f9fdcfa3c43ac67030b0e584d0e5"
+      },
+      "wechat_scene_observation": {
+        "probe": {
+          "path": "build/analysis/legacy-item-pointer-position-v1/wechat-resize.log",
+          "bytes": 371,
+          "sha256": "e318ff2ca411cd03bd4719961cf5ebfe6a72f3eceb156eae514322c1a2574e06"
+        },
+        "baseline": {
+          "path": "build/analysis/legacy-item-pointer-position-v1/wechat-baseline.log",
+          "bytes": 815,
+          "sha256": "fb9d95375e7eea9e6c851ec1b843b4e276776943cb088d1b986b4f9daf7e9078"
+        },
+        "retained_build": {
+          "path": "build/wechat-app-stage306-page-final/build-report.json",
+          "bytes": 48776,
+          "sha256": "e636763e65444339cddfc371b11d0d0abb5a8c5c296f4e42e9aa4121d8989b7e"
+        },
+        "verified_inputs": 257,
+        "verified_outputs": 27,
+        "applied_geometry": [
+          800,
+          600,
+          25,
+          80
+        ],
+        "mode": "current source Page/host with local native-API-shaped fixture and loopback",
+        "physical_device": false
+      },
+      "facts": {
+        "client_size": "Item 4A036E 和 SE 45DE68 处理消息 5，先设输入模式 2，wParam 等于 1 时设 0。尺寸取 lParam 的两个无符号 16 位段写各自宽高。Item 4A03AE/4A03BF 和 SE 45DEB7/45DEBD 是对应写点。所查尺寸分支发布的是尺寸与输入模式，没有从尺寸消息发布移动或按键位置。",
+        "projection": "所核两版移动与左、右按下、松开、双击消息均以低 16 位为横坐标、高 16 位为纵坐标。宽高同时等于 640×480 时直接传该对，否则以当时宽、高除各坐标乘 640、480 的结果，ftol 向零截断。布局对照以正尺寸为输入。边界外的 16 位包装保留在原例，实际窗口零尺寸期间的消息交付仍待运行证据。",
+        "position_roles": "两版的移动函数 56EE88 和 4EC960 更新移动位置。左右键各自保存按下与释放的位置，双击复用该键的按下槽。固定 Item 的 56C893 普通矩形和 56F787 所选文字命中读移动点 ED5568/ED5578。固定 SE 的 4EAC80 对应读 C5FA88/C5FA98。由建角的 49BDD6 和 45A970 调用的命中条件沿同一对位置。",
+        "event_roles": "按下及双击路径要求输入模式为 2，所核释放路径直接保存释放点。按下设置当前按住、一次按下和可重复位；释放清该键按住与重复，置独立释放位。双击还设置 0x10 或 0x20。非客户区移动 0xA0 清当前按住与一次事件字，帧末按既有规则计算后续重复。移动消息先完成坐标换算并存入移动位置，再清置一的重建请求并调用重建；该消息在返回前不按新尺寸重算。",
+        "host_comparison": "当前 Web Canvas 每次取最新 DOM 客户矩形，按下和释放也更新同一份输入位置。控制输入中，原版常规命中仍读旧移动点 (80,90)，Web 依次使用 (300,300) 与 (480,240)。无符号包装的例子原版投影到 (32767,240)，Web 投影到 (-1,240)。Web 入口以普通按下处理第二次 pointerdown，快速按下后释放保留一次按下和释放位。微信取最近一次已接受的矩形并在触控时夹到画布边界。",
+        "wechat_result": "使用按当前文件哈希验过的 stage306 Page 文件和当前宿主源码。排了两次尺寸查询，较新的 800×600 回执先送达，随后较旧的 1400×1050 回执到达。仅新矩形进入宿主。以绝对坐标输入，本机回环夹具验证预定目标角色的互动，按下与释放均经实际 Page 入口。"
+      },
+      "cases": {
+        "geometry": "两版原消息先验 640×480 直传、正尺寸缩放、边缘和低高位包装。重建从 640×480 转到 1280×960 时，对同一 (320,240) 核本次先写 (320,240)，下一条消息按新尺寸得到 (160,120)。观察实际是否有嵌套尺寸或移动消息。",
+        "mouse_selection": "核移动后按下或松开在不同位置的存储，建角矩形与帧末文字沿移动点。按下和双击机会、释放位、非客户区清理及 500/100 毫秒重复沿原帧末规则。与共享输入对照快点和取消，按各业务的实际消费者接通坐标角色。",
+        "target_touch": "Web 每次读取实际矩形。微信核晚到的尺寸回调、同画布重绑定、绝对/局部坐标及触控取消。触控设备如何产生初次移动和后续拖动属于宿主映射，实际设备核尺寸改变、离开画布与应用恢复过程。"
+      },
+      "implementation_delta": "在共用输入所有者表达移动位置、各键事件位置与事件位，现有画布和触控适配层各自按最新有效尺寸提供对应事件。复用已有快点和捕获取消规则。沿 PR-A10 验换尺寸、重建、命中、双击及实际触控结果。",
+      "remaining": [
+        "原版实际重建嵌套回执、零尺寸消息交付和窗口外输入。",
+        "移动网页、微信真机与当前同版正式业务使用。"
+      ],
+      "original_execution_observed": false,
+      "full_target_acceptance_observed": false,
+      "full_analysis_gate_passed": false
+    },
+    "admission_and_presentation": {
+      "classification": "fixed-SE-and-Item-static-branch-rules-with-a-pure-shared-comparison",
+      "capabilities": ["G06", "X02"],
+      "operation": "PR-O25",
+      "implementation_delta": "PR-D4",
+      "acceptance_case": "PR-A10",
+      "source_review": "build/analysis/legacy-render-admission-v1/source-review.json",
+      "target_baseline": "build/analysis/legacy-render-admission-v1/focused-probe.json",
+      "startup_and_initialization": {
+        "request": "The game defaults the request byte to 1. For a representable signed decimal integer, the scan writes the low byte used as a signed value by device selection. A missing token or ordinary failed numeric conversion leaves the default. The nonzero override retains its existing precedence.",
+        "normalized_tier": "SE 0x445E6C and Item 0x47181A copy a request at most 1 to the actual byte. Below 1 they show the mode-1 prompt and set both bytes to 1. Display flag 0x1 also forces both bytes to 1 without a prompt of its own. Neither normalization requests a file write.",
+        "surface_gate": "After normalization, both profiles require (+0x60 & 0xE0001) == 0, +0x64 == 0 and +0x68 equal to the selected depth. On failure SE 0x445EF5 jumps to the prompt at 0x446009, skipping the file and device cleanup branch. Item 0x4718DF shows the same mode-1 prompt locally. Both set actual and requested tiers to 1 and return 0. The format gate runs before the request-at-most-1 exit, so the prompt is also possible with a tier-1 request.",
+        "queried_device_failure": "The interface query is entered after the format gate for a request above 1. A nonzero query result reaches the mode-1 file-attempt path in both profiles, via SE 0x445F46 and Item 0x471960 → 0x4722F2 → 0x472152. Reuse legacy_render_device_preferences.device_preparation for the separate candidate, setup, probe and file rules.",
+        "effective_draw_state": "In SE, +0x9C is the interface used by the selected presentation branch. The ordinary and scaled sprite entries also require +0xBC. An accepted device without capability bit 0x400 can retain its tier while taking the DirectDraw sprite branch, which skips an additive draw. A nonzero result of the attempted state 0x29=1 falls back through 0x445F46."
+      },
+      "presentation_and_recovery": {
+        "presentation": "SE 0x446740 and Item 0x4725BF use a client rectangle in screen coordinates for window mode 1. The other mode selects whole-surface Blt if +0x9C exists, and Flip otherwise. Blt uses DDBLT_WAIT, Flip uses DDFLIP_WAIT. Each nonzero present result sets the pending recovery flag. Each selected return toggles the independent 0/1 presentation field.",
+        "scan_line": "Before either Blt path, the source can call GetScanLine. Window mode can skip the loop on the source word. DDERR_VERTICALBLANKINPROGRESS exits to Blt, as do 10000 other nonzero results. Zero results do not increment that counter. Keep this counter semantics in the native evidence and use the target host scheduling interface for presentation.",
+        "item_activation": "Window message 0x6 at 0x4A02B1 checks wParam 1 or 2 and a present context before calling 0x47F824. It checks non-null entries in the 0x1C-stride surface array, the separate surface and context +0xC/+0x8. Every selected IsLost result is checked; any nonzero sets the aggregate. Aggregate 1 writes 0x6B1154 at 0x4A02D5.",
+        "item_rebuild": "A pending 0x6B1154 and zero TestCooperativeLevel admit the ordinary frame rebuild at 0x487418. With a nonzero probe result, the selected check leaves recovery pending. Tier mismatch independently enters 0x4873BF. Initialization clears the flag at 0x4710A9 after the rebuild owner retires the old context. The SE latch has the same zero-result gate in recovery_probe."
+      },
+      "target_integration": "Preserve the Config.exe helper's existing 1..4 interface. Keep source game startup consumption in the existing game startup context. Use the graphics owner to translate effective source state into draw admission before calling the portable raster core. The two observed portable additive commands still render when passed directly. Preserve those primitives and verify source policy selection and one owner retirement across all three host adapters.",
+      "additional_cases": [
+        "Missing or malformed device token, representable values 0, 4, 128, 257, 260 and -1, and explicit nonzero override. Check the low signed byte before normalization and the helper's separate input profile.",
+        "Request 1, invalid signed request, force-mode-1 flag and each surface format predicate. Check prompt order, both tier bytes, return 0 and file attempt count, including request 1 with a rejected surface.",
+        "Failed interface query, failed device preparation and accepted lower tier. Check release order, file open/write/close results, memory publication and the resulting selected draw branch.",
+        "Window/other mode, +0x9C present/absent and +0xBC set/clear. Verify presentation selection and ordinary/scaled additive policy independently of the requested tier.",
+        "Window activation 1 or 2, no context, nonzero IsLost, Blt/Flip failure and pending/ready pairs. Verify ordinary frame rebuild admission and retirement. Cover the scan-line loop with separate zero and nonzero results and the vertical-blank terminal result."
+      ],
+      "actual_device_results_verified": false,
+      "current_version_equivalence_proven": false,
+      "full_acceptance_executed": false
+    },
+    "remaining_PR_U1": [
+      "Runtime nonzero override producers, update.dat consumers and needed actual device result domains.",
+      "Required unaligned scratch provenance, 16/24-bit output and current matching version."
+    ],
+    "full_acceptance_executed": false,
+    "local_G06_full_specification_ready": false
+  }
+}

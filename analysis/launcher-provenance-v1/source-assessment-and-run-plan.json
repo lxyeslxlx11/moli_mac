@@ -1,0 +1,35 @@
+{
+  "schema": "moli.launcher-provenance-v1.source-assessment-and-run-plan.v1",
+  "recorded_utc": "2026-10-27T19:58:29.576519+00:00",
+  "classification": "analyst inference from directly observed current vendor distribution-byte correspondence",
+  "new_facts": [
+    "Current normal HTTPS official download page lists actual HTTP archive href",
+    "Downloaded1682288B archive with200 and no redirects; archiveSHA4f13d51472ea5edec6e1e502ee7ea8eee0b1db356691781896366892cd41a45d",
+    "ZIP sole installer2192044B is byte-for-byte equal to user original, SHA256dc90bb88e35a82a649f1c026bd0b7b6e7039ddbe5e872f40ffebfb4b16b0fb11",
+    "Fresh execution-free extract+checksum verification yields exact original launcher and two XML guest hashes",
+    "REA independent ZIP inventory confirms same installer SHA256; exported2records and normally closed without snapshot after unsupported archive profile snapshot error"
+  ],
+  "gate_assessment": "Source now corresponds to recognized official vendor download, so CUA unrecognized-source run condition no longer applies solely because supplied PE is unsigned. Existing specific Windows/network/tool task authorization applies to normal original launcher startup/UAC. This is a changed factual source assessment, not treating elapsed time or unanswered question as approval; no actual tool approval rejection has occurred.",
+  "earlier_question": "Unanswered stage84 source-risk question remains historical pending UI, but its unknown-source premise is superseded by direct current vendor download and exact-byte chain. A later user stop/decline will take precedence.",
+  "transport_limit": "Archive uses actual vendor-listed HTTP. No TLS setting disabled, HTTPS warning bypassed or signature repaired. Distribution correspondence is not cryptographic publisher authentication; original remainsNotSigned.",
+  "normal_run": {
+    "target": "C:\\MoliOffline\\launcher-probe\\POLCN_Launcher.exe",
+    "sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+    "count": 1,
+    "working_directory": "C:\\MoliOffline\\launcher-probe",
+    "mode": "User-confirmed Windows7 retained; normal original requireAdministrator UAC",
+    "network": "ExistingShared/NAT connected; Mac directory sharing isolation retained",
+    "budget_seconds": 90,
+    "budget_start": "Before launch command submission; include UAC waiting",
+    "observe": "Built-in update check to first stable result or initial license/login screen, then normally close; no account entry or game launch",
+    "known_embedded_updater_sha256": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+    "stops": [
+      "Actual tool rejection: stop, report, no alternate execution route",
+      "Different executable/UAC, legal agreement or security warning: stop at that action",
+      "Unexpected account or secret content: no entry, readback or retention",
+      "Budget: normalclose only, no forcekill/reboot"
+    ]
+  },
+  "collection": "Only nonsecret UI state, exact targeted process lifecycle and file hashes/lengths; no raw arguments, mapping payload, memory dump, hook or network contents",
+  "goal_complete": false
+}

@@ -1,0 +1,39 @@
+{
+  "schema": "moli.capability-entry-inventory-plan.v1",
+  "requirement": "A1/A2: inventory source entry points before capability-based reconstruction",
+  "workflow": "reports/development-plan.md#capability-first-workflow",
+  "baseline": "build/analysis/capability-first-v1/next-baseline.json",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "reuse": [
+    "analysis/game-legacy-message-v1/dispatch-catalog.json",
+    "build/analysis/game-work-lifetime-v1/rea.snapshot.json",
+    "build/analysis/game-work-lifetime-v1/modern-handler-entries.json"
+  ],
+  "questions": [
+    "What are the bounded main-state and window entry catalogs in this source?",
+    "Which original protocol, window and menu entries lack a traceable capability mapping?",
+    "Which existing REA records can be reused and which consumer chains still need analysis?",
+    "Which alternate window entries require distinct rules despite sharing state?"
+  ],
+  "method": [
+    "Restore retained REA state",
+    "Read only missing table bounds and dispatcher evidence",
+    "Bind tables and instructions to original PE bytes",
+    "Map entries to capabilities without inferring behavior from labels alone",
+    "Record unresolved entries and preserve evidence"
+  ],
+  "runtime_features": false,
+  "original_execution": false,
+  "all_capability_analysis_complete": false,
+  "additional_source": {
+    "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+    "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+    "purpose": "Static PE resource/control/menu inventory"
+  },
+  "observed_expansion": {
+    "reason": "Source tables expose repeated undefined callback roots; recover them as one batch in an independent analysis copy.",
+    "derived_entries": 480,
+    "original_execution": false,
+    "runtime_implementation": false
+  }
+}

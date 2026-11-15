@@ -1,0 +1,466 @@
+{
+  "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "image_base": "0x400000",
+  "all_passed": true,
+  "count": 52,
+  "anchors": [
+    {
+      "id": "patch",
+      "va": "0x406b14",
+      "file_offset": "0x5f14",
+      "kind": "iat_call",
+      "passed": true,
+      "target": "0x4b136c",
+      "dll": "KERNEL32.DLL",
+      "api": "CreateProcessA"
+    },
+    {
+      "id": "first_config",
+      "va": "0x407c6b",
+      "file_offset": "0x706b",
+      "kind": "iat_call",
+      "passed": true,
+      "target": "0x4b136c",
+      "dll": "KERNEL32.DLL",
+      "api": "CreateProcessA"
+    },
+    {
+      "id": "game",
+      "va": "0x408589",
+      "file_offset": "0x7989",
+      "kind": "iat_call",
+      "passed": true,
+      "target": "0x4b136c",
+      "dll": "KERNEL32.DLL",
+      "api": "CreateProcessA"
+    },
+    {
+      "id": "config",
+      "va": "0x4148ca",
+      "file_offset": "0x13cca",
+      "kind": "iat_call",
+      "passed": true,
+      "target": "0x4b136c",
+      "dll": "KERNEL32.DLL",
+      "api": "CreateProcessA"
+    },
+    {
+      "id": "patch_wait",
+      "va": "0x406b28",
+      "file_offset": "0x5f28",
+      "kind": "iat_call",
+      "passed": true,
+      "target": "0x4b1364",
+      "dll": "KERNEL32.DLL",
+      "api": "WaitForSingleObject"
+    },
+    {
+      "id": "patch_exit",
+      "va": "0x406b36",
+      "file_offset": "0x5f36",
+      "kind": "iat_call",
+      "passed": true,
+      "target": "0x4b1358",
+      "dll": "KERNEL32.DLL",
+      "api": "GetExitCodeProcess"
+    },
+    {
+      "id": "config_wait",
+      "va": "0x407c82",
+      "file_offset": "0x7082",
+      "kind": "iat_call",
+      "passed": true,
+      "target": "0x4b1364",
+      "dll": "KERNEL32.DLL",
+      "api": "WaitForSingleObject"
+    },
+    {
+      "id": "config_manual_wait",
+      "va": "0x4148dd",
+      "file_offset": "0x13cdd",
+      "kind": "iat_call",
+      "passed": true,
+      "target": "0x4b1364",
+      "dll": "KERNEL32.DLL",
+      "api": "WaitForSingleObject"
+    },
+    {
+      "id": "mapping_open",
+      "va": "0x408477",
+      "file_offset": "0x7877",
+      "kind": "iat_call",
+      "passed": true,
+      "target": "0x4b1340",
+      "dll": "KERNEL32.DLL",
+      "api": "OpenFileMappingA"
+    },
+    {
+      "id": "mapping_create",
+      "va": "0x4084a2",
+      "file_offset": "0x78a2",
+      "kind": "iat_call",
+      "passed": true,
+      "target": "0x4b1344",
+      "dll": "KERNEL32.DLL",
+      "api": "CreateFileMappingA"
+    },
+    {
+      "id": "mapping_view",
+      "va": "0x4084c6",
+      "file_offset": "0x78c6",
+      "kind": "iat_call",
+      "passed": true,
+      "target": "0x4b1348",
+      "dll": "KERNEL32.DLL",
+      "api": "MapViewOfFile"
+    },
+    {
+      "id": "caller_to_launch",
+      "va": "0x410d10",
+      "file_offset": "0x10110",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x407a00"
+    },
+    {
+      "id": "game_argv_copy",
+      "va": "0x407e2f",
+      "file_offset": "0x722f",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x40bc30"
+    },
+    {
+      "id": "argsline_selector",
+      "va": "0x407e69",
+      "file_offset": "0x7269",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x408fe0"
+    },
+    {
+      "id": "mapping_copy",
+      "va": "0x4084e2",
+      "file_offset": "0x78e2",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x44dc00"
+    },
+    {
+      "id": "xml_exe_store",
+      "va": "0x40320e",
+      "file_offset": "0x260e",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x40bd10"
+    },
+    {
+      "id": "xml_args_store",
+      "va": "0x403292",
+      "file_offset": "0x2692",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x40bd10"
+    },
+    {
+      "id": "xml_patch_store",
+      "va": "0x4035aa",
+      "file_offset": "0x29aa",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x40bd10"
+    },
+    {
+      "id": "xml_config_store",
+      "va": "0x40362e",
+      "file_offset": "0x2a2e",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x40bd10"
+    },
+    {
+      "id": "selected_patch_copy",
+      "va": "0x404e49",
+      "file_offset": "0x4249",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x40bcf0"
+    },
+    {
+      "id": "selected_config_copy",
+      "va": "0x404e7a",
+      "file_offset": "0x427a",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x40bcf0"
+    },
+    {
+      "id": "selected_exe_copy",
+      "va": "0x404ce8",
+      "file_offset": "0x40e8",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x40bcf0"
+    },
+    {
+      "id": "patch_callback",
+      "va": "0x412b42",
+      "file_offset": "0x11f42",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x406110"
+    },
+    {
+      "id": "xml_exe",
+      "va": "0x40318f",
+      "file_offset": "0x258f",
+      "kind": "literal_reference",
+      "passed": true,
+      "target": "0x4b20f4",
+      "literal": "EXE",
+      "literal_offset": "0xb12f4"
+    },
+    {
+      "id": "xml_argsline",
+      "va": "0x403213",
+      "file_offset": "0x2613",
+      "kind": "literal_reference",
+      "passed": true,
+      "target": "0x4b20f8",
+      "literal": "Argsline",
+      "literal_offset": "0xb12f8"
+    },
+    {
+      "id": "xml_patcher",
+      "va": "0x40352b",
+      "file_offset": "0x292b",
+      "kind": "literal_reference",
+      "passed": true,
+      "target": "0x4b2138",
+      "literal": "PatchEXE",
+      "literal_offset": "0xb1338"
+    },
+    {
+      "id": "xml_config",
+      "va": "0x4035af",
+      "file_offset": "0x29af",
+      "kind": "literal_reference",
+      "passed": true,
+      "target": "0x4b2144",
+      "literal": "ConfigEXE",
+      "literal_offset": "0xb1344"
+    },
+    {
+      "id": "cg_mapping",
+      "va": "0x407fc5",
+      "file_offset": "0x73c5",
+      "kind": "literal_reference",
+      "passed": true,
+      "target": "0x4b2a94",
+      "literal": "CGSharedMem",
+      "literal_offset": "0xb1c94"
+    },
+    {
+      "id": "fixed_label_a",
+      "va": "0x407f0c",
+      "file_offset": "0x730c",
+      "kind": "literal_reference",
+      "passed": true,
+      "target": "0x4b2a7c",
+      "literal": "gid:",
+      "literal_offset": "0xb1c7c"
+    },
+    {
+      "id": "fixed_label_b",
+      "va": "0x407f35",
+      "file_offset": "0x7335",
+      "kind": "literal_reference",
+      "passed": true,
+      "target": "0x4b2a84",
+      "literal": " glt:",
+      "literal_offset": "0xb1c84"
+    },
+    {
+      "id": "resource_pattern",
+      "va": "0x408001",
+      "file_offset": "0x7401",
+      "kind": "literal_reference",
+      "passed": true,
+      "target": "0x4b2aa0",
+      "literal": "%s\\Bin\\anime*.bin",
+      "literal_offset": "0xb1ca0"
+    },
+    {
+      "id": "exe_record_offset",
+      "va": "0x403207",
+      "file_offset": "0x2607",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "8d8c0a5c1b0000"
+    },
+    {
+      "id": "args_record_offset",
+      "va": "0x40328b",
+      "file_offset": "0x268b",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "8d8c01601b0000"
+    },
+    {
+      "id": "patch_record_offset",
+      "va": "0x4035a3",
+      "file_offset": "0x29a3",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "8d8c01841b0000"
+    },
+    {
+      "id": "config_record_offset",
+      "va": "0x403627",
+      "file_offset": "0x2a27",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "8d8c10881b0000"
+    },
+    {
+      "id": "selected_patch_offset",
+      "va": "0x404e43",
+      "file_offset": "0x4243",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "81c1401b0000"
+    },
+    {
+      "id": "selected_config_offset",
+      "va": "0x404e74",
+      "file_offset": "0x4274",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "81c1441b0000"
+    },
+    {
+      "id": "selected_exe_offset",
+      "va": "0x404ce2",
+      "file_offset": "0x40e2",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "81c11c1b0000"
+    },
+    {
+      "id": "game_argv_source",
+      "va": "0x407e25",
+      "file_offset": "0x7225",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "81c21c1b0000"
+    },
+    {
+      "id": "config_argv_source",
+      "va": "0x407ba1",
+      "file_offset": "0x6fa1",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "05441b0000"
+    },
+    {
+      "id": "config_manual_source",
+      "va": "0x4147f5",
+      "file_offset": "0x13bf5",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "05441b0000"
+    },
+    {
+      "id": "patch_argv_source",
+      "va": "0x406636",
+      "file_offset": "0x5a36",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "81c1401b0000"
+    },
+    {
+      "id": "argsline_return_offset",
+      "va": "0x408ff9",
+      "file_offset": "0x83f9",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "8d840a601b0000"
+    },
+    {
+      "id": "mapping_capacity",
+      "va": "0x408495",
+      "file_offset": "0x7895",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "6800010000"
+    },
+    {
+      "id": "mapping_page_readwrite",
+      "va": "0x40849c",
+      "file_offset": "0x789c",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "6a04"
+    },
+    {
+      "id": "cg_code_4_branch",
+      "va": "0x407fa9",
+      "file_offset": "0x73a9",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "83ba9c6c000004"
+    },
+    {
+      "id": "cg_code_11_branch",
+      "va": "0x407fb8",
+      "file_offset": "0x73b8",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "83b89c6c00000b"
+    },
+    {
+      "id": "patch_backup_extension",
+      "va": "0x406654",
+      "file_offset": "0x5a54",
+      "kind": "literal_reference",
+      "passed": true,
+      "target": "0x4b259c",
+      "literal": ".BAK.EXE",
+      "literal_offset": "0xb179c"
+    },
+    {
+      "id": "patch_original_extension",
+      "va": "0x406659",
+      "file_offset": "0x5a59",
+      "kind": "literal_reference",
+      "passed": true,
+      "target": "0x4b25a8",
+      "literal": ".EXE",
+      "literal_offset": "0xb17a8"
+    },
+    {
+      "id": "patch_name_transform",
+      "va": "0x406661",
+      "file_offset": "0x5a61",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x409050"
+    },
+    {
+      "id": "patch_first_selected_region_field",
+      "va": "0x40667e",
+      "file_offset": "0x5a7e",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "05341b0000"
+    },
+    {
+      "id": "patch_second_selected_region_field",
+      "va": "0x40666c",
+      "file_offset": "0x5a6c",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "81c2381b0000"
+    }
+  ]
+}

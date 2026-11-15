@@ -1,0 +1,209 @@
+{
+  "schema": "moli.capability.launcher-id-metadata-contract.v1",
+  "source": {
+    "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+    "bytes": 4111872,
+    "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+    "official_current_version_proven": false
+  },
+  "source_check": "analysis/capability-first-v1/launcher-id-metadata-source-check.json",
+  "capabilities": [
+    "L01",
+    "L02",
+    "L04",
+    "L08"
+  ],
+  "facts": {
+    "metadata_fields": {
+      "ID": "main+0x1a9c",
+      "note": "main+0x1b9c",
+      "pinned_byte": "main+0x1c9c",
+      "pin_order_v2_i32": "main+0x1cdc",
+      "move_order_v2_i32": "main+0x1ddc",
+      "move_anchor": "main+0x1edc",
+      "undo_snapshot": "main+0x1698, 768 bytes",
+      "undo_available": "byte main+0x1998",
+      "scope": "fixed x86 arrays of64; source offsets are not portable API or wire fields"
+    },
+    "identity_keys": {
+      "entry": "0x41bba0",
+      "empty_rule": "empty account main+0x21fc or empty GameID yields an empty key",
+      "input": "printf-style raw byte format %s|%d|%s using account, current game code and GameID; no realm or additional case folding in this helper",
+      "digest": "MD516-byte result rendered as32 lowercase hexadecimal bytes; standard compression corroborated by the separate static-model analysis",
+      "base": "GID_ + digest",
+      "note": "base key",
+      "pin_flag": "GID_PIN_ + base suffix after first4 bytes",
+      "pin_order_v2": "GID_PIN_ORDER_V2_ + suffix",
+      "move_order_v2": "GID_MOVE_ORDER_V2_ + suffix",
+      "move_anchor": "GID_MOVE_ANCHOR_ + suffix",
+      "hash_failure_boundary": "digest wrapper can return empty text; source concatenates its result rather than introducing a separate hash-success gate"
+    },
+    "storage": {
+      "owner": "profile object controller+0x7758 = CChildView+0x7638",
+      "constructor": "0x43ba60",
+      "filename": "module directory plus PlayOnline.ini; source uses a260-byte module-path buffer",
+      "section": "GameIDNotes",
+      "string_read": "43bcf0→GetPrivateProfileStringA with256-byte output buffer",
+      "integer_read": "43bc90→GetPrivateProfileIntA",
+      "string_write": "43bf20→WritePrivateProfileStringA; configured filename at profile+4",
+      "integer_write": "43be30 formats %d and uses the same string-write API",
+      "native_write_result": "BOOL nonzero is propagated; it is not evidence of complete disk durability or a multi-key transaction",
+      "portable_design_status": "shared logic should consume explicit read/write results through a platform store; no new interface implemented"
+    },
+    "reply_load": {
+      "entry": "0x423c30",
+      "rules": [
+        "Positive reply path caps count64, clears undo availability and resets the64-row metadata arrays before populating.",
+        "41c820 loads the base-key note and applies41d6a0 normalization.",
+        "Pin flag is read as nonzero/zero; pin/move V2 ranks are retained only when signed-positive, otherwise0.",
+        "41c720 loads MOVE_ANCHOR text; it is not the note loader.",
+        "Ordinary list rebuild/filter and preset-ID consumption follow existing contracts."
+      ],
+      "not_claimed": "all late replies, modal ownership and close/reentry conditions"
+    },
+    "note_normalization": {
+      "entry": "0x41d6a0",
+      "byte_ceiling": 32,
+      "rule": "drop bytes<0x20 and0x7f at character starts; preserve spaces; append a2-byte unit when IsDBCSLeadByte reports a lead and another byte exists, otherwise append1; stop before exceeding32 bytes",
+      "edge": "source does not validate the trail byte; an unpaired final lead can be treated as one byte",
+      "encoding_boundary": "IsDBCSLeadByte uses the source OS environment;32 bytes is not32 arbitrary Unicode characters"
+    },
+    "note_dialog": {
+      "entry": "0x4278c0",
+      "class": "CGidNoteDialog",
+      "vtable": "0x5d454c",
+      "construction": "ordinary CDialog without a static resource ID;4197f0 builds an indirect standard template",
+      "controls": [
+        {
+          "id": 29192,
+          "kind": "static"
+        },
+        {
+          "id": 29191,
+          "kind": "edit"
+        },
+        {
+          "id": 1,
+          "kind": "accept"
+        },
+        {
+          "id": 2,
+          "kind": "cancel"
+        }
+      ],
+      "init": "420440 supplies title/labels/current note; edit limit parameter32, select-all and focus; returns0",
+      "accept": "CDialog command1 bridge dispatches virtual+0x180→422800: read edit, normalize to local result, invoke ordinary base accept",
+      "cancel": "command2 bridge dispatches virtual+0x184→44f7a0, ordinary modal result2 path",
+      "publication": "outer handler processes only modal result1, normalizes again and calls427430; update note and rebuild only after storage success; failure reports an error after modal return",
+      "clear_note": "context7204 writes an empty normalized note and clears/rebuilds only on success",
+      "lifecycle_limit": "raw index is captured before the modal call; cross-state/late callback validity during the modal interval is not proved"
+    },
+    "pin_change": {
+      "entry": "0x427a90",
+      "conditions": "valid selected raw index and target flag differs",
+      "pin": "write pin1 then rank max signed rank of group1 +1; on success publish flag1/rank and clear order-undo availability",
+      "unpin": "write pin0 then rank0; on success publish and clear order-undo availability",
+      "failure": "attempt old flag/rank writes, keep memory unchanged, report failure; these rollback results are not checked",
+      "integer_boundary": "source uses32-bit max+1; numeric writer clamps nonpositive rank to0; no extra overflow policy introduced"
+    },
+    "order_snapshot": {
+      "capture": "4199a0",
+      "copy": "416e40",
+      "layout": "64 pin-rank integers at+0,64 move-rank integers at+0x100,64 owned anchor strings at+0x200",
+      "includes_notes_or_pin_flags": false,
+      "ownership": "string values are copied through source string ownership operations, not raw shared pointer snapshots",
+      "apply": "4182c0 writes pin-rank, move-rank and anchor for each current received ID before publishing any candidate array",
+      "failure": "restore all three prior values for rows0 through the failing row inclusive; aggregate restoration results selects the failure message; return false",
+      "success": "publish the current-count candidate values, rebuild, return true",
+      "transaction_limit": "restoration can fail; source does not establish atomic multi-key or crash-durable updates"
+    },
+    "order_commands": {
+      "menu": "0x41f2c0",
+      "reset_0x7209": "capture prior order snapshot, apply zero ranks/empty anchors; on success copy prior snapshot to main+0x1698 and enable one undo",
+      "undo_0x720a": "enabled only while+0x1998 nonzero; apply saved snapshot, clear availability only on success",
+      "up_down_0x7205_0x7206": "disabled with active filter or invalid adjacent group position; delegate to41cc70",
+      "not_import_export": "7209/720a are reset/single-undo operations in this bounded chain; no import/export specification or required feature follows from them"
+    },
+    "reorder": {
+      "entry": "0x41cc70",
+      "view": "reused source-identical analyst prototype view; canonical102 warnings retained",
+      "admission": "empty filter, valid selected raw index, valid changed ordinal within its same group",
+      "nonzero_group": "stable move within selected group, compute consecutive1-based pin ranks, persist changed ranks; failure attempts restoration of prior successful writes before returning without publication",
+      "group_zero": [
+        "Keep existing anchors/move ranks and mark rows already customized or the moved row as tracked.",
+        "Find the rightmost untracked ordinal in the new group order.",
+        "Tracked rows before it receive B:<following GameID>; other tracked rows with a predecessor receive A:<previous GameID>; a tracked first row without a predecessor receives F.",
+        "Assign consecutive1-based move ranks to tracked rows, persist changed anchor/rank pairs; on a rank failure attempt to restore its anchor, then restore prior successful pairs.",
+        "Only after all required writes succeed publish affected anchors/ranks; preserve the old full order snapshot and enable one undo, then rebuild."
+      ],
+      "error_result": "rollback writes in these reorder failure paths are attempts, not a proven successful transaction"
+    },
+    "context_inventory": {
+      "source": "0x41f2c0 step4 ID list",
+      "actions": {
+        "0x1ef6": "save current launch preset",
+        "0x7201": "edit note",
+        "0x7202": "pin",
+        "0x7203": "unpin",
+        "0x7204": "clear note",
+        "0x7205": "move up",
+        "0x7206": "move down",
+        "0x7209": "reset order",
+        "0x720a": "single undo"
+      },
+      "coordinates": "keyboard context request(-1,-1) uses selected item rectangle center; pointer requests are hit-tested and mapped to raw ID before menu actions",
+      "game_step0": "428380 handles ordinary game-list context action1 through426150 and existing template295 constructor412190; installation/path application40d4d0 remains a separate unfinished chain"
+    },
+    "undo_invalidation": [
+      "main constructor415050 clears availability",
+      "positive reply load423c30 clears availability",
+      "successful pin/unpin clears availability",
+      "successful undo clears availability; note editing is outside the order snapshot"
+    ]
+  },
+  "scope_refinement": {
+    "previous_candidate": "import/export and a custom-order dialog were mentioned among possible local-metadata gaps",
+    "observed_result": "the actual7209/720a chain is local reset/undo; notes use a runtime-built dialog; import/export is not an observed independent feature in this bounded chain",
+    "role_correction": "main+0x1998 is order-undo availability; prior generic dirty labels were corrected in the catalog-state generator/contract/source-check without changing native evidence or historical receipts",
+    "discovery_boundary": "this does not prove that no other program entry implements import/export; discovery stays open without inventing that capability"
+  },
+  "inferences": [
+    "The MD5 classification combines full retained compression expressions, initialization/padding/hex code and a separate restricted static-model/reference comparison; original code was not executed.",
+    "A shared metadata owner with platform storage results can preserve source publication/rollback/undo semantics across hosts; this architecture is not implemented yet."
+  ],
+  "remaining": [
+    "Exact source OS code page/IME/input semantics and native INI parsing/filesystem behavior versus target-platform storage.",
+    "All modal/async owner cancellation, close/reentry and cross-state validity; pending source paths outside this bounded chain remain open.",
+    "Complete XML/install/App initialization, template296/30721/30734 uses, four non-App static menu routes and remaining dynamic discovery.",
+    "Game common dispatch/graphics/input and every business lifetime, current-version game consumers, actual platform and official acceptance."
+  ],
+  "requirement_answers": [
+    {
+      "question": 1,
+      "status": "partially-answered",
+      "answer": "step4 metadata actions and runtime note template/virtual commands bound; step0 game path action source located but full path workflow remains open"
+    },
+    {
+      "question": 2,
+      "status": "answered-bounded-source",
+      "answer": "notes/pins/relative ranks, account-game-ID keys, write-before-publication, rollback attempts and order undo ownership bound"
+    },
+    {
+      "question": 3,
+      "status": "answered-bounded-source",
+      "answer": "7209/720a are reset/single undo, not observed import/export; profile API/key/value serialization and failure paths specified for these actions"
+    },
+    {
+      "question": 4,
+      "status": "partially-answered",
+      "answer": "constructor/reply/pin/undo invalidation and immediate writes bound; all modal/async owner close/reentry conditions remain open"
+    }
+  ],
+  "original_execution": false,
+  "account_or_session_observed": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "official_acceptance": false,
+  "full_goal_complete": false
+}

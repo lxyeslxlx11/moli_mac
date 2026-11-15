@@ -1,0 +1,48 @@
+{
+  "schema": "moli.fixed-transfer.stage118.v1",
+  "updated_utc": "2026-11-01T06:35:11.616644+00:00",
+  "host_command": "python3 -B analysis/game-text-observer-runtime-v1/fixed_transfer.py send-observer --bind 10.211.55.2 --port 65378 --ttl 600",
+  "host_exec_session": 74039,
+  "observed_listening": {
+    "bind": "10.211.55.2",
+    "peer": "10.211.55.3",
+    "port": 65378,
+    "mode": "send-observer",
+    "bytes": 146798,
+    "sha256": "163864829f3b47eaa0b640c44b5de1d46f0e44658919b7c4e51974e5b83732f5",
+    "ttl": 600
+  },
+  "guest_download": {
+    "actual_bytes": 146798,
+    "command": "$b118=$w118.DownloadData($u118); $b118.Length",
+    "observed_local_minute": "2026-11-01 14:31 +08",
+    "result": "actual returned length and new prompt"
+  },
+  "guest_new_file_write": {
+    "path": "C:\\MoliOffline\\game-text-observer-stage115\\text-observer.exe",
+    "mode": "CreateNew,Write,None; finally Dispose",
+    "observed_result": "new prompt, no visible exception; file identity independently hashed after close"
+  },
+  "guest_hash": {
+    "algorithm": "SHA256",
+    "actual": "163864829f3b47eaa0b640c44b5de1d46f0e44658919b7c4e51974e5b83732f5",
+    "matches_pinned_build": true,
+    "observed_local_minute": "2026-11-01 14:33 +08",
+    "command": "Get-FileHash -LiteralPath $ob118 | fl Hash"
+  },
+  "server_closed": {
+    "event": "closed",
+    "success": true,
+    "host_exec_exit_code": 0,
+    "observer_sent_bytes": 146798,
+    "observer_sent_sha256": "163864829f3b47eaa0b640c44b5de1d46f0e44658919b7c4e51974e5b83732f5"
+  },
+  "original_fixture_or_game_execution": false,
+  "guest_file_attributes": {
+    "Length": 146798,
+    "Attributes": "Archive",
+    "observed_local_minute": "2026-11-01 14:34 +08"
+  },
+  "guest_download_object_disposed": true,
+  "transfer_qualification": "exact file length and SHA matched on guest; observer never executed at this receipt"
+}

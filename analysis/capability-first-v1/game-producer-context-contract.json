@@ -1,0 +1,861 @@
+{
+  "schema": "moli.capability.game-producer-context-contract.v1",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "source_check": "analysis/capability-first-v1/game-producer-context-source-check.json",
+  "capabilities": [
+    "G01",
+    "G03",
+    "G04",
+    "G05",
+    "G10",
+    "G13",
+    "G14",
+    "G16",
+    "G18",
+    "B01",
+    "X01",
+    "X02",
+    "X06",
+    "X07"
+  ],
+  "producer_contexts": [
+    {
+      "entry": "0x4eeed0",
+      "capabilities": [
+        "G03",
+        "G10",
+        "X07"
+      ],
+      "positive_context_entries": [
+        "0x518de0"
+      ],
+      "role": "manual-challenge-selection",
+      "source_rule": "Savedstate must equal9;send suppliedinteger thenreset transient selection andmarkold promptobject.",
+      "remaining": "Manual UIproducer/cancel remains;never infercorrectanswer orautomate selection.",
+      "classification": "fact-bounded-source-context",
+      "tag": ":E%",
+      "wire_fields": [
+        "int32"
+      ],
+      "sender_evidence_id": "ev_b0309c0f8343ce28c1836a9eb79cdb3851022c69c12dc276fad088cdd67d0dc0",
+      "full_business_semantics_verified": false
+    },
+    {
+      "entry": "0x4f6780",
+      "capabilities": [
+        "G04",
+        "G10"
+      ],
+      "positive_context_entries": [
+        "0x466e50"
+      ],
+      "role": "neighbor-selector-request-A",
+      "source_rule": "Facing/neighbor mask8,party/leader,input/movement andstrict500ms sharedclock gate;orderedwrapped localX,localY.",
+      "remaining": "Keyboardtrigger/layout sourcebound; exactbusinesslabel andacceptedreplylifecycle remain unproved.",
+      "classification": "fact-bounded-source-context",
+      "tag": "#^o",
+      "wire_fields": [
+        "int32",
+        "int32"
+      ],
+      "sender_evidence_id": "ev_b8ac2bef2620a4ff68d36ed558043b36a9f5c8513a526f8b01f5600eee46a58e",
+      "full_business_semantics_verified": false,
+      "ordinary_workflow_followup": "/ordinary_action_workflows"
+    },
+    {
+      "entry": "0x4f6840",
+      "capabilities": [
+        "G04",
+        "G10"
+      ],
+      "positive_context_entries": [
+        "0x466f50"
+      ],
+      "role": "neighbor-selector-request-B",
+      "source_rule": "Distinct43f220 selector with8/0xc400/0;other sharedguards and500ms gate;orderedwrapped localX,localY.",
+      "remaining": "Keyboardtrigger/layout sourcebound; exactbusinesslabel andacceptedreplylifecycle remain unproved.",
+      "classification": "fact-bounded-source-context",
+      "tag": "$MT",
+      "wire_fields": [
+        "int32",
+        "int32"
+      ],
+      "sender_evidence_id": "ev_1d7e8c1a028d8f76d0d7a0535ed5372e59c056dd83c8e25fcddbc618e58bbc5c",
+      "full_business_semantics_verified": false,
+      "ordinary_workflow_followup": "/ordinary_action_workflows"
+    },
+    {
+      "entry": "0x4f6970",
+      "capabilities": [
+        "G09",
+        "G10"
+      ],
+      "positive_context_entries": [
+        "0x47e880"
+      ],
+      "role": "context-option-request",
+      "source_rule": "经典 46 的非负选择读取当前逻辑 X/Y、C1E6D0 来源槽与资料 +0x30。另一套 78 的同格式第三项读 C1DF84。",
+      "remaining": "实际配对、物品结果与另一套正常分派待验证。",
+      "classification": "fact-bounded-source-context",
+      "tag": "$gW",
+      "wire_fields": [
+        "int32",
+        "int32",
+        "int32",
+        "int32"
+      ],
+      "sender_evidence_id": "ev_a15fefa6b915d77813d37b4ed2477ecc4e9a142faba024e769d7c59f5749a53a",
+      "full_business_semantics_verified": false,
+      "source_rule_supplement": "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/fixed_se_item_target_menus"
+    },
+    {
+      "entry": "0x4f6be0",
+      "capabilities": [
+        "G05"
+      ],
+      "positive_context_entries": [
+        "0x4813c0",
+        "0x481a30",
+        "0x482260",
+        "0x4dd740"
+      ],
+      "role": "selected-pet-operation",
+      "source_rule": "UIeventbit2/active selectedrecord andsourceguards;threefields localX,localY,selectedsignedshort(d72fb2+index*8). Extra4dd740 pathusesitsown flags.",
+      "remaining": "Exact operationname/ack/wholepet lifecycle remain;wrappers arecoordinate getters,not wire fields disappearing.",
+      "classification": "fact-bounded-source-context",
+      "tag": "&tu",
+      "wire_fields": [
+        "int32",
+        "int32",
+        "int32"
+      ],
+      "sender_evidence_id": "ev_cb5413599462917b6291954865207417f63e36a640a781ae21036227eb4c59f6",
+      "full_business_semantics_verified": false
+    },
+    {
+      "entry": "0x4f7370",
+      "capabilities": [
+        "G16"
+      ],
+      "positive_context_entries": [
+        "0x4f5640"
+      ],
+      "role": "family-state-change-mask",
+      "source_rule": "Parsefourpipeintegers;storethird/fourth;maskbit1/2 comparesfirsttwo withfc8b18/fc8b1c;sendonlynonzero mask usingincoming connection.",
+      "remaining": "Thisbody doesnot updatecomparison cache;full familylifecycle remains.",
+      "classification": "fact-bounded-source-context",
+      "tag": ":_d",
+      "wire_fields": [
+        "int32"
+      ],
+      "sender_evidence_id": "ev_c93ec227e9c7da1bde9a9778b3abe60534a830e600b1b6487a16f784a96701be",
+      "full_business_semantics_verified": false
+    },
+    {
+      "entry": "0x4f73c0",
+      "capabilities": [
+        "G03",
+        "X02"
+      ],
+      "positive_context_entries": [
+        "0x517a80"
+      ],
+      "role": "per-character-profile-disclosure",
+      "source_rule": "Threeintegerflag/stringpairs andfourthstring;mode0 useslivefields thenupdatesselected2088-byte cache;mode1 usescached values.",
+      "remaining": "Exacteditablefield labels/mode0UI/persistence unknown;mode1 stringselection usesliveflags whilewireintegers usecached flags.",
+      "classification": "fact-bounded-source-context",
+      "tag": ";+]",
+      "wire_fields": [
+        "int32",
+        "bytes",
+        "int32",
+        "bytes",
+        "int32",
+        "bytes",
+        "bytes"
+      ],
+      "sender_evidence_id": "ev_d66efdcbeb0ef787d97b3d7d298bfc3ed227a505abdadb0c1b35196089a3707e",
+      "full_business_semantics_verified": false
+    },
+    {
+      "entry": "0x4f7630",
+      "capabilities": [
+        "G03"
+      ],
+      "positive_context_entries": [
+        "0x518090"
+      ],
+      "role": "entry-profile-followup",
+      "source_rule": "Always517a80(1)before oneinteger packet;value1/0 fromselected fdda44 cacheword.",
+      "remaining": "Noack-gate invented;upstreamnormalstate entry/cancel/actualserveracceptance separate.",
+      "classification": "fact-bounded-source-context",
+      "tag": "=Nd",
+      "wire_fields": [
+        "int32"
+      ],
+      "sender_evidence_id": "ev_26718faf1a555191f9115762eaed3cdc9cd7dfec43a604fd09c2aacea2ade429",
+      "full_business_semantics_verified": false
+    },
+    {
+      "entry": "0x4f77d0",
+      "capabilities": [
+        "G04",
+        "G14"
+      ],
+      "positive_context_entries": [
+        "0x467060"
+      ],
+      "role": "party-join-or-leave",
+      "source_rule": "SendslocaldisplayX/Y andjoin1/leave0;joingatedbyfacingneighbor/flags,leave skipsjoinguards;sharedstrict500ms gate.",
+      "remaining": "Membershipcomesfromreply;other partybranches andplatformacceptance remain.",
+      "classification": "fact-bounded-source-context",
+      "tag": "*Cc",
+      "wire_fields": [
+        "int32",
+        "int32",
+        "int32"
+      ],
+      "sender_evidence_id": "ev_dc9247e4a37a79a98460d89a839a1cd0c051f702cd07797aa0413d3ec5a36e5f",
+      "full_business_semantics_verified": false
+    },
+    {
+      "entry": "0x4f7860",
+      "capabilities": [
+        "G05"
+      ],
+      "positive_context_entries": [
+        "0x480b40"
+      ],
+      "role": "five-word-pet-state",
+      "source_rule": "Loopfive0x6d8-spaced recordfields;OR0x10 intoeach correspondingc1fc14word whenrecordfieldnonzero;sendfivecontiguous words.",
+      "remaining": "Exactbit/field meanings andall UIwriters remain;fifthfield isinitialized byloop despite Ghidrastack split.",
+      "classification": "fact-bounded-source-context",
+      "tag": "*T)",
+      "wire_fields": [
+        "int32",
+        "int32",
+        "int32",
+        "int32",
+        "int32"
+      ],
+      "sender_evidence_id": "ev_fa67c0883b497f77e8875d2c150ef282f537e1d7a48f497f3d9487985550dbd5",
+      "full_business_semantics_verified": false
+    },
+    {
+      "entry": "0x4f7940",
+      "capabilities": [
+        "G05",
+        "G13"
+      ],
+      "positive_context_entries": [
+        "0x47f330"
+      ],
+      "role": "two-index-direct-operation",
+      "source_rule": "Bothindicesnonnegative/different andbelow100 take twointegerwirepath;otherwise withc10f30 sendinner P|index|index through4f8240 withcontextIDs.",
+      "remaining": "Do not flatten direct/bankcontext branches intoone unconditionalswap.",
+      "classification": "fact-bounded-source-context",
+      "tag": ":=#",
+      "wire_fields": [
+        "int32",
+        "int32"
+      ],
+      "sender_evidence_id": "ev_a19c82b2ec98902cbdc9d912f5400fe6a0175cd1bf85fdb9b4798ea9bcdcbfa0",
+      "full_business_semantics_verified": false
+    },
+    {
+      "entry": "0x4f7a50",
+      "capabilities": [
+        "G09",
+        "G10"
+      ],
+      "positive_context_entries": [
+        "0x47e880"
+      ],
+      "role": "context-option-minus-three",
+      "source_rule": "经典 46 返回按钮传 -3。发送零字段的 *pT 后返回 0，控件清 latch、当前窗等后续资料。另一套 78 有独立调用。",
+      "remaining": "实际返回回复、队列与过期上下文待验证。",
+      "classification": "fact-bounded-source-context",
+      "tag": "*pT",
+      "wire_fields": [],
+      "sender_evidence_id": "ev_ea92c7180d9f0b411888c301d64de2ed5e60fbd2f275fdc5ec9db7200c2ca74b",
+      "full_business_semantics_verified": false,
+      "source_rule_supplement": "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/fixed_se_item_target_menus"
+    },
+    {
+      "entry": "0x4f7a90",
+      "capabilities": [
+        "G09",
+        "G10"
+      ],
+      "positive_context_entries": [
+        "0x47e740"
+      ],
+      "role": "context-selection",
+      "source_rule": "经典 45 按显示页偏移和行控件计算一级行序号，发送后写 C1E6D4。另一套 77 先写后发。",
+      "remaining": "实际二级回复及合法时序沿 SC-T01 至 SC-T04、SC-T09 至 SC-T11 核验。",
+      "classification": "fact-bounded-source-context",
+      "tag": "*~/",
+      "wire_fields": [
+        "int32"
+      ],
+      "sender_evidence_id": "ev_f28bd00e3b58e01e3bb71381899f5258852a3674ebb9055c0faac16b32a1dfbf",
+      "full_business_semantics_verified": false,
+      "source_rule_supplement": "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/fixed_se_item_target_menus"
+    },
+    {
+      "entry": "0x4f7ee0",
+      "capabilities": [
+        "G16"
+      ],
+      "positive_context_entries": [
+        "0x46e600",
+        "0x46e710"
+      ],
+      "role": "title-selection-or-clear",
+      "source_rule": "46e600 mapsselectedtitle record through4fef20 andsendsnonnegative result;46e710 eventbranch sends-1. UItext corroborates set/cancel title.",
+      "remaining": "Other delete/titlemodes,cache/result lifecycle remain.",
+      "classification": "fact-bounded-source-context",
+      "tag": "-0]",
+      "wire_fields": [
+        "int32"
+      ],
+      "sender_evidence_id": "ev_d1a1c54fb85e5903523cc2c6068dae2bea5fa700e78ccf07bcd5bdcc0c7227b2",
+      "full_business_semantics_verified": false
+    },
+    {
+      "entry": "0x4f8020",
+      "capabilities": [
+        "G05"
+      ],
+      "positive_context_entries": [
+        "0x481a30"
+      ],
+      "role": "selected-pet-mode",
+      "source_rule": "Twointegers:selectedsignedshort(d72fb2+index*8),sourcechosenmode. Nativecallsalso include4df808,withoutcanonical owner.",
+      "remaining": "Allmode/UI meanings andactual4df420 callbackbody stillneed source-ledclosure.",
+      "classification": "fact-bounded-source-context",
+      "tag": "-iA",
+      "wire_fields": [
+        "int32",
+        "int32"
+      ],
+      "sender_evidence_id": "ev_b5e1bf836c099b8d2657632ebe863b5d42a360d032cbe608a295a201594089ef",
+      "full_business_semantics_verified": false
+    },
+    {
+      "entry": "0x4f8190",
+      "capabilities": [
+        "G10",
+        "B01"
+      ],
+      "positive_context_entries": [
+        "0x46b070"
+      ],
+      "role": "front-back-formation-toggle",
+      "source_rule": "Cases0x17/0x18 requireeventbit2 andcurrentf536c8 equal0/1 respectively;bothsendargumentfree packet. Tooltipsrequestfront/back battleposition.",
+      "remaining": "Replypublication/timing andother UIowners remain;nooptimisticformationupdate inferred.",
+      "classification": "fact-bounded-source-context",
+      "tag": ".3+",
+      "wire_fields": [],
+      "sender_evidence_id": "ev_4e26a0c5e78d1bc0d9f080ef11f54678ae44a9dd28fdf06c5c40a02a1b2db9e8",
+      "full_business_semantics_verified": false
+    },
+    {
+      "entry": "0x4f8760",
+      "capabilities": [
+        "G01",
+        "X06"
+      ],
+      "positive_context_entries": [
+        "0x4edef0"
+      ],
+      "role": "write-idle-marker",
+      "source_rule": "Afterstrict(lastWriteTick+30000<now)andconnectedbyte1,sendliteralbytes nr at567678. Assemblyprovespayloadpointer.",
+      "remaining": "Thisdoesnot establish60s timer orclockwrap repair;queue/errorsourcecontext distinct.",
+      "classification": "fact-bounded-source-context",
+      "tag": "3$}",
+      "wire_fields": [
+        "bytes"
+      ],
+      "sender_evidence_id": "ev_daf63be1a26df8d28782680e8c082232e3e720dbae66df3afe86498b18eaffc8",
+      "full_business_semantics_verified": false
+    },
+    {
+      "entry": "0x4f87b0",
+      "capabilities": [
+        "G01",
+        "X06"
+      ],
+      "positive_context_entries": [
+        "0x450640"
+      ],
+      "role": "periodic-connection-packet",
+      "source_rule": "Whend18e34 nonzero,signed(now-last)>59999 sendsargumentfreepacket andupdatesclock;firstcall initializesclock.",
+      "remaining": "Independentofwrite-idlemarker;platform scheduling/clockwrap remain.",
+      "classification": "fact-bounded-source-context",
+      "tag": "4hY",
+      "wire_fields": [],
+      "sender_evidence_id": "ev_9d90ea52ca65e3960b3610926ef8975527fe270813495b388b2343e5935a2c08",
+      "full_business_semantics_verified": false
+    },
+    {
+      "entry": "0x4f87f0",
+      "capabilities": [
+        "X02",
+        "X07"
+      ],
+      "positive_context_entries": [
+        "0x405510",
+        "0x44fb60",
+        "0x4ec9d0",
+        "0x4ecc20"
+      ],
+      "role": "native-integrity-input-report",
+      "source_rule": "Positiveparentsreportnativeintegrity,timing orabnormalinput conditions. Thisisnot ordinarygameheartbeat.",
+      "remaining": "Nativechecks/platformsupport neednormalofficialcompatibility;no forgedcleanreport,scannerport orprotectionbypass is specified.",
+      "classification": "fact-bounded-source-context",
+      "tag": "4{1",
+      "wire_fields": [
+        "int32"
+      ],
+      "sender_evidence_id": "ev_a9b2da09d9636d4bf95f6b975324727258b66daad79fbb6a902cfa0307719a75",
+      "full_business_semantics_verified": false
+    },
+    {
+      "entry": "0x4f8990",
+      "capabilities": [
+        "G01",
+        "X06"
+      ],
+      "positive_context_entries": [
+        "0x4edef0"
+      ],
+      "role": "bootstrap-not-ready-request",
+      "source_rule": "Receive/queueprocessing withc60528==0 sendsargumentfreepacket before4ee470 andpossiblependingstate transition;clears scratch afterordinarydispatch.",
+      "remaining": "Queuebootstrap/readiness andall disconnect/restore conditions remain distinct.",
+      "classification": "fact-bounded-source-context",
+      "tag": ":Ql",
+      "wire_fields": [],
+      "sender_evidence_id": "ev_1a187988b34d12994c4ef73efa60b0edf98a3eeddb03bc603a62a4fda7e67082",
+      "full_business_semantics_verified": false
+    },
+    {
+      "entry": "0x4f89d0",
+      "capabilities": [
+        "G10"
+      ],
+      "positive_context_entries": [],
+      "role": "prompt-reply-positive-reference",
+      "source_rule": "ExactsourceCALL4f6432 exists;4f6440 receiverstoresparameter andregistersactualcallback4f63e0 through47e4e0.",
+      "remaining": "Canonicalcallbackowner/inputfield semantics unclosed;pointerandnearbyCALLalone do not provefullcallbackcontrolflow.",
+      "classification": "fact-bounded-source-context",
+      "tag": "Jl<",
+      "wire_fields": [
+        "int32",
+        "bytes"
+      ],
+      "sender_evidence_id": "ev_41712e67c720466bfe3515a0f180bf5b6a4e5c83713cef3f0af5e1f9ee1e518a",
+      "full_business_semantics_verified": false
+    }
+  ],
+  "facts": [
+    {
+      "id": "complete-reference-versus-reduced-callers",
+      "kind": "fact",
+      "entries": [
+        "0x4f6be0",
+        "0x4f7ee0",
+        "0x4f8020",
+        "0x4f8190",
+        "0x4f89d0"
+      ],
+      "claim": "Fiveempty reducedcallerlists contain8 exactReferenceManager CALLs;6joinold derivedowners. Selectedgraphadds2morepositiveCALLs. Nativeowners remainnull;notunused-code proof."
+    },
+    {
+      "id": "profile-mode-asymmetry",
+      "kind": "fact",
+      "entries": [
+        "0x517a80",
+        "0x518090"
+      ],
+      "claim": "Mode0 normalizesemptytext to未设定 andnonpublic first3strings to不公开;eachstring innerencoding capacity256. Mode1 sendscachedflags butchoosesfirst3strings usingliveflags. Fourthstring alwayssupplied;profile precedesentryfollowup."
+    },
+    {
+      "id": "manual-challenge-state",
+      "kind": "fact",
+      "entries": [
+        "0x518d70",
+        "0x518de0",
+        "0x5019f0"
+      ],
+      "claim": "Manual reply首整数为1时经5019F0直接写F5F17C，并在其清F5F1A0后恢复保存的子状态；其它回复显示剩余值，小于1时直接置11并清保存值。20-byte setter是直接字段赋值，旧pending-main措辞修正。普通人工交互的来源规则，不自动生成或提交答案，不据此宣称登录成功。"
+    },
+    {
+      "id": "metadata-addresses",
+      "kind": "fact",
+      "entries": [
+        "0x4f0210",
+        "0x471420",
+        "0x4e6780",
+        "0x46bbc0",
+        "0x46fa10",
+        "0x4ff080"
+      ],
+      "claim": "4f0210 writeslowbyteef35e0 andreceived/unescaped text at eadf88 withlength<24elsefallback. eadf88 iscopied/displayed bytraditional/alternate UIs andzeroed within0x11597-dword reset. Fourselected CMP-immediateef35e0 hitsarearrayends,notbyteconsumers;businesslabel remainsunproved."
+    },
+    {
+      "id": "field-arity-and-timers",
+      "kind": "fact",
+      "entries": [
+        "0x466e50",
+        "0x466f50",
+        "0x47e880",
+        "0x480b40",
+        "0x4edef0",
+        "0x450640"
+      ],
+      "claim": "Assemblypreserves2/4/5argumentoperations whenpseudo omitsarguments/splitsstack. nr30000ms writeidle andsigned59999msperiodic timersaredistinct;preservesourcecomparisons andqueueconditions."
+    },
+    {
+      "id": "protection-role-boundary",
+      "kind": "fact",
+      "entries": [
+        "0x405510",
+        "0x44fb60",
+        "0x4ec9d0",
+        "0x4ecc20"
+      ],
+      "claim": "4f87f0 parentsarenativeintegrity/timing/inputreporting;noordinaryheartbeatlabel orassumedcross-platformcleanreport. Investigationdidnotexecuteoriginal,alterchecks orautomatechallengeanswers."
+    }
+  ],
+  "inferences": [
+    {
+      "kind": "inference",
+      "claim": "Grouping these existing senders by state owner, rather than adding 21 standalone features, should reduce repeated analysis and integration.",
+      "basis": "Source contexts share connection,coordinate,UI,per-character andclock owners; no measured overall time saving is claimed."
+    }
+  ],
+  "dependency_batches": [
+    {
+      "id": "D0",
+      "scope": "Connection queue/time,coordinate reads,UI owner/lifecycle,version andmanual-input contracts reused once."
+    },
+    {
+      "id": "D2/D3",
+      "scope": "Profile/entry,pet/party/title/formation andcontext-menu operations share owners;preserve wire arity andunknown field meanings."
+    },
+    {
+      "id": "D5/D6",
+      "scope": "Platform input/display andordinary manual challenges require actual platform/official acceptance;native integrity reports have no assumed web equivalent."
+    }
+  ],
+  "requirement_answers": [
+    {
+      "question": 1,
+      "status": "partially-answered",
+      "answer": "All21 frontiers have bounded source/reference contexts;field/business labels,activation andclosure remain where explicitly listed."
+    },
+    {
+      "question": 2,
+      "status": "answered-with-coverage-limit",
+      "answer": "Allfive empty reduced lists have positive ReferenceManager calls;6 of8 map toold derived owners and2 remain without canonical owner;2 extra CALLs exist inselected graph."
+    },
+    {
+      "question": 3,
+      "status": "partially-answered",
+      "answer": "Manual challenge reply/restore anddisplay/reset text consumers are bound;ef35e0 byteconsumer/meaning remains unknown andfour selected matches arearray ends."
+    },
+    {
+      "question": 4,
+      "status": "answered-with-scope-limit",
+      "answer": "21 rows grouped byowners andsource-backed capabilities;38/81/37/10 scope unchanged;global gate remains false."
+    }
+  ],
+  "remaining": [
+    {
+      "id": "menu-and-neighbor-actions",
+      "capabilities": [
+        "G04",
+        "G10"
+      ],
+      "question": "Bind466E50/466F50 neighbour actions and remaining business-field names/valid domains.47E740/47E880 now have selected receiver→classic45/46→request/close source rules; all owner/reentry and external acceptance remain separate.",
+      "resolved_subparts": [
+        "47E740 activation via4CB050/47E7A0/491A00",
+        "47E880 activation via4CA810/47E910/492160",
+        "selected callback return/latch/cancel/destructor/accounting rules"
+      ]
+    },
+    {
+      "id": "pet-and-formation-variants",
+      "capabilities": [
+        "G05",
+        "B01"
+      ],
+      "question": "Close semantic enums andall caller/restore paths forfive-word petstate andselected pet/formation actions;4df808 remains unowned canonically;4de9a0 exposes actualcallback4df420 forfuture source-led tracing."
+    },
+    {
+      "id": "ordinary-prompt",
+      "capabilities": [
+        "G10"
+      ],
+      "question": "4f6432 positively calls4f89d0;receiver4f6440 suppliesactual callbackpointer4f63e0. Decode that anchoredcallback andnormal input/admission before namingfields."
+    },
+    {
+      "id": "profile-and-challenge-owners",
+      "capabilities": [
+        "G03",
+        "X02"
+      ],
+      "question": "Bindprofile mode0 UIactivation,named editablefields andpersistence;bindmanual challenge creation/selection callback457aa0 andall normal cancel/error/restoration paths. No automatic challenge solving."
+    },
+    {
+      "id": "opaque-metadata",
+      "capabilities": [
+        "G18",
+        "X02"
+      ],
+      "question": "eadf88 isreceived/displayed/reset text;business label remains unproved. ef35e0 hasactualwrite butnoestablished byteconsumer inthis scope;do not inventjob/rank semantics."
+    },
+    {
+      "id": "global-analysis-and-platform",
+      "capabilities": [
+        "X01",
+        "X07"
+      ],
+      "question": "Other admittedbusiness/97-callback dispatch/resource/modal/physical-time andversion gaps remain inunified matrix;normal official/platform acceptance isstill pending. Do not repeatedly runidentical negative searches."
+    }
+  ],
+  "original_execution": false,
+  "account_or_session_observed": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "official_acceptance": false,
+  "full_goal_complete": false,
+  "service_receiver_consumers": {
+    "specification": {
+      "path": "build/analysis/service-receiver-consumers-v1/specification.json",
+      "bytes": 133568,
+      "sha256": "e39acbd1fc4f92320c686fa0c1ade1c6eb745cbf852bae34b33bd26e68a72581"
+    },
+    "source_inputs": {
+      "path": "build/analysis/service-receiver-consumers-v1/source-inputs.json",
+      "bytes": 24379,
+      "sha256": "1f16038cbdcbc55ba020e0978d10cc40ee2986310954774939710ca266dead2e"
+    },
+    "validation_record_path": "build/analysis/service-receiver-consumers-v1/validation.json",
+    "source_summary": {
+      "views": 45,
+      "new_native": 6,
+      "reused_complete_native": 8,
+      "reused_derived": 31,
+      "body_ranges": 45,
+      "body_bytes": 8817,
+      "derived_instructions": 1506,
+      "source_fact_groups": 14,
+      "direct_E8_calls_verified": 167,
+      "classic_descriptors": 5,
+      "selected_control_rows": 130,
+      "source_rules_executed_as_product": false,
+      "new_product_protocol_fields": 0,
+      "native_non_CALL_bytes_individually_redecoded": false
+    },
+    "scope": "Three known receiver delegates, their necessary target lists and classic UI source clauses; all40 original capability scopes retained.",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "contract": "analysis/capability-first-v1/game-service-invalidation-contract.json",
+    "source_check": "analysis/capability-first-v1/game-service-invalidation-source-check.json",
+    "resolved_selected_contexts": [
+      "0x47e740",
+      "0x47e880"
+    ],
+    "full_business_semantics_verified": false
+  },
+  "state_consumer_closure": {
+    "specification": {
+      "path": "build/analysis/state-consumer-closure-v1/specification.json",
+      "bytes": 56668,
+      "sha256": "e255f8921bdfe67aab2a5f9dc5ba63ca85ae002792bdccea49f1d75f35191569"
+    },
+    "source_inputs": {
+      "path": "build/analysis/state-consumer-closure-v1/source-inputs.json",
+      "bytes": 21344,
+      "sha256": "26242ab14b79b2acde65910f8744b5713479f3f2ea3833ada05a055ef7cba71f"
+    },
+    "source_summary": {
+      "views": 16,
+      "new_native": 1,
+      "reused_complete_native": 7,
+      "reused_derived": 8,
+      "body_ranges": 16,
+      "body_bytes": 5857,
+      "derived_instructions": 682,
+      "source_fact_groups": 9,
+      "direct_E8_calls_verified": 176,
+      "classic_descriptors": 2,
+      "selected_control_rows": 2,
+      "new_xref_observations": 3,
+      "native_non_CALL_bytes_individually_redecoded": false,
+      "new_product_protocol_fields": 0
+    },
+    "validation_record_path": "build/analysis/state-consumer-closure-v1/validation.json",
+    "scope": "Result slot publication/positive battle producer/classic30-31, manual reply state assignment, one work counter decrement and one configuration pool; full40 scope retained.",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "contract": "analysis/capability-first-v1/game-entry-review-contract.json",
+    "source_check": "analysis/capability-first-v1/game-entry-review-source-check.json",
+    "direct_main_field_assignment_correction": true
+  },
+  "ordinary_action_workflows": {
+    "specification": {
+      "path": "build/analysis/ordinary-action-workflows-v1/specification.json",
+      "bytes": 153162,
+      "sha256": "f66eb8e6d2b05a3531a0745ff047779c5906d4b5b58ab92f5a0caf0f34160368"
+    },
+    "source_inputs": {
+      "path": "build/analysis/ordinary-action-workflows-v1/source-inputs.json",
+      "bytes": 25809,
+      "sha256": "7a66ae82ace644755058f5dc7192d005cbb1def566ca160705c0fecb31627708"
+    },
+    "source_summary": {
+      "views": 37,
+      "reused_complete_native_views": 24,
+      "reused_derived_views": 12,
+      "original_opcode_views": 1,
+      "new_native_queries": 0,
+      "body_ranges": 37,
+      "body_bytes": 26529,
+      "derived_instructions": 3133,
+      "fact_groups": 10,
+      "direct_E8_CALLs_verified": 523,
+      "keyboard_request_bindings": 4,
+      "classic_descriptor_bindings": 3,
+      "supplemental_old_research_entries_scanned": 27,
+      "supplemental_old_instructions_verified": 8892,
+      "supplemental_old_instruction_bytes_verified": 31250,
+      "new_product_protocol_fields": 0,
+      "all_native_nonCALL_independently_redecoded": false
+    },
+    "validation_record_path": "build/analysis/ordinary-action-workflows-v1/validation.json",
+    "contract": "analysis/capability-first-v1/game-entry-review-contract.json",
+    "source_check": "analysis/capability-first-v1/game-entry-review-source-check.json",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "keyboard_bindings": [
+      {
+        "layout": 0,
+        "key_slot": "0x7286e7",
+        "virtual_key": "0x4b",
+        "key_name": "K",
+        "modifier": "Ctrl-held",
+        "event_mask": 4,
+        "operation": "A",
+        "target": "0x466e50",
+        "call_site": "0x4b5121",
+        "original_PE_E8_matches": true
+      },
+      {
+        "layout": 0,
+        "key_slot": "0x7286f2",
+        "virtual_key": "0x56",
+        "key_name": "V",
+        "modifier": "Ctrl-held",
+        "event_mask": 4,
+        "operation": "B",
+        "target": "0x466f50",
+        "call_site": "0x4b512f",
+        "original_PE_E8_matches": true
+      },
+      {
+        "layout": 1,
+        "key_slot": "0x7286e6",
+        "virtual_key": "0x4a",
+        "key_name": "J",
+        "modifier": "Ctrl-held",
+        "event_mask": 4,
+        "operation": "A",
+        "target": "0x466e50",
+        "call_site": "0x4b4682",
+        "original_PE_E8_matches": true
+      },
+      {
+        "layout": 1,
+        "key_slot": "0x7286e7",
+        "virtual_key": "0x4b",
+        "key_name": "K",
+        "modifier": "Ctrl-held",
+        "event_mask": 4,
+        "operation": "B",
+        "target": "0x466f50",
+        "call_site": "0x4b4690",
+        "original_PE_E8_matches": true
+      }
+    ],
+    "full_business_or_reply_lifecycle_closed": false
+  },
+  "alternate_work_unification": {
+    "specification": {
+      "path": "build/analysis/alternate-work-unification-v1/specification.json",
+      "bytes": 172070,
+      "sha256": "f601a2755ad77f51d1239ba9b8ffd9228b9fc748e3586583300fce1cda98774c"
+    },
+    "source_inputs": {
+      "path": "build/analysis/alternate-work-unification-v1/source-inputs.json",
+      "bytes": 20540,
+      "sha256": "d949d07a5d2fb54f2f7c55756d949e9068f48d5897b39a573e233b9e876cd8fb"
+    },
+    "source_summary": {
+      "views": 35,
+      "reused_complete_native_views": 4,
+      "reused_derived_views": 30,
+      "original_instruction_views": 1,
+      "new_native_queries": 0,
+      "body_ranges": 39,
+      "body_bytes": 38130,
+      "derived_instructions": 10598,
+      "fact_groups": 11,
+      "direct_E8_CALLs_verified": 619,
+      "level_literal_instruction_sites": 18,
+      "explicit_byte_writes": 4,
+      "modern_table_rows_verified": 16,
+      "new_product_protocol_fields": 0,
+      "all_native_nonCALL_independently_redecoded": false
+    },
+    "validation_record_path": "build/analysis/alternate-work-unification-v1/validation.json",
+    "contract": "analysis/capability-first-v1/game-entry-review-contract.json",
+    "source_check": "analysis/capability-first-v1/game-entry-review-source-check.json",
+    "conditional_alternate_activation_unproved": true,
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "remaining_required_groups": [
+      {
+        "id": "AW-GAP-01",
+        "need": "Actualalternate active/inactive dispatcher/registration/moduleedge andrequirements relevance; do not repeat prior97 zeroresult scan orrecursively expand allhelpers.",
+        "next_entries": []
+      },
+      {
+        "id": "AW-GAP-02",
+        "need": "Other original40-domain source/version/host requirements continue; conditionalmodernbranch detail waitsforpositiveactivation evidence. Fullcaller/error/reentry domains andrealplatform/currentofficialacceptance notpassed.",
+        "next_entries": []
+      }
+    ],
+    "analysis_stop_for_unadmitted_alternate_guard_expansion": true
+  },
+  "fixed_se_item_target_menus": "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/fixed_se_item_target_menus"
+}

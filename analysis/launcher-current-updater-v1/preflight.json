@@ -1,0 +1,35 @@
+{
+  "schema": "moli.launcher-current-updater-v1.preflight.v1",
+  "recorded_utc": "2026-10-28T08:08:57.470092+00:00",
+  "previous_manifest": {
+    "path": "analysis/delivery-manifest-stage87.json",
+    "sha256": "d4cf9f4e556e5fcbc0df33fad343fb1e31531927a06f40beb1a359e73c5bc043",
+    "items_verified": 1298
+  },
+  "requirement_document": "reports/development-plan.md",
+  "scope": "REA static analysis of distinct current embedded updater and launcher normal startup, then scoped reconstruction only when supported. Existing Windows/network/tool authorization retained.",
+  "questions": [
+    "What exact updater command line is accepted and which parent is waited for?",
+    "How is package metadata acquired and the candidate validated?",
+    "Which file transactions/retry/rollback and relaunch outcomes exist?",
+    "Which current contracts differ from the old sample and need implementation?"
+  ],
+  "artifacts": [
+    {
+      "path": "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-update87-hqh3q5uw/LauncherUpdater.current.exe",
+      "bytes": 814080,
+      "sha256": "22d56137a48d3c95f4a779c5c68ba85b3ea4fe2439e3e561159d003c697ce479"
+    },
+    {
+      "path": "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-update87-hqh3q5uw/POLCN_Launcher.candidate.exe",
+      "bytes": 1496576,
+      "sha256": "71180e5bdda771e7d57dd27d2b879beddee55d61b957dadf7a2da60c907cb69a"
+    }
+  ],
+  "ui_access": {
+    "observed": "Mac locked; automatic unlock failed; user manually-unlock request pending",
+    "pending_guest_line": "readonly SHA256 of first619 controlled log bytes, not resubmitted"
+  },
+  "no_product_changes": true,
+  "goal_complete": false
+}

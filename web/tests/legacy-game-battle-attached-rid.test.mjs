@@ -1,0 +1,2 @@
+import test from'node:test';import*as api from'../../shared/index.mjs';import{createWeChatLegacyGameSession}from'../../adapters/wechat/legacy-game-session.mjs';import{attachedRIDTCPModes,runAttachedRIDTCP}from'../../analysis/game-battle-attached-rid-v1/tcp-flow.mjs';
+for(const mode of attachedRIDTCPModes)test('attached RID actual source OS TCP '+mode,{timeout:50000},async()=>console.log('attached-rid-source-tcp '+JSON.stringify(await runAttachedRIDTCP({...api,createWeChatLegacyGameSession},mode))));

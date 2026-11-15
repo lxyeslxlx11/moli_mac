@@ -1,0 +1,193 @@
+{
+  "schema": "moli.runtime-tool-readiness-v1.signature-audit.v1",
+  "recorded_utc": "2026-10-27T18:38:46.499346+00:00",
+  "tool": "osslsigncode 2.14 / OpenSSL 4.0.3",
+  "default_CA_checks": {
+    "count": 5,
+    "all_exit1": true,
+    "first3_reason": "Missing local issuer certificate for signing/timestamp chains; content digests matched.",
+    "last2_reason": "Embedded-content DigitalSignature digest mismatch before chain verification; MsiDigitalSignatureEx matched.",
+    "raw_private_output_sha256": [
+      "b1261786ca6b275bdb7a2dcf8bad6f30cbb53d6d7f1662e29e2a3b0cf8a7b330",
+      "5cef5277dd0d50e8dbadb483e3c52cea17023ae0ccabe53d9752bd1f941ec9ee",
+      "a22d8e2224a7355d4aa7014c5d67f567bfe8ca11f90f31bc1db8bfdec44c0a55",
+      "b8601ec98d83871e2a352267395cf742b24ca84d167bba246e95567dfa6b9ad3",
+      "58756132dc6790dd8211ab682db05bfabf30fe97cbd1f30974b73cbf8d6ac2da"
+    ]
+  },
+  "explicit_CA_source": {
+    "source": "https://www.microsoft.com/pki/certs/MicRooCerAut_2010-06-23.crt",
+    "published_thumbprint_source": "https://www.microsoft.com/pkiops/docs/repository.htm",
+    "published_sha1_verified": "3b1efd3a66ea28b16697394703a72ca340a05bd5",
+    "observed_sha256": "df545bf919a2439c36983b54cdfc903dfa4f37d3996d8d84b4c31eec6f3c163e",
+    "bytes": 1521,
+    "used_only_as_explicit_per_command_verification_CA": true,
+    "system_or_guest_trust_store_changed": false,
+    "TLS_relaxed": false
+  },
+  "explicit_verification_scope": "Per-command -CAfile and -TSA-CAfile point to the exact Microsoft Root 2010 certificate pinned to the official PKI repository thumbprint. No system/guest trust changes or ignore/relaxation flags. These are host cryptographic checks, not Windows WinTrust or complete revocation-policy acceptance.",
+  "successful_signature_and_timestamp_checks": [
+    {
+      "file": "selected-installers/WinSDKSetup.exe",
+      "sha256": "b0bdbad38ae74c40ccae8cdbcf229807627fba2bc3100be28301c4ba884f755e",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "f491c70a2f8c3cb089b11dff98a64438d1159298341d3c7bda8b5a246789526a"
+    },
+    {
+      "file": "selected-installers/Installers/SDK Debuggers-x86_en-us.msi",
+      "sha256": "1828ba94469019ba49d2aefc10fb3b8b085c700df4bc6d675e1e0d0a6368749e",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "68195c8b47734f21a9d54ef3193a44ce8c72e9eb4e021d16b1efc3aa2fc49ccd"
+    },
+    {
+      "file": "selected-installers/Installers/Windows SDK EULA-x86_en-us.msi",
+      "sha256": "1adeb647e19d3e3bc72ffaa99726c574858eda0d0868f727975d2f813d234f05",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "8674b3d8ba00afcbce2455604331a9e0a2c9327e31a3b854e28fee5108ef5f46"
+    },
+    {
+      "file": "sdk-debuggers-data-only/Program Files/Windows Kits/10/Debuggers/arm64/cdb.exe",
+      "sha256": "fd1c20f7b6789095c73c21116832fa7bbdfb70d4288870f56e43b8a8b7d7870b",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "d41a11930aed3d9e07b76241e0c23691fe26967c1f3ee6be13576fec56816c4a"
+    },
+    {
+      "file": "sdk-debuggers-data-only/Program Files/Windows Kits/10/Debuggers/arm64/windbg.exe",
+      "sha256": "261d6bb2a0a0768db2c2eeb57149d15602ad3251ea1303099f144f2acda952b1",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "cd5ba88a6d14fb01af40dc5d64d2c311f3fa6c420d8ec33b7989e4effdcaf0e0"
+    },
+    {
+      "file": "sdk-debuggers-data-only/Program Files/Windows Kits/10/Debuggers/arm64/dbgeng.dll",
+      "sha256": "0a3e09ef761fe175451a5939272c36095979df763339978d8ea345a45f8366ba",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "2cb71b023c100063cc55f5aeb8b0c2bd3809ad867524a992457d56dd81daf6e7"
+    },
+    {
+      "file": "sdk-debuggers-data-only/Program Files/Windows Kits/10/Debuggers/arm64/dbghelp.dll",
+      "sha256": "347d548335d7b607cdfa5f4b12a9b73a91dab10109ebdd2f51538d22a3a1b489",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "f7a36ec6f3e3bdf5bceaade758d421c3881929bf577bafc5671a8549af52cee4"
+    },
+    {
+      "file": "sdk-debuggers-data-only/Program Files/Windows Kits/10/Debuggers/arm64/dbgcore.dll",
+      "sha256": "ee9e01096b3edf4a38913c8f0eb6b49d78a4cfa6b3e2d41a313a74112d127e03",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "4cf5e8eaae36d4c85fcb4cca6088acbc188a6d1f2ffa38922418909015bd3e87"
+    },
+    {
+      "file": "sdk-debuggers-data-only/Program Files/Windows Kits/10/Debuggers/x86/cdb.exe",
+      "sha256": "6ca9dd8ee2d764087c4a561ecfee05cdf17751dfd9c2f21700211a897cd68129",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "1c7731bd7d54906d11e2e76a9f50c9602532a82893c4cae3bea9056a718fb2e4"
+    },
+    {
+      "file": "sdk-debuggers-data-only/Program Files/Windows Kits/10/Debuggers/x86/windbg.exe",
+      "sha256": "cb361c06101f8801a61b20796e5b757e37283a20d8f8dcdfb63308135fc87c24",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "26f4c8b58df50a552ad6c9b874934b9fae95ae97aae1572930c1728ebf6e6a99"
+    },
+    {
+      "file": "sdk-debuggers-data-only/Program Files/Windows Kits/10/Debuggers/x86/dbgeng.dll",
+      "sha256": "67c137c35b6a31bc0e2da627889af9cf31dacc0727a94ad81756ba8e81e39a1d",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "6b9f0f5083aec2579b4ffddaa9cc7cce34823af6ea25b833cd826897dd1a42db"
+    },
+    {
+      "file": "sdk-debuggers-data-only/Program Files/Windows Kits/10/Debuggers/x86/dbghelp.dll",
+      "sha256": "615ebbb2421c18e8f974e3f0e088202af5f91aaf3013f428e8d24472ea5026ca",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "092d1a01014fb776b05f81580dbd1c9b83116dbdc9e2208dbc472b241aefc444"
+    },
+    {
+      "file": "sdk-debuggers-data-only/Program Files/Windows Kits/10/Debuggers/x86/dbgcore.dll",
+      "sha256": "c3219190a5cd1e2d826f9020f179bd8204c2cab7778c9b404c753694c7991f8a",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "d79a3ce1cf9d57f09694112e5d016a1c294a15436ecdf6b35501809e9f5c814b"
+    },
+    {
+      "file": "sdk-debuggers-data-only/Program Files/Windows Kits/10/Debuggers/x64/cdb.exe",
+      "sha256": "e8f7d1e2986e541c82eb7917460e8118e7a262c16e402a5b1333b01f147a0fc3",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "786fd32e6d894393fb2895b099b774a245803f286508c629b4023ae8ce82cc74"
+    },
+    {
+      "file": "sdk-debuggers-data-only/Program Files/Windows Kits/10/Debuggers/x64/windbg.exe",
+      "sha256": "ac51cb70a54b942eb565385228ea524948643751243c63e16f1cef8d7e4b00e3",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "46ba034287878a7aac75cf68c5d3b1de81b35eb37ccdb91b003db7b7e8726a06"
+    },
+    {
+      "file": "sdk-debuggers-data-only/Program Files/Windows Kits/10/Debuggers/x64/dbgeng.dll",
+      "sha256": "f70a0ae7ebd1c37da334d6b3c388aba107b54b4de869bdbd54a270251145e649",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "09783c332aa8faf9db228b7259e5346850f4c0507e1ce1a64e86cc1f5b714e62"
+    },
+    {
+      "file": "sdk-debuggers-data-only/Program Files/Windows Kits/10/Debuggers/x64/dbghelp.dll",
+      "sha256": "3ce12537291b46af6914ea6865f176d9528cd7707c752fca8be96ad2a7562220",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "b3a4305b3feb0de0cd44d2b01741407c99cdec11c0c2bccf43d703d8c192d5a8"
+    },
+    {
+      "file": "sdk-debuggers-data-only/Program Files/Windows Kits/10/Debuggers/x64/dbgcore.dll",
+      "sha256": "d63e8421d6847ac0d87a9bd151740610dd8a580c8ad67152d038f4c504d4b292",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "5553289601af71774c61fc8b3ebaba0d30ae6dc08e767d78b2776d1a2e11719d"
+    },
+    {
+      "file": "sdk-debuggers-data-only/Program Files/Windows Kits/10/Debuggers/arm64/DbgModel.dll",
+      "sha256": "36a5408f18d0d1f840b15f6e0d3d33ba433904d76a46b79d565cb957f5d7badb",
+      "signature_and_timestamp_verified": true,
+      "exit_code": 0,
+      "private_output_sha256": "46d8cc7e2e91c4c7697b73e8859d58509844c78c39773b1b9e56bc2728ebae28"
+    }
+  ],
+  "successful_count": 19,
+  "failed_redist_MSI_checks": {
+    "X64": {
+      "current_DigitalSignature": "d82366cb5a08245f20e2e2b5f6c62e8cb12ba77a0fcb1c7a67867bc2dfe0fa14",
+      "calculated_DigitalSignature": "32ccc088ef5b29d8329e6e5500ff0d0faef27970372c83963036dc38ca0a7da7"
+    },
+    "X86": {
+      "current_DigitalSignature": "28468e85e6b19c04994dfb49f2fe147b5d0ebb8f67826271c6cdc6cb8cd7ff00",
+      "calculated_DigitalSignature": "5d9c059554803c4d618eba0fec263b13aed14291a856bd7da97251d20bebda99"
+    },
+    "cause": "Unknown; no corruption, tampering or verifier-bug attribution made.",
+    "action": "Preserve originals and failure evidence; do not execute, edit, re-sign, or bypass Windows rejection. Native Windows signature-policy checks remain pending.",
+    "outer_signed_MSI_filehash_comparison": [
+      {
+        "file": "X86 Debuggers And Tools-x86_en-us.msi",
+        "signed_MSI_FileHash_MD5": "7700a55bbeddb364d2147f4a26d53cfe",
+        "actual_MD5": "7700a55bbeddb364d2147f4a26d53cfe",
+        "matches": true
+      },
+      {
+        "file": "X64 Debuggers And Tools-x64_en-us.msi",
+        "signed_MSI_FileHash_MD5": "dc28c54b9bb0b9d814f25c07dcbc7545",
+        "actual_MD5": "dc28c54b9bb0b9d814f25c07dcbc7545",
+        "matches": true
+      }
+    ]
+  },
+  "all_SDK_files_verified": false,
+  "Windows_runtime_or_EULA_accepted": false
+}

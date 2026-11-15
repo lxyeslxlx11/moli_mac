@@ -1,0 +1,135 @@
+{
+  "schema": "moli.launcher-update-recovery-v1.validation.v1",
+  "recorded_utc": "2026-10-29T03:58:23.640256+00:00",
+  "result": "new-updater-source-delta-classified-and-bounded-journal-header-core-implemented",
+  "spec_preceded_product_code": true,
+  "static": {
+    "new_records": 35,
+    "selected_functions": 9,
+    "source_anchors": 8,
+    "old_function_bodies_equal": 18,
+    "different_source_bytes": 26,
+    "difference_scope": "COFF/debug timestamps and CodeView GUID only",
+    "REA_exported_closed": true,
+    "target_executed": false
+  },
+  "products": [
+    {
+      "path": "shared/launcher-update-journal.mjs",
+      "bytes": 3066,
+      "sha256": "2a09c9ac34fb07dff6490dba6d54aeff0a29feb0f72b8595082c9053bdd0bae1"
+    },
+    {
+      "path": "shared/index.mjs",
+      "bytes": 13072,
+      "sha256": "1d2fc471c989aa00311b8590b5a35ae51c9cb3929587e930334731e93c8c02dc"
+    },
+    {
+      "path": "shared/tests/launcher-update-journal.test.mjs",
+      "bytes": 5614,
+      "sha256": "6e8c565a621b30900f539046873dcc8f1c71c5d04940eeea22be63c048f3c81b"
+    }
+  ],
+  "format_coverage": {
+    "header_bytes": 16,
+    "little_endian": true,
+    "stages": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "trailing_file_data": "not parsed; API expects exact header. Two explicit native first16 tail differences retained.",
+    "no_file_state_or_recovery_or_authentication_claim": true
+  },
+  "vectors": {
+    "independent_producer": "Python stdlib struct and first16 native predicate",
+    "cases": 27,
+    "accepted_exact_header": 5,
+    "native_first16_accepts": 7
+  },
+  "node": {
+    "version": "v26.9.0",
+    "target": {
+      "tests": 10,
+      "pass": 10,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "target_process_exit": 0,
+    "full": {
+      "tests": 615,
+      "pass": 615,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "full_test_files": 45,
+    "full_process_exit": 0
+  },
+  "browser": {
+    "browser": "155.0.8059.85",
+    "driver": "Installed Playwright1.62.1",
+    "vectors": 27,
+    "passed_assertion_groups": 6,
+    "availability_records": 1,
+    "shared_storage_available": false,
+    "shared_storage_covered_by_node": true,
+    "requests": 29,
+    "errors": 0,
+    "failures": 0,
+    "process_exit": 0,
+    "context_browser_fixture_closed": true,
+    "no_official_or_journal_network": true
+  },
+  "logs": [
+    {
+      "path": "build/analysis/launcher-update-recovery-v1/target-tests.log",
+      "bytes": 1091,
+      "sha256": "faf47676d41fdb00a4a7b58b222d72245c990633e9dd82b5307b6f24c43bc30e",
+      "private": true
+    },
+    {
+      "path": "build/analysis/launcher-update-recovery-v1/node-tests.log",
+      "bytes": 59485,
+      "sha256": "9efdf84b89a3e777cc97b3e0cb3fc6042c52e6a0da20ac78990677d54b39bf13",
+      "private": true
+    },
+    {
+      "path": "build/analysis/launcher-update-recovery-v1/browser-check.log",
+      "bytes": 79,
+      "sha256": "c910cda2da5f1a03b1452c496334b3000305b47e466f9a6faf6ea819f600b221",
+      "private": true
+    },
+    {
+      "path": "build/analysis/launcher-update-recovery-v1/browser-validation.json",
+      "bytes": 4348,
+      "sha256": "335aecbf448f5a8176aa3fd577c9783c7529f733685bd7eb29f7509d8141aafc",
+      "private": true
+    }
+  ],
+  "native_product": "unchanged; no Swift/AppKit additions",
+  "Windows": {
+    "access": "fresh CUA getApp locked before guest input",
+    "commands_submitted": 0,
+    "original_program_execution": 0,
+    "current_ps1_replayed": false,
+    "unlock_question": "sent once this turn, pending",
+    "journal_read_or_restore": "not performed",
+    "policy_network_share_or_VM_mutations": false
+  },
+  "preparation_failures": [],
+  "not_verified": [
+    "Actual guest journal absence/stage/current file-state",
+    "Original native fault matrix, runtime ACK or full rollback",
+    "Full original child lifecycle and official compatibility",
+    "Game consumer/auth/frame/movement/battle/recovery",
+    "Mobile/WeChat real devices and full playable game"
+  ],
+  "full_goal_complete": false,
+  "goal_status_observed": "active"
+}

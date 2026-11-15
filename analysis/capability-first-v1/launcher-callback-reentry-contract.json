@@ -1,0 +1,1914 @@
+{
+  "schema": "moli.launcher-callback-reentry.contract.v1",
+  "revision": 1,
+  "requirement": "沿全部需求先REA成规的顺序，补原L03 LS-U3已获callback/借用、modal与通道替换、尾部unregister的普通准入与状态合同。",
+  "capability": "L03",
+  "parent": {
+    "path": "analysis/capability-first-v1/launcher-session-functional-specification.json",
+    "bytes": 77719,
+    "sha256": "3fb04e1f227938110d1f141e9fedf4da02339e4a80f49cddf78ca10283fef010"
+  },
+  "source": {
+    "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+    "bytes": 4111872,
+    "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+  },
+  "source_profile": "launcher-updated-c82f",
+  "source_review": {
+    "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+    "bytes": 78706,
+    "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+  },
+  "focused_probe": {
+    "path": "build/analysis/launcher-callback-reentry-v1/focused-probe.json",
+    "bytes": 1248,
+    "sha256": "009c3fac2d0356492edd9b9543ab8688d1584a7c7e93f86e37a62a48f26188a4"
+  },
+  "scope_preserved": {
+    "capabilities": 40,
+    "registry_entries": 81,
+    "historical_requirements": 37,
+    "consumer_groups": 10,
+    "source_profiles": 6,
+    "L03_groups": [
+      "连接",
+      "挑战",
+      "提交",
+      "记录/消息分片",
+      "回复",
+      "取消",
+      "超时",
+      "错误"
+    ],
+    "L03_source_profiles": [
+      "launcher-legacy-601b",
+      "launcher-updated-c82f"
+    ],
+    "owners_dependencies_batches_unchanged": true,
+    "whole_L03_specification_ready": false
+  },
+  "summary": {
+    "body_entries": 40,
+    "new_complete_native_records": 5,
+    "new_complete_native_bytes": 748,
+    "reused_complete_native_records": 22,
+    "reused_derived_views": 13,
+    "range_windows": 43,
+    "range_bytes": 14671,
+    "decoded_instructions": 4248,
+    "operations": 10,
+    "facts": 21,
+    "entry_dispositions": 9,
+    "conditional_inferences": 2,
+    "actual_target_cases": 4,
+    "acceptance_cases": 12,
+    "selected_unknowns_closed": [],
+    "required_unknowns_remaining": [
+      "LS-U3"
+    ]
+  },
+  "facts": [
+    {
+      "id": "LR-F01",
+      "kind": "fact",
+      "claim": "5877b0只在+20为0时增加+1c借用数，再检查+20；它没有把operation gate持续置1。已获得borrow不是排他操作锁。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/34",
+          "canonical_sha256": "adc8bbc795a6a2f558d4595dbc6a198f231fab080b8e5d61b1afde9c8a2d8afd"
+        }
+      ]
+    },
+    {
+      "id": "LR-F02",
+      "kind": "fact",
+      "claim": "5875e0对旧有效句柄先Stop，再创建新连接、清reply字节+c、保存+d/+11/+15并注册；所选完整体没有等待+1c归零。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/33",
+          "canonical_sha256": "3f1e76e306c15c4f1a6bccccb1f1fa06ef22938e8bcdfcf73c00a2ab011081b5"
+        }
+      ]
+    },
+    {
+      "id": "LR-F03",
+      "kind": "fact",
+      "claim": "587530仅在CAS取得+20时执行588b40(owner)，之后才经587593比较传入pointer/serial决定清+d/+11，并释放+20。这两层条件不能互相代替。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/31",
+          "canonical_sha256": "c59b2acfc2b3362fd8b1a32d70525de424fe7cd97cdd66ef40f26cd97260c807"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/38",
+          "canonical_sha256": "b3fce9db18f09b3d218d306dbd847e33d248009e6a105929247a28a280e95562"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/32",
+          "canonical_sha256": "b1afe5a90f30caa0015f954c282815ed5608c0718576363103779532d2575b0b"
+        }
+      ]
+    },
+    {
+      "id": "LR-F04",
+      "kind": "fact",
+      "claim": "587440查到并借用owner后，reply字节为0时同步调用virtual+14本地-100；正常5874da尾部先unregister旧传入handle，再经588260退还借用。尾部共享父frame，不能另当独立回调调用。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/29",
+          "canonical_sha256": "575cfc7535cc66a2348283db20a9ecb9fe82c8e165629dd4d3626a1f00d2a563"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/35",
+          "canonical_sha256": "df00682efc7b38dd82e68edc7d6facf64d9916ac70646ac853b7b1d84b815afd"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/30",
+          "canonical_sha256": "2a9ad013b5b520da583f762fe0b252455a24d412f5a11f45cc7eaf8f14804c8d"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/36",
+          "canonical_sha256": "4dae557416e47b4109f3c334588d8c24e6317e01bd66e6b7ecc0932620df74e2"
+        }
+      ]
+    },
+    {
+      "id": "LR-F05",
+      "kind": "fact",
+      "claim": "4316c0入口把reply字节+c置1；有效成功、坏成功材料与错误分别进入422b80、422cb0与422a70。它不撤销已经持有的callback借用。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/25",
+          "canonical_sha256": "4575300a1959654df6d428519675b96dd965b283142e5a09c5b103ac75b3a607"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/8",
+          "canonical_sha256": "78340975d78762216b8d73c0ec81868cb6162c82b85a522af07efa3567149dab"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/9",
+          "canonical_sha256": "4e47f24580c6feee635bddef7956eb5fdb0fde1b82442eb7c8be746575149aca"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/7",
+          "canonical_sha256": "8e2871836c08ed4cb56ac55bb39c34fa306f882ea9936e2e995322b033503ae5"
+        }
+      ]
+    },
+    {
+      "id": "LR-F06",
+      "kind": "fact",
+      "claim": "41b690清DNS引用/started/request/busy/remaining、取消login timer并Stop；存在延迟close时向controller发WM_CLOSE并返回1。停止后台引用不等于杀解析线程或撤回在栈callback。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/2",
+          "canonical_sha256": "9c9f432231d771ace983adc964fcdc22e70ae00e0ace7ad5835fb5bc0ebf1603"
+        }
+      ]
+    },
+    {
+      "id": "LR-F07",
+      "kind": "fact",
+      "claim": "422a70仅在busy时进入；清pending后先MainStop，返回0才记录/移等待行并显示MessageBox，之后426bc0和焦点处理。返回1的deferred-close不进入该错误提示。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/7",
+          "canonical_sha256": "8e2871836c08ed4cb56ac55bb39c34fa306f882ea9936e2e995322b033503ae5"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/18",
+          "canonical_sha256": "51f62317cf6c135d4bd60875054041b6d57aba3cf31fe456c286178bf2ccafd5"
+        }
+      ]
+    },
+    {
+      "id": "LR-F08",
+      "kind": "fact",
+      "claim": "449c73实际调用MessageBoxA，owner来自ECX对象+20或NULL。反编译FID_conflict_MessageBoxW命名不改变导入；不能用另一MFC DoModal循环的标志推定这里的Windows投递语义。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/26",
+          "canonical_sha256": "30a1359a9829b286045a3515ef54ff300173fe535a574365eff1ddb7e8b43ab7"
+        }
+      ]
+    },
+    {
+      "id": "LR-F09",
+      "kind": "fact",
+      "claim": "423910的timer100先查Main busy，空闲则KillTimer并返回；0x332独立调engine service。58bf60以global6407c4阻止嵌套engine pump，不是全部Main消息/定时器互斥。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/12",
+          "canonical_sha256": "e7785cb0360bf2e6d42d6769550f1ffb62096e686b0861dc472e26a21163adae"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/37",
+          "canonical_sha256": "e49d3e9989868149897f48b8043150ec1cf16d96cc1b2a35ea33d7985bd383fd"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/39",
+          "canonical_sha256": "30e1569964392f03adac34135a62218589a037b6e406c9fe09933d5fd1d75517"
+        }
+      ]
+    },
+    {
+      "id": "LR-F10",
+      "kind": "fact",
+      "claim": "4291d0有候选时Stop旧通道、推进候选、写新10秒期限并开始DNS；成功开始便返回，所选正常体无显式modal调用。耗尽时MainStop后才提示；后续DNS完成和timer调度仍须宿主证据。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/22",
+          "canonical_sha256": "87e245ebc30f7c358c9de3fb4f06672a975ed89cbfe25f99654cce8e540706b8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/13",
+          "canonical_sha256": "716af46768128b105f67db9f51800c3531cdff9fbca36a66d330b2ed6b28874a"
+        }
+      ]
+    },
+    {
+      "id": "LR-F11",
+      "kind": "fact",
+      "claim": "420410仅接受hotkey id0x504f、lParam低16位2/高16位0x6a，随后426ad0；完整体没有登录提交或Connect。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/5",
+          "canonical_sha256": "d736c86d8170ddab5c87478f6b3e5a47b13cec291634aaf36a08823654084b3e"
+        }
+      ]
+    },
+    {
+      "id": "LR-F12",
+      "kind": "fact",
+      "claim": "42c400仅处理wParam0x80；lParam0x202调用426ad0，0x205构造仅含E140/E141的菜单，以Main为owner TrackPopupMenu后发空消息并销毁菜单。右键不是单一显示操作；下游App命令和最终销毁时机不由此体闭合。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/23",
+          "canonical_sha256": "720eaf9fb2a9a0c9bfdf5c3d8544578efb5e963ef3a4149a80486d57d35437de"
+        }
+      ]
+    },
+    {
+      "id": "LR-F13",
+      "kind": "fact",
+      "claim": "426ad0依据前景进程/根owner、可见和iconic状态恢复Main/frame或切换前景，并调用4269a0；4269a0移除托盘图标及清相应标志。两所选完整体没有登录提交。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/17",
+          "canonical_sha256": "88cc5d05ec94dbb21cbbf8077ee428ad5d2488765d57186a0466d73844298f5f"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/16",
+          "canonical_sha256": "248580f38b57dea8447bab1222b15d0f5c89b8d98576c41328064382c05aa439"
+        }
+      ]
+    },
+    {
+      "id": "LR-F14",
+      "kind": "fact",
+      "claim": "4256e0在+10f2为0时置1并PostMessage(0x8241,currentGame,step)；Post失败才清标志并报错。该消息是排队目录恢复，不是托盘消息、认证状态或请求代次。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/14",
+          "canonical_sha256": "3f34a8a2491b92784b889056d156e1436966f12303710507c36515c72e7c69d4"
+        }
+      ]
+    },
+    {
+      "id": "LR-F15",
+      "kind": "fact",
+      "claim": "4256e0的已解析直接caller为4201d0和428a90；二者在427c20返回非0时排队恢复，前者清prep并置恢复标志，后者清prep。caller集合不保证穷尽动态/间接调用。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/4",
+          "canonical_sha256": "bd8de3194d5f6381ec5f498f027f5eaec6a0c408912abc5dd0833797e439ffc7"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/20",
+          "canonical_sha256": "7988b09d24a80fc7627e99f797099f7449d38ebe5a0a0dfbe51113fa919b2cd0"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/14",
+          "canonical_sha256": "3f34a8a2491b92784b889056d156e1436966f12303710507c36515c72e7c69d4"
+        }
+      ]
+    },
+    {
+      "id": "LR-F16",
+      "kind": "fact",
+      "claim": "422f80先清+10f2，再比较当前step与lParam、currentGame与wParam，相符才426150(game,1)。失配消息也会先清业务latch；它没有比较请求代次。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/10",
+          "canonical_sha256": "b2a7dad462fc56c4ac3885f5984135e781c188f39e37503965fc640fc9f21193"
+        }
+      ]
+    },
+    {
+      "id": "LR-F17",
+      "kind": "fact",
+      "claim": "426150要求有效game、busy/prep/latch均0及409bf0进程检查为空；保存并置latch穿过目录DoModal，正常返回恢复旧latch。安装成功且第二参数1时设置step3并调用42d120/417fe0，没有直接41e420。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/15",
+          "canonical_sha256": "e04aa988d4bbc1622fb6f29b2eb693bcbe09f507a9bac00f05c714a51c3cde51"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/0",
+          "canonical_sha256": "ae9bc3a95a1b005b3e3447116bc68665eeb278b669d4fe13fd94414bcc498202"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/24",
+          "canonical_sha256": "a83b684e5fdb694bc61d77f27e1d381149ce9562679eeec8de811c274783eb39"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "721383c6be3e874514db20009dfe84a297e3097b51f171347c2c678232d58805"
+        }
+      ]
+    },
+    {
+      "id": "LR-F18",
+      "kind": "fact",
+      "claim": "428380游戏列表上下文菜单另要求step0与目标HWND匹配，菜单期间持latch，再以第二参数0调用目录选择；不能把它等同错误阶段step3的目录入口。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/19",
+          "canonical_sha256": "6afdf6c2cdf3e5c45e726644f25b001b51061044ab35232e60e45a98588f64b1"
+        }
+      ]
+    },
+    {
+      "id": "LR-F19",
+      "kind": "fact",
+      "claim": "422270/422fc0检查Main busy/prep、+10f2和进程忙碌，业务modal期间置latch；预设apply428c00可设置pending和step3。42d120/417fe0没有直接登录提交，timer0x36a读取键盘并维护提示，不能因其存在就宣称自动重登。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/6",
+          "canonical_sha256": "fccd42ec8751baf75c2c7aa269d50ba3f632c5e64c3dbb244f8613748097e0c7"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/11",
+          "canonical_sha256": "84bec322ee20fb95112840b8feddb08e04982edbc7029e5d18f4e2ba94c634c8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/21",
+          "canonical_sha256": "a83ce66b94ddd374531c771c0ab38a9a0591d70cacc7881241ffd0ebaf7514c4"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/24",
+          "canonical_sha256": "a83b684e5fdb694bc61d77f27e1d381149ce9562679eeec8de811c274783eb39"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "721383c6be3e874514db20009dfe84a297e3097b51f171347c2c678232d58805"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/12",
+          "canonical_sha256": "e7785cb0360bf2e6d42d6769550f1ffb62096e686b0861dc472e26a21163adae"
+        }
+      ]
+    },
+    {
+      "id": "LR-F20",
+      "kind": "fact",
+      "claim": "41e420的case3以busy等具名条件启动正常登录；+10f2不是该分支的统一准入条件。允许函数体执行与Windows原生modal期间普通命令实际能被投递是不同问题。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/3",
+          "canonical_sha256": "5a28d2c1e0f674ae633467027d51184f3ed49ed860828d01869f2bf986037dd6"
+        }
+      ]
+    },
+    {
+      "id": "LR-F21",
+      "kind": "fact",
+      "claim": "587210正常析构先Stop后等待+1c归零，循环Sleep(1)，所选体没有本地期限。不能把该等待说成可在持有自身borrow的同栈callback中安全同步完成。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-callback-reentry-v1/source-review.json",
+            "bytes": 78706,
+            "sha256": "5998c16b832c40e46929085911b702584b2d3ea28e5b9899f5a664291acdb6eb"
+          },
+          "pointer": "/bodies/27",
+          "canonical_sha256": "b682409b914b3aba4be8854801a467493de4bb5d0e0a7d89b15c31069f5bf813"
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "LR-O01",
+      "name": "断开借用穿过UI callback",
+      "trigger": "有效registry lookup且未记录reply",
+      "normal_rule": "本地-100同步进入UI后，正常返回再unregister并退还borrow。",
+      "ending_failure_cancel": "Stop不撤回已在栈callback；异常尾部和真实modal交错不冒充正常返回。",
+      "facts": [
+        "LR-F01",
+        "LR-F03",
+        "LR-F04"
+      ],
+      "owner": "existing L03 shared flow and thin host adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    },
+    {
+      "id": "LR-O02",
+      "name": "错误提示前退役",
+      "trigger": "busy时错误reply或本地-100",
+      "normal_rule": "MainStop先清业务与DNS/timer，随后按deferred-close结果显示提示或交关闭。",
+      "ending_failure_cancel": "提示后只恢复UI/焦点；不能据此宣称普通消息全部冻结。",
+      "facts": [
+        "LR-F05",
+        "LR-F06",
+        "LR-F07",
+        "LR-F08"
+      ],
+      "owner": "existing L03 shared flow and thin host adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    },
+    {
+      "id": "LR-O03",
+      "name": "坏回复与下一候选",
+      "trigger": "已入UI的材料不满足成功边界",
+      "normal_rule": "调用Stop和4291d0，候选成功开始DNS后正常返回。",
+      "ending_failure_cancel": "耗尽先Stop再modal；后续DNS结果需按原owner处理。",
+      "facts": [
+        "LR-F09",
+        "LR-F10"
+      ],
+      "owner": "existing L03 shared flow and thin host adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    },
+    {
+      "id": "LR-O04",
+      "name": "热键与托盘左键",
+      "trigger": "实际hotkey tuple或tray wParam80/lParam202",
+      "normal_rule": "仅按源恢复窗口、前景与托盘状态；所选函数无直接登录。",
+      "ending_failure_cancel": "实际OS消息投递/焦点接受未执行。",
+      "facts": [
+        "LR-F11",
+        "LR-F13"
+      ],
+      "owner": "existing L03 shared flow and thin host adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    },
+    {
+      "id": "LR-O05",
+      "name": "托盘右键命令",
+      "trigger": "tray wParam80/lParam205",
+      "normal_rule": "只发布E140/E141菜单命令，沿已有App/Frame路由。",
+      "ending_failure_cancel": "关于返回与退出期间借用排空/销毁仍是具名完整接受，不能断言安全或必现死锁。",
+      "facts": [
+        "LR-F12",
+        "LR-F21"
+      ],
+      "owner": "existing L03 shared flow and thin host adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    },
+    {
+      "id": "LR-O06",
+      "name": "排队目录恢复",
+      "trigger": "两个已解析普通失败producer请求手动目录",
+      "normal_rule": "设置latch、捕获game/step、投递8241；consumer先清latch再验game/step。",
+      "ending_failure_cancel": "投递失败清latch并提示；过期game/step不打开目录，真实消息顺序仍待。",
+      "facts": [
+        "LR-F14",
+        "LR-F15",
+        "LR-F16"
+      ],
+      "owner": "existing L03 shared flow and thin host adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    },
+    {
+      "id": "LR-O07",
+      "name": "目录modal返回",
+      "trigger": "426150具名guard通过",
+      "normal_rule": "保持业务latch直到正常返回；成功恢复可能回step3，直接上下文菜单要求step0。",
+      "ending_failure_cancel": "失败/取消按源返回，stage3与目录成功不等于重新认证。",
+      "facts": [
+        "LR-F17",
+        "LR-F18"
+      ],
+      "owner": "existing L03 shared flow and thin host adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    },
+    {
+      "id": "LR-O08",
+      "name": "预设与提交的不同准入",
+      "trigger": "选择/保存预设或正常case3提交",
+      "normal_rule": "预设以busy/prep/latch/process guard保护；正常提交沿自身条件。",
+      "ending_failure_cancel": "不能用预设guard代替全Main互斥，也不能人为注入Submit证明普通重入。",
+      "facts": [
+        "LR-F19",
+        "LR-F20"
+      ],
+      "owner": "existing L03 shared flow and thin host adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    },
+    {
+      "id": "LR-O09",
+      "name": "旧tail与条件性新binding",
+      "trigger": "旧callback仍持borrow且有一个已安装的新binding",
+      "normal_rule": "若unregister取得gate，先删除owner当前registry，再按旧pair是否匹配清storedhandle。",
+      "ending_failure_cancel": "新binding是否能在所要求普通modal序列中形成尚未证实；此为条件源推导。",
+      "facts": [
+        "LR-F01",
+        "LR-F02",
+        "LR-F03",
+        "LR-F04"
+      ],
+      "owner": "existing L03 shared flow and thin host adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    },
+    {
+      "id": "LR-O10",
+      "name": "宿主退役与排空",
+      "trigger": "取消或关闭正在工作的owner",
+      "normal_rule": "区分停止新lookup、已持borrow正常返回、registry清理和最后析构。",
+      "ending_failure_cancel": "持自身borrow时的同步析构不得作为已验方案；完整OS/三端/账号接受仍未完成。",
+      "facts": [
+        "LR-F06",
+        "LR-F09",
+        "LR-F21"
+      ],
+      "owner": "existing L03 shared flow and thin host adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    }
+  ],
+  "entry_dispositions": [
+    {
+      "id": "LR-E01",
+      "entry": "borrowed disconnect/error MessageBox",
+      "disposition": "The selected error has a bound Main owner and control recovery sequence before the old tail. Native delivery and asynchronous replacement admission remain open.",
+      "facts": [
+        "LR-F04",
+        "LR-F07",
+        "LR-F08"
+      ]
+    },
+    {
+      "id": "LR-E02",
+      "entry": "malformed success -> retry -> DNS",
+      "disposition": "selected ordinary body has no explicit modal before successful resolver start; later host delivery remains conditional",
+      "facts": [
+        "LR-F10"
+      ]
+    },
+    {
+      "id": "LR-E03",
+      "entry": "WM_HOTKEY / tray left click",
+      "disposition": "positive display entry, no direct selected submit/connect",
+      "facts": [
+        "LR-F11",
+        "LR-F13"
+      ]
+    },
+    {
+      "id": "LR-E04",
+      "entry": "tray right click E140/E141",
+      "disposition": "positive menu producer; downstream About/exit lifetime during held borrow not accepted",
+      "facts": [
+        "LR-F12",
+        "LR-F21"
+      ]
+    },
+    {
+      "id": "LR-E05",
+      "entry": "queued 8241 manual install",
+      "disposition": "positive failure producers, captured game/step admission and guard; no direct submit in selected return path",
+      "facts": [
+        "LR-F14",
+        "LR-F15",
+        "LR-F16",
+        "LR-F17"
+      ]
+    },
+    {
+      "id": "LR-E06",
+      "entry": "game-list context manual directory",
+      "disposition": "step0-specific route, not interchangeable with error-stage3",
+      "facts": [
+        "LR-F18"
+      ]
+    },
+    {
+      "id": "LR-E07",
+      "entry": "choose/save preset",
+      "disposition": "business latch and per-operation guards; source has no universal Main lock",
+      "facts": [
+        "LR-F19",
+        "LR-F20"
+      ]
+    },
+    {
+      "id": "LR-E08",
+      "entry": "login timer100 / engine332 / keyboard36a",
+      "disposition": "different ownership/guards; engine nesting counter is not a whole-window lock",
+      "facts": [
+        "LR-F09",
+        "LR-F19"
+      ]
+    },
+    {
+      "id": "LR-E09",
+      "entry": "normal case3 submit during an existing MessageBox",
+      "disposition": "For the selected owned prompt with a valid Main HWND, ordinary IDOK input is disabled by the Win32 modal contract. The separate preset reply branch needs Main busy and is skipped while it is zero. Already queued and programmatic delivery remain open.",
+      "facts": [
+        "LR-F20"
+      ]
+    }
+  ],
+  "inferences": [
+    {
+      "id": "LR-I01",
+      "kind": "inference",
+      "claim": "在旧borrow未还、同owner已安装不同pointer/serial新binding、旧unregister取得gate且正常返回的前提下，旧tail可以删除owner当前registry，同时pair mismatch保留新storedhandle。只说明这些前提下的源效果，不证明普通Windows序列已满足前提或真实故障。",
+      "facts": [
+        "LR-F01",
+        "LR-F02",
+        "LR-F03",
+        "LR-F04"
+      ]
+    },
+    {
+      "id": "LR-I02",
+      "kind": "inference",
+      "claim": "已绑定热键/左键显示、目录恢复与timer源体不足以证明所需普通新binding；有限负搜索不能提升L03，也不能以人为调用或强制模型补上原准入要求。",
+      "facts": [
+        "LR-F09",
+        "LR-F11",
+        "LR-F13",
+        "LR-F16",
+        "LR-F17",
+        "LR-F19",
+        "LR-F20"
+      ]
+    }
+  ],
+  "remaining": [
+    {
+      "id": "LS-U3",
+      "kind": "conditional-entry-admission",
+      "profiles": [
+        "launcher-updated-c82f"
+      ],
+      "groups": [
+        "回复",
+        "取消",
+        "错误"
+      ],
+      "question": "已取得borrow的callback穿过modal/替换，再执行尾部unregister的原必要普通序列仍须准入证据；不要求任意全交错，不报告必现故障或全交错安全。",
+      "existing_source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/operation_rows/14",
+          "canonical_sha256": "2c95401fc2e9a4a9b1d52b66f8c84052a10217ec31e1fa63ec68f56f411576b3"
+        }
+      ],
+      "next_action": "固定 F5A 的报错提示已核提交资格、普通确认、目录续接、定时器及通道接收。取得固定样本自行投递合资格普通确认，或其他能恢复提交资格并在旧借用返回前启动连接的具名证据后，复核原版接管时序。C82 与其他类型的提示沿各自来源。",
+      "f5a_selected_modal_admission": "/f5a_callback_retirement/modal_connection_admission",
+      "selected_progress": "Nine positive entry dispositions, source conditional tail and distinct-session target ownership now documented; original admission/lifetime requirement remains open. The ordinary child-button admission under the selected owned prompt and the late success-to-preset busy gate are now source-bound.",
+      "specific_contexts": [
+        "A legitimate same-C82 producer/delivery context that can form the required new binding while old callback is held across the actual native modal path.",
+        "App/Frame About/exit and destruction admission while the borrowed callback is still on stack, including source guards and actual Windows delivery.",
+        "windows_modal_dispatch covers the fixture's native delivery and enabled-state boundaries. edit_focus_and_queued_submit covers the selected edit notifications and focus requests. The original launcher producers, timer/DNS ordering, rebinding and destruction remain open."
+      ],
+      "stop_rule": "Only follow a named ordinary producer/consumer/guard that changes required behavior. Do not inventory library helpers, arbitrary injected messages or every interleaving. Keep this residual visible and progress other original capabilities."
+    }
+  ],
+  "target_comparison": [
+    {
+      "id": "LR-D01",
+      "existing_owner": "web/launcher-session.mjs:createLauncherSession",
+      "finding": "Each instance owns active/raw/attempt/timer/control; closeActive clears its own active fields before raw.close, and abandoned open gets its own disposer. Four real local scripted-port interleavings passed.",
+      "action": "Reuse existing cancellation and ownership; no second login core or native C++ memory model."
+    },
+    {
+      "id": "LR-D02",
+      "existing_owner": "shared launcher flow plus existing UI and platform adapters",
+      "finding": "Source Windows business latch, native modal admission, engine counter and borrow lifetime are separate. Actual three-platform modal/close/DNS integration is unaccepted.",
+      "action": "Specify host admission and retirement using original L03 ownership before D1/D5/D6 implementation; do not infer original scheduling from the pure target probe."
+    },
+    {
+      "id": "LR-D03",
+      "existing_owner": "L03 original D1 batch",
+      "finding": "Earlier DM/LE material/typed-failure deltas and original session cases remain unchanged. LS-U3 is narrowed, not closed.",
+      "action": "Keep original source requirement visible; do not widen negative queries or downgrade acceptance to create readiness."
+    }
+  ],
+  "implementation_batches": [
+    {
+      "batch": "D0",
+      "work": "Reuse original source-profile/spec ownership and scope; unify only after A1..A4."
+    },
+    {
+      "batch": "D1",
+      "work": "Compose existing L03 flow, DM/LE differences, host admission and distinct-session retirement; no parallel core."
+    },
+    {
+      "batch": "D5",
+      "work": "Verify actual web/mobile/WeChat host behavior after SDK setting approval; original pending request is not an authorization."
+    },
+    {
+      "batch": "D6",
+      "work": "Run original full cases and current same-version official acceptance when prerequisites exist."
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "LR-A01",
+      "case": "disconnect/error -> MainStop -> actual prompt dismiss -> old unregister/release",
+      "status": "not-executed-original",
+      "source_expectation": "请求停止、主窗应用模态提示、四个控件恢复及 1014 焦点，然后进入旧绑定注销和归还借用。"
+    },
+    {
+      "id": "LR-A02",
+      "case": "queued manual-install recovery from its actual producer while a callback is held",
+      "status": "not-executed-original"
+    },
+    {
+      "id": "LR-A03",
+      "case": "captured game/step mismatch and latch release in the actual queue",
+      "status": "source-only-not-executed-original"
+    },
+    {
+      "id": "LR-A04",
+      "case": "actual hotkey/left-click while native prompt remains open",
+      "status": "not-executed-original"
+    },
+    {
+      "id": "LR-A05",
+      "case": "actual tray About return with held borrow",
+      "status": "not-executed-original"
+    },
+    {
+      "id": "LR-A06",
+      "case": "actual tray exit with held borrow/deferred close and destructor admission",
+      "status": "not-executed-original"
+    },
+    {
+      "id": "LR-A07",
+      "case": "ordinary accepted Submit producer during modal, then DNS/new binding or source rejection",
+      "status": "required-context-open",
+      "source_expectation": "有效主窗拥有的提示显示时禁用普通 IDOK 输入；同一 Main 忙标记为零时成功回包跳过预设投递。其余入队/程序消息按实际回执。"
+    },
+    {
+      "id": "LR-A08",
+      "case": "independent timers100/332/36a during prompt, then normal callback retirement",
+      "status": "not-executed-original"
+    },
+    {
+      "id": "LR-A09",
+      "case": "malformed reply retry and DNS late completion across same owner",
+      "status": "not-executed-original"
+    },
+    {
+      "id": "LR-A10",
+      "case": "conditional registry effect only after proving normal admission prerequisites",
+      "status": "conditional-source-inference-not-a-test"
+    },
+    {
+      "id": "LR-A11",
+      "case": "distinct owned target sessions with late open/read/write and synchronous close callback",
+      "status": "passed-four-local-explicit-port-cases",
+      "probe": "build/analysis/launcher-callback-reentry-v1/focused-probe.json"
+    },
+    {
+      "id": "LR-A12",
+      "case": "full original 25 session cases, new modal cases, web/mobile/actual WeChat SDK and current official acceptance",
+      "status": "not-executed-by-this-phase"
+    }
+  ],
+  "selected_supersession": [
+    {
+      "parent": "analysis/capability-first-v1/launcher-session-functional-specification.json",
+      "pointer": "/remaining/2",
+      "rule": "Clarifies LS-U3 entries and conditional tail; does not close or delete the original admission requirement."
+    }
+  ],
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "source_capability_readiness_promoted": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "original_program_or_VM_executed": false,
+  "SDK_or_setting_changed": false,
+  "account_or_official_network_observed": false,
+  "limitations": [
+    "Fixed C82 source is not proof of current official binary identity.",
+    "Partial source composition and four pure target cases do not establish original modal/platform/official acceptance.",
+    "No credentials, vendor binary bytes, resource payloads or decompiled source are published."
+  ],
+  "execution_record": {
+    "path": "build/analysis/launcher-callback-reentry-v1/execution-record.json",
+    "bytes": 1764,
+    "sha256": "f94c24cd41db6a5f636e1f1d49f96b37db8339ab76ed46e20cae4ce6b34b339e"
+  },
+  "validation_record_path": "build/analysis/launcher-callback-reentry-v1/validation.json",
+  "owned_login_error_prompt": {
+    "classification": "fixed-source-native-control-and-documented-Win32-admission",
+    "source_review": {
+      "path": "build/analysis/launcher-owned-login-error-v1/source-review.json",
+      "bytes": 9825,
+      "sha256": "5f57999fa7e7c193c6b32d4509609e911f8708d7cd736ef14b2f0432ca48e8fe"
+    },
+    "focused_regression": {
+      "path": "build/analysis/launcher-owned-login-error-v1/focused-regression.log",
+      "bytes": 421,
+      "sha256": "07de34b51103c20da37700c1ce69054b793874c96d39d4e93060810e96d60ecb"
+    },
+    "affected_capabilities": [
+      "L03",
+      "L08"
+    ],
+    "maps_to": [
+      "LS-U3",
+      "LR-E01",
+      "LR-E09",
+      "LR-A01",
+      "LR-A07"
+    ],
+    "rules": [
+      "模板 133 主窗及子按钮 IDOK=1 已从消息表、DDX 和原资源绑定。按钮处理器为 41E420，正常登录走阶段 3。",
+      "通过正常提交后先置忙并请求定时器，再为 ID 1、1009、1013、1014 请求禁用样式和重绘，之后开始候选连接。",
+      "错误处理使用同一主对象的 HWND 和 uType=0。停止先清忙；延迟关闭分支跳过提示。",
+      "在有效主窗拥有的提示实际显示期间，主窗及其子控件的普通输入受 Win32 应用模态限制。恢复按 426BC0 的清禁用位和重绘请求、1014 焦点请求、旧回调注销及归还借用的顺序处理。",
+      "41889D 是成功回包后预设选择的直接调用。若同一 Main 的忙标记为 0，422B80 返回 0，43179F 跳过列表和预设消费。"
+    ],
+    "target_rule": "实际使用阻塞提示的宿主按提示生命周期管理普通输入，沿已有会话所有权处理迟到事件。共享会话不新增 Win32 样式端口。",
+    "remaining": [
+      "确切已入队或程序触发的消息、其它合法普通生产者、Windows API 的实际结果。",
+      "退出、销毁、借用排空与原会话及三端的完整验收。"
+    ],
+    "whole_LS_U3_closed": false,
+    "whole_L03_specification_ready": false,
+    "original_execution": false,
+    "product_code_changed": false
+  },
+  "f5a_posted_submit": {
+    "classification": "fixed November F5A source supplement",
+    "source_review": "build/analysis/launcher-f5a-login-owner-v1/source-review.json",
+    "source_sha256": "f5abc77a1d6c7b1875bae8cdea948469424a8e683d72939e2118d1a38de06842",
+    "template_and_bindings": {
+      "template": 133,
+      "language": 2052,
+      "resource_sha256": "8b04bf261bdce9c7d15bcbce3b413e81576ef1888dfc9b418d3d40b4fff8891e",
+      "C82_template_byte_equal": true,
+      "matched_row_prefix_count": 11,
+      "owner_vtable": "0x5e1714",
+      "DDX": "0x41c6a0",
+      "message_map": "0x5e3ff0",
+      "IDOK_row": "0x5e3c30",
+      "posted_message_row": "0x5e3d38",
+      "controls": [
+        {
+          "id": 1,
+          "offset": "0xb38",
+          "DDX": "0x41c709",
+          "disable": "0x4237d5",
+          "restore": "0x42f404"
+        },
+        {
+          "id": 1009,
+          "offset": "0xa90",
+          "DDX": "0x41c6f7",
+          "disable": "0x4237e9",
+          "restore": "0x42f42a"
+        },
+        {
+          "id": 1013,
+          "offset": "0xa8",
+          "DDX": "0x41c6af",
+          "disable": "0x4237fd",
+          "restore": "0x42f44a"
+        },
+        {
+          "id": 1014,
+          "offset": "0x158",
+          "DDX": "0x41c6c1",
+          "disable": "0x423811",
+          "restore": "0x42f46a"
+        }
+      ],
+      "check_button": {
+        "id": 1029,
+        "member": "0x2400",
+        "hwnd": "0x2420"
+      }
+    },
+    "rules": {
+      "normal_submit": {
+        "entry": "0x423220",
+        "busy_offset": "0x1abc",
+        "clears_armed_before_busy_branch": "0x423611",
+        "selected_busy_set": "0x423795",
+        "timer_id": 100,
+        "timer_call": "0x4237b1",
+        "four_disable_requests": true,
+        "preset_call": "0x419bbd"
+      },
+      "new_generation": {
+        "entry": "0x431de0",
+        "generation": "0x1058",
+        "skips_zero": true,
+        "attempted": "0x105c",
+        "armed": "0x105d",
+        "clears_both_on_selected_generation": true,
+        "preparation_bridge": "0x439b70",
+        "source_review": "build/analysis/launcher-f5a-preparation-generation-v1/source-review.json",
+        "report": "reports/launcher-static.md#f5a-preparation-generation",
+        "ordinary_preset_command": {
+          "control_id_base": "0x1fa4",
+          "control_creation": "0x420209",
+          "command_dispatch": "0x457529",
+          "handler": "0x423fa0",
+          "control_index_lookup": "0x42d4d0",
+          "message": "0x8250",
+          "send": "0x42417a",
+          "wparam": "validated preset record index",
+          "lparam": 0
+        },
+        "ordinary_application": {
+          "main_window_proc": "0x4343a0",
+          "stage_index_and_mode": ["0x4344e5", "0x4344ee"],
+          "admission": "0x427d80",
+          "root_enabled_check": "0x427dda",
+          "return_if_root_disabled": "0x42808c",
+          "prerequisites": "Preset owner, Main and root enablement, idle task and editor gates, eligible in-range preset record and application validation.",
+          "record_stride_bytes": 172,
+          "copy": "0x42802d",
+          "apply": "0x42803b",
+          "increment": "0x4320a7",
+          "flags_reset": "0x4320bd",
+          "editor_message_0x8251_exit": "0x427fb2"
+        },
+        "same_generation_return": {
+          "return_preparation_call": "0x43a355",
+          "attempted_guard": "0x41ee95",
+          "password_change_clears_armed": "0x428d70",
+          "same_generation_already_attempted_blocks_post": true
+        }
+      },
+      "posted_submit": {
+        "producer": "0x41ed30",
+        "selected_prepare_success": 0,
+        "handler": "0x428d80",
+        "message": "0x8242",
+        "wparam": "generation",
+        "lparam": 0,
+        "sets_attempted_and_armed_before_post": "0x41eea4",
+        "on_post_failure_clears_armed_keeps_attempted": true,
+        "generation_zero_skips_post_after_flag_write": true,
+        "stale_generation_preserves_current_armed": true,
+        "matching_generation_consumes_armed_before_other_guards": "0x428dc1",
+        "owner_guards": {
+          "stage": 3,
+          "required_nonzero": [
+            "0x1135"
+          ],
+          "required_zero": [
+            "0x1abc",
+            "0x1aa6",
+            "0x1137"
+          ],
+          "controller_zero": [
+            "0x2cdc",
+            "0x2ce0",
+            "0x2ce8"
+          ]
+        },
+        "window_guards": [
+          "GA_ROOT enabled",
+          "main enabled",
+          "IDOK enabled",
+          "1029 check state zero",
+          "1013 text matches saved form value",
+          "1014 text length nonzero"
+        ],
+        "submit_call": "0x428ec4"
+      },
+      "selected_error": {
+        "entry": "0x4288e0",
+        "stop": "0x41ef80",
+        "busy_clear": "0x41efb5",
+        "dialog_call": "0x428995",
+        "native_api_call": "0x4566ab",
+        "dialog_type": 0,
+        "owner_hwnd_offset": "0x20",
+        "restore": "0x42f400",
+        "focus_control": 1014,
+        "focus_call": "0x4289a7"
+      }
+    },
+    "source_derived_cases": "build/analysis/launcher-f5a-login-owner-v1/source-derived-cases.json",
+    "implementation_batch": "D1",
+    "implementation_differences": [
+      "Use the existing launcher session owner and host scheduling boundary for the posted submission.",
+      "Retain generation identity, attempted and armed state across post failure and delayed dispatch.",
+      "Consume a matching armed item before evaluating the remaining source and host guards. Observe the ordinary submit path retiring the armed item.",
+      "Keep enabled window and form checks source-bound. Retire session and window resources through the original shared ownership contract."
+    ],
+    "target_cases": [
+      "An admitted preset application advances the generation and resets both flags. A queued older generation preserves the new pending item.",
+      "A preset command during root disablement can stage the index and mode, then returns before application and generation advance.",
+      "A matching queued item consumes the pending flag even if a modal owner or submit control is disabled.",
+      "A failed post clears pending state and keeps the current generation attempted. Subsequent preparation of that generation leaves the post suppressed.",
+      "A valid matching delivery can submit once. The source phase-three ordinary submit retires its pending item before applying the busy branch.",
+      "The selected error path clears busy, shows the main-owned prompt, restores the four controls and requests 1014 focus."
+    ],
+    "selected_F5A_source_branch_bound": true,
+    "ordinary_rebinding_during_actual_modal_proven": false,
+    "full_L03_or_L08_specification_ready": false,
+    "target_or_official_login_accepted": false
+  },
+  "f5a_callback_retirement": {
+    "source_profile": "launcher-distribution-f5a",
+    "source_sha256": "f5abc77a1d6c7b1875bae8cdea948469424a8e683d72939e2118d1a38de06842",
+    "source_review": "build/analysis/launcher-f5a-callback-retirement-v1/source-review.json",
+    "report": "reports/launcher-static.md#f5a-disconnect-retry",
+    "pump_and_retirement_order": {
+      "classification": "固定 F5A 的原文件证据及所选正常返回条件下的推导",
+      "report": "reports/launcher-static.md#f5a-pump-retirement",
+      "validation": "reports/validation.md#f5a-pump-retirement-validation",
+      "source_review": "build/analysis/launcher-f5a-pump-retirement-v1/source-review.json",
+      "local_comparison": "build/analysis/launcher-f5a-pump-retirement-v1/local-close-receipts.json",
+      "affected_capabilities": ["L03", "L08", "X06"],
+      "implementation_batches": ["D0", "D1", "D5"],
+      "implementation_delta": "LS-D3",
+      "acceptance_case": "LS-T20",
+      "host_ports": ["SessionTransport", "OwnerLifecycle", "ClockDomains"],
+      "source_rules": [
+        "主窗在 4272DF 请求 100 毫秒的 0x332。429A95 进入 595590，在管理器的 +0x18 有效时调用 598EA0。连接维护在全局 650798 为零或嵌套计数 6507A4 非零时直接返回。进入时置计数，正常尾部减一并跳到 596DA0，后者仍检查计数。",
+        "普通连接经 594F43 将 594D00 写入连接上下文的 +0x78。所选关闭请求置连接 +0xEC，当前已请求关闭或正退役时分别保留原拒绝条件。主维护路径中 +0xEC 非零且 3C、64 为零、4C 与 48 相等时，调用 596B60(连接, 2, 1)。",
+        "596B60 对非空且未标记的记录先增加嵌套计数、置 +0xF0，执行所选通知条件下的 +0x78 同步关闭回调。若存在 +0x7C 回调，随后按当前上下文调用。再解除活动登记并释放记录，最后降低计数。若第三参数非零且存在 +0x78 回调，仍按上下文 +0x18 和连接 +0xC4 的门槛判断通知资格。",
+        "无回复的关闭回调先借用并同步交给通道虚槽 +0x14。F5A 的本地 -100 在忙时只置待重试位。正常返回后按原句柄注销、归还借用，再由外层释放连接记录。登录定时器 100 读取忙态，忙时可消费待重试推进候选，空闲时撤销该定时器。",
+        "接收路径把 599010 与 595C30 登记到同一个上下文，再分别装入连接 +0xFC 和 +0x100。所选完整帧同步交给 595C30，类型 11 的所选结果进入 595190，正常尾部只归还借用。解析器返回后重验连接身份与原接收长度，条件一致时才扣减记录字节。",
+        "所选错误结果调用 Stop 后才显示提示。Stop 先清忙态和重试位，撤销登录定时器，并在合资格路径移除登记、清句柄及标记关闭请求。原接收仍在维护调用栈内时，提示期间再入的 0x332 路径到维护入口后因嵌套计数返回。该情况下的停止请求、旧借用归还和实际记录释放分别有完成点。"
+      ],
+      "target_design": "D0 复用连接身份和现有关闭端口。D1 按固定来源保留待重试与结果提示的各自准入，将取消、关闭请求、旧调用结束和宿主退役回执关联到原尝试。D5 以实际回执确认退役结果，旧连接的迟到读、成功关闭或失败回执只更新旧所有者。保留现有的异步取消和已验证的跨尝试隔离。",
+      "acceptance_cases": [
+        "忙且尚无回复的正常关闭，先核旧借用、置待重试、注销、归还与释放，再在合资格登录定时器上推进候选。覆盖空闲、已见回复和借用失败。",
+        "收到所选错误结果、进入主窗提示时核 Stop 和退役请求。若 0x332 再入并到达维护入口，记录计数分支。若 100 在仍空闲时到达，核定时器撤销。提示返回后观察借用结束和独立关闭回执。",
+        "完整帧回调正常返回，分别保持或改变连接身份和接收长度，核对原缓冲消费条件与旧结果的归属。",
+        "取消旧尝试时关闭仍待回，新尝试可持有自己的流。旧读迟到及关闭成功或失败仅记入旧尝试，退役成功须以旧流实际关闭回执确认。"
+      ],
+      "actual_original_modal_delivery_observed": false,
+      "ordinary_rebinding_during_prompt_proven": false,
+      "target_drain_acceptance_executed": false
+    },
+    "modal_connection_admission": {
+      "ordinary_input_idok": {
+        "classification": "固定 F5A 真实登记与可执行分支的静态事实",
+        "source": {
+          "path": "build/analysis/current-official-launcher-package-v1/POLCN_Launcher.analysis-only.exe",
+          "bytes": 4176896,
+          "sha256": "f5abc77a1d6c7b1875bae8cdea948469424a8e683d72939e2118d1a38de06842"
+        },
+        "capabilities": [
+          "L03",
+          "L08",
+          "X06",
+          "X08"
+        ],
+        "acceptance_case": "LS-T20",
+        "report": "reports/launcher-static.md#f5a-ordinary-input-idok",
+        "validation_report": "reports/validation.md#f5a-ordinary-input-idok-validation",
+        "source_review": "build/analysis/launcher-f5a-idok-producers-v1/source-review.json",
+        "source_evidence": "build/analysis/launcher-f5a-idok-producers-v1/rea-evidence.json",
+        "validation": "build/analysis/launcher-f5a-idok-producers-v1/validation.json",
+        "local_regression": "build/analysis/launcher-f5a-idok-producers-v1/local-regression.log",
+        "registration": "模板 211 的构造器 43AF50 安装虚表 5E57F4，消息图 43C710 返回 5E5B60。该表中 0x102、0x201 和 0x203 分别接 43D340、43DDF0 和 43DDD0。双击入口直接调用同一 43DDF0。",
+        "producers": "普通输入模式中 43D340 对回车字符投递 IDOK。鼠标命中 43C730 返回记录后，43DDF0 请求焦点并调用 43E6C0。后者重做窗口检查，再对类型 0、编号 7 的记录投递同样消息。辅助模式字节 +D4 非零时，这两个确认输入走焦点请求。",
+        "admission": "两处普通投递均经 43C8A0。+D4 为零时，它读取 [64C8B4]+2C8 的 HWND，检查该窗有效且启用，再检查 GA_ROOT 启用。任一步失败均在投递前返回。随后两处各自以 0x111、wParam 1、同一主窗 IDOK HWND 发往该主窗。该 HWND 读取为 [64C8B4]+2E8，控件读取为 [64C8B4]+E00 内的 +20。",
+        "consumer": "主窗原表 5E3C30 的命令 1 进入 423220。普通处理在消息消费时依据当前阶段、忙态和表单前检，所选合资格路径设置忙并申请计时器 100。0x8242 仍沿按编号及准备资格的独立消费条件。",
+        "runtime_boundary": "已知生产位置可用于辨认提示进入前已排队的 IDOK 和提示后新收到的输入。实际送达时窗口状态、候选结果、连接登记与旧借用归还的顺序仍沿 LS-T20 验收。",
+        "implementation": "D0/D1 按已证生产和消费条件沿用共用消息与会话所有者。D5/D6 以普通输入、禁用后向同一控制器送达的队列项、返回后的新输入及旧连接回执组合验收。",
+        "acceptance_extensions": [
+          "主窗和根窗启用时，观察回车、鼠标按下与双击送出的主窗、消息参数和实际入队结果。",
+          "独立禁用主窗或根窗，记录普通输入提前返回。鼠标焦点回调若改变启用状态，按第二次检查结果验投递。辅助模式确认另核焦点请求。",
+          "在提示前已投递或提示后重新输入时，记录送达阶段、定时器结果、候选完成、新登记与旧借用结束。编号消息沿原有编号和准备资格验收。"
+        ],
+        "original_normal_producers_bound": true,
+        "actual_native_delivery_verified": false,
+        "new_binding_observed": false,
+        "whole_LS_U3_closed": false
+      },
+      "classification": "fixed-F5A-static-branches-and-separate-local-observations",
+      "report": "reports/launcher-static.md#f5a-modal-connection-admission",
+      "validation_report": "reports/validation.md#f5a-modal-connection-admission-validation",
+      "source_receipt": "build/analysis/launcher-f5a-modal-connection-admission-v1/validation.json",
+      "source_sha256": "f5abc77a1d6c7b1875bae8cdea948469424a8e683d72939e2118d1a38de06842",
+      "source_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "scope": "固定 F5A 的 595190 接收借用、43F900 所选失败及 4288E0 的主窗提示，按同一个主窗且所选调用正常返回核验。普通退出、目录提示的其他消息泵和旧版分别使用各自合同。",
+      "capabilities": ["L03", "L08", "X06", "X08"],
+      "implementation_batches": ["D0", "D1", "D5"],
+      "implementation_delta": "LS-D3",
+      "acceptance_case": "LS-T20",
+      "source_rules": [
+        "595190 借用通道，在 59521F 调虚槽 +0x14，即 43F900。所选失败在 43FDC0 进 4288E0，需要原忙态非零。42892C 清准备资格，428933 调 Stop。Stop 清忙、待重试和前台 DNS 引用、撤登录定时器，再请求停通道。Stop 处理延期关窗返回非零时跳过提示。正常显示走 428995 的类型 0 主窗提示，42899C 恢复控件，595227 随接收包装器正常返回归还原借用。",
+        "独立原字节定位 594EA0 的直接调用 42BC2D，应用通道虚表六个槽没有该地址。该调用须经过主窗消息表 5E3DB0、编号 100 的忙态分支、42BAE0 的再检查及期限内有效 DNS 结果。空闲时收到 100 则撤定时器。原 DNS 工作线程只在自己的任务发布完成与释放引用。旧维护仍在栈内时，0x332 在 598EA0 被非零计数挡住。",
+        "0x8242 在 428DC1 消费同编号待提交位，再在 428DC8 判准备资格。所选登录错误清资格后，即使根窗和按钮随后恢复，也须由合资格的预设操作恢复资格才可继续该入口。旧编号保留当前待提交状态。普通预设经 427D80 的主窗和根窗启用检查，再由 431DE0 设置新编号及准备资格。",
+        "目录恢复 0x8241 在 428EF0 先清操作标记，再核阶段与索引。所选成功恢复写阶段 3 并调用 439B70。补丁成功和首次配置进程退出分别沿 428D4E 与 409B49 回到准备或阶段分派。439FC0 读取准备资格，零时跳过 41ED30 的自动投递路径。这些所选续接在已清资格的状态下无法单独恢复自动提交。",
+        "应用通道 +0x4 通知进入 428B20，空闲直接返回。状态 0 的形状合格也须通过 4289F3 的忙态才能到 429D80。其唯一已核直接调用 4198B0 又先查准备资格。因此同一主窗仍空闲、准备资格仍为零时，这两条通道路径不能独立启动新连接。",
+        "5E3C30 的普通 IDOK 和 5E3C60 的列表通知 2 都到 423220。处理阶段 3 时检查忙态并在分支前清待提交位，准备资格为零时继续普通表单前检。通过输入、所选前检和候选数条件后在 423795 置忙，再请求定时器 100。已核普通处理器未在这条分支重新检查主窗、根窗或按钮启用位。"
+      ],
+      "conditional_conclusion": "普通输入辅助窗已核两处程序自身的 IDOK 投递，生成时均检查同一主窗及根窗启用。已排队项目送达后按 423220 的当时阶段和忙态处理。原提示内由合资格确认进入新登记和旧借用归还的先后仍待运行证据。",
+      "prior_windows_fixture": "build/analysis/windows-launcher-modal-v1/source-review.json",
+      "target_comparison": {
+        "source": "build/analysis/launcher-f5a-modal-connection-admission-v1/local-comparison.json",
+        "owners": ["web/login-app.mjs", "web/launcher-session.mjs", "adapters/wechat/launcher-host.mjs"],
+        "result": "stage306 在现有网页会话发布拒绝结果前请求关闭，不等待异步关闭回执。独立新尝试的待收包状态不受旧关闭成功或失败影响。网页和微信现有界面显示失败状态，固定 F5A 的提示和排队准入由该差异接入。"
+      },
+      "acceptance": [
+        "同编号与旧编号分别在错误提示中、恢复控件后送达。资格为零时匹配项先消费再返回。合资格预设具体恢复后才允许新编号经过其余门槛。",
+        "在同一主窗仍空闲时观察 100、0x332、有回包的旧接收、无回复通知、目录恢复及配置完成。分别核撤计时器、维护入口、标记消费、准备跳过与旧借用归还。",
+        "将原程序的普通确认实际生产、消息送达、阶段 3 通过前检、候选成功及 594EA0 登记分别取证。按先后判断旧借用内是否出现替换，再核实际尾部与宿主关闭。原创投递夹具与产品端口各用自己的结果。",
+        "三端沿现有会话身份保存错误结果、关闭请求及异步回执。旧回执成功或失败只更新原尝试，新尝试能独立进行。"
+      ],
+      "resume_condition": "普通 IDOK 的原生生产已有固定样本证据。剩余沿原版实际消息入队与投递、定时器和候选完成、通道登记及旧借用完成的对应回执验收。",
+      "actual_native_delivery_verified": false,
+      "new_binding_observed": false,
+      "target_product_acceptance_executed": false
+    },
+    "status_zero_admission": {
+      "source_review": {
+        "path": "build/analysis/launcher-f5a-status-zero-admission-v1/source-review.json",
+        "bytes": 8508,
+        "sha256": "4603c5b542bcc425d20d90d52fdf49acd4f6907e0c73d3070c4fae15a24d89f2"
+      },
+      "report": "reports/launcher-static.md#f5a-status-zero-admission",
+      "affected_capabilities": ["L03", "L07"],
+      "implementation_batch": "D1",
+      "source_rules": [
+        "0x43F931 records that the reply arrived before the state table dispatch. Status 0 selects 0x43F94C.",
+        "The unsigned limits for stack arguments 4 and 6 are 32 and 64 respectively. A nonzero argument 4 requires argument 3 to be nonnull.",
+        "A nonzero argument 6 requires nonzero arguments 4 and 5, nonnull arguments 7, 9, 11 and 13, and signed lengths 8, 10, 12 and 14 at least equal to argument 6. All row pointers through the declared count are nonnull.",
+        "A shape rejection passes -6 to 0x428B20. With the busy byte set, that function records the result, requests channel stop and calls 0x4323E0.",
+        "With the shape admitted, 0x4289F0 tests the busy byte at +0x1ABC. A nonzero byte calls 0x41EF80. Stop clears busy and returns 1 after handling a pending +0x1ABD close request.",
+        "Busy zero or a nonzero stop return produces admission result 0. The dispatcher returns through 0x43FDC5.",
+        "The admitted path calls 0x42E960, queries the list and deletes the last item when the first count is positive. It increments +0xA88, synchronously calls 0x43A2D0(0), requests control restoration and returns 1.",
+        "The phase dispatch admits the selected startup branch for a signed step value of at least 5. After the admission function returns 1, the reply dispatcher rereads 0x64C8B4 at 0x43F9E8 and calls 0x429D80 at 0x43FA09."
+      ],
+      "acceptance_cases": [
+        {"case": "Shape rejection", "expected": "Reply seen is recorded and -6 reaches the selected error entry. Cover 32 and 64 limits, missing required pointers and signed array lengths."},
+        {"case": "Idle window with admitted shape", "expected": "The gate returns zero before calling stop or the selection handler."},
+        {"case": "Busy window with deferred close handled by stop", "expected": "Stop clears busy and the close byte, posts close and returns one. The gate returns zero and the selected dispatch ends."},
+        {"case": "Busy window with stop returning zero", "expected": "Step dispatch and control restoration precede the fresh receiver read and selection handler. Check the later numeric write against the handoff field source."}
+      ],
+      "actual_windows_callback_verified": false,
+      "actual_modal_rebinding_verified": false
+    },
+    "operations": [
+      {
+        "id": "F5A-DR01",
+        "operation": "普通连接发布与关闭回调注册",
+        "rule": "App +0xD8 保存虚表 0x5E5FCC 的通道。连接成功段清回复位、保存新句柄，经 0x599D20 把关闭回调写入连接记录 +0x78，再按通道登记。",
+        "anchors": [
+          "0x5E5D68",
+          "0x43F59A",
+          "0x43F5CC",
+          "0x42BC2D",
+          "0x594EA0",
+          "0x594F2C",
+          "0x599D56",
+          "0x594F72"
+        ]
+      },
+      {
+        "id": "F5A-DR02",
+        "operation": "断线准入及本地状态 -100",
+        "rule": "关闭回调用传入句柄的查表项和序号获取借用。回复位为零时调用虚表 +0x14，状态 -100 经状态表索引 0 到 0x4288C0。主窗忙时置 +0x1AC0 后直接返回，空闲时保持该位。已见回复时进入正常尾部。",
+        "anchors": [
+          "0x594D4D",
+          "0x59551A",
+          "0x595070",
+          "0x594D5B",
+          "0x594D89",
+          "0x43FE8C",
+          "0x43FD50",
+          "0x4288C0"
+        ]
+      },
+      {
+        "id": "F5A-DR03",
+        "operation": "关闭回调注销与归还借用",
+        "rule": "正常尾部取原调用帧的三字段句柄，先注销再归还通道和管理器的借用。注销取得 +0x20 操作门后，先用所有者当前状态查找并移除登记，再比较原句柄的前两个字段决定清当前字段。",
+        "anchors": [
+          "0x594D9A",
+          "0x594DB4",
+          "0x594DC9",
+          "0x594E2B",
+          "0x594E40",
+          "0x594E53",
+          "0x595560",
+          "0x595A70"
+        ]
+      },
+      {
+        "id": "F5A-DR04",
+        "operation": "登录定时器推进重试",
+        "rule": "主窗定时器 100 在忙时检查待重试位，匹配则先清位再推进候选。随后具备有效 DNS 结果时用同一应用通道开始连接。空闲分支取消定时器。",
+        "anchors": [
+          "0x5E3DB0",
+          "0x429A9F",
+          "0x429ACA",
+          "0x42BB20",
+          "0x42BB29",
+          "0x42BDAD",
+          "0x4323E0",
+          "0x42BC2D"
+        ]
+      },
+      {
+        "id": "F5A-DR05",
+        "operation": "接收错误结果、提示与归还借用",
+        "rule": "接收包装器借用通道并调用相同虚表槽。所选错误结果在提示前清主窗忙、DNS 和待重试状态并请求停止。提示结束后恢复控件和焦点。接收包装器尾部归还借用。",
+        "anchors": [
+          "0x595EF9",
+          "0x595190",
+          "0x59521F",
+          "0x43FDC0",
+          "0x4288E0",
+          "0x41EF80",
+          "0x41F01D",
+          "0x595227",
+          "0x595062"
+        ]
+      }
+    ],
+    "C82_comparison": {
+      "source_sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+      "rule": "固定 C82 的 -100 索引 0 经 0x431B08 准备错误文本，正常在 0x431B9E 调用 0x422A70。主窗忙且停止结果允许提示时，关闭回调先经提示，再注销原句柄并归还借用。",
+      "anchors": [
+        "0x431C74",
+        "0x431C3C",
+        "0x431B9E",
+        "0x422A70",
+        "0x5874DA"
+      ]
+    },
+    "conditional_registration_effect": "假定同一所有者已安装不同的新句柄且旧注销取得操作门，移除步骤可先删去新登记，随后的旧句柄比较会保留新字段。实际重绑的正常入口及消息次序仍待证。",
+    "implementation_batch": "D1",
+    "target_gap": "现有 remoteClosed 在等待中的完整流上立即给出 FLOW_REMOTE_CLOSED。复刻需保留 F5A 定时器重试和接收错误的分别收尾，复用尝试标识、迟到事件筛选和关闭回执。保留当前对截断输入的错误处理，实际同版条件继续验收。",
+    "source_derived_acceptance_cases": [
+      "忙且无回复的关闭回调置待重试位，使用原句柄注销并归还借用。登录定时器消费该位并推进候选。",
+      "空闲时的 -100 保持待重试位，关闭回调照常收尾。",
+      "关闭前已有回复时跳过合成本地状态，照常走关闭尾部。",
+      "查表失配或借用失败时，关闭回调跳过所有者上的操作。",
+      "接收所选错误结果时停止请求先于提示，提示恢复后接收尾部只归还借用。",
+      "C82 忙且满足提示条件的 -100 沿同步主窗提示及关闭尾部。"
+    ],
+    "actual_modal_dispatch_and_rebinding_verified": false,
+    "source_capability_readiness_promoted": false,
+    "implementation_gate_passed": false,
+    "official_joint_acceptance_proven": false
+  },
+  "list_activation_entry": {
+    "classification": "fixed-C82-and-F5A-list-activation-and-selection",
+    "source_review": {
+      "path": "build/analysis/launcher-list-activation-v1/source-review.json",
+      "bytes": 8434,
+      "sha256": "eef2aef8ba1276e251e73f84e60da3fb55f2d5f07454a3c21d6909ad812fa9cb"
+    },
+    "report": "reports/launcher-static.md#launcher-list-activation",
+    "affected_capabilities": ["L01", "L03", "L08", "X01"],
+    "implementation_batches": ["D1", "D5"],
+    "common_template": {"id": 133, "list_control": 1012, "list_member": "0x208", "list_hwnd": "0x228", "list_style": "0x50210161"},
+    "C82": {
+      "list_activate_row": "0x5d4858", "jump": "0x422570", "confirmation": "0x41e420",
+      "list_selection_row": "0x5d4a80", "list_selection_handler": "0x422580", "stage_three_busy": "0x41e80a"
+    },
+    "F5A": {
+      "list_activate_row": "0x5e3c60", "jump": "0x4280b0", "confirmation": "0x423220",
+      "list_selection_row": "0x5e3ed0", "list_selection_handler": "0x4280c0", "stage_three_busy": "0x42360a",
+      "pending_auto_submit_cleared_before_busy_branch": "0x423611"
+    },
+    "rules": [
+      "两版列表 1012 的 WM_COMMAND 通知 2 均跳到 IDOK 共用确认函数。该函数从列表读当前行，然后执行当前阶段的确认规则。",
+      "通知 1 在阶段 0 和 4 处理所选资料。阶段 3 经阶段比较退出该处理器。",
+      "共用确认函数在阶段 3 查忙。F5A 在按比较结果返回前清 0x105D，后续 0x8242 沿原待处理准入。",
+      "所选主窗拥有的应用模态提示约束列表子窗的普通输入。实际入队或程序发送、提示后的重绑与旧借用仍按 LS-U3 取证。"
+    ],
+    "current_target": "网页的目录 change 与表单 submit、微信 picker change 与 onStart 各自有入口。D1/D5 复用现有确认所有者和会话身份，沿这两类来源验收。",
+    "observed_windows_delivery_and_rebinding": false,
+    "whole_LS_U3_closed": false,
+    "product_code_changed": false
+  },
+  "windows_modal_dispatch": {
+    "classification": "事实：保留的固定 F5A REA 规则与 Windows 原创夹具实测",
+    "source_review": "build/analysis/windows-launcher-modal-v1/source-review.json",
+    "report": "reports/launcher-static.md#windows-launcher-modal-dispatch",
+    "affected_capabilities": ["L03", "L08"],
+    "implementation_batches": ["D1", "D5"],
+    "profile": "Windows 11 ARM64 原生 USER32，原创拥有者主窗和原生 IDOK 子窗",
+    "source_rules": "F5A 的 0x41ED30 产生 0x8242，0x428D80 核待处理和编号。匹配后在 0x428DC1 清待处理，再检查阶段、其他源门槛和窗口启用。0x428E27/0x428E2E 查 GA_ROOT 和 IsWindowEnabled，普通 HWND 路线再查主窗和 IDOK。0x428995 的拥有者提示返回后，0x42899C 请求恢复控件。",
+    "observations": [
+      "夹具进入 MessageBoxA 前排入旧编号 6。提示显示后，主窗过程收到 6，保留待处理。",
+      "可见的拥有者提示禁用根窗。夹具提示中投递的匹配编号 7 已送达，清待处理后在启用门槛返回。同一提示中的程序投递 IDOK 通知也到达主窗过程。",
+      "提示返回 IDOK 后主窗启用，原先独立禁用的按钮仍禁用。同步探针 8 消费匹配项并返回；恢复按钮后同步探针 9 通过夹具的窗口门槛。"
+    ],
+    "implementation_delta": "按事件到达时的编号和窗口状态执行准入。提示结束和按钮恢复各有完成点，继续按原会话标识处理旧借用。",
+    "launcher_actual_modal_enqueue_or_rebinding_verified": false,
+    "whole_LS_U3_closed": false
+  },
+  "edit_focus_and_queued_submit": {
+    "classification": "固定 C82 和 F5A 主窗消息表及所选原始指令的静态事实",
+    "source_review": "build/analysis/launcher-edit-focus-v1/source-review.json",
+    "report": "reports/launcher-static.md#launcher-edit-focus",
+    "affected_capabilities": ["L03", "L04", "L08"],
+    "implementation_batches": ["D1", "D5"],
+    "rules": [
+      "两版所选主窗的 1013 EN_SETFOCUS 设置账号焦点标记并刷新建议列表。1014 EN_SETFOCUS 清该标记，隐藏有效的建议窗口，按控制器门槛请求模式 200 的输入辅助窗，最后请求 1014 焦点。所选错误提示也在恢复控件后请求 1014 焦点。",
+      "C82 所选辅助窗路径通过前检后请求 ShowWindow(5)。F5A 的所选布局产生非空矩形后移动辅助窗，未显示时请求 ShowWindow(4)，已显示时请求重绘。F5A 1014 EN_KILLFOCUS 在辅助窗有效且可见时请求隐藏。",
+      "两版 1013 EN_CHANGE 在所选资格与抑制条件下比较当前文字和保存值。失配时清资格，重读资格仍为真才置变化标记。列表刷新有单独的抑制门槛。F5A 的 0x8242 在消费匹配待处理项后检查该资格。",
+      "F5A 1014 EN_CHANGE 的 0x428D70 只清 +0x105D 待处理位，保留编号及已尝试位。匹配消息晚到时先看待处理位。同编号的所选准备入口仍看到已尝试，不能重排。C82 所查 43 项主表仅有 1014 EN_SETFOCUS。"
+    ],
+    "acceptance_cases": [
+      "已排队后收到密码改动通知，再送达相同编号。待处理已清，保留已尝试和编号，同编号不再投递。",
+      "送达账号变化通知时比较失配并清资格。随后送达匹配编号，消费待处理后因资格拒绝。另覆盖抑制变化及单独刷新列表。",
+      "所选错误提示返回时先请求恢复控件，再请求密码焦点。宿主分别观察编辑、获焦和失焦，并按来源条件核对辅助窗行为。"
+    ],
+    "cases_executed": false,
+    "actual_launcher_notification_order_verified": false,
+    "whole_LS_U3_closed": false
+  },
+  "f5a_candidate_lifecycle": {
+    "source_sha256": "f5abc77a1d6c7b1875bae8cdea948469424a8e683d72939e2118d1a38de06842",
+    "source_review": "build/analysis/launcher-f5a-candidate-lifecycle-v1/source-review.json",
+    "report": "reports/launcher-static.md#f5a-candidate-lifecycle",
+    "capabilities": ["L02", "L03", "L08", "X06"],
+    "implementation_batches": ["D0", "D1", "D5"],
+    "candidate_cycle": "所选普通提交按地区正数候选总数确定次数，用 0x5B041A 返回值取余确定起点。每次推进先消耗一候选，顺序环回。无候选时停止，解析创建失败也消耗当前候选。",
+    "timer": {"id": 100, "requested_interval_ms": 100, "candidate_deadline_ms": 10000, "after_successful_submit_ms": 10000},
+    "resolver_job": "开始前解除旧前台引用，进程计数加一后大于 4 时拒绝并撤销。所选成功任务含两份引用，工作线程写结果后原子发布完成位，再扣计数并释放自身引用。前台超时、取用、取消时各自解除其当前引用。最后一份释放时回收。",
+    "polling": "待重试位优先。解析中以有符号 32 位时钟差判断截止，再读取完成位。只在截止前且状态零、地址非空时使用候选端口开始连接。连接检查接续当前期限，提交成功后刷新期限。",
+    "target_delta": "沿现有共享登录流程的尝试标识及宿主时钟端口处理迟到结果。固定 F5A 采用候选与提交阶段期限，连接关闭沿既有退役所有者。",
+    "source_derived_cases_verified": true,
+    "actual_windows_schedule_verified": false,
+    "source_capability_readiness_promoted": false,
+    "official_joint_acceptance_proven": false
+  },
+  "f5a_directory_recovery": {
+    "source_sha256": "f5abc77a1d6c7b1875bae8cdea948469424a8e683d72939e2118d1a38de06842",
+    "source_review": "build/analysis/launcher-f5a-directory-recovery-v1/source-review.json",
+    "report": "reports/launcher-static.md#f5a-directory-recovery",
+    "capabilities": ["L01", "L03", "L06", "L08"],
+    "implementation_batches": ["D1", "D5"],
+    "producer": "普通创建前检与所选补丁或准备失败按 430B70 的返回低字节调用 42CB10。操作标记为零时置位并投递 8241，wParam 为当前条目索引，lParam 为当前阶段。投递失败清标记并提示。",
+    "recovery_prompt": {
+      "source_review": {
+        "path": "build/analysis/launcher-f5a-recovery-prompt-v1/source-review.json",
+        "bytes": 6893,
+        "sha256": "13aedacad0df5939b45989a0fabfb0e04378fcadb2d59a6152ea30fbf3e85af6"
+      },
+      "report": "reports/launcher-static.md#f5a-recovery-prompt",
+      "directory_action_codes": [2, 3, 161],
+      "zero_error_defaults": {"ordinary_launch": 31, "patch_or_preparation": 13},
+      "rules": [
+        "425490、431BE0 分别计算重选开关。430B70 见主窗 +0x19E1 已置位时返回 0，正常进入时持提示标记。",
+        "415700 的模式 1 初始化结果为 0。只有传入标题时才请求创建控件 104。42C960 按绑定上下文处理 WM_COMMAND，低字 104 将结果置 1 后请求销毁。控件 103 和 WM_CLOSE 保留结果字节并请求销毁。",
+        "取得窗口时，430B70 先设置拥有者并请求禁用主窗，再进入线程消息循环。循环结束后请求启用主窗并置前。45AF9C 直接分支调用 EnableWindow，+0x74 非空时调用虚表 +0xA8。",
+        "提示返回低字节非零时进入 42CB10，按投递时的阶段和目录索引形成请求，沿原操作标记与投递失败处理。"
+      ],
+      "actual_Windows_message_delivery_observed": false
+    },
+    "admission": "428EF0 先清 +0x1137，再检查阶段和条目索引。匹配时调用 42E770(index, 1)。阶段 0 的普通右键入口在菜单确认后调用 42E770(index, 0)。选择器检查索引、忙态、补丁等待、操作标记和三个子视图任务槽，持标记经过对话框 295、路径应用和结果提示。",
+    "persistence": "401CB0 先经 4432C0 处理目录并分别检查两个条目路径。449B20 向 [Path] 的 Game<Code> 写所选目录。成功回执先于目录项发布、匹配的当前目录缓存更新和成功提示。正常返回时选择器恢复操作标记。",
+    "continuation": "排队成功写阶段 3 并调用 439B70。按现行准备编号及既有 8242 准入决定后续提交。右键成功重建列表，按条目索引找回选中项后执行选择更新，找不到对应项时执行更新。",
+    "host_selection_and_readback": {
+      "classification": "固定样本事实、组合推导、stage306 本机结果及独立复刻规格",
+      "report": "reports/launcher-static.md#launcher-directory-host-handoff",
+      "source_review": "build/analysis/launcher-directory-host-handoff-v1/source-review.json",
+      "validation": "build/analysis/launcher-directory-host-handoff-v1/validation.json",
+      "native_write_and_read": {
+        "write": "401E5D 从本次所选记录读取原始 Code 文本。401E68 以 Game 为前缀构造键，401EC8 经 449B20 写 [Path]。写入返回非零时才发布本条目录。401F26 比较执行时活动序号与本次条目序号，匹配才更新活动目录和 EXE。前检或写入返回失败的所选分支没有发布这些内存状态。",
+        "read": "目录载入 40A660 的所选设置回退在 40B895 读取本行原始 Code，40B8A3 构成 Game 键。40B90D 调用 4498F0，以控制器 +0x7790 的同一设置对象读取 [Path]，449926 取对象的文件参数，449945 调用 GetPrivateProfileStringA，输出容量 256 字节。40B924 规范化并检查读回目录，通过才在所选分支写 +0x772C 的条目槽并设置该行 +0x9C。已有更早来源的所选分支可把该槽写回同一节键，见 40BA18、40BA7B。",
+        "same_code_inference": "两个原始 Code 字节相同的行共用设置键，活动序号与行缓存仍各自取值。两行都实际到达所选设置回退并通过各自前检时，重新载入可读同一键中的路径。两条已知 Code 11 的实物安装目录、回退优先级实际命中及跨进程文件结果仍按原用例核验。",
+        "picker_result": "42E844 比较 1，拒绝或关闭转清理。应用低字节为零同样回到清理。正常成功先还原操作标记。手动入口重建列表并按捕获的条目找回显示行。排队入口清 +0x1AA7、写阶段 3，再调用既有准备入口；后续普通投递由当前准备条件决定。"
+      },
+      "stage306": {
+        "web": "Chrome 实际登录页可独立填写 Windows 目录与选择 FileList。合成 cancel 事件保留已准备状态。实际替换 FileList 后，元数据前检失败仍显示新文件并保留目录文字与游戏序号，原准备状态已清。所选补丁候选优先于安装文件夹元数据，改目录文本会清候选但不清 FileList。现有 IndexedDB 保存资源及绑定，重开时目录字段和 FileList 为空，手动输入同一目录后可读回为待选候选。",
+        "wechat": "微信登录宿主的目录文字来自现有配置。ZIP 选择器在本机夹具返回取消时，文件端口给出 FILE_READ，文件内容未读。基础文件仍在，旧已选资源在选择前已经释放，游戏行、区域和来源仍可见。非法 ZIP 保留原基础文件并清已选状态。新宿主显式读回目录配置及资源后仍需要选择。同一缓存的目录绑定失配时无法恢复。已发出的双槽写入报告结果未知时，回调前仍返回忙，样例的部分失败在重新读取后恢复原有效版本。",
+        "web_receipt": "build/analysis/launcher-directory-host-handoff-v1/browser.json",
+        "wechat_host_receipt": "build/analysis/launcher-directory-host-handoff-v1/wechat.json"
+      },
+      "design": {
+        "selection_owner": "D0/D1 在现有启动所有者内沿 UC-P01、UC-P09 绑定来源版本、目录条目身份、当前阶段和本次尝试。用按目录文件身份或清单身份取得的候选内容核对所需文件。目录文字、FileList 或临时 ZIP 选择可以先处于草稿。候选尚未通过时保持已确认的旧目录及其可读资源；若没有有效旧根则继续待选择。单独确认替换时读取实际路径、文件角色以及相关迟到完成。",
+        "persistence": "将目录设置键规则与资源内容身份记录在各自的现有端口。D1 沿 UC-P12 保存路径设置，D0/D5 沿 UC-P07/UC-P08 验证根或 ZIP 段及其使用权。复用已有摘要、条目序号、编码、修订和发布回执。在能够确认同一尝试与内容身份前不发布新目录为当前入口。实际文件已存在与已提交的目录选项分别依现有回执核对。保存结果未知用原提交标识或可核对的版本和内容读回，明确确认后才进入本次续接；失配或旧操作迟到按现有退役规则处理。",
+        "continuation": "成功确认且当前操作仍匹配时，手动选择走既有列表刷新。失败恢复回到同一业务请求的指定准备分支，由会话准入决定是否允许继续提交。持久化键可依证据按原始 Code 复用，同 Code 行各按自己的文件角色和运行时身份核验。",
+        "ports": ["UC-P01", "UC-P07", "UC-P08", "UC-P09", "UC-P12"],
+        "batches": ["D0", "D1", "D5"],
+        "existing_owners": ["web/login-launch.mjs", "web/launcher-launch-data.mjs", "web/login-patch-cache.mjs", "web/launcher-resource-store.mjs", "adapters/wechat/launcher-local-file.mjs", "adapters/wechat/launcher-resources.mjs", "adapters/wechat/launcher-slot-store.mjs", "shared/launcher-resources.mjs"]
+      },
+      "additional_acceptance": [
+        "沿 LP-A09 至 LP-A12 核取消、前检失败、写入失败或未知回执和成功重开。保持同一完整旧目录，逐处确认重复请求、旧读迟到和只存在草稿时的回退。",
+        "两条原始 Code 文本相同而文件角色不同的条目。写入时只发布目标行，活动缓存只匹配当前行，冷启动重新按实际来源优先级选择并分别核所需文件。",
+        "保留待准备的旧根到新候选真实可用。当前安装来源已失效或微信材料只可临时读取时，重开报告待选择或待补选，实际产品不得自动进行对应准备。",
+        "同一个已确认的候选分别从手动和失败恢复入口应用。核重建列表、同一尝试恢复、迟到提交以及三端产品和实际原版的相应回执。"
+      ],
+      "scope_boundary": "FR-U3 的目录选择、路径与实际文件来源绑定、设置回执及续接已有执行规格。原版真实路径与写入、移动真机原生选择器、微信产品持久化及其它 FR-U3 预算、时钟和后台条件待按原规格核验。",
+      "whole_FR_U3_closed": false,
+      "original_or_full_platform_case_executed": false
+    },
+    "acceptance_cases": [
+      "分别覆盖错误码 2、3、161 和无重选操作的错误。核对同一主窗的重复提示、创建失败、普通关闭及重选返回。",
+      "提示返回后以当时的条目和阶段排队。重复排队和投递失败分别检查操作标记。",
+      "迟到的条目或阶段失配，仍先消费操作标记再返回。",
+      "索引无效、占用任一任务槽、取消或路径检查失败时按相应入口收尾。",
+      "两个条目路径通过但写入失败时，沿失败返回和操作标记恢复验收。",
+      "写入成功后核对目录发布、结果提示、标记恢复，以及两种入口各自的续接。"
+    ],
+    "actual_windows_delivery_and_rebinding_verified": false,
+    "whole_LS_U3_closed": false,
+    "source_capability_readiness_promoted": false
+  },
+  "f5a_result_selection": {
+    "classification": "固定 F5A 的状态 0 回复及同一主窗的普通确认",
+    "source_review": {
+      "path": "build/analysis/launcher-f5a-result-selection-v1/source-review.json",
+      "bytes": 14033,
+      "sha256": "001fc4d9358068823f26daa8c75ec3b066381a25f6f38c37946e2b4152720be6"
+    },
+    "report": "reports/launcher-static.md#f5a-result-selection",
+    "capabilities": ["L03", "L07", "L08"],
+    "implementation_batches": ["D1", "D5"],
+    "rules": [
+      "状态 0 的准入在普通阶段 3 先增至 4 并同步分派，再恢复控件并更新选择。阶段 4 的首次 43A2D0 分派直接返回。",
+      "回复的第 6 个参数进入 429D80 的第 4 参数。有效计数为零时先按预设请求更新已处理位，清请求及当前候选数，再沿空结果分支返回。到达所选非空写入路径时，先发布交接数字，再执行显示行恢复和预设确认。",
+      "417B00 在置预设请求前复制四字节字段和七条字符串。4198B0 先消费预设请求，按字节和长度比较名称。第二个匹配使候选索引失效。随后检查当前与保存的上下文文本、所选状态字 0 或 -4，以及两个对应字段至少一个为零。",
+      "匹配或状态失配先请求清显示选择再提示。候选有效但没有对应显示行时直接提示。找到显示行则发送 LB_SETCURSEL 后进入 423220。普通确认重读实际行、通过候选检查后写选择索引并调用设置入口，再递增阶段、进入启动器分派。",
+      "所选阶段 3 路径在预设确认和启动读取前写本次数字。若收到回复时已经处于阶段 4 且准入成立，初次同步分派可先进入启动路径，实际普通触发继续取证。"
+    ],
+    "cases": "build/analysis/launcher-f5a-result-selection-v1/source-review.json#/specified_cases",
+    "profile_list_projection": {
+      "classification": "固定 F5A 普通非空状态 0 回复到手动或预设确认的列表规则",
+      "source_review": {
+        "path": "build/analysis/launcher-f5a-profile-list-v1/source-review.json",
+        "bytes": 28000,
+        "sha256": "f34601fe68d7abddf542ebdaea593fde447b3b7d3dde528763c2f0fb9d729eea"
+      },
+      "local_comparison": {
+        "path": "build/analysis/launcher-f5a-profile-list-v1/local-comparison.json",
+        "bytes": 511,
+        "sha256": "ad00c7c7a1ba3eb07a3a9e5ebb5674e85eb188bac1b6ec48ae8f7d19c185f180"
+      },
+      "requirements": ["L02", "L03", "L07", "L08"],
+      "implementation_batches": ["D1", "D5"],
+      "facts": [
+        "43F900 状态 0 路径接收至多 64 个候选和至多 32 字节上下文字段。非空候选要求非空上下文字段、所有名称和四个使用列的指针有效，以及各列计数覆盖名称数。到达 429D80 后，内部正数路径另取计数与 64 的较小值。",
+        "595C30 按 W0 到 W4 解码五列。595190 的调用跳过 W0 的指针与计数，向 43F900 交付 W1 到 W4。429D80 按无符号字节比较名称，严格小于时同步交换当前与先前的名称指针和这四列。W1 以低 16 位存到主窗 +0x123A，W2、W3、W4 分别存到 +0x12BC、+0x13BC、+0x14BC。候选索引取排序后的下标。",
+        "429D80 清 +0x16DC 筛选文本并为各候选读本地资料。42D110 重建时先取 41A9A0(1) 的置顶组，按 +0x1D28 的有符号值升序插入，相同值保留候选遍历顺序。再取 41A9A0(0) 的普通组，组内锚点全空时沿候选顺序。存在非空锚点时先收集空锚候选，再沿 F、A:、B: 的相对插入分支及余项回退处理。",
+        "421770 对组合名称和本地备注的工作字符串作转换，并在当前筛选词非空时通过 __mbsstr 检查。通过后 44B530 用 LB_ADDSTRING 取得实际显示行，只有返回 0–63 才写控件 +0x2E0 的候选索引。44C950 在同一行设置显示属性。",
+        "42D110 清旧映射前保存实际选中项的候选索引。重建后，原索引对应的插入返回值非负时请求该行并刷新详情，否则请求清选择并把应用 +0x7894 置 -1。读选中行时重新检查 0–63 的映射范围。429D80 随后写交接数字，再读当时仍有效的保存索引，沿 41EF00 查显示行，然后进入 4198B0 的预设处理。",
+        "4280C0 阶段 4 按实际显示行查候选详情，W2 有符号大于零时按 W3 和 W4 走日期分支。423220 阶段 4 再读显示行映射和对应候选，W1 的有符号低 16 位须为 0 或 -4，W2 和 W4 至少一项为零。通过后保存候选索引，继续原交接。"
+      ],
+      "implementation": {
+        "D1": "复用现有 reply11 解码、名称成组交换、低 16 位状态门槛和普通确认。按 F5A 规格补非空上下文准入、本地资料排序、筛选及回复原序号到候选索引再到显示行的映射。由现有登录流程所有者持有映射，手动和预设沿同一确认。",
+        "D5": "现有宿主从共同列表结果显示行、返回选择和更新详情。沿 UC-P12 复用版本编码及本地状态，验证重新筛选、行插入结果和选择清除。",
+        "existing_owners": ["shared/launcher-replies.mjs", "shared/launcher-login.mjs", "shared/launcher-flow.mjs", "shared/launcher-handoff.mjs"],
+        "existing_ports": ["UC-P12"]
+      },
+      "acceptance": {
+        "session_cases": ["LS-T15", "LS-T17"],
+        "additional_conditions": [
+          "64 和 65 个候选、非空列表配空上下文、W1 到 W4 任一计数缺项，以及解码成功的空 W0。",
+          "同名交换与状态列同行；置顶同 rank、普通无锚和锚点可解及不可解时的次序。",
+          "筛选无匹配、行插入错误、旧项仍可见或移出列表、选择消息返回后确认重读。",
+          "重名预设、有效候选无显示行和普通手动确认分别按已有确认用例推进。"
+        ],
+        "actual_native_and_target_cases_executed": false
+      },
+      "remaining": "按既有用例核实际 Windows 列表、文本转换、锚点组合、插入返回及消息时序。现有共享结果只完成合成夹具对照，当前同版游戏消费仍沿 L07/X07 取证。",
+      "pin_publication": {
+        "classification": "固定 F5A 的阶段 4 置顶、取消置顶及列表重建",
+        "source_review": {
+          "path": "build/analysis/launcher-f5a-pin-publication-v1/source-review.json",
+          "bytes": 28717,
+          "sha256": "f2ce2ae1ba1518862d807cc553b8977625985ae3114190531805d1882589a625"
+        },
+        "requirements": ["L02", "L04", "L08"],
+        "implementation_batches": ["D1", "D5"],
+        "facts": {
+          "context_menu": "消息表 5E3FA8 的 0x7B 进入 424400。所选阶段 4 路径检查当前列表窗口及候选数。键盘请求以所选行的矩形中心构造位置，所选命中路径请求选中该行、刷新详情，再读当前映射。菜单按选中项的置顶位显示 0x7202 或 0x7203。选择命令后分别调用 430900(1) 或 430900(0)。",
+          "current_candidate": "430900 通过 44C2C0 重读当时列表的候选映射。候选索引须在 [0, +0x202C) 且请求值须与 +0x1CE8 中的置顶位不同，才读取旧排序值并开始保存。",
+          "write_and_publish": "置顶先扫描所有当前候选中置顶位等于 1 的有符号排序值，最大值从 0 起，取 32 位最大值加 1。取消置顶取 0。先写置顶位，收到非零回执后才写排序值。两写成功后清 +0x19E0 的排序撤销位，更新候选的 +0x1CE8 和 +0x1D28，再调用 42D110。",
+          "failure": "任一次写入返回零，尝试先写回旧置顶位，再写回旧排序值，两次恢复结果均不影响之后的错误提示。此失败分支不发布候选或撤销位，也不发出列表重建。",
+          "format_and_reload": "42FEC0 与 42FDF0 分别通过 41FA00 和 41F8F0 生成 GID_PIN_ 和 GID_PIN_ORDER_V2_ 键。两者复用 41F710 的 GID_ 摘要后缀，来源为账号、当前游戏码、候选 ID 的 %s|%d|%s 原字节。GameIDNotes 的数值沿 449A30 用 %d 写入，空派生键返回失败。置顶位按字节取值，排序值写入时将有符号非正值归零。429D80 正数回包通过同两键读回，置顶位取非零，排序值保留有符号正值。",
+          "selection": "42D110 沿上级规格按候选索引恢复选择，复用原分组、筛选和实际插入行。若先前候选无法获得可用行，执行原清选择路径。写入成功早于列表插入和选择恢复。"
+        },
+        "derived_boundary": "当已有置顶排序值为 INT32_MAX 时，新候选的内存排序值按 32 位回绕为 INT32_MIN，写入时为 0。随后正数回复读取所写值时得到 0。",
+        "implementation": {
+          "D1": "复用现有候选、选择确认和本地偏好入口，在同一份显示映射上接入置顶保存、两次写入回执、恢复尝试和撤销位更新。保留计算排序值、持久化序列和显示结果各自的来源条件。",
+          "D5": "宿主用当前列表回执完成命中、选择和详情刷新。沿 UC-P12 核对本地设置保存及重开，沿 LS-T17 核对行重建和普通确认。",
+          "existing_owners": ["shared/launcher-login.mjs", "shared/launcher-flow.mjs", "shared/launcher-preferences.mjs"],
+          "existing_ports": ["UC-P12"]
+        },
+        "acceptance": {
+          "session_cases": ["LS-T17"],
+          "additional_cases": "build/analysis/launcher-f5a-pin-publication-v1/source-cases.json#/cases",
+          "actual_native_and_target_cases_executed": false
+        },
+        "remaining": "实际菜单嵌套消息和选择变化、文件写回及重开、原 ANSI 文本与三端输入及存储回执继续验收。其余本地候选操作引用同一列表规格下的 candidate_management。"
+      },
+      "candidate_management": {
+        "classification": "固定 F5A 的筛选、备注、组内移动、排序重置与单次撤销",
+        "source_review": {
+          "path": "build/analysis/launcher-f5a-candidate-management-v1/source-review.json",
+          "bytes": 63936,
+          "sha256": "1cebefab2d1a230a453dbd9fe3f9040d09a0360dc139d7c5e9f7e651725eb3b9"
+        },
+        "local_comparison": {
+          "path": "build/analysis/launcher-f5a-candidate-management-v1/local-comparison.json",
+          "bytes": 429,
+          "sha256": "dc1e0685e64dac4142917a5dacf102f0d4d4dd893b35093dfc0b3768058b8d10"
+        },
+        "requirements": ["L02", "L04", "L08"],
+        "implementation_batches": ["D1", "D5"],
+        "facts": {
+          "filter_input": "主窗消息表 5E3BA0 的 WM_COMMAND、通知 0x300、控件 0x7210 进入 4255C0。读取编辑文本，先沿 432B40、432C30 按源码 CRT 的多字节递进及空白判定修剪两端，再经 4214B0 调用所选 CRT 小写入口。用 __mbscmp 比较现有 +0x16DC。值不同才发布，发布后仅阶段 4 直接调用 42D110。候选文本由 421770 组装 ID、空格和备注后沿同一小写入口，再用 __mbsstr 匹配。控件接收 64 的输入上限参数。",
+          "search_visibility": "控件 0x7211 的普通点击在阶段 4 切换搜索框，沿 LauncherUI/GidSearchExpanded 保存展开值，并按展开结果请求焦点。所选切换调用保留当前筛选词及文本。100ms 的定时器 0x36D 经 429A50 到 4327B0。仅在编辑窗口已建立且阶段 4 列表可见性改变时调整可用状态。变为可用时从设置读取展开值，默认 1。变为不可用时清 +0x16DC 和编辑文本。429D80 的所选正数回复也会清查询、编辑及排序撤销位。",
+          "edit_note": "0x7201 进入 430730。函数先保存有效当前候选索引，再从该项备注构造 CGidNoteDialog。所选初始化向编辑 0x7207 提交 32 上限参数、焦点和全选请求。对话框确认先经 428390 与 422440 规整，外层仅在结果 1 时再次规整并按保存的候选索引调用 42FD10。写入成功后才更新内存备注及重建列表，失败进入提示。",
+          "clear_and_reload_note": "0x7204 重读当前候选并检查其备注非空，使用空文本沿同一写入规则清除，收到成功回执后清内存备注及重建。42FD10 通过 41F710 的基础 GID_ 键在 GameIDNotes 中写规整后的文本。正数回复经 420C00 用同一基础键读回并再次规整。422440 在单元起始跳过小于 0x20 和等于 0x7F 的字节，保留空格。IsDBCSLeadByte 为真且有后继字节时取两个字节，否则取一个。下一单元会超过 32 字节时结束。",
+          "move_entry": "菜单 0x7205、0x7206 由当前组内索引减一或加一产生目标，活动筛选和边界影响菜单可用性。注册名 commctrl_DragListMsg 的消息表入口 425140 只接当前列表窗口。拖动开始要求阶段 4 与空筛选，保存命中行映射的候选；拖动与放下读取当前命中候选并要求两项组相同。目的行下半部分含中点，按其后插入，源项在插入点前时调整目标。放下先清标记和源槽，再复用 421A10。取消或所选阶段失配清标记和源槽。421A10 再查空筛选、候选索引、当前组内位置和有效且不同的目标。",
+          "move_pinned": "421A10 对原组次序作稳定移动。非零组按新顺序计算从 1 起的排序值。仅写变化值，失败尝试恢复此前已成功写入的值。全部成功后发布新排序值，复制移动前的排序快照，置单次撤销位并重建。",
+          "move_ordinary": "普通组按已含锚点、原移动排序值大于零或本次被移动确定需写的候选集合。在移动后的顺序找最右未标记项。其前方的已标记项以 B: 后继 ID 为锚，其余有前驱取 A: 前驱 ID，首项无前驱取 F。已标记项依序得到从 1 起的排序值。当锚点或排序值任一变化，依次写锚点和排序值。排序写失败先尝试恢复当项锚点，再恢复此前成功的两值。锚点写失败直接恢复此前成功的两值。恢复尝试之后显示移动失败。全部成功才发布两值、保存旧快照、启用单次撤销并重建。",
+          "reset_and_undo": "41B6B0 与 417980 处理各 64 项置顶排序值、移动排序值和受管锚点文本。0x7209 先捕获旧快照，构造零排序值与空锚点后调用 4195E0。成功才将旧快照写 +0x16E0 并置 +0x19E0。0x720A 仅在该位非零时应用旧快照，成功才清位。两次操作共用 4195E0，按当时的候选数逐项先写置顶排序值、移动排序值和锚点，全部成功才在内存发布并重建。任一写失败，对索引 0 至失败项都尝试恢复三个旧值，按汇总结果选用两个不同提示，返回失败。快照范围为两类排序值和锚点。",
+          "stored_values": "42FB50 与 42FC40 的写入键分别是 GID_MOVE_ANCHOR_ 和 GID_MOVE_ORDER_V2_，后缀沿已有 41F710 字节规则。锚点为文本，移动排序值按有符号正值写十进制，其余写零。正数回复通过相同键读取文本或有符号正排序值。449B20 使用 WritePrivateProfileStringA，返回所选文件 API 结果。"
+        },
+        "inferences": [
+          "部分写入后的恢复尝试及其回执供 UI 和重开用例核验。批量恢复结果是所选 API 回执的合取，文件持久性继续验收。"
+        ],
+        "implementation": {
+          "D1": "沿现有登录流程持有候选、筛选和排序快照。复用回复解码、字节排序、显示映射、确认及文本接口。以有版本身份的本地资料规则接入备注、置顶及排序，保留各操作自己的保存和撤销完成点。",
+          "D5": "三个宿主使用共同的行、备注、排序和错误结果。沿 UC-P12 核对编码、搜索展开状态和设置回执，沿原 LS/SP/SO 用例核实际列表、编辑、触控或指针移动、重新打开和确认。",
+          "existing_owners": ["shared/launcher-login.mjs", "shared/launcher-flow.mjs", "shared/launcher-preferences.mjs", "shared/launcher-text.mjs"],
+          "existing_ports": ["UC-P12"]
+        },
+        "acceptance": {
+          "session_cases": ["LS-T17", "LS-T20"],
+          "additional_cases": "build/analysis/launcher-f5a-candidate-management-v1/source-cases.json#/cases",
+          "actual_native_and_target_cases_executed": false
+        },
+        "remaining": "实际 Windows 的编码、备注消息与写回、拖动坐标和三端重开、手势及确认待验。备注所选静态准入与保存目标见 note_modal_admission。其他版本沿原规格处理，当前同版游戏消费仍由 L07/X07 核验。",
+        "note_modal_admission": {
+          "classification": "固定 F5A 备注对话的源码规则、条件推导和原版待验范围",
+          "capabilities": ["L03", "L04", "L08"],
+          "source_review": {
+            "path": "build/analysis/launcher-f5a-note-modal-v1/source-review.json",
+            "bytes": 34201,
+            "sha256": "8398932da3ca76afe8191f5328ba0e054b7c2321e841ba96aa97812b0bb6e1c2"
+          },
+          "report": "reports/launcher-static.md#f5a-note-modal-admission",
+          "facts": {
+            "entry": "424400 的列表菜单先核阶段 4、列表 HWND 与有效命中。424610 的忙态比较影响 0x1EF6 的菜单标志。42469A 的 0x7201 使用固定标志 0。返回 0x7201 后调用 430730，重读显示映射并在打开前查索引位于当前候选数内，再复制该槽的原备注。",
+            "owned_dialog": "430730 把主窗传给 45C624。45C30D 解析拥有者，关闭合资格且已启用窗口的输入。45C2B0 经 4584EB 运行模态循环，所选底层路径可读取和派发线程消息。正常返回恢复本次禁用的窗口，再将结果交给外层。既有 MessageBoxA 夹具另有禁用拥有者时消息送达的记录。",
+            "reply_gate": "普通提交经阶段 3 分支在 423795 置忙。成功准入从 4289F0 调用 41EF80 清忙，然后在 428A52 推进阶段。后续状态 0 即使通过回复形状检查，也须在 4289F3 查忙态才会进入选择更新。定时器 100 在空闲时撤销，0x332 可以尝试维护。0x8242 在编号匹配时消费待处理项，随后检查资格、阶段及窗口条件。",
+            "save_target": "430828 只在结果 1 时继续。43087B/430881 以打开时保存的索引访问当前候选名槽 +0x1AE8，确认段没有复查当时的候选数或显示行。41F710 用当前账号、游戏码和该槽名称构造 GameIDNotes 的基础 GID_ 键。空账号或空名返回空键，42FD10 在调用 449B20 前返回失败。写入成功才更新同下标的 +0x1BE8 备注槽并重建。其他对话结果跳过保存。",
+            "replacement": "429D80 的所选零计数分支先清候选数。正数分支以 64 槽循环清原名称，再把排序后的新名称写入前 N 槽。已保存的数字索引与当前可见行各自独立。"
+          },
+          "inferences": [
+            "普通阶段 3 成功回复完成选服列表后，阶段 4 主窗已空闲。在同一主窗、阶段和忙态保持时，迟到的合法状态 0 可以记录收到，选择更新仍不准入。匹配 0x8242 至多消费待处理位，阶段 4 无法进入阶段 3 提交。",
+            "若同一主窗在对话期间实际执行替换并回到确认段，同一索引处非空的新名称会成为保存目标。正数替换后若所存索引超出新计数，已清空的名称槽会令保存失败。零计数本身只证明计数已变，应按槽中实际名称判断。"
+          ],
+          "acceptance": {
+            "LS-T17": [
+              "在普通选服空闲态编辑并确认，按保存回执更新备注及重建。取消及创建失败无写入，空键或持久化失败不发布备注。",
+              "在对话期间投递合法迟到状态 0，记录回复准入和列表结果。另核只改变显示行、保持同一候选槽时的保存目标。",
+              "同槽新名称和正数缩表作为静态条件用例。取得实际替换和同一拥有者继续执行的证据后，按确认时槽内容验收。"
+            ],
+            "LS-T20": [
+              "实际核对备注窗口的打开、禁用、排队投递和返回次序。分别观察匹配或旧编号、空闲定时器及维护进入时的状态。",
+              "沿原连接用例核对借用、真正的新绑定和关闭回执。现有 Windows MessageBoxA 夹具用于窗口机制对照。"
+            ]
+          },
+          "implementation": {
+            "D1": "复用阶段、尝试、候选映射和现有保存回执。普通备注操作共用一份候选与文本所有者，按确认、取消和实际写入结果处理发布。",
+            "D5": "沿 LS-T17、LS-T20 和 UC-P12 验证三端对话生命周期、迟到事件、实际写回及重开。"
+          },
+          "note_dialog_native_delivery_observed": false,
+          "ordinary_replacement_during_note_proven": false,
+          "whole_LS_U3_closed": false,
+          "full_target_case_executed": false
+        }
+      },
+      "source_capability_readiness_promoted": false,
+      "implementation_gate_passed": false,
+      "current_paired_game_consumer_proven": false
+    },
+    "native_message_delivery_verified": false,
+    "current_paired_game_consumer_proven": false,
+    "whole_LS_U3_closed": false,
+    "source_capability_readiness_promoted": false
+  },
+  "f5a_start_return": {
+    "source_review": "build/analysis/launcher-f5a-start-return-v1/source-review.json",
+    "report": "reports/launcher-static.md#f5a-start-return",
+    "capabilities": [
+      "L03",
+      "L07",
+      "L08"
+    ],
+    "implementation_batches": [
+      "D1",
+      "D5"
+    ],
+    "tray_return": "0x43a3f0",
+    "reply_borrow": {
+      "callback": "0x595190",
+      "release": "0x595227",
+      "held_through_selected_prompt_and_prepare": true
+    },
+    "preparation": {
+      "caller": "0x43a355",
+      "post_site": "0x41eebc",
+      "outer_phase_3_write": "0x43a389",
+      "generation_rule": "#/f5a_posted_submit/rules/new_generation"
+    },
+    "conditions": "托盘失败提示正常返回后才进入所选准备。需要主窗与任务槽准入，消息接收读取当时的阶段和窗口状态。",
+    "actual_modal_message_delivery_proven": false,
+    "actual_rebind_proven": false,
+    "whole_LS_U3_closed": false,
+    "current_paired_game_consumer_proven": false
+  }
+}

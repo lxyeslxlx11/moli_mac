@@ -1,0 +1,168 @@
+{
+  "schema": "moli.capability.game-party-social-plan.v1",
+  "requirement": "先REA统一全部需求能力再成组开发；归并队伍加入/离开/跟随、关系名册/选择、资料权限和晚到回复，旧事实与历史命名分开。",
+  "capabilities": [
+    "G04",
+    "G05",
+    "G14",
+    "G19",
+    "B01",
+    "X01",
+    "X02"
+  ],
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "baseline": "build/analysis/capability-game-trade-storage-v1/next-baseline.json",
+  "questions": [
+    "复用已有party-follow/actions来源，串联加入/离开请求与回复、五槽队伍名单、跟随/移除及入战/退出/重置的必要合同。",
+    "核对既有friend-roster的实际用途、两bank/名册身份和相关用户命令；历史friend命名或发送包装函数不自动证明完整社交功能。",
+    "关系名册版本/详情/选择、缓存持久化和角色切换如何影响战斗分类及普通状态；现有独立核心与原全局生命周期有哪些差异？",
+    "形成D0/D3/D4/D5依赖及验收样例；保留原38域/81登记/37历史要求/10组并按新发现补G19至39域，完整发现/异常交错/平台和同版接受分别留待验证。"
+  ],
+  "original_execution": false,
+  "VM_operations": false,
+  "account_or_official_session_observed": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "question_review": [
+    {
+      "question": 1,
+      "status": "ordinary-party-rules-and-old-leave-ABI-reused",
+      "facts": [
+        "ordinary-party-toggle-request",
+        "party-result-and-corrected-leave-ABI",
+        "five-party-rows-and-overlapping-update-mask",
+        "party-battle-and-independent-domain"
+      ],
+      "remaining": [
+        "party-global-battle-and-compound-order"
+      ]
+    },
+    {
+      "question": 2,
+      "status": "historical-friend-attribution-corrected-to-album-G19",
+      "facts": [
+        "album-attribution-and-new-capability",
+        "two-bank-decoded-layout-and-cold-state",
+        "classic-album-list-and-detail-controls",
+        "modern-album-list-detail-and-close"
+      ],
+      "remaining": [
+        "actual-social-friend-feature"
+      ]
+    },
+    {
+      "question": 3,
+      "status": "album-field-cache-classification-and-core-policy-separated",
+      "facts": [
+        "album-summary-revision-and-detail-requests",
+        "album-detail-record-map-and-discovery-byte",
+        "album-cache-consumer-with-opaque-transform",
+        "album-lookup-and-FE0-lowbit",
+        "independent-album-projection-and-lifecycle-policy"
+      ],
+      "remaining": [
+        "album-bank-cache-and-pagecount-writers"
+      ]
+    },
+    {
+      "question": 4,
+      "status": "G19-added-original-scope-preserved-dependencies-and-proposed-cases-recorded",
+      "facts": [
+        "source-reuse-and-separate-authority",
+        "scope-preserved-and-discovery-open"
+      ],
+      "remaining": [
+        "unified-discovery-and-platform-acceptance"
+      ]
+    }
+  ],
+  "source_summary": {
+    "selected_source_views": 86,
+    "unique_reused_native_entries": 79,
+    "native_source_body_bytes": 30386,
+    "native_listing_boundaries": 8587,
+    "reused_derived_views": 7,
+    "reused_derived_body_bytes": 5603,
+    "reused_derived_instructions": 1581,
+    "new_native_or_derived_views": 0,
+    "declared_source_body_bytes": 35989,
+    "direct_E8_CALL_occurrences_verified": 847,
+    "unique_E8_CALL_sites_verified": 847,
+    "original_complete_native_records_factory_validated": 80,
+    "additional_same_entry_original_observations": 1,
+    "old_exact_ID_bindings_verified": 86,
+    "original_dossier_bindings_verified": 65,
+    "classic_descriptors": 2,
+    "classic_controls_identity_checked": 153,
+    "modern_table_rows": 2,
+    "old_bounded_file_read_windows_verified": 31,
+    "virtual_zero_fill_ranges": 2,
+    "old_encoded_call_sites_verified": 11,
+    "protocol_bindings": 7,
+    "static_literal_spans_verified": 10,
+    "new_REA_records": 0,
+    "new_Ghidra_analysis": false,
+    "runtime_features_changed": false,
+    "all_capability_analysis_complete": false
+  },
+  "remaining": [
+    {
+      "id": "actual-social-friend-feature",
+      "kind": "pending",
+      "capabilities": [
+        "G14",
+        "G15",
+        "X01"
+      ],
+      "need": "实际好友/对方资料、好友选择/命令及资料权限、黑名单/聊天关联、取消/关闭/晚到回复；图鉴证据不能代替。",
+      "next_evidence": "下一组复用G15聊天/过滤/公告和现有入口索引，沿实际UI提示/结构/协议生产消费定位真正社交链；不再按friend-roster旧名直接归为好友。"
+    },
+    {
+      "id": "album-bank-cache-and-pagecount-writers",
+      "kind": "pending",
+      "capabilities": [
+        "G19",
+        "B01",
+        "X02"
+      ],
+      "need": "F5F048当前bank全部生产者、角色/世界重置与加载顺序、C218F0页数变更、完整UI资格/外层激活、表变化到下游FE0消费者的必要先后。",
+      "next_evidence": "沿当前全局写者、5015a0读链和真实UI入口补必要新边；共享frame/窗口规则与opaque缓存转换直接复用，不展开无需求的转换内部或重复open99/97有限阴性。"
+    },
+    {
+      "id": "party-global-battle-and-compound-order",
+      "kind": "pending",
+      "capabilities": [
+        "G04",
+        "G05",
+        "G14",
+        "B01",
+        "X02"
+      ],
+      "need": "入战/退出/重建、stage250..252、重复/失效body、spin/ride复合与共享计时/迟到HFs/Kk0的完整调度；冷重置、body解绑和逻辑名单保留的组合。",
+      "next_evidence": "复用本轮普通队伍/target ABI/原body所有权和既有战斗退出合同，仅沿具体原始调用/状态发布新边补证；不把独立拒绝政策当原版全域行为。"
+    },
+    {
+      "id": "unified-discovery-and-platform-acceptance",
+      "kind": "pending",
+      "capabilities": [
+        "X01",
+        "X02",
+        "X04",
+        "X05",
+        "X07",
+        "X08"
+      ],
+      "need": "新增G19和其余全能力的规格/依赖复核，实际平台与必要版本/同版服务器接受；当前没有测试账号，不能完成真实登录和官服验收。",
+      "next_evidence": "继续统一分析，A4门槛通过后按共享批次开发；不反复索取账号、不新增无协议来源演示功能或将本地投影当官方接受。"
+    }
+  ],
+  "scope_change": {
+    "original_capabilities_preserved": 38,
+    "new_capability": "G19",
+    "current_capability_count": 39,
+    "reason": "UI/table/cache jointly establish album, not full social friends."
+  }
+}

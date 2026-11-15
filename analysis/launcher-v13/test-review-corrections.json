@@ -1,0 +1,28 @@
+{
+  "schema": "moli.launcher-v13.test-review-corrections.v1",
+  "test_harness_corrections": [
+    {
+      "initial_result": "14/15 HTTP tests, one missing rejection",
+      "cause": "Test assumed transparent AbortSignal Proxy must be rejected on every host. Node26 native aborted getter accepts it; source response is a platform signal guard, not a universal Proxy detector.",
+      "change": "Removed unsupported cross-host rejection assertion. Plain invalid signal remains rejected; pre/mid cancellation verified in Node and Chrome. No product weakening to fit the assertion."
+    },
+    {
+      "initial_result": "260/261 full tests, one undefined versus true",
+      "cause": "New composition test guessed md5Verified instead of existing decodeLauncherUpdatePackage.digestMatches API.",
+      "change": "Use existing documented digestMatches; product ZIP API unchanged."
+    }
+  ],
+  "implementation_review_fixes": [
+    {
+      "issue": "Timer callback may not run before a synchronously stalled fetch/read completes; late success accepted.",
+      "fix": "Monotonic absolute deadline checked after awaits, on success and rejection, and final copy; delayed body discarded, late rejected read promise observed. Follow-up synchronousfetch throw also receives deadline precedence.",
+      "regression": "17th HTTP test: synchronous fetch/read and late read rejection",
+      "independent_confirmation": "Exact30ms/1ms late-success and late-throw reproductions confirmedHTTP_TIMEOUT; origin16+1 reproduction rejects addedorigin beforefetch; final scoped regression1/1."
+    },
+    {
+      "issue": "Origin entry getter can append a17th entry while loop repeatedly reads values.length.",
+      "fix": "Validate and capture initial integerlength, looponlythatlength; originSet privatelyowned.",
+      "regression": "18th HTTP test:16 initialentries, owngetter appends17th; extraorigin rejected beforefetch"
+    }
+  ]
+}

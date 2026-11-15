@@ -1,0 +1,60 @@
+{
+  "schema": "moli.launcher-v28.visual-review.v1",
+  "record": "ui-browser-verified.json",
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 1100
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "checks": [
+    {
+      "name": "Page identity",
+      "passed": true,
+      "evidence": "Exact /web/login.html URL and Moli · 本地登录流程 title."
+    },
+    {
+      "name": "Not blank",
+      "passed": true,
+      "evidence": "Meaningful main content greater than300 characters; first viewport seen at both sizes."
+    },
+    {
+      "name": "No framework overlay",
+      "passed": true,
+      "evidence": "No overlay selectors and no visual error overlay."
+    },
+    {
+      "name": "Console health",
+      "passed": true,
+      "evidence": "No pageerror/warn/error; only expected net::ERR_ABORTED request cancellation."
+    },
+    {
+      "name": "Screenshot evidence",
+      "passed": true,
+      "evidence": "Viewed desktop/mobile first viewport, desktop real file append and mobile patch review; text/controls readable with no overlap or horizontal clipping."
+    },
+    {
+      "name": "Interaction proof",
+      "passed": true,
+      "evidence": "13patch and6default/Galaxy flow assertions plus actual shipped example; real HTTP/FileList/WS/TCP."
+    }
+  ],
+  "screenshots": [
+    "/private/tmp/moli-launcher-v28-i66iCrPC/final-verified/desktop-first-viewport.png",
+    "/private/tmp/moli-launcher-v28-i66iCrPC/final-verified/desktop-before-patch.png",
+    "/private/tmp/moli-launcher-v28-i66iCrPC/final-verified/desktop-patch-review.png",
+    "/private/tmp/moli-launcher-v28-i66iCrPC/final-verified/desktop-patch-handoff.png",
+    "/private/tmp/moli-launcher-v28-i66iCrPC/final-verified/desktop-real-file-append.png",
+    "/private/tmp/moli-launcher-v28-i66iCrPC/final-verified/mobile-first-viewport.png",
+    "/private/tmp/moli-launcher-v28-i66iCrPC/final-verified/mobile-patch-review.png",
+    "/private/tmp/moli-launcher-v28-i66iCrPC/final-verified/mobile-patch-handoff.png",
+    "/private/tmp/moli-launcher-v28-i66iCrPC/final-verified/desktop-origin-denial.png"
+  ],
+  "screenshot_storage": "Project-external temporary paths, no PNGs in delivery.",
+  "known_limits": "Long page scroll expected; captured patch area is scrolled. No Safari/physicalmobile/WeChat or full BFCache acceptance.",
+  "browser_path": "Browser plugin/skill not available; existing Playwright1.62.1 + Chrome155 fallback; no new dependency acquisition."
+}

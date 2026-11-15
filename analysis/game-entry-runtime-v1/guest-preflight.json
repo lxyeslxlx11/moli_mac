@@ -1,0 +1,74 @@
+{
+  "schema": "moli.game-entry-runtime-v1.guest-preflight.v1",
+  "recorded_utc": "2026-10-29T08:08:17.665774+00:00",
+  "evidence_origin": "Actual CUA live Windows output this turn; no raw guest history/account identifiers saved",
+  "system_terminal": {
+    "launch_command": "powershell -NoProfile",
+    "launch_via": "Native Win+R and native Enter after complete Run command verified",
+    "observed_starts": 1,
+    "fresh_prompt_observed": true,
+    "PID_or_image_hash_queried": false
+  },
+  "completed": [
+    {
+      "command": "get-volume",
+      "input": "Native menu characters, entire line verified before native Enter",
+      "returned_prompt": true,
+      "project_CD": {
+        "DriveLetter": "D",
+        "FriendlyName": "MOLICUR89",
+        "FileSystemType": "Unknown",
+        "DriveType": "CD-ROM",
+        "HealthStatus": "Healthy",
+        "OperationalStatus": "OK",
+        "SizeRemaining_display": "0 B",
+        "Size_display": "1.5 MB"
+      },
+      "scope": "Volume display only; not guest file hashes/open-handle proof"
+    },
+    {
+      "command": "Get-ExecutionPolicy",
+      "input": "ordinary typeText, full text verified after initial prefix; native Enter",
+      "output": "Restricted",
+      "returned_prompt": true,
+      "policy_changed": false
+    },
+    {
+      "command": "@(Get-Process POLCN_Launcher,LauncherUpdater,cg_se_3000 -ea SilentlyContinue).Count",
+      "output": "0",
+      "returned_prompt": true,
+      "input": "Two short chunks; complete names and tail verified before one native Enter",
+      "scope": "Selected names only under SilentlyContinue; not exhaustive enumeration or compatibility proof"
+    },
+    {
+      "command": "@(Get-Process entry-fixture,callback-probe -ea SilentlyContinue).Count",
+      "output": "0",
+      "returned_prompt": true,
+      "input": "Two short chunks; complete names and tail verified before one native Enter",
+      "scope": "Selected own-tool names only; neither PE has been started"
+    }
+  ],
+  "selected_processes": {
+    "original_names_count": 0,
+    "own_tool_names_count": 0,
+    "scope": "Exact named queries only"
+  },
+  "guest_file_hashes_backup_journal_and_own_destination": "not yet freshly checked",
+  "own_ISO_attached": false,
+  "fixture_observer_or_original_game_starts": 0,
+  "full_goal_complete": false,
+  "pending_unsubmitted_hash_query": {
+    "typed_prefix": "(Get-FileHash C:/MoliOffline/launcher-probe/",
+    "planned_tail": "POLCN_Launcher.exe).Hash",
+    "prefix_tool_output": "Last typeText result truncated; full line not confirmed",
+    "Return_sent": false,
+    "hash_returned": false,
+    "resume": "After normal unlock inspect current line before append, clear or Return; never duplicate prefix"
+  },
+  "latest_access": {
+    "Mac_locked": true,
+    "automatic_unlock_succeeded": false,
+    "CUA_result": "The Mac is locked and automatic unlock could not unlock it. Ask the user to unlock the Mac manually before continuing.",
+    "guest_state_obtained": false
+  }
+}

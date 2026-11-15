@@ -1,0 +1,38 @@
+{
+  "schema": "moli.launcher-v30.artifact-output-incident.v1",
+  "recorded_utc": "2026-10-27T10:39:53.196643+00:00",
+  "kind": "current-phase two first-viewport screenshot paths rewritten by later cache regression",
+  "overlapping_paths": [
+    {
+      "path": "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-launcher-v30-l5qy2tkw/desktop-first-viewport.png",
+      "bytes": 134641,
+      "sha256": "19386c966a4b669801d403a2d3f17d0103ffff3772c627f6ab622a42d60154e7",
+      "mtime": 1793097427.9853117
+    },
+    {
+      "path": "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-launcher-v30-l5qy2tkw/mobile-first-viewport.png",
+      "bytes": 52678,
+      "sha256": "41455325984bfe9cb10f5037e08e97833cb5491f2fef5c70ea21da15a4728189",
+      "mtime": 1793097430.6119163
+    }
+  ],
+  "cause": "Copied cache QA receipt path was unique, but its screenshot OUT remained the phase root, overlapping the initial refresh run. Receipt-only replay guard did not guard PNG paths.",
+  "initial_receipts_preserved": [
+    {
+      "path": "/Users/lx/Documents/code/moli-mac/analysis/launcher-v30/refresh-browser.json",
+      "bytes": 26656,
+      "sha256": "3a23b96d4499d533f7d022fb6b0121a38faa130548e2a39c2f534037be4e63f3",
+      "mtime": 1793097333.4747653
+    },
+    {
+      "path": "/Users/lx/Documents/code/moli-mac/analysis/launcher-v30/ui-cache-browser.json",
+      "bytes": 40709,
+      "sha256": "f4d9938d97a5fb99701cec00fc3a0909fce53a0db1c0c0eb23a4250a83e63b56",
+      "mtime": 1793097431.822547
+    }
+  ],
+  "limits": "Initial exact PNG byte identities were not recorded before overwrite and cannot be compared or confirmed restored. This proves path/provenance loss, not that rendered pixels necessarily differ. No prior-stage receipt or pixels were targeted; prior1119 deliveryhashes will be reverified.",
+  "repair": "New independent refresh QA in a fresh subdirectory with unique receipt; capture reserves destination with fs.open(wx) and writes screenshot buffer to that handle, rejecting existing paths. Initial receipts remain untouched and affected images are not used as initial-run visual proof.",
+  "final_record": "refresh-browser-verified.json",
+  "product_code_or_account_data_affected": false
+}

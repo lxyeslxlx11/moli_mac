@@ -1,0 +1,909 @@
+{
+  "schema": "moli.launcher-v26.original-patch-vectors.v1",
+  "source": "Original synthetic fixtures. Python zipfile/zlib/hashlib and independent byte splitter; no official payloads.",
+  "grammar": [
+    {
+      "name": "grammar-00",
+      "manifest_hex": "",
+      "expected": {
+        "blockCount": 0,
+        "operations": [],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-01",
+      "manifest_hex": "7d",
+      "expected": {
+        "blockCount": 1,
+        "operations": [],
+        "skippedBlocks": [
+          {
+            "blockOrdinal": 0,
+            "reason": "too-few-lines"
+          }
+        ]
+      }
+    },
+    {
+      "name": "grammar-02",
+      "manifest_hex": "7d7d",
+      "expected": {
+        "blockCount": 2,
+        "operations": [],
+        "skippedBlocks": [
+          {
+            "blockOrdinal": 0,
+            "reason": "too-few-lines"
+          },
+          {
+            "blockOrdinal": 1,
+            "reason": "too-few-lines"
+          }
+        ]
+      }
+    },
+    {
+      "name": "grammar-03",
+      "manifest_hex": "6372656174650a6e616d653a787d",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "create",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "78"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-04",
+      "manifest_hex": "6372656174650a7b0a6e616d653a780a7d",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "create",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "78"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-05",
+      "manifest_hex": "6372656174657b0a6e616d653a787d",
+      "expected": {
+        "blockCount": 1,
+        "operations": [],
+        "skippedBlocks": [
+          {
+            "blockOrdinal": 0,
+            "reason": "too-few-lines"
+          }
+        ]
+      }
+    },
+    {
+      "name": "grammar-06",
+      "manifest_hex": "4352454154450a6e616d653a787d",
+      "expected": {
+        "blockCount": 1,
+        "operations": [],
+        "skippedBlocks": [
+          {
+            "blockOrdinal": 0,
+            "reason": "unknown-command"
+          }
+        ]
+      }
+    },
+    {
+      "name": "grammar-07",
+      "manifest_hex": "6372656174650a6e616d653a613a620a6e616d653a6c6173740a7d",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "create",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6c617374"
+              }
+            ],
+            "ignoredLineCount": 1,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-08",
+      "manifest_hex": "6372656174650a613a0a613a3a0a3a620a3a3a0a7d",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "create",
+            "fields": [
+              {
+                "key_hex": "61",
+                "value_hex": ""
+              },
+              {
+                "key_hex": "",
+                "value_hex": "62"
+              }
+            ],
+            "ignoredLineCount": 1,
+            "duplicateFieldCount": 1
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-09",
+      "manifest_hex": "6372656174650a6e616d653a66697273740a6e616d653a7365636f6e640a4e616d653a636173650a7d",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "create",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6669727374"
+              },
+              {
+                "key_hex": "4e616d65",
+                "value_hex": "63617365"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 1
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-10",
+      "manifest_hex": "756e6b6e6f776e0a6e616d653a787d617070656e640a6e616d653a797d",
+      "expected": {
+        "blockCount": 2,
+        "operations": [
+          {
+            "blockOrdinal": 1,
+            "operation": "append",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "79"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": [
+          {
+            "blockOrdinal": 0,
+            "reason": "unknown-command"
+          }
+        ]
+      }
+    },
+    {
+      "name": "grammar-11",
+      "manifest_hex": "6372656174650a706174683a5c415c420a6e616d653ad6d0cec42e62696e0a6d64353a647d",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "create",
+            "fields": [
+              {
+                "key_hex": "70617468",
+                "value_hex": "5c415c42"
+              },
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "d6d0cec42e62696e"
+              },
+              {
+                "key_hex": "6d6435",
+                "value_hex": "64"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-12",
+      "manifest_hex": "6372656174650a7b0a6e616d653a780a",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "create",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "78"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-13",
+      "manifest_hex": "6372656174650d0a7b0d0a6e616d653a6120620d0a7d",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "create",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-14",
+      "manifest_hex": "6372656174650d0a7b0d0a20096e616d6520093a200961206220090d0a7d",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "create",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-15",
+      "manifest_hex": "6372656174650d0a7b0d0a6e616d653a6120620d0a",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "create",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-16",
+      "manifest_hex": "6372656174650d0a7b0d0a20096e616d6520093a200961206220090d0a",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "create",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-17",
+      "manifest_hex": "6372656174650d0a7b0d0a6e616d653a6120620d0a7d0d0a",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "create",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-18",
+      "manifest_hex": "6372656174650d0a7b0d0a20096e616d6520093a200961206220090d0a7d0d0a",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "create",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-19",
+      "manifest_hex": "617070656e640d0a7b0d0a6e616d653a6120620d0a7d",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "append",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-20",
+      "manifest_hex": "617070656e640d0a7b0d0a20096e616d6520093a200961206220090d0a7d",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "append",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-21",
+      "manifest_hex": "617070656e640d0a7b0d0a6e616d653a6120620d0a",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "append",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-22",
+      "manifest_hex": "617070656e640d0a7b0d0a20096e616d6520093a200961206220090d0a",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "append",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-23",
+      "manifest_hex": "617070656e640d0a7b0d0a6e616d653a6120620d0a7d0d0a",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "append",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-24",
+      "manifest_hex": "617070656e640d0a7b0d0a20096e616d6520093a200961206220090d0a7d0d0a",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "append",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-25",
+      "manifest_hex": "7265706c616365746f0d0a7b0d0a6e616d653a6120620d0a7d",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "replaceto",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-26",
+      "manifest_hex": "7265706c616365746f0d0a7b0d0a20096e616d6520093a200961206220090d0a7d",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "replaceto",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-27",
+      "manifest_hex": "7265706c616365746f0d0a7b0d0a6e616d653a6120620d0a",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "replaceto",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-28",
+      "manifest_hex": "7265706c616365746f0d0a7b0d0a20096e616d6520093a200961206220090d0a",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "replaceto",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-29",
+      "manifest_hex": "7265706c616365746f0d0a7b0d0a6e616d653a6120620d0a7d0d0a",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "replaceto",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    },
+    {
+      "name": "grammar-30",
+      "manifest_hex": "7265706c616365746f0d0a7b0d0a20096e616d6520093a200961206220090d0a7d0d0a",
+      "expected": {
+        "blockCount": 1,
+        "operations": [
+          {
+            "blockOrdinal": 0,
+            "operation": "replaceto",
+            "fields": [
+              {
+                "key_hex": "6e616d65",
+                "value_hex": "6162"
+              }
+            ],
+            "ignoredLineCount": 0,
+            "duplicateFieldCount": 0
+          }
+        ],
+        "skippedBlocks": []
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "create-stored",
+      "manifest_hex": "6372656174650a7b0a706174683a42696e0a6e616d653a6e65772e62696e0a6d64353a34316565323064393430316438393666356633643735393838623833303838380a7d",
+      "files": [
+        {
+          "path": "keep.txt",
+          "hex": "6b656570"
+        }
+      ],
+      "archives": [
+        {
+          "blockOrdinal": 0,
+          "hex": "504b03041400000000000000215c216559b61f0000001f000000070000006e65772e62696e4f726967696e616c2067616d652070617463682063616e64696461746500ff504b03041400000000000000215c650d3f4d05000000050000000900000065787472612e62696e6578747261504b010214031400000000000000215c216559b61f0000001f0000000700000000000000000000008001000000006e65772e62696e504b010214031400000000000000215c650d3f4d050000000500000009000000000000000000000080014400000065787472612e62696e504b050600000000020002006c000000700000000000"
+        }
+      ],
+      "expected_files": [
+        {
+          "path": "keep.txt",
+          "hex": "6b656570",
+          "md5": "18ccf61d533b600bbf5a963359223fe4"
+        },
+        {
+          "path": "Bin/new.bin",
+          "hex": "4f726967696e616c2067616d652070617463682063616e64696461746500ff",
+          "md5": "41ee20d9401d896f5f3d75988b830888"
+        },
+        {
+          "path": "Bin/extra.bin",
+          "hex": "6578747261",
+          "md5": "ea9f91b2cda019730f2891bd12a7a4d6"
+        }
+      ]
+    },
+    {
+      "name": "append-stored",
+      "manifest_hex": "617070656e640a7b0a706174683a42696e0a6e616d653a6e65772e62696e0a6d64353a32306635366461643230356335633639396636306431313331623735353161350a6f6c645f6e616d653a6f6c642e62696e0a7d",
+      "files": [
+        {
+          "path": "Bin/old.bin",
+          "hex": "4f726967696e616c2062617365"
+        }
+      ],
+      "archives": [
+        {
+          "blockOrdinal": 0,
+          "hex": "504b03041400000000000000215cbd0211af0f0000000f000000070000006e65772e62696e20617070656e646564006279746573504b03041400000000000000215ce2d6880d06000000060000000b00000069676e6f7265642e62696e69676e6f7265504b010214031400000000000000215cbd0211af0f0000000f0000000700000000000000000000008001000000006e65772e62696e504b010214031400000000000000215ce2d6880d06000000060000000b000000000000000000000080013400000069676e6f7265642e62696e504b050600000000020002006e000000630000000000"
+        }
+      ],
+      "expected_files": [
+        {
+          "path": "Bin/new.bin",
+          "hex": "4f726967696e616c206261736520617070656e646564006279746573",
+          "md5": "20f56dad205c5c699f60d1131b7551a5"
+        }
+      ]
+    },
+    {
+      "name": "replaceto-stored",
+      "manifest_hex": "7265706c616365746f0a7b0a706174683a42696e0a6e616d653a6e65772e62696e0a6d64353a34316565323064393430316438393666356633643735393838623833303838380a6f6c645f6e616d653a6f6c642e62696e0a7d",
+      "files": [
+        {
+          "path": "Bin/old.bin",
+          "hex": "4f726967696e616c2062617365"
+        }
+      ],
+      "archives": [
+        {
+          "blockOrdinal": 0,
+          "hex": "504b03041400000000000000215c216559b61f0000001f000000070000006e65772e62696e4f726967696e616c2067616d652070617463682063616e64696461746500ff504b010214031400000000000000215c216559b61f0000001f0000000700000000000000000000008001000000006e65772e62696e504b0506000000000100010035000000440000000000"
+        }
+      ],
+      "expected_files": [
+        {
+          "path": "Bin/new.bin",
+          "hex": "4f726967696e616c2067616d652070617463682063616e64696461746500ff",
+          "md5": "41ee20d9401d896f5f3d75988b830888"
+        }
+      ]
+    },
+    {
+      "name": "create-deflate",
+      "manifest_hex": "6372656174650a7b0a706174683a42696e0a6e616d653a6e65772e62696e0a6d64353a34316565323064393430316438393666356633643735393838623833303838380a7d",
+      "files": [
+        {
+          "path": "keep.txt",
+          "hex": "6b656570"
+        }
+      ],
+      "archives": [
+        {
+          "blockOrdinal": 0,
+          "hex": "504b03041400000008000000215c216559b6210000001f000000070000006e65772e62696ef32fca4ccfcc4bcc51484fcc4d5528482c49ce50484ecc4bc94c492c4965f80f00504b03041400000008000000215c650d3f4d07000000050000000900000065787472612e62696e4bad28294a0400504b010214031400000008000000215c216559b6210000001f0000000700000000000000000000008001000000006e65772e62696e504b010214031400000008000000215c650d3f4d070000000500000009000000000000000000000080014600000065787472612e62696e504b050600000000020002006c000000740000000000"
+        }
+      ],
+      "expected_files": [
+        {
+          "path": "keep.txt",
+          "hex": "6b656570",
+          "md5": "18ccf61d533b600bbf5a963359223fe4"
+        },
+        {
+          "path": "Bin/new.bin",
+          "hex": "4f726967696e616c2067616d652070617463682063616e64696461746500ff",
+          "md5": "41ee20d9401d896f5f3d75988b830888"
+        },
+        {
+          "path": "Bin/extra.bin",
+          "hex": "6578747261",
+          "md5": "ea9f91b2cda019730f2891bd12a7a4d6"
+        }
+      ]
+    },
+    {
+      "name": "append-deflate",
+      "manifest_hex": "617070656e640a7b0a706174683a42696e0a6e616d653a6e65772e62696e0a6d64353a32306635366461643230356335633639396636306431313331623735353161350a6f6c645f6e616d653a6f6c642e62696e0a7d",
+      "files": [
+        {
+          "path": "Bin/old.bin",
+          "hex": "4f726967696e616c2062617365"
+        }
+      ],
+      "archives": [
+        {
+          "blockOrdinal": 0,
+          "hex": "504b03041400000008000000215cbd0211af110000000f000000070000006e65772e62696e53482c2848cd4b494d6148aa2c492d0600504b03041400000008000000215ce2d6880d08000000060000000b00000069676e6f7265642e62696ecb4ccfcb2f4a0500504b010214031400000008000000215cbd0211af110000000f0000000700000000000000000000008001000000006e65772e62696e504b010214031400000008000000215ce2d6880d08000000060000000b000000000000000000000080013600000069676e6f7265642e62696e504b050600000000020002006e000000670000000000"
+        }
+      ],
+      "expected_files": [
+        {
+          "path": "Bin/new.bin",
+          "hex": "4f726967696e616c206261736520617070656e646564006279746573",
+          "md5": "20f56dad205c5c699f60d1131b7551a5"
+        }
+      ]
+    },
+    {
+      "name": "replaceto-deflate",
+      "manifest_hex": "7265706c616365746f0a7b0a706174683a42696e0a6e616d653a6e65772e62696e0a6d64353a34316565323064393430316438393666356633643735393838623833303838380a6f6c645f6e616d653a6f6c642e62696e0a7d",
+      "files": [
+        {
+          "path": "Bin/old.bin",
+          "hex": "4f726967696e616c2062617365"
+        }
+      ],
+      "archives": [
+        {
+          "blockOrdinal": 0,
+          "hex": "504b03041400000008000000215c216559b6210000001f000000070000006e65772e62696ef32fca4ccfcc4bcc51484fcc4d5528482c49ce50484ecc4bc94c492c4965f80f00504b010214031400000008000000215c216559b6210000001f0000000700000000000000000000008001000000006e65772e62696e504b0506000000000100010035000000460000000000"
+        }
+      ],
+      "expected_files": [
+        {
+          "path": "Bin/new.bin",
+          "hex": "4f726967696e616c2067616d652070617463682063616e64696461746500ff",
+          "md5": "41ee20d9401d896f5f3d75988b830888"
+        }
+      ]
+    },
+    {
+      "name": "directory-first",
+      "manifest_hex": "6372656174650a7b0a706174683a42696e0a6e616d653a6e65772e62696e0a6d64353a34316565323064393430316438393666356633643735393838623833303838380a7d",
+      "files": [],
+      "archives": [
+        {
+          "blockOrdinal": 0,
+          "hex": "504b03041400000008000000215c00000000020000000000000007000000666f6c6465722f0300504b03041400000008000000215c216559b6210000001f000000070000006e65772e62696ef32fca4ccfcc4bcc51484fcc4d5528482c49ce50484ecc4bc94c492c4965f80f00504b03041400000008000000215cb51b812306000000040000000f000000666f6c6465722f736964652e62696e2bce4c490500504b010214031400000008000000215c000000000200000000000000070000000000000000000000800100000000666f6c6465722f504b010214031400000008000000215c216559b6210000001f0000000700000000000000000000008001270000006e65772e62696e504b010214031400000008000000215cb51b812306000000040000000f000000000000000000000080016d000000666f6c6465722f736964652e62696e504b05060000000003000300a7000000a00000000000"
+        }
+      ],
+      "expected_files": [
+        {
+          "path": "Bin/new.bin",
+          "hex": "4f726967696e616c2067616d652070617463682063616e64696461746500ff",
+          "md5": "41ee20d9401d896f5f3d75988b830888"
+        },
+        {
+          "path": "Bin/folder/side.bin",
+          "hex": "73696465",
+          "md5": "9c62ad1fc551d04b815c8573285b65b2"
+        }
+      ]
+    },
+    {
+      "name": "already-current",
+      "manifest_hex": "6372656174650a7b0a706174683a42696e0a6e616d653a6e65772e62696e0a6d64353a34316565323064393430316438393666356633643735393838623833303838380a7d",
+      "files": [
+        {
+          "path": "Bin/new.bin",
+          "hex": "4f726967696e616c2067616d652070617463682063616e64696461746500ff"
+        }
+      ],
+      "archives": [],
+      "expected_files": [
+        {
+          "path": "Bin/new.bin",
+          "hex": "4f726967696e616c2067616d652070617463682063616e64696461746500ff",
+          "md5": "41ee20d9401d896f5f3d75988b830888"
+        }
+      ]
+    },
+    {
+      "name": "append-base-missing",
+      "manifest_hex": "617070656e640a7b0a706174683a42696e0a6e616d653a6e65772e62696e0a6d64353a32306635366461643230356335633639396636306431313331623735353161350a6f6c645f6e616d653a6f6c642e62696e0a7d",
+      "files": [],
+      "archives": [],
+      "expected_files": []
+    },
+    {
+      "name": "sequential-create-append",
+      "manifest_hex": "6372656174650a7b0a706174683a42696e0a6e616d653a66697273742e62696e0a6d64353a37666235356564306237613330333432626136646133303634323863616530340a7d617070656e640a7b0a706174683a42696e0a6e616d653a66696e616c2e62696e0a6d64353a66326133333035633165626539616138313462373934646634666164653331620a6f6c645f6e616d653a66697273742e62696e0a7d",
+      "files": [],
+      "archives": [
+        {
+          "blockOrdinal": 0,
+          "hex": "504b03041400000008000000215c53c1b05307000000050000000900000066697273742e62696e73cb2c2a2e0100504b010214031400000008000000215c53c1b053070000000500000009000000000000000000000080010000000066697273742e62696e504b05060000000001000100370000002e0000000000"
+        },
+        {
+          "blockOrdinal": 1,
+          "hex": "504b03041400000008000000215c28560c5509000000070000000900000066696e616c2e62696e53284e4dcecf4b0100504b010214031400000008000000215c28560c55090000000700000009000000000000000000000080010000000066696e616c2e62696e504b0506000000000100010037000000300000000000"
+        }
+      ],
+      "expected_files": [
+        {
+          "path": "Bin/final.bin",
+          "hex": "4669727374207365636f6e64",
+          "md5": "f2a3305c1ebe9aa814b794df4fade31b"
+        }
+      ]
+    }
+  ],
+  "malicious_archives": {
+    "traversal": "504b03041400000008000000215c8316dc8c03000000010000000d0000002e2e2f6573636170652e62696eab0000504b010214031400000008000000215c8316dc8c03000000010000000d00000000000000000000008001000000002e2e2f6573636170652e62696e504b050600000000010001003b0000002e0000000000",
+    "absolute": "504b03041400000008000000215c8316dc8c0300000001000000090000002f726f6f742e62696eab0000504b010214031400000008000000215c8316dc8c03000000010000000900000000000000000000008001000000002f726f6f742e62696e504b05060000000001000100370000002a0000000000",
+    "drive": "504b03041400000008000000215c8316dc8c03000000010000000b000000433a2f726f6f742e62696eab0000504b010214031400000008000000215c8316dc8c03000000010000000b0000000000000000000000800100000000433a2f726f6f742e62696e504b05060000000001000100390000002c0000000000",
+    "case-alias": "504b03041400000008000000215c216559b6210000001f000000070000006e65772e62696ef32fca4ccfcc4bcc51484fcc4d5528482c49ce50484ecc4bc94c492c4965f80f00504b03041400000008000000215c216559b6210000001f000000070000004e45572e42494ef32fca4ccfcc4bcc51484fcc4d5528482c49ce50484ecc4bc94c492c4965f80f00504b010214031400000008000000215c216559b6210000001f0000000700000000000000000000008001000000006e65772e62696e504b010214031400000008000000215c216559b6210000001f0000000700000000000000000000008001460000004e45572e42494e504b050600000000020002006a0000008c0000000000",
+    "file-directory": "504b03041400000008000000215c8316dc8c03000000010000000100000061ab0000504b03041400000008000000215c1526dbfb030000000100000003000000612f62ab0400504b010214031400000008000000215c8316dc8c030000000100000001000000000000000000000080010000000061504b010214031400000008000000215c1526dbfb0300000001000000030000000000000000000000800122000000612f62504b0506000000000200020060000000460000000000",
+    "reserved": "504b03041400000008000000215c8316dc8c0300000001000000070000004e554c2e62696eab0000504b010214031400000008000000215c8316dc8c03000000010000000700000000000000000000008001000000004e554c2e62696e504b0506000000000100010035000000280000000000",
+    "directory-file-prefix": "504b03041400000008000000215c8316dc8c03000000010000000100000061ab0000504b03041400000008000000215c00000000020000000000000004000000612f622f0300504b010214031400000008000000215c8316dc8c030000000100000001000000000000000000000080010000000061504b010214031400000008000000215c000000000200000000000000040000000000000000000000800122000000612f622f504b0506000000000200020061000000460000000000",
+    "empty-directory-body": "504b03041400000008000000215c58c70dca0b0000000900000002000000612fcbcb2f5148cd2d28a90400504b010214031400000008000000215c58c70dca0b00000009000000020000000000000000000000800100000000612f504b05060000000001000100300000002b0000000000",
+    "second-crc": "504b03041400000008000000215c216559b6210000001f000000070000006e65772e62696ef32fca4ccfcc4bcc51484fcc4d5528482c49ce50484ecc4bc94c492c4965f80f00504b03041400000008000000215cb51b8123060000000400000008000000736964652e62696e2bce4c490500504b010214031400000008000000215c216559b6210000001f0000000700000000000000000000008001000000006e65772e62696e504b010214031400000008000000215cb51b81230600000004000000080000000000000000000000800146000000736964652e62696e504b050600000000020002006b000000720000000000"
+  }
+}

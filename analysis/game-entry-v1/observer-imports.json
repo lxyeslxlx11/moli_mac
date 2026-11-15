@@ -1,0 +1,154 @@
+{
+  "schema": "moli.game-entry-v1.observer-imports.v1",
+  "artifact_sha256": "417595a96f0189353d47e8f1f86776e95ad4e0054d3123b3892b305e10dc6699",
+  "method": "stdlib PE32 import table over exact compiled own artifact; static API surface only, not a runtime no-extra-access proof",
+  "imports": [
+    {
+      "dll": "bcrypt.dll",
+      "symbols": [
+        "BCryptCloseAlgorithmProvider",
+        "BCryptCreateHash",
+        "BCryptDestroyHash",
+        "BCryptFinishHash",
+        "BCryptGetProperty",
+        "BCryptHashData",
+        "BCryptOpenAlgorithmProvider"
+      ]
+    },
+    {
+      "dll": "KERNEL32.dll",
+      "symbols": [
+        "CloseHandle",
+        "CompareStringOrdinal",
+        "CreateFileW",
+        "CreateToolhelp32Snapshot",
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "GetCurrentProcessId",
+        "GetFileAttributesW",
+        "GetFileSizeEx",
+        "GetFileType",
+        "GetFinalPathNameByHandleW",
+        "GetLastError",
+        "GetProcessHeap",
+        "GetProcessTimes",
+        "GetTickCount64",
+        "HeapAlloc",
+        "HeapFree",
+        "InitializeCriticalSection",
+        "IsWow64Process2",
+        "LeaveCriticalSection",
+        "Module32FirstW",
+        "Module32NextW",
+        "OpenProcess",
+        "QueryFullProcessImageNameW",
+        "ReadFile",
+        "ReadProcessMemory",
+        "SetFilePointerEx",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TlsGetValue",
+        "VirtualProtect",
+        "VirtualQuery",
+        "VirtualQueryEx",
+        "WaitForSingleObject"
+      ]
+    },
+    {
+      "dll": "api-ms-win-crt-environment-l1-1-0.dll",
+      "symbols": [
+        "__p__environ"
+      ]
+    },
+    {
+      "dll": "api-ms-win-crt-heap-l1-1-0.dll",
+      "symbols": [
+        "_set_new_mode",
+        "calloc",
+        "free",
+        "malloc"
+      ]
+    },
+    {
+      "dll": "api-ms-win-crt-locale-l1-1-0.dll",
+      "symbols": [
+        "_configthreadlocale"
+      ]
+    },
+    {
+      "dll": "api-ms-win-crt-math-l1-1-0.dll",
+      "symbols": [
+        "__setusermatherr"
+      ]
+    },
+    {
+      "dll": "api-ms-win-crt-private-l1-1-0.dll",
+      "symbols": [
+        "memcmp",
+        "memcpy"
+      ]
+    },
+    {
+      "dll": "api-ms-win-crt-runtime-l1-1-0.dll",
+      "symbols": [
+        "__p___argc",
+        "__p___argv",
+        "_cexit",
+        "_configure_narrow_argv",
+        "_crt_atexit",
+        "_exit",
+        "_initialize_narrow_environment",
+        "_initterm",
+        "_initterm_e",
+        "_set_app_type",
+        "_set_invalid_parameter_handler",
+        "abort",
+        "exit",
+        "signal"
+      ]
+    },
+    {
+      "dll": "api-ms-win-crt-stdio-l1-1-0.dll",
+      "symbols": [
+        "__acrt_iob_func",
+        "__p__commode",
+        "__p__fmode",
+        "__stdio_common_vfprintf",
+        "fflush",
+        "setvbuf"
+      ]
+    },
+    {
+      "dll": "api-ms-win-crt-string-l1-1-0.dll",
+      "symbols": [
+        "memset",
+        "strcmp",
+        "strlen",
+        "strncmp"
+      ]
+    }
+  ],
+  "required_present": [
+    "BCryptFinishHash",
+    "BCryptHashData",
+    "CreateToolhelp32Snapshot",
+    "GetFinalPathNameByHandleW",
+    "IsWow64Process2",
+    "Module32FirstW",
+    "Module32NextW",
+    "OpenProcess",
+    "QueryFullProcessImageNameW",
+    "ReadProcessMemory",
+    "VirtualQueryEx"
+  ],
+  "direct_intrusive_imports_absent": [
+    "AdjustTokenPrivileges",
+    "CreateRemoteThread",
+    "DebugActiveProcess",
+    "SetThreadContext",
+    "TerminateProcess",
+    "VirtualProtectEx",
+    "WriteProcessMemory"
+  ],
+  "Windows_runtime_verified": false
+}

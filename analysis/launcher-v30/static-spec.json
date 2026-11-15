@@ -1,0 +1,175 @@
+{
+  "schema": "moli.launcher-v30.static-spec.v1",
+  "recorded_utc": "2026-10-27T10:25:43.934708+00:00",
+  "sample": {
+    "path": "/private/tmp/moli-analysis/polcn/POLCN_Launcher.unpacked.exe",
+    "bytes": 1735168,
+    "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31"
+  },
+  "tools": {
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4"
+  },
+  "previous_records": 321,
+  "new_records": 14,
+  "new_by_operation": {
+    "inspect_analysis_view": 11,
+    "read_bytes": 2,
+    "analyze_function": 1
+  },
+  "total_records": 335,
+  "new_unique_functions": [
+    "0x409780"
+  ],
+  "new_evidence": [
+    {
+      "id": "ev_179d3e9a81204e3bf58c7ff692b87f4ebe78a1f6b028170c91c8ce992f1d4cc5",
+      "operation": "inspect_analysis_view"
+    },
+    {
+      "id": "ev_18d14b3c78607f20775015644326380463011eee0a5ecb5377725b5a31326f24",
+      "operation": "read_bytes"
+    },
+    {
+      "id": "ev_3b06173616199d149842de84054d7559a55612fe896fb35f17aa420692d1b5e8",
+      "operation": "inspect_analysis_view"
+    },
+    {
+      "id": "ev_490042671a9ad48a52f3a72c9edf30f92db38f284b1d5862b13e745dea5ecf42",
+      "operation": "inspect_analysis_view"
+    },
+    {
+      "id": "ev_4c377917c96fbe3962ac1ed3462ad3d2b63fd36ee474a9874791afe01a1ad462",
+      "operation": "inspect_analysis_view"
+    },
+    {
+      "id": "ev_5c62d06f8342e8c053c980a1250a399e9155a0e447d3fc2edb64e9a8ed810b1b",
+      "operation": "inspect_analysis_view"
+    },
+    {
+      "id": "ev_661f6881c59c7b5b48b5fe3645dbe3dbb707493c0b4e8929b374aa15a9cfd64a",
+      "operation": "inspect_analysis_view"
+    },
+    {
+      "id": "ev_89dfde6a5552a77bc22ce2c134538565dc17904453c3c21dbe1c3bc7454f0dd0",
+      "operation": "inspect_analysis_view"
+    },
+    {
+      "id": "ev_8bc86e88656bd2d40ab336a26033623a3c251f52511328862ad01ae9d9291ce9",
+      "operation": "analyze_function"
+    },
+    {
+      "id": "ev_95829af11af9d63f2b143c8b197109fa05dce891c0af7e030c18b3a6ba272a56",
+      "operation": "read_bytes"
+    },
+    {
+      "id": "ev_99ce36c042557bcd906f116d0b728f014522bfcf1cfc4e6851133a4a6bc5917b",
+      "operation": "inspect_analysis_view"
+    },
+    {
+      "id": "ev_9bdaf7aecd2862d303778f08c313fde456bf3dc4d43c16ec72e71a2e46506cba",
+      "operation": "inspect_analysis_view"
+    },
+    {
+      "id": "ev_a662cb02030cc09bcf7d5f7088d24fbb9cd0f620d1278f5179d9af40ef2ea5c4",
+      "operation": "inspect_analysis_view"
+    },
+    {
+      "id": "ev_e7466bb9b69533ea7537c1e5bcb46e7a664157373c4474a18f897039061fb70a",
+      "operation": "inspect_analysis_view"
+    }
+  ],
+  "exports": [
+    {
+      "path": "build/analysis/launcher-v30/rea-evidence.json",
+      "bytes": 87527995,
+      "sha256": "b10e4ed93463a010fe40ed1eb02621877aa856df27688ef0c7f05bb1d2bce0ef"
+    },
+    {
+      "path": "build/analysis/launcher-v30/rea-snapshot.json",
+      "bytes": 168780008,
+      "sha256": "d6567dfde8e0757dcc86b184ef416e621a5dd2ec694da4f8986ca0320d4b4d6f"
+    }
+  ],
+  "session": {
+    "open": false,
+    "cleanup_pending": false
+  },
+  "facts": [
+    {
+      "kind": "fact",
+      "source": [
+        "407a40/407a57",
+        "407a6b",
+        "4231e0",
+        "423d70",
+        "v5 S/U alias",
+        "v8 DDX1484"
+      ],
+      "claim": "Profile section is the lowercase32hex MD5 of the current globalS+15a0 narrow-byte text and its logical CString length; established U=S+11c and DDX U+1484 associate this with the username field. The section is account-derived, not anonymous or authentication."
+    },
+    {
+      "kind": "fact",
+      "source": [
+        "407a7a",
+        "407a85..407b2f",
+        "424d50",
+        "4b29b4/4b29bc"
+      ],
+      "claim": "Read integer with default1 under MD5 section, key Game+original Code text+_Config. Zero skips; any nonzero plus nonempty ConfigEXE enters first-config branch."
+    },
+    {
+      "kind": "fact",
+      "source": [
+        "4035af..40362e",
+        "404e66..404e7a",
+        "407b68/407ba1"
+      ],
+      "claim": "XML ConfigEXE enters game record+1b88 and current+1b44. Native uses declared text, not normalized path metadata."
+    },
+    {
+      "kind": "fact",
+      "source": [
+        "407b9b..407c6b",
+        "4b29fc"
+      ],
+      "claim": "Raw unquoted command is directory+backslash+ConfigEXE, NUL-terminated CString storage; cwd directory, applicationName null, environment inherit, creationflags0, inherithandlesfalse. No user arguments or Argsline appended in this branch."
+    },
+    {
+      "kind": "fact",
+      "source": [
+        "407c71..407d51",
+        "424f00",
+        "424f77",
+        "4b7350"
+      ],
+      "claim": "Create success calls infinite WaitForSingleObject and then requests integer0 under the same section/key; wait return and process exitcode are not checked in observed branch, nor writer return. Create failure skips write and shows/logs error, then rejoins normal context preparation; it is not a global readiness/auth guarantee."
+    },
+    {
+      "kind": "fact",
+      "source": [
+        "409780",
+        "40bd50",
+        "40c910"
+      ],
+      "claim": "Config emptiness uses logical text length at CString data-12. Misleading GetAllocLength name is not allocated-capacity evidence."
+    },
+    {
+      "kind": "fact",
+      "source": [
+        "v5 control405",
+        "v23 process producer",
+        "build/analysis/launcher-v30/baseline/web/launcher-launch-data.mjs"
+      ],
+      "claim": "Stage75 preflight browser adapter hardcoded onlyRefreshWord0 despite proven native/control behavior; this was an actual UI/adapter omission, now implemented and tested in this phase."
+    }
+  ],
+  "limits": [
+    "Main407a00 native value-flow truncated; bounded Listing/short bytes/helper chain establish this subset, not allEH/OS behavior.",
+    "No native config/game execution, realprofile/credentials/IPC or official requests.",
+    "Account-derived lookup is a sensitive compatibility identity; test/oracle inputs are original synthetic data only. No actual profile write or blanket account persistence conclusion.",
+    "Config utility internal settings and game consumer remain separate unverified scope.",
+    "New409780 caller inventory is partial with one omitted body callreference; only the observed empty-test body/current call is claimed, not global caller completeness."
+  ],
+  "source_audit": "first-config-source-audit.json"
+}

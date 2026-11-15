@@ -1,0 +1,1181 @@
+{
+  "schema": "moli.launcher-preparation-completion.contract.v1",
+  "classification": "source-bound-static-functional-supplement",
+  "capability": "L01",
+  "requirement": "全部能力先REA成规；组合普通准备观察/完成/停止与恢复，保留原范围及独立验收边界。",
+  "parent_selection_context": {
+    "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+    "bytes": 68015,
+    "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+  },
+  "parent_startup_specification": {
+    "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+    "bytes": 77125,
+    "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+  },
+  "source_review": {
+    "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+    "bytes": 39106,
+    "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+  },
+  "scope_preserved": {
+    "capabilities": 40,
+    "registry_entries": 81,
+    "historical_requirements": 37,
+    "consumer_groups": 10,
+    "source_profiles": 6,
+    "original_scope": "配置读取、区域目录初始化、来源选择、首次配置与失效恢复",
+    "required_groups": [
+      "配置读取",
+      "区域目录初始化",
+      "来源选择",
+      "首次配置",
+      "失效恢复"
+    ],
+    "L01_profiles": [
+      "launcher-legacy-601b",
+      "launcher-updated-c82f",
+      "launcher-historical-c7ba"
+    ],
+    "original_owners": [
+      "shared/launcher-catalog.mjs",
+      "shared/launcher-first-config.mjs"
+    ],
+    "original_dependencies": [
+      "X01"
+    ],
+    "original_batch": "D1",
+    "registered_protocol_entries": [
+      "LCH-CATALOG-001",
+      "UPD-CATALOG-001",
+      "CFG-GAME-001"
+    ]
+  },
+  "native_sources_examined": {
+    "C7": {
+      "path": "build/analysis/launcher-update-recovery-v1/old-source/POLCN_Launcher.analysis-only.exe",
+      "bytes": 4105728,
+      "sha256": "c7ba69f77809fe589fd5dcccc78fcd4f33d4b6f76325d00a27f37032bbb32384"
+    }
+  },
+  "facts": [
+    {
+      "id": "PC-F01",
+      "classification": "事实",
+      "claim": "本补充处理SX-U1同C7准备的观察、完成和停止请求；原L01五组×三profile15格、两owner/X01/D1/三登记与40/81/37/10/6保持。C7不是原L06/L08的来源，不把本轮结果扩成这两项的版本覆盖。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+            "bytes": 68015,
+            "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+          },
+          "pointer": "/remaining",
+          "canonical_sha256": "ac87976738b29aa6feb965dc00f8e890bf2e821a637423240abf75ea38a48a11"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+            "bytes": 68015,
+            "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+          },
+          "pointer": "/scope_preserved",
+          "canonical_sha256": "191658244c093bae256ab0709a69bc185a4c4cc08af5464000566fa68779aa47"
+        }
+      ]
+    },
+    {
+      "id": "PC-F02",
+      "classification": "事实",
+      "claim": "复用403050实际Child构造及同版vtable5CEFF4/+28→408D50，原6B getter返回map5CF4A8；五条Child消息中WM_TIMER113到40AEC0。原Main命令2到41E2B0、1009到41D840复用SE绑定，不能据控件数字猜功能。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/17",
+          "canonical_sha256": "73ebcd06424d365a16e71a274a1c14a33afb476cab3e24da4cb9371d75e5cb51"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/Child_map",
+          "canonical_sha256": "0d9ed9e88ffb6d53e67243694357f24b93474b1522e1b76d24979b84588d7c74"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/derived_code/0",
+          "canonical_sha256": "892f0a87e1fe734e73c67cef380711b259fc44cf77bee54d830a57b078c782bb"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/Main_command_bindings",
+          "canonical_sha256": "44a2decb2ebc3089941924cc5f078bf47b1a87ca2f6b538410bdf4ed8e5f1c9b"
+        }
+      ]
+    },
+    {
+      "id": "PC-F03",
+      "classification": "事实",
+      "claim": "复用完整40AEC0：2329读取Child+2B3C，handle为0只KillTimer；GetExitCodeProcess失败日志后继续观察；读取259仍按pending。非259先KillTimer、CloseHandle、清2B3C，再把原退出code交408420。232A与232B分别是其它槽/规则，不能套同一个完成状态。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/6",
+          "canonical_sha256": "1b4c5d81a746d5a467a23d6abf1d3abaa9bd7128df960fab1b8449dcae8cc464"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/3",
+          "canonical_sha256": "6040922644ce71f2abdd6a0c3ed291f72781211492326ba503218a7b59dff577"
+        }
+      ]
+    },
+    {
+      "id": "PC-F04",
+      "classification": "事实",
+      "claim": "2329使用uint32 tick差与1800000ms阈值、Child+2B64一次提醒byte；232A是900000ms/2B65。到阈值先置byte再提示，不执行强制超时终止。2329仍active时实际把Child+1A8作为Main，传当前tick与保存tick的uint32差给4296F0。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/6",
+          "canonical_sha256": "1b4c5d81a746d5a467a23d6abf1d3abaa9bd7128df960fab1b8449dcae8cc464"
+        }
+      ]
+    },
+    {
+      "id": "PC-F05",
+      "classification": "事实",
+      "claim": "4296F0只在Main+1A2E非0时处理elapsed，整秒=floor(ms/1000)，与Main+1A38不同才更新该字段并按分钟/秒请求1016文本。它不是下载百分比或网络心跳；provider pointer return未被timer消费。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/4",
+          "canonical_sha256": "ce1e0af9d3e2f79c5a54daf15ac35bfbf18ad708d3579eb11a1331b4b06d7dde"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/6",
+          "canonical_sha256": "1b4c5d81a746d5a467a23d6abf1d3abaa9bd7128df960fab1b8449dcae8cc464"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/source_corrections",
+          "canonical_sha256": "b6ad6d52ce843300743f21dab14852f1241e537f0315af0864cea5e6ba59c509"
+        }
+      ]
+    },
+    {
+      "id": "PC-F06",
+      "classification": "事实",
+      "claim": "408420先用既有434CA0规范当前root与Child+2B6C backup字段；成功则请求DeleteFileA且不检查返回，再分派code。这个清理请求发生在成功、失败和102重试决定之前，不是一套统一回滚证明。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/3",
+          "canonical_sha256": "6040922644ce71f2abdd6a0c3ed291f72781211492326ba503218a7b59dff577"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+            "bytes": 68015,
+            "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+          },
+          "pointer": "/facts/14",
+          "canonical_sha256": "6f5e9380ac4f13187e17027ae3c552b9b1d2953c9193e73ad3104c3b571bcd90"
+        }
+      ]
+    },
+    {
+      "id": "PC-F07",
+      "classification": "事实",
+      "claim": "只有code100走成功分支，且要当前game ordinal在[0,count)内才置对应row+9D=1并提交success1/code100给Main。game无效则既有40D8D0局部reset，再提交failure0/code585h。使用的是当前game槽，未见本体引入独立job-generation字段；不能推断所有跨选择交错均合法或已安全接受。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/3",
+          "canonical_sha256": "6040922644ce71f2abdd6a0c3ed291f72781211492326ba503218a7b59dff577"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/15",
+          "canonical_sha256": "127c059b1f118e3fbeb92e31d05f326e883f6d1e4498e1bcf747feb9bbe51f51"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/2",
+          "canonical_sha256": "48e592c2841b5dc36268d994471e4348122dc740bf4e17cdb55b1135351f0e50"
+        }
+      ]
+    },
+    {
+      "id": "PC-F08",
+      "classification": "事实",
+      "claim": "code102先将Child+2B68加1，小于3才重走已证40EB00；启动成功跳过本次Main完成回调。启动失败取GetLastError作为结果；counter到3不再启动，按失败/code102结束。原始40F310清counter只属于初次准备，不能用于每次重试。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/3",
+          "canonical_sha256": "6040922644ce71f2abdd6a0c3ed291f72781211492326ba503218a7b59dff577"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/8",
+          "canonical_sha256": "f91c003a136d6103c36c53b6c65a18b916c655283e2ddb425a3ab46802207071"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/9",
+          "canonical_sha256": "6264a60cdd3a40a56820b50316246f04b5e7c24a34458379bdb478b88557f366"
+        }
+      ]
+    },
+    {
+      "id": "PC-F09",
+      "classification": "事实",
+      "claim": "code101有其提示路径，再按failure0/code101结束；其它code包括0也走普通失败提示并带原code，不能把0直接当成功。计时器认定的259不会进入这里的普通完成分派。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/3",
+          "canonical_sha256": "6040922644ce71f2abdd6a0c3ed291f72781211492326ba503218a7b59dff577"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/6",
+          "canonical_sha256": "1b4c5d81a746d5a467a23d6abf1d3abaa9bd7128df960fab1b8449dcae8cc464"
+        }
+      ]
+    },
+    {
+      "id": "PC-F10",
+      "classification": "事实",
+      "claim": "Main422E70在pending byte1A2E为0时直接忽略UI continuation；为真则先清pending。failure路径调整原auto-flow标志、调用已证426A20恢复step、428840错误决策以及通知type3；success先请求通知type1，再step3→42D010。row更新与Main continuation有不同gate，success不等于认证或游戏已进入。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/2",
+          "canonical_sha256": "48e592c2841b5dc36268d994471e4348122dc740bf4e17cdb55b1135351f0e50"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/10",
+          "canonical_sha256": "8ebc108e09e6c59f7c06b97fe08a1904a46343abdd72b251dc4aa6ed54105ba4"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/12",
+          "canonical_sha256": "5198b0f3f9a6072bc05ce2f9c4428672ae7fe01734487575ea8ea1e112a10d7a"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+            "bytes": 68015,
+            "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+          },
+          "pointer": "/facts/17",
+          "canonical_sha256": "ced4476ba6746e740c2738c381e74a01cf814674fc7187da9890e2c974096b18"
+        }
+      ]
+    },
+    {
+      "id": "PC-F11",
+      "classification": "事实",
+      "claim": "4289A0读取两个原通知flag并调用417CF0；返回0不继续。非0时按原flag可置Main+1A30，构造NIF_INFO请求：id80h、title最大64B、text最大256B、type来自caller，向Shell_NotifyIconA请求modify；原timeout字段10000。若1A30非0另请求36C/12000ms timer。函数未以这些API结果门控后续prepare状态；真实显示与该通知timer的后续owner接受未观测。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/5",
+          "canonical_sha256": "377db52001e20fbfce7888e1d42ea700e10236db80852b83a02c399f79b58e63"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/2",
+          "canonical_sha256": "48e592c2841b5dc36268d994471e4348122dc740bf4e17cdb55b1135351f0e50"
+        }
+      ]
+    },
+    {
+      "id": "PC-F12",
+      "classification": "事实",
+      "claim": "Main命令1009的41D840是普通返回：清原auto-flow标志，按step-1重建game/region/Galaxy或回准备界面，Galaxy计数0可跳过。它没有以本体直接取消process来定义该动作；UI实际准入与busy条件仍按原owner流程接受。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "396a37828fb5e10bcc8657a7fe4892f97ec188456310c68e97cfe67950d119be"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/Main_command_bindings",
+          "canonical_sha256": "44a2decb2ebc3089941924cc5f078bf47b1a87ca2f6b538410bdf4ed8e5f1c9b"
+        }
+      ]
+    },
+    {
+      "id": "PC-F13",
+      "classification": "事实",
+      "claim": "命令2的41E2B0先清原auto-flow、请求确认helper；仅结果6继续。login busy1A44为真时置1A45并委托41B4E0；否则Post WM_CLOSE到Frame。非6清自身CF8字段。确认返回、退出请求与实际owner析构是不同证据层，未把它标作patch进程已终止。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/0",
+          "canonical_sha256": "60e9b5118271e197824b84e52bc300c6118564dcdf9596d1925ba6cb4b8e27c4"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/Main_command_bindings",
+          "canonical_sha256": "44a2decb2ebc3089941924cc5f078bf47b1a87ca2f6b538410bdf4ed8e5f1c9b"
+        }
+      ]
+    },
+    {
+      "id": "PC-F14",
+      "classification": "事实",
+      "claim": "复用404420：Child析构发生时Kill2329/232A/232B，关闭保留的patch/Config以及其它process相关handles；catalog job另以cancel字段、HWND清理和最多5000ms等待退役。不能把关闭观察handle转述为调用TerminateProcess，也不能用此条件析构体证明任意UI退出已获准或外部进程已结束。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/bodies/7",
+          "canonical_sha256": "a5aa739e9c0c8ef4814cec38d92926867b787f397472fefee184df537a86847b"
+        }
+      ]
+    },
+    {
+      "id": "PC-F15",
+      "classification": "事实",
+      "claim": "本组只新取6个必要完整native/1626B；timer/析构和既有准备/恢复均复用，6B getter为原件派生。165记录已导出及保存快照，结束open=false/cleanup=false；新增原程序/VM/SDK/设置/账号/官服动作与产品测试0。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/summary",
+          "canonical_sha256": "3ec6b2ae0afade4ef4a48cdb0b7d28c5dec4e5ee9216dd60cf0993886a377c70"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-preparation-completion-v1/source-review.json",
+            "bytes": 39106,
+            "sha256": "b9338d804ed094b1f313da3118240209aa132b91813b6061c7e8958d9b2ebe37"
+          },
+          "pointer": "/session_closure",
+          "canonical_sha256": "b3c7c4b0f1d6b3e7b54db53ad477a5ecf3294e6045f1374e69d4551b782a8687"
+        }
+      ]
+    }
+  ],
+  "inferences": [
+    {
+      "id": "PC-I01",
+      "classification": "推测",
+      "claim": "进程结束与当前game选择若发生原准入允许的交错，row标志与Main pending的gate会分别作用；本体没有单独job identity不证明该交错必现或正常UI可触发。",
+      "based_on": [
+        "PC-F07",
+        "PC-F10"
+      ],
+      "observed": false
+    },
+    {
+      "id": "PC-I02",
+      "classification": "推测",
+      "claim": "DeleteFile或通知API失败后仍可能推进其它状态；真实磁盘残留、通知显示与再次启动结果需实际宿主接受。",
+      "based_on": [
+        "PC-F06",
+        "PC-F08",
+        "PC-F11"
+      ],
+      "observed": false
+    },
+    {
+      "id": "PC-I03",
+      "classification": "推测",
+      "claim": "时间回绕、modal重入与到达先后会影响实际提醒/文本时机；静态uint32和置flag顺序不是全平台时序接受。",
+      "based_on": [
+        "PC-F04",
+        "PC-F05"
+      ],
+      "observed": false
+    }
+  ],
+  "operations": [
+    {
+      "id": "PC-O01",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "首次配置",
+      "trigger": "准备timer观察",
+      "rule": "handle0/query失败/259/退出四路径及独立阈值",
+      "failure_and_recovery": "不把提醒当强制终止",
+      "fact_ids": [
+        "PC-F02",
+        "PC-F03",
+        "PC-F04",
+        "PC-F05"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "PC-O02",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "首次配置",
+      "trigger": "退出码分派",
+      "rule": "清handle后清理backup，再按100/101/102/其它码分派",
+      "failure_and_recovery": "仅100且game有效是此组件成功",
+      "fact_ids": [
+        "PC-F06",
+        "PC-F07",
+        "PC-F08",
+        "PC-F09"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "PC-O03",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "失效恢复",
+      "trigger": "Main完成通知",
+      "rule": "pending gate、success/failure、step与原准备接续分别处理",
+      "failure_and_recovery": "资料row发布不等于UI continuation",
+      "fact_ids": [
+        "PC-F10",
+        "PC-F11"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "PC-O04",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "来源选择",
+      "trigger": "返回选择动作1009",
+      "rule": "按step及Galaxy count恢复相应列表/prepare视图",
+      "failure_and_recovery": "不贴进程cancel语义",
+      "fact_ids": [
+        "PC-F12"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "PC-O05",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "失效恢复",
+      "trigger": "用户关闭/停止请求2",
+      "rule": "确认6、login-stop委托、Frame close request分开",
+      "failure_and_recovery": "不把PostMessage当析构/终止回执",
+      "fact_ids": [
+        "PC-F13"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "PC-O06",
+      "profile": "launcher-historical-c7ba",
+      "original_group": "失效恢复",
+      "trigger": "owner析构",
+      "rule": "timer/handle退役及catalog-job独立取消/等待",
+      "failure_and_recovery": "析构发生条件与外部进程效果另验",
+      "fact_ids": [
+        "PC-F14"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    }
+  ],
+  "original_profile_group_crosswalk": [
+    {
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "配置读取",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+          "bytes": 68015,
+          "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+        },
+        "pointer": "/original_profile_group_crosswalk/0",
+        "canonical_sha256": "eadd48e10d53b2ce97ded61d2e711954826af3d65b42324a60816c0402358005"
+      },
+      "selected_additional_fact_ids": [
+        "PC-F01",
+        "PC-F15"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "区域目录初始化",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+          "bytes": 68015,
+          "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+        },
+        "pointer": "/original_profile_group_crosswalk/1",
+        "canonical_sha256": "57b663623bfe4ae14b4e236d21c41a2a44f8591dd14d8468c93a94c39aca493b"
+      },
+      "selected_additional_fact_ids": [
+        "PC-F01",
+        "PC-F15"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "来源选择",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+          "bytes": 68015,
+          "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+        },
+        "pointer": "/original_profile_group_crosswalk/2",
+        "canonical_sha256": "459362214012edc97c776a8cf6ef5b86d94c7332edb57fa324cf95c55da1c41c"
+      },
+      "selected_additional_fact_ids": [
+        "PC-F01",
+        "PC-F15"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "首次配置",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+          "bytes": 68015,
+          "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+        },
+        "pointer": "/original_profile_group_crosswalk/3",
+        "canonical_sha256": "1ab10ce3b91b8fabc9b85a436c4d7b832a338d555b9f51c5ad6d486ddacf7374"
+      },
+      "selected_additional_fact_ids": [
+        "PC-F01",
+        "PC-F15"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "失效恢复",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+          "bytes": 68015,
+          "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+        },
+        "pointer": "/original_profile_group_crosswalk/4",
+        "canonical_sha256": "fae502a4f622da313d689ac018a830a8deefe43c90eab6d0977b062b19028c36"
+      },
+      "selected_additional_fact_ids": [
+        "PC-F01",
+        "PC-F15"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "配置读取",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+          "bytes": 68015,
+          "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+        },
+        "pointer": "/original_profile_group_crosswalk/5",
+        "canonical_sha256": "ae91b1baa5e5358528d738e1b0ae55282bbf98fea01b374b0195579864b439ae"
+      },
+      "selected_additional_fact_ids": [
+        "PC-F01",
+        "PC-F15"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "区域目录初始化",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+          "bytes": 68015,
+          "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+        },
+        "pointer": "/original_profile_group_crosswalk/6",
+        "canonical_sha256": "eec8f9062cb3cc24ce11a2729d73adf32efe34df0afff2238a9a8d28b750575a"
+      },
+      "selected_additional_fact_ids": [
+        "PC-F01",
+        "PC-F15"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "来源选择",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+          "bytes": 68015,
+          "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+        },
+        "pointer": "/original_profile_group_crosswalk/7",
+        "canonical_sha256": "4e6591fe38505b7910d723b9f401c446565876f878d575a55b69ecdb02975109"
+      },
+      "selected_additional_fact_ids": [
+        "PC-F01",
+        "PC-F15"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "首次配置",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+          "bytes": 68015,
+          "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+        },
+        "pointer": "/original_profile_group_crosswalk/8",
+        "canonical_sha256": "ece529dab6f0111a1c1d33e439248aa6cec2bf03866ca2dc2cd4ed01dafa46e4"
+      },
+      "selected_additional_fact_ids": [
+        "PC-F01",
+        "PC-F15"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "失效恢复",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+          "bytes": 68015,
+          "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+        },
+        "pointer": "/original_profile_group_crosswalk/9",
+        "canonical_sha256": "38455daca693690b590128dd064a2a0f0236f8075556807e637b31f39d0b0b34"
+      },
+      "selected_additional_fact_ids": [
+        "PC-F01",
+        "PC-F15"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "配置读取",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+          "bytes": 68015,
+          "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+        },
+        "pointer": "/original_profile_group_crosswalk/10",
+        "canonical_sha256": "bcd9cb73f51fd33b050815110f528abb3b717e5ef84f491f1a36ac737f28c39d"
+      },
+      "selected_additional_fact_ids": [
+        "PC-F01",
+        "PC-F15"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "区域目录初始化",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+          "bytes": 68015,
+          "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+        },
+        "pointer": "/original_profile_group_crosswalk/11",
+        "canonical_sha256": "bd3250b4755735b3f7fd4e8505eb344292eba36c6473d120f3f09b316986fc34"
+      },
+      "selected_additional_fact_ids": [
+        "PC-F01",
+        "PC-F15"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "来源选择",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+          "bytes": 68015,
+          "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+        },
+        "pointer": "/original_profile_group_crosswalk/12",
+        "canonical_sha256": "b67e5b4bbef09df60aa7a7a85417ecf1e10cc272dfdb73f052fa484d65b595e6"
+      },
+      "selected_additional_fact_ids": [
+        "PC-F01",
+        "PC-F12",
+        "PC-F13",
+        "PC-F15"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "首次配置",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+          "bytes": 68015,
+          "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+        },
+        "pointer": "/original_profile_group_crosswalk/13",
+        "canonical_sha256": "67c781717c00f9f3ebbf493bc244b3db9c295c0b726e7e96538a90af04b66eca"
+      },
+      "selected_additional_fact_ids": [
+        "PC-F01",
+        "PC-F02",
+        "PC-F03",
+        "PC-F04",
+        "PC-F05",
+        "PC-F06",
+        "PC-F07",
+        "PC-F08",
+        "PC-F09",
+        "PC-F10",
+        "PC-F15"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "失效恢复",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+          "bytes": 68015,
+          "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+        },
+        "pointer": "/original_profile_group_crosswalk/14",
+        "canonical_sha256": "d8f346e5f360b27d2fae9e17f5ce84eff758bf5684c0d17061c81999f0c7b24a"
+      },
+      "selected_additional_fact_ids": [
+        "PC-F01",
+        "PC-F06",
+        "PC-F07",
+        "PC-F08",
+        "PC-F09",
+        "PC-F10",
+        "PC-F11",
+        "PC-F12",
+        "PC-F13",
+        "PC-F14",
+        "PC-F15"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "PC-D1",
+      "batch": "D0/D1",
+      "owner": "original preparation and clock owners",
+      "change": "复用既有clock/job接口，区分running/exit、100成功、101失败、102最多两次重启；初次清counter与重试分开。",
+      "fact_ids": [
+        "PC-F03",
+        "PC-F04",
+        "PC-F05",
+        "PC-F07",
+        "PC-F08",
+        "PC-F09"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "PC-D2",
+      "batch": "D0/D1",
+      "owner": "original catalog/context owners",
+      "change": "原row当前身份更新与Main pending continuation分别建gate；复用SourceValueContext/ContextOwner，不新增官服字段。",
+      "fact_ids": [
+        "PC-F07",
+        "PC-F10"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "PC-D3",
+      "batch": "D0/D1/D5",
+      "owner": "original store/process/host owners",
+      "change": "文件清理请求、显示/通知结果、返回选择、退出请求、handle退役与外部进程终止分别记录；不以一类取消回执代全部。",
+      "fact_ids": [
+        "PC-F06",
+        "PC-F11",
+        "PC-F12",
+        "PC-F13",
+        "PC-F14"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "PC-D4",
+      "batch": "D5/D6",
+      "owner": "original acceptance owners",
+      "change": "把12项边界并原15格及SS/SX接受；源码规则与真实平台、当前同版联合接受分列。",
+      "fact_ids": [
+        "PC-F01",
+        "PC-F15"
+      ],
+      "implemented": false
+    }
+  ],
+  "remaining": [
+    {
+      "id": "PC-U1",
+      "classification": "待验证",
+      "preserves": [
+        "SS-U2",
+        "SX-U1"
+      ],
+      "kind": "original-three-profile-operation-review",
+      "need": "同C7准备观察、实际code分派、Main continuation和条件observer析构已具名成规；原五组×三profile15格仍需按原要求完成最终组合审定。下一步先逐格复用SS/CP/SR/MS/SC/SE/SX/PC覆盖，指出确实缺失的必要规则，不再原样驱动C7 timer/完成/普通选择查询。"
+    },
+    {
+      "id": "PC-U2",
+      "classification": "待验证",
+      "preserves": [
+        "LF-U4",
+        "SX-U2"
+      ],
+      "kind": "conditional-entries-and-current-source",
+      "need": "条件296/30721/30734、四非App菜单/import-export及L03 LS-U3和L07当前游戏consumer仍按实际正向owner处理；不得给L06/L08新增C7来源或覆盖。"
+    },
+    {
+      "id": "PC-U3",
+      "classification": "待验证",
+      "preserves": [
+        "SS-U3",
+        "SX-U3"
+      ],
+      "kind": "host-design-and-real-acceptance",
+      "need": "必要Host预算/时钟/路径/ACP/输入、存储和owner退役设计仍与真实结果分别审定；通知helper/36C timer、实际Frame退出准入和进程效果按原需求与对应profile，不扩成完整C7 L08接受。SDK原设置请求pending，无账号与当前同版材料缺口保持；实际三端/官方未验。"
+    }
+  ],
+  "selected_supersession": {
+    "parent_remaining_ids": [
+      "SX-U1",
+      "SS-U2"
+    ],
+    "selected_closed": [
+      "same-C7 timer2329 source and actual consumers",
+      "exit100/101/102/default and retry budget",
+      "pending-gated Main success/failure and notification requests",
+      "actual back/quit request distinction and conditional observer destruction"
+    ],
+    "selected_C7_preparation_observation_completion_and_retirement_rules_bound": true,
+    "whole_SX_U1_closed": false,
+    "whole_SS_U2_source_closed": false,
+    "whole_L01_specification_ready": false,
+    "L06_L08_profile_lists_not_expanded": true,
+    "preserved": [
+      "original15cells",
+      "all prior immutable startup contracts",
+      "L03 LS-U3",
+      "L07 current consumer"
+    ]
+  },
+  "acceptance": {
+    "previous_cases_reused_not_reexecuted": [
+      "SS20",
+      "CP14",
+      "SR12",
+      "MS22",
+      "SC8",
+      "SE12",
+      "SX16"
+    ],
+    "supplement_cases": [
+      {
+        "id": "PC-A01",
+        "context": "handle0、query失败和code259",
+        "expected": "分别停观察/保pending，不生成成功回执。",
+        "fact_ids": [
+          "PC-F03"
+        ],
+        "executed": false
+      },
+      {
+        "id": "PC-A02",
+        "context": "patch30min、Config15min与tick回绕",
+        "expected": "保各自阈值、uint32差、先置一次flag，不强杀。",
+        "fact_ids": [
+          "PC-F04"
+        ],
+        "executed": false
+      },
+      {
+        "id": "PC-A03",
+        "context": "Main pending false、整秒未变/变化",
+        "expected": "elapsed显示只在原gate下更新，不当百分比。",
+        "fact_ids": [
+          "PC-F05"
+        ],
+        "executed": false
+      },
+      {
+        "id": "PC-A04",
+        "context": "backup join/DeleteFile失败",
+        "expected": "清理请求与后续退出码分派分开，真实效果另验。",
+        "fact_ids": [
+          "PC-F06"
+        ],
+        "executed": false
+      },
+      {
+        "id": "PC-A05",
+        "context": "code100且game有效/无效",
+        "expected": "分别row+9D与success，或局部reset/error585h。",
+        "fact_ids": [
+          "PC-F07"
+        ],
+        "executed": false
+      },
+      {
+        "id": "PC-A06",
+        "context": "code102计数1/2/3及重启失败",
+        "expected": "最多重启两次，初次counter不重清，失败保来源LastError。",
+        "fact_ids": [
+          "PC-F08"
+        ],
+        "executed": false
+      },
+      {
+        "id": "PC-A07",
+        "context": "code101、0及其它非259码",
+        "expected": "按各自失败路径，不把0当组件成功。",
+        "fact_ids": [
+          "PC-F09"
+        ],
+        "executed": false
+      },
+      {
+        "id": "PC-A08",
+        "context": "Main pending0/1与success/failure",
+        "expected": "row gate和UI gate分开，success再step3/prepare，failure先恢复。",
+        "fact_ids": [
+          "PC-F10"
+        ],
+        "executed": false
+      },
+      {
+        "id": "PC-A09",
+        "context": "通知helper0、API失败与原flag组合",
+        "expected": "通知/owner flag与36C timer请求分开，不提升显示接受。",
+        "fact_ids": [
+          "PC-F11"
+        ],
+        "executed": false
+      },
+      {
+        "id": "PC-A10",
+        "context": "返回1009各step与Galaxy count0",
+        "expected": "依原选择政策回退，不假定process已cancel。",
+        "fact_ids": [
+          "PC-F12"
+        ],
+        "executed": false
+      },
+      {
+        "id": "PC-A11",
+        "context": "关闭2确认非6/6、login busy与Frame请求",
+        "expected": "确认、login-stop委托、post及实际析构分列。",
+        "fact_ids": [
+          "PC-F13"
+        ],
+        "executed": false
+      },
+      {
+        "id": "PC-A12",
+        "context": "观察owner析构且外部任务状态不同",
+        "expected": "清timer/handle与catalog-job退役分开，实际外部进程效果另验。",
+        "fact_ids": [
+          "PC-F14"
+        ],
+        "executed": false
+      }
+    ],
+    "supplement_cases_executed": 0
+  },
+  "summary": {
+    "new_complete_native_records": 6,
+    "new_native_body_bytes": 1626,
+    "reused_complete_native_records": 12,
+    "native_range_windows": 18,
+    "native_range_bytes": 10754,
+    "native_instruction_boundaries": 3067,
+    "derived_code_windows": 1,
+    "derived_code_bytes": 6,
+    "derived_code_instructions": 2,
+    "Child_message_map_rows": 5,
+    "original_Main_command_bindings_reused": 2,
+    "C7_retained_REA_records": 165,
+    "new_original_byte_or_resource_queries": 0,
+    "repeated_native_queries": 0,
+    "new_target_tests": 0,
+    "facts": 15,
+    "conditional_inferences": 3,
+    "operations": 6,
+    "original_profile_group_cells_preserved": 15,
+    "implementation_deltas": 4,
+    "supplement_acceptance_cases_not_executed": 12,
+    "source_capability_readiness_promoted": 0
+  },
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "new_target_tests": 0,
+  "whole_SS_U2_source_closed": false,
+  "whole_L01_specification_ready": false,
+  "source_capability_readiness_promoted": false,
+  "original_VM_SDK_program_setting_account_or_official_actions": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "stopping_rule": "C7 timer/dispatcher/progress/continuation及已有入场/恢复停止重复；按原15格审定准确剩余，只有必要来源缺口才新REA。",
+  "validation_record_path": "build/analysis/launcher-preparation-completion-v1/validation.json",
+  "execution_record": {
+    "path": "build/analysis/launcher-preparation-completion-v1/execution-record.json",
+    "bytes": 1896,
+    "sha256": "d94f1fb3921faf49ceabea4c4c66ef93497d7a335277b6731fb9cb331c2fd286"
+  }
+}

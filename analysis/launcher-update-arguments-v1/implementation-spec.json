@@ -1,0 +1,51 @@
+{
+  "schema": "moli.launcher-update-arguments-implementation-stage137.v1",
+  "recorded_utc": "2026-11-03T06:24:10.257722+00:00",
+  "requirement": "reports/development-plan.md#stage137",
+  "source": "analysis/launcher-update-arguments-v1/source-check.json",
+  "status": "implemented-and-Node-verified",
+  "exports": [
+    "WIN32_LAUNCHER_UPDATE_ARGUMENT_PROFILE",
+    "LauncherUpdateArgumentError",
+    "encodeWin32LauncherUpdateArguments"
+  ],
+  "module": "shared/launcher-update-arguments.mjs",
+  "inputs": {
+    "shape": "Exactly five own data fields; no getter reads, inherited fields or extras. Byte fields accept actual nonshared/non-detached Uint8Array or ArrayBuffer, snapshotted with intrinsic bounds.",
+    "parentPid": "Number UInt32 in1..4294967295, decimal output",
+    "urlBytes": "1..255B printable ASCII; observed limited case-insensitive http(s) prefix/first-host-byte guard, no full URL or origin validation",
+    "launcherPathBytes": "4..259B printable ASCII, initial ASCII letter + colon + backslash",
+    "archiveSizeBytes": "1..10decimal ASCII bytes, numeric1..268435456, original leading zeros retained",
+    "launcherMd5Bytes": "Exactly32ASCII hexadecimal bytes, original letter case retained",
+    "common_url_path_guard": "No pipe, double quote, control, DEL, leading/trailing SP; internal SP allowed"
+  },
+  "transformation": "Copy URL/path, replace each internal0x20 with0x7c, then decimal PID URL path original-size original-MD5 separated by four0x20 bytes; no terminating NUL in logical result.",
+  "output": {
+    "profile": "win32-updater-arguments-ascii-v1",
+    "argumentBytes": "Owned mutable Uint8Array, maximum570B; result record frozen; independent of all inputs and other calls",
+    "fields": 5,
+    "archiveBytes": "Numeric parsed size; no payload allocation/download",
+    "trust": "unverified",
+    "authentication": "unverified",
+    "execution": "not-performed"
+  },
+  "policy_boundaries": [
+    "ASCII-only and strict own field/byte ownership are independent narrower policies; no claim of full native MBCS/locale behavior.",
+    "Profile sourceSha256 identifies the analyzed formatter algorithm, not the supplied path, installed file or remote publisher.",
+    "256MiB describes serialized native size text only; existing ZIP/download core remains32MiB, not widened.",
+    "Pure shared module has no Node/DOM/wx/process/event/file/network APIs. No page integration or native executor is added.",
+    "Formatting does not validate file existence, executable identity, signature, shell safety, handoff readiness, ACK, replacement, rollback or official acceptance."
+  ],
+  "meaningful_tests": [
+    "Golden original bytes with repeated internal spaces, leading zeros and mixed-case digest",
+    "Exact570B upper bound and independently distinct numerical/text bounds",
+    "Delimiter/control/ASCII/path-prefix/URL-prefix rejection",
+    "Own descriptors/getters, subclasses, views, buffer mutation, shared/detached/proxy input rejection",
+    "Existing current metadata/package/journal/bootstrap/page-profile compatibility regressions"
+  ],
+  "unresolved": [
+    "Full current updater filesystem/event/ACK lifecycle",
+    "Original game consumer/protocol and playable implementation",
+    "Real authentication and physical mobile/WeChat/official acceptance"
+  ]
+}

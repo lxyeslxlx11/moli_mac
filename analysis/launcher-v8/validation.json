@@ -1,0 +1,151 @@
+{
+  "schema": "moli.launcher-v8.validation.v1",
+  "recorded_utc": "2026-10-26T23:09:39.091952+00:00",
+  "scope": "Fixed launcher static UI/callback/choice analysis and independent offline input/choice implementation only. No original executable, VM, account, official transport or captured sessions.",
+  "node": {
+    "version": "v26.9.0",
+    "tests": 179,
+    "pass": 179,
+    "fail": 0,
+    "skipped": 0,
+    "new_login_tests": 18,
+    "previous_tests": 161,
+    "log": "node-tests.log"
+  },
+  "dialog_helper": {
+    "original_tests": 4,
+    "pass": 4,
+    "real_fixed_dialogs_examined": 13,
+    "matching_dialog": 133,
+    "controls": 23,
+    "evidence": "dialog-controls.json",
+    "log": "dialog-tests.log",
+    "supported_scope": "fixed-hash analysis helper only; ordinary/extended original fixtures, truncation/alignment/style/budgets"
+  },
+  "static": {
+    "new_function_dossiers": 9,
+    "scope_function_dossiers": 14,
+    "evidence_records": 115,
+    "spec": "static-spec.json",
+    "abi": "reply-abi.json",
+    "session": "exported/snapshotted/closed",
+    "independent_case4_instruction_checks": 9,
+    "case4": "case4-independent.json"
+  },
+  "independent": {
+    "python_request_vectors": 3,
+    "python_profile_vectors": 6,
+    "maximum_rows": 64,
+    "vectors": "original-login-vectors.json",
+    "identity": "Original public constants, never real credentials/accounts/sessions"
+  },
+  "browser": {
+    "checks": 6,
+    "browser": "155.0.8059.85",
+    "errors": 0,
+    "requests": 34,
+    "all_loopback_get": true,
+    "receipt": "browser-login-smoke.json"
+  },
+  "review": {
+    "read_only_independent": "No reproducible defect,18 original tests passed; DDX/swap/tail/selection mapping reviewed. Initial case4 Listing coverage gap then closed by existing Apple LLVM21.0.0 disassembly of the exact case block.",
+    "explicit_strict_policies": [
+      "Reject conflicting low16/full32 state words",
+      "Require W1..W4 columns to cover displayed labels",
+      "Reject empty/NUL choice names; no CString truncation imitation",
+      "Reject credential NUL and unsupported Gamecode beyond14 slots; low-level18B codec unchanged"
+    ]
+  },
+  "dependencies": {
+    "new_installs": 0,
+    "capability_correction": "Guessed Homebrew gobjdump path absent; existing/usr/bin/objdump21.0.0 verified and used. Existing REA/Ghidra/Node/Python/Playwright/Chrome reused.",
+    "windows_primary_sources": [
+      "https://learn.microsoft.com/en-us/windows/win32/dlgbox/dlgtemplateex",
+      "https://learn.microsoft.com/en-us/windows/win32/dlgbox/dlgitemtemplateex",
+      "https://learn.microsoft.com/en-us/windows/win32/controls/edit-control-styles",
+      "https://learn.microsoft.com/en-us/windows/win32/intl/code-pages"
+    ]
+  },
+  "example": {
+    "path": "example-output.json",
+    "exit_code": 0,
+    "raw_credential_or_opaque_output": false
+  },
+  "sources": [
+    {
+      "path": "shared/launcher-login.mjs",
+      "bytes": 8207,
+      "sha256": "49d3ebb5cf2225bdbbfda086ee75cb53049b4aaf980d5ac3c2977d98aae5b96c"
+    },
+    {
+      "path": "shared/index.mjs",
+      "bytes": 10406,
+      "sha256": "ed76475376dceb555950812f2caf9fce02ee72da1b84c789dfd186e0757d7ca3"
+    },
+    {
+      "path": "shared/tests/launcher-login.test.mjs",
+      "bytes": 16294,
+      "sha256": "a322afff925867b03880ae97bd5e8d29412ba0860511397721144f09ca410a72"
+    },
+    {
+      "path": "shared/examples/launcher-login.mjs",
+      "bytes": 1243,
+      "sha256": "7a45ff79bbde951ce8f17c703a8c7f0f6ec496dfca232d2ffb0a756ae0a148a9"
+    },
+    {
+      "path": "analysis/launcher-v8/build_login_vectors.py",
+      "bytes": 4922,
+      "sha256": "da401c0ad2d24d2152fb8138f8a3a5f53f1e42326c4cc65f868d2ee0f5e258cb"
+    },
+    {
+      "path": "analysis/launcher-v8/original-login-vectors.json",
+      "bytes": 33034,
+      "sha256": "6fcd1976fe97232991e4698570495008b224716985454a80064d75b07ac4d57f"
+    },
+    {
+      "path": "analysis/launcher-v8/inspect_dialog_controls.py",
+      "bytes": 4847,
+      "sha256": "f06e7b175aa1928fd9955c68299fcaa9d2057cffc9982ccffceee0150851cf8b"
+    },
+    {
+      "path": "analysis/launcher-v8/test_dialog_controls.py",
+      "bytes": 2548,
+      "sha256": "2a09cc179d2a477c1e3d173613923b1dc31b664cc572c428d029b294b62fc736"
+    }
+  ],
+  "not_verified": [
+    "Actual Windows active code page/runtime input notifications; no Unicode credential encoding adapter",
+    "Local consent/remembering/profile persistence or real account acceptance",
+    "Full connection retry/timeouts/failure/session lifecycle and genuine authentication",
+    "Update trust/rollback, process handoff/game consumer acceptance or official compatibility",
+    "Game REA/implementation phase for the goal",
+    "Safari/physical phone/miniprogram; existing actual-file/narrow viewport suite not rerun",
+    "Old graphics Python/Swift suites not rerun; unchanged native/resource implementations"
+  ],
+  "documentation": {
+    "files_updated": [
+      "README.md",
+      "shared/README.md",
+      "web/README.md",
+      "reports/development-plan.md",
+      "reports/launcher-static.md",
+      "reports/logic-protocol-spec.md",
+      "reports/architecture-and-milestones.md",
+      "reports/module-interfaces.md",
+      "reports/resource-formats.md",
+      "reports/validation.md",
+      "reports/known-issues.md",
+      "reports/analysis-methods.md"
+    ],
+    "local_file_links_checked": 639,
+    "missing_links": 0,
+    "v8_anchors_checked": true
+  },
+  "preservation": {
+    "native_manifest_files_unchanged": 17,
+    "fixed_launcher_sample_hashes_rechecked": 2,
+    "git": "No repository initialized, commit or push",
+    "official_execution_or_vm_operations": 0
+  },
+  "finalized_utc": "2026-10-26T23:16:01.212868+00:00"
+}

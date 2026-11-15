@@ -1,0 +1,23 @@
+{
+ "schema":"moli.battle-return-spec-stage189.v1",
+ "source_sha256":"37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+ "classification":"source contract before product edits; derived invariants marked separately",
+ "full_requirement":"Retain complete launcher/game, full battle/other play, product web/mobile/WeChat and current/official acceptance. Implement actual ordinary return consumers, not an unlock or old-body reuse.",
+ "source_contracts":[
+  {"classification":"fact","rule":"501a50/3 calls4ff430 to remove the local body and440450 to clear all remote unit records before normal battle entry. Local resource/facing/coordinates/labels/speed globals survive. Existing automatic shared entry must apply these effects instead of retaining old logical bodies.","sources":["0x501a50","0x4ff430","0x440450","0x4ffba0"]},
+  {"classification":"fact","rule":"The scalar at9250c8 (payload9250cc) is set1 during ordinary battle preparation and reset0 on exit.4f16d0 unit lists and4f2010 actions return when it is nonzero; removals and other consumers have distinct rules. Port a plain owned scalar, not wrapped storage or a new wire field.","sources":["0x501a50","0x437b30","xrefs:0x9250c8","0x4f16d0","0x4f2010"]},
+  {"classification":"derived","rule":"For the supported ordinary0 battle-origin path, initialization flagf5f18c is1: entering battle requires main9/3, which is reached after103 sets1 or11's fallback sets1. The observed reset0 is main9/0, outside the intervening admitted path. This is a closed source-profile invariant, not a caller-provided initialized/ready flag; indirect-writer completeness is not claimed.","sources":["0x501a50","0x4f3430","xrefs:0xf5f18c"]},
+  {"classification":"fact","rule":"Return main9/1 sets counter0 and requests11 without drawing.11 clears while counter<=29 and increments it; at30 it performs local/global refresh and unit-body reconstruction, one callback pass, map draw/capture and first505030(13,8,float2), then requests2.2 finishes the source fade before20 falls through actual ordinary3 work.","sources":["0x501a50","0x4ff160","0x4405a0","0x5028a0","0x503330"]},
+  {"classification":"fact","rule":"440570 clears remote body pointers and pending facing59a33c, retaining unit record data;4405a0 recreates only records with a missing body using cached resource/coordinate/facing, not old body queues.43cd00/43c1b0 manipulate body positions/queues;43ba10 consumes pending facing only at matching arrival and clears it. Normal battle already cleared old records, so fresh post-exit records remain authoritative.","sources":["0x440570","0x4405a0","0x43c000","0x43cd00","0x43c1b0","derived:0x43ba10"]},
+  {"classification":"fact","rule":"4ff160 refreshes the local body from retained globals via4ff3b0,4ff510,4ff580,4ff5a0.4ffba0 clears local leader100 when the body is absent. Source map helpers and506030 compose/capture; existing shared source map/actor renderers supply the independent port, not native UI/audio acceptance.","sources":["0x4ff160","0x4ff3b0","0x4ffba0","0x45ffd0","0x463ea0","0x506030"]}
+ ],
+ "intended_implementation":[
+  "Correct automatic entry's ordinary body/record clear and own9250c8 gating/reset using actual source lifecycle",
+  "Rebuild local body from retained real globals, keep new unit records, clear stale queues/pending facing/players and rebind actual party references",
+  "Owned main9/1,11 wait, real world capture,13 fade,20/3 callback/frame and commit only after rendered output",
+  "Keep actual map/resources/readiness and generation checks; cancelled IO/reentry/scene updates cannot replay or commit stale work",
+  "Verify independent source state/fade references and actual source/generated TCP return with resumed input/movement, then synchronize canonical docs/full parent scope and cumulative delivery"
+ ],
+ "required_remaining":["Full SKL/other command/body/effect and CHT/BST consumers","Exit9/type14 control and other main9 branches/initial full native UI/audio scheduling","Complete product battle page/input/menu/hit, web/touch/WeChat gamePage/DevTools/device","Other full gameplay, whole-application RNG/ordinary pool/native bit equivalence and current/official compatibility"],
+ "phase_complete":false,"full_goal_complete":false,"goal_status":"active"
+}

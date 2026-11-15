@@ -1,0 +1,19 @@
+{
+  "stage": 243,
+  "previous_checkpoint": {
+    "path": "analysis/game-legacy-battle-status-variant-v1/checkpoint-audit.json",
+    "sha256": "3b2113a0b84c81e677edd1e72e60ab7f3ffcf8c32c55e32f9e3f443d52da909a"
+  },
+  "requirement": "让固定旧版网页、移动网页和微信 Page 共用的游戏会话在继续游玩时维持已有 TCP 连接。网页的正常本地入口需要跨过旧桥接的绝对时限与累计流量上限。",
+  "baseline_files": 3945,
+  "source": "analysis/game-legacy-game-stream-v1/source-check.json",
+  "scope": {
+    "web": "旧版游戏 CLI 显式启用同源 /game-stream。沿用授权与端点顺序，建立连接后取消建立期超时，按在途写入、单帧和待消费队列约束资源。",
+    "session": "正常网页游戏和微信 Page 显式启用保活。启用后续角色流程且持有编解码密钥的会话，在最后一次成功写后严格超过 30 秒经同一游戏写队列发送 3$} nr。使用 uint32 差值处理宿主时钟回绕，退场期间暂停保活。取消监听只保留在途操作。",
+    "acceptance": "独立回环对端核验连续会话、原始明文字段与可继续操作。覆盖桌面和移动网页、共享会话、桥接预算与清理，并回归微信 Page 和既有登录器。"
+  },
+  "remaining": "真实微信设备网络、现行版本启动交接、完整玩法及官服验收继续按原 37 项要求与 10 个未完成消费者组追踪。",
+  "VM_actions": 0,
+  "original_execution": 0,
+  "official_sessions": 0
+}

@@ -1,0 +1,54 @@
+{
+  "schema": "moli.own-fixture-transfer.plan.stage101.v1",
+  "recorded_utc": "2026-10-29T15:57:07.299088+00:00",
+  "requirement": "reports/development-plan.md",
+  "purpose": "Supplement the existing own-tool validation run-plan after the native CD source picker did not respond; preserve original binaries, dataCD, policy and full objective.",
+  "authorization_basis": "Current user Windows, network-testing and tool/dependency authorization; no new original game or used script operation is performed by this task tool.",
+  "supersedes_only": [
+    "run-plan.json steps2/3 media transport may instead use this bounded own-file transfer",
+    "Input recovery temporarily enabled the ordinary host on-screen keyboard and restored it off; no analysis/security/approval or VM network/share policy was changed."
+  ],
+  "script": "analysis/game-entry-runtime-v1/fixture_transfer.py",
+  "limits": {
+    "source_files": [
+      "build/analysis/game-entry-v1/probe/entry-fixture.exe",
+      "build/analysis/game-entry-v1/probe/callback-probe.exe"
+    ],
+    "source_identity": "Exact pinned byte counts and SHA256 are checked before any listener opens; sources are cached in memory.",
+    "bind_choices": [
+      "127.0.0.1",
+      "10.211.55.2"
+    ],
+    "NAT_allowed_GET_peer": "10.211.55.3, must refresh actual guest identity before live use",
+    "port": "OS-selected ephemeral; use only the newly observed ready port",
+    "TTL_seconds": "10..600, bounded per-request socket timeouts may overrun the loop deadline",
+    "responses": "One GET per exact filename; auto-close after both response sends or expiry; a send is not guest hash acceptance.",
+    "HEAD": "Metadata only; host HEAD also allowed in NAT mode",
+    "other_paths_or_methods": "No directory listing, request-derived filesystem access, uploads, ranged or non-empty-body GETs; fixed empty error bodies; request lines/headers are not logged."
+  },
+  "ordered_steps": [
+    "Recover ordinary Mac access, inspect the last open configuration window and then a verified idle English PowerShell prompt; do not press Return across unknown dialogs.",
+    "Refresh actual Windows NAT identity and fixed own destination/root attributes; stop on ambiguous path, reparse object or unexpected pre-existing files.",
+    "Start a new bounded NAT-only helper only when the guest is ready, verify the emitted bind/allowed peer/port, then use a metadata HEAD from Windows; if denied or unreachable, stop without changing firewall, network/share configuration or source guards.",
+    "Read the two fixed own payloads only, clear stale buffers between downloads and create destination files atomically with FileMode.CreateNew; verify exact byte counts, attributes and full SHA256 before any invocation.",
+    "Confirm transport has closed; keep the old stage89 dataCD and all original files/backups untouched.",
+    "Run the existing own observer input/path denial cases and one fresh own fixture PID observation, retain actual status/exit/numeric metadata and natural fixture exit.",
+    "Only then establish legitimate normal original-game path/context. The compiled game profile points at an absent path and is currently unready; do not relocate the game or relax guards to make it pass."
+  ],
+  "unchanged_guards": [
+    "No current.ps1/Restore or consumed launch replay, credential/session/code/IPC read, debugger/injection/privilege or protection change.",
+    "No ExecutionPolicy, VM hardware/network/share, global analysis-tool or approval configuration change.",
+    "Existing fixed source/path/architecture/creation/module/RVA/exact8byte guards remain compiled. Denial stops."
+  ],
+  "actual_validation": "transfer-host-validation-stage101.json: nineteen host protocol/policy/closure checks, no positive guest GET or Windows execution.",
+  "guest_transfer_performed": false,
+  "Windows_fixture_accepted": false,
+  "full_goal_complete": false,
+  "official_reference": {
+    "url": "https://docs.parallels.com/landing/pdfm-ug/v20-en-us/parallels-desktop-for-mac-20-users-guide/parallels-desktop-preferences-and-virtual-machine-settings/parallels-desktop-preferences/network-preferences",
+    "claim": "Mac shared-network IPv4 default is10.211.55.2; actual bind success was independently checked. This is not proof of guest reachability."
+  },
+  "historical_preparation_snapshot": true,
+  "actual_later_results": "analysis/game-entry-runtime-v1/windows-observer-stage101.json",
+  "current_transfer_source_profile": "stage101 revised own PE pins; stage96 first transfer and its validation retained historically"
+}

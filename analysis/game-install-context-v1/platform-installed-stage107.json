@@ -1,0 +1,91 @@
+{
+  "schema": "moli.normal-platform-install.installed.v1",
+  "recorded_utc": "2026-10-30T06:32:59.673997+00:00",
+  "evidence_kind": "fact: direct CUA Windows PowerShell output, manually transcribed during this turn",
+  "user_report": "User reports completing the pending installation; intervening agreement/finish choices were not observed by the agent.",
+  "original_setup": {
+    "historical_runtime_record": "analysis/game-install-context-v1/platform-runtime-stage106.json",
+    "pid": 3440,
+    "wait_for_exit_0": true,
+    "has_exited": true,
+    "exit_code": 0,
+    "query": "$platform106.WaitForExit(0); $platform106 | fl id,hasexited,exitcode"
+  },
+  "registry": {
+    "key": "HKCU\\SOFTWARE\\SECN\\Launcher",
+    "value_name": "InstallDir",
+    "value_type": "REG_SZ",
+    "views": [
+      {
+        "view": 32,
+        "exit_code": 0
+      },
+      {
+        "view": 64,
+        "exit_code": 0
+      }
+    ],
+    "installed_directory": "C:\\Program Files (x86)\\易玩通\\“易玩通”娱乐平台"
+  },
+  "root_directory_listing": [
+    {
+      "name": "XML",
+      "kind": "directory"
+    },
+    {
+      "name": "LauncherUpdater.exe",
+      "bytes": 46080
+    },
+    {
+      "name": "Log.htm",
+      "bytes": 1076
+    },
+    {
+      "name": "POLCN_Launcher.exe",
+      "bytes": 599040
+    },
+    {
+      "name": "unins000.dat",
+      "bytes": 8590
+    },
+    {
+      "name": "unins000.exe",
+      "bytes": 3129349
+    }
+  ],
+  "full_hash_readbacks": [
+    {
+      "name": "POLCN_Launcher.exe",
+      "bytes": 599040,
+      "sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+      "matches_existing_fixed_source": true
+    },
+    {
+      "name": "LauncherUpdater.exe",
+      "bytes": 46080,
+      "sha256": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+      "matches_existing_fixed_source": true
+    }
+  ],
+  "source_chain": "analysis/launcher-provenance-v1/installer-chain.json",
+  "actions_this_turn": {
+    "installer_restarts": 0,
+    "agent_agreement_acceptances": 0,
+    "agent_install_clicks": 0,
+    "vendor_program_start_commands": 0,
+    "game_start_commands": 0,
+    "script_replays": 0
+  },
+  "unknowns": [
+    "User postinstall autolaunch choice and any intervening automatic launch lifecycle",
+    "Current vendor process count: query pending and unsubmitted",
+    "Installed XML full hashes",
+    "Win7 compatibility settings on these newly installed paths",
+    "Current normal launcher/update/game lifecycle and all original game consumers"
+  ],
+  "limitations": [
+    "Installer exit0 plus registry/directory/two hashes verifies this narrow installation identity only.",
+    "It does not verify all installed files, update completion, game execution, authentication, protocol, or platform compatibility.",
+    "The 599040-byte original launcher and 46080-byte updater must not be conflated with the later 1666048-byte launcher or 814080-byte updater."
+  ]
+}

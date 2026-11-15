@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "observed_utc": "2026-10-25T18:19:36.919981+00:00",
+  "scope": "Only four exact Finder-visible paths: first three bounded metadata checks, then one additional directory immediate-entry check. No contents, links followed, broad search, execution/deletion/UI/container access.",
+  "paths": [
+    {
+      "path": "/tmp/moli-netkvm-w11-arm64-0.1.274.iso",
+      "entries": [
+        {
+          "path": "/tmp/moli-netkvm-w11-arm64-0.1.274.iso",
+          "kind": "regular",
+          "bytes": 3004416,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5157615
+        }
+      ],
+      "errors": [],
+      "truncated": false,
+      "root": {
+        "path": "/tmp/moli-netkvm-w11-arm64-0.1.274.iso",
+        "kind": "regular",
+        "bytes": 3004416,
+        "nlink": 1,
+        "device": 16777230,
+        "inode": 5157615
+      },
+      "exists": true,
+      "regular_file_count": 1,
+      "logical_bytes": 3004416,
+      "classification": "preserve_pending_project_provenance",
+      "confirmed_pure_project_artifact": false,
+      "whole_item_recoverable_removal_recommended": false,
+      "evidence": "Exact Finder-visible filename, ordinary file, 3,004,416 bytes, nlink=1. No content was read and no provenance/hash binding for this exact file was found in the bounded prior-record search.",
+      "inference": "Name is consistent with an earlier project NetKVM driver ISO, but name and size alone do not establish its contents or provenance.",
+      "next_step": "Retain unless an existing creation receipt or other specific trusted provenance identifies this exact file; no further investigation performed in this pass."
+    },
+    {
+      "path": "/tmp/moli-v6-drivers-readonly",
+      "entries": [],
+      "errors": [],
+      "truncated": false,
+      "root": {
+        "path": "/tmp/moli-v6-drivers-readonly",
+        "kind": "directory",
+        "bytes": 64,
+        "nlink": 2,
+        "device": 16777230,
+        "inode": 5171050
+      },
+      "exists": true,
+      "regular_file_count": 0,
+      "logical_bytes": 0,
+      "classification": "empty_project_named_directory_candidate",
+      "confirmed_empty_at_observation": true,
+      "mixed_analysis_reports_scripts_observed": false,
+      "whole_item_recoverable_removal_recommended": true,
+      "evidence": "Bounded directory enumeration found zero entries; df for the exact path reported the host /System/Volumes/Data filesystem, not a separate mounted volume. No directory symlink observed.",
+      "next_step": "Only a separately authorized normal recoverable move of this exact empty directory; no deletion performed by this branch."
+    },
+    {
+      "path": "/tmp/moli-vm-preparation",
+      "entries": [],
+      "errors": [],
+      "truncated": false,
+      "root": {
+        "path": "/tmp/moli-vm-preparation",
+        "kind": "directory",
+        "bytes": 64,
+        "nlink": 2,
+        "device": 16777230,
+        "inode": 5140385
+      },
+      "exists": true,
+      "regular_file_count": 0,
+      "logical_bytes": 0,
+      "classification": "empty_project_named_directory_candidate",
+      "confirmed_empty_at_observation": true,
+      "mixed_analysis_reports_scripts_observed": false,
+      "whole_item_recoverable_removal_recommended": true,
+      "evidence": "Bounded directory enumeration found zero entries; df for the exact path reported the host /System/Volumes/Data filesystem, not a separate mounted volume. No directory symlink observed.",
+      "next_step": "Only a separately authorized normal recoverable move of this exact empty directory; no deletion performed by this branch."
+    },
+    {
+      "path": "/private/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-autologon-v11-qh7cprnd",
+      "observed_utc": "2026-10-25T18:21:42.500659+00:00",
+      "source": "Exact additional directory visible to the parent in Finder; no broader temporary-directory search.",
+      "entries": [],
+      "errors": [],
+      "contents_read": false,
+      "truncated": false,
+      "exists": true,
+      "root": {
+        "kind": "directory",
+        "bytes": 64,
+        "nlink": 2,
+        "device": 16777230,
+        "inode": 5233707
+      },
+      "filesystem_query": {
+        "command": [
+          "/bin/df",
+          "-P",
+          "/private/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-autologon-v11-qh7cprnd"
+        ],
+        "exit_code": 0,
+        "stdout": "Filesystem   512-blocks      Used Available Capacity  Mounted on\n/dev/disk3s5  965595304 399200000 504000000    45%    /System/Volumes/Data\n",
+        "stderr": ""
+      },
+      "classification": "empty_project_named_directory_candidate",
+      "confirmed_empty_at_observation": true,
+      "mixed_analysis_reports_scripts_observed": false,
+      "whole_item_recoverable_removal_recommended": true,
+      "evidence": "Empty directory; exact-path df reports the host Data filesystem. No separate mount or content observed. Earlier failure origin is not independently established."
+    }
+  ],
+  "prior_record_checks": {
+    "supplied_path_source": "Parent reported these three exact paths visible in Finder during the authorized scoped cleanup; no general /tmp search was performed.",
+    "searches": [
+      {
+        "roots": [
+          "analysis/vm-preparation-v1",
+          "analysis/vm-install-v4",
+          "analysis/vm-install-v6"
+        ],
+        "extensions": [
+          ".json",
+          ".md",
+          ".py"
+        ],
+        "query": "Three exact additional paths",
+        "result": "Only v6 mountpoint reference found."
+      },
+      {
+        "roots": [
+          "analysis/vm-preparation-v1",
+          "analysis/vm-install-v4",
+          "analysis/vm-install-v5"
+        ],
+        "extensions": [
+          ".json",
+          ".md"
+        ],
+        "query": "Exact old ISO filename, 3004416, and moli-vm-preparation",
+        "exit_code": 1,
+        "result": "No matches; this is a bounded search result, not proof that no receipt exists elsewhere."
+      }
+    ],
+    "positive_reference": {
+      "file": "analysis/vm-install-v6/device-driver-candidates.md",
+      "line": 63,
+      "meaning": "Records /tmp/moli-v6-drivers-readonly as the project read-only driver ISO mountpoint; this pass found it empty and on the host filesystem."
+    },
+    "iso_followup_owner": "Parent is separately comparing the old NetKVM ISO with known v4 content evidence; this branch performs no further ISO research and leaves its prior status unchanged."
+  },
+  "filesystem_query": {
+    "command": [
+      "/bin/df",
+      "-P",
+      "/tmp/moli-netkvm-w11-arm64-0.1.274.iso",
+      "/tmp/moli-v6-drivers-readonly",
+      "/tmp/moli-vm-preparation"
+    ],
+    "exit_code": 0,
+    "output": "Filesystem   512-blocks      Used Available Capacity  Mounted on\n/dev/disk3s5  965595304 399200000 504000000    45%    /System/Volumes/Data\n/dev/disk3s5  965595304 399200000 504000000    45%    /System/Volumes/Data\n/dev/disk3s5  965595304 399200000 504000000    45%    /System/Volumes/Data\n",
+    "interpretation": "All three exact paths resolved to /dev/disk3s5 mounted on /System/Volumes/Data at this observation; neither empty directory was a separate mounted volume."
+  },
+  "summary": {
+    "recoverable_candidates": [
+      "/tmp/moli-v6-drivers-readonly",
+      "/tmp/moli-vm-preparation",
+      "/private/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-autologon-v11-qh7cprnd"
+    ],
+    "preserve": [
+      "/tmp/moli-netkvm-w11-arm64-0.1.274.iso"
+    ],
+    "mixed_materials_found": false,
+    "iso_contents_or_hash_read": false,
+    "container_revisited": false,
+    "ui_actions": 0,
+    "moves_or_deletions": 0,
+    "path_count": 4
+  },
+  "limits": [
+    "No contents, executables, scripts, ISO filesystem or account data were opened; this is a metadata/provenance inventory only.",
+    "The empty-directory conclusions are time-specific. Recheck if contents change before any authorized recoverable move.",
+    "The ISO is retained because this bounded metadata pass cannot establish pure project provenance; no broader search or additional research was performed.",
+    "No Trash, other VM customer data, Parallels path or previously denied UTM container access occurred.",
+    "Analysis, reports, scripts and project source remain preserved; no phase cleanup result is asserted by this branch."
+  ],
+  "additional_observation_utc": "2026-10-25T18:21:42.500659+00:00"
+}

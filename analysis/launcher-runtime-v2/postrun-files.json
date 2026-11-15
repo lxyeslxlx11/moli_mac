@@ -1,0 +1,107 @@
+{
+  "schema": "moli.launcher-runtime-v2.postrun-files.v1",
+  "recorded_utc": "2026-10-28T07:37:02.449697+00:00",
+  "classification": "facts transcribed from current guest CUA PowerShell result",
+  "directory": "C:/MoliOffline/launcher-probe",
+  "process_query": {
+    "command": "gps POLCN*,LauncherUpdater -ea 0|ft Id,ProcessName",
+    "rows": [],
+    "limit": "Current matching process view only; expected no-match errors suppressed, no full lifecycle/child trace."
+  },
+  "file_query": "ls *.*,XML/*|ft Name,Length",
+  "hash_query": "Get-FileHash *.*,XML/*|fl Path,Hash",
+  "files": [
+    {
+      "path": "Log.htm",
+      "bytes": 1078,
+      "prior_bytes": 619,
+      "sha256": "39c0ea4c6d8eac8bd89c2d79d5113dd7eac47d1888a0e60684722f03d4e4e6c4",
+      "changed": true
+    },
+    {
+      "path": "POLCN_Launcher.exe",
+      "bytes": 599040,
+      "sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+      "changed": false
+    },
+    {
+      "path": "XML/GameList.xml",
+      "bytes": 4377,
+      "sha256": "be8f1213d77bd294fbb79b2fb51a5e7fecdc9aa3c0854db7a6d821fad20ef85a",
+      "changed": false
+    },
+    {
+      "path": "XML/RegionList.xml",
+      "bytes": 6205,
+      "sha256": "0c94ca78c40c1940f241940a97aabef7849e9ad3285310046f346b69128a8438",
+      "changed": false
+    }
+  ],
+  "no_updater_in_current_list": true,
+  "log_read_scope": "Read only the controlled no-account probe log in guest memory; first bounded numeric-regex query over byte619..1077 returned no 12000..12199 match. No complete log file or account/credential data copied to host.",
+  "initial_non_force_query_limit": "Initial wildcard listing omitted hidden files and never proved updater absence.",
+  "force_query": {
+    "command": "ls -Force|ft Name,Length,Attributes",
+    "members": [
+      {
+        "name": "XML",
+        "attributes": [
+          "Directory"
+        ]
+      },
+      {
+        "name": "LauncherUpdater.exe",
+        "bytes": 46080,
+        "attributes": [
+          "Hidden",
+          "Archive"
+        ],
+        "sha256": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+        "matches_old_embedded": true
+      },
+      {
+        "name": "Log.htm",
+        "bytes": 1078,
+        "attributes": [
+          "Archive"
+        ]
+      },
+      {
+        "name": "POLCN_Launcher.exe",
+        "bytes": 599040,
+        "attributes": [
+          "ReadOnly",
+          "Archive"
+        ]
+      }
+    ],
+    "attribute_changes_performed": false
+  },
+  "diagnostic_slice": {
+    "byte_offset": 619,
+    "bytes": 459,
+    "decoding": "code page936, HTML markup removed",
+    "selected_status": "start-update/program-end",
+    "preservation": "Derived status only; no complete log/body or screenshot saved.",
+    "prefix_digest_command": "[BitConverter]::ToString(([Security.Cryptography.SHA256]::Create()).ComputeHash($log87,0,619))",
+    "prefix_digest_result": "pending; Enter/raise/keypadEnter returned with no observed submission/result. No append-proof claim."
+  },
+  "inference": "Controlled postrun log matches successful updater CreateProcessA branch in retained evidence; no child PID/exit/API trace. Update completion/root cause unknown.",
+  "dependency_candidate": {
+    "old_static_imports": [
+      "MFC71.DLL",
+      "MSVCP71.dll",
+      "MSVCR71.dll"
+    ],
+    "source": "analysis/launcher/embedded-updater-pe.txt import table",
+    "local_installer_list_checks": {
+      "POLCN_Setup.exe": [],
+      "CrossGate_Setup.exe": [
+        "app/MFC71.dll",
+        "app/msvcr71.dll"
+      ]
+    },
+    "guest_runtime_availability": "not queried",
+    "classification": "candidate only, not established failure or repair"
+  }
+}

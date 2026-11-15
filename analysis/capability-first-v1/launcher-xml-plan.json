@@ -1,0 +1,24 @@
+{
+  "schema": "moli.capability.launcher-xml-plan.v1",
+  "requirement": "All-capability REA/specification before grouped shared implementation",
+  "capabilities": [
+    "L01",
+    "L02",
+    "L05",
+    "L06"
+  ],
+  "source_sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+  "baseline": "build/analysis/capability-launcher-host-routing-v1/next-baseline.json",
+  "questions": [
+    "Bind document byte loading, BOM/encoding selection, whitespace, top-level recognition and normal/error return state.",
+    "Trace element/attribute/name/text/entity/comment/CDATA/declaration/unknown-node grammar and byte handling needed by the catalog consumer.",
+    "Bind malformed/duplicate/truncated input and partial-tree/error publication to catalog-container acceptance; keep unclosed limits or OS effects explicit.",
+    "Compare the existing independent bounded parser/decoder coverage against this source profile without changing product behavior or treating C7BA evidence as C82."
+  ],
+  "reuse_policy": "Same-source retained REA/snapshot first; analysis-owned byte/parser probes use original synthetic inputs; no original target execution or canonical annotation",
+  "original_execution": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false
+}

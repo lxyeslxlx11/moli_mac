@@ -1,0 +1,1547 @@
+{
+  "schema": "moli.launcher-startup-final-reconciliation.v1",
+  "classification": "事实/推测/待验证分栏",
+  "capability": "L01",
+  "requirement": "在统一全能力分析流程中完成原启动十五格最终组合对账，复用同版证据，停止泛化重复查询。",
+  "document_catalog": {
+    "SS": {
+      "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+      "bytes": 77125,
+      "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+    },
+    "CP": {
+      "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+      "bytes": 47926,
+      "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+    },
+    "SR": {
+      "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+      "bytes": 40405,
+      "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+    },
+    "MS": {
+      "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+      "bytes": 74738,
+      "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+    },
+    "SC": {
+      "path": "analysis/capability-first-v1/launcher-startup-scope-review.json",
+      "bytes": 89620,
+      "sha256": "9f121b289ddfe63a3a068936c491c59d918f854fa4e12583a241f3d9cb9ee20e"
+    },
+    "SE": {
+      "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+      "bytes": 69965,
+      "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+    },
+    "SX": {
+      "path": "analysis/capability-first-v1/launcher-selection-context-contract.json",
+      "bytes": 68015,
+      "sha256": "6e1282fb619dff3f4fd9b33cbd236c8f36735db0a3ded90c9e93d5ce889b7105"
+    },
+    "PC": {
+      "path": "analysis/capability-first-v1/launcher-preparation-completion-contract.json",
+      "bytes": 45171,
+      "sha256": "1a37ccdf9317bc27fde61aa68f6b05f6ecd491b15e2f74cad41e0f0921912cc6"
+    },
+    "LF": {
+      "path": "analysis/capability-first-v1/launcher-functional-specification.json",
+      "bytes": 111980,
+      "sha256": "68ebb9f01779d04be26ed66a5a8ae16f2246cac514a8161c5c6af53bf0a13bc6"
+    },
+    "source": {
+      "path": "build/analysis/launcher-startup-final-reconciliation-v1/source-review.json",
+      "bytes": 27028,
+      "sha256": "b07b73601edd1ccfaad3db6aca8937101c49acdd5e2e46bb813fd588bced76f9"
+    }
+  },
+  "scope_preserved": {
+    "capabilities": 40,
+    "registry_entries": 81,
+    "historical_requirements": 37,
+    "consumer_groups": 10,
+    "source_profiles": 6,
+    "original_scope": "配置读取、区域目录初始化、来源选择、首次配置与失效恢复",
+    "required_groups": [
+      "配置读取",
+      "区域目录初始化",
+      "来源选择",
+      "首次配置",
+      "失效恢复"
+    ],
+    "L01_profiles": [
+      "launcher-legacy-601b",
+      "launcher-updated-c82f",
+      "launcher-historical-c7ba"
+    ],
+    "original_owners": [
+      "shared/launcher-catalog.mjs",
+      "shared/launcher-first-config.mjs"
+    ],
+    "original_dependencies": [
+      "X01"
+    ],
+    "original_batch": "D1",
+    "registered_protocol_entries": [
+      "LCH-CATALOG-001",
+      "UPD-CATALOG-001",
+      "CFG-GAME-001"
+    ]
+  },
+  "source_review": {
+    "path": "build/analysis/launcher-startup-final-reconciliation-v1/source-review.json",
+    "bytes": 27028,
+    "sha256": "b07b73601edd1ccfaad3db6aca8937101c49acdd5e2e46bb813fd588bced76f9"
+  },
+  "facts": [
+    {
+      "id": "FR-F01",
+      "classification": "事实",
+      "claim": "原五组×三profile十五格已逐字段对账。SS/CP/SR/MS/SC/SE/SX/PC继续使用各自版本证据，后续已回答的泛化待办不再触发重复分析；本次审查完成不表示全部L01条件入口、宿主设计或全能力门槛通过。",
+      "source_refs": [
+        {
+          "document": "SS",
+          "pointer": "/scope_preserved"
+        },
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells"
+        },
+        {
+          "document": "PC",
+          "pointer": "/remaining"
+        }
+      ]
+    },
+    {
+      "id": "FR-F02",
+      "classification": "事实",
+      "claim": "旧601b普通410DF0 case0先从所选已安装game行复制非空名称，保存GameList显示位置，推进Main step，调用412940。412940为实际界面包装，重取Frame后委托405460；不能将包装或控件刷新当作游戏交接成功。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/4"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/0"
+        }
+      ]
+    },
+    {
+      "id": "FR-F03",
+      "classification": "事实",
+      "claim": "405460按当前game名称逐行搜索，首个匹配发布game选择和活动ordinal，复制本版路径、元数据、类型及准备程序/浏览器上下文。普通caller已复制原行名称；本体没有搜索无匹配后的统一拒绝分支。相同名称、raw Code、raw ordinal与显示位置不可互换。路径末字节判断沿既有strlen索引规则，不默改为strlen-1。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/2"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/4"
+        },
+        {
+          "document": "SR",
+          "pointer": "/facts/8"
+        }
+      ]
+    },
+    {
+      "id": "FR-F04",
+      "classification": "事实",
+      "claim": "405460遍历所选game的region链接；实际比较为raw>=0且raw<=Frame+1B08才使用，不能改写成严格小于。metric>9999先调用41B8F0并写回再发布列表项。保存RegionList的范围比较使用原链接计数，独立于过滤后显示项数；不得推测端点语义、网络成功或原内存输入域。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/2"
+        }
+      ]
+    },
+    {
+      "id": "FR-F05",
+      "classification": "事实",
+      "claim": "旧407880以local<=所选region的Galaxy计数字段循环，按game类型筛选，列表记录raw ordinal。保存GalaxyList另要求0<=saved<原计数。410DF0 case2从原行复制非空名称并保存显示位置后，405F90按名称在raw集合中取首个匹配，保存Galaxy、活动ordinal+6C78及端点字段+1B4C；无匹配后没有通用边界恢复。它与C7上限/布局分别保留。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/9"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/1"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/4"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/8"
+        },
+        {
+          "document": "source",
+          "pointer": "/legacy_choice_switch"
+        },
+        {
+          "document": "source",
+          "pointer": "/derived_code/3"
+        }
+      ]
+    },
+    {
+      "id": "FR-F06",
+      "classification": "事实",
+      "claim": "旧410C80在step2且对应group计数<1时跳过Galaxy；step>=5才进入407A00后回412B10并恢复step3。412B10在region名称非空时同步调用406110，不能只列为界面操作。406110有无限wait：code100置准备标志并返回，101及其它非102值走报告/局部恢复/_exit(-1)；102累计到3次尝试后失败，不等于C7异步Main pending协议。该旧体未提供正常无限wait取消保证。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/6"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/7"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/10"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/11"
+        }
+      ]
+    },
+    {
+      "id": "FR-F07",
+      "classification": "事实",
+      "claim": "旧416C00实际构造资源0x8D的Prompt，member+74初始0。其vtable+FC到416D10：DDX_Check把1022绑定+74；vtable+28经416D70/416D80到4B5060，唯一自定义WM_COMMAND1022到已留存416D90。该handler调用UpdateData后将checkbox结果写Frame+6C84及NoPrompt保存请求，与AutoSelect不同；不把6C84误称NoMinHelper。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/3"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/12"
+        },
+        {
+          "document": "source",
+          "pointer": "/prompt_binding"
+        },
+        {
+          "document": "source",
+          "pointer": "/derived_code"
+        },
+        {
+          "document": "SR",
+          "pointer": "/facts/5"
+        }
+      ]
+    },
+    {
+      "id": "FR-F08",
+      "classification": "事实",
+      "claim": "旧410DF0 case1跳过Galaxy或case2选择Galaxy后的准备入口，仅在Frame+6C84==0时显示Prompt。modal结果1请求AutoSelect=1，其他结果请求0，写Frame+6C80并保存；checkbox的NoPrompt写发生在自己的command handler，外层非1未回撤这一先前效果。普通关闭、异常或owner退役的实际系统效果另验。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/4"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/12"
+        },
+        {
+          "document": "source",
+          "pointer": "/legacy_choice_switch"
+        },
+        {
+          "document": "source",
+          "pointer": "/derived_code/3"
+        }
+      ]
+    },
+    {
+      "id": "FR-F09",
+      "classification": "事实",
+      "claim": "三profile首次Config具名源规则均可直接复用：旧版同步create/wait/profile请求，C82及C7捕获key、timer/handle、特殊退出与cache-before-write分开。C7路径叶由CP已闭合，普通准备timer/完成由PC已成规；这些不是新的REA任务，也不证明外部Config、实际存储或官方接受。",
+      "source_refs": [
+        {
+          "document": "SS",
+          "pointer": "/operations/3"
+        },
+        {
+          "document": "SS",
+          "pointer": "/operations/8"
+        },
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells/13"
+        },
+        {
+          "document": "CP",
+          "pointer": "/facts/18"
+        },
+        {
+          "document": "PC",
+          "pointer": "/facts/2"
+        },
+        {
+          "document": "PC",
+          "pointer": "/facts/9"
+        },
+        {
+          "document": "PC",
+          "pointer": "/facts/13"
+        }
+      ]
+    },
+    {
+      "id": "FR-F10",
+      "classification": "事实",
+      "claim": "PC-U1的十五格最终组合审查已完成，原普通初始化、路径、选择与C7完成泛化缺口按下表定位到覆盖证据。LF-U4的条件入口准入、L03 LS-U3、当前同版game消费者、必要Host设计及真实接受继续分栏；40/81/37/10/6、原owner/依赖/批次、16本域source-ready与stage306保持。",
+      "source_refs": [
+        {
+          "document": "PC",
+          "pointer": "/remaining"
+        },
+        {
+          "document": "LF",
+          "pointer": "/remaining"
+        }
+      ]
+    },
+    {
+      "id": "FR-F11",
+      "classification": "事实",
+      "claim": "410DF0的实际switch指令410EE3使用412040的五项原表；step2指向411D40，411E7B才CALL405F90。该尾部不属于provider给出的410DF0..41195D native body，405F90 incoming因此无source procedure；完整旧伪代码和callee索引的覆盖不同。现以411D40..41203D的766B原件派生视图验证case2及普通公共返回，既不重做native查询，也不将派生体冒充完整native Evidence。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/4"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/1"
+        },
+        {
+          "document": "source",
+          "pointer": "/legacy_choice_switch"
+        },
+        {
+          "document": "source",
+          "pointer": "/derived_code/3"
+        }
+      ]
+    }
+  ],
+  "inferences": [
+    {
+      "id": "FR-I01",
+      "classification": "推测",
+      "claim": "对同版证据一次对账、共享状态一次设计及成组实现，预期减少重复取证和返工；未测得整体节时比例。",
+      "source_refs": [
+        {
+          "document": "PC",
+          "pointer": "/summary"
+        }
+      ]
+    },
+    {
+      "id": "FR-I02",
+      "classification": "推测",
+      "claim": "目标需以非阻塞Host任务表达旧prepare等待；具体取消/恢复政策须A4审定，不把新增generation/事务说成原程序语义。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/10"
+        }
+      ]
+    }
+  ],
+  "profile_group_cells": [
+    {
+      "id": "FR-C01",
+      "original_operation_id": "SS-O01",
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "配置读取",
+      "original_operation": {
+        "document": "SS",
+        "pointer": "/operations/0"
+      },
+      "applied_supplements": [
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells/0"
+        },
+        {
+          "document": "SR",
+          "pointer": "/facts"
+        }
+      ],
+      "field_review": {
+        "normal_sequence": {
+          "resolution": "旧XML/INI及framework module路径按SR读取；普通UserMode和自动选择前提已成规。",
+          "reviewed": true
+        },
+        "publication": {
+          "resolution": "保留原row/Code/默认与INI保存请求顺序。",
+          "reviewed": true
+        },
+        "failure_and_recovery": {
+          "resolution": "SR闭局部EH、显式_exit与普通false；无分隔/截断module等不保证恢复。",
+          "reviewed": true
+        },
+        "cancel_or_close": {
+          "resolution": "同步源不增加取消/回滚；异常析构与显式_exit分开。",
+          "reviewed": true
+        },
+        "late_or_reopen": {
+          "resolution": "按重新观察到的文件/profile读；实际写入与耐久性另验。",
+          "reviewed": true
+        }
+      },
+      "additional_fact_ids": [],
+      "final_composition_review_complete": true,
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_source_closed": false,
+      "whole_original_scope_not_promoted": true,
+      "remaining": [
+        "FR-U3",
+        "FR-U4",
+        "FR-U1"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "id": "FR-C02",
+      "original_operation_id": "SS-O02",
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "区域目录初始化",
+      "original_operation": {
+        "document": "SS",
+        "pointer": "/operations/1"
+      },
+      "applied_supplements": [
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells/1"
+        },
+        {
+          "document": "SR",
+          "pointer": "/facts"
+        }
+      ],
+      "field_review": {
+        "normal_sequence": {
+          "resolution": "Game/Region分别缓存/取回，再共同LoadFile。",
+          "reviewed": true
+        },
+        "publication": {
+          "resolution": "原region布局/上限及部分效果保持。",
+          "reviewed": true
+        },
+        "failure_and_recovery": {
+          "resolution": "后续Region失败不撤先前Game效果；SR57state无本帧catch。",
+          "reviewed": true
+        },
+        "cancel_or_close": {
+          "resolution": "普通结束、显式_exit和unwind不是同一条清理链。",
+          "reviewed": true
+        },
+        "late_or_reopen": {
+          "resolution": "不把局部更新pair称为整批事务；实际readback归宿主接受。",
+          "reviewed": true
+        }
+      },
+      "additional_fact_ids": [],
+      "final_composition_review_complete": true,
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_source_closed": false,
+      "whole_original_scope_not_promoted": true,
+      "remaining": [
+        "FR-U3",
+        "FR-U4",
+        "FR-U1"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "id": "FR-C03",
+      "original_operation_id": "SS-O03",
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "来源选择",
+      "original_operation": {
+        "document": "SS",
+        "pointer": "/operations/2"
+      },
+      "applied_supplements": [
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells/2"
+        },
+        {
+          "document": "SR",
+          "pointer": "/facts"
+        },
+        {
+          "document": "SE",
+          "pointer": "/facts"
+        },
+        {
+          "document": "SX",
+          "pointer": "/facts"
+        }
+      ],
+      "field_review": {
+        "normal_sequence": {
+          "resolution": "原registry/INI来源和普通game→region→Galaxy选择分别组合。",
+          "reviewed": true
+        },
+        "publication": {
+          "resolution": "raw/显示位置/名称首匹配及NoPrompt/AutoSelect分列。",
+          "reviewed": true
+        },
+        "failure_and_recovery": {
+          "resolution": "不匹配、重复名称与边界比较按FR/SR/SE，不补猜安全输入域。",
+          "reviewed": true
+        },
+        "cancel_or_close": {
+          "resolution": "目录modal取消与Prompt非1分开；后者仍请求AutoSelect0。",
+          "reviewed": true
+        },
+        "late_or_reopen": {
+          "resolution": "Prompt checkbox先前写不因外层取消回撤；captured/current对象分开。",
+          "reviewed": true
+        }
+      },
+      "additional_fact_ids": [
+        "FR-F02",
+        "FR-F03",
+        "FR-F04",
+        "FR-F05",
+        "FR-F07",
+        "FR-F08"
+      ],
+      "final_composition_review_complete": true,
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_source_closed": false,
+      "whole_original_scope_not_promoted": true,
+      "remaining": [
+        "FR-U3",
+        "FR-U4",
+        "FR-U1"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "id": "FR-C04",
+      "original_operation_id": "SS-O04",
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "首次配置",
+      "original_operation": {
+        "document": "SS",
+        "pointer": "/operations/3"
+      },
+      "applied_supplements": [
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells/3"
+        }
+      ],
+      "field_review": {
+        "normal_sequence": {
+          "resolution": "原flag非0且ConfigEXE非空才请求旧unquoted create。",
+          "reviewed": true
+        },
+        "publication": {
+          "resolution": "create成功且wait返回才请求flag0。",
+          "reviewed": true
+        },
+        "failure_and_recovery": {
+          "resolution": "create失败不写；wait结果、exit及实际profile效果不补推。",
+          "reviewed": true
+        },
+        "cancel_or_close": {
+          "resolution": "源无限wait没有本体取消保证，目标须非阻塞端口设计。",
+          "reviewed": true
+        },
+        "late_or_reopen": {
+          "resolution": "重新读实际profile；不能用目标缓存伪造原flag0。",
+          "reviewed": true
+        }
+      },
+      "additional_fact_ids": [],
+      "final_composition_review_complete": true,
+      "first_Config_named_source_rules_bound": true,
+      "whole_original_profile_group_source_closed": true,
+      "whole_original_scope_not_promoted": true,
+      "remaining": [
+        "FR-U3",
+        "FR-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "id": "FR-C05",
+      "original_operation_id": "SS-O05",
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "失效恢复",
+      "original_operation": {
+        "document": "SS",
+        "pointer": "/operations/4"
+      },
+      "applied_supplements": [
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells/4"
+        },
+        {
+          "document": "SR",
+          "pointer": "/facts"
+        }
+      ],
+      "field_review": {
+        "normal_sequence": {
+          "resolution": "原独立文件更新/局部reset/普通准备结果按顺序处理。",
+          "reviewed": true
+        },
+        "publication": {
+          "resolution": "已发生单文件及设置写请求保持。",
+          "reviewed": true
+        },
+        "failure_and_recovery": {
+          "resolution": "SR异常/退出和FR旧prepare100/101/102结果分列。",
+          "reviewed": true
+        },
+        "cancel_or_close": {
+          "resolution": "不以局部reset或关闭请求证明外部进程终止。",
+          "reviewed": true
+        },
+        "late_or_reopen": {
+          "resolution": "不确定存储结果需readback；不虚构整批回滚。",
+          "reviewed": true
+        }
+      },
+      "additional_fact_ids": [
+        "FR-F06"
+      ],
+      "final_composition_review_complete": true,
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_source_closed": false,
+      "whole_original_scope_not_promoted": true,
+      "remaining": [
+        "FR-U3",
+        "FR-U4",
+        "FR-U1"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "id": "FR-C06",
+      "original_operation_id": "SS-O06",
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "配置读取",
+      "original_operation": {
+        "document": "SS",
+        "pointer": "/operations/5"
+      },
+      "applied_supplements": [
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells/5"
+        },
+        {
+          "document": "MS",
+          "pointer": "/facts"
+        }
+      ],
+      "field_review": {
+        "normal_sequence": {
+          "resolution": "C82 byte XML、module/Settings与LP路径已由SS/MS/SE覆盖。",
+          "reviewed": true
+        },
+        "publication": {
+          "resolution": "load、对象解析和业务row发布分别。",
+          "reviewed": true
+        },
+        "failure_and_recovery": {
+          "resolution": "容器失败、ineligible行及未检查profile BOOL分开。",
+          "reviewed": true
+        },
+        "cancel_or_close": {
+          "resolution": "任务、modal和Config各按自身owner退役。",
+          "reviewed": true
+        },
+        "late_or_reopen": {
+          "resolution": "捕获路径/设置与当前UI分开，真实存储结果另验。",
+          "reviewed": true
+        }
+      },
+      "additional_fact_ids": [],
+      "final_composition_review_complete": true,
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_source_closed": false,
+      "whole_original_scope_not_promoted": true,
+      "remaining": [
+        "FR-U3",
+        "FR-U4",
+        "FR-U1"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "id": "FR-C07",
+      "original_operation_id": "SS-O07",
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "区域目录初始化",
+      "original_operation": {
+        "document": "SS",
+        "pointer": "/operations/6"
+      },
+      "applied_supplements": [
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells/6"
+        },
+        {
+          "document": "MS",
+          "pointer": "/facts"
+        }
+      ],
+      "field_review": {
+        "normal_sequence": {
+          "resolution": "C82 App/Frame/Child、WM_CREATE、factory/worker及early/completion已成规。",
+          "reviewed": true
+        },
+        "publication": {
+          "resolution": "refs2、捕获路径和结果发布按MS原顺序。",
+          "reviewed": true
+        },
+        "failure_and_recovery": {
+          "resolution": "typed catch、普通result0、bootstrap失败与deferred恢复分别。",
+          "reviewed": true
+        },
+        "cancel_or_close": {
+          "resolution": "cancel/HWND检查、worker引用和5000ms wait按MS。",
+          "reviewed": true
+        },
+        "late_or_reopen": {
+          "resolution": "源消息无新代次字段；Host identity属于独立设计。",
+          "reviewed": true
+        }
+      },
+      "additional_fact_ids": [],
+      "final_composition_review_complete": true,
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_source_closed": false,
+      "whole_original_scope_not_promoted": true,
+      "remaining": [
+        "FR-U3",
+        "FR-U4",
+        "FR-U1"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "id": "FR-C08",
+      "original_operation_id": "SS-O08",
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "来源选择",
+      "original_operation": {
+        "document": "SS",
+        "pointer": "/operations/7"
+      },
+      "applied_supplements": [
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells/7"
+        },
+        {
+          "document": "MS",
+          "pointer": "/facts"
+        },
+        {
+          "document": "SE",
+          "pointer": "/facts"
+        },
+        {
+          "document": "SX",
+          "pointer": "/facts"
+        }
+      ],
+      "field_review": {
+        "normal_sequence": {
+          "resolution": "C82安装资格、raw选择、manual/bulk及普通入口沿同版SS/SC/SE引用。",
+          "reviewed": true
+        },
+        "publication": {
+          "resolution": "manual成功发布与bulk部分发布分开。",
+          "reviewed": true
+        },
+        "failure_and_recovery": {
+          "resolution": "写BOOL、modal结果和输入scratch效果按同版合同。",
+          "reviewed": true
+        },
+        "cancel_or_close": {
+          "resolution": "窗口owner/回调准入与LS-U3开放范围不混同。",
+          "reviewed": true
+        },
+        "late_or_reopen": {
+          "resolution": "预设/准备捕获对象不可从当前选项重建。",
+          "reviewed": true
+        }
+      },
+      "additional_fact_ids": [],
+      "final_composition_review_complete": true,
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_source_closed": false,
+      "whole_original_scope_not_promoted": true,
+      "remaining": [
+        "FR-U3",
+        "FR-U4",
+        "FR-U1"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "id": "FR-C09",
+      "original_operation_id": "SS-O09",
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "首次配置",
+      "original_operation": {
+        "document": "SS",
+        "pointer": "/operations/8"
+      },
+      "applied_supplements": [
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells/8"
+        }
+      ],
+      "field_review": {
+        "normal_sequence": {
+          "resolution": "C82原first Config entry/key/cache/250ms observer复用SS。",
+          "reviewed": true
+        },
+        "publication": {
+          "resolution": "create只发布观察上下文，普通exit先cache后请求写0。",
+          "reviewed": true
+        },
+        "failure_and_recovery": {
+          "resolution": "特殊exit/query/write失败均保源条件。",
+          "reviewed": true
+        },
+        "cancel_or_close": {
+          "resolution": "观察退役/handle关闭不证明结束Config。",
+          "reviewed": true
+        },
+        "late_or_reopen": {
+          "resolution": "按捕获section/key与low byte恢复，外部效果另验。",
+          "reviewed": true
+        }
+      },
+      "additional_fact_ids": [],
+      "final_composition_review_complete": true,
+      "first_Config_named_source_rules_bound": true,
+      "whole_original_profile_group_source_closed": true,
+      "whole_original_scope_not_promoted": true,
+      "remaining": [
+        "FR-U3",
+        "FR-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "id": "FR-C10",
+      "original_operation_id": "SS-O10",
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "失效恢复",
+      "original_operation": {
+        "document": "SS",
+        "pointer": "/operations/9"
+      },
+      "applied_supplements": [
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells/9"
+        },
+        {
+          "document": "MS",
+          "pointer": "/facts"
+        }
+      ],
+      "field_review": {
+        "normal_sequence": {
+          "resolution": "C82 marker/backup/pair及MS实际completion/提交组合。",
+          "reviewed": true
+        },
+        "publication": {
+          "resolution": "原两个move和目标事务分别。",
+          "reviewed": true
+        },
+        "failure_and_recovery": {
+          "resolution": "提交失败、路径改变、刷新受阻按对应结果，不宣称全故障原子。",
+          "reviewed": true
+        },
+        "cancel_or_close": {
+          "resolution": "cancel前后与settlement边界分开。",
+          "reviewed": true
+        },
+        "late_or_reopen": {
+          "resolution": "不确定commit要求readback；原消息无Host generation。",
+          "reviewed": true
+        }
+      },
+      "additional_fact_ids": [],
+      "final_composition_review_complete": true,
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_source_closed": false,
+      "whole_original_scope_not_promoted": true,
+      "remaining": [
+        "FR-U3",
+        "FR-U4",
+        "FR-U1"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "id": "FR-C11",
+      "original_operation_id": "SS-O11",
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "配置读取",
+      "original_operation": {
+        "document": "SS",
+        "pointer": "/operations/10"
+      },
+      "applied_supplements": [
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells/10"
+        },
+        {
+          "document": "MS",
+          "pointer": "/facts"
+        },
+        {
+          "document": "CP",
+          "pointer": "/facts"
+        }
+      ],
+      "field_review": {
+        "normal_sequence": {
+          "resolution": "C7 module/Settings、loader及CP路径/registry规则均可复用。",
+          "reviewed": true
+        },
+        "publication": {
+          "resolution": "AL业务gate、原row与profile效果分别。",
+          "reviewed": true
+        },
+        "failure_and_recovery": {
+          "resolution": "原SS的path/helper泛化待办由CP/MS回答。",
+          "reviewed": true
+        },
+        "cancel_or_close": {
+          "resolution": "Config与catalog独立退役。",
+          "reviewed": true
+        },
+        "late_or_reopen": {
+          "resolution": "不按C82地址差或相似代码转移版本事实。",
+          "reviewed": true
+        }
+      },
+      "additional_fact_ids": [],
+      "final_composition_review_complete": true,
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_source_closed": false,
+      "whole_original_scope_not_promoted": true,
+      "remaining": [
+        "FR-U3",
+        "FR-U4",
+        "FR-U1"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "id": "FR-C12",
+      "original_operation_id": "SS-O12",
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "区域目录初始化",
+      "original_operation": {
+        "document": "SS",
+        "pointer": "/operations/11"
+      },
+      "applied_supplements": [
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells/11"
+        },
+        {
+          "document": "MS",
+          "pointer": "/facts"
+        },
+        {
+          "document": "CP",
+          "pointer": "/facts"
+        },
+        {
+          "document": "PC",
+          "pointer": "/facts"
+        }
+      ],
+      "field_review": {
+        "normal_sequence": {
+          "resolution": "C7实际App/Frame/Child、catalog job、early及completion由MS闭具名规则。",
+          "reviewed": true
+        },
+        "publication": {
+          "resolution": "原上限/default/raw Code与捕获路径保持。",
+          "reviewed": true
+        },
+        "failure_and_recovery": {
+          "resolution": "pair失败、deferred和bootstrap返回按MS；非全局异常恢复承诺。",
+          "reviewed": true
+        },
+        "cancel_or_close": {
+          "resolution": "MS的cancel/HWND/handle/ref与PC条件析构分开。",
+          "reviewed": true
+        },
+        "late_or_reopen": {
+          "resolution": "旧完成/当前上下文受原gate限制，不假定全交错安全。",
+          "reviewed": true
+        }
+      },
+      "additional_fact_ids": [],
+      "final_composition_review_complete": true,
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_source_closed": false,
+      "whole_original_scope_not_promoted": true,
+      "remaining": [
+        "FR-U3",
+        "FR-U4",
+        "FR-U1"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "id": "FR-C13",
+      "original_operation_id": "SS-O13",
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "来源选择",
+      "original_operation": {
+        "document": "SS",
+        "pointer": "/operations/12"
+      },
+      "applied_supplements": [
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells/12"
+        },
+        {
+          "document": "MS",
+          "pointer": "/facts"
+        },
+        {
+          "document": "CP",
+          "pointer": "/facts"
+        },
+        {
+          "document": "SE",
+          "pointer": "/facts"
+        },
+        {
+          "document": "SX",
+          "pointer": "/facts"
+        },
+        {
+          "document": "PC",
+          "pointer": "/facts"
+        }
+      ],
+      "field_review": {
+        "normal_sequence": {
+          "resolution": "C7原registry/INI发现与SE/SX实际game/region/Galaxy/目录入口组合。",
+          "reviewed": true
+        },
+        "publication": {
+          "resolution": "raw/显示位置/首匹配、bulk和targeted发布分开。",
+          "reviewed": true
+        },
+        "failure_and_recovery": {
+          "resolution": "无效路径局部reset、prepare0/1/2、错误恢复step按SX/PC。",
+          "reviewed": true
+        },
+        "cancel_or_close": {
+          "resolution": "返回1009和确认关闭2是不同请求，不当进程取消。",
+          "reviewed": true
+        },
+        "late_or_reopen": {
+          "resolution": "8241先清latch再比捕获game/step，实际队列效果另验。",
+          "reviewed": true
+        }
+      },
+      "additional_fact_ids": [],
+      "final_composition_review_complete": true,
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_source_closed": false,
+      "whole_original_scope_not_promoted": true,
+      "remaining": [
+        "FR-U3",
+        "FR-U4",
+        "FR-U1"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "id": "FR-C14",
+      "original_operation_id": "SS-O14",
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "首次配置",
+      "original_operation": {
+        "document": "SS",
+        "pointer": "/operations/13"
+      },
+      "applied_supplements": [
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells/13"
+        },
+        {
+          "document": "CP",
+          "pointer": "/facts"
+        },
+        {
+          "document": "PC",
+          "pointer": "/facts"
+        }
+      ],
+      "field_review": {
+        "normal_sequence": {
+          "resolution": "C7 first Config与CP同版路径叶直接复用。",
+          "reviewed": true
+        },
+        "publication": {
+          "resolution": "捕获2B40/2B60/2B65/2B70/2B74，cache先于写0。",
+          "reviewed": true
+        },
+        "failure_and_recovery": {
+          "resolution": "15min提醒/三特殊exit/low-byte恢复按SS/PC。",
+          "reviewed": true
+        },
+        "cancel_or_close": {
+          "resolution": "KillTimer/CloseHandle退役观察，不能宣称终止Config。",
+          "reviewed": true
+        },
+        "late_or_reopen": {
+          "resolution": "捕获section/key不能换成当前UI；真实Config效果留接受。",
+          "reviewed": true
+        }
+      },
+      "additional_fact_ids": [],
+      "final_composition_review_complete": true,
+      "first_Config_named_source_rules_bound": true,
+      "whole_original_profile_group_source_closed": false,
+      "whole_original_scope_not_promoted": true,
+      "remaining": [
+        "FR-U3",
+        "FR-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    },
+    {
+      "id": "FR-C15",
+      "original_operation_id": "SS-O15",
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "失效恢复",
+      "original_operation": {
+        "document": "SS",
+        "pointer": "/operations/14"
+      },
+      "applied_supplements": [
+        {
+          "document": "SC",
+          "pointer": "/profile_group_cells/14"
+        },
+        {
+          "document": "MS",
+          "pointer": "/facts"
+        },
+        {
+          "document": "CP",
+          "pointer": "/facts"
+        },
+        {
+          "document": "PC",
+          "pointer": "/facts"
+        }
+      ],
+      "field_review": {
+        "normal_sequence": {
+          "resolution": "C7 marker/backup/pair恢复及准备完成分别组合。",
+          "reviewed": true
+        },
+        "publication": {
+          "resolution": "PC先清timer/handle/slot，再分100/101/102与Main pending。",
+          "reviewed": true
+        },
+        "failure_and_recovery": {
+          "resolution": "最多两次重启、无效game/error585与Main恢复step分列。",
+          "reviewed": true
+        },
+        "cancel_or_close": {
+          "resolution": "普通返回/关闭请求和observer退役分别，不保证外部进程结束。",
+          "reviewed": true
+        },
+        "late_or_reopen": {
+          "resolution": "catalog晚到、row gate和UI pending gate各有前提，Host接受另验。",
+          "reviewed": true
+        }
+      },
+      "additional_fact_ids": [],
+      "final_composition_review_complete": true,
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_source_closed": false,
+      "whole_original_scope_not_promoted": true,
+      "remaining": [
+        "FR-U3",
+        "FR-U4",
+        "FR-U1"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "FR-D1",
+      "batch": "D1",
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "need": "复用目录/选择核心，按profile保存raw/显示位置、首名称匹配、输入域及原inclusive比较；安全策略作为独立目标约束。",
+      "fact_ids": [
+        "FR-F02",
+        "FR-F03",
+        "FR-F04",
+        "FR-F05"
+      ]
+    },
+    {
+      "id": "FR-D2",
+      "batch": "D1",
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "need": "统一prepare端口但保留旧同步结果与C7 pending/完成规则差异，沿原owner接续和退役。",
+      "fact_ids": [
+        "FR-F06",
+        "FR-F09"
+      ]
+    },
+    {
+      "id": "FR-D3",
+      "batch": "D1",
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "need": "NoPrompt与AutoSelect分字段/事件/保存回执；外层取消不自动回滚checkbox的先前写。",
+      "fact_ids": [
+        "FR-F07",
+        "FR-F08"
+      ]
+    }
+  ],
+  "supersession": {
+    "PC-U1": "final fifteen-cell composition review complete;whole source scope not promoted",
+    "SS-U1": "already closed by CP;do not reopen",
+    "SS-U2": "generic startup/path/selection/C7-completion backlog replaced by explicit per-field review and FR-U1;whole closure remains false",
+    "SX-U1 C7 timer portion": "already specified by PC;do not repeat",
+    "SS-U3": "required Host design FR-U3 separated from later actual acceptance FR-U4"
+  },
+  "remaining": [
+    {
+      "id": "FR-U1",
+      "classification": "待验证",
+      "kind": "conditional-source-admission",
+      "analysis_gate": "A1/A3",
+      "preserves": [
+        "LF-U4"
+      ],
+      "need": "296/30721/30734、四非App菜单和未准入import/export仍按固定版本真实正向业务owner确认归属。不能由名称/空xref删除或凭数字增加需求。原十五格组合审查已完成；此条件准入未完成，所以不提升整个L01或whole SS-U2。",
+      "next_action": "复用LF/入口清单的实际引用，沿必要owner验证；不要再查询已闭启动、路径和C7 timer。旧41B8F0 metric服务仅在确认原需求需要其业务含义时再查，不因本体出现调用递归扩展。"
+    },
+    {
+      "id": "FR-U2",
+      "classification": "待验证",
+      "kind": "other-capabilities-and-current-source",
+      "analysis_gate": "A1/A3",
+      "need": "原L03 LS-U3合法modal重绑准入、L07当前同版game consumer及其它矩阵必要缺口继续独立处理；旧601b/C7和37c4不能替代当前版本。没有测试账号不等于缺少静态规则，两者分开。"
+    },
+    {
+      "id": "FR-U3",
+      "classification": "待验证",
+      "kind": "required-host-design",
+      "analysis_gate": "A4",
+      "need": "原Host预算、时钟/回绕/后台、路径/ACP/字节输入、存储回执、非阻塞prepare和owner退役共同合同仍须完成必要设计与可行性核验。完整产品/设备/官方结果不是未开发产品开工前提；SDK设置请求仍pending，不重发或绕过。"
+    },
+    {
+      "id": "FR-U4",
+      "classification": "待验证",
+      "kind": "post-implementation-acceptance",
+      "analysis_gate": null,
+      "need": "实现后按原范围验真实网页、移动网页、微信SDK/设备、文件与进程效果、当前同版Config/账号/官方；本补充案例均未执行。完整接受不回写成待反编译任务。"
+    }
+  ],
+  "acceptance": {
+    "previous_cases": {
+      "SS": 20,
+      "CP": 14,
+      "SR": 12,
+      "MS": 22,
+      "SC": 8,
+      "SE": 12,
+      "SX": 16,
+      "PC": 12
+    },
+    "previous_cases_reexecuted": false,
+    "supplement_cases": [
+      {
+        "id": "FR-A01",
+        "context": "重复/空/无匹配game名称，raw/显示位置不同",
+        "expected": "先保普通caller非空原行前提与首匹配；异常输入不得补猜或用唯一ID替换源规则。",
+        "fact_ids": [
+          "FR-F02",
+          "FR-F03"
+        ],
+        "executed": false
+      },
+      {
+        "id": "FR-A02",
+        "context": "region链接为-1、0、计数端点、端点+1和过滤后位置",
+        "expected": "按原>=0/<=比较与独立保存位置域；安全输入域/宿主策略另列。",
+        "fact_ids": [
+          "FR-F04"
+        ],
+        "executed": false
+      },
+      {
+        "id": "FR-A03",
+        "context": "Galaxy计数0、末端、group不符、重名与保存位置",
+        "expected": "包含端点的构建循环与严格小于的保存gate分开；按首名称匹配解出raw上下文。",
+        "fact_ids": [
+          "FR-F05"
+        ],
+        "executed": false
+      },
+      {
+        "id": "FR-A04",
+        "context": "step2 group0与step>=5",
+        "expected": "分别跳过Galaxy或调用407A00/412B10；不把所有step变化当首次Config。",
+        "fact_ids": [
+          "FR-F06"
+        ],
+        "executed": false
+      },
+      {
+        "id": "FR-A05",
+        "context": "旧prepare100/101/102和三次尝试、wait未返回",
+        "expected": "同步源与C7异步pending分开；不把0当成功或把UI关闭当进程结束。",
+        "fact_ids": [
+          "FR-F06",
+          "FR-F09"
+        ],
+        "executed": false
+      },
+      {
+        "id": "FR-A06",
+        "context": "NoPrompt0/1，checkbox变化及modal1/其他",
+        "expected": "NoPrompt checkbox保存与外层AutoSelect保存分别验；取消不默认回撤先前checkbox副作用。",
+        "fact_ids": [
+          "FR-F07",
+          "FR-F08"
+        ],
+        "executed": false
+      },
+      {
+        "id": "FR-A07",
+        "context": "三profile Config路径/creator/observer/write失败",
+        "expected": "复用原案例、按原source identity与各自发布/退役时序，不套同一实现分支。",
+        "fact_ids": [
+          "FR-F09"
+        ],
+        "executed": false
+      },
+      {
+        "id": "FR-A08",
+        "context": "条件入口无正向owner，SDK未运行/缺账号",
+        "expected": "保源准入与实际接受各自未完成；不得循环重查已覆盖startup或据静态结果报官服兼容。",
+        "fact_ids": [
+          "FR-F10"
+        ],
+        "executed": false
+      }
+    ],
+    "supplement_cases_executed": 0
+  },
+  "summary": {
+    "new_complete_native_records": 4,
+    "new_native_body_bytes": 3335,
+    "new_resolve_records": 1,
+    "reused_complete_native_records": 9,
+    "repeated_native_queries": 0,
+    "native_range_windows": 15,
+    "native_range_bytes": 15657,
+    "native_instruction_boundaries": 3778,
+    "derived_code_windows": 4,
+    "derived_code_bytes": 877,
+    "derived_code_instructions": 215,
+    "retained_REA_records": 362,
+    "new_target_tests": 0,
+    "profile_group_cells_reviewed": 15,
+    "behavior_fields_reviewed": 75,
+    "facts": 11,
+    "implementation_deltas": 3,
+    "supplement_cases_not_executed": 8,
+    "local_ready_capabilities": 16
+  },
+  "ordinary_fifteen_cell_final_review_complete": true,
+  "whole_SS_U2_source_closed": false,
+  "whole_L01_specification_ready": false,
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "new_target_tests": 0,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "new_VM_SDK_settings_account_or_official_actions": false,
+  "stopping_rule": "本次对账结束即停止已覆盖启动/helper扩展；只为未解决的必要能力规则恢复正向取证。先全能力A1..A4再D0..D6，产品不新增功能。",
+  "validation_record_path": "build/analysis/launcher-startup-final-reconciliation-v1/validation.json",
+  "execution_record": {
+    "path": "build/analysis/launcher-startup-final-reconciliation-v1/execution-record.json",
+    "bytes": 1938,
+    "sha256": "b6c6c9e484d0ae10faa8de3e4172691d85e66e4160f8f42095895a1d49fae63c"
+  }
+}

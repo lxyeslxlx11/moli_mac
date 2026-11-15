@@ -1,0 +1,99 @@
+{
+  "schema": "moli.legacy-game-first-consumers-stage151.v1",
+  "scope": "only cg_se_6000.exe SHA37c4dfd2, COFF timestamp1184579686, displayed6.0.0; not fixed current9baa or6e2ff",
+  "target": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "classification": "Static artifact facts, with isolated inferences and unverified runtime/business semantics",
+  "facts": [
+    {
+      "id": "LEGACY-CONFIG-READ",
+      "function": "0x45cc90",
+      "evidence": "ev_296438bdb95ddbbfbc314eb4bd4d6fc8013b6da1d2d5cf78297312a87994f71b",
+      "file": "Config.dat",
+      "open_mode": "r",
+      "flow": "On successful open, zero a0x1400B local region, call text reader with size0x100, then append the incoming parameter string at the NUL end without inserting a separator; subsequently use the combined string. Caller provenance and full ABI still unclosed.",
+      "reader_function": "0x51b1ed",
+      "reader_evidence": "ev_9140e77776da0bb93ee640583297dfe6230260963bcb617c3456d53341a16c82",
+      "reader_behavior": "For size256 read at most255 bytes, stop after newline or EOF, appendNUL; immediateEOF returnsnull. Native caller does not branch on reader return.",
+      "gate": "Combined-input substring updated tested; absence returns0 after a message. This is not proof of update integrity/authentication."
+    },
+    {
+      "id": "LEGACY-CONFIG-TOKENS",
+      "function": "0x45cfd0",
+      "evidence": "ev_aa1a62417a15a247a780bc120cc53810343bbaa6e9fdd6f1666a8e009c3ce8aa",
+      "search_function": "0x51bb40",
+      "search_evidence": "ev_4d23f96d6cd2bfd9307591b8ed5145a18b149bf935879bd67103f6ae42f5ada8",
+      "tokens": [
+        "windowmode",
+        "nodelay",
+        "winpos:",
+        "3Ddevice:",
+        "soundoff",
+        "musicoff",
+        "onlyactive"
+      ],
+      "stores": {
+        "windowmode": "00925068=1",
+        "soundoff": "00569ac8=0",
+        "musicoff": "00569acc=0",
+        "onlyactive": "00924fe8 OR0x10",
+        "3Ddevice:": "00613924 initialbyte1, scan with%d, then nonzero006122e8 override applies"
+      },
+      "not_proven": "Renderer/audio/scheduling effects, numeric parse failures/locale/range and current-version equivalence."
+    },
+    {
+      "id": "LEGACY-RESOURCE-NAMES",
+      "functions": [
+        "0x45cfd0",
+        "0x44eba0"
+      ],
+      "evidence": [
+        "ev_aa1a62417a15a247a780bc120cc53810343bbaa6e9fdd6f1666a8e009c3ce8aa",
+        "ev_03ece514f57edaa9187f55cb9dbe25a8e8576d9b5a036ac669773e76efb44ae4"
+      ],
+      "facts": "Seven resource families contain graphic/anime/coordinate and info parameter prefixes; parser derives family file names and directory prefixes; path init uses seven128B family-name slots.",
+      "literal_variant": "graphicbiv2x: and graphicbinv2: are distinct static strings, not silently corrected.",
+      "not_proven": "RD RLE, palette, MAP plane semantics, animation or actual file availability."
+    },
+    {
+      "id": "LEGACY-IPC",
+      "functions": [
+        "0x45cc90",
+        "0x457c30"
+      ],
+      "evidence": [
+        "ev_296438bdb95ddbbfbc314eb4bd4d6fc8013b6da1d2d5cf78297312a87994f71b",
+        "ev_63628b5e000bc95a258e31a235efb26fbb8b60dd3d1bd586eb90e2551c0e2312"
+      ],
+      "mapping": "CGSharedMem",
+      "open_args": [
+        2,
+        0
+      ],
+      "map_access_arg": 6,
+      "flow": "Both observed paths open/map, copy until NUL, then clear first256 mapped bytes. Find literal gid: and glt: substrings and scan following strings with%s. Selection path checks both parsed strings nonempty before further calls.",
+      "field_targets": {
+        "gid:": "0x0092359c",
+        "glt:": "0x009235cc"
+      },
+      "not_proven": "Token identity/lifetime/authentication, full transport record/layout, missing NUL/oversized/native failure semantics, current launcher-to-game compatibility or actual IPC read."
+    }
+  ],
+  "inferences": [
+    "45cc90 is a startup/WinMain-like consumer; incoming string caller/ABI not yet traced",
+    "Observed text reader has fgets-style bounds and newline behavior; no need to treat it as Config.exe Read256 semantics"
+  ],
+  "unverified": [
+    "Current9baa main-game consumers",
+    "Official session and version acceptance",
+    "Network frame/codec/cryptography/message state",
+    "Movement/collision/battle/recovery",
+    "Legacy/current consumer equivalence",
+    "RD palette/transparency/origin/animation"
+  ],
+  "implementation_this_stage": "No product source/runtime API changed; new original verifier and metadata only",
+  "next": "Continue this source-bound legacy game through socket/frame and asset consumers; compare versions explicitly before current compatibility claims."
+}

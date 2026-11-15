@@ -1,0 +1,1196 @@
+{
+  "schema": "moli.wechat-inventory-shop-validation.stage224.v1",
+  "stage": 224,
+  "recorded_utc": "2026-11-06T10:06:16.817653+00:00",
+  "source": {
+    "path": "analysis/game-wechat-inventory-shop-v1/source-check.json",
+    "bytes": 14448,
+    "sha256": "f77392fd21bc465fb047595c1a4286feafd1004f5aeb30e5396941fa129b83b1"
+  },
+  "implementation_plan": {
+    "path": "analysis/game-wechat-inventory-shop-v1/implementation-plan.json",
+    "bytes": 1510,
+    "sha256": "4b00f0d0be425c49bcce737f5c538a43635e9307739500e3828936518421bb7c"
+  },
+  "page_harness": {
+    "path": "analysis/game-wechat-inventory-shop-v1/page-test.mjs",
+    "bytes": 19337,
+    "sha256": "b20545475a98bd91efb681ddb26e3eeb53702b62dacd982f8c923c01ed3679c7"
+  },
+  "commerce_entry_peer": {
+    "path": "analysis/game-wechat-inventory-shop-v1/commerce-entry-peer.py",
+    "bytes": 5048,
+    "sha256": "6dca923175be1acaa91b62fd8539470d1c68708744f520ea15aaf7c45bf19e9c"
+  },
+  "reused_tcp_peer": {
+    "path": "build/analysis/game-battle-shared-storage-v1/chat-presentation/tcp-peer.py",
+    "bytes": 40756,
+    "sha256": "1ad8b7b499acc02101d333f025add954bd0f2125e7ced1aeb77cfd7ce7f63b57"
+  },
+  "source_regression": {
+    "counts": {
+      "tests": 2706,
+      "pass": 2706,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "log": {
+      "path": "build/analysis/game-wechat-inventory-shop-v1/regression.log",
+      "bytes": 1330056,
+      "sha256": "2cf5dc20975e12df92fa159b028eb3accfca44064efa9387b62f3983e41ac56b"
+    },
+    "receipt": {
+      "path": "build/analysis/game-wechat-inventory-shop-v1/regression-receipt.json",
+      "bytes": 12398,
+      "sha256": "f0e76c28c3784a1716494d1b31e6e84b056f7a4d344dec0c194d62f50e3148bc"
+    },
+    "files": 225,
+    "input_files_rechecked": 1474,
+    "exit_code": 0
+  },
+  "portable_generated_core": {
+    "counts": {
+      "tests": 80,
+      "pass": 80,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "log": {
+      "path": "build/analysis/game-wechat-inventory-shop-v1/portable.log",
+      "bytes": 18934,
+      "sha256": "64b766a2bde37768d6f19f6d6b8178b0be9f879292541007a4d63968f5c487c7"
+    },
+    "exit_code": 0
+  },
+  "native_Page_handlers_with_test_ports": {
+    "source": {
+      "counts": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-wechat-inventory-shop-v1/page-source.log",
+        "bytes": 9896,
+        "sha256": "3f0c8a4d86092b1a318b5f4c9410870ca000a2deac0922a6c0946c73dfbb2eaa"
+      },
+      "exit_code": 0,
+      "tcp_flows": 13,
+      "new_tcp_flows": 7,
+      "receipts": [
+        {
+          "variant": "source",
+          "flow": "inventory-shop-ordinary",
+          "receipt": {
+            "mode": "ordinary",
+            "normal_startup_requests_verified": 5,
+            "commands_verified": [
+              [
+                "$fa",
+                [
+                  2,
+                  3,
+                  9,
+                  0
+                ]
+              ],
+              [
+                "'#Q",
+                [
+                  10,
+                  2,
+                  -1
+                ]
+              ],
+              [
+                "'#Q",
+                [
+                  2,
+                  16,
+                  -1
+                ]
+              ],
+              [
+                "'#Q",
+                [
+                  8,
+                  14,
+                  2
+                ]
+              ],
+              [
+                "'#Q",
+                [
+                  16,
+                  14,
+                  -1
+                ]
+              ],
+              [
+                "6=L",
+                [
+                  12,
+                  11
+                ]
+              ],
+              [
+                "&E1",
+                [
+                  2,
+                  3,
+                  14
+                ]
+              ]
+            ],
+            "exit_requests_verified": 0,
+            "movement_requests_verified": 2,
+            "inventory_updates": 5,
+            "inventory_swaps": 4,
+            "no_duplicate_or_invented_actions": true,
+            "official_session": false,
+            "original_execution": false
+          },
+          "movement_elapsed_lower_bound_ms": 262,
+          "stale_selection_rejected": true,
+          "confirmed_drop": true,
+          "server_owned_slots": true
+        },
+        {
+          "variant": "source",
+          "flow": "inventory-shop-pickup",
+          "receipt": {
+            "mode": "pickup",
+            "normal_startup_requests_verified": 5,
+            "commands_verified": [
+              [
+                "&E1",
+                [
+                  2,
+                  3,
+                  8
+                ]
+              ],
+              [
+                "!0b",
+                [
+                  2,
+                  3,
+                  "c",
+                  99
+                ]
+              ],
+              [
+                "!0b",
+                [
+                  3,
+                  3,
+                  "G",
+                  99
+                ]
+              ],
+              [
+                "&?S",
+                [
+                  3,
+                  3,
+                  6
+                ]
+              ],
+              [
+                "&?S",
+                [
+                  3,
+                  3,
+                  2
+                ]
+              ]
+            ],
+            "exit_requests_verified": 0,
+            "movement_requests_verified": 1,
+            "inventory_updates": 3,
+            "inventory_swaps": 0,
+            "no_duplicate_or_invented_actions": true,
+            "official_session": false,
+            "original_execution": false
+          },
+          "movement_elapsed_lower_bound_ms": null,
+          "returned_to_bag": true,
+          "ground_coin_request": true
+        },
+        {
+          "variant": "source",
+          "flow": "inventory-shop-shop",
+          "receipt": {
+            "mode": "shop",
+            "normal_startup_requests_verified": 5,
+            "commands_verified": [
+              [
+                "!0b",
+                [
+                  2,
+                  3,
+                  "43",
+                  99
+                ]
+              ],
+              [
+                ";JE",
+                [
+                  3,
+                  200
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  41,
+                  200,
+                  0,
+                  "305c7a325c7a325c7a31"
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  43,
+                  200,
+                  0,
+                  "31305c7a315c7a385c7a32"
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  44,
+                  200,
+                  2,
+                  ""
+                ]
+              ]
+            ],
+            "exit_requests_verified": 0,
+            "movement_requests_verified": 2,
+            "inventory_updates": 4,
+            "inventory_swaps": 0,
+            "no_duplicate_or_invented_actions": true,
+            "official_session": false,
+            "original_execution": false
+          },
+          "movement_elapsed_lower_bound_ms": 1190,
+          "stale_quote_rejected": true,
+          "purchase_and_sale": true
+        },
+        {
+          "variant": "source",
+          "flow": "inventory-shop-service",
+          "receipt": {
+            "mode": "service",
+            "normal_startup_requests_verified": 5,
+            "commands_verified": [
+              [
+                "!0b",
+                [
+                  2,
+                  3,
+                  "43",
+                  99
+                ]
+              ],
+              [
+                ";JE",
+                [
+                  3,
+                  200
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  51,
+                  200,
+                  0,
+                  "31305c7a38"
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  53,
+                  200,
+                  0,
+                  "39"
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  54,
+                  200,
+                  2,
+                  ""
+                ]
+              ]
+            ],
+            "exit_requests_verified": 0,
+            "movement_requests_verified": 2,
+            "inventory_updates": 4,
+            "inventory_swaps": 0,
+            "no_duplicate_or_invented_actions": true,
+            "official_session": false,
+            "original_execution": false
+          },
+          "movement_elapsed_lower_bound_ms": 1361,
+          "refreshed_funds": true,
+          "stale_repair_rejected": true,
+          "server_description": true
+        },
+        {
+          "variant": "source",
+          "flow": "inventory-shop-exchange",
+          "receipt": {
+            "mode": "exchange",
+            "normal_startup_requests_verified": 5,
+            "commands_verified": [
+              [
+                "!0b",
+                [
+                  2,
+                  3,
+                  "43",
+                  99
+                ]
+              ],
+              [
+                ";JE",
+                [
+                  3,
+                  200
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  61,
+                  200,
+                  0,
+                  "305c7a345c7a315c7a32"
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  62,
+                  200,
+                  2,
+                  ""
+                ]
+              ]
+            ],
+            "exit_requests_verified": 0,
+            "movement_requests_verified": 2,
+            "inventory_updates": 4,
+            "inventory_swaps": 0,
+            "no_duplicate_or_invented_actions": true,
+            "official_session": false,
+            "original_execution": false
+          },
+          "movement_elapsed_lower_bound_ms": 1186,
+          "exchange_space_repriced": true,
+          "server_settlement_visible": true
+        },
+        {
+          "variant": "source",
+          "flow": "inventory-shop-conversion",
+          "receipt": {
+            "mode": "conversion",
+            "normal_startup_requests_verified": 5,
+            "commands_verified": [
+              [
+                "!0b",
+                [
+                  2,
+                  3,
+                  "43",
+                  99
+                ]
+              ],
+              [
+                ";JE",
+                [
+                  3,
+                  200
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  71,
+                  200,
+                  0,
+                  "315c7a33"
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  72,
+                  200,
+                  0,
+                  "315c7a34"
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  73,
+                  200,
+                  2,
+                  ""
+                ]
+              ]
+            ],
+            "exit_requests_verified": 0,
+            "movement_requests_verified": 2,
+            "inventory_updates": 5,
+            "inventory_swaps": 0,
+            "no_duplicate_or_invented_actions": true,
+            "official_session": false,
+            "original_execution": false
+          },
+          "movement_elapsed_lower_bound_ms": 1346,
+          "two_conversion_variants": true,
+          "stale_gold_rejected": true
+        },
+        {
+          "variant": "source",
+          "flow": "inventory-shop-commerce-entry",
+          "receipt": {
+            "mode": "commerce-entry",
+            "normal_startup_requests_verified": 5,
+            "commerce_actions_verified": 4,
+            "movement_requests_verified": 2,
+            "no_duplicate_or_invented_actions": true,
+            "official_session": false
+          },
+          "movement_elapsed_lower_bound_ms": 539,
+          "merchant_purchase_route": true,
+          "exchange_cancel_route": true
+        }
+      ]
+    },
+    "generated": {
+      "counts": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-wechat-inventory-shop-v1/page-generated.log",
+        "bytes": 9944,
+        "sha256": "0da5fece635221efe287f0ee6a8b9ea94a093822b40643491adb27750ad7ea1c"
+      },
+      "exit_code": 0,
+      "tcp_flows": 13,
+      "new_tcp_flows": 7,
+      "receipts": [
+        {
+          "variant": "generated",
+          "flow": "inventory-shop-ordinary",
+          "receipt": {
+            "mode": "ordinary",
+            "normal_startup_requests_verified": 5,
+            "commands_verified": [
+              [
+                "$fa",
+                [
+                  2,
+                  3,
+                  9,
+                  0
+                ]
+              ],
+              [
+                "'#Q",
+                [
+                  10,
+                  2,
+                  -1
+                ]
+              ],
+              [
+                "'#Q",
+                [
+                  2,
+                  16,
+                  -1
+                ]
+              ],
+              [
+                "'#Q",
+                [
+                  8,
+                  14,
+                  2
+                ]
+              ],
+              [
+                "'#Q",
+                [
+                  16,
+                  14,
+                  -1
+                ]
+              ],
+              [
+                "6=L",
+                [
+                  12,
+                  11
+                ]
+              ],
+              [
+                "&E1",
+                [
+                  2,
+                  3,
+                  14
+                ]
+              ]
+            ],
+            "exit_requests_verified": 0,
+            "movement_requests_verified": 2,
+            "inventory_updates": 5,
+            "inventory_swaps": 4,
+            "no_duplicate_or_invented_actions": true,
+            "official_session": false,
+            "original_execution": false
+          },
+          "movement_elapsed_lower_bound_ms": 3119,
+          "stale_selection_rejected": true,
+          "confirmed_drop": true,
+          "server_owned_slots": true
+        },
+        {
+          "variant": "generated",
+          "flow": "inventory-shop-pickup",
+          "receipt": {
+            "mode": "pickup",
+            "normal_startup_requests_verified": 5,
+            "commands_verified": [
+              [
+                "&E1",
+                [
+                  2,
+                  3,
+                  8
+                ]
+              ],
+              [
+                "!0b",
+                [
+                  2,
+                  3,
+                  "c",
+                  99
+                ]
+              ],
+              [
+                "!0b",
+                [
+                  3,
+                  3,
+                  "G",
+                  99
+                ]
+              ],
+              [
+                "&?S",
+                [
+                  3,
+                  3,
+                  6
+                ]
+              ],
+              [
+                "&?S",
+                [
+                  3,
+                  3,
+                  2
+                ]
+              ]
+            ],
+            "exit_requests_verified": 0,
+            "movement_requests_verified": 1,
+            "inventory_updates": 3,
+            "inventory_swaps": 0,
+            "no_duplicate_or_invented_actions": true,
+            "official_session": false,
+            "original_execution": false
+          },
+          "movement_elapsed_lower_bound_ms": null,
+          "returned_to_bag": true,
+          "ground_coin_request": true
+        },
+        {
+          "variant": "generated",
+          "flow": "inventory-shop-shop",
+          "receipt": {
+            "mode": "shop",
+            "normal_startup_requests_verified": 5,
+            "commands_verified": [
+              [
+                "!0b",
+                [
+                  2,
+                  3,
+                  "43",
+                  99
+                ]
+              ],
+              [
+                ";JE",
+                [
+                  3,
+                  200
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  41,
+                  200,
+                  0,
+                  "305c7a325c7a325c7a31"
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  43,
+                  200,
+                  0,
+                  "31305c7a315c7a385c7a32"
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  44,
+                  200,
+                  2,
+                  ""
+                ]
+              ]
+            ],
+            "exit_requests_verified": 0,
+            "movement_requests_verified": 2,
+            "inventory_updates": 4,
+            "inventory_swaps": 0,
+            "no_duplicate_or_invented_actions": true,
+            "official_session": false,
+            "original_execution": false
+          },
+          "movement_elapsed_lower_bound_ms": 2682,
+          "stale_quote_rejected": true,
+          "purchase_and_sale": true
+        },
+        {
+          "variant": "generated",
+          "flow": "inventory-shop-service",
+          "receipt": {
+            "mode": "service",
+            "normal_startup_requests_verified": 5,
+            "commands_verified": [
+              [
+                "!0b",
+                [
+                  2,
+                  3,
+                  "43",
+                  99
+                ]
+              ],
+              [
+                ";JE",
+                [
+                  3,
+                  200
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  51,
+                  200,
+                  0,
+                  "31305c7a38"
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  53,
+                  200,
+                  0,
+                  "39"
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  54,
+                  200,
+                  2,
+                  ""
+                ]
+              ]
+            ],
+            "exit_requests_verified": 0,
+            "movement_requests_verified": 2,
+            "inventory_updates": 4,
+            "inventory_swaps": 0,
+            "no_duplicate_or_invented_actions": true,
+            "official_session": false,
+            "original_execution": false
+          },
+          "movement_elapsed_lower_bound_ms": 2875,
+          "refreshed_funds": true,
+          "stale_repair_rejected": true,
+          "server_description": true
+        },
+        {
+          "variant": "generated",
+          "flow": "inventory-shop-exchange",
+          "receipt": {
+            "mode": "exchange",
+            "normal_startup_requests_verified": 5,
+            "commands_verified": [
+              [
+                "!0b",
+                [
+                  2,
+                  3,
+                  "43",
+                  99
+                ]
+              ],
+              [
+                ";JE",
+                [
+                  3,
+                  200
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  61,
+                  200,
+                  0,
+                  "305c7a345c7a315c7a32"
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  62,
+                  200,
+                  2,
+                  ""
+                ]
+              ]
+            ],
+            "exit_requests_verified": 0,
+            "movement_requests_verified": 2,
+            "inventory_updates": 4,
+            "inventory_swaps": 0,
+            "no_duplicate_or_invented_actions": true,
+            "official_session": false,
+            "original_execution": false
+          },
+          "movement_elapsed_lower_bound_ms": 2208,
+          "exchange_space_repriced": true,
+          "server_settlement_visible": true
+        },
+        {
+          "variant": "generated",
+          "flow": "inventory-shop-conversion",
+          "receipt": {
+            "mode": "conversion",
+            "normal_startup_requests_verified": 5,
+            "commands_verified": [
+              [
+                "!0b",
+                [
+                  2,
+                  3,
+                  "43",
+                  99
+                ]
+              ],
+              [
+                ";JE",
+                [
+                  3,
+                  200
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  71,
+                  200,
+                  0,
+                  "315c7a33"
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  72,
+                  200,
+                  0,
+                  "315c7a34"
+                ]
+              ],
+              [
+                "/1I",
+                [
+                  2,
+                  3,
+                  73,
+                  200,
+                  2,
+                  ""
+                ]
+              ]
+            ],
+            "exit_requests_verified": 0,
+            "movement_requests_verified": 2,
+            "inventory_updates": 5,
+            "inventory_swaps": 0,
+            "no_duplicate_or_invented_actions": true,
+            "official_session": false,
+            "original_execution": false
+          },
+          "movement_elapsed_lower_bound_ms": 2621,
+          "two_conversion_variants": true,
+          "stale_gold_rejected": true
+        },
+        {
+          "variant": "generated",
+          "flow": "inventory-shop-commerce-entry",
+          "receipt": {
+            "mode": "commerce-entry",
+            "normal_startup_requests_verified": 5,
+            "commerce_actions_verified": 4,
+            "movement_requests_verified": 2,
+            "no_duplicate_or_invented_actions": true,
+            "official_session": false
+          },
+          "movement_elapsed_lower_bound_ms": 1619,
+          "merchant_purchase_route": true,
+          "exchange_cancel_route": true
+        }
+      ]
+    }
+  },
+  "builds": [
+    {
+      "name": "default",
+      "command": [
+        "node",
+        "tools/build-wechat-app.mjs",
+        "--outdir",
+        "build/wechat-app-stage224-default-final"
+      ],
+      "report": {
+        "path": "build/wechat-app-stage224-default-final/build-report.json",
+        "bytes": 40760,
+        "sha256": "45e56ec4e5040da0d1abeb3ed55038829831e92b3c2cff694f3def94151f842b"
+      },
+      "log": {
+        "path": "build/analysis/game-wechat-inventory-shop-v1/build-default.log",
+        "bytes": 187,
+        "sha256": "fbc6d71c34967d51843a4542d9f03a51e6e1547a796c2ba86f83f4465f7ab01c"
+      },
+      "exit_code": 0,
+      "inputs": 218,
+      "outputs": 20,
+      "package_bytes": {
+        "main": 760294,
+        "game": 995500
+      },
+      "external_imports": 0
+    },
+    {
+      "name": "local",
+      "command": [
+        "node",
+        "tools/build-wechat-app.mjs",
+        "--config",
+        "build/analysis/game-legacy-scene-frame-v1/local-config.json",
+        "--outdir",
+        "build/wechat-app-stage224-local-final"
+      ],
+      "report": {
+        "path": "build/wechat-app-stage224-local-final/build-report.json",
+        "bytes": 40795,
+        "sha256": "b11cbcf397c4feeeafc56bbb988ece3a574eea5cd03344d8594a0e41a48eaaad"
+      },
+      "log": {
+        "path": "build/analysis/game-wechat-inventory-shop-v1/build-local.log",
+        "bytes": 184,
+        "sha256": "b00d522cdaa3baf387ebb318943515a4429fdcaa0137a8961a4a30c7227dc985"
+      },
+      "exit_code": 0,
+      "inputs": 218,
+      "outputs": 20,
+      "package_bytes": {
+        "main": 761552,
+        "game": 995500
+      },
+      "external_imports": 0
+    },
+    {
+      "name": "resources",
+      "command": [
+        "node",
+        "tools/build-wechat-app.mjs",
+        "--config",
+        "build/analysis/game-legacy-scene-frame-v1/resources-config.json",
+        "--outdir",
+        "build/wechat-app-stage224-resources-final"
+      ],
+      "report": {
+        "path": "build/wechat-app-stage224-resources-final/build-report.json",
+        "bytes": 40803,
+        "sha256": "5546f6cbc71e3674caa489108e50f5513a08f6764df407fdb196c860f89caa79"
+      },
+      "log": {
+        "path": "build/analysis/game-wechat-inventory-shop-v1/build-resources.log",
+        "bytes": 188,
+        "sha256": "caa2a09c0ee5b40a0fe2d38d907ad590f424fa40f70cc62741bef4ea696eca10"
+      },
+      "exit_code": 0,
+      "inputs": 218,
+      "outputs": 20,
+      "package_bytes": {
+        "main": 761551,
+        "game": 995500
+      },
+      "external_imports": 0
+    },
+    {
+      "name": "page",
+      "command": [
+        "node",
+        "tools/build-wechat-app.mjs",
+        "--game-config",
+        "build/analysis/game-wechat-page-v1/game-config.json",
+        "--outdir",
+        "build/wechat-app-stage224-page-final"
+      ],
+      "report": {
+        "path": "build/wechat-app-stage224-page-final/build-report.json",
+        "bytes": 40923,
+        "sha256": "4f43a2a59c226e6207e4c124e9a4f36b03cef07a849dec35d411a394e069fe62"
+      },
+      "log": {
+        "path": "build/analysis/game-wechat-inventory-shop-v1/build-page.log",
+        "bytes": 183,
+        "sha256": "c7cd63db0745e50ffe04d31329bd09c29fbb776bc96ff3883c24a4a7df7c5a14"
+      },
+      "exit_code": 0,
+      "inputs": 218,
+      "outputs": 20,
+      "package_bytes": {
+        "main": 760294,
+        "game": 995580
+      },
+      "external_imports": 0
+    },
+    {
+      "name": "api",
+      "command": [
+        "node",
+        "tools/build-wechat-game.mjs",
+        "--outdir",
+        "build/wechat-game-stage224-api-final"
+      ],
+      "report": {
+        "path": "build/wechat-game-stage224-api-final/build-report.json",
+        "bytes": 30653,
+        "sha256": "87584648b8015c1f8c1153fa691040ed17f7ad018e40969fa7597b3c6c17e459"
+      },
+      "log": {
+        "path": "build/analysis/game-wechat-inventory-shop-v1/build-api.log",
+        "bytes": 369,
+        "sha256": "ac4e30d1c9edb1c1922397586a7f0f5aa0b23e0ff06c9be17d6f401c8d0972af"
+      },
+      "exit_code": 0,
+      "inputs": 177,
+      "outputs": 1,
+      "package_bytes": null,
+      "external_imports": 0
+    }
+  ],
+  "native_template_compiler": {
+    "workdir": "build/wechat-app-stage224-page-final",
+    "receipt": {
+      "path": "build/analysis/game-wechat-inventory-shop-v1/native-compiler-receipt.json",
+      "bytes": 870,
+      "sha256": "d9ffc44f57aadb05fa5398a031dd2238e137e70fa033b52232168ed5b7fa3c37"
+    },
+    "artifacts": [
+      {
+        "path": "build/analysis/game-wechat-inventory-shop-v1/native-wxml.js",
+        "bytes": 116941,
+        "sha256": "4a76454dd22fc3ffc65287e5add3527cd2761afc14dd0651fb835f4ca44509df"
+      },
+      {
+        "path": "build/analysis/game-wechat-inventory-shop-v1/native-wxss.js",
+        "bytes": 8498,
+        "sha256": "c0e46d8ce1c89a976c729160c578b6da73a9dc98f22a17b91180b0aaca4cdb05"
+      },
+      {
+        "path": "build/analysis/game-wechat-inventory-shop-v1/native-wxml.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "build/analysis/game-wechat-inventory-shop-v1/native-wxss.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "initial_import_error": {
+    "logs": [
+      {
+        "name": "default",
+        "exit_code": 1,
+        "log": {
+          "path": "build/analysis/game-wechat-inventory-shop-v1/build-default-initial.log",
+          "bytes": 1529,
+          "sha256": "93a130dda3bbd78b53bb4c705ccd19c301524e9aafc787670bbdf9be2b687222"
+        }
+      },
+      {
+        "name": "local",
+        "exit_code": 1,
+        "log": {
+          "path": "build/analysis/game-wechat-inventory-shop-v1/build-local-initial.log",
+          "bytes": 1529,
+          "sha256": "93a130dda3bbd78b53bb4c705ccd19c301524e9aafc787670bbdf9be2b687222"
+        }
+      },
+      {
+        "name": "resources",
+        "exit_code": 1,
+        "log": {
+          "path": "build/analysis/game-wechat-inventory-shop-v1/build-resources-initial.log",
+          "bytes": 1529,
+          "sha256": "93a130dda3bbd78b53bb4c705ccd19c301524e9aafc787670bbdf9be2b687222"
+        }
+      },
+      {
+        "name": "page",
+        "exit_code": 1,
+        "log": {
+          "path": "build/analysis/game-wechat-inventory-shop-v1/build-page-initial.log",
+          "bytes": 1529,
+          "sha256": "93a130dda3bbd78b53bb4c705ccd19c301524e9aafc787670bbdf9be2b687222"
+        }
+      }
+    ],
+    "correction": "Use the existing plural legacy-game-map-npc-services.mjs module."
+  },
+  "initial_page_trial": {
+    "source": {
+      "path": "build/analysis/game-wechat-inventory-shop-v1/page-source-full-initial.log",
+      "bytes": 10962,
+      "sha256": "5d5b1cf6aaa993831250c4b99caace9c11d01b8a7553bd55ce97fd475b19142a"
+    },
+    "generated": {
+      "path": "build/analysis/game-wechat-inventory-shop-v1/page-generated-full-initial.log",
+      "bytes": 9676,
+      "sha256": "80fdaedf0b590387aeed9fef4d5d6f468a25edecf862c8d09b5ec7ed4e841628"
+    },
+    "source_focused": {
+      "path": "build/analysis/game-wechat-inventory-shop-v1/page-source-new.log",
+      "bytes": 5098,
+      "sha256": "4ae305debd2f86f355fd4f4a286ca3b580cfc15c2326cd5b03a771ef928acc41"
+    },
+    "observation": "All ordinary item requests were accepted, then the source page timed out awaiting final movement. No touch timestamp was retained.",
+    "correction": "Wait for the existing 250ms input interval and retain the lower bound before the final map tap. Both full runs passed."
+  },
+  "knowledge_query": "TalonBrain missing mandatory requirement-index. Used reports/requirements-index.md.",
+  "previous_native_gate": {
+    "path": "analysis/game-wechat-page-v1/validation.json",
+    "bytes": 21172,
+    "sha256": "ad602fdc2c5b5869af5b6e8c8a820fcfb7a11a07c8991b111239d85f81cb87d5"
+  },
+  "native_runtime_accepted": false,
+  "physical_phone_accepted": false,
+  "current_ticket_conversion_proven": false,
+  "official_accepted": false,
+  "VM_actions": 0,
+  "original_execution": 0,
+  "official_sessions": 0,
+  "phase_complete": false,
+  "full_goal_complete": false
+}

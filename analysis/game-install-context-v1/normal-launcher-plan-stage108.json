@@ -1,0 +1,67 @@
+{
+  "schema": "moli.normal-installed-launcher.plan.v2",
+  "recorded_utc": "2026-10-30T06:55:25.949742+00:00",
+  "requirement": "reports/development-plan.md#stage108",
+  "purpose": "Observe the normal installed original launcher and its known embedded updater, then use evidence for independent cross-platform reconstruction",
+  "authorization_basis": "Current direct Windows/network/tools/dependency authorization, exact official-distribution correspondence, user reports installation completed; no replay of a consumed historical one-run grant",
+  "status": "Bounded one-start observation and scoped cleanup completed; positive child start observed, update/restart and login unverified",
+  "executable": "C:\\Program Files (x86)\\易玩通\\“易玩通”娱乐平台\\POLCN_Launcher.exe",
+  "sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+  "working_directory": "C:\\Program Files (x86)\\易玩通\\“易玩通”娱乐平台",
+  "working_directory_basis": "Relative updater file operations and null child working directory in the exact old source; actual parent context must be supplied explicitly",
+  "known_embedded_updater_sha256": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+  "intended_explicit_starts_maximum": 1,
+  "starts_used": 1,
+  "observation_budget_seconds_including_uac": 90,
+  "preconditions": [
+    "Fresh actual guest input receipt and inspect/cancel the pending read-only line, no blind Return",
+    "Read current exact vendor process count; installation autolaunch history remains unknown, do not start duplicates",
+    "Re-read exact installed launcher/updater and XML identities; do not substitute current temporary-directory newer binaries",
+    "Freshly check existing recovery-point metadata and local resource budget; prepare a new native recovery point if needed, without restoration or force power action",
+    "Use already chosen Win7 compatibility on these exact newly installed launcher/game paths; do not ask the user the preference again",
+    "Only perform the normal original launcher path and expected standard update flow within the named observed target; stop on actual new terms, unrecognized origin, unexpected privilege/security prompt or tool rejection"
+  ],
+  "capture": "Before/after pinned file identities, returned process PID/HasExited/ExitCode, bounded visible UI and sanitized lifecycle observations; point counts alone do not prove complete child history",
+  "stop_and_resume": [
+    "Normal close only; no forced termination, reset or old-script replay",
+    "No credentials/session extraction, auth bypass, DRM/anti-cheat changes or unproven game fields",
+    "Account-dependent game flow and original-game observer use require the actual normal process context; fixture success and installation are not that evidence",
+    "Continue REA launcher -> independent launcher -> REA game -> independent game and preserve web/mobile-web/WeChat/official acceptance gaps"
+  ],
+  "inherited_plan": "analysis/game-install-context-v1/normal-launcher-plan-stage107.json",
+  "actual_preconditions": {
+    "guest_time": "2026-10-30T18:18:29.7659590+08:00",
+    "related_vendor_process_count": 0,
+    "new_administrator_session_executable_path_readback": "C:\\Program Files (x86)\\易玩通\\“易玩通”娱乐平台\\polcn_launcher.exe",
+    "file_identities": "preflight-stage108.json",
+    "compatibility": "compatibility-stage108.json",
+    "recovery": "recovery-point-stage108.json",
+    "lifecycle": "lifecycle-runtime-stage108.json"
+  },
+  "command": "get-date -format o; sv r108 (start $lp108 -workingdirectory $p108 -passthru); $r108 | fl id,hasexited,exitcode",
+  "submission_utc": "2026-10-30T10:19:23.531Z",
+  "guest_command_time": "2026-10-30T18:19:23.5732458+08:00",
+  "returned_process": {
+    "Id": 9732,
+    "HasExited": false,
+    "ExitCode": "Blank while still running; not zero"
+  },
+  "visible_ui": "正在检查更新......",
+  "new_uac_seen_at_first_observation": false,
+  "parent_after_window_disappeared": {
+    "Id": 9732,
+    "HasExited": true,
+    "ExitCode": 0,
+    "observed_host_elapsed_seconds": 50.579
+  },
+  "related_process_count_at_end": {
+    "command": "@(gps polcn*,launcherupdater* -ea 0).count",
+    "count": 0,
+    "observed_host_elapsed_seconds": 87.164
+  },
+  "closure": "Vendor update-check window disappeared by host elapsed 20.448 seconds; no manual close/force termination",
+  "no_claim": "ExitCode 0 plus point count 0 does not prove updater handoff, successful update, login, or game compatibility",
+  "postrun_record": "postrun-stage108.json",
+  "lifecycle_record": "lifecycle-runtime-stage108.json",
+  "temporary_input_cleanup": "keyboard-cleanup-stage108.json"
+}

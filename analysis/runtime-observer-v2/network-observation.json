@@ -1,0 +1,112 @@
+{
+  "schema": "moli.runtime-observer-v2.public-update-probe.v1",
+  "started_utc": "2026-10-27T14:24:12.536503+00:00",
+  "authority": "user-approved networking tests; fixed paths from static evidence",
+  "host": "launch.polchina.com.cn",
+  "port": 80,
+  "transport": "HTTP, no server identity authentication",
+  "cookies": false,
+  "authorization_header": false,
+  "environment_proxy": false,
+  "redirects_followed": false,
+  "retries": 0,
+  "original_sample_executions": 0,
+  "requests": [
+    {
+      "label": "launcher-digest",
+      "path": "/Launcher/launcher_md5.dat",
+      "method": "GET",
+      "body_budget": 4096,
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "text/plain",
+        "Content-Length": "33",
+        "Last-Modified": "Wed, 02 Sep 2026 02:58:40 GMT",
+        "ETag": "\"aa018d-21-365df800\""
+      },
+      "bytes_read": 33,
+      "sha256": "589195c2164b7f8342e20a8328ab7b2c29d32408f76aff478c404113b0728910",
+      "md5": "f3c3d8634ae8fcbfa3d459dc41d7baeb",
+      "elapsed_ms": 24
+    },
+    {
+      "label": "catalog-digests",
+      "path": "/Launcher/xml_md5.dat",
+      "method": "GET",
+      "body_budget": 4096,
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "text/plain",
+        "Content-Length": "66",
+        "Last-Modified": "Wed, 02 Sep 2026 02:58:40 GMT",
+        "ETag": "\"aa018e-42-365df800\""
+      },
+      "bytes_read": 66,
+      "sha256": "11f2051c90d62c31a7b4f71a4c6eefbf52ba422c8c4a16cc704244de85ff7361",
+      "md5": "6e4a360a3d84584f0d3197dcaaff6a8f",
+      "elapsed_ms": 20
+    },
+    {
+      "label": "game-catalog",
+      "path": "/Launcher/GameList.xml",
+      "method": "GET",
+      "body_budget": 2097152,
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/xml",
+        "Content-Length": "4377",
+        "Last-Modified": "Wed, 02 Sep 2026 02:58:40 GMT",
+        "ETag": "\"aa018f-1119-365df800\""
+      },
+      "bytes_read": 4377,
+      "sha256": "be8f1213d77bd294fbb79b2fb51a5e7fecdc9aa3c0854db7a6d821fad20ef85a",
+      "md5": "6e6baee59d3bb79338c69b61bf07ab7b",
+      "elapsed_ms": 22
+    },
+    {
+      "label": "region-catalog",
+      "path": "/Launcher/RegionList.xml",
+      "method": "GET",
+      "body_budget": 2097152,
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/xml",
+        "Content-Length": "6421",
+        "Last-Modified": "Wed, 02 Sep 2026 02:58:40 GMT",
+        "ETag": "\"aa0189-1915-365df800\""
+      },
+      "bytes_read": 6421,
+      "sha256": "467eeac27d1127fba828c515dba708b9efaf4d884053a767187b3c96fa5acd58",
+      "md5": "3ec6d76a6b8aea889d3683f63032d443",
+      "elapsed_ms": 23
+    },
+    {
+      "label": "update-locator",
+      "path": "/Launcher/launcher_url.dat",
+      "method": "GET",
+      "body_budget": 4096,
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "text/plain",
+        "Content-Length": "69",
+        "Last-Modified": "Wed, 02 Sep 2026 02:58:40 GMT",
+        "ETag": "\"aa018c-45-365df800\""
+      },
+      "bytes_read": 69,
+      "sha256": "1fd391df44b3e86cb7ac109d89a75535064ee02f28bdb1094b9d4479e1a3af17",
+      "md5": "72bc120d778f7f2ae531d2e5cca8c102",
+      "elapsed_ms": 19
+    }
+  ],
+  "status": "all-five-http200",
+  "dns_addresses": [
+    "198.18.1.240"
+  ],
+  "elapsed_ms": 114,
+  "limits": [
+    "Bare evidenced paths, no native rtm query or WinINet emulation.",
+    "HTTP200 and MD5 do not establish publisher identity, latest version or authentication.",
+    "Only metadata/XML/locator contents requested, never a locator payload or game service.",
+    "Host tests do not prove Windows VM networking or original client acceptance."
+  ]
+}

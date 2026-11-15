@@ -1,0 +1,39 @@
+{
+  "recorded_utc": "2026-10-25T15:04:02.622192+00:00",
+  "scope": "Specific Autologon proposal approved for the two named project VMs; user unavailable for personal password entry",
+  "targets": [
+    "MoliRestoreTest-ARM64-20261025-v9",
+    "MoliOffline-ARM64-20261025"
+  ],
+  "approved_scope": [
+    "Official ARM64 tool preparation and verification",
+    "Previously linked Sysinternals terms if applicable actual terms match",
+    "UAC only for Autologon",
+    "Conditional Hello-only change; preserve PIN; wake Never via standard setting",
+    "Temporary readonly tool CD, normal reboot and supported sleep tests; restore original CD"
+  ],
+  "conditions": [
+    "Test clone first; original only after clone acceptance and own-state verification",
+    "Keep guest network and host sharing disabled",
+    "No Mac, TPM, SecureBoot or baseline change",
+    "No new credential input authorization inferred; no password supplied to agent",
+    "User enters account password personally; do not substitute PIN, obtain or extract credentials",
+    "Different actual terms/security expansion remain separate gate"
+  ],
+  "executed_this_phase": [
+    "Official HTTPS downloads into temporary host directory",
+    "Static PE identity and metadata inspection",
+    "ISO creation/readback and new project build-file storage",
+    "Read-only host saved-config and baseline-metadata checks",
+    "Project documentation"
+  ],
+  "not_executed": [
+    "Any UI operation",
+    "Guest CD swap or reboot/login",
+    "Autologon run/UAC/EULA/Enable",
+    "Any change to Hello-only/PIN/wake/autologon",
+    "Game execution"
+  ],
+  "status": "Autologon not enabled; preparation only",
+  "credentials_recorded": false
+}

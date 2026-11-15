@@ -1,0 +1,178 @@
+{
+  "schema": "moli.launcher-v30.validation.v1",
+  "recorded_utc": "2026-10-27T10:47:04.624464+00:00",
+  "stage": 75,
+  "result": "First-Config producer/source outcomes and actual onlyRefresh UI/adapter/handoff verified; launcher-own gate audit accepts bounded observed contract and enables subsequent gameconsumer static joint validation. Full launcher/game/platform/official goal incomplete.",
+  "preflight": "preflight.json",
+  "gate_audit": "launcher-gate-audit.json",
+  "native_evidence": {
+    "record": "static-spec.json",
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "previous_records": 321,
+    "new_records": 14,
+    "new_unique_functions": 1,
+    "new_reads": 2,
+    "retained_views": 11,
+    "total_records": 335,
+    "source_anchors": 26,
+    "source_negative_claims": 3,
+    "closed": true,
+    "cleanup_pending": false,
+    "source_audit": "first-config-source-audit.json",
+    "limits": "Retained main valueflow truncated; bounded sourceListing/helper chain and original shortbytes used."
+  },
+  "reference": {
+    "oracle": "first_config_oracle.py",
+    "vectors": "original-first-config-vectors.json",
+    "producer": 24,
+    "outcomes": 9,
+    "fixed_record": "fixed-config-regression.json",
+    "fixed_games": 5,
+    "fixed_regions": 12,
+    "fixed_selected_pairs": 8,
+    "fixed_flag_variants": 24
+  },
+  "node": {
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "tests": 516,
+    "passed": 516,
+    "new_tests": 15,
+    "failed": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "duration_ms": 11904.6095,
+    "log": "node-tests-final.log",
+    "earlier_log": "node-tests.log",
+    "focused": 54,
+    "focused_log": "first-config-refresh-tests-final.log",
+    "syntax": "syntax-checks.json"
+  },
+  "browser": {
+    "record": "refresh-browser-verified.json",
+    "initial_record": "refresh-browser.json",
+    "browser": "155.0.8059.85",
+    "driver": "Playwright1.62.1; Browser plugin not available",
+    "flows": 9,
+    "requests": 186,
+    "screenshots": 6,
+    "producer_vectors": 24,
+    "outcome_vectors": 9,
+    "actual_independent_original_requests": 5,
+    "cache_regression": {
+      "record": "ui-cache-browser.json",
+      "flows": 13,
+      "requests": 304
+    },
+    "patch_regression": {
+      "record": "patch-ui-regression.json",
+      "flows": 13,
+      "requests": 204
+    },
+    "default_Galaxy_regression": {
+      "record": "plain-regression-browser.json",
+      "flows": 6,
+      "requests": 120
+    },
+    "errors": [],
+    "unexpected_console": [],
+    "external_requests": 0,
+    "six_checks": "visual-review.json",
+    "artifact_guard": {
+      "exclusiveCreate": true,
+      "collisionRejected": true,
+      "existingBytesPreserved": true,
+      "screenshotNotCalled": true
+    }
+  },
+  "example": {
+    "command": "node web/examples/launcher-browser-game-patch-local.mjs",
+    "log": "ui-example.log",
+    "browser_record": "ui-example-browser.json",
+    "url": "http://127.0.0.1:4174/",
+    "onlyRefresh": true,
+    "resource_rows": 0,
+    "mapping_write_bytes": 17,
+    "clientCreationRequested": false,
+    "original_peer_verified": true,
+    "exit_code": 0,
+    "closed_normally": true
+  },
+  "implementation_contract": "implementation-spec.json",
+  "review": "review-notes.json",
+  "artifact_incident": "artifact-output-incident.json",
+  "dependencies": {
+    "new_acquisitions": 0,
+    "capabilities": "Existing REA/Ghidra/Java/Node/Python/Playwright/Chrome sufficient; no global tool/security/VM change."
+  },
+  "matrix": {
+    "revision": 23,
+    "ids": 20,
+    "status_changes": [],
+    "dependencies_changed": false,
+    "scope": "LCH-CATALOG/LCH-HANDOFF evidence only; gameconsumer/auth/official statuses remain unknown."
+  },
+  "authorization": {
+    "original_EXE_or_VM_executions": 0,
+    "real_account_or_profile_reads": 0,
+    "profile_writes": 0,
+    "original_installation_changes": 0,
+    "official_game_requests": 0,
+    "official_assets_added": false,
+    "global_config_edits": 0
+  },
+  "knowledge": "development/R1 projectexperience/requirement-index query budget3000 still lacks requirement-index; current project plan is truth. No global knowledge edits.",
+  "remaining": [
+    "Version-bound game argv/CGSharedMem consumer static joint validation, then resource/network/game implementation",
+    "Actual configutility/settings/ACP/EH/account persistence/source identity/opaque acceptance",
+    "Fullsize/native recovery/physicalmobile/WeChat and official acceptance"
+  ],
+  "goal_complete": false,
+  "delivery_checks_passed": true,
+  "preservation": {
+    "previous_files": 1119,
+    "unchanged_previous_files": 1098,
+    "planned_baseline_files": 21,
+    "baseline_targets_only": true,
+    "unchanged_native_files": 17,
+    "unchanged_prior_shared_product_files": 82,
+    "previous_manifest_unchanged_sha256": "33d719aac02145fa7d34da5c1e24b341be2eb80a9586e40f5503bc7da1f78365"
+  },
+  "documentation": {
+    "files": 44,
+    "local_links_checked": 2020,
+    "explicit_anchors_checked": 234,
+    "errors": []
+  },
+  "delivery_manifest": "../delivery-manifest-stage75.json",
+  "tested_product_files": [
+    {
+      "path": "shared/launcher-first-config.mjs",
+      "sha256": "b480e47be8854eb14104b065338a6dd151bb03df947fda6ccf8ac633ce43a104"
+    },
+    {
+      "path": "shared/launcher.mjs",
+      "sha256": "f0c33c10358a208f140c49df47cb73d8eea2a2f41b1af5af80dd702520c7114d"
+    },
+    {
+      "path": "shared/index.mjs",
+      "sha256": "10c96cb0cd3e7ff2f5b95b2723bb4c2fcee07f990ffdc913e60c60b1e70e860a"
+    },
+    {
+      "path": "web/launcher-launch-data.mjs",
+      "sha256": "0ec1e9a7888c71e168b251a54bd2654a10e93c41c3d75c5479197e8a759ddd20"
+    },
+    {
+      "path": "web/login-launch.mjs",
+      "sha256": "6decfdc01ad2aa5139db6e7a9e06d1b46165aabc9b4fd91fa630f2f9d0bb0dd5"
+    },
+    {
+      "path": "web/login-app.mjs",
+      "sha256": "9de251b67a9a1a610496fafa6c2e2cb0938cdbb25aac4ad8f9edcef79fc5101c"
+    },
+    {
+      "path": "web/login.html",
+      "sha256": "c8e337e81fb1fff386133d71251aca3d29036726851961903330d44e6304ffd9"
+    }
+  ]
+}

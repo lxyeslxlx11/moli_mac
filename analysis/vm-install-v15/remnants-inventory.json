@@ -1,0 +1,596 @@
+{
+  "schema_version": 1,
+  "recorded_from": "Read-only metadata observations in this branch; no deletion/UI operation.",
+  "exact_scope": "Four com.utmapp.UTM app-state paths and six exact prior temporary-artifact paths; no broad glob, Trash, other VM customer content or Parallels path access.",
+  "application_path_observation_utc": "2026-10-25T18:14:47.838498+00:00",
+  "temporary_path_observation_utc": "2026-10-25T18:16:10.346945+00:00",
+  "prior_path_source": "analysis/vm-install-v14/removal-inventory.json#known_temporary_artifacts",
+  "app_paths": [
+    {
+      "path": "/Users/lx/Library/Containers/com.utmapp.UTM",
+      "exists": true,
+      "kind": "directory",
+      "bytes": 128,
+      "nlink": 4,
+      "device": 16777230,
+      "inode": 4563801,
+      "mode_octal": "0o700",
+      "immediate_entries": [
+        {
+          "path": "/Users/lx/Library/Containers/com.utmapp.UTM/.com.apple.containermanagerd.metadata.plist",
+          "kind": "regular",
+          "bytes": 36071,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 4563920,
+          "mode_octal": "0o600",
+          "contents_read": false
+        },
+        {
+          "path": "/Users/lx/Library/Containers/com.utmapp.UTM/Data",
+          "kind": "directory",
+          "bytes": 384,
+          "nlink": 12,
+          "device": 16777230,
+          "inode": 4563802,
+          "mode_octal": "0o700",
+          "contents_read": false
+        }
+      ],
+      "data_listing": {
+        "action": "List immediate directory entries only",
+        "target": "/Users/lx/Library/Containers/com.utmapp.UTM/Data",
+        "attempt_count": 1,
+        "status": "denied_by_os_filesystem",
+        "errno": 1,
+        "error": "[Errno 1] Operation not permitted: '/Users/lx/Library/Containers/com.utmapp.UTM/Data'",
+        "listing_executed": false,
+        "alternate_path_or_permission_bypass_attempted": false
+      },
+      "classification": "preserve_entire_container",
+      "reason": "Container bundle-ID ownership alone does not prove all contents are disposable UTM-only state. Data listing was denied, so other VM disks, unrelated documents, bookmarks and accounts could not be ruled out.",
+      "exclusive_removal_candidate": false
+    },
+    {
+      "path": "/Users/lx/Library/Caches/com.utmapp.UTM",
+      "exists": false,
+      "classification": "absent_no_cleanup_needed"
+    },
+    {
+      "path": "/Users/lx/Library/Saved Application State/com.utmapp.UTM.savedState",
+      "exists": false,
+      "classification": "absent_no_cleanup_needed"
+    },
+    {
+      "path": "/Users/lx/Library/Preferences/com.utmapp.UTM.plist",
+      "exists": false,
+      "classification": "absent_no_cleanup_needed"
+    }
+  ],
+  "temporary_artifacts": [
+    {
+      "path": "/tmp/moli-utm-guest-tools-3d-latest.iso",
+      "prior_recorded_file_count": 1,
+      "prior_recorded_logical_bytes": 143898624,
+      "entries": [
+        {
+          "path": "/tmp/moli-utm-guest-tools-3d-latest.iso",
+          "kind": "regular",
+          "bytes": 143898624,
+          "allocated_bytes": 151056384,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5156810,
+          "mode_octal": "0o644"
+        }
+      ],
+      "errors": [],
+      "exists": true,
+      "root_metadata": {
+        "path": "/tmp/moli-utm-guest-tools-3d-latest.iso",
+        "kind": "regular",
+        "bytes": 143898624,
+        "allocated_bytes": 151056384,
+        "nlink": 1,
+        "device": 16777230,
+        "inode": 5156810,
+        "mode_octal": "0o644"
+      },
+      "regular_file_count": 1,
+      "logical_bytes": 143898624,
+      "allocated_bytes_stat_sum": 151056384,
+      "all_regular_files_single_link": true,
+      "symlink_paths": [],
+      "potential_vm_disk_or_bundle_paths": [],
+      "prior_count_and_logical_bytes_match": true,
+      "assessment": "Project temporary-artifact candidate: exact prior authorized path; file count and logical bytes match prior inventory; metadata names consistent with driver/media preparation; no links or VM disk/bundle candidates observed.",
+      "content_hash_revalidated": false,
+      "mounted_or_open_handle_state_checked": false,
+      "removal_performed": false
+    },
+    {
+      "path": "/tmp/moli-netkvm-w11-arm64-0.1.274",
+      "prior_recorded_file_count": 9,
+      "prior_recorded_logical_bytes": 2946945,
+      "entries": [
+        {
+          "path": "/tmp/moli-netkvm-w11-arm64-0.1.274/virtio-win_license.txt",
+          "kind": "regular",
+          "bytes": 1598,
+          "allocated_bytes": 4096,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5157634,
+          "mode_octal": "0o555"
+        },
+        {
+          "path": "/tmp/moli-netkvm-w11-arm64-0.1.274/readme.doc",
+          "kind": "regular",
+          "bytes": 22016,
+          "allocated_bytes": 24576,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5157430,
+          "mode_octal": "0o555"
+        },
+        {
+          "path": "/tmp/moli-netkvm-w11-arm64-0.1.274/netkvm.cat",
+          "kind": "regular",
+          "bytes": 12538,
+          "allocated_bytes": 16384,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5157424,
+          "mode_octal": "0o555"
+        },
+        {
+          "path": "/tmp/moli-netkvm-w11-arm64-0.1.274/Readme.md",
+          "kind": "regular",
+          "bytes": 6283,
+          "allocated_bytes": 8192,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5157423,
+          "mode_octal": "0o555"
+        },
+        {
+          "path": "/tmp/moli-netkvm-w11-arm64-0.1.274/netkvmco.dll",
+          "kind": "regular",
+          "bytes": 1170216,
+          "allocated_bytes": 1171456,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5157427,
+          "mode_octal": "0o555"
+        },
+        {
+          "path": "/tmp/moli-netkvm-w11-arm64-0.1.274/netkvm.sys",
+          "kind": "regular",
+          "bytes": 191680,
+          "allocated_bytes": 192512,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5157426,
+          "mode_octal": "0o555"
+        },
+        {
+          "path": "/tmp/moli-netkvm-w11-arm64-0.1.274/netkvm.inf",
+          "kind": "regular",
+          "bytes": 17654,
+          "allocated_bytes": 20480,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5157425,
+          "mode_octal": "0o555"
+        },
+        {
+          "path": "/tmp/moli-netkvm-w11-arm64-0.1.274/netkvmp.exe",
+          "kind": "regular",
+          "bytes": 263872,
+          "allocated_bytes": 266240,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5157429,
+          "mode_octal": "0o555"
+        },
+        {
+          "path": "/tmp/moli-netkvm-w11-arm64-0.1.274/netkvmco.exe",
+          "kind": "regular",
+          "bytes": 1261088,
+          "allocated_bytes": 1261568,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5157428,
+          "mode_octal": "0o555"
+        }
+      ],
+      "errors": [],
+      "exists": true,
+      "root_metadata": {
+        "path": "/tmp/moli-netkvm-w11-arm64-0.1.274",
+        "kind": "directory",
+        "bytes": 352,
+        "allocated_bytes": 0,
+        "nlink": 11,
+        "device": 16777230,
+        "inode": 5157422,
+        "mode_octal": "0o755"
+      },
+      "regular_file_count": 9,
+      "logical_bytes": 2946945,
+      "allocated_bytes_stat_sum": 2965504,
+      "all_regular_files_single_link": true,
+      "symlink_paths": [],
+      "potential_vm_disk_or_bundle_paths": [],
+      "prior_count_and_logical_bytes_match": true,
+      "assessment": "Project temporary-artifact candidate: exact prior authorized path; file count and logical bytes match prior inventory; metadata names consistent with driver/media preparation; no links or VM disk/bundle candidates observed.",
+      "content_hash_revalidated": false,
+      "mounted_or_open_handle_state_checked": false,
+      "removal_performed": false
+    },
+    {
+      "path": "/tmp/moli-netkvm-w11-arm64-0.1.274-with-license.iso",
+      "prior_recorded_file_count": 1,
+      "prior_recorded_logical_bytes": 3006464,
+      "entries": [
+        {
+          "path": "/tmp/moli-netkvm-w11-arm64-0.1.274-with-license.iso",
+          "kind": "regular",
+          "bytes": 3006464,
+          "allocated_bytes": 3006464,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5157635,
+          "mode_octal": "0o644"
+        }
+      ],
+      "errors": [],
+      "exists": true,
+      "root_metadata": {
+        "path": "/tmp/moli-netkvm-w11-arm64-0.1.274-with-license.iso",
+        "kind": "regular",
+        "bytes": 3006464,
+        "allocated_bytes": 3006464,
+        "nlink": 1,
+        "device": 16777230,
+        "inode": 5157635,
+        "mode_octal": "0o644"
+      },
+      "regular_file_count": 1,
+      "logical_bytes": 3006464,
+      "allocated_bytes_stat_sum": 3006464,
+      "all_regular_files_single_link": true,
+      "symlink_paths": [],
+      "potential_vm_disk_or_bundle_paths": [],
+      "prior_count_and_logical_bytes_match": true,
+      "assessment": "Project temporary-artifact candidate: exact prior authorized path; file count and logical bytes match prior inventory; metadata names consistent with driver/media preparation; no links or VM disk/bundle candidates observed.",
+      "content_hash_revalidated": false,
+      "mounted_or_open_handle_state_checked": false,
+      "removal_performed": false
+    },
+    {
+      "path": "/tmp/moli-base-drivers-w11-arm64-0.1.274",
+      "prior_recorded_file_count": 8,
+      "prior_recorded_logical_bytes": 325097,
+      "entries": [
+        {
+          "path": "/tmp/moli-base-drivers-w11-arm64-0.1.274/viogpudo",
+          "kind": "directory",
+          "bytes": 160,
+          "allocated_bytes": 0,
+          "nlink": 5,
+          "device": 16777230,
+          "inode": 5171702,
+          "mode_octal": "0o700"
+        },
+        {
+          "path": "/tmp/moli-base-drivers-w11-arm64-0.1.274/viorng",
+          "kind": "directory",
+          "bytes": 192,
+          "allocated_bytes": 0,
+          "nlink": 6,
+          "device": 16777230,
+          "inode": 5171697,
+          "mode_octal": "0o700"
+        },
+        {
+          "path": "/tmp/moli-base-drivers-w11-arm64-0.1.274/virtio-win_license.txt",
+          "kind": "regular",
+          "bytes": 1598,
+          "allocated_bytes": 4096,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5171706,
+          "mode_octal": "0o444"
+        },
+        {
+          "path": "/tmp/moli-base-drivers-w11-arm64-0.1.274/viogpudo/viogpudo.inf",
+          "kind": "regular",
+          "bytes": 2493,
+          "allocated_bytes": 4096,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5171704,
+          "mode_octal": "0o444"
+        },
+        {
+          "path": "/tmp/moli-base-drivers-w11-arm64-0.1.274/viogpudo/viogpudo.sys",
+          "kind": "regular",
+          "bytes": 115728,
+          "allocated_bytes": 118784,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5171705,
+          "mode_octal": "0o444"
+        },
+        {
+          "path": "/tmp/moli-base-drivers-w11-arm64-0.1.274/viogpudo/viogpudo.cat",
+          "kind": "regular",
+          "bytes": 12039,
+          "allocated_bytes": 12288,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5171703,
+          "mode_octal": "0o444"
+        },
+        {
+          "path": "/tmp/moli-base-drivers-w11-arm64-0.1.274/viorng/viorngum.dll",
+          "kind": "regular",
+          "bytes": 115368,
+          "allocated_bytes": 118784,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5171701,
+          "mode_octal": "0o444"
+        },
+        {
+          "path": "/tmp/moli-base-drivers-w11-arm64-0.1.274/viorng/viorng.inf",
+          "kind": "regular",
+          "bytes": 3721,
+          "allocated_bytes": 4096,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5171699,
+          "mode_octal": "0o444"
+        },
+        {
+          "path": "/tmp/moli-base-drivers-w11-arm64-0.1.274/viorng/viorng.sys",
+          "kind": "regular",
+          "bytes": 61632,
+          "allocated_bytes": 65536,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5171700,
+          "mode_octal": "0o444"
+        },
+        {
+          "path": "/tmp/moli-base-drivers-w11-arm64-0.1.274/viorng/viorng.cat",
+          "kind": "regular",
+          "bytes": 12518,
+          "allocated_bytes": 16384,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5171698,
+          "mode_octal": "0o444"
+        }
+      ],
+      "errors": [],
+      "exists": true,
+      "root_metadata": {
+        "path": "/tmp/moli-base-drivers-w11-arm64-0.1.274",
+        "kind": "directory",
+        "bytes": 160,
+        "allocated_bytes": 0,
+        "nlink": 5,
+        "device": 16777230,
+        "inode": 5171696,
+        "mode_octal": "0o700"
+      },
+      "regular_file_count": 8,
+      "logical_bytes": 325097,
+      "allocated_bytes_stat_sum": 344064,
+      "all_regular_files_single_link": true,
+      "symlink_paths": [],
+      "potential_vm_disk_or_bundle_paths": [],
+      "prior_count_and_logical_bytes_match": true,
+      "assessment": "Project temporary-artifact candidate: exact prior authorized path; file count and logical bytes match prior inventory; metadata names consistent with driver/media preparation; no links or VM disk/bundle candidates observed.",
+      "content_hash_revalidated": false,
+      "mounted_or_open_handle_state_checked": false,
+      "removal_performed": false
+    },
+    {
+      "path": "/tmp/moli-base-drivers-w11-arm64-0.1.274.iso",
+      "prior_recorded_file_count": 1,
+      "prior_recorded_logical_bytes": 921600,
+      "entries": [
+        {
+          "path": "/tmp/moli-base-drivers-w11-arm64-0.1.274.iso",
+          "kind": "regular",
+          "bytes": 921600,
+          "allocated_bytes": 921600,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5171721,
+          "mode_octal": "0o444"
+        }
+      ],
+      "errors": [],
+      "exists": true,
+      "root_metadata": {
+        "path": "/tmp/moli-base-drivers-w11-arm64-0.1.274.iso",
+        "kind": "regular",
+        "bytes": 921600,
+        "allocated_bytes": 921600,
+        "nlink": 1,
+        "device": 16777230,
+        "inode": 5171721,
+        "mode_octal": "0o444"
+      },
+      "regular_file_count": 1,
+      "logical_bytes": 921600,
+      "allocated_bytes_stat_sum": 921600,
+      "all_regular_files_single_link": true,
+      "symlink_paths": [],
+      "potential_vm_disk_or_bundle_paths": [],
+      "prior_count_and_logical_bytes_match": true,
+      "assessment": "Project temporary-artifact candidate: exact prior authorized path; file count and logical bytes match prior inventory; metadata names consistent with driver/media preparation; no links or VM disk/bundle candidates observed.",
+      "content_hash_revalidated": false,
+      "mounted_or_open_handle_state_checked": false,
+      "removal_performed": false
+    },
+    {
+      "path": "/private/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-autologon-v11-k74xwlgm",
+      "prior_recorded_file_count": 8,
+      "prior_recorded_logical_bytes": 1989729,
+      "entries": [
+        {
+          "path": "/private/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-autologon-v11-k74xwlgm/media-root",
+          "kind": "directory",
+          "bytes": 160,
+          "allocated_bytes": 0,
+          "nlink": 5,
+          "device": 16777230,
+          "inode": 5233850,
+          "mode_octal": "0o700"
+        },
+        {
+          "path": "/private/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-autologon-v11-k74xwlgm/media-validation.json",
+          "kind": "regular",
+          "bytes": 1897,
+          "allocated_bytes": 4096,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5233855,
+          "mode_octal": "0o644"
+        },
+        {
+          "path": "/private/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-autologon-v11-k74xwlgm/download.json",
+          "kind": "regular",
+          "bytes": 1334,
+          "allocated_bytes": 4096,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5233752,
+          "mode_octal": "0o644"
+        },
+        {
+          "path": "/private/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-autologon-v11-k74xwlgm/Autologon64a.exe",
+          "kind": "regular",
+          "bytes": 524880,
+          "allocated_bytes": 528384,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5233750,
+          "mode_octal": "0o644"
+        },
+        {
+          "path": "/private/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-autologon-v11-k74xwlgm/moli-autologon-arm64-v10.iso",
+          "kind": "regular",
+          "bytes": 921600,
+          "allocated_bytes": 921600,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5233854,
+          "mode_octal": "0o444"
+        },
+        {
+          "path": "/private/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-autologon-v11-k74xwlgm/Eula.txt",
+          "kind": "regular",
+          "bytes": 7490,
+          "allocated_bytes": 8192,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5233751,
+          "mode_octal": "0o644"
+        },
+        {
+          "path": "/private/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-autologon-v11-k74xwlgm/media-root/Autologon64a.exe",
+          "kind": "regular",
+          "bytes": 524880,
+          "allocated_bytes": 528384,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5233851,
+          "mode_octal": "0o644"
+        },
+        {
+          "path": "/private/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-autologon-v11-k74xwlgm/media-root/Eula.txt",
+          "kind": "regular",
+          "bytes": 7490,
+          "allocated_bytes": 8192,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5233852,
+          "mode_octal": "0o644"
+        },
+        {
+          "path": "/private/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-autologon-v11-k74xwlgm/media-root/SHA256SUMS.txt",
+          "kind": "regular",
+          "bytes": 158,
+          "allocated_bytes": 4096,
+          "nlink": 1,
+          "device": 16777230,
+          "inode": 5233853,
+          "mode_octal": "0o644"
+        }
+      ],
+      "errors": [],
+      "exists": true,
+      "root_metadata": {
+        "path": "/private/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-autologon-v11-k74xwlgm",
+        "kind": "directory",
+        "bytes": 256,
+        "allocated_bytes": 0,
+        "nlink": 8,
+        "device": 16777230,
+        "inode": 5233745,
+        "mode_octal": "0o700"
+      },
+      "regular_file_count": 8,
+      "logical_bytes": 1989729,
+      "allocated_bytes_stat_sum": 2007040,
+      "all_regular_files_single_link": true,
+      "symlink_paths": [],
+      "potential_vm_disk_or_bundle_paths": [],
+      "prior_count_and_logical_bytes_match": true,
+      "assessment": "Project temporary-artifact candidate: exact prior authorized path; file count and logical bytes match prior inventory; metadata names consistent with driver/media preparation; no links or VM disk/bundle candidates observed.",
+      "content_hash_revalidated": false,
+      "mounted_or_open_handle_state_checked": false,
+      "removal_performed": false
+    }
+  ],
+  "summary": {
+    "exact_temporary_candidates": [
+      "/tmp/moli-utm-guest-tools-3d-latest.iso",
+      "/tmp/moli-netkvm-w11-arm64-0.1.274",
+      "/tmp/moli-netkvm-w11-arm64-0.1.274-with-license.iso",
+      "/tmp/moli-base-drivers-w11-arm64-0.1.274",
+      "/tmp/moli-base-drivers-w11-arm64-0.1.274.iso",
+      "/private/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-autologon-v11-k74xwlgm"
+    ],
+    "temporary_candidate_count": 6,
+    "temporary_regular_file_count": 28,
+    "temporary_logical_bytes": 153088459,
+    "temporary_allocated_bytes_stat_sum": 160301056,
+    "all_prior_file_counts_and_logical_byte_totals_match": true,
+    "all_temporary_regular_files_single_link": true,
+    "temporary_symlinks_found": [],
+    "potential_vm_disks_or_bundles_in_temporary_artifacts": [],
+    "temporary_shared_inode_groups": [],
+    "whole_container_candidate": false,
+    "exact_outer_cache_preferences_saved_state_paths_absent": 3,
+    "removals_performed": 0,
+    "ui_actions_performed": 0
+  },
+  "method": "lstat and bounded directory metadata only at the six exact prior paths; no contents read, no general tmp glob, no links followed or deletion. Container examination stopped after one denied Data listing; metadata plist was not opened.",
+  "limits": [
+    "Metadata name/size agreement and prior provenance establish scoped candidates; contents, signatures and hashes were not reread or revalidated in this pass.",
+    "No candidate was moved, deleted, opened as executable or mounted. Temporary-path Finder recovery and Put Back remain unverified.",
+    "Mounted/open-handle state of these six artifacts was not checked by this branch; recheck necessary active-use state before any separate authorized move.",
+    "Allocated block sums are observations, not a guarantee of reclaimable disk space.",
+    "No internal container cache/preferences/saved-state locations were accessed after Data listing was denied; do not infer that the container is empty from missing outer paths.",
+    "Do not delete the metadata plist separately or remove the whole container while its contents and other-VM ownership remain unverified.",
+    "Preserve project source code, moli original installers, analysis and reports; this inventory grants no expanded cleanup targets."
+  ]
+}
+

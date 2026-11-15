@@ -1,0 +1,70 @@
+{
+  "schema": "moli.launcher-v25.checks.v1",
+  "syntax": [
+    {
+      "path": "shared/launcher.mjs",
+      "node_check": true
+    },
+    {
+      "path": "shared/index.mjs",
+      "node_check": true
+    },
+    {
+      "path": "shared/tests/launcher-regions.test.mjs",
+      "node_check": true
+    },
+    {
+      "path": "shared/tests/launcher-galaxies.test.mjs",
+      "node_check": true
+    },
+    {
+      "path": "web/launcher-target.mjs",
+      "node_check": true
+    },
+    {
+      "path": "web/launcher-launch-data.mjs",
+      "node_check": true
+    },
+    {
+      "path": "web/login-catalog.mjs",
+      "node_check": true
+    },
+    {
+      "path": "web/login-app.mjs",
+      "node_check": true
+    },
+    {
+      "path": "web/tests/launcher-target-bootstrap.test.mjs",
+      "node_check": true
+    },
+    {
+      "path": "web/tests/launcher-galaxies.test.mjs",
+      "node_check": true
+    }
+  ],
+  "python_ast": true,
+  "source_negatives": [
+    {
+      "case": "changed-sample",
+      "rejected": true,
+      "reason": "sample SHA256 mismatch"
+    },
+    {
+      "case": "wrong-identity",
+      "rejected": true,
+      "reason": "sample SHA256 mismatch"
+    },
+    {
+      "case": "wrong-literal",
+      "rejected": true,
+      "reason": "literal mismatch"
+    }
+  ],
+  "llvm": "Apple LLVM version 21.0.0",
+  "static_tool_recovery": "gobjdump/llvm-objdump not onPATH; existingXcode xcrun llvm-objdump used, noinstall/configuration/privilegechanges.",
+  "fixed_config_no_galaxy": true,
+  "fixed_config_record": "fixed-config-regression.json",
+  "new_dependencies": 0,
+  "native_repeat": "static-spec.json explicitly records onepreexisting410c80helper queried after a failedretainedlookup; not credited asnewunique or independentcrosscheck.",
+  "authorization": "Onlyfixedartifactstatic andoriginaloffline/localservices. NooriginalEXE/VM/realaccount/official/gameexecution."
+}

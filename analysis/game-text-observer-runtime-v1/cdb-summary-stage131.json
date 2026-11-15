@@ -1,0 +1,171 @@
+{
+  "schema": "moli.cdb-summary-stage131.v1",
+  "classification": "fact: selected, allowlisted guest CDB output; raw output remains guest-private",
+  "primary": {
+    "dump_sha256": "707e6fbfa52cbf33d7d1a8f9b4865c996530099294c7ce976191a0a55031bda2",
+    "cdb_start_time": "2026-11-02T19:12:16.6171303+08:00",
+    "exit_code": 0,
+    "raw_line_count": 140,
+    "exception_code": "0xc00001a5",
+    "exception_address": "0x0b86db30",
+    "module_records_matched": 39,
+    "command": ".exr -1; .ecxr; k 0n20; lm; q",
+    "context_and_stack_status": "CDB .ecxr invoked; k emitted nine rows marked x86. Only numeric stack columns projected; registers remain private. CDB explicitly warned that following frames may be wrong.",
+    "fault_owner": "No containing module among the 39 matched CDB lm ranges",
+    "game_module_range": {
+      "start": "0x00400000",
+      "end_exclusive": "0x0143b000"
+    },
+    "other_module_range_envelope": {
+      "first_start": "0x70bb0000",
+      "last_end_exclusive": "0x76f82000",
+      "note": "Envelope only, not one continuous mapped region"
+    },
+    "game_fault_rva": null,
+    "inference": "The exception VA cannot be mapped as an RVA in the displayed main image. Root cause and ownership of the unlisted address remain unknown.",
+    "stack_rows_x86": 9,
+    "stack_numeric_columns": [
+      {
+        "child_ebp": "0x001ae2d0",
+        "ret_addr": "0x354660bf"
+      },
+      {
+        "child_ebp": "0x001af1cc",
+        "ret_addr": "0x011bcd11"
+      },
+      {
+        "child_ebp": "0x001af204",
+        "ret_addr": "0x0b7c7dce"
+      },
+      {
+        "child_ebp": "0x001af420",
+        "ret_addr": "0x01195a45"
+      },
+      {
+        "child_ebp": "0x001af55c",
+        "ret_addr": "0x01197009"
+      },
+      {
+        "child_ebp": "0x001afd70",
+        "ret_addr": "0x011970f8"
+      },
+      {
+        "child_ebp": "0x001afd78",
+        "ret_addr": "0x0117907c"
+      },
+      {
+        "child_ebp": "0x001afe48",
+        "ret_addr": "0x011e6ccb"
+      },
+      {
+        "child_ebp": "0x001afed8",
+        "ret_addr": "0x762595f8"
+      }
+    ],
+    "projection_note": "Initial filters assumed a two/three-digit frame number and matched no stack rows. Derived prefix character codes 120,56,54 identified x86; the corrected whitespace-aware x86 filter matched nine. Earlier zero counts are parser mismatch, not missing-stack evidence.",
+    "stack_limit": "CDB warns following frames may be wrong. These projected addresses are candidate stack data, not verified call edges, functions, consumers, or root cause.",
+    "following_frames_may_be_wrong_match_count": 1,
+    "guest_private_raw_output": {
+      "basename": "cdb-primary-stage131.txt",
+      "bytes": 15332,
+      "sha256": "0827e5db2b7527f53f0207c20de7733b2cbca9811563768c552b4e31260e91da",
+      "metadata_readback_clock_display": "2026-11-02 19:59 +08",
+      "exported": false
+    }
+  },
+  "arguments": [
+    "-sins",
+    "-noshell",
+    "-nosqm",
+    "-y",
+    "<verified-empty-local-symbols>",
+    "-i",
+    "<same-local-directory>",
+    "-z",
+    "<qualified-ended-process-dump>",
+    "-c",
+    "<bounded-commands>"
+  ],
+  "live_debugger_attached": false,
+  "game_restart": false,
+  "third_party_extension_commands": false,
+  "symbol_server_configured": false,
+  "privacy": {
+    "dump_exported": false,
+    "raw_debug_output_exported": false,
+    "registers_or_memory_added_to_public_evidence": false
+  },
+  "secondary": {
+    "dump_sha256": "1568b7ca899f80a656aa1541bae95a35e6c45fc876c08f19e86f352a6339820e",
+    "cdb_start_time": "2026-11-02T19:43:02.1187162+08:00",
+    "exit_code": 0,
+    "raw_line_count": 141,
+    "exception_code": "0xc0000005",
+    "exception_address": "0x0b7c8152",
+    "command": ".exr -1; .ecxr; k 0n20; lm; q",
+    "module_records_matched": 39,
+    "case_sensitive_module_record_difference_count": 0,
+    "game_module_range": {
+      "start": "0x00400000",
+      "end_exclusive": "0x0143b000"
+    },
+    "fault_owner": "No containing module among the 39 matched CDB lm ranges; module record set equals primary in case-sensitive Compare-Object",
+    "game_fault_rva": null,
+    "context_and_stack_status": "CDB .ecxr invoked; k emitted eight rows marked x86. Only numeric stack columns projected; registers remain private. CDB explicitly warned that following frames may be wrong.",
+    "stack_rows_x86": 8,
+    "stack_numeric_columns": [
+      {
+        "child_ebp": "0x001af1cc",
+        "ret_addr": "0x011bcd11"
+      },
+      {
+        "child_ebp": "0x001af204",
+        "ret_addr": "0x0b7c7dce"
+      },
+      {
+        "child_ebp": "0x001af420",
+        "ret_addr": "0x01195a45"
+      },
+      {
+        "child_ebp": "0x001af55c",
+        "ret_addr": "0x01197009"
+      },
+      {
+        "child_ebp": "0x001afd70",
+        "ret_addr": "0x011970f8"
+      },
+      {
+        "child_ebp": "0x001afd78",
+        "ret_addr": "0x0117907c"
+      },
+      {
+        "child_ebp": "0x001afe48",
+        "ret_addr": "0x011e6ccb"
+      },
+      {
+        "child_ebp": "0x001afed8",
+        "ret_addr": "0x762595f8"
+      }
+    ],
+    "stack_limit": "CDB warns following frames may be wrong. These projected addresses are candidate stack data, not verified call edges, functions, consumers, or root cause.",
+    "following_frames_may_be_wrong_match_count": 1,
+    "guest_private_raw_output": {
+      "basename": "cdb-secondary-stage131.txt",
+      "bytes": 15654,
+      "sha256": "8b5d644b1b32e4a257bfaf33505f1bd35ade1c13c493bcf6519f02918189e9c8",
+      "metadata_readback_clock_display": "2026-11-02 19:59 +08",
+      "exported": false
+    }
+  },
+  "tool_execution_observed": true,
+  "root_cause_established": false,
+  "game_consumer_recovered": false,
+  "file_boundary_receipt": "stack-file-boundary-stage131.json",
+  "conclusion": "The bounded WER/CDB method recovered two exception records and candidate x86 stack rows. Both exception VAs fall outside all 39 listed module ranges. The six return values within cg_se_3000 map geometrically to static .text1, not original .text; runtime equality and semantic ownership remain unknown.",
+  "tool": {
+    "name": "Microsoft x86 CDB",
+    "sha256": "6ca9dd8ee2d764087c4a561ecfee05cdf17751dfd9c2f21700211a897cd68129",
+    "authenticode_status": "Valid",
+    "file_version": "10.0.26100.9457 (WinBuild.160101.0800)"
+  }
+}

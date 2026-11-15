@@ -1,0 +1,2181 @@
+{
+  "schema": "moli.launcher-startup-scope-review.v1",
+  "classification": "事实与精确待验证条件分列的原需求范围审查",
+  "capability": "L01",
+  "requirement": "全部能力先分析、再统一实现；减少重复源查询并保持完整原功能范围。",
+  "parent": {
+    "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+    "bytes": 77125,
+    "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+  },
+  "supplements": [
+    {
+      "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+      "bytes": 47926,
+      "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+    },
+    {
+      "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+      "bytes": 40405,
+      "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+    },
+    {
+      "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+      "bytes": 74738,
+      "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+    }
+  ],
+  "source_review": {
+    "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+    "bytes": 25721,
+    "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+  },
+  "scope_preserved": {
+    "capabilities": 40,
+    "registry_entries": 81,
+    "historical_requirements": 37,
+    "consumer_groups": 10,
+    "source_profiles": 6,
+    "original_scope": "配置读取、区域目录初始化、来源选择、首次配置与失效恢复",
+    "required_groups": [
+      "配置读取",
+      "区域目录初始化",
+      "来源选择",
+      "首次配置",
+      "失效恢复"
+    ],
+    "L01_profiles": [
+      "launcher-legacy-601b",
+      "launcher-updated-c82f",
+      "launcher-historical-c7ba"
+    ],
+    "original_owners": [
+      "shared/launcher-catalog.mjs",
+      "shared/launcher-first-config.mjs"
+    ],
+    "original_dependencies": [
+      "X01"
+    ],
+    "original_batch": "D1",
+    "registered_protocol_entries": [
+      "LCH-CATALOG-001",
+      "UPD-CATALOG-001",
+      "CFG-GAME-001"
+    ]
+  },
+  "source_profiles": {
+    "C7": {
+      "path": "build/analysis/launcher-update-recovery-v1/old-source/POLCN_Launcher.analysis-only.exe",
+      "bytes": 4105728,
+      "sha256": "c7ba69f77809fe589fd5dcccc78fcd4f33d4b6f76325d00a27f37032bbb32384"
+    },
+    "C82": {
+      "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+      "bytes": 4111872,
+      "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+    },
+    "legacy": {
+      "path": "build/analysis/launcher-session-functional-specification-v1/legacy-material/POLCN_Launcher.analysis-only.exe",
+      "bytes": 1735168,
+      "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31"
+    }
+  },
+  "facts": [
+    {
+      "id": "SC-F01",
+      "classification": "事实",
+      "claim": "原需求是五组×三profile15格，source路径/owner/依赖/批次/登记不改。本审查把SS、CP、SR、MS与原LO/LF操作准入对账，既不把十格现代普通链当全L01，也不以未答的真实host接受制造新源字段。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/scope_preserved",
+          "canonical_sha256": "191658244c093bae256ab0709a69bc185a4c4cc08af5464000566fa68779aa47"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-functional-specification.json",
+            "bytes": 111980,
+            "sha256": "68ebb9f01779d04be26ed66a5a8ae16f2246cac514a8161c5c6af53bf0a13bc6"
+          },
+          "pointer": "/original_capability_reviews/0",
+          "canonical_sha256": "2a270f36534b9c671d1e27f88c4f0583fe8b5fb6fddb6ef1d0333bc0729bd26e"
+        }
+      ]
+    },
+    {
+      "id": "SC-F02",
+      "classification": "事实",
+      "claim": "新增五个同C7完整体只有1641B。实际4090D0@40997E与40A1D0@40ACB6调用42CE20时使用Main接收者；42CE20@42CFDF重新载入Frame别名，+120后才调用Child40E1C0。42CE20是这一路界面准备/刷新与game-list重建入口，本体不是所有Main step的总分派器。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/bodies/0",
+          "canonical_sha256": "6ac2dc462cfa780b432ad598fd43d03a850d3c2c63ce938d7ac19c645bab4bf8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/bodies/5",
+          "canonical_sha256": "90a94ef1a1d6669dff61395e29374438fbab9921fd08422f963602e4c66eeaa8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/bodies/6",
+          "canonical_sha256": "e4f8f100d538ee2218e81a348e95551147292168727b51e9ef28f40ada17f014"
+        }
+      ]
+    },
+    {
+      "id": "SC-F03",
+      "classification": "事实",
+      "claim": "40D8D0在Child只写+75C8(Game)=-1、+75E0(GameList)=-1、+75DC(NoMinHelper)=0；分别向namespace+Settings的Game/GameList请求写-1。两次调用43B000后的BOOL没有caller分支。未清其他Region/Galaxy字段，也未在这段写NoMinHelper到INI。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "1d329fdb4b42279aa9e85ff624944b21153ccf475fccdd33fd9bc88b0a27d0ad"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/bodies/7",
+          "canonical_sha256": "75df20401bc1a8c3180fe7ce549670af2802ae8ed0c7b60e689dc3240eed7f76"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/reset_store_anchors",
+          "canonical_sha256": "f529f8795c58672d899b2d20cab5dd200471c3796b236b0c1fcabe0ad807276f"
+        }
+      ]
+    },
+    {
+      "id": "SC-F04",
+      "classification": "事实",
+      "claim": "C7 40E1C0先重置Child+380控件，再按同一有界game集合两遍枚举：row+9C非零先发，等于0后发；row数读+2AE8、base+2B90、strideA4。row+9C是本版发现有效安装路径后设置的状态，与row+A1资格位分别保留，不按资格过滤掉所有未安装行。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/bodies/2",
+          "canonical_sha256": "3813f8f0beb9eda098269ff06310cd0321d69d4525203e473eb66a8e0db9eaac"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/9",
+          "canonical_sha256": "a8f0912252e14425dfe89e2ba5697f57a3b20868526084a1f392a9a04c912cd8"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/10",
+          "canonical_sha256": "64174f0a9309a9e5e86fc34764b112f52b92dea3d107aeda57572a2b4fb87cc3"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+            "bytes": 47926,
+            "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+          },
+          "pointer": "/facts/14",
+          "canonical_sha256": "094bd8dd5479a35ecaa6ee73c30d37f0b5d92cee6e0e1c89248be70f0ac80d93"
+        }
+      ]
+    },
+    {
+      "id": "SC-F05",
+      "classification": "事实",
+      "claim": "两遍调用43C1E0前分别push当前raw loop ordinal，再传复制的显示字符串。43C1E0返回SendMessageA(180h/LB_ADDSTRING)的实际结果；非负且<64才在控件+2E0[index]存raw ordinal，并初始化关联状态/高度，非负且<15另清一槽。返回的control index、raw ordinal与row+98数字Code不是同一量。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/bodies/2",
+          "canonical_sha256": "3813f8f0beb9eda098269ff06310cd0321d69d4525203e473eb66a8e0db9eaac"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/bodies/3",
+          "canonical_sha256": "ccfee6689bbf9c6fe051e860d72e5ac210c37147fe6da544b95e8993d286f323"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/primary_listbox_reference",
+          "canonical_sha256": "88349c569e4ea2b5e5fe19a13117887a14be4782f1d5eacaccf696227dd0640d"
+        }
+      ]
+    },
+    {
+      "id": "SC-F06",
+      "classification": "事实",
+      "claim": "43D4C0先清64组关联槽/标志（其中raw-ordinal槽为-1），再清15个附属string记录，发184h/LB_RESETCONTENT、188h/LB_GETCURSEL并把其返回存控件+94，最后请求invalidate。源调用/普通清理可证；不把这些请求称为已观察到的控件回调或渲染效果。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/bodies/4",
+          "canonical_sha256": "df9c809217be4c681225b7709c28edbdc8e23e3d56033c20cdae5fcb557bb419"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/primary_listbox_reference",
+          "canonical_sha256": "88349c569e4ea2b5e5fe19a13117887a14be4782f1d5eacaccf696227dd0640d"
+        }
+      ]
+    },
+    {
+      "id": "SC-F07",
+      "classification": "事实",
+      "claim": "C7有效保存GameList的条件是0<=ordinal<源game count，优先于GAME:数字Code候选；无有效保存值才用两遍中最后一个Code匹配所留的LB_ADDSTRING结果，且该结果须非负。候选每次匹配都覆盖，未要求Code唯一或追加成功；整个builder未因某次负返回退出，也未用实际控件item count替代源count。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/bodies/2",
+          "canonical_sha256": "3813f8f0beb9eda098269ff06310cd0321d69d4525203e473eb66a8e0db9eaac"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/bodies/3",
+          "canonical_sha256": "ccfee6689bbf9c6fe051e860d72e5ac210c37147fe6da544b95e8993d286f323"
+        }
+      ]
+    },
+    {
+      "id": "SC-F08",
+      "classification": "事实",
+      "claim": "官方LB_ADDSTRING定义允许LBS_SORT改变插入位置，且owner-draw/LBS_HASSTRINGS影响参数解释；因此两遍源调用顺序本身不证明最终显示顺序。180/184/186/188/1A1常量由固定副本Microsoft WinUser.h核对；当前C7实际创建/样式及回调准入仍需同profile源绑定。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/primary_listbox_reference",
+          "canonical_sha256": "88349c569e4ea2b5e5fe19a13117887a14be4782f1d5eacaccf696227dd0640d"
+        }
+      ]
+    },
+    {
+      "id": "SC-F09",
+      "classification": "事实",
+      "claim": "复用的C82 40E300完整521B独立绑定两遍row+9C、base2BD8/count2B30，保存GameList+7628优先于startupCode+7644候选及控件+3D0的186h请求。它和C7根相似但属于不同hash，不能由体积相同或地址差把其余C7 UI/安装入口自动补齐。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/bodies/9",
+          "canonical_sha256": "2393b06283d1d1b7d6d3a9ca05b5c6507cd461223eebb3f38ea7e1f8513a7a7d"
+        }
+      ]
+    },
+    {
+      "id": "SC-F10",
+      "classification": "事实",
+      "claim": "旧601b 405DA0完整481B在region集合按当前名称逐项搜索，随后保存ordinal/复制所选上下文；本体搜索结束后未再检查是否找到匹配再按该ordinal索引。普通caller应有适用的选择/名称前提，不能把这个体单独解释为接受任意新名称。保留callers为4015A0及410DF0，后者的完整记录已在旧bundle，优先复用。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/bodies/8",
+          "canonical_sha256": "86436ac9f37522980d40683a1d1fde5a03743bbfae66a413eb2181978e530160"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/positive_caller_candidates/0",
+          "canonical_sha256": "6eba42279045b0f73094bd396b7b1b8aba817878ee51f3e4ab538e6a8cddf5fb"
+        }
+      ]
+    },
+    {
+      "id": "SC-F11",
+      "classification": "事实",
+      "claim": "原LO-O04/05包括实际game/region/Galaxy来源选择、手动路径接受/失败/取消，不只是启动对象构造。现C82有原普通安装合同；新C7 40E1C0的caller元数据给出425FC0等真实caller，但这尚未证明425FC0的业务身份或普通按钮/命令准入，不能按C82 426150的名字或同长度代入。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/operation_rows/3",
+          "canonical_sha256": "32ee6703a96a95cd84b51bfcc776ce8ffd8324aef333a251bcb2858e5f6f9bc2"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/operation_rows/4",
+          "canonical_sha256": "6d81f7ba6f2d9c0a9a6725d4427fb033f8141a9cd270f0df8bb9edc19345861f"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/positive_caller_candidates/1",
+          "canonical_sha256": "8ec8a3a2da05043a4718ce663fe3ac8c9180bd4abc9fdb0264d3d8fd1bae7a7f"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-catalog-install-contract.json",
+            "bytes": 17714,
+            "sha256": "6aff5238454eb3eccc611698efd2ee478b85c7e6005645fc52fb633fd0dc342c"
+          },
+          "pointer": "/facts/11",
+          "canonical_sha256": "56be3515855288b8931f67dfd521afa3bbf5bfc1566bc3e8a17d9801ccbf18cc"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-catalog-install-contract.json",
+            "bytes": 17714,
+            "sha256": "6aff5238454eb3eccc611698efd2ee478b85c7e6005645fc52fb633fd0dc342c"
+          },
+          "pointer": "/facts/12",
+          "canonical_sha256": "66129693c4406508ba84f5fb540ffce653d4cf43c1b9baa34e7bcde065f9c5b6"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-catalog-install-contract.json",
+            "bytes": 17714,
+            "sha256": "6aff5238454eb3eccc611698efd2ee478b85c7e6005645fc52fb633fd0dc342c"
+          },
+          "pointer": "/facts/13",
+          "canonical_sha256": "9f8b7c723a1af3ae0237fbd459c36cd403df1eea60dd3aa1ce988ecba0bed0b5"
+        }
+      ]
+    },
+    {
+      "id": "SC-F12",
+      "classification": "事实",
+      "claim": "CP同C7 SS-U1仍闭；SR旧601b本帧EH/普通结果及MS两现代普通启动/typed-file范围保持。三版first Config具名标准分支已有SS/LF及CP路径来源，可单列源规则已绑定；这不把其真实Config效果、异常OS、取消/后台或整L01验收提升。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+            "bytes": 47926,
+            "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+          },
+          "pointer": "/selected_supersession",
+          "canonical_sha256": "cef0795577266918a851345488ab6ac5b935980c810593e82ec444c7414ed114"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/selected_supersession",
+          "canonical_sha256": "d2b83b3c0355da949f25589c2c2fc099f01fc01cc3fc997c8e6b495b01ad295f"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/selected_supersession",
+          "canonical_sha256": "ae334d048328dbabc1c0237348348d9a0085602bf2bcb6d5ad960608872ff6fa"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/operations/3",
+          "canonical_sha256": "5d4bb4d8417f3255f0a2ef6b5b7fd45caecf6b5b777e330f16fea06282555749"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/operations/8",
+          "canonical_sha256": "40e27b0266098a7f0ac3148c011162ef0dc97a40ffb13fa6ca97c555643f9c80"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/operations/13",
+          "canonical_sha256": "d0f5aaa173b6a3350b441055b8554029077867b3d5a8b0f11f46f9eaaad43483"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-functional-specification.json",
+            "bytes": 111980,
+            "sha256": "68ebb9f01779d04be26ed66a5a8ae16f2246cac514a8161c5c6af53bf0a13bc6"
+          },
+          "pointer": "/current_Config_operations",
+          "canonical_sha256": "cf693a3d92042a1d04060bf22ce7b6c64b2b92683b0675d2f64fbe09cb929f74"
+        }
+      ]
+    },
+    {
+      "id": "SC-F13",
+      "classification": "事实",
+      "claim": "LF-U4保留296/30721/30734、四非App菜单及未准入import/export为条件入口；本轮未给这些入口建立普通业务准入，也未将其删除/归为死代码。原资源清单不能单独扩为需求，空索引也不能用于缩小需求。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-functional-specification.json",
+            "bytes": 111980,
+            "sha256": "68ebb9f01779d04be26ed66a5a8ae16f2246cac514a8161c5c6af53bf0a13bc6"
+          },
+          "pointer": "/remaining/3",
+          "canonical_sha256": "eed8cd28adf81ef0b224ee5348f8398e683d65663da6982f50212d7bdab913b8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/required-entry-admission-v1/entry-admission.candidate.json",
+            "bytes": 1301154,
+            "sha256": "54adf53127e8339aec70b2bca1b6bbc3d28962afb97e76017b5b6337a70cd30b"
+          },
+          "pointer": "/launcher/conditions",
+          "canonical_sha256": "b564f41b51a334fb57e1eabd4f28270e48e903c11e26ed3304d789e38aeeaa0c"
+        },
+        {
+          "file": {
+            "path": "build/analysis/required-entry-admission-v1/entry-admission.candidate.json",
+            "bytes": 1301154,
+            "sha256": "54adf53127e8339aec70b2bca1b6bbc3d28962afb97e76017b5b6337a70cd30b"
+          },
+          "pointer": "/remaining/1",
+          "canonical_sha256": "97232a48d7cb6a13ceb88e8c92491d921cc017f399c39d2375dbb0dfce0b233b"
+        }
+      ]
+    },
+    {
+      "id": "SC-F14",
+      "classification": "事实",
+      "claim": "本轮source范围审查与五个新完整体补证已完成，整个SS-U2、L01 source readiness及统一A1..A4仍未提升。L03 LS-U3、L07当前同版consumer、SS-U3原Host/Config、无测试账号和SDK原设置请求待答复均保持；没有运行原程序/VM/SDK/Config或账号官服接受。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/remaining",
+          "canonical_sha256": "5d7fa1a37c3f6003d3706298abcad21a368ce3bc4d68458a9324a987342c99fa"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/remaining/2",
+          "canonical_sha256": "f110beac668acf1b3a64ecdcb849107927bee72dcafcd383314c1a5b6647a757"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-scope-v1/source-review.json",
+            "bytes": 25721,
+            "sha256": "18ef88b3c8cde8f29a7e82e167bbf6ee44c2c28b30305cea04538bae06b2e06c"
+          },
+          "pointer": "/summary",
+          "canonical_sha256": "ab6544b4bf1db1d61e07c4b4f0c361996c86abe7f7a8f4f3340d0f63bc3c101e"
+        }
+      ]
+    }
+  ],
+  "profile_group_cells": [
+    {
+      "id": "SC-C01",
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "配置读取",
+      "original_operation": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+          "bytes": 77125,
+          "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+        },
+        "pointer": "/operations/0",
+        "canonical_sha256": "0c6c91cf046fd576d5e7785792d2e49b9df898864356fd1649fc3901ea0e59ab"
+      },
+      "original_operation_id": "SS-O01",
+      "source_supplements": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/1",
+          "canonical_sha256": "4a1bda7dea0b9803ca38c6180cc98911a2eb866fc774a0ba6467ebe27c7ea49f"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "53d47d85e7cc97542c24295d49473cdf7415eedfef5cd2bfe5a81d57d04f2e15"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/facts/3",
+          "canonical_sha256": "2d42f199a4ae32357db6333310a04c376023924058c082b56265da8245f01953"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/facts/4",
+          "canonical_sha256": "895bc7691307cc4b975e1a4c613573bc06ae1aa5db87b12972a9c40cb2724299"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/facts/5",
+          "canonical_sha256": "8ea30cec935d6b827cc00be4771dec14ee76c82323aa77470fed389756b20d41"
+        }
+      ],
+      "new_fact_ids": [],
+      "review_result": "normal-source-rules-and-selected-failure-branches-composed-original-entry-variants-not-whole-closure",
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_promoted_by_this_review": false,
+      "remaining_dispositions": [
+        "SC-U1",
+        "SC-U3",
+        "SC-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "original_or_target_runtime_acceptance": false
+    },
+    {
+      "id": "SC-C02",
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "区域目录初始化",
+      "original_operation": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+          "bytes": 77125,
+          "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+        },
+        "pointer": "/operations/1",
+        "canonical_sha256": "cc137395ce089aa0bcddd00f84eaf4fd15e77cd89b8d40e0b45c95c9139b3572"
+      },
+      "original_operation_id": "SS-O02",
+      "source_supplements": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/1",
+          "canonical_sha256": "4a1bda7dea0b9803ca38c6180cc98911a2eb866fc774a0ba6467ebe27c7ea49f"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "53d47d85e7cc97542c24295d49473cdf7415eedfef5cd2bfe5a81d57d04f2e15"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/facts/1",
+          "canonical_sha256": "525cae638bf9a97742efb712926a3e1b40e48f5b6372dfee6b54f6b1d2bb6a9d"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "9d7ff72cf65a4a7cfdd207df2fded7f514591026e39e70e109f83daf5e348ee2"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/facts/9",
+          "canonical_sha256": "1c4063c2e46d0143f483cf21e17dcfd727df9856e9c01fed6ed5329d37b015af"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/facts/11",
+          "canonical_sha256": "0a35c460e2630b88e4a1811701bf18f3e0ddd03b7e609f6ac157b25586646cf4"
+        }
+      ],
+      "new_fact_ids": [],
+      "review_result": "normal-source-rules-and-selected-failure-branches-composed-original-entry-variants-not-whole-closure",
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_promoted_by_this_review": false,
+      "remaining_dispositions": [
+        "SC-U1",
+        "SC-U3",
+        "SC-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "original_or_target_runtime_acceptance": false
+    },
+    {
+      "id": "SC-C03",
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "来源选择",
+      "original_operation": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+          "bytes": 77125,
+          "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+        },
+        "pointer": "/operations/2",
+        "canonical_sha256": "8845518789b1b5569f52a13d71f9b5f9a20851b36ae2bbdf37fe89897fd6ca3b"
+      },
+      "original_operation_id": "SS-O03",
+      "source_supplements": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "53d47d85e7cc97542c24295d49473cdf7415eedfef5cd2bfe5a81d57d04f2e15"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/facts/6",
+          "canonical_sha256": "c1caed2e8ff4890d764aedf5fcbb9286507f3c9ccc90072478a67c1529a630fc"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/facts/7",
+          "canonical_sha256": "fb5b153f54cc235e48546f7ed2d1bf16bf7c9044beb1580e0209bd4f2cf71f64"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/facts/8",
+          "canonical_sha256": "2ff3afa5efd0c8d81dbe6188d21c4ec26532bd2d0b8b0aaae6f18c10c7a89a1a"
+        }
+      ],
+      "new_fact_ids": [
+        "SC-F10",
+        "SC-F11"
+      ],
+      "review_result": "normal-source-rules-and-selected-failure-branches-composed-original-entry-variants-not-whole-closure",
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_promoted_by_this_review": false,
+      "remaining_dispositions": [
+        "SC-U1",
+        "SC-U3",
+        "SC-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "original_or_target_runtime_acceptance": false
+    },
+    {
+      "id": "SC-C04",
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "首次配置",
+      "original_operation": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+          "bytes": 77125,
+          "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+        },
+        "pointer": "/operations/3",
+        "canonical_sha256": "5d4bb4d8417f3255f0a2ef6b5b7fd45caecf6b5b777e330f16fea06282555749"
+      },
+      "original_operation_id": "SS-O04",
+      "source_supplements": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/3",
+          "canonical_sha256": "9fd2a267984e098751d85b69ac713662d023152439a19e774c80eb05a68a6f76"
+        }
+      ],
+      "new_fact_ids": [],
+      "review_result": "named-first-Config-source-rules-bound-host-effects-separate",
+      "first_Config_named_source_rules_bound": true,
+      "whole_original_profile_group_promoted_by_this_review": false,
+      "remaining_dispositions": [
+        "SC-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "original_or_target_runtime_acceptance": false
+    },
+    {
+      "id": "SC-C05",
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "失效恢复",
+      "original_operation": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+          "bytes": 77125,
+          "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+        },
+        "pointer": "/operations/4",
+        "canonical_sha256": "be126bf755cd38dfe21d4915b32da6c9312e79a2d78d18c1959869d5c65454a1"
+      },
+      "original_operation_id": "SS-O05",
+      "source_supplements": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/1",
+          "canonical_sha256": "4a1bda7dea0b9803ca38c6180cc98911a2eb866fc774a0ba6467ebe27c7ea49f"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/facts/9",
+          "canonical_sha256": "1c4063c2e46d0143f483cf21e17dcfd727df9856e9c01fed6ed5329d37b015af"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/facts/10",
+          "canonical_sha256": "ff99803410662d399cfbdd30e0c015dd0171bff2faced94f3595a5afc86c8224"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/facts/11",
+          "canonical_sha256": "0a35c460e2630b88e4a1811701bf18f3e0ddd03b7e609f6ac157b25586646cf4"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/facts/13",
+          "canonical_sha256": "513f7d2a43762310ef5e5a13a3a0944a4a0e6edf62d39886ac5c6f24428d56d1"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/facts/15",
+          "canonical_sha256": "79d2116578d830ba8d0fffec01e441e0077cb2ecc5ceddb88c7f9e83d1b37122"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-recovery-contract.json",
+            "bytes": 40405,
+            "sha256": "95cca8bb1989d0b6612c10151662868ab6dc6de3cc8c7af91dc1d5bc26861b8f"
+          },
+          "pointer": "/facts/16",
+          "canonical_sha256": "6d123777f6c3a79d79e805930edee58448d851cf8028b2eabb9b6249350fd3ad"
+        }
+      ],
+      "new_fact_ids": [],
+      "review_result": "normal-source-rules-and-selected-failure-branches-composed-original-entry-variants-not-whole-closure",
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_promoted_by_this_review": false,
+      "remaining_dispositions": [
+        "SC-U1",
+        "SC-U3",
+        "SC-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "original_or_target_runtime_acceptance": false
+    },
+    {
+      "id": "SC-C06",
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "配置读取",
+      "original_operation": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+          "bytes": 77125,
+          "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+        },
+        "pointer": "/operations/5",
+        "canonical_sha256": "521401edc8964bc0790241863d55cc812621bbe2eaaa1794103d33ffdf4c7c90"
+      },
+      "original_operation_id": "SS-O06",
+      "source_supplements": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/4",
+          "canonical_sha256": "739aad941df3a88b354d4defd8d6493f7dcfa33f20d2b05cb084b5a32a0fade1"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/5",
+          "canonical_sha256": "2f6f2b43037da28792002a634e695c3020d372d84c35b91be87636b40ee71add"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/3",
+          "canonical_sha256": "7c61d1a851895aa7a250b992155e8d141272b757ecfbc7362f852599203ebfcf"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/5",
+          "canonical_sha256": "5bb88a2a3657ce34db0cb42b2697c0fbc032a8f480993909b62a00a1cae8676e"
+        }
+      ],
+      "new_fact_ids": [],
+      "review_result": "normal-source-rules-and-selected-failure-branches-composed-original-entry-variants-not-whole-closure",
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_promoted_by_this_review": false,
+      "remaining_dispositions": [
+        "SC-U1",
+        "SC-U3",
+        "SC-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "original_or_target_runtime_acceptance": false
+    },
+    {
+      "id": "SC-C07",
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "区域目录初始化",
+      "original_operation": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+          "bytes": 77125,
+          "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+        },
+        "pointer": "/operations/6",
+        "canonical_sha256": "2a9e63ea9d056d075fc6c99b3204387d1abe1b386212322744e01d3e56fa3890"
+      },
+      "original_operation_id": "SS-O07",
+      "source_supplements": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/4",
+          "canonical_sha256": "739aad941df3a88b354d4defd8d6493f7dcfa33f20d2b05cb084b5a32a0fade1"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/1",
+          "canonical_sha256": "f4df9ec86055734f4abc52c2b63e8fd2fd832a41848b625449cf2d61d870bca5"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "5bfee5ca3ac8783837701ea3049ff0bd98e35a7db47de3b3e95a530577f7a281"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/4",
+          "canonical_sha256": "e47bd2dc18445ff141f1084384648e4ee38644671b13f223b70fe2083ed04f3f"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/6",
+          "canonical_sha256": "2e6aedac766d1ea5a356855744443753131f16e0e2ca74522e02687548c86080"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/7",
+          "canonical_sha256": "f6112b6933a2fe6803b741ed010f01d2f9e16647faf456bf7c25eb68f8bfd16f"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/10",
+          "canonical_sha256": "e6846e8cbc99ed59acf9641383deb4786807563972c28ae52e999e524c692338"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/13",
+          "canonical_sha256": "39c561dc8e6cdea7e3089edd1e7719ad083be599d92c6e9b6500d76b983766ed"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/14",
+          "canonical_sha256": "429fc5b7819cbf5f0f835cee4244e2f89a1232b01ad7ac2376e6eb6fd62f7d1c"
+        }
+      ],
+      "new_fact_ids": [],
+      "review_result": "normal-source-rules-and-selected-failure-branches-composed-original-entry-variants-not-whole-closure",
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_promoted_by_this_review": false,
+      "remaining_dispositions": [
+        "SC-U1",
+        "SC-U3",
+        "SC-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "original_or_target_runtime_acceptance": false
+    },
+    {
+      "id": "SC-C08",
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "来源选择",
+      "original_operation": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+          "bytes": 77125,
+          "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+        },
+        "pointer": "/operations/7",
+        "canonical_sha256": "8cca5ebb7bcbb5ce99a485614490b7284e99f9fa997f09ec8948a196b85bd4b8"
+      },
+      "original_operation_id": "SS-O08",
+      "source_supplements": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/5",
+          "canonical_sha256": "2f6f2b43037da28792002a634e695c3020d372d84c35b91be87636b40ee71add"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/4",
+          "canonical_sha256": "e47bd2dc18445ff141f1084384648e4ee38644671b13f223b70fe2083ed04f3f"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/16",
+          "canonical_sha256": "1bd81f87178b27e7267e2fc6ab02c4a7ded5c4e1f832c5f48422b3dde59bdc49"
+        }
+      ],
+      "new_fact_ids": [
+        "SC-F09",
+        "SC-F11"
+      ],
+      "review_result": "normal-source-rules-and-selected-failure-branches-composed-original-entry-variants-not-whole-closure",
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_promoted_by_this_review": false,
+      "remaining_dispositions": [
+        "SC-U1",
+        "SC-U3",
+        "SC-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "original_or_target_runtime_acceptance": false
+    },
+    {
+      "id": "SC-C09",
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "首次配置",
+      "original_operation": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+          "bytes": 77125,
+          "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+        },
+        "pointer": "/operations/8",
+        "canonical_sha256": "40e27b0266098a7f0ac3148c011162ef0dc97a40ffb13fa6ca97c555643f9c80"
+      },
+      "original_operation_id": "SS-O09",
+      "source_supplements": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/7",
+          "canonical_sha256": "c56e2f2dcd3edbd58119702ab3ab079e0f12118f0a0f963bde095757d3488f64"
+        }
+      ],
+      "new_fact_ids": [],
+      "review_result": "named-first-Config-source-rules-bound-host-effects-separate",
+      "first_Config_named_source_rules_bound": true,
+      "whole_original_profile_group_promoted_by_this_review": false,
+      "remaining_dispositions": [
+        "SC-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "original_or_target_runtime_acceptance": false
+    },
+    {
+      "id": "SC-C10",
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "失效恢复",
+      "original_operation": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+          "bytes": 77125,
+          "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+        },
+        "pointer": "/operations/9",
+        "canonical_sha256": "1e24dce6bc82d972a4c7f878c938fdbb76e9a248091d1b06804030463a182bfe"
+      },
+      "original_operation_id": "SS-O10",
+      "source_supplements": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/6",
+          "canonical_sha256": "fca4ea11210e6be6d3e3cc11a139a38c5613fb0ab40b46e43dc3f09e08c8c6fd"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/11",
+          "canonical_sha256": "c8175e3f6865b9405aa469070fe234a0f32c4d157b6d0dda6448735dbe95d2ba"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/15",
+          "canonical_sha256": "f2c697d7151f8f2887ece907b4d3e986ceb2ffda4e18eb1a501aeffe2595e720"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/17",
+          "canonical_sha256": "cb98784c482cd719978c1f4798816e9c3ffe3f9ef7eb3e505e610f5f97185f86"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/18",
+          "canonical_sha256": "c9198b180704b6938f24d5cbf9af47227688b56f0889cb5c74f6556be6a0d130"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/20",
+          "canonical_sha256": "5f6d2a5cceee4cd4a4c341b251b310819e13a4176883babeff71294e82948dc0"
+        }
+      ],
+      "new_fact_ids": [],
+      "review_result": "normal-source-rules-and-selected-failure-branches-composed-original-entry-variants-not-whole-closure",
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_promoted_by_this_review": false,
+      "remaining_dispositions": [
+        "SC-U1",
+        "SC-U3",
+        "SC-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "original_or_target_runtime_acceptance": false
+    },
+    {
+      "id": "SC-C11",
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "配置读取",
+      "original_operation": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+          "bytes": 77125,
+          "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+        },
+        "pointer": "/operations/10",
+        "canonical_sha256": "f9f01126fa0334f33884a1b4c937dbf568635cebfc6e3e917b41221980ef05b4"
+      },
+      "original_operation_id": "SS-O11",
+      "source_supplements": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/9",
+          "canonical_sha256": "a8f0912252e14425dfe89e2ba5697f57a3b20868526084a1f392a9a04c912cd8"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/10",
+          "canonical_sha256": "64174f0a9309a9e5e86fc34764b112f52b92dea3d107aeda57572a2b4fb87cc3"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+            "bytes": 47926,
+            "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+          },
+          "pointer": "/facts/13",
+          "canonical_sha256": "2e9319716d6f8e2c985d5e994c2de3ce834ba9ce73b9185faf1eca65d42ac6f5"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+            "bytes": 47926,
+            "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+          },
+          "pointer": "/facts/14",
+          "canonical_sha256": "094bd8dd5479a35ecaa6ee73c30d37f0b5d92cee6e0e1c89248be70f0ac80d93"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+            "bytes": 47926,
+            "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+          },
+          "pointer": "/facts/16",
+          "canonical_sha256": "5b9d4af77b24a04859ef169429373cc4299a1a61353018ca2affb99beb13b08d"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+            "bytes": 47926,
+            "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+          },
+          "pointer": "/facts/17",
+          "canonical_sha256": "ab56190fe206e716919eaa791f6e2c3e61c5577a0a551c6caf738b779f67fe67"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/3",
+          "canonical_sha256": "7c61d1a851895aa7a250b992155e8d141272b757ecfbc7362f852599203ebfcf"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/5",
+          "canonical_sha256": "5bb88a2a3657ce34db0cb42b2697c0fbc032a8f480993909b62a00a1cae8676e"
+        }
+      ],
+      "new_fact_ids": [],
+      "review_result": "normal-source-rules-and-selected-failure-branches-composed-original-entry-variants-not-whole-closure",
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_promoted_by_this_review": false,
+      "remaining_dispositions": [
+        "SC-U1",
+        "SC-U3",
+        "SC-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "original_or_target_runtime_acceptance": false
+    },
+    {
+      "id": "SC-C12",
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "区域目录初始化",
+      "original_operation": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+          "bytes": 77125,
+          "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+        },
+        "pointer": "/operations/11",
+        "canonical_sha256": "3504b6bdf5e4dd6e84c1afbcf2038f795e82f342f9ded89fd71098a4c44f300e"
+      },
+      "original_operation_id": "SS-O12",
+      "source_supplements": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/8",
+          "canonical_sha256": "c72ad113e2c8976a18a547e41c4119e6407fd2b4853960822b132b548799fece"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/9",
+          "canonical_sha256": "a8f0912252e14425dfe89e2ba5697f57a3b20868526084a1f392a9a04c912cd8"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "5bfee5ca3ac8783837701ea3049ff0bd98e35a7db47de3b3e95a530577f7a281"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/4",
+          "canonical_sha256": "e47bd2dc18445ff141f1084384648e4ee38644671b13f223b70fe2083ed04f3f"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/6",
+          "canonical_sha256": "2e6aedac766d1ea5a356855744443753131f16e0e2ca74522e02687548c86080"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/7",
+          "canonical_sha256": "f6112b6933a2fe6803b741ed010f01d2f9e16647faf456bf7c25eb68f8bfd16f"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/10",
+          "canonical_sha256": "e6846e8cbc99ed59acf9641383deb4786807563972c28ae52e999e524c692338"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/13",
+          "canonical_sha256": "39c561dc8e6cdea7e3089edd1e7719ad083be599d92c6e9b6500d76b983766ed"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/14",
+          "canonical_sha256": "429fc5b7819cbf5f0f835cee4244e2f89a1232b01ad7ac2376e6eb6fd62f7d1c"
+        }
+      ],
+      "new_fact_ids": [
+        "SC-F02",
+        "SC-F03",
+        "SC-F04",
+        "SC-F05",
+        "SC-F06",
+        "SC-F07",
+        "SC-F08"
+      ],
+      "review_result": "normal-source-rules-and-selected-failure-branches-composed-original-entry-variants-not-whole-closure",
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_promoted_by_this_review": false,
+      "remaining_dispositions": [
+        "SC-U1",
+        "SC-U2",
+        "SC-U3",
+        "SC-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "original_or_target_runtime_acceptance": false
+    },
+    {
+      "id": "SC-C13",
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "来源选择",
+      "original_operation": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+          "bytes": 77125,
+          "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+        },
+        "pointer": "/operations/12",
+        "canonical_sha256": "37bb2477ef452accdce54e1619b59c9811a2dd247544f14c425157e9c15c7c14"
+      },
+      "original_operation_id": "SS-O13",
+      "source_supplements": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/10",
+          "canonical_sha256": "64174f0a9309a9e5e86fc34764b112f52b92dea3d107aeda57572a2b4fb87cc3"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+            "bytes": 47926,
+            "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+          },
+          "pointer": "/facts/11",
+          "canonical_sha256": "f308a438a64bc1227987658108f933a96272055590be8209c40221c7c3407804"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+            "bytes": 47926,
+            "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+          },
+          "pointer": "/facts/12",
+          "canonical_sha256": "83fbaf0f20409e76f0014ef480dbdfee2e949605caf5436337b3ef2f89a48de7"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+            "bytes": 47926,
+            "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+          },
+          "pointer": "/facts/13",
+          "canonical_sha256": "2e9319716d6f8e2c985d5e994c2de3ce834ba9ce73b9185faf1eca65d42ac6f5"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+            "bytes": 47926,
+            "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+          },
+          "pointer": "/facts/14",
+          "canonical_sha256": "094bd8dd5479a35ecaa6ee73c30d37f0b5d92cee6e0e1c89248be70f0ac80d93"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/4",
+          "canonical_sha256": "e47bd2dc18445ff141f1084384648e4ee38644671b13f223b70fe2083ed04f3f"
+        }
+      ],
+      "new_fact_ids": [
+        "SC-F02",
+        "SC-F03",
+        "SC-F04",
+        "SC-F05",
+        "SC-F06",
+        "SC-F07",
+        "SC-F08"
+      ],
+      "review_result": "normal-source-rules-and-selected-failure-branches-composed-original-entry-variants-not-whole-closure",
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_promoted_by_this_review": false,
+      "remaining_dispositions": [
+        "SC-U1",
+        "SC-U2",
+        "SC-U3",
+        "SC-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "original_or_target_runtime_acceptance": false
+    },
+    {
+      "id": "SC-C14",
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "首次配置",
+      "original_operation": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+          "bytes": 77125,
+          "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+        },
+        "pointer": "/operations/13",
+        "canonical_sha256": "d0f5aaa173b6a3350b441055b8554029077867b3d5a8b0f11f46f9eaaad43483"
+      },
+      "original_operation_id": "SS-O14",
+      "source_supplements": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/11",
+          "canonical_sha256": "34fc2aa2f9af55ae4ba27810b313f4b51be970a7788c5508952625db4655850e"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/12",
+          "canonical_sha256": "37b8c6a2897060eb37d2e64861ec58cac2f2d6129805b68969e83b4003c529d8"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/13",
+          "canonical_sha256": "249ec5e75c998c28d74d7b83a51c8c3584b414dc736e8352ddbbf6e9eb2fbb3e"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/14",
+          "canonical_sha256": "b60eae1e0172674f0ff8783e474300f316e53f4695c0ddab557f6698fd14499f"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/15",
+          "canonical_sha256": "82614775955189992850b93ff3516af47954db3c947c9c5f91971324127e1836"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/16",
+          "canonical_sha256": "aca78ddeab3d33a843af92908ecfe9572891a5db0cf8e9e15b3704ab2b59c56d"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/17",
+          "canonical_sha256": "88d596ba02a4afeee3347110b1c8602292bd5634ff8e1af93cfb6f3841395dfb"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/18",
+          "canonical_sha256": "baa57804d0c59faeff57e735b67eebff687041a7f036c033ddedb6abacb9e02d"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+            "bytes": 47926,
+            "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+          },
+          "pointer": "/facts/6",
+          "canonical_sha256": "3e15f29f3e7722d4fad405eec683ad24bc9088f6c827e94bb732898618c13cb5"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+            "bytes": 47926,
+            "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+          },
+          "pointer": "/facts/7",
+          "canonical_sha256": "d6e2adf3705bb72cb65e6cc8651dbe2ebcd99103177ca3e51455b46a39ee7898"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+            "bytes": 47926,
+            "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+          },
+          "pointer": "/facts/8",
+          "canonical_sha256": "4d70511cccb71e870d2d73e251348cf47ab7adf628e914f770e0c33eaadd11ad"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+            "bytes": 47926,
+            "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+          },
+          "pointer": "/facts/9",
+          "canonical_sha256": "87124b667c897c91fc85ccba3defbc104325c0b7d07bd4106a3a7a59168e2f31"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+            "bytes": 47926,
+            "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+          },
+          "pointer": "/facts/10",
+          "canonical_sha256": "75e2be93031bf0948f2ec72880092fd628812e2c85725f781365af5ce3b14a81"
+        }
+      ],
+      "new_fact_ids": [],
+      "review_result": "named-first-Config-source-rules-bound-host-effects-separate",
+      "first_Config_named_source_rules_bound": true,
+      "whole_original_profile_group_promoted_by_this_review": false,
+      "remaining_dispositions": [
+        "SC-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "original_or_target_runtime_acceptance": false
+    },
+    {
+      "id": "SC-C15",
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "失效恢复",
+      "original_operation": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+          "bytes": 77125,
+          "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+        },
+        "pointer": "/operations/14",
+        "canonical_sha256": "2f3d1a35e79fba1696dd3e84480423257d02c3a59fec5f3ec0812a6cf8afe296"
+      },
+      "original_operation_id": "SS-O15",
+      "source_supplements": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/8",
+          "canonical_sha256": "c72ad113e2c8976a18a547e41c4119e6407fd2b4853960822b132b548799fece"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/facts/19",
+          "canonical_sha256": "1b1810483f355487b4df18df0a9d979d59278852a271b7e96258d5c04e46a961"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/11",
+          "canonical_sha256": "c8175e3f6865b9405aa469070fe234a0f32c4d157b6d0dda6448735dbe95d2ba"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/15",
+          "canonical_sha256": "f2c697d7151f8f2887ece907b4d3e986ceb2ffda4e18eb1a501aeffe2595e720"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/17",
+          "canonical_sha256": "cb98784c482cd719978c1f4798816e9c3ffe3f9ef7eb3e505e610f5f97185f86"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/18",
+          "canonical_sha256": "c9198b180704b6938f24d5cbf9af47227688b56f0889cb5c74f6556be6a0d130"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modern-startup-contract.json",
+            "bytes": 74738,
+            "sha256": "f6b5a3c46bcf9168b2c4a5f0c5cd9b33b5e47b0a9c12c7eb93efad1fcacd28bf"
+          },
+          "pointer": "/facts/20",
+          "canonical_sha256": "5f6d2a5cceee4cd4a4c341b251b310819e13a4176883babeff71294e82948dc0"
+        }
+      ],
+      "new_fact_ids": [
+        "SC-F02",
+        "SC-F03",
+        "SC-F04",
+        "SC-F05",
+        "SC-F06",
+        "SC-F07",
+        "SC-F08"
+      ],
+      "review_result": "normal-source-rules-and-selected-failure-branches-composed-original-entry-variants-not-whole-closure",
+      "first_Config_named_source_rules_bound": false,
+      "whole_original_profile_group_promoted_by_this_review": false,
+      "remaining_dispositions": [
+        "SC-U1",
+        "SC-U2",
+        "SC-U3",
+        "SC-U4"
+      ],
+      "owner": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "dependencies": [
+        "X01"
+      ],
+      "batch": "D1",
+      "original_or_target_runtime_acceptance": false
+    }
+  ],
+  "remaining": [
+    {
+      "id": "SC-U1",
+      "classification": "待验证",
+      "preserves": "SS-U2",
+      "kind": "exact-original-selection-and-manual-entry-composition",
+      "need": "按原LO-O04/05与三profile范围，补普通选择/手动路径接受、取消和恢复的同版入口→来源→commit组合；新构造/列表根不能替代全部用户路径。",
+      "next_evidence": [
+        {
+          "profile": "launcher-legacy-601b",
+          "procedure": "0x410df0",
+          "action": "完整体已在SR352条旧bundle；先复用其实际selection/name前提与405DA0调用上下文，不重复REA。"
+        },
+        {
+          "profile": "launcher-historical-c7ba",
+          "procedure": "0x425fc0",
+          "action": "由40E1C0实际incoming给出的caller，先绑普通控件/命令的owner与准入；不凭C82相似函数猜角色。"
+        }
+      ],
+      "arbitrary_all_interleavings_required": false,
+      "all_helpers_required": false
+    },
+    {
+      "id": "SC-U2",
+      "classification": "待验证",
+      "preserves": "SS-U2",
+      "kind": "same-C7-list-control-creation-and-source-index-policy",
+      "need": "绑定C7 Child+380/实际HWND+3A0的创建/样式与普通选择consumer，确定LBS_SORT/LBS_HASSTRINGS及raw-index读取路径。已证append返回是控件位置，不能仅用发出次序推定显示次序或把保存GameList当Code。",
+      "positive_seed": "42CE20@42CFEB→Child40E1C0→43C1E0/43D4C0；优先复用已有Main创建/消息记录，只有缺失的必要owner再查询。",
+      "new_generic_drawing_helper_inventory_authorized": false
+    },
+    {
+      "id": "SC-U3",
+      "classification": "待验证",
+      "preserves": [
+        "SS-U2",
+        "LF-U4"
+      ],
+      "kind": "conditional-admission-kept-conditional",
+      "need": "296/30721/30734、四非App菜单及未准入import/export只随真实正向业务owner推进；本审查未扩大/删除需求，也不把条件缺口称为已复现的用户故障。"
+    },
+    {
+      "id": "SC-U4",
+      "classification": "待验证",
+      "preserves": "SS-U3",
+      "kind": "host-design-and-real-acceptance",
+      "need": "原Host/Config、来源/存储失败和后台/取消/恢复/预算/IME、真实网页/移动网页/微信及当前同版官方接受独立。SDK原端口设置请求仍待答复，不重发或绕过；无测试账号。其他异常/外层效果与真实磁盘/队列/控件结果不由静态源概括。"
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "SC-D1",
+      "merge_into": [
+        "SS-D01",
+        "SS-D03"
+      ],
+      "owner": "shared/launcher-catalog.mjs and original source-selection owner",
+      "change": "来源row ordinal、numeric Code、control/display ordinal分别建模；显式profile/样式政策、保存GameList优先级及append失败，不以数组下标替代全部来源。",
+      "implemented": false
+    },
+    {
+      "id": "SC-D2",
+      "merge_into": [
+        "SS-D03",
+        "SS-D04"
+      ],
+      "owner": "original profile/store/ContextOwner ports",
+      "change": "部分reset仅改已证字段并记录两个保存请求及实际结果；整目录/UI/Config不共享一个清空操作。旧region helper的调用前提随来源上下文携带。",
+      "implemented": false
+    },
+    {
+      "id": "SC-D3",
+      "merge_into": [
+        "SS-D05"
+      ],
+      "owner": "original D5/D6 acceptance",
+      "change": "八个新选择/重建边界并入原接受矩阵；原15格与既有CP/SR/MS案例复用，不重复搭另一登录器或把提出案例算运行通过。",
+      "implemented": false
+    }
+  ],
+  "selected_supersession": {
+    "parent_id": "SS-U2",
+    "parent_pointer": "/remaining/1",
+    "selected_closed": [
+      "C7 actual game-list presentation/partial reset/append/control-index ordinary source rules",
+      "15 original startup/profile group cells individually crosswalked"
+    ],
+    "exact_remaining_ids": [
+      "SC-U1",
+      "SC-U2",
+      "SC-U3",
+      "SC-U4"
+    ],
+    "SS_U1_closed_preserved": true,
+    "SR_and_MS_selected_scopes_preserved": true,
+    "whole_SS_U2_source_closed": false,
+    "whole_L01_specification_ready": false,
+    "does_not_close": [
+      "L03 LS-U3",
+      "L07 current same-version consumer",
+      "SS-U3 full Host/Config/platform acceptance"
+    ]
+  },
+  "acceptance": {
+    "previous_cases_reused_not_reexecuted": [
+      "SS20",
+      "CP14",
+      "SR12",
+      "MS22"
+    ],
+    "supplement_cases": [
+      {
+        "id": "SC-A01",
+        "context": "重复重建列表，之前关联项与选择非空",
+        "expected": "按64组状态和15附属string、RESETCONTENT/GETCURSEL请求处理，不保留旧raw mapping。",
+        "fact_ids": [
+          "SC-F05",
+          "SC-F06"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SC-A02",
+        "context": "安装状态交错，raw ordinal、Code、control index均不同",
+        "expected": "两遍发出，按实际append返回存raw ordinal；保留三个独立身份。",
+        "fact_ids": [
+          "SC-F04",
+          "SC-F05"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SC-A03",
+        "context": "实际控件开启/关闭LBS_SORT，owner draw且HASSTRINGS不同",
+        "expected": "先按同版创建证据审定；不把两遍枚举固定成未经证明的最终顺序。",
+        "fact_ids": [
+          "SC-F05",
+          "SC-F08"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SC-A04",
+        "context": "有效保存GameList与不同GAME Code候选同时存在",
+        "expected": "有效保存ordinal优先，界限依据源count；无有效保存才用最后匹配候选。",
+        "fact_ids": [
+          "SC-F07",
+          "SC-F09"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SC-A05",
+        "context": "Code重复，最后匹配append返回负值，或部分append失败",
+        "expected": "保留候选覆盖与不提前退出的源规则；不把源count当实际成功项数。",
+        "fact_ids": [
+          "SC-F05",
+          "SC-F07"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SC-A06",
+        "context": "刷新重置时Region/Galaxy有效，任一profile写请求失败",
+        "expected": "只清Game/GameList/NoMinHelper三字段，两个INI写-1；不编造Region清空或写失败回滚。",
+        "fact_ids": [
+          "SC-F03"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SC-A07",
+        "context": "旧版region名称无匹配或从普通caller传入",
+        "expected": "审定410DF0/4015A0各自前提；405DA0本体不提供搜索后通用边界恢复。",
+        "fact_ids": [
+          "SC-F10"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SC-A08",
+        "context": "C7真实manual caller或条件资源/命令尚无普通准入",
+        "expected": "保留精确待证身份，不按C82地址差、资源名或空索引判完成/不适用。",
+        "fact_ids": [
+          "SC-F11",
+          "SC-F13"
+        ],
+        "executed": false
+      }
+    ],
+    "supplement_cases_executed": 0
+  },
+  "primary_references": {
+    "schema": "moli.launcher-startup-scope.primary-listbox-reference.v1",
+    "source_url": "https://raw.githubusercontent.com/microsoft/win32metadata/main/generation/WinSDK/RecompiledIdlHeaders/um/WinUser.h",
+    "retrieved_at": "2026-11-10",
+    "file": {
+      "path": "build/analysis/launcher-startup-scope-v1/Microsoft-WinUser-header.h",
+      "bytes": 415285,
+      "sha256": "c2dfb3294058ed4c1e8040784ffa274bb9c3aa9bbb4229c87dc7d740069dcd20"
+    },
+    "constants": {
+      "LB_ADDSTRING": "0x0180",
+      "LB_RESETCONTENT": "0x0184",
+      "LB_SETCURSEL": "0x0186",
+      "LB_GETCURSEL": "0x0188",
+      "LB_GETITEMHEIGHT": "0x01A1",
+      "LBS_SORT": "0x0002L",
+      "LBS_HASSTRINGS": "0x0040L"
+    },
+    "documentation": [
+      {
+        "url": "https://learn.microsoft.com/en-us/windows/win32/controls/lb-addstring",
+        "fact": "Return is actual zero-based control index; negative error/space results; insertion ordering depends on LBS_SORT and string ownership depends on LBS_HASSTRINGS."
+      },
+      {
+        "url": "https://learn.microsoft.com/en-us/windows/win32/controls/lb-resetcontent",
+        "fact": "Removes all items; owner-draw callbacks remain a separate owner effect."
+      },
+      {
+        "url": "https://learn.microsoft.com/en-us/windows/win32/controls/lb-getcursel",
+        "fact": "Selected control index depends on selection style; no selection is LB_ERR for single-select."
+      },
+      {
+        "url": "https://learn.microsoft.com/en-us/windows/win32/controls/lb-setcursel",
+        "fact": "Takes control ordinal, not source game Code; only single-selection control; actual result must be observed separately."
+      }
+    ],
+    "target_control_styles_proven_by_these_documents": false,
+    "target_runtime_observed": false
+  },
+  "summary": {
+    "new_native_records": 5,
+    "new_native_body_bytes": 1641,
+    "reused_complete_native_records": 5,
+    "native_range_windows": 10,
+    "native_range_bytes": 8518,
+    "native_instruction_boundaries": 2316,
+    "C7_retained_REA_records": 111,
+    "new_target_tests": 0,
+    "facts": 14,
+    "profile_group_cells_reviewed": 15,
+    "named_first_Config_source_cells": 3,
+    "implementation_deltas": 3,
+    "supplement_acceptance_cases_not_executed": 8,
+    "source_capability_readiness_promoted": 0,
+    "local_ready_capabilities": 16
+  },
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "new_target_tests": 0,
+  "whole_SS_U2_source_closed": false,
+  "whole_L01_specification_ready": false,
+  "source_capability_readiness_promoted": false,
+  "original_VM_SDK_program_setting_account_or_official_actions": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "stopping_rule": "Stop the five now-bound C7 helpers. Reuse legacy410DF0 before new queries; bind only actual ordinary C7 control/caller and list-style source changing original required selection semantics. Do not expand arbitrary callbacks/drawing helpers or treat unknown external acceptance as a source field.",
+  "validation_record_path": "build/analysis/launcher-startup-scope-v1/validation.json",
+  "execution_record": {
+    "path": "build/analysis/launcher-startup-scope-v1/execution-record.json",
+    "bytes": 1905,
+    "sha256": "7c79627ad59749a085ff47efeabb26f47605d840a21681ff64f3bb2b5adeee71"
+  }
+}

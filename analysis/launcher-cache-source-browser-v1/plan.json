@@ -1,0 +1,46 @@
+{
+  "schema": "moli.stage114.browser-cache-plan.v1",
+  "recorded_utc": "2026-10-30T17:29:38.574731+00:00",
+  "requirement": "reports/development-plan.md#stage114",
+  "objective": "Verify the production source-aware resource binding and conditionalv2 cache through real browser IndexedDB, page reload and candidate restore, preserving the full launcher then game reconstruction goal",
+  "prior_goal_turn": "progress: production source/capacity/cache owners changed and authoritative source/network/test evidence updated",
+  "browser_path": {
+    "classification": "Browser plugin not available",
+    "method": "Regular Playwright with installed Chrome; separate fresh task-owned persistent profile directories, sandbox enabled",
+    "dependency": "Check existing project-private tooling before adding a pinned package; user has authorized missing dependency setup"
+  },
+  "flow": "Original cache harness -> save explicit source0/source1 or default -> reload -> read real IndexedDB -> reject wrong source -> restore matching candidate -> choose explicitly",
+  "requirements": [
+    "Actual production modules, hashed before run",
+    "V2 source0 andsource1 persist bytes and source identity across reload/new store handles",
+    "Cross-source restore fails and cannot produce a chosen candidate",
+    "Matching restore remains review-only until explicit choose",
+    "Default legacyv1 key/snapshot/storage roundtrip remains usable",
+    "Stale CAS refuses replacement and preserves current stored v2 bytes",
+    "Desktop and mobile-size rendered identity, nonblank, console, screenshot and controls checked",
+    "Fresh empty browser context and page requests restricted to the local fixture origin",
+    "Close browser and reopen the same owned profile at the same exact origin, verifying bothv2 andlegacyv1 survive a real browser restart"
+  ],
+  "boundaries": {
+    "original_synthetic_files_only": true,
+    "credentials_or_real_ipc": false,
+    "new_vendor_or_vm_execution": false,
+    "game_server_requests": false,
+    "protection_bypass": false,
+    "browser_fixture_not_gameplay_or_official_acceptance": true
+  },
+  "dependency_changes_allowed": "Project-private tooling only, no global or other-project writes",
+  "knowledge_contract": {
+    "roles": [
+      "experience",
+      "requirement-index"
+    ],
+    "budget": 3000,
+    "query_exit": 2,
+    "missing_role": "requirement-index",
+    "external_knowledge_edits": false
+  },
+  "test_account_available": false,
+  "game_consumer_recovered": false,
+  "full_goal_complete": false
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "moli.lifecycle-observation.runtime.v1",
+  "recorded_utc": "2026-10-30T10:16:46.727540+00:00",
+  "session": "Fresh preinstalled Microsoft NoProfile administrator PowerShell; actual admin-role True",
+  "baseline_subscription_count": 0,
+  "query_template": "select * from win32_process{0}trace where processname='polcn_launcher.exe' or processname='launcherupdater.exe'",
+  "registration_command": "'start','stop' | % {register-cimindicationevent -query ($q108 -f $_) -sourceidentifier ('moli'+$_+'108') -maxtriggercount 16 | select sourceidentifier,subscriptionid}",
+  "registration_returned_prompt_without_visible_error": true,
+  "direct_registration_output": "None; not treated as receipt",
+  "actual_get_eventsubscriber_readback": [
+    {
+      "SourceIdentifier": "molistart108",
+      "SubscriptionId": 1
+    },
+    {
+      "SourceIdentifier": "molistop108",
+      "SubscriptionId": 2
+    }
+  ],
+  "readback_guest_local_display_time": "2026-10-30 18:16",
+  "output_fields": "Subscriber identifiers only so far; raw event payloads not output",
+  "vendor_start_commands": 1,
+  "event_timeline": [
+    {
+      "source": "molistart108",
+      "ProcessName": "LauncherUpdater.exe",
+      "ProcessID": 2484,
+      "ParentProcessID": 9732,
+      "TIME_CREATED": "134378291646016042",
+      "derived_utc_to_microseconds": "2026-10-30T10:19:24.601604+00:00"
+    },
+    {
+      "source": "molistart108",
+      "ProcessName": "POLCN_Launcher.exe",
+      "ProcessID": 9732,
+      "ParentProcessID": 5608,
+      "TIME_CREATED": "134378291646016041",
+      "derived_utc_to_microseconds": "2026-10-30T10:19:24.601604+00:00"
+    }
+  ],
+  "cleanup": {
+    "command": "'molistart108','molistop108' | % {unregister-event -sourceidentifier $_}; remove-event -sourceidentifier molistart108; @(get-eventsubscriber).count; @(get-event).count",
+    "guest_local_display_time": "2026-10-30 18:31",
+    "actual_subscribers_remaining": 0,
+    "actual_events_remaining": 0,
+    "prompt_returned": true,
+    "visible_errors": false,
+    "administrator_console": "Normal titlebar close observed, returned to preexisting ordinary Terminal; no pending command there"
+  },
+  "limits": "Only two start records read so far, no stop records. Parent exit 0 is from the retained Process object; child exit status and complete event coverage unproved. Name and parent ID alone do not pin the launched updater image hash.",
+  "observation_active_since_utc": "2026-10-30T10:19:23.531Z",
+  "event_readback_guest_local_display_time": "2026-10-30 18:22",
+  "stop_events_in_this_readback": 0,
+  "ordering_note": "Console enumeration showed updater first; sort only by provider timestamp if needed. Adjacent 100ns values are not treated as accurate start-duration measurement.",
+  "positive_fact": "A start event identifies LauncherUpdater.exe PID 2484 with ParentProcessID 9732, the exact explicitly started launcher PID. This supports actual parent-child handoff in this run.",
+  "final_precleanup_queue_receipt": {
+    "guest_local_display_time": "2026-10-30 18:29",
+    "groups": [
+      {
+        "Name": "molistart108",
+        "Count": 2
+      }
+    ],
+    "stop_events": 0
+  }
+}

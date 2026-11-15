@@ -1,0 +1,200 @@
+{
+  "schema": "moli.local-cli-feasibility.v1",
+  "stage": 41,
+  "observation_utc": "2026-10-26 06:58-07:02 UTC",
+  "local_execution": {
+    "system": "Darwin",
+    "architecture": "arm64",
+    "macos": "27.0.1",
+    "macos_build": "26A434",
+    "actual_command_cwd": "/Users/lx/Documents/code/moli-mac",
+    "resolved_project": "/Users/lx/Documents/code/moli-mac",
+    "project_readme_exists": true,
+    "not_a_linux_or_cloud_build_container": true,
+    "exact_hardware_model_verified": false,
+    "hardware_query": {
+      "command": "/usr/sbin/sysctl -n hw.model machdep.cpu.brand_string",
+      "exit_code": 1,
+      "error": "sysctl: sysctl fmt -1 1024 1: Operation not permitted",
+      "retry_or_alternate_route": false
+    }
+  },
+  "application_static_info": {
+    "CFBundleIdentifier": "com.parallels.desktop.console",
+    "CFBundleShortVersionString": "26.3.3",
+    "CFBundleVersion": "57507"
+  },
+  "files": [
+    {
+      "path": "/Applications/Parallels Desktop.app/Contents/MacOS/prlctl",
+      "bytes": 1844992,
+      "sha256": "875188a582bfc81770078e5e835c4274f88d2cf30c890de6ff47ce25ce3baf85"
+    },
+    {
+      "path": "/Applications/Parallels Desktop.app/Contents/MacOS/prlsrvctl",
+      "bytes": 1844896,
+      "sha256": "d09e33382107b8478177bd0a024a1f6b3ac65e0ff0d6dd035b6687dcdb3c9c69"
+    },
+    {
+      "path": "/Applications/Parallels Desktop.app/Contents/MacOS/parallels_wrapper",
+      "bytes": 3942,
+      "sha256": "f3148009278eb55192910cd9fa8e956656a87296cd9cfc7a3597515e89e026c7"
+    },
+    {
+      "path": "/Applications/Parallels Desktop.app/Contents/MacOS/prlexec",
+      "bytes": 2793,
+      "sha256": "2ff2318f1defda33c52e3719cdf90044c11541c1bd7464a46e94f5a4cfe59b83"
+    },
+    {
+      "path": "/Applications/Parallels Desktop.app/Contents/Resources/ManPages/prlctl.8",
+      "bytes": 64840,
+      "sha256": "975fe79c00548509e0c0cea1bb4ab7f80a82dc6f11528a7bebba054e017cd964"
+    },
+    {
+      "path": "/Applications/Parallels Desktop.app/Contents/Resources/ManPages/prlexec.8",
+      "bytes": 3564,
+      "sha256": "501d252571bffba6454267f8bb40032737496a12cd064aefade71f622f87252e"
+    }
+  ],
+  "entrypoints": {
+    "/usr/local/bin/prlctl": "/Applications/Parallels Desktop.app/Contents/MacOS/parallels_wrapper",
+    "/usr/local/bin/prlsrvctl": "/Applications/Parallels Desktop.app/Contents/MacOS/parallels_wrapper",
+    "/usr/local/bin/prlexec": "/Applications/Parallels Desktop.app/Contents/MacOS/prlexec"
+  },
+  "prlctl_signature_check": {
+    "command": "/usr/bin/codesign --verify --strict --verbose=2 '/Applications/Parallels Desktop.app/Contents/MacOS/prlctl'",
+    "exit_code": 1,
+    "error": "invalid signature (code or signature have been modified); In architecture: arm64",
+    "execution_attempted": false,
+    "not_a_malware_attribution": true
+  },
+  "cli_file_architecture": "prlctl and prlsrvctl are universal Mach-O arm64+x86_64; inspected as files, not executed",
+  "wrapper_static_anchors": [
+    {
+      "needle": "function is_running()",
+      "line_numbers": [
+        81
+      ]
+    },
+    {
+      "needle": "ps ax |",
+      "line_numbers": [
+        82,
+        83
+      ]
+    },
+    {
+      "needle": "function init_bundle()",
+      "line_numbers": [
+        88
+      ]
+    },
+    {
+      "needle": "\"${INITTOOL}\" init",
+      "line_numbers": [
+        90
+      ]
+    },
+    {
+      "needle": "function start_services()",
+      "line_numbers": [
+        97
+      ]
+    },
+    {
+      "needle": "service_start_launchd",
+      "line_numbers": [
+        98
+      ]
+    },
+    {
+      "needle": "if ! is_running;",
+      "line_numbers": [
+        150
+      ]
+    }
+  ],
+  "wrapper_limit": "Even --help/--version via installed prlctl entry first runs is_running(), including host ps; if it considers services absent it can initialize/start services. Not invoked because host ps is already denied and scope excludes service initialization. No direct-binary alternate route used.",
+  "documented_interface": {
+    "manpage_date": "14 May 2026",
+    "source": "Resources/ManPages/prlctl.8",
+    "enter_line": 196,
+    "exec_line": 202,
+    "syntax": "prlctl exec <fixed VM UUID> --current-user <bounded command> [args]",
+    "requires": "Parallels Tools installed in guest, as stated in local manpage",
+    "not_verified": [
+      "actual CLI help/version execution",
+      "effective license/edition capability",
+      "current guest Tools availability/health",
+      "host VM access permissions",
+      "effective guest token/privilege",
+      "behavior while host screen locked or Windows session locked"
+    ],
+    "default_guest_privilege": "not stated in inspected manual; do not assume ordinary or administrator",
+    "credential_policy": "do not use --user/--password, PIN, stored credentials or new persistent access in the proposed smoke test"
+  },
+  "prlexec_static_anchors": [
+    {
+      "needle": "PRLCTL='/usr/local/bin/prlctl'",
+      "line_numbers": [
+        9
+      ]
+    },
+    {
+      "needle": "--current-user",
+      "line_numbers": [
+        126
+      ]
+    },
+    {
+      "needle": "--help)",
+      "line_numbers": [
+        72
+      ]
+    },
+    {
+      "needle": "\"$PRLCTL\" start",
+      "line_numbers": [
+        44
+      ]
+    },
+    {
+      "needle": "\"$PRLCTL\" status",
+      "line_numbers": [
+        114
+      ]
+    },
+    {
+      "needle": "cmd=\"'$PRLCTL' exec",
+      "line_numbers": [
+        121
+      ]
+    }
+  ],
+  "prlexec_limit": "Shell script forwards to same prlctl wrapper and can automatically start a stopped VM; legacy manual dated2016 is not evidence of independent modern support. Help branch text was read from file, not run.",
+  "normal_interface_vs_lock_bypass": "A documented owner-authorized VM management/guest Tools channel is a candidate normal interface, not synthetic keyboard input or host login bypass. Documentation alone does not prove locks are irrelevant. No host unlock, authentication or security setting was changed.",
+  "current_conclusion": "Documented non-GUI candidate exists, but this installed CLI cannot be responsibly runtime-validated within current scope: arm64 signature integrity failure, and standard wrapper would repeat denied host ps and may initialize services. No verified route that guarantees immunity from screen lock is claimed.",
+  "minimum_next_scope": {
+    "prerequisite": "establish trusted current CLI provenance/integrity and a supported standard entry whose prerequisites are allowed; do not bypass the denied ps or modify signatures/quarantine/security settings",
+    "then_specific_approval": "one fixed current Windows VM, --current-user only, no credentials: one harmless echo and named observer existence/version query, no sample/attach/network/UAC or VM start. Exact commands and service/privilege behavior must be disclosed before approval.",
+    "not_authorized_now": [
+      "CLI execution",
+      "guest command",
+      "new service/tool install",
+      "VM start",
+      "privilege expansion",
+      "network/security change"
+    ]
+  },
+  "operations": {
+    "GUI_used_for_this_local_assessment": false,
+    "Parallels_CLI_executions": 0,
+    "guest_commands": 0,
+    "host_ps_retries": 0,
+    "sample_runs": 0,
+    "downloads": 0,
+    "VM_network_security_changes": 0,
+    "pending_tools": false
+  },
+  "validation": "file identities/manpage syntax/wrapper control flow/signature failure verified; no new tests or product code change; prior6 synthetic tests not rerun"
+}

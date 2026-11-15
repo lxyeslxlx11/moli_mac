@@ -1,0 +1,47 @@
+{
+  "schema": "moli.launcher-runtime-v2.guest-preflight.v1",
+  "recorded_utc": "2026-10-28T07:11:08.581099+00:00",
+  "classification": "facts from current CUA visual readback and narrow host-config metadata",
+  "guest_directory": "C:/MoliOffline/launcher-probe",
+  "guest_directory_members": [
+    "XML",
+    "Log.htm",
+    "POLCN_Launcher.exe"
+  ],
+  "guest_hash_command": "Get-FileHash *.*,XML/* | fl Path,Hash",
+  "guest_sha256": {
+    "POLCN_Launcher.exe": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+    "XML/GameList.xml": "be8f1213d77bd294fbb79b2fb51a5e7fecdc9aa3c0854db7a6d821fad20ef85a",
+    "XML/RegionList.xml": "0c94ca78c40c1940f241940a97aabef7849e9ad3285310046f346b69128a8438",
+    "Log.htm": "c5f0f478115a770fd4afe906465d6bb136e40f645535ce0fcf4335b83494371b"
+  },
+  "all_four_freshly_visually_read": true,
+  "all_match_previous": true,
+  "log_contents_read": false,
+  "compatibility_mode": "user-confirmed Win7 retained; not reopened",
+  "host_config": {
+    "sha256": "4b81f12b1aec2368b9d1e2b939fb13f9adb6be0c4f73c7bc9cc2999d05161c42",
+    "network_adapters": [
+      {
+        "Enabled": "1",
+        "Connected": "1",
+        "EmulatedType": "1"
+      }
+    ],
+    "IsolatedVm": [
+      "1"
+    ],
+    "ShareAllMacDisks": [
+      "0"
+    ],
+    "ShareUserHomeDir": [
+      "0"
+    ]
+  },
+  "run_plan": "analysis/launcher-provenance-v1/source-assessment-and-run-plan.json",
+  "launch_command": "$p=Start-Process ./POLCN_Launcher.exe -Verb RunAs -PassThru",
+  "launch_submitted_at_record": false,
+  "screenshots_retained": false,
+  "directory_query": "ls -Name (no -Force)",
+  "directory_coverage_limit": "Normal listing excludes hidden entries; does not prove updater absent before run."
+}

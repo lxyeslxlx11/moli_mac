@@ -1,0 +1,72 @@
+{
+  "schema": "moli.launcher-patch-live-v1.preflight.v1",
+  "recorded_utc": "2026-10-28T03:31:49.504930+00:00",
+  "previous_turn_classification": "progress: native WinQ guest Search observed and immutable package/source chain refreshed; ordinary guest input still unverified.",
+  "previous_manifest_sha256": "7ee9edfeda2a5d0e5f4476a45133011d756101c132372d32f89e6cb2ae8efd0e",
+  "previous_manifest_files_verified": 1271,
+  "baseline_files": [
+    {
+      "path": "README.md",
+      "bytes": 58648,
+      "sha256": "446709482490c8adf31e0bd4dadf4dcbfe3ab0b9a375686da570707bc17a174f"
+    },
+    {
+      "path": "reports/development-plan.md",
+      "bytes": 46282,
+      "sha256": "9543b9de4c205656d0d68d833aa56fb3f2fbe6ab1160f4a466f5b5fb28a6859b"
+    },
+    {
+      "path": "reports/known-issues.md",
+      "bytes": 124957,
+      "sha256": "faf6e8feb373610cfc14ff00e96ba646b011deecf89afcf164ed79a0b300f604"
+    },
+    {
+      "path": "reports/validation.md",
+      "bytes": 150321,
+      "sha256": "a1bd48e2c9938e3dc99b720c6f171cd409e70ce3c2392f4240e0c5e578d96ac4"
+    },
+    {
+      "path": "reports/analysis-methods.md",
+      "bytes": 75786,
+      "sha256": "a5ef421e5d2546893e63fbb5bc69eb443b10c5f2e65bd7fb80e0ef9179acc4c0"
+    },
+    {
+      "path": "reports/vm-environment.md",
+      "bytes": 139918,
+      "sha256": "b24ccc26c69f3de58ff73fff8761e517b25c75e641ddd9e5b507e278d170b17a"
+    },
+    {
+      "path": "reports/launcher-static.md",
+      "bytes": 126603,
+      "sha256": "66bd92b16073a0c3b4798b7e805990a1a6553db36dc3ab38b1072bf4dcae0dd3"
+    },
+    {
+      "path": "reports/logic-protocol-spec.md",
+      "bytes": 51060,
+      "sha256": "3b7aec4ac94418d637ecf60f04935eb59c3d6c08873d71ef4bb6117092513af9"
+    }
+  ],
+  "purpose": "Within existing network authorization, get current public launcher catalog digests/XML and bind one classic-game patch metadata GET to declared PIP/PPort. No accounts, executable runs, patch payload downloads or installed-file writes.",
+  "limits": {
+    "catalog_requests": 3,
+    "catalog_bytes_each_max": 1048576,
+    "metadata_bytes_max": 4096,
+    "patch_manifest_requests_max": 1,
+    "patch_manifest_bytes_max": 1048576,
+    "each_request_timeout_seconds": 15,
+    "redirects": false,
+    "retries": 0,
+    "authentication": false,
+    "cookies": false,
+    "proxy_environment": false,
+    "endpoint": "Only global IPv4, configured port80 and selected classic-game first declared region; no scanning or guessed fallback."
+  },
+  "reused_REA": {
+    "patcher_sha256": "195f3afda41f342147b0616a4c005a4cb308ae6869b52c4a558fded5f5d9aaa8",
+    "application": "0x409240; request literal use0x40983e and bytes0x477b22",
+    "spec": "analysis/launcher-v26/static-spec.json; reports/logic-protocol-spec.md; existing web/launcher-game-patch.mjs explicit epochSeconds policy",
+    "new_REA_session": false
+  },
+  "HTTP_limit": "Untrusted HTTP metadata, not source authentication, game business framing or official session compatibility.",
+  "goal_complete": false
+}

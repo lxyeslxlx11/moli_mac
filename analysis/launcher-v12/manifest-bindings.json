@@ -1,0 +1,83 @@
+{
+  "schema": "moli.launcher-v12.manifest-bindings.v1",
+  "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "initializer_evidence_id": "ev_52a2de0a9ca8c751d34c84d12e3503b05ae9476914325edaa8f0ae32d0dfb4dc",
+  "method": "Independent read-only Listing stack/push/branch audit; EBP offsets are actual instructions rather than decompiler local names. No target execution.",
+  "common_response": "EBP-1f4",
+  "self": {
+    "local_digest": "EBP-1b4",
+    "file_digest_call": "0x40187b",
+    "response_trim_calls": [
+      "0x4019de",
+      "0x4019ee",
+      "0x4019fe"
+    ],
+    "response_trim_bytes_evidence": "ev_6d6956dd6958350f15019a1a75cf728d03510a31f670b550e2755c727f8add0a",
+    "trim_order_hex": [
+      "20",
+      "0a",
+      "0d"
+    ],
+    "strlen_call": "0x401a0f",
+    "cut_if_gt32": "0x401a31",
+    "uppercase_calls": [
+      "0x401a3c",
+      "0x401a48"
+    ],
+    "equality_call": "0x401a4e",
+    "equal_branch": "nonzero→401e15; zero→401a6f update",
+    "retained_expected_digest": "EBP-610@401a7c"
+  },
+  "locator": {
+    "stream": "EBP-504",
+    "token1": "EBP-60c",
+    "token2": "EBP-724",
+    "extraction_calls": [
+      "0x401c41",
+      "0x401c4a"
+    ],
+    "prepush_second_destination": "0x401c32",
+    "first_destination_push": "0x401c39",
+    "stream_push": "0x401c40",
+    "second_uses_first_return": "PUSH EAX@401c49",
+    "roles": "first locator,second raw progress token later passed to updater atoi; first32 digest originates self response separately"
+  },
+  "xml": {
+    "stream": "EBP-19c",
+    "token1": "EBP-1ec",
+    "token2": "EBP-330",
+    "extraction_calls": [
+      "0x40213f",
+      "0x402148"
+    ],
+    "prepush_second_destination": "0x402130",
+    "first_destination_push": "0x402137",
+    "stream_push": "0x40213e",
+    "second_uses_first_return": "PUSH EAX@402147",
+    "over32": "40215f/402180 compare32; warning41b1b0 only, no cut/exit in these branches",
+    "gameList": {
+      "token": 1,
+      "local_digest": "EBP-1f0",
+      "file_digest_call": "0x401f1c",
+      "token_uppercase": "0x4021df",
+      "local_uppercase": "0x4021ee",
+      "equality": "0x4021f4",
+      "mismatch": "AL0→402215→GameList request40229b",
+      "match": "nonzero→40234e"
+    },
+    "regionList": {
+      "token": 2,
+      "local_digest": "EBP-1a0",
+      "file_digest_call": "0x401fb9",
+      "token_uppercase": "0x40239b",
+      "local_uppercase": "0x4023aa",
+      "equality": "0x4023b0",
+      "mismatch": "AL0→4023d1→RegionList request402457",
+      "match": "nonzero→40250a"
+    }
+  },
+  "limits": [
+    "Helper semantics separately verified by dedicated REA dossiers.",
+    "No claim of actual HTTP responses, locale facet/runtime, post-download hash or successful file update."
+  ]
+}

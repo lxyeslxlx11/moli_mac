@@ -1,0 +1,227 @@
+{
+  "schema": "moli.capability.launcher-catalog-state-contract.v1",
+  "source": {
+    "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+    "bytes": 4111872,
+    "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+    "official_current_version_proven": false
+  },
+  "source_check": "analysis/capability-first-v1/launcher-catalog-state-source-check.json",
+  "capabilities": [
+    "L01",
+    "L02",
+    "L03",
+    "L04",
+    "L05",
+    "L08"
+  ],
+  "facts": {
+    "role_correction": {
+      "field": "main+0x1694",
+      "role": "normalized game-ID filter query",
+      "superseded_label": "normalized account cache",
+      "producer": "0x420320 handles control29200 edit notification768; trims/transforms input through0x41c970; rebuilds only in main step4",
+      "consumers": [
+        "0x41c9d0",
+        "0x41cc70",
+        "0x41fe80",
+        "0x423910",
+        "0x428c00"
+      ],
+      "runtime_implementation_changed": false
+    },
+    "filter": {
+      "entry": "0x41c9d0",
+      "haystack": "received GameID + ASCII space + local note main+0x1b9c[rawIndex]",
+      "transform": "same0x41c970 MBCS transformation used for query; exact locale behavior is pending",
+      "rule": "empty query includes every supplied row; otherwise require nonnegative source __mbsstr match",
+      "input_limit": "dynamic edit29200 is assigned limit64; not asserted as64 Unicode characters",
+      "timer": "0x36d/100ms manages search visibility in step4 and clears query/edit when leaving; it does not submit login"
+    },
+    "raw_list": {
+      "reply_entry": "0x423c30",
+      "maximum_received_count": 64,
+      "count_origin": "positive reply count is capped before row population; helper418db0 does not impose its own independent cap",
+      "layout_scope": "fixed x86 implementation offsets; not portable wire fields",
+      "group_byte": "main+0x1c9c[rawIndex]",
+      "signed_pin_rank": "main+0x1cdc[rawIndex]",
+      "relative_order_text": "main+0x1edc[rawIndex]"
+    },
+    "group_order": {
+      "entry": "0x418db0",
+      "output_precondition": "both output pointers nonzero; output count initially zero",
+      "nonzero_group": "select exact group byte; stable insertion by signed rank ascending, equal ranks retain raw order",
+      "group_zero_no_metadata": "append group0 raw indices in received order",
+      "group_zero_with_metadata": [
+        "Append group0 empty-metadata rows in received order; keep other rows pending.",
+        "F inserts at front; repeated front insertion reverses the relative processing order of multiple F rows.",
+        "B:<raw GameID> inserts before the first matching group0 target; A:<raw GameID> inserts after it.",
+        "A known target not yet placed defers that row to another pass; missing targets or unknown prefixes use raw-index insertion fallback.",
+        "Repeat while a pass makes progress; append unresolved/cyclic pending rows in their remaining original order."
+      ],
+      "comparison_boundary": "raw source string comparisons; no invented Unicode/lexical sort or cycle rejection"
+    },
+    "list_rebuild": {
+      "entry": "0x425790",
+      "view_basis": "canonical assembly plus independent source-identical prototype-derived view",
+      "ordered_rules": [
+        "Capture selected raw index, clear the list and build group1 sequence followed by group0 sequence.",
+        "Filter each raw index through41c9d0, render through418b60, publish its raw-index item mapping.",
+        "Restore the previous raw index if it remains visible, then run422580 selection details.",
+        "Otherwise set selection to-1 and controller selected-ID field+0x773c to-1."
+      ],
+      "other_group_flags": "the two normal calls select only1 then0; other byte values are not added by this path",
+      "presentation": "418b60 adds local note/group/status decoration; this is not a new protocol field"
+    },
+    "reorder_boundary": {
+      "entries": [
+        "0x41fe80",
+        "0x41cc70",
+        "0x41bfa0"
+      ],
+      "observed_conditions": "step4 ordinary list, empty filter query, valid source/target and same group for drag; destination midpoint chooses before/after",
+      "mutation": "41cc70 rejects active filtering, invalid index/ordinal and no change; shifts group order, invokes416e40, marks+0x1998 order undo available and rebuilds",
+      "metadata_names": [
+        "GID_PIN_ORDER_V2_",
+        "GID_PIN_",
+        "GameIDNotes"
+      ],
+      "pending": "complete key derivation, rank/tag rewrite persistence, import/export and custom-order/notes dialogs"
+    },
+    "dynamic_controls": [
+      {
+        "id": 29200,
+        "kind": "search-edit",
+        "owner": "main+0x1580",
+        "producer": "0x420740@0x421b51"
+      },
+      {
+        "id": 29201,
+        "kind": "search-toggle",
+        "owner": "main+0x1600",
+        "producer": "0x420740@0x421bf1"
+      },
+      {
+        "id": 32528,
+        "kind": "auxiliary-list",
+        "owner": "main+0x19a0",
+        "producer": "0x420740@0x421399",
+        "condition": "nonempty layout rectangle"
+      },
+      {
+        "id": 7901,
+        "kind": "preset-chooser-button",
+        "owner": "main+0x1058",
+        "producer": "0x420740@0x421713"
+      }
+    ],
+    "dynamic_context_action": {
+      "id": 7926,
+      "producer": "WM_CONTEXTMENU0x7b handler41f2c0 AppendMenuA/TrackPopupMenu",
+      "dispatch": "returned ID7926 directly calls422fc0; the existing WM_COMMAND table binding is additional",
+      "admission": "valid selected ID and no ordinary-login/preparation/modal/controller-work busy condition",
+      "is_fifth_window_control": false,
+      "other_observed_context_ids_hex": [
+        "0x7201",
+        "0x7202",
+        "0x7203",
+        "0x7204",
+        "0x7205",
+        "0x7206",
+        "0x7209",
+        "0x720a"
+      ],
+      "pending": "complete semantics and persistence for these additional context actions"
+    },
+    "catalog": {
+      "owner": "CChildView B = controller+0x120; embedded main=B+0x1a8",
+      "producer": "0x40bf80",
+      "paths": "0x408e50 resolves source catalog files; no host registry/filesystem behavior was executed",
+      "game_rows": {
+        "base": "B+0x2bd8",
+        "stride": 164,
+        "capacity": 15,
+        "Name": "row+0 text from child Name",
+        "EXE": "row+4 text from child EXE",
+        "Code": "attribute Code converted to integer at row+0x98",
+        "realm_indices": "row+0x44, count at+0x94, append capped20"
+      },
+      "preset_field_refinement": {
+        "field2": "Game.EXE, not a proved installation path",
+        "field4_when_required": "Galaxy.Name"
+      },
+      "Galaxy": "Gamecode determines type0..14; Name supplies per-realm Galaxy row name",
+      "installation_helpers": [
+        "0x4355f0",
+        "0x435ad0"
+      ],
+      "coverage": "selected same-c82f producer identities closed; full XML grammar, defaults/failure policy, installation predicates and bootstrap lifecycle still pending"
+    },
+    "startup_owner": {
+      "constructor": "0x403040",
+      "vtable": "0x5cfff4",
+      "map": "0x5d04a8",
+      "routes": {
+        "WM_CREATE": "0x40af60→0x406290",
+        "WM_TIMER": "0x40b010",
+        "0x80c9": "0x40a320",
+        "0x80cc": "0x40af80→0x4091c0"
+      },
+      "bootstrap": "406290 avoids duplicate worker/task, resolves paths and starts ordinary task406a00;40a320 handles task completion and can reach4091c0/40bf80",
+      "complete_App_initialization_or_window_lifetime": false
+    },
+    "preparation": {
+      "pending_flag": "main+0x1a5e",
+      "recovery_step": "main+0x1a64",
+      "computed_step": "41c060 returns2 only for valid current realm, game type0..14 and positive matching Galaxy count; otherwise1",
+      "patch_completion": "408460 receives exit results;100 validates/marks selected game then calls422e20,102 increments retry count and relaunches only while count<3;101/other/failure report ordinary failure",
+      "poll": "40b010 timer2329 polls patch process; code259 or query failure keeps pending; completion closes/clears handle before408460;30min warning does not force termination",
+      "callback": "422e20 ignores results when pending flag is zero; otherwise clears it before either branch",
+      "success": "set step3 and reenter42d120 through ordinary path, with optional tray hint",
+      "failure": "mark/clear active preset, call426c50 then428a90",
+      "recovery": "426c50 clears pending; valid game and display-name agreement choose step2 only when saved step2 and current41c060 still2, otherwise step1; invalid game/name chooses step0; refresh ordinary view/focus",
+      "late_callback_limit": "pending-flag guard is not a generation token; no claim that all stale callback/close/reentry paths are closed"
+    }
+  },
+  "inferences": [
+    "Two explicit helper storage prototypes produce more complete source-identical caller views; original source declarations and all ABI uses are not proved.",
+    "Concentrated specification/reuse can avoid repeated implementation and validation work; no credible project-wide percentage or completion date follows from this group."
+  ],
+  "remaining": [
+    "Complete notes/pin/custom-order/import/export mutation and persistence plus exact MBCS locale behavior.",
+    "Complete c82f XML grammar, installation/path checks, bootstrap/error/cancel/cleanup and full App initialization.",
+    "All preparation cancellation, close/reentry, callback generation/owner lifetime and authentication retry branches;424cf0 warning remains separate.",
+    "Template296/30721/30734 uses and four non-App static menu routes; dynamic discoveries remain in scope.",
+    "Game common graphics/input/active callback dispatch and per-business lifecycle;647 located bodies are not647 closed capabilities.",
+    "Current-version game producer/consumer compatibility, real target platforms/devices and official session acceptance; no test account available."
+  ],
+  "requirement_answers": [
+    {
+      "question": 1,
+      "status": "partially-answered",
+      "answer": "group/filter/rebuild/selection and source-identical omitted branches bound; metadata persistence and all local editing remain open"
+    },
+    {
+      "question": 2,
+      "status": "partially-answered",
+      "answer": "same-c82f Game.Name/EXE/Code and Galaxy.Name producers bound; different-c7ba contracts qualified separately; full grammar/install behavior remains open"
+    },
+    {
+      "question": 3,
+      "status": "partially-answered",
+      "answer": "computed recovery, callback guard, patch poll/exit and normal reentry bound; all late/cancel/close lifetimes remain open"
+    },
+    {
+      "question": 4,
+      "status": "partially-answered",
+      "answer": "main initialization binds four controls and context action7926; CChildView startup map/source chain bound; full App/other dialogs/menus remain open"
+    }
+  ],
+  "original_execution": false,
+  "account_or_session_observed": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "official_acceptance": false,
+  "full_goal_complete": false
+}

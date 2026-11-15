@@ -1,0 +1,14 @@
+{
+  "schema": "moli.launcher-v17.test-corrections.v1",
+  "recorded_utc": "2026-10-27T02:37:54.594011+00:00",
+  "initial": "stream-tests-initial.log:9/10 pass, pending-read abort code passed, peer socket Set still1 after a single setImmediate.",
+  "root": "The test assumed local cancellation implied peer close-event delivery in one event-loop turn; the stream close contract makes no synchronous peer-closure guarantee.",
+  "correction": "Register the actual peer socket close event before abort, await it under2s test timeout, then retain the exact Set-size0 assertion. No implementation or closure assertion weakened for this correction.",
+  "final": "stream-tests.log records rerun; actual Python peers separately observe EOF after normal final reply and actual10s timeout.",
+  "scope": "Only original loopback test server/socket; no external or official target.",
+  "followup_failure": {
+    "log": "stream-tests-event-capture-failure.log",
+    "observation": "Client open resolved before the peer connection callback populated the socket Set; a single setImmediate also did not prove peer acceptance. Test cleanup then rejected the unobserved pending read, producing test-owned unhandledRejection.",
+    "correction": "localServer now exposes the actual accepted socket Promise. Await it, register peer close event, then start/cancel read and await both rejection and peer close. Attach a pending-read rejection handler for setup/assertion failure cleanup. No production behavior weakened."
+  }
+}

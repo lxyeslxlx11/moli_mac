@@ -1,0 +1,78 @@
+{
+  "schema": "moli.physical-specials-corrections-stage207.v1",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "runtime_correction": {
+    "category": 266,
+    "path": "direct pair",
+    "before": "147 absent",
+    "after": "147 before53",
+    "native": "424310 at4244d4..4244fc",
+    "independent_reference_corrected": true,
+    "original_authored_assets_changed": false,
+    "inputs_changed": false,
+    "changed_queue_rows": 802,
+    "changed_traces": [
+      "class266-level0",
+      "class266-level9"
+    ]
+  },
+  "retained206_reference_unchanged": true,
+  "reference_receipt": "build/analysis/game-battle-physical-specials-v1/reference-correction-receipts.json",
+  "historical206_source_verifier_archive_view": [
+    "analysis/game-battle-physical-family-runtime-v1/generate_vectors.py"
+  ],
+  "test_only_corrections": [
+    {
+      "log": "build/analysis/game-battle-physical-specials-v1/focused.log",
+      "issue": "A deleted tile may remain during slow-gated passes;assert100 draws only on first deletion transition,not every retained snapshot."
+    },
+    {
+      "log": "build/analysis/game-battle-physical-specials-v1/focused.log",
+      "issue": "Forced72/113 pair fixture with flag1 needs nested record;use valid flag0 fixture to test unported producer rejection."
+    }
+  ],
+  "original_execution": false,
+  "official_sessions": false,
+  "verification_snapshot_scope_correction": {
+    "original_snapshot_preserved": true,
+    "total_identities": 2041,
+    "immutable_code_test_fixture_identities": 2040,
+    "documentation_metadata": [
+      "analysis/protocol-v2/spec-matrix.json"
+    ],
+    "pre_document_update_verification": {
+      "path": "build/analysis/game-battle-physical-specials-v1/input-validation-before-docs.json",
+      "bytes": 442,
+      "sha256": "c05f282de8b9dec1bb0c802119ed99ac9e8a0c29367064652219dcf942b62ac0"
+    },
+    "reason": "Broad snapshot included the documentation matrix. Verify it unchanged before finalization,and verify its exact prior rows plus one append separately after finalization. It is not a runtime/build/test input;rg over shared/web/adapters/tools found no references."
+  },
+  "focused_first_run": {
+    "log": {
+      "path": "build/analysis/game-battle-physical-specials-v1/focused.log",
+      "bytes": 4166,
+      "sha256": "7e5b02a19f16ad0e7c59149be6bfc310e56e867423df4ea10f30ccb7dec0671c"
+    },
+    "tests": 13,
+    "pass_count": 11,
+    "fail": 2,
+    "production_change": false
+  },
+  "focused_corrective_run": {
+    "log": {
+      "path": "build/analysis/game-battle-physical-specials-v1/focused-corrected.log",
+      "bytes": 506,
+      "sha256": "7dbc71966f620312a460ca293733f895fb84df914ccc6ea60b595e1f6f4aa3fa"
+    },
+    "tests": 2,
+    "pass": 2,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "production_change": false
+  }
+}

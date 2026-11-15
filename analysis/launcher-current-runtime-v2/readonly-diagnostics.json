@@ -1,0 +1,47 @@
+{
+  "schema": "moli.launcher-current-runtime-v2.readonly-diagnostics.v1",
+  "recorded_utc": "2026-10-28T11:46:30.439049+00:00",
+  "evidence_method": "fresh CUA guest screenshot/result reading; controlled summaries only; no raw logs/screenshots saved",
+  "pending_log_prefix": {
+    "command": "[BitConverter]::ToString(([Security.Cryptography.SHA256]::Create()).ComputeHash($log87,0,619))",
+    "execution": "original pending readonly line submitted once after ordinary input recovered",
+    "input_source": "$log87 array previously loaded in stage87; not a fresh on-disk read this stage",
+    "prefix_bytes": 619,
+    "observed_sha256": "94516f20d2f6aa698570e88755639296f79821a71c31a6c674079fad88914687",
+    "initial_619byte_file_sha256": "c5f0f478115a770fd4afe906465d6bb136e40f645535ce0fcf4335b83494371b",
+    "equal": false,
+    "conclusion": "does not support exact old-file-prefix preservation/append assertion",
+    "footer_rewriting": "hypothesis only, unverified; not assigned as cause"
+  },
+  "dll_checks": [
+    {
+      "command": "Get-Item C:/Windows/SysWOW64/mfc71.dll,C:/Windows/SysWOW64/msvcp71.dll,C:/Windows/SysWOW64/msvcr71.dll",
+      "status": "input corrupted before submission; full line visually rejected and Ctrl+C canceled",
+      "submitted": false
+    },
+    {
+      "command": "Get-Item C:/Windows/SysWOW64/*71.dll",
+      "status": "completed, no objects between command and fresh prompt",
+      "force": false
+    },
+    {
+      "command": "Get-ChildItem -Force ./*71.dll",
+      "cwd": "C:\\MoliOffline\\launcher-probe",
+      "status": "completed, no objects between command and fresh prompt",
+      "force": true
+    }
+  ],
+  "limits": [
+    "System wildcard used no -Force; no global absence claim.",
+    "Only two specified directory queries, not complete Windows loader search, registry/PATH, live child-loader or dependency diagnostics.",
+    "No DLL installed/executed; no attributes/policy/network/security changed.",
+    "No proof that missing MFC libraries or ReadOnly caused the historical updater failure."
+  ],
+  "ui_capability_errors": [
+    "Direct Qt connect-image submenu AX click: invalidUIElement, no mutation.",
+    "Fullscreen hidden optical-toolbar AX click: failure, no mutation.",
+    "Windowed native optical menu then exact Mac Open path: actual mount succeeded.",
+    "A screenshot output exceeded model context: output truncation only, no command resubmission."
+  ],
+  "terminal_final_state": "known PowerShell prompt, no pending text submitted or candidate process launched by this stage"
+}

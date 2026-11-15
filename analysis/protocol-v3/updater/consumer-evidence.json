@@ -1,0 +1,615 @@
+{
+  "schema": "moli.updater.consumer.static-evidence.v1",
+  "sample": {
+    "name": "LauncherUpdater.unpacked.exe",
+    "source_path": "/tmp/moli-analysis/polcn/LauncherUpdater.unpacked.exe",
+    "sha256": "62dbd66e6eac296862e214a2d92e5332b87cd811bb4f555dd5d49fe8e426b0a4",
+    "size_bytes": 86016,
+    "architecture": "PE32/i386",
+    "image_base": "0x400000"
+  },
+  "upstream": {
+    "packed_embedded_updater_sha256": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+    "unpacked_launcher_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "producer_evidence": "../../protocol-v2/updater-argument-provenance.json",
+    "producer_template_va": "0x4b1ad4",
+    "producer_template": "LauncherUpdater.exe %d %s %s %s %s"
+  },
+  "tools": {
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "Rizin": "0.9.1",
+    "GNU objdump": "2.47.20260726"
+  },
+  "tool_execution": {
+    "initial_status": "failed",
+    "initial_reason": "sandbox denied standard Swift/Clang module cache writes at /Users/lx/.cache/clang/ModuleCache",
+    "retry_status": "succeeded after specific require_escalated execution approval for static REA commands",
+    "configuration_changes": false,
+    "target_executed": false,
+    "network_contacted": false
+  },
+  "rea_sources": [
+    {
+      "temporary_file": "updater-ghidra-overview-v3-authorized.json",
+      "sha256": "33cdf6a0f7d9036b0bc1fea26671d4671313872536b2a8e00d755478c69976a3",
+      "evidence_id": "ev_9da82d697588baa40a34912bdae2b20e80128829cd9626e7f70e8871a748c746",
+      "provider": {
+        "id": "rea-workflow",
+        "name": "REA composed investigation workflow",
+        "version": "1"
+      },
+      "inventory": {
+        "procedures": 499,
+        "defined_strings": 312
+      }
+    },
+    {
+      "temporary_file": "updater-consumer-function-v3.json",
+      "sha256": "9df5ea0d2acc1795df3b55b4f0bd7971f8dfa7463000eeb72bea1e7fad55c98c",
+      "evidence_id": "ev_7ab9a567815cb07f2f231a52bb23b0ba9c540595119674957c8e9d4a5c2ecc42",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "procedure": {
+        "name": "FUN_00401180",
+        "address": "0x401180",
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x401180",
+              "end": "0x401788"
+            },
+            {
+              "start": "0x401790",
+              "end": "0x401a06"
+            }
+          ],
+          "total_bytes": 2176,
+          "span_bytes": 2183,
+          "non_contiguous": true,
+          "contains_entry": true
+        }
+      },
+      "value_flow": {
+        "truncated": true,
+        "operation_count": 3000,
+        "omitted_operations_lower_bound": 1
+      },
+      "unresolved_call_count": 10
+    },
+    {
+      "temporary_file": "updater-digest-function-v3.json",
+      "sha256": "ee151b1f4e0a3ea24ceb10bbb401a81c0658d6375d7f9d6aec3b99ebc5e81bd9",
+      "evidence_id": "ev_d75e92f111f6d0ba6b6f22a9e5caad97bc318bb34b2cc939f9206c4991094ef2",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "procedure": {
+        "name": "FUN_00404310",
+        "address": "0x404310",
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x404310",
+              "end": "0x4043cf"
+            }
+          ],
+          "total_bytes": 192,
+          "span_bytes": 192,
+          "non_contiguous": false,
+          "contains_entry": true
+        }
+      },
+      "value_flow": {
+        "truncated": false,
+        "operation_count": 108,
+        "omitted_operations_lower_bound": 0
+      },
+      "unresolved_call_count": 1
+    }
+  ],
+  "slots": [
+    {
+      "slot": 1,
+      "raw_ebp_buffer": "-0x138",
+      "role": "opaque wait identifier",
+      "status": "observed",
+      "observed": "atoi result goes to OpenProcess third parameter; producer obtains GetWindowThreadProcessId return",
+      "anchor_ids": [
+        "TOKEN1-EXTRACT",
+        "TOKEN1-ATOI",
+        "TOKEN1-NONZERO"
+      ],
+      "limits": "Not established as correct process ID or successful synchronization; see lifecycle WAIT-ARGS anomaly"
+    },
+    {
+      "slot": 2,
+      "raw_ebp_buffer": "-0x338",
+      "role": "download locator",
+      "status": "observed",
+      "observed": "CString pipe-to-space result used by OpenURL",
+      "anchor_ids": [
+        "TOKEN2-EXTRACT",
+        "TOKEN2-PIPE-DECODE",
+        "OPEN-URL"
+      ],
+      "limits": "Manifest content, URL policy, response authenticity, encoding and current availability unverified"
+    },
+    {
+      "slot": 3,
+      "raw_ebp_buffer": "-0x538",
+      "role": "local replacement/restart target",
+      "status": "observed",
+      "observed": "CString pipe-to-space result used as DeleteFile/CopyFile destination and restart format operand",
+      "anchor_ids": [
+        "TOKEN3-EXTRACT",
+        "TOKEN3-PIPE-DECODE"
+      ],
+      "limits": "Path quoting, rollback, filesystem failures and runtime behavior unverified"
+    },
+    {
+      "slot": 4,
+      "raw_ebp_buffer": "-0x238",
+      "role": "download progress denominator",
+      "status": "observed",
+      "observed": "atoi result stored EBP-0xd54, used in accumulatedBytes*100/slot4 and display",
+      "anchor_ids": [
+        "TOKEN4-EXTRACT",
+        "TOKEN4-ATOI",
+        "TOKEN4-NONZERO"
+      ],
+      "limits": "Expected download byte total is inferred; no exact final-length equality observed in inspected loop"
+    },
+    {
+      "slot": 5,
+      "raw_ebp_buffer": "-0x38",
+      "role": "expected output digest text",
+      "status": "observed",
+      "observed": "ASCII uppercasing then CString comparison with digest helper output on .new; zero comparison gates replacement",
+      "anchor_ids": [
+        "TOKEN5-EXTRACT",
+        "TOKEN5-NONEMPTY"
+      ],
+      "limits": "MD5 identity inferred; no claim of cryptographic authenticity, complete grammar or secure update transport"
+    }
+  ],
+  "anchors": [
+    {
+      "id": "COMMAND-TEXT-GLOBAL",
+      "kind": "bytes",
+      "va": "0x401210",
+      "file_offset": "0x1210",
+      "expected": "a1 10 14 41 00",
+      "observation": "Raw string pointer read from DAT411410; source assignment not fully traced"
+    },
+    {
+      "id": "TEXT-STRING-CONSTRUCT",
+      "kind": "iat_call",
+      "va": "0x40121c",
+      "file_offset": "0x121c",
+      "expected": {
+        "iat_va": "0x40b3ac",
+        "dll": "MSVCP71.dll",
+        "name": "??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@PBD@Z"
+      },
+      "observation": ""
+    },
+    {
+      "id": "TEXT-STREAM-CONSTRUCT",
+      "kind": "iat_call",
+      "va": "0x40123a",
+      "file_offset": "0x123a",
+      "expected": {
+        "iat_va": "0x40b3a0",
+        "dll": "MSVCP71.dll",
+        "name": "??0?$basic_istringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@H@Z"
+      },
+      "observation": ""
+    },
+    {
+      "id": "EXTRACTOR-IAT-LOAD",
+      "kind": "bytes",
+      "va": "0x401250",
+      "file_offset": "0x1250",
+      "expected": "8b 35 a4 b3 40 00",
+      "observation": "ESI loads std::operator>>(istream&,char*) IAT"
+    },
+    {
+      "id": "TOKEN5-BUFFER",
+      "kind": "bytes",
+      "va": "0x401256",
+      "file_offset": "0x1256",
+      "expected": "8d 55 c8",
+      "observation": "EBP-0x38 destination; token order comes from chained stack calls"
+    },
+    {
+      "id": "TOKEN4-BUFFER",
+      "kind": "bytes",
+      "va": "0x40125a",
+      "file_offset": "0x125a",
+      "expected": "8d 85 c8 fd ff ff",
+      "observation": "EBP-0x238 destination; token order comes from chained stack calls"
+    },
+    {
+      "id": "TOKEN3-BUFFER",
+      "kind": "bytes",
+      "va": "0x401261",
+      "file_offset": "0x1261",
+      "expected": "8d 8d c8 fa ff ff",
+      "observation": "EBP-0x538 destination; token order comes from chained stack calls"
+    },
+    {
+      "id": "TOKEN2-BUFFER",
+      "kind": "bytes",
+      "va": "0x401268",
+      "file_offset": "0x1268",
+      "expected": "8d 95 c8 fc ff ff",
+      "observation": "EBP-0x338 destination; token order comes from chained stack calls"
+    },
+    {
+      "id": "TOKEN1-BUFFER",
+      "kind": "bytes",
+      "va": "0x40126f",
+      "file_offset": "0x126f",
+      "expected": "8d 85 c8 fe ff ff",
+      "observation": "EBP-0x138 destination; token order comes from chained stack calls"
+    },
+    {
+      "id": "TOKEN1-EXTRACT",
+      "kind": "bytes",
+      "va": "0x40127d",
+      "file_offset": "0x127d",
+      "expected": "ff d6",
+      "observation": "Chained stream extractor call 1"
+    },
+    {
+      "id": "TOKEN2-EXTRACT",
+      "kind": "bytes",
+      "va": "0x401283",
+      "file_offset": "0x1283",
+      "expected": "ff d6",
+      "observation": "Chained stream extractor call 2"
+    },
+    {
+      "id": "TOKEN3-EXTRACT",
+      "kind": "bytes",
+      "va": "0x401289",
+      "file_offset": "0x1289",
+      "expected": "ff d6",
+      "observation": "Chained stream extractor call 3"
+    },
+    {
+      "id": "TOKEN4-EXTRACT",
+      "kind": "bytes",
+      "va": "0x40128f",
+      "file_offset": "0x128f",
+      "expected": "ff d6",
+      "observation": "Chained stream extractor call 4"
+    },
+    {
+      "id": "TOKEN5-EXTRACT",
+      "kind": "bytes",
+      "va": "0x401295",
+      "file_offset": "0x1295",
+      "expected": "ff d6",
+      "observation": "Chained stream extractor call 5"
+    },
+    {
+      "id": "ATOI-IAT-LOAD",
+      "kind": "bytes",
+      "va": "0x401297",
+      "file_offset": "0x1297",
+      "expected": "8b 35 fc b3 40 00",
+      "observation": "ESI=atoi imported from MSVCR71.dll"
+    },
+    {
+      "id": "TOKEN1-ATOI",
+      "kind": "bytes",
+      "va": "0x4012a4",
+      "file_offset": "0x12a4",
+      "expected": "ff d6 8b f8",
+      "observation": "atoi(token1) then EDI=return"
+    },
+    {
+      "id": "TOKEN4-ATOI",
+      "kind": "bytes",
+      "va": "0x4012af",
+      "file_offset": "0x12af",
+      "expected": "ff d6",
+      "observation": "atoi(token4)"
+    },
+    {
+      "id": "TOKEN2-CSTRING",
+      "kind": "iat_call",
+      "va": "0x4012c9",
+      "file_offset": "0x12c9",
+      "expected": {
+        "iat_va": "0x40b120",
+        "dll": "MFC71.DLL",
+        "ordinal": 304
+      },
+      "observation": "CString constructor; destination EBP-0xd4c"
+    },
+    {
+      "id": "TOKEN3-CSTRING",
+      "kind": "iat_call",
+      "va": "0x4012e0",
+      "file_offset": "0x12e0",
+      "expected": {
+        "iat_va": "0x40b120",
+        "dll": "MFC71.DLL",
+        "ordinal": 304
+      },
+      "observation": "CString constructor; destination EBP-0xd48"
+    },
+    {
+      "id": "TOKEN2-PIPE-DECODE",
+      "kind": "iat_call",
+      "va": "0x4012fa",
+      "file_offset": "0x12fa",
+      "expected": {
+        "iat_va": "0x40b11c",
+        "dll": "MFC71.DLL",
+        "ordinal": 5491
+      },
+      "observation": "CString Replace annotation from Rizin/Ghidra; old/new stack literals corroborate direction"
+    },
+    {
+      "id": "TOKEN3-PIPE-DECODE",
+      "kind": "iat_call",
+      "va": "0x401310",
+      "file_offset": "0x1310",
+      "expected": {
+        "iat_va": "0x40b11c",
+        "dll": "MFC71.DLL",
+        "ordinal": 5491
+      },
+      "observation": "CString Replace annotation from Rizin/Ghidra; old/new stack literals corroborate direction"
+    },
+    {
+      "id": "TOKEN2-REPLACE-ARGS",
+      "kind": "bytes",
+      "va": "0x4012ea",
+      "file_offset": "0x12ea",
+      "expected": "68 b0 b8 40 00 68 ac b8 40 00",
+      "observation": "Push new space then old pipe for CString Replace"
+    },
+    {
+      "id": "TOKEN3-REPLACE-ARGS",
+      "kind": "bytes",
+      "va": "0x401300",
+      "file_offset": "0x1300",
+      "expected": "68 b0 b8 40 00 68 ac b8 40 00",
+      "observation": "Push new space then old pipe for CString Replace"
+    },
+    {
+      "id": "PIPE-LITERAL",
+      "kind": "ascii_literal",
+      "va": "0x40b8ac",
+      "file_offset": "0xb8ac",
+      "expected": "|",
+      "observation": "Old text"
+    },
+    {
+      "id": "SPACE-LITERAL",
+      "kind": "ascii_literal",
+      "va": "0x40b8b0",
+      "file_offset": "0xb8b0",
+      "expected": " ",
+      "observation": "New text"
+    },
+    {
+      "id": "TOKEN1-NONZERO",
+      "kind": "bytes",
+      "va": "0x401316",
+      "file_offset": "0x1316",
+      "expected": "85 ff 0f 86 a3 07 00 00",
+      "observation": "TEST/JBE rejects zero; not a signed-positive validation"
+    },
+    {
+      "id": "TOKEN4-NONZERO",
+      "kind": "bytes",
+      "va": "0x401369",
+      "file_offset": "0x1369",
+      "expected": "85 f6 0f 86 50 07 00 00",
+      "observation": "TEST/JBE rejects zero; not a signed-positive validation"
+    },
+    {
+      "id": "TOKEN5-NONEMPTY",
+      "kind": "bytes",
+      "va": "0x401386",
+      "file_offset": "0x1386",
+      "expected": "0f 84 35 07 00 00",
+      "observation": "After byte-string length loop, zero length goes to invalid arguments"
+    },
+    {
+      "id": "URL-FLAGS",
+      "kind": "bytes",
+      "va": "0x401459",
+      "file_offset": "0x1459",
+      "expected": "6a 00 6a 00 68 02 00 00 84",
+      "observation": "OpenURL arguments include flags 0x84000002, NULL headers, zero header length"
+    },
+    {
+      "id": "OPEN-URL",
+      "kind": "direct_call",
+      "va": "0x40147a",
+      "file_offset": "0x147a",
+      "expected": {
+        "target_va": "0x409452"
+      },
+      "observation": "Ghidra resolves thunk as CInternetSession::OpenURL; source token2 CString"
+    },
+    {
+      "id": "HTTP-STATUS-QUERY",
+      "kind": "direct_call",
+      "va": "0x4014c1",
+      "file_offset": "0x14c1",
+      "expected": {
+        "target_va": "0x409446"
+      },
+      "observation": "Ghidra resolves thunk as CHttpFile::QueryInfoStatusCode"
+    },
+    {
+      "id": "HTTP-STATUS-QUERY-FAIL-BRANCH",
+      "kind": "bytes",
+      "va": "0x4014c6",
+      "file_offset": "0x14c6",
+      "expected": "85 c0 74 53",
+      "observation": "False query result continues download path at40151d"
+    },
+    {
+      "id": "HTTP-STATUS-THRESHOLD",
+      "kind": "bytes",
+      "va": "0x4014d0",
+      "file_offset": "0x14d0",
+      "expected": "3d 90 01 00 00 72 46",
+      "observation": "Successful query status<400 continues; other statuses take error path"
+    },
+    {
+      "id": "DIGEST-IV-A",
+      "kind": "bytes",
+      "va": "0x404360",
+      "file_offset": "0x4360",
+      "expected": "c7 45 dc 01 23 45 67",
+      "observation": "Observed initialization constant; MD5 algorithm identity remains inferred pending rounds/format audit"
+    },
+    {
+      "id": "DIGEST-IV-B",
+      "kind": "bytes",
+      "va": "0x404367",
+      "file_offset": "0x4367",
+      "expected": "c7 45 e0 89 ab cd ef",
+      "observation": "Observed initialization constant; MD5 algorithm identity remains inferred pending rounds/format audit"
+    },
+    {
+      "id": "DIGEST-IV-C",
+      "kind": "bytes",
+      "va": "0x40436e",
+      "file_offset": "0x436e",
+      "expected": "c7 45 e4 fe dc ba 98",
+      "observation": "Observed initialization constant; MD5 algorithm identity remains inferred pending rounds/format audit"
+    },
+    {
+      "id": "DIGEST-IV-D",
+      "kind": "bytes",
+      "va": "0x404375",
+      "file_offset": "0x4375",
+      "expected": "c7 45 e8 76 54 32 10",
+      "observation": "Observed initialization constant; MD5 algorithm identity remains inferred pending rounds/format audit"
+    },
+    {
+      "id": "DIGEST-READ-SIZE",
+      "kind": "bytes",
+      "va": "0x404385",
+      "file_offset": "0x4385",
+      "expected": "68 00 04 00 00",
+      "observation": "Read block size0x400"
+    },
+    {
+      "id": "DIGEST-UPDATE",
+      "kind": "direct_call",
+      "va": "0x4043a5",
+      "file_offset": "0x43a5",
+      "expected": {
+        "target_va": "0x4040a0"
+      },
+      "observation": "Read bytes and returned count passed to update helper"
+    },
+    {
+      "id": "DIGEST-FINALIZE",
+      "kind": "direct_call",
+      "va": "0x4043b0",
+      "file_offset": "0x43b0",
+      "expected": {
+        "target_va": "0x404160"
+      },
+      "observation": "Finalization/string helper; internals not fully audited"
+    }
+  ],
+  "reviewed_ranges": [
+    {
+      "id": "consumer-parse",
+      "start_va": "0x401210",
+      "end_va_exclusive": "0x40138c",
+      "start_file_offset": "0x1210",
+      "sha256": "a667a1686fd6b0adb77c189a86a96c61bf5b912ad24b78dcb717ac7d50a6a01d"
+    },
+    {
+      "id": "http-open-status",
+      "start_va": "0x401459",
+      "end_va_exclusive": "0x4014d7",
+      "start_file_offset": "0x1459",
+      "sha256": "182b3c3488cb55078731b625787eddd503956e3e622e7b20115290f89ce6e596"
+    },
+    {
+      "id": "digest-helper",
+      "start_va": "0x404310",
+      "end_va_exclusive": "0x4043d0",
+      "start_file_offset": "0x4310",
+      "sha256": "a0bc0a716f432374271e87236eb4fd1db32e8a65116dd046f7eac43afe495658"
+    }
+  ],
+  "observations": [
+    {
+      "id": "UPD-CONSUME-001",
+      "status": "observed",
+      "summary": "Five chained standard char* stream extractions; not demonstrated as direct OS argv parsing",
+      "anchors": [
+        "COMMAND-TEXT-GLOBAL",
+        "TEXT-STREAM-CONSTRUCT",
+        "EXTRACTOR-IAT-LOAD"
+      ]
+    },
+    {
+      "id": "UPD-CONSUME-002",
+      "status": "observed",
+      "summary": "Only slots2 and3 receive pipe-to-space substitution; quoting grammar is not present in the observed stream extraction",
+      "anchors": [
+        "TOKEN2-PIPE-DECODE",
+        "TOKEN3-PIPE-DECODE",
+        "PIPE-LITERAL",
+        "SPACE-LITERAL"
+      ]
+    },
+    {
+      "id": "UPD-HTTP-STATUS-001",
+      "status": "observed",
+      "summary": "If status query succeeds, status>=400 errors; query-false and status<400 paths proceed. Does not prove server or success content.",
+      "anchors": [
+        "HTTP-STATUS-QUERY-FAIL-BRANCH",
+        "HTTP-STATUS-THRESHOLD"
+      ]
+    },
+    {
+      "id": "UPD-DIGEST-IDENTITY-001",
+      "status": "inferred",
+      "summary": "Four IV constants and update/finalize structure are consistent with MD5; complete algorithm, output formatting and test vector acceptance not proved",
+      "anchors": [
+        "DIGEST-IV-A",
+        "DIGEST-IV-B",
+        "DIGEST-IV-C",
+        "DIGEST-IV-D",
+        "DIGEST-UPDATE",
+        "DIGEST-FINALIZE"
+      ]
+    }
+  ],
+  "limits": [
+    "Full raw REA dossiers and assembly remain temporary local material; this file contains original observations and short verification anchors only.",
+    "Consumer Ghidra high p-code is truncated at3000 operations, 10 unresolved calls; lifecycle error tails beyond401a06 corroborated by direct disassembly.",
+    "No visible extraction width/stream state checks in inspected parse block; no behavior established for malformed, oversized, negative, overflow, extra or quoted tokens.",
+    "No target execution, response download, account access or official compatibility test occurred.",
+    "Named PE imports are verifiable; MFC ordinal semantic labels are attributed to Rizin/Ghidra.",
+    "Game protocol frame boundaries, authentication, session tickets and login compatibility are not established by this updater path."
+  ]
+}

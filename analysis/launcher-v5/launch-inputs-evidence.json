@@ -1,0 +1,762 @@
+{
+  "scope": "Final bounded launcher-side argv/IPC provenance. Static disk bytes only; no runtime values, account/token/shared-memory read or target execution. Not a wire-protocol codec.",
+  "sample": {
+    "name": "POLCN_Launcher.unpacked.exe",
+    "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31"
+  },
+  "sources": {
+    "cache": "REA6.7.0/Ghidra12.1.4 existing catalog and launch dossiers; GNU objdump2.47.20260726",
+    "launch_evidence_id": "ev_dbedcd398f62cfc0101d98d128add039c7a90461c7435bb3b9077cb713da935e",
+    "catalog_evidence_id": "ev_4ea494bd8b8e5faa814b6cf1b3bee5baca6625e3e7de0fc364901b54a7ee8e17"
+  },
+  "anchors": [
+    {
+      "id": "Arglist_tag",
+      "va": "0x402cbf",
+      "file_offset": "0x20bf",
+      "expected_hex": "6880204b00"
+    },
+    {
+      "id": "Args_tag",
+      "va": "0x402cf1",
+      "file_offset": "0x20f1",
+      "expected_hex": "6888204b00"
+    },
+    {
+      "id": "Args_Gamecode_attribute",
+      "va": "0x402d3a",
+      "file_offset": "0x213a",
+      "expected_hex": "6890204b00"
+    },
+    {
+      "id": "Args_indexed_destination",
+      "va": "0x402db1",
+      "file_offset": "0x21b1",
+      "expected_hex": "8d4c9158"
+    },
+    {
+      "id": "Galaxylist_tag",
+      "va": "0x402dd4",
+      "file_offset": "0x21d4",
+      "expected_hex": "68a4204b00"
+    },
+    {
+      "id": "Galaxy_text_destination",
+      "va": "0x402fed",
+      "file_offset": "0x23ed",
+      "expected_hex": "8d8c0818010000"
+    },
+    {
+      "id": "selected_Args_source",
+      "va": "0x405f5f",
+      "file_offset": "0x535f",
+      "expected_hex": "8d548a58"
+    },
+    {
+      "id": "selected_Args_destination",
+      "va": "0x405f67",
+      "file_offset": "0x5367",
+      "expected_hex": "81c1481b0000"
+    },
+    {
+      "id": "selected_Galaxy_source",
+      "va": "0x4060e5",
+      "file_offset": "0x54e5",
+      "expected_hex": "8d841118010000"
+    },
+    {
+      "id": "selected_Galaxy_destination",
+      "va": "0x4060f0",
+      "file_offset": "0x54f0",
+      "expected_hex": "81c14c1b0000"
+    },
+    {
+      "id": "EXE_argv_source",
+      "va": "0x407e25",
+      "file_offset": "0x7225",
+      "expected_hex": "81c21c1b0000"
+    },
+    {
+      "id": "Argsline_accessor",
+      "va": "0x407e69",
+      "file_offset": "0x7269",
+      "expected_hex": "e872110000"
+    },
+    {
+      "id": "Argsline_field",
+      "va": "0x408ff9",
+      "file_offset": "0x83f9",
+      "expected_hex": "8d840a601b0000"
+    },
+    {
+      "id": "conditional_Args_branch",
+      "va": "0x407e8d",
+      "file_offset": "0x728d",
+      "expected_hex": "7522",
+      "branch_target": "0x407eb1"
+    },
+    {
+      "id": "conditional_Galaxy_branch",
+      "va": "0x407ec7",
+      "file_offset": "0x72c7",
+      "expected_hex": "7522",
+      "branch_target": "0x407eeb"
+    },
+    {
+      "id": "number_radix",
+      "va": "0x407eeb",
+      "file_offset": "0x72eb",
+      "expected_hex": "6a20"
+    },
+    {
+      "id": "number_source",
+      "va": "0x407efa",
+      "file_offset": "0x72fa",
+      "expected_hex": "8b8898120000"
+    },
+    {
+      "id": "number_zero_high",
+      "va": "0x407f00",
+      "file_offset": "0x7300",
+      "expected_hex": "33d2"
+    },
+    {
+      "id": "number_convert",
+      "va": "0x407f04",
+      "file_offset": "0x7304",
+      "expected_hex": "e85e5e0400"
+    },
+    {
+      "id": "gid_label",
+      "va": "0x407f0c",
+      "file_offset": "0x730c",
+      "expected_hex": "687c2a4b00"
+    },
+    {
+      "id": "gid_source_offset",
+      "va": "0x407f27",
+      "file_offset": "0x7327",
+      "expected_hex": "05ed0e0000"
+    },
+    {
+      "id": "glt_label",
+      "va": "0x407f35",
+      "file_offset": "0x7335",
+      "expected_hex": "68842a4b00"
+    },
+    {
+      "id": "glt_source_offset",
+      "va": "0x407f4c",
+      "file_offset": "0x734c",
+      "expected_hex": "05cc0e0000"
+    },
+    {
+      "id": "number_separator",
+      "va": "0x407f5a",
+      "file_offset": "0x735a",
+      "expected_hex": "688c2a4b00"
+    },
+    {
+      "id": "number_append",
+      "va": "0x407f71",
+      "file_offset": "0x7371",
+      "expected_hex": "e8ba100000"
+    },
+    {
+      "id": "IPC_trailing_space",
+      "va": "0x407f76",
+      "file_offset": "0x7376",
+      "expected_hex": "68902a4b00"
+    },
+    {
+      "id": "global_object_pointer",
+      "va": "0x408faa",
+      "file_offset": "0x83aa",
+      "expected_hex": "8b88a8000000"
+    },
+    {
+      "id": "object_adjustment",
+      "va": "0x408fca",
+      "file_offset": "0x83ca",
+      "expected_hex": "05e8000000"
+    },
+    {
+      "id": "enumeration_first_api",
+      "va": "0x43364b",
+      "file_offset": "0x32a4b",
+      "expected_hex": "ff1574134b00",
+      "api": "FindFirstFileA"
+    },
+    {
+      "id": "enumeration_next_api",
+      "va": "0x43329e",
+      "file_offset": "0x3269e",
+      "expected_hex": "ff1570124b00",
+      "api": "FindNextFileA"
+    },
+    {
+      "id": "resource_return_to_argv",
+      "va": "0x40836e",
+      "file_offset": "0x776e",
+      "expected_hex": "e89d0c0000"
+    },
+    {
+      "id": "IPC_copy_source_local2c",
+      "va": "0x4084d2",
+      "file_offset": "0x78d2",
+      "expected_hex": "8d4dd4"
+    },
+    {
+      "id": "IPC_copy_destination",
+      "va": "0x4084db",
+      "file_offset": "0x78db",
+      "expected_hex": "8b95f0feffff"
+    },
+    {
+      "id": "IPC_copy_call",
+      "va": "0x4084e2",
+      "file_offset": "0x78e2",
+      "expected_hex": "e819570400"
+    },
+    {
+      "id": "gid_selected_list_source",
+      "va": "0x411c57",
+      "file_offset": "0x11057",
+      "expected_hex": "8d8c8aa0110000"
+    },
+    {
+      "id": "gid_copy_call",
+      "va": "0x411c70",
+      "file_offset": "0x11070",
+      "expected_hex": "e88bbf0300"
+    },
+    {
+      "id": "glt_buffer_clear",
+      "va": "0x4136bb",
+      "file_offset": "0x12abb",
+      "expected_hex": "e8b09e0300"
+    },
+    {
+      "id": "glt_source_byte",
+      "va": "0x4136fe",
+      "file_offset": "0x12afe",
+      "expected_hex": "8a11"
+    },
+    {
+      "id": "glt_dest_byte",
+      "va": "0x413700",
+      "file_offset": "0x12b00",
+      "expected_hex": "8890b00d0000"
+    },
+    {
+      "id": "glt_nul",
+      "va": "0x413711",
+      "file_offset": "0x12b11",
+      "expected_hex": "c680b00d000000"
+    },
+    {
+      "id": "gid_array_input_start",
+      "va": "0x413936",
+      "file_offset": "0x12d36",
+      "expected_hex": "8b4510"
+    },
+    {
+      "id": "gid_array_store",
+      "va": "0x413950",
+      "file_offset": "0x12d50",
+      "expected_hex": "e8bb83ffff"
+    },
+    {
+      "id": "number_argument8",
+      "va": "0x413e15",
+      "file_offset": "0x13215",
+      "expected_hex": "8b4524"
+    },
+    {
+      "id": "number_transform",
+      "va": "0x413e18",
+      "file_offset": "0x13218",
+      "expected_hex": "2d00000080"
+    },
+    {
+      "id": "number_destination",
+      "va": "0x413e23",
+      "file_offset": "0x13223",
+      "expected_hex": "89817c110000"
+    },
+    {
+      "id": "callback_UI_alias",
+      "va": "0x41a084",
+      "file_offset": "0x19484",
+      "expected_hex": "051c010000"
+    },
+    {
+      "id": "callback_argument_transfer",
+      "va": "0x41a08b",
+      "file_offset": "0x1948b",
+      "expected_hex": "e81093ffff"
+    },
+    {
+      "id": "galaxy_count_zero",
+      "va": "0x402e3c",
+      "file_offset": "0x223c",
+      "expected_hex": "c78488d4000000"
+    },
+    {
+      "id": "galaxy_count_increment",
+      "va": "0x402f73",
+      "file_offset": "0x2373",
+      "expected_hex": "83c101"
+    },
+    {
+      "id": "galaxy_count_store",
+      "va": "0x402fb8",
+      "file_offset": "0x23b8",
+      "expected_hex": "898c90d4000000"
+    }
+  ],
+  "strings": [
+    {
+      "va": "0x4b2080",
+      "file_offset": "0xb1280",
+      "value": "Arglist"
+    },
+    {
+      "va": "0x4b2088",
+      "file_offset": "0xb1288",
+      "value": "Args"
+    },
+    {
+      "va": "0x4b2090",
+      "file_offset": "0xb1290",
+      "value": "Gamecode"
+    },
+    {
+      "va": "0x4b20a4",
+      "file_offset": "0xb12a4",
+      "value": "Galaxylist"
+    },
+    {
+      "va": "0x4b2a7c",
+      "file_offset": "0xb1c7c",
+      "value": "gid:"
+    },
+    {
+      "va": "0x4b2a84",
+      "file_offset": "0xb1c84",
+      "value": " glt:"
+    },
+    {
+      "va": "0x4b2a8c",
+      "file_offset": "0xb1c8c",
+      "value": ":"
+    },
+    {
+      "va": "0x4b2aa0",
+      "file_offset": "0xb1ca0",
+      "value": "%s\\Bin\\anime*.bin"
+    },
+    {
+      "va": "0x4b2ab4",
+      "file_offset": "0xb1cb4",
+      "value": "%s\\Bin\\graphic*.bin"
+    },
+    {
+      "va": "0x4b2ac8",
+      "file_offset": "0xb1cc8",
+      "value": "%s\\Bin\\Puk2\\anime*.bin"
+    },
+    {
+      "va": "0x4b2ae0",
+      "file_offset": "0xb1ce0",
+      "value": "%s\\Bin\\Puk2\\graphic*.bin"
+    },
+    {
+      "va": "0x4b2afc",
+      "file_offset": "0xb1cfc",
+      "value": "%s\\Bin\\Puk3\\anime*.bin"
+    },
+    {
+      "va": "0x4b2b14",
+      "file_offset": "0xb1d14",
+      "value": "%s\\Bin\\Puk3\\graphic*.bin"
+    },
+    {
+      "va": "0x4b2b30",
+      "file_offset": "0xb1d30",
+      "value": "%s\\Bin\\coordinate*.bin"
+    }
+  ],
+  "catalog_observation": {
+    "sha256": "0c94ca78c40c1940f241940a97aabef7849e9ad3285310046f346b69128a8438",
+    "Code11_Args_count": 3,
+    "Galaxy_count": 0,
+    "Galaxylist_count": 0
+  },
+  "facts": [
+    "Argsline comes from selected game record +0x1b60.",
+    "Optional +0x1b48 comes from selected Region/Arglist/Args text indexed by Gamecode.",
+    "Optional +0x1b4c comes from selected Region/Galaxylist/Galaxy text; this fixed RegionList has no Galaxy/Galaxylist.",
+    "Seven Bin wildcard patterns are passed through resource enumeration before appending to command buffer EBP-0x80. FindFirstFileA/FindNextFileA calls are present; game semantics are not established.",
+    "A separate EBP-0x2c text uses gid:/ glt: labels, sources object+0xeed/+0xecc, colon and converted unsigned field+0x1298. Radix argument is 0x20; not base64 encoding.",
+    "CreateProcess argv is EBP-0x80; mapping copy uses EBP-0x2c. The IPC text must not be described as observed command-line authentication.",
+    "Readiness stage2 indexed parent+0x25c8+region*0x1c8+Gamecode*4 is populated as Galaxy entry count in the catalog loader (zero402e3c, increment402f73/store402fb8). Fixed catalog has zero Galaxy entries; this is a static configuration relation, not observed VM stage."
+  ],
+  "unknowns": [
+    "Actual values, validity/lifetime/server-issued meaning and game consumers remain unverified.",
+    "No proof of resource enumeration order, escaping/quoting equivalence across platforms, or complete launch prerequisites."
+  ],
+  "verification": {
+    "scope": "Static fixed-sample context only; no account/runtime values",
+    "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "all_passed": true,
+    "count": 50,
+    "anchors": [
+      {
+        "id": "Arglist_tag",
+        "va": "0x402cbf",
+        "file_offset": "0x20bf",
+        "passed": true
+      },
+      {
+        "id": "Args_tag",
+        "va": "0x402cf1",
+        "file_offset": "0x20f1",
+        "passed": true
+      },
+      {
+        "id": "Args_Gamecode_attribute",
+        "va": "0x402d3a",
+        "file_offset": "0x213a",
+        "passed": true
+      },
+      {
+        "id": "Args_indexed_destination",
+        "va": "0x402db1",
+        "file_offset": "0x21b1",
+        "passed": true
+      },
+      {
+        "id": "Galaxylist_tag",
+        "va": "0x402dd4",
+        "file_offset": "0x21d4",
+        "passed": true
+      },
+      {
+        "id": "Galaxy_text_destination",
+        "va": "0x402fed",
+        "file_offset": "0x23ed",
+        "passed": true
+      },
+      {
+        "id": "selected_Args_source",
+        "va": "0x405f5f",
+        "file_offset": "0x535f",
+        "passed": true
+      },
+      {
+        "id": "selected_Args_destination",
+        "va": "0x405f67",
+        "file_offset": "0x5367",
+        "passed": true
+      },
+      {
+        "id": "selected_Galaxy_source",
+        "va": "0x4060e5",
+        "file_offset": "0x54e5",
+        "passed": true
+      },
+      {
+        "id": "selected_Galaxy_destination",
+        "va": "0x4060f0",
+        "file_offset": "0x54f0",
+        "passed": true
+      },
+      {
+        "id": "EXE_argv_source",
+        "va": "0x407e25",
+        "file_offset": "0x7225",
+        "passed": true
+      },
+      {
+        "id": "Argsline_accessor",
+        "va": "0x407e69",
+        "file_offset": "0x7269",
+        "passed": true
+      },
+      {
+        "id": "Argsline_field",
+        "va": "0x408ff9",
+        "file_offset": "0x83f9",
+        "passed": true
+      },
+      {
+        "id": "conditional_Args_branch",
+        "va": "0x407e8d",
+        "file_offset": "0x728d",
+        "passed": true,
+        "branch_target": "0x407eb1"
+      },
+      {
+        "id": "conditional_Galaxy_branch",
+        "va": "0x407ec7",
+        "file_offset": "0x72c7",
+        "passed": true,
+        "branch_target": "0x407eeb"
+      },
+      {
+        "id": "number_radix",
+        "va": "0x407eeb",
+        "file_offset": "0x72eb",
+        "passed": true
+      },
+      {
+        "id": "number_source",
+        "va": "0x407efa",
+        "file_offset": "0x72fa",
+        "passed": true
+      },
+      {
+        "id": "number_zero_high",
+        "va": "0x407f00",
+        "file_offset": "0x7300",
+        "passed": true
+      },
+      {
+        "id": "number_convert",
+        "va": "0x407f04",
+        "file_offset": "0x7304",
+        "passed": true
+      },
+      {
+        "id": "gid_label",
+        "va": "0x407f0c",
+        "file_offset": "0x730c",
+        "passed": true
+      },
+      {
+        "id": "gid_source_offset",
+        "va": "0x407f27",
+        "file_offset": "0x7327",
+        "passed": true
+      },
+      {
+        "id": "glt_label",
+        "va": "0x407f35",
+        "file_offset": "0x7335",
+        "passed": true
+      },
+      {
+        "id": "glt_source_offset",
+        "va": "0x407f4c",
+        "file_offset": "0x734c",
+        "passed": true
+      },
+      {
+        "id": "number_separator",
+        "va": "0x407f5a",
+        "file_offset": "0x735a",
+        "passed": true
+      },
+      {
+        "id": "number_append",
+        "va": "0x407f71",
+        "file_offset": "0x7371",
+        "passed": true
+      },
+      {
+        "id": "IPC_trailing_space",
+        "va": "0x407f76",
+        "file_offset": "0x7376",
+        "passed": true
+      },
+      {
+        "id": "global_object_pointer",
+        "va": "0x408faa",
+        "file_offset": "0x83aa",
+        "passed": true
+      },
+      {
+        "id": "object_adjustment",
+        "va": "0x408fca",
+        "file_offset": "0x83ca",
+        "passed": true
+      },
+      {
+        "id": "enumeration_first_api",
+        "va": "0x43364b",
+        "file_offset": "0x32a4b",
+        "passed": true,
+        "iat": "0x4b1374",
+        "api": "FindFirstFileA",
+        "dll": "KERNEL32.DLL"
+      },
+      {
+        "id": "enumeration_next_api",
+        "va": "0x43329e",
+        "file_offset": "0x3269e",
+        "passed": true,
+        "iat": "0x4b1270",
+        "api": "FindNextFileA",
+        "dll": "KERNEL32.DLL"
+      },
+      {
+        "id": "resource_return_to_argv",
+        "va": "0x40836e",
+        "file_offset": "0x776e",
+        "passed": true
+      },
+      {
+        "id": "IPC_copy_source_local2c",
+        "va": "0x4084d2",
+        "file_offset": "0x78d2",
+        "passed": true
+      },
+      {
+        "id": "IPC_copy_destination",
+        "va": "0x4084db",
+        "file_offset": "0x78db",
+        "passed": true
+      },
+      {
+        "id": "IPC_copy_call",
+        "va": "0x4084e2",
+        "file_offset": "0x78e2",
+        "passed": true
+      },
+      {
+        "id": "gid_selected_list_source",
+        "va": "0x411c57",
+        "file_offset": "0x11057",
+        "passed": true
+      },
+      {
+        "id": "gid_copy_call",
+        "va": "0x411c70",
+        "file_offset": "0x11070",
+        "passed": true
+      },
+      {
+        "id": "glt_buffer_clear",
+        "va": "0x4136bb",
+        "file_offset": "0x12abb",
+        "passed": true
+      },
+      {
+        "id": "glt_source_byte",
+        "va": "0x4136fe",
+        "file_offset": "0x12afe",
+        "passed": true
+      },
+      {
+        "id": "glt_dest_byte",
+        "va": "0x413700",
+        "file_offset": "0x12b00",
+        "passed": true
+      },
+      {
+        "id": "glt_nul",
+        "va": "0x413711",
+        "file_offset": "0x12b11",
+        "passed": true
+      },
+      {
+        "id": "gid_array_input_start",
+        "va": "0x413936",
+        "file_offset": "0x12d36",
+        "passed": true
+      },
+      {
+        "id": "gid_array_store",
+        "va": "0x413950",
+        "file_offset": "0x12d50",
+        "passed": true
+      },
+      {
+        "id": "number_argument8",
+        "va": "0x413e15",
+        "file_offset": "0x13215",
+        "passed": true
+      },
+      {
+        "id": "number_transform",
+        "va": "0x413e18",
+        "file_offset": "0x13218",
+        "passed": true
+      },
+      {
+        "id": "number_destination",
+        "va": "0x413e23",
+        "file_offset": "0x13223",
+        "passed": true
+      },
+      {
+        "id": "callback_UI_alias",
+        "va": "0x41a084",
+        "file_offset": "0x19484",
+        "passed": true
+      },
+      {
+        "id": "callback_argument_transfer",
+        "va": "0x41a08b",
+        "file_offset": "0x1948b",
+        "passed": true
+      },
+      {
+        "id": "galaxy_count_zero",
+        "va": "0x402e3c",
+        "file_offset": "0x223c",
+        "passed": true
+      },
+      {
+        "id": "galaxy_count_increment",
+        "va": "0x402f73",
+        "file_offset": "0x2373",
+        "passed": true
+      },
+      {
+        "id": "galaxy_count_store",
+        "va": "0x402fb8",
+        "file_offset": "0x23b8",
+        "passed": true
+      }
+    ]
+  },
+  "negative_validation": [
+    {
+      "case": "wrong_identity",
+      "rejected": true,
+      "reason": "Sample hash mismatch; not a compatible-version claim"
+    },
+    {
+      "case": "truncated_pe",
+      "rejected": true,
+      "reason": "Sample hash mismatch; not a compatible-version claim"
+    },
+    {
+      "case": "wrong_api",
+      "rejected": true,
+      "reason": "API mismatch"
+    },
+    {
+      "case": "wrong_branch",
+      "rejected": true,
+      "reason": "Branch mismatch"
+    }
+  ],
+  "IPC_source_chain": {
+    "classification": "fact, high for local instructions; business meaning unknown",
+    "alias": "S=408fa0 return, U=S+0x11c",
+    "gid_source": "S+0xeed = U+0xdd1; selected string from U+0x11a0 pointer list copied at411c70; list populated413936..413950 from4133a0 argument3",
+    "glt_source": "S+0xecc = U+0xdb0; clear0x21 bytes, copy argument1 bytes using argument2 length at4136fe/413700, NUL at413711",
+    "numeric_source": "S+0x1298 = U+0x117c; argument8 minus0x80000000 stored413e23; then converted with radix0x20 at407f04",
+    "boundary": "4133a0 receives forwarded inputs from419fe0 dispatch branch41a052..41a08b; input event producer and actual values not inspected or proven",
+    "not_inferred": [
+      "account identity",
+      "authentication token",
+      "timestamp",
+      "server acceptance",
+      "game consumer"
+    ]
+  }
+}

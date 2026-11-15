@@ -1,0 +1,29 @@
+{
+  "schema": "moli.launcher-v22.review-corrections.v1",
+  "root_review_only": true,
+  "native_boundary_correction": "Copy entry has only7 owned bytes; follow its jump into adjacent232-byte function body before describing string semantics. Retain partial caller inventory limitation; no repeated producer or function ownership inference from pseudocode extent.",
+  "product_defect": {
+    "owner": "web/login-app.mjs pagehide handler",
+    "reproduction": "Initial actual Chrome dedicated flow completed7 checks, then controlled persisted PageTransitionEvent left selection-status visible after pending lease memory close.",
+    "initial": "handoff-browser-initial.json",
+    "cause": "Cleanup closed memory state but did not clear profile list/ready DOM status.",
+    "fix": "pagehide delegates clearResult and closes pending mode modal, then resets inputs/text/consent/status; same scenario plus prior flows passes8/8.",
+    "limit": "Controlled lifecycle event proves handler; full browser BFCache, physical devices and game not claimed.",
+    "initial_pixels": "initial-screenshot-copies.json"
+  },
+  "test_correction": {
+    "initial": "config-session-regression-initial.json",
+    "result": "6 checks completed; stale old text assertion expected game handoff not implemented.",
+    "correction": "Assert the new exact CGSharedMem17B producer-ready AND game/auth unverified message, with existing interaction/gate assertions retained. No product weakening.",
+    "initial_pixels": "config-regression-initial-screenshot-copies.json"
+  },
+  "ownership_review": [
+    "Data encoder never infers credential encoding or meaning of opaque fields.",
+    "Only exact prefix/NUL is produced, not a zero-filled native mapping image.",
+    "Name/opaque input snapshots unchanged; preparation copies released, lease close clears its own view, consumer copies remain external.",
+    "Profile selection gate rechecked from raw words; invalid/closed lease cannot expose bytes twice.",
+    "UI current-session check guards stale buttons; pending handoff private to module and invalidated through existing reset paths.",
+    "No account/payload written to browser storage or DOM/logs; actual user identifiers/credentials not read."
+  ],
+  "output_preservation": "Current runner outputs are guarded tostage22. Initial failures/logs/pixels retained before replay. Previous stage65 historical incident records remain unchanged."
+}

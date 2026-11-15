@@ -1,0 +1,2 @@
+const hex=n=>(n>>>0).toString(16).toUpperCase(),slot=n=>n===20?50:n===21?51:n;
+export function combinationMotion(c){const words=[slot(c.target)];for(const h of c.members){words.push(slot(h[0]),h[1]|0,h[2]);if(h[1]&0x800000)words.push(...h[3]);}words.push(255);let raw='M|CMB|'+words.map(hex).join('|')+'|';for(const r of c.rids??[])raw+='RID|'+r.map((v,i)=>i===4||i===13?v:hex(v)).join('|')+'|';return Uint8Array.from(raw,c=>c.charCodeAt(0));}

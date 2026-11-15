@@ -1,0 +1,50 @@
+{
+  "schema": "moli.stage112.guest-read-only-preflight.v1",
+  "recorded_utc": "2026-10-30T14:08:14.473146+00:00",
+  "requirement": "reports/development-plan.md#stage112",
+  "method": "CUA native Parallels UI; complete visible command readback before one Return; result and next prompt observed",
+  "observation_type": "Selected non-sensitive results transcribed from current UI; no raw screenshot or account identifier retained",
+  "guest_time_result": "2026-10-30T21:57:48.2742447+08:00",
+  "last_desktop_clock_display": "2026-10-30 22:04 +08:00",
+  "commands_completed": [
+    "Get-Date -Format o",
+    "$gn112=[string][char]0x9b54+[char]0x529b+[char]0x5b9d+[char]0x8d1d",
+    "$gp112=Join-Path 'c:\\program files (x86)\\playonline' $gn112",
+    "Get-FileHash -LiteralPath (Join-Path $gp112 'cg_se_3000.exe') | fl Path,Hash",
+    "$rk112='HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers'",
+    "Get-ItemPropertyValue -LiteralPath $rk112 -Name (Join-Path $gp112 'cg_se_3000.exe')"
+  ],
+  "command_count": 6,
+  "maximum_command_characters": 83,
+  "native_executable_exit_code": "Not applicable: only PowerShell cmdlets and process-local assignments",
+  "installed_game": {
+    "path": "C:\\Program Files (x86)\\PlayOnline\\魔力宝贝\\cg_se_3000.exe",
+    "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+    "matches_fixed_sample_and_observer_profile": true,
+    "hkcu_appcompat_layers_value": "~ WIN7RTM",
+    "compatibility_flag_runtime_effect_verified": false
+  },
+  "input_observation": {
+    "initial_native_menus_worked_but_guest_input_not_confirmed": true,
+    "temporary_full_screen_then_guest_prompt_click": true,
+    "physical_g_visible_and_cancelled_with_ctrl_c_without_enter": true,
+    "subsequent_text_input_and_six_commands_completed": true,
+    "early_typeText_prefix_required_later_full_readback": true,
+    "full_screen_restored_to_original_window_mode": true,
+    "final_prompt_empty": true,
+    "keyboard_mapping_changed": false,
+    "clipboard_or_host_sharing_changed": false,
+    "manual_user_action_requested": false,
+    "root_cause_or_general_input_reliability_proven": false
+  },
+  "new_vendor_execution": false,
+  "new_observer_execution": false,
+  "new_external_network_probe": false,
+  "account_or_ipc_contents_read": false,
+  "new_uac_installation_terms_or_security_change": false,
+  "vm_configuration_changed": false,
+  "recovery_state_and_dependencies_freshly_verified": false,
+  "original_game_process_or_pid_confirmed": false,
+  "game_consumer_or_official_compatibility_verified": false,
+  "full_goal_complete": false
+}

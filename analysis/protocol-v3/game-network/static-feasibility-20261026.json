@@ -1,0 +1,404 @@
+{
+  "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+  "commandline_api_call": {
+    "va": "0x1179053",
+    "mapping": {
+      "section": ".text1",
+      "backed": true,
+      "file_offset": "0x2a053"
+    },
+    "bytes": "ff1554922401"
+  },
+  "commandline_saved_global": {
+    "va": "0x1265d9c",
+    "mapping": {
+      "section": ".data1",
+      "backed": true,
+      "file_offset": "0x10fd9c"
+    }
+  },
+  "references": [
+    {
+      "target_va": "0x1249254",
+      "executable_file_backed_exact_absolute_operands": [
+        {
+          "operand_va": "0x1179055",
+          "file_offset": "0x2a055",
+          "prefix_bytes": "01ff15",
+          "section": ".text1"
+        },
+        {
+          "operand_va": "0x11d845a",
+          "file_offset": "0x8945a",
+          "prefix_bytes": "ccff25",
+          "section": ".text1"
+        }
+      ],
+      "limit": "Pattern locations only; not all proven instruction boundaries and not indirect/relative/encoded references."
+    },
+    {
+      "target_va": "0x1265d9c",
+      "executable_file_backed_exact_absolute_operands": [
+        {
+          "operand_va": "0x117905a",
+          "file_offset": "0x2a05a",
+          "prefix_bytes": "2401a3",
+          "section": ".text1"
+        },
+        {
+          "operand_va": "0x119489f",
+          "file_offset": "0x4589f",
+          "prefix_bytes": "0000a1",
+          "section": ".text1"
+        }
+      ],
+      "limit": "Pattern locations only; not all proven instruction boundaries and not indirect/relative/encoded references."
+    }
+  ],
+  "overlay_bytes": 0,
+  "coff_symbols": {
+    "pointer": 0,
+    "count": 0
+  },
+  "alternative_directories": {
+    "debug": {
+      "rva": "0x1d2f20",
+      "bytes": 84,
+      "mapping": {
+        "section": ".rdata",
+        "backed": true,
+        "file_offset": "0x25f20"
+      }
+    },
+    "tls": {
+      "rva": "0x1d3018",
+      "bytes": 24,
+      "mapping": {
+        "section": ".rdata",
+        "backed": true,
+        "file_offset": "0x26018"
+      }
+    },
+    "delay_import": {
+      "rva": "0x0",
+      "bytes": 0,
+      "mapping": null
+    },
+    "clr": {
+      "rva": "0x0",
+      "bytes": 0,
+      "mapping": null
+    }
+  },
+  "tls_fields": {
+    "raw_start_va": "0x5d3e1c",
+    "raw_end_va": "0x5d3e24",
+    "index_va": "0x114e6e4",
+    "callback_array_va": "0x5ae5dc",
+    "zero_fill": "0x0",
+    "characteristics": "0x300000"
+  },
+  "tls_callbacks_location": {
+    "section": ".rdata",
+    "backed": true,
+    "file_offset": 5596
+  },
+  "tls_callbacks_bounded": [],
+  "debug_entries": [
+    {
+      "type": 2,
+      "data_bytes": 88,
+      "file_offset": "0x26a00",
+      "prefix": "52534453",
+      "pdb_basename_only": "CrossGate.pdb",
+      "pdb_guid": "ce363f7c-dd81-45c7-9944-f0402388bd13",
+      "pdb_age": 1
+    },
+    {
+      "type": 12,
+      "data_bytes": 20,
+      "file_offset": "0x1d2058",
+      "prefix": "f6249c18"
+    },
+    {
+      "type": 13,
+      "data_bytes": 928,
+      "file_offset": "0x1d206c",
+      "prefix": "41284c0b"
+    }
+  ],
+  "file_initial_indirect_slots": [
+    {
+      "slot_va": "0x1265dbc",
+      "file_offset": "0x10fdbc",
+      "initial_dword": "0x0",
+      "limit": "On-disk bytes only; not actual runtime slot values."
+    },
+    {
+      "slot_va": "0x1265db8",
+      "file_offset": "0x10fdb8",
+      "initial_dword": "0x0",
+      "limit": "On-disk bytes only; not actual runtime slot values."
+    },
+    {
+      "slot_va": "0x1265ed4",
+      "file_offset": "0x10fed4",
+      "initial_dword": "0x0",
+      "limit": "On-disk bytes only; not actual runtime slot values."
+    }
+  ],
+  "getcommandline_jump_thunk": {
+    "va": "0x11d8458",
+    "file_offset": "0x89458",
+    "bytes": "ff2554922401",
+    "exact_rel32_call_candidates": [],
+    "limit": "Only E8 rel32 candidates in file-backed executable sections; no claim of exhaustive indirect callers."
+  },
+  "installer_pdb_map_entries": 0,
+  "bounded_initializer_identifiers": [
+    {
+      "va": "0x124d8c8",
+      "file_offset": "0xf78c8",
+      "simple_public_identifier": "Kernel32",
+      "text_withheld_if_unclassified": false
+    },
+    {
+      "va": "0x124e178",
+      "file_offset": "0xf8178",
+      "simple_public_identifier": "IsDebuggerPresent",
+      "text_withheld_if_unclassified": false
+    }
+  ],
+  "initializer_import_identifications": [
+    {
+      "iat_va": "0x1249098",
+      "dll": "KERNEL32.dll",
+      "symbol": "GetProcAddress"
+    },
+    {
+      "iat_va": "0x124909c",
+      "dll": "KERNEL32.dll",
+      "symbol": "LoadLibraryA"
+    }
+  ],
+  "schema": "moli.game-static-feasibility.v1",
+  "recorded_utc": "2026-10-26T05:14:39.805812+00:00",
+  "scope": "Bounded ordinary file/static inspection only. No payload decryption/reconstruction/emulation, debug hiding, authentication or anti-cheat bypass, signing/protection changes, sample execution, network, download, live memory/account data or VM operations.",
+  "tools": {
+    "GNU objdump": "2.47.20260726",
+    "Python": "3.9.6 standard library"
+  },
+  "reused_evidence": [
+    "packed-boundary.json",
+    "packed-boundary.md",
+    "cg_se_3000.exe.network-imports.json",
+    "../../../reports/game-static.md"
+  ],
+  "focused_byte_and_string_checks": [
+    {
+      "id": "COMMANDLINE-CALL",
+      "va": "0x1179053",
+      "file_offset": "0x2a053",
+      "expected_hex": "ff1554922401",
+      "passed": true
+    },
+    {
+      "id": "CACHE-COMMANDLINE-POINTER",
+      "va": "0x1179059",
+      "file_offset": "0x2a059",
+      "expected_hex": "a39c5d2601",
+      "passed": true
+    },
+    {
+      "id": "READ-CACHED-POINTER",
+      "va": "0x119489e",
+      "file_offset": "0x4589e",
+      "expected_hex": "a19c5d2601",
+      "passed": true
+    },
+    {
+      "id": "CALL-TEXT-HELPER",
+      "va": "0x11948be",
+      "file_offset": "0x458be",
+      "expected_hex": "e8edfaffff",
+      "passed": true
+    },
+    {
+      "id": "COMMANDLINE-JUMP-THUNK",
+      "va": "0x11d8458",
+      "file_offset": "0x89458",
+      "expected_hex": "ff2554922401",
+      "passed": true
+    },
+    {
+      "id": "RESOLVE-LIBRARY-CALL",
+      "va": "0x1197118",
+      "file_offset": "0x48118",
+      "expected_hex": "ff159c902401",
+      "passed": true
+    },
+    {
+      "id": "RESOLVE-EXPORT-CALL",
+      "va": "0x1197130",
+      "file_offset": "0x48130",
+      "expected_hex": "ff1598902401",
+      "passed": true
+    },
+    {
+      "id": "INDIRECT-CHECK-CALL",
+      "va": "0x119713f",
+      "file_offset": "0x4813f",
+      "expected_hex": "ff55f4",
+      "passed": true
+    },
+    {
+      "id": "ZERO-DISPATCH-SLOT-A",
+      "va": "0x1265dbc",
+      "file_offset": "0x10fdbc",
+      "expected_hex": "00000000",
+      "passed": true
+    },
+    {
+      "id": "ZERO-DISPATCH-SLOT-B",
+      "va": "0x1265db8",
+      "file_offset": "0x10fdb8",
+      "expected_hex": "00000000",
+      "passed": true
+    },
+    {
+      "id": "ZERO-DISPATCH-SLOT-C",
+      "va": "0x1265ed4",
+      "file_offset": "0x10fed4",
+      "expected_hex": "00000000",
+      "passed": true
+    },
+    {
+      "id": "LIBRARY-IDENTIFIER",
+      "va": "0x124d8c8",
+      "file_offset": "0xf78c8",
+      "expected_text": "Kernel32",
+      "passed": true
+    },
+    {
+      "id": "CHECK-EXPORT-IDENTIFIER",
+      "va": "0x124e178",
+      "file_offset": "0xf8178",
+      "expected_text": "IsDebuggerPresent",
+      "passed": true
+    },
+    {
+      "id": "PDB-CODEVIEW-ID",
+      "file_offset": "0x26a00",
+      "expected_hex": "525344537c3f36ce81ddc7459944f0402388bd1301000000",
+      "passed": true
+    }
+  ],
+  "findings": [
+    {
+      "label": "fact",
+      "confidence": "high",
+      "detail": "GetCommandLineW at1179053 stores its return pointer at1265d9c via1179059;119489e reads that cached pointer into text helper calls. This is a file-backed pointer-consumer candidate, not identified game argv semantics."
+    },
+    {
+      "label": "fact",
+      "confidence": "high",
+      "detail": "A separate file-backed thunk11d8458 jumps via GetCommandLineW IAT; no E8 rel32 candidate to that thunk was found in inspected executable file-backed sections. Indirect/encoded references are not excluded."
+    },
+    {
+      "label": "fact",
+      "confidence": "high",
+      "detail": "Startup-area1197100 can LoadLibraryA the literal Kernel32 and GetProcAddress IsDebuggerPresent before an indirect call119713f. Execution/reachability and role are unverified; do not modify or suppress this check, infer a named anti-cheat, or force attach through a denial."
+    },
+    {
+      "label": "fact",
+      "confidence": "high",
+      "detail": "Observed dispatch slots1265dbc/1265db8/1265ed4 are zero on disk. Runtime targets are not recovered by reading these initial values."
+    },
+    {
+      "label": "fact",
+      "confidence": "high",
+      "detail": "Original .text has no file-backed bytes; existing CGSharedMem/gid:/glt: strings have no recovered consumer-to-socket link. Previously inspected mapping is anonymous4096B, not named256B handoff."
+    },
+    {
+      "label": "fact",
+      "confidence": "high",
+      "detail": "No file overlay, COFF symbol table or CLR/delay-import directory in this sample. On-disk TLS callback array starts with zero; this is not proof of all runtime initialization behavior."
+    },
+    {
+      "label": "fact",
+      "confidence": "high",
+      "detail": "CodeView RSDS points to CrossGate.pdb GUID ce363f7c-dd81-45c7-9944-f0402388bd13 age1. Current installer inventory has zero explicitly named .pdb/.map entries; hidden/compressed contents are not exhaustively ruled out. Vendor source directory path was not retained."
+    }
+  ],
+  "feasibility": {
+    "current_outcome": "No reliable game argv/shared-memory-to-socket bridge recovered in the bounded ordinary static pass.",
+    "not_a_global_impossibility_claim": "File-backed startup/helpers remain readable; absence of exact absolute references does not exclude indirect, encoded or reconstructed code.",
+    "stopped_route": "Do not promote loader/helper text parsing or zero-backed original text into a recovered game protocol; do not attempt deprotection/emulation/patching under this scope.",
+    "legitimate_new_material_route": "A legally supplied matching PDB, vendor-authorized analyzable/debug build or authoritative protocol/specification and sanitized vectors could continue offline. Verify PDB GUID/age and exact binary identity before using any symbols; no symbol download or private-directory scan performed."
+  },
+  "minimum_dynamic_evidence_proposal": {
+    "status": "not_authorized_or_executed_here",
+    "programs": [
+      {
+        "name": "POLCN_Launcher.exe",
+        "sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+        "source": "User POLCN_Setup.exe and byte-identical approved public ZIP",
+        "privilege": "requireAdministrator"
+      },
+      {
+        "name": "cg_se_3000.exe",
+        "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+        "source": "User CrossGate_Setup.exe SHA256 e593e47fa09ac03e2213c7dc7bb80575e0295f0dc48a0e1edc73c4ac1982f983",
+        "privilege": "asInvoker file manifest; child may inherit elevated launcher token, not promised ordinary privilege"
+      },
+      {
+        "name": "LauncherUpdater.exe",
+        "sha256": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+        "role": "Known potential automatic child; no automatic execution approval in this stage"
+      }
+    ],
+    "purpose": "Observe legitimate startup to locate actual code/module offsets and metadata call relationships for command-line/named-mapping/socket APIs, without accessing contents. Do not repeat bare-client or offline-update-failure probes as if they solve this gap.",
+    "preconditions": "Known complete legitimate resources/installation and a recoverable isolated environment; keep user-confirmed Win7 settings without repeated checks. Launcher currently needs update connectivity to pass its observed error path; any network or elevation/child scope must be separately concrete. Do not enable it now.",
+    "data_requested_if_officially_supported": "Process/module identities and lifetimes, module-relative callsite/return-address metadata for GetCommandLine/OpenFileMapping/MapViewOfFile and actual socket imports/resolution; no returned command strings, shared-memory contents, buffer data, credentials, account IDs, memory dumps, packet/session payloads or full logs.",
+    "permission_limit": "Normal official diagnostic/debugging path only. Observer attach/instrumentation privileges or any required higher privilege are not preapproved. If debugger detection/protection/access refusal prevents observation, stop; no stealth, patched checks or disabling anti-cheat.",
+    "risks_and_stops": "Administrator launcher may update/write XML or executable files and spawn updater/config/patcher/game. Missing resources, new binary/driver/UAC/terms, login requirement, unapproved network, anti-cheat alert or access denial: stop and report; do not fabricate argv/IPC. Network contact can expose Windows/WinINet state even without game login.",
+    "cannot_prove": "Metadata-only localization cannot establish frame/authentication semantics or official server acceptance. Authenticated operation or sanitized network vectors would require a later explicit, permitted scope; no blanket approval is implied."
+  },
+  "authorized_implementation_tasks_not_yet_done": [
+    {
+      "priority": 1,
+      "task": "Pure local-install inventory validator consuming createOfflineLaunchPlan plus caller-supplied filename/size/hash inventory.",
+      "impact": "Detect known configured missing or ambiguous files before future normal startup; prevents treating the current probe set as a complete install.",
+      "acceptance": "Synthetic missing/duplicate/case-conflict/path/hash-negative tests; no file scans, runtime calls or overall-ready claim.",
+      "limit": "Configured files are not an exhaustive game asset specification and this does not unlock protocol semantics."
+    },
+    {
+      "priority": 2,
+      "task": "MAP01 bounded shared byte parser for observed20B header, candidate dimensions and exact6*w*h opaque body.",
+      "impact": "Move the four-sample evidenced map structure into the cross-platform resource core needed by an eventual game world.",
+      "acceptance": "Original synthetic valid/truncated/oversized/trailing/byteOffset/copy tests, no plane/collision/coordinate semantics or demo-world substitution.",
+      "limit": "Does not resolve argv/socket or official authentication; it is a genuine asset dependency, not the primary networking blocker."
+    }
+  ],
+  "verifiable_critical_path": [
+    "Current launcher/static resource/config prerequisites and pure file planner: limited scope closed.",
+    "Obtain analyzable game consumers via legitimate matching material or separately approved normal diagnostics; current bounded static route stopped.",
+    "Recover and validate frame/encoding/message/authentication/session specification using authoritative or explicitly permitted sanitized evidence; current unavailable.",
+    "Implement independent shared codecs/state and malformed/replay vectors; do not guess fields.",
+    "Validate browser/mobile/miniprogram transport constraints and any authorized gateway/permission/privacy boundary.",
+    "Only then conduct explicitly authorized official compatibility tests; local parsing/build/tests are not completion."
+  ],
+  "verification": {
+    "fixed_sample_sha256_passed": true,
+    "focused_anchors_passed": 14,
+    "focused_anchors_total": 14,
+    "JSON_parsed": true,
+    "product_code_changed": false,
+    "product_tests_rerun": false,
+    "baseline_product_regression": "stage36 56 Node +8 Python +16 Swift passed, not repeated here",
+    "network_requests": 0,
+    "sample_executions": 0,
+    "live_memory_reads": 0,
+    "pending_or_denied_tool_calls": false
+  }
+}

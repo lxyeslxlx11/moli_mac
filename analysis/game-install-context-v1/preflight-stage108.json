@@ -1,0 +1,82 @@
+{
+  "schema": "moli.normal-installed-launcher.preflight.v1",
+  "recorded_utc": "2026-10-30T09:15:09.301271+00:00",
+  "plan": "analysis/game-install-context-v1/normal-launcher-plan-stage107.json",
+  "vendor_prefix_process_count": {
+    "value": 0,
+    "evidence": "Fresh exact reviewed PowerShell prefix filter; actual0 and returned empty prompt",
+    "limit": "Current point count only"
+  },
+  "recovery_point_metadata": {
+    "path": "/Users/lx/Parallels/Windows 11.pvm/Snapshots.xml",
+    "sha256": "9a2d53bf33a9d1fc27b79b9d069467312330c1cccab597fce9897b4bd1119d5b",
+    "selected_name": "Moli-before-normal-install-20261030-stage102",
+    "matching_entries": 1,
+    "guid": "{3f49bb73-0c51-40e3-a481-0f37f532f3fc}",
+    "current": "yes",
+    "state": "poweron",
+    "restore_boot_tested": false,
+    "independent_backup": false
+  },
+  "host_free_bytes": 195866845184,
+  "pending": [],
+  "vendor_start_commands": 0,
+  "old_script_replays": 0,
+  "new_manual_requests": 0,
+  "platform_directory_readback": {
+    "path": "C:\\Program Files (x86)\\易玩通\\“易玩通”娱乐平台",
+    "source": "Fresh registry-derived p108, printed actual directory and non-force listing",
+    "visible_non_force_entries": {
+      "XML": null,
+      "Log.htm": 1076,
+      "POLCN_Launcher.exe": 599040,
+      "unins000.dat": 8590,
+      "unins000.exe": 3129349
+    },
+    "limits": "Non-force listing alone could not prove updater absence; subsequent actual full-hash query confirmed updater present and expected."
+  },
+  "platform_files_fresh_sha256": {
+    "POLCN_Launcher.exe": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+    "LauncherUpdater.exe": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+    "XML/GameList.xml": "be8f1213d77bd294fbb79b2fb51a5e7fecdc9aa3c0854db7a6d821fad20ef85a",
+    "XML/RegionList.xml": "0c94ca78c40c1940f241940a97aabef7849e9ad3285310046f346b69128a8438"
+  },
+  "platform_hash_receipt": "All four actual Path/Hash results and returned prompt observed in current guest PowerShell. Updater present despite absent non-force directory listing.",
+  "game_directory_readback": {
+    "path": "C:\\Program Files (x86)\\PlayOnline\\魔力宝贝",
+    "source": "Actual Path value from hkcu game install key, printed g108 and returned prompt",
+    "segments_visually_verified_before_enter": 4
+  },
+  "game_file_fresh_sha256": {
+    "name": "cg_se_3000.exe",
+    "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+    "matches_fixed_installed_and_source_sample": true,
+    "actual_full_path_hash_and_returned_prompt_observed": true
+  },
+  "fresh_recovery_point": "analysis/game-install-context-v1/recovery-point-stage108.json",
+  "win7_new_path_values": "Both ~ WIN7RTM actually read back after create-only writes; see compatibility-stage108.json",
+  "system_powershell_signature": {
+    "path": "C:\\WINDOWS\\system32\\windowspowershell\\v1.0\\powershell.exe",
+    "status": "Valid",
+    "signer_name": "Microsoft Windows",
+    "receipt": "Actual status, certificate simple name, exact path and returned prompt observed; no vendor launch."
+  },
+  "administrator_session": {
+    "program": "preinstalled Microsoft Windows PowerShell",
+    "launch_command": "start $ps108 -verb runas -argumentlist '-noprofile'",
+    "normal_uac_seen": true,
+    "uac_publisher": "Microsoft Windows",
+    "accepted_by": "normal click after fullscreen transition and geometry readback",
+    "admin_role_boolean": true,
+    "actual_boolean_and_empty_prompt_observed": true,
+    "guest_local_display_time": "2026-10-30 18:07",
+    "execution_policy_changed": false
+  },
+  "status": "Selected preconditions actually read; bounded run and cleanup have separate records",
+  "outcome_record": "normal-launcher-plan-stage108.json",
+  "lifecycle_record": "lifecycle-runtime-stage108.json",
+  "initial_ordinary_admin_role_boolean": {
+    "value": false,
+    "receipt": "Exact reviewed WindowsPrincipal IsInRole(544), actual False and returned empty prompt; identity object not output."
+  }
+}

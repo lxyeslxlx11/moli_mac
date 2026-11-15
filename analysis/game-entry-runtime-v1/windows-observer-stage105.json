@@ -1,0 +1,100 @@
+{
+  "schema": "moli.windows-observer-qualification.v1",
+  "recorded_utc": "2026-10-30T03:30:45.787718+00:00",
+  "evidence_method": "Actual CUA foreground Windows PowerShell output, selected numeric facts transcribed; no account identifiers, raw chat, vendor payloads or credential screenshots retained.",
+  "build_record": "analysis/game-entry-v1/observer-build-stage105.json",
+  "observer_identity": {
+    "guest_path": "C:/MoliOffline/observer-stage105/callback-probe.exe",
+    "bytes": 143326,
+    "sha256": "208597958292b96a67af7a5ce7c5b2d9c8496e91c9847be2a661abb3bebd684a",
+    "guest_full_hash_matched": true
+  },
+  "fixture_identity": {
+    "guest_path": "C:/MoliOffline/observer-fixture/entry-fixture.exe",
+    "bytes": 129968,
+    "sha256": "cf8bd654d9daf5c222f5a8ee565085013cf284ee74165a25558c5bbe0cf41c2a",
+    "guest_full_hash_matched_before_run": true
+  },
+  "own_tool_transfer": {
+    "source": "build/analysis/game-entry-v1/probe-stage105/callback-probe.exe",
+    "host_private_runner": "build/analysis/game-install-context-v1/stage105/transfer_observer.py",
+    "host_private_log": "build/analysis/game-install-context-v1/stage105/transfer-observer-events.jsonl",
+    "bound_host": "10.211.55.2",
+    "port": 65377,
+    "allowed_peer": "10.211.55.3",
+    "GET_limit": 1,
+    "response_bytes": 143326,
+    "response_finished": true,
+    "host_exit_code": 0,
+    "listener_closed": true,
+    "closed_socket_connect_ex": 61,
+    "guest_write": "CreateNew/exclusive, streams and WebClient disposed in finally; empty prompt, no transfer error; size and full hash subsequently read back",
+    "shared_directory_changed": false
+  },
+  "case": {
+    "profile": "fixture",
+    "fixture_explicit_launches": 1,
+    "observer_explicit_launches": 1,
+    "fixture_pid": 804,
+    "fixture_ready": true,
+    "fixture_reported_wait_ms": 30000,
+    "observer_result": "ok",
+    "observer_exit_code": 0,
+    "image_base": "0x00360000",
+    "image_bytes": "0x00e82000",
+    "slot_rva": "0x00e65db8",
+    "read_bytes": 8,
+    "read_operations": 1,
+    "elapsed_ms_reported": 0,
+    "slots": [
+      {
+        "index": 0,
+        "value": "0x003614c0",
+        "inside_image": true,
+        "rva": "0x000014c0",
+        "region_valid": true,
+        "state": "0x00001000",
+        "protect": "0x00000020",
+        "type": "0x01000000",
+        "allocation_base": "0x00360000",
+        "region_base": "0x00361000",
+        "region_bytes": "0x00002000"
+      },
+      {
+        "index": 1,
+        "value": "0x003614b0",
+        "inside_image": true,
+        "rva": "0x000014b0",
+        "region_valid": true,
+        "state": "0x00001000",
+        "protect": "0x00000020",
+        "type": "0x01000000",
+        "allocation_base": "0x00360000",
+        "region_base": "0x00361000",
+        "region_bytes": "0x00002000"
+      }
+    ],
+    "fixture_WaitForExit_40000": true,
+    "fixture_HasExited": true,
+    "fixture_ExitCode": null,
+    "fixture_ExitCode_observed": "blank, not zero; no second fixture run to fill this field",
+    "forced_termination": false
+  },
+  "final_process_query": {
+    "prefix_pattern": "^(entry-fixture|callback-probe|CrossGate|POLCN|cg_se_3000|LauncherUpdater|CG5Reg)",
+    "count": 0,
+    "foreground_prompt_empty": true,
+    "guest_clock_minute": "2026-10-30 11:28"
+  },
+  "game_installed_profile_executed": false,
+  "vendor_process_memory_reads": 0,
+  "vendor_game_explicit_launches": 0,
+  "debug_attach_or_write_or_injection": false,
+  "limits": [
+    "Only the fixture success case was exercised with this new binary; prior stage101 rejection cases belong to the older binary.",
+    "All three fixed profile fields, including UTF16 installed path, were checked on the host compiled PE, not all exercised in Windows.",
+    "Read completion and numeric page metadata do not establish callback invocation or game consumer semantics.",
+    "Same-PID fixture exit code remains unknown. WaitForExit/HasExited and final process count establish termination only.",
+    "No original game, launcher, account, protocol or official compatibility acceptance."
+  ]
+}

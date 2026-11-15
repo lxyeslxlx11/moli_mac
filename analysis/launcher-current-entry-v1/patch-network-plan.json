@@ -1,0 +1,46 @@
+{
+  "schema": "moli.stage113.patch-manifest-plan.v1",
+  "id": "stage113-current-two-patch-manifests-once",
+  "recorded_utc": "2026-10-30T14:38:31.585477+00:00",
+  "purpose": "Read each of the two source-bound public update manifests to seek unprotected game-analysis inputs without an account",
+  "authority": "Existing user network-testing authorization, current fresh catalog binding and fixed-hash Patcher source",
+  "source_profile": "puk3-195f3afd",
+  "patcher_sha256": "195f3afda41f342147b0616a4c005a4cb308ae6869b52c4a558fded5f5d9aaa8",
+  "catalog_binding_sha256": "b6ebaf4bf0e0344a4ad3d85759cdb0a51dcb9b2090a0e4d0fb82764bac5b1603",
+  "source_evidence": [
+    "ev_e9073b1d00d542924adcb708bc0384dceb30a4b986d2c7b1e19df83693d85e61",
+    "ev_a8fce20803957ead1b6e8ea1635e252782f49c8f4e2e6c3e1735151fb76dadb8",
+    "ev_acc8d0ebd8fb33093642b8816e2c7ed0b287fab380a69b662b8340c19f3c05a9"
+  ],
+  "epoch_seconds": 1793371111,
+  "requests": [
+    {
+      "source_ordinal": 0,
+      "url": "http://221.122.108.10/cg50/Update.TXT?t=1793371111"
+    },
+    {
+      "source_ordinal": 1,
+      "url": "http://221.122.119.156/cg50/Update.TXT?t=1793371111"
+    }
+  ],
+  "maximum_requests": 2,
+  "maximum_body_bytes": 1048576,
+  "deadline_ms": 15000,
+  "mode": "Two independently explicit metadata observations, no automatic native failover",
+  "retry": false,
+  "redirects": false,
+  "proxy": false,
+  "credentials_or_ipc": false,
+  "payload_downloads": false,
+  "original_execution_or_installed_file_writes": false,
+  "private_probe": "build/analysis/launcher-current-entry-v1/probe-patch-manifests.mjs",
+  "private_probe_sha256": "7e2d8cca326489a630c45d6d84dd77041b7850eb8d29f5c8721a2bde25b05d15",
+  "product_source_sha256": {
+    "shared/launcher-patch-sources.mjs": "eac542766fab15444f039c21224a1329f89275c501fdf16c545c74608ced867d",
+    "shared/index.mjs": "59f74eedf76b9c418fd8f5a9a516c3931eaab7dd3499ba0f312739f744f7ef3d",
+    "web/launcher-game-patch.mjs": "2625d28ed2af1e11fc5bbf72bf64f35afbc5689e583a86b2bfd6ebf1b072d430"
+  },
+  "tested_before_probe": "build/analysis/launcher-current-entry-v1/regression-exit.json",
+  "publisher_authentication": "unverified",
+  "full_goal_complete": false
+}

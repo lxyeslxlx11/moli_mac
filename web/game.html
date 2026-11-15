@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="referrer" content="no-referrer">
+  <title>Moli · 游戏</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./game.css">
+  <link rel="stylesheet" href="./legacy-game-character-picker.css">
+  <script type="module" src="./game-app.mjs"></script>
+</head>
+<body>
+  <header class="page-header">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">M</span><span>Moli</span></a>
+    <a class="tool-link" href="./login.html">登录器</a>
+    <p class="privacy-note">本地文件 · 不保存启动材料</p>
+  </header>
+  <main class="game-page">
+    <div class="page-heading"><div><h1>游戏</h1><p>读取本地资源，选择人物并进入场景。</p></div><p class="scope-note">旧版研究客户端 · 当前仅支持本机原创对端</p></div>
+    <p id="game-status" class="game-status" role="status" aria-live="polite">正在读取本机会话设置…</p>
+    <details id="game-setup" class="game-setup" open>
+      <summary id="game-setup-title">准备本轮会话</summary>
+      <p class="section-note">选择本轮启动材料，再选择游戏文件夹或资源 ZIP。原件只读，断开或离开页面后需要重新选择。</p>
+      <div class="game-fields">
+        <label for="game-startup">启动材料<input id="game-startup" type="file" accept=".json,application/json" aria-describedby="game-startup-hint"></label>
+        <p id="game-startup-hint" class="field-hint">启动 JSON 最多 64 KiB。v2 需要根目录中的指定旧版 cg_se_6000.exe，可读取同层的 Config.dat。</p>
+        <label for="game-folder">游戏根文件夹<input id="game-folder" type="file" webkitdirectory multiple></label>
+        <label for="game-archive">游戏资源 ZIP<input id="game-archive" type="file" accept=".zip,application/zip"></label>
+        <label for="game-endpoint">本机目标<select id="game-endpoint" disabled></select></label>
+        <label for="game-text-encoding">文字编码<select id="game-text-encoding"><option value="ascii">ASCII</option><option value="windows-936">简体中文（Windows 936）</option></select></label>
+      </div>
+      <p class="field-hint">人物名称和标签按所选编码读取，字形使用本机字体。原生预览、其余玩法和官方兼容仍在开发。</p>
+      <button id="game-connect" type="button" disabled>准备并连接</button>
+    </details>
+    <section class="game-play" aria-label="游戏会话">
+      <div id="game-picker"></div>
+      <div id="game-stage" class="game-stage" hidden>
+        <div class="game-viewport">
+          <canvas id="game-canvas" width="640" height="480" aria-label="游戏场景"></canvas>
+          <svg id="game-chat-overlay" class="game-chat-overlay" aria-hidden="true"></svg>
+        </div>
+        <p id="game-chat-announcement-live" class="game-chat-announcement-live" role="status"></p>
+        <p id="game-input-hint" class="field-hint">点击或轻触场景移动。右键或交互模式可与角色交互、拾取附近物品。</p>
+      </div>
+      <button id="game-pickup-mode" type="button" aria-pressed="false" hidden>交互模式</button>
+      <dialog id="game-map-dialog" aria-labelledby="game-map-dialog-title">
+        <h2 id="game-map-dialog-title">对话</h2>
+        <canvas id="game-map-dialog-graphics" aria-label="对话图形" hidden></canvas>
+        <div id="game-map-dialog-lines"></div>
+        <label id="game-map-dialog-input-label" hidden><span id="game-map-dialog-input-caption">回复</span> <input id="game-map-dialog-input" type="text" maxlength="254" autocomplete="off"></label>
+        <label id="game-map-dialog-second-label" hidden>第二项 <input id="game-map-dialog-second-input" type="text" maxlength="46" autocomplete="off"></label>
+        <p id="game-map-dialog-status" role="status"></p>
+        <div id="game-map-dialog-buttons" class="battle-commands"></div>
+        <button id="game-map-dialog-dismiss" type="button">关闭对话</button>
+      </dialog>
+      <dialog id="game-player-trade" aria-labelledby="game-player-trade-title">
+        <h2 id="game-player-trade-title">玩家交易</h2>
+        <div id="game-player-trade-content"></div>
+        <p id="game-player-trade-status" role="status"></p>
+        <div id="game-player-trade-actions" class="battle-commands"></div>
+      </dialog>
+      <dialog id="game-craft-dialog" aria-labelledby="game-craft-title">
+        <h2 id="game-craft-title">生产技能</h2>
+        <div id="game-craft-content"></div>
+        <p id="game-craft-status" role="status"></p>
+        <button id="game-craft-dismiss" data-craft-action="close" type="button">关闭生产技能</button>
+      </dialog>
+      <dialog id="game-family-dialog" aria-labelledby="game-family-title">
+        <h2 id="game-family-title">家族资料</h2>
+        <div id="game-family-content"></div>
+        <p id="game-family-status" role="status"></p>
+        <button id="game-family-dismiss" type="button">关闭家族资料</button>
+      </dialog>
+      <button id="game-inventory-toggle" type="button" aria-expanded="false" aria-controls="game-inventory" hidden>背包</button>
+      <section id="game-inventory" class="game-inventory" aria-labelledby="game-inventory-heading" hidden>
+        <h2 id="game-inventory-heading">背包</h2>
+        <h3>装备槽</h3>
+        <div id="game-equipment-slots" class="inventory-slots" role="group" aria-label="装备槽"></div>
+        <h3>背包槽</h3>
+        <div id="game-inventory-slots" class="inventory-slots" role="group" aria-label="背包槽"></div>
+        <p id="game-inventory-status" role="status"></p>
+        <p id="game-inventory-description"></p>
+        <div class="battle-commands" role="group" aria-label="物品操作">
+          <button id="game-inventory-use" type="button" disabled>使用</button>
+          <button id="game-inventory-move" type="button" disabled>整组移动</button>
+          <button id="game-inventory-drop" type="button" disabled>丢弃</button>
+          <button id="game-inventory-clear" type="button" disabled>取消选择</button>
+          <button id="game-inventory-drop-confirm" type="button" disabled hidden>确认丢弃</button>
+        </div>
+        <div id="game-inventory-split" class="inventory-amount" hidden>
+          <label for="game-inventory-amount">移动数量</label>
+          <input id="game-inventory-amount" type="number" min="1" step="1" value="1" inputmode="numeric" required>
+          <button id="game-inventory-move-amount" type="button" disabled>按数量移动</button>
+        </div>
+      </section>
+      <section id="game-battle" class="game-battle" aria-label="战斗操作" hidden>
+        <div class="battle-heading"><h2>战斗</h2><p id="game-battle-status" role="status" aria-live="polite"></p><span id="game-battle-countdown"></span></div>
+        <div class="battle-commands" role="group" aria-label="战斗指令">
+          <button id="game-battle-attack" type="button" disabled>攻击</button><button id="game-battle-skill" type="button" disabled>技能</button><button id="game-battle-item" type="button" disabled>物品</button><button id="game-battle-guard" type="button" disabled>防御</button><button id="game-battle-position" type="button" disabled>换位</button><button id="game-battle-pet" type="button" disabled>更换宠物</button><button id="game-battle-escape" type="button" disabled>逃跑</button>
+        </div>
+        <div id="game-battle-items" hidden>
+          <p id="game-battle-item-label"></p>
+          <div id="game-battle-item-rows" class="battle-commands" role="group" aria-label="背包物品"></div>
+          <div class="battle-commands">
+            <button id="game-battle-weapon-remove" type="button" disabled>卸下武器</button>
+            <button id="game-battle-item-close" type="button" disabled>返回指令</button>
+          </div>
+        </div>
+        <div id="game-battle-switch" hidden>
+          <p id="game-battle-switch-label">选择出战宠物</p>
+          <div id="game-battle-roster" class="battle-actors" role="group" aria-label="可出战宠物"></div>
+          <div class="battle-commands"><button id="game-battle-recall" type="button" disabled>收回宠物</button><button id="game-battle-switch-close" type="button" disabled>返回指令</button></div>
+        </div>
+        <div id="game-battle-player-skills" hidden>
+          <p id="game-battle-player-skill-label"></p>
+          <div id="game-battle-player-skill-rows" class="battle-commands"></div>
+          <div id="game-battle-player-levels" class="battle-commands"></div>
+          <div class="battle-commands"><button id="game-battle-skill-back" type="button" disabled>返回技能列表</button><button id="game-battle-skill-close" type="button" disabled>关闭</button></div>
+        </div>
+        <div id="game-battle-pets" hidden>
+          <p id="game-battle-pet-label"></p>
+          <div id="game-battle-skills" class="battle-commands" role="group" aria-label="宠物技能"></div>
+          <div class="battle-commands"><button id="game-battle-pet-wait" type="button" disabled>待机</button><button id="game-battle-pet-cancel" type="button" disabled>重选技能</button></div>
+        </div>
+        <div id="game-battle-actors" class="battle-actors" role="group" aria-label="人物与目标"></div>
+        <p class="field-hint">选择指令、技能或物品后，轻触可选目标。也可以选择待机或重选技能。</p>
+      </section>
+      <p id="game-time" hidden></p>
+      <section id="game-chat" class="game-chat" aria-label="战斗聊天" hidden>
+        <h2>战斗聊天</h2>
+        <ol id="game-chat-history"></ol>
+      </section>
+      <p id="game-party-status" role="status" aria-live="polite"></p>
+      <p id="game-player-trade-notice" role="status"></p>
+      <div class="game-actions"><button id="game-pause" type="button" disabled>暂停</button><button id="game-labels" type="button" disabled>显示标签</button><button id="game-party" type="button" disabled>加入队伍</button><button id="game-trade-open" type="button" disabled>玩家交易</button><button id="game-craft-open" type="button" aria-haspopup="dialog" aria-controls="game-craft-dialog" disabled>生产技能</button><button id="game-family-open" type="button" aria-haspopup="dialog" aria-controls="game-family-dialog" disabled>家族资料</button><button id="game-bars" type="button" disabled>显示状态条</button><button id="game-minimap" type="button" disabled>小地图</button><button id="game-minimap-range" type="button" hidden disabled>范围 54 格</button><span id="game-minimap-status" role="status"></span><button id="game-return-city" type="button" disabled>注销回城</button><button id="game-return-servers" type="button" disabled>返回选服</button><button id="game-disconnect" type="button" disabled>断开</button></div>
+      <section id="game-map-chat" class="game-chat" aria-labelledby="game-map-chat-title" hidden>
+        <h2 id="game-map-chat-title">地图聊天</h2>
+        <ol id="game-map-chat-history" aria-label="聊天记录" role="log" hidden></ol>
+        <form id="game-map-chat-form">
+          <fieldset id="game-map-chat-fields" class="game-chat-controls" aria-label="聊天输入" disabled>
+            <div class="game-chat-settings">
+              <label>频道 <select id="game-map-chat-mode" disabled><option value="ordinary">普通</option><option value="party" disabled>小队</option></select></label>
+              <label>范围 <select id="game-map-chat-range"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+              <label>颜色 <select id="game-map-chat-color"><option value="0">默认</option><option>1</option><option>2</option><option>3</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option></select></label>
+              <label>字号 <select id="game-map-chat-size"><option value="0">1</option><option value="1">2</option><option value="2">3</option></select></label>
+            </div>
+            <label>聊天内容 <input id="game-map-chat-input" type="text" maxlength="76" autocomplete="off" required></label>
+            <button type="submit">发送聊天</button>
+          </fieldset>
+        </form>
+        <p id="game-map-chat-status" role="status"></p>
+        <details id="game-map-chat-blacklist">
+          <summary>聊天黑名单</summary>
+          <p class="field-hint">按本机目标保存在此浏览器。屏蔽后，该角色的新聊天和气泡将不再显示。</p>
+          <form id="game-map-chat-block-form" class="game-chat-controls">
+            <label>角色名 <input id="game-map-chat-block-name" type="text" maxlength="16" autocomplete="off" required></label>
+            <button type="submit">加入黑名单</button>
+          </form>
+          <ul id="game-map-chat-blocked" aria-label="已屏蔽角色"></ul>
+          <p id="game-map-chat-block-status" role="status"></p>
+        </details>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

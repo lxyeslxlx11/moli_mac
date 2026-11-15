@@ -1,0 +1,139 @@
+{
+  "schema": "moli.launcher-v9.validation.v1",
+  "recorded_utc": "2026-10-26T23:33:36.446687+00:00",
+  "scope": "Fixed launcher static connection/timer/retry tracing plus composed offline exchange controller. Byte/connect/close intents only; no socket, native execution, VM, account or official endpoint.",
+  "node": {
+    "version": "v26.9.0",
+    "tests": 200,
+    "pass": 200,
+    "fail": 0,
+    "skipped": 0,
+    "new_flow_tests": 21,
+    "previous_tests": 179,
+    "log": "node-tests.log"
+  },
+  "independent": {
+    "python_full_exchange_vectors": 3,
+    "oracle": "struct/PyCryptodome3.23.0 with original public arithmetic/input/reply fixtures",
+    "vectors": "original-flow-vectors.json",
+    "checked": "Exact hello/public value/encrypted request and fragmented incoming notice+profile/no-profile/nonzero outcomes",
+    "retry_instruction_anchors": 15,
+    "retry": "retry-independent.json"
+  },
+  "static": {
+    "new_function_dossiers": 9,
+    "scope_function_dossiers": 16,
+    "evidence_records": 126,
+    "session": "exported/snapshotted/closed",
+    "spec": "static-spec.json"
+  },
+  "review": {
+    "read_only_independent": "21/21 scoped tests pass, no reproducible defect; current-generation failures close the correctattemptId, stale events/choices mutation cannot replay or alter internal choices",
+    "policy": "Explicit monotonic clock, deadline priority, pre-request open-only finite rotation and strict final-batch rules are independent policies, not Windows scheduling equivalence"
+  },
+  "coverage": [
+    "Every two-part challenge split and bytewise encrypted reply fragments",
+    "All1..10 endpoint counts/initial ordinals, one-pass exhaustion and unchanged deadline",
+    "Stale generation/clock events, current generation errors and close routing",
+    "Deadline at10s before open/data in every wait state; late ticks after result ignored",
+    "Malformed/status/count/hex/chunk/trailing inputs and truncated remote close",
+    "Preliminary reply budget, duplicate/following final frames and trailing fragments",
+    "Cancellation, owned offsets/subclasses and internal/returned choice isolation",
+    "Explicit reply streamclose cleanup without synthetic parse failure"
+  ],
+  "sources": [
+    {
+      "path": "shared/launcher-flow.mjs",
+      "bytes": 10871,
+      "sha256": "beca6c689bc6f8580e1ae8a8cbf848d8627307933c5b4e50d77bd933bf799f2a"
+    },
+    {
+      "path": "shared/launcher-replies.mjs",
+      "bytes": 7175,
+      "sha256": "8a0b29447096da728094e484336627bd2c443962c1eb100a3114a6686224d290"
+    },
+    {
+      "path": "shared/index.mjs",
+      "bytes": 10491,
+      "sha256": "38cd0b4280a3ce56418dae00329d84533893ec01e46a83d7107269e980d4ef16"
+    },
+    {
+      "path": "shared/tests/launcher-flow.test.mjs",
+      "bytes": 17688,
+      "sha256": "1777522d2719a2f236bbb9a4c6f20a3d6acedd2850e1ecf835f2190ad93f96e9"
+    },
+    {
+      "path": "shared/examples/launcher-flow.mjs",
+      "bytes": 1716,
+      "sha256": "5899684a1462a2e09ef45e50eb91b740c49aabd7c6fe3248f1a58f4076295008"
+    },
+    {
+      "path": "analysis/launcher-v9/build_flow_vectors.py",
+      "bytes": 2760,
+      "sha256": "1c0ae61aaa4aea21c7dcb5fb4bf3fb31ba4bafa6c25a87f5c825543e8f3c2c17"
+    },
+    {
+      "path": "analysis/launcher-v9/original-flow-vectors.json",
+      "bytes": 4271,
+      "sha256": "8fd87bf945f0489d6226956337af227383745d154b94279b58204d07850e291e"
+    }
+  ],
+  "example": {
+    "path": "example-output.json",
+    "exit_code": 0,
+    "output": "states/lengths/counts/ordinals only; no input/opaque/key values"
+  },
+  "dependencies": {
+    "new_installs": 0,
+    "reused": "REA6.7.0/Ghidra12.1.4, Apple LLVM21.0.0, PyCryptodome3.23.0, Node",
+    "primary_api_sources": [
+      "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-settimer",
+      "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-killtimer"
+    ]
+  },
+  "not_verified": [
+    "Native EH exception types/all throw sites and complete timer/context scheduling",
+    "Actual socket adapter, platform CSPRNG/clock/input code page and local consent/profile persistence",
+    "Official login/opaque lifetime, trusted update/rollback and game consumer compatibility",
+    "Game REA/implementation phase for this goal",
+    "Safari/physical phone/miniprogram; graphics Python/Swift/old real-file/narrow suite unchanged and not rerun"
+  ],
+  "browser": {
+    "checks": 6,
+    "browser": "155.0.8059.85",
+    "errors": 0,
+    "requests": 36,
+    "all_loopback_get": true,
+    "receipt": "browser-flow-smoke.json",
+    "actual_scope": "Three complete original exchange cases, generation/failover/deadline/ownership and existing pages; no socket adapter or new UI."
+  },
+  "documentation": {
+    "files": [
+      "README.md",
+      "shared/README.md",
+      "web/README.md",
+      "reports/development-plan.md",
+      "reports/launcher-static.md",
+      "reports/logic-protocol-spec.md",
+      "reports/architecture-and-milestones.md",
+      "reports/module-interfaces.md",
+      "reports/resource-formats.md",
+      "reports/validation.md",
+      "reports/known-issues.md",
+      "reports/analysis-methods.md"
+    ],
+    "relative_local_links_checked": 666,
+    "missing": []
+  },
+  "preservation": {
+    "native_non_evidence_files": 11,
+    "native_hashes_match_stage53": true,
+    "fixed_launcher_original_and_unpacked_hashes_match": true,
+    "private_bundle_and_snapshot_hashes_match": true,
+    "git_repository": false,
+    "original_execution": false,
+    "vm_operations": false,
+    "official_network": false
+  },
+  "finalized_utc": "2026-10-26T23:40:44.724766+00:00"
+}

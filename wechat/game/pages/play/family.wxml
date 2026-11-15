@@ -1,0 +1,81 @@
+<view class="card" wx:if="{{family}}">
+  <view class="section-title">家族</view>
+  <view wx:if="{{family.notice}}" class="hint" role="status">{{family.notice}}</view>
+  <view wx:if="{{!family.active}}" class="line">{{family.empty}}</view>
+  <block wx:else>
+    <view class="line">家族 {{family.name || '未同步'}}</view>
+    <view class="line">会馆 {{family.hall || '未同步'}}</view>
+    <view class="line">我的称号 {{family.ownTitle}}</view>
+    <view class="controls" wx:if="{{family.canInvite}}">
+      <button size="mini" disabled="{{family.busy}}" data-action="invite"
+        data-revision="{{family.revision}}" data-version="{{family.version}}" bindtap="onFamily">邀请面前玩家</button>
+    </view>
+    <view class="commerce-section">
+      <view class="line">家族成员</view>
+      <scroll-view wx:if="{{family.members.length}}" scroll-y="{{true}}" class="family-list">
+        <view wx:for="{{family.members}}" wx:key="id" class="line">{{item.label}}</view>
+      </scroll-view>
+      <view wx:else class="hint">暂无成员记录。</view>
+      <block wx:if="{{family.member}}">
+        <picker wx:for="{{family.mounts}}" wx:key="*this" range="{{family.member.options}}" range-key="label" value="{{family.member.index}}"
+          disabled="{{family.busy}}" data-action="select-member" data-revision="{{family.revision}}" data-version="{{item}}" bindchange="onFamily">
+          <view class="choice storage-choice">{{family.member.label || '选择成员'}}</view>
+        </picker>
+        <view wx:if="{{family.member.review}}" class="line" role="status">{{family.member.review}}</view>
+        <block wx:else>
+          <picker wx:for="{{family.mounts}}" wx:key="*this" wx:if="{{family.member.roles.length}}"
+            range="{{family.member.roles}}" range-key="name" value="{{family.member.roleIndex}}" disabled="{{family.busy}}"
+            data-action="select-member-role" data-revision="{{family.revision}}" data-version="{{item}}" bindchange="onFamily">
+            <view class="choice storage-choice">{{family.member.roleLabel || '选择新称号'}}</view>
+          </picker>
+        </block>
+        <view class="controls" wx:if="{{family.member.label}}">
+          <block wx:if="{{family.member.review}}">
+            <button size="mini" type="primary" disabled="{{family.busy}}" data-action="confirm-remove"
+              data-revision="{{family.revision}}" data-version="{{family.version}}" bindtap="onFamily">确认{{family.member.removeLabel}}</button>
+            <button size="mini" disabled="{{family.busy}}" data-action="cancel-remove"
+              data-revision="{{family.revision}}" data-version="{{family.version}}" bindtap="onFamily">取消</button>
+          </block>
+          <block wx:else>
+            <button wx:if="{{family.member.roles.length}}" size="mini" disabled="{{family.busy || !family.member.canAssign}}" data-action="assign-role"
+              data-revision="{{family.revision}}" data-version="{{family.version}}" bindtap="onFamily">分配称号</button>
+            <button wx:if="{{family.member.canRemove}}" size="mini" disabled="{{family.busy}}" data-action="review-remove"
+              data-revision="{{family.revision}}" data-version="{{family.version}}" bindtap="onFamily">{{family.member.removeLabel}}</button>
+          </block>
+        </view>
+      </block>
+    </view>
+    <view wx:if="{{family.identity}}" class="commerce-section">
+      <view class="line">编辑家族与会馆</view>
+      <input wx:for="{{family.mounts}}" wx:key="*this" class="field" value="{{family.identity.name}}" maxlength="{{family.identity.limit}}"
+        placeholder="家族名称" disabled="{{family.busy}}" data-action="name" data-revision="{{family.revision}}" data-version="{{item}}" bindinput="onFamily" />
+      <button size="mini" disabled="{{family.busy}}" data-action="save-name"
+        data-revision="{{family.revision}}" data-version="{{family.version}}" bindtap="onFamily">保存家族名</button>
+      <input wx:for="{{family.mounts}}" wx:key="*this" class="field" value="{{family.identity.hall}}" maxlength="{{family.identity.limit}}"
+        placeholder="会馆名称" disabled="{{family.busy}}" data-action="hall" data-revision="{{family.revision}}" data-version="{{item}}" bindinput="onFamily" />
+      <button size="mini" disabled="{{family.busy}}" data-action="save-hall"
+        data-revision="{{family.revision}}" data-version="{{family.version}}" bindtap="onFamily">保存会馆名</button>
+    </view>
+    <view wx:if="{{family.role}}" class="commerce-section">
+      <view class="line">编辑称号和权限</view>
+      <picker wx:for="{{family.mounts}}" wx:key="*this" range="{{family.role.options}}" value="{{family.role.slot}}" disabled="{{family.busy}}"
+        data-action="select-role" data-revision="{{family.revision}}" data-version="{{item}}" bindchange="onFamily">
+        <view class="choice storage-choice">{{family.role.options[family.role.slot]}}</view>
+      </picker>
+      <input wx:for="{{family.mounts}}" wx:key="*this" class="field" value="{{family.role.name}}" maxlength="{{family.role.limit}}"
+        placeholder="称号名称" disabled="{{family.busy}}" data-action="role-name" data-revision="{{family.revision}}" data-version="{{item}}" bindinput="onFamily" />
+      <view class="controls">
+        <button wx:for="{{family.role.permissions}}" wx:key="bit" size="mini" type="{{item.selected ? 'primary' : 'default'}}"
+          disabled="{{family.busy || !family.role.canEditFlags}}" data-action="permission" data-bit="{{item.bit}}"
+          data-revision="{{family.revision}}" data-version="{{family.version}}" bindtap="onFamily">{{item.label}}</button>
+      </view>
+      <view class="controls">
+        <button size="mini" disabled="{{family.busy}}" data-action="save-role"
+          data-revision="{{family.revision}}" data-version="{{family.version}}" bindtap="onFamily">保存称号</button>
+      </view>
+    </view>
+  </block>
+  <view class="controls">
+    <button size="mini" data-action="close" bindtap="onFamily">关闭家族</button>
+  </view>
+</view>

@@ -1,0 +1,1230 @@
+{
+  "schema": "moli.launcher-selection-order-reconciliation.v1",
+  "requirement": {
+    "id": "L02",
+    "title": "区域、服务器与认证候选选择",
+    "scope": "区域/行选择、排序、关联列、状态/期限限制、刷新候选",
+    "owners": [
+      "shared/launcher-channel.mjs",
+      "shared/launcher-replies.mjs"
+    ],
+    "dependencies": [
+      "L01"
+    ],
+    "batch": "D1",
+    "source_profiles": [
+      "launcher-legacy-601b",
+      "launcher-updated-c82f",
+      "launcher-historical-c7ba"
+    ]
+  },
+  "document_catalog": {
+    "source": {
+      "path": "build/analysis/launcher-selection-order-reconciliation-v1/source-review.json",
+      "bytes": 168508,
+      "sha256": "7282371322efc91b11538e9aa4d0dd96cb92c9f197bfac3134d7f5b0fe5c4eb6"
+    },
+    "prior": {
+      "path": "analysis/capability-first-v1/launcher-selection-functional-specification.json",
+      "bytes": 28630,
+      "sha256": "36bafd5376b09c8d682f5012d2e4fcd700f270cefaae3cbb10f6e59abf6cddda"
+    },
+    "metadata": {
+      "path": "analysis/capability-first-v1/launcher-id-metadata-contract.json",
+      "bytes": 12485,
+      "sha256": "a78e6638d2f39f38dac16ab4a45bfb77920ba668844f3b0ab1d20bd3ddbec93c"
+    },
+    "original_review": {
+      "path": "analysis/capability-first-v1/launcher-functional-specification.json",
+      "bytes": 111980,
+      "sha256": "68ebb9f01779d04be26ed66a5a8ae16f2246cac514a8161c5c6af53bf0a13bc6"
+    },
+    "selection_entry": {
+      "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+      "bytes": 69965,
+      "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+    },
+    "startup": {
+      "path": "analysis/capability-first-v1/launcher-startup-final-reconciliation.json",
+      "bytes": 49579,
+      "sha256": "c2784dd329b6f0f082588a05c4d139d5e3d21b91f8f89a0784129c4f4bf96874"
+    },
+    "apply": {
+      "path": "analysis/capability-first-v1/launcher-apply-contract.json",
+      "bytes": 11656,
+      "sha256": "0ab805c57cfa28e2e8a4bdfe6b4bde53f3f3e540e96ab06a807790cc5d3ed8c8"
+    },
+    "catalog": {
+      "path": "analysis/capability-first-v1/launcher-catalog-state-contract.json",
+      "bytes": 11153,
+      "sha256": "d509dfe7c6cf3cc85b16303a97fd3b3bae7c71ae049612ab64d3f2d8eb3b8da1"
+    },
+    "catalog_install": {
+      "path": "analysis/capability-first-v1/launcher-catalog-install-contract.json",
+      "bytes": 17714,
+      "sha256": "6aff5238454eb3eccc611698efd2ee478b85c7e6005645fc52fb633fd0dc342c"
+    },
+    "session": {
+      "path": "analysis/capability-first-v1/launcher-session-functional-specification.json",
+      "bytes": 77719,
+      "sha256": "3fb04e1f227938110d1f141e9fedf4da02339e4a80f49cddf78ca10283fef010"
+    },
+    "legacy_failure": {
+      "path": "analysis/capability-first-v1/launcher-legacy-failure-contract.json",
+      "bytes": 43426,
+      "sha256": "78d80d554a20f44584221a7753c8671ac0f0db2ddb29735b1ca29259920eb9cd"
+    },
+    "preferences": {
+      "path": "analysis/capability-first-v1/launcher-preferences-functional-specification.json",
+      "bytes": 35824,
+      "sha256": "3643ffafd773800c26810633d66042d2f9321560025923bf9efafd01812c916a"
+    },
+    "operations": {
+      "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+      "bytes": 125938,
+      "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+    },
+    "target_login": {
+      "path": "shared/launcher-login.mjs",
+      "bytes": 8016,
+      "sha256": "1933e1366a5d2e029ad217db4f1546146c6a0e6d47018e82d1c06b59404ea621"
+    },
+    "target_flow": {
+      "path": "shared/launcher-flow.mjs",
+      "bytes": 11893,
+      "sha256": "550dbdeced62e3461dbcceeeff30eacf5a64ded4e0838ce189da8d93357b724e"
+    }
+  },
+  "sources": {
+    "C7": {
+      "path": "build/analysis/launcher-update-recovery-v1/old-source/POLCN_Launcher.analysis-only.exe",
+      "bytes": 4105728,
+      "sha256": "c7ba69f77809fe589fd5dcccc78fcd4f33d4b6f76325d00a27f37032bbb32384"
+    },
+    "C82": {
+      "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+      "bytes": 4111872,
+      "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+    }
+  },
+  "tools": {
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "skill": "42",
+    "LLVM": "21"
+  },
+  "facts": [
+    {
+      "id": "SO-F01",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "SP-U1以同C7实际写者、key派生和原指令补齐；另沿423AA0→4183E0补正回复后的预设ID消费，以及413F80/41B460的比较/可见映射。13份新完整native共3727B；没有重查上轮18体或增加C7认证crypto范围。原五组×三profile、两owner、L01/D1保持。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/summary"
+        },
+        {
+          "document": "original_review",
+          "pointer": "/original_capability_reviews/1"
+        }
+      ]
+    },
+    {
+      "id": "SO-F02",
+      "classification": "事实",
+      "evidence_kind": "derived-original-byte-structure-with-separate-bindings",
+      "claim": "C7与C82分别核原PE；七对函数1615条指令的相对位置、操作码/寄存器/操作数位置及173条相对分支相符。Main字段差30h、Frame相应字段差48h和scaled index差0Ch均显式记录。外部callee、IAT与静态数据仍逐源绑定，不因结构对应推定所有异常、文本或OS效果相同。两个旧prototype视图只解释对应完整C82原指令，未修改REA元数据或样本。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/source_correspondence"
+        },
+        {
+          "document": "source",
+          "pointer": "/reused_prototype_views"
+        }
+      ]
+    },
+    {
+      "id": "SO-F03",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "C741B9F0以当前Main+21CC账号原字节、Frame+770C数值按%d、当前GameID组合%s|%d|%s，经既有43A560/43FC00的MD5文本链生成GID_加32小写hex。账号或GameID空返回空key；不添加realm、位置或大小写变换。digest helper失败返回空文本时，源仍拼接GID_，不另设hash-success门槛。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/6"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/21"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/22"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/23"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/24"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/25"
+        },
+        {
+          "document": "source",
+          "pointer": "/C7_key_literals"
+        }
+      ]
+    },
+    {
+      "id": "SO-F04",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "四个C7 key派生器去掉base前4字节后分别加GID_MOVE_ANCHOR_、GID_MOVE_ORDER_V2_、GID_PIN_ORDER_V2_、GID_PIN_。四写者均用GameIDNotes和Frame+7710的profile对象；两个rank写者把signed非正数写0，pin写者取调用值低byte，正常pin/unpin caller传1/0。空key返回false。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/7"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/5"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/8"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/9"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/12"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/1"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/4"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/2"
+        }
+      ]
+    },
+    {
+      "id": "SO-F05",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "C7 profile构造器43AC30将模块目录与PlayOnline.ini组成filename；43B000按%d格式后调用WritePrivateProfileStringA。43B0F0的112B原件派生窗明确filename取ECX+4、三个owned字符串、IAT5CE468，API BOOL保存在EDI，释放引用后还原到EAX并RET0xC。BOOL/恢复请求不等于原子、多key或crash-durable提交。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/20"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/19"
+        },
+        {
+          "document": "source",
+          "pointer": "/derived_profile_string_writer"
+        }
+      ]
+    },
+    {
+      "id": "SO-F06",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "C7427860重新读取当前raw选择并检查范围/目标flag差异。pin先写flag1，再写group1最大signed rank+1；unpin先写flag0，再写rank0。两写均成功才更新内存并清undo/rebuild；失败尝试旧flag和旧rank两写，忽略恢复结果并报告错误。max+1为源32位运算，writer的非正归零与内存值不能混为一个额外溢出政策。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/16"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/4"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/2"
+        },
+        {
+          "document": "metadata",
+          "pointer": "/facts/pin_change"
+        }
+      ]
+    },
+    {
+      "id": "SO-F07",
+      "classification": "事实",
+      "evidence_kind": "derived-original-instructions-and-proven-callee-bindings",
+      "claim": "C741CAD0实际输入为ECX Main和两个栈参数（raw index、同组目标位置，RET8），不是provider恢复的单参数体。先要求filter空、raw/组内位置有效且发生移动。非零group按新组顺序给出连续1-based pin rank，仅写变化项；失败尝试恢复此前成功项，内存不发布，恢复BOOL未校验。成功后才发布新rank、保存旧order snapshot、置undo并重建。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/13"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/27"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/17"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/4"
+        },
+        {
+          "document": "source",
+          "pointer": "/source_correspondence/0"
+        }
+      ]
+    },
+    {
+      "id": "SO-F08",
+      "classification": "事实",
+      "evidence_kind": "derived-original-instructions-and-proven-callee-bindings",
+      "claim": "group0移动保留既有anchor/move-rank，把已有自定义项及被移动项标为tracked，找新顺序最右untracked位置。tracked在其前方取B:后继ID，其余有前驱取A:前驱ID，首项无前驱取F；tracked获得连续1-based move rank。anchor成功后rank失败时先尝试恢复该anchor，再恢复此前成功的anchor/rank对；全成功后才发布内存与一次undo。不能把这些恢复尝试写成事务保证。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/13"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/12"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/1"
+        },
+        {
+          "document": "source",
+          "pointer": "/source_correspondence/0"
+        },
+        {
+          "document": "metadata",
+          "pointer": "/facts/reorder"
+        }
+      ]
+    },
+    {
+      "id": "SO-F09",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "C74197F0 capture和416C90 copy处理64 pin-rank整数、64 move-rank整数及64 owned anchor字符串；snapshot不含note和pin flag。418110按当前收到的ID数依次写三个值，全部成功才发布当前数范围的内存并rebuild。失败恢复rows0至失败row（含）三个旧值，聚合恢复BOOL选择错误提示；成功低AL=1，失败低AL=0，不能把provider void当无结果。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/10"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/17"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/15"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/12"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/1"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/4"
+        },
+        {
+          "document": "metadata",
+          "pointer": "/facts/order_snapshot"
+        }
+      ]
+    },
+    {
+      "id": "SO-F10",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "C7 step4 context的7209捕获旧snapshot后应用零rank/空anchor，成功才保存旧snapshot到Main+1668并置Main+1968；720A只在该位非零时apply旧snapshot，成功才清位。上下移动仅空filter和有效相邻组位置准入；pin/reset的门槛分别按实际callee，不把reorder的filter门槛扩大。新正回复和成功pin/undo按已证路径清undo，不能推断所有未审入口都清理。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/18"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/15"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/16"
+        },
+        {
+          "document": "prior",
+          "pointer": "/facts/12"
+        },
+        {
+          "document": "metadata",
+          "pointer": "/facts/order_commands"
+        }
+      ]
+    },
+    {
+      "id": "SO-F11",
+      "classification": "事实",
+      "evidence_kind": "derived-original-instructions",
+      "claim": "C7425600原完整指令保留group1后group0的顺序，过滤、装饰并为可见行保存raw映射。之前raw选择仍可见才恢复并更新详情，否则设置-1并清Frame+76F4。原provider简短伪代码中的unreachable删除不覆盖实际分支；本规则由957B原体及独立配对完整指令解释。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/14"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/28"
+        },
+        {
+          "document": "source",
+          "pointer": "/source_correspondence/1"
+        },
+        {
+          "document": "source",
+          "pointer": "/reused_prototype_views/1"
+        },
+        {
+          "document": "prior",
+          "pointer": "/facts/11"
+        }
+      ]
+    },
+    {
+      "id": "SO-F12",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "C74183E0仅在Main+10C0 pending预设位非零时复制7字段，再置10C1并清10C0，先消费后匹配。所收ID按413F80的等长度原字节比较查唯一匹配；该函数结果仅低AL有意义。账号要求源__mbscmp相等，ID状态signed low16为0/-4且两限制列不同时非零，再经41B460查raw→可见位置。可见才选择并调用普通41E370；不满足或不可见清选择并提示，不会保留pending等另一回复。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/3"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/0"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/11"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/29"
+        },
+        {
+          "document": "apply",
+          "pointer": "/facts"
+        }
+      ]
+    },
+    {
+      "id": "SO-F13",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "SP已证的三版原区域/行、逐对ID及四关联列排序、低16位资格和日期显示继续有效；C7/C82候选和提交后分别重设10秒，legacy timer/同步尝试按LS/LF另列。原scope的catalog刷新输入和选择上下文复用L01/L05合同，不把本地可选资格、配置地址或普通进程创建当作认证/官方接受。",
+      "source_refs": [
+        {
+          "document": "prior",
+          "pointer": "/facts"
+        },
+        {
+          "document": "session",
+          "pointer": "/facts"
+        },
+        {
+          "document": "legacy_failure",
+          "pointer": "/facts"
+        },
+        {
+          "document": "catalog_install",
+          "pointer": "/facts"
+        },
+        {
+          "document": "startup",
+          "pointer": "/facts"
+        }
+      ]
+    },
+    {
+      "id": "SO-F14",
+      "classification": "事实",
+      "evidence_kind": "source-scope-reconciliation",
+      "claim": "L02原五组×三来源十五格已按可实现的本域规则组合；SP-U1必要源缺口关闭。原所有权、来源、L01依赖、D1批次保持；L02仅固定来源本域source-ready，总数17→18。条件发现、其它能力、共享Host设计和真实接受均未因此提升。",
+      "source_refs": [
+        {
+          "document": "original_review",
+          "pointer": "/original_capability_reviews/1"
+        },
+        {
+          "document": "prior",
+          "pointer": "/coverage"
+        },
+        {
+          "document": "source",
+          "pointer": "/summary"
+        }
+      ]
+    },
+    {
+      "id": "SO-F15",
+      "classification": "事实",
+      "evidence_kind": "direct-static-source",
+      "claim": "后续D1复用现有launcher-login的关联行元组、原逐对交换和资格规则，以及现有parser/record核心；沿SP/LO/LS/metadata差异补profile时钟、持久化和流程。产品保持stage306，统一全部能力A1..A4前无新功能开发；本轮没有目标测试、构建、SDK/VM、账号或官方联网。",
+      "source_refs": [
+        {
+          "document": "target_login",
+          "pointer": ""
+        },
+        {
+          "document": "target_flow",
+          "pointer": ""
+        },
+        {
+          "document": "operations",
+          "pointer": "/implementation_deltas"
+        }
+      ]
+    }
+  ],
+  "C7_order_and_pending_operations": [
+    {
+      "id": "SO-O01",
+      "name": "pin/unpin",
+      "input_and_admission": "当前选中raw在范围内且flag不同；caller的目标为1或0",
+      "ordered_effects": [
+        "写flag",
+        "写max+1或0的rank",
+        "两次成功后才改内存、清undo、rebuild"
+      ],
+      "failure_and_recovery": "任一失败请求旧flag和rank恢复，恢复结果忽略；不发布候选内存",
+      "facts": [
+        "SO-F04",
+        "SO-F05",
+        "SO-F06"
+      ],
+      "owner": "the existing L02 owners with explicit session/store/clock ports",
+      "cancel_close_reentry": "请求准入及接收时使用源当前状态；条件modal/通道退出按原依赖合同，不发明整应用generation保证。"
+    },
+    {
+      "id": "SO-O02",
+      "name": "reorder nonzero group",
+      "input_and_admission": "filter空、raw和同组目标位置有效且不同",
+      "ordered_effects": [
+        "按新顺序生成1-based rank",
+        "只写变化项",
+        "全部成功后发布、保存旧snapshot并使一次undo可用"
+      ],
+      "failure_and_recovery": "失败恢复之前成功项；无candidate内存发布；恢复写可能失败",
+      "facts": [
+        "SO-F07"
+      ],
+      "owner": "the existing L02 owners with explicit session/store/clock ports",
+      "cancel_close_reentry": "请求准入及接收时使用源当前状态；条件modal/通道退出按原依赖合同，不发明整应用generation保证。"
+    },
+    {
+      "id": "SO-O03",
+      "name": "reorder group0",
+      "input_and_admission": "同SO-O02且该raw的group为0",
+      "ordered_effects": [
+        "生成tracked集合",
+        "依据最右untracked位置生成B:/A:/F",
+        "写anchor再rank",
+        "全成功后发布并保存一次undo"
+      ],
+      "failure_and_recovery": "rank失败先恢复该anchor，再恢复先前成功对；失败请求不保证持久状态恢复",
+      "facts": [
+        "SO-F08"
+      ],
+      "owner": "the existing L02 owners with explicit session/store/clock ports",
+      "cancel_close_reentry": "请求准入及接收时使用源当前状态；条件modal/通道退出按原依赖合同，不发明整应用generation保证。"
+    },
+    {
+      "id": "SO-O04",
+      "name": "bulk snapshot apply",
+      "input_and_admission": "当前收到ID列表与caller提供的三个64槽snapshot数组",
+      "ordered_effects": [
+        "逐当前ID写pin-rank/move-rank/anchor",
+        "全成功再发布当前数量内存",
+        "重建并返回低AL1"
+      ],
+      "failure_and_recovery": "恢复0..失败row含该row的三个旧值，聚合恢复结果提示，返回低AL0",
+      "facts": [
+        "SO-F09"
+      ],
+      "owner": "the existing L02 owners with explicit session/store/clock ports",
+      "cancel_close_reentry": "请求准入及接收时使用源当前状态；条件modal/通道退出按原依赖合同，不发明整应用generation保证。"
+    },
+    {
+      "id": "SO-O05",
+      "name": "reset and one undo",
+      "input_and_admission": "7209或可用的720A经实际context路径触发",
+      "ordered_effects": [
+        "reset应用零rank/空anchor",
+        "成功保存旧snapshot及undo位",
+        "undo成功才清可用位"
+      ],
+      "failure_and_recovery": "apply失败不消费可用undo；无多级undo、note或pin-flag恢复语义",
+      "facts": [
+        "SO-F09",
+        "SO-F10"
+      ],
+      "owner": "the existing L02 owners with explicit session/store/clock ports",
+      "cancel_close_reentry": "请求准入及接收时使用源当前状态；条件modal/通道退出按原依赖合同，不发明整应用generation保证。"
+    },
+    {
+      "id": "SO-O06",
+      "name": "rebuild and restore raw selection",
+      "input_and_admission": "当前row元组、本地metadata、query及先前raw选择",
+      "ordered_effects": [
+        "group1后group0",
+        "过滤并保存可见raw映射",
+        "恢复可见的旧raw，或清选择和Frame字段"
+      ],
+      "failure_and_recovery": "不把filtered ordinal当raw；provider误剪部分不作为实际不可达结论",
+      "facts": [
+        "SO-F11"
+      ],
+      "owner": "the existing L02 owners with explicit session/store/clock ports",
+      "cancel_close_reentry": "请求准入及接收时使用源当前状态；条件modal/通道退出按原依赖合同，不发明整应用generation保证。"
+    },
+    {
+      "id": "SO-O07",
+      "name": "post-reply pending-preset consume",
+      "input_and_admission": "当前pending预设位非零",
+      "ordered_effects": [
+        "复制7字段并清pending",
+        "检查账号及唯一原字节ID",
+        "检查资格与可见映射",
+        "选择后进入普通Next"
+      ],
+      "failure_and_recovery": "失败清选择/提示；pending已消费；Next继续按本版普通规则检查",
+      "facts": [
+        "SO-F12"
+      ],
+      "owner": "the existing L02 owners with explicit session/store/clock ports",
+      "cancel_close_reentry": "请求准入及接收时使用源当前状态；条件modal/通道退出按原依赖合同，不发明整应用generation保证。"
+    }
+  ],
+  "coverage": [
+    {
+      "requirement": "区域/行选择",
+      "profile": "launcher-legacy-601b",
+      "operation_ids": [
+        "LO-O02",
+        "LO-O04",
+        "LO-O07",
+        "LO-O11"
+      ],
+      "input_and_state": "原catalog上下文、display/raw、名称/Code及可用状态",
+      "normal_sequence_and_publication": "按各版普通选择及名称首匹配/预设唯一入口分别发布上下文",
+      "failure_and_recovery": "invalid raw、关闭区域、缺必需名称或预设不可见走各自源失败结果",
+      "cancel_or_close": "本域没有新的批准/认证结果；调用时源当前状态和字段按SP/本合同，UI/通道退役按L01/LS合同。",
+      "late_or_reopen": "不新增源未证的generation/transaction；本域确定规则与依赖的普通modal/Host准入条件分开验收。",
+      "source_rule_fact_ids": [
+        "SO-F11",
+        "SO-F12",
+        "SO-F13"
+      ],
+      "owner": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-replies.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "fixed_profile_required_rules_specified": true,
+      "actual_acceptance_executed": false
+    },
+    {
+      "requirement": "区域/行选择",
+      "profile": "launcher-updated-c82f",
+      "operation_ids": [
+        "LO-O02",
+        "LO-O04",
+        "LO-O07",
+        "LO-O11"
+      ],
+      "input_and_state": "原catalog上下文、display/raw、名称/Code及可用状态",
+      "normal_sequence_and_publication": "按各版普通选择及名称首匹配/预设唯一入口分别发布上下文",
+      "failure_and_recovery": "invalid raw、关闭区域、缺必需名称或预设不可见走各自源失败结果",
+      "cancel_or_close": "本域没有新的批准/认证结果；调用时源当前状态和字段按SP/本合同，UI/通道退役按L01/LS合同。",
+      "late_or_reopen": "不新增源未证的generation/transaction；本域确定规则与依赖的普通modal/Host准入条件分开验收。",
+      "source_rule_fact_ids": [
+        "SO-F11",
+        "SO-F12",
+        "SO-F13"
+      ],
+      "owner": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-replies.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "fixed_profile_required_rules_specified": true,
+      "actual_acceptance_executed": false
+    },
+    {
+      "requirement": "区域/行选择",
+      "profile": "launcher-historical-c7ba",
+      "operation_ids": [
+        "LO-O02",
+        "LO-O04",
+        "LO-O07",
+        "LO-O11"
+      ],
+      "input_and_state": "原catalog上下文、display/raw、名称/Code及可用状态",
+      "normal_sequence_and_publication": "按各版普通选择及名称首匹配/预设唯一入口分别发布上下文",
+      "failure_and_recovery": "invalid raw、关闭区域、缺必需名称或预设不可见走各自源失败结果",
+      "cancel_or_close": "本域没有新的批准/认证结果；调用时源当前状态和字段按SP/本合同，UI/通道退役按L01/LS合同。",
+      "late_or_reopen": "不新增源未证的generation/transaction；本域确定规则与依赖的普通modal/Host准入条件分开验收。",
+      "source_rule_fact_ids": [
+        "SO-F11",
+        "SO-F12",
+        "SO-F13"
+      ],
+      "owner": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-replies.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "fixed_profile_required_rules_specified": true,
+      "actual_acceptance_executed": false
+    },
+    {
+      "requirement": "排序",
+      "profile": "launcher-legacy-601b",
+      "operation_ids": [
+        "LO-O11",
+        "LO-O13"
+      ],
+      "input_and_state": "当前ID关联元组；现代profile的note/pin/rank/anchor与当前query",
+      "normal_sequence_and_publication": "按原逐对ID交换，现代已证操作按group/rank/anchor及上述七操作组合",
+      "failure_and_recovery": "legacy不套现代metadata；C7/C82各自按写结果和恢复请求，不承诺原子性",
+      "cancel_or_close": "本域没有新的批准/认证结果；调用时源当前状态和字段按SP/本合同，UI/通道退役按L01/LS合同。",
+      "late_or_reopen": "不新增源未证的generation/transaction；本域确定规则与依赖的普通modal/Host准入条件分开验收。",
+      "source_rule_fact_ids": [
+        "SO-F06",
+        "SO-F07",
+        "SO-F08",
+        "SO-F09",
+        "SO-F10",
+        "SO-F13"
+      ],
+      "owner": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-replies.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "fixed_profile_required_rules_specified": true,
+      "actual_acceptance_executed": false
+    },
+    {
+      "requirement": "排序",
+      "profile": "launcher-updated-c82f",
+      "operation_ids": [
+        "LO-O11",
+        "LO-O13"
+      ],
+      "input_and_state": "当前ID关联元组；现代profile的note/pin/rank/anchor与当前query",
+      "normal_sequence_and_publication": "按原逐对ID交换，现代已证操作按group/rank/anchor及上述七操作组合",
+      "failure_and_recovery": "legacy不套现代metadata；C7/C82各自按写结果和恢复请求，不承诺原子性",
+      "cancel_or_close": "本域没有新的批准/认证结果；调用时源当前状态和字段按SP/本合同，UI/通道退役按L01/LS合同。",
+      "late_or_reopen": "不新增源未证的generation/transaction；本域确定规则与依赖的普通modal/Host准入条件分开验收。",
+      "source_rule_fact_ids": [
+        "SO-F06",
+        "SO-F07",
+        "SO-F08",
+        "SO-F09",
+        "SO-F10",
+        "SO-F13"
+      ],
+      "owner": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-replies.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "fixed_profile_required_rules_specified": true,
+      "actual_acceptance_executed": false
+    },
+    {
+      "requirement": "排序",
+      "profile": "launcher-historical-c7ba",
+      "operation_ids": [
+        "LO-O11",
+        "LO-O13"
+      ],
+      "input_and_state": "当前ID关联元组；现代profile的note/pin/rank/anchor与当前query",
+      "normal_sequence_and_publication": "按原逐对ID交换，现代已证操作按group/rank/anchor及上述七操作组合",
+      "failure_and_recovery": "legacy不套现代metadata；C7/C82各自按写结果和恢复请求，不承诺原子性",
+      "cancel_or_close": "本域没有新的批准/认证结果；调用时源当前状态和字段按SP/本合同，UI/通道退役按L01/LS合同。",
+      "late_or_reopen": "不新增源未证的generation/transaction；本域确定规则与依赖的普通modal/Host准入条件分开验收。",
+      "source_rule_fact_ids": [
+        "SO-F06",
+        "SO-F07",
+        "SO-F08",
+        "SO-F09",
+        "SO-F10",
+        "SO-F13"
+      ],
+      "owner": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-replies.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "fixed_profile_required_rules_specified": true,
+      "actual_acceptance_executed": false
+    },
+    {
+      "requirement": "关联列",
+      "profile": "launcher-legacy-601b",
+      "operation_ids": [
+        "LO-O02",
+        "LO-O11",
+        "LO-O12"
+      ],
+      "input_and_state": "同一来源的ID和四个已证UI关联列，以及当前可见映射",
+      "normal_sequence_and_publication": "元组同步交换/投影，低16位状态、日期和限制列分别保留",
+      "failure_and_recovery": "源长度/数量边界与callback准入依原session；显示序号不替代raw身份",
+      "cancel_or_close": "本域没有新的批准/认证结果；调用时源当前状态和字段按SP/本合同，UI/通道退役按L01/LS合同。",
+      "late_or_reopen": "不新增源未证的generation/transaction；本域确定规则与依赖的普通modal/Host准入条件分开验收。",
+      "source_rule_fact_ids": [
+        "SO-F11",
+        "SO-F12",
+        "SO-F13"
+      ],
+      "owner": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-replies.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "fixed_profile_required_rules_specified": true,
+      "actual_acceptance_executed": false
+    },
+    {
+      "requirement": "关联列",
+      "profile": "launcher-updated-c82f",
+      "operation_ids": [
+        "LO-O02",
+        "LO-O11",
+        "LO-O12"
+      ],
+      "input_and_state": "同一来源的ID和四个已证UI关联列，以及当前可见映射",
+      "normal_sequence_and_publication": "元组同步交换/投影，低16位状态、日期和限制列分别保留",
+      "failure_and_recovery": "源长度/数量边界与callback准入依原session；显示序号不替代raw身份",
+      "cancel_or_close": "本域没有新的批准/认证结果；调用时源当前状态和字段按SP/本合同，UI/通道退役按L01/LS合同。",
+      "late_or_reopen": "不新增源未证的generation/transaction；本域确定规则与依赖的普通modal/Host准入条件分开验收。",
+      "source_rule_fact_ids": [
+        "SO-F11",
+        "SO-F12",
+        "SO-F13"
+      ],
+      "owner": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-replies.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "fixed_profile_required_rules_specified": true,
+      "actual_acceptance_executed": false
+    },
+    {
+      "requirement": "关联列",
+      "profile": "launcher-historical-c7ba",
+      "operation_ids": [
+        "LO-O02",
+        "LO-O11",
+        "LO-O12"
+      ],
+      "input_and_state": "同一来源的ID和四个已证UI关联列，以及当前可见映射",
+      "normal_sequence_and_publication": "元组同步交换/投影，低16位状态、日期和限制列分别保留",
+      "failure_and_recovery": "源长度/数量边界与callback准入依原session；显示序号不替代raw身份",
+      "cancel_or_close": "本域没有新的批准/认证结果；调用时源当前状态和字段按SP/本合同，UI/通道退役按L01/LS合同。",
+      "late_or_reopen": "不新增源未证的generation/transaction；本域确定规则与依赖的普通modal/Host准入条件分开验收。",
+      "source_rule_fact_ids": [
+        "SO-F11",
+        "SO-F12",
+        "SO-F13"
+      ],
+      "owner": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-replies.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "fixed_profile_required_rules_specified": true,
+      "actual_acceptance_executed": false
+    },
+    {
+      "requirement": "状态/期限限制",
+      "profile": "launcher-legacy-601b",
+      "operation_ids": [
+        "LO-O09",
+        "LO-O11",
+        "LO-O12"
+      ],
+      "input_and_state": "本版状态低16位、两限制列、日期、active及对应时钟阶段",
+      "normal_sequence_and_publication": "资格仅依已证状态/限制；日期按显示合同；legacy与现代期限分别处理",
+      "failure_and_recovery": "无资格或阶段期限到达按原规则退役/轮换；不据日期或本地选择断言认证成功",
+      "cancel_or_close": "本域没有新的批准/认证结果；调用时源当前状态和字段按SP/本合同，UI/通道退役按L01/LS合同。",
+      "late_or_reopen": "不新增源未证的generation/transaction；本域确定规则与依赖的普通modal/Host准入条件分开验收。",
+      "source_rule_fact_ids": [
+        "SO-F12",
+        "SO-F13"
+      ],
+      "owner": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-replies.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "fixed_profile_required_rules_specified": true,
+      "actual_acceptance_executed": false
+    },
+    {
+      "requirement": "状态/期限限制",
+      "profile": "launcher-updated-c82f",
+      "operation_ids": [
+        "LO-O09",
+        "LO-O11",
+        "LO-O12"
+      ],
+      "input_and_state": "本版状态低16位、两限制列、日期、active及对应时钟阶段",
+      "normal_sequence_and_publication": "资格仅依已证状态/限制；日期按显示合同；legacy与现代期限分别处理",
+      "failure_and_recovery": "无资格或阶段期限到达按原规则退役/轮换；不据日期或本地选择断言认证成功",
+      "cancel_or_close": "本域没有新的批准/认证结果；调用时源当前状态和字段按SP/本合同，UI/通道退役按L01/LS合同。",
+      "late_or_reopen": "不新增源未证的generation/transaction；本域确定规则与依赖的普通modal/Host准入条件分开验收。",
+      "source_rule_fact_ids": [
+        "SO-F12",
+        "SO-F13"
+      ],
+      "owner": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-replies.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "fixed_profile_required_rules_specified": true,
+      "actual_acceptance_executed": false
+    },
+    {
+      "requirement": "状态/期限限制",
+      "profile": "launcher-historical-c7ba",
+      "operation_ids": [
+        "LO-O09",
+        "LO-O11",
+        "LO-O12"
+      ],
+      "input_and_state": "本版状态低16位、两限制列、日期、active及对应时钟阶段",
+      "normal_sequence_and_publication": "资格仅依已证状态/限制；日期按显示合同；legacy与现代期限分别处理",
+      "failure_and_recovery": "无资格或阶段期限到达按原规则退役/轮换；不据日期或本地选择断言认证成功",
+      "cancel_or_close": "本域没有新的批准/认证结果；调用时源当前状态和字段按SP/本合同，UI/通道退役按L01/LS合同。",
+      "late_or_reopen": "不新增源未证的generation/transaction；本域确定规则与依赖的普通modal/Host准入条件分开验收。",
+      "source_rule_fact_ids": [
+        "SO-F12",
+        "SO-F13"
+      ],
+      "owner": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-replies.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "fixed_profile_required_rules_specified": true,
+      "actual_acceptance_executed": false
+    },
+    {
+      "requirement": "刷新候选",
+      "profile": "launcher-legacy-601b",
+      "operation_ids": [
+        "LO-O03",
+        "LO-O09"
+      ],
+      "input_and_state": "catalog发布输入、本版当前选择、候选序号/剩余数、resolver和pending",
+      "normal_sequence_and_publication": "复用原catalog/selection重建及本版候选刷新；C7预设先消费再匹配",
+      "failure_and_recovery": "取消、耗尽、resolver失败、回复无匹配及迟到按已证边界和原session依赖分列",
+      "cancel_or_close": "本域没有新的批准/认证结果；调用时源当前状态和字段按SP/本合同，UI/通道退役按L01/LS合同。",
+      "late_or_reopen": "不新增源未证的generation/transaction；本域确定规则与依赖的普通modal/Host准入条件分开验收。",
+      "source_rule_fact_ids": [
+        "SO-F11",
+        "SO-F12",
+        "SO-F13"
+      ],
+      "owner": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-replies.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "fixed_profile_required_rules_specified": true,
+      "actual_acceptance_executed": false
+    },
+    {
+      "requirement": "刷新候选",
+      "profile": "launcher-updated-c82f",
+      "operation_ids": [
+        "LO-O03",
+        "LO-O09"
+      ],
+      "input_and_state": "catalog发布输入、本版当前选择、候选序号/剩余数、resolver和pending",
+      "normal_sequence_and_publication": "复用原catalog/selection重建及本版候选刷新；C7预设先消费再匹配",
+      "failure_and_recovery": "取消、耗尽、resolver失败、回复无匹配及迟到按已证边界和原session依赖分列",
+      "cancel_or_close": "本域没有新的批准/认证结果；调用时源当前状态和字段按SP/本合同，UI/通道退役按L01/LS合同。",
+      "late_or_reopen": "不新增源未证的generation/transaction；本域确定规则与依赖的普通modal/Host准入条件分开验收。",
+      "source_rule_fact_ids": [
+        "SO-F11",
+        "SO-F12",
+        "SO-F13"
+      ],
+      "owner": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-replies.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "fixed_profile_required_rules_specified": true,
+      "actual_acceptance_executed": false
+    },
+    {
+      "requirement": "刷新候选",
+      "profile": "launcher-historical-c7ba",
+      "operation_ids": [
+        "LO-O03",
+        "LO-O09"
+      ],
+      "input_and_state": "catalog发布输入、本版当前选择、候选序号/剩余数、resolver和pending",
+      "normal_sequence_and_publication": "复用原catalog/selection重建及本版候选刷新；C7预设先消费再匹配",
+      "failure_and_recovery": "取消、耗尽、resolver失败、回复无匹配及迟到按已证边界和原session依赖分列",
+      "cancel_or_close": "本域没有新的批准/认证结果；调用时源当前状态和字段按SP/本合同，UI/通道退役按L01/LS合同。",
+      "late_or_reopen": "不新增源未证的generation/transaction；本域确定规则与依赖的普通modal/Host准入条件分开验收。",
+      "source_rule_fact_ids": [
+        "SO-F11",
+        "SO-F12",
+        "SO-F13"
+      ],
+      "owner": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-replies.mjs"
+      ],
+      "dependencies": [
+        "L01"
+      ],
+      "batch": "D1",
+      "fixed_profile_required_rules_specified": true,
+      "actual_acceptance_executed": false
+    }
+  ],
+  "scope_preserved": true,
+  "supersession": {
+    "prior_contract": "analysis/capability-first-v1/launcher-selection-functional-specification.json",
+    "closed_necessary_gap": "SP-U1",
+    "prior_partial_readiness_superseded_for_original_L02_fixed_source_rules_only": true,
+    "prior_facts_unchanged_except_new_C7_completion_context": true
+  },
+  "implementation_deltas": {
+    "reuse": "analysis/capability-first-v1/launcher-selection-functional-specification.json#implementation_deltas",
+    "SP_D3_C7_required_source_gap_closed": true,
+    "implementation_after_unified_gate": true,
+    "original_batch": "D1"
+  },
+  "remaining": [
+    {
+      "id": "SO-U1",
+      "classification": "待验证",
+      "kind": "other-capabilities-and-unified-analysis",
+      "claim": "L01/LS-U3、条件发现、其它原能力与当前同版游戏consumer依原矩阵继续，未由L02本域source-ready关闭。"
+    },
+    {
+      "id": "SO-U2",
+      "classification": "待验证",
+      "kind": "necessary-host-design",
+      "claim": "源OS编码/locale、clock、存储与回调生命周期由既有共享端口设计及profile可行性约束；完整实现与实际效果分层验证。"
+    },
+    {
+      "id": "SO-U3",
+      "classification": "待验证",
+      "kind": "implementation-after-all-capability-gate",
+      "claim": "统一A1..A4通过后按原D1复用SP/metadata/LO/LS差异，D0/D5共享端口与真实宿主接入继续按原批次。"
+    },
+    {
+      "id": "SO-U4",
+      "classification": "待验证",
+      "kind": "acceptance-after-implementation",
+      "claim": "14新增及原12完整案例尚未执行；网页/手机网页/微信SDK设备与有账号同版官方接受未完成。"
+    }
+  ],
+  "acceptance": {
+    "new_cases": [
+      {
+        "id": "SO-C01",
+        "purpose": "四类键的账号/Game数值/ID字节、空账号/ID与digest失败边界；路径rawCode键不能替代本域%d键。",
+        "executed": false
+      },
+      {
+        "id": "SO-C02",
+        "purpose": "rank输入负/零/正及pin低byte；最大signed rank+1的32位边界与writer非正归零分别观察。",
+        "executed": false
+      },
+      {
+        "id": "SO-C03",
+        "purpose": "pin/unpin第一写失败和第二写失败，恢复写失败时源内存、存储请求及错误分别记录。",
+        "executed": false
+      },
+      {
+        "id": "SO-C04",
+        "purpose": "reorder的非空query、invalid raw、越组/越界target和no-op不执行候选发布。",
+        "executed": false
+      },
+      {
+        "id": "SO-C05",
+        "purpose": "非零group重排只写变化rank；第k写失败恢复此前成功项，恢复结果不升级为事务。",
+        "executed": false
+      },
+      {
+        "id": "SO-C06",
+        "purpose": "group0 tracked与最右untracked生成B:/A:/F，重复ID/缺anchor与已有循环按原分组规则处理。",
+        "executed": false
+      },
+      {
+        "id": "SO-C07",
+        "purpose": "group0 anchor失败、rank失败和恢复失败分别检查当前anchor与先前成功对的恢复请求。",
+        "executed": false
+      },
+      {
+        "id": "SO-C08",
+        "purpose": "snapshot只含两类rank和anchor；capture64、apply当前count，note/pin flag不在一次undo内。",
+        "executed": false
+      },
+      {
+        "id": "SO-C09",
+        "purpose": "bulk apply任一字段在row k失败，恢复0..k含失败row的三个旧值并区分聚合恢复结果。",
+        "executed": false
+      },
+      {
+        "id": "SO-C10",
+        "purpose": "reset成功才保留旧snapshot；undo成功才消费可用位；新回复/pin清位按各源已证路径。",
+        "executed": false
+      },
+      {
+        "id": "SO-C11",
+        "purpose": "rebuild筛选后仍可见的旧raw恢复；不再可见则清selection和Frame所选ID字段。",
+        "executed": false
+      },
+      {
+        "id": "SO-C12",
+        "purpose": "C7预设pending复制7字段后先清，再验账号、唯一字节ID、状态与可见映射；不匹配不会等另一回复。",
+        "executed": false
+      },
+      {
+        "id": "SO-C13",
+        "purpose": "C7字符串比较的长度/空/不同大小写/重名，调用者只读AL；显示位置查询与raw范围各自检查。",
+        "executed": false
+      },
+      {
+        "id": "SO-C14",
+        "purpose": "把SP原十二例按五组×三profile组合；真实SDK/设备/官方接受独立执行，不把规范案例当通过。",
+        "executed": false
+      }
+    ],
+    "retained_cases": {
+      "document": "prior",
+      "pointer": "/unexecuted_acceptance_cases"
+    },
+    "all_cases_executed": 0,
+    "C7_SP_C12_expected_rules_now_specified": true
+  },
+  "summary": {
+    "new_complete_native": 13,
+    "new_native_bytes": 3727,
+    "reused_complete_native": 24,
+    "native_windows": 37,
+    "native_body_bytes": 20989,
+    "native_instructions": 5953,
+    "paired_functions": 7,
+    "paired_instructions": 1615,
+    "relative_control_flow_edges": 173,
+    "derived_writer_bytes": 112,
+    "derived_writer_instructions": 48,
+    "reused_prototype_views": 2,
+    "original_groups": 5,
+    "source_profiles": 3,
+    "coverage_cells": 15,
+    "new_facts": 15,
+    "local_fixed_source_ready_before": 17,
+    "local_fixed_source_ready_after": 18
+  },
+  "local_fixed_profile_L02_specification_ready": true,
+  "readiness": {
+    "conditional_discovery_closed": false,
+    "dependencies_promoted": false,
+    "host_conformance_passed": false
+  },
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "new_product_tests_or_builds": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "real_three_platform_or_official_acceptance_passed": false,
+  "full_goal_complete": false,
+  "execution_record": {
+    "path": "build/analysis/launcher-selection-order-reconciliation-v1/execution-record.json",
+    "bytes": 1365,
+    "sha256": "434f161b69cb33214fdce3d48f2b33a47e56d1946f03a3d3a6618bea28aef8c5"
+  }
+}

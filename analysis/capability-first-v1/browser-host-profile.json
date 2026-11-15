@@ -1,0 +1,521 @@
+{
+  "schema": "moli.browser-host-observations.v1",
+  "classification": "事实：指定本地Chrome实验；推测：适配约束；待验证：完整端口/容量/设备/同版接受",
+  "source_contract": {
+    "path": "analysis/capability-first-v1/shared-target-contract.json",
+    "bytes": 68467,
+    "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+  },
+  "runtime_receipt": {
+    "path": "build/analysis/browser-host-conformance-v1/runs/2026-11-09T23-28-50-756Z-76885/runtime.json",
+    "bytes": 39852,
+    "sha256": "b17a2d34e746b20f704118b41856ee3ed7b8f771f2efe6a0ac62b483738330e7"
+  },
+  "summary": {
+    "browser": "156.0.8078.80",
+    "playwright": "1.64.1",
+    "host_primitive_checks": 10,
+    "byte_verified_range_cases": 13,
+    "sparse_logical_bytes": 4294975488,
+    "sparse_allocated_bytes": 73728,
+    "maximum_requested_range_bytes": 1048576,
+    "frame_samples": 50,
+    "elapsed_monotonic_ms": 830.7999999523163,
+    "elapsed_wall_ms": 831,
+    "maximum_frame_gap_ms": 18.299999952316284,
+    "CDP_lifecycle_command_accepted": true,
+    "requested_CDP_frozen_interval_ms": 350,
+    "frame_pause_observed": false,
+    "composition_start_trusted_count": 2,
+    "composition_end_untrusted_count": 2,
+    "screenshots": 2,
+    "console_errors": 0,
+    "console_warnings": 0,
+    "external_requests": 0,
+    "pre_browser_fixture_failures": 1,
+    "protected_paths_at_runtime": 4755
+  },
+  "evidence_scope": {
+    "runtime": "owned dedicated headless Chrome profile on this Mac",
+    "browser": "156.0.8078.80",
+    "protocol": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.80",
+      "revision": "@fb096c0011f9d50f0a264a9376420cdea9c421e3",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.27"
+    },
+    "browser_plugin": "Browser plugin not available; regular installed Playwright fallback",
+    "viewport_desktop": [
+      1120,
+      900
+    ],
+    "viewport_mobile_emulation": [
+      390,
+      844
+    ],
+    "source_rule_scope": "independent host primitives;not new native reverse engineering",
+    "physical_mobile": false,
+    "native_WeChat": false,
+    "current_official": false,
+    "synthetic_original_data_only": true
+  },
+  "measured_parameters": {
+    "file_size_bytes": 4294975488,
+    "requested_range_bytes_max_observed": 1048576,
+    "tested_offset_domains": "selected positions around2^31/2^32 through EOF4GiB+8192;not an inferred universal maximum",
+    "selected_file_metadata_revalidation_sufficient": false,
+    "source_mutation_read_error": "NotReadableError",
+    "commit_authority": "IndexedDB transaction complete;request success is provisional",
+    "writer_scope_observed": "two DB connections in one origin/dedicated Chrome profile",
+    "requested_durability": "strict",
+    "durability_power_loss_verified": false,
+    "clean_browser_restart_commit_recovered": true,
+    "storage_persisted": false,
+    "quota_estimate_before": {
+      "quota": 10737421840,
+      "usage": 3600,
+      "usageDetails": {
+        "indexedDB": 3600
+      }
+    },
+    "quota_estimate_after": {
+      "quota": 10737426928,
+      "usage": 8688,
+      "usageDetails": {
+        "indexedDB": 8688
+      }
+    },
+    "owned_memory_budget_bytes": null,
+    "full_manifest_capacity_verified": false,
+    "source_clock_origin": null,
+    "fixed_frame_hz": null,
+    "real_background_policy_verified": false,
+    "real_OS_IME_verified": false,
+    "physical_touch_verified": false,
+    "codec_font_canvas_audio_profile_verified": false
+  },
+  "facts": [
+    {
+      "id": "AH-F1",
+      "classification": "事实",
+      "rule": "Selected real File ranges preserve the tested positions across2^31/2^32;13 independently checked reads include a1MiB request,zero ranges,and EOF short/clamped results.",
+      "source": {
+        "file": {
+          "path": "build/analysis/browser-host-conformance-v1/runs/2026-11-09T23-28-50-756Z-76885/runtime.json",
+          "bytes": 39852,
+          "sha256": "b17a2d34e746b20f704118b41856ee3ed7b8f771f2efe6a0ac62b483738330e7"
+        },
+        "pointer": "/ranges",
+        "canonical_sha256": "1ca9f7306ea9db8f03666fe5f48cb25f05992e375f2faf95557206e54dfdb211"
+      },
+      "constraint": "Validate exact offset/length/returned bytes before publication. Raw Blob.slice clamping is not a valid complete requested range.",
+      "ports": [
+        "UC-P07"
+      ],
+      "acceptance_limit": "Observed4GiB+8192B sparse original fixture;not an arbitrary ZIP64 domain or full-resource/memory-capacity acceptance."
+    },
+    {
+      "id": "AH-F2",
+      "classification": "事实",
+      "rule": "After the controlled same-size source mutation,the held File size/lastModified remain unchanged while the next slice read returns NotReadableError.",
+      "source": {
+        "file": {
+          "path": "build/analysis/browser-host-conformance-v1/runs/2026-11-09T23-28-50-756Z-76885/runtime.json",
+          "bytes": 39852,
+          "sha256": "b17a2d34e746b20f704118b41856ee3ed7b8f771f2efe6a0ac62b483738330e7"
+        },
+        "pointer": "/sourceMutation",
+        "canonical_sha256": "d36c54010c34c27b78047327b84186590f16a2277fbf3bd05e6bd7a3d5de370f"
+      },
+      "constraint": "File metadata is not an independent content revalidation. An unreadable/changed binding must stop admitting reads,settle inflight work and require validated rebind rather than reuse stale source metadata.",
+      "ports": [
+        "UC-P07",
+        "UC-P09",
+        "UC-P14"
+      ],
+      "acceptance_limit": "One local Chrome source-change path;other host source/permission errors need their own receipt."
+    },
+    {
+      "id": "AH-F3",
+      "classification": "事实",
+      "rule": "An active.put request succeeds before transaction complete;explicit abort at that point retains active A/revision1 and leaves no abort-only receipt.",
+      "source": {
+        "file": {
+          "path": "build/analysis/browser-host-conformance-v1/runs/2026-11-09T23-28-50-756Z-76885/runtime.json",
+          "bytes": 39852,
+          "sha256": "b17a2d34e746b20f704118b41856ee3ed7b8f771f2efe6a0ac62b483738330e7"
+        },
+        "pointer": "/abort",
+        "canonical_sha256": "d4adbd7d2aa5ea831dd971c5b89c2a36030679b2da9b46698cf4573323b724e9"
+      },
+      "constraint": "Only backend transaction complete may authorize committed success. Abort and pending request errors settle without publishing request-success as a commit.",
+      "ports": [
+        "UC-P08"
+      ],
+      "acceptance_limit": "Actual browser transaction primitive,not the full SnapshotStore cancel matrix or power-loss durability."
+    },
+    {
+      "id": "AH-F4",
+      "classification": "事实",
+      "rule": "Two distinct page DB connections compare expected revision1 and publish in overlapping readwrite scopes;one commits revision2 and the other observes revision2/conflict.",
+      "source": {
+        "file": {
+          "path": "build/analysis/browser-host-conformance-v1/runs/2026-11-09T23-28-50-756Z-76885/runtime.json",
+          "bytes": 39852,
+          "sha256": "b17a2d34e746b20f704118b41856ee3ed7b8f771f2efe6a0ac62b483738330e7"
+        },
+        "pointer": "/race",
+        "canonical_sha256": "ceab8e7b228676c9a4432243a38b98023e66509e8aee7917d26a7e894b40f406"
+      },
+      "constraint": "Expected-revision comparison and pointer/receipt writes share the same authoritative transaction. A per-page mutex alone does not cover the measured two-connection case.",
+      "ports": [
+        "UC-P08"
+      ],
+      "acceptance_limit": "One origin and owned Chrome profile;not WeChat journal,distributed writers,or a guarantee from an unrelated mutex."
+    },
+    {
+      "id": "AH-F5",
+      "classification": "事实",
+      "rule": "Views share16B backing;copy remains independent;transfer detaches original/view. IndexedDB put/get use independent values:caller9,held old read1,later stored read7.",
+      "source": {
+        "file": {
+          "path": "build/analysis/browser-host-conformance-v1/runs/2026-11-09T23-28-50-756Z-76885/runtime.json",
+          "bytes": 39852,
+          "sha256": "b17a2d34e746b20f704118b41856ee3ed7b8f771f2efe6a0ac62b483738330e7"
+        },
+        "pointer": "/cloneTransfer",
+        "canonical_sha256": "3e10779077c9288a34d9703130d83175220b863241e15d72b4be011a8c569321"
+      },
+      "constraint": "Account backing allocations,copies and backend serialization separately. A retained JS read value is not an implemented snapshot pin/lease.",
+      "ports": [
+        "UC-P06",
+        "UC-P08"
+      ],
+      "acceptance_limit": "Raw allocation semantics only;peak RSS,complete-manifest budget,concurrent decode/audio/cache and cancellation charges remain unmeasured."
+    },
+    {
+      "id": "AH-F6",
+      "classification": "事实",
+      "rule": "After an actual normal Chrome close/relaunch on the owned profile and same origin,boot/timeOrigin differ and committed revision2/receipt recover;incomplete staging remains inactive.",
+      "source": {
+        "file": {
+          "path": "build/analysis/browser-host-conformance-v1/runs/2026-11-09T23-28-50-756Z-76885/runtime.json",
+          "bytes": 39852,
+          "sha256": "b17a2d34e746b20f704118b41856ee3ed7b8f771f2efe6a0ac62b483738330e7"
+        },
+        "pointer": "/recoveredActive",
+        "canonical_sha256": "f96a3563cc6ee443725cfb3de7af27d2e754ecda1529127efe9930ae5d7b45c5"
+      },
+      "constraint": "Recovery must inspect authoritative commit identity after a new boot;an incomplete candidate is not automatically active.",
+      "ports": [
+        "UC-P08",
+        "UC-P10",
+        "UC-P14"
+      ],
+      "acceptance_limit": "Clean restart of this probe only;no abrupt kill,power loss,game updater takeover or complete restart-intent implementation tested."
+    },
+    {
+      "id": "AH-F7",
+      "classification": "事实",
+      "rule": "CDP compositionstart is trusted in the trace,but both recorded compositionend events are untrusted. After focus moves to B,the later insertText enters B;A keeps its prior composition text.",
+      "source": {
+        "file": {
+          "path": "build/analysis/browser-host-conformance-v1/runs/2026-11-09T23-28-50-756Z-76885/runtime.json",
+          "bytes": 39852,
+          "sha256": "b17a2d34e746b20f704118b41856ee3ed7b8f771f2efe6a0ac62b483738330e7"
+        },
+        "pointer": "/input",
+        "canonical_sha256": "3d858ad747b9f686e5397f9d8211bec9a6e3271dc2519d73565667003d19eb91"
+      },
+      "constraint": "Track source owner/focus/epoch explicitly. CDP event acceptance and isTrusted alone do not prove actual OS IME lifecycle or source-owner admission.",
+      "ports": [
+        "UC-P03"
+      ],
+      "acceptance_limit": "Actual Chrome renderer events driven by CDP;physical macOS/mobile IME and the product epoch guard are not accepted."
+    },
+    {
+      "id": "AH-F8",
+      "classification": "事实",
+      "rule": "Desktop mouse and390x844 CDP touch/cancel map to source point160,240;touch pointerdown and pointercancel are trusted.",
+      "source": {
+        "file": {
+          "path": "build/analysis/browser-host-conformance-v1/runs/2026-11-09T23-28-50-756Z-76885/runtime.json",
+          "bytes": 39852,
+          "sha256": "b17a2d34e746b20f704118b41856ee3ed7b8f771f2efe6a0ac62b483738330e7"
+        },
+        "pointer": "/mobilePointers",
+        "canonical_sha256": "ee87bc5c3f1a7f8a0bfecc71018924fffb1b1a81f0c3b0183128d8ca3881e838"
+      },
+      "constraint": "Use current viewport inverse transform and cancel the matching pointer owner. Keep viewport emulation separate from device touch acceptance.",
+      "ports": [
+        "UC-P03",
+        "UC-P14"
+      ],
+      "acceptance_limit": "One desktop and one mobile-shaped viewport in the same desktop Chrome;not a physical phone or WeChat."
+    },
+    {
+      "id": "AH-F9",
+      "classification": "事实",
+      "rule": "50 frame samples are nondecreasing over830.8ms monotonic/831ms wall time;maximum observed gap18.3ms. The accepted350ms CDP frozen interval did not produce an observed frame pause.",
+      "source": {
+        "file": {
+          "path": "build/analysis/browser-host-conformance-v1/runs/2026-11-09T23-28-50-756Z-76885/runtime.json",
+          "bytes": 39852,
+          "sha256": "b17a2d34e746b20f704118b41856ee3ed7b8f771f2efe6a0ac62b483738330e7"
+        },
+        "pointer": "/clockStop",
+        "canonical_sha256": "52d29ef02b0ebdc2607120a8316ed9b94df8e11738f25ab0233f3541b84d9d29"
+      },
+      "constraint": "Command success is not an observed background transition. Source u32 origin,absolute deadlines,rebase/catchup and true hidden/resume behavior remain separate required parameters.",
+      "ports": [
+        "UC-P02",
+        "UC-P14"
+      ],
+      "acceptance_limit": "This visible headless window only;no fixed60Hz policy,source time equivalence or real background conformance inferred."
+    },
+    {
+      "id": "AH-F10",
+      "classification": "事实",
+      "rule": "IndexedDB reports strict durability for the test transactions;storage.persisted is false. The returned quota is only an estimate and differs with current usage.",
+      "source": {
+        "file": {
+          "path": "build/analysis/browser-host-conformance-v1/runs/2026-11-09T23-28-50-756Z-76885/runtime.json",
+          "bytes": 39852,
+          "sha256": "b17a2d34e746b20f704118b41856ee3ed7b8f771f2efe6a0ac62b483738330e7"
+        },
+        "pointer": "/storageAfter",
+        "canonical_sha256": "885a92b7a7bcf69a121b1c9c18d892a14285e4be6270b1ff4e2a4bf95873ba8b"
+      },
+      "constraint": "Do not turn quota/deviceMemory hints or strict durability into verified capacity,eviction immunity or power-loss guarantees.",
+      "ports": [
+        "UC-P06",
+        "UC-P08",
+        "UC-P14"
+      ],
+      "acceptance_limit": "No quota exhaustion/persistence permission/full manifest/device memory tests were performed."
+    }
+  ],
+  "complete_case_crosswalk": [
+    {
+      "case_id": "UC-T02",
+      "exercised_host_part": "request-success then explicit transaction abort",
+      "still_required": "All precommit/pending/committed cancellation boundaries in the actual port remain unimplemented.",
+      "full_original_case_passed": false
+    },
+    {
+      "case_id": "UC-T03",
+      "exercised_host_part": "two-connection expected-revision conflict",
+      "still_required": "Lost final callback/unknown-result replay inspection remains untested.",
+      "full_original_case_passed": false
+    },
+    {
+      "case_id": "UC-T04",
+      "exercised_host_part": "incomplete inactive staging survives clean reopen",
+      "still_required": "Corrupt active/candidate validation and fallback recovery protocol are not implemented.",
+      "full_original_case_passed": false
+    },
+    {
+      "case_id": "UC-T05",
+      "exercised_host_part": "13 actual File slice/arrayBuffer cases including over2^32 and short reads",
+      "still_required": "Full StableRangeSource adapter,all formats and maximum offset domain remain unaccepted.",
+      "full_original_case_passed": false
+    },
+    {
+      "case_id": "UC-T06",
+      "exercised_host_part": "view/copy/transfer and IndexedDB clone semantics",
+      "still_required": "Owned root budget,inflight cancel accounting and system peaks remain unmeasured.",
+      "full_original_case_passed": false
+    },
+    {
+      "case_id": "UC-T07",
+      "exercised_host_part": "held old JS value remains after active/value update",
+      "still_required": "No actual snapshot lease/pin implementation tested.",
+      "full_original_case_passed": false
+    },
+    {
+      "case_id": "UC-T10",
+      "exercised_host_part": "CDP composition/focus and trusted touch cancel with inverse viewport",
+      "still_required": "Physical OS IME/device touch and source epoch guards remain unaccepted.",
+      "full_original_case_passed": false
+    },
+    {
+      "case_id": "UC-T11",
+      "exercised_host_part": "actual monotonic/wall samples;CDP freeze command accepted without observed frame pause",
+      "still_required": "u32 wrap/source origin/real background and timing policy remain required.",
+      "full_original_case_passed": false
+    },
+    {
+      "case_id": "UC-T18",
+      "exercised_host_part": "actual clean browser restart/new fixture boot and commit inspection",
+      "still_required": "Updater takeover,source intent match and abrupt termination remain untested.",
+      "full_original_case_passed": false
+    },
+    {
+      "case_id": "UC-T19",
+      "exercised_host_part": "clean browser close/reopen only",
+      "still_required": "No WeChat Page/App hide/unload or abrupt termination evidence.",
+      "full_original_case_passed": false
+    },
+    {
+      "case_id": "UC-T20",
+      "exercised_host_part": "desktop Chrome and mobile-shaped viewport",
+      "still_required": "No physical iOS/Android/WeChat/full original-resource or official flow acceptance.",
+      "full_original_case_passed": false
+    }
+  ],
+  "failure_records": [
+    {
+      "path": "build/analysis/browser-host-conformance-v1/runs/2026-11-09T23-28-13-012Z-76875/preflight-failure.json",
+      "bytes": 743,
+      "sha256": "666014242e8102e12312ff0d8dd06cabb0e44d9459df6531918c6499668a50ed"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "/Users/lx/.codex/visualizations/2026/11/10/01a17a35-6c8e-7721-9ea5-8dc56564b109/a4-host-2026-11-09T23-28-50-756Z-76885/desktop-primitives.png",
+      "bytes": 50109,
+      "sha256": "4381412031284ed26cf28cdbcbbf38591f0846579eabd60bd779fdb4c932cf16"
+    },
+    {
+      "path": "/Users/lx/.codex/visualizations/2026/11/10/01a17a35-6c8e-7721-9ea5-8dc56564b109/a4-host-2026-11-09T23-28-50-756Z-76885/mobile-viewport-touch-cancel.png",
+      "bytes": 53197,
+      "sha256": "3ddcacf16f138339c6d2e13e487bdd9a43e2224f01edd4fe509cdd706117c0d6"
+    }
+  ],
+  "QA": {
+    "flow": "Original local fixture -> actual selected File ranges/IndexedDB events and contention -> clean Chrome restart inspection; CDP input/clock observations stay distinct from physical devices.",
+    "environment": {
+      "bootId": "b86e1d33-a277-4340-9111-7ff9aa4f1dd5",
+      "url": "http://127.0.0.1:60502/probe.html",
+      "title": "Moli A4 Host Probe",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "platform": "MacIntel",
+      "secureContext": true,
+      "crossOriginIsolated": false,
+      "hardwareConcurrency": 12,
+      "deviceMemory": 32,
+      "viewport": {
+        "width": 1120,
+        "height": 900,
+        "dpr": 1,
+        "touchPoints": 0
+      },
+      "performanceTimeOrigin": 1794266932444.2,
+      "visibility": "visible"
+    },
+    "checks": {
+      "identity": true,
+      "notBlank": true,
+      "noFrameworkOverlay": true,
+      "consoleHealth": true,
+      "screenshotEvidence": true,
+      "interactionProof": true
+    },
+    "interaction": "File selection,health click,composition/focus and pointer/touch cancel exercised;two DB connections and actual clean browser restart.",
+    "commands": [
+      "/opt/homebrew/bin/node build/analysis/browser-host-conformance-v1/run.mjs"
+    ],
+    "Browser_availability": "absent",
+    "fallback": "Browser plugin not available",
+    "remaining": "Host primitive observations only;product/devices/ports/full resources not accepted."
+  },
+  "external_API_navigation": {
+    "method_list_urls": [
+      "https://chromedevtools.github.io/devtools-protocol/tot/DOM/",
+      "https://chromedevtools.github.io/devtools-protocol/tot/Input/",
+      "https://chromedevtools.github.io/devtools-protocol/tot/Page/"
+    ],
+    "status": "Method names visible;parameter viewer text unavailable.Used pinned local generated protocol definitions and actual browser command receipts.",
+    "local_definitions": {
+      "path": "build/dependencies/playwright-core-1.64.1/node_modules/playwright-core/types/protocol.d.ts",
+      "bytes": 819286,
+      "sha256": "ccd722dea5eca655cf111348ec27a38a376d467407c4cc763d31514550d04d5d"
+    }
+  },
+  "remaining": [
+    {
+      "id": "AH-U1",
+      "scope": "capacity/budget",
+      "work": "Measure complete original resource manifest and decoded/pinned/concurrent lifetime/peak costs;no fixed32MiB or quota-estimate cap."
+    },
+    {
+      "id": "AH-U2",
+      "scope": "remaining host fields",
+      "work": "Measure actual codec/font/canvas/audio surfaces and backend limits;these were not exercised by this file/store/input fixture."
+    },
+    {
+      "id": "AH-U3",
+      "scope": "storage correctness",
+      "work": "Actual port implementation,all cancellation/unknown commit/corrupt-candidate cases and abrupt termination/eviction recovery remain open."
+    },
+    {
+      "id": "AH-U4",
+      "scope": "physical/device lifecycle",
+      "work": "Actual hidden/foreground clocks,OS IME,touch/audio and WeChat positioned FS/journal/App/Page owners need their own actual host/device receipts."
+    },
+    {
+      "id": "AH-U5",
+      "scope": "necessary game/source rules",
+      "work": "A1 business admission/A3 remain:UC-U1/U3 RID/foreign/scratch/105 origin,G02 material923C40,G20 final-result/attachment association and matching current consumer/handoff."
+    },
+    {
+      "id": "AH-U6",
+      "scope": "product and external acceptance",
+      "work": "Shared14port/62method contract remains unimplemented;D0-D6 starts only after the unified gate.Whole40 capabilities/real devices/current official account flows stay required;no test account is available."
+    }
+  ],
+  "next_work": "AH-U2 actual remaining desktop host fields and only named necessary A1/A3 source gaps;then actual WeChat/device conformance without repeated known helper analysis.",
+  "scope_preserved": {
+    "capabilities": 40,
+    "registry_entries": 81,
+    "historical_composite_requirements": 37,
+    "consumer_groups": 10,
+    "profiles": 6
+  },
+  "product_baseline": "stage306",
+  "shared_contract_changed": false,
+  "original_source_capability_readiness_changed": false,
+  "shared_ports_implemented": false,
+  "host_conformance_passed": false,
+  "unified_gate_passed": false,
+  "product_code_changed": false,
+  "product_tests_or_builds_run": false,
+  "original_VM_game_account_device_or_official_actions": false,
+  "full_goal_complete": false,
+  "mobile_safari_resource_lifecycle": {
+    "contract": "analysis/capability-first-v1/shared-update-host-design.json",
+    "pointer": "/mobile_safari_resource_lifecycle",
+    "profile": "analysis/capability-first-v1/browser-host-profile.json",
+    "runtime": {
+      "path": "build/analysis/mobile-safari-resource-lifecycle-v1/runtime.json",
+      "bytes": 14585,
+      "sha256": "6f0980f26cc9f9a712e4318f85b4920e336f36ffbc16af38c5e17a99a40d4fc3"
+    },
+    "actual_simulator_mobile_safari": true,
+    "short_background_storage_and_socket_observed": true,
+    "actual_process_reopen_observed": true,
+    "physical_or_wechat_acceptance": false,
+    "host_conformance_passed": false
+  },
+  "mobile_safari_stream_lifecycle": {
+    "classification": "iOS 模拟器中的实际 Safari WebSocket、现有浏览器适配器和本机 TCP 桥",
+    "capabilities": ["X04", "X06"],
+    "ports": ["UC-P09", "UC-P11", "UC-P14"],
+    "runtime": {
+      "path": "build/analysis/mobile-safari-stream-lifecycle-v1/runtime.json",
+      "bytes": 9367,
+      "sha256": "4a775a9e66afd7a7b1d6ef5487863998c9451807b59a36b7b7d2046becdb9685"
+    },
+    "report": "reports/network-portability.md#mobile-safari-stream-lifecycle",
+    "observed": [
+      "登录流写入收到序号 0 的 written，TCP 实收相同 5 字节。",
+      "同一 Safari 文档隐藏 4914 毫秒，游戏流读取 6 字节并在恢复命令前报告。登录流在所选 9000 毫秒期限到期，TCP 关闭后，浏览器收 BRIDGE_TIMEOUT 与 STREAM_READ。",
+      "并行读返回 STREAM_BUSY，取消待处理游戏读返回 STREAM_ABORTED，旧 TCP 实际关闭。替换连接独立发送 3 字节，读完 7 字节和 EOF。"
+    ],
+    "design_rule": "传输接收可发生在绘制间隔内。按连接身份核对本机写入回执、读取消、物理退役和独立重连。",
+    "remaining": ["完整网页产品", "长时后台", "真机与微信", "官方联合验收"],
+    "host_conformance_passed": false,
+    "physical_or_wechat_acceptance": false
+  }
+}

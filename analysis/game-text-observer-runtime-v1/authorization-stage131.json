@@ -1,0 +1,27 @@
+{
+  "schema": "moli.authorization-stage131.v1",
+  "recorded_utc": "2026-11-02T09:42:30.434893+00:00",
+  "classification": "fact: exact user confirmation received, one authorized game run now consumed; see lifecycle and restoration receipts",
+  "question_call_id": "call_024a89d11778480a90070439407ac4ef",
+  "answer": "允许本次诊断及对应 UAC",
+  "plan": "analysis/game-text-observer-runtime-v1/game-wer-plan-stage128.md",
+  "game_sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+  "scope": [
+    "Exact existing Windows11 VM",
+    "One temporary per-app WER minidump setup/restoration, corresponding UAC",
+    "One ordinary no-argument game start, observation target at most90s",
+    "Verified Microsoft CDB offline analysis only, exception/module/at most20 stackframes",
+    "Materials retained in guest; no login/live debugger attachment/protection change"
+  ],
+  "new_run_consumed": true,
+  "prior_stage125_run_consumed": true,
+  "prior_confirmation_block_removed": true,
+  "goal_controller_status_at_read": "blocked; update_goal cannot resume, user authorization is sufficient to proceed with the requested work",
+  "full_goal_complete": false,
+  "actual_start": {
+    "pid": 5304,
+    "start_time": "2026-11-02T18:50:22.6669501+08:00",
+    "context": "original ordinary PowerShell",
+    "calls": 1
+  }
+}

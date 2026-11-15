@@ -1,0 +1,357 @@
+{
+  "schema": "moli.rea-stack-correlation-stage131.v1",
+  "classification": "fact: fresh static provider observations and exact arithmetic; runtime call-chain attribution remains unknown",
+  "sample_sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+  "rea_version": "6.7.0",
+  "provider": {
+    "id": "ghidra",
+    "version": "12.1.4"
+  },
+  "analysis_profile_digest": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "source_runtime_receipt": "cdb-summary-stage131.json",
+  "file_layout_receipt": "stack-file-boundary-stage131.json",
+  "records": [
+    {
+      "candidate_return_va": "0x11bcd11",
+      "static_procedure": {
+        "name": "FUN_011bccc0",
+        "address": "0x11bccc0",
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x11bccc0",
+              "end": "0x11bcd1c"
+            },
+            {
+              "start": "0x11bcd51",
+              "end": "0x11bcd62"
+            }
+          ],
+          "total_bytes": 111,
+          "span_bytes": 163,
+          "non_contiguous": true,
+          "contains_entry": true
+        }
+      },
+      "return_instruction": {
+        "address": "0x11bcd11",
+        "status": "decoded",
+        "length": 3,
+        "mnemonic": "ADD"
+      },
+      "preceding_call": {
+        "address": "0x11bcd0e",
+        "length": 3,
+        "bytes": "ff5508",
+        "disassembly": "CALL dword ptr [EBP + 0x8]",
+        "computed": true,
+        "direct_destinations": []
+      },
+      "call_end_equals_return": true,
+      "evidence": {
+        "resolve": "ev_b278bcbe4642326c63a71d0d24cbdc9a1d7bdefeb4546ff7c2c188ac84c92d5d",
+        "return_instruction": "ev_97a566b4c2ba9da572058519bdb193312256e9f202e310a5041063deb983c3ff",
+        "function_instructions": "ev_80273090cf1657e9a4015c3c94932549df0b083c971e4fad2f1f4db5b756303d",
+        "call_instruction": "ev_1bacd730bc1b0bd1b66f1c0a9acfe4d2592d9b99925a183881ba303a3692d6ed"
+      }
+    },
+    {
+      "candidate_return_va": "0x1195a45",
+      "static_procedure": {
+        "name": "FUN_01195380",
+        "address": "0x1195380",
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x1195380",
+              "end": "0x1195aba"
+            }
+          ],
+          "total_bytes": 1851,
+          "span_bytes": 1851,
+          "non_contiguous": false,
+          "contains_entry": true
+        }
+      },
+      "return_instruction": {
+        "address": "0x1195a45",
+        "status": "decoded",
+        "length": 3,
+        "mnemonic": "ADD"
+      },
+      "preceding_call": {
+        "address": "0x1195a3f",
+        "length": 6,
+        "bytes": "ff952cffffff",
+        "disassembly": "CALL dword ptr [EBP + 0xffffff2c]",
+        "computed": true,
+        "direct_destinations": []
+      },
+      "call_end_equals_return": true,
+      "evidence": {
+        "resolve": "ev_afbfcd87a63412a4175e97a81e379f2bcd7151bd62eb5f010ddf014f20e2547e",
+        "return_instruction": "ev_387dd7e1c919a421991fe0c534f9bf823cd32a280af3f6982a8ee9874255311b",
+        "function_instructions": "ev_34f8f2ac3c88e597c0c599911bde35887b02b2c8428946e7c0724def658eb864",
+        "call_instruction": "ev_24017d0f8edf6e7a4d25870ee60e08604f7cdf802620aefef7346eda5590615b"
+      }
+    },
+    {
+      "candidate_return_va": "0x1197009",
+      "static_procedure": {
+        "name": "FUN_011967d0",
+        "address": "0x11967d0",
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x11967d0",
+              "end": "0x1196dbb"
+            },
+            {
+              "start": "0x1196dbe",
+              "end": "0x1196f1a"
+            },
+            {
+              "start": "0x1196f1d",
+              "end": "0x1196fb9"
+            },
+            {
+              "start": "0x1196fbc",
+              "end": "0x1197094"
+            }
+          ],
+          "total_bytes": 2239,
+          "span_bytes": 2245,
+          "non_contiguous": true,
+          "contains_entry": true
+        }
+      },
+      "return_instruction": {
+        "address": "0x1197009",
+        "status": "decoded",
+        "length": 6,
+        "mnemonic": "MOV"
+      },
+      "preceding_call": {
+        "address": "0x1197004",
+        "length": 5,
+        "bytes": "e877e3ffff",
+        "disassembly": "CALL 0x01195380",
+        "computed": false,
+        "direct_destinations": [
+          "0x1195380"
+        ]
+      },
+      "call_end_equals_return": true,
+      "evidence": {
+        "resolve": "ev_b17dbb1cc980a451049f8d4ba4c5219381b879171c3e2895c61a7925918ca1d5",
+        "return_instruction": "ev_cd005f22c18294539c1b7b5f609e01b6454fcda26304ba4273155e242547d135",
+        "function_instructions": "ev_2751e69d30976600e13c399ce687ca657faa1ebab3e3682f7cc6090b191616bf",
+        "call_instruction": "ev_9886df8181e5498cca27c788d36e6ff5f1e52fe7a77f8d30c656b38b5665aa3e"
+      }
+    },
+    {
+      "candidate_return_va": "0x11970f8",
+      "static_procedure": {
+        "name": "FUN_011970f0",
+        "address": "0x11970f0",
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x11970f0",
+              "end": "0x11970f9"
+            }
+          ],
+          "total_bytes": 10,
+          "span_bytes": 10,
+          "non_contiguous": false,
+          "contains_entry": true
+        }
+      },
+      "return_instruction": {
+        "address": "0x11970f8",
+        "status": "decoded",
+        "length": 1,
+        "mnemonic": "POP"
+      },
+      "preceding_call": {
+        "address": "0x11970f3",
+        "length": 5,
+        "bytes": "e8d8f6ffff",
+        "disassembly": "CALL 0x011967d0",
+        "computed": false,
+        "direct_destinations": [
+          "0x11967d0"
+        ]
+      },
+      "call_end_equals_return": true,
+      "evidence": {
+        "resolve": "ev_916f8a61609697e3c710708d28843277b6b195a49d57b547114ffd16db99712c",
+        "return_instruction": "ev_7c31765f1f6ab59387b10f277667407c2c62cca4613752c0afe8aaba35b3e5b2",
+        "function_instructions": "ev_8b37cd4a6ed1ee3b226c8c69b352afc76218e9057f7724372fa683c96cc4da27",
+        "call_instruction": "ev_804ea0f6c8be59b6a444538ba4d95702eec6fb3e86461f2b139c3d7ef940597b"
+      }
+    },
+    {
+      "candidate_return_va": "0x117907c",
+      "static_procedure": {
+        "name": "FUN_01179000",
+        "address": "0x1179000",
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x1179000",
+              "end": "0x1179193"
+            }
+          ],
+          "total_bytes": 404,
+          "span_bytes": 404,
+          "non_contiguous": false,
+          "contains_entry": true
+        }
+      },
+      "return_instruction": {
+        "address": "0x117907c",
+        "status": "decoded",
+        "length": 3,
+        "mnemonic": "MOV"
+      },
+      "preceding_call": {
+        "address": "0x1179077",
+        "length": 5,
+        "bytes": "e874e00100",
+        "disassembly": "CALL 0x011970f0",
+        "computed": false,
+        "direct_destinations": [
+          "0x11970f0"
+        ]
+      },
+      "call_end_equals_return": true,
+      "evidence": {
+        "resolve": "ev_2ef9739edcc620069827ab10a9b64ff05d01126283b8dee59bd36ccdd1418d1b",
+        "return_instruction": "ev_40eb43df21d516505dd2734ad8dc6484ad26fefe913a8a0d1acbfeb6e63da73d",
+        "function_instructions": "ev_e026df2877f49070cde1c79bfc6dbca8fd30d7463d35061ca23c2af65a923970",
+        "call_instruction": "ev_f9b5cf812781553fb3ad4a0735cf8c2535e9ef5992340ac910a149133f2c06ac"
+      }
+    },
+    {
+      "candidate_return_va": "0x11e6ccb",
+      "static_procedure": {
+        "name": "___tmainCRTStartup",
+        "address": "0x11e6bb1",
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x11e6bb1",
+              "end": "0x11e6cdf"
+            },
+            {
+              "start": "0x11e6d0e",
+              "end": "0x11e6d1d"
+            }
+          ],
+          "total_bytes": 319,
+          "span_bytes": 365,
+          "non_contiguous": true,
+          "contains_entry": true
+        }
+      },
+      "return_instruction": {
+        "address": "0x11e6ccb",
+        "status": "decoded",
+        "length": 3,
+        "mnemonic": "MOV"
+      },
+      "preceding_call": {
+        "address": "0x11e6cc6",
+        "length": 5,
+        "bytes": "e83523f9ff",
+        "disassembly": "CALL 0x01179000",
+        "computed": false,
+        "direct_destinations": [
+          "0x1179000"
+        ]
+      },
+      "call_end_equals_return": true,
+      "evidence": {
+        "resolve": "ev_8c453f8add178f4e1506069b9a225731d871f09e3633f4a7eaa2e0143cc508f9",
+        "return_instruction": "ev_39c051656bed2646e10ec4bb1524becadf0351a529ecb70b59fd1d8776e7f157",
+        "function_instructions": "ev_802020bcfe34268cc7bcc63f0c2a20d56ba83ef9da5384c23aff4069435fc02f",
+        "call_instruction": "ev_e5b4e67ba636dae46bed0046958be3feb8420437d37926c3e467a213e704e5c9"
+      }
+    }
+  ],
+  "static_direct_edges": [
+    {
+      "source_instruction": "0x1197004",
+      "source_procedure": "0x11967d0",
+      "target": "0x1195380",
+      "evidence_id": "ev_9886df8181e5498cca27c788d36e6ff5f1e52fe7a77f8d30c656b38b5665aa3e"
+    },
+    {
+      "source_instruction": "0x11970f3",
+      "source_procedure": "0x11970f0",
+      "target": "0x11967d0",
+      "evidence_id": "ev_804ea0f6c8be59b6a444538ba4d95702eec6fb3e86461f2b139c3d7ef940597b"
+    },
+    {
+      "source_instruction": "0x1179077",
+      "source_procedure": "0x1179000",
+      "target": "0x11970f0",
+      "evidence_id": "ev_f9b5cf812781553fb3ad4a0735cf8c2535e9ef5992340ac910a149133f2c06ac"
+    },
+    {
+      "source_instruction": "0x11e6cc6",
+      "source_procedure": "0x11e6bb1",
+      "target": "0x1179000",
+      "evidence_id": "ev_e5b4e67ba636dae46bed0046958be3feb8420437d37926c3e467a213e704e5c9"
+    }
+  ],
+  "facts": [
+    "All six candidate return values are in complete provider-reported function bodies in original-file .text1.",
+    "All six are exact decoded instruction starts and equal the end of the immediately preceding static CALL.",
+    "Four CALLs have one direct static destination each; the other two are computed calls through EBP-relative operands.",
+    "The Ghidra-labeled ___tmainCRTStartup body contains the 0x11e6cc6 direct call to0x1179000."
+  ],
+  "inference": "The addresses admit a source-backed static startup-path candidate with two indirect-call boundaries. This narrows static follow-up but does not establish a true runtime stack or a game protocol consumer.",
+  "limitations": [
+    "Both CDB stack outputs warn following frames may be wrong; no unwind validation or live control-flow observation performed.",
+    "Static file bytes were not compared to runtime memory. No runtime target is inferred for either computed call.",
+    "Auto-analyzed function bodies, names and instructions are provider observations, not original source or a root-cause diagnosis.",
+    "Original .text has zero file-backed bytes. No pages were extracted, protection altered, authenticated game started, or protocol fields invented.",
+    "Private bundle unknowns count0 means no residual-unknown records were entered into that bundle, not zero unresolved questions."
+  ],
+  "evidence_record_count": 24,
+  "private_evidence_bundle": {
+    "path": "build/analysis/game-text-observer-runtime-v1/stage131/rea-stack-correlation.bundle.json",
+    "bytes": 217187,
+    "sha256": "452149c3079908c8821e92dcc316bf7b58cb383c1706426b0b167b42f839b1b5",
+    "full_instruction_lists_kept_private": true,
+    "public_copy_added": false
+  },
+  "operation_counts": {
+    "resolve_containing_procedure": 6,
+    "inspect_native_instruction": 12,
+    "read_function_instructions": 6
+  },
+  "game_executions_in_this_static_followup": 0,
+  "live_debugger_attach": false,
+  "root_cause_established": false,
+  "game_consumer_recovered": false,
+  "close_binary_returned_successfully": true,
+  "final_binary_session": {
+    "open": false,
+    "cleanup_pending": false
+  }
+}

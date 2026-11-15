@@ -1,0 +1,190 @@
+{
+  "source_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "source_bytes": 1735168,
+  "tool_versions": {
+    "rea": "6.7.0",
+    "ghidra": "12.1.4",
+    "objdump": "2.47.20260726"
+  },
+  "rea_evidence_id": "ev_55ecff2200e634057c076604a9418249b9eec6b5d2d1f6757606e0f1bc81cf7f",
+  "rea_dossier_sha256": "474725532fb917a9d97ae2a62eb2bae0f9914063576742625d64761697bbb2a4",
+  "procedure": {
+    "address": "0x41ab70",
+    "body": {
+      "available": true,
+      "provenance": "ghidra-function-body-address-set",
+      "ranges": [
+        {
+          "start": "0x41ab70",
+          "end": "0x41aedd"
+        }
+      ],
+      "total_bytes": 878,
+      "span_bytes": 878,
+      "non_contiguous": false,
+      "contains_entry": true
+    }
+  },
+  "flow_truncated": false,
+  "unresolved_calls": [
+    {
+      "address": "0x41ae63",
+      "reason": "Instruction decoder identifies a call but ReferenceManager supplies no call destination"
+    }
+  ],
+  "coverage_limitation": "Ghidra body ends 0x41aedd; terminal flow 0x41aed9 goes to separately modeled 0x41af63. Exception/cleanup and virtual read are not fully resolved.",
+  "anchors": [
+    {
+      "kind": "direct_call",
+      "va": "0x401991",
+      "file_offset": "0xd91",
+      "target": "0x41ab70",
+      "context": "launcher_md5 request caller",
+      "passed": true
+    },
+    {
+      "kind": "direct_call",
+      "va": "0x401b51",
+      "file_offset": "0xf51",
+      "target": "0x41ab70",
+      "context": "launcher_url request caller",
+      "passed": true
+    },
+    {
+      "kind": "direct_call",
+      "va": "0x4020a8",
+      "file_offset": "0x14a8",
+      "target": "0x41ab70",
+      "context": "xml_md5 request caller",
+      "passed": true
+    },
+    {
+      "kind": "direct_call",
+      "va": "0x40229b",
+      "file_offset": "0x169b",
+      "target": "0x41ab70",
+      "context": "GameList request caller",
+      "passed": true
+    },
+    {
+      "kind": "direct_call",
+      "va": "0x402457",
+      "file_offset": "0x1857",
+      "target": "0x41ab70",
+      "context": "RegionList request caller",
+      "passed": true
+    },
+    {
+      "kind": "direct_call",
+      "va": "0x41ac07",
+      "file_offset": "0x1a007",
+      "target": "0x445d98",
+      "context": "CInternetSession constructor",
+      "passed": true
+    },
+    {
+      "kind": "direct_call",
+      "va": "0x41ac8e",
+      "file_offset": "0x1a08e",
+      "target": "0x446731",
+      "context": "OpenURL wrapper",
+      "passed": true
+    },
+    {
+      "kind": "direct_call",
+      "va": "0x41acff",
+      "file_offset": "0x1a0ff",
+      "target": "0x4462cf",
+      "context": "optional SendRequest wrapper",
+      "passed": true
+    },
+    {
+      "kind": "direct_call",
+      "va": "0x4462e4",
+      "file_offset": "0x456e4",
+      "target": "0x4462a0",
+      "context": "SendRequest forwarding wrapper",
+      "passed": true
+    },
+    {
+      "kind": "direct_call",
+      "va": "0x41ad91",
+      "file_offset": "0x1a191",
+      "target": "0x4457d2",
+      "context": "QueryInfoStatusCode wrapper",
+      "passed": true
+    },
+    {
+      "kind": "iat_call",
+      "va": "0x445dd0",
+      "file_offset": "0x451d0",
+      "iat_va": "0x4b169c",
+      "iat_file_offset": "0xb089c",
+      "dll": "WININET.dll",
+      "symbol": "InternetOpenA",
+      "passed": true
+    },
+    {
+      "kind": "iat_call",
+      "va": "0x446849",
+      "file_offset": "0x45c49",
+      "iat_va": "0x4b1684",
+      "iat_file_offset": "0xb0884",
+      "dll": "WININET.dll",
+      "symbol": "InternetOpenUrlA",
+      "passed": true
+    },
+    {
+      "kind": "iat_call",
+      "va": "0x4462b7",
+      "file_offset": "0x456b7",
+      "iat_va": "0x4b1688",
+      "iat_file_offset": "0xb0888",
+      "dll": "WININET.dll",
+      "symbol": "HttpSendRequestA",
+      "passed": true
+    },
+    {
+      "kind": "iat_call",
+      "va": "0x445801",
+      "file_offset": "0x44c01",
+      "iat_va": "0x4b16a8",
+      "iat_file_offset": "0xb08a8",
+      "dll": "WININET.dll",
+      "symbol": "HttpQueryInfoA",
+      "passed": true
+    },
+    {
+      "kind": "ascii_literal",
+      "va": "0x4b62fc",
+      "file_offset": "0xb54fc",
+      "value": "%s?rtm=%lld",
+      "passed": true
+    },
+    {
+      "kind": "ascii_literal",
+      "va": "0x4b6308",
+      "file_offset": "0xb5508",
+      "value": "http://",
+      "passed": true
+    },
+    {
+      "kind": "ascii_literal",
+      "va": "0x4b6310",
+      "file_offset": "0xb5510",
+      "value": "Content-Type: application/x-www-form-urlencoded",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "negative_identity_checks": {
+    "modified_sample": "rejected",
+    "truncated_sample": "rejected",
+    "empty_sample": "rejected"
+  },
+  "limits": [
+    "Static calls only, no target executed or URL contacted.",
+    "HTTP helper chain is update/catalog evidence, not authentication or game framing.",
+    "No full pseudocode or asset bytes exported."
+  ]
+}

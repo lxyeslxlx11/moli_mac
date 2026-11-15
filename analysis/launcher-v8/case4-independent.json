@@ -1,0 +1,75 @@
+{
+  "schema": "moli.launcher-v8.case4-independent.v1",
+  "recorded_utc": "2026-10-26T23:08:16.220454+00:00",
+  "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "provider": "Apple LLVM objdump21.0.0 at/usr/bin/objdump",
+  "scope": "Static disassembly of known detached case4 selection checks, after REA identified the case. No original execution.",
+  "source_range": {
+    "va_start": "0x411be1",
+    "va_end_exclusive": "0x411c4e",
+    "file_offset": 69601,
+    "bytes": 109,
+    "sha256": "1f1c189f9e19084a46f8fdc85e012f529f13ea55c46e24a213c31b311df03d07"
+  },
+  "checks": [
+    {
+      "address": "0x411bea",
+      "operation": "movsx",
+      "relevant_operand": "0xdfa",
+      "pass": true
+    },
+    {
+      "address": "0x411bf4",
+      "operation": "je",
+      "relevant_operand": "0x411c0c",
+      "pass": true
+    },
+    {
+      "address": "0x411bff",
+      "operation": "movsx",
+      "relevant_operand": "0xdfa",
+      "pass": true
+    },
+    {
+      "address": "0x411c07",
+      "operation": "cmp",
+      "relevant_operand": "-0x4",
+      "pass": true
+    },
+    {
+      "address": "0x411c0a",
+      "operation": "jne",
+      "relevant_operand": "0x411c32",
+      "pass": true
+    },
+    {
+      "address": "0x411c15",
+      "operation": "cmp",
+      "relevant_operand": "0xe7c",
+      "pass": true
+    },
+    {
+      "address": "0x411c1d",
+      "operation": "je",
+      "relevant_operand": "0x411c4e",
+      "pass": true
+    },
+    {
+      "address": "0x411c28",
+      "operation": "cmp",
+      "relevant_operand": "0x107c",
+      "pass": true
+    },
+    {
+      "address": "0x411c30",
+      "operation": "je",
+      "relevant_operand": "0x411c4e",
+      "pass": true
+    }
+  ],
+  "all_pass": true,
+  "private_output": "build/analysis/launcher-v8/case4-objdump.txt",
+  "output_sha256": "3ac7206d6edbf161b41e25a7550842bae86f45d807c4fb4695f3017357276995",
+  "capability_note": "Guessed Homebrew gobjdump path was absent (two127 results); command inventory found existing/usr/bin/objdump with PE/x86 support, used without installation/configuration changes.",
+  "rea_limitation": "Original410df0 dossier Listing ends411959; case4 was in recovered jump table/pseudocode. This independent known-range disassembly closes the specific selection-condition gap, not all missing Listing coverage."
+}

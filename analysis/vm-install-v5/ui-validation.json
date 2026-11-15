@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-25",
+  "phase": "v5",
+  "nat_menu_retry": {
+    "new_specific_confirmation_received": true,
+    "attempts_after_new_evidence": 1,
+    "result": "succeeded"
+  },
+  "nat_saved": true,
+  "network_mode": "Shared",
+  "port_forwarding": false,
+  "host_folder_clipboard_usb_sharing": false,
+  "driver_cd_imported_readonly": true,
+  "driver_flow": {
+    "guest_volume": "E: MOLI_NETKVM",
+    "action": "Windows OOBE built-in Install Driver, select root folder",
+    "observed_sequence": [
+      "searching and installing new drivers",
+      "network connected; Next enabled",
+      "checking updates"
+    ],
+    "signature_warning_observed": false,
+    "protection_bypassed": false,
+    "full_device_version_and_trust_chain_verified": false
+  },
+  "vm_start_action": "succeeded",
+  "ui_coordination": {
+    "interruption": "User changed UTM to separate VM creation workflow; no further actions on that wizard",
+    "resolution": "Returned to original project VM; parent relayed user confirmation to continue ARM; resumed original OOBE"
+  },
+  "oobe": {
+    "device_naming": "normal Skip selected; no custom hostname provided",
+    "current_observation": "Microsoft account verification-code page, reached during human UI activity; no account identifier or code copied into artifacts",
+    "desktop_verified": false,
+    "updates_complete": false,
+    "update_deferral": "Built-in OOBE Later update option and its confirmation; no registry/command/security-policy modification",
+    "user_authentication_required": true,
+    "last_observation_is_not_desktop_acceptance": true,
+    "normal_local_account_path": "not fully inspected; visible welcome page showed Sign in only, then human changes and a screenshot timeout interrupted option inspection; no claim of universal requirement",
+    "user_preference": "Prefer no Microsoft account binding; use a normal local/offline option if actually provided"
+  },
+  "network_restored_offline": false,
+  "accounts_or_credentials_handled": false,
+  "game_executed_or_contacted": false,
+  "cleanup": {
+    "remove_shortcut_action": "auto-review denied, known not executed; not retried",
+    "successfully_unregistered_or_deleted": false,
+    "later_user_request": "cancelled; user said already handled cleanup",
+    "further_trash_access": false
+  },
+  "remaining": [
+    "complete normal OOBE until account handoff boundary",
+    "verify actual device version and health",
+    "restore offline at completion of system setup",
+    "desktop and environment validation"
+  ],
+  "guest_ui_actions_after_account_handoff": "Later authorized read-only option inspection; navigation attempt blocked on user change, no auth input or submission",
+  "final_vm_state_last_observed": "running in account flow; temporary NAT retained for incomplete Windows setup",
+  "current_blocker": {
+    "target": "Windows OOBE normal account/local setup selection",
+    "status": "paused during human account activity; local options not fully inspected",
+    "reason": "Avoid interfering with current authentication and do not handle credentials; user prefers normal local setup if offered",
+    "minimal_next_step": "Coordinate UI ownership, inspect normal local/offline options if user still wants this path; no bypass. Complete selected normal setup before desktop/device and offline restoration validation"
+  }
+}

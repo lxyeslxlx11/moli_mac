@@ -1,0 +1,34 @@
+{
+  "recorded_utc": "2026-10-25T14:38:03.174752+00:00",
+  "target": "MoliRestoreTest-ARM64-20261025-v9",
+  "facts": [
+    {
+      "symptom": "English read-only command entered while Chinese IME active was composed/altered before execution",
+      "action": "Escape then Ctrl+C canceled the unsubmitted line; later visible English mode confirmed; complete command inspected before Return",
+      "outcome": "get-service tbs and subsequent PnP query executed as intended; canceled text visible in security-pnp-query.png"
+    },
+    {
+      "action": "modifier-only Shift tool call",
+      "outcome": "API error keyPressIncludedNoNonModifierKeys; no key input executed",
+      "meaning": "Tool argument limitation, not Windows failure or approval denial"
+    },
+    {
+      "action": "Coordinate click on visible taskbar IME selector",
+      "outcome": "windowNotFoundAtPosition((970.5,846.0)); click not executed",
+      "meaning": "Window mapping failure; stale coordinates were not repeatedly reused"
+    },
+    {
+      "action": "Fresh native UTM window state, input capture, ctrl+space and exposed native zoom-window action",
+      "outcome": "Later screenshot shows English input mode and correct query text",
+      "uncertainty": "Which individual action switched IME is not established; no claim that ctrl+space is the default Windows IME toggle"
+    }
+  ],
+  "physical_keyboard_status": "User-side physical input remains unverified; tool navigation and one authorized login succeeded but do not prove physical-keyboard repair",
+  "security_settings_changed": false,
+  "credentials_in_artifact": false,
+  "evidence": [
+    "security-pnp-query.png",
+    "tpmtool-query.png",
+    "login-result.json"
+  ]
+}

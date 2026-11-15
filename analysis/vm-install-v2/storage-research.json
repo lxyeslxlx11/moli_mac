@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-25",
+  "sources": [
+    {
+      "url": "https://docs.getutm.app/guides/windows/",
+      "observation": "Windows guide normally enables driver/SPICE tools media; this VM intentionally has not installed guest tools."
+    },
+    {
+      "url": "https://docs.getutm.app/guest-support/windows/",
+      "observation": "UTM documents additional Windows guest drivers; not downloaded or executed this stage."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/storage/nvme-features-supported-by-stornvme",
+      "observation": "Microsoft documents StorNVMe as system-supplied storage driver; not proof of this exact VM compatibility."
+    }
+  ],
+  "decision": "Try standard UTM NVMe interface on same blank internal disk after normal shutdown. No security or driver-signature change; not guaranteed compatible until observed.",
+  "failed_document_open": "https://docs.getutm.app/settings-qemu/drive/ returned tool not-accessible error; no bypass or alternate fetch.",
+  "observation": "Windows PE command banner reads 10.0.26100.9457; DiskPart 10.0.26100.1; distinct from download-page/filename release metadata. Installed OS version not yet queried."
+}

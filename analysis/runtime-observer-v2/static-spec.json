@@ -1,0 +1,100 @@
+{
+  "schema": "moli.runtime-observer-v2.static-spec.v1",
+  "recorded_utc": "2026-10-27T14:44:32.030339+00:00",
+  "requirement": "../../reports/development-plan.md",
+  "new_authorization": "Human resumed goal, confirmed no supplementary build/PDB/protocol, approved networking tests and current-project tool operations. Ordinary preparations proceed; actual credentials remain user-operated; no bypass or broad unrelated system changes.",
+  "original_launcher_sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+  "game_sample_sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+  "facts": [
+    {
+      "label": "fact",
+      "claim": "Five fixed update metadata/XML/locator paths returnedHTTP200, no redirects/cookies/auth headers/proxy credentials or retries. 6th HTTPS attempt failed SSLEOFError with standard certificate verification kept enabled. DNS198.18.1.240 is not global per Python ipaddress. These are observations of this route, not publisher/official server identity.",
+      "evidence": [
+        "network-observation.json",
+        "https-observation.json"
+      ]
+    },
+    {
+      "label": "fact",
+      "claim": "Original packed launcher MD5 equals returned self digest494fac15abf1ecef69c1c8732c19fba0. ReturnedGameList byte-identical to original4377B; returnedRegionList6421B differs from original yet matches returnedcatalog MD5. Both parse;5games/12regions. Known native initialization would request RegionList refresh under this observed snapshot. No binary update locator payload fetched.",
+      "evidence": [
+        "current-source-comparison.json"
+      ]
+    },
+    {
+      "label": "fact",
+      "claim": "Reviewed original freestanding C compiled with existing Homebrew MinGW-w6414.0.0_3/GCC16.2.0 to x86PE32,8969B,SizeOfImage24576,entryRVA1270,exportprobeRVA1000. Imports only11KERNEL32 APIs, noCRT; two builds byte-identical and prepared renamed copy exactSHA25601588841278dcb7360c91333f0f7c5ec81aec84625ca274be54ad9011aaf10eb.",
+      "evidence": [
+        "fixture-preparation.json",
+        "fixture-static-audit.json"
+      ]
+    },
+    {
+      "label": "fact",
+      "claim": "REA6.7.0/Ghidra12.1.4 two function dossiers; probe body401000..40126f,entry401270.166probe instructions, no high-pcode omissions.16resolvedCALL EAX sites independently match FF D0 plus precedingA1 import-slot operands. Targeted seven success return RVAs are static references, not runtime events.",
+      "evidence": [
+        "fixture-call-sites.json",
+        "fixture-static-audit.json"
+      ]
+    },
+    {
+      "label": "fact",
+      "claim": "Ten cases execute the actual own C probe body under host API stand-ins: PID1/10/u32max, null-commandline/zeroPID/createfailure/collision/openfailure/mapfailure/unmapfailure. Poison non-null commandline/view addresses detect accidental dereference, and handle cleanup/order is checked. Not Windows or debugger execution.",
+      "evidence": [
+        "host-tests.json"
+      ]
+    },
+    {
+      "label": "unverified",
+      "claim": "WinDbg installed/version/ARM64-to-x86 observation/privacy, guest import/execution and original game consumer/frame/authentication remain unverified. Latest normal CUA inventory returned tool-reportedMac locked before target selection. No GUI retry or alternate access path; normal user unlock requested.",
+      "evidence": [
+        "environment-observation.json"
+      ]
+    }
+  ],
+  "REA_records": [
+    {
+      "operation": "analyze_function",
+      "evidence_id": "ev_03e1686c458f4278422e66db2848a9e93b68ab8893e94cfbf2a0a075ed049859",
+      "procedure": "0x401000",
+      "analysis_profile_digest": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+    },
+    {
+      "operation": "analyze_function",
+      "evidence_id": "ev_beee991519250c6eca89f4aad978afc1b431a1c5dfbf35bb720bc20a7e37d8ce",
+      "procedure": "0x401270",
+      "analysis_profile_digest": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+    }
+  ],
+  "private_REA_artifacts": [
+    {
+      "path": "/Users/lx/Documents/code/moli-mac/build/analysis/runtime-observer-v2/rea-evidence.json",
+      "bytes": 452714,
+      "sha256": "8c6737cd579282dc3bf7fac56db7d19a959294feab93d70cacf1b562bafcffd1"
+    },
+    {
+      "path": "/Users/lx/Documents/code/moli-mac/build/analysis/runtime-observer-v2/rea-snapshot.json",
+      "bytes": 903382,
+      "sha256": "60ee70f46d2ef4cf2fc7432e49c7a204aead9ba928490746dff77530e9b1455c"
+    }
+  ],
+  "REA_final_session": {
+    "open": false,
+    "cleanup_pending": false
+  },
+  "compiler": {
+    "path": "/opt/homebrew/Cellar/mingw-w64/14.0.0_3/toolchain-i686/bin/i686-w64-mingw32-gcc",
+    "version": "i686-w64-mingw32-gcc (GCC) 16.2.0",
+    "sha256": "1cf45b5db53734e2c0b389ef411431bf92886957af14b5ea8d6ef0c2cd068625",
+    "installed_this_phase": false
+  },
+  "media": "media-preparation.json",
+  "limits": [
+    "Own fixture, not game execution or a reconstructed game protocol.",
+    "Matching HTTP MD5 values do not authenticate source or prove Windows runtime reachability.",
+    "No current PDB dependency: own export/linker map is enough to address the reviewed probe.",
+    "No original EXE/VM/realIPC/account/game-server traffic, unknown code reconstruction or protection changes.",
+    "Current game source gap is retained; the new authorization enables preparation of a supported normal observation route."
+  ],
+  "full_goal_complete": false
+}

@@ -1,0 +1,364 @@
+{
+  "schema": "moli.launcher-handoff-ready-source-stage139.v1",
+  "recorded_utc": "2026-11-03T07:07:11.865908+00:00",
+  "requirement": "reports/development-plan.md#stage139",
+  "classification": "fact: selected static normal handoff branch; no execution/full update acceptance",
+  "source": {
+    "packed_launcher": {
+      "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.observed-update.exe",
+      "bytes": 1666048,
+      "sha256": "6d459ddbdf80a86cf7a1e41b99ab7fb575b42842d7163522efb3c9fa6e6ac987"
+    },
+    "launcher_analysis": {
+      "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+      "bytes": 4111872,
+      "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+    },
+    "updater_analysis": {
+      "path": "build/analysis/launcher-current-runtime-v4/LauncherUpdater.new-embedded.analysis-only.exe",
+      "bytes": 814080,
+      "sha256": "7eb173b0b2c298d1ad12c5ebebefa37df81f8dc6d1dcecd256a1caf7e90c0fe1"
+    },
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "analysis_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+    "executed": false
+  },
+  "matching_saved_snapshots_reused": true,
+  "records": [
+    {
+      "target": "launcher",
+      "prior": 192,
+      "current": 199,
+      "new": 7,
+      "new_evidence_ids": [
+        "ev_1143306d3968773e4d4176e183b314f6bf59b68429591a5dd3656995c6f4a01d",
+        "ev_187582b0e50701c1a888a67d8195c3f6443bc110f9ceb17bb1bbeb3984db24d4",
+        "ev_49c3ffb46aceefa81f27a207a51efc5a0aacc8255b1e01c25b1bb731200e348a",
+        "ev_78bb36fd6c842d40e687ee677c3a35e9fd9ffa1f9f173a14307c32e8c859d825",
+        "ev_9c2e1141eaa3374781233371c7ccf2c231d911f343585814814c22b0d7a8308a",
+        "ev_ad8e8c1f5586dfb4f5a7bd6dce6f15af4727dd59f7d621ccf31bb23aedad54a1",
+        "ev_c035c248f2a0b99bfae6bd2e04fc615cf93311ac544489fa3d8334bd13c30e87"
+      ]
+    },
+    {
+      "target": "updater",
+      "prior": 35,
+      "current": 47,
+      "new": 12,
+      "new_evidence_ids": [
+        "ev_068b5234a91b31bfffb42464ad30eb360deb3b996bc609b74aa5e4805828b20f",
+        "ev_181c6c8daf095d61162cc68b49aea9965fa5400852099b5eaedb3f469b96a1f6",
+        "ev_2a9598ef33d9a265d9a102f7b8c944f32cd8d162c8998adc2388d4001a2ea2ba",
+        "ev_46bc309746b0156fcf9243d0c19eaddc16f90d5e9805af26cf96c36365f46dfc",
+        "ev_6afb1b1369e29575e625a7eb291d9386b4cba3d6ad02cf5ed54a22de489718e7",
+        "ev_87c25831389d13270bc81facaf3b70a9e0de9e9b0a7881b053ef7fef810ae4b3",
+        "ev_9cf301ff395c28a861f5aa19a374ed568215cee55058f7d7e9347ecda5fecdf0",
+        "ev_a00f342d0871fc571f4c30c8abf8085e8f524073ad658d691fe99243ac398fd3",
+        "ev_b41ca09d2c5b22f25d6d6cf728307df455334a6b35cf81db415ed62116aa28c7",
+        "ev_bd71e94a9d0c6a55b8ceef2743606af768f7b3a0379ba9691b8bee4c49b2a7c5",
+        "ev_c38916b7d724bd85ff9256b763252a985be09be99b3415da6f16f6af986bed4e",
+        "ev_d2b92be45e3d356c050bf2ec728a6827dae2f76d815beb369ba35d403555db83"
+      ]
+    }
+  ],
+  "new_records_total": 19,
+  "new_dossiers": [
+    {
+      "target": "launcher",
+      "evidence_id": "ev_187582b0e50701c1a888a67d8195c3f6443bc110f9ceb17bb1bbeb3984db24d4",
+      "address": "0x40b010",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x40b4da",
+            "start": "0x40b010"
+          }
+        ],
+        "span_bytes": 1227,
+        "total_bytes": 1227
+      },
+      "high_pcode_truncated": false,
+      "omitted_operations_lower_bound": 0,
+      "signature": "undefined FUN_0040b010()",
+      "limits": [
+        "Unresolved computed or indirect flows without target addresses are not represented as reference edges.",
+        "Thunk and external classifications are Ghidra FunctionManager observations; they do not resolve targetless calls.",
+        "Pseudocode and assembly are Ghidra-specific representations, not original source or Hopper-equivalent text.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted."
+      ]
+    },
+    {
+      "target": "launcher",
+      "evidence_id": "ev_c035c248f2a0b99bfae6bd2e04fc615cf93311ac544489fa3d8334bd13c30e87",
+      "address": "0x404410",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x40480d",
+            "start": "0x404410"
+          }
+        ],
+        "span_bytes": 1022,
+        "total_bytes": 1022
+      },
+      "high_pcode_truncated": false,
+      "omitted_operations_lower_bound": 0,
+      "signature": "undefined FUN_00404410()",
+      "limits": [
+        "Unresolved computed or indirect flows without target addresses are not represented as reference edges.",
+        "Thunk and external classifications are Ghidra FunctionManager observations; they do not resolve targetless calls.",
+        "Pseudocode and assembly are Ghidra-specific representations, not original source or Hopper-equivalent text.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted."
+      ]
+    },
+    {
+      "target": "updater",
+      "evidence_id": "ev_9cf301ff395c28a861f5aa19a374ed568215cee55058f7d7e9347ecda5fecdf0",
+      "address": "0x4071c0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x40856c",
+            "start": "0x4071c0"
+          }
+        ],
+        "span_bytes": 5037,
+        "total_bytes": 5037
+      },
+      "high_pcode_truncated": true,
+      "omitted_operations_lower_bound": 1,
+      "signature": "undefined __stdcall FUN_004071c0(void)",
+      "limits": [
+        "Unresolved computed or indirect flows without target addresses are not represented as reference edges.",
+        "Thunk and external classifications are Ghidra FunctionManager observations; they do not resolve targetless calls.",
+        "Pseudocode and assembly are Ghidra-specific representations, not original source or Hopper-equivalent text.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "Ghidra Listing reports a terminal call at 0x40852c to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x408531 to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x408536 to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x40853b to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x408540 to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x408545 to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x40854a to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x40854f to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x408554 to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x408559 to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x40855e to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x408563 to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x408568 to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return."
+      ]
+    },
+    {
+      "target": "updater",
+      "evidence_id": "ev_a00f342d0871fc571f4c30c8abf8085e8f524073ad658d691fe99243ac398fd3",
+      "address": "0x403830",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x403ce3",
+            "start": "0x403830"
+          }
+        ],
+        "span_bytes": 1204,
+        "total_bytes": 1204
+      },
+      "high_pcode_truncated": false,
+      "omitted_operations_lower_bound": 0,
+      "signature": "undefined __fastcall FUN_00403830(DWORD param_1, wchar_t * param_2, undefined4 * param_3, uint * param_4)",
+      "limits": [
+        "Unresolved computed or indirect flows without target addresses are not represented as reference edges.",
+        "Thunk and external classifications are Ghidra FunctionManager observations; they do not resolve targetless calls.",
+        "Pseudocode and assembly are Ghidra-specific representations, not original source or Hopper-equivalent text.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "Ghidra Listing reports a terminal call at 0x403cc1 to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x403cc6 to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x403ccb to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x403cd0 to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x403cd5 to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x403cda to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return.",
+        "Ghidra Listing reports a terminal call at 0x403cdf to 0x47a4a4 FUN_0047a4a4 (external=false, thunk=false, hasNoReturn=true); fallthrough is excluded by Ghidra's flow model. This records Ghidra's FunctionManager flag, not an independent verification that the callee cannot return."
+      ]
+    },
+    {
+      "target": "updater",
+      "evidence_id": "ev_d2b92be45e3d356c050bf2ec728a6827dae2f76d815beb369ba35d403555db83",
+      "address": "0x402d60",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x402e5b",
+            "start": "0x402d60"
+          }
+        ],
+        "span_bytes": 252,
+        "total_bytes": 252
+      },
+      "high_pcode_truncated": false,
+      "omitted_operations_lower_bound": 0,
+      "signature": "undefined __fastcall FUN_00402d60(LPCWSTR param_1, undefined4 * param_2)",
+      "limits": [
+        "Unresolved computed or indirect flows without target addresses are not represented as reference edges.",
+        "Thunk and external classifications are Ghidra FunctionManager observations; they do not resolve targetless calls.",
+        "Pseudocode and assembly are Ghidra-specific representations, not original source or Hopper-equivalent text.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "Ghidra Listing reports a terminal call at 0x402e5b with no resolved callee; its no-return basis is unknown."
+      ]
+    }
+  ],
+  "source_byte_checks": [
+    {
+      "target": "launcher",
+      "address": "0x40b010",
+      "bytes": 1227,
+      "file_offset": 42000,
+      "evidence_id": "ev_1143306d3968773e4d4176e183b314f6bf59b68429591a5dd3656995c6f4a01d",
+      "sha256": "0f8693cd6e5d124370678c802bded27fb88980cfa22058122c6429bb77f1936d",
+      "source_equals_REA": true
+    },
+    {
+      "target": "launcher",
+      "address": "0x404410",
+      "bytes": 1022,
+      "file_offset": 14352,
+      "evidence_id": "ev_9c2e1141eaa3374781233371c7ccf2c231d911f343585814814c22b0d7a8308a",
+      "sha256": "4c2dd7268160d1e0b90cb9bd33878408712c339cfb844299c1684f14d936bac7",
+      "source_equals_REA": true
+    },
+    {
+      "target": "launcher",
+      "address": "0x40a320",
+      "bytes": 3132,
+      "file_offset": 38688,
+      "evidence_id": "ev_6e6e19410804c630ad85f1e604aa8b180146f312c307d276a9da020f33b0d2dd",
+      "sha256": "5b6173ce34295a9918035c34135dc970b119efdbddce500fb33addc36f933cc5",
+      "source_equals_REA": true
+    },
+    {
+      "target": "updater",
+      "address": "0x4071c0",
+      "bytes": 5037,
+      "file_offset": 26048,
+      "evidence_id": "ev_87c25831389d13270bc81facaf3b70a9e0de9e9b0a7881b053ef7fef810ae4b3",
+      "sha256": "3888bbb83c9ff110f5ccab4f44db58ef5209f7238155ac9effdd928a3c0c572a",
+      "source_equals_REA": true
+    },
+    {
+      "target": "updater",
+      "address": "0x403830",
+      "bytes": 1204,
+      "file_offset": 11312,
+      "evidence_id": "ev_b41ca09d2c5b22f25d6d6cf728307df455334a6b35cf81db415ed62116aa28c7",
+      "sha256": "3603a8087580db4d21fbe1a67053fe7a7078975b8ad8500b991cf7ff785acac0",
+      "source_equals_REA": true
+    },
+    {
+      "target": "updater",
+      "address": "0x402d60",
+      "bytes": 252,
+      "file_offset": 8544,
+      "evidence_id": "ev_068b5234a91b31bfffb42464ad30eb360deb3b996bc609b74aa5e4805828b20f",
+      "sha256": "94487f59db17341b0156b3e569fc99746f0e862d437cde6ba3133399f1196aa8",
+      "source_equals_REA": true
+    },
+    {
+      "target": "updater",
+      "address": "0x4b7cd8",
+      "bytes": 74,
+      "file_offset": 746712,
+      "evidence_id": "ev_2a9598ef33d9a265d9a102f7b8c944f32cd8d162c8998adc2388d4001a2ea2ba",
+      "sha256": "538ee7f0fa3b3ef90923ffa8376fb8e03107cae261ccd82a61542312b4cdbcd8",
+      "source_equals_REA": true
+    }
+  ],
+  "read_ranges": 7,
+  "read_bytes_including_reused3132B_callback": 11948,
+  "private_exports": [
+    {
+      "path": "build/analysis/launcher-handoff-ready-v1/launcher-rea-evidence.json",
+      "bytes": 19636165,
+      "sha256": "89092b097ce6f8ef23149ce8db848028cab90c793f6fec71df0bd358e91575d7"
+    },
+    {
+      "path": "build/analysis/launcher-handoff-ready-v1/launcher-rea-snapshot.json",
+      "bytes": 37908012,
+      "sha256": "fb1920cb487a0cf7caee48cfa7f86f85aaeca15d20ce64f74d64dc69fdda914b"
+    },
+    {
+      "path": "build/analysis/launcher-handoff-ready-v1/updater-rea-evidence.json",
+      "bytes": 6475038,
+      "sha256": "7139c0c1378ec3fceb040a6e2e7fc851d609bf44d4333da47cf6b0ab52267405"
+    },
+    {
+      "path": "build/analysis/launcher-handoff-ready-v1/updater-rea-snapshot.json",
+      "bytes": 12551289,
+      "sha256": "9f9e0e3637c81c906279b06fcb870f9ba91cedca834e821847525669f1b55417"
+    }
+  ],
+  "lookup_limitation": {
+    "unqualified_SetEvent_exact_name": "name_not_found",
+    "does_not_mean_no_import": true,
+    "independent_PE_IAT_SetEvent": "0x49a150",
+    "resolved_explicit_IAT_xrefs": [
+      "0x407838",
+      "0x47360e"
+    ],
+    "only_normal_handoff_site_followed": "0x407838"
+  },
+  "default_signature_limit": "Ghidra defaults helper return signatures to void, while caller tests AL. Assembly explicitly shows AL success/failure; no metadata edits or guessed signature were used.",
+  "final_REA": {
+    "open": false,
+    "cleanup_pending": false,
+    "analysis_run": null
+  },
+  "residual_unknowns": [
+    "Full interprocedural/EH aliases: updater0x4071c0 high-pcode truncated at3000 with omission lower bound1; terminal-call assumptions retained",
+    "Actual events/process/window return results, locale/path object identity and full filesystem lifecycle",
+    "Later replacement-launch acknowledgement versus this pre-replacement ready event",
+    "Real authenticated login/game consumer/platform/official acceptance"
+  ],
+  "event_format_original_file_checks": [
+    {
+      "source_path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+      "VA": "0x5d01a0",
+      "file_offset": 1896864,
+      "bytes": 82,
+      "sha256": "4cfcda0d1d639869ea76882fe28b50f839c361f667dbb8551eaafa16da51787c",
+      "matches_exact_UTF16_with_NUL": true,
+      "method": "Independent original-file PE range check for full82B UTF16 string including NUL.",
+      "REA_literal_read_bytes": 0,
+      "REA_literal_read_is_full_string": false
+    },
+    {
+      "source_path": "build/analysis/launcher-current-runtime-v4/LauncherUpdater.new-embedded.analysis-only.exe",
+      "VA": "0x4b7cd8",
+      "file_offset": 746712,
+      "bytes": 82,
+      "sha256": "4cfcda0d1d639869ea76882fe28b50f839c361f667dbb8551eaafa16da51787c",
+      "matches_exact_UTF16_with_NUL": true,
+      "method": "Independent original-file PE range check for full82B UTF16 string including NUL.",
+      "REA_literal_read_bytes": 74,
+      "REA_literal_read_is_full_string": false
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "moli.original-fixture-qualification-stage119.v1",
+  "classification": "fact",
+  "status": "original_fixture_positive_path_qualified",
+  "frozen_plan": "analysis/game-text-observer-v1/windows-qualification-plan.json",
+  "required_positive_gates": {
+    "original_fixture_identity_and_reader_identity": "stage118 actual complete guest hashes; fixture cf8bd654…cf41c2a / reader16386482…83732f5",
+    "actual_Windows_read": "stage118 fixture PID260, base0x00da0000, .text RVA0x1000, exactly6624 bytes/one region, reader exit0",
+    "same_owned_fixture_natural_lifecycle": "stage118 retained process WaitForExit=True, HasExited=True, exit0; 14:46:53–14:47:23 guest local",
+    "same_original_file_returned": "stage119 fresh guest length6624/Archive/fullSHA, exact private POST once, original_fixture_received, closed success=true, host exit0",
+    "direct_all_byte_comparison": "stage119 returned file versus original pinned fixture PE with245HIGHLOW relocations at actual0x00da0000, bytes_equal=true"
+  },
+  "evidence": [
+    "analysis/game-text-observer-runtime-v1/guest-preflight.json",
+    "analysis/game-text-observer-runtime-v1/transfer-runtime.json",
+    "analysis/game-text-observer-runtime-v1/fixture-runtime.json",
+    "analysis/game-text-observer-runtime-v1/snapshot-return-stage119.json",
+    "analysis/game-text-observer-runtime-v1/host-oracle-stage119.json"
+  ],
+  "optional_new_Windows_rejection_cases": "not run; previous8B-observer cases are not evidence for this reader",
+  "receiver_final_port_check": {
+    "command": "lsof -nP -iTCP:65378 -sTCP:LISTEN",
+    "exit_code": 1,
+    "stdout_bytes": 0,
+    "stderr_bytes": 0,
+    "meaning": "no listener reported at this check"
+  },
+  "scope": {
+    "new_fixture_runs_in_stage119": 0,
+    "new_observer_reads_in_stage119": 0,
+    "fixture_only": true,
+    "game_profile_runtime_qualified": false,
+    "game_consumer_recovered": false,
+    "all_negative_cases_exhaustively_validated": false,
+    "atomic_or_stable_snapshot_proved": false,
+    "official_compatibility": false,
+    "full_goal_complete": false
+  },
+  "next": "New game prerequisites and a separate concrete bounded ordinary startup/read plan; normal authenticated launcher entry remains separate"
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "moli.license-readonly-check.v1",
+  "stage": 43,
+  "observed_utc": "2026-10-26 11:55:48 UTC",
+  "time_note": "clock read immediately after UI response",
+  "authorization_scope": "normal existing About/account-license UI or non-sensitive application metadata only; no keys, credential stores, new login, purchase, install or settings changes",
+  "ui_operation": "existing launcherVM.getAXState({emit:false,disableDiffing:true})",
+  "ui_result": "blocked before menu/About inspection",
+  "tool_message": "The Mac is locked and automatic unlock could not unlock it. Ask the user to unlock the Mac manually before continuing.",
+  "not_a_claim_about_user_actual_screen": true,
+  "UI_retry_or_alternate_route": false,
+  "app_launch": false,
+  "normal_about_or_license_menu_opened": false,
+  "screenshots_captured": false,
+  "account_or_key_content_output": false,
+  "metadata_read": {
+    "path": "/Applications/Parallels Desktop.app/Contents/Info.plist",
+    "bundle_identifier": "com.parallels.desktop.console",
+    "static_application_version": "26.3.3",
+    "static_application_build": "57507",
+    "top_level_key_name_search": "edition|licen[cs]|subscription|expir, case insensitive",
+    "matching_key_names": [],
+    "recognized_edition_enums": [],
+    "not_license_evidence": true
+  },
+  "unknown": [
+    "Standard/Pro/Business/Enterprise licensed edition",
+    "license status",
+    "expiry",
+    "covered major version",
+    "upgrade eligibility"
+  ],
+  "credential_files_or_keychain_read": false,
+  "CLI_or_denied_ps_or_hardware_query_executed": false,
+  "pending_tools": false,
+  "execution_state": "UI check blocked; local public app metadata read completed, not a pending approval or uncertain license result",
+  "minimum_user_action": "Restore normal host screen access/unlock if needed and keep desktop visible; no need to research license, send a key or approve the same read-only inspection again. Then one normal About read can resume; no automatic unlock or bypass."
+}

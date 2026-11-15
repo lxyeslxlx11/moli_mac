@@ -1,0 +1,211 @@
+{
+  "schema": "moli.capability.launcher-XML-contract.v1",
+  "source": {
+    "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+    "bytes": 4111872,
+    "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+  },
+  "source_check": "analysis/capability-first-v1/launcher-xml-source-check.json",
+  "capabilities": [
+    "L01",
+    "L02",
+    "L05",
+    "L06"
+  ],
+  "facts": [
+    {
+      "id": "file-load",
+      "procedures": [
+        "0x438580",
+        "0x438750"
+      ],
+      "claim": "File load deletes old child nodes before opening the stored byte filename with mode r. It appends NUL-terminated chunks from the2048-byte reader and calls document parse through slot8 with the supplied mode. A zero file length returnsfalse without invoking parse; after a nonempty parse, AL is based on error_flag==0 rather than the returned pointer. File/chunk/locale error effects are not a whole-file byte-decoding guarantee.",
+      "kind": "fact"
+    },
+    {
+      "id": "document-state-and-prefix",
+      "procedures": [
+        "0x43a260",
+        "0x438540",
+        "0x4398b0"
+      ],
+      "claim": "Direct Parse resets error diagnostics and locations but does not clear existing children. It identifies/parses/links nodes in order, including linking a node even when its parse pointer is NULL. A non-element/plain-text tail can stop identification without a new error. More than one top-level element is not rejected by this loop; no-child input sets13. Returned parse pointer, nonempty child list and the error flag are distinct results.",
+      "kind": "fact"
+    },
+    {
+      "id": "encoding-mode",
+      "procedures": [
+        "0x43a260",
+        "0x439de0",
+        "0x43b180"
+      ],
+      "claim": "Mode0 is initially unknown. A leading EF BB BF selects1; a parsed declaration with absent/empty encoding or a case-insensitive UTF-8/UTF8 prefix selects1, otherwise2. Mode1 controls byte-width handling and numeric output; modes0/2 otherwise use single-byte handling. These modes do not transcode raw file bytes to Unicode strings.",
+      "kind": "fact"
+    },
+    {
+      "id": "UTF8-byte-copy",
+      "procedures": [
+        "0x439540",
+        "0x43aa70",
+        "0x43aea0"
+      ],
+      "claim": "Mode1 uses the256-entry width table:00..C1=>1,C2..DF=>2,E0..EF=>3,F0..F4=>4,F5..FF=>1. Multi-byte sequences are copied without a continuation/scalar validity check in this reader. UTF8 whitespace skipping can also skip EF BB BF,EF BF BE,EF BF BF markers; ordinary whitespace uses the byte CRT classification plus CR/LF.",
+      "kind": "fact"
+    },
+    {
+      "id": "node-identification",
+      "procedures": [
+        "0x4398b0",
+        "0x437880",
+        "0x43ac30"
+      ],
+      "claim": "Observed node types are document0,element1,comment2,unknown3,text4,declaration5. The factory recognizes a case-insensitive <?xml prefix, then comment, then <! as unknown, then an immediate valid name-start as element, otherwise unknown. There is no separate CDATA branch in this factory. ReadValue creates text only on its non-< path.",
+      "kind": "fact"
+    },
+    {
+      "id": "unknown-and-comment",
+      "procedures": [
+        "0x43a870",
+        "0x439d20",
+        "0x43aa70"
+      ],
+      "claim": "Unknown nodes copy bytes after< to the first> without DTD/namespace/entity-declaration interpretation. Comment content is read to-->; that path does not reject an internal-- before the terminator. Unterminated/invalid-buffer outcomes are separate from these ordinary terminated paths.",
+      "kind": "fact"
+    },
+    {
+      "id": "names-and-attributes",
+      "procedures": [
+        "0x43a9b0",
+        "0x439b40",
+        "0x439b90",
+        "0x43a410"
+      ],
+      "claim": "Name start is byte>=0x7f or the byte alpha class or underscore; later name bytes also allow digit,hyphen,dot,colon. Names remain raw and namespace attributes are ordinary data. Attributes can be single/double quoted or unquoted; unquoted text stops on whitespace,slash,> and bypasses entity expansion. The outer element loop does not require whitespace between successive quoted attributes. Quoted values use the generic text reader.",
+      "kind": "fact"
+    },
+    {
+      "id": "closing-and-duplicate-attributes",
+      "procedures": [
+        "0x43a410",
+        "0x438460"
+      ],
+      "claim": "Self-close requires/>. The constructed ordinary closing delimiter is exact </name>; whitespace before its> does not match. A duplicate attribute updates the existing value then returns NULL on that branch without a direct SetError call there. Enclosing parsing and the document flag determine the eventual result; NULL alone is not equivalent to a diagnosed rejection.",
+      "kind": "fact"
+    },
+    {
+      "id": "text-and-consumer",
+      "procedures": [
+        "0x43ac30",
+        "0x43a800",
+        "0x43aa70",
+        "0x40bf80",
+        "0x403990"
+      ],
+      "claim": "The image default condense flag is1. Under that default, ordinary text strips leading/trailing literal whitespace and joins interior literal whitespace runs with one space; blank text nodes are discarded. Comment/unknown nodes remain distinct. The catalog producer takes only an immediate first child of type4, so leading comments/CDATA-as-unknown prevent that field assignment and later text parts are not concatenated.",
+      "kind": "fact"
+    },
+    {
+      "id": "named-entities",
+      "procedures": [
+        "0x4395b0",
+        "0x439540"
+      ],
+      "claim": "The five case-sensitive named references are amp,lt,gt,quot,apos. An unmatched named reference or bare ampersand emits the current ampersand byte and advances one input byte, leaving following text literal. No caller compatibility flag is required by this native branch.",
+      "kind": "fact"
+    },
+    {
+      "id": "numeric-entities",
+      "procedures": [
+        "0x4395b0",
+        "0x437440",
+        "0x4394f0"
+      ],
+      "claim": "Numeric references use decimal or lowercase-x hex and unsigned32 arithmetic without a scalar-range/overflow check in the accumulation. Modes0/2 emit the low byte; mode1 selects1..4 output bytes below0x200000. Surrogates and values above0x10ffff are not filtered by that converter. Its four fallthrough cases occupy a separately verified70-byte gap outside the canonical analyzed body ranges. NUL/capacity and malformed-reference outcomes need the enclosing string/reader paths and are not inferred from a Unicode entity API.",
+      "kind": "fact"
+    },
+    {
+      "id": "declaration",
+      "procedures": [
+        "0x439de0",
+        "0x439b90",
+        "0x43b180"
+      ],
+      "claim": "Declaration recognition/field-prefix checks are case-insensitive. Version,encoding,standalone are parsed through the attribute reader; other tokens are skipped to whitespace or>. The normal terminator is> and there is no version1.0-only or initial-node-only gate here. Three retained CMOVNZ assembly sites corroborate value copies that the pseudocode had removed as unreachable.",
+      "kind": "fact"
+    },
+    {
+      "id": "error-state-and-locations",
+      "procedures": [
+        "0x43ae40",
+        "0x437580",
+        "0x43af60"
+      ],
+      "claim": "The helper records only the first error while flag+0x34 is clear, storing ID+0x38 and locations+0x4c/+0x50. The document constructor initializes tab size4; the cursor updater tracks rows,columns,tabs and the selected byte mode. A false file-load result, NULL parse pointer and a populated error ID are not interchangeable.",
+      "kind": "fact"
+    },
+    {
+      "id": "catalog-publication",
+      "procedures": [
+        "0x40bf80",
+        "0x438580",
+        "0x4384a0"
+      ],
+      "claim": "The catalog caller requires both load booleans plus exact Gamelist/Games and Regionlist/Regions element lookups before resetting/publishing shared rows. It does not add a whole-document EOF check or Unicode scalar validation. Early failures preserve that shared catalog gate boundary; the local parser trees may already be partial.",
+      "kind": "fact"
+    },
+    {
+      "id": "independent-parser-observation",
+      "procedures": [],
+      "claim": "28 original synthetic inputs were run against the current independent JavaScript parser/decoder. Eleven are accepted by that implementation; four agree and24 differ on the selected properties relative to explicit static-source expectations. The native side was not executed, and this is neither native runtime differential testing nor full parser acceptance.",
+      "kind": "fact"
+    }
+  ],
+  "scope_refinement": [
+    "Same C82 source only; the historical current-catalog spec is C7BA and is not merged.",
+    "The selected source behavior is not equivalent to a standard Unicode XML/DOM parser.",
+    "Existing bounded parser budgets and rejection policy remain their explicit implementation profile; no product relaxation was made."
+  ],
+  "inferences": [
+    {
+      "kind": "inference",
+      "claim": "D1 needs a source-profile byte grammar and node ownership before decoding display fields. Existing transport,digest,pair ownership and explicit codecs can be reused after their interfaces are aligned; globally weakening the old string parser would not reproduce CDATA,first-text,legacy numeric conversion or error publication.",
+      "implementation_added": false
+    }
+  ],
+  "requirement_answers": [
+    {
+      "question": 1,
+      "status": "answered-bounded-source",
+      "result": "Load/reset,mode selection,whitespace,top-level loop and error/pointer distinctions bound; actual OS I/O/locale acceptance remains separate."
+    },
+    {
+      "question": 2,
+      "status": "answered-bounded-source",
+      "result": "Selected node/name/attribute/text/entity/declaration/unknown grammar bound, including numeric case gap and declaration assembly corroboration; no claim of all invalid-memory outcomes."
+    },
+    {
+      "question": 3,
+      "status": "partially-answered",
+      "result": "Duplicate/closing/partial-node/error and catalog gates specified. Invalid numeric/truncated/NUL/capacity/allocation/file outcomes and complete caller recovery remain."
+    },
+    {
+      "question": 4,
+      "status": "answered-bounded-comparison",
+      "result": "Current independent behavior measured on28 synthetic inputs;24 selected-property differences against static expectations. Native runtime/official equivalence remains unverified."
+    }
+  ],
+  "remaining": [
+    "Exact malformed numeric/truncated terminator/embedded-NUL and capacity-dependent outcomes where selected readers perform unchecked pointer arithmetic; no original fault/acceptance proof.",
+    "Actual text-mode file,locale,allocation failures,explicit clear/remove and all caller update/rollback behavior.",
+    "App initializer,all modal/async late results and reopen guards,dynamic menu targets and remaining resource uses.",
+    "Game actual alternate callback dispatch,graphics/input/shared-state ownership and remaining business conditions in the full capability inventory.",
+    "Shared implementation and complete platform/device/account/official acceptance remain outside this static package."
+  ],
+  "original_execution": false,
+  "account_or_session_observed": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "official_acceptance": false,
+  "full_goal_complete": false
+}

@@ -1,0 +1,202 @@
+{
+  "schema": "moli.impact-skills-spec.stage286.v1",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "classification": "fact from fixed historical sample unless explicitly marked pending",
+  "source": "analysis/game-legacy-battle-impact-skills-v1/source-check.json",
+  "grammar": {
+    "prefix": [
+      "code",
+      "cost",
+      "word",
+      "caster"
+    ],
+    "target": [
+      "target",
+      "flags",
+      "amount",
+      "RID1/RID2/RID3 only when800000"
+    ],
+    "terminator": "FF",
+    "wire_slot_remap": {
+      "50": 20,
+      "51": 21
+    },
+    "category": "integer quotient code/100 after existing aliases",
+    "level": "code%10",
+    "word": "ignored by97;stored at bodyff4 by4/106/111/116",
+    "tuple_storage": "4 signed cells;RID adds three copies through436e60;no explicit final tuple by these five producers",
+    "opaque_fourth_word": "initial native stack word is unobserved;portable zero is unused until first explicit RID;no raw stack identity claim"
+  },
+  "producers": {
+    "4": {
+      "prefix": [
+        24,
+        53,
+        147,
+        68
+      ],
+      "bodies": [
+        68,
+        16,
+        17
+      ],
+      "completion": "wait0,reface,release"
+    },
+    "97": {
+      "prefix": [
+        24,
+        53,
+        38,
+        147,
+        135,
+        62,
+        78,
+        86,
+        85,
+        84,
+        87
+      ],
+      "bodies": [
+        135,
+        86,
+        85,
+        84,
+        87
+      ],
+      "completion": "wait0,reface,release"
+    },
+    "106": {
+      "prefix": [
+        24,
+        53,
+        156,
+        75,
+        34,
+        89,
+        101
+      ],
+      "bodies": [
+        101,
+        24,
+        75,
+        89,
+        9,
+        90,
+        14,
+        105
+      ],
+      "completion": "wait0,reface,release,clear signal and actor2/renderer bit"
+    },
+    "111": {
+      "prefix": [
+        24,
+        53,
+        156,
+        7,
+        9,
+        10,
+        73,
+        106
+      ],
+      "tail": [
+        74,
+        7,
+        11,
+        10
+      ],
+      "bodies": [
+        106
+      ],
+      "completion": "wait0,reface,release,clear signal and actor2/renderer bit"
+    },
+    "116": {
+      "prefix": [
+        24,
+        53,
+        156
+      ],
+      "level9_prefix_tail": [
+        110,
+        62
+      ],
+      "per_low_target": [
+        110,
+        72,
+        62
+      ],
+      "tail": [
+        62
+      ],
+      "bodies": [
+        110,
+        111,
+        83,
+        34,
+        112,
+        105
+      ],
+      "completion": "wait0,reface,release,clear signal and actor2/renderer bit"
+    }
+  },
+  "target_reactions": {
+    "initial": "0 except97,which instead assigns target class/level",
+    "departure": "flags40:32 then local244 or50/49",
+    "reaction": "amount nonzero and flags3:non97 priority8000/4000/2000 ->121/120/119;else2->160 or26;4 excludes20000000",
+    "return_step": "amount nonzero or108:add11 except non97 E000 and4 20000000;non97 100 adds74",
+    "KO": "20 adds44;97 excludes10000"
+  },
+  "ownership": {
+    "projectile4": "41a2d0 fresh hidden body60002,resource0,state16,copy base+RID suffix,2 moves;separate1adc0 arrow,parent=hidden result body",
+    "sparks97": "41b5b0 fresh independent screen-space actors,actor+10 remains zero;10 points*270 callbacks,flags48000 or140000;422120 deletes on animation completion",
+    "clone106": "421140 fresh zero payload copies class/ff4/slot/resource/position/angle/facing/draw priority,not level or boxed vitals;never replaces registered22 slots;actions24/75/89/9/90/14/105;own105 deletes",
+    "flight116": "back565a parent=caster,front666c parent=back;both unregistered;back retains ordinary0 callback;front111 makes61 arc callbacks then112 and105;back deletion belongs to111",
+    "registered_auxiliary_count": "41a000 visits only22 registered slots,not all allocated bodies"
+  },
+  "consumers": {
+    "area97": "135 removes chant and sounds5/262 without releasing targets or consuming tuples;85 generates independent sparks;84 reuses source area HP/number/metadata semantics",
+    "clones106": "one clone per literal tuple;full body14 ordinary/E000 and signal paths within verified contexts;logical zero clone HP remains separate from registry",
+    "burst111": "body106,action5,pct200;first tuple marker1adbe,source impact precedence;E000 skip/heal/no-HP handling;speed8,pct100 after signal",
+    "flight116": "110 animates before action selection;action7 for100000..100999 or105000..106800 else5;low point=int(target world position),high point449/336 or188/203;arc height100,duration60;level9 scales/spins through83 then waits34 for30 callbacks;112 handles results"
+  },
+  "corrections": {
+    "smoke109": "41f1a0 uses actor2cc/2=drawOffsetY/2,not graphic height/2;historical stage285 vectors retained,2 corrected overlay traces374 states40 RGBA",
+    "spark97": "explicitly removed invented parent pointer after complete41b5b0 factory review;interrupted first regression and all later validation was rerun"
+  },
+  "pending": [
+    {
+      "reason": "impact-skill-detached-RID-storage",
+      "scope": "106 any800000 and116 level<9 any800000;producer rows are specified,but independent result node copies only base without native RID suffix context"
+    },
+    {
+      "reason": "impact-skill-hidden-deflection-geometry",
+      "scope": "4 with20000000;blank result resource0 geometry is unobserved"
+    },
+    {
+      "reason": "impact-skill-empty-target-runtime-unobserved",
+      "scope": "empty list for these5"
+    },
+    {
+      "scope": "original binary execution,renderer backend/x87 bit identity,current client handoff,full mixed metadata combinations,actual WeChat and physical devices",
+      "status": "unverified"
+    }
+  ],
+  "validation_scope": {
+    "independent_queues": 4800,
+    "classes": 5,
+    "levels": 10,
+    "actor_relations": 6,
+    "flag_patterns": 16,
+    "traces": 64,
+    "states": 14251,
+    "full_RGBA": 1206,
+    "natural": 61,
+    "stall_prefixes": [
+      "self4",
+      "self111",
+      "self116"
+    ],
+    "source_manager_recovery": "three source waits complete at pass7207;not natural completion"
+  },
+  "completeSKL": false,
+  "full_goal_complete": false
+}

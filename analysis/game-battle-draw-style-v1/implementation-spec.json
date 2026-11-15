@@ -1,0 +1,45 @@
+{
+  "stage": 295,
+  "source": "Fixed37c4;REA6.7.0/Ghidra12.1.4;506e80finalqueue,409e70allocation,41f740/41f7a0copy,421a10linkedalpha,422080fieldconstructor,40a120bodycontroller andordinaryblendchain.",
+  "facts": [
+    "Native actor308 is a color-byte override mask:1red30e,2green30d,4blue30c,8alpha30f. It is separate fromanimation305drawflags and300ARGB/306namedselector.",
+    "506e80 copies rawanimationstyle,applies308color overrides,applies309/310flag masks,then actorflag100000forcesalpha128.",
+    "409e70 initializes308/309/310 to0 and30c..30f toFFFFFFFF;41f7a0 copies them.",
+    "Body162/163 enable/disable308mask;158/159 and213..215 update actual alpha/mask lifetimes;421a10 enableschildmask8 onlywhen childalpha isnot255.",
+    "The finalordinarydraw interprets animationflag8 as additive andignoresalpha for ONE+ONE,while normaldraw consumes the finalARGB."
+  ],
+  "implementation": [
+    "Keep rawanimationstate inplayback snapshots;expose a distinct immutable drawColorOverride onlywhen the actualobjectmask isenabled. Retain rawopacity metadata asobservation,not anadditionalblendfactor.",
+    "Track actualmask writes inGMN,shape,element,fieldandlinkedalpha consumers,copy masks withownedactor/animationcopies.",
+    "Implement a pure finalqueue styleprojection forsourcecolor masks,flag masks,ghost precedence andnamedselector;useit inbattleframe.",
+    "Carry finalflags0..15,alluint32colors anduint16namedselectors intoexistingresourceplans;do notforcewhite orstripadditive.",
+    "Preserve original bytealpha reset writes throughan animationplayer setColorAlpha primitive where40a120writes303.",
+    "Use existingshared portableRGB rounding/straightalpha/point sampling andknownpaletteprefix checks."
+  ],
+  "validation": [
+    "Independent finalstyle matrices,completeoriginalRGBA andhistoricalpositivepromotions.",
+    "Actual25ARGBactions/112frames inbattleframe contexts withghost/mask/flags,source/generated parity.",
+    "ActualownedGMN/shape/element/field callbacks,renderingpurity,cache/close,andweb/Page battle/movement/return flows.",
+    "Fullappropriate regression,freshbuilds,13canonicaldocuments andall37requirements/10groupspreserved."
+  ],
+  "remaining": [
+    "NativeGPU/defaultstate/rounding/DDRAW precision andfulloriginalruntime.",
+    "Otherunimplementedbody/UI/flagproducers,remainingRID/self/mixed/empty/localstop,fullgame/currenthandoff andactualplatform/officialacceptance."
+  ],
+  "full_goal_complete": false,
+  "goal_status": "active",
+  "regression_reference_corrections": {
+    "initial_full_regression": {
+      "tests": 3710,
+      "passed": 3708,
+      "failed": 2,
+      "receipt": "build/analysis/game-battle-draw-style-v1/initial-regression-receipt.json"
+    },
+    "raw_animation_snapshot": "Independent retained RID element model preserves116 previous states and14 rasters;only state117 andfinal remove old merged objectalpha fromraw animation. Geometry0boundary unchanged.",
+    "pet_ghost": "Independent pet producer preserves82states,64existing fullrasters andpromotes100 previously refused ghost rasters to fullRGBA. Bothbufferselectors verified.",
+    "archived_vectors_changed": 0,
+    "targeted_tests": 18,
+    "reference": "regression-references.json",
+    "source_generated": "retained-test.mjs"
+  }
+}

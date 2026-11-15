@@ -1,0 +1,12 @@
+import test from 'node:test';
+import {readFileSync} from 'node:fs';
+import * as api from '../index.mjs';
+import {verifyProjectileModel} from '../../analysis/game-battle-physical-projectiles-v1/verify_model.mjs';
+import {verifyProjectileQueues,verifyProjectileCallbacks,verifyProjectileManagers} from '../../analysis/game-battle-physical-projectiles-v1/verify_routes.mjs';
+import {verifySpecialsAtomic as verifyProjectileAtomic} from '../../analysis/game-battle-physical-specials-v1/verify_routes.mjs';
+const v=JSON.parse(readFileSync(new URL('../../analysis/game-battle-physical-projectiles-v1/original-vectors.json',import.meta.url)));
+test('physical positive family queues, every modeled state and both complete RGBA selectors match independent source equations',async()=>console.log('projectile-independent '+JSON.stringify(await verifyProjectileModel(api,v))));
+test('physical positive prefixes, class95/105 and related73 cursor/cost ownership retain distinct source contracts',()=>console.log('projectile-queues '+JSON.stringify(verifyProjectileQueues(api,v))));
+test('physical positive callbacks own real probe, static arrow, multi target, HP and cost lifetimes',async()=>console.log('projectile-callbacks '+JSON.stringify(await verifyProjectileCallbacks(api,v))));
+test('physical real manager drains rounds, owns244 exit and recovers self73 only after the source wait threshold',async()=>console.log('projectile-managers '+JSON.stringify(await verifyProjectileManagers(api,v))));
+test('physical unsupported scripts, accessor records and capacity fail before mutation',async()=>console.log('projectile-atomic '+JSON.stringify(await verifyProjectileAtomic(api,v,{supportsEmptyTargets:true}))));

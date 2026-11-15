@@ -1,0 +1,325 @@
+{
+  "schema": "moli.capability.game-pet-publication-contract.v1",
+  "requirement": "全部需求能力先成规再成组实现；复用既有宠物资料解析，连接独立剩余点更新、经典缓存/删除和另一套选择上下文。",
+  "source": {
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+    "kind": "固定旧版；不外推现行受保护客户端",
+    "tools": {
+      "REA": "6.7.0",
+      "Ghidra": "12.1.4"
+    }
+  },
+  "capabilities": [
+    "G05",
+    "G12",
+    "X01",
+    "X02"
+  ],
+  "source_check": "analysis/capability-first-v1/game-pet-publication-source-check.json",
+  "source_verifier": "analysis/capability-first-v1/derive_game_pet_publication.py",
+  "carriers": [
+    {
+      "tag": "FBY",
+      "consumer": "0x4f0aa0",
+      "ABI": [
+        "int32 slot",
+        "bytes"
+      ],
+      "role": "25字段掩码资料/整记录清空"
+    },
+    {
+      "tag": "G:w",
+      "consumer": "0x4f1000",
+      "ABI": [
+        "int32 slot",
+        "bytes"
+      ],
+      "role": "16字段掩码属性/部分失效"
+    },
+    {
+      "tag": "J_J",
+      "consumer": "0x4f1420",
+      "ABI": [
+        "int32 slot",
+        "bytes"
+      ],
+      "role": "十技能替换及技能映射"
+    },
+    {
+      "tag": "Or`",
+      "consumer": "0x4f3280",
+      "ABI": [
+        "int32 slot",
+        "int32 value"
+      ],
+      "role": "独立剩余点字段发布，非请求成功回执"
+    }
+  ],
+  "facts": [
+    {
+      "id": "record-origin",
+      "kind": "事实",
+      "entries": [
+        "0x4f0aa0",
+        "0x4f1000",
+        "0x4f1420"
+      ],
+      "rule": "本记录族基址EF35F0，5槽、步长0x6d8；首16位为存在字。邻接EF35E0仍是独立未决字段，不按地址相近并入宠物结构。已有接收和逻辑值规格继续复用，不将原生数值容器的内部表示当作新的线路字段。"
+    },
+    {
+      "id": "existing-carrier-guards",
+      "kind": "事实",
+      "entries": [
+        "0x4f0aa0",
+        "0x4f1000",
+        "0x4f1420"
+      ],
+      "rule": "这三函数先要求924f30==0且slot在0..4，J_J另要求该宠物存在；掩码/字符串/非法技能边界沿用既有已证规格和明确的独立解析边界。本组没有重做三套解析器，也不把其guard自动套给其它接收函数。"
+    },
+    {
+      "id": "mask-and-deletion",
+      "kind": "事实",
+      "entries": [
+        "0x4f0aa0",
+        "0x4f1000"
+      ],
+      "rule": "非零掩码按bit0全量或对应字段位更新，未指定值保留并设置存在字。FBY零掩码清整块1752字节，包含技能、剩余点等；G:w零掩码仅清存在字及两名字串首字节，其余属性/技能/剩余点保留。两种失效不是同一种删除。"
+    },
+    {
+      "id": "skills-publication",
+      "kind": "事实",
+      "entries": [
+        "0x4f1420",
+        "0x4fde60"
+      ],
+      "rule": "J_J在存在宠物内替换10个0x8c技能槽，再以4fde60建立技能元数据；本函数没有调用4ff000、4fde20或4855a0。不能把前三种包统一为每次都重建宠物列表和设置同一脏标记。"
+    },
+    {
+      "id": "receiver-order",
+      "kind": "事实",
+      "entries": [
+        "0x4f0aa0",
+        "0x4f1000",
+        "0x4ff000",
+        "0x4fde20",
+        "0x4855a0"
+      ],
+      "rule": "FBY/G:w的有效接收分支先更新记录，再4ff000重算数量、4fde20复制五行映射，最后4855a0置刷新标记。该标记不是立即刷新全部UI，更不是服务器已接受某项请求。"
+    },
+    {
+      "id": "count-and-mapping",
+      "kind": "事实",
+      "entries": [
+        "0x4ff000",
+        "0x4fde20",
+        "0x4fde60"
+      ],
+      "rule": "4ff000只数5个非零存在字，在4FF021发布到D72FA8。4fde20按原槽次序输出5行：u16存在@0、signed16原槽@2、记录+0x6d0的32位值@4；4fde60以技能0x8c步长输出同类三字段，第三值取技能+0x88。两个辅助体保留空槽和原顺序；其它重排入口另需来源。",
+      "selection_consumers": "analysis/capability-first-v1/game-service-selection-contract.json#/fixed_se_pet_count_and_selection"
+    },
+    {
+      "id": "remaining-points-receive",
+      "kind": "事实",
+      "entries": [
+        "0x4f3280"
+      ],
+      "rule": "既有104接收表中的Or`有两个int32字段。旧完整25字节派生体直接把value写入EF365C+slot×0x6d8，即记录+0x6c；本函数不检查slot、存在字或924f30，也不改计数、映射、名称、技能或脏标记。不能把其它载体的准入/清空假设移入本分支。"
+    },
+    {
+      "id": "normal-slot-boundary",
+      "kind": "推测，待实现",
+      "entries": [
+        "0x4f3280"
+      ],
+      "rule": "独立核心的拟实现范围是已知5槽及int32值，入口应验证此域并显式拒绝未证越界；这属于独立实现的边界，不宣称原函数已有检查。当前宠物模块apply仅允许前三消费者，Or`目前只有线路目录登记，尚未接入该逻辑存储接口。"
+    },
+    {
+      "id": "points-versus-ack",
+      "kind": "事实",
+      "entries": [
+        "0x4f8020",
+        "0x4f3280",
+        "0x483bf0",
+        "0x4df420"
+      ],
+      "rule": "复用原加点请求的实际宠物槽及属性索引0..4；Or`是独立单字段发布，属性由G:w等既有载体发布。没有请求代次或成功关联字段可据此新增，不本地乐观扣点。经典参与标志仍用剩余signed>0，另一套局部分支仍为!=0，保留此前半数门槛和事件位差异。"
+    },
+    {
+      "id": "dirty-flag",
+      "kind": "事实",
+      "entries": [
+        "0x4855a0",
+        "0x4855b0",
+        "0x4855c0"
+      ],
+      "rule": "4855a0置C5E96C为1；4855b0置0；4855c0只在该值恰好为1时返回true。提供者对该精确符号只报告这3个读写点，实际查询/清理由经典480fe0/4810f0/4811f0调用；标记会合并更新，不是事件计数或每个窗口独立版本。其它别名不据此宣称穷尽。"
+    },
+    {
+      "id": "cache-snapshot",
+      "kind": "事实",
+      "entries": [
+        "0x4856a0",
+        "0x4856e0"
+      ],
+      "rule": "4856a0按五行映射取原槽的EF3CC0（记录+0x6d0）值到C1DDA4五项缓存。4856e0逐项比较，有不同返回1，否则0；查询不更新缓存。它不是排序、宠物身份代次或剩余点比较。"
+    },
+    {
+      "id": "cached-name",
+      "kind": "事实",
+      "entries": [
+        "0x4855d0"
+      ],
+      "rule": "仅按当前窗口id16/17/18选择控制ordinal9/14/11；在所见目标缓冲指针非零时，用映射原槽的昵称，空昵称则用原名，复制到C4BD7C和目标缓冲。此函数未检查编辑焦点或提交代次；不把字符串复制等同于自动调整所有文本上下文的光标/长度。"
+    },
+    {
+      "id": "normal-page-refresh",
+      "kind": "事实",
+      "entries": [
+        "0x480fe0",
+        "0x4810f0",
+        "0x4811f0"
+      ],
+      "rule": "正常回调先在显示选择C218E4变化时更新名称，再把C221D0记为当前选择。五项缓存不同或脏标记为1时，依次重做缓存/名称、清脏标记、复制模板名称和初始化文字布局。之后仍执行各页构建器482e60/483bf0/484e20；构建器不是仅在脏标记下运行。"
+    },
+    {
+      "id": "absent-page",
+      "kind": "事实",
+      "entries": [
+        "0x480fe0",
+        "0x4810f0",
+        "0x4811f0"
+      ],
+      "rule": "映射后的宠物存在字为0时，给当前窗口置8000隐藏位并播放39，随后仍调用该页构建器。此处不销毁宠物资料、不自动换选邻宠，也没有调用通用焦点恢复。完整窗口回收仍由既有框架处理。"
+    },
+    {
+      "id": "initial-entry",
+      "kind": "事实",
+      "entries": [
+        "0x480fe0",
+        "0x4810f0",
+        "0x4811f0"
+      ],
+      "rule": "param1==-1时三页都先做五项快照和名称准备，然后返回；此路径不清C5E96C。480fe0还同步旧选择并初始化其自身字段，另外两页只按原分支播放38等处理，不能合并为全家族相同复位后置条件。"
+    },
+    {
+      "id": "classic-navigation",
+      "kind": "事实",
+      "entries": [
+        "0x4813c0"
+      ],
+      "rule": "window16的case7/8在事件bit2下，使C218E4在0..4前后环绕，并跳过映射原槽中不存在的记录；找不到时失败计数达到6仍退出循环。随后按名称/昵称重建对应文本并调用480fe0(-1)。这是具体控制器规则，不外推其它页或保证一定找到有效宠物。"
+    },
+    {
+      "id": "classic-submit-boundary",
+      "kind": "事实",
+      "entries": [
+        "0x4813c0"
+      ],
+      "rule": "同一回调case5对当前编辑名经既有编码入口调用4f81d0并尝试49a130恢复；空输入时在显示缓存恢复原名。case6另有存在/玩家位80/43b420等来源门槛后调用4f6be0。它们不构成将接收资料立即乐观改名或把未知命令枚举全部命名的依据。"
+    },
+    {
+      "id": "page-destruction",
+      "kind": "事实",
+      "entries": [
+        "0x481300",
+        "0x481340",
+        "0x481380"
+      ],
+      "rule": "三页表中析构hook在自身窗口指针非零时，把当前x/y位置写给另两页的位置缓存，均返回1。这三个51字节体没有调用、宠物数据清空、选择复位或焦点还原；其它框架清理不能由此推成已完成。"
+    },
+    {
+      "id": "alternate-selection",
+      "kind": "事实",
+      "entries": [
+        "0x4dd740",
+        "0x4de9a0",
+        "0x4e05f0",
+        "0x4df420"
+      ],
+      "rule": "另一套入口保存C5E934显示行，实际宠物槽仍从D72FB2映射；经典C218E4与之分开。4dd740在相应事件尝试open21后仍写选择，4de9a0/4e05f0按该选择读名称或建立编辑状态；原4df420加点/前后项使用已证事件前槽快照。返回close/open的返回值不被这些旧局部路径当成成功验收，97表实际消费仍待证。"
+    },
+    {
+      "id": "reuse-and-duplication",
+      "kind": "事实",
+      "entries": [
+        "0x4855a0"
+      ],
+      "rule": "4855a0原11字节体已存在；本轮重复查询所得新ID与旧ID的全部normalized facets和参数相等，仅顶层limitations及ID不同。两个完整记录及差异保留，不计为新函数或新语义覆盖。其它原资料及旧派生体直接复用，不为统计重新反编译。"
+    }
+  ],
+  "nickname_send_producers": "analysis/capability-first-v1/entry-admission.json#/selected_fixed_se_operations/send_operation_admission/selected_text_producers/pet_nickname",
+  "dependencies": [
+    {
+      "kind": "推测，待实现",
+      "batch": "D0",
+      "rule": "复用现有5宠物/10技能存储，补正常域Or`剩余点更新，保留FBY整体清空与G:w部分失效、技能和单字段发布的不同效果；按实际包顺序应用，不造跨包事务或ack。"
+    },
+    {
+      "kind": "推测，待实现",
+      "batch": "D3",
+      "rule": "列表映射、经典选择/旧选择、另一套选择、刷新标记与五项缓存分开持有。依各页实际回调更新参与字段/隐藏/名称，保持请求与状态发布分离。"
+    },
+    {
+      "kind": "推测，待实现",
+      "batch": "D3",
+      "rule": "复用已证属性请求及两套资格，名称/其它宠物命令依各自来源接线；pet-training复用本资料依赖，但服务容量/价格/取消/异常不在本组提升为闭合。"
+    },
+    {
+      "kind": "推测，待实现",
+      "batch": "D0/D5",
+      "rule": "位置传递、隐藏、销毁、焦点恢复及真正宿主输入有各自边界；保留普通UI流程并补真实平台/同版联合验收。"
+    }
+  ],
+  "proposed_acceptance_cases": [
+    "Or`只改正常槽的remaining字段；不隐式创建存在记录、不重建映射或设置脏标记。",
+    "FBY零清除remaining及技能，G:w零保留它们；其后的部分资料更新继续按源保留未覆盖值。",
+    "属性回复与剩余点回复按到达顺序分别生效，发送请求不本地扣点或伪造成功。",
+    "经典缓存比较/脏标记决定名称刷新，普通回调始终执行构建器；不存在宠物先隐藏后仍进入构建器。",
+    "经典导航保留五行环绕/六次失败退出；另一套保存独立显示行和事件前槽快照。",
+    "进入与三页析构只具有各自已证副作用；不把隐藏或位置传递当成全局焦点已恢复。"
+  ],
+  "remaining": [
+    "其它宠物状态/命令的枚举和全部生产/消费，包括排序/重排的其它来源、服务容量/价格/取消及异常；不据本组辅助复制函数假设自动排序。",
+    "经典其它页的选择资格、各业务的完整关闭/焦点所有者丢失/重入、另一套97回调的实际调用消费者与完整生命周期。",
+    "原生数值表示/物理与RNG的跨端等价性仍按原边界；本组不新增数值保护、未证字段或原生检查实现。",
+    "其它普通/战斗/资源/模态/版本能力，及真实网页/微信/手机设备和同版官方业务验收；无测试账号现状保持。"
+  ],
+  "question_answers": [
+    {
+      "question": 1,
+      "status": "answered-for-four-source-carriers",
+      "result": "复用三资料消费者，另以旧派生Or`补剩余点字段；记录原点和邻接字段分开，原guard差异明确。"
+    },
+    {
+      "question": 2,
+      "status": "answered-for-classic-publication",
+      "result": "置标记/查询/清除、五项缓存、名称刷新、普通构建及隐藏顺序已有具体来源；全UI/其它字段仍未整体闭合。"
+    },
+    {
+      "question": 3,
+      "status": "partially-answered",
+      "result": "window16导航/提交、三页析构位置传递和另一套选择已复用；完整所有者/服务/枚举和97消费待证。"
+    },
+    {
+      "question": 4,
+      "status": "answered",
+      "result": "全部38域/81登记/37历史要求/10组保留，D0/D3拟实现依赖和未验收条件分开。"
+    }
+  ],
+  "acceptance": {
+    "source": "本合同范围内完成来源审查和字节/身份核验",
+    "specification": "正常资料/remaining发布和所述经典UI已成规，完整宠物及全需求未闭合",
+    "shared_implementation": "既有三资料解析保留，Or`尚未接入本模块；本轮未改",
+    "local_product": "本轮未运行",
+    "actual_platform_device": "未验收",
+    "same_version_official": "未验收"
+  },
+  "original_execution": false,
+  "account_or_official_session_observed": false,
+  "VM_operations": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false
+}

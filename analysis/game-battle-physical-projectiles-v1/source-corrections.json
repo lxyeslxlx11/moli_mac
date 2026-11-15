@@ -1,0 +1,103 @@
+{
+  "schema": "moli.physical-projectiles-corrections-stage206.v1",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "runtime_changes": [
+    {
+      "owner": "shared/legacy-game-battle-strike-playback.mjs",
+      "native": "0x420080",
+      "before": "cached parent screen30/34",
+      "after": "current float world40/44",
+      "trigger": "95 moves the victim before message creation",
+      "independent_model_changed": false,
+      "first_evidence": {
+        "path": "build/analysis/game-battle-physical-projectiles-v1/first-model-mismatch.json",
+        "bytes": 78687,
+        "sha256": "afc126f39409d78b551aa37a093ee35843bd1d8112467e54e921a46bba152836"
+      }
+    }
+  ],
+  "authored_fixture_corrections": [
+    {
+      "before": "Incorrectly put22k static arrow IDs into the animation index",
+      "after": "Author static RD graphic records;retain production animation bounds",
+      "production_bounds_relaxed": false,
+      "evidence": {
+        "path": "build/analysis/game-battle-physical-projectiles-v1/smoke-first.log",
+        "bytes": 658,
+        "sha256": "168040fa73764ae377c8b0df960598f91b7104e97fda4e5b1699ba820955ab44"
+      }
+    }
+  ],
+  "test_setup_corrections": [
+    {
+      "scope": "Diagnostic manager snapshot",
+      "issue": "Manager owns nested bodies.bodies;probe initially inspected bodies.filter",
+      "production_change": false,
+      "evidence": {
+        "path": "build/analysis/game-battle-physical-projectiles-v1/manager-probe.log",
+        "bytes": 815,
+        "sha256": "98433ecd91f21cb8e3ea63ba0ceae31b6616a07f6534768986cf13ac1e65cb7c"
+      }
+    },
+    {
+      "scope": "New queue contract test",
+      "issue": "self73 flag200 parses without guard scalar but its redirect/result consumer remains gated;expect explicit unavailable reason",
+      "production_change": false,
+      "evidence": {
+        "path": "build/analysis/game-battle-physical-projectiles-v1/projectile-tests-first.log",
+        "bytes": 3086,
+        "sha256": "e8462cfe7e3c3e96c594ce9a5f223570325f3e41d508c1b42c8841c7313e2163"
+      }
+    },
+    {
+      "scope": "First direct TCP diagnostic",
+      "issue": "Shared-only API omitted the explicit WeChat session adapter;rerun uses the actual adapter",
+      "production_change": false,
+      "evidence": {
+        "path": "build/analysis/game-battle-physical-projectiles-v1/tcp-single-first.log",
+        "bytes": 1601,
+        "sha256": "4d3d710535ae60d4a6029af1fe94f47b03cdcf706b4d27924af9a2bfdd185113"
+      }
+    }
+  ],
+  "old_reference_vector_files_changed": false,
+  "old_authored_assets_changed": false,
+  "original_execution": false,
+  "official_sessions": false,
+  "cross_realm_test_harness": {
+    "production_change": false,
+    "diagnostic": {
+      "path": "build/analysis/game-battle-physical-projectiles-v1/neutral-contract-diagnostic.log",
+      "bytes": 918,
+      "sha256": "a1589156428f7b38ffe622cffbe0ef2850bbb7201fb5efcfb726b4a08d34f6e8"
+    },
+    "identity_change": {
+      "path": "build/analysis/game-battle-physical-projectiles-v1/neutral-assertion-correction.json",
+      "bytes": 1680,
+      "sha256": "1c3c338aea0236cfb825962970a52390fe8662acfd805973287b689e8e89d177"
+    },
+    "full_run": {
+      "path": "build/analysis/game-battle-physical-projectiles-v1/build-verified-4.log",
+      "bytes": 402028,
+      "sha256": "2ef4e42230fd15d915f30a4952aaab1a9102a073d8c3c1ef2240fe943a6c83d3"
+    },
+    "corrective_run": {
+      "path": "build/analysis/game-battle-physical-projectiles-v1/neutral-routes-expanded-final.log",
+      "bytes": 1822,
+      "sha256": "0eb836d1145abde0cd9dd005da71f24eee50afed8b391b59402f1a716f381ea5"
+    }
+  },
+  "screenshot_filename": {
+    "production_change": false,
+    "issue": "Two pending modes initially shared one name;both actual modes rerun with distinct names",
+    "report": {
+      "path": "build/analysis/game-battle-physical-projectiles-v1/browser-pending-recheck.json",
+      "bytes": 27292,
+      "sha256": "68eea98488fb567644904b363850f22b840f18cc79ee93e0276f18fa7f4f62b5"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "moli.battle-web-spec-stage191.v1",
+  "classification": "derived product adapter for already-proven native consumers; no new wire grammar",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "observed_product_gap": [
+    "web/legacy-game-client.mjs configures no battle ports and creates only an ordinary canvas host",
+    "web/game-app.mjs hides the stage during battle-pending and provides no battle input",
+    "shared client already owns source battle render/cancel/return jobs, catalog identity and actual HP/MP values"
+  ],
+  "source_contracts": [
+    {
+      "classification": "fact",
+      "contract": "Entry/input/loop/exit/return are actual owned core consumers; battle mode stops old ordinary runtime and only actual final ordinary frame success reestablishes a new runtime",
+      "evidence": [
+        "../game-battle-return-v1/validation.json",
+        "../game-battle-skill-v1/validation.json"
+      ]
+    },
+    {
+      "classification": "fact",
+      "contract": "Source input uses menu/state/gate/eligible masks and accepts one pending intent per callback. Attack then target sendsH|A; guardG, escapeE, positionP. UI must wait for actual intent consumption; unavailable submenus remain explicit",
+      "evidence": [
+        "../game-battle-input-v1/source-check.json",
+        "../game-battle-input-v1/original-vectors.json"
+      ]
+    },
+    {
+      "classification": "fact",
+      "contract": "C data owns names, slots and four values; live body vitals reflect actual animation results and next actual C replaces them. UI must not mutate the world or decide damage/progress",
+      "evidence": [
+        "../game-battle-skill-v1/source-check.json",
+        "../game-battle-skill-v1/test-results.json"
+      ]
+    },
+    {
+      "classification": "derived",
+      "contract": "A browser adapter may bind existing actual library ports, await each real battle job, present its actual RGBA and provide semantic buttons/eligible target list. This is an independent accessible product control surface, not a claim of native menu/art/hit/audio equivalence",
+      "evidence": [
+        "../../web/legacy-game-client.mjs",
+        "../../shared/legacy-game-client.mjs"
+      ]
+    }
+  ],
+  "intended_implementation": [
+    "Bind actual battle catalogs/entry/input/loop/exit/return once to each real browser client, and hand off ordinary/battle asynchronous canvas ownership with bounded timer and render cancellation",
+    "Add responsive accessible battle controls backed by actual source readiness, C names/current vitals/eligible targets/countdown; pause/disconnect and page visibility retain ownership",
+    "Keep unsupported source dependencies visible and non-progressing without repeated callback spam or fabricated completion; reentry/return/close discard stale presentation work",
+    "Verify real product file/transport/canvas interactions and ordinary regression on desktop/touch mobile, plus targeted/full source/generated checks and exact source byte requests"
+  ],
+  "validation_flow": "game.html -> user selects actual original startup/resource files -> normal source character entry -> real battle packets -> actual canvas/input/result -> real exit/return -> ordinary movement",
+  "Browser_plugin": "absent; Browser plugin not available; use existing regular Playwright1.64.1/installed Chrome, no new dependency installation",
+  "required_remaining": [
+    "Full other battle skills/handlers, source-native menu/hit/render/audio/alternate renderer and all character branches",
+    "Other main9/native pool scheduling and historical unconfigured49 unification",
+    "Full nonbattle gameplay and complete product platform behaviors",
+    "Native WeChat gamePage/Canvas/files/network/fonts/audio/scheduler, DevTools and device acceptance",
+    "Current-version/official login/gameplay/recovery acceptance; no test account"
+  ],
+  "phase_complete": false,
+  "full_goal_complete": false,
+  "goal_status": "active",
+  "presentation_contract": "Browser requests actual native640x480 battle presentation through a validated configureBattleViewport port; existing component defaults still crop to their ordinary context. Ordinary scene dimensions/context remain unchanged on return. copyBattleState exposes the already-owned small battle snapshot instead of copying full world/map per frame. Visual CRT RNG is initialized from this client clock; full native global RNG/cadence equivalence is not claimed.",
+  "accessibility": "Stable live status and unchanged name/vital text update only when values change; desktop/mobile real MutationObservers verify no repeated live-region mutations while actual battle callbacks continue."
+}

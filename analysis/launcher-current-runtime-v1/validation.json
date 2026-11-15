@@ -1,0 +1,79 @@
+{
+  "schema": "moli.launcher-current-runtime-v1.validation.v1",
+  "recorded_utc": "2026-10-28T09:08:02.106346+00:00",
+  "previous_goal_turn_classification": "progress",
+  "this_goal_turn_classification": "progress: official parser actually started, original helper semantics exercised, and readonly media prepared/readback verified",
+  "goal": "REA launcher -> implement launcher -> REA game -> implement game; full crossplatform/official requirements unchanged",
+  "result": "runtime-preparation-bounded-pass; native execution unresolved",
+  "tools": {
+    "powershell": "7.6.6 macOS-arm64 portable in project build",
+    "actual_version_probe": true,
+    "vendor_digests_and_codesign_strict_verified": true,
+    "no_global_install_or_security_config_changes": true,
+    "readiness": "analysis/launcher-current-runtime-v1/tool-readiness.json"
+  },
+  "tests": {
+    "original_host_cases_passed": 12,
+    "powershell_parser_errors": 0,
+    "windows_validated": false,
+    "vendor_program_executed": false,
+    "host_process_fixtures": "pwsh controlled exit7 and short sleep; natural exits, no forced termination",
+    "log": {
+      "path": "build/analysis/launcher-current-runtime-v1/host-tests-readonly.stdout",
+      "bytes": 792,
+      "sha256": "5ce73ae222f16a5d587dc2f89f81457bc89eca7b383ae8d89eed404390c1b60c"
+    },
+    "product_node_tests": "not-rerun; shared/web/adapters unchanged,548pass is stage88 actual history"
+  },
+  "media": {
+    "members_verified": 9,
+    "all_readback_equal": true,
+    "iso_sha256": "5061fc63ff80d1bf98a2d4f546309369e39e179f7712065a8f0e02095be85eb4",
+    "bytes": 1574912,
+    "data_only_no_boot_or_autorun": true,
+    "vm_attached": false
+  },
+  "access": {
+    "fresh_CUA_reads": 2,
+    "both": "Mac locked/automatic unlock failed",
+    "consecutive_goal_turn_lock_condition_count": 2,
+    "manual_unlock_request": "existing unanswered; not duplicated",
+    "guest_commands_submitted": 0,
+    "candidate_execution": 0,
+    "new_policy_rejections": 0
+  },
+  "delivery": {
+    "previous_manifest_files_verified_at_start": 1309,
+    "unchanged_previous_files": 1301,
+    "changed_existing_documents": [
+      "README.md",
+      "reports/analysis-methods.md",
+      "reports/development-plan.md",
+      "reports/known-issues.md",
+      "reports/launcher-static.md",
+      "reports/logic-protocol-spec.md",
+      "reports/validation.md",
+      "reports/vm-environment.md"
+    ],
+    "unchanged_product_files": 179,
+    "unchanged_native_files": 17,
+    "new_stage_files": 16,
+    "new_doc_links_checked": 31,
+    "manifest": "analysis/delivery-manifest-stage89.json"
+  },
+  "attempt_notes": [
+    "Vendor hashes.sha256 UTF8 decode failed before extraction; FFFE BOM identified, same downloaded bytes rehashed and decoded UTF16 without redownload.",
+    "Initial original host replace test failed: PowerShell untyped null bound to empty.NET string; native ArgumentException confirmed. Typed NullString.Value fixed it; original failure sandbox preserved. Official API lists Windows5.1 applicability, not guest execution proof.",
+    "Host12th case added for actually observed old target ReadOnly condition; repeat justified after this uncovered coverage gap; final12passed."
+  ],
+  "remaining": [
+    "Normal Mac unlock and demonstrable ordinary guest input",
+    "Guest helper/hash/Windows5.1 parser checks and policy readiness",
+    "Old updater actual load/dependency reason",
+    "Recoverable exact runtime EXE update and native UAC/90s parent/child/window observation",
+    "Native restore/NTFS/OS failure behavior and full VM/app-state recovery",
+    "Game consumers/frames/resources/gameplay, browser/mobile/WeChat and official interoperability"
+  ],
+  "goal_status": "active",
+  "goal_complete": false
+}

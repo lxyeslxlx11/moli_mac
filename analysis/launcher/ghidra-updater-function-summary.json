@@ -1,0 +1,229 @@
+{
+  "derived_summary": true,
+  "not_canonical_evidence": true,
+  "upstream_evidence_id": "ev_4ea494bd8b8e5faa814b6cf1b3bee5baca6625e3e7de0fc364901b54a7ee8e17",
+  "upstream_json_sha256": "c31c584a2cdd52a1ce2f86d36044ef1685e30a8d64ccb87643f6847568e6508c",
+  "subject": {
+    "name": "POLCN_Launcher.unpacked.exe",
+    "digest": {
+      "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31"
+    },
+    "local_path": "/private/tmp/moli-analysis/polcn/POLCN_Launcher.unpacked.exe",
+    "format": "pe",
+    "architecture": "x86"
+  },
+  "provider": {
+    "id": "ghidra",
+    "version": "12.1.4"
+  },
+  "operation": "analyze_function",
+  "procedure": {
+    "address": "0x4015a0",
+    "name": "FUN_004015a0",
+    "body": {
+      "available": true,
+      "provenance": "ghidra-function-body-address-set",
+      "ranges": [
+        {
+          "start": "0x4015a0",
+          "end": "0x405199"
+        }
+      ],
+      "total_bytes": 15354,
+      "span_bytes": 15354,
+      "non_contiguous": false,
+      "contains_entry": true
+    }
+  },
+  "selected_references": [
+    {
+      "source_address": "0x401d0a",
+      "target_address": "0x4b1ad4",
+      "source_procedure": {
+        "address": "0x4015a0",
+        "name": "FUN_004015a0",
+        "classification": {
+          "external": false,
+          "thunk": false,
+          "thunk_target": null,
+          "provenance": "ghidra-function-manager"
+        },
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x4015a0",
+              "end": "0x405199"
+            }
+          ],
+          "total_bytes": 15354,
+          "span_bytes": 15354,
+          "non_contiguous": false,
+          "contains_entry": true
+        }
+      },
+      "target_procedure": null,
+      "kind": {
+        "available": true,
+        "provenance": "ghidra-reference-manager",
+        "type": "DATA",
+        "flow": false,
+        "call": false,
+        "jump": false,
+        "data": true,
+        "read": false,
+        "write": false,
+        "indirect": false,
+        "computed": false,
+        "conditional": false,
+        "terminal": false,
+        "primary": true,
+        "operand_index": 0,
+        "external": false
+      }
+    },
+    {
+      "source_address": "0x401d46",
+      "target_address": "EXTERNAL:0x91",
+      "source_procedure": {
+        "address": "0x4015a0",
+        "name": "FUN_004015a0",
+        "classification": {
+          "external": false,
+          "thunk": false,
+          "thunk_target": null,
+          "provenance": "ghidra-function-manager"
+        },
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x4015a0",
+              "end": "0x405199"
+            }
+          ],
+          "total_bytes": 15354,
+          "span_bytes": 15354,
+          "non_contiguous": false,
+          "contains_entry": true
+        }
+      },
+      "target_procedure": {
+        "address": "EXTERNAL:0x91",
+        "name": "KERNEL32.DLL::CreateProcessA",
+        "classification": {
+          "external": true,
+          "thunk": false,
+          "thunk_target": null,
+          "provenance": "ghidra-function-manager"
+        },
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [],
+          "total_bytes": 0,
+          "span_bytes": 0,
+          "non_contiguous": false,
+          "contains_entry": false
+        }
+      },
+      "kind": {
+        "available": true,
+        "provenance": "ghidra-reference-manager",
+        "type": "COMPUTED_CALL",
+        "flow": true,
+        "call": true,
+        "jump": false,
+        "data": false,
+        "read": false,
+        "write": false,
+        "indirect": false,
+        "computed": true,
+        "conditional": false,
+        "terminal": false,
+        "primary": true,
+        "operand_index": -1,
+        "external": true
+      }
+    },
+    {
+      "source_address": "0x401d46",
+      "target_address": "0x4b136c",
+      "source_procedure": {
+        "address": "0x4015a0",
+        "name": "FUN_004015a0",
+        "classification": {
+          "external": false,
+          "thunk": false,
+          "thunk_target": null,
+          "provenance": "ghidra-function-manager"
+        },
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x4015a0",
+              "end": "0x405199"
+            }
+          ],
+          "total_bytes": 15354,
+          "span_bytes": 15354,
+          "non_contiguous": false,
+          "contains_entry": true
+        }
+      },
+      "target_procedure": null,
+      "kind": {
+        "available": true,
+        "provenance": "ghidra-reference-manager",
+        "type": "READ",
+        "flow": false,
+        "call": false,
+        "jump": false,
+        "data": true,
+        "read": true,
+        "write": false,
+        "indirect": false,
+        "computed": false,
+        "conditional": false,
+        "terminal": false,
+        "primary": true,
+        "operand_index": 0,
+        "external": false
+      }
+    }
+  ],
+  "selected_strings": [
+    {
+      "address": "0x4b1884",
+      "value": "LauncherUpdater.exe",
+      "source_address": "0x40176f"
+    },
+    {
+      "address": "0x4b1a7c",
+      "value": "./LauncherUpdater.exe",
+      "source_address": "0x401b93"
+    },
+    {
+      "address": "0x4b1ad4",
+      "value": "LauncherUpdater.exe %d %s %s %s %s",
+      "source_address": "0x401d0a"
+    }
+  ],
+  "selected_callees": [
+    {
+      "address": "EXTERNAL:0x91",
+      "name": "KERNEL32.DLL::CreateProcessA"
+    }
+  ],
+  "limitations": [
+    "Unresolved computed or indirect flows without target addresses are not represented as reference edges.",
+    "Thunk and external classifications are Ghidra FunctionManager observations; they do not resolve targetless calls.",
+    "Pseudocode and assembly are Ghidra-specific representations, not original source or Hopper-equivalent text.",
+    "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+    "Full pseudocode and assembly retained only in temporary local analysis; not included in deliverable. This projection is not an importable canonical REA evidence bundle."
+  ]
+}

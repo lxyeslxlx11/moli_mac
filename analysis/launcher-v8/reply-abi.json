@@ -1,0 +1,184 @@
+{
+  "schema": "moli.launcher-v8.reply-abi.v1",
+  "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "source_evidence": {
+    "0x46d040": "ev_6adc7ea10688016f1a40940b1ccb91360091197f257711532aa52531410d5682",
+    "0x46ce70": "ev_183cf6160f3408c7cea46c22658669b375de312e596e298ccda6d5d55d29c75d",
+    "0x419fe0": "ev_16f996eac2773b6d52139b55a0e37c5559191e370aff416f49a3584dde4f9885",
+    "0x4133a0": "ev_e9ac7266533b7da9d5cfabf4958ff8aef1245e3adaf31e701de3ca865f5aa5cb"
+  },
+  "columns": "W0..W4 denote the five parsed UInt32 arrays in wire order.",
+  "mapping": [
+    {
+      "field": "wordA",
+      "forwarder46ce70_args": [
+        4
+      ],
+      "callback419fe0_args": [
+        1
+      ],
+      "consumer4133a0_args": null
+    },
+    {
+      "field": "wordB",
+      "forwarder46ce70_args": [
+        5
+      ],
+      "callback419fe0_args": [
+        2
+      ],
+      "consumer4133a0_args": "branch"
+    },
+    {
+      "field": "byteField pointer/count",
+      "forwarder46ce70_args": [
+        6,
+        7
+      ],
+      "callback419fe0_args": [
+        3,
+        4
+      ],
+      "consumer4133a0_args": [
+        1,
+        2
+      ]
+    },
+    {
+      "field": "byteList pointer/count",
+      "forwarder46ce70_args": [
+        8,
+        9
+      ],
+      "callback419fe0_args": [
+        5,
+        6
+      ],
+      "consumer4133a0_args": [
+        3,
+        4
+      ]
+    },
+    {
+      "field": "W0 pointer/count",
+      "forwarder46ce70_args": [
+        10,
+        11
+      ],
+      "callback419fe0_args": [],
+      "consumer4133a0_args": null
+    },
+    {
+      "field": "W1 pointer/count",
+      "forwarder46ce70_args": [
+        12,
+        13
+      ],
+      "callback419fe0_args": [
+        7,
+        8
+      ],
+      "consumer4133a0_args": [
+        9
+      ]
+    },
+    {
+      "field": "W2 pointer/count",
+      "forwarder46ce70_args": [
+        14,
+        15
+      ],
+      "callback419fe0_args": [
+        9,
+        10
+      ],
+      "consumer4133a0_args": [
+        5
+      ]
+    },
+    {
+      "field": "W3 pointer/count",
+      "forwarder46ce70_args": [
+        16,
+        17
+      ],
+      "callback419fe0_args": [
+        11,
+        12
+      ],
+      "consumer4133a0_args": [
+        6
+      ]
+    },
+    {
+      "field": "W4 pointer/count",
+      "forwarder46ce70_args": [
+        18,
+        19
+      ],
+      "callback419fe0_args": [
+        13,
+        14
+      ],
+      "consumer4133a0_args": [
+        7
+      ]
+    },
+    {
+      "field": "tailWordA",
+      "forwarder46ce70_args": [
+        20
+      ],
+      "callback419fe0_args": [
+        15
+      ],
+      "consumer4133a0_args": [
+        8
+      ]
+    },
+    {
+      "field": "tailWordB",
+      "forwarder46ce70_args": [
+        21
+      ],
+      "callback419fe0_args": [
+        16
+      ],
+      "consumer4133a0_args": [
+        10
+      ]
+    }
+  ],
+  "call_sites": {
+    "forwarder": "0x46d6e7",
+    "virtual_callback": "0x46cee6",
+    "advance": "0x41a04d",
+    "consumer": "0x41a08b"
+  },
+  "consumer_push_sites_by_callee_parameter": [
+    "0x41a079",
+    "0x41a075",
+    "0x41a071",
+    "0x41a06d",
+    "0x41a069",
+    "0x41a065",
+    "0x41a061",
+    "0x41a05d",
+    "0x41a059",
+    "0x41a055"
+  ],
+  "signature_correction": {
+    "callback_stack_arguments": 16,
+    "callback_return": "0x41a42b RET0x40",
+    "consumer_stack_arguments": 10,
+    "consumer_return": "0x413eca RET0x28",
+    "omitted_by_pseudocode": "callback argument16 / consumer argument10 = tailWordB",
+    "tail_b_use": "0x413641 reads EBP+0x2c,0x413644 pushes,0x413651 calls sprintf with the remaining-points format at0x4b40f8"
+  },
+  "ignored_by_ui": [
+    "W0 and count",
+    "W1..W4 counts after callback forwarding",
+    "wordA before UI consumer"
+  ],
+  "scope": "Assembly-backed positional mapping only; no real values, original execution or authentication proof."
+}

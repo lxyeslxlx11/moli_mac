@@ -1,0 +1,65 @@
+{
+  "schema": "moli.launcher-v22.config-session-regression.v1",
+  "browser": "155.0.8059.85",
+  "tool": "Existing Playwright1.62.1; Browser plugin not available",
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 1000
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "checks": [
+    {
+      "name": "desktop identity, meaningful first screen, no overlay, no automatic configuration/socket/storage",
+      "passed": true
+    },
+    {
+      "name": "actual HTTP initialization -> whole configuration -> Code11 region selection",
+      "passed": true
+    },
+    {
+      "name": "explicit native IndexedDB pair save/reload/restore, bytes retained and no auto-restore",
+      "passed": true
+    },
+    {
+      "name": "closed/missing unavailable; unapproved target and duplicate-Code selection reset account/consent",
+      "passed": true
+    },
+    {
+      "name": "actual pair-cache concurrent change gives conflict and preserves current selection",
+      "passed": true
+    },
+    {
+      "name": "local XML input preserves explicit encoding and replaces prior target only after full parse",
+      "passed": true
+    }
+  ],
+  "errors": [
+    {
+      "type": "assertion",
+      "name": "AssertionError",
+      "message": "The input did not match the regular expression /游戏交接待实现/. Input:\n\n'已选择 beta。交接写入已准备：CGSharedMem，17字节；尚未交给游戏，认证状态未验证。'\n",
+      "stack": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /游戏交接待实现/. Input:\n\n'已选择 beta。交接写入已准备：CGSharedMem，17字节；尚未交给游戏，认证状态未验证。'\n\n    at file:///private/tmp/moli-launcher-v22-browser-v4qdqlx7/config-regression.mjs:113:124\n    at async pass (file:///private/tmp/moli-launcher-v22-browser-v4qdqlx7/config-regression.mjs:44:30)\n    at async file:///private/tmp/moli-launcher-v22-browser-v4qdqlx7/config-regression.mjs:109:4"
+    }
+  ],
+  "logs": [],
+  "expectedAborts": [],
+  "requests": {
+    "total": 82,
+    "origins": [
+      "http://127.0.0.1:50884"
+    ],
+    "methods": [
+      "GET"
+    ]
+  },
+  "screenshots": [
+    "/private/tmp/moli-launcher-v22-browser-v4qdqlx7/config-regression/desktop-initial.png",
+    "/private/tmp/moli-launcher-v22-browser-v4qdqlx7/config-regression/desktop-profiles.png"
+  ],
+  "scope": "Actual configuration UI, same-origin HTTP, native IndexedDB and native WebSocket→owned Node TCP→independent original Python peer. Cancellation negative branch alone uses a held Playwright route. No original binary, VM, real account or official game traffic."
+}

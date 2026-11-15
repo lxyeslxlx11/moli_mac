@@ -1,0 +1,351 @@
+{
+  "derived_summary": true,
+  "not_canonical_evidence": true,
+  "subject_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "source_dossier_sha256": "c31c584a2cdd52a1ce2f86d36044ef1685e30a8d64ccb87643f6847568e6508c",
+  "upstream_evidence_id": "ev_4ea494bd8b8e5faa814b6cf1b3bee5baca6625e3e7de0fc364901b54a7ee8e17",
+  "provider": {
+    "id": "ghidra",
+    "name": "Ghidra",
+    "version": "12.1.4"
+  },
+  "procedure": {
+    "address": "0x4015a0",
+    "name": "FUN_004015a0",
+    "ranges": [
+      {
+        "start": "0x4015a0",
+        "end": "0x405199"
+      }
+    ]
+  },
+  "value_flow_coverage": {
+    "truncated": true,
+    "retained_operations": 3000,
+    "omitted_operations_lower_bound": 1,
+    "unresolved_call_count": 3
+  },
+  "selected_source_references": [
+    {
+      "address": "0x4b1940",
+      "value": "/Launcher/launcher_md5.dat",
+      "source_address": "0x40192b"
+    },
+    {
+      "address": "0x4b1a18",
+      "value": "/Launcher/launcher_url.dat",
+      "source_address": "0x401aeb"
+    },
+    {
+      "address": "0x4b1ad4",
+      "value": "LauncherUpdater.exe %d %s %s %s %s",
+      "source_address": "0x401d0a"
+    },
+    {
+      "address": "0x4b1c64",
+      "value": "/Launcher/xml_md5.dat",
+      "source_address": "0x402042"
+    },
+    {
+      "address": "0x4b1d60",
+      "value": "/Launcher/GameList.xml",
+      "source_address": "0x402235"
+    },
+    {
+      "address": "0x4b1e60",
+      "value": "/Launcher/RegionList.xml",
+      "source_address": "0x4023f1"
+    },
+    {
+      "address": "0x4b20f8",
+      "value": "Argsline",
+      "source_address": "0x403213"
+    },
+    {
+      "address": "0x4b2104",
+      "value": "RegKey",
+      "source_address": "0x403297"
+    },
+    {
+      "address": "0x4b2138",
+      "value": "PatchEXE",
+      "source_address": "0x40352b"
+    },
+    {
+      "address": "0x4b2144",
+      "value": "ConfigEXE",
+      "source_address": "0x4035af"
+    }
+  ],
+  "checked_anchor_count": 29,
+  "all_anchors_passed": true,
+  "checks": [
+    {
+      "kind": "direct_call_target",
+      "va": "0x401991",
+      "file_offset": "0xd91",
+      "expected": "0x41ab70",
+      "actual": "0x41ab70",
+      "passed": true,
+      "context": "launcher digest candidate request helper"
+    },
+    {
+      "kind": "direct_call_target",
+      "va": "0x401a4e",
+      "file_offset": "0xe4e",
+      "expected": "0x409680",
+      "actual": "0x409680",
+      "passed": true,
+      "context": "compare helper"
+    },
+    {
+      "kind": "direct_call_target",
+      "va": "0x401b9d",
+      "file_offset": "0xf9d",
+      "expected": "0x41b610",
+      "actual": "0x41b610",
+      "passed": true,
+      "context": "embedded updater resource materialization helper"
+    },
+    {
+      "kind": "direct_call_target",
+      "va": "0x401c41",
+      "file_offset": "0x1041",
+      "expected": "0x40af60",
+      "actual": "0x40af60",
+      "passed": true,
+      "context": "update locator first extraction"
+    },
+    {
+      "kind": "direct_call_target",
+      "va": "0x401c4a",
+      "file_offset": "0x104a",
+      "expected": "0x40af60",
+      "actual": "0x40af60",
+      "passed": true,
+      "context": "update locator second extraction"
+    },
+    {
+      "kind": "direct_call_target",
+      "va": "0x401ccd",
+      "file_offset": "0x10cd",
+      "expected": "0x409050",
+      "actual": "0x409050",
+      "passed": true,
+      "context": "first text replacement helper"
+    },
+    {
+      "kind": "direct_call_target",
+      "va": "0x401ce2",
+      "file_offset": "0x10e2",
+      "expected": "0x409050",
+      "actual": "0x409050",
+      "passed": true,
+      "context": "module path text replacement helper"
+    },
+    {
+      "kind": "direct_call_target",
+      "va": "0x401d16",
+      "file_offset": "0x1116",
+      "expected": "0x40dc10",
+      "actual": "0x40dc10",
+      "passed": true,
+      "context": "updater command formatting helper"
+    },
+    {
+      "kind": "direct_call_target",
+      "va": "0x402569",
+      "file_offset": "0x1969",
+      "expected": "0x41eac0",
+      "actual": "0x41eac0",
+      "passed": true,
+      "context": "local GameList parser"
+    },
+    {
+      "kind": "direct_call_target",
+      "va": "0x4025b7",
+      "file_offset": "0x19b7",
+      "expected": "0x41eac0",
+      "actual": "0x41eac0",
+      "passed": true,
+      "context": "local RegionList parser"
+    },
+    {
+      "kind": "iat_call_slot",
+      "va": "0x401be0",
+      "file_offset": "0xfe0",
+      "expected": "0x4b1670",
+      "actual": "0x4b1670",
+      "passed": true,
+      "context": "GetWindowThreadProcessId"
+    },
+    {
+      "kind": "iat_call_slot",
+      "va": "0x401d46",
+      "file_offset": "0x1146",
+      "expected": "0x4b136c",
+      "actual": "0x4b136c",
+      "passed": true,
+      "context": "CreateProcessA"
+    },
+    {
+      "kind": "iat_call_slot",
+      "va": "0x41b64d",
+      "file_offset": "0x1aa4d",
+      "expected": "0x4b133c",
+      "actual": "0x4b133c",
+      "passed": true,
+      "context": "FindResourceA"
+    },
+    {
+      "kind": "iat_call_slot",
+      "va": "0x41b662",
+      "file_offset": "0x1aa62",
+      "expected": "0x4b1330",
+      "actual": "0x4b1330",
+      "passed": true,
+      "context": "LoadResource"
+    },
+    {
+      "kind": "iat_call_slot",
+      "va": "0x41b67e",
+      "file_offset": "0x1aa7e",
+      "expected": "0x4b1338",
+      "actual": "0x4b1338",
+      "passed": true,
+      "context": "SizeofResource"
+    },
+    {
+      "kind": "iat_call_slot",
+      "va": "0x41b698",
+      "file_offset": "0x1aa98",
+      "expected": "0x4b1334",
+      "actual": "0x4b1334",
+      "passed": true,
+      "context": "LockResource"
+    },
+    {
+      "kind": "iat_call_slot",
+      "va": "0x41b6c9",
+      "file_offset": "0x1aac9",
+      "expected": "0x4b130c",
+      "actual": "0x4b130c",
+      "passed": true,
+      "context": "CreateFileA"
+    },
+    {
+      "kind": "iat_call_slot",
+      "va": "0x41b6f5",
+      "file_offset": "0x1aaf5",
+      "expected": "0x4b1310",
+      "actual": "0x4b1310",
+      "passed": true,
+      "context": "WriteFile"
+    },
+    {
+      "kind": "ascii_literal",
+      "va": "0x4b1940",
+      "file_offset": "0xb0b40",
+      "expected": "/Launcher/launcher_md5.dat",
+      "actual": "/Launcher/launcher_md5.dat",
+      "passed": true,
+      "context": "self update candidate digest path"
+    },
+    {
+      "kind": "ascii_literal",
+      "va": "0x4b1a18",
+      "file_offset": "0xb0c18",
+      "expected": "/Launcher/launcher_url.dat",
+      "actual": "/Launcher/launcher_url.dat",
+      "passed": true,
+      "context": "self update candidate locator path"
+    },
+    {
+      "kind": "ascii_literal",
+      "va": "0x4b1c64",
+      "file_offset": "0xb0e64",
+      "expected": "/Launcher/xml_md5.dat",
+      "actual": "/Launcher/xml_md5.dat",
+      "passed": true,
+      "context": "catalog candidate digest path"
+    },
+    {
+      "kind": "ascii_literal",
+      "va": "0x4b1d60",
+      "file_offset": "0xb0f60",
+      "expected": "/Launcher/GameList.xml",
+      "actual": "/Launcher/GameList.xml",
+      "passed": true,
+      "context": "catalog replacement path"
+    },
+    {
+      "kind": "ascii_literal",
+      "va": "0x4b1e60",
+      "file_offset": "0xb1060",
+      "expected": "/Launcher/RegionList.xml",
+      "actual": "/Launcher/RegionList.xml",
+      "passed": true,
+      "context": "region replacement path"
+    },
+    {
+      "kind": "ascii_literal",
+      "va": "0x4b1ad4",
+      "file_offset": "0xb0cd4",
+      "expected": "LauncherUpdater.exe %d %s %s %s %s",
+      "actual": "LauncherUpdater.exe %d %s %s %s %s",
+      "passed": true,
+      "context": "self updater argv template"
+    },
+    {
+      "kind": "ascii_literal",
+      "va": "0x4b1ac4",
+      "file_offset": "0xb0cc4",
+      "expected": "|",
+      "actual": "|",
+      "passed": true,
+      "context": "first replacement new text"
+    },
+    {
+      "kind": "ascii_literal",
+      "va": "0x4b1ac8",
+      "file_offset": "0xb0cc8",
+      "expected": " ",
+      "actual": " ",
+      "passed": true,
+      "context": "first replacement old text"
+    },
+    {
+      "kind": "ascii_literal",
+      "va": "0x4b1acc",
+      "file_offset": "0xb0ccc",
+      "expected": "|",
+      "actual": "|",
+      "passed": true,
+      "context": "second replacement new text"
+    },
+    {
+      "kind": "ascii_literal",
+      "va": "0x4b1ad0",
+      "file_offset": "0xb0cd0",
+      "expected": " ",
+      "actual": " ",
+      "passed": true,
+      "context": "second replacement old text"
+    },
+    {
+      "kind": "ascii_literal",
+      "va": "0x4b65f4",
+      "file_offset": "0xb57f4",
+      "expected": "BIN_DATA",
+      "actual": "BIN_DATA",
+      "passed": true,
+      "context": "resource materialization resource type"
+    }
+  ],
+  "limits": [
+    "No target code executed and no endpoint contacted.",
+    "Call sites and literals do not establish full helper semantics or network protocol.",
+    "Hand-audited argument provenance remains a derived interpretation.",
+    "Full assembly, decompiler text and resource payloads remain in temporary local analysis."
+  ]
+}

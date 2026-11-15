@@ -1,0 +1,12 @@
+import test from 'node:test';
+import {readFileSync} from 'node:fs';
+import * as api from '../index.mjs';
+import {verifyPositiveResultModel} from '../../analysis/game-battle-projectile-results-v1/verify_model.mjs';
+import {verifyPositiveResultCallbacks,verifyPositiveResultMetadata,verifyPositiveResultAtomic,verifyPositiveResultLifetime,verifyPositiveResultManagers} from '../../analysis/game-battle-projectile-results-v1/verify_routes.mjs';
+const v=()=>JSON.parse(readFileSync(new URL('../../analysis/game-battle-projectile-results-v1/original-vectors.json',import.meta.url)));
+test('positive result queues,owned storage,every modeled state and complete RGBA match independent source equations',async()=>console.log('positive-results-independent '+JSON.stringify(await verifyPositiveResultModel(api,v()))));
+test('actual positive values and119/120/121 preserve class6 HP and composite mask priority',async()=>console.log('positive-results-callbacks '+JSON.stringify(await verifyPositiveResultCallbacks(api,v()))));
+test('positive RID metadata selects actual principal or target independently of heal priority',async()=>console.log('positive-results-metadata '+JSON.stringify(await verifyPositiveResultMetadata(api,v()))));
+test('positive required glyph and capacity reject atomically;unused glyphs do not gate suppressed numbers',async()=>console.log('positive-results-atomic '+JSON.stringify(await verifyPositiveResultAtomic(api,v()))));
+test('positive old charge cannot write through a removed and replaced target',async()=>console.log('positive-results-lifetime '+JSON.stringify(await verifyPositiveResultLifetime(api,v()))));
+test('positive real command manager owns rounds,local exits and explicit source wait recovery',async()=>console.log('positive-results-managers '+JSON.stringify(await verifyPositiveResultManagers(api,v()))));

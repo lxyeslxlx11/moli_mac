@@ -1,0 +1,3 @@
+const slot=n=>n===20?50:n===21?51:n;
+export function chainMotion(c){const f=[c.code??c.category*100+c.level,c.cost??4,c.variant??0];for(let i=0;i<c.hits.length;i++){const h=c.hits[i];f.push(slot(h[0]),slot(h[1]),h[2]|0,h[3]);if(h[2]&0x800000)f.push(...h[4]);if(h[2]&512)f.push(slot(h[5]));if(i===0&&(h[2]&0x80000)){const n=c.nested;f.push(slot(n.target));if(n.target===255)return encode(f);f.push(n.flags|0,n.amount);if(n.flags&0x800000)f.push(...n.resources);if(n.guard!==null)f.push(slot(n.guard));}}f.push(255);return encode(f);}
+function encode(f){return Uint8Array.from('M|SKL|'+f.map(n=>(n>>>0).toString(16).toUpperCase()).join('|')+'|',c=>c.charCodeAt(0));}

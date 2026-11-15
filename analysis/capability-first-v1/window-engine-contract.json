@@ -1,0 +1,835 @@
+{
+  "schema": "moli.capability-classic-window-contract.v1",
+  "requirement": "先覆盖全部需求能力的REA及规格，再按能力和共享依赖成组开发",
+  "status": "source-bound-common-rules-partial-business-closure",
+  "source_check": "analysis/capability-first-v1/window-engine-source-check.json",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "tools": {
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+  },
+  "capability": "X02",
+  "related_capabilities": [
+    "G01",
+    "G08",
+    "G09",
+    "G10",
+    "G11",
+    "G12",
+    "G13",
+    "G14",
+    "G15",
+    "G16",
+    "G17",
+    "G18",
+    "B01",
+    "B02",
+    "B03",
+    "B04"
+  ],
+  "authority": "静态来源事实；不是现行版本、原程序运行或完整业务闭合证明",
+  "facts": [
+    {
+      "id": "layout",
+      "kind": "fact",
+      "functions": [
+        "0x468190",
+        "0x467fc0"
+      ],
+      "rules": [
+        "传统描述符48字节，表67槽/66个不同描述符；活对象池68槽是另一种容量。",
+        "源控件32字节，运行副本36字节：type@0，新增0字段@4，x/y/width/height@8/c/10/14，participation@18，载荷指针@1c，callback@20。",
+        "source word5复制至runtime+18，只有值1参加通用绘制和控件事件；不是任意非零均有效。",
+        "对象224字节；cb@30由descriptor+24(hex)复制，cb@34来自descriptor+28，cb@38来自descriptor+2c。",
+        "sidecar基址c101b0、步长54(hex)，含flags@0、savedX/Y@4/8、livePtr@c；未闭合字段保留未知。"
+      ]
+    },
+    {
+      "id": "callback-roles",
+      "kind": "fact",
+      "functions": [
+        "0x468190",
+        "0x46ab90",
+        "0x469670",
+        "0x4a7d20"
+      ],
+      "rules": [
+        "cb@30在创建时以-1调用，也在每帧控件事件前调用，不能仅命名为初始化器。",
+        "cb@34在通用控件事件和窗口body命中处理后调用；业务可执行绘制或其他效果，不是纯渲染合同。",
+        "帧循环内cb@30及cb@34的返回值作为原始32位token传入后续回调/窗口；创建时初始化返回值不用于该token链，不能全局归一化为Boolean。",
+        "4a7d20是32个传统窗口的共用11字节回调：调用469670并返回1。",
+        "469670只绘制participation==1且类型匹配的控件，不分发控件回调；已见类型1/2/3/5/6/7，无type0/type4绘制分支。"
+      ]
+    },
+    {
+      "id": "frame-order",
+      "kind": "fact",
+      "functions": [
+        "0x46ab90",
+        "0x46aa50",
+        "0x46a0e0",
+        "0x46a1f0",
+        "0x469a70"
+      ],
+      "rules": [
+        "先清本帧消费/工作标记，再46aa50处理操作状态，再46a0e0整理/销毁池项。",
+        "每个池对象：绑定currentWindow、sidecar及id；469a70处理body/拖动；cb30(token)；依次分发participation==1控件；控件索引恢复-1；body命中消费及mode4钩子处理；cb34(token)。",
+        "控件回调允许修改共享状态；源循环和回调后分支重读字段，不应将整个帧状态冻结为不可变快照。",
+        "帧后4b4170/445230并将currentWindowId归0；没有通用恢复currentWindow到帧前值的操作。"
+      ]
+    },
+    {
+      "id": "owner-context",
+      "kind": "fact",
+      "functions": [
+        "0x468190",
+        "0x46ab90",
+        "0x467fc0",
+        "0x468e20",
+        "0x4a8e20"
+      ],
+      "rules": [
+        "对c3b2ac的7处直接字面地址写已逐指令绑定：构造函数2处、帧驱动1处、动态回调4处。",
+        "构造函数调用cb30(-1)前保存并绑定新对象，初始化结束写入sidecar.livePtr，再恢复旧currentWindow。",
+        "467fc0和468e20未通用绑定待销毁对象为currentWindow；不能在独立实现中擅自添加这种规则。",
+        "4a8e20仅在phase2/4临时绑定c11320所指对象，调用4ae3e0后恢复旧currentWindow；c11320对应传统id53的sidecar.livePtr。",
+        "该结论覆盖本次直接字面写搜索，不排除别名存储、其他模块和运行期代码。"
+      ]
+    },
+    {
+      "id": "create-reuse-order",
+      "kind": "fact",
+      "functions": [
+        "0x468190",
+        "0x46a0e0",
+        "0x468f00"
+      ],
+      "rules": [
+        "构造时groupbyte==1调用468f00(mask2)，==2调用468f00(mask3)；参数是组掩码，不是窗口id。",
+        "已有同id活对象时置对象flag2000(hex)，直接返回，不重新分配或初始化。",
+        "flag2000请求在46a0e0按对象+8的有符号顺序键重排；不能解释为关闭位。",
+        "flag8000请求在下一次46a0e0整理时调用467fc0销毁并压紧池；区别于同步分组销毁。",
+        "分组表67项实际分布为0:17、1:32、2:13、4:5；匹配是uint32(mask)&signextend(int8(group))非零；group0不匹配任何mask。"
+      ]
+    },
+    {
+      "id": "destroy-reset-business-effects",
+      "kind": "fact",
+      "functions": [
+        "0x467fc0",
+        "0x468e20",
+        "0x468f00",
+        "0x468e50",
+        "0x467ec0",
+        "0x49aa00"
+      ],
+      "rules": [
+        "467fc0先调用对象cb38；之后保存位置、更新sidecar flags/livePtr，若操作owner id相同则46ce30，再按类型清资源并释放对象。",
+        "468e20置sidecar flag2后直接467fc0；468f00对匹配组置flag2、直接销毁并清池项，不是延迟8000路径。",
+        "468e50依池顺序经468e20销毁，清若干工作全局；非零工作上下文5e2778另发送62并置0。",
+        "467ec0清池/sidecar活指针，调用469540/469580并按来源条件重开部分窗口；两辅助及其他恢复字段尚未完整审查。",
+        "通用free本身无统一网络通知策略；49aa00业务析构会构造C并经4f8240回复，未用sidecar flag2抑制该回复。不得把所有分组/重置关闭默认实现为静默。"
+      ]
+    },
+    {
+      "id": "generic-events",
+      "kind": "fact",
+      "functions": [
+        "0x46a1f0",
+        "0x469c50",
+        "0x46ad80",
+        "0x4b6830"
+      ],
+      "rules": [
+        "普通模式在未消费且当前点在矩形内时生成bit1及鼠标位；模式1/2/4/6使用单独路径，模式1/4可生成bit20(hex)，鼠标位仅匹配所存owner窗口/控件时合并。",
+        "mode4的存储signed16坐标另做矩形命中，可独立追加bit40(hex)；不是所有业务共享的已接受drop语义。",
+        "参与值在调用前仍为1时执行callback(index,mask)，即使mask为0；通用事件层没有type过滤。",
+        "回调返回非零则设cursor d4及消费标记；mode4还可调用phase4钩子并46ce00。",
+        "469c50以包装数值逻辑减法做半开矩形判定0<=delta<extent；非正extent不命中，包装/RNG完整原生节奏不在本次闭合范围。",
+        "46ad80在bit2置2000，返回bit1或bit20条件；由生产者可把bit2解释为左键按下触发重排。",
+        "4b6830的bit1参与高亮，bit2进入业务校验/坐标文本/转义/4f8240回复；其业务辅助条件仍需按需求归类。"
+      ]
+    },
+    {
+      "id": "mouse-producers",
+      "kind": "fact",
+      "functions": [
+        "0x4ec9d0",
+        "0x4ecab0",
+        "0x4ecb60",
+        "0x4ecc20",
+        "0x4ecd10",
+        "0x4ecdc0",
+        "0x4eced0",
+        "0x46a1f0"
+      ],
+      "rules": [
+        "c5fb2c的边缘位1/2是左右按下，4/8是左右抬起，10/20(hex)是左右双击按下附加位。",
+        "c5fb28的1/2是左右按住；c5fb30的1/2是左右重复脉冲。控件事件400/800(hex)来自重复脉冲，不是松开。",
+        "按下时即置重复位；4eced0在逻辑后清边缘位并按经过时间更新重复：<501ms清位，首次>=501ms触发，随后间隔>=100ms。",
+        "抬起清对应held/repeat及开始/经过时间；tick差为uint32，开始时间0作哨兵。46a1f0不直接转发原始抬起位4/8。"
+      ]
+    },
+    {
+      "id": "operation-lifecycle",
+      "kind": "fact",
+      "functions": [
+        "0x46c7c0",
+        "0x46ceb0",
+        "0x46aa50",
+        "0x46ce00",
+        "0x46ce30"
+      ],
+      "rules": [
+        "46c7c0仅mode0且kind非0时保存kind/arg/hook/currentWindowId/currentControl并进入mode1。",
+        "46ceb0条件相同，另保存signed16坐标字段e4/e6并进入mode3。",
+        "46aa50入口mode1调用hook(phase0,mouseMask,arg)后重读mode；入口mode2归0并返回。",
+        "后续mode3转4且标记消费/光标5，返回；mode4调用phase2后清操作字段归0；mode6归0；仍为mode1则标记消费。其他状态不能据本次排除。",
+        "46ce00清ec=-1、d8/e8/e0/f0=0，但不清userdata dc和存储坐标e4/e6。",
+        "46ce30若mode0返回；mode1钩子phase1，否则phase4；钩子后重读mode，原值此时为1则转2，否则转6，再清owner/control/coords/hook/arg/kind。不能与46ce00合并为同一reset。"
+      ]
+    },
+    {
+      "id": "dynamic-registration-boundary",
+      "kind": "fact",
+      "functions": [
+        "0x4a8f70",
+        "0x46c7c0",
+        "0x46ceb0",
+        "0x4a8e20"
+      ],
+      "rules": [
+        "4a8f70经46c7c0注册kind9、用户参数和callback4a8e20；PUSH锚点4a8f74及回调内4a8ef2均匹配原始5字节。",
+        "4a8e20为本次在独立副本新恢复的329字节回调，不是新增规范REA函数，也不属于此前647表/协议根入口统计。",
+        "phase0进行存在性、原始左右按下检查并绘制；左按下先quick reset，再经46ceb0以kind9/当前点重新登记；右按下46ce30。",
+        "phase2/4临时使用id53缓存对象刷新后恢复旧owner；kind9具体业务身份和全部注册者尚未闭合。",
+        "静态表647入口有引用不代表动态入口齐备；新增注册发现单独登记，保留此前统计范围。"
+      ]
+    },
+    {
+      "id": "aliased-type0-guard",
+      "kind": "fact",
+      "functions": [
+        "0x48f1b0",
+        "0x48f4f0",
+        "0x48f800",
+        "0x469670",
+        "0x46a1f0"
+      ],
+      "rules": [
+        "id36/37共享描述符；ordinal18源记录54c298初值type0、width0、participation0、callback字段1。",
+        "48f1b0关闭保护分支清全部19项参与值；已读初始化路径未将ordinal18参与值置1。",
+        "通用绘制不处理type0；事件层不按type过滤且会在mask0时调用。只能证明已观察初始/关闭保护，不可说callback1在所有运行路径恒不可达。",
+        "SE 的 C1E868 和 Item 的 CBBA30 已绑定所选普通生产者与帧回调。治疗传入提示绘制函数，普通文本和图形确认传入空值。两版所选初始化和关闭路径的第 19 项参与值见 classic_dialog_frame_hook。"
+      ]
+    }
+  ],
+  "fixed_se_classic_destructor_callbacks": "analysis/capability-first-v1/entry-admission.json#/selected_fixed_se_operations/classic_destructor_callbacks",
+  "fixed_se_classic_pre_control_callbacks": "analysis/capability-first-v1/entry-admission.json#/selected_fixed_se_operations/classic_pre_control_callbacks",
+  "fixed_se_classic_post_control_frames": "analysis/capability-first-v1/entry-admission.json#/selected_fixed_se_operations/classic_post_control_frames",
+  "fixed_se_classic_toolbar_status": {
+    "classification": "固定历史 SE 静态事实及 stage306 本机对照",
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "capabilities": ["X01", "X02", "G01", "G05", "G07", "G10", "G13", "G14", "G16", "B01"],
+    "source_review": "build/analysis/fixed-se-classic-toolbar-status-v1/source-review.json",
+    "report": "reports/game-static.md#fixed-se-classic-toolbar-status",
+    "record_counts": {
+      "descriptors": 5,
+      "control_rows": 163,
+      "distinct_registered_callbacks_in_scope": 22
+    },
+    "toolbar": {
+      "actions": "build/analysis/fixed-se-classic-toolbar-status-v1/source-review.json#/toolbar_routes",
+      "rules": [
+        "经典 4 控件 9 与经典 5 控件 1 在事件位 0x02 后先请求音效 0x33、标记当前窗 0x8000，再调用 468190 创建或复用另一窗。返回后写 C15B40，切到 5 写 1，切回 4 写 0。两窗共用 466AD0，当待发布主状态 F5F17C 等于 10 时标记当前窗退役。",
+        "4675A0 和 467760 在选定窗口重建中读 C15B40，零选 4、一选 5，其它值跳过这一步。4B5960 把当前值复制到 C47264，4B57C0 通过 data/WinSaveDate 的文件路径提交。4B56F0 的合资格读回经 4B5800 写回模式，4B58D0 的默认或回退路径归零。文件实际持久化和失败效果沿现有宿主回执验收。",
+        "经典 4 控件 0 至 7 由 466B80 路由。对战和观战的标签与两个实调用分别来自控件文字及 466E50、466F50，各自保留目标筛选。组队、交换名片、请求交易和家族邀请复用已有资格及消息规格。控件 5 另查 924F40 大于等于 7。控件 6、7 在相应活动窗为空时分别请求情绪动作窗 34 与小地图入口 489210，已有活动窗时置 0x8000。"
+      ],
+      "primary_batch": "D0"
+    },
+    "player_window_lifecycle": {
+      "rules": [
+        "经典 6 控件 1 通过 46A4D0。状态 7、明细 8、称号 9 和简介 58 均空时走 46C6B0(7,1,0,0)。有活动对象时先后标记 7、8、9、58，按实际存在的对象读取坐标并写该组的 4 对保存点。",
+        "7、8、9 的页内切换先查目标活指针。合资格时标记当前窗 0x8000，调用 468190 创建目标，再把当前窗坐标复制到目标。到简介 58 的三个所查入口另要求 924F40 大于等于 8。",
+        "49FDD0 请求关闭使用 0x8000。46AD80 在事件位 0x02 时置 0x2000，沿通用重排。46A0E0 处理实际退役，467FC0 在清活指针之前调用析构。7、8、9 的析构分别读取对应活对象，并把坐标写给另外三页的保存点。各已证路径仍按现有同步组关闭与帧退役合同。"
+      ],
+      "primary_batch": "D0",
+      "profile_return": "analysis/capability-first-v1/window-engine-contract.json#/fixed_se_classic_player_profile/open_return_close"
+    },
+    "formation": {
+      "source": "analysis/capability-first-v1/game-entry-review-contract.json#/receive_publication_review/entry_rules/26",
+      "request": "经典窗 7 控件 23 对应请求前排，需当前 F536C8 为 0。控件 24 对应请求后排，需当前值为 1。两者均需事件位 0x02，发无字段 .3+，再请求音效 0x33。",
+      "publication": "Q=[ 的 int32 经 4F2300 写低 16 位。菜单发送分支没有先写这个字。",
+      "primary_batch": "D3",
+      "reuse": "现有 .3+ 编码。D2 提供实际发布的阵位字，D4 沿已有入场规则验证后续战斗消费。"
+    },
+    "attribute_allocation": {
+      "sources": [
+        "analysis/game-legacy-scene-v1/state-catalog.json#/records/0/fields",
+        "analysis/capability-first-v1/game-entry-review-contract.json#/receive_publication_review/entry_rules/24"
+      ],
+      "rules": [
+        "8 号窗的 46C810 从创建及每帧进入 46D200。Or@ 在 4F3270 写 C450A8 的 32 位有符号数，明细显示该数，非正时把 27 至 31 的通用参与值清零。",
+        "点数为正时，阈值为现有五项能力值（E(9 的 field-05 至 field-09）与未分配点数相加，按有符号 32 位原算术除以二并向零截断。大于等于阈值的项不参与。46C820 的点击在当时重算阈值，读取被点的同一项，严格小于时传索引 0 至 4，再请求音效 0x4E。发送后仍用权威资料更新所显示值。"
+      ],
+      "wire": "analysis/capability-first-v1/game-communication-functional-specification.json#/fixed_se_player_window_wire/attribute",
+      "primary_batch": "D3",
+      "reuse": "现有状态槽与显示字段由 D2 提供。Or@ 已能解码，世界发布及新请求格式仍待接线。"
+    },
+    "personal_titles": {
+      "source": "analysis/capability-first-v1/game-presentation-functional-specification.json#/operations/36",
+      "rules": [
+        "正向准入的 Hr] 更新 48 条原记录 F5EB08，保留原索引供人物状态使用。4F07AE 复制到 D72A60，4F07BA 仅对副本排序。窗 9 的 46E4C0 在创建时重置列表偏移并从 E(9 的 field-30 复制当前文字，46F010 每帧按当前偏移填充六条显示记录并根据草稿与当前值控制提交。",
+        "控件 26 至 31 在事件位 0x02 下取 offset+ordinal-26 的副本记录首字。4FEF20 在原表找同一非负编号的第一个位置。模式 0 发 -0] 携带此原表索引，模式 1 发 -># 携带此原表索引。负编号、找不到编号或其它模式无请求。",
+        "控件 23 切换 0/1 模式，控件 35 恢复 0。控件 24/25 按 6 增减，范围 0 至 42。滚动条和拖动沿 46F2A0/46F2E0 的原输入路径读当前偏移。控件 22 用 -0] 发送 -1。控件 21 把草稿经 511180 的 128 字节缓冲变换，再经 -X} 的 bytes 字段编码，随后发声并处理输入焦点。"
+      ],
+      "wire": "analysis/capability-first-v1/game-communication-functional-specification.json#/fixed_se_player_window_wire/personal_title",
+      "primary_batch": "D3",
+      "reuse": "沿原 Hr] 字节解析和 PR-O37、PR-A17。现有共享投影已保存原表，D2 提供有明确来源的副本发布，D3 使用同一所有者生成个人称号列表和请求。家族称号沿其 32 记录合同。"
+    },
+    "acceptance_cases": [
+      {
+        "operation": "切换工具栏和恢复",
+        "expectation": "分别验证 4 到 5、5 到 4 时的关窗请求、实际退役与模式写入。普通重建用当时模式，冷重开按来源提交或默认。用实际宿主回执覆盖写入失败与读取回退。"
+      },
+      {
+        "operation": "人物窗打开、切换及放置位置",
+        "expectation": "移动 7 或 8 后切换，并从工具栏再按一次。核对存在目标时行为、简介阈值、每个所选窗实际退役的保存点及重排。"
+      },
+      {
+        "operation": "阵位与明细加点",
+        "expectation": "用 Q=[ 的低 16 位与当时阵位核匹配点击和更新。用 Or@ 的负数、零、正数和两次相邻输入核参与，五项各测等于阈值和小一，核对索引、准备态和权威值更新。"
+      },
+      {
+        "operation": "个人称号改选、删除和编辑",
+        "expectation": "用源索引与排序后行号不同的 Hr] 资料，测六行刷新、偏移首尾、0/1 模式、空行、失配编号、重复编号首项和 -1 清除。编辑侧沿实际输入上下文、字节转换及后续状态分别验收。"
+      }
+    ],
+    "pending": [
+      "另套窗口的具名正常分派、原版交互与当前同版权威结果。",
+      "stage306 对应三端产品接线和正式用例。"
+    ],
+    "validation": "reports/validation.md#fixed-se-classic-toolbar-status-validation",
+    "original_runtime_executed": false,
+    "all_required_admission_closed": false
+  },
+  "kind9_shop_quote_drag": {
+    "classification": "固定历史 SE 的静态事实与条件路径",
+    "capabilities": ["X01", "X02", "G11"],
+    "source_review": "build/analysis/shop-quote-drag-v1/source-review.json",
+    "report": "reports/game-static.md#legacy-shop-quote-drag",
+    "business_specification": "analysis/capability-first-v1/game-ordinary-services-functional-specification.json#/classic_shop_quote_interaction",
+    "entry_review": "analysis/capability-first-v1/entry-admission.json#/selected_fixed_se_operations/shop_quote_controls",
+    "registration": {
+      "window": 53,
+      "control_ordinals": [52, 53, 54, 55, 56],
+      "ordinary_control_callback": "0x4ae4c0",
+      "register_call": "0x4ae683",
+      "hook": "0x4a8e20",
+      "rules": [
+        "窗口 53 的 4AB510 创建分支在内部模式 1、4、5 为运行时控件 52–56 写参与值 1 和回调 4AE4C0。五行的源描述符回调是 4AE160。实际业务准入读取运行控件。",
+        "4AE4C0 用 C221D4 滚动起点加控件序号减 52 得到报价位置。普通命中且左键按下时，只为映射非负的行调用 4A8F70。共用登记只在 mode 0 接受，保存窗口、控件、kind 9、位置和钩子后进入 mode 1。",
+        "mode 1 的 phase 0 按已保存的位置重读映射和资料存在字节。不存在会先快清；当前调用仍继续处理边缘位。下一次左键按下快清后用当前坐标重新登记 mode 3；46CEB0 从当时的全局字段读取窗口和控件，不沿用拾取时的 owner。原始右键位在左键位之后处理。"
+      ]
+    },
+    "completion": {
+      "placed_on_quote_row": "46AA50 在控件分派前把 mode 3 推到 4。46A1F0 按所存坐标给参与控件加 0x40；4AE4C0 对不同位置交换映射并重刷两部分行显示。同一位置跳过交换和重刷。两者调用 46CF20，phase 3 在这个钩子中直接返回，随后清登记回 mode 0。",
+      "right_press_before_placement": "46CE30 在 mode 1 传 phase 1。4A8E20 的该分支不写报价，操作字段清理并经过 mode 2。",
+      "unclaimed_or_canceled_after_placement": "未消费且仍为 mode 4 时，下次 46AA50 调 phase 2。控件或窗口命中消费仍遇到 mode 4 时可以当次传 phase 4。左右按下位同时存在时，phase 0 可先登记 mode 3、再由右键转 phase 4。phase 2 与 phase 4 均暂绑窗口 53 的活动指针调用同一个移除函数，再恢复当前窗口。",
+      "double_click_on_selected_row": "4AE4C0 先处理放置，再检查控件事件与 0x21 的交集和原始 C5FB2C 的 0x10。条件同时成立时，4AE5FC 快清操作，再按此时的映射直接移除所点位置的选择。该分支独立于 phase 2/4 和 C5E9C8。"
+    },
+    "ordered_retirement": {
+      "source_review": "build/analysis/fixed-se-shop-entry-admission-v1/source-review.json",
+      "report": "reports/game-static.md#fixed-se-shop-entry-admission",
+      "case": "analysis/capability-first-v1/game-ordinary-services-functional-specification.json#/classic_shop_quote_interaction/acceptance/OS-A21",
+      "mark_and_sweep": "4AB510 的每帧分支在距离检查触发或商人身份失配时置 0x8000，随后继续余下的帧处理。46AB90 先用 46AA50 推进本次操作，再让 46A0E0 处理已有待关闭标记，随后才分派仍在池中的运行控件和后置绘制。已核的 468F00 按组同步退役可直接进入相同的 467FC0。",
+      "owner_at_pickup_and_placement": "46C7C0 从当时的 C5E870、5599F4 保存拾取归属。普通 46AB90 在控件前写这两个字段，帧末清窗口 ID 且已清控件序号。若下一次帧首处理左键并经 46CEB0 重新登记，保存当时的 0 和 −1，接着转 mode 4。待关闭的窗 53 可在这之后被池整理移除。",
+      "cancel_after_active_slot_clear": "467FC0 先走登记的析构，再清 53 的活动槽 C11320。保存的窗口 ID 仍为 53 时才经 46CE30 取消。mode 1 传 phase 1，该报价钩子直接返回。mode 3 或 4 传 phase 4。在上述普通帧首重新登记且保存 ID 为 0 的情况下，退休窗口 53 跳过这个取消入口。余下帧若消费放置走相应入口，未消费且登记保持 mode 4 时才在下次 46AA50 进入 phase 2。",
+      "release_conditional": "phase 2 与 phase 4 临时绑定当时的窗 53 槽再调用 4AE3E0。C5E9C8 非零时只清该字节。否则按有效映射先写数量、背包选择位和行映射，之后 4AE485 读所绑窗口的控件指针。若槽仍空且确实抵达该条指令，会以零基址形成读取。此为静态条件推导，实际重叠能否发生及结果待验。",
+      "design_handoff": "D0 记录所选输入时点、窗口实例和退役原因。D3 在当前报价所有者仍可用时按来源处理取消和撤选，旧实例退役后拒绝其业务副作用，由自身退役路径清理本次选择。D5 共用 OS-A21 核对标记、池整理或同步组关闭，以及旧动作与新窗口并存时的归属。"
+    },
+    "active_window_refresh": {
+      "classification": "固定 SE 静态事实。晚到回调及战斗相对栈为有条件推导。本机对照使用原创报价。",
+      "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+      "capabilities": ["G11", "B02", "B03", "X02"],
+      "related_rules_and_cases": ["OS-D6", "OS-A18", "OS-A20", "OS-A21", "BF-T36"],
+      "report": "reports/game-static.md#fixed-se-shop-retirement-refresh",
+      "validation_report": "reports/validation.md#fixed-se-shop-retirement-refresh-validation",
+      "validation": "build/analysis/fixed-se-shop-retirement-refresh-v1/validation.json",
+      "source_evidence": "build/analysis/fixed-se-shop-retirement-refresh-v1/rea-evidence.json",
+      "local_comparison": "build/analysis/fixed-se-shop-retirement-refresh-v1/local-dialog-comparison.json",
+      "binding": "4A8E20 的 phase 4（4A8E62）和 phase 2（4A8E84）读取当时的窗 53 活动槽 C11320，暂存 C3B2AC 并借用该槽值，经 4AE3E0 正常返回后恢复原值。这两段没有窗口代次比对。",
+      "preconditions": "4AE3E0 首先检查 C5E9C8。非零时只清该字节并返回。以下完整刷新适用于有效的保存位置、映射、活动窗口及正常控件缓冲。",
+      "ordered_writes": [
+        {"call": "0x4ae48f", "target": "0x46b010", "rule": "先清映射原行 C3BF70 的数量和 C3B294 的绝对槽减 8 对应位，将 C1E168 的所选位置写为 -1，把 C221D4 夹到 0 与 max(0, C1F6A0-5) 之间。调用以 36 字节控件记录的第 11 项为参数。上限 <= 0 时把第 10 项坐标复位并清数据 +8。上限 > 0 时按低 32 位乘积的有符号商写相对位移和对应坐标。"},
+        {"call": "0x4ae497", "target": "0x4aa960", "rule": "按当前滚动位置读取五项映射。先清每行两段文字、价格文本和备用标签参与状态。映射存在时按原字段更新名称、价格和标记。C3BF84 对应值为零时使用标记 6 及备用标签。其它所选支路按数量取 0 或 7。长名分段沿 4AAB36 的返回分支取 19 或 20 字节。"},
+        {"call": "0x4ae49c", "target": "0x4aacf0", "rule": "清五行的数量文本及两组按钮参与状态。有效映射显示 C3BF70 的值，只在原记录 C3BF7C > 1 时恢复按钮。"},
+        {"call": "0x4ae4a1", "target": "0x4aadc0", "rule": "遍历 20 项映射汇总单价乘数量，发布 C43E5C 和 C22364，并清控件 7 的数据标记。"},
+        {"call": "0x4ae4a6", "target": "0x4aae30", "rule": "遍历相同的 20 项映射汇总件数到 C07F7C。返回后 4AE4AB 将 55DDA0 置为 -1。"}
+      ],
+      "retired_or_replaced": "旧回调若合资格并且槽已替换，所查分支借用新槽并读取届时的全局映射。若槽空、抑制为零且映射可正常使用，所选清数量、位图、映射和夹取先发生，随后首次在 4AE485 读 [0+0x2C]。实际输入能否送达这些交错及其结果待核。",
+      "selected_battle_stack": {
+        "anchor": "ESP before 44FC66 on the selected main 10/6 frame",
+        "lowest_selected_direct_call_entry": -356,
+        "nearest_skl266_interval_end": -1612,
+        "scope": "仅所选直接帧、正常缓冲的局部和全局写入，以及格式化调用入口。库深层作用、异常指针、窗 26 实际登记及三字实读仍待证。"
+      },
+      "implementation_handoff": "D0/D3 沿 OS-D6 复用当前商店修订号和原报价顺序。归属仍有效的撤选按已证顺序刷新，待关闭实例先结算自身操作。旧代回调不得更改替换的商店。D4 在 BF-T36 共用所选帧写入范围。D5 沿 OS-A18、OS-A20、OS-A21 验收出售、鉴定、修理和下一次合资格帧。",
+      "original_or_target_interaction_accepted": false
+    },
+    "verification_limits": [
+      "两条移除路径的普通业务用例有有效报价映射和存活窗口。对空活动槽的解引用仅为受条件约束的静态推导，实际鼠标事件、关窗重叠及结果继续验收。",
+      "LLVM 解码及同版 Ghidra 对 C5E9C8 的精确引用均只给出 4AE3E0 读取和 4AE3E9 清零。非零写入及别名仍待具名来源。"
+    ],
+    "selected_business_entry_bound": true,
+    "all_registration_callers_verified": false
+  },
+  "event_mask": {
+    "kind": "fact",
+    "producer": "0x46a1f0",
+    "bits": [
+      {
+        "mask": "0x1",
+        "meaning": "普通模式当前点命中并允许分发"
+      },
+      {
+        "mask": "0x2",
+        "meaning": "左键按下",
+        "source": "edge&1"
+      },
+      {
+        "mask": "0x4",
+        "meaning": "右键按下",
+        "source": "edge&2"
+      },
+      {
+        "mask": "0x8",
+        "meaning": "左键按住",
+        "source": "held&1"
+      },
+      {
+        "mask": "0x10",
+        "meaning": "右键按住",
+        "source": "held&2"
+      },
+      {
+        "mask": "0x20",
+        "meaning": "特殊操作mode1/4命中标记，具体业务语义待钩子"
+      },
+      {
+        "mask": "0x40",
+        "meaning": "mode4所存坐标命中"
+      },
+      {
+        "mask": "0x100",
+        "meaning": "左键双击按下",
+        "source": "edge&0x10"
+      },
+      {
+        "mask": "0x200",
+        "meaning": "右键双击按下",
+        "source": "edge&0x20"
+      },
+      {
+        "mask": "0x400",
+        "meaning": "左键重复脉冲",
+        "source": "repeat&1"
+      },
+      {
+        "mask": "0x800",
+        "meaning": "右键重复脉冲",
+        "source": "repeat&2"
+      }
+    ]
+  },
+  "proposed_shared_contracts": [
+    {
+      "kind": "inference",
+      "contract": "窗口池、sidecar、current owner及每帧阶段由同一共享所有者管理，避免各业务复制生命周期。"
+    },
+    {
+      "kind": "inference",
+      "contract": "输入快照保留edge/held/repeat和操作mode；薄适配层映射宿主输入，业务只消费有证事件。"
+    },
+    {
+      "kind": "inference",
+      "contract": "组掩码关闭、延迟关闭、重排和业务析构分开建模，保留回调顺序及副作用。"
+    }
+  ],
+  "pending": [
+    {
+      "id": "business-classification",
+      "kind": "pending",
+      "question": "全部表/协议根入口和动态注册的业务条件、请求/回包、状态及重入逐组归类。"
+    },
+    {
+      "id": "alternate-framework",
+      "kind": "pending",
+      "question": "559c10另一套99行窗口框架的生命周期、输入和跨框架共享状态单独取证。"
+    },
+    {
+      "id": "focus-keyboard",
+      "kind": "pending",
+      "question": "完整键盘、文本编辑/IME、焦点、几何包装和相关RNG节奏。"
+    },
+    {
+      "id": "operation-producers",
+      "kind": "pending",
+      "question": "固定 SE 的经典商店报价拖动已归入 kind9_shop_quote_drag。其他必要注册来源、窗口失效时的实际序列及 C5E9C8 的非零写入继续沿具名证据核对。"
+    },
+    {
+      "id": "type0-activation",
+      "kind": "pending",
+      "question": "所选普通生产者、帧钩子与初始/关闭保护已核。仍有新的别名写入、外部模块或不同版本实际影响必要操作时，沿该具名来源补证第 19 项参与值。"
+    },
+    {
+      "id": "reset-reopen",
+      "kind": "pending",
+      "question": "469540/469580与全部sidecar恢复标记及错误分配清理。"
+    },
+    {
+      "id": "launcher-command-map",
+      "kind": "pending",
+      "question": "MFC对话框/控件/菜单到实际handler、更新/认证/交接和版本条件。"
+    },
+    {
+      "id": "source-discovery",
+      "kind": "pending",
+      "question": "其他纳入版本、子模块、间接/动态入口及完整需求发现边界。"
+    },
+    {
+      "id": "platform-and-official",
+      "kind": "pending",
+      "question": "目标宿主合同及实际平台/设备、同版官方接受；无测试账号条件仍保留。"
+    }
+  ],
+  "completion": {
+    "common_observed_rules_source_bound": true,
+    "all_classic_business_semantics_closed": false,
+    "all_required_capabilities_analyzed": false,
+    "implementation_gate_passed": false,
+    "runtime_implementation_changed": false,
+    "full_goal_complete": false
+  },
+  "offset_notation": "Unprefixed offsets in layout rules such as cb@30, +18 and +54 are hexadecimal; explicit byte counts and slot IDs are decimal.",
+  "classic_dialog_frame_hook": {
+    "classification": "两份固定历史游戏的经典窗口静态证据",
+    "capabilities": [
+      "G10",
+      "G12",
+      "X02"
+    ],
+    "batches": [
+      "D0",
+      "D3"
+    ],
+    "report": "reports/game-static.md#legacy-classic-dialog-frame-hook",
+    "validation": "reports/validation.md#legacy-classic-dialog-frame-hook-validation",
+    "source_review": {
+      "path": "build/analysis/legacy-window-dispatch-gates-v1/source-review.json",
+      "bytes": 48602,
+      "sha256": "b2babeb31e91e2cc9af2cddd6be8dbe8f2fb6dc748453b4e2ecec09451a24517"
+    },
+    "profiles": {
+      "SE": {
+        "source": {
+          "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+          "bytes": 1569280,
+          "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+        },
+        "descriptor": "0x52E3E8",
+        "window_ids": [
+          36,
+          37
+        ],
+        "controls": "0x54C058",
+        "initializer": "0x48F1B0",
+        "frame": "0x48F4F0",
+        "hook_slot": "0xC1E868",
+        "hook_setters": [
+          "0x48F154"
+        ],
+        "hook_call": "0x48F5D3",
+        "treatment": {
+          "producer": "0x4910E7",
+          "frame_hook": "0x490B80",
+          "button_callback": "0x4903E0",
+          "hint_buffer": "0xC5F878"
+        },
+        "null_hook_callers": [
+          "0x490B17",
+          "0x490B6D",
+          "0x4B4141"
+        ]
+      },
+      "Item": {
+        "source": {
+          "path": "build/analysis/game-release-current-v1/legacy-members/cg_item_6000.exe",
+          "bytes": 2213376,
+          "sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9"
+        },
+        "descriptor": "0x5C4418",
+        "window_ids": [
+          36,
+          37
+        ],
+        "controls": "0x5E3BC8",
+        "initializer": "0x4E44C5",
+        "frame": "0x4E4963",
+        "hook_slot": "0xCBBA30",
+        "hook_setters": [
+          "0x4E4300",
+          "0x4E442D"
+        ],
+        "hook_call": "0x4E4A5F",
+        "treatment": {
+          "producer": "0x4E6D5A",
+          "frame_hook": "0x4E657D",
+          "button_callback": "0x4E5B46",
+          "hint_buffer": "0xED5358"
+        },
+        "null_hook_callers": [
+          "0x4E650C",
+          "0x4E6570",
+          "0x517E7A"
+        ]
+      }
+    },
+    "rules": [
+      "普通模式 0x13 的治疗路径将提示绘制函数和动作函数写入各自位置。所选普通文本（含模式 0x23）和图形确认传空帧钩子，分别保留自己的控件动作。按每次请求的参数发布帧钩子。",
+      "当前窗口已初始化且有 0x8000 标记时，所选 +0x30 回调提前返回 1。其他路径在准入时以当前窗口、提示条件、显示行和所选行调用非空帧钩子。治疗钩子返回零并继续画面尾部。通用帧钩子返回非零时请求 0x8000 退役、清初始化标记，随后继续该帧绘制尾部。",
+      "经典外层把 +0x30 的结果用于输入值传递，随后读取控件参与值，之后调用 +0x34。按控件当前 participation == 1 分派，所选外层无按 type 过滤。对象实际回收沿已证的下一次整理或同步关闭规则。",
+      "36、37 共用同一描述符及 19 个控件。索引 18 的原记录 type=0、宽度=0、participation=0，回调字段为字面 1。运行时参与值位于 36 字节记录的 +0x18。所选初始化的按钮写入覆盖 0–5、输入分支可写 7、图形写入覆盖 8–17。关闭保护逐项清 0–18。已核治疗帧钩子写提示和图形输出，无直接写入该控件参与值。"
+    ],
+    "source_bounds": [
+      "SE 归属来自 REA 的两处直接符号引用、四处已核线性解码 E8 调用及原函数。Item 复核两处写与两处读，第二个构造器的四处直接 E8 调用已绑定三个来源函数。",
+      "源证据覆盖所选普通创建、初始化和帧分支，其他别名或间接调用需具名来源。当前运行的所有参与值写入、另一套 99 行表的帧分派及当前同版适用性待证。"
+    ],
+    "alternate_frame_table_dispatch_proven": false,
+    "all_type0_activation_paths_closed": false,
+    "original_runtime_observed": false,
+    "product_code_changed": false
+  },
+  "fixed_se_classic_player_profile": {
+    "classification": "固定 SE 静态事实。D0/D2/D3 段落记录实现差异，末段列待验证。",
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "capabilities": [
+      "X01",
+      "X02",
+      "G01",
+      "G03",
+      "G05",
+      "G07"
+    ],
+    "source_review": "build/analysis/fixed-se-classic-player-profile-v1/source-review.json",
+    "source_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+    "report": "reports/game-static.md#fixed-se-classic-player-profile",
+    "validation": "reports/validation.md#fixed-se-classic-player-profile-validation",
+    "entry_source": "analysis/capability-first-v1/entry-inventory.json#/classic_windows",
+    "records": [
+      {
+        "window": 58,
+        "descriptor": "0x52df68",
+        "controls": 34
+      },
+      {
+        "window": 59,
+        "descriptor": "0x52e868",
+        "controls": 32
+      }
+    ],
+    "open_return_close": {
+      "inherited": "analysis/capability-first-v1/window-engine-contract.json#/fixed_se_classic_toolbar_status/player_window_lifecycle",
+      "rules": [
+        "从 7、8、9 打开简介沿原 924F40 >= 8 与目标活指针检查。58 的 46F320 先调用 46FA10，后返回 1。",
+        "返回按 58 的控件 19/20/21 到 7/8/9。事件含 0x02 且目标活指针为空时，置当前窗 0x8000，46F3CF/46F49A/46F565 调 468190 创建，再复制当前窗的坐标。",
+        "58 控件 16 和 59 控件 0 通过 49FDD0 请求关闭。58 析构 46AFC0 以窗 9 的 C104B0 非空为条件，再读窗 58 的 C114C4，将坐标分别写入 7/8/9 保存点。以 467FC0 的实际退役作为关闭完成点。",
+        "返回及通用关闭所查路径不调用 517A80 或 4F7630。58 析构只涉及坐标，草稿回滚须有独立入口证据。"
+      ]
+    },
+    "editor": {
+      "fields": [
+        {
+          "control": 5,
+          "role": "贩卖说明",
+          "text": "0xfdce08",
+          "directory_control": 23,
+          "selection": "0xfdce00",
+          "presentation": "0xfdce04"
+        },
+        {
+          "control": 6,
+          "role": "购买说明",
+          "text": "0xfdcf10",
+          "directory_control": 24,
+          "selection": "0xfdcf08",
+          "presentation": "0xfdcf0c"
+        },
+        {
+          "control": 7,
+          "role": "目录描述",
+          "text": "0xfdd018",
+          "directory_control": 25,
+          "selection": "0xfdd010",
+          "presentation": "0xfdd014"
+        },
+        {
+          "control": 8,
+          "role": "自由描述",
+          "text": "0xfdd118"
+        }
+      ],
+      "rules": [
+        "控件 5–8 经 4702D0。事件含 0x02 且输入所有权需要切换时，以已有草稿初始化编辑器，调用 46CF90 和 445220，写 C4BE9C。46FA10 按 60FF08 的活动编辑器把文字复制到对应草稿。第四项合资格时在 470268–470294 复制描述符 55ADF8 所指文字后才比较，渲染使用草稿分行。",
+        "517900 比较三个目录编号和四段以 NUL 终止的文本，对象是 F5F048 所选角色的 0x828 字节缓存。可见性、目录展示字不计入。返回差异 1 时，46FA10 将控件 29 的 +0x18 参与值设 1，否则为 0。",
+        "控件 29 的事件 0x02 先在 46F8C8 尝试 49A130 恢复默认输入目标。按当前模式读取窗 35（0x23）或窗 57（0x39），随后在 46F8CF 调用 517A80(0) 处理草稿并更新相同角色缓存。最后一次组合输入如何被帧消费沿实际宿主用例核。",
+        "控件 17 在事件 0x02 按所选角色可见性走两条路径。已发布状态与待提交的文字差异独立。"
+      ],
+      "wire": "analysis/capability-first-v1/game-communication-functional-specification.json#/fixed_se_player_profile_wire"
+    },
+    "directory": {
+      "open": "控件 23/24/25 写模式 0/1/2 到 FEEEA8，分别经 46F642/46F72B/46F80E 调通用打开 46C6B0(59,1,0,0)。所查分支仅在窗 9 活指针存在时先置目录 59 的附属 flags 0x8000，通用打开仍会执行。",
+      "frame": "4B5B40 收到 -1 时将 C15B44 置 0。没有活简介窗时在当前对象置 0x8000，随后仍调用 4B6300。不因所选行为空而替换草稿。",
+      "visible_rows": 10,
+      "record_stride": 272,
+      "mode_rows": [
+        {
+          "mode": 0,
+          "role": "贩卖目录",
+          "row_active_base": "0xfc8b2c",
+          "row_name_base": "0xfc8b38",
+          "selector_base": "0xfc8b2c",
+          "selector_offset": "offset + control - 19",
+          "row_limit_source": "0xfc8b20"
+        },
+        {
+          "mode": 1,
+          "role": "购买目录",
+          "row_active_base": "0xfcf56c",
+          "row_name_base": "0xfcf578",
+          "selector_base": "0xfce13c",
+          "selector_offset": "offset + control",
+          "row_limit_source": "0xfc8b20"
+        },
+        {
+          "mode": 2,
+          "role": "描述目录",
+          "row_active_base": "0xfd5fac",
+          "row_name_base": "0xfd5fb8",
+          "selector_base": "0xfd4b7c",
+          "selector_offset": "offset + control",
+          "row_limit_source": "0xfc8b24"
+        }
+      ],
+      "selection": "4B6300 用 offset+row 填十个控件的名称文字，活动字为零时用原空白源。4B5B80 对控件 19–28 的事件 0x02 用表中选择偏移查同一条记录，活动字非零才复制 +4 编号和 +8 展示字到草稿，并走 49A130。模式 1/2 的选择表基址早 19*0x110，两种基址的偏移配套。",
+      "scrolling": "控件 2、3、4、6、7、8 使用已登记的拖动、步进和条内选择。所查 4B5D80 读取前两类共用的 FC8B20 或第三类 FC8B24，依 10 行计算滚动范围。",
+      "publication_sources": [
+        "analysis/capability-first-v1/game-entry-review-contract.json#/receive_publication_review/entry_rules/13",
+        "analysis/capability-first-v1/game-entry-review-contract.json#/receive_publication_review/entry_rules/14"
+      ],
+      "publication_specification": "analysis/capability-first-v1/game-communication-functional-specification.json#/fixed_se_player_profile_wire/directory_publication/row_publication"
+    },
+    "persistence": {
+      "name": "profile.dat",
+      "record_bytes": 2088,
+      "file_transfer_bytes": 4176,
+      "rules": [
+        "5185F0 用选定目录路径和 rb+ 打开。成功后尝试 fread 1 个 0x1050 字节块到 FDDA40，关闭后将当前角色一整条 0x828 复制到 FDC9F0。46754D 的入口只在打开失败返回 0 时经 467556 到 517750 走初始化。",
+        "已核 467594 的游戏清理调用 518570。它用 wb+ 打开，尝试一次写 0x1050 字节并关闭。0x1050 等于两条 0x828，所证只是这个传输块的形状。创建角色前的 456382/45638A 也使用原重置和写路径。",
+        "读取和写入的成功返回均由打开结果决定，两个函数忽略读写及关闭的返回值。产品验收需观察完整长度和实际宿主写入回执。"
+      ],
+      "creation_source": "analysis/game-character-lifecycle-v1/implementation-spec.json",
+      "shared_directory": "analysis/capability-first-v1/game-communication-functional-specification.json#/fixed_se_player_profile_wire/directory_publication/local_material"
+    },
+    "implementation_deltas": [
+      {
+        "batch": "D0",
+        "owner": "窗口运行时与输入所有者",
+        "reuse": "经典打开、位置、退役与输入聚焦合同",
+        "gap": "接入 58/59 的参与条件、返回、关闭和帧文本复制顺序"
+      },
+      {
+        "batch": "D2",
+        "owner": "现有世界协议和角色资料状态",
+        "reuse": "legacy-game-message 的两个介绍组包及类别版本请求，原角色与会话入口",
+        "gap": "补同槽草稿/缓存/目录资料发布、两个请求的实际业务顺序和入场读回；经已有宿主存储接口验收提交回执"
+      },
+      {
+        "batch": "D3",
+        "owner": "人物窗共享操作和各端输入呈现",
+        "reuse": "同一角色状态、窗口和消息入口",
+        "gap": "接四项编辑、三类十行目录、可见性和提交，三端共用操作规则"
+      }
+    ],
+    "proposed_acceptance_cases": [
+      {
+        "id": "PROFILE-A01",
+        "expected": "分别从 7/8/9 打开 58，在目标空/已有活动对象时按源条件返回。验证关闭请求与析构时点及窗 9 守卫下的位置更新。"
+      },
+      {
+        "id": "PROFILE-A02",
+        "expected": "逐一改变三类编号和四个字符串可启用提交。只变可见性、目录展示字或恢复原字段值时按原比较验参与状态。关闭经通用退役，无提交请求。"
+      },
+      {
+        "id": "PROFILE-A03",
+        "expected": "在目录三种模式各选起始及滚动后的活动行，核编号与展示字。空行和关闭不提交；父 58 先退役时沿 59 的自行关闭条件验收。"
+      },
+      {
+        "id": "PROFILE-A04",
+        "expected": "覆盖手动公开、关闭公开、已保存与草稿编号不同的再次公开、入场时两种公开位和控件 29 提交。按实际队列及已选角色层验证。"
+      },
+      {
+        "id": "PROFILE-A05",
+        "expected": "客户端测试使用两个原创角色槽，覆盖无文件、完整读回、短读、宿主失败和退出重开。对输入组字和点击提交交错，观察最终帧和保存结果。"
+      }
+    ],
+    "pending": [
+      "目录版本、选行发布与冷启动读写具备固定样本静态规格。原版现场短读、缩表交错、实际写入和三端联动待验。",
+      "原版实际窗口输入、存储短读及三端产品路径未验。当前同版和真实会话回执沿原能力验收。"
+    ],
+    "original_runtime_executed": false,
+    "all_required_admission_closed": false
+  },
+  "fixed_se_other_player_profile": {
+    "classification": "固定 SE 原件的窗口描述符和通用分派规则。",
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "source_review": "build/analysis/fixed-se-other-player-profile-v1/source-review.json",
+    "record": "analysis/capability-first-v1/entry-inventory.json#/classic_windows/64",
+    "wire": "analysis/capability-first-v1/game-communication-functional-specification.json#/fixed_se_player_profile_wire/other_player_profile",
+    "report": "reports/game-static.md#fixed-se-other-player-profile",
+    "capabilities": [
+      "X01",
+      "X02",
+      "G01",
+      "G05",
+      "G07",
+      "G10",
+      "G14",
+      "G16",
+      "G20"
+    ],
+    "group": 1,
+    "live_slot": "0xc116bc",
+    "controls": 21,
+    "open_and_reuse": [
+      "5180E0 调 468190(64)，本窗 group 1，因此先用掩码 2 同步退役匹配窗口，随后查活动池同 ID。",
+      "有窗时设置 0x2000 并返回原对象。下一次常规帧使用 4B8060 → 4B8070 重读刚发布的资料，不重分配窗口或重设坐标。",
+      "新窗调用回调 +0x30，事件参数 -1，资料已写好；回调后才发布 sidecar 活指针。初次使用/重开沿通用保存坐标，分配失败时已发布的资料仍保留。"
+    ],
+    "controls_and_close": [
+      "回调 +0x30 在普通帧控件分派前更新所有字段，+0x34 的 4A7D20 走一般绘制。",
+      "控件 12 遇 0x02 经 49FDD0 置对象 0x8000。若在实际整理前收到新简介，同号复用会再置 0x2000，0x8000 仍在；46A0E0 先按关闭分支实际销毁。退役后的新到包才正常请求同号新对象。",
+      "控件 20 经 46AD80 置 0x2000。14–16 虽登记 46F330，但传入原序号小于该回调首项 17，从 46F33E 跳返回分支，沿已证入口没有切换或查询效果。",
+      "析构 4678A0 返回 1，实际 467FC0 保存当前位置并清活指针。所查析构无清简介资料、另发请求或写 profile.dat。"
+    ],
+    "layout_rules": {
+      "label_order": "控件 0–7 分别显示字段 1、2、4、3、5、8、10、12，字段 2 使用 %d 十进制。",
+      "description": "字段 13 由 4E9E20 用目标容量 0x100 和每行 0x1C 字节分别取第 0–3 行，填控件 8–11。CR、LF 各触发行结束；双字节跨界时整对进下一行。",
+      "portrait": "控件 13 接 500F60 用字段 6 计算的资源。样本 5681C8 低字节为 FF 时取 924F40 低字节。分类上限依 <3、3..6、>=7 分别为 0、3、6。500D40 给类型 0 至 5。类型不超过上限时保留原值。上限 0 时，类型 1、2、5 走 501010，类型 3 走 500DD0，类型 4 依次走 501200 和 500DD0。上限 3 时，类型 4、5 走 501200。完整资源运行结果沿边界用例验收。",
+      "category_icons": "控件 14/15/16 读入发布时已经计算的购买/贩卖/描述资源。三个控件与回包的字段 7/9/11 对应。"
+    },
+    "portrait_numeric_ranges": "build/analysis/fixed-se-other-player-profile-v1/source-review.json#/portrait",
+    "runtime_acceptance_pending": true
+  }
+}

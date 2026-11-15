@@ -1,0 +1,100 @@
+{
+  "schema": "moli.launcher-v9.retry-independent.v1",
+  "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "tool": "existing Apple LLVM21.0.0 /usr/bin/objdump",
+  "scope": "Known instruction boundaries only:411594..4116d1 and411957..411be1; independent static corroboration of REA continuation/catch facts.",
+  "checks": [
+    {
+      "address": "0x4115d9",
+      "relevant_operand_or_operation": "0x5cc",
+      "pass": true
+    },
+    {
+      "address": "0x4115e5",
+      "relevant_operand_or_operation": "0x5d8",
+      "pass": true
+    },
+    {
+      "address": "0x4115f1",
+      "relevant_operand_or_operation": "0x1",
+      "pass": true
+    },
+    {
+      "address": "0x4115f4",
+      "relevant_operand_or_operation": "0x5d4",
+      "pass": true
+    },
+    {
+      "address": "0x411622",
+      "relevant_operand_or_operation": "0x2508",
+      "pass": true
+    },
+    {
+      "address": "0x411959",
+      "relevant_operand_or_operation": "0x411bb9",
+      "pass": true
+    },
+    {
+      "address": "0x411964",
+      "relevant_operand_or_operation": "0x5d4",
+      "pass": true
+    },
+    {
+      "address": "0x411976",
+      "relevant_operand_or_operation": "0x1186",
+      "pass": true
+    },
+    {
+      "address": "0x4119be",
+      "relevant_operand_or_operation": "idiv",
+      "pass": true
+    },
+    {
+      "address": "0x4119c5",
+      "relevant_operand_or_operation": "edx",
+      "pass": true
+    },
+    {
+      "address": "0x411a59",
+      "relevant_operand_or_operation": "0x1",
+      "pass": true
+    },
+    {
+      "address": "0x411a6c",
+      "relevant_operand_or_operation": "0x46cad0",
+      "pass": true
+    },
+    {
+      "address": "0x411a7c",
+      "relevant_operand_or_operation": "0x1",
+      "pass": true
+    },
+    {
+      "address": "0x411a7f",
+      "relevant_operand_or_operation": "0x5cc",
+      "pass": true
+    },
+    {
+      "address": "0x411bc9",
+      "relevant_operand_or_operation": "0x41171b",
+      "pass": true
+    }
+  ],
+  "all_pass": true,
+  "private_outputs": [
+    {
+      "path": "build/analysis/launcher-v9/initial-endpoint-objdump.txt",
+      "sha256": "9845486d82a3f3be952048a7ffec195b48c48436fc7d544ec7fc82d828a55fca"
+    },
+    {
+      "path": "build/analysis/launcher-v9/submit-tail-objdump.txt",
+      "sha256": "5bd245523fa0654874d9dc2e435eee886f20a0117ead601c9069c8ef0d7cee97"
+    }
+  ],
+  "limitations": [
+    "Catch association/exception types and all possible throw sites not fully reconstructed",
+    "Normal submit uses JMP411bb9, not a recursive source-level call",
+    "Native cleanup has an additional raw firstIndex-1 comparison; wrapping/cleanup is not copied wholesale",
+    "An exploratory first disassembly started mid-instruction41158b; only the corrected known-boundary output is retained/counts as proof."
+  ]
+}

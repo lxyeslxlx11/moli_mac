@@ -1,0 +1,196 @@
+{
+  "schema": "moli.runtime-observer-v2.fixture-static-audit.v1",
+  "recorded_utc": "2026-10-27T14:38:24.705393+00:00",
+  "binary_sha256": "01588841278dcb7360c91333f0f7c5ec81aec84625ca274be54ad9011aaf10eb",
+  "machine": "0x14c",
+  "image_size": 24576,
+  "entry_rva": 4720,
+  "imports": [
+    {
+      "dll": "KERNEL32.dll",
+      "symbol": "CloseHandle"
+    },
+    {
+      "dll": "KERNEL32.dll",
+      "symbol": "CreateFileMappingW"
+    },
+    {
+      "dll": "KERNEL32.dll",
+      "symbol": "ExitProcess"
+    },
+    {
+      "dll": "KERNEL32.dll",
+      "symbol": "GetCommandLineW"
+    },
+    {
+      "dll": "KERNEL32.dll",
+      "symbol": "GetCurrentProcessId"
+    },
+    {
+      "dll": "KERNEL32.dll",
+      "symbol": "GetLastError"
+    },
+    {
+      "dll": "KERNEL32.dll",
+      "symbol": "MapViewOfFile"
+    },
+    {
+      "dll": "KERNEL32.dll",
+      "symbol": "OpenFileMappingW"
+    },
+    {
+      "dll": "KERNEL32.dll",
+      "symbol": "SetLastError"
+    },
+    {
+      "dll": "KERNEL32.dll",
+      "symbol": "Sleep"
+    },
+    {
+      "dll": "KERNEL32.dll",
+      "symbol": "UnmapViewOfFile"
+    }
+  ],
+  "callsite_checks": [
+    {
+      "api": "Sleep",
+      "call_rva": 4131,
+      "return_rva": 4133,
+      "file_offset": 1059,
+      "iat_va": "0x40407c",
+      "passed": true
+    },
+    {
+      "api": "GetCommandLineW",
+      "call_rva": 4141,
+      "return_rva": 4143,
+      "file_offset": 1069,
+      "iat_va": "0x404064",
+      "passed": true
+    },
+    {
+      "api": "GetCurrentProcessId",
+      "call_rva": 4162,
+      "return_rva": 4164,
+      "file_offset": 1090,
+      "iat_va": "0x404068",
+      "passed": true
+    },
+    {
+      "api": "SetLastError",
+      "call_rva": 4349,
+      "return_rva": 4351,
+      "file_offset": 1277,
+      "iat_va": "0x404078",
+      "passed": true
+    },
+    {
+      "api": "CreateFileMappingW",
+      "call_rva": 4405,
+      "return_rva": 4407,
+      "file_offset": 1333,
+      "iat_va": "0x40405c",
+      "passed": true
+    },
+    {
+      "api": "GetLastError",
+      "call_rva": 4434,
+      "return_rva": 4436,
+      "file_offset": 1362,
+      "iat_va": "0x40406c",
+      "passed": true
+    },
+    {
+      "api": "CloseHandle",
+      "call_rva": 4454,
+      "return_rva": 4456,
+      "file_offset": 1382,
+      "iat_va": "0x404058",
+      "passed": true
+    },
+    {
+      "api": "OpenFileMappingW",
+      "call_rva": 4496,
+      "return_rva": 4498,
+      "file_offset": 1424,
+      "iat_va": "0x404074",
+      "passed": true
+    },
+    {
+      "api": "CloseHandle",
+      "call_rva": 4521,
+      "return_rva": 4523,
+      "file_offset": 1449,
+      "iat_va": "0x404058",
+      "passed": true
+    },
+    {
+      "api": "MapViewOfFile",
+      "call_rva": 4579,
+      "return_rva": 4581,
+      "file_offset": 1507,
+      "iat_va": "0x404070",
+      "passed": true
+    },
+    {
+      "api": "CloseHandle",
+      "call_rva": 4604,
+      "return_rva": 4606,
+      "file_offset": 1532,
+      "iat_va": "0x404058",
+      "passed": true
+    },
+    {
+      "api": "CloseHandle",
+      "call_rva": 4620,
+      "return_rva": 4622,
+      "file_offset": 1548,
+      "iat_va": "0x404058",
+      "passed": true
+    },
+    {
+      "api": "Sleep",
+      "call_rva": 4644,
+      "return_rva": 4646,
+      "file_offset": 1572,
+      "iat_va": "0x40407c",
+      "passed": true
+    },
+    {
+      "api": "UnmapViewOfFile",
+      "call_rva": 4660,
+      "return_rva": 4662,
+      "file_offset": 1588,
+      "iat_va": "0x404080",
+      "passed": true
+    },
+    {
+      "api": "CloseHandle",
+      "call_rva": 4679,
+      "return_rva": 4681,
+      "file_offset": 1607,
+      "iat_va": "0x404058",
+      "passed": true
+    },
+    {
+      "api": "CloseHandle",
+      "call_rva": 4695,
+      "return_rva": 4697,
+      "file_offset": 1623,
+      "iat_va": "0x404058",
+      "passed": true
+    }
+  ],
+  "checks_passed": 16,
+  "known_success_return_rvas": [
+    4143,
+    4407,
+    4498,
+    4581,
+    4662,
+    4681,
+    4697
+  ],
+  "observed_runtime_trace": false,
+  "limits": "Raw instruction and IAT operands cross-check REA. Return RVAs are static; not captured events or collector privacy proof."
+}

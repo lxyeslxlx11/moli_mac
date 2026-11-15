@@ -1,0 +1,55 @@
+{
+  "schema": "moli.launcher-v18.browser.v1",
+  "browser": "155.0.8059.85",
+  "browserPlugin": "Browser plugin not available; existing Playwright1.62.1 fallback",
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 1000
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "checks": [
+    {
+      "name": "desktop identity, nonblank, no overlay, initial layout",
+      "passed": true
+    },
+    {
+      "name": "missing/invalid text and literal rendering; reject makes no connection",
+      "passed": true
+    },
+    {
+      "name": "ASCII rejection and username changes invalidate explicit page consent",
+      "passed": true
+    }
+  ],
+  "issues": [
+    {
+      "type": "assertion",
+      "name": "TimeoutError",
+      "message": "page.waitForFunction: Timeout 30000ms exceeded.",
+      "stack": "page.waitForFunction: Timeout 30000ms exceeded.\n    at /private/tmp/moli-launcher-v18-browser-5RWqgn/qa.mjs:97:20\n    at async pass (/private/tmp/moli-launcher-v18-browser-5RWqgn/qa.mjs:57:33)\n    at async file:///private/tmp/moli-launcher-v18-browser-5RWqgn/qa.mjs:94:7"
+    }
+  ],
+  "browserLogs": [],
+  "requests": {
+    "total": 28,
+    "distinctOrigins": [
+      "http://127.0.0.1:59832"
+    ],
+    "methods": [
+      "GET"
+    ]
+  },
+  "screenshots": [
+    "/private/tmp/moli-launcher-v18-browser-5RWqgn/desktop-initial.png",
+    "/private/tmp/moli-launcher-v18-browser-5RWqgn/desktop-ready.png",
+    "/private/tmp/moli-launcher-v18-browser-5RWqgn/desktop-profiles.png",
+    "/private/tmp/moli-launcher-v18-browser-5RWqgn/mobile-initial.png",
+    "/private/tmp/moli-launcher-v18-browser-5RWqgn/mobile-profiles.png"
+  ],
+  "scope": "Original local runtime, original four test texts, public synthetic credentials, Python independent algorithm; no official game requests, original executables or real account."
+}

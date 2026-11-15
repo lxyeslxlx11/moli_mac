@@ -1,0 +1,22 @@
+{
+  "schema": "moli.launcher-v26.review-corrections.v1",
+  "initial_test": {
+    "log": "patch-tests.log",
+    "tests": 37,
+    "passed": 36,
+    "failed": 1,
+    "cause": "Test incorrectly expected name:C:x.bin to survive native colon split. Three pieces are ignored, causing missing-field skip and an unused-archive error.",
+    "correction": "Removed unsupported test expectation and explicitly verified missing-field skip; did not change native grammar."
+  },
+  "review_repairs": [
+    "Archive file a plus empty directory a/b now rejected by ancestor walk, with original malicious fixture.",
+    "Qualified native MD5 file-size low32 scope; did not claim above4GiB compatibility."
+  ],
+  "final_focused": {
+    "tests": 38,
+    "passed": 38,
+    "failed": 0,
+    "log": "patch-tests-final.log"
+  },
+  "historical_records_rewritten": false
+}

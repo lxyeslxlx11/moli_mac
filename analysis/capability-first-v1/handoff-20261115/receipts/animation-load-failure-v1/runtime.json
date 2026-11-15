@@ -1,0 +1,419 @@
+{
+  "schema": "moli.animation-load-failure-probe.v1",
+  "product_modules": [
+    {
+      "path": "shared/legacy-game-resource-library.mjs",
+      "sha256": "42426a1c2ea10730ec9d44f52a395025a2f9ee649598ba21931234200ccd1ce5"
+    },
+    {
+      "path": "shared/legacy-game-animation.mjs",
+      "sha256": "98d2b04e26b8c48834f7016679915491d04a647d0c2c3483f2249012914721b6"
+    }
+  ],
+  "success": true,
+  "cases": {
+    "complete_main_and_empty_optional": {
+      "state": "ready",
+      "initializationError": null,
+      "lookups": {
+        "100001": {
+          "group": 0,
+          "attachments": 3,
+          "firstGraphic": 1002
+        },
+        "100002": {
+          "group": 0,
+          "attachments": 1,
+          "firstGraphic": 1005
+        },
+        "100123": null
+      },
+      "io": {
+        "Bin/AnimeInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Anime.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/AnimeInfoEx.bin": [
+          "stat"
+        ],
+        "Bin/AnimeEx.bin": [],
+        "Bin/CrdInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Crd.bin": [
+          "stat",
+          "read"
+        ]
+      }
+    },
+    "main_animation_index_missing": {
+      "state": "failed",
+      "initializationError": "LEGACY_ASSET_REQUIRED_FILE",
+      "catalogError": "LEGACY_ASSET_NOT_READY",
+      "lookups": null,
+      "io": {
+        "Bin/AnimeInfo.bin": [
+          "stat"
+        ],
+        "Bin/Anime.bin": [],
+        "Bin/AnimeInfoEx.bin": [],
+        "Bin/AnimeEx.bin": [],
+        "Bin/CrdInfo.bin": [],
+        "Bin/Crd.bin": []
+      }
+    },
+    "main_animation_data_missing": {
+      "state": "failed",
+      "initializationError": "LEGACY_ASSET_REQUIRED_FILE",
+      "catalogError": "LEGACY_ASSET_NOT_READY",
+      "lookups": null,
+      "io": {
+        "Bin/AnimeInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Anime.bin": [
+          "stat"
+        ],
+        "Bin/AnimeInfoEx.bin": [],
+        "Bin/AnimeEx.bin": [],
+        "Bin/CrdInfo.bin": [],
+        "Bin/Crd.bin": []
+      }
+    },
+    "optional_animation_data_only": {
+      "state": "ready",
+      "initializationError": null,
+      "lookups": {
+        "100001": {
+          "group": 0,
+          "attachments": 3,
+          "firstGraphic": 1002
+        },
+        "100002": {
+          "group": 0,
+          "attachments": 1,
+          "firstGraphic": 1005
+        },
+        "100123": null
+      },
+      "io": {
+        "Bin/AnimeInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Anime.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/AnimeInfoEx.bin": [
+          "stat"
+        ],
+        "Bin/AnimeEx.bin": [],
+        "Bin/CrdInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Crd.bin": [
+          "stat",
+          "read"
+        ]
+      }
+    },
+    "optional_index_shadows_main_with_data_missing": {
+      "state": "ready",
+      "initializationError": null,
+      "lookups": {
+        "100001": "LEGACY_ANIMATION_TRUNCATED",
+        "100002": {
+          "group": 0,
+          "attachments": 1,
+          "firstGraphic": 1005
+        },
+        "100123": "LEGACY_ANIMATION_TRUNCATED"
+      },
+      "io": {
+        "Bin/AnimeInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Anime.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/AnimeInfoEx.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/AnimeEx.bin": [
+          "stat"
+        ],
+        "Bin/CrdInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Crd.bin": [
+          "stat",
+          "read"
+        ]
+      }
+    },
+    "optional_animation_index_partial_last_row": {
+      "state": "failed",
+      "initializationError": "LEGACY_ANIMATION_INDEX_LENGTH",
+      "catalogError": "LEGACY_ASSET_NOT_READY",
+      "lookups": null,
+      "io": {
+        "Bin/AnimeInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Anime.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/AnimeInfoEx.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/AnimeEx.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/CrdInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Crd.bin": [
+          "stat",
+          "read"
+        ]
+      }
+    },
+    "coordinate_data_missing": {
+      "state": "ready",
+      "initializationError": null,
+      "lookups": {
+        "100001": {
+          "group": 0,
+          "attachments": 0,
+          "firstGraphic": 1002
+        },
+        "100002": {
+          "group": 0,
+          "attachments": 0,
+          "firstGraphic": 1005
+        },
+        "100123": null
+      },
+      "io": {
+        "Bin/AnimeInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Anime.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/AnimeInfoEx.bin": [
+          "stat"
+        ],
+        "Bin/AnimeEx.bin": [],
+        "Bin/CrdInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Crd.bin": [
+          "stat"
+        ]
+      }
+    },
+    "coordinate_index_missing": {
+      "state": "ready",
+      "initializationError": null,
+      "lookups": {
+        "100001": {
+          "group": 0,
+          "attachments": 0,
+          "firstGraphic": 1002
+        },
+        "100002": {
+          "group": 0,
+          "attachments": 0,
+          "firstGraphic": 1005
+        },
+        "100123": null
+      },
+      "io": {
+        "Bin/AnimeInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Anime.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/AnimeInfoEx.bin": [
+          "stat"
+        ],
+        "Bin/AnimeEx.bin": [],
+        "Bin/CrdInfo.bin": [
+          "stat"
+        ],
+        "Bin/Crd.bin": []
+      }
+    },
+    "coordinate_index_wrong_marker": {
+      "state": "failed",
+      "initializationError": "LEGACY_ANIMATION_ATTACHMENT_INDEX",
+      "catalogError": "LEGACY_ASSET_NOT_READY",
+      "lookups": null,
+      "io": {
+        "Bin/AnimeInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Anime.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/AnimeInfoEx.bin": [
+          "stat"
+        ],
+        "Bin/AnimeEx.bin": [],
+        "Bin/CrdInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Crd.bin": [
+          "stat",
+          "read"
+        ]
+      }
+    },
+    "coordinate_index_partial_last_row": {
+      "state": "failed",
+      "initializationError": "LEGACY_ANIMATION_ATTACHMENT_INDEX",
+      "catalogError": "LEGACY_ASSET_NOT_READY",
+      "lookups": null,
+      "io": {
+        "Bin/AnimeInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Anime.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/AnimeInfoEx.bin": [
+          "stat"
+        ],
+        "Bin/AnimeEx.bin": [],
+        "Bin/CrdInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Crd.bin": [
+          "stat",
+          "read"
+        ]
+      }
+    },
+    "coordinate_data_outside_attachment_range": {
+      "state": "ready",
+      "initializationError": null,
+      "lookups": {
+        "100001": "LEGACY_ANIMATION_ATTACHMENT_RANGE",
+        "100002": "LEGACY_ANIMATION_ATTACHMENT_RANGE",
+        "100123": null
+      },
+      "io": {
+        "Bin/AnimeInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Anime.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/AnimeInfoEx.bin": [
+          "stat"
+        ],
+        "Bin/AnimeEx.bin": [],
+        "Bin/CrdInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Crd.bin": [
+          "stat",
+          "read"
+        ]
+      }
+    },
+    "coordinate_read_shorter_than_listed_size": {
+      "state": "failed",
+      "initializationError": "LEGACY_ASSET_SHORT_READ",
+      "catalogError": "LEGACY_ASSET_NOT_READY",
+      "lookups": null,
+      "io": {
+        "Bin/AnimeInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Anime.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/AnimeInfoEx.bin": [],
+        "Bin/AnimeEx.bin": [],
+        "Bin/CrdInfo.bin": [
+          "stat",
+          "read"
+        ],
+        "Bin/Crd.bin": [
+          "stat",
+          "read"
+        ]
+      }
+    }
+  },
+  "actualOptionalGroup": {
+    "zip": {
+      "path": "build/analysis/game-legacy-resource-archive-v1/full-material.zip",
+      "bytes": 2549171845,
+      "sha256": "6ff08fd6251c748afaaa36a894b027a4992bdcc1e1a615d3f739809c5d6d2c8e"
+    },
+    "group": 2,
+    "animationIndex": "Bin/AnimeInfoV2.bin",
+    "animationData": "Bin/AnimeV2.bin",
+    "indexStat": null,
+    "dataStat": null,
+    "dataLookedUpByLibrary": false,
+    "resources": 2520,
+    "firstLookup": {
+      "id": 100000,
+      "group": 0,
+      "attachments": 528,
+      "sha256": "652842904e9e229d512e2b2b573b43672efd2eca6de642992b03787208eb2cd6"
+    },
+    "missingId": 120499
+  },
+  "discardAndReopen": {
+    "oldLookup": {
+      "group": 0,
+      "attachments": 3,
+      "firstGraphic": 1002
+    },
+    "newLookup": {
+      "group": 0,
+      "attachments": 3,
+      "firstGraphic": 1002
+    },
+    "failedClosed": true
+  }
+}

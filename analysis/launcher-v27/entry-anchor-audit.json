@@ -1,0 +1,293 @@
+{
+  "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "image_base": "0x400000",
+  "all_passed": true,
+  "count": 32,
+  "anchors": [
+    {
+      "id": "backup-extension",
+      "va": "0x406654",
+      "file_offset": "0x5a54",
+      "kind": "literal_reference",
+      "passed": true,
+      "target": "0x4b259c",
+      "literal": ".BAK.EXE",
+      "literal_offset": "0xb179c"
+    },
+    {
+      "id": "replace-extension",
+      "va": "0x406659",
+      "file_offset": "0x5a59",
+      "kind": "literal_reference",
+      "passed": true,
+      "target": "0x4b25a8",
+      "literal": ".EXE",
+      "literal_offset": "0xb17a8"
+    },
+    {
+      "id": "port-space",
+      "va": "0x406673",
+      "file_offset": "0x5a73",
+      "kind": "literal_reference",
+      "passed": true,
+      "target": "0x4b25b0",
+      "literal": " ",
+      "literal_offset": "0xb17b0"
+    },
+    {
+      "id": "host-space",
+      "va": "0x406684",
+      "file_offset": "0x5a84",
+      "kind": "literal_reference",
+      "passed": true,
+      "target": "0x4b25b4",
+      "literal": " ",
+      "literal_offset": "0xb17b4"
+    },
+    {
+      "id": "command-separator",
+      "va": "0x40668d",
+      "file_offset": "0x5a8d",
+      "kind": "literal_reference",
+      "passed": true,
+      "target": "0x4b25b8",
+      "literal": "\\",
+      "literal_offset": "0xb17b8"
+    },
+    {
+      "id": "copy-separator",
+      "va": "0x4067d8",
+      "file_offset": "0x5bd8",
+      "kind": "literal_reference",
+      "passed": true,
+      "target": "0x4b25bc",
+      "literal": "\\",
+      "literal_offset": "0xb17bc"
+    },
+    {
+      "id": "patch-call",
+      "va": "0x412b42",
+      "file_offset": "0x11f42",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x406110"
+    },
+    {
+      "id": "copy-current-patcher",
+      "va": "0x406640",
+      "file_offset": "0x5a40",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x40bc30"
+    },
+    {
+      "id": "uppercase",
+      "va": "0x40664f",
+      "file_offset": "0x5a4f",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x4093a0"
+    },
+    {
+      "id": "replace-all",
+      "va": "0x406661",
+      "file_offset": "0x5a61",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x409050"
+    },
+    {
+      "id": "prefix-directory",
+      "va": "0x4066a6",
+      "file_offset": "0x5aa6",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x409520"
+    },
+    {
+      "id": "append-patcher",
+      "va": "0x4066d2",
+      "file_offset": "0x5ad2",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x409470"
+    },
+    {
+      "id": "space-after-program",
+      "va": "0x4066fe",
+      "file_offset": "0x5afe",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x409520"
+    },
+    {
+      "id": "append-host",
+      "va": "0x40672a",
+      "file_offset": "0x5b2a",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x409470"
+    },
+    {
+      "id": "space-after-host",
+      "va": "0x406756",
+      "file_offset": "0x5b56",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x409520"
+    },
+    {
+      "id": "append-port",
+      "va": "0x40677f",
+      "file_offset": "0x5b7f",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x409470"
+    },
+    {
+      "id": "uppercase-helper",
+      "va": "0x4093ce",
+      "file_offset": "0x87ce",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x40a5a0"
+    },
+    {
+      "id": "uppercase-map",
+      "va": "0x44e0d5",
+      "file_offset": "0x4d4d5",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x45b42c"
+    },
+    {
+      "id": "game-Code-copy",
+      "va": "0x4030d4",
+      "file_offset": "0x24d4",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x40bd10"
+    },
+    {
+      "id": "PIP-copy",
+      "va": "0x402971",
+      "file_offset": "0x1d71",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x40bd10"
+    },
+    {
+      "id": "PPort-copy",
+      "va": "0x4029f5",
+      "file_offset": "0x1df5",
+      "kind": "direct_call",
+      "passed": true,
+      "target": "0x40bd10"
+    },
+    {
+      "id": "completion-read",
+      "va": "0x40636e",
+      "file_offset": "0x576e",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "0fb6840af51b0000"
+    },
+    {
+      "id": "completion-write",
+      "va": "0x406be9",
+      "file_offset": "0x5fe9",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "c68401f51b000001"
+    },
+    {
+      "id": "exit100",
+      "va": "0x406bbe",
+      "file_offset": "0x5fbe",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "837de864"
+    },
+    {
+      "id": "exit101",
+      "va": "0x406c16",
+      "file_offset": "0x6016",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "837de865"
+    },
+    {
+      "id": "exit102",
+      "va": "0x406d05",
+      "file_offset": "0x6105",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "837de866"
+    },
+    {
+      "id": "attempt-limit",
+      "va": "0x406e59",
+      "file_offset": "0x6259",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "837dd4030f8c"
+    },
+    {
+      "id": "port-field",
+      "va": "0x40666c",
+      "file_offset": "0x5a6c",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "81c2381b0000"
+    },
+    {
+      "id": "host-field",
+      "va": "0x40667e",
+      "file_offset": "0x5a7e",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "05341b0000"
+    },
+    {
+      "id": "directory-field",
+      "va": "0x406698",
+      "file_offset": "0x5a98",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "81c2181b0000"
+    },
+    {
+      "id": "Code-field",
+      "va": "0x4030cd",
+      "file_offset": "0x24cd",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "8d8c01801b0000"
+    },
+    {
+      "id": "uppercase-flag",
+      "va": "0x44e0c9",
+      "file_offset": "0x4d4c9",
+      "kind": "instruction_bytes",
+      "passed": true,
+      "observed_hex": "6800020000"
+    }
+  ],
+  "negative_cases": [
+    {
+      "name": "identity",
+      "rejected": true,
+      "reason": "sample SHA256 mismatch"
+    },
+    {
+      "name": "literal",
+      "rejected": true,
+      "reason": "literal mismatch"
+    },
+    {
+      "name": "call-target",
+      "rejected": true,
+      "reason": "direct target mismatch"
+    }
+  ]
+}

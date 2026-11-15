@@ -1,0 +1,68 @@
+{
+  "researched_utc": "2026-10-25T13:43:37.705378+00:00",
+  "scope": "Public official sources and existing evidence only; no UI/live guest/VM disk/TPM payload/credential/settings access by this branch.",
+  "report": "tpm-and-device-investigation.md",
+  "report_sha256": "a8ca317f1e5cf0e47f17ceae3de2420095086ce3f3793899c64362507a63dda4",
+  "inputs": [
+    {
+      "path": "analysis/vm-install-v8/guest-observations.json",
+      "bytes": 2856,
+      "sha256": "729ca1bb131e6448337b1500d0589b70d35a9e9b30fa54bb2cf912142855e782"
+    },
+    {
+      "path": "analysis/vm-install-v8/tpm-query-error.png",
+      "bytes": 206439,
+      "sha256": "dff8e37c7cf8f9c20348ae1d5b9a64a731ee73847747d5095b9230a8b3750fdf"
+    },
+    {
+      "path": "analysis/vm-install-v8/secureboot-state.png",
+      "bytes": 215464,
+      "sha256": "e3784f4244977ff8d17d3f76e2fe289fd23c5fea55b91ad86453502b1842b5b2"
+    },
+    {
+      "path": "analysis/vm-install-v8/remaining-device-research.md",
+      "bytes": 5762,
+      "sha256": "ed64207eafeda71e99e73e45a4f8979501c1c6f683a6055643aa61335efa07e4"
+    },
+    {
+      "path": "analysis/vm-install-v9/utm-local-version.json",
+      "bytes": 784,
+      "sha256": "443b6e60c8c5c21305a94970b32a29c72e59c02df9e995cbc462a746ad090327"
+    }
+  ],
+  "official_sources": [
+    "https://learn.microsoft.com/en-us/windows/win32/com/com-error-codes-6",
+    "https://learn.microsoft.com/en-us/windows/win32/tbs/tpm-base-services-portal",
+    "https://learn.microsoft.com/en-us/powershell/module/secureboot/confirm-securebootuefi?view=windowsserver2025-ps",
+    "https://docs.getutm.app/updates/v4.3/#highlights",
+    "https://raw.githubusercontent.com/utmapp/UTM/v5.0.8/Configuration/UTMQemuConfiguration%2BArguments.swift",
+    "https://raw.githubusercontent.com/utmapp/qemu/v10.0.12-utm/hw/tpm/tpm_crb_sysbus.c",
+    "https://raw.githubusercontent.com/utmapp/qemu/v10.0.12-utm/hw/tpm/tpm_crb_common.c",
+    "https://www.qemu.org/docs/master/specs/tpm.html#ppi-on-arm64-virt",
+    "https://github.com/utmapp/UTM/issues/6167",
+    "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-service?view=powershell-5.1",
+    "https://learn.microsoft.com/en-us/powershell/module/pnpdevice/get-pnpdevice?view=windowsserver2025-ps",
+    "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tpmtool",
+    "https://learn.microsoft.com/en-us/windows/win32/secprov/win32-tpm",
+    "https://learn.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance?view=powershell-5.1",
+    "https://learn.microsoft.com/en-us/powershell/module/trustedplatformmodule/get-tpm?view=windowsserver2025-ps",
+    "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent?view=powershell-5.1",
+    "https://docs.getutm.app/settings-qemu/qemu/#logging"
+  ],
+  "fixed_source_tags": [
+    "utmapp/UTM v5.0.8",
+    "utmapp/qemu v10.0.12-utm"
+  ],
+  "dynamic_sources": "QEMU master, Microsoft Learn, UTM documentation and issue state read 2026-10-25; not release equivalence proof.",
+  "result": {
+    "hresult": "0x80284001",
+    "symbol": "TBS_E_INTERNAL_ERROR",
+    "tpm_missing_not_established": true,
+    "root_cause_not_established": true,
+    "ppi_hypothesis": "Fixed UTM ARM CRB source omits PPI AML; installed backend reports 10.0.12 but effective runtime/source correspondence not verified.",
+    "device_id_preserved": "LNRO0005"
+  },
+  "diagnostics_executed": false,
+  "product_tests": "not rerun; no product change",
+  "read_failure": "Microsoft IsReadyInformation page inaccessible via web tool; no retry or alternate access used; no claims derived from that unavailable page."
+}

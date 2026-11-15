@@ -1,0 +1,44 @@
+{
+  "schema": "moli.launcher-startup-ack-implementation-plan-stage140.v1",
+  "requirement": "reports/development-plan.md#stage140",
+  "created_before_product_code": true,
+  "source": {
+    "launcher_sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+    "updater_sha256": "7eb173b0b2c298d1ad12c5ebebefa37df81f8dc6d1dcecd256a1caf7e90c0fe1",
+    "capability_dossier": "ev_0b2037d58d1a645407feec2345be194dcbedb3beb154bb00df0e90d88ad9296e",
+    "resource_gate": "0x402a00: FindResourceW type10/namePOLCN_LAUNCHER_ACK_PROTOCOL; accept21ASCII POLCN_LAUNCHER_ACK_V1 or22with trailing NUL; malformed is AL0. Missing resource errors1812/1813/1814 are successful legacy capability=false."
+  },
+  "implementation": {
+    "owner": "shared/launcher-update.mjs decodeWin32LauncherUpdatePackage",
+    "change": "Inspect only the selected named resource declaration after existing digest/header checks and return frozen startupAcknowledgement metadata. Reject malformed declaration; preserve absent declaration as legacy. Do not execute event/child/file transaction.",
+    "return": "startupAcknowledgement:{declaration:v1|absent,languageCount,validation:resource-declaration-only,acknowledgement:not-observed}",
+    "limits": {
+      "selected_directory_entries": 2048,
+      "section_headers": 64,
+      "resource_name_WCHARs": 256
+    },
+    "independent_supported_profile": [
+      "Only PE32 file-backed unique section mappings constrained by raw and virtual extents; no PE loader emulation",
+      "Exactly selected type10, exact UTF16 name, numeric language leaves; duplicate/ambiguous/cyclic selected shape rejected",
+      "Case-alias of the expected ASCII name is rejected as unsupported, not silently legacy",
+      "Every selected language leaf must have valid21/22B marker; no Windows locale fallback inferred",
+      "Minimal existing header-only/no-declared-directory fixtures remain supported; all existing32MiB archive/output budgets unchanged",
+      "Unrelated resource payloads are not decoded or globally validated"
+    ]
+  },
+  "tests": [
+    "Independent Python struct/ZIP fixture producer; public current decoder end-to-end tests before/after",
+    "Valid21/22B, absent/other resource, case/wrong lengths, mixed language, directory/section/name/RVA bounds and budgets",
+    "Fixed original packed6d459 and c82fc98 selected declaration checked privately; REA packed whole-resource inventory format rejection retained separately",
+    "Targeted then full Node, browser ESM/actual local candidate path as needed for code consumers; no real account/device/official acceptance"
+  ],
+  "status": "implemented-and-finite-profile-verified",
+  "results": {
+    "new_cases": 23,
+    "before_failed": 23,
+    "targeted_passed": 72,
+    "full_Node_passed": 686,
+    "browser_checks": 46,
+    "fixed_original_selected_declaration": "v1;1language; not-observed ACK"
+  }
+}

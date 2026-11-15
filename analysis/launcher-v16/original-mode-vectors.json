@@ -1,0 +1,1198 @@
+{
+  "schema": "moli.launcher-v16.original-mode-vectors.v1",
+  "scope": "Independent Python policy table from fixed native branches plus explicitly separate strict cancel/confirmation/section policies. Original non-secret values only; not runtime compatibility.",
+  "vectors": [
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 1,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings"
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 1,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": true
+        },
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 1,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings"
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 1,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": true
+        },
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 2,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings"
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 2,
+        "retention": {
+          "rememberUsername": false,
+          "rememberPassword": false,
+          "passwordControlVisible": false
+        },
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 2,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings"
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 2,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": false
+        },
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": -1,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings",
+        "choice": null
+      },
+      "expected": {
+        "state": "choice-required",
+        "mode": null,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": -1,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings",
+        "choice": 1
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 1,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": true
+        },
+        "clearInputs": false,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 1
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": -1,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings",
+        "choice": 2
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 2,
+        "retention": {
+          "rememberUsername": false,
+          "rememberPassword": false,
+          "passwordControlVisible": false
+        },
+        "clearInputs": false,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 2
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": -1,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings",
+        "choice": "cancel"
+      },
+      "expected": {
+        "state": "cancelled",
+        "mode": null,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": -1,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings",
+        "choice": null
+      },
+      "expected": {
+        "state": "choice-required",
+        "mode": null,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": -1,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings",
+        "choice": 1
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 1,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": true
+        },
+        "clearInputs": false,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 1
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": -1,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings",
+        "choice": 2
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 2,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": false
+        },
+        "clearInputs": false,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 2
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": -1,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings",
+        "choice": "cancel"
+      },
+      "expected": {
+        "state": "cancelled",
+        "mode": null,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 0,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings",
+        "choice": null
+      },
+      "expected": {
+        "state": "choice-required",
+        "mode": null,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 0,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings",
+        "choice": 1
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 1,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": true
+        },
+        "clearInputs": false,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 1
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 0,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings",
+        "choice": 2
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 2,
+        "retention": {
+          "rememberUsername": false,
+          "rememberPassword": false,
+          "passwordControlVisible": false
+        },
+        "clearInputs": false,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 2
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 0,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings",
+        "choice": "cancel"
+      },
+      "expected": {
+        "state": "cancelled",
+        "mode": null,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 0,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings",
+        "choice": null
+      },
+      "expected": {
+        "state": "choice-required",
+        "mode": null,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 0,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings",
+        "choice": 1
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 1,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": true
+        },
+        "clearInputs": false,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 1
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 0,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings",
+        "choice": 2
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 2,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": false
+        },
+        "clearInputs": false,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 2
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 0,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings",
+        "choice": "cancel"
+      },
+      "expected": {
+        "state": "cancelled",
+        "mode": null,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 3,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings",
+        "choice": null
+      },
+      "expected": {
+        "state": "choice-required",
+        "mode": null,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 3,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings",
+        "choice": 1
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 1,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": true
+        },
+        "clearInputs": false,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 1
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 3,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings",
+        "choice": 2
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 2,
+        "retention": {
+          "rememberUsername": false,
+          "rememberPassword": false,
+          "passwordControlVisible": false
+        },
+        "clearInputs": false,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 2
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 3,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings",
+        "choice": "cancel"
+      },
+      "expected": {
+        "state": "cancelled",
+        "mode": null,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 3,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings",
+        "choice": null
+      },
+      "expected": {
+        "state": "choice-required",
+        "mode": null,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 3,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings",
+        "choice": 1
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 1,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": true
+        },
+        "clearInputs": false,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 1
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 3,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings",
+        "choice": 2
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 2,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": false
+        },
+        "clearInputs": false,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 2
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 3,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings",
+        "choice": "cancel"
+      },
+      "expected": {
+        "state": "cancelled",
+        "mode": null,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 4294967295,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings",
+        "choice": null
+      },
+      "expected": {
+        "state": "choice-required",
+        "mode": null,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 4294967295,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings",
+        "choice": 1
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 1,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": true
+        },
+        "clearInputs": false,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 1
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 4294967295,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings",
+        "choice": 2
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 2,
+        "retention": {
+          "rememberUsername": false,
+          "rememberPassword": false,
+          "passwordControlVisible": false
+        },
+        "clearInputs": false,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 2
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 4294967295,
+        "initialRememberUsername": false,
+        "settingsSection": "Original.Settings",
+        "choice": "cancel"
+      },
+      "expected": {
+        "state": "cancelled",
+        "mode": null,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 4294967295,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings",
+        "choice": null
+      },
+      "expected": {
+        "state": "choice-required",
+        "mode": null,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 4294967295,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings",
+        "choice": 1
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 1,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": true
+        },
+        "clearInputs": false,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 1
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 4294967295,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings",
+        "choice": 2
+      },
+      "expected": {
+        "state": "initialized",
+        "mode": 2,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": false
+        },
+        "clearInputs": false,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 2
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "initialization",
+      "input": {
+        "recordedMode": 4294967295,
+        "initialRememberUsername": true,
+        "settingsSection": "Original.Settings",
+        "choice": "cancel"
+      },
+      "expected": {
+        "state": "cancelled",
+        "mode": null,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 1,
+        "requestedMode": 1,
+        "settingsSection": "Original.Settings",
+        "confirmMode1": null
+      },
+      "expected": {
+        "state": "changed",
+        "mode": 1,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": true
+        },
+        "clearInputs": true,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 1
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 1,
+        "requestedMode": 1,
+        "settingsSection": "Original.Settings",
+        "confirmMode1": false
+      },
+      "expected": {
+        "state": "changed",
+        "mode": 1,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": true
+        },
+        "clearInputs": true,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 1
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 1,
+        "requestedMode": 1,
+        "settingsSection": "Original.Settings",
+        "confirmMode1": true
+      },
+      "expected": {
+        "state": "changed",
+        "mode": 1,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": true
+        },
+        "clearInputs": true,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 1
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 1,
+        "requestedMode": 2,
+        "settingsSection": "Original.Settings",
+        "confirmMode1": null
+      },
+      "expected": {
+        "state": "changed",
+        "mode": 2,
+        "retention": {
+          "rememberUsername": false,
+          "rememberPassword": false,
+          "passwordControlVisible": false
+        },
+        "clearInputs": true,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 2
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 1,
+        "requestedMode": 2,
+        "settingsSection": "Original.Settings",
+        "confirmMode1": false
+      },
+      "expected": {
+        "state": "changed",
+        "mode": 2,
+        "retention": {
+          "rememberUsername": false,
+          "rememberPassword": false,
+          "passwordControlVisible": false
+        },
+        "clearInputs": true,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 2
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 1,
+        "requestedMode": 2,
+        "settingsSection": "Original.Settings",
+        "confirmMode1": true
+      },
+      "expected": {
+        "state": "changed",
+        "mode": 2,
+        "retention": {
+          "rememberUsername": false,
+          "rememberPassword": false,
+          "passwordControlVisible": false
+        },
+        "clearInputs": true,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 2
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 1,
+        "requestedMode": "cancel",
+        "settingsSection": "Original.Settings",
+        "confirmMode1": null
+      },
+      "expected": {
+        "state": "cancelled",
+        "mode": 1,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 1,
+        "requestedMode": "cancel",
+        "settingsSection": "Original.Settings",
+        "confirmMode1": false
+      },
+      "expected": {
+        "state": "cancelled",
+        "mode": 1,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 1,
+        "requestedMode": "cancel",
+        "settingsSection": "Original.Settings",
+        "confirmMode1": true
+      },
+      "expected": {
+        "state": "cancelled",
+        "mode": 1,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 2,
+        "requestedMode": 1,
+        "settingsSection": "Original.Settings",
+        "confirmMode1": null
+      },
+      "expected": {
+        "state": "confirmation-required",
+        "mode": 2,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 2,
+        "requestedMode": 1,
+        "settingsSection": "Original.Settings",
+        "confirmMode1": false
+      },
+      "expected": {
+        "state": "declined",
+        "mode": 2,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 2,
+        "requestedMode": 1,
+        "settingsSection": "Original.Settings",
+        "confirmMode1": true
+      },
+      "expected": {
+        "state": "changed",
+        "mode": 1,
+        "retention": {
+          "rememberUsername": true,
+          "rememberPassword": false,
+          "passwordControlVisible": true
+        },
+        "clearInputs": true,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 1
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 2,
+        "requestedMode": 2,
+        "settingsSection": "Original.Settings",
+        "confirmMode1": null
+      },
+      "expected": {
+        "state": "changed",
+        "mode": 2,
+        "retention": {
+          "rememberUsername": false,
+          "rememberPassword": false,
+          "passwordControlVisible": false
+        },
+        "clearInputs": true,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 2
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 2,
+        "requestedMode": 2,
+        "settingsSection": "Original.Settings",
+        "confirmMode1": false
+      },
+      "expected": {
+        "state": "changed",
+        "mode": 2,
+        "retention": {
+          "rememberUsername": false,
+          "rememberPassword": false,
+          "passwordControlVisible": false
+        },
+        "clearInputs": true,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 2
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 2,
+        "requestedMode": 2,
+        "settingsSection": "Original.Settings",
+        "confirmMode1": true
+      },
+      "expected": {
+        "state": "changed",
+        "mode": 2,
+        "retention": {
+          "rememberUsername": false,
+          "rememberPassword": false,
+          "passwordControlVisible": false
+        },
+        "clearInputs": true,
+        "writeRequested": {
+          "section": "Original.Settings",
+          "key": "UserMode",
+          "value": 2
+        },
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 2,
+        "requestedMode": "cancel",
+        "settingsSection": "Original.Settings",
+        "confirmMode1": null
+      },
+      "expected": {
+        "state": "cancelled",
+        "mode": 2,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 2,
+        "requestedMode": "cancel",
+        "settingsSection": "Original.Settings",
+        "confirmMode1": false
+      },
+      "expected": {
+        "state": "cancelled",
+        "mode": 2,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    },
+    {
+      "kind": "change",
+      "input": {
+        "currentMode": 2,
+        "requestedMode": "cancel",
+        "settingsSection": "Original.Settings",
+        "confirmMode1": true
+      },
+      "expected": {
+        "state": "cancelled",
+        "mode": 2,
+        "retention": null,
+        "clearInputs": false,
+        "writeRequested": null,
+        "authentication": "unverified",
+        "persistence": "unconfirmed"
+      }
+    }
+  ]
+}

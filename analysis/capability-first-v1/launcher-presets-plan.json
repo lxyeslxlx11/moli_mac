@@ -1,0 +1,40 @@
+{
+  "schema": "moli.capability-launcher-preset-plan.v1",
+  "requirement": "先覆盖全部需求能力的REA与规格，再成组复刻；本组闭合更新后登录器预设工作流来源",
+  "capabilities": [
+    "L04",
+    "L08"
+  ],
+  "source_sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+  "baseline": "build/analysis/capability-dispatch-bindings-v1/next-baseline.json",
+  "entry_roots": [
+    "0x422270",
+    "0x422fc0",
+    "0x4156c0"
+  ],
+  "questions": [
+    "主入口条件、重入锁与返回值分支",
+    "预设记录布局/7字段的生产消费、对象所有权与克隆/提交/销毁",
+    "选择/新增/编辑/删除/重排/取消与重新打开的共同规则",
+    "加载/持久化格式和版本、格式边界、失败/恢复，以及源字段与宿主政策分离",
+    "MFC共同消息表到Surface/Editor/列表虚方法的实际分派，避免仅依据ID/名称归义"
+  ],
+  "reuse_policy": "先复用同SHA完整dossier或batch项，缺口才新增；只在build保留全文",
+  "verification": "源字节/调用锚点/格式/文档和范围审计；产品代码不变则不重跑产品测试",
+  "original_execution": false,
+  "runtime_features_changed": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "result": {
+    "source_sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+    "contract": "analysis/capability-first-v1/launcher-presets-contract.json",
+    "source_check": "analysis/capability-first-v1/launcher-presets-source-check.json",
+    "validation": "analysis/capability-first-v1/launcher-presets-validation.json",
+    "bounded_scope": "seven-field grammar; list/edit/persist/one-step-undo/cancel/reopen; apply-selected admission boundary",
+    "function_bodies": 54,
+    "function_bytes": 16779,
+    "full_L04_or_L08_complete": false,
+    "implementation_gate_passed": false,
+    "runtime_features_changed": false
+  }
+}

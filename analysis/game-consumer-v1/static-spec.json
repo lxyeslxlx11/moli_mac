@@ -1,0 +1,277 @@
+{
+  "schema": "moli.game-consumer-v1.static-spec.v1",
+  "recorded_utc": "2026-10-27T11:05:47.129531+00:00",
+  "target": {
+    "path": "/private/tmp/moli-analysis/crossgate/app/cg_se_3000.exe",
+    "bytes": 2904064,
+    "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+    "hash_verified": true
+  },
+  "tools": {
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "Python": "3.9.6"
+  },
+  "prior_evidence": [
+    "../protocol-v3/game-network/packed-boundary.json",
+    "../protocol-v3/game-network/static-feasibility-20261026.json",
+    "../launcher-v30/launcher-gate-audit.json"
+  ],
+  "retained_before_open": 0,
+  "records": [
+    {
+      "operation": "resolve_containing_procedure",
+      "evidence_id": "ev_274d87df628a9d7b1cc2a47ce8584c26ec376b2f2097a70199dc6ae19470465f",
+      "parameters": {
+        "address": "0x1179053"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "limits_count": 7,
+      "result": {
+        "found": true,
+        "procedure": {
+          "address": "0x1179000",
+          "body": {
+            "available": true,
+            "contains_entry": true,
+            "non_contiguous": false,
+            "provenance": "ghidra-function-body-address-set",
+            "ranges": [
+              {
+                "end": "0x1179193",
+                "start": "0x1179000"
+              }
+            ],
+            "span_bytes": 404,
+            "total_bytes": 404
+          },
+          "classification": {
+            "external": false,
+            "provenance": "ghidra-function-manager",
+            "thunk": false,
+            "thunk_target": null
+          },
+          "name": "FUN_01179000"
+        },
+        "query_address": "0x1179053"
+      }
+    },
+    {
+      "operation": "xrefs",
+      "evidence_id": "ev_2ed096ae68d18c93f181c80eeb10a676a4c696de87febfbcca310597f5d49e46",
+      "parameters": {
+        "address": "0x5b1888"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "limits_count": 8,
+      "resolved_references": []
+    },
+    {
+      "operation": "analyze_function",
+      "evidence_id": "ev_4e8766888aa30fff07d6967975aeccf90cc4297ce865f66a77a4fdd9fb2dc454",
+      "parameters": {
+        "procedure": "0x1179000"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "limits_count": 11,
+      "procedure": "0x1179000",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x1179193",
+            "start": "0x1179000"
+          }
+        ],
+        "span_bytes": 404,
+        "total_bytes": 404
+      },
+      "pseudocode_retained_privately": true,
+      "returned_assembly_instructions": 109,
+      "resolved_callers": [
+        "0x11e6bb1"
+      ],
+      "value_flow": {
+        "available": true,
+        "truncated": false,
+        "omitted_operations_lower_bound": 0
+      }
+    },
+    {
+      "operation": "xrefs",
+      "evidence_id": "ev_9ab25097c8a52ba3e2a4fd0b3d27fb14ad94dd932c185df946039d255d90e7aa",
+      "parameters": {
+        "address": "0x5b1874"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "limits_count": 8,
+      "resolved_references": []
+    },
+    {
+      "operation": "xrefs",
+      "evidence_id": "ev_bfcdca12dbaad52eca677b637e53851d22a5003664e2f9c18b85e963f74b8265",
+      "parameters": {
+        "address": "0x5b1880"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "limits_count": 8,
+      "resolved_references": []
+    },
+    {
+      "operation": "xrefs",
+      "evidence_id": "ev_f93e960ae3fad0936738cbf143695f819709f465a10c1b89cbee7cb3f4cba616",
+      "parameters": {
+        "address": "0x1265d9c"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "limits_count": 8,
+      "resolved_references": [
+        "0x1179059",
+        "0x119489e"
+      ]
+    },
+    {
+      "operation": "analyze_function",
+      "evidence_id": "ev_fc737ebf0fe6e1970809ac2b826132f1dbf08149795aeae55f47aaba07154408",
+      "parameters": {
+        "procedure": "0x119489e"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "limits_count": 11,
+      "procedure": "0x1194850",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x11952a4",
+            "start": "0x1194850"
+          }
+        ],
+        "span_bytes": 2645,
+        "total_bytes": 2645
+      },
+      "pseudocode_retained_privately": true,
+      "returned_assembly_instructions": 599,
+      "resolved_callers": [
+        "0x11967d0"
+      ],
+      "value_flow": {
+        "available": true,
+        "truncated": true,
+        "omitted_operations_lower_bound": 1
+      }
+    }
+  ],
+  "private_artifacts": [
+    {
+      "path": "/Users/lx/Documents/code/moli-mac/build/analysis/game-consumer-v1/rea-evidence.json",
+      "bytes": 4271006,
+      "sha256": "fd72abaac653535710ccdf203a2ef819bc5f0898489451416a4e29a1660ed899"
+    },
+    {
+      "path": "/Users/lx/Documents/code/moli-mac/build/analysis/game-consumer-v1/rea-snapshot.json",
+      "bytes": 8519969,
+      "sha256": "5ba3140ad4aebca1b28f91e33adc074d5fa3519e28df57f579d25252c5a336f4"
+    }
+  ],
+  "exported_records": 7,
+  "session_after_close": {
+    "open": false,
+    "cleanup_pending": false
+  },
+  "source_audit": "source-audit.json",
+  "findings": [
+    {
+      "label": "fact",
+      "claim": "File-backed FUN_01179000 at1179000..1179193 stores GetCommandLineW return at1265d9c. FUN_01194850 at1194850..11952a4 reads it at119489e, constructs text at11948a7 and passes it to11943b0 at11948be.",
+      "source": "REA two function dossiers, source-audit.json first5 anchors"
+    },
+    {
+      "label": "fact",
+      "claim": "The latter function has13 exact UTF16LE registration/maintenance-like keyword operands including REGISTER/UNREGISTER/FIXCLOCK/SERVER/ARMDEBUG=. Each PUSH target and literal independently matches the source file. The words SERVER or TRANSFER alone establish no game server/transfer semantics.",
+      "source": "source-audit.json keyword26 anchors; referenced_strings in ev_fc737ebf0fe6e1970809ac2b826132f1dbf08149795aeae55f47aaba07154408"
+    },
+    {
+      "label": "inference",
+      "claim": "This command-line path is consistent with loader/licensing maintenance rather than recovered game argv semantics. No specific packer/vendor is identified, and no license/protection algorithms were followed, modified or implemented.",
+      "source": "Keyword set and separate file-backed layout; no runtime corroboration."
+    },
+    {
+      "label": "fact",
+      "claim": "Ghidra exact-address xrefs for CGSharedMem@5b1874,gid:@5b1880,glt:@5b1888 are empty. Cached commandline global xrefs return1179059 and119489e. These are recovered references only, not an exhaustive absence proof.",
+      "source": "Four xrefs records listed above and3 ASCII source anchors."
+    },
+    {
+      "label": "fact",
+      "claim": "Original .text still has raw_size0. Prior anonymous4096B mapping remains excluded from named256B handoff proof; it was not reanalyzed or reclassified.",
+      "source": "source-audit.json original_text and prior packed-boundary evidence."
+    },
+    {
+      "label": "unverified",
+      "claim": "Actual game argv, CGSharedMem readers/field handling/terminators, session lifecycle, frame/encoding/authentication/movement/battle semantics and server acceptance remain unknown. No gameconsumer implementation is justified by this pass."
+    }
+  ],
+  "coverage_limits": [
+    "One consumer high-pcode dossier is truncated with omitted_operations_lower_bound1; assembly599 instructions retained. Startup dossier high-pcode is not truncated.",
+    "Ghidra recovered direct/resolved calls and exact-address references do not recover unknown indirect or reconstructed flows.",
+    "No original EXE, VM, realIPC, account, official request, payload reconstruction/decryption/emulation or protection changes."
+  ],
+  "dependency_result": {
+    "required_current_analysis_providers_available": true,
+    "new_installations": 0,
+    "reason": "Observed obstacle is missing analyzable gamebusiness evidence, not a missing ordinary analysis package. No unrelated packages or globalsettings changed."
+  },
+  "next_material": {
+    "status": "requested_local_paths_asynchronously; no material received when recorded",
+    "preferred": "Vendor-authorized analyzable matching build or authoritative version-bound protocol and sanitized reference vectors.",
+    "pdb_reference": {
+      "basename": "CrossGate.pdb",
+      "guid": "ce363f7c-dd81-45c7-9944-f0402388bd13",
+      "age": 1,
+      "limit": "A matching PDB may add names/types but cannot restore absent code by itself. Current REA does not admit caller-selected PDB; validate metadata and supported analysis route before use. No download or private-directory scan."
+    },
+    "no_repeat_rule": "Do not repeat these same queries or prior bare-client/offline-launch probes without new material or a separately approved concrete observation scope."
+  },
+  "full_goal_complete": false
+}

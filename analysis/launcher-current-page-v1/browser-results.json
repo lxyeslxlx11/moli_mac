@@ -1,0 +1,374 @@
+{
+  "schema": "moli.current-page-browser-stage136.v1",
+  "started_utc": "2026-11-03T05:45:41.511Z",
+  "browser_plugin": "Browser plugin not available",
+  "playwright": "1.64.1",
+  "node": "v26.9.0",
+  "flow": "Local login page -> explicit catalog preparation -> original text review -> synthetic current/legacy exchange -> candidate selection or bounded rejection.",
+  "cases": [
+    {
+      "name": "current-desktop",
+      "sourceProfile": "win32-current",
+      "viewport": {
+        "width": 1100,
+        "height": 820
+      },
+      "origin": "http://127.0.0.1:53212",
+      "checks": {
+        "page_identity": true,
+        "not_blank": true,
+        "no_framework_overlay": true,
+        "no_horizontal_overflow": true,
+        "cancel_keeps_catalog_and_account_unready": true,
+        "current_marker_empty_and_missing_old_XML_succeeded": true,
+        "synthetic_exchange_and_explicit_selection": true,
+        "no_page_errors": true,
+        "console_health": true,
+        "network_health": true,
+        "interaction_proof": true
+      },
+      "initial_screenshot": "/Users/lx/.codex/visualizations/2026/11/03/moli-current-page-stage136-run2/current-desktop-initial.png",
+      "bootstrap_routes": [
+        {
+          "path": "/bootstrap/local-launcher",
+          "query": ""
+        },
+        {
+          "path": "/bootstrap/self",
+          "query": "?rtm=771"
+        },
+        {
+          "path": "/bootstrap/catalog-digests",
+          "query": "?rtm=772"
+        },
+        {
+          "path": "/bootstrap/games",
+          "query": "?rtm=773"
+        },
+        {
+          "path": "/bootstrap/regions",
+          "query": "?rtm=774"
+        }
+      ],
+      "peer": {
+        "kind": "result",
+        "source_profile": "win32-current",
+        "connections": 1,
+        "passed": true,
+        "request_verified": true,
+        "client_closed": true,
+        "request_frame_bytes": 35,
+        "record_cipher_bytes": 48,
+        "current_extra_block_verified": true
+      },
+      "result_screenshot": "/Users/lx/.codex/visualizations/2026/11/03/moli-current-page-stage136-run2/current-desktop-result.png",
+      "console": [],
+      "expected_cancel_failures": [
+        {
+          "path": "/bootstrap/self",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "passed": true,
+      "final_server": {
+        "activeStreams": 0,
+        "connectionAttempts": 1,
+        "peerEOFs": 0
+      },
+      "peer_exited": true
+    },
+    {
+      "name": "current-mobile",
+      "sourceProfile": "win32-current",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "origin": "http://127.0.0.1:53235",
+      "checks": {
+        "page_identity": true,
+        "not_blank": true,
+        "no_framework_overlay": true,
+        "no_horizontal_overflow": true,
+        "current_marker_empty_and_missing_old_XML_succeeded": true,
+        "synthetic_exchange_and_explicit_selection": true,
+        "no_page_errors": true,
+        "console_health": true,
+        "network_health": true,
+        "interaction_proof": true
+      },
+      "initial_screenshot": "/Users/lx/.codex/visualizations/2026/11/03/moli-current-page-stage136-run2/current-mobile-initial.png",
+      "bootstrap_routes": [
+        {
+          "path": "/bootstrap/local-launcher",
+          "query": ""
+        },
+        {
+          "path": "/bootstrap/self",
+          "query": "?rtm=654"
+        },
+        {
+          "path": "/bootstrap/catalog-digests",
+          "query": "?rtm=655"
+        },
+        {
+          "path": "/bootstrap/games",
+          "query": "?rtm=656"
+        },
+        {
+          "path": "/bootstrap/regions",
+          "query": "?rtm=657"
+        }
+      ],
+      "peer": {
+        "kind": "result",
+        "source_profile": "win32-current",
+        "connections": 1,
+        "passed": true,
+        "request_verified": true,
+        "client_closed": true,
+        "request_frame_bytes": 35,
+        "record_cipher_bytes": 48,
+        "current_extra_block_verified": true
+      },
+      "result_screenshot": "/Users/lx/.codex/visualizations/2026/11/03/moli-current-page-stage136-run2/current-mobile-result.png",
+      "console": [],
+      "expected_cancel_failures": [],
+      "passed": true,
+      "final_server": {
+        "activeStreams": 0,
+        "connectionAttempts": 1,
+        "peerEOFs": 0
+      },
+      "peer_exited": true
+    },
+    {
+      "name": "legacy-default-page",
+      "sourceProfile": "legacy",
+      "viewport": {
+        "width": 1100,
+        "height": 820
+      },
+      "origin": "http://127.0.0.1:53250",
+      "checks": {
+        "page_identity": true,
+        "not_blank": true,
+        "no_framework_overlay": true,
+        "no_horizontal_overflow": true,
+        "synthetic_exchange_and_explicit_selection": true,
+        "no_page_errors": true,
+        "console_health": true,
+        "network_health": true,
+        "interaction_proof": true
+      },
+      "bootstrap_routes": [
+        {
+          "path": "/bootstrap/local-launcher",
+          "query": ""
+        },
+        {
+          "path": "/bootstrap/local-games",
+          "query": ""
+        },
+        {
+          "path": "/bootstrap/local-regions",
+          "query": ""
+        },
+        {
+          "path": "/bootstrap/self",
+          "query": ""
+        },
+        {
+          "path": "/bootstrap/catalog-digests",
+          "query": ""
+        },
+        {
+          "path": "/bootstrap/games",
+          "query": ""
+        },
+        {
+          "path": "/bootstrap/regions",
+          "query": ""
+        }
+      ],
+      "peer": {
+        "kind": "result",
+        "source_profile": "legacy",
+        "connections": 1,
+        "passed": true,
+        "request_verified": true,
+        "client_closed": true,
+        "request_frame_bytes": 35,
+        "record_cipher_bytes": 40,
+        "current_extra_block_verified": false
+      },
+      "result_screenshot": "/Users/lx/.codex/visualizations/2026/11/03/moli-current-page-stage136-run2/legacy-default-page-result.png",
+      "console": [],
+      "expected_cancel_failures": [],
+      "passed": true,
+      "final_server": {
+        "activeStreams": 0,
+        "connectionAttempts": 1,
+        "peerEOFs": 0
+      },
+      "peer_exited": true
+    },
+    {
+      "name": "wrong-group-mobile",
+      "sourceProfile": "win32-current",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "origin": "http://127.0.0.1:53267",
+      "checks": {
+        "page_identity": true,
+        "not_blank": true,
+        "no_framework_overlay": true,
+        "no_horizontal_overflow": true,
+        "current_marker_empty_and_missing_old_XML_succeeded": true,
+        "source_group_rejected_before_account_request": true,
+        "no_page_errors": true,
+        "console_health": true,
+        "network_health": true,
+        "interaction_proof": true
+      },
+      "bootstrap_routes": [
+        {
+          "path": "/bootstrap/local-launcher",
+          "query": ""
+        },
+        {
+          "path": "/bootstrap/self",
+          "query": "?rtm=639"
+        },
+        {
+          "path": "/bootstrap/catalog-digests",
+          "query": "?rtm=640"
+        },
+        {
+          "path": "/bootstrap/games",
+          "query": "?rtm=641"
+        },
+        {
+          "path": "/bootstrap/regions",
+          "query": "?rtm=641"
+        }
+      ],
+      "peer": {
+        "kind": "result",
+        "source_profile": "win32-current",
+        "connections": 1,
+        "passed": true,
+        "request_verified": false,
+        "group_rejected_before_request": true,
+        "client_closed": true
+      },
+      "result_screenshot": "/Users/lx/.codex/visualizations/2026/11/03/moli-current-page-stage136-run2/wrong-group-mobile-result.png",
+      "console": [],
+      "expected_cancel_failures": [],
+      "passed": true,
+      "final_server": {
+        "activeStreams": 0,
+        "connectionAttempts": 1,
+        "peerEOFs": 0
+      },
+      "peer_exited": true
+    },
+    {
+      "name": "unknown-runtime-profile",
+      "sourceProfile": "win32-current",
+      "viewport": {
+        "width": 1100,
+        "height": 820
+      },
+      "origin": "http://127.0.0.1:53282",
+      "checks": {
+        "page_identity": true,
+        "not_blank": true,
+        "no_framework_overlay": true,
+        "no_horizontal_overflow": true,
+        "invalid_profile_blocks_initialization_and_TCP": true,
+        "no_page_errors": true,
+        "console_health": true,
+        "network_health": true,
+        "interaction_proof": true
+      },
+      "console": [],
+      "expected_cancel_failures": [],
+      "passed": true,
+      "final_server": {
+        "activeStreams": 0,
+        "connectionAttempts": 0,
+        "peerEOFs": 0
+      },
+      "peer_exited": true
+    },
+    {
+      "name": "mismatched-bootstrap-profile",
+      "sourceProfile": "win32-current",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "origin": "http://127.0.0.1:53295",
+      "checks": {
+        "page_identity": true,
+        "not_blank": true,
+        "no_framework_overlay": true,
+        "no_horizontal_overflow": true,
+        "invalid_profile_blocks_initialization_and_TCP": true,
+        "no_page_errors": true,
+        "console_health": true,
+        "network_health": true,
+        "interaction_proof": true
+      },
+      "console": [],
+      "expected_cancel_failures": [],
+      "passed": true,
+      "final_server": {
+        "activeStreams": 0,
+        "connectionAttempts": 0,
+        "peerEOFs": 0
+      },
+      "peer_exited": true
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "/Users/lx/.codex/visualizations/2026/11/03/moli-current-page-stage136-run2/current-desktop-initial.png",
+      "bytes": 83055,
+      "sha256": "f10fe75ddbc0e7fee5e8247ff2352ae53dcddef3c4b400fd50f1c74b22bf7c02"
+    },
+    {
+      "path": "/Users/lx/.codex/visualizations/2026/11/03/moli-current-page-stage136-run2/current-desktop-result.png",
+      "bytes": 72882,
+      "sha256": "d534e731dd4830f86a43fe6374a13f06d34cf9ad9676ce786e4b5bec3b43a722"
+    },
+    {
+      "path": "/Users/lx/.codex/visualizations/2026/11/03/moli-current-page-stage136-run2/current-mobile-initial.png",
+      "bytes": 52462,
+      "sha256": "4311f94d8a7894d98dda99b7b07196a8dbc8dda02598e30add997d132cc75e3b"
+    },
+    {
+      "path": "/Users/lx/.codex/visualizations/2026/11/03/moli-current-page-stage136-run2/current-mobile-result.png",
+      "bytes": 62862,
+      "sha256": "5471582a13700415ca9ea03c95ece51fa591bbcfa164482413a1855514ce3485"
+    },
+    {
+      "path": "/Users/lx/.codex/visualizations/2026/11/03/moli-current-page-stage136-run2/legacy-default-page-result.png",
+      "bytes": 72882,
+      "sha256": "d534e731dd4830f86a43fe6374a13f06d34cf9ad9676ce786e4b5bec3b43a722"
+    },
+    {
+      "path": "/Users/lx/.codex/visualizations/2026/11/03/moli-current-page-stage136-run2/wrong-group-mobile-result.png",
+      "bytes": 64212,
+      "sha256": "8d84ec7c7bcc42dacb218933d84abf694757a59c4dfed00bfec7b087c06d7b81"
+    }
+  ],
+  "full_goal_complete": false,
+  "browser": "156.0.8078.74",
+  "browser_closed": true,
+  "finished_utc": "2026-11-03T05:45:48.222Z",
+  "passed": true
+}

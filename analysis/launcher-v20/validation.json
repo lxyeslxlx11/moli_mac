@@ -1,0 +1,147 @@
+{
+  "schema": "moli.launcher-v20.validation.v1",
+  "recorded_utc": "2026-10-27T05:05:11.293850+00:00",
+  "stage": 65,
+  "result": "Explicit ASCII/Windows936/UTF8 credential bytes and strict Chinese profile names verified through original-only actual browser exchanges; full launcher/game objective remains incomplete.",
+  "preflight": "preflight.json",
+  "native_evidence": {
+    "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "reused": [
+      "../launcher-v8/static-spec.json",
+      "../launcher-v18/static-spec.json"
+    ],
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "new_native_producers": 0,
+    "fact": "ANSI/raw byte controls and16B limit already proven; actual runtime ACP/IME unknown."
+  },
+  "dependencies": {
+    "record": "dependency.json",
+    "new": "Pinned public Unicode/Microsoft CP9362.01 mapping data, Unicode License V3; deterministic generator check passed.",
+    "source_entries": 21920,
+    "double_byte_mappings": 21791,
+    "unassigned_double_byte_pairs": 2149,
+    "UTF8_independent_scalar_references": 1037,
+    "runtime_downloads": false,
+    "install_scripts": false,
+    "global_settings_changed": false
+  },
+  "node": {
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "runtime": "v26.9.0",
+    "tests": 369,
+    "new_tests": 11,
+    "passed": 369,
+    "failed": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "log": "node-tests-final.log",
+    "syntax": "9 ESM node --check and3 Python ast.parse passed; product sources unchanged after successful final whole suite."
+  },
+  "browser": {
+    "version": "155.0.8059.85",
+    "tool": "Existing Playwright1.62.1; Browser plugin not provided",
+    "encoding": {
+      "record": "encoding-browser.json",
+      "checks": 9,
+      "source_requests": 244,
+      "independently_verified_complete_original_requests": 6,
+      "viewports": [
+        {
+          "width": 1280,
+          "height": 1100
+        },
+        {
+          "width": 390,
+          "height": 844
+        }
+      ],
+      "locale": "zh-CN; no ACP inference",
+      "errors": [],
+      "console_warning_errors": []
+    },
+    "configuration_regression": {
+      "record": "config-session-regression.json",
+      "scenario_checks": 17,
+      "measurement_records": 1,
+      "source_requests": 440,
+      "actual_composite_deadline_ms": 10043,
+      "preload_delay_ms": 5500,
+      "original_python_connections": 6,
+      "independently_decrypted_complete_requests": 5,
+      "cancelled_and_closed_connections": 1,
+      "expected_aborts": [
+        {
+          "path": "/bootstrap/catalog-digests",
+          "reason": "net::ERR_ABORTED"
+        }
+      ],
+      "errors": [],
+      "console_warning_errors": []
+    },
+    "positive_IO": "Actual same-origin HTTP/native IndexedDB/native browser WebSocket to owned loopback TCP and independent Python encoding/cryptography.",
+    "negative_IO": "Only held original local responses for timeout/cancel use Playwright routes; one expected abort separately recorded."
+  },
+  "supplied_example": {
+    "command": "node web/examples/launcher-browser-local.mjs --text-profile windows-936",
+    "browser_record": "example-browser.json",
+    "original_peer_verified": true,
+    "connections": 1,
+    "rows": 4,
+    "selectable_rows": 2,
+    "example_and_peer_exit_code": 0,
+    "owned_port_4174_released_after_validation": true,
+    "bad_argument": "unknown profile controlled exit1 before starting resources"
+  },
+  "review": "review-corrections.json",
+  "visual": "visual-review.json",
+  "delivery_check": "delivery-check.json",
+  "artifact_incident": {
+    "record": "artifact-output-incident.json",
+    "historical_file": "../launcher-v19/browser-validation.json",
+    "temporary_original_PNGs_no_longer_matching": 3,
+    "exact_original_receipt_and_changed_pixels_recovered": false,
+    "historical_summary_log_original_manifest_retained": true,
+    "new_revalidation_separately_recorded": true,
+    "effect": "One historical detailed receipt and temp screenshots unintentionally overwritten; old receipt now an explicit incident pointer. No fabricated historical reconstruction or claim of all historical artifacts unchanged."
+  },
+  "not_verified": [
+    "actual Windows ACP/IME/best-fit/other code pages",
+    "real applicable terms/account persistence/official authentication/service identity/opaque lifetime",
+    "official update trust/native replacement/rollback",
+    "game consumer/gameplay, Safari, physical or remote mobile, WeChat mini-program and official compatibility"
+  ],
+  "authorization": {
+    "original_EXE_or_VM_executions": 0,
+    "real_accounts_or_credentials_read": 0,
+    "official_game_requests": 0,
+    "official_assets_or_decompiled_sources_added": false,
+    "commit_push_publish": false
+  },
+  "goal_status": "active, not complete",
+  "delivery_checks_passed": true,
+  "preservation": {
+    "previous_files": 857,
+    "unchanged_previous_files": 834,
+    "planned_baseline_files": 22,
+    "extra_unintentional_historical_change": [
+      "analysis/launcher-v19/browser-validation.json"
+    ],
+    "unchanged_native_files": 17,
+    "unchanged_prior_shared_product_files": 62,
+    "previous_manifest_unchanged_sha256": "4832f2ff84b77db22dbc4361a335155e3c9d267a1fcb6f34b273b521cd27c932"
+  },
+  "documentation": {
+    "files": 44,
+    "local_links_checked": 1539,
+    "explicit_anchors_checked": 146,
+    "errors": []
+  },
+  "delivery_manifest": "../delivery-manifest-stage65.json",
+  "current_original_preview": {
+    "url": "http://127.0.0.1:4174/",
+    "status": 200,
+    "original_windows936_fixture": true,
+    "TCP_exchange_not_triggered_by_HTTP_GET": true
+  }
+}

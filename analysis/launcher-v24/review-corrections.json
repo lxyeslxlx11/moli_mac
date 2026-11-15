@@ -1,0 +1,33 @@
+{
+  "schema": "moli.launcher-v24.review-corrections.v1",
+  "product_issue": {
+    "reproduction": "Create aggregate from original public bytes, takeContext, assign mapping.bytes.fill=()=>{}, close.",
+    "observed_before_fix": {
+      "state": "closed",
+      "mapping_wiped": false,
+      "command_wiped": true
+    },
+    "owner": "shared/launcher-handoff.mjs and newshared/launcher-launch.mjs",
+    "cause": "Close called a mutable method on a lent typedarray. One detachedview could also abortcleanup ofotherownedviews.",
+    "planned_fix": "Capture Uint8Array.prototype.fill, apply totrueviews, tolerate alreadydetached/externallytransferredbuffers andcontinueallcleanup. Externalcopies/transferdestination remainconsumerowned.",
+    "verified_fix": {
+      "Node": "Intrinsic erase ignores overriddenfill; transferredcommanddoesnotblockclearingcwd/patterns/mapping; externaldestinationnotclaimedwiped.",
+      "whole_suite_passed": 421,
+      "browser_launch_checks": 9,
+      "legacy_handoff_checks": 8
+    }
+  },
+  "test_assumptions": [
+    {
+      "receipt": "initial/launch-browser.json",
+      "cause": "Playwright isDisabled onfieldsetitself didnotmatch raw disabled attribute. Switched to DOMfieldset.disabled plus actual descendantcontrol disabled.",
+      "product_changed_for_this_assumption": false
+    },
+    {
+      "receipt": "initial/launch-browser-attempt2.json",
+      "cause": "Playwright setInputFiles([]) rejectswebkitdirectory input. Test uses an actual second original directory instead.",
+      "product_changed_for_this_assumption": false
+    }
+  ],
+  "historical_receipts_changed": false
+}

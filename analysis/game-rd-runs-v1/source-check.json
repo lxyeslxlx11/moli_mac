@@ -1,0 +1,210 @@
+{
+  "schema": "moli.game-rd-runs-source-check.v1",
+  "classification": {
+    "fact": "Fixed source identities, byte/header/command-position arithmetic and independent metadata comparison.",
+    "inference": "Eight-opcode structural model for these compressed assets; C/D/E values unresolved.",
+    "unverified": "Actual main-game decoder, C/D/E color/alpha, palette channels, row/origin/animation, business protocol and playable/official effects."
+  },
+  "sources": [
+    {
+      "path": "build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/bin/Graphic_Joy_22.bin",
+      "bytes": 47168682,
+      "sha256": "febe67d2a09c4b06b144442d5939917b682ffc1dbe680f3196b9e32d410a7656"
+    },
+    {
+      "path": "build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/bin/GraphicInfo_Joy_22.bin",
+      "bytes": 332320,
+      "sha256": "456c0d4321968a1466b5dbf3a22a106c8562cddf4d3aa23a205a9ca430ae2e68"
+    },
+    {
+      "path": "build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/bin/GraphicV3_18.bin",
+      "bytes": 68321498,
+      "sha256": "34711ea1e5134e540a0a4479f2e27aebd230f016910473b5dcc215dce2b993e1"
+    },
+    {
+      "path": "build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/bin/GraphicInfoV3_18.bin",
+      "bytes": 781840,
+      "sha256": "bd80c12e99af0945bef572301ccd3b2d0dbd2adb4e130c801fe85619dc5b83aa"
+    }
+  ],
+  "prior_manifest": {
+    "path": "analysis/delivery-manifest-stage149.json",
+    "bytes": 354174,
+    "sha256": "b44c98488c2e9951731db15b1de98f8be507838bbabc6f0f49fbd430d24dc4ab"
+  },
+  "prior_original_probe": {
+    "path": "analysis/resources-v2/probe_graphics.py",
+    "bytes": 6685,
+    "sha256": "a55608d2143adf2bb323b8bd5e6096068e272897b03d128a6515593e050914fa"
+  },
+  "prior_experiment_metadata": {
+    "path": "analysis/resources-v2/graphics-probe-results.json",
+    "bytes": 77134,
+    "sha256": "ac69c732c26f7bc6880c660ddff2dbf659b10c9d5643ba3a3e7542bd1a70a18d"
+  },
+  "prior_rejection_ordinals_match": 34,
+  "prior_placeholder_hash_examples_match": 32,
+  "comparison": {
+    "path": "analysis/game-rd-runs-v1/corpus-comparison.json",
+    "bytes": 6224,
+    "sha256": "dd942e82081e6b0ceaefa4c60bf4122e2393e2fb14491bd0c3683b270c33aca9"
+  },
+  "tools": {
+    "Node": "26.9.0",
+    "Python": "3.9.6",
+    "esbuild": "0.25.12"
+  },
+  "REA": {
+    "new_queries": 0,
+    "new_main_game_consumers": 0,
+    "scope": "Original source implementation/data arithmetic does not require new native analysis.",
+    "previous_configuration_helper_evidence": {
+      "path": "analysis/game-config-v1/source-check.json",
+      "bytes": 33593,
+      "sha256": "70c6065736930ad6940bd3a160962c86790c13d3f14212b72ffb30794e94d6da"
+    }
+  },
+  "third_party_comparison": {
+    "recorded_utc": "2026-11-03T11:31:01.057949+00:00",
+    "commit": "a70d47225c0c68183b1523d0456b85ffad156426",
+    "url": "https://raw.githubusercontent.com/moosewoler/cgg-viewer/a70d47225c0c68183b1523d0456b85ffad156426/CrossGateGraphics.py",
+    "bytes": 38065,
+    "sha256": "13d18c387c03584e1e582489e496c336030ff7617b837816dc627fd2e6e4313f",
+    "repository_url": "https://github.com/moosewoler/cgg-viewer",
+    "license_displayed": "GPL-3.0",
+    "code_saved": false,
+    "executed": false,
+    "role": "comparison of author viewer behavior only; not official fixed-game consumer",
+    "source_ranges": {
+      "extractGraphics": [
+        258,
+        406
+      ],
+      "loadGraphicsV1": [
+        419,
+        442
+      ],
+      "loadGraphicsV3": [
+        443,
+        481
+      ],
+      "loadGraphics": [
+        482,
+        533
+      ]
+    },
+    "findings": [
+      "Viewer assigns F0 to C/D/E runs; this is its chosen marker",
+      "Viewer v1 discards decoded bytes beyond width*height",
+      "Viewer labels v3 not fully supported and chooses a palette slice differing from retained local raw layout"
+    ],
+    "implementation_policy": "No source copied or added as dependency. Original prior local probe supplies count model; new implementation keeps C/D/E positions unknown and rejects overshoot.",
+    "source_ranges_coordinate_system": "physical 1-based UTF-8 file lines at pinned commit"
+  },
+  "tool_fallback": {
+    "attempt": "Connected github.fetch on explicit public file URL",
+    "isError": true,
+    "code": -32001,
+    "reason": "Unknown tool github.fetch",
+    "repeated": false,
+    "fallback": "Primary GitHub page/raw content via web, then pinned public commit/hash using standard read-only HTTPS",
+    "target_execution": false
+  },
+  "private_artifacts": [
+    {
+      "path": "build/analysis/game-rd-runs-v1/preflight.json",
+      "bytes": 4090,
+      "sha256": "08cce8f6b1002514f60c8a5dfe6a66be1954d5ccb075d5342bd6e886fb87a83d"
+    },
+    {
+      "path": "build/analysis/game-rd-runs-v1/python-corpus.json",
+      "bytes": 17943322,
+      "sha256": "99c43645d14aa176cd0aa6d7cfcc5abb3e64a7d0b189b0086ac45c61533cbe82"
+    },
+    {
+      "path": "build/analysis/game-rd-runs-v1/reference.json",
+      "bytes": 1346,
+      "sha256": "1c1237eec0b07acea6cd68322c1ce6e1bd6a8eaf28ba69456d33f422f981fa68"
+    },
+    {
+      "path": "build/analysis/game-rd-runs-v1/tool-fallback.json",
+      "bytes": 318,
+      "sha256": "f78801bddd3549c323829ac8559d166ae61e9eb30bc4bf8998f306d0ff9556f0"
+    }
+  ],
+  "updated_product_sources": [
+    {
+      "path": "shared/rd-runs.mjs",
+      "bytes": 7773,
+      "sha256": "12808d6e62abd0b796df104b49d0dd4c0e074a989762d0732fca852597a676eb"
+    },
+    {
+      "path": "shared/index.mjs",
+      "bytes": 14272,
+      "sha256": "8a021a6217360c4408c515fd4402a4c1a90e964e15725010f6e366da76caa889"
+    },
+    {
+      "path": "shared/tests/rd-runs.test.mjs",
+      "bytes": 8441,
+      "sha256": "a48f14433527d09531afa08c8698fbb06e0d63106eb61c2fe4486bcf723ad305"
+    }
+  ],
+  "portable_build_report": {
+    "path": "build/analysis/game-rd-runs-v1/portable-build-report.json",
+    "bytes": 2280,
+    "sha256": "1dc897d4fce02e7e69a2bec8f1ff2e95ce678d66314d0851d1762cda3e2ec240"
+  },
+  "builds": [
+    {
+      "directory": "build/wechat-app-stage150",
+      "report": {
+        "path": "build/wechat-app-stage150/build-report.json",
+        "bytes": 13603,
+        "sha256": "02b241e1db9708d6d4de1f97030d84427f94e1a8fae8c343039f824e77a0345b"
+      },
+      "inputs": 70,
+      "outputs": 11,
+      "external_imports": 0,
+      "bytes": 671344
+    },
+    {
+      "directory": "build/wechat-app-local-stage150",
+      "report": {
+        "path": "build/wechat-app-local-stage150/build-report.json",
+        "bytes": 13635,
+        "sha256": "ab095d864572aacc3cbb9ccb1e0ec86acc66600fea2a5d77a0a619b97e7946a3"
+      },
+      "inputs": 70,
+      "outputs": 11,
+      "external_imports": 0,
+      "bytes": 672602
+    },
+    {
+      "directory": "build/wechat-app-resources-stage150",
+      "report": {
+        "path": "build/wechat-app-resources-stage150/build-report.json",
+        "bytes": 13643,
+        "sha256": "d0ba1a6595afe7497a8b1e888fefd8ee19d26c6f52abe4917043913196106fcb"
+      },
+      "inputs": 70,
+      "outputs": 11,
+      "external_imports": 0,
+      "bytes": 672601
+    }
+  ],
+  "native_gate": {
+    "prior_audit": {
+      "path": "analysis/launcher-wechat-host-v1/native-ui-audit.json",
+      "bytes": 1796,
+      "sha256": "a09b9af8c69d86cb92dce6d4069f06bf15b4f5b89d0d0f9585f4a6cb38d81965"
+    },
+    "new_native_attempts": 0,
+    "current_setting_rechecked": false,
+    "settings_changed": false
+  },
+  "source_bytes_immutable": true,
+  "target_execution": false,
+  "official_pixel_exports": 0,
+  "goal_status": "active",
+  "full_goal_complete": false
+}

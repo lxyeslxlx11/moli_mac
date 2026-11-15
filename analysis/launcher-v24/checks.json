@@ -1,0 +1,83 @@
+{
+  "schema": "moli.launcher-v24.checks.v1",
+  "syntax": [
+    {
+      "path": "shared/index.mjs",
+      "node_check": true
+    },
+    {
+      "path": "shared/launcher-text.mjs",
+      "node_check": true
+    },
+    {
+      "path": "shared/launcher-handoff.mjs",
+      "node_check": true
+    },
+    {
+      "path": "shared/launcher-launch.mjs",
+      "node_check": true
+    },
+    {
+      "path": "shared/examples/launcher-launch.mjs",
+      "node_check": true
+    },
+    {
+      "path": "shared/tests/launcher-launch.test.mjs",
+      "node_check": true
+    },
+    {
+      "path": "web/launcher-launch-data.mjs",
+      "node_check": true
+    },
+    {
+      "path": "web/login-launch.mjs",
+      "node_check": true
+    },
+    {
+      "path": "web/login-app.mjs",
+      "node_check": true
+    },
+    {
+      "path": "web/login-catalog.mjs",
+      "node_check": true
+    },
+    {
+      "path": "web/tests/launcher-launch.test.mjs",
+      "node_check": true
+    }
+  ],
+  "example": {
+    "path": "shared/examples/launcher-launch.mjs",
+    "exit_code": 0,
+    "metadata_only": true,
+    "closed": true,
+    "execution": "not-performed"
+  },
+  "reused_native_exports": [
+    {
+      "path": "build/analysis/launcher-v23/rea-evidence.json",
+      "sha256": "47bcf3b874b7bde54f421853868fa555bbc231cd0a62ed8bfc17ed1f7d46bf15",
+      "verified": true
+    },
+    {
+      "path": "build/analysis/launcher-v23/rea-snapshot.json",
+      "sha256": "4b10f0155a35104098d92ebd09edf55cc962f7a4d32421e771a9b4ef918a0e06",
+      "verified": true
+    }
+  ],
+  "tools": {
+    "Node": "v26.9.0",
+    "Playwright": "1.62.1",
+    "Chrome": "155.0.8059.85",
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4"
+  },
+  "new_dependencies": 0,
+  "browser_primary_sources": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory",
+    "https://developer.mozilla.org/en-US/docs/Web/API/File/webkitRelativePath",
+    "https://wicg.github.io/entries-api/"
+  ],
+  "initial_browser_test_assumptions": "review-corrections.json",
+  "ordinary_dependency_policy": "Use existing verified runtime/packages; no configuration, install scripts, original program or official network needed."
+}

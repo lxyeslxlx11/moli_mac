@@ -1,0 +1,28 @@
+{
+  "stage": 293,
+  "source": "Fixed37c4;REA6.7.0/Ghidra12.1.4;ordinary446e00,scaled447330,506030queue and4457d0device initializer,plus verified action/texture palette producers.",
+  "facts": [
+    "D3D7 is bound by the original52f0cc GUID andthe Microsoft SDK interface order;vtable+0x50 isSetRenderState and+0x64 isDrawPrimitive.",
+    "4457d0 enables ALPHABLENDENABLE27,1.446e00 and447330 select SRCBLEND19,ONE2 andDESTBLEND20,ONE2 whenflags8is set,including before the vertex-alpha branch.",
+    "Both native D3D paths retain crop/flip/scaling andclamp device colors;the native DDRAW fallback omits flags8drawing.",
+    "The source bit is produced by20-byte action headers andpreserved through animation state andordinary queue;named palettes andneutral/tint selection happen before blending."
+  ],
+  "independent_implementation": [
+    "Emulate the source D3D ONE+ONE RGB equation with8-bit saturation in the shared RGBA compositor;do not emulate DDRAW omitting the effect.",
+    "Use an explicit additive blend command derived from image flags8;keep source mask/index0 transparent,opaque coverage alpha255,andignore opacity for ONE+ONE as the source branch does.",
+    "Preserve existing portable point sampling,rectangle clipping,flip,priority andtie order;no claim of exact hardware filtering/edge or16/24-bit quantization.",
+    "Allow an owned optional initial framebuffer so high-priority additive sprites see already-rendered text/background;do not flatten them into a separate source-over layer.",
+    "Carry source-supported style bits0..15 through deferred map andanimation queries;direct prepared-sprite calls retain the explicit nonzero-palette binding boundary."
+  ],
+  "acceptance": [
+    "Independent complete reference pixels with saturation,masks,overlap,priority/ties,crop/flip/scale,base-frame ownership,opacity precedence andtext layering.",
+    "Source/generated API equality andactual flags8CUT animations over nonblack backgrounds,with full RGBA comparison.",
+    "Desktop/touch browser andsource/generated Page actual-material entry,movement,scene rebuild anddisposal;full appropriate regression,fresh builds and13canonical documents."
+  ],
+  "remaining": [
+    "Native hardware/filter/edge,DDRAW omission and16/24-bit equivalence remain separate.",
+    "Arbitrary vertex colors,other styles,full game/scheduling/UI,current handoff,native devices andofficial acceptance remain incomplete."
+  ],
+  "full_goal_complete": false,
+  "goal_status": "active"
+}

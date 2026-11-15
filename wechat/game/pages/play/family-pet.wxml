@@ -1,0 +1,24 @@
+<view class="card" wx:if="{{familyPet}}">
+  <view class="section-title">{{familyPet.title}}</view>
+  <scroll-view wx:if="{{familyPet.lines.length}}" scroll-y="{{true}}" class="family-list">
+    <view wx:for="{{familyPet.lines}}" wx:key="id" class="line commerce-text">{{item.text}}</view>
+  </scroll-view>
+  <view wx:if="{{familyPet.notice}}" class="hint" role="status">{{familyPet.notice}}</view>
+  <view class="controls">
+    <view wx:if="{{!familyPet.rows.length}}" class="hint">当前没有可喂食物品。</view>
+    <button wx:for="{{familyPet.rows}}" wx:key="slot" size="mini" type="{{item.selected ? 'primary' : 'default'}}"
+      disabled="{{familyPet.busy}}" data-action="select" data-revision="{{familyPet.revision}}"
+      data-slot="{{item.slot}}" data-row-revision="{{item.revision}}" bindtap="onFamilyPet">{{item.label}}</button>
+  </view>
+  <view class="controls">
+    <button size="mini" disabled="{{!familyPet.canSubmitFeed}}" data-action="feed" data-revision="{{familyPet.revision}}" bindtap="onFamilyPet">确认喂食</button>
+  </view>
+  <view wx:if="{{familyPet.canRename}}" class="commerce-section">
+    <input class="field" value="{{familyPet.name}}" maxlength="{{familyPet.nameLimit}}" disabled="{{familyPet.busy}}"
+      placeholder="家族兽名称" data-action="name" data-revision="{{familyPet.revision}}" bindinput="onFamilyPet" />
+    <button size="mini" disabled="{{familyPet.busy}}" data-action="rename" data-revision="{{familyPet.revision}}" bindtap="onFamilyPet">提交名称</button>
+  </view>
+  <view class="controls">
+    <button size="mini" disabled="{{familyPet.sending}}" data-action="close" data-revision="{{familyPet.revision}}" bindtap="onFamilyPet">关闭家族兽</button>
+  </view>
+</view>

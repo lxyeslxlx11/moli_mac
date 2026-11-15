@@ -1,0 +1,62 @@
+{
+  "utc_recorded": "2026-10-26T00:50:26.722929+00:00",
+  "vm": "Windows 11",
+  "vm_path": "/Users/lx/Parallels/Windows 11.pvm",
+  "last_guest_observation_utc_approx": "2026-10-26T00:48:00Z",
+  "pending_tool_calls": false,
+  "ordinary_powershell_at_prompt": true,
+  "intentional_launcher_start_command_submitted": false,
+  "uac_seen_or_accepted": false,
+  "sample_execution_state": "uncertain; no further launch allowed under an assumed unused count",
+  "ambiguous_action": {
+    "utc_approx": "2026-10-26T00:41:00Z",
+    "context": "POLCN_Launcher.exe Compatibility Properties; OK/Apply below visible screen",
+    "keys": [
+      "alt+space",
+      "Escape",
+      "Return"
+    ],
+    "observation": "No system menu was visible after alt+space. Escape/Return was sent without observing between them. Explorer appeared with launcher selected. Subsequent Properties showed compatibility unchecked and disabled Windows 8 default. No UAC/sample window observed.",
+    "possible_effect": "Escape may have canceled Properties and Return may have activated selected executable; actual activation/execution cannot be determined from screenshots.",
+    "retry_submitted": false
+  },
+  "compatibility": {
+    "launcher_win7_saved": false,
+    "game_win7_attempted": false
+  },
+  "bounded_readonly_checks": {
+    "current_process_query": {
+      "names": [
+        "POLCN_Launcher",
+        "LauncherUpdater",
+        "cg_se_3000"
+      ],
+      "utc_approx": "2026-10-26T00:47:00Z",
+      "rows_returned": 0,
+      "error_action": "SilentlyContinue",
+      "limit": "No matching rows now does not exclude prior short-lived execution or all access/query limitations."
+    },
+    "directory_hash_query": {
+      "path": "C:/MoliOffline/launcher-probe",
+      "utc_approx": "2026-10-26T00:47:00Z",
+      "regular_files_returned": 3,
+      "hashes_equal_imported_files": true,
+      "limit": "Default listing excludes hidden/system files; no system-wide change audit. No proof that no other file/registry writes occurred."
+    },
+    "application_event_query": {
+      "ids": [
+        1000,
+        1001
+      ],
+      "intended_utc_start": "2026-10-26T00:39:00Z",
+      "intended_utc_end": "2026-10-26T00:44:00Z",
+      "submitted": false,
+      "result": "IME corrupted typed text; canceled composition with Escape and line with Ctrl+C, verified fresh prompt. No log result obtained."
+    }
+  },
+  "network_or_shared_clipboard_enabled": false,
+  "credentials_entered": false,
+  "force_kill_or_shutdown": false,
+  "new_security_changes": false,
+  "next_step": "Report uncertainty; do not repeat launch under assumption that first attempt did not execute. Any renewed experiment must acknowledge possible prior activation and unresolved Win7 settings. Do not infer success/failure of launcher or official compatibility."
+}

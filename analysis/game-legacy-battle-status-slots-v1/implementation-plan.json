@@ -1,0 +1,19 @@
+{
+  "stage": 244,
+  "previous_checkpoint": {
+    "path": "analysis/game-legacy-game-stream-v1/checkpoint-audit.json",
+    "sha256": "a3f53fb56e10ffd38ddf336bff043c5b120dabbddd6858f3a7a6d4e70f7bc6c6"
+  },
+  "requirement": "实现固定旧版 SKL98 中目标放大与缩小退场的独立动作队列，并核验它们到既有战斗回合及附带 RID0 的交接。",
+  "baseline_files": 3951,
+  "source": "analysis/game-legacy-battle-status-slots-v1/source-check.json",
+  "scope": [
+    "用 REA 分别核对五条分支的预读和队列入口，闭合变体 6、8 的目标字段、动画信号、动作 54/79/81 与退场消费。",
+    "复用现有状态技能、缩小、目标释放和 RID0 所有者，补充目标放大、双声音及本方配对槽缓存。",
+    "使用原创夹具验证大小、标记、声音、死亡目标重置、缓存、退场和 RID0。在网页及微信 Page 的实际本机入口核对防御、回合、战斗退场与后续移动。"
+  ],
+  "remaining": ["SKL98 变体 7、12、13，目标缺失分支及附带 RID0 的其余组合", "完整游戏、真机网络、现行版交接及官服验收"],
+  "VM_actions": 0,
+  "original_execution": 0,
+  "official_sessions": 0
+}

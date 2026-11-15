@@ -1,0 +1,60 @@
+{
+  "observed_utc": "2026-10-25T10:00:06.707500+00:00",
+  "vm": "MoliOffline-ARM64-20261025",
+  "desktop_at_resume": true,
+  "post_update_build": "10.0.26300.9711",
+  "build_evidence": "post-update-build.png",
+  "device_problems_after_update": {
+    "count": 36,
+    "ConfigManagerErrorCode": 28,
+    "count_evidence": "post-update-device-count.png",
+    "named_ids_evidence": "post-update-device-ids.png",
+    "ids": [
+      "PCI\\VEN_1AF4&DEV_1003&SUBSYS_00031AF4&REV_00",
+      "PCI\\VEN_1AF4&DEV_1005&SUBSYS_00041AF4&REV_00",
+      "PCI\\VEN_1AF4&DEV_1050&SUBSYS_11001AF4&REV_01"
+    ]
+  },
+  "windows_update_ui": {
+    "available_updates": true,
+    "restart_required_visible": false,
+    "specific_remaining_updates": "not established",
+    "automatic_next_cumulative_note_visible": true,
+    "all_updates_complete": false,
+    "account_bearing_settings_screenshot_saved": false
+  },
+  "unexpected_edge_welcome": {
+    "trigger": "Tab+Space while inspecting available update details opened a browser welcome/sync page; exact focused item uncertain",
+    "sync_or_signin_confirmation_accepted": false,
+    "no_credential_entered": true,
+    "normal_close_shortcuts_no_visible_effect": true,
+    "handled_by": "Normal UTM Request Power Down then stopped UI confirmed"
+  },
+  "normal_shutdown_before_media": true,
+  "network_removed_saved": true,
+  "three_drive_offline_audit_passed_before_media": 21,
+  "fourth_cd_added": {
+    "readonly": true,
+    "interface": "USB",
+    "kind": "CD",
+    "image": "moli-base-drivers-w11-arm64-0.1.274.qcow2",
+    "original_three_drives_unchanged": true,
+    "only_changed_sections_from_start": [
+      "Network",
+      "Drive"
+    ],
+    "removable_popup_attempt": "No create result; dismissed without saving any removable device, then normal Import used"
+  },
+  "offline_restart_for_driver_validation": "Normal boot reached PIN sign-in; user handoff requested; no credential entered or account-page screenshot saved",
+  "pin_changes": false,
+  "old_vm_actions": false,
+  "game_actions": false,
+  "current_driver_installation": "not started",
+  "windows_cold_baseline": "not created while VM is running at authentication handoff",
+  "queries": [
+    "cmd /c ver",
+    "cls;gcim win32_pnpentity|? configmanagererrorcode -ne 0|group configmanagererrorcode|ft count,name",
+    "cls;gcim win32_pnpentity|? configmanagererrorcode -ne 0|? name|fl name,hardwareid"
+  ],
+  "input_correction": "Initial cmd text lost its first c after focus/font changes; corrected and visually verified before Return. No malformed command executed."
+}

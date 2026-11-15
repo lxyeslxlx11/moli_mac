@@ -1,0 +1,57 @@
+{
+  "schema": "moli.stage113.public-catalog-plan.v1",
+  "id": "stage113-current-public-catalog-once",
+  "recorded_utc": "2026-10-30T14:28:16.219980+00:00",
+  "requirement": "reports/development-plan.md#stage113",
+  "purpose": "Refresh the source-bound public catalog pair before binding a credential-free game-update source; configuration reads only",
+  "authority": "Existing user project network-testing authorization; no new account or original executable request",
+  "current_analysis_sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+  "current_source_evidence": [
+    "ev_d758e362ef261b7b69d6b933df1d0ed4c51af17a3791bd48e420d81c2206ef17",
+    "ev_9535de2337bd44fd91c1e972e572d769fed16840a365aa033555422f3386afdb",
+    "ev_6f791e8b4f68a60a08619c501785780496e17acb8c13610c771cb816a5b4feb0",
+    "ev_aa181d96bd04455e3b3d299008d139197b06d5ea3cc80a4d0f6f0cfedb1e96d5",
+    "ev_f72fe3e739a8da6ce1bbe304fc912f01adc00670deb78fc82be5f0aa38dd7d83"
+  ],
+  "pre_login_entry_source": [
+    "0x41e420 cases1/2 then0x42d120",
+    "0x42d120 ->0x40f430 ->0x40ec40; account validation only on later case3"
+  ],
+  "requests": [
+    {
+      "label": "digests",
+      "host": "launch.polchina.com.cn",
+      "port": 80,
+      "path": "/Launcher/xml_md5.dat",
+      "maximum_bytes": 4096
+    },
+    {
+      "label": "games",
+      "host": "launch.polchina.com.cn",
+      "port": 80,
+      "path": "/Launcher/GameList.xml",
+      "maximum_bytes": 131072
+    },
+    {
+      "label": "regions",
+      "host": "launch.polchina.com.cn",
+      "port": 80,
+      "path": "/Launcher/RegionList.xml",
+      "maximum_bytes": 131072
+    }
+  ],
+  "deadline_ms": 15000,
+  "maximum_requests": 3,
+  "retries": 0,
+  "redirects": false,
+  "proxy": false,
+  "cookies_or_auth": false,
+  "raw_bodies_private_only": true,
+  "vendor_execution": false,
+  "install_writes": false,
+  "new_patch_source_request_in_this_plan": false,
+  "limits": "Independent HTTP200/identity-body metadata probe; no WinInet equivalence or publisher authentication claim",
+  "private_probe": "build/analysis/launcher-current-entry-v1/probe-public-catalog.mjs",
+  "private_probe_sha256": "48b3ee167310c316ef7ef2f28b71dabf4742a2404c8bfa525602710e6d273b52",
+  "full_goal_complete": false
+}

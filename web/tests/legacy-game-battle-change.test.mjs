@@ -1,0 +1,2 @@
+import test from'node:test';import * as api from'../../shared/index.mjs';import{createWeChatLegacyGameSession}from'../../adapters/wechat/legacy-game-session.mjs';import{runChangeTCP,changeTCPModes}from'../../analysis/game-battle-change-v1/tcp-flow.mjs';
+for(const mode of changeTCPModes)test('actual source POS/EQU/current-local/row ownership/round/return OS TCP '+mode,{timeout:30000},async()=>console.log('battle-change-tcp '+JSON.stringify(await runChangeTCP({...api,createWeChatLegacyGameSession},mode))));

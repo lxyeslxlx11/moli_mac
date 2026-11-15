@@ -1,0 +1,112 @@
+{
+  "schema": "moli.install-inventory-map01.validation.v1",
+  "recorded_utc": "2026-10-26T05:26:33.319825+00:00",
+  "scope": "Explicit metadata inventory verification and bounded MAP01 header/opaque body parsing. No scan, execution, network, VM, login, credential or unknown game-field semantics.",
+  "node": {
+    "version": "v26.9.0",
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "passed": 85,
+    "failed": 0,
+    "new_inventory_tests": 17,
+    "new_map_tests": 12,
+    "previous_tests": 56,
+    "log": "install-map-node-tests.log"
+  },
+  "python": {
+    "version": "3.9.6",
+    "command": "python3 -m unittest discover -s analysis/resources-v2 -p 'test_*.py' -v",
+    "passed": 8,
+    "failed": 0,
+    "log": "install-map-python-regression.log"
+  },
+  "swift": {
+    "version": "Apple Swift 6.4",
+    "passed": 16,
+    "failed": 0,
+    "log": "install-map-swift-regression.log",
+    "command": "CLANG_MODULE_CACHE_PATH=/tmp/moli-stage36-clang-cache SWIFTPM_MODULECACHE_OVERRIDE=/tmp/moli-stage36-module-cache swift test --disable-sandbox --cache-path /tmp/moli-stage36-swift-cache --scratch-path /tmp/moli-stage36-swift-build",
+    "working_directory": "native",
+    "native_source_changed": false
+  },
+  "initial_unit_run": {
+    "tests": 29,
+    "passed": 28,
+    "failed": 1,
+    "cause": "Synthetic test helper default parameter replaced explicit undefined hash with default A; the intended missing-digest case did not actually omit the property.",
+    "fix": "Constructed metadata objects without sha256; retained assertions for unverified status and false satisfaction. No product assertion weakened.",
+    "after_fix": "29/29 unit tests and85/85 full Node suite passed"
+  },
+  "real_maps": {
+    "source_installer_sha256": "e593e47fa09ac03e2213c7dc7bb80575e0295f0dc48a0e1edc73c4ac1982f983",
+    "observations": "../../analysis/game/map-observations.json",
+    "oracle": "map01-real-oracle.json",
+    "comparison": "map01-real-comparison.json",
+    "samples_passed": 4,
+    "oracle_command": "python3 analysis/resources-v2/map01_oracle.py analysis/game/map-observations.json <1000.dat> <101.dat> <1011.dat> <40000.dat> --output <new-oracle.json>",
+    "node_command": "node shared/tests/validate-local-map01.mjs <oracle.json> <1000.dat> <101.dat> <1011.dat> <40000.dat>",
+    "checked": [
+      "fixed whole-file identity",
+      "candidate dimensions",
+      "exact20+6wh byte length",
+      "opaque header8B",
+      "opaque body byte count and independent SHA256"
+    ],
+    "no_official_payload_saved": true
+  },
+  "example": {
+    "command": "node shared/examples/install-and-map.mjs",
+    "exit_code": 0,
+    "output": "install-map-example.json",
+    "input": "Original synthetic XML/INI, metadata and MAP bytes"
+  },
+  "sources": [
+    {
+      "path": "shared/local-paths.mjs",
+      "sha256": "d21fb5b845c57dbb03ad83c21d2eff31ab992bfb815efcafce67e26139370a6b"
+    },
+    {
+      "path": "shared/install-inventory.mjs",
+      "sha256": "5e0d8a02ab4f43b026db23d39d6fc61adcf726aa49bf3eb6226bdba30da60ff4"
+    },
+    {
+      "path": "shared/map01.mjs",
+      "sha256": "0be8e1ae1b63c98855c1763879cb9aed076320a8c68e70e1d4970cf0dc0b56a9"
+    },
+    {
+      "path": "shared/launcher.mjs",
+      "sha256": "704c179b0355ff5e5a8c189fdf1a583ee5ebd13da3d441c24ec5906f8e0f55af"
+    },
+    {
+      "path": "shared/index.mjs",
+      "sha256": "d212d2d8f1387706bf706896b3c5d1d4f2c1d82cea6336914fb3b3cba4efa429"
+    },
+    {
+      "path": "shared/tests/install-inventory.test.mjs",
+      "sha256": "89990cacd61727e9dbff3f247a0e22d9a8f7fb17217274c2c57320aef7a1cb18"
+    },
+    {
+      "path": "shared/tests/map01.test.mjs",
+      "sha256": "388080ed37aa7171e160df6f4d883732be93b8995d01835d4c2233af482eb4b8"
+    },
+    {
+      "path": "shared/tests/validate-local-map01.mjs",
+      "sha256": "bf57af6eea9335c951560c4370cc3e87733231e17295e37b362f6d04dbf0ea93"
+    },
+    {
+      "path": "shared/examples/install-and-map.mjs",
+      "sha256": "441c4b34ed3ad9b80ac32fe4fd15384ce5bcf8f27cc5ce0a23f2b5c80af6413f"
+    },
+    {
+      "path": "analysis/resources-v2/map01_oracle.py",
+      "sha256": "9f1f14e3db37fae4a4b03c0a31a2823f3fc94e7a66c09e0fbea44b0e3b972a78"
+    }
+  ],
+  "not_verified": [
+    "Actual installation or true file types/content (inventory is caller-supplied metadata)",
+    "Full game asset requirements, startup readiness or official authenticity",
+    "Map planes, cell ordering, coordinates, tile IDs, rendering or collision semantics",
+    "Browser/mobile/miniprogram integration",
+    "Game argv/shared memory to socket, authentication/session/frame specification",
+    "Official server compatibility"
+  ]
+}

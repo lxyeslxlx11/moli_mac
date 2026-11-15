@@ -1,0 +1,2 @@
+import test from'node:test';import*as api from'../../shared/index.mjs';import{createWeChatLegacyGameSession}from'../../adapters/wechat/legacy-game-session.mjs';import{runMountedInputTCP,mountedInputTCPModes}from'../../analysis/game-battle-mounted-input-v1/tcp-flow.mjs';
+for(const mode of mountedInputTCPModes)test('actual received pets/mounted input/round/return OS TCP '+mode,{timeout:30000},async()=>console.log('battle-mounted-input-tcp '+JSON.stringify(await runMountedInputTCP({...api,createWeChatLegacyGameSession},mode))));

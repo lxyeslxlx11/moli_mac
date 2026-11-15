@@ -1,0 +1,70 @@
+{
+  "schema": "moli.lifecycle-observation-plan.v1",
+  "stage": 108,
+  "status": "executed_scoped_cleanup_verified_event_coverage_partial",
+  "purpose": "Distinguish original installed launcher and embedded-updater start/stop timing from point process counts during the separately bounded normal launch plan.",
+  "mechanism": "Built-in local Register-CimIndicationEvent, transient session event queue, no Action and no permanent WMI consumer",
+  "process_names": [
+    "POLCN_Launcher.exe",
+    "LauncherUpdater.exe"
+  ],
+  "source_identifiers": [
+    "molistart108",
+    "molistop108"
+  ],
+  "output_whitelist": [
+    "ProcessName",
+    "ProcessID",
+    "ParentProcessID",
+    "ExitStatus",
+    "TIME_CREATED"
+  ],
+  "exclude_from_artifacts": [
+    "Sid",
+    "SessionID",
+    "SECURITY_DESCRIPTOR",
+    "command lines",
+    "account identifiers",
+    "credentials",
+    "IPC",
+    "process memory"
+  ],
+  "limits": {
+    "maximum_triggers_per_subscription": 16,
+    "original_explicit_parent_starts": 1,
+    "submission_to_observation_end_seconds": 90,
+    "no_launch_until_existing_normal_preflight_passes": true
+  },
+  "prerequisites": [
+    "Read actual current admin-role Boolean; no identity output",
+    "Use normal preinstalled Microsoft PowerShell administrator session if required; no privilege/ACL/security-policy changes",
+    "Verify no source-identifier collision and observe actual subscription receipts",
+    "Do not treat a missing/failed subscription or a point count as complete lifecycle coverage"
+  ],
+  "cleanup": [
+    "Unregister only molistart108 and molistop108 from the same session",
+    "Remove only their queued events",
+    "Observe subscriber/event counts after removal"
+  ],
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/powershell/module/cimcmdlets/register-cimindicationevent?view=powershell-5.1",
+      "support": "Transient local subscription, source identifier and queue behavior; process-start example requires administrator."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/previous-versions/windows/desktop/krnlprov/win32-processstarttrace",
+      "support": "Start event fields and UTC FILETIME timestamps."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/previous-versions/windows/desktop/krnlprov/win32-processstoptrace",
+      "support": "Stop event fields including read-only uint32 ExitStatus."
+    }
+  ],
+  "not_evidence_of": [
+    "Successful update/replacement/restart/ACK/rollback",
+    "Successful official login",
+    "Recovered game protocol",
+    "Complete process lifecycle coverage"
+  ],
+  "runtime_record": "lifecycle-runtime-stage108.json"
+}

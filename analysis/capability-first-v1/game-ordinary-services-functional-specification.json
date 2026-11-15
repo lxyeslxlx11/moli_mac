@@ -1,0 +1,4133 @@
+{
+  "schema": "moli.game-ordinary-services-functional-specification.v1",
+  "classification": "original five-capability operation composition before grouped development",
+  "requirement": "Analyze all original required capabilities with REA before grouped shared development. Compose inventory/interactions/shop/training/trade-storage together using their shared source selection,quantity and occupancy owners;preserve full original scope.",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "original_capabilities": {
+    "G09": {
+      "id": "G09",
+      "title": "背包、装备、用物与拾取",
+      "requirement_scope": "槽位/数量移动、使用/定向、装备、丢弃、地面拾取、回包归属",
+      "existing_implementation_owners": [
+        "shared/legacy-game-items.mjs",
+        "shared/legacy-game-protocol.mjs"
+      ],
+      "dependencies": [
+        "G05"
+      ],
+      "implementation_batch": "D3",
+      "source_profiles": [
+        "game-legacy-37c4"
+      ],
+      "registered_protocol_entries": []
+    },
+    "G10": {
+      "id": "G10",
+      "title": "角色交互、对话、图文与外观",
+      "requirement_scope": "面对/选择角色、NPC对话、双字段、图文确认及外观草稿",
+      "existing_implementation_owners": [
+        "shared/legacy-game-map-dialog.mjs",
+        "shared/legacy-game-map-dialog-graphics.mjs",
+        "shared/legacy-game-map-appearance.mjs"
+      ],
+      "dependencies": [
+        "G05",
+        "G07"
+      ],
+      "implementation_batch": "D3",
+      "source_profiles": [
+        "game-legacy-37c4"
+      ],
+      "registered_protocol_entries": []
+    },
+    "G11": {
+      "id": "G11",
+      "title": "商店、鉴修、兑换与给予服务",
+      "requirement_scope": "买卖/服务/兑换/折算/单项给予、报价和窗口关闭",
+      "existing_implementation_owners": [
+        "shared/legacy-game-map-shop.mjs"
+      ],
+      "dependencies": [
+        "G09",
+        "G10"
+      ],
+      "implementation_batch": "D3",
+      "source_profiles": [
+        "game-legacy-37c4"
+      ],
+      "registered_protocol_entries": []
+    },
+    "G12": {
+      "id": "G12",
+      "title": "NPC治疗、人物与宠物训练",
+      "requirement_scope": "报价/治疗、人物学习遗忘、宠物选择和技能栏",
+      "existing_implementation_owners": [
+        "shared/legacy-game-map-npc-services.mjs",
+        "shared/legacy-game-map-pet-training.mjs"
+      ],
+      "dependencies": [
+        "G09",
+        "G10"
+      ],
+      "implementation_batch": "D3",
+      "source_profiles": [
+        "game-legacy-37c4"
+      ],
+      "registered_protocol_entries": []
+    },
+    "G13": {
+      "id": "G13",
+      "title": "玩家交易、银行与仓储",
+      "requirement_scope": "双方报价/确认/撤回、物品/宠物/金币存取、关闭与恢复",
+      "existing_implementation_owners": [
+        "shared/legacy-game-player-trade.mjs",
+        "shared/legacy-game-map-bank.mjs"
+      ],
+      "dependencies": [
+        "G09",
+        "G10"
+      ],
+      "implementation_batch": "D3",
+      "source_profiles": [
+        "game-legacy-37c4"
+      ],
+      "registered_protocol_entries": []
+    }
+  },
+  "original_snapshots": {
+    "G09": {
+      "file": {
+        "path": "build/analysis/ordinary-services-functional-specification-v1/before/analysis/capability-first-v1/capability-matrix.json",
+        "bytes": 904972,
+        "sha256": "3b487b502bbe4dacc2880c377ad71bbb5ab536f7c619969540378160309e3698"
+      },
+      "pointer": "/capabilities/16"
+    },
+    "G10": {
+      "file": {
+        "path": "build/analysis/ordinary-services-functional-specification-v1/before/analysis/capability-first-v1/capability-matrix.json",
+        "bytes": 904972,
+        "sha256": "3b487b502bbe4dacc2880c377ad71bbb5ab536f7c619969540378160309e3698"
+      },
+      "pointer": "/capabilities/17"
+    },
+    "G11": {
+      "file": {
+        "path": "build/analysis/ordinary-services-functional-specification-v1/before/analysis/capability-first-v1/capability-matrix.json",
+        "bytes": 904972,
+        "sha256": "3b487b502bbe4dacc2880c377ad71bbb5ab536f7c619969540378160309e3698"
+      },
+      "pointer": "/capabilities/18"
+    },
+    "G12": {
+      "file": {
+        "path": "build/analysis/ordinary-services-functional-specification-v1/before/analysis/capability-first-v1/capability-matrix.json",
+        "bytes": 904972,
+        "sha256": "3b487b502bbe4dacc2880c377ad71bbb5ab536f7c619969540378160309e3698"
+      },
+      "pointer": "/capabilities/19"
+    },
+    "G13": {
+      "file": {
+        "path": "build/analysis/ordinary-services-functional-specification-v1/before/analysis/capability-first-v1/capability-matrix.json",
+        "bytes": 904972,
+        "sha256": "3b487b502bbe4dacc2880c377ad71bbb5ab536f7c619969540378160309e3698"
+      },
+      "pointer": "/capabilities/20"
+    }
+  },
+  "source_authentication": {
+    "path": "build/analysis/ordinary-services-functional-specification-v1/source-authentication.json",
+    "bytes": 365917,
+    "sha256": "02fb55d4896de1e0827d9ca633584728c79d94422f95ea3220ba3c6a3d736699"
+  },
+  "source_supplement": {
+    "path": "build/analysis/ordinary-services-functional-specification-v1/source-supplement.json",
+    "bytes": 536718,
+    "sha256": "85543116bb03a174f3e71f7158c8a3336833aa13d901b5178dfc31b0cd2e90b0"
+  },
+  "new_callback_review": {
+    "path": "build/analysis/ordinary-services-functional-specification-v1/new-callback-review.json",
+    "bytes": 531811,
+    "sha256": "6d4ad1d942172010b9533466c76f409a5d417e5a2d90d3be4c9c745db52b57e3"
+  },
+  "focused_probe": {
+    "path": "build/analysis/ordinary-services-functional-specification-v1/focused-probe.json",
+    "bytes": 2761,
+    "sha256": "8903ef5ab2c9b33d379688d973e724a0419b26e9c7b296bd70b1e7811b80c07c"
+  },
+  "retained_rule_nodes": [
+    {
+      "file": {
+        "path": "analysis/capability-first-v1/game-shop-services-contract.json",
+        "bytes": 132820,
+        "sha256": "79a3dffd993d7708b60516528a493bc859c55b74a3e25ab1ca9517017f2387ec"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "97902a861e185e6b5080b09ba05630f58a20031b25ffaad39656b997ef4ce576"
+    },
+    {
+      "file": {
+        "path": "analysis/capability-first-v1/game-training-services-contract.json",
+        "bytes": 34653,
+        "sha256": "62c0deaee704a4028c3df2153ae05609210316e266d9d2e0464f9ed44632735f"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "f1d8fb063dc8a071ee13efb8b2011940e2857737fb4ab846444616b90450de88"
+    },
+    {
+      "file": {
+        "path": "analysis/capability-first-v1/game-trade-storage-contract.json",
+        "bytes": 217335,
+        "sha256": "6475cf6d742dc141b1281fd74fefdbc1239c6af45e05338742cb6dbcfbf23b33"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "a1fb7d07797a8a88fd3765a8664a9ef70577dbf382396f158d8d8a8203d7d4ca"
+    },
+    {
+      "file": {
+        "path": "analysis/capability-first-v1/game-service-invalidation-contract.json",
+        "bytes": 56938,
+        "sha256": "4dfa8209f78155607bc2c784e072eb576984b99d58817746057d4d538fa7ec14"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "2ca1fe2f02828666200732bf85cce4c5366182ffe9e43c786437a5b6262b41db"
+    },
+    {
+      "file": {
+        "path": "analysis/game-wechat-inventory-shop-v1/source-check.json",
+        "bytes": 14448,
+        "sha256": "f77392fd21bc465fb047595c1a4286feafd1004f5aeb30e5396941fa129b83b1"
+      },
+      "pointer": "/calls",
+      "canonical_sha256": "8fc9d0e6dac5a9952b0f252e2570fedea66f6808b94eb5a7f973833c5fbad996"
+    },
+    {
+      "file": {
+        "path": "analysis/game-wechat-inventory-shop-v1/source-check.json",
+        "bytes": 14448,
+        "sha256": "f77392fd21bc465fb047595c1a4286feafd1004f5aeb30e5396941fa129b83b1"
+      },
+      "pointer": "/outgoing_literals",
+      "canonical_sha256": "5d7b9dfe3a31d25dbf64647d60de422d3da2cdafbc0609bba86418bc07231532"
+    },
+    {
+      "file": {
+        "path": "analysis/game-battle-shared-storage-v1/ordinary-items-source-check.json",
+        "bytes": 11656,
+        "sha256": "eb521aec71f35d9e853d17a950d19f8f67d5565c014b8fb67d0efc4ae5dc6c09"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "69d85229fa9fa9f1e53ba32d6af4946e2d69bcc5c59fef7cfd66cb885670fe63"
+    },
+    {
+      "file": {
+        "path": "analysis/game-battle-shared-storage-v1/ground-pickup-source-check.json",
+        "bytes": 12281,
+        "sha256": "2b77485cbfb4a45130d62730262b00f81a0f0775106bd4c76319cfd44907888d"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "2ac3a522445e3802d7abbdc6042c34f7c6f0fa3467546bd2c98ca4c676a1bafa"
+    },
+    {
+      "file": {
+        "path": "analysis/game-battle-shared-storage-v1/map-shop-source-check.json",
+        "bytes": 15358,
+        "sha256": "6146a24c7cf857d6e719cbfd61f6e04091be3d8642896898fd17f8820d29b852"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "3deecdbb7e8f00a0ae147d8c67ec506020a54f78bec091d3aa4facc45abc905e"
+    },
+    {
+      "file": {
+        "path": "analysis/game-battle-shared-storage-v1/shop-service-source-check.json",
+        "bytes": 13273,
+        "sha256": "97770fbe2dbdcea11958e891b5fe51db497b119dd949d03dbfb2b9481d4feaa1"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "64000c8dcbd1ec2d36dcaf9da41cb2720b343b8425474bfe1bc91abf69e303bd"
+    },
+    {
+      "file": {
+        "path": "analysis/game-battle-shared-storage-v1/shop-exchange-source-check.json",
+        "bytes": 14207,
+        "sha256": "545170d46b09682129e6a678bfb582b7dac3d2d6f029a4f0914d36c6864f5c55"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "45776311e736bbbdfa670206e75e40f96d00202cf10962d3a2c9288dd1814a68"
+    },
+    {
+      "file": {
+        "path": "analysis/game-battle-shared-storage-v1/shop-conversion-source-check.json",
+        "bytes": 16471,
+        "sha256": "62188807a23a5ade3bd5cb96a156f8c60d3e93b7d270f9385ff4939f1d20a30d"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "e51db044f2414ae771a03bd0be96697fc25d67f3d7eef363af55b8a745a9a685"
+    },
+    {
+      "file": {
+        "path": "analysis/game-wechat-special-dialogs-v1/source-check.json",
+        "bytes": 25937,
+        "sha256": "02c5346cb5b71035df558797e6e0d13bf510f5923f6587d496e45def3a08eabf"
+      },
+      "pointer": "/dispatch",
+      "canonical_sha256": "5ac883f4eb5e68dff9fba03725d3ad8dea25cae4fa68b821c81ee80fae6b965c"
+    },
+    {
+      "file": {
+        "path": "analysis/game-wechat-special-dialogs-v1/source-check.json",
+        "bytes": 25937,
+        "sha256": "02c5346cb5b71035df558797e6e0d13bf510f5923f6587d496e45def3a08eabf"
+      },
+      "pointer": "/calls",
+      "canonical_sha256": "eefc15059efa657331f35db7513fb21a97070cc78d770edfd4a894232a7a7565"
+    },
+    {
+      "file": {
+        "path": "analysis/game-wechat-special-dialogs-v1/source-check.json",
+        "bytes": 25937,
+        "sha256": "02c5346cb5b71035df558797e6e0d13bf510f5923f6587d496e45def3a08eabf"
+      },
+      "pointer": "/constants",
+      "canonical_sha256": "7ee930035709838e2267e3ef5618d991aa2393cf27a61434bde0930989289bf0"
+    },
+    {
+      "file": {
+        "path": "analysis/game-wechat-special-dialogs-v1/source-check.json",
+        "bytes": 25937,
+        "sha256": "02c5346cb5b71035df558797e6e0d13bf510f5923f6587d496e45def3a08eabf"
+      },
+      "pointer": "/appearance_callbacks",
+      "canonical_sha256": "82e52bff490e5ae0f107572acbe0d242d131222bfc2faebd4b1ca123140c51c7"
+    },
+    {
+      "file": {
+        "path": "analysis/game-battle-shared-storage-v1/map-dialog-services-source-check.json",
+        "bytes": 18954,
+        "sha256": "f35b90d4f59faa63bdb7ed7051a4bdb7727700f7a2c7d74b284df7533c196235"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "69d081319606ab2f0fae908f3738fc885325f908ce4a98ddd56d7b5c08d7141b"
+    },
+    {
+      "file": {
+        "path": "analysis/game-battle-shared-storage-v1/shop-conversion-source-check.json",
+        "bytes": 16471,
+        "sha256": "62188807a23a5ade3bd5cb96a156f8c60d3e93b7d270f9385ff4939f1d20a30d"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "e51db044f2414ae771a03bd0be96697fc25d67f3d7eef363af55b8a745a9a685"
+    },
+    {
+      "file": {
+        "path": "analysis/game-wechat-map-services-v1/source-check.json",
+        "bytes": 16273,
+        "sha256": "5b8ea5cbf4b99be94f0a959bfed5ac9d56ec76b640adf83562db0cea139a0087"
+      },
+      "pointer": "/dispatch",
+      "canonical_sha256": "faa8346dc4e2e1073499c32d4ca859e393a17092b6219da76c2a3a4dd2b8fe9c"
+    },
+    {
+      "file": {
+        "path": "analysis/game-wechat-map-services-v1/source-check.json",
+        "bytes": 16273,
+        "sha256": "5b8ea5cbf4b99be94f0a959bfed5ac9d56ec76b640adf83562db0cea139a0087"
+      },
+      "pointer": "/calls",
+      "canonical_sha256": "097984fbd65bebf8200831e9c15c1ee245e9b3b9057c696afcd9256bce793663"
+    },
+    {
+      "file": {
+        "path": "analysis/game-wechat-map-services-v1/source-check.json",
+        "bytes": 16273,
+        "sha256": "5b8ea5cbf4b99be94f0a959bfed5ac9d56ec76b640adf83562db0cea139a0087"
+      },
+      "pointer": "/constants",
+      "canonical_sha256": "f9295c6545c3533a5a2023b821b3da78bf2776f44d9868dd6b2c45ad21d031bc"
+    },
+    {
+      "file": {
+        "path": "analysis/game-battle-shared-storage-v1/map-dialog-services-source-check.json",
+        "bytes": 18954,
+        "sha256": "f35b90d4f59faa63bdb7ed7051a4bdb7727700f7a2c7d74b284df7533c196235"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "69d081319606ab2f0fae908f3738fc885325f908ce4a98ddd56d7b5c08d7141b"
+    },
+    {
+      "file": {
+        "path": "analysis/game-wechat-storage-trade-v1/source-check.json",
+        "bytes": 30375,
+        "sha256": "93e7ccebb4553dadbab66df87eaad07ca29fd62814335d740eabd7d83e23d118"
+      },
+      "pointer": "/calls",
+      "canonical_sha256": "32301f2357670191abc79b468a5e5c932c47af2a9856b624acd68c4e315bd7c5"
+    },
+    {
+      "file": {
+        "path": "analysis/game-wechat-storage-trade-v1/source-check.json",
+        "bytes": 30375,
+        "sha256": "93e7ccebb4553dadbab66df87eaad07ca29fd62814335d740eabd7d83e23d118"
+      },
+      "pointer": "/constants",
+      "canonical_sha256": "c94b51af5a8026ede36e305abb165f76eedd22746d545e4a8257428315348e58"
+    },
+    {
+      "file": {
+        "path": "analysis/game-wechat-storage-trade-v1/source-check.json",
+        "bytes": 30375,
+        "sha256": "93e7ccebb4553dadbab66df87eaad07ca29fd62814335d740eabd7d83e23d118"
+      },
+      "pointer": "/storage_dispatch",
+      "canonical_sha256": "676146f6061ccee4cfa5f241045ea3115939eba86b29985350f3b59d882c058a"
+    },
+    {
+      "file": {
+        "path": "analysis/game-wechat-storage-trade-v1/source-check.json",
+        "bytes": 30375,
+        "sha256": "93e7ccebb4553dadbab66df87eaad07ca29fd62814335d740eabd7d83e23d118"
+      },
+      "pointer": "/storage_records",
+      "canonical_sha256": "2ba42e84e314657c44fb34fce78f64000a34ed23ac2ffc2f053866e83ab4bbaf"
+    },
+    {
+      "file": {
+        "path": "analysis/game-wechat-storage-trade-v1/source-check.json",
+        "bytes": 30375,
+        "sha256": "93e7ccebb4553dadbab66df87eaad07ca29fd62814335d740eabd7d83e23d118"
+      },
+      "pointer": "/trade_incoming",
+      "canonical_sha256": "774fa907c59945fca6ab739868e3f5b93d07f2703f385e18dd3b09a175bdb3e5"
+    },
+    {
+      "file": {
+        "path": "analysis/game-wechat-storage-trade-v1/source-check.json",
+        "bytes": 30375,
+        "sha256": "93e7ccebb4553dadbab66df87eaad07ca29fd62814335d740eabd7d83e23d118"
+      },
+      "pointer": "/trade_outgoing",
+      "canonical_sha256": "6b11713e15ce5dabe215bd8615ee1971fc59d4a5324d8f1b6f29b43d77a24a6d"
+    },
+    {
+      "file": {
+        "path": "analysis/game-battle-shared-storage-v1/player-trade-source-check.json",
+        "bytes": 30476,
+        "sha256": "696a2b79b974feb7abe52f08190e44416f355cd3350d98e7228dacf2bf5b535b"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "0dd6ea84fcc604ddfb105059d36cfd2b54e720d117cb14a546a8f8108f4f8d6b"
+    },
+    {
+      "file": {
+        "path": "build/analysis/ordinary-action-workflows-v1/specification.json",
+        "bytes": 153162,
+        "sha256": "f66eb8e6d2b05a3531a0745ff047779c5906d4b5b58ab92f5a0caf0f34160368"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "facec5c0e113e797eb2a56b67726a215f0ce7d05fe409ab2f77a10554632bfb7"
+    },
+    {
+      "file": {
+        "path": "build/analysis/inventory-selection-ownership-v1/specification.json",
+        "bytes": 66929,
+        "sha256": "5bcdecb4e6a5ffd630adfeb7512c64b789c25fcb7fd98a4f08901a6cab2ed4c1"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "386aa16323b93249c7d880a617291940e23ec83af076c3f28644ed40fa3b3444"
+    },
+    {
+      "file": {
+        "path": "build/analysis/inventory-selection-ownership-v1/specification.json",
+        "bytes": 66929,
+        "sha256": "5bcdecb4e6a5ffd630adfeb7512c64b789c25fcb7fd98a4f08901a6cab2ed4c1"
+      },
+      "pointer": "/implementation_deltas",
+      "canonical_sha256": "0109a161b46b5e4c3e441f0e9a7894e904461e9884aaf53858e47a936c2e2137"
+    },
+    {
+      "file": {
+        "path": "build/analysis/quantity-prompt-lifecycle-v1/specification.json",
+        "bytes": 31824,
+        "sha256": "a12aa79952ed52d8b972bb3c6b63d4674876140f1b430a64403152751cd0e6ee"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "469e18f73732eb378aae29b833b495601d4be07fb4dbdc6ac3d24c465c53a1eb"
+    },
+    {
+      "file": {
+        "path": "build/analysis/quantity-prompt-lifecycle-v1/specification.json",
+        "bytes": 31824,
+        "sha256": "a12aa79952ed52d8b972bb3c6b63d4674876140f1b430a64403152751cd0e6ee"
+      },
+      "pointer": "/flow_rows",
+      "canonical_sha256": "86e2abe89969edf4bd98bb076d8ae4534f9d3028a73ada365fe2fdc205c18527"
+    },
+    {
+      "file": {
+        "path": "build/analysis/quantity-prompt-lifecycle-v1/specification.json",
+        "bytes": 31824,
+        "sha256": "a12aa79952ed52d8b972bb3c6b63d4674876140f1b430a64403152751cd0e6ee"
+      },
+      "pointer": "/inferences",
+      "canonical_sha256": "e5d238117739fe229b0992b101789e9fad6f757e9fcdc8d463149f5f09581708"
+    },
+    {
+      "file": {
+        "path": "build/analysis/quantity-prompt-lifecycle-v1/specification.json",
+        "bytes": 31824,
+        "sha256": "a12aa79952ed52d8b972bb3c6b63d4674876140f1b430a64403152751cd0e6ee"
+      },
+      "pointer": "/implementation_deltas",
+      "canonical_sha256": "d522aad530b07530203ef038faf93249af6be0f18328620452a4f9c43ab5df88"
+    },
+    {
+      "file": {
+        "path": "build/analysis/shared-occupancy-composition-v1/specification.json",
+        "bytes": 35590,
+        "sha256": "ea93307f50617a3b5fee6d37de939ec15a981f976be17ba91a9fdd2444cd4036"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "a0b46fb5489f99cf77fb4468edfe0be596c7db14de8529d4e3345c18558aa107"
+    },
+    {
+      "file": {
+        "path": "build/analysis/shared-occupancy-composition-v1/specification.json",
+        "bytes": 35590,
+        "sha256": "ea93307f50617a3b5fee6d37de939ec15a981f976be17ba91a9fdd2444cd4036"
+      },
+      "pointer": "/admission_and_lifecycle_cases",
+      "canonical_sha256": "f00ef233fe0a512667615ac7f1daa9b55644f83748a204bd1d579973def13f48"
+    },
+    {
+      "file": {
+        "path": "build/analysis/shared-occupancy-composition-v1/specification.json",
+        "bytes": 35590,
+        "sha256": "ea93307f50617a3b5fee6d37de939ec15a981f976be17ba91a9fdd2444cd4036"
+      },
+      "pointer": "/implementation_deltas",
+      "canonical_sha256": "6b795a08ed1f55c8e2b48431a97c4eb12cb95215670d0da4451672b6f8c25c21"
+    },
+    {
+      "file": {
+        "path": "analysis/capability-first-v1/window-engine-contract.json",
+        "bytes": 14625,
+        "sha256": "800ec8a413ea85e4cfdee7e2fe82f193f825124af198aa863c4ad54ba404a683"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "7addc5c1a4cfa23630d1c5eac748b378c703833feb7891577b7dfcebc6e2a8c2"
+    },
+    {
+      "file": {
+        "path": "analysis/capability-first-v1/game-service-selection-contract.json",
+        "bytes": 17929,
+        "sha256": "d62ceb4788009d259c4f85932ebca77d2b4a36622517622bfd05afdc63b50d6b"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "3e10a76c402a2684e58e2f1a7a4752be18767154df6b590f69bf8ad431876fe4"
+    },
+    {
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports",
+      "canonical_sha256": "def2725fb4d7a7417b598afc0f7b0bb4bc377a01225fbb571d9786ed836741f9"
+    },
+    {
+      "file": {
+        "path": "analysis/capability-first-v1/game-input-admission-contract.json",
+        "bytes": 11061,
+        "sha256": "2316f6cba78298bc1713003a3df0f932fac89fcc2b433980bcaf06723dfd6d53"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "c3698f747632512648dec468076cf9da68fb28f4b5632c5fdf0150ff7e03ee73"
+    }
+  ],
+  "normative_precedence": "Exact retained codec/layout/rule tables remain normative;this composition supplies operation order/owners andselected supersession. Canonical native,old/new derived,opcode proofs andconditional inferences retain distinct authority.",
+  "facts": [
+    {
+      "id": "OS-F01",
+      "title": "Fixed version and existing wire routes",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x4f4410",
+        "0x48fce0",
+        "0x4f8240"
+      ],
+      "source_authorities": {
+        "0x4f4410": "complete-native",
+        "0x48fce0": "complete-native",
+        "0x4f8240": "complete-native"
+      },
+      "clauses": [
+        "All rules are tied to the fixed37c4 game. Reuse Q?m mode/mask/dialogId/actorId/bytes and /1I x/y/dialogId/actorId/button/bytes;neither dialogId nor the current independent revision is a wire request generation.",
+        "Retain all original G09..G13 scope,owners,dependencies,D3 batches and source profiles. Existing protocol entries/formatters are reused;no new authentication field or acknowledgement is invented."
+      ]
+    },
+    {
+      "id": "OS-F02",
+      "title": "28 live item slots and publication ownership",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x4f25a0",
+        "0x4f2c40",
+        "0x510de0",
+        "0x510e50"
+      ],
+      "source_authorities": {
+        "0x4f25a0": "complete-native",
+        "0x4f2c40": "complete-native",
+        "0x510de0": "complete-native",
+        "0x510e50": "complete-native"
+      },
+      "clauses": [
+        "Live item records have28 slots atF536CC,stride65C;equipment0..7 and bag8..27. Retained14-field publication distinguishes field5 code,6 use flag,7 flags,10 qualification,12 category and13 quantity. Field12 isnot the field5 code compared with67C9.",
+        "Name/description byte limits,empty/long-name retention and source selected-token semantics remain the exact ordinary-items source contract. Source partial publication and the independent atomic staged parser are different policies.",
+        "Move replies update both live endpoints and the trade/storage projections. Live65C,shop658,trade64C andstorage644 strides are different;per-slot revision is an independent target guard,not native state."
+      ],
+      "full_inventory_publication": "/full_inventory_publication"
+    },
+    {
+      "id": "OS-F03",
+      "title": "Ordinary bag/equipment input callbacks",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x47c880",
+        "0x47cfe0",
+        "0x43b420",
+        "0x47b900",
+        "0x4f68b0"
+      ],
+      "source_authorities": {
+        "0x47c880": "explicit-derived-static-view",
+        "0x47cfe0": "explicit-derived-static-view",
+        "0x43b420": "complete-native",
+        "0x47b900": "complete-native",
+        "0x4f68b0": "complete-native"
+      },
+      "clauses": [
+        "Bag47C880 scans20 cells with C5E954[index]==0. Equipment47CFE0 scans8 positions from signed16 pairs52EDE8 andC5E94C[index]==0. Source48x48 hit rectangles,50-pixel bag spacing,hover/drag event bits andsource drag getters remain explicit input context.",
+        "Bag drag bits20/40 require source dragkind2;equipment additionally excludes source slots>99. A valid different destination invokes47B900;the callback doesnot invent category-specific server equipment acceptance.",
+        "Use activation also requires C1F684<0,valid hover,C5FB2C bit10 andsource dragtype0/E,presence anduseflag1. Code67C9 enters targeting before the direct-use secondary80/43B420 gates. Ordinary direct use sends current logical x/y,absolute slot and0 through4F68B0.",
+        "Bag andequipment hover/display,quantity hint cycling,shared tooltip andoccupied-cell appearance retain their own tail order. Ahandled event doesnot automatically terminate the source callback."
+      ],
+      "source_rule_supplement": "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/fixed_se_item_target_menus"
+    },
+    {
+      "id": "OS-F04",
+      "title": "Targeted item use and source reservation",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x47d6f0",
+        "0x47dee0",
+        "0x47ba20",
+        "0x4f7ae0"
+      ],
+      "source_authorities": {
+        "0x47d6f0": "explicit-derived-static-view",
+        "0x47dee0": "explicit-derived-static-view",
+        "0x47ba20": "complete-native",
+        "0x4f7ae0": "complete-native"
+      },
+      "clauses": [
+        "Entering targeting reserves the source absolute slot by incrementing its C5E94C byte andinstalls47D6F0 for bag plus47DEE0 for equipment. In mode1,the bag target needs presence,zero occupancy,category!=2F,quantity<1,qualification100 clear and(200 clear or400 set).",
+        "An admitted target sends4F7AE0(target absolute bag slot,held source slot). The mode1 submit branch doesnot itself release the reservation orrestore controls;self-target exclusion follows the actual reservation/context ratherthan an added wire field.",
+        "47DEE0 only marks framebit2000 when requested anddraws the eight equipment slots disabled/occupied;it returns0 andhas no target-hit orsend path. The existing bag-only targeted-use boundary is therefore retained.",
+        "Right-button cancellation restores normal callbacks,releases the selected byte,sets held slot=-1 andcan clear active1D;the callback then continues its draw tail. With held slot=-1 the indexed graphic read addressesF536A8. Do not assume an early return,zero,or an observed crash."
+      ]
+    },
+    {
+      "id": "OS-F05",
+      "title": "Drop factory and right-click pickup are separate",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x47f430",
+        "0x47f2d0",
+        "0x500860",
+        "0x4622d0",
+        "0x43f100",
+        "0x4f6ac0",
+        "0x4f6a30"
+      ],
+      "source_authorities": {
+        "0x47f430": "explicit-derived-static-view",
+        "0x47f2d0": "explicit-derived-static-view",
+        "0x500860": "complete-native",
+        "0x4622d0": "complete-native",
+        "0x43f100": "complete-native",
+        "0x4f6ac0": "complete-native",
+        "0x4f6a30": "complete-native"
+      },
+      "clauses": [
+        "47CC62/47D3F4 call factory47F5F0;that30-byte factory supplies callback47F430 andpublishes C224CC fromits secondargument. The original producer isnot a direct immediate47F430 assignment atthose call addresses.",
+        "47F2D0 classifies0..7=>1,8..27=>2,100..119=>3,otherwise0.47F430 event0 handles the source popup/cursor/presence lifecycle;event2 sendsdrop onlywhen C224CC!=0,local secondary80 clear and43B420 returns0. No uniform gate is added toother actions.",
+        "Right-press first calls4622D0 toface,then500860 pickup underits own guard. Pickup requires active55E4D4==-1,each absolute tile delta<=1,mask7 objectlookup andstrict uint32(last+500)<now;it sends logical x/y/direction without a targetID.",
+        "The subsequent mask8 actor interaction is independently checked. Turn,pickup andA/B interaction clocks andtarget masks are not merged."
+      ]
+    },
+    {
+      "id": "OS-F06",
+      "title": "Shared quantity prompt and current endpoints",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x47b900",
+        "0x47b7e0",
+        "0x47e4e0",
+        "0x47e440",
+        "0x47e040",
+        "0x47e160",
+        "0x49fdd0"
+      ],
+      "source_authorities": {
+        "0x47b900": "complete-native",
+        "0x47b7e0": "complete-native",
+        "0x47e4e0": "complete-native",
+        "0x47e440": "complete-native",
+        "0x47e040": "complete-native",
+        "0x47e160": "explicit-derived-static-view",
+        "0x49fdd0": "explicit-derived-static-view"
+      },
+      "clauses": [
+        "The selected47B900 nine-argument ABI supplies source quantity twice as limits and0 as edit initial value. Whole move uses-1;eligible positive split uses the prompt. Upper bound isnot the initial edit value.",
+        "Opening marks the old42 window;successful animation publishes globals onits eleventh callback,allocation failure publishes immediately. The shared type/callback/control state can be overwritten. These counters are calls,notmilliseconds.",
+        "47B7E0 reads the current global endpoints onsubmit,doesnot recheck stack/empty/eligibility,androutes two local slots to4F6C70;storage uses current41 first then38 with I|from|to|amount. Window replacement/endpoint changes preserve the QP exact order.",
+        "Closing42 marks8000 without submission orautomatic callback/focus reset. Current revision,pending,amount validation andimmediate cancellation are independent target choices;source callback invocation alone doesnot prove a normal UI can submit every integer."
+      ]
+    },
+    {
+      "id": "OS-F07",
+      "title": "Selection maps andshared byte accounting",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x4a2290",
+        "0x4a23a0",
+        "0x4a2260",
+        "0x4a2310",
+        "0x4a2220",
+        "0x4a2340",
+        "0x4ae3e0"
+      ],
+      "source_authorities": {
+        "0x4a2290": "explicit-derived-static-view",
+        "0x4a23a0": "explicit-derived-static-view",
+        "0x4a2260": "explicit-derived-static-view",
+        "0x4a2310": "explicit-derived-static-view",
+        "0x4a2220": "complete-native",
+        "0x4a2340": "complete-native",
+        "0x4ae3e0": "complete-native"
+      },
+      "clauses": [
+        "20 item and5 pet offer positions store signed8 source slots;negative means-1. Getter primitives do notthemselves enforce caller loop bounds. Source slot|offerPosition serialization retains holes.",
+        "Reuse SW exact assign/release/swap rules and28-byte C5E94C occupancy withbyte wrap. Selection mapping,live item cache andquoted display rows are separate owners;they are not monotonic revisions.",
+        "Kind9 invalidation consumes nonzero C5E9C8 once,otherwise clears selection/count/mapping andrefreshes the appropriate source cache. Its conditional producer frontier remainsexplicit;no unknown producer isfabricated."
+      ]
+    },
+    {
+      "id": "OS-F08",
+      "title": "Classic ingress,group teardown andcallback tails",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x4f4410",
+        "0x48fce0",
+        "0x48f0a0",
+        "0x468f00",
+        "0x467fc0",
+        "0x467ec0",
+        "0x469540"
+      ],
+      "source_authorities": {
+        "0x4f4410": "complete-native",
+        "0x48fce0": "complete-native",
+        "0x48f0a0": "complete-native",
+        "0x468f00": "complete-native",
+        "0x467fc0": "complete-native",
+        "0x467ec0": "complete-native",
+        "0x469540": "complete-native"
+      },
+      "clauses": [
+        "4F4410 applies924F30/C5EC18/boxed9250C8 admission. mask=-1 closes onlymatching mode/actor;dialogId isnot another close-match key.48FCE0 retainsactive-mode restrictions andsource special replacement sequences146/147/171/184/185/186.",
+        "A forced admitted replacement synchronously destroys oldgroups2 then3 before publishing newmode/owner. Old53 destructors thus read oldshopmode inthat path. Live-window teardown andunfinished opening animations are different contexts.",
+        "Shared initialization/control dispatch,logical8000 marks,callback continuation,destructor andpoolslot removal follow the original window contract. Closing requests do not uniformly short-circuit the rest ofthe callback orprove physical destruction/focus recovery."
+      ]
+    },
+    {
+      "id": "OS-F09",
+      "title": "Facing,actor selection andsource A/B keys",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x466e50",
+        "0x466f50",
+        "0x467290",
+        "0x4b4170",
+        "0x43f100"
+      ],
+      "source_authorities": {
+        "0x466e50": "complete-native",
+        "0x466f50": "complete-native",
+        "0x467290": "complete-native",
+        "0x4b4170": "complete-native",
+        "0x43f100": "complete-native"
+      },
+      "clauses": [
+        "Retain the admitted facing/target masks,distance/local state andsource A/B fields. A/B business names are not invented from names orshortcuts;known numeric producers andexact argument counts are sufficient todescribe their client operations.",
+        "WithCtrl held andmain!=10,layout0 usesCtrl+K/V,layout1 Ctrl+J/K. Independentif statements testA thenB;source checks do notclear key events. Shared614884 strict last+500<now updates onlyon actual send,soA can suppressB whileAfailure neednot blockB.",
+        "Keyboard layout isnot alternate-window style. Host key/focus andsource call clocks remain separate from actual OS input acceptance."
+      ]
+    },
+    {
+      "id": "OS-F10",
+      "title": "NPC text,paired fields andreply composition",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x48fce0",
+        "0x4908e0",
+        "0x4f8240",
+        "0x4e9e20"
+      ],
+      "source_authorities": {
+        "0x48fce0": "complete-native",
+        "0x4908e0": "complete-native",
+        "0x4f8240": "complete-native",
+        "0x4e9e20": "complete-native"
+      },
+      "clauses": [
+        "Normal0/1/2,wideA/B andpaired23 route to4908E0 withtheir own input/menu/header/mask/width rules. Normal448x240 versuswide576x432,byte wrapping andavailable button/input space remain the exact retained source tables.",
+        "Paired fields areeach bounded to46 encoded bytes;confirm validates meaningful content andforbids comma/backslash/pipe,withspace/8140 rules distinct fromUnicode blank checks. Cancel carries current fields throughits original escaping/order.",
+        "Replies preserve current x/y,dialogId,actorId,button andinnerescaped bytes. Inputclear,buttondispatch orwindowmark isnot proof a serveraccepted reply. Source target-specificEnter/close behavior remains underG07/X02."
+      ]
+    },
+    {
+      "id": "OS-F11",
+      "title": "Illustration scanner andfixed graphic confirmation",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x490760",
+        "0x48efb0",
+        "0x48f4f0",
+        "0x4b4010",
+        "0x4b3f30"
+      ],
+      "source_authorities": {
+        "0x490760": "complete-native",
+        "0x48efb0": "complete-native",
+        "0x48f4f0": "explicit-derived-static-view",
+        "0x4b4010": "complete-native",
+        "0x4b3f30": "explicit-derived-static-view"
+      },
+      "clauses": [
+        "Retain @g segment termination,double-@ marker/compaction,optional menu header,up toten graphic rows,signedbyte facing andsignedword coordinates. Defaultposition ishalfwindow dimensions;resource/facing/action use actual catalog readers.",
+        "4B3F30 nonzerobutton formats the stored C450CC graphicID,uses stored sequence/actor,sends4F8240,clears activity andplays79 then57. Button1/2 share the samebodyID. Button0 withnegative selectedindex onlyclears activity;button0/nonnegative returnswithout send.",
+        "The graphic parser andcallback are different operations;resource preparation/display doesnot prove reply orphysical retirement."
+      ]
+    },
+    {
+      "id": "OS-F12",
+      "title": "Appearance initialization andcode context",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x4b3780",
+        "0x4b3840",
+        "0x4b36d0",
+        "0x4b3640"
+      ],
+      "source_authorities": {
+        "0x4b3780": "complete-native",
+        "0x4b3840": "explicit-derived-static-view",
+        "0x4b36d0": "complete-native",
+        "0x4b3640": "complete-native"
+      },
+      "clauses": [
+        "Initialization reads actualF536A4 appearance;effective version byte is5681C8 unlessFF,then924F40. Minimum variant is(normalized>3AEF7);maximum is0/1/2 forversion<=4,5..6,>=7. Controls enable fromthe source participation fields,not merely API availability.",
+        "Base814C/814D disables allnine arrow-related controls.4B36D0 decomposes the currentcode;4B3640 recomposes base/variant/color/detail fields using the already sourced character-code converters. Current portable valid-range limits remain implementation choices,not the complete native parser domain."
+      ]
+    },
+    {
+      "id": "OS-F13",
+      "title": "Appearance arrows andconfirm",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x4b3cb0",
+        "0x4b3d90",
+        "0x4b3e60",
+        "0x4b3be0",
+        "0x4b3640"
+      ],
+      "source_authorities": {
+        "0x4b3cb0": "explicit-derived-static-view",
+        "0x4b3d90": "explicit-derived-static-view",
+        "0x4b3e60": "explicit-derived-static-view",
+        "0x4b3be0": "explicit-derived-static-view",
+        "0x4b3640": "complete-native"
+      },
+      "clauses": [
+        "Controls3/5 decrement/increment C21FEC andwrap between suppliedmin/max.6/8 changeC1E814 and9/11 changeC3B298,each wrapping0..4. Eventbit2 changes data/recomputes preview;bits1/8 choose their source arrow images separately.",
+        "Confirm recomposes current draft,formats decimalcode,sendsbutton1 through4F8240 andmarks8000. Do notrename the addressed fields into unproven protocol face/eye/mouth fields orclaim composite native pixels were accepted."
+      ]
+    },
+    {
+      "id": "OS-F14",
+      "title": "Shop modes,menus andquote schemas",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x4a8fd0",
+        "0x4a92a0",
+        "0x4a9c80",
+        "0x4aa0b0",
+        "0x4a96b0",
+        "0x4a99b0",
+        "0x492b10",
+        "0x492cd0",
+        "0x492ea0",
+        "0x492f60"
+      ],
+      "source_authorities": {
+        "0x4a8fd0": "complete-native",
+        "0x4a92a0": "complete-native",
+        "0x4a9c80": "complete-native",
+        "0x4aa0b0": "complete-native",
+        "0x4a96b0": "complete-native",
+        "0x4a99b0": "complete-native",
+        "0x492b10": "explicit-derived-static-view",
+        "0x492cd0": "explicit-derived-static-view",
+        "0x492ea0": "complete-native",
+        "0x492f60": "complete-native"
+      },
+      "clauses": [
+        "Wire6/7/14/16/1C/1F map tobuy/sell/appraise/repair/exchange/conversion andinternal0/1/4/5/2/3 inwindow53. Quoteheaders/rowwidths retain5+6,3+10,2+7,7+5 andconversion15-field layouts,withtheir exact row/byte/end semantics.",
+        "Merchant flag combinations retain row-to-signedbyte action mapping andcallback row<2;flags3 thirdleave rowdoesnot send. Exchangemenu onlyrow0 sends1;handoff menu rows0/1 send1/2,including itsleave. Menu andquote modes are not interchangeable.",
+        "Native normal fields andindependent completeness/positive-value/atomic-parser checks are explicitly separate."
+      ]
+    },
+    {
+      "id": "OS-F15",
+      "title": "Shop quantities,capacity,currency andconversion",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x437410",
+        "0x4aa910",
+        "0x4ab290",
+        "0x4ab4c0",
+        "0x4ad970",
+        "0x4ad450",
+        "0x4ae8f0",
+        "0x4af170"
+      ],
+      "source_authorities": {
+        "0x437410": "complete-native",
+        "0x4aa910": "complete-native",
+        "0x4ab290": "complete-native",
+        "0x4ab4c0": "complete-native",
+        "0x4ad970": "explicit-derived-static-view",
+        "0x4ad450": "explicit-derived-static-view",
+        "0x4ae8f0": "explicit-derived-static-view",
+        "0x4af170": "explicit-derived-static-view"
+      },
+      "clauses": [
+        "Buyrows increase to20;capacity usesceil(quantity/stack) andsource nonpositive fallback2. Sale selection usesfirst absolute slotmatch andquoted signedbyte availability/quantity,withnonpositive quantity fallback1. Qualification hints are not uniformpurchase refusal.",
+        "Appraise/repair normally useone item andtheir own cost gate. Exchange currency sumsall28 matching live slots,but freedbag capacity onlycounts8..27 untilfirst partiallyconsumed stack;stackfallback1 andmulti-step quantity changes remain distinct.",
+        "Conversion retainsbranch-specific count/quota/999 bounds,oldvalue<gold versusfloor assumptions,andzero decrement wrap shortcut. No uniform+1/-1 orfinal all-mode recheck is invented."
+      ]
+    },
+    {
+      "id": "OS-F16",
+      "title": "Preview snapshot andcurrent-global serialization",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x4ac140",
+        "0x4abd10",
+        "0x4af390",
+        "0x4f8240"
+      ],
+      "source_authorities": {
+        "0x4ac140": "explicit-derived-static-view",
+        "0x4abd10": "explicit-derived-static-view",
+        "0x4af390": "explicit-derived-static-view",
+        "0x4f8240": "complete-native"
+      },
+      "clauses": [
+        "4AC140 builds a separate previewcopy andsets parentbit2 afterits mode-specific admission. That isnot8000 retirement. Overlayaccept calls callback(0),back callback(1),then clearsbit2.",
+        "Accepted4ABD10 reads currentglobal selections:buy/exchange source quote row|quantity,sell storedabsolute slot|quantity,appraise/repair slotlist,conversion1|currentquantity. Sourceorder isquote order,not displayreorder.",
+        "The final body hasno universalwallet/capacity/positivequantity recheck. Current independent submit revalidation is a known policy difference,not a server/nativereceipt."
+      ]
+    },
+    {
+      "id": "OS-F17",
+      "title": "Shop owner refresh and28-byte retirement",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x4ab510",
+        "0x4abbd0",
+        "0x4a8f90",
+        "0x4ae3e0",
+        "0x468f00"
+      ],
+      "source_authorities": {
+        "0x4ab510": "explicit-derived-static-view",
+        "0x4abbd0": "explicit-derived-static-view",
+        "0x4a8f90": "explicit-derived-static-view",
+        "0x4ae3e0": "complete-native",
+        "0x468f00": "complete-native"
+      },
+      "clauses": [
+        "Distance/owner mismatch marks8000 yetselectedframework continues;exchange recomputes28-slot balance,conversion itscurrentavailable count. Shop cache658 andthe live65C store have different update ownership.",
+        "Positive internalquote modes reserveall28 bytecounts beforeopening;buydoesnot.53 destructor decrementsall28 onlyusing currentglobal internalmode>0 andclearsactivity onlywhenowner matches.",
+        "Use OC admitted ignore/forcedreplace/group2 tables tocompose thosecounts. Do not simulate normal faulty reentry by simplycalling two parsers outside4F4410/48FCE0 gates."
+      ]
+    },
+    {
+      "id": "OS-F18",
+      "title": "Single-item give mode1D",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x47ba20",
+        "0x47d6f0",
+        "0x47dee0",
+        "0x4f8240"
+      ],
+      "source_authorities": {
+        "0x47ba20": "complete-native",
+        "0x47d6f0": "explicit-derived-static-view",
+        "0x47dee0": "explicit-derived-static-view",
+        "0x4f8240": "complete-native"
+      },
+      "clauses": [
+        "48FCE0 mode1D calls47BA20:parse payloadto C1E6D0,reserveits byte,install targetcallbacks/setmode2 andprepare sourceinput owner. Originalbounds are not enlarged byguessed validservervalues.",
+        "Mode2 bag selection usespresence,zerooccupancy andqualification60 clear;it sends the chosenabsolute bag slot via /1I,restores controls/releases heldreservation/sets slot-1 andclearsactivity when1D. Rightcancel usesits own no-send path;equipment targetview isrender-only."
+      ]
+    },
+    {
+      "id": "OS-F19",
+      "title": "Human training display versusclient admission",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x492d50",
+        "0x492cd0",
+        "0x4af7d0",
+        "0x4af910",
+        "0x4b0680",
+        "0x4b1e70",
+        "0x4b1f60",
+        "0x4b2bc0"
+      ],
+      "source_authorities": {
+        "0x492d50": "complete-native",
+        "0x492cd0": "explicit-derived-static-view",
+        "0x4af7d0": "complete-native",
+        "0x4af910": "complete-native",
+        "0x4b0680": "explicit-derived-static-view",
+        "0x4b1e70": "explicit-derived-static-view",
+        "0x4b1f60": "explicit-derived-static-view",
+        "0x4b2bc0": "explicit-derived-static-view"
+      },
+      "clauses": [
+        "Classic trainer52 offerslearn/forget/leave butonlyfirsttwo rows send1/2. Humanlearn54 parses fee/requiredslots anddisplays current15-slot roster/capacity;the originalparser doesnot reject merelyfor emptyname/negativefee/slots.",
+        "The reviewedhuman learnconfirm body doesnot addpet-stylewallet/capacity refusal;it sends1,back2. Forgetback sends99. Forgetrow selection mapsnativeoriginalslots tocompactedremote ordinal+1,withthe firstremotevalue gate.",
+        "Confirm/return never directlyupdates skills orwallet;current strictparser,roster revision andsubmitchecks are independent targetdifferences."
+      ]
+    },
+    {
+      "id": "OS-F20",
+      "title": "Pet offers andselection mapping",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x4afaa0",
+        "0x4afd60",
+        "0x4b0020",
+        "0x4b0200",
+        "0x4b0ed0",
+        "0x4b2f60",
+        "0x4b2d00",
+        "0x4b3150"
+      ],
+      "source_authorities": {
+        "0x4afaa0": "complete-native",
+        "0x4afd60": "complete-native",
+        "0x4b0020": "complete-native",
+        "0x4b0200": "complete-native",
+        "0x4b0ed0": "complete-native",
+        "0x4b2f60": "explicit-derived-static-view",
+        "0x4b2d00": "explicit-derived-static-view",
+        "0x4b3150": "explicit-derived-static-view"
+      },
+      "clauses": [
+        "Classicordinary/extended offers use16rows;offer clickrequiresname,currentgold>=fee andatleastonepresentpet,then storeszero-basedoffer/sendsit/setsactive-2 withoutdirectwalletchangeorhiding.",
+        "Selectionreplies requirelive54,clearfive remote rows,use3/5fields andprecompute threshold/type/hint. Nativeactualslot-to-compactedordinal mapping is retained;hintFlag0 changeshint,not submissioneligibility.",
+        "Validselection needsremotepresence,thresholdbyte andrequiredType<0 ortypematch. Rightoffercolumn inselectionmodeonlydrawsitsselectedoutline;it isnotanotheroffer sendaction."
+      ]
+    },
+    {
+      "id": "OS-F21",
+      "title": "Pet skillrows,overlays anddifferent cancels",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x4b0490",
+        "0x4b18d0",
+        "0x4b2ea0",
+        "0x4b31d0",
+        "0x4b1f60",
+        "0x4af790"
+      ],
+      "source_authorities": {
+        "0x4b0490": "complete-native",
+        "0x4b18d0": "complete-native",
+        "0x4b2ea0": "complete-native",
+        "0x4b31d0": "explicit-derived-static-view",
+        "0x4b1f60": "explicit-derived-static-view",
+        "0x4af790": "explicit-derived-static-view"
+      },
+      "clauses": [
+        "Ten0x5C rows store skillreplybutrenderedrowcount usesearliercapacity withoutanative0..10 clamp. Independent ten-slot/budget/whole-record checks are distinct safeinputpolicies.",
+        "Skillrow clickstores zero-basedscroll+control indexandopenslocaloverlay. Acceptsends thatslot,hidesparent;overlaycancelonlyclosesoverlay. Petofferleavehideswithoutsend;selection/skillsback sendsbutton2/emptytext andactive-2 whilekeeping54.",
+        "54 initializer/frame/destructor preserve currentmode/rosterpublication andC5E270 conditions;hidingalone isnotfocus restoration orservice success."
+      ]
+    },
+    {
+      "id": "OS-F22",
+      "title": "Treatment rows andindependent data publication",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x490db0",
+        "0x4fee60",
+        "0x490b80",
+        "0x4903e0",
+        "0x4f0000",
+        "0x4f0290",
+        "0x4fdea0"
+      ],
+      "source_authorities": {
+        "0x490db0": "complete-native",
+        "0x4fee60": "complete-native",
+        "0x490b80": "explicit-derived-static-view",
+        "0x4903e0": "explicit-derived-static-view",
+        "0x4f0000": "complete-native",
+        "0x4f0290": "complete-native",
+        "0x4fdea0": "complete-native"
+      },
+      "clauses": [
+        "Treatment mode13 parses sixrecords;negativelevelstops,level0 suppressesdisplayrowbutitsfee/injuryalreadycontribute. Injurygrades0/<26/<51/<76/other and16-byte namesretain exactsourcevalues.",
+        "Row replies are3..8,aggregate9;cancel usesbutton2/emptytext. The reviewedbody displaysfees/currentgoldwithoutauniformbalance refusal anddoesnotperformlocalhealing/debit.",
+        "Personskills/capacity,petbodies/rosters/skills andwallet/itemupdates have their own receivers. Service replies/windowclose do notimplysettlement or create anackfield."
+      ]
+    },
+    {
+      "id": "OS-F23",
+      "title": "Classic training composition andconditional alternate discovery",
+      "classification": "fact about current evidence coverage;alternate activation unproven",
+      "source_entries": [
+        "0x48fce0"
+      ],
+      "source_authorities": {
+        "0x48fce0": "complete-native"
+      },
+      "clauses": [
+        "Allten classic Q?m training/treatment modes andtheirsource state/selection/return rules arecomposed. The alternate55..59/67 UI,data/selectorproduction andactualdispatch relation remain a preserved namedsource frontier.",
+        "Do notassume anunprovedalternate isactive orgloballyunused. G12 whole-domain specification staysfalse whilethisoriginalactivation/relevance disposition isopen;otherknownclassicrules neednot bequeriedagain."
+      ]
+    },
+    {
+      "id": "OS-F24",
+      "classic_trade_inventory_confirmation": "analysis/capability-first-v1/game-trade-storage-contract.json#/inventory_confirmation/command_order",
+      "classic_trade_pet_and_gold": "analysis/capability-first-v1/game-trade-storage-contract.json#/classic_trade_pet_and_gold/publication_and_retirement",
+      "alternate_trade_gold": "analysis/capability-first-v1/game-trade-storage-contract.json#/alternate_trade_gold/offer_fields_and_order",
+      "title": "Sparse tradepositions,phases andsource timers",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x4a2cf0",
+        "0x4a3050",
+        "0x4a2f90",
+        "0x4f4740",
+        "0x4f4830",
+        "0x4f4870"
+      ],
+      "source_authorities": {
+        "0x4a2cf0": "explicit-derived-static-view",
+        "0x4a3050": "explicit-derived-static-view",
+        "0x4a2f90": "explicit-derived-static-view",
+        "0x4f4740": "complete-native",
+        "0x4f4830": "complete-native",
+        "0x4f4870": "complete-native"
+      },
+      "clauses": [
+        "Local C444FC andpeer C21BA4 phases are independent0/1/2. Publication preserves20/5 offerposition holes andsourceSlot|position;4A2CF0 itselfdoesnot update614884 or impose another500ms wait.",
+        "Mainbutton phase1 withpeer>=1 andstrict currenttick>614884+500 sendsconfirm1/sets local2;atlocal2 the samebutton canwithdraw withthattimer. Dedicatedwithdraw body hasnothetimer.",
+        "Peerwithdraw clearspeerdata/phase0 andonlylocal2->1;localwithdraw setslocal0 andonlypeer2->1. Dense positions,publishclockupdates andconfirm-onlyAPI are currentindependent differences."
+      ]
+    },
+    {
+      "id": "OS-F25",
+      "title": "Tradepeer records andsettlement are separate",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x4cbff0",
+        "0x4cc1f0",
+        "0x4cc480",
+        "0x4cbf10",
+        "0x4f4870"
+      ],
+      "source_authorities": {
+        "0x4cbff0": "complete-native",
+        "0x4cc1f0": "complete-native",
+        "0x4cc480": "complete-native",
+        "0x4cbf10": "complete-native",
+        "0x4f4870": "complete-native"
+      },
+      "clauses": [
+        "Retain20peeritempositions/14fields,fivepets/23orderedfields andup toten terminatedskillnames. Negativepetgraphic clearsit;name/description/nickname limits remain their original byte rules.",
+        "Ofl1 onlyraisespeerphase2;Ofl0/2 enters thesuppressedclose path. Theseconsumers donotoptimisticallysettle ownedgold/items/pets;normalassetreceivers remainauthoritative."
+      ]
+    },
+    {
+      "id": "OS-F26",
+      "title": "Tradeclose suppression andselection lifetime",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x4a2480",
+        "0x4a24b0",
+        "0x4a23c0",
+        "0x4a2540"
+      ],
+      "source_authorities": {
+        "0x4a2480": "complete-native",
+        "0x4a24b0": "explicit-derived-static-view",
+        "0x4a23c0": "complete-native",
+        "0x4a2540": "explicit-derived-static-view"
+      },
+      "clauses": [
+        "Serverclose sets C5E9B8 thenmarks43;destructor sends,ua0 onlywhen suppression0,cleans20/5 mappings/associatedprompt andfinallyclears suppression.",
+        "Livegroup2 teardown precedes reconstructionunderadmittedsourceorder. Immediate targetpanelclear orslotrevision invalidation doesnotprove nativecallback/pool/destructor timing."
+      ]
+    },
+    {
+      "id": "OS-F27",
+      "title": "Storageparse beforewindow selection",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x49aad0",
+        "0x49dfb0",
+        "0x49f080",
+        "0x48fce0",
+        "0x4cc550",
+        "0x4c80b0"
+      ],
+      "source_authorities": {
+        "0x49aad0": "complete-native",
+        "0x49dfb0": "complete-native",
+        "0x49f080": "complete-native",
+        "0x48fce0": "complete-native",
+        "0x4cc550": "explicit-derived-static-view",
+        "0x4c80b0": "complete-native"
+      },
+      "clauses": [
+        "Wire17/21/22 parse49AAD0 first. A fullsnapshotreturns1;G andnormalI/P deltasreturn0,whichisnotuniformformatfailure.17/21 use41 withvariant0/1;22 uses38. Animation/allocation-failureconstruction have separate effects.",
+        "A layout includes20 six-fielditems,five33-fieldpets andbalancefield287;I step7,P step34,G secondfield. Sourcepartialwrites differfromindependent atomic/row/domain checks.",
+        "Ordinarybag move refreshesliveendpoints thentrade/storagecaches withtheir64C/644 strides. Theseare actualcopy/swaps,notinvented revisions."
+      ]
+    },
+    {
+      "id": "OS-F28",
+      "title": "Storageitem,pet andgoldoperations",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x47b7e0",
+        "0x47f330",
+        "0x49c090",
+        "0x49c740",
+        "0x49d210",
+        "0x49d900",
+        "0x49dc80",
+        "0x49b890"
+      ],
+      "source_authorities": {
+        "0x47b7e0": "complete-native",
+        "0x47f330": "complete-native",
+        "0x49c090": "explicit-derived-static-view",
+        "0x49c740": "explicit-derived-static-view",
+        "0x49d210": "explicit-derived-static-view",
+        "0x49d900": "explicit-derived-static-view",
+        "0x49dc80": "explicit-derived-static-view",
+        "0x49b890": "explicit-derived-static-view"
+      },
+      "clauses": [
+        "Itempositions8..27 and100..119 usewhole-1 orselectedquantity;finalsharedcallback reads currentendpoints and41before38. Petpositions0..4/100..104 useactualroster/scroll mapping andP|from|to;displayfee isnot a universalclient refusal.",
+        "Goldlimits usemin(wallet,1000000-storage) ormin(storage,1000000-wallet);current sourcedcontrols determinebounds whileordinaryassetreceivers ownactualbalance. Postsenddisplay andrealsettlement remain separate.",
+        "Currentactionpending,revisions,actor/modefilters andG/I/P/A replymatching are explicittarget policies;no source requestID ornewserverauthentication isinvented."
+      ]
+    },
+    {
+      "id": "OS-F29",
+      "title": "Pendinganimation predictions andtarget policies",
+      "classification": "conditional inference and independent-policy disposition;not native execution",
+      "source_entries": [],
+      "source_authorities": {},
+      "clauses": [
+        "OC-U7/U8 keep their exact listedmessage/animation assumptions andsource byte-wrap traces. They are conditionalstatic predictions,not observedprotocoltiming orproven normal counter failures.",
+        "Independent revisions,strictparsers,submittimerechecks,denseoffers,localclocks,pending andgenerationcancellation remain distinctfromnative sharedglobals/partialwrites/delayedretirement. Eachdifference isreviewedonce under the sharedports."
+      ]
+    },
+    {
+      "id": "OS-F30",
+      "title": "Shared close/reentry andplatform acceptance",
+      "classification": "fixed37c4 static fact",
+      "source_entries": [
+        "0x467ec0",
+        "0x467fc0",
+        "0x468f00",
+        "0x469540"
+      ],
+      "source_authorities": {
+        "0x467ec0": "complete-native",
+        "0x467fc0": "complete-native",
+        "0x468f00": "complete-native",
+        "0x469540": "complete-native"
+      },
+      "clauses": [
+        "Logicalwindowmark,callbacktail,synchronousgroupdestruction,sourcepoolrebuild andphysicaldrain are separate.469540 resetsoffields/28bytes isnot individual releaseofeveryexternalretainedowner.",
+        "SourceValueContext,ContextOwner,InputAndTextFocus,ClockDomains,OwnerLifecycle andBudgetAndLease retain their existing14-port contracts. Retry/latework/cancel/reentry maynot publish against a replaced owner.",
+        "No productcode,originalprogram,Windows API,VM,network,account oractualtargetgameplay wasexecuted. Localpureprobes do notprove whole-source orserver/platformacceptance."
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "OS-O01",
+      "capability": "G09",
+      "title": "Publish28 live itemslots",
+      "source_rules": [
+        "OS-F01",
+        "OS-F02"
+      ],
+      "inputs": [
+        "itembytes",
+        "current slots"
+      ],
+      "ordered_behavior": [
+        "Use14-field sourcegrammar and65Cstride",
+        "Use the versioned full-list grammar when the receive tag is ?<E. Full and explicit-slot records publish to the same live slots.",
+        "Keep independentboundspolicyexplicit"
+      ],
+      "completion_failure_cancel": [
+        "Partialsourcewrite isnotatomic-target receipt"
+      ],
+      "full_inventory_publication": "/full_inventory_publication"
+    },
+    {
+      "id": "OS-O02",
+      "capability": "G09",
+      "title": "Clear/update name andfield aliases",
+      "source_rules": [
+        "OS-F02"
+      ],
+      "inputs": [
+        "present/empty/longname",
+        "existingrow"
+      ],
+      "ordered_behavior": [
+        "Applysourcepresence andbyte-retention conditions"
+      ],
+      "completion_failure_cancel": [
+        "No field5/category alias confusion"
+      ]
+    },
+    {
+      "id": "OS-O03",
+      "capability": "G09",
+      "title": "Admit source item input context",
+      "source_rules": [
+        "OS-F03",
+        "OS-F08"
+      ],
+      "inputs": [
+        "window/drag/hover",
+        "frame gates"
+      ],
+      "ordered_behavior": [
+        "Preserve sourceeventbits/getters/order"
+      ],
+      "completion_failure_cancel": [
+        "No uniformextra gate for allactions"
+      ]
+    },
+    {
+      "id": "OS-O04",
+      "capability": "G09",
+      "title": "Hit/drag20 bagcells",
+      "source_rules": [
+        "OS-F03",
+        "OS-F07"
+      ],
+      "inputs": [
+        "sourceposition",
+        "occupancy",
+        "event40"
+      ],
+      "ordered_behavior": [
+        "Scan zero-occupancy48x48 cells",
+        "Senddifferentdestination through47B900"
+      ],
+      "completion_failure_cancel": [
+        "Invalidsourcecontext remains explicit"
+      ]
+    },
+    {
+      "id": "OS-O05",
+      "capability": "G09",
+      "title": "Hit/drag8 equipmentslots",
+      "source_rules": [
+        "OS-F03",
+        "OS-F07"
+      ],
+      "inputs": [
+        "eight signed16 anchors",
+        "source kind/slot"
+      ],
+      "ordered_behavior": [
+        "Rejectstoragedrag as sourceprescribes",
+        "Useactualequipdestination"
+      ],
+      "completion_failure_cancel": [
+        "No inventedcategory/serveracceptance"
+      ]
+    },
+    {
+      "id": "OS-O06",
+      "capability": "G09",
+      "title": "Directuse current item",
+      "source_rules": [
+        "OS-F03"
+      ],
+      "inputs": [
+        "slot/presence/useflag/code",
+        "logicalpose"
+      ],
+      "ordered_behavior": [
+        "67C9 branchbefore directgate",
+        "Directpathcheckssecondary80/substate andsendsx/y/slot/0"
+      ],
+      "completion_failure_cancel": [
+        "Packetdescriptor isnot use-success"
+      ]
+    },
+    {
+      "id": "OS-O07",
+      "capability": "G09",
+      "title": "Enter targeted-use mode",
+      "source_rules": [
+        "OS-F03",
+        "OS-F04",
+        "OS-F07"
+      ],
+      "inputs": [
+        "67C9 source slot",
+        "controlowner"
+      ],
+      "ordered_behavior": [
+        "Reserve sourcebyte",
+        "Setmode1 andpairedtargetcallbacks"
+      ],
+      "completion_failure_cancel": [
+        "Nooptimisticassetupdate"
+      ]
+    },
+    {
+      "id": "OS-O08",
+      "capability": "G09",
+      "title": "Choose targeted bagitem",
+      "source_rules": [
+        "OS-F04"
+      ],
+      "inputs": [
+        "presence/occupancy/category/quantity/qualification",
+        "heldsource"
+      ],
+      "ordered_behavior": [
+        "Evaluate allnative targetpredicates",
+        "Sendtargetslot/source slot"
+      ],
+      "completion_failure_cancel": [
+        "Mode1 keepsselection/reservation until itsownexit"
+      ]
+    },
+    {
+      "id": "OS-O09",
+      "capability": "G09",
+      "title": "Render disabled equipmenttargets",
+      "source_rules": [
+        "OS-F04"
+      ],
+      "inputs": [
+        "eight equipslots",
+        "eventbits"
+      ],
+      "ordered_behavior": [
+        "Drawsourceoccupied/disabled state",
+        "Return0 withouttargetsend"
+      ],
+      "completion_failure_cancel": [
+        "Preserve existingbag-only choiceboundary"
+      ]
+    },
+    {
+      "id": "OS-O10",
+      "capability": "G09",
+      "title": "Cancel/restore targeting",
+      "source_rules": [
+        "OS-F04",
+        "OS-F07",
+        "OS-F30"
+      ],
+      "inputs": [
+        "rightpress/currentmode",
+        "heldslot"
+      ],
+      "ordered_behavior": [
+        "Restore callbacks",
+        "Release sourcebyte/set-1",
+        "Continue addressed drawtail"
+      ],
+      "completion_failure_cancel": [
+        "Do notfakeearlyreturn orzero F536A8"
+      ]
+    },
+    {
+      "id": "OS-O11",
+      "capability": "G09",
+      "title": "Create item drop cursor",
+      "source_rules": [
+        "OS-F05"
+      ],
+      "inputs": [
+        "source slot",
+        "factorypermit"
+      ],
+      "ordered_behavior": [
+        "47F5F0 publishespermit andcallback",
+        "Maintain event0 sourcepresence/cursor work"
+      ],
+      "completion_failure_cancel": [
+        "Factory isnotdirectdrop request"
+      ]
+    },
+    {
+      "id": "OS-O12",
+      "capability": "G09",
+      "title": "Confirm item drop",
+      "source_rules": [
+        "OS-F05"
+      ],
+      "inputs": [
+        "event2",
+        "permit/status/substate",
+        "logicalposition"
+      ],
+      "ordered_behavior": [
+        "Apply exactdropgates",
+        "Sendx/y/slot"
+      ],
+      "completion_failure_cancel": [
+        "No automaticlocaldeletion"
+      ]
+    },
+    {
+      "id": "OS-O13",
+      "capability": "G09",
+      "title": "Move whole stack oropen split",
+      "source_rules": [
+        "OS-F03",
+        "OS-F06"
+      ],
+      "inputs": [
+        "from/to/quantity/empty/modifiers"
+      ],
+      "ordered_behavior": [
+        "Whole=-1",
+        "Eligible split captureslimit buteditinitial0"
+      ],
+      "completion_failure_cancel": [
+        "SourceUIDecision distinct fromcurrentdirectamount API"
+      ]
+    },
+    {
+      "id": "OS-O14",
+      "capability": "G09",
+      "title": "Submit current quantity endpoints",
+      "source_rules": [
+        "OS-F06"
+      ],
+      "inputs": [
+        "sharedcallback/limits",
+        "currentglobal endpoints"
+      ],
+      "ordered_behavior": [
+        "Retainanimation/publication/overwriteorder",
+        "41then38routing orlocalmove"
+      ],
+      "completion_failure_cancel": [
+        "Do notaddsourcefinalrevision/recheck"
+      ]
+    },
+    {
+      "id": "OS-O15",
+      "capability": "G09",
+      "title": "Consume swap/cache replies",
+      "source_rules": [
+        "OS-F02",
+        "OS-F27"
+      ],
+      "inputs": [
+        "sourcegates",
+        "from/to"
+      ],
+      "ordered_behavior": [
+        "Update live thenrefreshtrade/storage caches"
+      ],
+      "completion_failure_cancel": [
+        "No inventedrevision/settlementack"
+      ]
+    },
+    {
+      "id": "OS-O16",
+      "capability": "G09",
+      "title": "Face thenpick up adjacent object",
+      "source_rules": [
+        "OS-F05",
+        "OS-F09"
+      ],
+      "inputs": [
+        "rightedge",
+        "targettile",
+        "objects/clocks"
+      ],
+      "ordered_behavior": [
+        "Faceunderitsgate",
+        "Pickupmask7/range/clock",
+        "Independentmask8 actorinteraction"
+      ],
+      "completion_failure_cancel": [
+        "No pickup targetID added"
+      ]
+    },
+    {
+      "id": "OS-O17",
+      "capability": "G09",
+      "title": "Publish item hints andoccupied styles",
+      "source_rules": [
+        "OS-F03",
+        "OS-F04"
+      ],
+      "inputs": [
+        "hoverindex",
+        "nativehintcounter",
+        "sourcegraphic"
+      ],
+      "ordered_behavior": [
+        "Preservepointer/quantity/tooltiptailorder"
+      ],
+      "completion_failure_cancel": [
+        "Presentation isnotserver success"
+      ]
+    },
+    {
+      "id": "OS-O18",
+      "capability": "G09",
+      "title": "Rebuild/close item owners",
+      "source_rules": [
+        "OS-F02",
+        "OS-F07",
+        "OS-F08",
+        "OS-F30"
+      ],
+      "inputs": [
+        "window/scene/reset",
+        "pendinginput"
+      ],
+      "ordered_behavior": [
+        "Source mark/destruct/rebuild in order",
+        "Invalidate targetpublication separately"
+      ],
+      "completion_failure_cancel": [
+        "Fullshared integration stillpending"
+      ]
+    },
+    {
+      "id": "OS-O19",
+      "capability": "G10",
+      "title": "Face/select actor operations",
+      "source_rules": [
+        "OS-F05",
+        "OS-F09"
+      ],
+      "inputs": [
+        "source actor mask/position",
+        "admission"
+      ],
+      "ordered_behavior": [
+        "Useactualproducerarguments andtargetlookup"
+      ],
+      "completion_failure_cancel": [
+        "Unknownbusinessname remainsnumericflow"
+      ]
+    },
+    {
+      "id": "OS-O20",
+      "capability": "G10",
+      "title": "Dispatch A/B keyboard layouts",
+      "source_rules": [
+        "OS-F09"
+      ],
+      "inputs": [
+        "Ctrl/layout/keyslots",
+        "sharedclock"
+      ],
+      "ordered_behavior": [
+        "AthenB independentif",
+        "Eachactualsend mayupdatetimer"
+      ],
+      "completion_failure_cancel": [
+        "No keyclear orwholebatchdedup invented"
+      ]
+    },
+    {
+      "id": "OS-O21",
+      "capability": "G10",
+      "title": "Admit Q?m andpublish active context",
+      "source_rules": [
+        "OS-F01",
+        "OS-F08"
+      ],
+      "inputs": [
+        "mode/mask/dialog/actor/payload"
+      ],
+      "ordered_behavior": [
+        "Sourcegates thenactive/replace logic",
+        "Publishsourcefields beforeparser"
+      ],
+      "completion_failure_cancel": [
+        "No requestepochormandatorydialog-closematch"
+      ]
+    },
+    {
+      "id": "OS-O22",
+      "capability": "G10",
+      "title": "Parse normal/wide NPC text",
+      "source_rules": [
+        "OS-F10"
+      ],
+      "inputs": [
+        "mode/mask/innertext"
+      ],
+      "ordered_behavior": [
+        "Preserveheaders,input,bytewrap andwindowgeometry"
+      ],
+      "completion_failure_cancel": [
+        "Malformedtargetpolicyexplicit"
+      ]
+    },
+    {
+      "id": "OS-O23",
+      "capability": "G10",
+      "title": "Select source menu row",
+      "source_rules": [
+        "OS-F08",
+        "OS-F10",
+        "OS-F14"
+      ],
+      "inputs": [
+        "displayrow",
+        "callbackmapping"
+      ],
+      "ordered_behavior": [
+        "Maprow tosource action",
+        "Preserve negativecallbackclose"
+      ],
+      "completion_failure_cancel": [
+        "Leavebehavior ismenu-specific"
+      ]
+    },
+    {
+      "id": "OS-O24",
+      "capability": "G10",
+      "title": "Send ordinary dialog reply",
+      "source_rules": [
+        "OS-F01",
+        "OS-F10"
+      ],
+      "inputs": [
+        "currentpose/context",
+        "button/text"
+      ],
+      "ordered_behavior": [
+        "Format existing/1I fields in sourceorder"
+      ],
+      "completion_failure_cancel": [
+        "No localbusinesssettlement"
+      ]
+    },
+    {
+      "id": "OS-O25",
+      "capability": "G10",
+      "title": "Parse pairedinput mode23",
+      "source_rules": [
+        "OS-F10"
+      ],
+      "inputs": [
+        "two bytefields",
+        "sourcecontent"
+      ],
+      "ordered_behavior": [
+        "Keep46encodedbyte bounds andmeaningful-content rules"
+      ],
+      "completion_failure_cancel": [
+        "No Unicodeblank equivalence"
+      ]
+    },
+    {
+      "id": "OS-O26",
+      "capability": "G10",
+      "title": "Confirm/cancel paired reply",
+      "source_rules": [
+        "OS-F10",
+        "OS-F30"
+      ],
+      "inputs": [
+        "currenttwofields",
+        "button"
+      ],
+      "ordered_behavior": [
+        "Validateconfirm fields",
+        "Cancel retains currentfields withsourceescaping"
+      ],
+      "completion_failure_cancel": [
+        "Windowclose isnot acceptedreply"
+      ]
+    },
+    {
+      "id": "OS-O27",
+      "capability": "G10",
+      "title": "Scan illustration segments",
+      "source_rules": [
+        "OS-F11"
+      ],
+      "inputs": [
+        "unescapedtext",
+        "windowdimensions"
+      ],
+      "ordered_behavior": [
+        "@g/terminator/double@/compaction",
+        "Tenrows/signedcoordinates"
+      ],
+      "completion_failure_cancel": [
+        "No inventedresource substitutions"
+      ]
+    },
+    {
+      "id": "OS-O28",
+      "capability": "G10",
+      "title": "Prepare dialog graphic animation",
+      "source_rules": [
+        "OS-F11"
+      ],
+      "inputs": [
+        "actualresource/facing/action",
+        "library"
+      ],
+      "ordered_behavior": [
+        "Resolve sourcecatalog andsourcegeometry"
+      ],
+      "completion_failure_cancel": [
+        "Do notadvance logic onIOretry"
+      ]
+    },
+    {
+      "id": "OS-O29",
+      "capability": "G10",
+      "title": "Reply fixed graphic confirmation",
+      "source_rules": [
+        "OS-F11"
+      ],
+      "inputs": [
+        "storedgraphic/sequence/actor",
+        "button/index"
+      ],
+      "ordered_behavior": [
+        "Nonzero button sendsstoredID",
+        "0/negative onlyclearsactivity"
+      ],
+      "completion_failure_cancel": [
+        "No assumednewimageID orack"
+      ]
+    },
+    {
+      "id": "OS-O30",
+      "capability": "G10",
+      "title": "Initialize appearance draft",
+      "source_rules": [
+        "OS-F12"
+      ],
+      "inputs": [
+        "F536A4",
+        "versionoverride/fallback"
+      ],
+      "ordered_behavior": [
+        "Decompose andcompute min/max",
+        "Apply sourceparticipation and814C/D locks"
+      ],
+      "completion_failure_cancel": [
+        "Currentportable validrange notsourceformatlimit"
+      ]
+    },
+    {
+      "id": "OS-O31",
+      "capability": "G10",
+      "title": "Adjust/confirm appearance",
+      "source_rules": [
+        "OS-F13"
+      ],
+      "inputs": [
+        "controls3/5,6/8,9/11",
+        "draft"
+      ],
+      "ordered_behavior": [
+        "Wrapvariants/minmax anddetails0..4",
+        "Recomposepreview;confirmcurrentcode/button1/mark"
+      ],
+      "completion_failure_cancel": [
+        "Nativecompositepixels unverified"
+      ]
+    },
+    {
+      "id": "OS-O32",
+      "capability": "G10",
+      "title": "Close/move/replace dialog owner",
+      "source_rules": [
+        "OS-F08",
+        "OS-F30"
+      ],
+      "inputs": [
+        "sourceowner/distance/mode",
+        "callbackstage"
+      ],
+      "ordered_behavior": [
+        "Preserve tailaftermark andactualdestructor"
+      ],
+      "completion_failure_cancel": [
+        "Hostfocus/lateresults useexplicit targetpolicy"
+      ]
+    },
+    {
+      "id": "OS-O33",
+      "capability": "G11",
+      "title": "Merchant/exchange/handoff menus",
+      "source_rules": [
+        "OS-F14"
+      ],
+      "inputs": [
+        "flags",
+        "selectedrow"
+      ],
+      "ordered_behavior": [
+        "Use signedbyte actionmap anddifferentleave sends"
+      ],
+      "completion_failure_cancel": [
+        "Menu isnotquote result"
+      ]
+    },
+    {
+      "id": "OS-O34",
+      "capability": "G11",
+      "title": "Parse six quote modes",
+      "source_rules": [
+        "OS-F14"
+      ],
+      "inputs": [
+        "wiremode",
+        "quote bytes"
+      ],
+      "ordered_behavior": [
+        "Apply exactmode/row/header tables"
+      ],
+      "completion_failure_cancel": [
+        "Independentstrictparse domainsstated"
+      ]
+    },
+    {
+      "id": "OS-O35",
+      "capability": "G11",
+      "title": "Buy quantities andcapacity",
+      "source_rules": [
+        "OS-F15"
+      ],
+      "inputs": [
+        "stack/qty/gold/freebag"
+      ],
+      "ordered_behavior": [
+        "Source20limit andcapacityfallback2",
+        "Keepclick/preview/final gates separate"
+      ],
+      "completion_failure_cancel": [
+        "No globaluniformrecheck"
+      ]
+    },
+    {
+      "id": "OS-O36",
+      "capability": "G11",
+      "title": "Sell select/current quantity",
+      "source_rules": [
+        "OS-F15"
+      ],
+      "inputs": [
+        "absolute bagquote",
+        "availability"
+      ],
+      "ordered_behavior": [
+        "Firstmatchingquote",
+        "Signedbyteinitialqty/fallback andmode-specificgoldbounds"
+      ],
+      "completion_failure_cancel": [
+        "Do notreplace sourceadmission withrevision"
+      ]
+    },
+    {
+      "id": "OS-O37",
+      "capability": "G11",
+      "title": "Appraise/repair service",
+      "source_rules": [
+        "OS-F14",
+        "OS-F15"
+      ],
+      "inputs": [
+        "fee/slot/flags",
+        "currentwallet"
+      ],
+      "ordered_behavior": [
+        "Oneitem normally",
+        "Separatecostgate andslot-only serialization"
+      ],
+      "completion_failure_cancel": [
+        "No optimisticitemchange"
+      ]
+    },
+    {
+      "id": "OS-O38",
+      "capability": "G11",
+      "title": "Exchange currency andfreed cells",
+      "source_rules": [
+        "OS-F15"
+      ],
+      "inputs": [
+        "all28matchingcurrency",
+        "bag8..27"
+      ],
+      "ordered_behavior": [
+        "Sumall28balance",
+        "Countfreedbagstacks untilpartialpayment",
+        "Retainmultiplequantityjumps"
+      ],
+      "completion_failure_cancel": [
+        "Equipbalance isnotfreebagspace"
+      ]
+    },
+    {
+      "id": "OS-O39",
+      "capability": "G11",
+      "title": "Conversion quantities andquotas",
+      "source_rules": [
+        "OS-F15"
+      ],
+      "inputs": [
+        "branch/rate/quota/gold",
+        "currentquantity"
+      ],
+      "ordered_behavior": [
+        "Retain999andbranch bounds",
+        "Zero-decrement shortcut andoldvaluecomparison"
+      ],
+      "completion_failure_cancel": [
+        "No floor/ceil substitution beyondsourceddomain"
+      ]
+    },
+    {
+      "id": "OS-O40",
+      "capability": "G11",
+      "title": "Select/reorder/adjust quote rows",
+      "classic_quote_interaction": "/classic_shop_quote_interaction",
+      "source_rules": [
+        "OS-F07",
+        "OS-F15"
+      ],
+      "inputs": [
+        "sourcequote rows",
+        "controlrepeat/scroll"
+      ],
+      "ordered_behavior": [
+        "Keepselection/count/map distinct",
+        "Sourceevent400 andmode-specificminimums"
+      ],
+      "completion_failure_cancel": [
+        "Reordereddisplay isnotwire order"
+      ]
+    },
+    {
+      "id": "OS-O41",
+      "capability": "G11",
+      "title": "Build preview snapshot",
+      "source_rules": [
+        "OS-F16"
+      ],
+      "inputs": [
+        "currentselection/mode",
+        "admission"
+      ],
+      "ordered_behavior": [
+        "Copy preview",
+        "Installcallback andsetparentbit2"
+      ],
+      "completion_failure_cancel": [
+        "Not8000retirement orpayment"
+      ]
+    },
+    {
+      "id": "OS-O42",
+      "capability": "G11",
+      "title": "Confirm current quote globals",
+      "source_rules": [
+        "OS-F16"
+      ],
+      "inputs": [
+        "overlayaccept0",
+        "currentglobalvalues"
+      ],
+      "ordered_behavior": [
+        "Serializequoteorder inmode-specificformat",
+        "Send thenmark8000"
+      ],
+      "completion_failure_cancel": [
+        "Do notassume previewcopy orsourcefinalrecheck"
+      ]
+    },
+    {
+      "id": "OS-O43",
+      "capability": "G11",
+      "title": "Cancel preview/leave quote",
+      "source_rules": [
+        "OS-F14",
+        "OS-F16"
+      ],
+      "inputs": [
+        "overlayback1",
+        "outercancel",
+        "menu"
+      ],
+      "ordered_behavior": [
+        "Backonlyclearsoverlay",
+        "Outerbutton2/empty plusmark",
+        "Menuskeeptheir ownleave"
+      ],
+      "completion_failure_cancel": [
+        "No unifiedcancelpacket"
+      ]
+    },
+    {
+      "id": "OS-O44",
+      "capability": "G11",
+      "title": "Reserve/release28 quotebytes",
+      "source_rules": [
+        "OS-F07",
+        "OS-F17"
+      ],
+      "inputs": [
+        "internalmode",
+        "parser/destructor"
+      ],
+      "ordered_behavior": [
+        "Countpositive modesall28",
+        "Buydoesnotcount",
+        "Destructorreads currentmode"
+      ],
+      "completion_failure_cancel": [
+        "Notmonotonicrevision orallinterleavingsproof"
+      ]
+    },
+    {
+      "id": "OS-O45",
+      "capability": "G11",
+      "title": "Admit quote replacement",
+      "source_rules": [
+        "OS-F08",
+        "OS-F17",
+        "OS-F29"
+      ],
+      "inputs": [
+        "active/mode/sequence",
+        "livewindow/openinganimation"
+      ],
+      "ordered_behavior": [
+        "Ordinaryactivequoteignored",
+        "Forcedsequence syncoldgroups beforepublishnewmode"
+      ],
+      "completion_failure_cancel": [
+        "OC-U7/U8 remainconditionalpredictions"
+      ]
+    },
+    {
+      "id": "OS-O46",
+      "capability": "G11",
+      "title": "Single-item give mode1D",
+      "source_rules": [
+        "OS-F18"
+      ],
+      "inputs": [
+        "serverpayloadslot",
+        "chosenbagitem"
+      ],
+      "ordered_behavior": [
+        "Reservepayloadslot/settargetmode2",
+        "Sendchosenabsolute slot",
+        "Restore/release/continue source tail"
+      ],
+      "completion_failure_cancel": [
+        "Equipmentselector renderswithoutsend"
+      ]
+    },
+    {
+      "id": "OS-O47",
+      "capability": "G11",
+      "title": "Refresh/invalidate current quote",
+      "classic_quote_interaction": "/classic_shop_quote_interaction/removal",
+      "source_rules": [
+        "OS-F02",
+        "OS-F07",
+        "OS-F17"
+      ],
+      "inputs": [
+        "wallet/item/cache/ownerchanges",
+        "kind9context"
+      ],
+      "ordered_behavior": [
+        "Use actualcache stride/owner",
+        "One-shotsuppress orclearselectedrow",
+        "Markwithoutuniformreturn"
+      ],
+      "completion_failure_cancel": [
+        "Independentstale submitpolicy remainsdifference"
+      ]
+    },
+    {
+      "id": "OS-O48",
+      "capability": "G11",
+      "title": "Destroy quote owner",
+      "source_rules": [
+        "OS-F08",
+        "OS-F17",
+        "OS-F30"
+      ],
+      "inputs": [
+        "marked/live53",
+        "currentmode/activity"
+      ],
+      "ordered_behavior": [
+        "Run correctoldowner destructor/grouporder"
+      ],
+      "completion_failure_cancel": [
+        "No fakephysicaldrain frompanelhide"
+      ]
+    },
+    {
+      "id": "OS-O49",
+      "capability": "G12",
+      "title": "Route ten classic service modes",
+      "source_rules": [
+        "OS-F01",
+        "OS-F08",
+        "OS-F23"
+      ],
+      "inputs": [
+        "Q?m mode andpayload"
+      ],
+      "ordered_behavior": [
+        "Use originaltrainingdispatch table",
+        "Retain conditionalalternate disposition"
+      ],
+      "completion_failure_cancel": [
+        "WholeG12 source-ready remainsfalse"
+      ]
+    },
+    {
+      "id": "OS-O50",
+      "capability": "G12",
+      "title": "Trainer menu choice",
+      "source_rules": [
+        "OS-F19"
+      ],
+      "inputs": [
+        "three displayedrows",
+        "event"
+      ],
+      "ordered_behavior": [
+        "Firsttwosend1/2",
+        "Leave/negative sendsnothing"
+      ],
+      "completion_failure_cancel": [
+        "Do notsenddisplayrow+1 uniformly"
+      ]
+    },
+    {
+      "id": "OS-O51",
+      "capability": "G12",
+      "title": "Parse human learn/display capacity",
+      "source_rules": [
+        "OS-F19"
+      ],
+      "inputs": [
+        "title/name/description/slots/fee",
+        "15skillmetadata"
+      ],
+      "ordered_behavior": [
+        "Publishsourcefields",
+        "Compute displaycapacity androws"
+      ],
+      "completion_failure_cancel": [
+        "Currentnegativeparse reject isindependent"
+      ]
+    },
+    {
+      "id": "OS-O52",
+      "capability": "G12",
+      "title": "Confirm/back human learning",
+      "source_rules": [
+        "OS-F19"
+      ],
+      "inputs": [
+        "mode0",
+        "eventbit2"
+      ],
+      "ordered_behavior": [
+        "Confirm1/back2",
+        "No inventedpet-styleamount/capacitygate"
+      ],
+      "completion_failure_cancel": [
+        "No directskill/debitupdate"
+      ]
+    },
+    {
+      "id": "OS-O53",
+      "capability": "G12",
+      "title": "Forget compacted skillordinal",
+      "source_rules": [
+        "OS-F19"
+      ],
+      "inputs": [
+        "localoriginalslots",
+        "remote15triples"
+      ],
+      "ordered_behavior": [
+        "Maporiginal tocompactedordinal",
+        "Firstvalue qualification",
+        "Sendordinal+1/back99"
+      ],
+      "completion_failure_cancel": [
+        "Secondvalue notinventedclickgate"
+      ]
+    },
+    {
+      "id": "OS-O54",
+      "capability": "G12",
+      "title": "Select petoffer",
+      "source_rules": [
+        "OS-F20"
+      ],
+      "inputs": [
+        "16rows",
+        "fee/currentgold/fivepets"
+      ],
+      "ordered_behavior": [
+        "Name/gold/existence gates",
+        "Sendzero-basedoffer andactive-2"
+      ],
+      "completion_failure_cancel": [
+        "No immediatehide/debit"
+      ]
+    },
+    {
+      "id": "OS-O55",
+      "capability": "G12",
+      "title": "Publish fivepet selection",
+      "source_rules": [
+        "OS-F20"
+      ],
+      "inputs": [
+        "3/5-field reply",
+        "live54/currentroster"
+      ],
+      "ordered_behavior": [
+        "Clearremote records",
+        "Mapcurrentoriginalslot toremoteordinal"
+      ],
+      "completion_failure_cancel": [
+        "No wiregeneration added"
+      ]
+    },
+    {
+      "id": "OS-O56",
+      "capability": "G12",
+      "title": "Admit pet selection",
+      "source_rules": [
+        "OS-F20"
+      ],
+      "inputs": [
+        "remoteexists/threshold/type/hint"
+      ],
+      "ordered_behavior": [
+        "Threshold andrequiredtype match",
+        "Hintflag onlyaffects hint",
+        "Sendordinal/set-2"
+      ],
+      "completion_failure_cancel": [
+        "No inventedcapacity<=10 gate here"
+      ]
+    },
+    {
+      "id": "OS-O57",
+      "capability": "G12",
+      "title": "Publish pet skillrows/capacity",
+      "source_rules": [
+        "OS-F21"
+      ],
+      "inputs": [
+        "tenstoredtriples",
+        "earliercapacity"
+      ],
+      "ordered_behavior": [
+        "Keeprecordlayout vsdisplaycount separate"
+      ],
+      "completion_failure_cancel": [
+        "Unsafe nativecapacity andtargetten-slot policy explicit"
+      ]
+    },
+    {
+      "id": "OS-O58",
+      "capability": "G12",
+      "title": "Confirm/cancel skilloverlay",
+      "source_rules": [
+        "OS-F21"
+      ],
+      "inputs": [
+        "selectedrow/scroll",
+        "localoverlay"
+      ],
+      "ordered_behavior": [
+        "Sendzero-basedslot onaccept",
+        "Overlaycancel onlycloseslayer"
+      ],
+      "completion_failure_cancel": [
+        "Notwhole-service cancellation"
+      ]
+    },
+    {
+      "id": "OS-O59",
+      "capability": "G12",
+      "title": "Apply differentservice returns",
+      "source_rules": [
+        "OS-F19",
+        "OS-F21"
+      ],
+      "inputs": [
+        "human/pet/localmode"
+      ],
+      "ordered_behavior": [
+        "Human1/2/99 rules",
+        "Offerhide/no send",
+        "Petbackbutton2/empty/keepwaiting"
+      ],
+      "completion_failure_cancel": [
+        "No uniformclose/reply mapping"
+      ]
+    },
+    {
+      "id": "OS-O60",
+      "capability": "G12",
+      "title": "Read treatment sixslots",
+      "source_rules": [
+        "OS-F22"
+      ],
+      "inputs": [
+        "level/injury/name/fee"
+      ],
+      "ordered_behavior": [
+        "Negativelevelstop",
+        "Level0stillcontributes",
+        "Buildaggregate andinjurygrades"
+      ],
+      "completion_failure_cancel": [
+        "No unsupportedbusinessrenaming"
+      ]
+    },
+    {
+      "id": "OS-O61",
+      "capability": "G12",
+      "title": "Select treatment reply",
+      "source_rules": [
+        "OS-F22"
+      ],
+      "inputs": [
+        "displayrow/aggregate",
+        "currentgold"
+      ],
+      "ordered_behavior": [
+        "Rows3..8/aggregate9",
+        "Cancel2/empty",
+        "No inventedbalance gate"
+      ],
+      "completion_failure_cancel": [
+        "No optimistichealing/debit"
+      ]
+    },
+    {
+      "id": "OS-O62",
+      "capability": "G12",
+      "title": "Publish skill/pet data andretire",
+      "source_rules": [
+        "OS-F08",
+        "OS-F21",
+        "OS-F22",
+        "OS-F23",
+        "OS-F30"
+      ],
+      "inputs": [
+        "authoritativecarrierupdates",
+        "windowowner"
+      ],
+      "ordered_behavior": [
+        "Keepactualroster/data ownership",
+        "Handle selectioninvalidate/lifecycles"
+      ],
+      "completion_failure_cancel": [
+        "Alternateadmission andrealsettlement remainopen"
+      ]
+    },
+    {
+      "id": "OS-O63",
+      "capability": "G13",
+      "title": "Invite/resolve source candidates",
+      "source_rules": [
+        "OS-F09",
+        "OS-F24"
+      ],
+      "inputs": [
+        "frontmask8/partyconditions",
+        "sharedtimer"
+      ],
+      "ordered_behavior": [
+        "Use467290 actualdistance/clock",
+        "Keepcandidate requestfields"
+      ],
+      "completion_failure_cancel": [
+        "No inventedA/B businessname"
+      ]
+    },
+    {
+      "id": "OS-O64",
+      "capability": "G13",
+      "title": "Select paged originalcandidate index",
+      "source_rules": [
+        "OS-F24"
+      ],
+      "inputs": [
+        "tennames",
+        "pageoffset/controlrow"
+      ],
+      "ordered_behavior": [
+        "Sendoriginalindex",
+        "Open43 withthatname",
+        "Markcandidatewindowseparately"
+      ],
+      "completion_failure_cancel": [
+        "Localrow isnotoriginalindex"
+      ]
+    },
+    {
+      "id": "OS-O65",
+      "capability": "G13",
+      "title": "Maintain local/peer tradephases",
+      "source_rules": [
+        "OS-F24",
+        "OS-F25"
+      ],
+      "inputs": [
+        "incoming/outgoingactions"
+      ],
+      "ordered_behavior": [
+        "Independent0/1/2 transitions"
+      ],
+      "completion_failure_cancel": [
+        "Notrequestrevisions"
+      ]
+    },
+    {
+      "id": "OS-O66",
+      "classic_inventory_confirmation": "analysis/capability-first-v1/game-trade-storage-contract.json#/inventory_confirmation/offer_panel",
+      "classic_trade_pet_and_gold": "analysis/capability-first-v1/game-trade-storage-contract.json#/classic_trade_pet_and_gold/pet_publication_and_selection",
+      "alternate_trade_selection": "analysis/capability-first-v1/game-trade-storage-contract.json#/alternate_trade_selection",
+      "capability": "G13",
+      "title": "Assign/reorder/release20/5 offers",
+      "source_rules": [
+        "OS-F07",
+        "OS-F26"
+      ],
+      "inputs": [
+        "signed8 source maps",
+        "occupancy"
+      ],
+      "ordered_behavior": [
+        "Use exactselectionprimitives andholes"
+      ],
+      "completion_failure_cancel": [
+        "No denseposition assumption"
+      ]
+    },
+    {
+      "id": "OS-O67",
+      "classic_inventory_confirmation": "analysis/capability-first-v1/game-trade-storage-contract.json#/inventory_confirmation/command_order/publish",
+      "classic_trade_pet_and_gold": "analysis/capability-first-v1/game-trade-storage-contract.json#/classic_trade_pet_and_gold/wallet_and_amount",
+      "alternate_trade_gold": "analysis/capability-first-v1/game-trade-storage-contract.json#/alternate_trade_gold/amount_callback",
+      "capability": "G13",
+      "title": "Publish sparseoffer",
+      "source_rules": [
+        "OS-F07",
+        "OS-F24"
+      ],
+      "inputs": [
+        "20/5maps",
+        "committed offer gold"
+      ],
+      "ordered_behavior": [
+        "Serialize sourceSlot|offerPosition",
+        "Setlocal1 withoutpublishclock write"
+      ],
+      "completion_failure_cancel": [
+        "CurrentAPI clock/dense policy differs"
+      ]
+    },
+    {
+      "id": "OS-O68",
+      "classic_inventory_confirmation": "analysis/capability-first-v1/game-trade-storage-contract.json#/inventory_confirmation/command_order/confirm",
+      "capability": "G13",
+      "title": "Confirm/toggle/dedicatedwithdraw",
+      "source_rules": [
+        "OS-F24"
+      ],
+      "inputs": [
+        "local/peerphase",
+        "sharedtick"
+      ],
+      "ordered_behavior": [
+        "Mainphase1 confirms,phase2 withdraws withstrict500",
+        "Dedicatedwithdraw ownuntimedbody"
+      ],
+      "completion_failure_cancel": [
+        "No unifiedtimer orconfirm-onlysource API"
+      ]
+    },
+    {
+      "id": "OS-O69",
+      "capability": "G13",
+      "title": "Publish peerassets/skills",
+      "source_rules": [
+        "OS-F25"
+      ],
+      "inputs": [
+        "gold/item/pet/skill carriers"
+      ],
+      "ordered_behavior": [
+        "Exact20/5/14/23 layouts andclear sentinels"
+      ],
+      "completion_failure_cancel": [
+        "No ownedassetsettlement"
+      ]
+    },
+    {
+      "id": "OS-O70",
+      "capability": "G13",
+      "title": "Consume peerwithdrawal",
+      "source_rules": [
+        "OS-F24",
+        "OS-F25"
+      ],
+      "inputs": [
+        "peerwithdraw"
+      ],
+      "ordered_behavior": [
+        "Clearpeer/phase0",
+        "Onlylocal2->1"
+      ],
+      "completion_failure_cancel": [
+        "Do notresetbothphases"
+      ]
+    },
+    {
+      "id": "OS-O71",
+      "capability": "G13",
+      "title": "Consume servertrade result",
+      "source_rules": [
+        "OS-F25",
+        "OS-F26"
+      ],
+      "inputs": [
+        "Ofl0/1/2"
+      ],
+      "ordered_behavior": [
+        "1 raisespeer2",
+        "0/2 suppressclose"
+      ],
+      "completion_failure_cancel": [
+        "Normalwallet/items/pets remain authoritative"
+      ]
+    },
+    {
+      "id": "OS-O72",
+      "capability": "G13",
+      "title": "Close/destruct trade",
+      "source_rules": [
+        "OS-F07",
+        "OS-F08",
+        "OS-F26",
+        "OS-F30"
+      ],
+      "inputs": [
+        "localclose orserverclose",
+        "live43"
+      ],
+      "ordered_behavior": [
+        "Set/read suppression atcorrectpoints",
+        "Release20/5/associatedprompt",
+        "Clear suppressionafterdestruction"
+      ],
+      "completion_failure_cancel": [
+        "Panelclear isnotnativepoolreceipt"
+      ]
+    },
+    {
+      "id": "OS-O73",
+      "capability": "G13",
+      "title": "Parse storage beforewindowdecision",
+      "source_rules": [
+        "OS-F27"
+      ],
+      "inputs": [
+        "wire17/21/22",
+        "A/I/P/G bytes"
+      ],
+      "ordered_behavior": [
+        "Callparser first",
+        "Interpret returns0/1 perrecordkind",
+        "41variant0/1 or38"
+      ],
+      "completion_failure_cancel": [
+        "Constructor0 canstillmakewindow viafailure path"
+      ]
+    },
+    {
+      "id": "OS-O74",
+      "capability": "G13",
+      "title": "Apply storage snapshot/deltas",
+      "source_rules": [
+        "OS-F02",
+        "OS-F27"
+      ],
+      "inputs": [
+        "20items/fivepets/balance",
+        "I/P/G changes"
+      ],
+      "ordered_behavior": [
+        "Exact6/33-fieldlayouts andsteps7/34",
+        "Retainpartialsource vsatomictarget policy"
+      ],
+      "completion_failure_cancel": [
+        "No genericparse0 failure"
+      ]
+    },
+    {
+      "id": "OS-O75",
+      "capability": "G13",
+      "title": "Move local/storage items",
+      "source_rules": [
+        "OS-F06",
+        "OS-F28"
+      ],
+      "inputs": [
+        "8..27/100..119 endpoints",
+        "currentquantitycallback"
+      ],
+      "ordered_behavior": [
+        "Whole-1 oreligibleprompt",
+        "Readcurrentendpoints,41then38"
+      ],
+      "completion_failure_cancel": [
+        "Currentrevision/pending/recheck differences explicit"
+      ]
+    },
+    {
+      "id": "OS-O76",
+      "capability": "G13",
+      "title": "Move local/storage pets",
+      "source_rules": [
+        "OS-F28"
+      ],
+      "inputs": [
+        "0..4/100..104",
+        "actualroster/scroll"
+      ],
+      "ordered_behavior": [
+        "Useoriginalslot mapping",
+        "Shortcuts choosefirstempty",
+        "SendP|from|to"
+      ],
+      "completion_failure_cancel": [
+        "Displayfee notuniformbalance refusal"
+      ]
+    },
+    {
+      "id": "OS-O77",
+      "capability": "G13",
+      "title": "Store/withdraw gold",
+      "source_rules": [
+        "OS-F28"
+      ],
+      "inputs": [
+        "wallet/storage",
+        "1000000 limit"
+      ],
+      "ordered_behavior": [
+        "Source direction-specificminbound",
+        "Keep post-senddisplay separate"
+      ],
+      "completion_failure_cancel": [
+        "No actualsettlement receipt inferred"
+      ]
+    },
+    {
+      "id": "OS-O78",
+      "capability": "G13",
+      "title": "Close/recover storageandpendingwork",
+      "source_rules": [
+        "OS-F06",
+        "OS-F08",
+        "OS-F27",
+        "OS-F28",
+        "OS-F30"
+      ],
+      "inputs": [
+        "owner/mode/reply/quantity",
+        "scene/close"
+      ],
+      "ordered_behavior": [
+        "Sourcewindowretirement andsharedprompt order",
+        "Targetlate-result/leasecheck separate"
+      ],
+      "completion_failure_cancel": [
+        "No newrequestID orbankauth inferred"
+      ]
+    }
+  ],
+  "required_behavior_readiness": [
+    {
+      "capability": "G09",
+      "requirement": "槽位/数量移动",
+      "operations": [
+        "OS-O01",
+        "OS-O02",
+        "OS-O03",
+        "OS-O04",
+        "OS-O05",
+        "OS-O13",
+        "OS-O14",
+        "OS-O15",
+        "OS-O17",
+        "OS-O18"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G09",
+      "requirement": "使用/定向",
+      "operations": [
+        "OS-O03",
+        "OS-O06",
+        "OS-O07",
+        "OS-O08",
+        "OS-O09",
+        "OS-O10",
+        "OS-O17"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G09",
+      "requirement": "装备",
+      "operations": [
+        "OS-O03",
+        "OS-O05",
+        "OS-O13",
+        "OS-O15",
+        "OS-O17",
+        "OS-O18"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G09",
+      "requirement": "丢弃",
+      "operations": [
+        "OS-O05",
+        "OS-O11",
+        "OS-O12",
+        "OS-O15",
+        "OS-O18"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G09",
+      "requirement": "地面拾取",
+      "operations": [
+        "OS-O05",
+        "OS-O16",
+        "OS-O17"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G09",
+      "requirement": "回包归属",
+      "operations": [
+        "OS-O01",
+        "OS-O02",
+        "OS-O14",
+        "OS-O15",
+        "OS-O16",
+        "OS-O18"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G10",
+      "requirement": "面对/选择角色",
+      "operations": [
+        "OS-O19",
+        "OS-O20",
+        "OS-O21"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G10",
+      "requirement": "NPC对话",
+      "operations": [
+        "OS-O21",
+        "OS-O22",
+        "OS-O23",
+        "OS-O24",
+        "OS-O27",
+        "OS-O28",
+        "OS-O32"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G10",
+      "requirement": "双字段",
+      "operations": [
+        "OS-O21",
+        "OS-O22",
+        "OS-O25",
+        "OS-O26",
+        "OS-O32"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G10",
+      "requirement": "图文确认及外观草稿",
+      "operations": [
+        "OS-O21",
+        "OS-O27",
+        "OS-O28",
+        "OS-O29",
+        "OS-O30",
+        "OS-O31",
+        "OS-O32"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G11",
+      "requirement": "买卖/服务/兑换/折算/单项给予",
+      "operations": [
+        "OS-O33",
+        "OS-O34",
+        "OS-O35",
+        "OS-O36",
+        "OS-O37",
+        "OS-O38",
+        "OS-O39",
+        "OS-O40",
+        "OS-O41",
+        "OS-O42",
+        "OS-O43",
+        "OS-O44",
+        "OS-O45",
+        "OS-O46",
+        "OS-O47",
+        "OS-O48"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G11",
+      "requirement": "报价和窗口关闭",
+      "operations": [
+        "OS-O21",
+        "OS-O33",
+        "OS-O34",
+        "OS-O40",
+        "OS-O41",
+        "OS-O42",
+        "OS-O43",
+        "OS-O44",
+        "OS-O45",
+        "OS-O47",
+        "OS-O48"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G12",
+      "requirement": "报价/治疗",
+      "operations": [
+        "OS-O49",
+        "OS-O50",
+        "OS-O54",
+        "OS-O55",
+        "OS-O56",
+        "OS-O57",
+        "OS-O58",
+        "OS-O59",
+        "OS-O60",
+        "OS-O61",
+        "OS-O62"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": false,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G12",
+      "requirement": "人物学习遗忘",
+      "operations": [
+        "OS-O49",
+        "OS-O50",
+        "OS-O51",
+        "OS-O52",
+        "OS-O53",
+        "OS-O59",
+        "OS-O62"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": false,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G12",
+      "requirement": "宠物选择和技能栏",
+      "operations": [
+        "OS-O49",
+        "OS-O54",
+        "OS-O55",
+        "OS-O56",
+        "OS-O57",
+        "OS-O58",
+        "OS-O59",
+        "OS-O62"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": false,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G13",
+      "requirement": "双方报价/确认/撤回",
+      "operations": [
+        "OS-O63",
+        "OS-O64",
+        "OS-O65",
+        "OS-O66",
+        "OS-O67",
+        "OS-O68",
+        "OS-O69",
+        "OS-O70",
+        "OS-O71",
+        "OS-O72"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G13",
+      "requirement": "物品/宠物/金币存取",
+      "operations": [
+        "OS-O73",
+        "OS-O74",
+        "OS-O75",
+        "OS-O76",
+        "OS-O77",
+        "OS-O78"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "capability": "G13",
+      "requirement": "关闭与恢复",
+      "operations": [
+        "OS-O65",
+        "OS-O70",
+        "OS-O71",
+        "OS-O72",
+        "OS-O73",
+        "OS-O78"
+      ],
+      "admitted_fixed_source_operations_composed": true,
+      "whole_capability_specification_ready": true,
+      "implementation_or_dependency_acceptance": false
+    }
+  ],
+  "capability_specification_readiness": {
+    "G09": true,
+    "G10": true,
+    "G11": true,
+    "G12": false,
+    "G13": true
+  },
+  "training_mode_dispatch": {
+    "incoming": {
+      "tag": "Q?m",
+      "consumer": "0x4f4410",
+      "fields": [
+        "int32 mode",
+        "int32 mask",
+        "int32 dialogId",
+        "int32 actorId",
+        "bytes"
+      ]
+    },
+    "outgoing": {
+      "tag": "/1I",
+      "producer": "0x4f8240",
+      "fields": [
+        "int32 x",
+        "int32 y",
+        "int32 dialogId",
+        "int32 actorId",
+        "int32 button",
+        "bytes"
+      ]
+    },
+    "source_modes": [
+      {
+        "mode": "0x10",
+        "parser": "0x492d50",
+        "role": "人物师范选择",
+        "window": 52
+      },
+      {
+        "mode": "0x11",
+        "parser": "0x4af7d0",
+        "role": "人物学习",
+        "window": 54,
+        "local_mode": 0
+      },
+      {
+        "mode": "0x12",
+        "parser": "0x4af910",
+        "role": "人物遗忘",
+        "window": 54,
+        "local_mode": 1
+      },
+      {
+        "mode": "0x13",
+        "parser": "0x490db0",
+        "role": "治疗列表及合计"
+      },
+      {
+        "mode": "0x18",
+        "parser": "0x4afaa0",
+        "role": "宠物报价",
+        "window": 54,
+        "local_mode": 2
+      },
+      {
+        "mode": "0x19",
+        "parser": "0x4b0020",
+        "role": "选宠",
+        "window": 54,
+        "local_mode": 3
+      },
+      {
+        "mode": "0x1a",
+        "parser": "0x4b0490",
+        "role": "选技能栏",
+        "window": 54,
+        "local_mode": 4
+      },
+      {
+        "mode": "0x2a",
+        "parser": "0x4afd60",
+        "role": "扩展宠物报价",
+        "window": 54,
+        "local_mode": 12
+      },
+      {
+        "mode": "0x2b",
+        "parser": "0x4b0200",
+        "role": "扩展选宠",
+        "window": 54,
+        "local_mode": 13
+      },
+      {
+        "mode": "0x2c",
+        "parser": "0x4b0490",
+        "role": "扩展选技能栏",
+        "window": 54,
+        "local_mode": 4
+      }
+    ],
+    "new_protocol_fields_or_registry_entries": false
+  },
+  "implementation_deltas": [
+    {
+      "id": "OS-D1",
+      "batch": "D0/D3",
+      "existing_ports": [
+        "ContextOwner",
+        "SourceValueContext",
+        "SharedUpdatePump",
+        "OwnerLifecycle"
+      ],
+      "operations": [
+        "OS-O01",
+        "OS-O02",
+        "OS-O07",
+        "OS-O08",
+        "OS-O10",
+        "OS-O15",
+        "OS-O18",
+        "OS-O44",
+        "OS-O47",
+        "OS-O66",
+        "OS-O72"
+      ],
+      "change": "Compose one live/cache/selection/occupancy owner,source-byte counts andcorrect release/rebuild order;reuse existingitemcodec andcommands.",
+      "implemented": false
+    },
+    {
+      "id": "OS-D2",
+      "batch": "D0/D3",
+      "existing_ports": [
+        "ContextOwner",
+        "SourceValueContext",
+        "SharedUpdatePump",
+        "InputAndTextFocus",
+        "OwnerLifecycle"
+      ],
+      "operations": [
+        "OS-O21",
+        "OS-O32",
+        "OS-O43",
+        "OS-O45",
+        "OS-O48",
+        "OS-O62",
+        "OS-O72",
+        "OS-O73",
+        "OS-O78"
+      ],
+      "change": "沿现有 Q?m 所有者处理准入、组退役和对话发布，再将普通来包的朝向更新交给角色所有者。用当前来包的角色 ID，保留窗口忽略后的尾部调用和关闭分支的提前返回。来源见 dialog_actor_facing。",
+      "implemented": false
+    },
+    {
+      "id": "OS-D3",
+      "batch": "D0/D3",
+      "existing_ports": [
+        "ContextOwner",
+        "SourceValueContext",
+        "ClockDomains",
+        "InputAndTextFocus"
+      ],
+      "operations": [
+        "OS-O13",
+        "OS-O14",
+        "OS-O75",
+        "OS-O78"
+      ],
+      "change": "Implement commonquantity context/initial0/currentendpoints/delayedpublication/41then38;reuse originalnumericinput rules andRPleases ratherthan separateprompts perplatform.",
+      "implemented": false
+    },
+    {
+      "id": "OS-D4",
+      "batch": "D0/D3",
+      "existing_ports": [
+        "InputAndTextFocus",
+        "SourceValueContext",
+        "SharedUpdatePump",
+        "RenderAudioSurfaces"
+      ],
+      "operations": [
+        "OS-O03",
+        "OS-O04",
+        "OS-O05",
+        "OS-O06",
+        "OS-O07",
+        "OS-O08",
+        "OS-O09",
+        "OS-O10",
+        "OS-O11",
+        "OS-O12",
+        "OS-O16",
+        "OS-O17"
+      ],
+      "change": "Bind ordinarybag/equipment/target/drop/facing events withsourceoccupancy/frame/hit context;keep correctbag-only targeting andbytecommand layouts.",
+      "implemented": false
+    },
+    {
+      "id": "OS-D5",
+      "batch": "D0/D3",
+      "existing_ports": [
+        "InputAndTextFocus",
+        "TextEncodingAndLocalStateStore",
+        "SourceValueContext",
+        "RenderAudioSurfaces"
+      ],
+      "operations": [
+        "OS-O19",
+        "OS-O20",
+        "OS-O22",
+        "OS-O23",
+        "OS-O24",
+        "OS-O25",
+        "OS-O26",
+        "OS-O27",
+        "OS-O28",
+        "OS-O29",
+        "OS-O30",
+        "OS-O31",
+        "OS-O32"
+      ],
+      "change": "Reuse pairedfield/illustration/appearance core;add exactversion/participation/arrows/callbacktail composition andfont/inputfocus throughsharedports. 两版经典文本与图形确认的空帧钩子、控件参与与退役次序见 classic_dialog_frame_hook。",
+      "implemented": false
+    },
+    {
+      "id": "OS-D6",
+      "batch": "D0/D3",
+      "classic_quote_interaction": "/classic_shop_quote_interaction/implementation",
+      "existing_ports": [
+        "ContextOwner",
+        "SourceValueContext",
+        "SharedUpdatePump"
+      ],
+      "operations": [
+        "OS-O33",
+        "OS-O34",
+        "OS-O35",
+        "OS-O36",
+        "OS-O37",
+        "OS-O38",
+        "OS-O39",
+        "OS-O40",
+        "OS-O41",
+        "OS-O42",
+        "OS-O43",
+        "OS-O44",
+        "OS-O45",
+        "OS-O46",
+        "OS-O47",
+        "OS-O48"
+      ],
+      "change": "Reuse sixquote codecs/arithmetic;compose sourcecontrol trajectories,previewcopy versuscurrentglobals,mode-specific gates andsingle-itemgive. Explicitly review existingstrictsubmit policies.",
+      "implemented": false
+    },
+    {
+      "id": "OS-D7",
+      "batch": "D0/D3",
+      "existing_ports": [
+        "ContextOwner",
+        "SourceValueContext",
+        "InputAndTextFocus",
+        "SharedUpdatePump"
+      ],
+      "operations": [
+        "OS-O49",
+        "OS-O50",
+        "OS-O51",
+        "OS-O52",
+        "OS-O53",
+        "OS-O54",
+        "OS-O55",
+        "OS-O56",
+        "OS-O57",
+        "OS-O58",
+        "OS-O59",
+        "OS-O60",
+        "OS-O61",
+        "OS-O62"
+      ],
+      "change": "Reuse classicservice/rostercodecs;compose sourceordinals,currentdata anddifferentcancel/overlay rules. Preserve G12conditionalactivation frontier andindependentboundeddomains. 实现经典窗口54等待、原字段发布与关闭时序，见 classic_pet_training_wait_owner。 在同一个治疗所有者保留实时金币和当前选择提示。复用原回复字段，用 classic_dialog_frame_hook 核对绘制返回、请求退役及后续回收。 两份固定样本的另一套训练窗口共用预览归属及模式清理见 OS-U1 引用。按实际回调顺序接线。",
+      "implemented": false
+    },
+    {
+      "id": "OS-D8",
+      "classic_trade_inventory_confirmation": "analysis/capability-first-v1/game-trade-storage-contract.json#/inventory_confirmation/implementation",
+      "classic_trade_pet_and_gold": "analysis/capability-first-v1/game-trade-storage-contract.json#/classic_trade_pet_and_gold/implementation",
+      "alternate_trade_gold": "analysis/capability-first-v1/game-trade-storage-contract.json#/alternate_trade_gold/implementation",
+      "alternate_trade_selection": "analysis/capability-first-v1/game-trade-storage-contract.json#/alternate_trade_selection/implementation",
+      "batch": "D0/D3",
+      "existing_ports": [
+        "ContextOwner",
+        "SourceValueContext",
+        "ClockDomains",
+        "OwnerLifecycle"
+      ],
+      "operations": [
+        "OS-O63",
+        "OS-O64",
+        "OS-O65",
+        "OS-O66",
+        "OS-O67",
+        "OS-O68",
+        "OS-O69",
+        "OS-O70",
+        "OS-O71",
+        "OS-O72"
+      ],
+      "change": "Add sparseoffer positions,sourceclock ownership,mainbuttonphase2toggle andserverclose suppression;keep independentassetpublication andexistingpacket codecs.",
+      "implemented": false
+    },
+    {
+      "id": "OS-D9",
+      "batch": "D0/D3",
+      "existing_ports": [
+        "ContextOwner",
+        "SourceValueContext",
+        "SharedUpdatePump",
+        "SnapshotStore"
+      ],
+      "operations": [
+        "OS-O73",
+        "OS-O74",
+        "OS-O75",
+        "OS-O76",
+        "OS-O77",
+        "OS-O78"
+      ],
+      "change": "Compose parser-before-window/storagecache/currentendpoint rules;review currentatomic/revision/pending policies withoutnewprotocolfields.",
+      "implemented": false
+    },
+    {
+      "id": "OS-D10",
+      "batch": "D5/D6",
+      "existing_ports": [
+        "InputAndTextFocus",
+        "RenderAudioSurfaces",
+        "HostCapabilitiesAndLifecycle",
+        "BudgetAndLease",
+        "OwnerLifecycle"
+      ],
+      "operations": [
+        "OS-O18",
+        "OS-O32",
+        "OS-O48",
+        "OS-O62",
+        "OS-O72",
+        "OS-O78"
+      ],
+      "change": "Bind sharedcore toactualweb/mobile/WeChat gestures,focus/resources/retirement andfullacceptance;no duplicatedcore orsimulator-as-device claim.",
+      "implemented": false
+    }
+  ],
+  "selected_supersession": [
+    {
+      "old": "G09target/drop/normalinput lacked complete callback-range composition",
+      "now": "Fourbag/equipment callbacks,drop/classifier andtheiractualfactory/returnedges arebyte-bound;equipmenttargetview isrender-only,occupancy andcallbacktails explicit."
+    },
+    {
+      "old": "G10graphicconfirmation/appearance arrows onlybounded snippets",
+      "now": "Completefixedgraphiccallback andthree arrowbodies composed withoriginalinit/confirm;minmax/detailwrap/participation notguessed fromcurrentcode."
+    },
+    {
+      "old": "G09/G11/G13sharedselection/quantity/occupancy pendinggenericgaps",
+      "now": "Reuse SW/QP/OC admittednormal/conditional tables;initial0,currentendpoints,sourcecounter andsynchronousold-owner teardown composed. OC-U7/U8 stayinferences."
+    },
+    {
+      "old": "GenericallNPCserviceequivalence/currentstrictbounds treatedassource",
+      "now": "Classictenmodes/amounts/ordinals/cancels specified;G12whole-domain readiness stillfalse forpreservedalternateactivation/relevance frontier."
+    }
+  ],
+  "proposed_acceptance_cases": [
+    {
+      "id": "OS-A01",
+      "case": "28slots/14fields/partialpublication/longname-retention andallfourlive/cache strides.",
+      "full_inventory_publication_cases": "/full_inventory_publication/acceptance",
+      "alternate_trade_selection": "analysis/capability-first-v1/game-trade-storage-contract.json#/alternate_trade_selection/acceptance/OS-A01",
+      "alternate_inventory_quantity": "analysis/capability-first-v1/game-trade-storage-contract.json#/alternate_inventory_quantity/acceptance/OS-A01",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A02",
+      "case": "Bag20/equip8 occupancy/hit/drag/getter anddifferent source-storage gates.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A03",
+      "case": "Direct-use presence/code/useflags versus67C9 branchbeforeframegate.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A04",
+      "case": "Targetsource reserve/bageligibility/hold-reservation/equipmentrender-only/cancelcontinuation.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A05",
+      "case": "Mode1D serverpayloadreservation/chosenabsolute slot/release/activity andnoequipmenttargetsend.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A06",
+      "case": "Drop factorypermit/currentpose/event2/status/substategates andevent0cursor lifecycle.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A07",
+      "case": "Face/pickup independent500clocks/mask7/adjacenttile andseparate actorinteraction.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A08",
+      "case": "Wholemove-1/partialprompt limits/initial0/eleventhcall/failurefallback/currentendpoints.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A09",
+      "case": "42 close/reopen/oldcallback/ownerloss/41before38 andexplicitpendingpolicy differences.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A10",
+      "case": "Q?m globalgates/mode-actormatchingclose/specialreplacement/livegroups/openinganimations.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A11",
+      "case": "A/B keylayouts/AthenB/sharedclock/qualificationfailure andknownnumericarguments.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A12",
+      "case": "Normal/widetext/header/illustration/paired46byte/space8140/escape/confirm/cancel.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A13",
+      "case": "@g defaults/facing/coordinates/double@/tenrows andactualresourcepreparationretry.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A14",
+      "case": "Fixedgraphicbutton0/negative/nonzero/storedID/activeclear/sounds withoutassumedack.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A15",
+      "case": "Appearancedecomposition/overrideFFfallback/minmax/base814C-Dlocks/arrows/wrap/currentconfirm.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A16",
+      "case": "Merchantallfourflags/exchangeleave/handoffleave row-to-action behavior.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A17",
+      "case": "Sixquotes/header/rowlayouts/parsebounds/sourceunsafe versusstrictindependentpolicies.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A18",
+      "case": "Buycapacity/saleinitialquantity/qualificationhints/fees/quoteorder andsourcecontrolincrements.",
+      "classic_quote_interaction": "/classic_shop_quote_interaction/acceptance/OS-A18",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A19",
+      "case": "Exchange28currencyversus20freedslots/multi-stepquantity andconversionbranch/quota/999/zerowrap.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A20",
+      "case": "Previewcopy/currentglobals/finalserialization/backonlyoverlay/outercancel/button2.",
+      "classic_quote_interaction": "/classic_shop_quote_interaction/acceptance/OS-A20",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A21",
+      "case": "Live53ignoredrequote/forcedoldteardown/currentmodecounts andkind9single-use suppression.",
+      "classic_quote_interaction": "/classic_shop_quote_interaction/acceptance/OS-A21",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A22",
+      "case": "OC-U7/U8 onlyunderlistedmessage-animationassumptions,notrealprotocolcounter-failureclaims.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A23",
+      "case": "Humantrainingparse/display/noinventedbalancegate/ordinalmapping and1/2/99 return.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A24",
+      "case": "Pet16offer/five-selection/thresh/type/hint/tenstoredversusdisplaycapacity andoverlaycancels. 按 classic_pet_training_wait_owner 覆盖同窗回包、返回、关闭及退役。",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A25",
+      "case": "治疗负等级与零等级、费用与伤势汇总、等级图标、3–8 和 9 回复及余额和伤势的权威更新。按 classic_dialog_frame_hook 验证单人、全部、取消、空行提示及当前帧到退役的顺序。",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A26",
+      "shared_input_preference_case": "analysis/capability-first-v1/game-trade-storage-contract.json#/stack_quantity_input_preference/acceptance/shared_ui_boundaries",
+      "case": "对训练 55–59、67 核实际帧准入与首参，验证旧窗清理在新窗初始化前后的预览和活动模式。58、59 的关闭音效、67 的单独模式清理及其它训练路径沿原规格。",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A27",
+      "classic_trade_inventory_confirmation": "analysis/capability-first-v1/game-trade-storage-contract.json#/inventory_confirmation/acceptance/OS-A27",
+      "classic_trade_pet_and_gold": "analysis/capability-first-v1/game-trade-storage-contract.json#/classic_trade_pet_and_gold/acceptance/OS-A27",
+      "alternate_trade_gold": "analysis/capability-first-v1/game-trade-storage-contract.json#/alternate_trade_gold/acceptance/OS-A27",
+      "alternate_trade_selection": "analysis/capability-first-v1/game-trade-storage-contract.json#/alternate_trade_selection/acceptance/OS-A27",
+      "case": "Sparse20/5offermaps/localpeerphases/publishnoclock/mainconfirmtoggle/dedicatedwithdraw.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A28",
+      "classic_trade_pet_and_gold": "analysis/capability-first-v1/game-trade-storage-contract.json#/classic_trade_pet_and_gold/acceptance/OS-A28",
+      "alternate_trade_gold": "analysis/capability-first-v1/game-trade-storage-contract.json#/alternate_trade_gold/acceptance/OS-A28",
+      "case": "Peerrecords/withdrawpartialphases/Ofl0-1-2/suppresseddestructor andnoownedsettlement.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A29",
+      "case": "StorageA/I/P/G returnmeaning/parse-before-window/41variant0-1/38/failureconstruction.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A30",
+      "case": "Item/pet/goldendpointmapping/currentqty/fallback/fee-display/pending andregularassetreplies.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "OS-A31",
+      "case": "Allownerclose/reentry/lateinput/pixels/contextreset/drain/realplatform/currentofficialacceptance.",
+      "status": "not-executed-as-full-native-or-target-case"
+    }
+  ],
+  "remaining": [
+    {
+      "id": "OS-U1",
+      "kind": "named-conditional-source-discovery",
+      "capabilities": [
+        "G12",
+        "X01",
+        "X02"
+      ],
+      "need": "固定Item已核普通Q?m十模式的经典窗口37/52/54，另一套55..59/67的六个构造函数已绑定资料和group 2打开。后一组正常激活、实际帧分派、固定SE及当前同版适用性和原需求关联仍需正向来源。",
+      "supplement": "analysis/capability-first-v1/game-training-services-contract.json#/legacy_item_producer_evidence",
+      "alternate_window_selection_and_cleanup": "analysis/capability-first-v1/alternate-window-contract.json#/alternate_window_selection_and_cleanup/facts/training_preview"
+    },
+    {
+      "id": "OS-U2",
+      "kind": "shared-implementation-and-source-context",
+      "capabilities": [
+        "G09",
+        "G10",
+        "G11",
+        "G12",
+        "G13"
+      ],
+      "need": "OS-D1..10/originaldependencies/sourceobservations/shared14ports areunintegrated. Nativepartialwrites/globals/callbacktails andindependentrevision/clock/pending policies requireexplicitimplementationdecisions."
+    },
+    {
+      "id": "OS-U3",
+      "kind": "conditional-static-prediction-and-acceptance",
+      "need": "OC-U7/U8 sourceconditions arelisted butrealmessage/animationtiming andabnormalresource/poolcontexts arenotobserved. Noall-interleavings counterbalance orsourcecrashclaim."
+    },
+    {
+      "id": "OS-U4",
+      "kind": "actual-target-current-and-official-acceptance",
+      "need": "31fullcases,actualweb/mobile/WeChatinput/window/resource/retirement,currentpairedconsumer andrealaccount/server settlement remainopen. Noaccountavailable;do notaskagainwithoutneed."
+    },
+    {
+      "id": "OS-U5",
+      "kind": "other-original-capabilities",
+      "need": "Original40/81/37/10/6 andunifiedA1..A4 remainopen;continue G14/G16/G18/G19 andbattle/common/target requirements withoutreopeningknownservicehelpers."
+    }
+  ],
+  "stopping_rule": "Stop this ordinary-service helper family at the admitted operation/condition/owner contracts. Only a named required behavior-changing positive edge justifies another query. Continue the remaining original capability specifications;product development remains after unifiedA1..A4.",
+  "summary": {
+    "reused_complete_native_records": 202,
+    "native_body_bytes": 77508,
+    "retained_derived_observations": 180,
+    "retained_derived_unique_entries": 167,
+    "retained_derived_body_bytes": 134777,
+    "retained_opcode_views": 1,
+    "opcode_bytes": 7,
+    "new_derived_views": 10,
+    "new_derived_body_bytes": 7351,
+    "independently_decoded_instructions": 2169,
+    "REA_analyze_function_attempts": 3,
+    "new_canonical_native_Evidence": 0,
+    "retained_rule_nodes": 43,
+    "fact_groups": 30,
+    "operations": 78,
+    "original_capabilities": 5,
+    "original_scope_groups": 18,
+    "implementation_deltas": 10,
+    "full_acceptance_cases_not_executed": 31
+  },
+  "original_scope_preserved": true,
+  "local_G09_full_specification_ready": true,
+  "local_G10_full_specification_ready": true,
+  "local_G11_full_specification_ready": true,
+  "local_G12_full_specification_ready": false,
+  "local_G13_full_specification_ready": true,
+  "dependencies_integrated": false,
+  "product_compatible_with_all_source_edges": false,
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "full_product_suites_or_builds_run": false,
+  "original_VM_official_network_account_device_actions": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "execution_record": {
+    "path": "build/analysis/ordinary-services-functional-specification-v1/execution-record.json",
+    "bytes": 4471,
+    "sha256": "37b2d583c9b1180cc0ba9057c3dac325868049e5ba583d2dd032be1bc595f40f"
+  },
+  "legacy_item_classic_ingress": {
+    "path": "analysis/capability-first-v1/game-training-services-contract.json",
+    "pointer": "/legacy_item_classic_ingress",
+    "fixed_Item_modes": 10,
+    "classic_windows": [
+      37,
+      52,
+      54
+    ],
+    "scope": "绑定同一Item的普通接收及所选经典窗口所有者。另一套正常激活和帧分派仍属OS-U1。"
+  },
+  "classic_training_operation_coverage": {
+    "classification": "固定 Item 与 SE 的经典操作交接，复用两版的模式分派、控件和窗口资料",
+    "source_mode_refs": [
+      "analysis/capability-first-v1/game-training-services-contract.json#/legacy_item_classic_ingress/mode_windows",
+      "analysis/capability-first-v1/game-training-services-contract.json#/dispatch/source_modes"
+    ],
+    "common": {
+      "operations": ["OS-O49", "OS-O59", "OS-O62"],
+      "implementation_refs": ["OS-D2", "OS-D7"],
+      "rule": "按 Q?m 模式和当前窗口分派。共用组退役、输入消费和状态发布，按业务保留返回及取消。人物技能、宠物技能、伤势和余额沿各自回包更新。"
+    },
+    "operations_by_user_flow": [
+      {
+        "flow": "人物师范、学习与遗忘",
+        "source_modes": ["0x10", "0x11", "0x12"],
+        "operations": ["OS-O50", "OS-O51", "OS-O52", "OS-O53"],
+        "case": "OS-A23"
+      },
+      {
+        "flow": "宠物报价、选宠、选技能栏及扩展模式",
+        "source_modes": ["0x18", "0x19", "0x1a", "0x2a", "0x2b", "0x2c"],
+        "operations": ["OS-O54", "OS-O55", "OS-O56", "OS-O57", "OS-O58"],
+        "case": "OS-A24"
+      },
+      {
+        "flow": "NPC 治疗、单人或全部选择",
+        "source_modes": ["0x13"],
+        "operations": ["OS-O60", "OS-O61"],
+        "case": "OS-A25"
+      }
+    ],
+    "acceptance_batches": {"shared_behavior": ["D0", "D3"], "target_hosts_and_same_version": ["D5", "D6"]},
+    "remaining_alternate": {"source_gap": "OS-U1", "case": "OS-A26", "frames_proven": false},
+    "validation": "reports/validation.md#capability-first-operation-handoff",
+    "full_original_or_target_cases_executed": false
+  },
+  "classic_pet_training_wait_owner": {
+    "specification": "analysis/capability-first-v1/game-training-services-contract.json#/classic_pet_training_wait_owner",
+    "capabilities": [
+      "G12",
+      "X02"
+    ],
+    "implementation_delta": "OS-D7",
+    "acceptance_case": "OS-A24",
+    "operations": [
+      "OS-O54",
+      "OS-O55",
+      "OS-O56",
+      "OS-O57",
+      "OS-O59"
+    ],
+    "scope": "两份固定历史样本的选择等待、字段发布与同窗更新、关闭匹配、返回及退役。OS-U1 和三端验收继续。"
+  },
+  "dialog_actor_facing": {
+    "classification": "fixed-Item-and-SE-static-ordinary-Qm-tail-with-local-shared-comparison",
+    "report": "reports/game-static.md#legacy-dialog-actor-facing",
+    "source_review": {
+      "path": "build/analysis/legacy-dialog-actor-facing-v1/source-review.json",
+      "bytes": 16231,
+      "sha256": "5a56a778065e61fa860eedb37daf65240b29fc1fef9cc228f571976603b7f6f7"
+    },
+    "focused_probe": {
+      "path": "build/analysis/legacy-dialog-actor-facing-v1/focused-probe.json",
+      "bytes": 1324,
+      "sha256": "5ef7c5271ffe276bd4ab9b9f0e631cf7bd90339b7bb64ec6eff6276289bbf4e5"
+    },
+    "capabilities": [
+      "G05",
+      "G10",
+      "G12",
+      "X02"
+    ],
+    "existing_operation": "OS-O21",
+    "existing_delta": "OS-D2",
+    "batches": [
+      "D0",
+      "D3"
+    ],
+    "implementation_owners": [
+      "shared/legacy-game-protocol.mjs",
+      "shared/legacy-game-actors.mjs"
+    ],
+    "source_entry": {
+      "Item": {
+        "receive": "0x579eaf",
+        "dialog": "0x4e5313",
+        "actor_lookup": "0x46870e",
+        "facing": "0x45ccc2"
+      },
+      "SE": {
+        "receive": "0x4f4410",
+        "dialog": "0x48fce0",
+        "actor_lookup": "0x440250",
+        "facing": "0x4387c0"
+      }
+    },
+    "rules": [
+      "两版均先检查各自三个来源准入值。掩码 -1 时只匹配当前模式与角色 ID，匹配则同步关闭经典组 3 并清活动模式。关闭路径跳过后续朝向调用。",
+      "掩码非 -1 时先尝试对话分派。六个已证替换序号在已有活动模式且新模式非 0x20 时先关闭组 2 再关闭组 3。普通重复治疗保持已有活动窗。两版都在分派正常返回后，用本次来包的角色 ID 查询对象，再尝试更新朝向。",
+      "本机身体和目标身体均存在、各版场景字恰为 1、目标身体所指记录的类型字恰为 1 时才写目标身体的 +0x2B8。SE 场景字沿已有 wire8 来源。Item 的独立场景来源与实际原版值仍按该版核验。",
+      "位置取身体 +0x274/+0x278。各分量先独立向零取整，再对本机减目标的差取低 16 位有符号值。横差为负时纵差负、零、正对应 7、6、5，横差为零时纵差负、正对应 0、4，横差为正时对应 1、2、3。",
+      "双差为零时 Item 读当前栈帧未赋值字节，SE 读并符号扩展目标指针的低字节。目标实现以来源档区分，保留缺少该值时的待验证条件。"
+    ],
+    "current_shared_difference": "现有共享入口在打开治疗窗及保留旧窗的普通重复来包中都保持角色原朝向 2。固定 SE 条件下两个非重合目标应分别写 6 与 0。所选匹配和不匹配关闭用例沿现有路径通过。",
+    "acceptance_cases": [
+      "本机与目标身体存在、类型与场景均为 1 时，覆盖首次打开、普通重复来包指向另一角色及替换序号，按原调用先后观察目标朝向。",
+      "覆盖关闭时不同对话序号、模式或角色失配、接收门槛、目标缺席、类型非 1、场景非 1，并核本机朝向。",
+      "分别用不同符号、位置小数、16 位折返和坐标重合检查方向来源，随后核实际身体回调如何使用该字段。"
+    ],
+    "original_runtime_observed": false,
+    "target_implementation_added": false,
+    "current_version_equivalence_proven": false
+  },
+  "classic_shop_quote_interaction": {
+    "classification": "固定历史 SE 的静态事实与条件路径，附 stage306 共享入口对照",
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "window_contract": "analysis/capability-first-v1/window-engine-contract.json#/kind9_shop_quote_drag",
+    "entry_review": "analysis/capability-first-v1/entry-admission.json#/selected_fixed_se_operations/shop_quote_controls",
+    "retirement_order": "analysis/capability-first-v1/window-engine-contract.json#/kind9_shop_quote_drag/ordered_retirement",
+    "active_window_refresh": "analysis/capability-first-v1/window-engine-contract.json#/kind9_shop_quote_drag/active_window_refresh",
+    "report": "reports/game-static.md#legacy-shop-quote-drag",
+    "source_review": "build/analysis/shop-quote-drag-v1/source-review.json",
+    "local_comparison": "build/analysis/shop-quote-drag-v1/local-comparison.json",
+    "capabilities": ["X01", "X02", "G11"],
+    "existing_operations": ["OS-O40", "OS-O47"],
+    "admission": "经典窗口 53 的出售、鉴定、修理对应内部模式 1/4/5，来包模式 7/0x14/0x16。五个可见选择行共用 4AE4C0，当前记录位置为滚动起点加行号。C1E168 是有符号字节的选择位置映射。记录跨度为 1624 字节。",
+    "selection_and_order": [
+      "相邻背包控件 4AE8F0 在所选正常路径可登记 kind 2（绝对背包槽号），或在双击时将有效报价填入第一个空选择位置并刷新。4AF170 处理投向选择区的 kind 2 并按首空位规则加入。它们与同栏已有报价 kind 9 的换位共用选择数据。",
+      "有效报价位置被拾取后，钩子每次按保存的位置重读映射。放到另一个选择行只交换映射字节，落到空行时原位置变空，两个位置都有选择时两者对换。原位完成只清登记。",
+      "原确认 4ABD10 按报价记录的原顺序读取存在和选择数量，出售取绝对槽和数量，鉴定和修理取绝对槽号。显示映射换位没有改变报价记录的遍历顺序。"
+    ],
+    "removal": [
+      "持有阶段的右键取消保留选择。已放置且未被报价行完成时，按窗口共用 phase 2 或 phase 4 进入 4AE3E0。先读取 C5E9C8，非零则清字节并返回。",
+      "普通移除保留报价资料存在字节，清记录选择数量 C3BF70、按绝对槽减 8 清 C3B294 位、把原映射写 −1，然后约束滚动，刷新报价和背包显示并清上次提示行。双击有效报价行直接清同三项并刷新，走独立的快清路径。"
+    ],
+    "implementation": {
+      "D0": "沿原 SharedUpdatePump、InputAndTextFocus 与 OwnerLifecycle 交接持有、坐标放置、取消和退役，核帧首推进、窗口池整理、实际控件分派和同步组关闭各自的归属。",
+      "D3": "沿 OS-D6 补有符号选择映射和报价所有者，合并三端换位、撤选和刷新。按窗口实例隔离旧放置及撤选，实际退役由该报价所有者结算。沿用现有 readLegacyGameMapShop、quoteLegacyGameMapShop、submitMapShop 和原确认用例。"
+    },
+    "current_local_behavior": [
+      "同一原创两行输入在出售、鉴定和修理上均可核价。反向提交选择数组仍返回源槽 8、10，调用者省略第一项得到槽 10，解析视图仍保留两个原报价。",
+      "现有网页以报价源行收集数量或勾选，微信适配层以原行号持有数量。两条接线尚缺共同的拾取、显示映射及分阶段退役状态。"
+    ],
+    "acceptance": {
+      "OS-A18": "同一个选中行先拾取，再分别放到原位、空位及另一选中行。核对五行滚动后的当前位置和映射，换位前后各数量和报价记录保持对应。",
+      "OS-A20": "互换显示顺序后返回预览并确认，按原报价记录顺序核对出售的槽和数量、鉴修的槽列表。再核预览退回及窗口取消各自的结果。",
+      "OS-A21": "核有效报价的早期右键、未命中放置、当次取消、同次左右按下、已选行双击、抑制字节置位及归属关闭。放置和双击同次成立时按换位后映射核撤选。关窗覆盖本帧仅标记、下一帧先推进放置再整理、保存 ID 为 53 的同步关窗及新报价替换。目标端按窗口实例拒绝迟到副作用并结算旧选择，原版实际鼠标消息和空槽重叠结果留实际验收。"
+    },
+    "target_implementation_added": false,
+    "native_or_full_target_cases_executed": false,
+    "current_version_equivalence_proven": false
+  },
+  "classic_dialog_frame_hook": {
+    "classification": "固定 SE 与 Item 的普通对话和治疗规则，附现有共享核心的本地对照",
+    "window_dispatch_contract": "analysis/capability-first-v1/window-engine-contract.json#/classic_dialog_frame_hook",
+    "capabilities": [
+      "G10",
+      "G12",
+      "X02"
+    ],
+    "batches": [
+      "D0",
+      "D3"
+    ],
+    "original_implementation_refs": [
+      "OS-D5",
+      "OS-D7"
+    ],
+    "existing_acceptance_refs": [
+      "OS-A12",
+      "OS-A13",
+      "OS-A25"
+    ],
+    "report": "reports/game-static.md#legacy-classic-dialog-frame-hook",
+    "target_comparison": {
+      "path": "build/analysis/legacy-window-dispatch-gates-v1/focused-probe.json",
+      "bytes": 2178,
+      "sha256": "413d9e1791195bfada00077cb6c6a29474e6944e384ae4ddba0688ef83a2274a"
+    },
+    "focused_tests": {
+      "path": "build/analysis/legacy-window-dispatch-gates-v1/focused-tests.log",
+      "bytes": 666,
+      "sha256": "8bbacf2d6fb8c080be3fd1e739e5bf66117ec027ffe08138542e244069b63b4b"
+    },
+    "coverage": {
+      "retained_canonical": 12,
+      "retained_derived": 3,
+      "new_canonical": 5,
+      "checked_bytes": 13846,
+      "checked_instructions": 4085,
+      "selected_instruction_anchors": 93,
+      "new_REA_reference_operations": 12,
+      "static_projection_cases": 15,
+      "executed_existing_module_cases": 3,
+      "existing_node_tests_passed": 5
+    },
+    "treatment_rules": [
+      "普通治疗使用自己的四参帧函数读取实时金币并提交费用、伤势图形和提示。提示条件成立时按当前显示行取单人伤势或合计伤势，分别选择受伤与无伤提示。先按取消条件写取消提示，后续合资格选择行可以覆盖。缺席或越界行沿已核分支保留此前提示。",
+      "原帧绘制提示返回零。提交和取消由原控件动作入口负责，所选回复保持单人 3–8、合计 9、取消 2 与空字段。金币、伤势与服务最终结果由既有收包更新。"
+    ],
+    "current_local_behavior": [
+      "现有共享对话正确输出治疗行、汇总与实时金币，并在生成选择或取消请求时清本地页面。",
+      "共享治疗视图当前提供行、伤势等级、费用和合计。网页按这些数据生成按钮。原来的选择提示、帧钩子返回和待退役状态仍需在同一个窗口所有者实现并由各端渲染。"
+    ],
+    "acceptance_cases": [
+      "连续打开治疗、普通文本、图形确认，核对各自的帧钩子值、选项与回复体。",
+      "在金币变化、个体受伤或无伤、合计有伤或无伤、取消、空行与越界时核对治疗提示及请求副作用。",
+      "核对已初始化且待退役时跳过自定义帧绘制、返回零继续绘制，以及非零结果登记待退役并继续本帧尾部。",
+      "核对 36/37 所选初始化及关闭不启用第 19 项控件，保留现有窗口的输入资格和回收顺序。"
+    ],
+    "remaining_evidence": "其它能改变第 19 项参与值的具名来源、另一套训练窗 55–59 和 67 的正常激活及分派、当前同版和目标三端运行。",
+    "current_same_version_proven": false,
+    "original_and_target_full_acceptance_executed": false,
+    "product_code_changed": false
+  },
+  "full_inventory_publication": {
+    "classification": "固定历史样本静态事实和跨端实现交接",
+    "source_review": "build/analysis/full-inventory-publication-v1/source-review.json",
+    "local_comparison": "build/analysis/full-inventory-publication-v1/local-comparison.json",
+    "report": "reports/game-static.md#legacy-full-inventory-publication",
+    "validation": "build/analysis/full-inventory-publication-v1/validation.json",
+    "capabilities": ["G03", "G09", "X02"],
+    "existing_operations": ["OS-O01", "OS-O02", "GF-O12"],
+    "reuse": [
+      "analysis/capability-first-v1/game-mail-data-contract.json#/inventory_refresh_and_attachment_selection/ordinary_inventory_selection",
+      "analysis/capability-first-v1/game-entry-review-contract.json#/receive_publication_review/entry_rules/4",
+      "analysis/capability-first-v1/game-flow-functional-specification.json#/facts/4",
+      "analysis/capability-first-v1/game-flow-functional-specification.json#/facts/5"
+    ],
+    "full_list": {
+      "tag": "?<E",
+      "consumer": "0x4f2310",
+      "record_base": "0xf536cc",
+      "record_stride": 1628,
+      "slot_count": 28,
+      "equipment_slots": [0, 7],
+      "bag_slots": [8, 27],
+      "leading_fields_read_by_consumer": 0,
+      "leading_fields_before_first_name": 1,
+      "name_token_1_based": "2 + 13 * slot",
+      "fields_per_slot": 13,
+      "numeric_rule": "十个数值栏按 510E50 读取至多 127 原始字节。空字段或缺字段取 -1，非空按十进制有符号前缀消费。低 16 位写入字段见下表。第 2 字段的负值单独转为 0，其用途留作定偏移字段。",
+      "fields": [
+        {"ordinal": 1, "offset": "0x002", "rule": "名称先作内层解码。非空写存在字为 1，解码后至 28 字节时复制，超限保留旧名称。空值写存在字和名称首字节为 0。"},
+        {"ordinal": 2, "offset": "0x634", "bytes": 4, "rule": "有符号十进制，负值写 0。"},
+        {"ordinal": 3, "offset": "0x030", "rule": "说明提取上限 767 字节。内层解码后按 CR/LF 和每行宽 32 生成 16 个 0x60 字节行。4E9E20 只在参数前检失败时返回 0，指定调用即使得到空行也返回 1。4FEE90 在 0x630 写页数 2。0x654 另按首行是否非空发布 1 或 0。"},
+        {"ordinal": 4, "offset": "0x638", "bytes": 4, "rule": "物品图形和用物代码，普通用物分支比较 0x67C9。"},
+        {"ordinal": 5, "offset": "0x64c", "bytes": 2, "rule": "用物标志。"},
+        {"ordinal": 6, "offset": "0x64e", "bytes": 2, "rule": "标志字。"},
+        {"ordinal": 7, "offset": "0x650", "bytes": 2, "rule": "目标掩码。"},
+        {"ordinal": 8, "offset": "0x63c", "bytes": 4, "rule": "等级栏。"},
+        {"ordinal": 9, "offset": "0x652", "bytes": 2, "rule": "资格字。"},
+        {"ordinal": 10, "offset": "0x640", "bytes": 4, "rule": "交换代码。"},
+        {"ordinal": 11, "offset": "0x648", "bytes": 4, "rule": "装备和业务类别。"},
+        {"ordinal": 12, "offset": "0x644", "bytes": 4, "rule": "实际数量。"},
+        {"ordinal": 13, "offset": "0x01f", "rule": "附加文字先作内层解码，至 16 字节才复制。空值清首字节，超限保留旧值。原窗部分资格分支读取该文字。"}
+      ],
+      "admission": "924F30 等于 0。每个槽先通知普通选择，再读取该槽名称、按字段更新并通知该槽对应的缓存。受理后固定按 0 至 27 处理，完成后返回。28 槽以外的附加字段不会由这个函数消费。",
+      "service_projection": "槽 8 至 27 调 4CBCE0(1, slot-8)，先清该贸易缓存行再按实时存在字复制。全量函数没有逐槽路径中 4C69A0 的仓储投影调用。装备槽跳过这一调用。"
+    },
+    "text_and_short_fields": {
+      "fact": "510D80 先按管道定位所选 token。无法定位时写空串并返回 1。定位成功后 510DE0 遇分隔符返回 0，先遇 NUL 或读满限制返回 1，两种结果都保存已复制前缀和 NUL。高位字节按双字节处理，尾字节中的管道不作分隔。",
+      "inner_decode": "5111A0 先调 511000 按四对字面表解码 LF、逗号、管道和反斜杠。固定 SE 的后续 507690 只有 RET。字段定位发生在内层解码之前，文本宽度限值按原编码输入和解码后的存储限值分别处理。",
+      "full": "4F2310 忽略读取名称的返回值。空 token 或无法定位到尾部行名称，均走清存在字和名称首字节。若已定位到非空终止前缀，即使没有后续管道也可置存在，后续缺失的数值和文本照各自缺值规则消费。此前已清名称的槽遇超限新名仍保留当前首字节为零。未被选定分支写入的旧字段保留。",
+      "explicit_slot": "4F25A0 每组 14 字段，字段 1 是实际槽。其余 13 栏顺序与全量一致。开始及后续组先读并通知槽，再取名称。名称结束处在限内遇到管道才继续该组；无管道或达到读取上限则终止，前面已处理的组保留。读到合法空名称只清存在字，两个背包投影沿原入口依次更新。已接受的非空名称之后若数值或文字不全，原版仍可逐项写入缺省值。",
+      "dangling_pair_and_invalid_slot": "结构边界以有界字节读验收。未配对的多字节尾部和增量非法实槽走既有独立目标处理，保留来源与目标结果各自记录。"
+    },
+    "entry": {
+      "reset": "5015A0 的主 5 在 501791 调 45EEF0 写等待位 3，随后 501796 调 4FF080。其清零区间 [0xF53530,0xF5E8E0) 包含全部活物品记录 [0xF536CC,0xF5E8DC)，共 45,584 字节。5017BA 将资料准入 924F30 清零。",
+      "waiting": "主 9 的 100 经 501A9B 构造本机状态，101 在 501AD5 查看 922C4C，为零时转 104。地图通知 4EF510 及地图补丁 4EF580 在已证分支清 bit0，本机角色资料 4F16D0 的所选路径清 bit1。4F2310 检查的是 924F30，既可在这两个位未清时处理，也没有负责清任一个位。",
+      "late": "4567A0 子状态 0 设置 924F30=1。全量、逐槽、交换的实际准入按这个状态门及当前世界所有者判断。因此入场准备、已读包、等待结束、首次呈现和背包发布各用原有结果，共享层无需另加背包已到达等待位。"
+    },
+    "item_comparison": {
+      "sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+      "entry": "0x577280",
+      "verified": "对应 ?<E。28 槽，步长 0x65C，名称 token 从 2 起每槽增 13，先通知普通选择。空名清存在字和名称首字节，背包槽后续投影调用 540BAF。门槛和字段地址按 Item 本身使用。",
+      "scope": "第二份独立静态对照。入场位和所有字节读取器细节以固定 SE 的分析为准。"
+    },
+    "implementation": {
+      "classification": "推测",
+      "D0": "让当前角色/世界拥有 28 槽字节状态和入场重置，共用有界分栏及数值和文字解码。分隔终止、超限、空值及缺值分别保留信息给各自回包。按原有效槽序列准备后发布一个目标修订，复用既有逐槽修订、交换及关闭能力。",
+      "D2": "沿 GF-D1/GF-D3 在实际入场重置共享物品状态，保持地图及本机角色两位等待。时序覆盖全量回包在等待期间和进入场景后到达，以及原资料门槛已关闭后晚到。",
+      "D3": "沿 OS-D1 把现有 ?<E 目录接到同一物品所有者。保持记录值、名称/附加文字的保留及全量、逐槽的投影规则。使用已有物品效果、工艺资料刷新和选择失效接口，按具名业务/版本保留各自缓存时序。邮件附件继续沿其已核独立所有者读取槽号。",
+      "observed_baseline": [
+        "stage306 的 ?<E 在 world/客户端均能解码，效果为空，入场前后均未写物品。",
+        "逐槽回包和共用物品状态已在客户端发布，并在等待本机角色时更新。现有入场操作仅准备外观、角色和 map/unit 两位；对预置物品状态没有完成原入场清除。",
+        "现有逐槽函数对不完整具名组执行原子拒绝，终止的两字段尾组可忽略；清槽保留名称字节，长名可再次显示保留值。这些面向现有调用者的目标行为已有回归。"
+      ]
+    },
+    "acceptance": [
+      {"existing": ["OS-A01", "MM-T07", "MM-T08", "MM-T09"], "covers": "两种格式、28 槽、同名有值和显式空、终止前缀、限长后缀、缺整槽、非法选择及 20 个背包投影。测试缺失名称与无终止管道的非空名称，核对普通选中槽和邮件附件各自结果。"},
+      {"existing": ["OS-A01", "OS-A03", "WK-T10"], "covers": "同一记录逐字段对照，区分图形代码、类别和数量，核低 16 位、负值夹限、旧名称和附加文本保留、空说明与首行状态、每页八行及双字节边界。"},
+      {"existing": ["GF-A05", "GF-A07", "OS-A01"], "covers": "入场前置已有物品、重置范围、地图先于角色或角色先于地图、无全量也能入场，以及全量在等待期间或入场后到达。核同世界合法晚到及旧生命周期门拒绝。"}
+    ],
+    "remaining": "首 token 的服务端生产者语义、当前发行版及两个历史版本的未核子路径仍按实际来源取证。完整原版、三端和同版接受保留。",
+    "selected_operation_review_complete": true,
+    "product_code_changed": false,
+    "original_executed": false,
+    "full_target_cases_executed": false,
+    "current_version_equivalence_proven": false
+  },
+  "fixed_se_item_target_menus": "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/fixed_se_item_target_menus",
+  "fixed_se_ordinary_dialog_lifecycle": {
+    "classification": "固定 SE 的经典普通对话静态规则，附 stage306 共享客户端本机对照",
+    "capabilities": ["X02", "G09", "G10", "G12"],
+    "batches": ["D0", "D3", "D5"],
+    "source": {
+      "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+      "bytes": 1569280,
+      "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+    },
+    "scope": "经典普通文本、输入及菜单 0、1、2、10、11。复用同一接收、回调、普通帧和拾取条件，并对照宠物训练等待值。",
+    "source_review": {
+      "path": "build/analysis/fixed-se-ordinary-dialog-lifecycle-v1/source-review.json",
+      "bytes": 35419,
+      "sha256": "0a595c7cfb267e99402830eaf055dc03a27fb41951d69db4ebd39c7f87cf9100"
+    },
+    "local_comparison": {
+      "path": "build/analysis/fixed-se-ordinary-dialog-lifecycle-v1/local-comparison.json",
+      "bytes": 1487,
+      "sha256": "0d7b1423b0909d828cf650388454f3ceb4b976d60e23b3dbc8ca8b10c0fdec7b"
+    },
+    "report": "reports/game-static.md#fixed-se-ordinary-dialog-lifecycle",
+    "validation": "reports/validation.md#fixed-se-ordinary-dialog-lifecycle-validation",
+    "reused_contracts": [
+      "analysis/capability-first-v1/game-map-functional-specification.json#/fixed_se_ordinary_right_click_position/facts/pickup",
+      "analysis/capability-first-v1/game-training-services-contract.json#/classic_pet_training_wait_owner",
+      "analysis/capability-first-v1/window-engine-contract.json#/classic_dialog_frame_hook",
+      "reports/game-static.md#legacy-dialog-actor-facing",
+      "reports/game-static.md#legacy-receive-retirement-order"
+    ],
+    "facts": {
+      "admission": "4F4410 先查 924F30、C5EC18 和 9250C8 解包值均为零。掩码 -1 时只比较当前有符号模式 55E4D4 和 C440CC 角色。两者匹配即 468F00(3)，在同步组退役返回后写 -1。接收的序号不参与关闭判定。其它消息才调 48FCE0 并依已有 OS-D2 规则尝试更新本次来包角色的朝向。",
+      "publication": "48FCE0 读活动模式。活动非负、新模式非 0x20 且序号为 0x146、0x147、0x171、0x184、0x185、0x186 之一时，先 468F00(2)、再 468F00(3)，最后清旧值。所核普通模式在活动值仍非负时保留原登记，即便来包角色不同。可打开时先写 55E4D4 和共同掩码、序号、角色，再保存共享距离基准并分派。普通文本经 4908E0 和 48F0A0 请求经典窗 37，属于第 2 组。逻辑占用在窗口和绘制对象真正出现前已生效。",
+      "unsupported_native_boundary": "48FEB0 的发布在 48FEE4 的 0x2C 范围检查之前。进入发布时收到正模式 0x2D，所查路径写活动再返回，未请求新窗。此边界用于核对状态写入顺序，现有共享解码的未知模式策略仍留在其验收约束。",
+      "controls": "按钮 48F90C 或选行 48FC94 调安装的 4903E0。正常已获准回复沿现有 /1I 形状，用 C1EC1C、C1EC20 缓存的序号和角色。所选发送调用返回后把活动置 -1。回调返回非零时，控件先置对象 0x8000，再清 C21248。普通析构 48F800 仅在 C21248 和回调指针均非零时用按钮 0、选择 -1 调回；490402 清活动且无回复。通用组关闭的其它窗口副作用仍沿各自回调。",
+      "distance": "普通文本构造把距离参数 2 和位掩码 0 写入 48F0A0 的参数。普通帧 48F56B 调 4B98E0(2,2)，要求当前格换算与显示位置一致，再对共享打开基准逐轴比较。任一轴到两格即由 48F590 标待退役，插值途中或两轴均未到界时保持。该标记路径保持活动值及 C21248，所选普通窗随后由实际析构清值。",
+      "frame_order": "44FC66 的收包阶段先于 44FC7A 的状态派发。所选普通帧经 5024BF 的右键操作进入 500860，随后 5024F8 才经 4EA400、46AB90 整理并分派经典窗。因此合资格服务端关闭可在同帧拾取前释放。窗控件回复在本帧拾取判断之后清值，下一合资格右键才消费。距离路径若在 N 轮标记且无其它释放，N+1 的拾取仍先读旧值，随后整理清值，N+2 首次可按各自条件拾取。",
+      "pickup_and_wait": "500860 只在 55E4D4 恰为 -1 时继续检查相邻记录和 F5F174 独立时钟。关闭不为下一次拾取重新计时，截止恰相等仍未放行。窗口 54 若在选课、选宠或返回的所选路径进入 -2，普通接收可按负值分派，拾取继续受活动值限制。右键已进入业务分派且其它门槛满足时，转向与角色查询各自判断。"
+    },
+    "current_local_behavior": [
+      "普通重复保留打开时的修订。强制替换同模式同角色产生新修订，旧控件请求被拒。错模式或错角色关闭保留窗口。同模式同角色的旧序号关闭会关掉新窗口。",
+      "本机在待处理右键后先派发服务器关闭，恰到 500 ms 截止只发角色查询。下一次超过截止发转向、拾取与角色查询。截止已过时，匹配关闭先于该轮地图动作也允许三个请求。普通确认发 /1I 后页面消失，本地直接取消没有发送。",
+      "右键进入已打开对话的当前共享路径时，统一门控拒绝三项操作。训练提交后页面移除，但仍保留业务进度。此时下一次满足冷却的右键实际发出 &?S，与原版 -2 等待的拾取条件不同。人工输入未支持模式 0x2D 时，现有共享层未建立占用，随后同样允许拾取。"
+    ],
+    "implementation": {
+      "D0": "由现有世界和窗口所有者共用有符号业务活动、真实窗实例和处理相位。先应用收包，分派地图动作后再推进窗整理和控件。拾取读取业务活动值，转向和角色查找保留各自准入。复用已登记的组选中、槽位退役和独立时钟。",
+      "D3": "沿 OS-D2、OS-D5、OS-D7 复用现有消息解码、对话内容和回复入口。入站关闭按模式与角色；本地控件用当前窗修订拒绝迟到副作用。普通窗发回复与本地距离析构沿各自释放时点，训练等待保留负值。",
+      "D5": "桌面网页、移动网页和微信只提交窗控制及输入。用同一套发布、替换、关窗与后续新按下用例核三个宿主，兼顾视觉延迟与可执行动作。"
+    },
+    "cases": {
+      "ordinary_and_replace": "按已支持的普通模式打开，覆盖接收门槛、可见对象延后建立、同或不同参与者的普通重复，以及六个已证序号的强制替换。验旧组同步退役在新模式、序号与角色发布之前，待处理旧控件拒绝。",
+      "server_close": "同窗重开后分别送错模式、错角色、同模式同角色但旧序号和当前序号的关闭。前两项保留，后两项在当前匹配时同步清理。对比接收在本轮地图动作之前与之后到达，且在独立截止前、恰相等及已超过三次按下。",
+      "local_reply": "确认、取消按钮及合法菜单行沿原回复字段和打开序号调用发送。控件回复后核活动清值、8000 标记及下一轮不二次触发本地取消。独立析构所选负选择路径不发 /1I。",
+      "distance_sweep": "让本机稳定格与打开基准相差 (1,1) 或 (2,0)，再以同一末格插值途中重试。超过边界的 N 轮仅标记，N+1 的右键仍受限，实际清理后用 N+2 的新按下及合资格时钟验恢复。",
+      "training_wait": "按 OS-A24 发送选择后的模式 -2、旧正模式关闭和匹配继续。即使目标页面暂时不可见，等待期间拾取仍拒绝。按已有训练合同核合法回包或清理后何时恢复。",
+      "publication_without_view": "在来源测试记录正模式 0x2D 的发布和范围退回，确保没有从空视图推导拾取放行。目标端仍按已登记模式的边界验收。"
+    },
+    "remaining": "其它专用模式、第二套窗口和当前同版沿原合同核验。原版实际帧投递、跨端输入、设备和服务方结果仍待相应验收。",
+    "operation_review_completed": true,
+    "product_code_changed": false,
+    "original_execution_observed": false,
+    "full_analysis_gate_passed": false
+  }
+}

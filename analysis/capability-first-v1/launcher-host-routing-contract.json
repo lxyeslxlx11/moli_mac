@@ -1,0 +1,168 @@
+{
+  "schema": "moli.capability.launcher-host-routing-contract.v1",
+  "source": {
+    "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+    "bytes": 4111872,
+    "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+  },
+  "source_check": "analysis/capability-first-v1/launcher-host-routing-source-check.json",
+  "capabilities": [
+    "L01",
+    "L05",
+    "L06",
+    "L08"
+  ],
+  "facts": [
+    {
+      "id": "dot-components",
+      "procedures": [
+        "0x434200",
+        "0x4355f0"
+      ],
+      "claim": "434200 scans separator-delimited components using CharNextA and returns1 when any component equals dot or dotdot; empty components are not themselves rejected by this helper. The directory normalizer rejects its positive result.",
+      "kind": "fact"
+    },
+    {
+      "id": "absolute-root",
+      "procedures": [
+        "0x434bd0",
+        "0x434c30",
+        "0x4355f0"
+      ],
+      "claim": "The root predicate accepts length>=3, an accepted first unsigned byte, colon and backslash, or a valid UNC root. The normalizer applies this before and after GetFullPathNameA; syntax success alone is not directory existence.",
+      "kind": "fact"
+    },
+    {
+      "id": "classifier-identity",
+      "procedures": [
+        "0x5a3725",
+        "0x5a3738",
+        "0x434bd0"
+      ],
+      "claim": "The19-byte wrapper has conflicting FID names but directly calls __ismbcalpha_l. For the actual caller input0..255, the result tests locale ctype[byte]&0x103 or multibyte_flags[byte+0x19]&1. The high-code-point branch is not used by this first-byte call; neither a graph-character interpretation nor unconditional ASCII-only behavior is proved.",
+      "kind": "fact"
+    },
+    {
+      "id": "UNC-root",
+      "procedures": [
+        "0x434c30"
+      ],
+      "claim": "UNC requires length>=5, two leading backslashes, neither device prefix\\\\?\\ nor\\\\.\\, a nonempty server before the next backslash and a nonempty share before the next backslash or end. Later components are outside this root helper; doubled forward slashes are not this prefix.",
+      "kind": "fact"
+    },
+    {
+      "id": "menu-create",
+      "procedures": [
+        "0x431000",
+        "0x4568ad",
+        "0x45621b",
+        "0x448be6",
+        "0x44dbb9",
+        "0x42e3a0",
+        "0x458bf5"
+      ],
+      "claim": "Startup requests Frame LoadFrame(resource128). LoadFrame calls the Frame Create slot with low16 resource ID; Create loads that menu, passes its handle through CreateEx and the PreCreateWindow chain to CreateWindowExA. Both observed PreCreateWindow bodies leave CREATESTRUCT.hMenu unchanged. Menu-load failure aborts creation; window-create failure destroys the loaded menu. Successful LoadFrame captures GetMenu or the retained menu field. This is a source creation/ownership path, not a rendered menu observation.",
+      "kind": "fact"
+    },
+    {
+      "id": "command-routing",
+      "procedures": [
+        "0x42e2a0",
+        "0x457666",
+        "0x446a03"
+      ],
+      "claim": "Frame OnCmdMsg first delegates to its CChildView at+0x120; otherwise the base route tries an active view at+0xdc, the Frame map, then the App. Generic command dispatch derives WM_COMMAND/notification fields, obtains the object message map through slot0x28, follows base maps and dispatches the selected entry.",
+      "kind": "fact"
+    },
+    {
+      "id": "static-menu-owners",
+      "procedures": [
+        "0x446a03",
+        "0x431690"
+      ],
+      "claim": "Resource128 has six nonzero commands. Across the complete observed Frame/CChildView/App map ancestry, E140 first selects App431620, E141 first selects App431690 before the inherited exit handler. E12B/E123/E122/E125 have no normal-command handlers in those three owner chains. A separate active-view target or dynamic routing remains outside this negative result; do not invent four game requirements or declare them globally unreachable.",
+      "kind": "fact"
+    },
+    {
+      "id": "catalog-start",
+      "procedures": [
+        "0x406290",
+        "0x40af60"
+      ],
+      "claim": "CChildView WM_CREATE maps to40af60: base creation failure returns-1, otherwise it invokes406290. 406290 returns immediately when either job handle+0x2bc4 or job pointer+0x2bc8 is nonzero; these are independent of the login-busy and process-handle predicates. The retained dossier lists40af60 as its one analyzed direct caller; that bounded list does not exclude computed callers.",
+      "kind": "fact"
+    },
+    {
+      "id": "catalog-messages",
+      "procedures": [
+        "0x406a00",
+        "0x40af80",
+        "0x40a320"
+      ],
+      "claim": "The CChildView map binds80CC to40af80 and80C9 to40a320. The worker posts progress with zero parameters and completion with a success boolean and zero lParam, after selected cancel/owner checks. Progress consumes +0x2bc1 when set, and calls4091c0 only when+0x2bc0 is clear. Completion consumes the current job and clears its owner fields; the posted message itself carries no job identity.",
+      "kind": "fact"
+    },
+    {
+      "id": "process-busy",
+      "procedures": [
+        "0x409bf0"
+      ],
+      "claim": "409bf0 returns1 iff any of CChildView+0x2b84/+0x2b88/+0x2b90 is nonzero. It does not read catalog job fields+0x2bc4/+0x2bc8 or Main login-busy+0x1a74. Callers must not treat it as a universal busy predicate.",
+      "kind": "fact"
+    },
+    {
+      "id": "cancel-boundary",
+      "procedures": [
+        "0x404410",
+        "0x406a00",
+        "0x40a320"
+      ],
+      "claim": "The previous source-bound cancellation/reference rules remain: destruction sets cancel, clears the job HWND, waits at most5000ms without checking the wait result, closes the handle and releases the owner reference. Worker checks before posts and owner references are not queue-generation or cancellation-acknowledgement proofs.",
+      "kind": "fact"
+    }
+  ],
+  "scope_refinement": [
+    "Path-helper format rules are now bound; actual locale/path APIs remain a platform acceptance dimension.",
+    "Menu resource128 participates in the creation request; visible/enabled menus are not verified.",
+    "Keep process handles, catalog job presence and login busy as distinct source predicates."
+  ],
+  "inferences": [
+    {
+      "kind": "inference",
+      "claim": "A shared owner can expose these distinct predicates and correlate its own jobs explicitly; platform ports supply locale/filesystem/window effects. This is a design inference, not a new original-program behavior.",
+      "implementation_added": false
+    }
+  ],
+  "requirement_answers": [
+    {
+      "question": 1,
+      "status": "answered-bounded-source",
+      "result": "Dot components, drive-byte classification and UNC root shape bound to bytes/callee masks; OS and locale execution remain separate."
+    },
+    {
+      "question": 2,
+      "status": "partially-answered",
+      "result": "Menu128 creation/ownership, Frame routing and six known-owner command matches bound; active-view/dynamic handlers, rendered availability and other resources remain."
+    },
+    {
+      "question": 3,
+      "status": "partially-answered",
+      "result": "WM_CREATE admission, separate busy predicates, progress/completion and destruction rules bound; full late queue/reopen/other-job lifecycle remains."
+    }
+  ],
+  "remaining": [
+    "Full XML lexer/encoding/entity/error behavior and independent parser compatibility.",
+    "Locale, filesystem/registry/profile behavior, clear/remove/exception unwinds and platform effects.",
+    "Active-view/dynamic menu handlers, rendered enable/visibility and resources296/30721/30734; static metadata alone is not a required business capability.",
+    "App initializer, all catalog/login/patch/updater late-result, cancellation acknowledgement and reopen guards; source message absence of job identity is not a safe-scheduling proof.",
+    "Game actual alternate callback dispatch, graphics/input/shared-state ownership and remaining business conditions across the full capability inventory.",
+    "Real platform/device/account/official acceptance remains distinct from static source specifications."
+  ],
+  "original_execution": false,
+  "account_or_session_observed": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "official_acceptance": false,
+  "full_goal_complete": false
+}

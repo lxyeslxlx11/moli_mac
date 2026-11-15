@@ -1,0 +1,32 @@
+{
+  "schema": "moli.launcher-current-runtime-v4.policy-after.v1",
+  "recorded_utc": "2026-10-28T18:11:33.491166+00:00",
+  "method": "Fresh CUA Windows PowerShell visual readbacks in this turn after Restore; no screenshot or account data saved. Receipt serialized after static work, not a new guest command.",
+  "commands": [
+    {
+      "line": "$LASTEXITCODE",
+      "output": 1,
+      "scope": "most recent Restore child powershell.exe"
+    },
+    {
+      "line": "Get-ExecutionPolicy -List",
+      "output": {
+        "MachinePolicy": "Undefined",
+        "UserPolicy": "Undefined",
+        "Process": "Undefined",
+        "CurrentUser": "Undefined",
+        "LocalMachine": "Undefined"
+      }
+    },
+    {
+      "line": "Get-ExecutionPolicy",
+      "output": "Restricted"
+    }
+  ],
+  "all_prompts_returned": true,
+  "persistent_policy_changed": false,
+  "guest_terminal_pending_input": false,
+  "independent_RemoteSigned_processes_returned": 4,
+  "analysis_copy_or_new_embedded_updater_execution": false,
+  "named_process_limit": "Restore guard passed no matching names before current hash guard; no separate later Get-Process count fabricated."
+}

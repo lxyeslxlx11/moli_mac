@@ -1,0 +1,13 @@
+PASS desktop identity, meaningful first screen, no overlay and no automatic preference write
+PASS mode confirmation locks save and fields; Escape cancellation preserves current inputs
+PASS confirmed mode change clears inputs and initializes flags without an automatic write
+PASS explicit save stores only mode; reload restores mode but resets inputs, encoding, checkbox choices and consent
+PASS actual original request after restore retains owned mode; locked synthetic actions cannot save or alter it
+PASS switching back to clear mode invalidates candidates and is persisted only by explicit save
+PASS future/invalid record is preserved on read and replaced only by an explicit save
+PASS unavailable native storage leaves configuration and input flow usable, with controlled status
+PASS quota exception remains unconfirmed, preserves current inputs and never echoes provider details
+PASS competing native readback is reported unconfirmed and never rolled back automatically
+PASS completed write plus failed verification stays unconfirmed; next load reads the actual saved mode
+PASS 390px actual save/reload/restore has readable controls and no horizontal overflow
+{"checks":12,"errors":[],"logs":[],"requests":495}

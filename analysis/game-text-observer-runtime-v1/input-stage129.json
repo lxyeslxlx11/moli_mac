@@ -1,0 +1,50 @@
+{
+  "schema": "moli.input-stage129.v1",
+  "recorded_utc": "2026-11-02T07:59:31.470157+00:00",
+  "app": "com.parallels.desktop.console",
+  "window_AX_id": "{bac7348c-9220-4447-94e4-e49b00f44939}",
+  "initial_actual_progress": "Registry64/Registry32 read-only parent/app/AeDebug key queries actually returned; command receipt is separate from output receipt.",
+  "interruption": {
+    "guest_minute_range": "2026-11-02 15:35 to 15:46 +08:00",
+    "symptom": "First Auto query was fully visible, but Return and Ctrl+C initially had no confirmed guest response.",
+    "bounded_attempts": [
+      "Normal Window menu selected sole existing Windows11; no confirmed response.",
+      "Visible blank terminal click and lowercase ctrl+c; pointer only, no confirmed cancellation.",
+      "Toolbar Keyboard AX click returned AXError.failure.",
+      "Cross-call previously returned nested Win+Q index returned AXError.invalidUIElement.",
+      "Fresh keyboard parent action closed menu; no search yet."
+    ],
+    "result_not_claimed": "No earlier cancellation, Auto result, stable guest input or root cause inferred from those attempts."
+  },
+  "actual_recovery": {
+    "guest_minute_range": "2026-11-02 15:47 to 15:49 +08:00",
+    "method": "In one CUA call, parse fresh full AX for the unique Devices item, click it, read new AX, parse the unique existing Win+Q item and click it. No keyboard-definition change.",
+    "actual_results": [
+      "Search opened.",
+      "Ordinary character1 actually appeared in search; no Return.",
+      "Ordinary Escape closed Search.",
+      "Lowercase ctrl+c produced visible ^C and new empty original terminal prompt."
+    ],
+    "old_pending_query": "Canceled, then retyped/read back and submitted once; actual ABSENT/ABSENT result followed by independent membership False/False."
+  },
+  "subsequent_actual_results": [
+    "Auto value results and view identities",
+    "Exact experiment directory False",
+    "C free bytes230298329088",
+    "Same-name game process count0",
+    "Exact installed game path and2904064 bytes",
+    "Four read-only registry handles disposed; empty original prompt"
+  ],
+  "last_verified_guest_minute": "2026-11-02 15:58 +08:00",
+  "last_verified_state": "English IME, empty ordinary PowerShell prompt; original session retained; no execution command pending.",
+  "new_locked_errors": 0,
+  "new_user_operations_requested": 0,
+  "new_execution_or_UAC": 0,
+  "control_backend_or_settings_changed": false,
+  "limits": [
+    "Only the observed interval/short input is verified.",
+    "Intermittent input root cause, sustained stability and device ownership remain unverified.",
+    "AX failures/invalid elements are UI/API failures, not an automatic-approval rejection.",
+    "Use fresh same-call menu matching; do not carry Qt nested indices across calls or change security/sharing to recover focus."
+  ]
+}

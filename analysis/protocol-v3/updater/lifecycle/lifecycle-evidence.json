@@ -1,0 +1,520 @@
+{
+  "schema": "moli.updater.lifecycle.static-evidence.v1",
+  "sample": {
+    "name": "LauncherUpdater.unpacked.exe",
+    "source_path": "/tmp/moli-analysis/polcn/LauncherUpdater.unpacked.exe",
+    "sha256": "62dbd66e6eac296862e214a2d92e5332b87cd811bb4f555dd5d49fe8e426b0a4",
+    "size_bytes": 86016,
+    "architecture": "PE32/i386",
+    "image_base": "0x400000"
+  },
+  "tools": {
+    "objdump": "GNU objdump 2.47.20260726",
+    "rizin": "0.9.1",
+    "supporting_REA_evidence_id": "ev_7ab9a567815cb07f2f231a52bb23b0ba9c540595119674957c8e9d4a5c2ecc42"
+  },
+  "coverage": {
+    "manual_disassembly": "Selected main-consumer control flow and error tails, not whole-program proof",
+    "REA_function": "FUN401180",
+    "REA_body_ranges_inclusive": [
+      [
+        "0x401180",
+        "0x401788"
+      ],
+      [
+        "0x401790",
+        "0x401a06"
+      ]
+    ],
+    "REA_limit": "Error/exit tails beyond 0x401a06 corroborated by direct disassembly, not covered by those Ghidra function bodies"
+  },
+  "anchors": [
+    {
+      "id": "LIT-NEW",
+      "kind": "ascii_literal",
+      "va": "0x40b88c",
+      "file_offset": "0xb88c",
+      "expected": "POL_Launcher.new",
+      "observation": "Exact null-terminated ASCII literal"
+    },
+    {
+      "id": "LIT-PAK",
+      "kind": "ascii_literal",
+      "va": "0x40b878",
+      "file_offset": "0xb878",
+      "expected": "POL_Launcher.pak",
+      "observation": "Exact null-terminated ASCII literal"
+    },
+    {
+      "id": "LIT-RESTART",
+      "kind": "ascii_literal",
+      "va": "0x40b724",
+      "file_offset": "0xb724",
+      "expected": "%s ID:%d",
+      "observation": "Exact null-terminated ASCII literal"
+    },
+    {
+      "id": "WAIT-ARGS",
+      "kind": "bytes",
+      "va": "0x4013c5",
+      "file_offset": "0x13c5",
+      "expected": "57 68 ff 0f 1f 00 33 ff 57",
+      "observation": "Push preexisting EDI, 0x1f0fff, then zero; standard OpenProcess prototype yields access=0, inherit=0x1f0fff, processId=EDI"
+    },
+    {
+      "id": "OPEN-PROCESS",
+      "kind": "iat_call",
+      "va": "0x4013ce",
+      "file_offset": "0x13ce",
+      "expected": {
+        "iat_va": "0x40b014",
+        "dll": "KERNEL32.DLL",
+        "name": "OpenProcess"
+      },
+      "observation": ""
+    },
+    {
+      "id": "WAIT-HANDLE-ARGS",
+      "kind": "bytes",
+      "va": "0x4013d4",
+      "file_offset": "0x13d4",
+      "expected": "6a ff 50",
+      "observation": "INFINITE then OpenProcess return handle"
+    },
+    {
+      "id": "WAIT-HANDLE",
+      "kind": "iat_call",
+      "va": "0x4013d7",
+      "file_offset": "0x13d7",
+      "expected": {
+        "iat_va": "0x40b010",
+        "dll": "KERNEL32.DLL",
+        "name": "WaitForSingleObject"
+      },
+      "observation": ""
+    },
+    {
+      "id": "NEW-LITERAL-XREF",
+      "kind": "bytes",
+      "va": "0x4013dd",
+      "file_offset": "0x13dd",
+      "expected": "68 8c b8 40 00",
+      "observation": "new-file CString source literal"
+    },
+    {
+      "id": "PAK-LITERAL-XREF",
+      "kind": "bytes",
+      "va": "0x4013eb",
+      "file_offset": "0x13eb",
+      "expected": "68 78 b8 40 00",
+      "observation": "pak-file CString source literal"
+    },
+    {
+      "id": "TOKEN4-STORE",
+      "kind": "bytes",
+      "va": "0x4012c3",
+      "file_offset": "0x12c3",
+      "expected": "89 b5 ac f2 ff ff",
+      "observation": "Fourth token integer stored at EBP-0xd54; argv provenance belongs to parent evidence"
+    },
+    {
+      "id": "PROGRESS-MULTIPLY",
+      "kind": "bytes",
+      "va": "0x4015f0",
+      "file_offset": "0x15f0",
+      "expected": "6b c0 64 33 d2",
+      "observation": "Accumulated bytes times 100, zero high dividend"
+    },
+    {
+      "id": "TOKEN4-DIVISOR",
+      "kind": "bytes",
+      "va": "0x4015f5",
+      "file_offset": "0x15f5",
+      "expected": "f7 b5 ac f2 ff ff",
+      "observation": "Unsigned division by fourth token integer"
+    },
+    {
+      "id": "TOKEN4-DISPLAY",
+      "kind": "bytes",
+      "va": "0x4015fb",
+      "file_offset": "0x15fb",
+      "expected": "8b 95 ac f2 ff ff",
+      "observation": "Fourth token integer loaded for subsequent progress formatting"
+    },
+    {
+      "id": "PROGRESS-FORMAT",
+      "kind": "iat_call",
+      "va": "0x401612",
+      "file_offset": "0x1612",
+      "expected": {
+        "iat_va": "0x40b3f4",
+        "dll": "MSVCR71.dll",
+        "name": "sprintf"
+      },
+      "observation": ""
+    },
+    {
+      "id": "PROGRESS-CONTROL",
+      "kind": "direct_call",
+      "va": "0x401635",
+      "file_offset": "0x1635",
+      "expected": {
+        "target_va": "0x401140"
+      },
+      "observation": "Computed progress passed to local UI helper"
+    },
+    {
+      "id": "DOWNLOAD-READ",
+      "kind": "bytes",
+      "va": "0x40164c",
+      "file_offset": "0x164c",
+      "expected": "68 ff 03 00 00",
+      "observation": "Read request size 0x3ff"
+    },
+    {
+      "id": "DOWNLOAD-RETURN",
+      "kind": "bytes",
+      "va": "0x401658",
+      "file_offset": "0x1658",
+      "expected": "ff 50 3c 8b f8",
+      "observation": "Virtual read call and return stored EDI"
+    },
+    {
+      "id": "DOWNLOAD-LOOP-TEST",
+      "kind": "bytes",
+      "va": "0x4015e0",
+      "file_offset": "0x15e0",
+      "expected": "85 ff 0f 86 aa 00 00 00",
+      "observation": "Loop ends on unsigned EDI<=0; no token4 equality comparison at this branch"
+    },
+    {
+      "id": "TRANSFORM-SOURCE",
+      "kind": "direct_call",
+      "va": "0x40174a",
+      "file_offset": "0x174a",
+      "expected": {
+        "target_va": "0x4030e0"
+      },
+      "observation": "pak local supplied to helper"
+    },
+    {
+      "id": "TRANSFORM-OPEN",
+      "kind": "direct_call",
+      "va": "0x401759",
+      "file_offset": "0x1759",
+      "expected": {
+        "target_va": "0x402d60"
+      },
+      "observation": "Source helper called"
+    },
+    {
+      "id": "TRANSFORM-CHUNK",
+      "kind": "bytes",
+      "va": "0x401790",
+      "file_offset": "0x1790",
+      "expected": "68 00 04 00 00",
+      "observation": "0x400-byte output-buffer request"
+    },
+    {
+      "id": "TRANSFORM-READ",
+      "kind": "direct_call",
+      "va": "0x4017a2",
+      "file_offset": "0x17a2",
+      "expected": {
+        "target_va": "0x402160"
+      },
+      "observation": "Unresolved read/transform helper"
+    },
+    {
+      "id": "TRANSFORM-WRITE",
+      "kind": "direct_call",
+      "va": "0x4017bb",
+      "file_offset": "0x17bb",
+      "expected": {
+        "target_va": "0x409434"
+      },
+      "observation": "Returned positive byte count passed to destination helper"
+    },
+    {
+      "id": "TRANSFORM-LOOP",
+      "kind": "bytes",
+      "va": "0x4017c0",
+      "file_offset": "0x17c0",
+      "expected": "81 fe 00 04 00 00 74 c8",
+      "observation": "Loop when helper returned 0x400"
+    },
+    {
+      "id": "DELETE-IAT-LOAD",
+      "kind": "bytes",
+      "va": "0x401800",
+      "file_offset": "0x1800",
+      "expected": "8b 35 0c b0 40 00",
+      "observation": "ESI=DeleteFileA IAT; later indirect calls through ESI"
+    },
+    {
+      "id": "DELETE-PAK",
+      "kind": "bytes",
+      "va": "0x401807",
+      "file_offset": "0x1807",
+      "expected": "ff d6",
+      "observation": "Indirect ESI call with pak path argument"
+    },
+    {
+      "id": "NEW-DIGEST-CANDIDATE",
+      "kind": "direct_call",
+      "va": "0x401845",
+      "file_offset": "0x1845",
+      "expected": {
+        "target_va": "0x404310"
+      },
+      "observation": "new-file object passed to unresolved digest candidate helper"
+    },
+    {
+      "id": "TOKEN5-UPPER",
+      "kind": "iat_call",
+      "va": "0x40187d",
+      "file_offset": "0x187d",
+      "expected": {
+        "iat_va": "0x40b3c4",
+        "dll": "MSVCR71.dll",
+        "name": "_strupr"
+      },
+      "observation": ""
+    },
+    {
+      "id": "CALCULATED-UPPER",
+      "kind": "iat_call",
+      "va": "0x40188e",
+      "file_offset": "0x188e",
+      "expected": {
+        "iat_va": "0x40b0dc",
+        "dll": "MFC71.DLL",
+        "ordinal": 4085
+      },
+      "observation": "Rizin ordinal mapping: ATL::CStringT::MakeUpper"
+    },
+    {
+      "id": "DIGEST-COMPARE",
+      "kind": "iat_call",
+      "va": "0x401897",
+      "file_offset": "0x1897",
+      "expected": {
+        "iat_va": "0x40b0cc",
+        "dll": "MFC71.DLL",
+        "ordinal": 1482
+      },
+      "observation": "Rizin ordinal mapping: ATL::CStringT::Compare"
+    },
+    {
+      "id": "DIGEST-BRANCH",
+      "kind": "bytes",
+      "va": "0x40189d",
+      "file_offset": "0x189d",
+      "expected": "85 c0 0f 85 31 01 00 00",
+      "observation": "Nonzero comparison result branches to 0x4019d6 error cleanup"
+    },
+    {
+      "id": "DELETE-TARGET",
+      "kind": "bytes",
+      "va": "0x4018b2",
+      "file_offset": "0x18b2",
+      "expected": "ff d6",
+      "observation": "DeleteFileA via ESI with token3 target"
+    },
+    {
+      "id": "COPY-OVERWRITE",
+      "kind": "bytes",
+      "va": "0x4018b4",
+      "file_offset": "0x18b4",
+      "expected": "6a 00",
+      "observation": "CopyFileA third argument FALSE (allow overwrite)"
+    },
+    {
+      "id": "COPY-NEW-TO-TARGET",
+      "kind": "iat_call",
+      "va": "0x4018cd",
+      "file_offset": "0x18cd",
+      "expected": {
+        "iat_va": "0x40b008",
+        "dll": "KERNEL32.DLL",
+        "name": "CopyFileA"
+      },
+      "observation": ""
+    },
+    {
+      "id": "DELETE-NEW-AFTER-COPY",
+      "kind": "bytes",
+      "va": "0x4018dd",
+      "file_offset": "0x18dd",
+      "expected": "ff d6",
+      "observation": "DeleteFileA via ESI with new path; no branch on CopyFileA return in intervening block"
+    },
+    {
+      "id": "RESTART-ID-ARGS",
+      "kind": "bytes",
+      "va": "0x401910",
+      "file_offset": "0x1910",
+      "expected": "6a 00 51",
+      "observation": "NULL output pointer and window handle"
+    },
+    {
+      "id": "RESTART-ID-SOURCE",
+      "kind": "iat_call",
+      "va": "0x401913",
+      "file_offset": "0x1913",
+      "expected": {
+        "iat_va": "0x40b45c",
+        "dll": "USER32.dll",
+        "name": "GetWindowThreadProcessId"
+      },
+      "observation": ""
+    },
+    {
+      "id": "RESTART-TARGET-ARG",
+      "kind": "bytes",
+      "va": "0x40195a",
+      "file_offset": "0x195a",
+      "expected": "8b 85 b8 f2 ff ff",
+      "observation": "Target string from EBP-0xd48"
+    },
+    {
+      "id": "RESTART-FORMAT-XREF",
+      "kind": "bytes",
+      "va": "0x401968",
+      "file_offset": "0x1968",
+      "expected": "68 24 b7 40 00",
+      "observation": "Exact restart format literal xref"
+    },
+    {
+      "id": "RESTART-FORMAT",
+      "kind": "iat_call",
+      "va": "0x401972",
+      "file_offset": "0x1972",
+      "expected": {
+        "iat_va": "0x40b0d8",
+        "dll": "MFC71.DLL",
+        "ordinal": 2322
+      },
+      "observation": "Rizin ordinal mapping: ATL::CStringT::Format"
+    },
+    {
+      "id": "RESTART-CREATE",
+      "kind": "iat_call",
+      "va": "0x4019a4",
+      "file_offset": "0x19a4",
+      "expected": {
+        "iat_va": "0x40b004",
+        "dll": "KERNEL32.DLL",
+        "name": "CreateProcessA"
+      },
+      "observation": ""
+    },
+    {
+      "id": "RESTART-RESULT-BRANCH",
+      "kind": "bytes",
+      "va": "0x4019aa",
+      "file_offset": "0x19aa",
+      "expected": "85 c0 75 14",
+      "observation": "CreateProcessA return checked; logging paths diverge"
+    },
+    {
+      "id": "RESTART-FAIL-EXIT0",
+      "kind": "bytes",
+      "va": "0x4019bb",
+      "file_offset": "0x19bb",
+      "expected": "6a 00 e9 f9 00 00 00",
+      "observation": "Failure logging path pushes exit code 0 and jumps 0x401abb"
+    },
+    {
+      "id": "RESTART-OK-EXIT0",
+      "kind": "bytes",
+      "va": "0x4019cf",
+      "file_offset": "0x19cf",
+      "expected": "6a 00 e9 e5 00 00 00",
+      "observation": "Success logging path also pushes exit code 0 and jumps 0x401abb"
+    },
+    {
+      "id": "DELETE-NEW-ON-MISMATCH",
+      "kind": "bytes",
+      "va": "0x401a00",
+      "file_offset": "0x1a00",
+      "expected": "ff d6",
+      "observation": "Mismatch cleanup indirect DeleteFileA(new)"
+    },
+    {
+      "id": "ERROR-CLEANUP-DELETE",
+      "kind": "iat_call",
+      "va": "0x401ab3",
+      "file_offset": "0x1ab3",
+      "expected": {
+        "iat_va": "0x40b00c",
+        "dll": "KERNEL32.DLL",
+        "name": "DeleteFileA"
+      },
+      "observation": ""
+    },
+    {
+      "id": "ERROR-EXIT-ARG",
+      "kind": "bytes",
+      "va": "0x401ab9",
+      "file_offset": "0x1ab9",
+      "expected": "6a ff",
+      "observation": "Error tails push -1"
+    },
+    {
+      "id": "COMMON-EXIT",
+      "kind": "iat_call",
+      "va": "0x401abb",
+      "file_offset": "0x1abb",
+      "expected": {
+        "iat_va": "0x40b3e8",
+        "dll": "MSVCR71.dll",
+        "name": "exit"
+      },
+      "observation": ""
+    }
+  ],
+  "reviewed_ranges": [
+    {
+      "id": "wait-and-staging",
+      "start_va": "0x4013c5",
+      "end_va_exclusive": "0x401400",
+      "start_file_offset": "0x13c5",
+      "sha256": "77611b53973f3fd76a5c4163628318842ee03bfeefc9d5c37cc48bd3d5b6d9c0"
+    },
+    {
+      "id": "download-loop",
+      "start_va": "0x4015e0",
+      "end_va_exclusive": "0x401692",
+      "start_file_offset": "0x15e0",
+      "sha256": "dccb562a0e5cd14bf3318f3d5e03e853b4984709a0106025c6d6e36595b3a3eb"
+    },
+    {
+      "id": "transform-and-digest",
+      "start_va": "0x401737",
+      "end_va_exclusive": "0x4018a5",
+      "start_file_offset": "0x1737",
+      "sha256": "6e79ac44077f9472c01308e33817f8239455088ff73a4ce763f9776b7e4345b0"
+    },
+    {
+      "id": "replace-and-restart",
+      "start_va": "0x4018a5",
+      "end_va_exclusive": "0x401a07",
+      "start_file_offset": "0x18a5",
+      "sha256": "1cdc3f71673b9b85bab07639b2060a57ef81e15412a486f3afc10b6ec8f05290"
+    },
+    {
+      "id": "error-exit-tail",
+      "start_va": "0x401a07",
+      "end_va_exclusive": "0x401ae9",
+      "start_file_offset": "0x1a07",
+      "sha256": "e97da4d06ee24791cda1620d55ef58a7147e7b9dd820c7dfe3002b9214df9899"
+    }
+  ],
+  "limits": [
+    "No target execution, network, credentials, global tool changes, or permission escalation performed.",
+    "The digest algorithm and package transform were not independently identified in this lifecycle subtask.",
+    "Named PE imports are parsed directly; MFC71 ordinal labels are Rizin annotations.",
+    "Exact short anchors and region hashes allow rechecking this sample; they do not independently prove the manual dataflow interpretation."
+  ]
+}

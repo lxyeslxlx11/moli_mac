@@ -1,0 +1,147 @@
+{
+  "schema": "moli.stage113.source-bound-implementation-spec.v1",
+  "recorded_utc": "2026-10-30T14:35:54.200209+00:00",
+  "requirement": "reports/development-plan.md#stage113",
+  "status": "source-verified-implemented-and-tested",
+  "launcher_source_sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+  "patcher_source_sha256": "195f3afda41f342147b0616a4c005a4cb308ae6869b52c4a558fded5f5d9aaa8",
+  "facts": [
+    {
+      "kind": "fact",
+      "source": [
+        "0x41e420 cases1/2",
+        "0x42d120 at0x42d197",
+        "0x40f430",
+        "0x40ec40"
+      ],
+      "claim": "The observed normal selection path can prepare PatchEXE before the later case3 account validation. This is static control-flow evidence, not a live update/account acceptance result."
+    },
+    {
+      "kind": "fact",
+      "source": [
+        "0x40f7e6..0x40f829",
+        "0x40a200",
+        "0x599ec5 ->0x599edc",
+        "0x599edc LCMap flags0x200",
+        "0x5d1004/0x5d1010"
+      ],
+      "claim": "Current patcher backup transformation remains uppercase plus exact .EXE to .BAK.EXE replacement. The wrapper FID_conflict:__mbslwr_s name alone is ambiguous and must not cause a lowercase codec change."
+    },
+    {
+      "kind": "fact",
+      "source": [
+        "Patcher 0x40928c..0x4092ba",
+        "0x409528..0x4095a8",
+        "0x4095af/0x4095fb",
+        "0x40a125..0x40a13b",
+        "0x477afc/0x477b0c/0x477b1c"
+      ],
+      "claim": "Native constructs two paired host/port sources. For the supported exact configured host221.122.108.10, source0 preserves supplied port text and source1 is221.122.119.156:80. Assembly resolves stack aliasing in the worker pseudocode."
+    },
+    {
+      "kind": "fact",
+      "source": [
+        "0x409240",
+        "0x477b24"
+      ],
+      "claim": "Manifest request path is /cg50/Update.TXT?t=<epoch seconds>."
+    }
+  ],
+  "portable_contract": {
+    "core_module": "shared/launcher-patch-sources.mjs",
+    "exports": [
+      "PUK3_PATCH_SOURCE_PROFILE",
+      "LauncherPatchSourceError",
+      "createPuk3PatchSourcePlan"
+    ],
+    "profile": "puk3-195f3afd",
+    "inputs": [
+      "own text address exactly221.122.108.10",
+      "own decimal portText1..65535, original leading zeroes preserved"
+    ],
+    "outputs": "Frozen ordered two-source data with source ordinals and source fingerprint; no I/O",
+    "web_adapter": "web/launcher-game-patch.mjs",
+    "web_inputs": {
+      "patchSourceProfile": "optional configured-only(default) or explicit puk3-195f3afd",
+      "patchSourceOrdinal": "optional0(default), or1 only with the pinned profile"
+    },
+    "profile_conditions": "Exact Patcher_PUK3.exe metadata and supported configured address; profile selection is explicit and does not authenticate a remote or installed binary",
+    "transport": "One selected source origin for manifest and all needed archives; independently allowlisted; no automatic fallback/retry or change to original process-plan address bytes",
+    "unchanged": "Default configured-only behavior, native ASCII uppercase backup codec, candidate transaction and existing whole deadline/cancellation/ZIP/MD5 policy"
+  },
+  "engineering_policies": [
+    "Exact-address and metadata-name profile subset is narrower than native generic substring/ANSI behavior",
+    "Owned ASCII endpoint fields and numeric port constraints are independent validation",
+    "No original executable, install-directory writes, accounts, real IPC or game-business protocol fields in this feature"
+  ],
+  "test_plan": [
+    "Source0/1 literal/port/fingerprint and owned-data boundaries",
+    "Default profile preservation and explicit profile/ordinal prerequisites",
+    "Secondary origin denial before provider invocation",
+    "Selected-source manifest+archive candidate with caller mutation during first await",
+    "Failure/cancellation/skip do not switch sources or request extra data",
+    "Existing patch/catalog/HTTP regressions"
+  ],
+  "not_acceptance": [
+    "Native retry/failover execution",
+    "Publisher authentication",
+    "Browser CORS or mobile/WeChat transport",
+    "Original game consumer, official login or gameplay"
+  ],
+  "full_goal_complete": false,
+  "observed_capacity_gap": {
+    "source_receipt": "analysis/launcher-current-entry-v1/patch-network-observation.json",
+    "both_http200_bodies_bytes": 51700,
+    "recognized_operation_count_each": 378,
+    "operation_types_each": {
+      "create": 312,
+      "append": 66
+    },
+    "initial_independent_parser_result": "PATCH_BUDGET: operation limit256",
+    "source_semantics_changed": false,
+    "change": "Raise GAME_PATCH_LIMITS.operations from256 to512, retaining blocks512, manifestBytes256KiB and all other transaction/file/byte bounds",
+    "new_original_synthetic_tests": "257 and512 recognized operations accepted,513 rejected; no official body added to test fixtures",
+    "classification": "Independent bounded capacity policy, not a native maximum"
+  },
+  "actual_results": {
+    "new_source_apis": [
+      "PUK3_PATCH_SOURCE_PROFILE",
+      "LauncherPatchSourceError",
+      "createPuk3PatchSourcePlan"
+    ],
+    "modified_sources": [
+      "shared/index.mjs",
+      "shared/game-patch.mjs",
+      "web/launcher-game-patch.mjs",
+      "shared/launcher-resources.mjs"
+    ],
+    "new_files": [
+      "shared/launcher-patch-sources.mjs",
+      "web/tests/launcher-game-patch-source.test.mjs"
+    ],
+    "tests_passed": 79,
+    "new_test_cases": 11,
+    "fresh_manifests_each_operations": 378,
+    "game_consumer_recovered": false,
+    "full_goal_complete": false
+  },
+  "resource_cache_identity_gap": {
+    "owner": "shared/launcher-resources.mjs snapshotLauncherResourceBinding/readLauncherResourceSnapshot",
+    "root_cause": "The existing eight-field binding projection drops new profile/ordinal, so different source choices have the same key and can restore each other",
+    "required_fix": "Preserve pinned profile/ordinal in canonical binding; keep configured-only default key and v1 bytes unchanged; use conditional resources.v2 for pinned choices and require matching schema/binding shape",
+    "scope": "Independent original cache identity and format, not vendor protocol",
+    "regressions": [
+      "Legacy configured-only remains canonicalv1",
+      "Pinned source0 andsource1 have distinct keys; v2 roundtrip keeps choice",
+      "Page state rejects cached candidate from another source",
+      "v1/v2 binding/schema mismatches rejected without loss of existing cache"
+    ],
+    "fixed": true,
+    "before_fix_new_regressions_failed": 3,
+    "final_tests_passed": 79,
+    "default": "configured-only/0 canonicalizes to legacy key and resources.v1",
+    "pinned": "puk3-195f3afd/0 or1 is retained in binding and written as resources.v2",
+    "reader": "v1 source-free binding or v2 requiring paired pinned source fields; wrong schema/fields rejected",
+    "indexeddb_envelope": "Existing cache envelope/DB version unchanged; actual browserv2 persistence not run"
+  }
+}

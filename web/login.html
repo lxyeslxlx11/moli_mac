@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="referrer" content="no-referrer">
+  <title>Moli · 本地登录流程</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./login.css">
+  <script type="module" src="./login-app.mjs"></script>
+</head>
+<body>
+  <header class="page-header">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">M</span><span>Moli</span></div>
+    <a class="tool-link" href="./launcher.html">配置核验</a>
+    <a class="tool-link" href="./game.html">游戏</a>
+    <p class="privacy-note"><span class="status-dot" aria-hidden="true"></span>原创本地对端</p>
+  </header>
+  <main>
+    <div class="page-heading">
+      <div><h1>本地登录流程</h1><p>准备配置并选择区域，确认文本后执行字节交换。</p></div>
+      <p class="scope-note">仅用于原创测试账号 · 官方登录与游戏尚未接入</p>
+    </div>
+    <div id="runtime-status" class="runtime-strip" role="status" aria-live="polite">正在读取本地会话设置…</div>
+    <section class="login-panel catalog-panel" aria-labelledby="session-catalog-title">
+      <div class="catalog-heading"><div><h2 id="session-catalog-title">游戏与区域</h2><p id="session-catalog-source" class="section-note">尚未载入配置。</p></div><button id="prepare-session-catalogs" type="button" disabled>检查并准备配置</button></div>
+      <div class="catalog-selection">
+        <label class="login-field" for="session-game">游戏<select id="session-game" disabled></select></label>
+        <label class="login-field" for="session-region">区域<select id="session-region" disabled></select></label>
+        <label id="session-galaxy-field" class="login-field" for="session-galaxy" hidden>分组（Galaxy）<select id="session-galaxy" disabled></select></label>
+      </div>
+      <p id="session-target-status" class="field-hint">尚未选择可用的游戏与区域。</p>
+      <p id="session-catalog-status" class="section-note" data-kind="waiting" role="status" aria-live="polite">可从本地配置服务准备、读取文件或显式恢复缓存。</p>
+      <div class="catalog-details">
+        <details><summary>读取本地配置文件</summary>
+          <fieldset id="session-file-fields" disabled>
+            <div class="text-files"><label for="session-game-file">GameList.xml<input id="session-game-file" type="file" accept=".xml"></label><label for="session-region-file">RegionList.xml<input id="session-region-file" type="file" accept=".xml"></label></div>
+            <label class="login-field" for="session-catalog-encoding">文件编码<select id="session-catalog-encoding"><option value="gb18030">GB18030</option><option value="utf-8">UTF-8</option></select></label>
+            <label class="catalog-checkbox"><input id="session-allow-bare" type="checkbox">兼容裸 &amp; 符号</label>
+            <button id="load-session-files" type="button" disabled>读取所选配置</button>
+            <p class="field-hint">每份最多1 MiB；配置中的地址不会自动获得连接许可。</p>
+          </fieldset>
+        </details>
+        <details><summary>本机配置缓存</summary>
+          <p id="session-cache-status" class="section-note" role="status" aria-live="polite">尚未检查缓存。</p>
+          <div class="login-actions"><button id="check-session-cache" type="button" disabled>检查缓存</button><button id="save-session-cache" type="button" disabled>保存当前配置</button><button id="restore-session-cache" type="button" disabled>恢复缓存配置</button></div>
+          <p class="field-hint">只保存两份配置文件与解析选项。保存会替换已检查的版本；账号和文本确认不写入缓存。</p>
+        </details>
+      </div>
+      <button id="cancel-catalog-operation" type="button" disabled>取消配置操作</button>
+      <details class="launch-details"><summary>准备游戏文件参数</summary>
+        <p class="section-note">提供安装目录与文件夹，在选择候选时同时准备命令和资源数据。文件只在本页核验，不上传，也不运行程序。</p>
+        <fieldset id="launch-fields" disabled>
+          <div class="catalog-selection">
+            <label class="login-field" for="launch-directory">配置对应的Windows目录<input id="launch-directory" type="text" maxlength="4096" placeholder="C:\Original" autocomplete="off" spellcheck="false"></label>
+            <label class="login-field" for="launch-path-encoding">路径与参数编码<select id="launch-path-encoding"><option value="ascii">ASCII</option><option value="windows-936">Windows-936</option><option value="utf-8">UTF-8</option></select></label>
+          </div>
+          <label class="login-field" for="launch-folder">安装文件夹<input id="launch-folder" type="file" webkitdirectory multiple></label>
+          <label class="catalog-checkbox"><input id="launch-only-refresh" type="checkbox">仅刷新通行证</label>
+          <p class="field-hint">更改后需重新准备参数。魔力分支下仅准备交接，不请求游戏进程；此选项不表示认证已通过。</p>
+          <p class="field-hint">资源文件名暂支持ASCII；路径编码需按目标环境选择，与账号编码独立。</p>
+          <button id="prepare-launch" type="button">准备完整参数</button>
+        </fieldset>
+        <p id="launch-status" class="field-hint" role="status" aria-live="polite">可在交换前准备完整参数。</p>
+      </details>
+      <section id="game-patch-panel" class="patch-panel" hidden aria-labelledby="patch-title">
+        <h3 id="patch-title">游戏补丁候选</h3>
+        <p id="patch-source" class="section-note"></p>
+        <p class="field-hint">使用上方的Windows目录和路径编码。只在本页计算候选；选择后继续本地交换，不写入安装目录或运行程序。</p>
+        <fieldset id="patch-fields" disabled>
+          <label class="login-field" for="patch-folder">本轮补丁的基文件夹（可选）<input id="patch-folder" type="file" webkitdirectory multiple aria-describedby="patch-base-hint"></label>
+          <p id="patch-base-hint" class="field-hint">本地读取，文件内容不上传。最多1024个文件，单个32 MiB、合计64 MiB；创建新文件时可不选基文件夹。</p>
+          <button id="prepare-patch" type="button" disabled>检查并准备补丁</button>
+        </fieldset>
+        <button id="cancel-patch" type="button" disabled>取消准备</button>
+        <p id="patch-status" class="section-note" role="status" aria-live="polite">选择配置后可准备补丁。</p>
+        <div id="patch-result" hidden>
+          <p id="patch-summary" class="field-hint"></p><ul id="patch-file-list" class="patch-file-list" aria-label="补丁候选文件"></ul>
+          <div class="login-actions"><button id="choose-patch" type="button" disabled>选择此候选</button><button id="discard-patch" type="button" disabled>放弃候选</button></div>
+        </div>
+        <details class="patch-cache">
+          <summary>本机资源缓存</summary>
+          <p class="field-hint">明确保存后，将所选资源文件与当前配置、目录和编码保存在此浏览器。只保留一个绑定版本，保存会替换已检查的版本；不包含账号或文本确认，不写安装目录。读取缓存后仍需明确选择，来源不会因此得到认证。</p>
+          <p id="patch-cache-status" class="section-note" role="status" aria-live="polite">尚未检查资源缓存。</p>
+          <div class="login-actions"><button id="check-patch-cache" type="button" disabled>检查资源缓存</button><button id="save-patch-cache" type="button" disabled>保存所选资源</button><button id="restore-patch-cache" type="button" disabled>读入资源候选</button><button id="cancel-patch-cache" type="button" disabled>取消缓存操作</button></div>
+        </details>
+      </section>
+    </section>
+    <div class="login-grid">
+      <section class="login-panel" aria-labelledby="account-title">
+        <h2 id="account-title">测试账号</h2>
+        <p class="section-note" id="target-label">请先载入配置并选择可用区域。</p>
+        <form id="login-form" autocomplete="off">
+          <fieldset id="account-fields" disabled>
+            <label class="login-field" for="device-mode">输入保留方式<select id="device-mode"><option value="2">每次清空</option><option value="1">本页可保留</option></select></label>
+            <button id="save-input-mode" type="button">保存保留方式</button>
+            <p id="mode-storage-status" class="field-hint" role="status" aria-live="polite">尚未读取保留方式设置。</p>
+            <p class="field-hint">只保存保留方式。账号、勾选、编码和文本确认仍只在本页使用。</p>
+            <label class="login-field" for="login-text-encoding">账号与候选名称编码<select id="login-text-encoding"><option value="ascii">ASCII（默认）</option><option value="windows-936">Windows-936（明确选择）</option><option value="utf-8">UTF-8（明确选择）</option></select></label>
+            <label class="login-field" for="login-username">原创测试用户名<input id="login-username" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="16" required aria-describedby="encoding-note"></label>
+            <p id="username-byte-count" class="input-byte-count" aria-live="polite">0 / 16 字节</p>
+            <label class="login-field" for="login-password">原创测试密码<input id="login-password" type="password" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="16" required aria-describedby="encoding-note"></label>
+            <p id="password-byte-count" class="input-byte-count" aria-live="polite">0 / 16 字节</p>
+            <p class="field-hint" id="encoding-note">每项编码后1至16字节，保留大小写与空格。按目标环境明确选择编码；不会从XML或系统语言推断。切换会清空输入与确认。</p>
+            <div id="retention-options" class="retention-options" hidden>
+              <label><input id="remember-username" type="checkbox">本页保留用户名</label>
+              <label><input id="remember-password" type="checkbox">本页保留密码</label>
+              <p class="field-hint">关闭或刷新页面后丢失，不写入本机缓存。</p>
+            </div>
+            <button id="start-login" class="button-primary" type="submit" disabled>开始本地交换</button>
+          </fieldset>
+        </form>
+        <button id="cancel-login" class="button-secondary" type="button" disabled>取消交换</button>
+        <p id="consent-status" class="section-note">请先准备并逐页确认四份本地文本。</p>
+      </section>
+      <section class="login-panel" aria-labelledby="texts-title">
+        <h2 id="texts-title">本地文本确认</h2>
+        <p class="section-note">按顺序选择四份UTF-8文本，每份最多64 KiB。内容仅在当前页面使用，未提供真实服务条款。</p>
+        <fieldset id="text-fields" disabled>
+          <div class="text-files">
+            <label for="license-file-0">第1页<input id="license-file-0" type="file" accept="text/plain,.txt"></label>
+            <label for="license-file-1">第2页<input id="license-file-1" type="file" accept="text/plain,.txt"></label>
+            <label for="license-file-2">第3页<input id="license-file-2" type="file" accept="text/plain,.txt"></label>
+            <label for="license-file-3">第4页<input id="license-file-3" type="file" accept="text/plain,.txt"></label>
+          </div>
+          <div class="login-actions"><button id="load-license-files" type="button">读取四份文本</button><button id="load-test-texts" type="button">使用原创测试文本</button></div>
+          <p id="texts-status" class="section-note" role="status" aria-live="polite">尚未读取文本。</p>
+          <button id="begin-review" type="button" disabled>开始逐页阅读</button>
+        </fieldset>
+        <section id="review-panel" class="review-panel" hidden aria-labelledby="review-title">
+          <h3 id="review-title" tabindex="-1"></h3>
+          <div id="review-text" class="review-text" tabindex="0"></div>
+          <div class="login-actions"><button id="next-page" type="button">下一页</button><button id="accept-texts" type="button" hidden>确认本页四份文本</button><button id="decline-texts" type="button">拒绝并返回</button></div>
+        </section>
+      </section>
+    </div>
+    <section class="login-panel result-panel" aria-labelledby="result-title">
+      <h2 id="result-title">交换结果</h2>
+      <p id="login-status" role="status" aria-live="polite" data-kind="waiting">等待本地文本确认。</p>
+      <ul id="profile-list" class="profile-list" aria-label="回包候选"></ul>
+      <p id="selection-status" class="section-note" hidden></p>
+      <p class="field-hint">选择候选后仅准备本页内的交接写入，游戏消费者尚未实现。返回候选与交接就绪均不代表官方认证成功。</p>
+    </section>
+  </main>
+  <dialog id="mode-dialog" aria-labelledby="mode-title">
+    <h2 id="mode-title">允许在本页保留输入</h2>
+    <p>切换会清空当前输入和文本确认。你可以再分别选择本页保留用户名或密码；保留方式可单独保存，账号仍只在本页使用。</p>
+    <div class="login-actions"><button id="confirm-mode" type="button">切换并清空</button><button id="cancel-mode" type="button">取消</button></div>
+  </dialog>
+  <footer><span>独立实现 · 测试数据留在回环连接</span><span>REA 证据 → 规格 → 实现 → 验收</span></footer>
+</body>
+</html>

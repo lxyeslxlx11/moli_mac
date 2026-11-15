@@ -1,0 +1,97 @@
+{
+  "stage": 297,
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "provider": {
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+  },
+  "evidence": {
+    "path": "build/analysis/game-battle-gmn-flags-v1/rea-evidence.json",
+    "bytes": 183036843,
+    "sha256": "2515466c70b5db57239b60bc42bdf6bc81e4a1efc65114e04ceae929835480ff"
+  },
+  "snapshot": {
+    "path": "build/analysis/game-battle-gmn-flags-v1/rea-snapshot.json",
+    "bytes": 340647800,
+    "sha256": "2af3e64b67e1088352dcef1bee3ad2c4ef62dfa80efc63cd1995f90f0ab58473"
+  },
+  "retained_records": 913,
+  "functions": [
+    {
+      "entry": "0x409e70",
+      "bytes": 354,
+      "offset": 37488,
+      "sha256": "095987142340a7b4bc05a50dc3962216dcccf0e8de3e0b72320d4eb92acfb0ab",
+      "dossier": "ev_cc31618dde856bade36f501b98d37ed4863dc154fa245a375e43cfb8846ca6c1",
+      "byte_evidence": "ev_3875ea8e21505b7e6f25d707a3a288caff16dcc668dd66c7efd83fad3a880934"
+    },
+    {
+      "entry": "0x434a30",
+      "bytes": 56,
+      "offset": 212528,
+      "sha256": "9044ae7e691a64409f64835a790bea91afdf5b3c25c8710bddde261131fd1336",
+      "dossier": "ev_6d1ee2910403290abe4ae7dbd7bb343e81766ae28e089e91d352bfbec32ea903",
+      "byte_evidence": "ev_01e2f7a24d8d9dc645d3836a54061f245b17bb8203f8e888531f1ff57080e806"
+    },
+    {
+      "entry": "0x40a120",
+      "bytes": 62225,
+      "offset": 38176,
+      "sha256": "f75dd584c7a73250896ed4368cb3a5dddcea3d6fe0886103842866acb46c67ce",
+      "dossier": "ev_70efb29a0b4a5b337df04eaac9f5c862b61d5d466120b1c824502b364f74f038",
+      "byte_evidence": "ev_53bfc4f5ff4f041fba677d55e569770460227b312c1d1bc290ca7ff86bb0d416"
+    },
+    {
+      "entry": "0x506e80",
+      "bytes": 595,
+      "offset": 1073792,
+      "sha256": "397be85a851ee14c31e71fad6298daa52dbdff2e887d92cfe8bad5edfe0be8b2",
+      "dossier": "ev_e84f0a80cb635ca1b1ca1205d8b71d98e80f6f80117716b80a4c879c6e0bf3ca",
+      "byte_evidence": "ev_7b341148e32f6e62ce5cbe12d926687a3dc6f2a8a5975b994771387cb16b1f43"
+    }
+  ],
+  "function_bytes": 63230,
+  "control_branch": {
+    "address": "0x4136d0",
+    "bytes": 84,
+    "offset": 76496,
+    "sha256": "e7d8175fe1640aa77d602e2af210b97b8e8ef4ac8974d6b2651b172353164de5",
+    "evidence_id": "ev_c3c56f1e0ebfeadd21e21c487a97dd0a8d4d768ecd2bf8e5ac1eb3cd96a9e6e6"
+  },
+  "facts": [
+    "Body action164 writes actor309=255;165 writes actor309=0. Both preserve actor310,308,300 and30f,then advance once through434a30.",
+    "434a30 increments actionRead andloads nextaction;end orindex200 selects state231.",
+    "Final506e80 independently applies objectcolor mask308,flagmask309/value310,andghostalpha last."
+  ],
+  "immediate_push_searches": [
+    {
+      "evidence_id": "ev_89e1c62f17b25f754b8a21f05d232b6aa8bf2e7d9b385786a596d6c08fb2ef05",
+      "pattern": "68 a5 00 00 00",
+      "bytes": 1225058,
+      "matches": 0,
+      "complete": true
+    },
+    {
+      "evidence_id": "ev_df5a313fdc5ae8bf7289dbf21c8698b95b6a458ca2a8a7e1817fda20b1ab16a4",
+      "pattern": "68 a4 00 00 00",
+      "bytes": 1225058,
+      "matches": 0,
+      "complete": true
+    }
+  ],
+  "producer_status": "No normal protocol producer established. These are bodyqueue actionnumbers,not newGMNwireopcodes.",
+  "limitations": [
+    "The completed PUSH imm32 scans cover initialized .text only;absence doesnotexclude MOV/data-driven/other producers.",
+    "The earlier broad a4byte search ispartial. The large40a120 valueflow is truncated;no wholeprogram reachability oralias claim."
+  ],
+  "REA_closed": true,
+  "original_execution": 0,
+  "VM_actions": 0,
+  "official_sessions": 0,
+  "full_goal_complete": false
+}

@@ -1,0 +1,2 @@
+const slot=n=>n===20?50:n===21?51:n;
+export function special96Motion(c){const fields=[c.code??c.category*100+c.level,c.cost??4,c.variant];for(const h of c.hits){fields.push(slot(h[0]),slot(h[1]),h[2]|0,h[3]);if(h[2]&0x800000)fields.push(...h[4]);if(h[2]&512)fields.push(slot(h[5]));}fields.push(255);return Uint8Array.from('M|SKL|'+fields.map(n=>(n>>>0).toString(16).toUpperCase()).join('|')+'|',c=>c.charCodeAt(0));}

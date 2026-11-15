@@ -1,0 +1,2243 @@
+{
+  "schema": "moli.launcher-session-functional-specification.v1",
+  "classification": "L03双来源原范围规则合表与有限纯核心对照；整项未就绪",
+  "requirement": "全部需求先REA成规再集中复刻；本批保留L03原八组及两原来源，不用selected当前操作替代旧版范围。",
+  "original_capability_review": {
+    "id": "L03",
+    "title": "登录交换、记录流与认证回复",
+    "original_scope": "连接、挑战、提交、记录/消息分片、回复、取消、超时、错误",
+    "original_owners": [
+      "shared/launcher-login.mjs",
+      "shared/launcher-flow.mjs"
+    ],
+    "original_dependencies": [
+      "L01",
+      "L02",
+      "L04",
+      "X06"
+    ],
+    "original_batch": "D1",
+    "original_source_profiles": [
+      "launcher-legacy-601b",
+      "launcher-updated-c82f"
+    ],
+    "original_scope_preserved": true,
+    "scope_crosswalk": [
+      {
+        "requirement": "连接",
+        "operations": [
+          "LO-O08",
+          "LO-O09"
+        ],
+        "association_kind": "selected rules relevant to this requirement; not full closure"
+      },
+      {
+        "requirement": "挑战",
+        "operations": [
+          "LO-O10"
+        ],
+        "association_kind": "selected rules relevant to this requirement; not full closure"
+      },
+      {
+        "requirement": "提交",
+        "operations": [
+          "LO-O08",
+          "LO-O10"
+        ],
+        "association_kind": "selected rules relevant to this requirement; not full closure"
+      },
+      {
+        "requirement": "记录/消息分片",
+        "operations": [
+          "LO-O10"
+        ],
+        "association_kind": "selected rules relevant to this requirement; not full closure"
+      },
+      {
+        "requirement": "回复",
+        "operations": [
+          "LO-O10",
+          "LO-O11",
+          "LO-O12"
+        ],
+        "association_kind": "selected rules relevant to this requirement; not full closure"
+      },
+      {
+        "requirement": "取消",
+        "operations": [
+          "LO-O14",
+          "LO-O15"
+        ],
+        "association_kind": "selected rules relevant to this requirement; not full closure"
+      },
+      {
+        "requirement": "超时",
+        "operations": [
+          "LO-O09"
+        ],
+        "association_kind": "selected rules relevant to this requirement; not full closure"
+      },
+      {
+        "requirement": "错误",
+        "operations": [
+          "LO-O09",
+          "LO-O10",
+          "LO-O14",
+          "LO-O15"
+        ],
+        "association_kind": "selected rules relevant to this requirement; not full closure"
+      }
+    ],
+    "per_profile_coverage": [
+      {
+        "profile": "launcher-legacy-601b",
+        "identity": {
+          "id": "launcher-legacy-601b",
+          "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+          "identity_record": "analysis/launcher-v7/preflight.json",
+          "scope": "固定旧版登录器；不等同更新版"
+        },
+        "status": "retained profile-specific protocol/preparation/first-Config/handoff evidence;not re-audited as a complete original L01-L08 operation set here",
+        "whole_original_scope_closed": false
+      },
+      {
+        "profile": "launcher-updated-c82f",
+        "identity": {
+          "id": "launcher-updated-c82f",
+          "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+          "identity_record": "analysis/launcher-current-login-v1/source-verification.json",
+          "scope": "已留存更新后分析样本；不声称此刻仍为官方最新"
+        },
+        "status": "selected normal operations composed;current first-Config added;whole original scope/reentry/path predicates remain incomplete",
+        "whole_original_scope_closed": false
+      }
+    ],
+    "whole_original_specification_ready": false
+  },
+  "original_scope_reference": {
+    "file": {
+      "path": "analysis/capability-first-v1/launcher-functional-specification.json",
+      "bytes": 111980,
+      "sha256": "68ebb9f01779d04be26ed66a5a8ae16f2246cac514a8161c5c6af53bf0a13bc6"
+    },
+    "pointer": "/original_capability_reviews/2",
+    "canonical_sha256": "63ebd1b33bb26fa882d864924865debd899c8be6e01510c55e786ad367176d05"
+  },
+  "source_profiles": [
+    {
+      "id": "launcher-legacy-601b",
+      "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+      "identity_record": "analysis/launcher-v7/preflight.json",
+      "scope": "固定旧版登录器；不等同更新版"
+    },
+    {
+      "id": "launcher-updated-c82f",
+      "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+      "identity_record": "analysis/launcher-current-login-v1/source-verification.json",
+      "scope": "已留存更新后分析样本；不声称此刻仍为官方最新"
+    }
+  ],
+  "source_authentication": {
+    "path": "build/analysis/launcher-session-functional-specification-v1/source-authentication.json",
+    "bytes": 231704,
+    "sha256": "2a96447fc80fcb5a0d7a7515587bb8efd284228406c9fe2e97622bdb742ffdb4"
+  },
+  "reused_operations": [
+    {
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/7",
+      "canonical_sha256": "6b5cd56632d58381bf39969174b6c39a94d2df5361e5093a2e050711f51c743b"
+    },
+    {
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/8",
+      "canonical_sha256": "9beb6f7a249bc9c8e3d7601dd44a9ad39a32acd41e9a84fefaf987255053005b"
+    },
+    {
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/9",
+      "canonical_sha256": "f3a039c24782dfdbca36b98dc38a06f0d3471c4ec4d580c7bf962819a6e4ebe1"
+    },
+    {
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/13",
+      "canonical_sha256": "66070fc8af0a248b46a6be71cb49983a2a9e5b6ec6c4c39b02610886750b1976"
+    },
+    {
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/14",
+      "canonical_sha256": "2c95401fc2e9a4a9b1d52b66f8c84052a10217ec31e1fa63ec68f56f411576b3"
+    }
+  ],
+  "facts": [
+    {
+      "id": "LS-F01",
+      "classification": "事实：固定样本静态规则",
+      "rule": "旧版601b与更新分析样本c82f分别保留身份。旧版从用户原安装包只选取登录器并普通解压UPX容器，完整哈希重新匹配原REA；c7ba副本不是601b，未替代。c82f及关联6d459d不表示此刻官方最新。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-session-functional-specification-v1/source-authentication.json",
+            "bytes": 231704,
+            "sha256": "2a96447fc80fcb5a0d7a7515587bb8efd284228406c9fe2e97622bdb742ffdb4"
+          },
+          "pointer": "/legacy_recovery",
+          "canonical_sha256": "2e0609b837d3ac47f564dbb47e0dfe95e5ad8c6bff6b03cb37f9452b4cf2d54c"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-functional-specification.json",
+            "bytes": 111980,
+            "sha256": "68ebb9f01779d04be26ed66a5a8ae16f2246cac514a8161c5c6af53bf0a13bc6"
+          },
+          "pointer": "/source_profiles_preserved",
+          "canonical_sha256": "33e91b4894637c513fee56f78f65e53b47a5a421969ff1a3f47a20642c66e3ff"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-functional-specification.json",
+            "bytes": 111980,
+            "sha256": "68ebb9f01779d04be26ed66a5a8ae16f2246cac514a8161c5c6af53bf0a13bc6"
+          },
+          "pointer": "/version_boundary",
+          "canonical_sha256": "d116fc2f4020e5754fd3831fd78ebfca7896046d435d614a99270a6d96c11064"
+        }
+      ]
+    },
+    {
+      "id": "LS-F02",
+      "classification": "事实：固定样本静态规则",
+      "rule": "旧版ANSI控件保存的是明确字节串，UI验证每个输入最多16字节；源直接传入type10。序列化每字段最多18字节且正文总计最多45字节，两字段合计不得超过34；目标端转换与实际ACP/IME属于宿主合同。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/launcher-v8/static-spec.json",
+            "bytes": 14698,
+            "sha256": "54209374904560e10f99aab3636f57d0a6e4bdda858d6e66b68d98c857086003"
+          },
+          "pointer": "/facts/0",
+          "canonical_sha256": "448cbb9f83ac3ca8fc62dbc1d400404dbdefd215abed2fdee66caa22de99a013"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v8/static-spec.json",
+            "bytes": 14698,
+            "sha256": "54209374904560e10f99aab3636f57d0a6e4bdda858d6e66b68d98c857086003"
+          },
+          "pointer": "/facts/1",
+          "canonical_sha256": "5e4394af8b2c229ac5c61d0bc842329564334f73acd4cee2b2995dbf70f130e0"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v8/static-spec.json",
+            "bytes": 14698,
+            "sha256": "54209374904560e10f99aab3636f57d0a6e4bdda858d6e66b68d98c857086003"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "13ee8fb7b85a8a7e05a1f399eebb9c28ac80b5676baa5f8c2c785abe03cb2bbe"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-current-login-v1/implementation-spec.json",
+            "bytes": 5503,
+            "sha256": "004215fdf2d980a7dc498be35c356f6586155d530d35cb14322aa0ad5adfa511"
+          },
+          "pointer": "/facts/0",
+          "canonical_sha256": "aed77c571495a1cfe25b48bfcdd5071bf0d056ba0ce7f0145f2c2abfbe6a0ac7"
+        }
+      ]
+    },
+    {
+      "id": "LS-F03",
+      "classification": "事实：固定样本静态规则",
+      "rule": "旧版普通提交在原用户流程准入后选有限候选，初始随机缩放及首序号和前序号独立保存；固定异常续体可推进到下一候选。原随机算法、异常续体和目标端显式首序号/本地token分开，未把目标独立政策写成原版保证。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/launcher-v9/static-spec.json",
+            "bytes": 21907,
+            "sha256": "90f42160654b5e90f4b53ad564e5277864f34afe76fd38b97db306a1846f4dcd"
+          },
+          "pointer": "/facts/0",
+          "canonical_sha256": "5a5205c0298daa9ec73bdad414467cfb3ecb7a45a29cd36c7c500980f954dd74"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v9/static-spec.json",
+            "bytes": 21907,
+            "sha256": "90f42160654b5e90f4b53ad564e5277864f34afe76fd38b97db306a1846f4dcd"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "ab9d1e19d81c17e70c8f7e19c44add6179519428c0e87258341df763acfb8477"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v9/static-spec.json",
+            "bytes": 21907,
+            "sha256": "90f42160654b5e90f4b53ad564e5277864f34afe76fd38b97db306a1846f4dcd"
+          },
+          "pointer": "/facts/3",
+          "canonical_sha256": "d5b4a499519bc023c2c530a682b8666a2a0e8e0639035cf0e39eac888b4a9280"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/operation_rows/7",
+          "canonical_sha256": "6b5cd56632d58381bf39969174b6c39a94d2df5361e5093a2e050711f51c743b"
+        }
+      ]
+    },
+    {
+      "id": "LS-F04",
+      "classification": "事实：固定样本静态规则",
+      "rule": "旧版选定上下文使用selector1/key8；hello为BE32(1),BE32(8)。挑战status0后读取三个有界ASCII字段，容量分别62/1022/1022；DH式算术、十六进制生产及接收边界按原记录，目标严格十六进制/群参数拒绝政策另列。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/launcher-v7/static-spec.json",
+            "bytes": 51033,
+            "sha256": "57e8ae785ee384ebdaaa63a8546a914041ddc328d351f56ffaed25cc2df24f15"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "1f8ac85049fe4a4f789d27b824a9611a3156210c924da02a04049a9627a267f1"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v7/static-spec.json",
+            "bytes": 51033,
+            "sha256": "57e8ae785ee384ebdaaa63a8546a914041ddc328d351f56ffaed25cc2df24f15"
+          },
+          "pointer": "/facts/7",
+          "canonical_sha256": "d501be09a96d027da47a2408165883d667c83558c6c291b1fae5300863ca130b"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v7/static-spec.json",
+            "bytes": 51033,
+            "sha256": "57e8ae785ee384ebdaaa63a8546a914041ddc328d351f56ffaed25cc2df24f15"
+          },
+          "pointer": "/facts/8",
+          "canonical_sha256": "b648767d60defc3b7a02f49fe71922309a2f6ad6b092d0d539398e815cbe7deb"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v7/static-spec.json",
+            "bytes": 51033,
+            "sha256": "57e8ae785ee384ebdaaa63a8546a914041ddc328d351f56ffaed25cc2df24f15"
+          },
+          "pointer": "/facts/9",
+          "canonical_sha256": "9a346532f7806cd7ddbe2eeeefcb3201f8a667abcee1d1c1ba732b02e6ea2aef"
+        }
+      ]
+    },
+    {
+      "id": "LS-F05",
+      "classification": "事实：固定样本静态规则",
+      "rule": "c82f选定上下文仍selector1/key8和同一8字节hello。挑战缓冲上限784、三个非空字段各最多256字节，要求生成元字面2及编译的原小写256字节模数；peer满足1<peer<p，p-1在此解析分支允许。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/launcher-current-channel-v1/implementation-spec.json",
+            "bytes": 3853,
+            "sha256": "23d35324b9d1f917857d44181de530f3a76f76e67a216d35aeb6cba5e14cda56"
+          },
+          "pointer": "/facts/0",
+          "canonical_sha256": "c5f8fb27f6b3c84fc782374d9b8386a5ce4cf2c4099d975c0d4fcf50efb56e4e"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-current-channel-v1/implementation-spec.json",
+            "bytes": 3853,
+            "sha256": "23d35324b9d1f917857d44181de530f3a76f76e67a216d35aeb6cba5e14cda56"
+          },
+          "pointer": "/facts/1",
+          "canonical_sha256": "c66fd4678f7fe6a3eb07c58013ac062691f567ff85ccdbb8a1bcb95657ab031f"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-current-channel-v1/implementation-spec.json",
+            "bytes": 3853,
+            "sha256": "23d35324b9d1f917857d44181de530f3a76f76e67a216d35aeb6cba5e14cda56"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "6e847d51df2f9e5a76511950b6aafb6528e7c370203e67c7d4637ba9aaafde9a"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-current-channel-v1/implementation-spec.json",
+            "bytes": 3853,
+            "sha256": "23d35324b9d1f917857d44181de530f3a76f76e67a216d35aeb6cba5e14cda56"
+          },
+          "pointer": "/facts/3",
+          "canonical_sha256": "0fd7ee3b6e3bc5d75fce537c832f40f28e918b55e5ade69d29ce20743296b36e"
+        }
+      ]
+    },
+    {
+      "id": "LS-F06",
+      "classification": "事实：固定样本静态规则",
+      "rule": "派生材料按源十六进制前部字节对写向两个8字节方向缓冲。旧版482fc0对长度<=1不写、较短偶数串仅写到NUL；这不是完整缓冲填充保证。当前目标拒绝少于8字节材料；已接受peer=p-1与偶数原创指数会在目标触发短材料拒绝。源构造/重用状态对短材料的完整影响保留LS-U2，不能声称与目标一致。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/launcher-v7/static-spec.json",
+            "bytes": 51033,
+            "sha256": "57e8ae785ee384ebdaaa63a8546a914041ddc328d351f56ffaed25cc2df24f15"
+          },
+          "pointer": "/facts/10",
+          "canonical_sha256": "daff6e56adc565d091e2d73b2408407495648f8ef5cd162dfe7fb4ae960526a6"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-current-channel-v1/implementation-spec.json",
+            "bytes": 3853,
+            "sha256": "23d35324b9d1f917857d44181de530f3a76f76e67a216d35aeb6cba5e14cda56"
+          },
+          "pointer": "/facts/3",
+          "canonical_sha256": "0fd7ee3b6e3bc5d75fce537c832f40f28e918b55e5ade69d29ce20743296b36e"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-session-functional-specification-v1/focused-probe.json",
+            "bytes": 2374,
+            "sha256": "7193e4b6d90c294bb25b7da93ab40c162079ec24d5beae431f180fde4d27b63b"
+          },
+          "pointer": "/counts/profile-short-material",
+          "canonical_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-session-functional-specification-v1/source-authentication.json",
+            "bytes": 231704,
+            "sha256": "2a96447fc80fcb5a0d7a7515587bb8efd284228406c9fe2e97622bdb742ffdb4"
+          },
+          "pointer": "/legacy_records/49",
+          "canonical_sha256": "1e7c74d505fff85fda88de03530ddc76f9364246e89dec81fad2bc7d11a9412c"
+        }
+      ]
+    },
+    {
+      "id": "LS-F07",
+      "classification": "事实：固定样本静态规则",
+      "rule": "旧版非压缩记录发送正文上限32712，密文长度floor(n/8)*8+8；8字节头写BE32密文长度、BE32原长度；按8字节块且字为LE32，零填充。源接收上限32760、须8整除且plain<=cipher；目标另外拒绝cipher<8。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/launcher-v7/static-spec.json",
+            "bytes": 51033,
+            "sha256": "57e8ae785ee384ebdaaa63a8546a914041ddc328d351f56ffaed25cc2df24f15"
+          },
+          "pointer": "/facts/12",
+          "canonical_sha256": "e06d6f391325bdc2de65d859125da7e75c5a4627e60c42ae743ee30836a09908"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v7/static-spec.json",
+            "bytes": 51033,
+            "sha256": "57e8ae785ee384ebdaaa63a8546a914041ddc328d351f56ffaed25cc2df24f15"
+          },
+          "pointer": "/facts/13",
+          "canonical_sha256": "df325d9d83d6b25f44da204825bf3fd3d027678835599f1e5ed9875d54e8689c"
+        }
+      ]
+    },
+    {
+      "id": "LS-F08",
+      "classification": "事实：固定样本静态规则",
+      "rule": "c82f非压缩记录密文长度为ceil(n/8)*8+8，n=0仍有8字节密文；正文上限32712。接收允许0/0头并消费8字节、产生空正文；上限32760且须8整除，仅读plain前缀，不检查填充值。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/launcher-current-record-v1/implementation-spec.json",
+            "bytes": 4401,
+            "sha256": "bffdfb953bb7cab648f80e004b50bbd9bea57bcbf5422b95dcb56f57b7372774"
+          },
+          "pointer": "/facts/0",
+          "canonical_sha256": "9d8a7c34f6a012cbfd093d1fda90e50c3c493c0377aca90937a22d83f8456be0"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-current-record-v1/implementation-spec.json",
+            "bytes": 4401,
+            "sha256": "bffdfb953bb7cab648f80e004b50bbd9bea57bcbf5422b95dcb56f57b7372774"
+          },
+          "pointer": "/facts/1",
+          "canonical_sha256": "4d896c0e449eaaa3e8972f462d6905bceda90140a3f23635633563434c6567a0"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-current-record-v1/implementation-spec.json",
+            "bytes": 4401,
+            "sha256": "bffdfb953bb7cab648f80e004b50bbd9bea57bcbf5422b95dcb56f57b7372774"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "1dfb8199f27e27c58a969e8dfe4ae9f567a56beb0fcfed40127e3d10a9002d65"
+        }
+      ]
+    },
+    {
+      "id": "LS-F09",
+      "classification": "事实：固定样本静态规则",
+      "rule": "两版所选块操作使用原Blowfish P/S及LE32读写。旧版已排程后原key字递增未改变块操作使用的P/S；c82f正常排程及原key回退也保留相同日程。既有两个显式codec与流分别复用；压缩和其他未准入模式不能由该分支扩充证明。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/launcher-v7/static-spec.json",
+            "bytes": 51033,
+            "sha256": "57e8ae785ee384ebdaaa63a8546a914041ddc328d351f56ffaed25cc2df24f15"
+          },
+          "pointer": "/facts/12",
+          "canonical_sha256": "e06d6f391325bdc2de65d859125da7e75c5a4627e60c42ae743ee30836a09908"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v7/static-spec.json",
+            "bytes": 51033,
+            "sha256": "57e8ae785ee384ebdaaa63a8546a914041ddc328d351f56ffaed25cc2df24f15"
+          },
+          "pointer": "/facts/14",
+          "canonical_sha256": "aff9ce4d73064325556b4ab54e987c00446287a84cac16454e639d4a5243cf22"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-current-record-v1/implementation-spec.json",
+            "bytes": 4401,
+            "sha256": "bffdfb953bb7cab648f80e004b50bbd9bea57bcbf5422b95dcb56f57b7372774"
+          },
+          "pointer": "/facts/3",
+          "canonical_sha256": "432809de587209d3d1e4b44bbd30545bfac7cce5258e11aa35926aef4dd18d41"
+        }
+      ]
+    },
+    {
+      "id": "LS-F10",
+      "classification": "事实：固定样本静态规则",
+      "rule": "应用层是BE16正文长度加完整消息，独立于加密记录与TCP分片。type2为标签和两个BE32字；type11保留两个字、有界字节字段、名称列表、五个字数组和两个末尾字。计数支持inline/FD+u32BE/FE+高低字且容器高字须0，FF拒绝。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/launcher-v7/static-spec.json",
+            "bytes": 51033,
+            "sha256": "57e8ae785ee384ebdaaa63a8546a914041ddc328d351f56ffaed25cc2df24f15"
+          },
+          "pointer": "/facts/3",
+          "canonical_sha256": "d16ebf74cbe4dbd7c284143d4032ea1921bcecdd0e23990ae0d13d3ceba3fdbc"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v7/static-spec.json",
+            "bytes": 51033,
+            "sha256": "57e8ae785ee384ebdaaa63a8546a914041ddc328d351f56ffaed25cc2df24f15"
+          },
+          "pointer": "/facts/5",
+          "canonical_sha256": "75d6cb173f904338b2980062d5a5ac79254d2b4d94f72a5bfa8848275c725afb"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v7/static-spec.json",
+            "bytes": 51033,
+            "sha256": "57e8ae785ee384ebdaaa63a8546a914041ddc328d351f56ffaed25cc2df24f15"
+          },
+          "pointer": "/facts/6",
+          "canonical_sha256": "c90d12ad7e298a2be06c4e088ed67742a9244545a071d90764fb942ef8a4de60"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-current-login-v1/implementation-spec.json",
+            "bytes": 5503,
+            "sha256": "004215fdf2d980a7dc498be35c356f6586155d530d35cb14322aa0ad5adfa511"
+          },
+          "pointer": "/facts/1",
+          "canonical_sha256": "a511e16c71795932ccf431fecd90f7531b26dcfb06521d97f9a918f6b68238a7"
+        }
+      ]
+    },
+    {
+      "id": "LS-F11",
+      "classification": "事实：固定样本静态规则",
+      "rule": "type10正文为标签10、counter字、两个计数字节字段和Gamecode字；counter使用后按源自增。UI长度与线上字段容量分别成立，不能把UI限制放宽为18或把两字段均18视为总预算内。语义来源和字节格式分别引用。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/launcher-v7/static-spec.json",
+            "bytes": 51033,
+            "sha256": "57e8ae785ee384ebdaaa63a8546a914041ddc328d351f56ffaed25cc2df24f15"
+          },
+          "pointer": "/facts/0",
+          "canonical_sha256": "9af9af002fec579d64e96f8ec1ea56def71b0cd360c1155296e8b460a7570935"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-current-login-v1/implementation-spec.json",
+            "bytes": 5503,
+            "sha256": "004215fdf2d980a7dc498be35c356f6586155d530d35cb14322aa0ad5adfa511"
+          },
+          "pointer": "/facts/0",
+          "canonical_sha256": "aed77c571495a1cfe25b48bfcdd5071bf0d056ba0ce7f0145f2c2abfbe6a0ac7"
+        }
+      ]
+    },
+    {
+      "id": "LS-F12",
+      "classification": "事实：固定样本静态规则",
+      "rule": "type11在线上仍有五个数组；中间adapter丢W0后给UI W1..W4。原callback16参数、UI10参数，反编译遗漏的末尾参数不可丢弃；源状态按低16位有符号值存储并选择0/-4，同时拒绝billing与expired均非0的行。W0、尾字和原行配对不能由新业务命名改写。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/launcher-v8/static-spec.json",
+            "bytes": 14698,
+            "sha256": "54209374904560e10f99aab3636f57d0a6e4bdda858d6e66b68d98c857086003"
+          },
+          "pointer": "/facts/3",
+          "canonical_sha256": "58df6eab5fb8a664df11cbc437cb9a84c6738bd64ed9c67f726274432a67e155"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v8/static-spec.json",
+            "bytes": 14698,
+            "sha256": "54209374904560e10f99aab3636f57d0a6e4bdda858d6e66b68d98c857086003"
+          },
+          "pointer": "/facts/4",
+          "canonical_sha256": "88c893a157e5e013158aa831723cfeb7e1ca906dc968524960ac573addc613d9"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v8/static-spec.json",
+            "bytes": 14698,
+            "sha256": "54209374904560e10f99aab3636f57d0a6e4bdda858d6e66b68d98c857086003"
+          },
+          "pointer": "/facts/5",
+          "canonical_sha256": "737d9b5dbcdefe1ec5f3d74330fe55c8fdf6402439537bb010efa1127fac364e"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-current-login-v1/implementation-spec.json",
+            "bytes": 5503,
+            "sha256": "004215fdf2d980a7dc498be35c356f6586155d530d35cb14322aa0ad5adfa511"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "148b0df7b509dcb29dd6c704a87dbab8d47d54c35926914a91f3237f5697015e"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-current-login-v1/implementation-spec.json",
+            "bytes": 5503,
+            "sha256": "004215fdf2d980a7dc498be35c356f6586155d530d35cb14322aa0ad5adfa511"
+          },
+          "pointer": "/facts/3",
+          "canonical_sha256": "0f6e1d7f343c4634fbaebaa84df8fff97ce0d569260a3933a4cc8a9ef0873896"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-current-login-v1/implementation-spec.json",
+            "bytes": 5503,
+            "sha256": "004215fdf2d980a7dc498be35c356f6586155d530d35cb14322aa0ad5adfa511"
+          },
+          "pointer": "/facts/4",
+          "canonical_sha256": "b24a2a0a39c569e0ba62b36d35aa69d21d896425809564f9b572d9f96cde2ceb"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-current-login-v1/implementation-spec.json",
+            "bytes": 5503,
+            "sha256": "004215fdf2d980a7dc498be35c356f6586155d530d35cb14322aa0ad5adfa511"
+          },
+          "pointer": "/facts/5",
+          "canonical_sha256": "993e9234ca50919934a2dd4ce5a044e5f3d604f5c5f20360b5eecf0496f5589e"
+        }
+      ]
+    },
+    {
+      "id": "LS-F13",
+      "classification": "事实：固定样本静态规则",
+      "rule": "旧版case3请求SetTimer(100,10000)并存返回值、先清UI完成flag。已绑定WM_TIMER100处理会KillTimer、标完成、关闭通道并恢复UI；该分支没有候选轮转。调用及源分支不证明实际计时器建立、调度或墙钟上界。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/launcher-v9/static-spec.json",
+            "bytes": 21907,
+            "sha256": "90f42160654b5e90f4b53ad564e5277864f34afe76fd38b97db306a1846f4dcd"
+          },
+          "pointer": "/facts/0",
+          "canonical_sha256": "5a5205c0298daa9ec73bdad414467cfb3ecb7a45a29cd36c7c500980f954dd74"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v9/static-spec.json",
+            "bytes": 21907,
+            "sha256": "90f42160654b5e90f4b53ad564e5277864f34afe76fd38b97db306a1846f4dcd"
+          },
+          "pointer": "/facts/1",
+          "canonical_sha256": "68b638977e1fa61e6ce1626f16a738a17979bfd75abf592319e9576346b25c9b"
+        }
+      ]
+    },
+    {
+      "id": "LS-F14",
+      "classification": "事实：固定样本静态规则",
+      "rule": "c82f每候选先Stop通道、清request-sent并设GetTickCount+10000；DNS与通道ready共享首期限，成功提交后再设10秒回复期限。100ms timer先做signed32期限检查再处理DNS完成。计数器是候选index/remaining，不是generation；普通DNS槽和worker引用分开，计数工厂上限4。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-lifecycle-contract.json",
+            "bytes": 42929,
+            "sha256": "bae36e960285b56e727c0c3f988dfaf0ddcd68bae9296cb9e4cf266c00b3c984"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "54aab519cc29aeb228bf9bea697f6e7e50f50dd3d1ea6e0c04aed02c4b882ff0"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-lifecycle-contract.json",
+            "bytes": 42929,
+            "sha256": "bae36e960285b56e727c0c3f988dfaf0ddcd68bae9296cb9e4cf266c00b3c984"
+          },
+          "pointer": "/facts/3",
+          "canonical_sha256": "11b4aefd8795ab16588003abb00bd5f7b9a6eb655aa5407ab786ac2b00903289"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-lifecycle-contract.json",
+            "bytes": 42929,
+            "sha256": "bae36e960285b56e727c0c3f988dfaf0ddcd68bae9296cb9e4cf266c00b3c984"
+          },
+          "pointer": "/facts/4",
+          "canonical_sha256": "d647f1084216f45ba5626d363e82986350bb6a07209ead0fb4dbda55c3bf7d87"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-lifecycle-contract.json",
+            "bytes": 42929,
+            "sha256": "bae36e960285b56e727c0c3f988dfaf0ddcd68bae9296cb9e4cf266c00b3c984"
+          },
+          "pointer": "/facts/5",
+          "canonical_sha256": "da54fe0b71393fcea4e54ce8a3ea8681b478093cc403581ca57e97a047f891fb"
+        }
+      ]
+    },
+    {
+      "id": "LS-F15",
+      "classification": "事实：固定样本静态规则",
+      "rule": "c82f主timer0x332按100ms请求服务，timer100负责登录期限；engine同步服务和重入计数保护与应用回调串联。完整消息回调使用pointer/serial并在回调后重验pool身份；所选正常链没有独立异步应用reply队列。其他线程与重入组合不由此自动排除。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-channel-contract.json",
+            "bytes": 9456,
+            "sha256": "2340ce0df67f1951a0a411ed8547c3f1bce563e8f0605f1a19459243a6432f36"
+          },
+          "pointer": "/facts/4",
+          "canonical_sha256": "4098ac72648416c8f17f77703cb80719eb14a0768ce9643281016885f80fc4fb"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-channel-contract.json",
+            "bytes": 9456,
+            "sha256": "2340ce0df67f1951a0a411ed8547c3f1bce563e8f0605f1a19459243a6432f36"
+          },
+          "pointer": "/facts/5",
+          "canonical_sha256": "8b31db661496e71898a72f9cb0a5a41664bdc728593df07f919d4181f25717bd"
+        }
+      ]
+    },
+    {
+      "id": "LS-F16",
+      "classification": "事实：固定样本静态规则",
+      "rule": "c82f普通Stop清Main的DNS槽/标志/计时器、停止channel；busy Frame关闭先暂存关闭意图再post关闭。channel Stop受operation gate约束，移除registry后清handle并请求传输关闭；已获lease可继续。普通析构Stop后等borrow归0，无源deadline；释放引用不是同步终止DNS或所有全局任务。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-lifecycle-contract.json",
+            "bytes": 42929,
+            "sha256": "bae36e960285b56e727c0c3f988dfaf0ddcd68bae9296cb9e4cf266c00b3c984"
+          },
+          "pointer": "/facts/6",
+          "canonical_sha256": "691b18cad87564ea6077b48fac9d9ca0889f433dd67f8cd1213e495c6b8e85eb"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-channel-contract.json",
+            "bytes": 9456,
+            "sha256": "2340ce0df67f1951a0a411ed8547c3f1bce563e8f0605f1a19459243a6432f36"
+          },
+          "pointer": "/facts/6",
+          "canonical_sha256": "8bd4b6b8089e49d564e1207eb545927f1ff5ed3b59f3483f8f08507348f286bb"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-channel-contract.json",
+            "bytes": 9456,
+            "sha256": "2340ce0df67f1951a0a411ed8547c3f1bce563e8f0605f1a19459243a6432f36"
+          },
+          "pointer": "/facts/7",
+          "canonical_sha256": "0f1037c84db45b638b012cc00a3fa9da5b720d0ec0701135d0e3f85686292df8"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-channel-contract.json",
+            "bytes": 9456,
+            "sha256": "2340ce0df67f1951a0a411ed8547c3f1bce563e8f0605f1a19459243a6432f36"
+          },
+          "pointer": "/facts/8",
+          "canonical_sha256": "42a14218cce920820d9d98b7a0553c8fdcca2a4d385fb7f99ef2f267b8bb1c93"
+        }
+      ]
+    },
+    {
+      "id": "LS-F17",
+      "classification": "事实：固定样本静态规则",
+      "rule": "旧版异常续体按当前endpoint、wrapped前序和完成flag决定是否推进；另一个清理比较用未wrapped的first-1，不应直接替换成统一轮转控制器。写容量等待反复service/Sleep1且无该局部有界取消；异步目标不能把该忙等复制为页面流程。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/launcher-v9/static-spec.json",
+            "bytes": 21907,
+            "sha256": "90f42160654b5e90f4b53ad564e5277864f34afe76fd38b97db306a1846f4dcd"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "ab9d1e19d81c17e70c8f7e19c44add6179519428c0e87258341df763acfb8477"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v9/static-spec.json",
+            "bytes": 21907,
+            "sha256": "90f42160654b5e90f4b53ad564e5277864f34afe76fd38b97db306a1846f4dcd"
+          },
+          "pointer": "/facts/4",
+          "canonical_sha256": "c15370796b1cef5ae2a59779599411663a6ec47a294cae369b71e8371fd89f39"
+        }
+      ]
+    },
+    {
+      "id": "LS-F18",
+      "classification": "事实：固定样本静态规则",
+      "rule": "旧版成功/失败路径都取消timer、标完成并关闭通道；成功另推进wizard stage；通道未记录reply时断开可发本地-100。c82f回复先经Main busy/Stop/延迟关闭准入，正常错误在提示前Stop；registry lookup保护不等于已持有callback已撤销。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/launcher-v8/static-spec.json",
+            "bytes": 14698,
+            "sha256": "54209374904560e10f99aab3636f57d0a6e4bdda858d6e66b68d98c857086003"
+          },
+          "pointer": "/facts/6",
+          "canonical_sha256": "49d108cc61edfefe93d8fe3b1820cf9f2efc36c15b493a3388424a39d694cb38"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v9/static-spec.json",
+            "bytes": 21907,
+            "sha256": "90f42160654b5e90f4b53ad564e5277864f34afe76fd38b97db306a1846f4dcd"
+          },
+          "pointer": "/facts/5",
+          "canonical_sha256": "e994cf4f965b8c26c889c7db3383b8ac6a8bcf24d857461adf88696c806416dc"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-lifecycle-contract.json",
+            "bytes": 42929,
+            "sha256": "bae36e960285b56e727c0c3f988dfaf0ddcd68bae9296cb9e4cf266c00b3c984"
+          },
+          "pointer": "/facts/7",
+          "canonical_sha256": "cc82cd18834e2df04e8f94110eeb433369ef8497436b7d8838c3053a6f4f1cd1"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-channel-contract.json",
+            "bytes": 9456,
+            "sha256": "2340ce0df67f1951a0a411ed8547c3f1bce563e8f0605f1a19459243a6432f36"
+          },
+          "pointer": "/facts/7",
+          "canonical_sha256": "0f1037c84db45b638b012cc00a3fa9da5b720d0ec0701135d0e3f85686292df8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/operation_rows/9",
+          "canonical_sha256": "f3a039c24782dfdbca36b98dc38a06f0d3471c4ec4d580c7bf962819a6e4ebe1"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/operation_rows/14",
+          "canonical_sha256": "2c95401fc2e9a4a9b1d52b66f8c84052a10217ec31e1fa63ec68f56f411576b3"
+        }
+      ]
+    },
+    {
+      "id": "LS-F19",
+      "classification": "事实：现有目标纯模块实测；与静态源比较为限定差异",
+      "rule": "现有纯核心为两版选用正确challenge/record codec，但createLauncherLoginFlow始终保留开始时总10秒deadline，轮转/提交不重设；探针实际观察到更新版源应分别18000/19000时，目标仍11000。local attemptId、单调时钟、严格名称/列覆盖、64KiB及notice预算均为独立目标政策，不能说是源所有限制。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-session-functional-specification-v1/focused-probe.json",
+            "bytes": 2374,
+            "sha256": "7193e4b6d90c294bb25b7da93ab40c162079ec24d5beae431f180fde4d27b63b"
+          },
+          "pointer": "/observations",
+          "canonical_sha256": "ae6bf74485df3496392f7a76428379c53763b2871ecf80bed2c18cb3ec44bb9b"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-functional-specification.json",
+            "bytes": 111980,
+            "sha256": "68ebb9f01779d04be26ed66a5a8ae16f2246cac514a8161c5c6af53bf0a13bc6"
+          },
+          "pointer": "/workflow_and_stopping_rule",
+          "canonical_sha256": "b5c8d14ee366c3c17f9d63c60d53890bcfaa604e9f1fafb6c861297b22590ed5"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-session-functional-specification-v1/source-authentication.json",
+            "bytes": 231704,
+            "sha256": "2a96447fc80fcb5a0d7a7515587bb8efd284228406c9fe2e97622bdb742ffdb4"
+          },
+          "pointer": "/inputs/20",
+          "canonical_sha256": "dee22910f7a5c450e3324df5744848b7dc7c2b8cfa3be1c8c22bc8df08c4851d"
+        }
+      ]
+    },
+    {
+      "id": "LS-F20",
+      "classification": "事实：执行范围与目标合同",
+      "rule": "本轮无SDK、VM、原程序、真实账号或官方连接；882项原创纯核心检查只验证所列局部行为。旧版与更新版源规格、目标独立政策、真实三端与当前官方接受分别登记；14端口/62方法/22完整用例继续保留。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-session-functional-specification-v1/focused-probe.json",
+            "bytes": 2374,
+            "sha256": "7193e4b6d90c294bb25b7da93ab40c162079ec24d5beae431f180fde4d27b63b"
+          },
+          "pointer": "",
+          "canonical_sha256": "92e2be3612a1244be9807c772f1d9c0f3f9e123a1f8f81634f349c07f0d91576"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/shared-target-contract.json",
+            "bytes": 68467,
+            "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+          },
+          "pointer": "",
+          "canonical_sha256": "4718240952281adbd64bcc1b001e3bd85dca9ca42edae022f484dbda1c96e209"
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "LS-L01",
+      "capability": "L03",
+      "original_required_behavior": "连接",
+      "source_profile": "launcher-legacy-601b",
+      "classification": "静态源与既有owner的操作组合；未知项不闭合",
+      "admission_and_inputs": "L01/L02给出原来源的候选与主流程准入；L04给出明确输入字节和本地决定。",
+      "state_and_outputs": "旧版case3保存计时器/候选与通道；更新版每候选建立DNS job及通道identity，resolver完成后按明确地址/port连接。",
+      "failure_cancel_and_late_result": "启动失败、断开、候选耗尽和DNS超时分别按源；不把计数或本地token当认证或连接成功。",
+      "facts": [
+        "LS-F03",
+        "LS-F04",
+        "LS-F13",
+        "LS-F17"
+      ],
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1",
+      "runtime_or_whole_capability_acceptance": false
+    },
+    {
+      "id": "LS-C01",
+      "capability": "L03",
+      "original_required_behavior": "连接",
+      "source_profile": "launcher-updated-c82f",
+      "classification": "静态源与既有owner的操作组合；未知项不闭合",
+      "admission_and_inputs": "L01/L02给出原来源的候选与主流程准入；L04给出明确输入字节和本地决定。",
+      "state_and_outputs": "旧版case3保存计时器/候选与通道；更新版每候选建立DNS job及通道identity，resolver完成后按明确地址/port连接。",
+      "failure_cancel_and_late_result": "启动失败、断开、候选耗尽和DNS超时分别按源；不把计数或本地token当认证或连接成功。",
+      "facts": [
+        "LS-F05",
+        "LS-F14",
+        "LS-F15",
+        "LS-F16"
+      ],
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1",
+      "runtime_or_whole_capability_acceptance": false
+    },
+    {
+      "id": "LS-L02",
+      "capability": "L03",
+      "original_required_behavior": "挑战",
+      "source_profile": "launcher-legacy-601b",
+      "classification": "静态源与既有owner的操作组合；未知项不闭合",
+      "admission_and_inputs": "所选cipher1/key8通道已进入handshake；接收的是明确字节，不含账号会话。",
+      "state_and_outputs": "累计完整有界挑战，校验本profile字段后按原算术发publicMessage并建立两个方向key日程。",
+      "failure_cancel_and_late_result": "status、长度和profile条件失败分别关闭；短材料仍LS-U2，不伪造补零规则。",
+      "facts": [
+        "LS-F04",
+        "LS-F06"
+      ],
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1",
+      "runtime_or_whole_capability_acceptance": false
+    },
+    {
+      "id": "LS-C02",
+      "capability": "L03",
+      "original_required_behavior": "挑战",
+      "source_profile": "launcher-updated-c82f",
+      "classification": "静态源与既有owner的操作组合；未知项不闭合",
+      "admission_and_inputs": "所选cipher1/key8通道已进入handshake；接收的是明确字节，不含账号会话。",
+      "state_and_outputs": "累计完整有界挑战，校验本profile字段后按原算术发publicMessage并建立两个方向key日程。",
+      "failure_cancel_and_late_result": "status、长度和profile条件失败分别关闭；短材料仍LS-U2，不伪造补零规则。",
+      "facts": [
+        "LS-F05",
+        "LS-F06"
+      ],
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1",
+      "runtime_or_whole_capability_acceptance": false
+    },
+    {
+      "id": "LS-L03",
+      "capability": "L03",
+      "original_required_behavior": "提交",
+      "source_profile": "launcher-legacy-601b",
+      "classification": "静态源与既有owner的操作组合；未知项不闭合",
+      "admission_and_inputs": "非空明确输入、原本地准入通过，通道ready且write capacity允许。",
+      "state_and_outputs": "构造有界type10及BE16 frame，按相应record写出；更新版成功提交后另开10秒期限。",
+      "failure_cancel_and_late_result": "未通过本地决定/编码预算不提交；容量等待和取消的异步目标政策与源忙等分开。",
+      "facts": [
+        "LS-F02",
+        "LS-F11",
+        "LS-F17"
+      ],
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1",
+      "runtime_or_whole_capability_acceptance": false
+    },
+    {
+      "id": "LS-C03",
+      "capability": "L03",
+      "original_required_behavior": "提交",
+      "source_profile": "launcher-updated-c82f",
+      "classification": "静态源与既有owner的操作组合；未知项不闭合",
+      "admission_and_inputs": "非空明确输入、原本地准入通过，通道ready且write capacity允许。",
+      "state_and_outputs": "构造有界type10及BE16 frame，按相应record写出；更新版成功提交后另开10秒期限。",
+      "failure_cancel_and_late_result": "未通过本地决定/编码预算不提交；容量等待和取消的异步目标政策与源忙等分开。",
+      "facts": [
+        "LS-F02",
+        "LS-F11",
+        "LS-F14",
+        "LS-F16"
+      ],
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1",
+      "runtime_or_whole_capability_acceptance": false
+    },
+    {
+      "id": "LS-L04",
+      "capability": "L03",
+      "original_required_behavior": "记录/消息分片",
+      "source_profile": "launcher-legacy-601b",
+      "classification": "静态源与既有owner的操作组合；未知项不闭合",
+      "admission_and_inputs": "profile已明确、记录方向key已建立，输入可以任意TCP分片。",
+      "state_and_outputs": "外记录只产生完整声明正文；内BE16流跨记录重组，依次产生完整消息。两版padding及0/0接收边界分别保持。",
+      "failure_cancel_and_late_result": "不完整记录或frame在EOF单列；畸形长度、count高字和预算按源/明确目标限制分别报告。",
+      "facts": [
+        "LS-F07",
+        "LS-F09",
+        "LS-F10"
+      ],
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1",
+      "runtime_or_whole_capability_acceptance": false
+    },
+    {
+      "id": "LS-C04",
+      "capability": "L03",
+      "original_required_behavior": "记录/消息分片",
+      "source_profile": "launcher-updated-c82f",
+      "classification": "静态源与既有owner的操作组合；未知项不闭合",
+      "admission_and_inputs": "profile已明确、记录方向key已建立，输入可以任意TCP分片。",
+      "state_and_outputs": "外记录只产生完整声明正文；内BE16流跨记录重组，依次产生完整消息。两版padding及0/0接收边界分别保持。",
+      "failure_cancel_and_late_result": "不完整记录或frame在EOF单列；畸形长度、count高字和预算按源/明确目标限制分别报告。",
+      "facts": [
+        "LS-F08",
+        "LS-F09",
+        "LS-F10",
+        "LS-F15"
+      ],
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1",
+      "runtime_or_whole_capability_acceptance": false
+    },
+    {
+      "id": "LS-L05",
+      "capability": "L03",
+      "original_required_behavior": "回复",
+      "source_profile": "launcher-legacy-601b",
+      "classification": "静态源与既有owner的操作组合；未知项不闭合",
+      "admission_and_inputs": "完整type2/type11已到当前owner允许发布的边界；尾ABI参数不得丢。",
+      "state_and_outputs": "保留type2通知、type11五列/尾字，按源成功/无列表/非零结果与L02投影边界处理；无解码成功即账号成功之推断。",
+      "failure_cancel_and_late_result": "保持原错误结果与-100本地断开区别；目标列/名称严格拒绝是独立政策。",
+      "facts": [
+        "LS-F10",
+        "LS-F12",
+        "LS-F18"
+      ],
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1",
+      "runtime_or_whole_capability_acceptance": false
+    },
+    {
+      "id": "LS-C05",
+      "capability": "L03",
+      "original_required_behavior": "回复",
+      "source_profile": "launcher-updated-c82f",
+      "classification": "静态源与既有owner的操作组合；未知项不闭合",
+      "admission_and_inputs": "完整type2/type11已到当前owner允许发布的边界；尾ABI参数不得丢。",
+      "state_and_outputs": "保留type2通知、type11五列/尾字，按源成功/无列表/非零结果与L02投影边界处理；无解码成功即账号成功之推断。",
+      "failure_cancel_and_late_result": "保持原错误结果与-100本地断开区别；目标列/名称严格拒绝是独立政策。",
+      "facts": [
+        "LS-F10",
+        "LS-F12",
+        "LS-F15",
+        "LS-F18"
+      ],
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1",
+      "runtime_or_whole_capability_acceptance": false
+    },
+    {
+      "id": "LS-L06",
+      "capability": "L03",
+      "original_required_behavior": "取消",
+      "source_profile": "launcher-legacy-601b",
+      "classification": "静态源与既有owner的操作组合；未知项不闭合",
+      "admission_and_inputs": "用户Stop或普通关闭路径进入所属Main/channel owner，不扩大到更新/补丁任务。",
+      "state_and_outputs": "源各自清timer/flags并关闭通道；更新版detach owner job，registry/serial、borrow和延期关闭分层处理。",
+      "failure_cancel_and_late_result": "旧DNS可在自己的job完成，已获lease/销毁等待保留源限制；不宣称Stop已join全部任务。",
+      "facts": [
+        "LS-F13",
+        "LS-F17",
+        "LS-F18"
+      ],
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1",
+      "runtime_or_whole_capability_acceptance": false
+    },
+    {
+      "id": "LS-C06",
+      "capability": "L03",
+      "original_required_behavior": "取消",
+      "source_profile": "launcher-updated-c82f",
+      "classification": "静态源与既有owner的操作组合；未知项不闭合",
+      "admission_and_inputs": "用户Stop或普通关闭路径进入所属Main/channel owner，不扩大到更新/补丁任务。",
+      "state_and_outputs": "普通取消按钮先显示退出确认，再按返回时的忙态决定先 Stop 或直接投递 Frame 关闭。Stop 解除 DNS 槽、撤计时器和停止通道，随后消费延期关闭意图。详见 login_timer_dispatch_and_exit。",
+      "failure_cancel_and_late_result": "旧DNS可在自己的job完成，已获lease/销毁等待保留源限制；不宣称Stop已join全部任务。",
+      "facts": [
+        "LS-F15",
+        "LS-F16",
+        "LS-F18"
+      ],
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1",
+      "runtime_or_whole_capability_acceptance": false
+    },
+    {
+      "id": "LS-L07",
+      "capability": "L03",
+      "original_required_behavior": "超时",
+      "source_profile": "launcher-legacy-601b",
+      "classification": "静态源与既有owner的操作组合；未知项不闭合",
+      "admission_and_inputs": "源实际所属timer/期限阶段已确定，目标宿主给出明确时钟转换。",
+      "state_and_outputs": "旧版 WM_TIMER100 终止等待，关闭通道并恢复控件。该等待分支沿原范围处理。",
+      "failure_cancel_and_late_result": "目标统一总期限存在LS-D2差异；无运行证据证明Windows实际时延，时钟环绕与宿主后台单列。",
+      "facts": [
+        "LS-F13",
+        "LS-F17"
+      ],
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1",
+      "runtime_or_whole_capability_acceptance": false
+    },
+    {
+      "id": "LS-C07",
+      "capability": "L03",
+      "original_required_behavior": "超时",
+      "source_profile": "launcher-updated-c82f",
+      "classification": "静态源与既有owner的操作组合；未知项不闭合",
+      "admission_and_inputs": "源实际所属timer/期限阶段已确定，目标宿主给出明确时钟转换。",
+      "state_and_outputs": "每候选设置首个 10 秒期限。DNS 先判截止，再读完成。已进入通道分支时，未提交且满足通道条件便先调用提交；成功后从新时钟样本计 10 秒。其余等待路径才检查当前期限。详见 login_timer_dispatch_and_exit。",
+      "failure_cancel_and_late_result": "目标统一总期限存在LS-D2差异；无运行证据证明Windows实际时延，时钟环绕与宿主后台单列。",
+      "facts": [
+        "LS-F14",
+        "LS-F15",
+        "LS-F16"
+      ],
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1",
+      "runtime_or_whole_capability_acceptance": false
+    },
+    {
+      "id": "LS-L08",
+      "capability": "L03",
+      "original_required_behavior": "错误",
+      "source_profile": "launcher-legacy-601b",
+      "classification": "静态源与既有owner的操作组合；未知项不闭合",
+      "admission_and_inputs": "错误类型、当前源阶段及owner明确，未经准入的异常交错不作为已分析业务。",
+      "state_and_outputs": "错误按源保留重试/结束/先Stop后提示；native flag、源状态和目标error code分开。",
+      "failure_cancel_and_late_result": "旧版具名异常来源/续体LS-U1、短材料LS-U2和conditional重入LS-U3未闭；目标不得以静默成功或伪回复补齐。",
+      "facts": [
+        "LS-F03",
+        "LS-F13",
+        "LS-F17",
+        "LS-F18"
+      ],
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1",
+      "runtime_or_whole_capability_acceptance": false
+    },
+    {
+      "id": "LS-C08",
+      "capability": "L03",
+      "original_required_behavior": "错误",
+      "source_profile": "launcher-updated-c82f",
+      "classification": "静态源与既有owner的操作组合；未知项不闭合",
+      "admission_and_inputs": "错误类型、当前源阶段及owner明确，未经准入的异常交错不作为已分析业务。",
+      "state_and_outputs": "错误按源保留重试/结束/先Stop后提示；native flag、源状态和目标error code分开。",
+      "failure_cancel_and_late_result": "旧版具名异常来源/续体LS-U1、短材料LS-U2和conditional重入LS-U3未闭；目标不得以静默成功或伪回复补齐。",
+      "facts": [
+        "LS-F14",
+        "LS-F16",
+        "LS-F18"
+      ],
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1",
+      "runtime_or_whole_capability_acceptance": false
+    }
+  ],
+  "required_behavior_readiness": [
+    {
+      "original_required_behavior": "连接",
+      "operations": [
+        "LS-L01",
+        "LS-C01"
+      ],
+      "profile_specific_rules_recorded": true,
+      "necessary_or_conditional_contexts": [
+        "LS-U1"
+      ],
+      "full_original_source_scope_closed": false,
+      "real_acceptance_passed": false
+    },
+    {
+      "original_required_behavior": "挑战",
+      "operations": [
+        "LS-L02",
+        "LS-C02"
+      ],
+      "profile_specific_rules_recorded": true,
+      "necessary_or_conditional_contexts": [
+        "LS-U2"
+      ],
+      "full_original_source_scope_closed": false,
+      "real_acceptance_passed": false
+    },
+    {
+      "original_required_behavior": "提交",
+      "operations": [
+        "LS-L03",
+        "LS-C03"
+      ],
+      "profile_specific_rules_recorded": true,
+      "necessary_or_conditional_contexts": [
+        "LS-U1",
+        "LS-U2"
+      ],
+      "full_original_source_scope_closed": false,
+      "real_acceptance_passed": false
+    },
+    {
+      "original_required_behavior": "记录/消息分片",
+      "operations": [
+        "LS-L04",
+        "LS-C04"
+      ],
+      "profile_specific_rules_recorded": true,
+      "necessary_or_conditional_contexts": [],
+      "full_original_source_scope_closed": true,
+      "real_acceptance_passed": false
+    },
+    {
+      "original_required_behavior": "回复",
+      "operations": [
+        "LS-L05",
+        "LS-C05"
+      ],
+      "profile_specific_rules_recorded": true,
+      "necessary_or_conditional_contexts": [
+        "LS-U3"
+      ],
+      "full_original_source_scope_closed": false,
+      "real_acceptance_passed": false
+    },
+    {
+      "original_required_behavior": "取消",
+      "operations": [
+        "LS-L06",
+        "LS-C06"
+      ],
+      "profile_specific_rules_recorded": true,
+      "necessary_or_conditional_contexts": [
+        "LS-U1",
+        "LS-U3"
+      ],
+      "full_original_source_scope_closed": false,
+      "real_acceptance_passed": false
+    },
+    {
+      "original_required_behavior": "超时",
+      "operations": [
+        "LS-L07",
+        "LS-C07"
+      ],
+      "profile_specific_rules_recorded": true,
+      "necessary_or_conditional_contexts": [],
+      "full_original_source_scope_closed": true,
+      "real_acceptance_passed": false
+    },
+    {
+      "original_required_behavior": "错误",
+      "operations": [
+        "LS-L08",
+        "LS-C08"
+      ],
+      "profile_specific_rules_recorded": true,
+      "necessary_or_conditional_contexts": [
+        "LS-U1",
+        "LS-U2",
+        "LS-U3"
+      ],
+      "full_original_source_scope_closed": false,
+      "real_acceptance_passed": false
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "LS-D1",
+      "title": "保持显式profile与两个正确record/handshake核心",
+      "batches": [
+        "D1"
+      ],
+      "owners": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "work": "现有padding/0记录/群字面差异已正确实现，复用；源profile和packed/analysis身份分开，不默认generic代表current。",
+      "implemented_in_this_phase": false
+    },
+    {
+      "id": "LS-D2",
+      "title": "按来源组织候选、提交及期限",
+      "batches": [
+        "D0",
+        "D1"
+      ],
+      "owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "work": "C82 与 F5A 复用一份候选与阶段时钟。按来源验收每候选期限、DNS 先判截止、通道符合条件时先提交、成功后新采样计 10 秒及各类失败。现有核心的总期限、本地尝试标识与宿主调度失败处理分别用实测和来源说明。旧 601b 的等待沿原规则。详见 login_timer_dispatch_and_exit。",
+      "implemented_in_this_phase": false
+    },
+    {
+      "id": "LS-D3",
+      "title": "异步背压与通道退役归原owner",
+      "batches": [
+        "D0",
+        "D1",
+        "D5"
+      ],
+      "owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "work": "目标通过明确send-ready/关闭/retire合同避免源忙等，保留queued与flush/远端结果区别；local attempt token不新增线上generation。",
+      "f5a_pump_retirement": "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_callback_retirement/pump_and_retirement_order",
+      "implemented_in_this_phase": false
+    },
+    {
+      "id": "LS-D4",
+      "title": "复用现有字节、五列、尾ABI和状态投影",
+      "batches": [
+        "D1"
+      ],
+      "owners": [
+        "shared/launcher-message10.mjs",
+        "shared/launcher-replies.mjs",
+        "shared/launcher-login.mjs"
+      ],
+      "work": "882局部检查中的正确序列化/分片/低16位规则保持；严格列/名称和source原限制分别说明，不重复实现一份UI decoder。",
+      "implemented_in_this_phase": false
+    },
+    {
+      "id": "LS-D5",
+      "title": "短派生材料与具名异常先补来源再开发",
+      "batches": [
+        "D1"
+      ],
+      "owners": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "work": "LS-U1/LS-U2闭合前不复制未定义填充或把HANDSHAKE_SHORT_KEY当源完整政策；复用已保存crypto/续体记录。",
+      "implemented_in_this_phase": false
+    },
+    {
+      "id": "LS-D6",
+      "title": "登录与L02/L04/L08及三端采用同一接口",
+      "batches": [
+        "D0",
+        "D1",
+        "D5",
+        "D6"
+      ],
+      "owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "work": "UI字节/本地决定、候选投影、modal/Frame与SDK传输分别薄适配；当前完整三端与同版官方接受未完成。",
+      "implemented_in_this_phase": false
+    }
+  ],
+  "remaining": [
+    {
+      "id": "LS-U1",
+      "kind": "required-selected-source-context",
+      "profiles": [
+        "launcher-legacy-601b"
+      ],
+      "groups": [
+        "连接",
+        "提交",
+        "取消",
+        "错误"
+      ],
+      "question": "旧版特定catch入口/throw来源与first-1未wrapped清理，在原必要正常失败/取消用户序列中的完整效果仍未逐边闭合；不能由统一bounded retry政策替代。",
+      "positive_edges": [
+        "0x410df0",
+        "0x41195e",
+        "0x411bb9",
+        "0x46cf90"
+      ],
+      "existing_source": [
+        {
+          "file": {
+            "path": "analysis/launcher-v9/static-spec.json",
+            "bytes": 21907,
+            "sha256": "90f42160654b5e90f4b53ad564e5277864f34afe76fd38b97db306a1846f4dcd"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "ab9d1e19d81c17e70c8f7e19c44add6179519428c0e87258341df763acfb8477"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v9/static-spec.json",
+            "bytes": 21907,
+            "sha256": "90f42160654b5e90f4b53ad564e5277864f34afe76fd38b97db306a1846f4dcd"
+          },
+          "pointer": "/facts/4",
+          "canonical_sha256": "c15370796b1cef5ae2a59779599411663a6ec47a294cae369b71e8371fd89f39"
+        }
+      ],
+      "next_action": "只沿原必要错误序列所指的具名throw/续体补证；不枚举任意异常或重复已完整helper。"
+    },
+    {
+      "id": "LS-U2",
+      "kind": "required-derived-material-initialization",
+      "profiles": [
+        "launcher-legacy-601b",
+        "launcher-updated-c82f"
+      ],
+      "groups": [
+        "挑战",
+        "提交",
+        "错误"
+      ],
+      "question": "较短共享hex下原方向key缓冲的构造/重用/部分写完整条件仍未闭；current parser允许p-1而目标偶数指数触发HANDSHAKE_SHORT_KEY，不能声称与源相同。",
+      "positive_edges": [
+        "legacy:0x475640->0x482fc0",
+        "current:0x58b640/0x58b5c0 and context constructors"
+      ],
+      "existing_source": [
+        {
+          "file": {
+            "path": "analysis/launcher-v7/static-spec.json",
+            "bytes": 51033,
+            "sha256": "57e8ae785ee384ebdaaa63a8546a914041ddc328d351f56ffaed25cc2df24f15"
+          },
+          "pointer": "/facts/10",
+          "canonical_sha256": "daff6e56adc565d091e2d73b2408407495648f8ef5cd162dfe7fb4ae960526a6"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-current-channel-v1/implementation-spec.json",
+            "bytes": 3853,
+            "sha256": "23d35324b9d1f917857d44181de530f3a76f76e67a216d35aeb6cba5e14cda56"
+          },
+          "pointer": "/facts/3",
+          "canonical_sha256": "0fd7ee3b6e3bc5d75fce537c832f40f28e918b55e5ade69d29ce20743296b36e"
+        }
+      ],
+      "next_action": "先从保留当前完整native记录及构造调用核缓冲初态；仅必要未答边再REA，禁止猜补零/扩大认证行为。"
+    },
+    {
+      "id": "LS-U3",
+      "kind": "conditional-entry-admission",
+      "profiles": [
+        "launcher-updated-c82f"
+      ],
+      "groups": [
+        "回复",
+        "取消",
+        "错误"
+      ],
+      "question": "已取得borrow的callback穿过modal/替换，再执行尾部unregister的原必要普通序列仍须准入证据；不要求任意全交错，不报告必现故障或全交错安全。",
+      "existing_source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/operation_rows/14",
+          "canonical_sha256": "2c95401fc2e9a4a9b1d52b66f8c84052a10217ec31e1fa63ec68f56f411576b3"
+        }
+      ],
+      "next_action": "复用required-entry-admission及engine重入规则，仅取得具名普通入口条件后追尾部。",
+      "owned_login_error_prompt": {
+        "path": "analysis/capability-first-v1/launcher-callback-reentry-contract.json",
+        "pointer": "/owned_login_error_prompt",
+        "source_review": {
+          "path": "build/analysis/launcher-owned-login-error-v1/source-review.json",
+          "bytes": 9825,
+          "sha256": "5f57999fa7e7c193c6b32d4509609e911f8708d7cd736ef14b2f0432ca48e8fe"
+        },
+        "focused_regression": {
+          "path": "build/analysis/launcher-owned-login-error-v1/focused-regression.log",
+          "bytes": 421,
+          "sha256": "07de34b51103c20da37700c1ce69054b793874c96d39d4e93060810e96d60ecb"
+        },
+        "whole_LS_U3_closed": false
+      }
+    },
+    {
+      "id": "LS-U4",
+      "kind": "target-contract-implementation-and-external-acceptance",
+      "profiles": [
+        "launcher-legacy-601b",
+        "launcher-updated-c82f"
+      ],
+      "groups": [
+        "连接",
+        "挑战",
+        "提交",
+        "记录/消息分片",
+        "回复",
+        "取消",
+        "超时",
+        "错误"
+      ],
+      "question": "14宿主端口及MBCS/IME、背压、时钟/后台、真实三端、同版游戏交接与官方账号接受仍独立；本机SDK首次授权仍待原请求回复。",
+      "source_readiness_blocker_by_itself": false,
+      "same_version_game_consumer_closed": false,
+      "next_action": "统一A1..A4后依D0/D1/D5/D6实现与验收；保留原SDK任务，不重发授权或重复索取测试账号。"
+    }
+  ],
+  "proposed_acceptance_cases": [
+    {
+      "id": "LS-T01",
+      "profile_or_target": "legacy",
+      "case": "计时器返回0、正常投递与延后投递分别记录，不以SetTimer调用证明建立/墙钟上界",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T02",
+      "profile_or_target": "legacy",
+      "case": "首候选为0时wrapped前序与first-1清理的原正常异常序列",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T03",
+      "profile_or_target": "legacy",
+      "case": "每个必要原throw来源及retry/结束/清理的完整关联",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T04",
+      "profile_or_target": "legacy",
+      "case": "写容量等待期间普通取消/关闭的实际消息与释放顺序",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T05",
+      "profile_or_target": "current",
+      "case": "DNS工厂4个计数任务边界、启动失败和新候选重开10秒",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T06",
+      "profile_or_target": "current",
+      "case": "DNS完成与首期限同次timer相遇时，按源先期限再完成",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T07",
+      "profile_or_target": "current",
+      "case": "C82/F5A 的通道提交准入与当前候选截止前、等于、超过的分支。提交返回非零后新采样加 10 秒，返回零时立即停止并推进，等待分支按阶段记录截止。",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T08",
+      "profile_or_target": "current",
+      "case": "GetTickCount环绕与signed32判定及宿主单调时钟转换",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T09",
+      "profile_or_target": "both",
+      "case": "selector1/key8实际初始化与两个方向短材料缓冲的构造及重用",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T10",
+      "profile_or_target": "current",
+      "case": "peer=p-1且奇偶指数的原正常解析/派生/方向key条件",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T11",
+      "profile_or_target": "legacy",
+      "case": "62/1022/1022字段、零结果及大数格式的原边界",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T12",
+      "profile_or_target": "current",
+      "case": "784总缓冲、各256字段、字面模数与peer区间的原边界",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T13",
+      "profile_or_target": "both",
+      "case": "控制器与真实传输贯通的hello/challenge/public/request10/reply11正常整链",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T14",
+      "profile_or_target": "both",
+      "case": "旧floor/newceil长度与0/0读、EOF及多record/多frame真实传输组合",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T15",
+      "profile_or_target": "both",
+      "case": "inline/FD/FE和非法count、五列/尾字/ABI的原实际接收与UI序列",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T16",
+      "profile_or_target": "both",
+      "case": "16字节UI、18字段及45总预算，真实ACP/IME非ASCII转换",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T17",
+      "profile_or_target": "both",
+      "case": "type2、非零type11、空列表与正常列表的原提示/清理/状态",
+      "f5a_note_modal": "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_result_selection/profile_list_projection/candidate_management/note_modal_admission/acceptance/LS-T17",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T18",
+      "profile_or_target": "both",
+      "case": "远端close前后reply-flag和本地-100、timer/控件恢复",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T19",
+      "profile_or_target": "current",
+      "case": "普通Stop后旧DNS只完成旧job，新attempt只发布新owner",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T20",
+      "profile_or_target": "current",
+      "case": "borrow已取得时modal/替换/退役及尾部unregister的准入普通序列",
+      "f5a_pump_retirement": "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_callback_retirement/pump_and_retirement_order/acceptance_cases",
+      "f5a_note_modal": "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_result_selection/profile_list_projection/candidate_management/note_modal_admission/acceptance/LS-T20",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T21",
+      "profile_or_target": "current",
+      "case": "普通退出提示前清准备资格。验收提示中的现有定时器投递、F5A 排队提交、拒绝后重新操作、确认时重读忙态、延期关闭投递、Main 销毁与通道退役。",
+      "ordinary_exit_confirmation": "/login_timer_dispatch_and_exit/rules/ordinary_cancel/exit_confirmation_order/acceptance_cases",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T22",
+      "profile_or_target": "web",
+      "case": "实际浏览器传输、缓存、后台恢复、背压与输入法整链",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T23",
+      "profile_or_target": "mobile-web",
+      "case": "实际手机浏览器生命周期/资源预算/输入法及正常交换",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T24",
+      "profile_or_target": "wechat",
+      "case": "实际SDK/Page/App/真机网络与输入、退役、后台和完整资源",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    },
+    {
+      "id": "LS-T25",
+      "profile_or_target": "current",
+      "case": "有适当条件的同版登录器到游戏消费者交接与真实账号/官方接受",
+      "status": "required-not-executed",
+      "complete_case_executed": false
+    }
+  ],
+  "focused_probe": {
+    "path": "build/analysis/launcher-session-functional-specification-v1/focused-probe.json",
+    "bytes": 2374,
+    "sha256": "7193e4b6d90c294bb25b7da93ab40c162079ec24d5beae431f180fde4d27b63b"
+  },
+  "focused_probe_scope": "882 checks on existing pure modules and original synthetic bytes/clocks; no original Windows, SDK, account or official acceptance.",
+  "workflow_and_stopping_rule": {
+    "sequence": [
+      "A1 original40/81/37/10/6 scope and positive entry admission",
+      "A2 per-profile byte/protocol/state/owner/failure/cancel specifications",
+      "A3 operation and variant composition with explicit readiness/unknowns",
+      "A4 target contracts,concrete limits and measurable acceptance conditions",
+      "D0-D6 dependency groups,shared core first,then thin target effects",
+      "source-bound fixtures and actual target/official acceptance as independently available"
+    ],
+    "stop_source_expansion": "An existing complete Evidence/body contract answers the question =>reuse it. New query requires a named missing producer/consumer/predicate that changes a required operation. Do not chase every library/helper or arbitrary callback schedule.",
+    "time_claim": "Expected reduction is duplicate source work and shared-owner/platform rework. No measured total saving percentage or reliable full-project remaining duration is asserted.",
+    "no_new_product_features_before_unified_gate": true
+  },
+  "summary": {
+    "legacy_complete_records": 78,
+    "legacy_distinct_entries": 78,
+    "legacy_body_window_bytes": 33852,
+    "current_retained_rows": 70,
+    "current_canonical_rows": 46,
+    "current_distinct_entries": 67,
+    "current_body_window_bytes": 28538,
+    "current_handshake_record_windows": 7,
+    "input_files": 171,
+    "new_REA_analysis_queries": 0,
+    "new_disassembler_or_runtime_installed": false,
+    "facts": 20,
+    "operation_rows": 16,
+    "original_behavior_groups": 8,
+    "profile_count": 2,
+    "implementation_deltas": 6,
+    "remaining_rows": 4,
+    "focused_original_fixture_checks": 882,
+    "full_cases_not_executed": 25
+  },
+  "original_40_81_37_10_6_preserved": true,
+  "original_owners_dependencies_batches_preserved": true,
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "full_product_suites_or_builds_run": false,
+  "new_REA_analysis_queries": 0,
+  "new_static_engine_process_started": false,
+  "original_VM_SDK_network_account_or_official_actions": false,
+  "L03_whole_specification_ready": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "execution_record": {
+    "path": "build/analysis/launcher-session-functional-specification-v1/execution-record.json",
+    "bytes": 1511,
+    "sha256": "3aa5aa89ba9d9a24f4fd120049939545554adf3e868e573f544e2adcdf9f6ec1"
+  },
+  "validation_record_path": "build/analysis/launcher-session-functional-specification-v1/validation.json",
+  "f5a_callback_retirement": {
+    "source_review": "build/analysis/launcher-f5a-callback-retirement-v1/source-review.json",
+    "report": "reports/launcher-static.md#f5a-disconnect-retry",
+    "contract": "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_callback_retirement",
+    "source_profile": "launcher-distribution-f5a",
+    "affected_capabilities": [
+      "L03",
+      "L08",
+      "X01"
+    ],
+    "implementation_batch": "D1",
+    "selected_close_and_receive_paths_source_bound": true,
+    "actual_modal_dispatch_and_rebinding_verified": false,
+    "source_capability_readiness_promoted": false,
+    "product_code_changed": false
+  },
+  "login_timer_dispatch_and_exit": {
+    "classification": "固定来源的静态规格与现有模块的本地对照",
+    "record_scope": "顶层执行记录与原八组统计对应首次双来源合表。本节记录 C82 与 F5A 的计时器和普通退出补证。",
+    "report": "reports/launcher-static.md#launcher-login-timer-dispatch",
+    "validation": "reports/validation.md#launcher-login-timer-dispatch-validation",
+    "original_capabilities": [
+      "L02",
+      "L03",
+      "L08",
+      "X06"
+    ],
+    "batches": [
+      "D0",
+      "D1",
+      "D5"
+    ],
+    "operation_refs": [
+      "LS-C06",
+      "LS-C07"
+    ],
+    "implementation_refs": [
+      "LS-D2",
+      "LS-D3",
+      "LS-D6"
+    ],
+    "existing_owners": [
+      "shared/launcher-login.mjs",
+      "shared/launcher-flow.mjs",
+      "web/launcher-session.mjs"
+    ],
+    "profiles": {
+      "F5A": {
+        "source": {
+          "path": "build/analysis/current-official-launcher-package-v1/POLCN_Launcher.analysis-only.exe",
+          "bytes": 4176896,
+          "sha256": "f5abc77a1d6c7b1875bae8cdea948469424a8e683d72939e2118d1a38de06842"
+        },
+        "start": "0x423220",
+        "timer": "0x429a50",
+        "poll": "0x42bae0",
+        "cancel": "0x423150",
+        "stop": "0x41ef80"
+      },
+      "C82": {
+        "source": {
+          "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+          "bytes": 4111872,
+          "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+        },
+        "start": "0x41e420",
+        "timer": "0x423910",
+        "poll": "0x424cf0",
+        "cancel": "0x41e360",
+        "stop": "0x41b690"
+      }
+    },
+    "prior_contracts": [
+      "analysis/capability-first-v1/launcher-lifecycle-contract.json#/facts/5",
+      "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_candidate_lifecycle",
+      "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/owned_login_error_prompt"
+    ],
+    "original_session_publication": {
+      "path": "build/analysis/launcher-session-functional-specification-v1/published-specification.json",
+      "bytes": 77719,
+      "sha256": "3fb04e1f227938110d1f141e9fedf4da02339e4a80f49cddf78ca10283fef010"
+    },
+    "rules": {
+      "timer_registration_and_dispatch": {
+        "classification": "事实",
+        "registration": "普通登录置忙，调用 SetTimer(hwnd, 100, 100, NULL)，原样保存返回值，随后继续控件调整和候选启动。该段没有按零值提前结束的分支。",
+        "delivered_message": "主窗收到 WM_TIMER 后按数值 100 进入登录分支。空闲时以收到的 ID 调 KillTimer 后返回。忙时进入当前主窗的登录轮询，再检查当前忙标记。该分支未比较保存的定时器值或尝试编号。",
+        "stop": "Stop 取保存的计时器值，零时传 100，撤定时器后清保存槽并请求停止通道。",
+        "locations": {
+          "C82": [
+            "0x41E988",
+            "0x41E996",
+            "0x41E99F",
+            "0x41EA42",
+            "0x4239D5",
+            "0x423A00",
+            "0x41B6E1"
+          ],
+          "F5A": [
+            "0x423795",
+            "0x4237B1",
+            "0x4237BA",
+            "0x42385D",
+            "0x429A9F",
+            "0x429ACA",
+            "0x41F004"
+          ]
+        },
+        "bounded_inference": "若申请结果为零且未收到其他合资格的轮询，已启动解析的完成位本身只写任务。已有任务或候选的同步失败仍可能结束本次流程。"
+      },
+      "resolver_and_submit_order": {
+        "classification": "事实",
+        "candidate_deadline": "候选开始采样 GetTickCount 加 10000，以 32 位回绕。解析分支先比较有符号差值 now - deadline。等于或超过时释放前台任务并推进候选。到期前收到有效解析后尝试连接，同次轮询可进入通道判定，沿用本候选期限。",
+        "submit_gate": "尚未提交、通道记录有效且可用量返回正值时，先调用通道虚槽 +0xC。所选可用量辅助函数在记录 +0xE8 非零的分支返回 +0x40 减 +0x3C，+0xE8 为零时返回 0。",
+        "accepted": "调用返回非零时标记已提交，重新采样 GetTickCount 并加 10000 保存回复期限，随后离开该次轮询。通道准入和调用发生在等待分支对原期限的检查之前。",
+        "rejected": "调用返回零时记录提交失败，先停通道，再推进候选。该路径直接进入收尾。",
+        "waiting": "已提交、通道记录无效或可用量非正的路径比较现期限。差值非负时依已提交标记选择连接超时或响应超时，并请求停通道及推进候选。",
+        "f5a_deferred_retry": "F5A 在解析及通道阶段前先消费已置的无回复断线重试标记，再推进候选。",
+        "locations": {
+          "C82": [
+            "0x4292FB",
+            "0x424D5E",
+            "0x424DAA",
+            "0x424E28",
+            "0x424E65",
+            "0x424E8B",
+            "0x424F03",
+            "0x424F10",
+            "0x424F74",
+            "0x424FA1"
+          ],
+          "F5A": [
+            "0x43250B",
+            "0x42BB20",
+            "0x42BB63",
+            "0x42BBAF",
+            "0x42BC2D",
+            "0x42BC6A",
+            "0x42BC90",
+            "0x42BD08",
+            "0x42BD15",
+            "0x42BD79",
+            "0x42BDA6"
+          ]
+        },
+        "accepted_scope": "该返回值只确认通道提交调用获接纳。线路写出、服务器回复与实际账号登录由各自的结果验收。"
+      },
+      "exception_continuations": {
+        "classification": "事实",
+        "scope": "以下异常续体由已核 PE 数据表引用；记录所选入口、调用及返回地址。实际触发类型和运行次序继续待验证。",
+        "C82": {
+          "connect": "0x424E37 推进候选后返回 0x424D91，续做局部清理。",
+          "submit": "0x424F47 记录提交失败、停止通道、推进候选，返回 0x424FAD。"
+        },
+        "F5A": {
+          "connect": "0x42BC3C 推进候选后返回 0x42BB96，续做局部清理。",
+          "submit": "0x42BD4C 记录提交失败、停止通道、推进候选，返回 0x42BDB2。"
+        }
+      },
+      "ordinary_cancel": {
+        "classification": "事实",
+        "producer": "主窗 WM_COMMAND 的 ID 2 普通按钮先更新两枚准备标记，向 Frame 子视图发隐藏请求，再在主窗调用 MessageBoxA 显示退出确认。所选调用前沿保留登录忙标记。",
+        "confirmed_busy": "返回 IDYES 后读取当时的忙标记。忙时先置延期关闭位，调用 Stop。Stop 停通道后消费关闭位并请求向 Frame 投递 WM_CLOSE。",
+        "confirmed_idle": "空闲时直接请求向 Frame 投递 WM_CLOSE。",
+        "other_result": "结果非 IDYES 时清主窗 +0xD28 后返回。",
+        "locations": {
+          "C82": [
+            "0x5D4810",
+            "0x41E360",
+            "0x41E39B",
+            "0x41E3A5",
+            "0x41E3B8",
+            "0x41E3CB",
+            "0x41E3D3",
+            "0x41B721"
+          ],
+          "F5A": [
+            "0x5E3C18",
+            "0x423150",
+            "0x42318B",
+            "0x423195",
+            "0x4231A8",
+            "0x4231BB",
+            "0x4231C3",
+            "0x41F044"
+          ]
+        },
+        "bounded_inference": "该按钮路径提供一个进入提示时可保留忙态的普通入口。提示中实际派发的定时器、原回调借用、新绑定和销毁仍由 LS-U3 核验。",
+        "exit_confirmation_order": {
+          "classification": "事实为固定样本的所选静态分支。组合结果按具名消息到达及状态条件推导。实际原版调度和目标验收待验证。",
+          "source_review": {
+            "path": "build/analysis/launcher-exit-confirmation-order-v1/source-review.json",
+            "bytes": 24207,
+            "sha256": "0bb94bf3fc05d2e93b0ec36f3e14ef451a9045b675a9d8f40b9568941ea9512e"
+          },
+          "report": "reports/launcher-static.md#launcher-ordinary-exit-confirmation",
+          "profiles": {
+            "C82": {"prepare": "0x10f0", "sibling": "0x10f1", "busy": "0x1a74", "defer_close": "0x1a75", "frame": "0x63c8d4", "ordinary_submit": "0x41e420", "poll": "0x424cf0"},
+            "F5A": {"prepare": "0x1135", "sibling": "0x1136", "busy": "0x1abc", "defer_close": "0x1abd", "frame": "0x64c8b4", "ordinary_submit": "0x423220", "poll": "0x42bae0"}
+          },
+          "open_and_existing_attempt": "普通退出在准备资格非零时将旁字置 1，随后无条件清准备资格，请求隐藏 Frame 子视图，并以 Main HWND 和 uType 4 调用 MessageBoxA。所选提示前沿保留忙位和计时器。已注册的 ID 100 若进入 Main 计时器分支，按当时忙位选择轮询或撤计时器。忙分支进入候选轮询前不查准备资格及窗口 Enabled 状态。",
+          "f5a_already_queued_submit": "先查 +0x105D 和 +0x1058。未武装或旧编号返回，旧编号保留当前武装位。同编号且已武装时先清 +0x105D，再检查 +0x1135。准备资格仍为零时，在阶段、忙态、根窗可用性与普通提交之前返回。提示拒绝只清 +0xD28。所选普通预设 0x8250 要求根窗可用，成功应用会推进编号、清两枚排队位并恢复准备资格。",
+          "explicit_submit": "普通阶段 3 人工提交读取忙位。所选空闲分支中，准备资格为零会越过预设提示及配对判断，继续按输入与原前检取值。C82 为 41E833 → 41E894，F5A 为 42363A → 42369B。F5A 在忙态分支前额外清 +0x105D。人工按钮的实际到达继续由宿主用例核验。",
+          "confirm_and_retire": "只有返回 6 才重读当前忙位。忙时置延期位交给 Stop，Stop 清忙、撤计时器、请求停通道，再清延期位并向 Frame HWND 投递 0x10，随后固定返回 AL=1。空闲时向同一 Frame HWND 直接投递。两条路径均未根据该次 API 返回值重试。窗口处理及旧连接完成回执各有自己的完成点。",
+          "stage306_comparison": {
+            "existing_entrypoints": ["web/login-app.mjs", "web/launcher-session.mjs", "wechat/pages/launcher/index.js", "adapters/wechat/launcher-host.mjs"],
+            "result": "网页取消交换直接调用会话 cancel，微信取消直接使当前尝试失效并清输入和确认。留存本机流夹具核出取消先返回，旧关闭回执随后成功或失败，旧读与旧回执均不影响新尝试。",
+            "evidence": "build/analysis/launcher-f5a-pump-retirement-v1/local-close-receipts.json"
+          },
+          "implementation_delta": "D1 复用当前尝试与旧回执归属，处理退出意图、仍活动的候选、F5A 排队提交准入和确认时重读。D5 接真实提示返回及窗口或页面退役结果。交换取消继续走现有取消端口。",
+          "acceptance_cases": {
+            "LS-T19": "确认退出后旧任务和关闭回执归原尝试。新尝试可独立开始，F5A 旧编号消息到达时应保留当前武装位。",
+            "LS-T20": "分别核对提示中实际发生的投递、绑定变化、旧借用尾部和关闭结果。有适用的具名入口再扩展原重绑序列。",
+            "LS-T21": "覆盖拒绝且原忙态保留、提示中候选结束后确认、忙态确认且 Stop 仅按延期位发出请求。F5A 同编号排队消息在准备位清零后先消费武装再返回，拒绝后人工重新提交走各自前检。F5A 后续正常预设应用推进编号。核投递失败、后续 Frame 处理及旧通道完成。"
+          },
+          "original_or_target_complete_cases_executed": false,
+          "whole_LS_U3_closed": false
+        }
+      }
+    },
+    "current_local_comparison": {
+      "flow": "共享核心从 start 建一次 10 秒总期限。匹配当前尝试的事件先检查时间，挑战已就绪时到期仍结束，发送前成功准备后也沿用总期限。迟到的旧尝试 ID 在检查时钟前被忽略。",
+      "session": "本地注入 setTimer 抛错时，网页会话报告 SESSION_TIMER，未调用流打开。"
+    },
+    "implementation_delta": "D0/D1 在既有会话所有者组合按来源的阶段期限、提交结果和本地尝试退役。D5 接宿主时钟、调度结果、确认与关闭回执。沿同一组用例验收过期和迟到两类边界，保留已通过的现有编解码入口。",
+    "acceptance_refs": [
+      "LS-T06",
+      "LS-T07",
+      "LS-T08",
+      "LS-T19",
+      "LS-T20",
+      "LS-T21"
+    ],
+    "acceptance_cases": [
+      "调度失败、忙或空闲时收到编号 100，以及 Stop 使用保存编号或回退 100。",
+      "DNS 完成与截止相遇，同次连接并获得提交准入，以及已提交或通道未就绪时到期。",
+      "候选期限前、相等及超过时符合提交条件，提交成功后按新样本续期，返回零时立即推进，32 位时间回绕。",
+      "普通退出拒绝及确认，提示前后忙态变化，后续窗口关闭投递与旧绑定退役。"
+    ],
+    "remaining_evidence": "已核所选计时器、普通退出和 F5A 排队提交的静态组合。LS-U3 继续沿实际投递证据，或可使旧借用跨提示并形成新绑定的具名入口恢复取证。窗口退役和通道实际排空沿原用例验收。",
+    "source_review": {
+      "path": "build/analysis/launcher-login-timer-dispatch-v1/source-review.json",
+      "bytes": 50683,
+      "sha256": "d29998464253c20ca64f5833a578612658a365f46b2f3e9296585916c0f03cdc"
+    },
+    "focused_probe": {
+      "path": "build/analysis/launcher-login-timer-dispatch-v1/focused-probe.json",
+      "bytes": 4146,
+      "sha256": "b0ceb4332fc04b31abe24eb2bc116b434b2e577f56571ab87bd7686a574a9863"
+    },
+    "focused_tests": {
+      "path": "build/analysis/launcher-login-timer-dispatch-v1/focused-tests.log",
+      "bytes": 4930,
+      "sha256": "ac997af6a213748a15e20af26ff8c4da5160e1afea774c0d85473bcab89d6417"
+    },
+    "coverage": {
+      "retained_canonical_functions": 6,
+      "retained_composed_functions": 4,
+      "new_canonical_functions": 10,
+      "verified_function_bytes": 9073,
+      "verified_function_instructions": 2528,
+      "selected_instruction_anchors": 193,
+      "verified_message_rows": 6,
+      "earlier_c82_pseudocode_views_rechecked": 2,
+      "synthetic_static_cases": 24,
+      "current_local_cases": 5,
+      "existing_node_tests_passed": 46
+    },
+    "actual_windows_scheduling_verified": false,
+    "whole_LS_U3_closed": false,
+    "original_full_acceptance_executed": false,
+    "official_or_same_version_acceptance": false,
+    "product_code_changed": false
+  }
+}

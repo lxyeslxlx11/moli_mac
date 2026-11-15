@@ -1,0 +1,213 @@
+<view class="game-page">
+  <view class="title">魔力游戏</view>
+  <view id="game-status" class="status" role="status">{{status}}</view>
+  <view class="card" wx:if="{{!connected}}">
+    <view class="section-title">本次会话</view>
+    <view class="hint" wx:if="{{endpoint}}">连接目标 {{endpoint}}</view>
+    <view class="hint">{{hasStartup ? '启动材料已核对' : '尚未选择启动材料'}} · {{resourceCount}} 个资源文件</view>
+    <view class="hint">使用 v2 启动 JSON 时，先选根目录含指定旧版 cg_se_6000.exe 的资源 ZIP。Config.dat 可放在同一层。</view>
+    <view class="controls">
+      <button id="game-startup" disabled="{{!canPick}}" bindtap="onStartup">选择启动 JSON</button>
+      <button id="game-resources" disabled="{{!canPick}}" bindtap="onResources">选择资源 ZIP</button>
+      <button id="game-connect" type="primary" disabled="{{!canConnect}}" bindtap="onConnect">准备并连接</button>
+    </view>
+  </view>
+  <view class="card" wx:if="{{characters.length || characterLoading}}">
+    <view class="section-title">人物</view>
+    <view class="character" wx:for="{{characters}}" wx:key="slot">
+      <text>位置 {{item.slot + 1}} · {{item.name}}</text>
+      <view class="controls">
+        <button size="mini" wx:if="{{item.options.previous}}" disabled="{{!item.enabled}}" data-action="appearance" data-slot="{{item.slot}}" data-direction="3" bindtap="onCharacter">上一外观</button>
+        <button size="mini" wx:if="{{item.options.next}}" disabled="{{!item.enabled}}" data-action="appearance" data-slot="{{item.slot}}" data-direction="4" bindtap="onCharacter">下一外观</button>
+        <button size="mini" wx:if="{{item.options.togglePreview}}" disabled="{{!item.enabled}}" data-action="appearance" data-slot="{{item.slot}}" data-direction="5" bindtap="onCharacter">切换样式</button>
+        <button wx:if="{{item.present}}" size="mini" type="primary" disabled="{{!item.enabled}}" data-action="enter" data-slot="{{item.slot}}" bindtap="onCharacter">进入游戏</button>
+        <button wx:else size="mini" type="primary" disabled="{{!item.canCreate}}" data-action="create" data-slot="{{item.slot}}" bindtap="onCharacter">创建人物</button>
+      </view>
+    </view>
+    <button wx:if="{{canUpgrade}}" data-action="upgrade" bindtap="onCharacter">请求版本升级</button>
+    <button wx:if="{{versionState === 'upgrade-success'}}" data-action="version-back" bindtap="onCharacter">返回人物列表</button>
+    <button wx:if="{{versionState === 'upgrade-error'}}" data-action="retry" bindtap="onCharacter">重试版本升级</button>
+  </view>
+  <view class="card" wx:if="{{creation}}">
+    <view class="section-title">创建人物 · 位置 {{creation.slot + 1}}</view>
+    <block wx:if="{{creation.kind === 'appearance'}}">
+      <picker range="{{appearanceChoices}}" value="{{creation.appearance}}" data-action="appearance" bindchange="onCreation">
+        <view class="choice">{{appearanceChoices[creation.appearance]}}</view>
+      </picker>
+      <view class="controls">
+        <button size="mini" disabled="{{!creation.canToggleFamily}}" data-action="family" bindtap="onCreation">切换外观组</button>
+        <text>外观组 {{creation.family + 1}}</text>
+      </view>
+      <view class="controls">
+        <button size="mini" data-action="color" data-delta="-1" bindtap="onCreation">上一配色</button>
+        <text>配色 {{creation.color + 1}}</text>
+        <button size="mini" data-action="color" data-delta="1" bindtap="onCreation">下一配色</button>
+      </view>
+      <view class="controls">
+        <button type="primary" data-action="continue" bindtap="onCreation">下一步</button>
+        <button data-action="cancel" bindtap="onCreation">取消创建</button>
+      </view>
+    </block>
+    <form wx:elif="{{creation.kind === 'details'}}" bindsubmit="onCreationReview">
+      <view class="hint">人物名称编码后最多 16 字节</view>
+      <input class="field" name="name" value="{{creation.name}}" maxlength="16" placeholder="人物名称" />
+      <view class="creation-group">
+        <view class="line">第一组 · 剩余 {{creation.statRemaining}} 点</view>
+        <view class="creation-row" wx:for="{{creation.stats}}" wx:key="index">
+          <text>分配项 {{item.index + 1}}</text>
+          <button size="mini" disabled="{{!item.minus}}" data-action="stat" data-index="{{item.index}}" data-delta="-1" bindtap="onCreation">−</button>
+          <text>{{item.value}}</text>
+          <button size="mini" disabled="{{!item.plus}}" data-action="stat" data-index="{{item.index}}" data-delta="1" bindtap="onCreation">+</button>
+        </view>
+      </view>
+      <view class="creation-group">
+        <view class="line">第二组 · 剩余 {{creation.elementRemaining}} 点</view>
+        <view class="creation-row" wx:for="{{creation.elements}}" wx:key="index">
+          <text>分配项 {{item.index + 1}}</text>
+          <button size="mini" disabled="{{!item.minus}}" data-action="element" data-index="{{item.index}}" data-delta="-1" bindtap="onCreation">−</button>
+          <text>{{item.value}}</text>
+          <button size="mini" disabled="{{!item.plus}}" data-action="element" data-index="{{item.index}}" data-delta="1" bindtap="onCreation">+</button>
+        </view>
+      </view>
+      <view class="controls">
+        <button size="mini" disabled="{{!creation.canCycleMode}}" data-action="mode" data-delta="-1" bindtap="onCreation">上一类型</button>
+        <text>造型类型 {{creation.mode + 1}}</text>
+        <button size="mini" disabled="{{!creation.canCycleMode}}" data-action="mode" data-delta="1" bindtap="onCreation">下一类型</button>
+      </view>
+      <view class="creation-row" wx:for="{{detailIndices}}" wx:for-item="detailIndex" wx:key="*this">
+        <text>细节 {{detailIndex + 1}}</text>
+        <button size="mini" data-action="detail" data-index="{{detailIndex}}" data-delta="-1" bindtap="onCreation">−</button>
+        <text>{{creation.details[detailIndex] + 1}}</text>
+        <button size="mini" data-action="detail" data-index="{{detailIndex}}" data-delta="1" bindtap="onCreation">+</button>
+      </view>
+      <view class="controls">
+        <button type="primary" form-type="submit">检查创建信息</button>
+        <button data-action="back" bindtap="onCreation">返回外观</button>
+      </view>
+    </form>
+    <block wx:elif="{{creation.kind === 'confirmation'}}">
+      <view class="line">人物名称 {{creation.name}}</view>
+      <view class="line">外观组 {{creation.family + 1}} · 造型 {{creation.appearance + 1}} · 配色 {{creation.color + 1}}</view>
+      <view class="line">造型类型 {{creation.mode + 1}} · 细节 {{creation.details[0] + 1}}、{{creation.details[1] + 1}}</view>
+      <view class="line">第一组 {{creation.stats}} · 第二组 {{creation.elements}}</view>
+      <view class="controls">
+        <button type="primary" data-action="confirm" bindtap="onCreation">确认创建</button>
+        <button data-action="cancel-confirmation" bindtap="onCreation">返回修改</button>
+      </view>
+    </block>
+    <button wx:elif="{{creation.kind === 'error'}}" data-action="dismiss-error" bindtap="onCreation">返回人物列表</button>
+    <view wx:else class="hint">等待当前步骤完成。</view>
+  </view>
+  <view class="screen-wrap">
+    <canvas id="game-canvas" type="2d" class="screen" catchtouchstart="onTouch" catchtouchmove="onTouch" catchtouchend="onTouch" catchtouchcancel="onTouch"></canvas>
+    <view class="hint" wx:if="{{canvasUnavailable}}">当前基础库未提供可用的 2D 画布。</view>
+    <view class="hint" wx:elif="{{!hasFrame}}">场景就绪后在这里显示画面。</view>
+    <view class="hint" wx:elif="{{canTouch}}">{{interact ? '轻触角色或附近的地面物品进行交互。' : '轻触地图移动。'}}</view>
+  </view>
+  <view class="controls session-controls" wx:if="{{connected}}">
+    <button wx:if="{{map}}" size="mini" disabled="{{!canTouch}}" bindtap="onInteract">{{interact ? '返回移动' : '交互模式'}}</button>
+    <button wx:if="{{map}}" id="game-craft-open" size="mini" disabled="{{!canCraft}}" data-action="open" bindtap="onCraft">生产技能</button>
+    <button wx:if="{{canInventory}}" id="game-inventory-toggle" size="mini" disabled="{{inventory && inventory.busy}}" data-action="toggle" bindtap="onInventory">{{inventory ? '关闭背包' : '背包'}}</button>
+    <button wx:if="{{canLabel}}" size="mini" bindtap="onLabels">切换标签</button>
+    <button wx:if="{{map}}" size="mini" disabled="{{!canTouch}}" bindtap="onMinimap">{{minimap ? '关闭小地图' : '小地图'}}</button>
+    <button wx:if="{{map && minimap}}" size="mini" disabled="{{!canTouch}}" bindtap="onMinimapRange">范围 {{minimap.zoom === 0 ? 107 : minimap.zoom === 1 ? 54 : 27}} 格</button>
+    <text wx:if="{{map && minimapStatus}}" class="line">{{minimapStatus}}</text>
+    <button wx:if="{{map}}" size="mini" disabled="{{!canTouch}}" bindtap="onParty">组队操作</button>
+    <button wx:if="{{map}}" size="mini" disabled="{{!canTrade}}" data-action="request" bindtap="onTrade">玩家交易</button>
+    <button wx:if="{{map}}" size="mini" disabled="{{!canFamily}}" data-action="open" bindtap="onFamily">家族</button>
+    <button wx:if="{{canPause}}" size="mini" bindtap="onPause">{{paused ? '继续' : '暂停'}}</button>
+    <button wx:if="{{canReturnToCity}}" id="game-return-city" size="mini" bindtap="onReturnToCity">注销回城</button>
+    <button wx:if="{{canReturnToServers}}" id="game-return-servers" size="mini" bindtap="onReturnToServers">返回选服</button>
+    <button id="game-disconnect" size="mini" disabled="{{returnTransition && returnTransition.state === 'running'}}" bindtap="onDisconnect">{{state === 'returning-server' && !manualReturn ? '返回连接设置' : '断开'}}</button>
+  </view>
+  <include src="./craft.wxml" />
+  <include src="./inventory.wxml" />
+  <include src="./shop.wxml" />
+  <include src="./services.wxml" />
+  <include src="./bank.wxml" />
+  <include src="./trade.wxml" />
+  <include src="./family.wxml" />
+  <include src="./family-pet.wxml" />
+  <include src="./board.wxml" />
+  <view class="card" wx:if="{{battle}}">
+    <view class="section-title">战斗 <text wx:if="{{battle.countdown}}">{{battle.countdown.seconds}} 秒</text></view>
+    <view class="hint" wx:if="{{battle.blocked}}">等待可用的战斗状态与资源。</view>
+    <view wx:for="{{battle.actors}}" wx:key="slot" class="line">{{item.name}} · HP {{item.vitals[0]}}/{{item.vitals[1]}} · MP {{item.vitals[2]}}/{{item.vitals[3]}}</view>
+    <view class="controls">
+      <button wx:for="{{battle.commands}}" wx:key="action" size="mini" disabled="{{!item.enabled}}" data-action="command" data-value="{{item.action}}" bindtap="onBattle">{{item.label}}</button>
+    </view>
+    <view class="controls" wx:if="{{!paused && battle.playerPopup.state !== 'closed'}}">
+      <button wx:for="{{battle.playerPopup.records}}" wx:key="slot" size="mini" disabled="{{!item.enabled}}" data-action="skill" data-value="{{item.slot}}" bindtap="onBattle">{{item.name}}</button>
+      <button wx:for="{{battle.playerPopup.levels}}" wx:key="index" size="mini" disabled="{{!item.enabled}}" data-action="level" data-value="{{item.index}}" bindtap="onBattle">{{item.name}} · MP {{item.mpCost}}</button>
+      <button size="mini" data-action="command" data-value="skill-back" disabled="{{!battle.ready}}" bindtap="onBattle">返回技能</button>
+      <button size="mini" data-action="command" data-value="skill-close" disabled="{{!battle.ready}}" bindtap="onBattle">关闭技能</button>
+    </view>
+    <view class="controls" wx:if="{{!paused && battle.itemPopup.state !== 'closed'}}">
+      <button wx:for="{{battle.itemPopup.records}}" wx:key="slot" size="mini" disabled="{{!item.enabled}}" data-action="item" data-value="{{item.slot}}" data-revision="{{item.revision}}" bindtap="onBattle">{{item.name}}</button>
+      <button wx:if="{{battle.itemPopup.weaponRemoval}}" size="mini" data-action="command" data-value="weapon-remove" data-revision="{{battle.itemPopup.weaponRemoval.revision}}" disabled="{{!battle.itemPopup.weaponRemoval.enabled}}" bindtap="onBattle">卸下武器</button>
+      <button size="mini" data-action="command" data-value="item-close" disabled="{{!battle.ready}}" bindtap="onBattle">关闭物品</button>
+    </view>
+    <view class="controls" wx:if="{{!paused && battle.petPopup.state !== 'closed'}}">
+      <button wx:for="{{battle.petPopup.records}}" wx:key="slot" size="mini" disabled="{{!item.enabled}}" data-action="pet" data-value="{{item.slot}}" bindtap="onBattle">{{item.name}}</button>
+      <button size="mini" data-action="command" data-value="pet-recall" disabled="{{!battle.petPopup.recallEnabled}}" bindtap="onBattle">收回宠物</button>
+      <button size="mini" data-action="command" data-value="pet-close" disabled="{{!battle.ready}}" bindtap="onBattle">关闭宠物</button>
+    </view>
+    <view class="controls" wx:if="{{!paused && battle.secondary}}">
+      <button wx:for="{{battle.skills}}" wx:key="index" size="mini" disabled="{{!item.enabled}}" data-action="petSkill" data-value="{{item.index}}" bindtap="onBattle">{{item.name}}</button>
+      <button size="mini" data-action="command" data-value="pet-wait" disabled="{{!battle.ready}}" bindtap="onBattle">待命</button>
+      <button size="mini" data-action="command" data-value="pet-cancel" disabled="{{!battle.ready}}" bindtap="onBattle">返回</button>
+    </view>
+    <view class="controls" wx:if="{{battle.targets.length}}">
+      <button wx:for="{{battle.targets}}" wx:key="slot" size="mini" data-action="target" data-value="{{item.slot}}" bindtap="onBattle">目标 {{item.name}}</button>
+    </view>
+  </view>
+  <view class="card" wx:if="{{dialog}}">
+    <view class="section-title">{{dialog.title || '场景对话'}}</view>
+    <view class="hint" wx:if="{{!dialog.supported}}">此类场景窗口待适配。</view>
+    <block wx:if="{{dialogArt}}">
+      <canvas id="game-dialog-canvas" type="2d" class="dialog-art" style="height: {{dialogArt.displayHeight}}rpx;"
+        hidden="{{dialogArt.status === 'unavailable'}}"></canvas>
+      <view wx:if="{{dialogArt.status === 'unavailable'}}" class="hint">当前图像无法显示。</view>
+    </block>
+    <view wx:for="{{dialog.lines}}" wx:key="id" class="line">{{item.text}}</view>
+    <block wx:if="{{dialog.input}}">
+      <input wx:for="{{dialogMounts}}" wx:key="*this" class="field" placeholder="{{dialog.inputCount === 2 ? '第一项' : '输入回复'}}"
+        maxlength="{{dialog.inputBytes}}" disabled="{{dialogSending}}" data-revision="{{item}}" bindinput="onDialogInput" />
+      <input wx:if="{{dialog.inputCount === 2}}" wx:for="{{dialogMounts}}" wx:key="*this" class="field" placeholder="第二项"
+        maxlength="{{dialog.inputBytes}}" disabled="{{dialogSending}}" data-revision="{{item}}" bindinput="onDialogSecondInput" />
+    </block>
+    <view wx:if="{{dialog.appearance}}" class="commerce-section">
+      <view class="line">外观编号 {{dialog.appearance.code}}</view>
+      <view wx:for="{{dialog.appearance.controls}}" wx:key="key" class="controls">
+        <text class="line">{{item.label}} {{item.value}}</text>
+        <button size="mini" disabled="{{dialogSending}}" data-revision="{{dialog.revision}}" data-bit="0"
+          data-choice="{{item.previous}}" bindtap="onDialog">上一个{{item.label}}</button>
+        <button size="mini" disabled="{{dialogSending}}" data-revision="{{dialog.revision}}" data-bit="0"
+          data-choice="{{item.next}}" bindtap="onDialog">下一个{{item.label}}</button>
+      </view>
+    </view>
+    <view class="controls">
+      <button wx:for="{{dialog.choices}}" wx:key="choice" size="mini" data-revision="{{dialog.revision}}" data-bit="0" data-choice="{{item.choice}}" disabled="{{dialogSending}}" bindtap="onDialog">{{item.label}}</button>
+      <button wx:for="{{dialog.buttons}}" wx:key="bit" size="mini" data-revision="{{dialog.revision}}" data-bit="{{item.bit}}" disabled="{{dialogSending}}" bindtap="onDialog">{{item.label}}</button>
+      <button size="mini" data-revision="{{dialog.revision}}" disabled="{{dialogSending}}" bindtap="onDismiss">关闭对话</button>
+    </view>
+  </view>
+  <view class="card" wx:if="{{map}}">
+    <view class="section-title">地图聊天</view>
+    <scroll-view class="chat-history" scroll-y="{{true}}" wx:if="{{chat.length}}">
+      <view wx:for="{{chat}}" wx:key="id" class="line">{{item.text}}</view>
+    </scroll-view>
+    <form bindsubmit="onChat">
+      <view class="controls">
+        <picker range="{{chatChoices.range}}" value="{{rangeChoice}}" data-option="range" disabled="{{!canChat || chatSending}}" bindchange="onChatOption"><view class="choice">范围 {{chatChoices.range[rangeChoice]}}</view></picker>
+        <picker range="{{chatChoices.color}}" value="{{colorChoice}}" data-option="color" disabled="{{!canChat || chatSending}}" bindchange="onChatOption"><view class="choice">颜色 {{chatChoices.color[colorChoice]}}</view></picker>
+        <picker range="{{chatChoices.size}}" value="{{sizeChoice}}" data-option="size" disabled="{{!canChat || chatSending}}" bindchange="onChatOption"><view class="choice">字号 {{chatChoices.size[sizeChoice]}}</view></picker>
+      </view>
+      <input wx:for="{{chatMounts}}" wx:key="*this" class="field" name="message" placeholder="聊天内容" maxlength="76" disabled="{{!canChat || chatSending}}" />
+      <view class="controls">
+        <button size="mini" form-type="submit" disabled="{{!canChat || chatSending}}">发送聊天</button>
+        <button size="mini" disabled="{{!canSetParty || chatSending}}" bindtap="onPartyChat">{{partySelected ? '切回普通' : '切换小队'}}</button>
+      </view>
+    </form>
+  </view>
+</view>

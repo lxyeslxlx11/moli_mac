@@ -1,0 +1,74 @@
+{
+  "schema": "moli.current-game.observer-capability-assessment.v1",
+  "recorded_utc": "2026-10-30T13:48:01.328394+00:00",
+  "facts": [
+    {
+      "kind": "fact",
+      "source": "analysis/game-entry-v1/probe/callback_probe.c",
+      "claim": "Existing x86 observer attaches read-only to an explicitly supplied PID, not a launcher/debugger. Path/final path/hash/architecture/process creation-time/image-size checks precede exactly one8B slot read at RVAe65db8; pointed values get region metadata only."
+    },
+    {
+      "kind": "fact",
+      "claim": "Source contains no process creation, process write/protection changes/debug attach/termination or IPC-content read. Hash loop has5s guard; no whole-operation hard deadline is asserted."
+    },
+    {
+      "kind": "fact",
+      "source": "analysis/game-entry-runtime-v1/windows-observer-stage105.json",
+      "claim": "The same observer containing the game-installed configuration previously passed one8B original fixture observation in Windows under its fixture profile. The game-installed profile has not been applied to the original game; historical qualification is not current VM/PID state."
+    }
+  ],
+  "verified_host_sources": [
+    {
+      "path": "analysis/game-entry-v1/probe/callback_probe.c",
+      "bytes": 8992,
+      "sha256": "ce4f3b463548dcd4919c38f9b086e7f7fb71b4d7682863c3f1d2e9b02b5ceef8"
+    },
+    {
+      "path": "analysis/game-entry-v1/probe/probe_core.h",
+      "bytes": 1078,
+      "sha256": "31ffc03db1d552db70f8a96031a6e05e3d4f6c6d9086f2753c5edd04fbbd0e38"
+    },
+    {
+      "path": "analysis/game-entry-v1/probe/probe_core_test.c",
+      "bytes": 1284,
+      "sha256": "cd0fda727fc406f647ed22bedb60e3fe3535e168d0536fa63363b63730e3418c"
+    },
+    {
+      "path": "analysis/game-entry-v1/probe/pe_layout.py",
+      "bytes": 2860,
+      "sha256": "eeee829d967cbc8f40eca481adea85643f495b0066b944e90383f4f67db00d36"
+    },
+    {
+      "path": "analysis/game-entry-v1/probe/build_installed_probe.py",
+      "bytes": 8116,
+      "sha256": "f86caf9058e5f24a03320262b60b5cecc4fec29077ab1cb985bf2c72590ad083"
+    }
+  ],
+  "verified_host_observer": {
+    "path": "build/analysis/game-entry-v1/probe-stage105/callback-probe.exe",
+    "bytes": 143326,
+    "sha256": "208597958292b96a67af7a5ce7c5b2d9c8496e91c9847be2a661abb3bebd684a"
+  },
+  "installed_profile": {
+    "name": "game-installed",
+    "path": "C:\\Program Files (x86)\\PlayOnline\\魔力宝贝\\cg_se_3000.exe",
+    "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+    "image_bytes": 17018880,
+    "slot_rva": 15097272,
+    "read_bytes": 8
+  },
+  "new_vendor_execution": false,
+  "live_target_confirmed": false,
+  "test_account_available": false,
+  "remaining_conditions": [
+    "Fresh dependencies/recovery state and a normal-entry owned PID; installed file identity and HKCU Win7 flag now have a stage112 read-only receipt",
+    "A concrete new bounded launch/observation plan consistent with the original launcher path; do not replay old direct-start or used scripts",
+    "First prove any changed observer on original fixture; retain no account/real IPC/argument contents",
+    "An8B callback/region observation does not itself recover the game business consumer or prove compatibility"
+  ],
+  "next_action": "Continue the original game consumer route using installed context and narrowly qualified capability; no guessed session/control values or protection bypass",
+  "full_goal_complete": false,
+  "new_guest_observer_execution": false,
+  "guest_read_only_preflight": "analysis/launcher-current-control-v1/guest-preflight.json",
+  "installed_file_identity_and_hkcu_win7_flag_freshly_observed": true
+}

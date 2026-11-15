@@ -1,0 +1,79 @@
+{
+  "schema": "moli.legacy-frame-catalog-stage161.v1",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "engine": {
+    "init": "0x409dd0",
+    "allocate": "0x409e70",
+    "update": "0x409fe0",
+    "same_priority_order": "creation FIFO",
+    "callback_level": 2,
+    "sparse_mode_value": 1,
+    "sparse_body_mask": 262144,
+    "phase_modulus": 4
+  },
+  "callback": {
+    "address": "0x43ba10",
+    "ordinary_special_state": 0,
+    "stage_blocked": [
+      250,
+      251,
+      252
+    ],
+    "own_gate_mask": 128,
+    "record_gate_mask": 2147483648,
+    "record_motion_suppressed_mask": 33554432,
+    "record_type_special_mask": 256,
+    "record_static_flip_mask": 4096,
+    "record_static_flip_exclusions": 4195200,
+    "ordinary_loop_actions": [
+      12,
+      13,
+      14,
+      15,
+      1,
+      0,
+      16,
+      3,
+      6
+    ],
+    "special_type_loop_actions": [
+      3,
+      0,
+      1,
+      18,
+      19,
+      13,
+      15,
+      11
+    ],
+    "queue_extra_thresholds": [
+      2,
+      4
+    ],
+    "global_extra_thresholds": [
+      1.2000000476837158,
+      1.600000023841858
+    ],
+    "helper_percent": 100,
+    "projection_bias": 0.5
+  },
+  "depth": {
+    "comparator_address": "0x463380",
+    "comparator_bytes": 144,
+    "record_bytes": 52,
+    "maximum_records": 1024,
+    "primary": "worldX-worldY ascending",
+    "same_xy_special": "second flag nonzero returns1,else first flag nonzero returns-1;not reflexive",
+    "fallback": "native root ordinal ascending,comparison returns-1 on equality",
+    "sort": "0x51c1a2 native partition/short selection sort,not JS sort",
+    "short_partition_maximum": 8,
+    "stack_capacity": 30,
+    "skip_after_sort_declared_graphic_resource": 1
+  },
+  "graphics": {
+    "declared_resource_file_offset": 36,
+    "declared_resource_runtime_offset": 28,
+    "consumer": "0x453000",
+    "minimum_drawable_ordinal": 1000
+  }
+}

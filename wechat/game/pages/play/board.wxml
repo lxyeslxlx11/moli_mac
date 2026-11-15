@@ -1,0 +1,32 @@
+<view class="card" wx:if="{{board}}">
+  <view class="section-title">{{board.title}}</view>
+  <view wx:if="{{!board.entries.length}}" class="hint">本页暂无留言。</view>
+  <view wx:for="{{board.entries}}" wx:key="row" class="commerce-section">
+    <view class="line">{{item.author}}<text wx:if="{{item.time}}"> · {{item.time}}</text></view>
+    <view class="line commerce-text">{{item.text}}</view>
+    <view class="controls" wx:if="{{item.canDelete && !board.review}}">
+      <button size="mini" disabled="{{board.sending}}" data-action="review-delete" data-row="{{item.row}}"
+        data-revision="{{board.revision}}" bindtap="onBoard">删除留言</button>
+    </view>
+  </view>
+  <view wx:if="{{board.review}}" class="commerce-section">
+    <view class="line" role="status">{{board.review.text}}</view>
+    <view class="controls">
+      <button size="mini" type="primary" disabled="{{board.sending}}" data-action="confirm-delete"
+        data-revision="{{board.revision}}" bindtap="onBoard">确认删除</button>
+      <button size="mini" disabled="{{board.sending}}" data-action="cancel-delete" data-revision="{{board.revision}}" bindtap="onBoard">取消</button>
+    </view>
+  </view>
+  <textarea class="field board-draft" value="{{board.draft}}" maxlength="140" disabled="{{board.sending}}"
+    placeholder="写留言，最多两行" data-action="draft" data-revision="{{board.revision}}" bindinput="onBoard" />
+  <view wx:if="{{board.notice}}" class="hint" role="status">{{board.notice}}</view>
+  <view class="controls">
+    <button size="mini" type="primary" disabled="{{!board.canPublish}}" data-action="publish"
+      data-revision="{{board.revision}}" bindtap="onBoard">发布留言</button>
+    <button wx:if="{{board.canPrevious}}" size="mini" disabled="{{board.sending}}" data-action="previous"
+      data-revision="{{board.revision}}" bindtap="onBoard">上一页</button>
+    <button wx:if="{{board.canNext}}" size="mini" disabled="{{board.sending}}" data-action="next"
+      data-revision="{{board.revision}}" bindtap="onBoard">下一页</button>
+    <button size="mini" disabled="{{board.sending}}" data-action="close" data-revision="{{board.revision}}" bindtap="onBoard">关闭留言板</button>
+  </view>
+</view>

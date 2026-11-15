@@ -1,0 +1,72 @@
+{
+  "schema": "moli.handoff.staged-tree-validation.v1",
+  "date_local": "2026-11-15",
+  "verification_scope": "Stage306 product and tests from git checkout-index into a new directory. No source installers, generated app or VM state were copied into the checkout.",
+  "known_dependency_versions": {
+    "node": "26.9.0",
+    "python": "3.9.6",
+    "pycryptodome": "3.23.0",
+    "swift": "6.4.2",
+    "esbuild": "0.25.12"
+  },
+  "unchanged_product_and_tools_paths_checked": 724,
+  "node": {
+    "command": "node --test --test-concurrency=6 --test-reporter=spec shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "files": 271,
+    "counts": {
+      "tests": 3779,
+      "pass": 3779,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "duration_ms": 357649.627417
+  },
+  "python": {
+    "command": "python3 -m unittest discover -s analysis/resources-v2 -p 'test_*.py' -v",
+    "passed": 8
+  },
+  "swift": {
+    "command": "swift test --package-path native",
+    "passed": 16
+  },
+  "offline_battle_replay": {
+    "cases": 6,
+    "receipt_sha256": "a8a2ed60a951666a698f9b5813ce580ef3822f5182078c641ef36fb28aa5d165",
+    "byte_identical": true
+  },
+  "web_loopback": {
+    "status": {
+      "/web/": 200,
+      "/web/launcher.html": 200,
+      "/web/game.html": 200,
+      "/shared/index.mjs": 200
+    },
+    "host": "127.0.0.1"
+  },
+  "wechat_default_app": {
+    "output": "build/wechat-app-handoff",
+    "inputs": 257,
+    "outputs": 27,
+    "packageBytes": {
+      "main": 783633,
+      "game": 1215167
+    },
+    "configured": false,
+    "gameConfigured": false,
+    "external_imports": 0
+  },
+  "wechat_standalone_game_api": {
+    "inputs": 197,
+    "bundle": {
+      "path": "build/wechat-game-handoff/game.js",
+      "bytes": 2116792,
+      "sha256": "c5a4ce557422c3aa7ae3301ee1d0a6a110dcd7c7bb97d58d9fe6ad7c45398a3c"
+    },
+    "external_imports": 0
+  },
+  "original_executables_run": false,
+  "real_wechat_device_or_official_session_tested": false,
+  "analysis_gate_passed": false
+}

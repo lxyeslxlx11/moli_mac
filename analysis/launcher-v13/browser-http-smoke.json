@@ -1,0 +1,697 @@
+{
+  "schema": "moli.launcher-v13.browser-http-smoke.v1",
+  "recorded_utc": "2026-10-27T00:56:35.554Z",
+  "browser": "155.0.8059.85",
+  "driver": "Existing Playwright1.62.1; independent temporary headless context",
+  "scope": "Original loopback fixture harness only; existing offline UI CSP unchanged; no official target/request/account/file update",
+  "checks": [
+    {
+      "name": "actual metadata GET and candidate comparison",
+      "passed": true,
+      "initial": "catalog-refresh-needed",
+      "candidate": "metadata-current"
+    },
+    {
+      "name": "raw chunks NUL/high bytes, empty and compressed response",
+      "passed": true,
+      "bytes": 5,
+      "chunkBytes": 5000
+    },
+    {
+      "name": "actual original ZIP GET to existing CRC/MD5 core",
+      "passed": true,
+      "packageBytes": 372,
+      "payloadBytes": 256
+    },
+    {
+      "name": "real negative HTTP, budgets, deadline and cancellation",
+      "passed": true,
+      "cases": 10
+    },
+    {
+      "name": "origin refusal and delayed-timer monotonic regression",
+      "passed": true
+    },
+    {
+      "name": "native browser omits fixture cookie/referrer/auth and follows no redirect",
+      "passed": true,
+      "positiveReads": 8
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/harness",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/web/launcher-http.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/shared/index.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/shared/launcher.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/shared/map01.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/shared/install-inventory.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/shared/launcher-message10.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/shared/launcher-replies.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/shared/launcher-channel.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/shared/launcher-login.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/shared/launcher-flow.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/shared/launcher-local.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/shared/launcher-update.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/shared/launcher-manifest.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/shared/local-paths.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/shared/md5.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/shared/vendor/pako/3.0.2/pako_inflate.esm.min.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/shared/vendor/egoroof-blowfish/4.0.3/blowfish.mjs",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/self-digest",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/catalog-digests",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/region",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/binary",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/chunks",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/empty",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/gzip-small",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/package",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/oversize",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/large-length",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/gzip-large",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/status/404",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/status/500",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/redirect",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/truncated",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/slow-headers",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/slow-body",
+      "loopback": true
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:53369",
+      "path": "/slow-body",
+      "loopback": true
+    }
+  ],
+  "serverRequests": [
+    {
+      "method": "GET",
+      "path": "/harness",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/web/launcher-http.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/shared/index.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/map01.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/install-inventory.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-flow.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-message10.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-replies.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-local.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-update.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-manifest.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-channel.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/local-paths.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-login.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/md5.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/vendor/pako/3.0.2/pako_inflate.esm.min.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/vendor/egoroof-blowfish/4.0.3/blowfish.mjs",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": true
+    },
+    {
+      "method": "GET",
+      "path": "/self-digest",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/catalog-digests",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/region",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/binary",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/chunks",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/empty",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/gzip-small",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/package",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/oversize",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/large-length",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/gzip-large",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/status/404",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/status/500",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/redirect",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/truncated",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/slow-headers",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/slow-body",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    },
+    {
+      "method": "GET",
+      "path": "/slow-body",
+      "cookiePresent": false,
+      "authorizationPresent": false,
+      "refererPresent": false
+    }
+  ],
+  "consoleMessages": [
+    {
+      "phase": "expected-negative",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "phase": "expected-negative",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+    },
+    {
+      "phase": "expected-negative",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "phase": "expected-negative",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONTENT_LENGTH_MISMATCH"
+    }
+  ],
+  "failures": [
+    {
+      "phase": "expected-negative",
+      "path": "/oversize",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "phase": "expected-negative",
+      "path": "/large-length",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "phase": "expected-negative",
+      "path": "/gzip-large",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "phase": "expected-negative",
+      "path": "/status/404",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "phase": "expected-negative",
+      "path": "/status/500",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "phase": "expected-negative",
+      "path": "/redirect",
+      "error": "net::ERR_FAILED"
+    },
+    {
+      "phase": "expected-negative",
+      "path": "/truncated",
+      "error": "net::ERR_CONTENT_LENGTH_MISMATCH"
+    },
+    {
+      "phase": "expected-negative",
+      "path": "/slow-headers",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "phase": "expected-negative",
+      "path": "/slow-body",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "finished": [
+    {
+      "phase": "positive",
+      "path": "/harness"
+    },
+    {
+      "phase": "positive",
+      "path": "/web/launcher-http.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/shared/index.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/shared/launcher.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/shared/map01.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/shared/install-inventory.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/shared/launcher-flow.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/shared/launcher-message10.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/shared/launcher-replies.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/shared/launcher-local.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/shared/launcher-update.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/shared/launcher-manifest.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/shared/launcher-channel.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/shared/local-paths.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/shared/launcher-login.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/shared/md5.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/shared/vendor/egoroof-blowfish/4.0.3/blowfish.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/shared/vendor/pako/3.0.2/pako_inflate.esm.min.mjs"
+    },
+    {
+      "phase": "positive",
+      "path": "/self-digest"
+    },
+    {
+      "phase": "positive",
+      "path": "/catalog-digests"
+    },
+    {
+      "phase": "positive",
+      "path": "/region"
+    },
+    {
+      "phase": "positive",
+      "path": "/binary"
+    },
+    {
+      "phase": "positive",
+      "path": "/chunks"
+    },
+    {
+      "phase": "positive",
+      "path": "/empty"
+    },
+    {
+      "phase": "positive",
+      "path": "/gzip-small"
+    },
+    {
+      "phase": "positive",
+      "path": "/package"
+    }
+  ],
+  "positiveConsoleErrors": 0,
+  "positiveRequestFailures": 0,
+  "externalRequests": 0,
+  "not_verified": [
+    "Production UI wiring (existing viewer keeps connect-src none)",
+    "Official endpoints/CORS, source trust and original runtime",
+    "Actual storage/replace/rollback, real session/game",
+    "Safari/mobile/miniprogram"
+  ]
+}

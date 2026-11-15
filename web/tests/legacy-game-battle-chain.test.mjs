@@ -1,0 +1,2 @@
+import test from'node:test';import*as api from'../../shared/index.mjs';import{createWeChatLegacyGameSession}from'../../adapters/wechat/legacy-game-session.mjs';import{chainTCPModes,runChainTCP}from'../../analysis/game-battle-chain260-v1/tcp-flow.mjs';
+for(const mode of chainTCPModes)test('260 actual source OS TCP '+mode,{timeout:50000},async()=>console.log('chain-source-tcp '+JSON.stringify(await runChainTCP({...api,createWeChatLegacyGameSession},mode))));

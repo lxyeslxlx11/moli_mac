@@ -1,0 +1,64 @@
+{
+  "schema": "moli.launcher-runtime-v2.public-update-probe.v1",
+  "started_utc": "2026-10-28T07:40:32.813195+00:00",
+  "authority": "user-approved networking tests; fixed paths from static evidence",
+  "host": "launch.polchina.com.cn",
+  "port": 80,
+  "transport": "HTTP, no server identity authentication",
+  "cookies": false,
+  "authorization_header": false,
+  "environment_proxy": false,
+  "redirects_followed": false,
+  "retries": 0,
+  "original_sample_executions": 0,
+  "requests": [
+    {
+      "label": "launcher-digest",
+      "path": "/Launcher/launcher_md5.dat",
+      "method": "GET",
+      "body_budget": 4096,
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "text/plain",
+        "Content-Length": "33",
+        "Last-Modified": "Wed, 28 Oct 2026 03:28:34 GMT",
+        "ETag": "\"aa018d-21-28693c80\""
+      },
+      "bytes_read": 33,
+      "sha256": "14f1b7dcd8d46381636361eac90cfb44a1222630a529127d8f675a93098d2cb1",
+      "md5": "671333c8932914253f05b0b99809f3f5",
+      "elapsed_ms": 18,
+      "strict_md5_text": "b34278635899e7c1e4aa4cb67b48001a",
+      "matches_original_launcher_md5": false
+    },
+    {
+      "label": "update-locator",
+      "path": "/Launcher/launcher_url.dat",
+      "method": "GET",
+      "body_budget": 4096,
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "text/plain",
+        "Content-Length": "70",
+        "Last-Modified": "Wed, 28 Oct 2026 03:28:34 GMT",
+        "ETag": "\"aa018c-46-28693c80\""
+      },
+      "bytes_read": 70,
+      "sha256": "4ec715c71657cba4259cbea3dcd2b952b6b2cdcd520ec3baea91963e3e0e529b",
+      "md5": "2511859805bb7aba195fe1162edf635b",
+      "elapsed_ms": 21
+    }
+  ],
+  "status": "two-metadata-http200",
+  "dns_addresses": [
+    "198.18.0.64"
+  ],
+  "elapsed_ms": 49,
+  "limits": [
+    "Bare evidenced paths, no native rtm query or WinINet emulation.",
+    "HTTP200 and MD5 do not establish publisher identity, latest version or authentication.",
+    "Only metadata/locator contents requested, never a locator payload or game service.",
+    "Host tests do not prove Windows VM networking or original client acceptance."
+  ],
+  "purpose": "Compare current host metadata with the guest auto-update handoff; no payload GET or execution."
+}

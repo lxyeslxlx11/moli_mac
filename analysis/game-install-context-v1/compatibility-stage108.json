@@ -1,0 +1,41 @@
+{
+  "schema": "moli.installed-application-compatibility.v1",
+  "stage": 108,
+  "basis": "User has already specified Windows 7 for launcher and game; use actual newly installed paths, preserve other existing flags.",
+  "hive": "HKCU",
+  "key": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers",
+  "before": [
+    {
+      "target": "installed platform POLCN_Launcher.exe",
+      "property_present": false
+    },
+    {
+      "target": "installed game cg_se_3000.exe",
+      "property_present": false
+    }
+  ],
+  "receipt": "Both exact path names printed, Get-ItemPropertyValue actual missing-property errors at the confirmed HKCU Layers key, returned prompt.",
+  "machine_level_check": {
+    "hive": "HKLM",
+    "both_exact_path_properties_present": false,
+    "actual_missing_property_receipts_and_returned_prompt": true,
+    "writes": 0
+  },
+  "writes": 2,
+  "planned_value": "~ WIN7RTM",
+  "planned_rollback": "If needed, remove only these newly created value names after confirming they still have the exact value written here; no rollback executed.",
+  "limits": "These exact installed paths have configured/read-back Win7 values; original-process runtime effect remains untested.",
+  "recovery_point": "Native Moli-before-normal-launcher-20261030-stage108 UI completed, exact new and preserved old entries verified in Snapshots.xml; no restore boot test.",
+  "write_contract": "New-ItemProperty without Force, exact two absent names only, REG_SZ value ~ WIN7RTM; retain existing properties if unexpectedly present by failing instead of overwriting.",
+  "after": [
+    {
+      "target": "installed platform POLCN_Launcher.exe",
+      "value": "~ WIN7RTM"
+    },
+    {
+      "target": "installed game cg_se_3000.exe",
+      "value": "~ WIN7RTM"
+    }
+  ],
+  "actual_write_and_readback": "One fully reviewed command submitted once: New-ItemProperty without Force, requested String type, each exact path and ~ WIN7RTM printed, no write errors, returned prompt."
+}

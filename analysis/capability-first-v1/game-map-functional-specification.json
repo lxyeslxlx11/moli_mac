@@ -1,0 +1,3177 @@
+{
+  "schema": "moli.game-map-functional-specification.v1",
+  "classification": "fixed-source-functional-operation-composition-with-explicit-product-deltas",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "tools": {
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4"
+  },
+  "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "original_G04_scope": "地图/缓存、地形阻挡、点击逆投影、普通移动、位置修正",
+  "original_owners": [
+    "shared/legacy-game-map.mjs",
+    "shared/legacy-game-navigation.mjs",
+    "shared/legacy-game-local-movement.mjs"
+  ],
+  "original_dependencies": [
+    "G03",
+    "G06"
+  ],
+  "original_profiles": [
+    "game-legacy-37c4"
+  ],
+  "original_implementation_batch": "D2",
+  "original_registered_entries": [
+    "GAME-MOVE-001",
+    "GAME-LEGACY-MAP-CACHE-001",
+    "GAME-LEGACY-SCENE-STATE-001",
+    "GAME-LEGACY-NAVIGATION-001",
+    "GAME-LEGACY-SCENE-FRAME-001",
+    "GAME-LEGACY-INPUT-CLOCK-001"
+  ],
+  "fixed_se_map_region_refresh": {
+    "classification": "固定 SE 静态事实、现有共享入口的本机行为及待验差异",
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "capabilities": ["X02", "G03", "G04"],
+    "related_rules_and_cases": ["MF-W-patch", "MF-L-missing_cache", "MF-D2", "MF-D3", "MF-T03", "MF-T07", "MF-T11", "GF-A10"],
+    "scene_change": "analysis/capability-first-v1/game-flow-functional-specification.json#/fixed_se_map_change_readiness",
+    "source_authentication": "build/analysis/map-functional-specification-v1/source-authentication.json",
+    "REA_evidence": "build/analysis/fixed-se-map-region-refresh-v1/rea-evidence.json",
+    "validation": "build/analysis/fixed-se-map-region-refresh-v1/validation.json",
+    "report": "reports/game-static.md#fixed-se-map-region-refresh",
+    "facts": {
+      "cache_and_live_plane": {
+        "entries": ["0x4EF74F", "0x45F850", "0x45FAE9", "0x45FBB0"],
+        "behavior": "45F850 用消息身份 A/B 和既有路径上下文定位缓存，打开失败返回 -1。进入裁剪后的第三平面循环时，每个写入值先 OR 0xC000。消息 B 等于活动 B 且格子在当前窗口半开范围内时，45FBB0 同步更新活动第三平面；此处只有 B 比较。缓存文件写入沿消息所属路径。",
+        "scope": "更新活动第三平面时没有同步替换其余两平面或发布重读完成。若文件无法打开，写入循环不会执行。后续收包过程另行决定是否设置重读条件。",
+        "shared_path_and_clipping_rule": "/legacy_map_cache_io"
+      },
+      "refresh_trigger": {
+        "entries": ["0x4EF754", "0x460180", "0x4EF78F", "0x4EF7F7", "0x403440", "0x403490"],
+        "invalidation": "4EF580 在缓存调用后读 96B9D8 和 BFF324。任一非零且消息 B 等于活动 B 时，460180 将上次地图帧所记的两个中心值设为 -1，随后清 BFF324；移动等待 96B9D8 由稍后的重读分支消费。该入口独立于 A 比较、补片范围及 45F850 的结果。",
+        "coverage_flag": "随后当消息 A 与 B 都匹配，且 signed x1>=cx-10、x2<=cx+10、y1>=cy-10、y2<=cy+10 时，置 96BA30 为 1。四条比较允许等号，范围完全落在该边界即合格，中心无需位于补片内。这里使用消息原矩形。"
+      },
+      "read_and_recheck": {
+        "entries": ["0x463EA0", "0x403350", "0x463F0C", "0x464430", "0x45FBF0", "0x4648F0", "0x4603A0", "0x460820"],
+        "read_admission": "463EA0 的两个模式各比较实时中心 X/Y 和上次完成帧保存的 X/Y。任一值不同或 96BA30 非零，读取由活动 A/B 找到的 95C084/80/82/7E 范围。两模式共用 45FBF0 的三平面读入，模式值为 1 时走 4648F0，其他模式走 4603A0。",
+        "read_failure": "45FBF0 返回负值时，两路都直接退出到 4648DD，保留本次进入时的 96BA30、96B9D8 及上次中心。本次既不检查缺块，也不写完成中心。",
+        "successful_read": "更新碰撞区后，96B9D8 非零才以 96B9C4 的方向调用 460820。返回零时清移动等待，返回非零时保留等待。两条成功重读路径随后清 96BA30，正常渲染尾部再保存当前中心。若缺格仍在，中心未变且重读条件未再次发布的后续帧继续等待。扫描在任一窗口维度小于 51 时直接返回零，其余范围按已证方向检查最多两条前缘，以第三平面的原始零值找缺块。重读入口负责复查，补取发送仍在 461E90。",
+        "derived_bounds_example": {"center": [40, 40], "read_window": [10, 20, 61, 71], "within_refresh_margin": [30, 30, 31, 31], "leading_request_outside_refresh_margin": [28, 33, 30, 52]}
+      },
+      "movement_frame_order": {
+        "entries": ["0x5024BF", "0x460C40", "0x460F20", "0x46103D", "0x461E90", "0x461049", "0x46107D", "0x4610A9", "0x5024E4", "0x45FFD0"],
+        "order": "所选普通帧从 5024BF 调 460C40。其普通分支 460F20 先检查 96B9D8，非零立即返回。取得队列方向时 461E90 按缺块结果发送已有 !hM，保存等待字和原方向。调用者仍移出方向并准备目标。随后读到新置的等待字时跳过位移步。约定的地图渲染入口在 5024E4 才调用，因而这次渲染若清等待，后续合资格的移动调用才继续该步。",
+        "scene_replacement": "TfD 的所查发布路径在 4EF94D 清普通移动等待。9/202 读取的仍是独立换图等待字 BFF32C，相关补片解除条件沿主流程规格。"
+      }
+    },
+    "implementation_handoff": {
+      "batches": ["D0", "D2"],
+      "reuse": ["shared/legacy-game-protocol.mjs", "shared/legacy-game-map.mjs", "shared/legacy-game-navigation.mjs", "shared/legacy-game-local-movement.mjs"],
+      "comparison": "阶段 306 沿活动身份对接收补片，缓存 revision 变化后按需重建网格，同一次移动调用检查已等待的方向。原创用例的两种模式均在最后一处前缘缺格补齐后恢复。此前的旧 B、同 B 异 A、其它格子和部分补齐均保持等待。",
+      "delta": "沿 MF-D2 补消息所属缓存及原版所证活动平面的 B 匹配和范围。沿 MF-D3 将重读、移动门、原几何范围和后续帧顺序交现有所有者，保留两种碰撞处理和匹配、未读、读取失败的回执；继续复用已有方向请求、插值和场景退役。",
+      "stage306_probe": "build/analysis/fixed-se-map-region-refresh-v1/stage306-probe.json",
+      "implementation_complete": false
+    },
+    "remaining": [
+      "原版文件不能打开、短读及部分写入的实际结果，迟到和同身份补片在原版帧中的接受顺序，当前同版与三端组合待实测。",
+      "与 202 等待有关的 BFF330 置位另沿主流程所列具名写入或原版状态记录补证。"
+    ],
+    "paired_profile_specification": "/legacy_map_movement_refresh",
+    "original_or_full_target_case_executed": false
+  },
+  "legacy_map_movement_refresh": {
+    "classification": "两份固定历史样本的普通帧、重读与缺格规则，附 stage306 两模式重跑",
+    "capabilities": ["G01", "G04", "X02"],
+    "related_rules_and_cases": ["MF-D2", "MF-D3", "MF-T03", "MF-T07", "MF-T11", "GF-A10"],
+    "source_review": {
+      "path": "build/analysis/legacy-map-movement-refresh-v1/source-review.json",
+      "bytes": 20566,
+      "sha256": "9cc28ea01bbe56f889ea604aa992c310145390b20de071b4310a8df13335bfc6"
+    },
+    "local_comparison": {
+      "path": "build/analysis/legacy-map-movement-refresh-v1/stage306-replay.json",
+      "bytes": 1905,
+      "sha256": "1a3283550315893bf86f3b6b1b458460eb1d42f2e2c508e3b7d2cb2d113a402c"
+    },
+    "report": "reports/game-static.md#legacy-map-movement-refresh",
+    "validation": "reports/validation.md#legacy-map-movement-refresh-validation",
+    "item": {
+      "sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+      "normal_frame": "58D849 的主状态 9 子状态 3 在 58D873 调 4A46D8。其 4A49CF 调 4A49E0。58D898 随后经 4A2C5D 调 4A99DC 进入按模式重读。",
+      "read_sites": [
+        {"site": "0x4A9A50", "owner": "0x4A99DC", "mode": "1", "collision_rebuild": "0x4AA6EF"},
+        {"site": "0x4AA105", "owner": "0x4A99DC", "mode": "other", "collision_rebuild": "0x4A3A52"},
+        {"site": "0x4A2CB9", "owner": "0x4A2C6C", "mode": "separate body", "collision_rebuild": "0x4A3A52"}
+      ],
+      "region_flag": "0xA08BB8",
+      "missing_cell_wait": "0xA08B60",
+      "saved_direction": "0xA08B4C",
+      "detached_call_site_observed": false
+    },
+    "rules": [
+      "三个 Item 读点按中心变化或区域字非零到达 4A25F5。负返回跳转到退出，跳过碰撞更新、缺格复查、清区域字和完成中心提交。",
+      "成功重读按各自模式更新碰撞。当等待字非零时用保存方向调用 4A3F7C，返回零清等待，其余返回保持等待。成功路径清区域字并继续保存中心。",
+      "Item 缺格复查任一窗口维度小于 51 时返回零。所核前缘以第三平面原始字为零判断缺格。4A5C76 的发送路径调用 57CE29 提交 !hM，随后置等待并发布方向。",
+      "所查普通帧移动入口在等待时跳过位移。地图重读在同一帧稍后执行，解除等待后由下一次合资格移动续接。SE 的已核普通帧使用相同先后。"
+    ],
+    "handoff": "D0/D2 沿既有地图、碰撞和移动所有者复用两模式夹具，MF-D2 引用 /legacy_map_cache_io。MF-D3 用读取失败、部分补齐与下一帧续接核真实接线。D5 验实际场景和文件回执。",
+    "remaining": ["Item 独立函数 4A2C6C 的实际外部调用", "两版原版文件失败、最新同版及三端接受"],
+    "original_execution": false,
+    "product_code_changed": false
+  },
+  "legacy_map_cache_io": {
+    "classification": "两份固定历史样本的文件操作静态事实及 stage306 字节对照",
+    "capabilities": ["G04", "X03"],
+    "related_operations_and_cases": ["MF-O01", "MF-O02", "MF-O04", "MF-O05", "MF-O06", "MF-O11", "MF-O12", "MF-D2", "MF-T01", "MF-T03", "MF-T07"],
+    "source_review": {
+      "path": "build/analysis/legacy-map-cache-io-v1/source-review.json",
+      "bytes": 35517,
+      "sha256": "360a47b6a5e8ec06380e7aba7e5652c6ca7aca090b61ccbe039cadec2450989d"
+    },
+    "local_comparison": {
+      "path": "build/analysis/legacy-map-cache-io-v1/stage306-probe.json",
+      "bytes": 391,
+      "sha256": "419a7b83743b2676e82402ba5c106d2598736c89511fa0be91cb895f2d0082ad"
+    },
+    "report": "reports/game-static.md#legacy-map-cache-io",
+    "format": "reports/resource-formats.md#legacy-map-cache-layout",
+    "validation": "reports/validation.md#legacy-map-cache-io-validation",
+    "facts": {
+      "paths": {
+        "Item": {"builder": "0x4A1C7E", "context": "0x9FA6DC", "write_context_at": "0x5780E5", "dispatch_call": "0x58001D"},
+        "SE": {"builder": "0x45F4E0", "context": "0x95D554", "write_context_at": "0x4F2BFC", "dispatch_call": "0x4F921F"},
+        "context_source": "接收 @Qu 的四个 int32 中第 3 个，经两版各自分派写入路径上下文。区域读取、补片写入和场景准备使用该值。",
+        "relative_path_components": ["A=0 时 map/0/B.dat", "A 非零时 map/A/context/B.dat"]
+      },
+      "creation": {
+        "Item": ["0x572D2C", "0x4A1CCB", "0x4A1F26"],
+        "SE": ["0x4EF870", "0x45F530", "0x45F760"],
+        "header": "4D 41 50 01，随后四个 LE32，依次为场景头值 +4、+8、宽 +12、高 +16。两版创建时写三块等长零平面。",
+        "reuse": "B=0 跳过准备。探测打开失败后尝试建目录及创建，创建函数返回非负时准备入口返回 1。已有文件只有三字节 magic、版本 1、四个头字段均匹配且 A 不等于 2 才复用。探测成功但需重建时，重建函数返回非负使准备返回 0，创建打开失败返回 -1。区域读写直接读取布局字段。",
+        "scope": "头匹配分支未验证文件体完整，已核 Item 场景通知在缓存准备后继续设置场景，未以准备返回值作为完成门。"
+      },
+      "region_io": {
+        "Item": {"read": "0x4A25F5", "patch": "0x4A2075", "live_third_plane": "0x4A25C0", "patch_consumer": "0x572A99"},
+        "SE": {"read": "0x45FBF0", "patch": "0x45F850", "live_third_plane": "0x45FBB0", "patch_consumer": "0x4EF580"},
+        "range": "三块连续 row-major LE16 平面的起点为 20、20+2WH、20+4WH。两版在打开后为各读取平面清零 2601 个 word。对有效且与地图相交的半开矩形，磁盘读写使用裁剪后起点和原请求行宽。读取的越界格保留零。补片第三平面每个所写值先 OR 0xC000。",
+        "live_plane": "消息 A/B 确定补片文件。对每次裁剪后的第三平面迭代，另以消息 B 等于活动 B 比较，并用未裁剪起点 (x1,y1) 加迭代列行偏移检查活动半开窗口。命中时用同一补片 word 立即更新活动第三平面，发生在该行第三平面的 seek/write 之前。左或上越界时磁盘坐标和活动坐标可以不同。",
+        "open_failure": "区域读取以 rb 打开失败时，在清零三输出面前调用 PostQuitMessage(0) 并返回 -1。补片以 rb+ 打开失败仅返回 -1，未执行活动更新及行写入。收包调用者仍继续各自的重读与等待条件判断。",
+        "unchecked_io": "区域函数打开成功后按旧代码消费头、seek、行读写及 close，各自返回未用于错误分派。执行到正常尾声返回 0。短头、短读、部分写入或关闭失败时的实际状态及可见效果仍需适用回执。"
+      }
+    },
+    "handoff": "D0/D2 复用现有 actor-context.cacheVariant、地图字节模块与 SnapshotStore/StableRangeSource。沿 MF-D2 将消息路径、活动第三平面和宿主写入回执接到既有所有者，保留独立的坐标及状态条件。D5 用 MF-T01/T03/T07 核缺文件、短读、部分写入和恢复。当前完整性检查继续提供目标错误回执。",
+    "remaining": ["两版原程序对实际短读、寻址和写入失败的结果", "当前同版业务及三端完整缓存组合"],
+    "original_execution": false,
+    "product_code_changed": false
+  },
+  "legacy_map_notice": {
+    "classification": "两份固定历史样本的地图校验通知、补取与状态规则，附 stage306 模式对照",
+    "capabilities": ["G03", "G04", "X03"],
+    "related_operations_and_cases": ["MF-O06", "MF-O07", "MF-O08", "MF-O09", "MF-D2", "MF-T02", "MF-T07"],
+    "source_review": {
+      "path": "build/analysis/legacy-map-notice-v1/source-review.json",
+      "bytes": 21696,
+      "sha256": "18a5d0a8c00d292ea2191c192339f63eb9b69fa5ddda8daf99d02f06d9fc4040"
+    },
+    "local_comparison": {
+      "path": "build/analysis/legacy-map-notice-v1/stage306-probe.json",
+      "bytes": 1234,
+      "sha256": "d9272a477a0e828c629b7982db35d934b16b620942e0cf666cadeca5c622335e"
+    },
+    "report": "reports/game-static.md#legacy-map-notice",
+    "validation": "reports/validation.md#legacy-map-notice-validation",
+    "facts": {
+      "Item": {"receive": "0x572A22", "check": "0x4A38A2", "read": "0x4A25F5", "accumulate": "0x4A3830", "request": "0x57CE29"},
+      "SE": {"receive": "0x4EF510", "check": "0x460240", "read": "0x45FBF0", "accumulate": "0x4601F0", "request": "0x4F6610"},
+      "cache_selection": "所选 =]M 分支在准入字为零时读活动 A、通知 B 与既有路径上下文所定的缓存。读取前未要求 B 等于活动 B，通知 A 保留供补取。区域读写、路径及失败按 /legacy_map_cache_io。",
+      "checksum": "每平面从零累积固定 1458 字节。读取成功时区外及未填 scratch 留零，第三平面取当前地图模式为 1 时掩 0x1FF，其余掩 0xFFF。两版 256 项字节位反转表和 256 项 0x1021 多项式表逐项相等。",
+      "request": "三项完整 32 位通知整数分别匹配零扩展的校验值则返回 1。任一不符，用通知的 A、B、x1、y1、x2、y2 依序构成 !hM 并返回 0。",
+      "match_side_effects": "校验匹配后，通知 B 等于活动 B 才清场景首次准备标记。如果独立区域失效字节位 0 仍置位，则记录上次中心失效并清该位；这一步由校验匹配和位 0 决定。",
+      "read_failure": "两版在区域读取返回后都直接进入掩码及校验，未检查返回。打开失败路径先投递退出消息并返回 -1，当时未清这次输出缓冲。后续匹配与否不能从该文件错误单独确定。"
+    },
+    "handoff": "沿 MF-D2 复用现有三平面校验及 !hM 编码，输入包含实际存在的消息 B 及活动 A 所属缓存。stage306 单缓存已支持同 B 异 A，但不同 B 返回不可用。MF-T02 核可用的非活动缓存、失败回执及匹配后的状态次序，文件错误由宿主回执确定后再发布就绪。",
+    "remaining": ["原版缺失、短读和涉及初始化与退出的实际可见结果", "当前同版与三端完整文件组合"],
+    "original_execution": false,
+    "product_code_changed": false
+  },
+  "legacy_map_context_reentry": {
+    "classification": "两份固定历史样本的地图目录值生命周期，附 stage306 同实例与重开对照",
+    "capabilities": ["G03", "G04", "X02", "X03", "X06"],
+    "related_operations_and_cases": ["MF-O05", "MF-D2", "MF-T01", "MF-T02"],
+    "source_review": {
+      "path": "build/analysis/legacy-map-context-reentry-v1/source-review.json",
+      "bytes": 23703,
+      "sha256": "243f96be62b8c1bd9370087cafe335e2da0d1688bb0f066cf1f724efda9f7e4b"
+    },
+    "local_comparison": {
+      "path": "build/analysis/legacy-map-context-reentry-v1/stage306-probe.json",
+      "bytes": 597,
+      "sha256": "43484b7f99edd1941f5612d15d9ca0e65d0cdbae89b8b8f906d9db6bd530fff2"
+    },
+    "report": "reports/game-static.md#legacy-map-context-reentry",
+    "validation": "reports/validation.md#legacy-map-context-reentry-validation",
+    "facts": {
+      "storage": "Item 9FA6DC 与 SE 95D554 各为可写映像零填充区的四字节。全 PE 绝对地址分别匹配七处及五处指令。各自唯一直接写入是 @Qu 第 3 个整数。",
+      "Item": {
+        "return_to_selection": "主状态 11 确认后从 58CAA1 调 57132F 清连接并退役解析缓冲，再准备选服，最后经 58CBF8 发布状态 2、子阶段 0。",
+        "ordinary_reopen": "48FC5D 的子阶段 2 在 48FDFE 退役旧连接，48FE11 调 5712D8 起连接及 582F84 分配解析缓冲。所选成功分支推进到 3、4，经 571980 复位连接步骤并从 571999 继续连接。",
+        "context_producer_and_reader": ["0x5780E5", "0x572DA7"]
+      },
+      "SE": {
+        "return_to_selection": "5015A0 主状态 11 的确认分支从 501901 调 4EE2F0，继续准备选服，50196D 发布状态 2、子阶段 0。",
+        "ordinary_reopen": "455500 的所查分支于 45564D 退役，455660 调 4EE290 配置解析缓冲，沿 4EE720、4EE730 推进连接。",
+        "context_producer_and_reader": ["0x4F2BFC", "0x4EF8E0"]
+      },
+      "conditional_file_selection": "所查同进程退役及重开路径继续保留最近的目录值。若再入场先消费 TfD，场景准备取当时的目录值。若已消费新的 @Qu，则用新值。新进程在首次写入前从零开始。A=0 路径始终省略目录值。",
+      "scope": "固定入口、直接地址及所查分支。实际服务器回包顺序及其它可能的间接写入仍待核证。"
+    },
+    "handoff": "D0/D2 在现有 ContextOwner 与资源所有者中按游戏实例持有目录值，活动连接与解析缓冲按原会话规则退役。D2 复用 cacheVariant 和原字节模块，按 A、适用目录值、B 选择缓存，再应用头字段匹配。MF-T01/T02 核同进程重连、新 @Qu 前后、A=0 与新实例，并与 GF 的选服和入场组合验证。",
+    "observed_product_delta": "stage306 同协议重置继续保留原目录值。新 @Qu 从 13 改为 14 后，相同 A/B 与头仍复用旧补片。关闭协议清内存投影，新的协议实例在无目录值时创建空白缓存。",
+    "remaining": ["当前同版收到 @Qu 与 TfD 的实际相对次序", "实际返回选服、重连、磁盘缓存与三端结果"],
+    "original_execution": false,
+    "product_code_changed": false
+  },
+  "fixed_se_ordinary_right_click_position": {
+    "classification": "固定 SE 普通右键的静态来源与当前共享运行时和 Canvas 的本机组合对照",
+    "capabilities": [
+      "X02",
+      "G03",
+      "G05",
+      "G09",
+      "G10"
+    ],
+    "implementation_handoff": [
+      "D0",
+      "D2",
+      "D5"
+    ],
+    "source_review": {
+      "path": "build/analysis/fixed-se-right-click-position-v1/source-review.json",
+      "bytes": 28912,
+      "sha256": "665eb57c5be39237d10c621513a915da00582a6ce16a34d42304e8ea060d318c"
+    },
+    "report": "reports/game-static.md#fixed-se-ordinary-right-click-position",
+    "validation": "reports/validation.md#fixed-se-ordinary-right-click-position-validation",
+    "regressions": {
+      "shared_and_web": {
+        "path": "build/analysis/fixed-se-right-click-position-v1/local-tests.log",
+        "bytes": 9883,
+        "sha256": "a6e8e3181841808260e10bec34f9521860c83f490736d8b9d7ef53d8c7e14e80",
+        "passed": 86
+      },
+      "right_click_client": {
+        "path": "build/analysis/fixed-se-right-click-position-v1/client-right-click.log",
+        "bytes": 336,
+        "sha256": "5f83f0e867741ca8dfd7f3a91a504a3407ff0b8e228c1ce6a519f2a2546f9de9",
+        "passed": 2
+      }
+    },
+    "local_comparison": {
+      "path": "build/analysis/fixed-se-right-click-position-v1/right-click-probe.json",
+      "bytes": 1823,
+      "sha256": "0533506666aa1ecbd2c3f39b6444641934d4b08984b345446be491e8784a09b9"
+    },
+    "reused_specifications": [
+      "analysis/capability-first-v1/game-presentation-functional-specification.json#/backend_selection_review/pointer_position_admission",
+      "analysis/game-battle-shared-storage-v1/ground-pickup-source-check.json#/facts",
+      "analysis/game-battle-shared-storage-v1/actor-interaction-source-check.json#/facts",
+      "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/fixed_se_classic_directory_mini_mail",
+      "analysis/capability-first-v1/game-ordinary-services-functional-specification.json#/fixed_se_ordinary_dialog_lifecycle"
+    ],
+    "facts": {
+      "selected_tile": "在所选普通帧，5024B0 调 4665B0 读取 C5FA88/C5FA98 的移动点，交 463DC0 逆投影。两轴分别加 0.5 向零取整，再加 32、按 C 整数除以 64，发布 C078A0/A4。之后依次调 4EADC0、44E7E0、460C40。所核 PE 的两格直接写点都在 4665B0，右键按下与松开的存储另见共用鼠标规格。",
+      "frame_admission": "4665B0 先清派生事件。移动点纵轴须小于 456。C5FB44 小于 212 且 561AEC 的有符号值小于 0 时进入按键判定。C07898、6145E8、614678 任一非零也可在满足纵轴条件时进入。右键一次位掩码 2 来自 C5FB2C，写 C078C0。仅按住 C5FB28 位 1 且无派生按下时写 C078C4。460C40 按 F536B6 的位 7 检查后读 C078C0。",
+      "turn": "460C40 先调 4622D0。它读取所选格，查本机身体、两个速度值、614882、BFF33C 和是否同格。通过独立 BFF354 的无符号严格截止后更新方向，再沿 4F2C10 发已有 !0b 形状。发送调用返回后再次采样写 BFF354。460C40 的开头仍沿原动作字和两个短状态的组合条件清 BFF33C。",
+      "pickup": "4622D0 返回后调用 500860。此入口要求 55E4D4 等于 -1、本机格与所选格的每轴绝对差不超过 1、43F100 在所选格按掩码 7 找到活动记录，以及独立 F5F174 的无符号严格截止。已有 &?S 参数取本机格及所选方向，发送后再次采样 F5F174。参考的目录/名单/资料接收在 4F5C69 调 4902A0，在 4902F1 写 55E4D4，随后按 0x26、0x27、0x28 请求 60–62。所查 Q?m 关闭路径仅在其类型与参与者匹配后清到 -1。保留其它写入者的原分支。",
+      "actor": "拾取返回后再读同一对所选格，460C9F 调 43F190。两种查找均按 0x128 步长从低到高读有活动标志及身体的槽，比较身体 +1E0 与 +1F0，并检查各自掩码。角色查找取首个合资格 ID，返回非 -1 时 460CB6 发送 ;JE [3, ID]。该调用点独立于转向和拾取的各自条件。Q?m 窗口和其它实际响应沿已有接收规格核对。",
+      "current_baseline": "受控快点的移动、按下、松开位置为 (192,96)、(224,72)、(256,48)。按原选位规则喂入现有运行时，得到格 (3,3) 与角色 200。按现有 Canvas 事件正常进入时，得到格 (5,3) 与角色 201。本机复用三个命令的已有形状，验证三项均合资格、截止等号仅查角色、转向受阻仍拾取和查询，以及远格有角色时仍能查询。"
+    },
+    "cases": {
+      "fast_click": "移动后在不同位置按下和松开，按一次按下进入普通帧。验证消费的是该帧的移动点及其选格，并按同一帧的顺序检查转向、拾取和目标。另核按住、只收到释放、纵轴 455/456 与控件准入组合。",
+      "independent_operations": "同格、相邻、远格及两种掩码分别验证。用各自截止前、等于和超过的输入，核可独立进入的三个动作。转向受阻时拾取与角色查找继续。拾取因活动值而受阻时仍检查角色查找。",
+      "windows_and_targets": "核目录、名单和资料分派写入字段后的拾取条件，实际匹配关闭与后续可拾取状态按窗口和帧交接用例验收。实体复用首个活动槽，之后沿独立的资料与对话回包条件验收。三端共用上述请求结果及实际触控目标。"
+    },
+    "implementation_delta": "共用输入在普通帧沿移动点发布选格，按一次按下和当前 UI 条件派发。沿已有转向、拾取与角色查找分别保留各自门控和回执。将已证的窗口活动值纳入拾取准入，宿主沿实际触摸映射提供初次移动与后续事件。",
+    "remaining": [
+      "普通对话和训练等待沿同一活动值与帧合同验收，其他专用类型按原窗口规格核对。",
+      "原版鼠标和三端实际输入、当前同版联机及服务回复按正式验收。"
+    ],
+    "original_execution_observed": false,
+    "full_target_acceptance_observed": false,
+    "full_analysis_gate_passed": false
+  },
+  "source_authentication": {
+    "path": "build/analysis/map-functional-specification-v1/source-authentication.json",
+    "bytes": 271494,
+    "sha256": "da82bc45b9763405b1ed76d42a2d561f4dc8b8a487906bff18324186b6b864de"
+  },
+  "source_summary": {
+    "legacy_rule_nodes": 26,
+    "shared_contract_nodes": 19,
+    "complete_native_functions": 102,
+    "byte_and_mapping_checks": 220,
+    "new_native_queries": 0
+  },
+  "retained_rules": [
+    {
+      "id": "MF-W-layout",
+      "file": {
+        "path": "analysis/game-legacy-world-v1/implementation-spec.json",
+        "bytes": 16546,
+        "sha256": "0a1f1fa298bcf542eda79f73f7576c22df3ac1fa5103fa98354da0ea0bb94b43"
+      },
+      "pointer": "/facts/layout",
+      "canonical_sha256": "6b147a5edd7c004d1187f2f7576a7d0b31979bedcf4eecdae15a306ca5f1585c",
+      "original_value": {
+        "reader": "0x45fbf0",
+        "writer": "0x45f850",
+        "header_bytes": 20,
+        "dimensions_offsets": [
+          12,
+          16
+        ],
+        "cell_bytes": 2,
+        "planes": 3,
+        "storage": "three contiguous row-major little-endian uint16 planes",
+        "roles": "plane0/plane1/plane2 only; graphical/collision roles unassigned",
+        "opaque_header_offsets": [
+          4,
+          12
+        ]
+      },
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-W-rectangle",
+      "file": {
+        "path": "analysis/game-legacy-world-v1/implementation-spec.json",
+        "bytes": 16546,
+        "sha256": "0a1f1fa298bcf542eda79f73f7576c22df3ac1fa5103fa98354da0ea0bb94b43"
+      },
+      "pointer": "/facts/rectangle",
+      "canonical_sha256": "88a93902b5aedc55bb3491970d2cee0a03beeb2002541120ac5df4a24a2e01d5",
+      "original_value": {
+        "coordinates": [
+          "x1",
+          "y1",
+          "x2",
+          "y2"
+        ],
+        "extent": "half-open",
+        "read_outside": "zero, preserving requested row stride",
+        "native_scratch_cells": 2601,
+        "native_scratch_bytes_per_plane": 5202,
+        "write_outside": "clip to existing cache; no creation or resize",
+        "written_plane2_or_mask": 49152
+      },
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-W-checksum",
+      "file": {
+        "path": "analysis/game-legacy-world-v1/implementation-spec.json",
+        "bytes": 16546,
+        "sha256": "0a1f1fa298bcf542eda79f73f7576c22df3ac1fa5103fa98354da0ea0bb94b43"
+      },
+      "pointer": "/facts/checksum",
+      "canonical_sha256": "6883e2cea5d93824745e5ce93c5adfba0828035f1828f3c9b92d4cd17f2b6e9b",
+      "original_value": {
+        "entry": "0x4601f0",
+        "caller": "0x460240",
+        "initial": 0,
+        "recurrence": "c = ((c & 255) << 8) XOR polynomialTable[c >> 8] XOR reverse8(byte)",
+        "generated_table_polynomial": 4129,
+        "fixed_bytes_per_plane": 1458,
+        "requested_plane2_mask": "mode===1 ? 0x01ff : 0x0fff",
+        "order": [
+          "plane0",
+          "plane1",
+          "plane2"
+        ],
+        "zero_scratch_padding": true,
+        "not_a_standard_crc_name": true
+      },
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-W-notice",
+      "file": {
+        "path": "analysis/game-legacy-world-v1/implementation-spec.json",
+        "bytes": 16546,
+        "sha256": "0a1f1fa298bcf542eda79f73f7576c22df3ac1fa5103fa98354da0ea0bb94b43"
+      },
+      "pointer": "/facts/notice",
+      "canonical_sha256": "523c61aa99f9722b59353db31082bbaea762893526dd96163a8ec6ce350e545b",
+      "original_value": {
+        "id": "receive-00567da4",
+        "tag": "=]M",
+        "consumer": "0x4ef510",
+        "check": "0x460240",
+        "arguments": [
+          "identityA",
+          "identityB",
+          "x1",
+          "y1",
+          "x2",
+          "y2",
+          "check0",
+          "check1",
+          "check2"
+        ],
+        "cache_lookup": "active identityA from009257fc, message identityB; notice identityA is retained for the source request",
+        "mismatch_command": {
+          "id": "send-004f6610",
+          "tag": "!hM",
+          "arguments": "first6 notice fields"
+        }
+      },
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-W-patch",
+      "file": {
+        "path": "analysis/game-legacy-world-v1/implementation-spec.json",
+        "bytes": 16546,
+        "sha256": "0a1f1fa298bcf542eda79f73f7576c22df3ac1fa5103fa98354da0ea0bb94b43"
+      },
+      "pointer": "/facts/patch",
+      "canonical_sha256": "7f28abc13b8b3751ff6b283b4b6f39f4eb041fe2659a3a68016dce5fd118b751",
+      "original_value": {
+        "id": "receive-00567da0",
+        "tag": "=mJ",
+        "consumer": "0x4ef580",
+        "arguments": [
+          "identityA",
+          "identityB",
+          "x1",
+          "y1",
+          "x2",
+          "y2",
+          "byteData"
+        ],
+        "outer_separator": 124,
+        "first_outer_fields": 3,
+        "maximum_outer_field_bytes": 18191,
+        "inner_separator": 44,
+        "maximum_cell_token_bytes": 99,
+        "number_entry": "0x510f00",
+        "numeric_rule": "multiply accumulator by62 before every character; digits0..9/a..z/A..Z; any minus sets sign-1, other invalid=>0; int32 wrap then uint16",
+        "separator_scanning": "byte>=128 consumes following byte as pair; firstNUL ends input",
+        "extra_outer_fields": "ignored"
+      },
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-S-scene",
+      "file": {
+        "path": "analysis/game-legacy-scene-v1/implementation-spec.json",
+        "bytes": 25562,
+        "sha256": "48d410209d1d16812e68b27c4ea9b9a7071d144b41767daa908cf692dd00fc82"
+      },
+      "pointer": "/facts/scene",
+      "canonical_sha256": "672ad7370919b9ed6da9691f9e4107c038746f636b1bc25d7c886cebe9009fbb",
+      "original_value": {
+        "consumer": "0x4ef870",
+        "fields": [
+          "identityA",
+          "identityB",
+          "width",
+          "height",
+          "positionX",
+          "positionY",
+          "headerWord4",
+          "headerWord8",
+          "checksumMode",
+          "positiveConditionalValue",
+          "resourceSelector",
+          "wireField12"
+        ],
+        "chain": [
+          "0x45f530",
+          "0x45f760",
+          "0x45f2a0",
+          "0x4649b0",
+          "0x45f2f0"
+        ],
+        "cache_header": "MAP + byte1 + LE32 wire6 + LE32 wire7 + LE32 width + LE32 height",
+        "cache_body": "three zeroed LE16 planes on creation",
+        "reuse": "same cache identity and all20 header bytes match, unless identityA==2",
+        "identityB_zero": "skip cache preparation",
+        "mode": "wire8 ->45f2a0 param7 ->4649b0 param4 ->00957e88",
+        "position": "two sourced coordinates and float32 times64; facing is not written here",
+        "conditional": "wire9 only sets native conditional globals if >0; timing/unit/other consumers unmodeled"
+      },
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-L-graphics",
+      "file": {
+        "path": "analysis/game-legacy-local-movement-v1/implementation-spec.json",
+        "bytes": 35714,
+        "sha256": "a6e37e7bdd2a587c723543cc118ddb1663079e94725270b9d932678a93509988"
+      },
+      "pointer": "/facts/graphics",
+      "canonical_sha256": "40c10bf720c0aa3c6cee48b4b601ccbaa3f46c62945366c72af7ce9a05d067d1",
+      "original_value": "452460 reads seven40B GraphicInfo groups, uses recordID+prior group record count, converts source28/29bytes and30LE16 to runtime24/25/26; resourceID36->ordinal table.450100 capacity850000 zero initialized. Four conditional source overrides apply after load.463e60 primitive<20000 identity,20000..65535 +200000; >=65536 unchanged.",
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-L-collision",
+      "file": {
+        "path": "analysis/game-legacy-local-movement-v1/implementation-spec.json",
+        "bytes": 35714,
+        "sha256": "a6e37e7bdd2a587c723543cc118ddb1663079e94725270b9d932678a93509988"
+      },
+      "pointer": "/facts/collision",
+      "canonical_sha256": "37ec03925cdaf314f855807b7c785648d49b28859374a5c68431e6ca9de2df38",
+      "original_value": "45f1c0 clips signed-short [x-30,y-20,x+21,y+31] to map.4648f0 mode1 uses plane2 &0x100; otherwise4603a0 uses mapped ground/object classes, mode0 plane2 bit4000 for zero ground, class4/runtimeclass2 overrides walkability, other blockers and northward object footprint, empty-cell and lowbyte1 final overrides.4607c0 blocks outside and only cellvalue1 inside.",
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-L-path",
+      "file": {
+        "path": "analysis/game-legacy-local-movement-v1/implementation-spec.json",
+        "bytes": 35714,
+        "sha256": "a6e37e7bdd2a587c723543cc118ddb1663079e94725270b9d932678a93509988"
+      },
+      "pointer": "/facts/path",
+      "canonical_sha256": "9a299b4583d217523898fc95550e495e793133254db0d2f1db54c65a89642b27",
+      "original_value": "462650 uses source facing helper and candidate offsets0,+1,-1 restricted to initial direction±1, odd-direction corner checks,462520 orthogonal-to-diagonal merge, then x and y fallback. Route contains signed-short endpoint arrays, capacity100. A same-point request clears finalFacing but preserves prior route; outer capacity100 clears route, unsafe fallback overflow rejected independently. Not A*.",
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-L-batching",
+      "file": {
+        "path": "analysis/game-legacy-local-movement-v1/implementation-spec.json",
+        "bytes": 35714,
+        "sha256": "a6e37e7bdd2a587c723543cc118ddb1663079e94725270b9d932678a93509988"
+      },
+      "pointer": "/facts/batching",
+      "canonical_sha256": "a4dcaa02aeb9c0706e9243bb2ab741c98af56f9da2b05a6f51f790d3f0e0fbb0",
+      "original_value": "461b30 takes at most2 pending route steps;462bf0 and462c50 shift queues.461b70 sends lowercase byte+97 with current origin andscene field11 only when partyMode0 orflags100; pure ordinary projection requires explicit no-party context.",
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-L-movement",
+      "file": {
+        "path": "analysis/game-legacy-local-movement-v1/implementation-spec.json",
+        "bytes": 35714,
+        "sha256": "a6e37e7bdd2a587c723543cc118ddb1663079e94725270b9d932678a93509988"
+      },
+      "pointer": "/facts/movement",
+      "canonical_sha256": "783b1b1bb2f4813e31a0711438e4fec91581af4f7d3cffa6892dbae0f8115cf3",
+      "original_value": "462110 targets display grid+direction at speed*source0.01f, float32 normalized velocity×4 and source facing;461660 squares frameScale1 velocity, advances orsnaps, updates grid atarrival and idle on followingtick, preserving animation1 phase.4ff5a0 collision rolls display back to prior actor grid but leaves target/scaled position/velocity independent.",
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-L-missing_cache",
+      "file": {
+        "path": "analysis/game-legacy-local-movement-v1/implementation-spec.json",
+        "bytes": 35714,
+        "sha256": "a6e37e7bdd2a587c723543cc118ddb1663079e94725270b9d932678a93509988"
+      },
+      "pointer": "/facts/missing_cache",
+      "canonical_sha256": "76a57631f4e63b42eb13715f656c185058d52aabaf923564ce988589588b0c08",
+      "original_value": "460820 for full51x51 windows scans 23 raw plane2 words in direction-leading strips atx19/41,y9..31 andy9/31,x19..41; firstzero produces clipped rectangles, atmost2.461e90 sends map requests andsets wait before target is consumed.463ea0 clears wait only after refreshed window is complete.",
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-L-events",
+      "file": {
+        "path": "analysis/game-legacy-local-movement-v1/implementation-spec.json",
+        "bytes": 35714,
+        "sha256": "a6e37e7bdd2a587c723543cc118ddb1663079e94725270b9d932678a93509988"
+      },
+      "pointer": "/facts/events",
+      "canonical_sha256": "8d9a5a73cfe190cf4f071b36b364311e38727fa4d3a5b8d651e6763d3b5c0cd4",
+      "original_value": "461960 examines batch endpoints: lowbyte2 stops before entry(type3); lowbyte3/9/10/11/13 andconditional6/7/8 schedule type1 afterentry.451b60 derives selector from rawsource value;4a31b0 isfixed0.461ac0 decrements onprior arrival andexecutes nexttick.461d00/461e00 reset movement, setguard/sequence andsend004f6530 eventcode/sequence/x/y/direction. UI/audio/fade andresponses remain incomplete.",
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-L-turn",
+      "file": {
+        "path": "analysis/game-legacy-local-movement-v1/implementation-spec.json",
+        "bytes": 35714,
+        "sha256": "a6e37e7bdd2a587c723543cc118ddb1663079e94725270b9d932678a93509988"
+      },
+      "pointer": "/facts/turn",
+      "canonical_sha256": "db7a3462e4232b6d2e53b36924813e93f3a4420e3902bef895edc650494a3eea",
+      "original_value": "462410 checks idle/existing actor/differentface, native turn/action guards, strict unsigned lastTick+500 < currentTick;uppercase byte+65 is sent through004f6470. Source wrap behavior retained.",
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-A-lifecycle",
+      "file": {
+        "path": "analysis/game-legacy-actors-v1/implementation-spec.json",
+        "bytes": 36521,
+        "sha256": "02763d07c25708b54c7f5ccbeb3dbd5d936ef28ae7f8fa6cfc87092398b95743"
+      },
+      "pointer": "/facts/lifecycle",
+      "canonical_sha256": "ba5dc0736a07194368446ce46fbd72a3f7cb81946efd10a6ff278a27d7265a14",
+      "original_value": "Own ID comes from4f2bb0 field0 via4ff570; local actor separate from1000 remote registry; duplicate IDs update, comma removal stops at base62-1/empty; scene unconditionally clears remote registry via440450.",
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-A-motion",
+      "file": {
+        "path": "analysis/game-legacy-actors-v1/implementation-spec.json",
+        "bytes": 36521,
+        "sha256": "02763d07c25708b54c7f5ccbeb3dbd5d936ef28ae7f8fa6cfc87092398b95743"
+      },
+      "pointer": "/facts/motion",
+      "canonical_sha256": "3ab3f55535b5f591311028c6849eac945016b5875ba88f2b87ad9533803ce9ac",
+      "original_value": "4f2010 comma record: id,x,y,action(column4),facing(column5),parameter1,2,3. Remote action1 queues target, speed=parameter1; action50 queues only filtered targets without speed replacement;0 clears queue and sets idle,51 teleports/resets. Coordinated81/82 not ordinary actions.",
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-A-interpolation",
+      "file": {
+        "path": "analysis/game-legacy-actors-v1/implementation-spec.json",
+        "bytes": 36521,
+        "sha256": "02763d07c25708b54c7f5ccbeb3dbd5d936ef28ae7f8fa6cfc87092398b95743"
+      },
+      "pointer": "/facts/interpolation",
+      "canonical_sha256": "0e3136f7d0725f21f131e74e38231d600c92b8d9de600a3ebc7712e474c0c5e8",
+      "original_value": "43c360/43c700/43c6b0; queue<=10, overflow clears and teleports; queue length factors1/1.2f/1.6f/2, speed percent*source0.01f, normalized vector*4, float32 stores, squared-distance snap, trunc display grid; idle follows one tick after snap.",
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-A-direction",
+      "file": {
+        "path": "analysis/game-legacy-actors-v1/implementation-spec.json",
+        "bytes": 36521,
+        "sha256": "02763d07c25708b54c7f5ccbeb3dbd5d936ef28ae7f8fa6cfc87092398b95743"
+      },
+      "pointer": "/facts/direction",
+      "canonical_sha256": "f8e7bbeefb24e643a979fdfbf244a6f7a1f2f844bc7f95ef43704326bf6613ea",
+      "original_value": "4668a0 interpolates65 double degree table with source float32 spills/quadrants;463d30 adds112.5f, normalizes360 and multiplies source1/45f before trunc.",
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-A-projection",
+      "file": {
+        "path": "analysis/game-legacy-actors-v1/implementation-spec.json",
+        "bytes": 36521,
+        "sha256": "02763d07c25708b54c7f5ccbeb3dbd5d936ef28ae7f8fa6cfc87092398b95743"
+      },
+      "pointer": "/facts/projection",
+      "canonical_sha256": "82e9e7d0b0268c5061e9a4a776518c39505015948ec89654c8ff63d877c0366c",
+      "original_value": "463d70: x=((worldX-cameraX)+(worldY-cameraY))/64*32+centerX; y=((worldY-cameraY)-(worldX-cameraX))/64*24+centerY, outputfloat32; native default center320,240 does not prescribe host viewport.",
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-A-movement_command",
+      "file": {
+        "path": "analysis/game-legacy-actors-v1/implementation-spec.json",
+        "bytes": 36521,
+        "sha256": "02763d07c25708b54c7f5ccbeb3dbd5d936ef28ae7f8fa6cfc87092398b95743"
+      },
+      "pointer": "/facts/movement_command",
+      "canonical_sha256": "2353d1c5b7b49158fdbf386903e07e6a68e33ef1d0552a722115903c5daf5d8c",
+      "original_value": "461b70 reads path short bytes,462c80 adds0x61 modulo256,4f2c10 sends current grid origin+byte directions+scene field11 via send-004f6470; empty path produces no request. Collision/path construction and local prediction remain unknown.",
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-A-local_animation",
+      "file": {
+        "path": "analysis/game-legacy-actors-v1/implementation-spec.json",
+        "bytes": 36521,
+        "sha256": "02763d07c25708b54c7f5ccbeb3dbd5d936ef28ae7f8fa6cfc87092398b95743"
+      },
+      "pointer": "/facts/local_animation",
+      "canonical_sha256": "f25265b6be82ec1f1ae58150cbc02e1351d8c6b10d37513d35b7b0329b590e6f",
+      "original_value": "4ff720 requests animation1 with resetPhase0; other requested animations use resetPhase1. Fixed PE globals for initial local speed not established; expose unknown until observed.",
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-I-inverse",
+      "file": {
+        "path": "analysis/game-input-runtime-v1/implementation-spec.json",
+        "bytes": 15620,
+        "sha256": "b5e3162eae14990b1ea383507bd6167a8707fed0c2309145426f928ba5c932b5"
+      },
+      "pointer": "/inverse",
+      "canonical_sha256": "22a7923e376c696bd0929c9f0f251296a8e9a4985e6fd120c98cfa0c07a2f767",
+      "original_value": {
+        "function": "0x463dc0",
+        "float32_scale_hex": "abaaaa3f",
+        "scale": 1.3333333730697632,
+        "operations": "dx=float32(screenX)-int32(centerX);dy=float32(screenY)-int32(centerY);v=dy*float32(4/3);outX=float32(dx-v+cameraX);outY=float32(v+dx+cameraY);no intermediate store"
+      },
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-I-pick",
+      "file": {
+        "path": "analysis/game-input-runtime-v1/implementation-spec.json",
+        "bytes": 15620,
+        "sha256": "b5e3162eae14990b1ea383507bd6167a8707fed0c2309145426f928ba5c932b5"
+      },
+      "pointer": "/pick",
+      "canonical_sha256": "12c5864946c7702231edb724fd7e90340b2847137bcc47d60289bb347c40fef0",
+      "original_value": {
+        "function": "0x4665b0",
+        "bias_double_hex": "000000000000e03f",
+        "operations": "trunc(world+0.5),int32(+32),C truncation /64;reject undefined __ftol overflow",
+        "playfield_y_exclusive": 456
+      },
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-I-pointer",
+      "file": {
+        "path": "analysis/game-input-runtime-v1/implementation-spec.json",
+        "bytes": 15620,
+        "sha256": "b5e3162eae14990b1ea383507bd6167a8707fed0c2309145426f928ba5c932b5"
+      },
+      "pointer": "/pointer",
+      "canonical_sha256": "2877dfeee5307470ff717215c4c1a854c2cc9b802dad1f84cfe2a15a9c0de3e9",
+      "original_value": {
+        "down": [
+          1,
+          2
+        ],
+        "up": [
+          4,
+          8
+        ],
+        "double_down": [
+          17,
+          34
+        ],
+        "source_functions": [
+          "0x4ec9d0",
+          "0x4ecab0",
+          "0x4ecb60",
+          "0x4ecc20",
+          "0x4ecd10",
+          "0x4ecdc0"
+        ],
+        "edge_reset": "0x4eced0 after logic before render-skip when graphics mode nonzero",
+        "duration_start_zero_sentinel": true,
+        "destination_interval_ms": 250,
+        "auto_walk_threshold_ms": 500,
+        "auto_walk": "persists after release;next down cancels with no destination that update;unsigned250ms addition/comparison"
+      },
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-I-clock",
+      "file": {
+        "path": "analysis/game-input-runtime-v1/implementation-spec.json",
+        "bytes": 15620,
+        "sha256": "b5e3162eae14990b1ea383507bd6167a8707fed0c2309145426f928ba5c932b5"
+      },
+      "pointer": "/clock",
+      "canonical_sha256": "ac84bae49086ba59bfd0cd7a3c3524240d4cf9ca586a497ff224365c1078496c",
+      "original_value": {
+        "function": "0x44fb60",
+        "period": 16.666666666666668,
+        "lag_threshold": 16.666666666666668,
+        "skipped_maximum": 19,
+        "present_before_wait": true,
+        "wait_condition": "uint32 now <= double deadline",
+        "forced_render": "bypasses mode/late test including mode0",
+        "rollover": "no epoch repair;explicit reset required",
+        "scope": "normal pacing only;no integrity,cleanup,account or protection code"
+      },
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    },
+    {
+      "id": "MF-I-pipeline",
+      "file": {
+        "path": "analysis/game-input-runtime-v1/implementation-spec.json",
+        "bytes": 15620,
+        "sha256": "b5e3162eae14990b1ea383507bd6167a8707fed0c2309145426f928ba5c932b5"
+      },
+      "pointer": "/pipeline",
+      "canonical_sha256": "ec7e294330e7427ee45db20a24148c10dd144730cb7a0f060cc79021a76893db",
+      "original_value": [
+        "queued pointer events",
+        "inverse projection and native opaque gates",
+        "source destination request/action guard clear",
+        "local movement",
+        "camera follows new float32 local position;window follows new display tile",
+        "actor/map object logic even on skipped presentation",
+        "clear edges if graphics mode nonzero",
+        "source clock skip/present/wait"
+      ],
+      "classification": "retained-fixed-source-rule; historical unknown/supersession kept separate"
+    }
+  ],
+  "reused_shared_contracts": [
+    {
+      "id": "IC-F3",
+      "file": {
+        "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+        "bytes": 39736,
+        "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "291986f7268d045f386252670e687c5a272ad40e6d43d4f908ac3c107d61121e",
+      "title": "主循环把更新、展示、等期限及追赶分开",
+      "original_value": {
+        "id": "IC-F3",
+        "classification": "事实",
+        "title": "主循环把更新、展示、等期限及追赶分开",
+        "scope": "selected fixed37c4 static rules; no runtime/current-version acceptance",
+        "sources": [
+          {
+            "entry": "0x44fb60",
+            "kind": "native",
+            "evidence_id": "ev_6dab36a3217a0c24e69512d29674193261af2e2e0b087a9dd9ac1509221fc245",
+            "source": {
+              "path": "build/analysis/capability-game-producer-context-v1/reused-producer-functions.json",
+              "bytes": 24465140,
+              "sha256": "5a63a810f202c255a43816d39d09a6838704ec60a1f0c230b5b4099e4843870f"
+            },
+            "pointer": "/records/2",
+            "record_sha256": "a2c8a6fe06a377b9dcc102bb1f23253e0d94714dd5d4f1f756e30890b55b4822",
+            "ranges": [
+              {
+                "start": "0x44fb60",
+                "end": "0x4500fb",
+                "bytes": 1436,
+                "file_offset": 323424,
+                "sha256": "597b1563f55b3add4368b10b3bfffa5f5e938f35a72171a3c81972e30c222bd2"
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "所选正常循环的正向次序为45DD10消息泵→450640→451A80→44F870→4EDEF0→510BE0→5015A0；后续依53CB88门槛处理其它更新，4523E0清键位发生在该轮业务之后。",
+          "文件初值538A88与538A90均为double16.666666666666668；非0图形模式且当前tick严格大于deadline+threshold、跳过数<=19时，推进deadline并进入另一轮更新，不展示。否则正常展示/辅助后按tick<=deadline等待，再推进deadline并重置跳过数。",
+          "GetTickCount在原循环内被多次采样；当前runtime一pump显式单tick是独立采样边界，不能自动宣称全程序调用时序等价。宿主检查/清理分支保持来源记录，不在本批执行或当作独立游戏业务新增功能。"
+        ],
+        "normal_update_call_order": [
+          "0x45dd10",
+          "0x450640",
+          "0x451a80",
+          "0x44f870",
+          "0x4edef0",
+          "0x510be0",
+          "0x5015a0"
+        ]
+      },
+      "classification": "existing-shared-contract-reused-not-new-native-analysis"
+    },
+    {
+      "id": "IC-F9",
+      "file": {
+        "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+        "bytes": 39736,
+        "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+      },
+      "pointer": "/facts/8",
+      "canonical_sha256": "8ade51c08f5460fa59ede574520ecfba36ff613b8b5fe056918106dae74e75cc",
+      "title": "当前实现已有独立帧时钟和输入pump边界",
+      "original_value": {
+        "id": "IC-F9",
+        "classification": "事实",
+        "title": "当前实现已有独立帧时钟和输入pump边界",
+        "scope": "selected current repository code, not runtime/device validation",
+        "sources": [],
+        "rules": [
+          "shared clock用double deadline/period，输入now限制uint32；phase/skipCount与严格等待已实现。runtime最多20轮、同pump沿用一个tick，暂停/恢复resetClock可重置期限。",
+          "微信deadline适配用Date.now-origin、非递减clamp与每调用timeout，是已有独立平台选择，不是原游戏wallSeconds或完整长uptime回绕政策。"
+        ],
+        "current_code_refs": [
+          "shared/legacy-game-clock.mjs",
+          "shared/legacy-game-runtime.mjs",
+          "adapters/wechat/launcher-clock.mjs"
+        ]
+      },
+      "classification": "existing-shared-contract-reused-not-new-native-analysis"
+    },
+    {
+      "id": "CT-F1",
+      "file": {
+        "path": "build/analysis/context-transition-contract-v1/specification.json",
+        "bytes": 58295,
+        "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+      },
+      "pointer": "/facts/0",
+      "canonical_sha256": "21e1eb1e6b594bbb7721e278f48ddaf3d87fe127c931897ea879430b5021eab5",
+      "title": "立即主状态、延后恢复与每帧分派是三种职责",
+      "original_value": {
+        "id": "CT-F1",
+        "classification": "事实",
+        "title": "立即主状态、延后恢复与每帧分派是三种职责",
+        "source_scope": "fixed37c4 selected static function bodies; not runtime or current-game acceptance",
+        "sources": [
+          {
+            "entry": "0x5015a0",
+            "evidence_id": "ev_62e7544fa25ad153cc695a31e8ce0f254a994c9d0ed12111f2ef0940c273aec0",
+            "source": {
+              "path": "build/analysis/capability-game-party-social-v1/reused-party-social-native.json",
+              "bytes": 76586034,
+              "sha256": "9738498e94c764467e163985b2486d2fc85ce46d9558fcc9a4109f541b762c13"
+            },
+            "pointer": "/records/59",
+            "record_sha256": "8df13a73c38fdfd6e768073544ec4b79894f646d459bd2633c66254f14d22e98",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x5015a0",
+                "end": "0x50199b",
+                "bytes": 1020,
+                "file_offset": 1051040,
+                "sha256": "0fedb6b390782a11a4ea91bae6492b0a79c8ed8f77c021e12ed29f0ab044d6fc"
+              }
+            ]
+          },
+          {
+            "entry": "0x5019f0",
+            "evidence_id": "ev_8f7890cb928f5bcc7fede5fae3fe67d34355201ea69df3d6bac197c61dd40943",
+            "source": {
+              "path": "build/analysis/capability-game-producer-context-v1/function-5019f0.json",
+              "bytes": 288136,
+              "sha256": "234de999244e054cbbdb552cc2db59c39a53106eee82cb1df383ef7f8a48e18a"
+            },
+            "pointer": "/structuredContent",
+            "record_sha256": "6750aea6b4e788c4c3b250a1ea77de1ca838755a3d068eb1b181c88dae2e47d6",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x5019f0",
+                "end": "0x501a03",
+                "bytes": 20,
+                "file_offset": 1052144,
+                "sha256": "7b85b434a5b0915b0b8f6e0bac47c8e7a2534f9031ffb8b64c9844112c9f339c"
+              }
+            ]
+          },
+          {
+            "entry": "0x501a30",
+            "evidence_id": "ev_c09f2bc59098be87b164a41b5d9295b28cc915bb7d57aba66362c58bb4c39789",
+            "source": {
+              "path": "build/analysis/context-transition-contract-v1/retained-context-records.json",
+              "bytes": 4906786,
+              "sha256": "a284401a6d23aa6841a7b651225f91560839e10979d69e7fddd999a8b50a6e01"
+            },
+            "pointer": "/records/7",
+            "record_sha256": "02529c778d43ecd4c1a697519109063dc8479331b5fac0d291d74d9a6a690d63",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x501a43",
+                "start": "0x501a30",
+                "bytes": 20,
+                "file_offset": 1052208,
+                "sha256": "b8f758ee2c2ad806a45b161a02670f3ffe72422b3d4081f37a53f312a71037f8"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "5019F0直接写F5F17C并把F5F1A0清0；501A30写单槽F5F1A8并把F5F19C清0。它们不是请求代次或连接身份。",
+          "5015A0每帧先处理光标；F5F1A8按signed32非负时，复制到F5F17C、把延后槽置-1、从F5F19C恢复F5F1A0，再按主状态分派。",
+          "主3调用458900；主5只执行入场准备，末段请求主6；主6调用456520，主7调用4567A0，主9调用501A50，主10调用437B30。不得把主5或主状态请求直接视为成功进入世界。"
+        ]
+      },
+      "classification": "existing-shared-contract-reused-not-new-native-analysis"
+    },
+    {
+      "id": "CT-F2",
+      "file": {
+        "path": "build/analysis/context-transition-contract-v1/specification.json",
+        "bytes": 58295,
+        "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+      },
+      "pointer": "/facts/1",
+      "canonical_sha256": "d5c362cb100e461387f313891421bde2acabec185b15aa23edce1810f7d18071",
+      "title": "主5按明确次序清理、恢复并转入主6",
+      "original_value": {
+        "id": "CT-F2",
+        "classification": "事实",
+        "title": "主5按明确次序清理、恢复并转入主6",
+        "source_scope": "fixed37c4 selected static function bodies; not runtime or current-game acceptance",
+        "sources": [
+          {
+            "entry": "0x5015a0",
+            "evidence_id": "ev_62e7544fa25ad153cc695a31e8ce0f254a994c9d0ed12111f2ef0940c273aec0",
+            "source": {
+              "path": "build/analysis/capability-game-party-social-v1/reused-party-social-native.json",
+              "bytes": 76586034,
+              "sha256": "9738498e94c764467e163985b2486d2fc85ce46d9558fcc9a4109f541b762c13"
+            },
+            "pointer": "/records/59",
+            "record_sha256": "8df13a73c38fdfd6e768073544ec4b79894f646d459bd2633c66254f14d22e98",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x5015a0",
+                "end": "0x50199b",
+                "bytes": 1020,
+                "file_offset": 1051040,
+                "sha256": "0fedb6b390782a11a4ea91bae6492b0a79c8ed8f77c021e12ed29f0ab044d6fc"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "先把F5F1AC和727360置0，再按main5_direct_call_order执行；599E0C/924F30在462CA0后清0。4FE460→4FE490→4FDFF0的缓存恢复沿用AB05..AB07，不重新推导文件内部转换。",
+          "4FE490后F5F198=-1、F5F194=0、C5EC18=0；439C80后F5F1B0=0、957E50=0，再5019F0(6)、50F550。",
+          "最后清7个DWORD，自C5E94C至C5E967共28字节；不包含C5E948，不证明其它工作计数或所有窗口都归零。"
+        ],
+        "main5_direct_call_order": [
+          "0x451d20",
+          "0x443b60",
+          "0x461940",
+          "0x45eef0",
+          "0x4ff080",
+          "0x4403f0",
+          "0x4b9a10",
+          "0x44e740",
+          "0x4651d0",
+          "0x462ca0",
+          "0x4eada0",
+          "0x437870",
+          "0x4ea3e0",
+          "0x4fe460",
+          "0x4fe490",
+          "0x507690",
+          "0x4fdff0",
+          "0x4ea1b0",
+          "0x439c80",
+          "0x5019f0",
+          "0x50f550"
+        ],
+        "reused_prior_clauses": [
+          "album_bank_lifecycle/AB05",
+          "album_bank_lifecycle/AB06",
+          "album_bank_lifecycle/AB07"
+        ]
+      },
+      "classification": "existing-shared-contract-reused-not-new-native-analysis"
+    },
+    {
+      "id": "CT-F3",
+      "file": {
+        "path": "build/analysis/context-transition-contract-v1/specification.json",
+        "bytes": 58295,
+        "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "af26f617b995606d335e1a7d047f64e307fb8a20bd25c61a36b8029bf476e51e",
+      "title": "选角槽、清bank、配置与名单分组不能合并",
+      "original_value": {
+        "id": "CT-F3",
+        "classification": "事实",
+        "title": "选角槽、清bank、配置与名单分组不能合并",
+        "source_scope": "fixed37c4 selected static function bodies; not runtime or current-game acceptance",
+        "sources": [
+          {
+            "entry": "0x458900",
+            "evidence_id": "ev_3fba7a5e4ec8ae133383e2aaed238a1224db51fa7d379a68a07ea7fc5cbfd523",
+            "source": {
+              "path": "build/analysis/capability-game-mail-data-v1/reused-character-mail-native.json",
+              "bytes": 10491791,
+              "sha256": "bebb953763d859561bade88decc4b962c05f08635f7f565cb6de0efd22f071b3"
+            },
+            "pointer": "/records/0",
+            "record_sha256": "96bd8cc626844bee6f90e4b01518998ee833d0fa46547bf0b5a152ab13e722b6",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x458900",
+                "end": "0x45930c",
+                "bytes": 2573,
+                "file_offset": 359680,
+                "sha256": "f1f7aea8402570f90a6a243da9cd588ad62a52383c824f654a416ebc54aeb6f8"
+              }
+            ]
+          },
+          {
+            "entry": "0x4ff080",
+            "evidence_id": "ev_7324c177e6f9d26a60a0ffa71d47052f578b52e4ae49273ee0258b4c65e7f214",
+            "source": {
+              "path": "build/analysis/capability-game-mail-data-v1/reused-character-mail-native.json",
+              "bytes": 10491791,
+              "sha256": "bebb953763d859561bade88decc4b962c05f08635f7f565cb6de0efd22f071b3"
+            },
+            "pointer": "/records/1",
+            "record_sha256": "f9a19643877723abde63d165da17c6f0213a19a4ea09abcb150189e5057d2889",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x4ff080",
+                "end": "0x4ff15d",
+                "bytes": 222,
+                "file_offset": 1041536,
+                "sha256": "7ee091de8814ea2ecfab0309724e2373191d370778ee787bba1f52fd3f41a174"
+              }
+            ]
+          },
+          {
+            "entry": "0x5057b0",
+            "evidence_id": "ev_5051425e615ac62ce30117427ee226457f3d8295e15194d333d60a89592a19aa",
+            "source": {
+              "path": "build/analysis/context-transition-contract-v1/retained-extra-records.json",
+              "bytes": 1030323,
+              "sha256": "2ce7effb32ce88f2b1d494d24561ead99dcc9f7c5e39b80919f8c8548928b17b"
+            },
+            "pointer": "/records/0",
+            "record_sha256": "a8d571e46f524ebcf5fe7350b574508edd0e1270e4c5f2331991e2b30a421fd9",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x5057ec",
+                "start": "0x5057b0",
+                "bytes": 61,
+                "file_offset": 1067952,
+                "sha256": "aa398d2373d60395e94740e51bd87a429a480d440ff5ede21fe5d6738c874b6e"
+              }
+            ]
+          },
+          {
+            "entry": "0x5059d0",
+            "evidence_id": "ev_8c0538cc46c393d07119e04266b81b2357a6fe196924eb26c7f1856b6902e563",
+            "source": {
+              "path": "build/analysis/context-transition-contract-v1/retained-extra-records.json",
+              "bytes": 1030323,
+              "sha256": "2ce7effb32ce88f2b1d494d24561ead99dcc9f7c5e39b80919f8c8548928b17b"
+            },
+            "pointer": "/records/5",
+            "record_sha256": "a202eed9fc8a418cda9204ac770fc29ccc11cc02afe5b4d50cb21d6411cc583c",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x5059e3",
+                "start": "0x5059d0",
+                "bytes": 20,
+                "file_offset": 1068496,
+                "sha256": "1c2b97699f3570ca45e6b5a0961a01431cbc6e89112b374caceb15dbed722d80"
+              }
+            ]
+          },
+          {
+            "entry": "0x507690",
+            "evidence_id": "ev_80d323226e4c5119b04c75204edcf14a0a1b8a434ddeddd4cbac11c6e6648dda",
+            "source": {
+              "path": "build/analysis/context-transition-contract-v1/retained-extra-records.json",
+              "bytes": 1030323,
+              "sha256": "2ce7effb32ce88f2b1d494d24561ead99dcc9f7c5e39b80919f8c8548928b17b"
+            },
+            "pointer": "/records/3",
+            "record_sha256": "101130eb6bf8bc8919f10a930cfbc44ef67af99c92aafc209545ab22a247ad72",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x507690",
+                "start": "0x507690",
+                "bytes": 1,
+                "file_offset": 1075856,
+                "sha256": "ae3f4619b0413d70d3004b9131c3752153074e45725be13b9a148978895e359e"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "458900在两个148字节角色行中把signed16槽号发布到F5F048。空槽创建分支先清当前图鉴/邮件/公会bank并保存；已有角色的选择分支直接请求主5，不能套用空槽分支的清bank。详见原AB01/AB02。",
+          "4FF080只对指定活体区域作批量清零，再使用当前bank恢复设置：5057B0读取F6305A/5C/5E/60+bank的四个byte到32位live字段；5059D0读取F63066+2*bank的word到FBA3D0。bank不等于文件目录索引、名单group、账号或远端角色唯一身份。",
+          "507690完整体只有C3/RET；调用者传bank不产生实际palette或bank更新。4FF080还初始化活动/选择字段与0..14的4FF030，不能称作所有缓存清空。"
+        ],
+        "reused_prior_clauses": [
+          "album_bank_lifecycle/AB01",
+          "album_bank_lifecycle/AB02",
+          "chat_owner_closure/CO-03",
+          "chat_owner_closure/CO-04"
+        ]
+      },
+      "classification": "existing-shared-contract-reused-not-new-native-analysis"
+    },
+    {
+      "id": "CT-F4",
+      "file": {
+        "path": "build/analysis/context-transition-contract-v1/specification.json",
+        "bytes": 58295,
+        "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "6734d23deb5a523940d264eb34ca0774ec1d936a89249bdcac4cc8bb092b2be6",
+      "title": "聊天与一般活体初始化包含默认重建和条件日志打开",
+      "original_value": {
+        "id": "CT-F4",
+        "classification": "事实",
+        "title": "聊天与一般活体初始化包含默认重建和条件日志打开",
+        "source_scope": "fixed37c4 selected static function bodies; not runtime or current-game acceptance",
+        "sources": [
+          {
+            "entry": "0x443b60",
+            "evidence_id": "ev_4fafd479fe789a573a2b499108a20e2c9ae80b79904f644117cac0683063a103",
+            "source": {
+              "path": "build/analysis/capability-game-chat-social-v1/reused-chat-social-native.json",
+              "bytes": 142138030,
+              "sha256": "0cad84a77045b93b3fb1ac9886cf5bbf66fe2cba639c4d2360a86736105f81ee"
+            },
+            "pointer": "/records/14",
+            "record_sha256": "3c1d9050edcd1dab248cde1830eaae281541f2446bba649bd4e74a5e735ded7b",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x443b60",
+                "end": "0x443be7",
+                "bytes": 136,
+                "file_offset": 274272,
+                "sha256": "090b4bd9db250aec328dc22a8cf25d4056d52f032061f62b3f8440b08291bed1"
+              },
+              {
+                "start": "0x443bf0",
+                "end": "0x443d56",
+                "bytes": 359,
+                "file_offset": 274416,
+                "sha256": "cc4fd92da3e04ae4d49ce25c744a6a13c475750af3224b2d87f17df1deffcb0a"
+              }
+            ]
+          },
+          {
+            "entry": "0x4403f0",
+            "evidence_id": "ev_05aaa11546a8f2901a81912f588dd96295809799cb698ba4c01a02175a52bb71",
+            "source": {
+              "path": "build/analysis/capability-game-chat-social-v1/reused-chat-social-native.json",
+              "bytes": 142138030,
+              "sha256": "0cad84a77045b93b3fb1ac9886cf5bbf66fe2cba639c4d2360a86736105f81ee"
+            },
+            "pointer": "/records/56",
+            "record_sha256": "8874e20a00e690244fbb812f11c6b3e2104d0443a7c62e6810cdd0367d93229a",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x4403f0",
+                "end": "0x440444",
+                "bytes": 85,
+                "file_offset": 260080,
+                "sha256": "7179fdd367081921ccc12ef82c84a49a401d69e2c583c5b4d0ce8013624ae2a8"
+              }
+            ]
+          },
+          {
+            "entry": "0x45eef0",
+            "evidence_id": "ev_4d6bed4c6424cf030073e514b31ef005a2ce7817f6a3015deee20634e12edb92",
+            "source": {
+              "path": "build/analysis/context-transition-contract-v1/retained-context-records.json",
+              "bytes": 4906786,
+              "sha256": "a284401a6d23aa6841a7b651225f91560839e10979d69e7fddd999a8b50a6e01"
+            },
+            "pointer": "/records/1",
+            "record_sha256": "3e92f90837f198dbe0657cde9d21ef4b28cf755707fa851906fa888b37686cc3",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x45f16a",
+                "start": "0x45eef0",
+                "bytes": 635,
+                "file_offset": 385776,
+                "sha256": "23a7fa8e671c11e32a693f82da708c360dcb4d6f1db786aada383426f0917d8e"
+              }
+            ]
+          },
+          {
+            "entry": "0x461940",
+            "evidence_id": "ev_a32b46e83e465ac20d986eb48359918d4bb9c3f33db6c96cbc73856129f467c4",
+            "source": {
+              "path": "build/analysis/context-transition-contract-v1/retained-context-records.json",
+              "bytes": 4906786,
+              "sha256": "a284401a6d23aa6841a7b651225f91560839e10979d69e7fddd999a8b50a6e01"
+            },
+            "pointer": "/records/2",
+            "record_sha256": "e47d48316661ca2d2f38c931a9e42c1f5e52fe0b8a49de8089456e900d9fcd8b",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x461953",
+                "start": "0x461940",
+                "bytes": 20,
+                "file_offset": 396608,
+                "sha256": "e4bb079b1a24b6f63316a7280747d22d8d0e4f805e71a3abefb48aa0c9e8a367"
+              }
+            ]
+          },
+          {
+            "entry": "0x44e740",
+            "evidence_id": "ev_0e8a13b0a4beec7eb5fbebbdddd98add712b7b00c5f4c390f305901f73b6d77a",
+            "source": {
+              "path": "build/analysis/context-transition-contract-v1/retained-context-records.json",
+              "bytes": 4906786,
+              "sha256": "a284401a6d23aa6841a7b651225f91560839e10979d69e7fddd999a8b50a6e01"
+            },
+            "pointer": "/records/0",
+            "record_sha256": "1b65dcdde24813986a9bcb6eb27cdba2f4a468f2d01ec55c054849daf100f08a",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x44e7c5",
+                "start": "0x44e740",
+                "bytes": 134,
+                "file_offset": 318272,
+                "sha256": "2754ff66e0967d8923e15d22a5eb9f67b0db22fde21dfa7f791f6958b6964a76"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "443B60清5E4990的0x9A00个DWORD和60FDA8的0x57个DWORD，调用445490/443AB0重建默认窗口，再复制0x57个DWORD至60F9D8并设置行标志。它既不是单纯清屏，也不是所有聊天对象析构。",
+          "60FF20日志句柄非0时，443B60跳过其打开分支；为0时按现有日志合同创建/重开并写头、flush。进入角色不证明已有日志必定关闭或换角色重开。",
+          "4403F0清所列行和状态字段；45EEF0混有4032F0/403320数值装箱、FFFF哨兵和辅助调用，不把伪代码的局部值直接翻译成原结构所有字节清0。",
+          "461940是BFF34C的DWORD、BFF350/BFF352的WORD清零；44E740既有0也有1默认值，独立输入所有者必须保留这些差别。"
+        ]
+      },
+      "classification": "existing-shared-contract-reused-not-new-native-analysis"
+    },
+    {
+      "id": "CT-F5",
+      "file": {
+        "path": "build/analysis/context-transition-contract-v1/specification.json",
+        "bytes": 58295,
+        "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+      },
+      "pointer": "/facts/4",
+      "canonical_sha256": "db57970e2e47fadb09ea871c6d6a6067e677143df9346a555d958317a6901718",
+      "title": "其它入场辅助的副作用范围有限",
+      "original_value": {
+        "id": "CT-F5",
+        "classification": "事实",
+        "title": "其它入场辅助的副作用范围有限",
+        "source_scope": "fixed37c4 selected static function bodies; not runtime or current-game acceptance",
+        "sources": [
+          {
+            "entry": "0x451d20",
+            "evidence_id": "ev_b50f198b909fe53d3b6646da895f09cd28bef10cf1ef509de52b5b576553468f",
+            "source": {
+              "path": "build/analysis/context-transition-contract-v1/retained-extra-records.json",
+              "bytes": 1030323,
+              "sha256": "2ce7effb32ce88f2b1d494d24561ead99dcc9f7c5e39b80919f8c8548928b17b"
+            },
+            "pointer": "/records/9",
+            "record_sha256": "0c9001a1f90cab0c88d5e4f96420a1e7527a2ef5120858bb4fe670957103cc4d",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x451d45",
+                "start": "0x451d20",
+                "bytes": 38,
+                "file_offset": 332064,
+                "sha256": "db36951677879bfd3f31ec73fc53f97e9ff8dd4032dbdc92041ee393627279a0"
+              }
+            ]
+          },
+          {
+            "entry": "0x4b9a10",
+            "evidence_id": "ev_8d523ac401cf03f358537cf231e76b88823467726f15c5b5d43af6ccb1473a66",
+            "source": {
+              "path": "build/analysis/context-transition-contract-v1/retained-extra-records.json",
+              "bytes": 1030323,
+              "sha256": "2ce7effb32ce88f2b1d494d24561ead99dcc9f7c5e39b80919f8c8548928b17b"
+            },
+            "pointer": "/records/6",
+            "record_sha256": "2cc4a10a57e4183bd468523e80bbb3cd1f1b8a06d983f56d5b23608cc0dff7ac",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x4b9a1a",
+                "start": "0x4b9a10",
+                "bytes": 11,
+                "file_offset": 757264,
+                "sha256": "4ddb1830233d99d3261483651b1f9677752e2c595f7f84ff162247fc050cb541"
+              }
+            ]
+          },
+          {
+            "entry": "0x4651d0",
+            "evidence_id": "ev_8f6ea8a3cd0eff0d2b2328e3c6d17bcf48390f5248f15777e6f3b71f6be9b5b6",
+            "source": {
+              "path": "build/analysis/context-transition-contract-v1/retained-extra-records.json",
+              "bytes": 1030323,
+              "sha256": "2ce7effb32ce88f2b1d494d24561ead99dcc9f7c5e39b80919f8c8548928b17b"
+            },
+            "pointer": "/records/7",
+            "record_sha256": "b72a02b6b0aebc747e2771dd8cd5791e579b2a0030a2e463ad4975cc33801fe5",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x46526c",
+                "start": "0x4651d0",
+                "bytes": 157,
+                "file_offset": 411088,
+                "sha256": "16f96be2d8a7ceadda56d8d35393ab496c95f3bde7978e6254e5452bdad22b3d"
+              }
+            ]
+          },
+          {
+            "entry": "0x462ca0",
+            "evidence_id": "ev_5238efd8bbc3ff679dd3d9388e2c88d1d5468cfaee2839e89300fe3f5ccc94a6",
+            "source": {
+              "path": "build/analysis/context-transition-contract-v1/retained-extra-records.json",
+              "bytes": 1030323,
+              "sha256": "2ce7effb32ce88f2b1d494d24561ead99dcc9f7c5e39b80919f8c8548928b17b"
+            },
+            "pointer": "/records/1",
+            "record_sha256": "e7cd25eb2a7831c37e76410233d67b7d5de0d6bdcd816792c0f48fa1a87f94ea",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x462cb6",
+                "start": "0x462ca0",
+                "bytes": 23,
+                "file_offset": 401568,
+                "sha256": "63ebcf6003682adc1c5a8efab5b4abab61d86234d5de849cbf5e4c8972f65bea"
+              }
+            ]
+          },
+          {
+            "entry": "0x4eada0",
+            "evidence_id": "ev_b9c2d0f49b7771aba2c091ad7d2334dc73270c088c369887716572170dce7f88",
+            "source": {
+              "path": "build/analysis/capability-shared-dispatch-v1/new-native-records.json",
+              "bytes": 1758608,
+              "sha256": "f3bfdbb91904cb9b1fe5ead2a8cf8dd451831dfd56443fa4ef6dd349fc631625"
+            },
+            "pointer": "/records/3",
+            "record_sha256": "45a8e14b418c9a81ffdd4e795bf198c086725269503c83fd1cddea1f11f2b508",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x4eadb2",
+                "start": "0x4eada0",
+                "bytes": 19,
+                "file_offset": 958880,
+                "sha256": "45c23ee1ac948e6f7a2171720b136f111d5c5d1b32ea24e0c776cd4fa3557a43"
+              }
+            ]
+          },
+          {
+            "entry": "0x437870",
+            "evidence_id": "ev_865362b0facdc90b93d825a778c8b68b0d20738638d2e59445cab949aa333952",
+            "source": {
+              "path": "build/analysis/context-transition-contract-v1/retained-extra-records.json",
+              "bytes": 1030323,
+              "sha256": "2ce7effb32ce88f2b1d494d24561ead99dcc9f7c5e39b80919f8c8548928b17b"
+            },
+            "pointer": "/records/4",
+            "record_sha256": "840fbbb4397cfcc7a344da2d9df705f0e2e00e0bc86f5d3c3b6b584843778999",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x437889",
+                "start": "0x437870",
+                "bytes": 26,
+                "file_offset": 224368,
+                "sha256": "2b7c904651d29739c29ea5910c023418c30695f8739754b7d03fdb3b59608116"
+              }
+            ]
+          },
+          {
+            "entry": "0x4ea3e0",
+            "evidence_id": "ev_6b26a533670605b985e021ab633371004d0ad713d235e7c8c043a0178dcec412",
+            "source": {
+              "path": "build/analysis/context-transition-contract-v1/retained-extra-records.json",
+              "bytes": 1030323,
+              "sha256": "2ce7effb32ce88f2b1d494d24561ead99dcc9f7c5e39b80919f8c8548928b17b"
+            },
+            "pointer": "/records/2",
+            "record_sha256": "9e9978f8fba2ce4d6137bff10582b1f9e4524f4a705d5aacec1c2689d3161301",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x4ea3f2",
+                "start": "0x4ea3e0",
+                "bytes": 19,
+                "file_offset": 956384,
+                "sha256": "654405617569380ecd36cc4d9138cbed013ad4159fa41e8ffb03a84bceef087c"
+              }
+            ]
+          },
+          {
+            "entry": "0x439c80",
+            "evidence_id": "ev_9e512147a081ec5f1a0463baa525bdb89082678c60172d19db0f5edfc822349c",
+            "source": {
+              "path": "build/analysis/context-transition-contract-v1/retained-extra-records.json",
+              "bytes": 1030323,
+              "sha256": "2ce7effb32ce88f2b1d494d24561ead99dcc9f7c5e39b80919f8c8548928b17b"
+            },
+            "pointer": "/records/8",
+            "record_sha256": "a191e8c758e4dca76d8a6caa8b19b77db78b81bfc7522dea2f649eaafa29a707",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x439c8a",
+                "start": "0x439c80",
+                "bytes": 11,
+                "file_offset": 233600,
+                "sha256": "2ec820e4e1c3b33ea1d67d56d7195d6555265e59c16928c85584a322899ee9b3"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "451D20仅在451D10返回1时对已有IME上下文先ImmSetOpenStatus(0)后(1)，不是无条件关闭IME或跨端输入规格已完成。",
+          "4B9A10写55E4D4=-1；462CA0清978A54/978A48/9257E0/925098；437870清599C94/599C90并设5340EC/5340E0=-1；439C80只清5E2774。",
+          "4651D0重建从BFF378起步长0x44的前后指针/哨兵并重置指定字段，其中有word/byte宽度及1/FFFF默认；不能照一份内存全零模型复刻。",
+          "4EADA0先443E50再清C450A8/F5F050；4EA3E0另清C450A8/F5F050/C1DD94。普通动作F5F050与主模式F5F17C分别保留。"
+        ]
+      },
+      "classification": "existing-shared-contract-reused-not-new-native-analysis"
+    },
+    {
+      "id": "CT-F6",
+      "file": {
+        "path": "build/analysis/context-transition-contract-v1/specification.json",
+        "bytes": 58295,
+        "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+      },
+      "pointer": "/facts/5",
+      "canonical_sha256": "ce208a660b0b1b42d1a63526dde537a0b37595c5362e37b7103e9b604b614c62",
+      "title": "同一帧辅助按主子状态分配清理职责",
+      "original_value": {
+        "id": "CT-F6",
+        "classification": "事实",
+        "title": "同一帧辅助按主子状态分配清理职责",
+        "source_scope": "fixed37c4 selected static function bodies; not runtime or current-game acceptance",
+        "sources": [
+          {
+            "entry": "0x4ea1b0",
+            "evidence_id": "ev_5a9aa99e0c4f40fd320750880e68a13a07ff24ec69bddf491108e34559a561d1",
+            "source": {
+              "path": "build/analysis/capability-shared-dispatch-v1/new-native-records.json",
+              "bytes": 1758608,
+              "sha256": "f3bfdbb91904cb9b1fe5ead2a8cf8dd451831dfd56443fa4ef6dd349fc631625"
+            },
+            "pointer": "/records/1",
+            "record_sha256": "39d4ec183e04743b7e90a6dad0d392bd7d04442c9e3203297adc9ad7e7b7da40",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x4ea1b0",
+                "end": "0x4ea2ab",
+                "bytes": 252,
+                "file_offset": 955824,
+                "sha256": "4655c509bfc6da69500502bc45583a6d75e7b752744c8666dd1c92f21d3d4166"
+              }
+            ]
+          },
+          {
+            "entry": "0x467520",
+            "evidence_id": "ev_c6d84672ac46de763952bd65597ee6740c75dfb118400fac5889bd6ca9f49edd",
+            "source": {
+              "path": "build/analysis/capability-window-rebuild-v1/new-native-records.json",
+              "bytes": 2339954,
+              "sha256": "bfcb742b8755abba45223321eb4bbcbdd214cf283761c6b0c734d91e5ac34899"
+            },
+            "pointer": "/records/8",
+            "record_sha256": "4f8bf1d08cee1b0e312ab738d38e273269499e93779b34be052fc97c58bf0e19",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x467520",
+                "end": "0x46757f",
+                "bytes": 96,
+                "file_offset": 420128,
+                "sha256": "766c2074a0e71483e17cf2bc75abce8edd5e67e00808fe1831cb4e8f2cfa065c"
+              }
+            ]
+          },
+          {
+            "entry": "0x4675a0",
+            "evidence_id": "ev_689658d7b8a70846554e3daa410767ce5ab8d0558abe9e9b7945311d488f281d",
+            "source": {
+              "path": "build/analysis/capability-window-rebuild-v1/new-native-records.json",
+              "bytes": 2339954,
+              "sha256": "bfcb742b8755abba45223321eb4bbcbdd214cf283761c6b0c734d91e5ac34899"
+            },
+            "pointer": "/records/5",
+            "record_sha256": "58562e29c556ec4d50859ed985068ca6b7a7202ce6f40eed4b42d34c479531ac",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x4675a0",
+                "end": "0x467678",
+                "bytes": 217,
+                "file_offset": 420256,
+                "sha256": "a74824fa4eb5838cdfe2e3482b008dace8420c33af0c640218feebec0c262643"
+              }
+            ]
+          },
+          {
+            "entry": "0x467580",
+            "evidence_id": "ev_a8f296d7d2ab0d895aa029252eb09f2088d4658c306bf927bf444febfdf620ff",
+            "source": {
+              "path": "build/analysis/capability-window-rebuild-v1/new-native-records.json",
+              "bytes": 2339954,
+              "sha256": "bfcb742b8755abba45223321eb4bbcbdd214cf283761c6b0c734d91e5ac34899"
+            },
+            "pointer": "/records/7",
+            "record_sha256": "49f16e5d9ef8606d0d53b04c90a740cad4b47341b85c48b1aca361b72878adb9",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x467580",
+                "end": "0x46759d",
+                "bytes": 30,
+                "file_offset": 420224,
+                "sha256": "62d8f852b969ca39bb0b4b6857f37bf11b992eb2f3ac212f6024b75cb32f829f"
+              }
+            ]
+          }
+        ],
+        "clauses": [
+          "4EA1B0在主5依次4B4160→467520→4675A0；主7/B依次468EE0→468E50→467580。主9子1/4/200/CC/FA/FC及主10子1各有不同分支，复用共享帧合同，不强制整表清理。",
+          "467520在5185F0返回0时才调用517750，随后清C108E4/C10938/C1098C/C10F20四捕获标志。4675A0重置记录后按设置选择默认窗口、调用469590/469580，末段无条件C1016C=1。",
+          "467580依次4B57C0→4FDF40→4FEAE0→4FED30→518570→5186A0，不检查这些辅助的返回值；只有调用次序，不构成文件提交成功或回滚证据。"
+        ],
+        "reused_prior_clauses": [
+          "dispatch-binding/shared_frame_recovery",
+          "dispatch-binding/window_rebuild"
+        ]
+      },
+      "classification": "existing-shared-contract-reused-not-new-native-analysis"
+    },
+    {
+      "id": "OW-01",
+      "file": {
+        "path": "build/analysis/ordinary-action-workflows-v1/specification.json",
+        "bytes": 153162,
+        "sha256": "f66eb8e6d2b05a3531a0745ff047779c5906d4b5b58ab92f5a0caf0f34160368"
+      },
+      "pointer": "/facts/0",
+      "canonical_sha256": "9331dc15a222d38b8c2e209c1c9bd71009bb8f94c0cc3fc13f24c2f8eb2f2ff2",
+      "title": "真实键盘入口与两套布局",
+      "original_value": {
+        "id": "OW-01",
+        "classification": "事实：固定37c4所选静态来源规则",
+        "title": "真实键盘入口与两套布局",
+        "entries": [
+          "0x45dd80",
+          "0x4b4170",
+          "0x466e50",
+          "0x466f50"
+        ],
+        "clauses": [
+          "复用45DD80的WM_KEYDOWN/wParam写者和72869C字节键槽；0x02按住、0x04首次按下与0x10重复消息触发分开，Ctrl是索引0x11。微软Win32主机合同只辅助键名，不证明游戏实际运行。",
+          "4B4170仅处理C3B618布局0/1；在Ctrl按住且F5F17C!=10的所选分支，布局0的7286E7/7286F2首次事件依次调用A466E50/B466F50，布局1改为7286E6/7286E7。按基址及VK表静态绑定为Ctrl+K/V与Ctrl+J/K；此Ctrl分支没有另加Shift必须抬起的条件。",
+          "布局不是另一套窗口风格的同义字段。A/B的业务名称、对端接受/回复仍待来源，不将快捷键直接命名为决斗或交易。"
+        ],
+        "source_refs": [
+          {
+            "entry": "0x45dd80",
+            "kind": "derived",
+            "evidence_id": null,
+            "source_check_pointer": "/ordinary_action_workflows/bodies/35"
+          },
+          {
+            "entry": "0x4b4170",
+            "kind": "native",
+            "evidence_id": "ev_b3320e59688a01a36e1d988b8547c3fb5617d047f1f971a669c52feacb1331a7",
+            "source_check_pointer": "/ordinary_action_workflows/bodies/0"
+          },
+          {
+            "entry": "0x466e50",
+            "kind": "native",
+            "evidence_id": "ev_5f5d9229a375022277c433cf2b0c023b6a998f6d9c9985f9045b5bc1ea91750c",
+            "source_check_pointer": "/ordinary_action_workflows/bodies/1"
+          },
+          {
+            "entry": "0x466f50",
+            "kind": "native",
+            "evidence_id": "ev_a81268dc76bffd30b150ecc221a0676dd6c4e7307109ad9cd72e79299ddab361",
+            "source_check_pointer": "/ordinary_action_workflows/bodies/2"
+          }
+        ],
+        "whole_capability_or_runtime_accepted": false
+      },
+      "classification": "existing-shared-contract-reused-not-new-native-analysis"
+    },
+    {
+      "id": "OW-02",
+      "file": {
+        "path": "build/analysis/ordinary-action-workflows-v1/specification.json",
+        "bytes": 153162,
+        "sha256": "f66eb8e6d2b05a3531a0745ff047779c5906d4b5b58ab92f5a0caf0f34160368"
+      },
+      "pointer": "/facts/1",
+      "canonical_sha256": "d9b6d1115567b268ec160f08a973622d6f7e66dbde915625d159eea538e5ed57",
+      "title": "同帧多动作与已有发送条件",
+      "original_value": {
+        "id": "OW-02",
+        "classification": "事实：固定37c4所选静态来源规则",
+        "title": "同帧多动作与已有发送条件",
+        "entries": [
+          "0x4b4170",
+          "0x466e50",
+          "0x466f50"
+        ],
+        "clauses": [
+          "两布局均先检测A再检测B，使用独立if而非互斥else；所选调用不清键事件。若同帧两事件存在，保留顺序及两函数内各自资格，不能统一预先去重为一条固定动作。",
+          "A/B继续使用既有共享614884的strict last+500<now，只有实际发送分支更新时间；A通过并发包时可使紧随的B受间隔约束。A资格失败不必然阻止B；提示声音不等于发包或业务成功。"
+        ],
+        "source_refs": [
+          {
+            "entry": "0x4b4170",
+            "kind": "native",
+            "evidence_id": "ev_b3320e59688a01a36e1d988b8547c3fb5617d047f1f971a669c52feacb1331a7",
+            "source_check_pointer": "/ordinary_action_workflows/bodies/0"
+          },
+          {
+            "entry": "0x466e50",
+            "kind": "native",
+            "evidence_id": "ev_5f5d9229a375022277c433cf2b0c023b6a998f6d9c9985f9045b5bc1ea91750c",
+            "source_check_pointer": "/ordinary_action_workflows/bodies/1"
+          },
+          {
+            "entry": "0x466f50",
+            "kind": "native",
+            "evidence_id": "ev_a81268dc76bffd30b150ecc221a0676dd6c4e7307109ad9cd72e79299ddab361",
+            "source_check_pointer": "/ordinary_action_workflows/bodies/2"
+          }
+        ],
+        "whole_capability_or_runtime_accepted": false
+      },
+      "classification": "existing-shared-contract-reused-not-new-native-analysis"
+    },
+    {
+      "id": "AR-F4",
+      "file": {
+        "path": "build/analysis/ambient-rng-activation-v1/specification.json",
+        "bytes": 34863,
+        "sha256": "3255a2c3e2fcbfa1c87a2b39a53b4ed720fee812074e2805492a621032e6d165"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "5d8bfbb23d4355aff92d68a0ec92db3e61c4303f42d2802fe9a3035e2af73510",
+      "title": "地图原值200段与250段进入不同音频命名空间",
+      "original_value": {
+        "id": "AR-F4",
+        "classification": "事实",
+        "title": "地图原值200段与250段进入不同音频命名空间",
+        "scope": "selected static37c4 activation rules; not whole-source/current-version/runtime acceptance",
+        "sources": [
+          {
+            "entry": "0x463ea0",
+            "source": {
+              "path": "build/analysis/game-battle-return-v1/463ea0-7e3971a3.json",
+              "bytes": 7748126,
+              "sha256": "fe11e678e997d7c561287650e98f918de0aebd36eb4288673105d1476628130f"
+            },
+            "pointer": "",
+            "record_sha256": "d59caf67a8cbb1d4a25155c10344977c9571dad890e40a69a2278f62bd900dd2",
+            "evidence_id": "ev_7e3971a33ff80486f887201cfad0422f3c155f7623104b7407d8232df1938b8c",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x4648e4",
+                "start": "0x463ea0",
+                "bytes": 2629,
+                "file_offset": 406176,
+                "sha256": "6872f312ec5763b6550efa5a704e34f343327c8605fabf28c1638c909a636460"
+              }
+            ]
+          },
+          {
+            "entry": "0x510890",
+            "source": {
+              "path": "build/analysis/ambient-rng-activation-v1/function-510890.json",
+              "bytes": 561402,
+              "sha256": "3e4e02d51af35127c661b5a96c2d39dc285f6cb2855c889a792f41c2c1651d38"
+            },
+            "pointer": "/structuredContent",
+            "record_sha256": "72bd4a0657c4e96138f8dade9f94f1e53c3802bd40f2cdcac17de54c9ec63862",
+            "evidence_id": "ev_aeaaa591836014a4dc6b8b9c461ce6dc1ed7a3dc8bfdbac00c40ddb6b356b872",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x510890",
+                "end": "0x5109f2",
+                "bytes": 355,
+                "file_offset": 1113232,
+                "sha256": "340e96a78e995e25fb1cbb58c192a685ee129578fdc4de49d7f3fb6cef26cf5b"
+              }
+            ]
+          },
+          {
+            "entry": "0x510000",
+            "source": {
+              "path": "build/analysis/game-legacy-battle-audio-v1/rea-evidence.json",
+              "bytes": 2741892,
+              "sha256": "697d5aa81e5e74d445346cb678e21c5ff69017080cc7349a35cff0e3176f1f9b"
+            },
+            "pointer": "/records/14",
+            "record_sha256": "95a8fe9dfc5c6eb5f3931698493883069e0416f8379d3541886f12cadfe53f05",
+            "evidence_id": "ev_ed5478702b9a0a11d8408502f41a9388c57bd4c1a1428bd8499be5bba21bdc4e",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x510226",
+                "start": "0x510000",
+                "bytes": 551,
+                "file_offset": 1111040,
+                "sha256": "1efb912ff98aff973918a7bb483e935d9c9ff1208e4b4b80895b8f0d6d12438b"
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "463EA0先清FBA3C8。原957E88!=1分支且param1!=0时，normalized primitive200..249调用既有510570并置音乐请求标记；250..299提交510890(code,x,y)。一格内先ground后object，按原遍历序执行。",
+          "ground环境请求传resolved ID；object先用resolved ID判定250段，实参却从原object plane word重新读取。raw/resolved两个值与所属plane必须同时保留，不能一律归一后发送。",
+          "原mode1路径没有这段直接primitive生产，但两种模式完成正常遍历后都调用510C10。加载失败可提前返回；param1==0仅跳过上述primitive效果，不统一关闭后备扫描。",
+          "510000则是独立目录ID请求及5次维护冷却/64声部路径；地图200段音乐、250段环境键与普通catalog ID不要合并为一个无来源整数。"
+        ]
+      },
+      "classification": "existing-shared-contract-reused-not-new-native-analysis"
+    },
+    {
+      "id": "AL-F2",
+      "file": {
+        "path": "build/analysis/ambient-registry-lifecycle-v1/specification.json",
+        "bytes": 33029,
+        "sha256": "9bb3fbad13ae67f255057ec9e4b528b31060d117de93c571aad261d08fdb5b7f"
+      },
+      "pointer": "/facts/1",
+      "canonical_sha256": "c77e5e98b8261035fc67460bec58bd44fc8262d2a2eef931871473dcdad357fe",
+      "title": "50行逻辑初始化有两个已证来源，保留其它字段",
+      "original_value": {
+        "id": "AL-F2",
+        "classification": "事实",
+        "title": "50行逻辑初始化有两个已证来源，保留其它字段",
+        "scope": "selected fixed37c4 static source clauses; not whole-source/current-version/runtime acceptance",
+        "sources": [
+          {
+            "entry": "0x510bf0",
+            "kind": "native",
+            "source": {
+              "path": "build/analysis/ambient-registry-lifecycle-v1/function-510bf0.json",
+              "bytes": 121600,
+              "sha256": "25ff465863eb0e898ccd8966b3232f17bb97cc4d162b322279bc97d7df897b66"
+            },
+            "pointer": "/structuredContent",
+            "record_sha256": "622bda7a64bc926207e6c25a4048cae6a933218476aeceb7bdd0c81127795889",
+            "evidence_id": "ev_515ee8840e054f0932073d1c48d2f6b186d180aaaf98572dd332e187ce31f042",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "start": "0x510bf0",
+                "end": "0x510c0b",
+                "bytes": 28,
+                "file_offset": 1114096,
+                "sha256": "bf48bccffdce13a046bf8d0276bb1b797d7b197b2c27e3dc7e99904bfdea7e68"
+              }
+            ]
+          },
+          {
+            "entry": "0x4649b0",
+            "kind": "native",
+            "source": {
+              "path": "build/analysis/ambient-registry-lifecycle-v1/retained-registry-records.json",
+              "bytes": 256819,
+              "sha256": "50d0055a3f10bdaeee5cc4540826af56be12e6b930fc985898c71ff4f220c27f"
+            },
+            "pointer": "/records/0",
+            "record_sha256": "683b7e3e8026491e04225a764fc6bbe3614ec1f8b4905cc1dde3c91c79e099e3",
+            "evidence_id": "ev_3f97e214430b1ccdd57b17254065a082833d8fa08424139034632a2522bf0c60",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x464a24",
+                "start": "0x4649b0",
+                "bytes": 117,
+                "file_offset": 409008,
+                "sha256": "22fd68164ebb59e4880411c11ad48a8a6309aec607ce5c9f91adf0c0f52ebddb"
+              }
+            ]
+          },
+          {
+            "entry": "0x50f5a0",
+            "kind": "native",
+            "source": {
+              "path": "build/analysis/shared-clock-input-review-v1/retained-clock-records.json",
+              "bytes": 1115105,
+              "sha256": "8e1136831e22710641426c8951faa2c4af9a285449c4a90001470e73b28a850b"
+            },
+            "pointer": "/records/1",
+            "record_sha256": "16205b40b2ec1c65ebbfeb8fc6dfe539d9b166273b40dae5a30cdc793941e090",
+            "evidence_id": "ev_44752a5e9401ad20a95dc46f2af1b5bc98ce727ead5607f0fa67a524a0e2424e",
+            "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+            "ranges": [
+              {
+                "end": "0x50f783",
+                "start": "0x50f5a0",
+                "bytes": 484,
+                "file_offset": 1108384,
+                "sha256": "ecf00549bce780cfcd125d6f8876635eafdf34c9d6c2f78ec6d5bc3eef891dbf"
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "510BF0从FAB468起每次加0x14，直到FAB850；恰好50行。只把marker(+0)置1、catalogId(+4)置-1，未清screenX(+8)/screenY(+C)/distance(+10)。未登记行靠ID哨兵跳过，旧坐标不自动成为有效记录。",
+          "50F5A0初始化声音目录/声部/查表后调用510BF0；4649B0在任何本地mode分支之前先调用510BF0，再写957E7C/957E78/957E88等源上下文，mode1的其它selector分支不改变该先后。",
+          "4649B0的场景准备归属复用已有4EF870→45F2A0→4649B0合同；本批不重复这些大生产者或据两处直接caller外推所有别名。510BF0本体无物理Stop/Release，逻辑失效与下一次声音维护的撤回分开。"
+        ],
+        "reused_prior_scene": "reports/game-static.md: fixed37c4 scene preparation and mode wire8 binding"
+      },
+      "classification": "existing-shared-contract-reused-not-new-native-analysis"
+    },
+    {
+      "id": "ordinary-party-toggle-request",
+      "file": {
+        "path": "analysis/capability-first-v1/game-party-social-contract.json",
+        "bytes": 33189,
+        "sha256": "1961863ebce0e4a43b3abac9fab805e484112bf74e83009e235aef178bccedd8"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "af7a215b207506b89ae623082c9fc79295ca66beb49f181d656ee98fb2476c9c",
+      "original_value": {
+        "id": "ordinary-party-toggle-request",
+        "kind": "fact",
+        "source_entries": [
+          "0x467060",
+          "0x43f2d0"
+        ],
+        "claims": [
+          "加入在party mode0要求面对八方向之一，按53d4d4偏移当前显示格寻找recordTypeFlags&0x28且primary0x400清的活动对象；本机leader0x100须清。离开路径不查邻格、朝向或本机leader条件。",
+          "两路仍须共同输入/移动/协调条件允许，并满足无符号now严格大于(614884+500 mod2^32)。发送*Cc的当前显示X/Y和加入1或离开0，再刷新共享tick；不乐观改变成员/队伍mode。",
+          "614884在PE虚拟零填充尾部，没有原文件字节映射；它与交易等快捷行为共享，不能当作本功能专属计时器。"
+        ],
+        "evidence": [
+          "analysis/capability-first-v1/game-party-social-source-check.json"
+        ]
+      },
+      "classification": "existing-source-contract-reused-not-full-new-business-closure"
+    },
+    {
+      "id": "party-result-and-corrected-leave-ABI",
+      "file": {
+        "path": "analysis/capability-first-v1/game-party-social-contract.json",
+        "bytes": 33189,
+        "sha256": "1961863ebce0e4a43b3abac9fab805e484112bf74e83009e235aef178bccedd8"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "9854dcb76bd98fbb4b2b8e8c62cc7cf180c84edfdca1f88e5d4f00e4d620142e",
+      "original_value": {
+        "id": "party-result-and-corrected-leave-ABI",
+        "kind": "fact",
+        "source_entries": [
+          "0x4f3310",
+          "0x4034d0",
+          "0x500500"
+        ],
+        "claims": [
+          "普通全局gate924f30==0时，Kk0的mode1/result1只设本机member0x200，不直接改变party mode；mode0/result1清member、置mode0并调用500500解散。",
+          "成功离开随后发送/Re(TargetX,TargetY,signExtend8(f536ac))。4f3358..4f3382的汇编按cdecl压入朝向、BF22D0读取值、BF22E0读取值和连接，再调用4f8340；坐标是目标格，不是加入请求的显示格。",
+          "这是复用旧party-actions已经闭合的三参数事实，纠正更早entry-review只按不完整伪代码登记的ABI缺口；不修改旧伪代码或重新展开数值存储内部。其他普通组合只清pending f5f16c；gate非0分支不清。"
+        ],
+        "evidence": [
+          "analysis/capability-first-v1/game-party-social-source-check.json"
+        ]
+      },
+      "classification": "existing-source-contract-reused-not-full-new-business-closure"
+    },
+    {
+      "id": "follower-two-pass-and-queue-overflow",
+      "file": {
+        "path": "analysis/capability-first-v1/game-party-social-contract.json",
+        "bytes": 33189,
+        "sha256": "1961863ebce0e4a43b3abac9fab805e484112bf74e83009e235aef178bccedd8"
+      },
+      "pointer": "/facts/7",
+      "canonical_sha256": "8ede0580eef382a27f997e3b73f849d75d9833b4bba220449e4ee477e1b80413",
+      "original_value": {
+        "id": "follower-two-pass-and-queue-overflow",
+        "kind": "fact",
+        "source_entries": [
+          "0x4610f0",
+          "0x461370",
+          "0x43c540",
+          "0x43c1b0"
+        ],
+        "claims": [
+          "非队长4610f0先准备全部compact成员，再统一推进；远端43c540和本机461370使用compact头body的速度，不在启动处加队列倍率。头成员启动队列时更新共享float32倍率957e98，供本机/远端推进使用并保持至其他写者改变。",
+          "本机跟随更新目标、速度向量与朝向，不改变本机自身speed；碰撞可保留逻辑显示格，跟随驱动不额外发送普通寻路请求。member0x200抑制默认队列推进，动画仍运行，避免重复推进。",
+          "既有43c1b0队列容量10，第11次入队清队列并瞬移到所供格，保留其他运动/动画元数据。缺body、重复指针和复合模式的原生完整行为仍单列。"
+        ],
+        "evidence": [
+          "analysis/capability-first-v1/game-party-social-source-check.json"
+        ]
+      },
+      "classification": "existing-source-contract-reused-not-full-new-business-closure"
+    },
+    {
+      "id": "removed-target-transfer-is-conditional",
+      "file": {
+        "path": "analysis/capability-first-v1/game-party-social-contract.json",
+        "bytes": 33189,
+        "sha256": "1961863ebce0e4a43b3abac9fab805e484112bf74e83009e235aef178bccedd8"
+      },
+      "pointer": "/facts/8",
+      "canonical_sha256": "057e73ca9df0ed17586df455f5b589966ffc692378b2d5c0ba6a1e44843c836f",
+      "original_value": {
+        "id": "removed-target-transfer-is-conditional",
+        "kind": "fact",
+        "source_entries": [
+          "0x461f40"
+        ],
+        "claims": [
+          "移除后转移先要求slot0有body、无待行队列并对齐目标；寻找最近的前序active且已绑定成员。前序与后继目标的环绕差两轴都<2时不转移。",
+          "需要转移时，从被移除者旧目标开始逐个入后续active/已绑定body队列，并向后传各自旧目标，重置全局倍率1；不按绝对世界坐标差替代源环绕运算。"
+        ],
+        "evidence": [
+          "analysis/capability-first-v1/game-party-social-source-check.json"
+        ]
+      },
+      "classification": "existing-source-contract-reused-not-full-new-business-closure"
+    },
+    {
+      "id": "0x4f6780",
+      "file": {
+        "path": "analysis/capability-first-v1/game-producer-context-contract.json",
+        "bytes": 31815,
+        "sha256": "af46b0c197dc4697ee9dfef93f7f6236ac655b96c98a2deee7bab3667baf67dc"
+      },
+      "pointer": "/producer_contexts/1",
+      "canonical_sha256": "53e05307a453702ce6f74300a21218fc08bf086a7eea662fcc8b692b6918870e",
+      "original_value": {
+        "entry": "0x4f6780",
+        "capabilities": [
+          "G04",
+          "G10"
+        ],
+        "positive_context_entries": [
+          "0x466e50"
+        ],
+        "role": "neighbor-selector-request-A",
+        "source_rule": "Facing/neighbor mask8,party/leader,input/movement andstrict500ms sharedclock gate;orderedwrapped localX,localY.",
+        "remaining": "Keyboardtrigger/layout sourcebound; exactbusinesslabel andacceptedreplylifecycle remain unproved.",
+        "classification": "fact-bounded-source-context",
+        "tag": "#^o",
+        "wire_fields": [
+          "int32",
+          "int32"
+        ],
+        "sender_evidence_id": "ev_b8ac2bef2620a4ff68d36ed558043b36a9f5c8513a526f8b01f5600eee46a58e",
+        "full_business_semantics_verified": false,
+        "ordinary_workflow_followup": "/ordinary_action_workflows"
+      },
+      "classification": "existing-source-contract-reused-not-full-new-business-closure"
+    },
+    {
+      "id": "0x4f6840",
+      "file": {
+        "path": "analysis/capability-first-v1/game-producer-context-contract.json",
+        "bytes": 31815,
+        "sha256": "af46b0c197dc4697ee9dfef93f7f6236ac655b96c98a2deee7bab3667baf67dc"
+      },
+      "pointer": "/producer_contexts/2",
+      "canonical_sha256": "743e485502c630098c0e396f8bdeceb320dc5d52d291ea311cd03cb087d41348",
+      "original_value": {
+        "entry": "0x4f6840",
+        "capabilities": [
+          "G04",
+          "G10"
+        ],
+        "positive_context_entries": [
+          "0x466f50"
+        ],
+        "role": "neighbor-selector-request-B",
+        "source_rule": "Distinct43f220 selector with8/0xc400/0;other sharedguards and500ms gate;orderedwrapped localX,localY.",
+        "remaining": "Keyboardtrigger/layout sourcebound; exactbusinesslabel andacceptedreplylifecycle remain unproved.",
+        "classification": "fact-bounded-source-context",
+        "tag": "$MT",
+        "wire_fields": [
+          "int32",
+          "int32"
+        ],
+        "sender_evidence_id": "ev_1d7e8c1a028d8f76d0d7a0535ed5372e59c056dd83c8e25fcddbc618e58bbc5c",
+        "full_business_semantics_verified": false,
+        "ordinary_workflow_followup": "/ordinary_action_workflows"
+      },
+      "classification": "existing-source-contract-reused-not-full-new-business-closure"
+    },
+    {
+      "id": "0x4f77d0",
+      "file": {
+        "path": "analysis/capability-first-v1/game-producer-context-contract.json",
+        "bytes": 31815,
+        "sha256": "af46b0c197dc4697ee9dfef93f7f6236ac655b96c98a2deee7bab3667baf67dc"
+      },
+      "pointer": "/producer_contexts/8",
+      "canonical_sha256": "b38f2a3a8914289c8ea1c566d9bc4f8704da4664c6c54340df0e9f24cbe9a6da",
+      "original_value": {
+        "entry": "0x4f77d0",
+        "capabilities": [
+          "G04",
+          "G14"
+        ],
+        "positive_context_entries": [
+          "0x467060"
+        ],
+        "role": "party-join-or-leave",
+        "source_rule": "SendslocaldisplayX/Y andjoin1/leave0;joingatedbyfacingneighbor/flags,leave skipsjoinguards;sharedstrict500ms gate.",
+        "remaining": "Membershipcomesfromreply;other partybranches andplatformacceptance remain.",
+        "classification": "fact-bounded-source-context",
+        "tag": "*Cc",
+        "wire_fields": [
+          "int32",
+          "int32",
+          "int32"
+        ],
+        "sender_evidence_id": "ev_dc9247e4a37a79a98460d89a839a1cd0c051f702cd07797aa0413d3ec5a36e5f",
+        "full_business_semantics_verified": false
+      },
+      "classification": "existing-source-contract-reused-not-full-new-business-closure"
+    }
+  ],
+  "facts": [
+    {
+      "id": "MF-F1",
+      "classification": "事实",
+      "title": "20字节缓存头的非尺寸word偏移修正",
+      "source_entries": [
+        "0x45fbf0",
+        "0x45f850",
+        "0x45f530",
+        "0x45f760"
+      ],
+      "rules": [
+        "reader/writer先读过4字节，再按顺序读4个DWORD；后两个word用于宽/高和三平面的行列/seek计算。非尺寸word起点是4和8，尺寸起点是12和16。",
+        "45F760创建MAP+byte1、两个调用者给出的header word、width/height和三平面零体；45F530比较四word、签名/版本及identityA!=2后才复用。仅reader/writer的所选路径跳过签名字节，不能继承parser严格校验为原行为。",
+        "旧game-legacy-world规格opaque_header_offsets=[4,12]为描述错误；当前修正[4,8]。旧证据/规格冻结保留，新合同是该字段的有效覆盖；现有parseMAP01早已返回bytes4..11，无解析器代码修改。"
+      ],
+      "effective_layout": {
+        "header_bytes": 20,
+        "magic_bytes": [
+          77,
+          65,
+          80,
+          1
+        ],
+        "header_word_offsets": [
+          4,
+          8
+        ],
+        "width_offset": 12,
+        "height_offset": 16,
+        "planes": 3,
+        "cell_bytes": 2,
+        "row_major": true
+      },
+      "superseded_node": {
+        "file": {
+          "path": "analysis/game-legacy-world-v1/implementation-spec.json",
+          "bytes": 16546,
+          "sha256": "0a1f1fa298bcf542eda79f73f7576c22df3ac1fa5103fa98354da0ea0bb94b43"
+        },
+        "pointer": "/facts/layout/opaque_header_offsets",
+        "historical": [
+          4,
+          12
+        ],
+        "effective": [
+          4,
+          8
+        ]
+      }
+    },
+    {
+      "id": "MF-F2",
+      "classification": "事实",
+      "title": "位置纠正先取旧坐标窗口，随后才发布新坐标",
+      "source_entries": [
+        "0x4ef840",
+        "0x45f1c0",
+        "0x4ff580",
+        "0x45f2f0",
+        "0x4ff5a0",
+        "0x4ff700"
+      ],
+      "rules": [
+        "4EF840原39字节顺序为45F1C0→4FF580(x,y)→4FF5A0→4FF700(face)。45F1C0先以96B9C8/E0为this调用加偏移并裁剪窗口；第一次CALL之前尚未加载本包新x/y。它是窗口计算，不能笼统命名为清空所有移动状态。",
+        "45F2F0发布新的逻辑坐标、float32×64、target/velocity和所列0/-1字段；4FF5A0碰撞失败只把显示格回退到旧actor格，其余目标/缩放位置等按原写入分别保留；最后才写facing。",
+        "当前protocol.next先getGrid([first,second])，导致窗口外纠正点在新窗口内被判为可行。原创100×100/mode1案例以旧(30,30)与新(80,80)执行实际纯helper，显示格分别为旧/新，目标和缩放位置同为新。只证明所列顺序差异，未运行原游戏或完整协议dispatch。"
+      ],
+      "probe": {
+        "path": "build/analysis/map-functional-specification-v1/focused-probe.json",
+        "bytes": 2880,
+        "sha256": "88442f69b861b91c6f94d9369b0ece23d83842f78de1305af1d30fbcc7e0f720"
+      },
+      "product_delta": "MF-D1"
+    },
+    {
+      "id": "MF-F3",
+      "classification": "事实",
+      "title": "已有算法与已正确的独立时钟继续复用",
+      "source_entries": [
+        "0x462650",
+        "0x462410",
+        "0x4622d0",
+        "0x45f4e0"
+      ],
+      "rules": [
+        "已有导航是原方向候选/角落检查/合并及x后y回退，容量100、每批2步；不改用A*或重写已证碰撞/帧插值。",
+        "键盘转向462410用BFF358，鼠标转向4622D0用BFF354，各是严格unsigned(last+500)<now；不能因阈值相同合并两只源时钟。当前prepareMapRightClick已在调用turnFromRightClick之前做独立500ms检查，不能因callee无tick参数错误登记为缺失。",
+        "两版从 @Qu 第 3 个整数取得路径上下文，SE 读写使用 95D554，Item 使用 9FA6DC。A=0 时路径省略该值，非零时纳入。持久缓存键按 /legacy_map_cache_io/facts/paths 绑定，实际场景资源选择器另按其字段使用。"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "MF-O01",
+      "title": "接收12字段场景",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "原scene字段、当前source上下文",
+      "source_rules": [
+        "MF-S-scene",
+        "CT-F1",
+        "CT-F2"
+      ],
+      "ordered_behavior": "保留原字段顺序，prepare cache→发布场景/模式→坐标→remote清理→后续源状态，不把收包等同完整场景ready。",
+      "completion_failure_cancel": "G03进入/等待/返回owner和源条件分别接管；旧IO/动画完成不能冒充新场景接受。"
+    },
+    {
+      "id": "MF-O02",
+      "title": "identityB为0的场景",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "scene identityA/B及原dimensions",
+      "source_rules": [
+        "MF-S-scene"
+      ],
+      "ordered_behavior": "identityB0跳过cache准备，保留raw维度；纯字节实现不得伪造完整零图作为已接纳地图。",
+      "completion_failure_cancel": "active投影/文件持有和旧缓存寿命分开；不把无map的场景接受当可移动。"
+    },
+    {
+      "id": "MF-O03",
+      "title": "核对20B头及复用",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "原header words、尺寸、identityA",
+      "source_rules": [
+        "MF-F1",
+        "MF-S-scene"
+      ],
+      "ordered_behavior": "四word、MAP/version和identityA==2重建条件分别检查；非尺寸字位4/8。",
+      "completion_failure_cancel": "header匹配不保证body完整；目标短体错误政策单列。"
+    },
+    {
+      "id": "MF-O04",
+      "title": "建立新缓存",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "已声明的header words/width/height",
+      "source_rules": [
+        "MF-F1",
+        "MF-W-layout",
+        "MF-S-scene"
+      ],
+      "ordered_behavior": "写20B头后创建三连续row-major LE16零平面；源未检查的文件写入与目标commit receipt分开。",
+      "completion_failure_cancel": "创建失败、字节/内存预算和未定提交都保留结果，不乐观发布持久化完成。"
+    },
+    {
+      "id": "MF-O05",
+      "title": "缓存路径与身份",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "地图身份 A/B、@Qu 第 3 个整数及 map 目录上下文",
+      "source_rules": [
+        "MF-F3",
+        "MF-W-notice",
+        "MF-S-scene"
+      ],
+      "ordered_behavior": "按原path分支建立完整namespace；活动scene、每个cache文件和请求携带identity分别持有。",
+      "completion_failure_cancel": "依 /legacy_map_context_reentry 区分新游戏实例首次值、同进程重开以及新 @Qu 发布。所查固定来源初值为零，当前同版不明的上下文仍按 needs-context 处理。"
+    },
+    {
+      "id": "MF-O06",
+      "title": "读取矩形三平面",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "half-open rectangle与原缓存尺寸",
+      "source_rules": [
+        "MF-W-rectangle",
+        "MF-W-layout"
+      ],
+      "ordered_behavior": "越界读0、保留请求row stride、独立三scratch每平面2601 cells；裁剪不改变原请求坐标域。",
+      "completion_failure_cancel": "读取失败/短读与原PostQuit返回事实分开；目标不得返回看似有效的空成功。"
+    },
+    {
+      "id": "MF-O07",
+      "title": "三平面校验",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "矩形、checksum mode与旧cache",
+      "source_rules": [
+        "MF-W-checksum"
+      ],
+      "ordered_behavior": "按原表/bit逆序及0x1021生成关系累积，每平面固定1458字节和零padding；plane2 mode1掩1FF否则FFF。",
+      "completion_failure_cancel": "记录实际checksum值；不以标准CRC名称替换算法或扩大固定长度。"
+    },
+    {
+      "id": "MF-O08",
+      "title": "处理校验通知",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "=]M 九字段、活动 A、路径上下文及对应缓存结果",
+      "source_rules": [
+        "MF-W-notice"
+      ],
+      "ordered_behavior": "按 /legacy_map_notice，用活动 A 与通知 B 查缓存，补取保留通知的前六个原字段。校验匹配后的准备标志和区域失效位分别按原条件处理。",
+      "completion_failure_cancel": "现有严格字节入口提供明确失败；实际宿主读不到有效缓存时以文件回执验收。原版忽略负读取的分支仍待适用文件回执确定可见效果。"
+    },
+    {
+      "id": "MF-O09",
+      "title": "不匹配补取",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "通知原first6字段",
+      "source_rules": [
+        "MF-W-notice"
+      ],
+      "ordered_behavior": "按send-004f6610发送原有字段顺序；本地checksum差异本身不是服务器完成回执。",
+      "completion_failure_cancel": "连接/取消/晚到结果按SessionTransport/owner处理，不新增requestID或线路epoch。"
+    },
+    {
+      "id": "MF-O10",
+      "title": "解析地图补丁",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "=mJ first6字段+bytes",
+      "source_rules": [
+        "MF-W-patch"
+      ],
+      "ordered_behavior": "pipe前三层、comma token、byte>=128成对扫描、NUL终止和原base62/负号/invalid/wrap语法分别保留。",
+      "completion_failure_cancel": "格式/长token/预算边界与原C处理域分栏；不引入猜测字段。"
+    },
+    {
+      "id": "MF-O11",
+      "title": "裁剪写入与plane2标记",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "目标cache矩形与解码三层",
+      "source_rules": [
+        "MF-W-rectangle",
+        "MF-W-patch",
+        "/fixed_se_map_region_refresh/facts/cache_and_live_plane"
+      ],
+      "ordered_behavior": "裁剪到既有尺寸后写三平面。第三平面 OR C000，消息 B 匹配且格子在当前窗口内时同步更新该平面。文件读取和整块重读沿各自入口。",
+      "completion_failure_cancel": "写文件/内存更新/持久commit不是同一回执；旧窗口不得被无关cache补丁覆盖。"
+    },
+    {
+      "id": "MF-O12",
+      "title": "补丁后的窗口失效",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "当前cache identity、mode和修订",
+      "source_rules": [
+        "MF-W-patch",
+        "MF-L-missing_cache",
+        "/fixed_se_map_region_refresh/facts/refresh_trigger",
+        "/fixed_se_map_region_refresh/facts/read_and_recheck"
+      ],
+      "ordered_behavior": "中心变化、上次中心失效或范围标志打开后重读活动缓存。负返回保留标记。成功更新碰撞区并复查所存方向，零结果解除移动等待。",
+      "completion_failure_cancel": "只使适用owner/资源版本失效，旧异步结果不能覆盖新窗口。"
+    },
+    {
+      "id": "MF-O13",
+      "title": "计算碰撞窗口",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "源逻辑中心与map尺寸",
+      "source_rules": [
+        "MF-L-collision",
+        "MF-F2"
+      ],
+      "ordered_behavior": "x-30/y-20/x+21/y+31取signed-short并裁剪；不能把校正收包顺序换成新坐标先取窗口。",
+      "completion_failure_cancel": "越界判阻挡；目标拒绝short溢出另列，不模拟内存越界。"
+    },
+    {
+      "id": "MF-O14",
+      "title": "mode1碰撞",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "plane2 flags及mode",
+      "source_rules": [
+        "MF-L-collision"
+      ],
+      "ordered_behavior": "mode1按bit100生成阻挡格；和普通ground/object分类是不同路径。",
+      "completion_failure_cancel": "各flag原值/规范化值及源有效域分别保留。"
+    },
+    {
+      "id": "MF-O15",
+      "title": "普通地形/物件碰撞",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "三plane、图形碰撞class和footprint",
+      "source_rules": [
+        "MF-L-graphics",
+        "MF-L-collision"
+      ],
+      "ordered_behavior": "按ground后object，class/特殊ID、northward footprint、class2优先及empty/lowbyte1末尾覆盖的原顺序。",
+      "completion_failure_cancel": "G06元数据缺失不能默认可走；只把cellvalue1及窗口外当阻挡。"
+    },
+    {
+      "id": "MF-O16",
+      "title": "屏幕逆投影与选格",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "source screen/camera/center、host viewport映射",
+      "source_rules": [
+        "MF-I-inverse",
+        "MF-I-pick",
+        "MF-A-projection"
+      ],
+      "ordered_behavior": "先按原float表达式逆投影；pick用trunc(world+0.5)、int32+32及C除64。source y<456与手机CSS尺寸不同。",
+      "completion_failure_cancel": "source x87/float32特殊域和host坐标变换分别验收；不以floor替代负数C截断。"
+    },
+    {
+      "id": "MF-O17",
+      "title": "指针边沿及持续移动",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "6种原按键事件、tick/opaque guards",
+      "source_rules": [
+        "MF-I-pointer",
+        "MF-I-pipeline"
+      ],
+      "ordered_behavior": "保留down/up/double掩码和250ms目的地/500msauto，release后auto可持续，下一down取消且该更新不发新目的地。",
+      "completion_failure_cancel": "输入focus/取消/重入由已有owner处理；右键其他业务不凭按钮名猜wire。"
+    },
+    {
+      "id": "MF-O18",
+      "title": "原方向寻路",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "碰撞格、origin/destination和源facing",
+      "source_rules": [
+        "MF-L-path",
+        "MF-F3"
+      ],
+      "ordered_behavior": "0/+1/-1方向候选限初始±1，奇数方向角落检查、正交合并，再x/y fallback；endpoint为signed short。",
+      "completion_failure_cancel": "不以A*替换；生成route与真正执行/服务器纠正分层。"
+    },
+    {
+      "id": "MF-O19",
+      "title": "同点与容量边界",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "源route及新目的地",
+      "source_rules": [
+        "MF-L-path"
+      ],
+      "ordered_behavior": "同点仅清finalFacing并保留旧route；100外层容量清route，危险fallback溢出独立拒绝政策。",
+      "completion_failure_cancel": "不把同点一律clear或unreachable推成已到达。"
+    },
+    {
+      "id": "MF-O20",
+      "title": "每批两步与发送",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "pending route、源origin及scene字段11",
+      "source_rules": [
+        "MF-L-batching",
+        "MF-A-movement_command"
+      ],
+      "ordered_behavior": "最多取2步并按原shift，lowercase direction+97与origin/scene值按send-004f6470原序；空steps不发送。",
+      "completion_failure_cancel": "没有新ACK/场景epoch字段；线包排队不是走完。"
+    },
+    {
+      "id": "MF-O21",
+      "title": "普通/队伍准入",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "源input/movement/coordination、party mode/flags",
+      "source_rules": [
+        "MF-L-batching",
+        "ordinary-party-toggle-request",
+        "follower-two-pass-and-queue-overflow",
+        "removed-target-transfer-is-conditional"
+      ],
+      "ordered_behavior": "普通发送资格与party leader/follower分支分别保持，沿当前syncPartyContext复用真实队伍来源。",
+      "completion_failure_cancel": "缺上下文不使用普通no-party零值代替真实队伍；复杂对象归G05/shared owner。"
+    },
+    {
+      "id": "MF-O22",
+      "title": "启动一次本地步进",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "方向、display/position、speed",
+      "source_rules": [
+        "MF-L-movement",
+        "MF-A-direction"
+      ],
+      "ordered_behavior": "目标=display+direction，source0.01f、归一化×4和float32 stores保持；facing由源方向核。",
+      "completion_failure_cancel": "未知speed不填100；source数值上下文/极值单列。"
+    },
+    {
+      "id": "MF-O23",
+      "title": "逐更新插值/到达",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "position/target/velocity与合资格更新",
+      "source_rules": [
+        "MF-L-movement",
+        "MF-A-interpolation"
+      ],
+      "ordered_behavior": "按原平方距离advance/snap，arrival后display更新与下一tick idle分开，animation1不无条件重置phase。",
+      "completion_failure_cancel": "render skip不跳过逻辑；动画实际资源/呈现由G06/UC-P13回执。"
+    },
+    {
+      "id": "MF-O24",
+      "title": "方向前缘缺块探测",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "完整51×51窗口、direction和raw plane2",
+      "source_rules": [
+        "MF-L-missing_cache"
+      ],
+      "ordered_behavior": "按原23字leading strips遇首zero构造裁剪矩形，最多2块；不是全窗口每格任意补取。",
+      "completion_failure_cancel": "非完整窗口及边界条件保留，不因raw/resolved混用漏缺块。"
+    },
+    {
+      "id": "MF-O25",
+      "title": "缺块等待/恢复",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "map请求、wait和未消费目标",
+      "source_rules": [
+        "MF-L-missing_cache",
+        "/fixed_se_map_region_refresh/facts/movement_frame_order"
+      ],
+      "ordered_behavior": "先补取及设置等待，再移出方向并准备目标。等待挡住位移。所选普通帧先尝试移动再重读，重读解除后的下一次合资格调用继续。",
+      "completion_failure_cancel": "晚到、取消或无关补丁不放行本步；保留原请求字段，不造timeout线包。"
+    },
+    {
+      "id": "MF-O26",
+      "title": "进入前地块事件",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "batch endpoint低字节2和source状态",
+      "source_rules": [
+        "MF-L-events"
+      ],
+      "ordered_behavior": "在进入前停止并安排type3；源帧/guard/计数变化与send事件参数分开。",
+      "completion_failure_cancel": "不乐观改scene或称事件已完成；UI/淡出依G03/G10共享合同。"
+    },
+    {
+      "id": "MF-O27",
+      "title": "进入后地块事件",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "低字节3/9/10/11/13和条件6/7/8",
+      "source_rules": [
+        "MF-L-events"
+      ],
+      "ordered_behavior": "按原selector与入口资格安排type1，sender序列/x/y/方向保持实际类型。",
+      "completion_failure_cancel": "不能给未证tile值编造楼梯/传送业务名。"
+    },
+    {
+      "id": "MF-O28",
+      "title": "到达计数与事件发送",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "previous arrival、countdown、interaction sequence",
+      "source_rules": [
+        "MF-L-events"
+      ],
+      "ordered_behavior": "先按前次到达递减，下一tick执行；461D00/461E00的各reset/guard/seq和4F6530参数按源保持。",
+      "completion_failure_cancel": "暂停/关闭/迟到回复的owner按既有主流程合同；发出不是交互成功。"
+    },
+    {
+      "id": "MF-O29",
+      "title": "键盘/鼠标转向",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "各自source guard、facing与unsigned tick",
+      "source_rules": [
+        "MF-L-turn",
+        "MF-I-pointer",
+        "MF-F3"
+      ],
+      "ordered_behavior": "keyboard BFF358和mouse BFF354各自严格last+500<now；uppercase direction+65。当前mouse调用层已有该门槛。",
+      "completion_failure_cancel": "不得合并时钟或重复新增timer；同朝向/移动中/guard分支按源。"
+    },
+    {
+      "id": "MF-O30",
+      "title": "绝对位置纠正的原调用顺序",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "=X#三个int与接收前坐标/窗口",
+      "source_rules": [
+        "MF-F2"
+      ],
+      "ordered_behavior": "先旧坐标窗口，再4FF580→45F2F0坐标/float32×64/所列0和-1写入，之后碰撞同步和facing。",
+      "completion_failure_cancel": "独立字段分别更新，不用笼统teleport/reset全部route来代替源写集。"
+    },
+    {
+      "id": "MF-O31",
+      "title": "碰撞失败的显示回退",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "接收前窗口和旧actor display",
+      "source_rules": [
+        "MF-F2",
+        "MF-L-movement"
+      ],
+      "ordered_behavior": "阻挡时只回退显示格；target/float32 scaled/velocity等沿各自已发布值；窗口外一定阻挡。",
+      "completion_failure_cancel": "原代码所需旧snapshot必须持有，不能按新center再计算抹去该差异。"
+    },
+    {
+      "id": "MF-O32",
+      "title": "朝向与坐标备份",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "原本机对象和>,l坐标字段",
+      "source_rules": [
+        "MF-F2",
+        "MF-A-lifecycle",
+        "MF-A-local_animation"
+      ],
+      "ordered_behavior": "4FF700更新源facing和已存在actor；4F3390写两份wrapped coordinate并拷贝首份backup，不等于绝对位置纠正。",
+      "completion_failure_cancel": "wrapped storage由SourceValueContext承接；不把备份包当新场景/移动ACK。"
+    },
+    {
+      "id": "MF-O33",
+      "title": "换场/返回/再次进入",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "G03主状态、scene epoch和实际源reset",
+      "source_rules": [
+        "MF-S-scene",
+        "CT-F1",
+        "CT-F2",
+        "CT-F3",
+        "CT-F4",
+        "CT-F5",
+        "CT-F6"
+      ],
+      "ordered_behavior": "复用主5/6及源构造/退役次序，清remote、使旧frame/lease失效；缓存持久寿命与本地对象/旧frame key分开。",
+      "completion_failure_cancel": "原各字段清理宽度和既有回调tail保留；不以全内存清零或调用reload视为新owner已接受。"
+    },
+    {
+      "id": "MF-O34",
+      "title": "camera/window与逻辑帧",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "移动后的float32位置、display和frame准入",
+      "source_rules": [
+        "MF-I-pipeline",
+        "IC-F3",
+        "IC-F9",
+        "MF-A-projection",
+        "AR-F4",
+        "AL-F2"
+      ],
+      "ordered_behavior": "按源逻辑移动后camera/window/对象更新，edge清理与render skip分别推进；地图环境音请求引用已审G08。",
+      "completion_failure_cancel": "时钟/RNG/资源/呈现结果分别归同一共有owner，绘制成功不代表服务器接受。"
+    },
+    {
+      "id": "MF-O35",
+      "title": "相邻动作与队伍切换边界",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "已证键位/selector、party、两坐标和500ms clock",
+      "source_rules": [
+        "OW-01",
+        "OW-02",
+        "0x4f6780",
+        "0x4f6840",
+        "0x4f77d0",
+        "party-result-and-corrected-leave-ABI"
+      ],
+      "ordered_behavior": "复用A/B两selector的既有参数及party加入/离开；成功离开/Re使用targetX/Y和signExtend8 facing，不能用加入display坐标替代。",
+      "completion_failure_cancel": "业务名称/必要reply关联留在G10/G14完整需求中；不凭推测新增菜单/字段或假定加入成功。"
+    },
+    {
+      "id": "MF-O36",
+      "title": "平台IO/预算/错误与取消",
+      "classification": {
+        "source_constraints": "事实，仅限固定来源和明确参数",
+        "target_policy": "推测，独立合同待实现/验证"
+      },
+      "inputs": "StableRangeSource/SnapshotStore、lease、真实host能力",
+      "source_rules": [
+        "MF-W-layout",
+        "MF-S-scene",
+        "MF-I-pipeline",
+        "CT-F6"
+      ],
+      "ordered_behavior": "沿14端口合同提供稳定范围、独立资源预算、原key缓存和未知commit检查；源unchecked IO与目标严格错误政策分栏。",
+      "completion_failure_cancel": "原32MiB/4Mi cells旧profile不提升为全资源预算证明；手机/微信、损坏恢复、持久提交和同版接受另验。"
+    }
+  ],
+  "required_behavior_readiness": [
+    {
+      "requirement": "地图/缓存",
+      "operations": [
+        "MF-O01",
+        "MF-O02",
+        "MF-O03",
+        "MF-O04",
+        "MF-O05",
+        "MF-O06",
+        "MF-O07",
+        "MF-O08",
+        "MF-O09",
+        "MF-O10",
+        "MF-O11",
+        "MF-O12",
+        "MF-O24",
+        "MF-O25",
+        "MF-O33",
+        "MF-O36"
+      ],
+      "fixed_source_functional_rules_composed": true
+    },
+    {
+      "requirement": "地形阻挡",
+      "operations": [
+        "MF-O13",
+        "MF-O14",
+        "MF-O15",
+        "MF-O21",
+        "MF-O24",
+        "MF-O25",
+        "MF-O26",
+        "MF-O27",
+        "MF-O31"
+      ],
+      "fixed_source_functional_rules_composed": true
+    },
+    {
+      "requirement": "点击逆投影",
+      "operations": [
+        "MF-O16",
+        "MF-O17",
+        "MF-O18",
+        "MF-O19",
+        "MF-O29",
+        "MF-O35"
+      ],
+      "fixed_source_functional_rules_composed": true
+    },
+    {
+      "requirement": "普通移动",
+      "operations": [
+        "MF-O18",
+        "MF-O19",
+        "MF-O20",
+        "MF-O21",
+        "MF-O22",
+        "MF-O23",
+        "MF-O24",
+        "MF-O25",
+        "MF-O26",
+        "MF-O27",
+        "MF-O28",
+        "MF-O29",
+        "MF-O32",
+        "MF-O33",
+        "MF-O34",
+        "MF-O35"
+      ],
+      "fixed_source_functional_rules_composed": true
+    },
+    {
+      "requirement": "位置修正",
+      "operations": [
+        "MF-O13",
+        "MF-O30",
+        "MF-O31",
+        "MF-O32",
+        "MF-O33",
+        "MF-O34",
+        "MF-O36"
+      ],
+      "fixed_source_functional_rules_composed": true
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "MF-D1",
+      "classification": "待验证",
+      "status": "not-implemented",
+      "title": "纠正接收时的窗口/坐标发布顺序",
+      "batch": "D2",
+      "operations": [
+        "MF-O13",
+        "MF-O30",
+        "MF-O31",
+        "MF-O32"
+      ],
+      "source_rules": [
+        "MF-F2"
+      ],
+      "existing_owners": [
+        "shared/legacy-game-protocol.mjs",
+        "shared/legacy-game-local-movement.mjs",
+        "shared/legacy-game-actors.mjs"
+      ],
+      "need": "next当前取新坐标grid。按原接收前96B9C8/E0 snapshot取窗口，保留显示回退与新target/scaled的分离及原写集，不擅自清空其它字段。纯helper差异已观察，完整协议/源运行尚未实测。"
+    },
+    {
+      "id": "MF-D2",
+      "classification": "待验证",
+      "status": "not-implemented",
+      "title": "持久缓存namespace和补取/提交归属",
+      "batch": "D2",
+      "operations": [
+        "MF-O01",
+        "MF-O02",
+        "MF-O03",
+        "MF-O04",
+        "MF-O05",
+        "MF-O06",
+        "MF-O07",
+        "MF-O08",
+        "MF-O09",
+        "MF-O10",
+        "MF-O11",
+        "MF-O12"
+      ],
+      "source_rules": [
+        "MF-F1",
+        "MF-F3",
+        "MF-W-notice",
+        "MF-W-patch"
+      ],
+      "existing_ports": [
+        "StableRangeSource",
+        "SnapshotStore",
+        "ContextOwner",
+        "SourceValueContext"
+      ],
+      "need": "复用字节、校验、补片和场景准备。按 /legacy_map_cache_io、/legacy_map_notice 与 /legacy_map_context_reentry 由已有 cacheVariant 建缓存命名空间，分别处理目录切换、通知 A、活动 A、消息所属磁盘坐标和活动第三平面坐标。按同 B 异 A、可用的非活动 B、负起点和宿主回执验收。"
+    },
+    {
+      "id": "MF-D3",
+      "classification": "待验证",
+      "status": "dependency-integration-open",
+      "title": "源输入/主流程/对象上下文统一接线",
+      "batch": "D0",
+      "operations": [
+        "MF-O16",
+        "MF-O17",
+        "MF-O18",
+        "MF-O19",
+        "MF-O20",
+        "MF-O21",
+        "MF-O22",
+        "MF-O23",
+        "MF-O24",
+        "MF-O25",
+        "MF-O26",
+        "MF-O27",
+        "MF-O28",
+        "MF-O29",
+        "MF-O30",
+        "MF-O31",
+        "MF-O32",
+        "MF-O33",
+        "MF-O34",
+        "MF-O35"
+      ],
+      "source_rules": [
+        "MF-F3",
+        "MF-I-pipeline",
+        "IC-F3",
+        "CT-F2"
+      ],
+      "existing_ports": [
+        "SharedUpdatePump",
+        "ClockDomains",
+        "SourceValueContext",
+        "ContextOwner",
+        "InputAndTextFocus"
+      ],
+      "need": "复用方向路线、批次 2、两套转向时钟、队伍桥接和普通帧。按 G03/G06/X02 接输入守卫、源值及入退场，按 /fixed_se_map_region_refresh/facts/movement_frame_order 验移动等待、缓存重读及后续帧推进。缺失源值仍显式报告。"
+    },
+    {
+      "id": "MF-D4",
+      "classification": "待验证",
+      "status": "not-implemented",
+      "title": "目标范围/预算、失效与真实设备接受",
+      "batch": "D5",
+      "operations": [
+        "MF-O05",
+        "MF-O06",
+        "MF-O12",
+        "MF-O16",
+        "MF-O17",
+        "MF-O25",
+        "MF-O33",
+        "MF-O36"
+      ],
+      "source_rules": [
+        "MF-W-rectangle",
+        "MF-I-pointer",
+        "CT-F6"
+      ],
+      "existing_ports": [
+        "BudgetAndLease",
+        "OwnerLifecycle",
+        "RenderAudioSurfaces",
+        "HostCapabilitiesAndLifecycle"
+      ],
+      "need": "沿既有薄适配/lease落实map范围/预算与未知提交、取消/重开/后台恢复；真实移动/微信输入和完整资源接受独立验证，源数学/控制逻辑共用一份。"
+    }
+  ],
+  "current_code_inputs": [
+    {
+      "path": "shared/map01.mjs",
+      "bytes": 2144,
+      "sha256": "0be8e1ae1b63c98855c1763879cb9aed076320a8c68e70e1d4970cf0dc0b56a9"
+    },
+    {
+      "path": "shared/legacy-game-map.mjs",
+      "bytes": 9623,
+      "sha256": "bbb5eaa6ffb5fa2e7eb2d7ad65c5173d4345d77e2ab28367b7128bc7a6aead2c"
+    },
+    {
+      "path": "shared/legacy-game-navigation.mjs",
+      "bytes": 12254,
+      "sha256": "a1e8226cfedc62a57ec853b21afb15c29f65e5728f22c2d3b9c2eae24cb4d88f"
+    },
+    {
+      "path": "shared/legacy-game-local-movement.mjs",
+      "bytes": 14723,
+      "sha256": "0a015067cce51122b502d42b1f5d2e012842d7abcb98875eca78f3808362b5ed"
+    },
+    {
+      "path": "shared/legacy-game-motion.mjs",
+      "bytes": 9389,
+      "sha256": "027635c81e9ec10312408da4995f594470e020520f9ed81407de451c02b90f69"
+    },
+    {
+      "path": "shared/legacy-game-protocol.mjs",
+      "bytes": 64017,
+      "sha256": "60e4163369467afb27c95cf90a8859b86b2d40669564e2f9918bc982b4432773"
+    },
+    {
+      "path": "shared/legacy-game-actors.mjs",
+      "bytes": 49834,
+      "sha256": "825d55a5a2968c96dd6a9726e784fc75d1dc67866426b857d61df3cf8bfaa802"
+    },
+    {
+      "path": "shared/legacy-game-client.mjs",
+      "bytes": 38029,
+      "sha256": "414eb9a100b501d0b3397eb04723d8785881d3438776a9859f6c74f9f17b1338"
+    }
+  ],
+  "focused_probe": {
+    "path": "build/analysis/map-functional-specification-v1/focused-probe.json",
+    "bytes": 2880,
+    "sha256": "88442f69b861b91c6f94d9369b0ece23d83842f78de1305af1d30fbcc7e0f720"
+  },
+  "source_rule_supersession": [
+    {
+      "historical": "MF-W-layout opaque header offset12",
+      "effective": "MF-F1 offset8; widths12/16 unchanged"
+    },
+    {
+      "historical": "entry-review4EF840 generic movement reset wording",
+      "effective": "MF-F2 explicit pre-update-window/coordinate/collision/facing calls"
+    },
+    {
+      "historical": "legacy right-click wholly unknown",
+      "effective": "MF-F3 保留两种转向时钟。所选普通右键的选格、转向、拾取及实体查询见 /fixed_se_ordinary_right_click_position。"
+    },
+    {
+      "historical": "old local movement/party/clock/render-loop unmodeled lists",
+      "effective": "current shared-contract nodes and stage306 code inputs; actual dependency integration and acceptance remain open"
+    }
+  ],
+  "existing_target_contract": {
+    "file": {
+      "path": "analysis/capability-first-v1/shared-target-contract.json",
+      "bytes": 68467,
+      "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+    },
+    "new_ports_added": false
+  },
+  "remaining": [
+    {
+      "id": "MF-U1",
+      "kind": "known-product-delta",
+      "owner": "D2/G04",
+      "need": "MF-D1窗口顺序差异未修复；原生/完整协议/实际服务器轨迹未验。"
+    },
+    {
+      "id": "MF-U2",
+      "kind": "shared-source-and-resource-context",
+      "owner": "G03/G06/X02/X03",
+      "need": "路径值生产及所查重连生命周期已归 /legacy_map_cache_io/facts/paths 与 /legacy_map_context_reentry。当前同版、实际消息顺序、guard/boxed 数值、完整输入、资源容量和持久恢复按 UC 与原各域继续审定。"
+    },
+    {
+      "id": "MF-U3",
+      "kind": "other-business-scope",
+      "owner": "G09/G10/G14",
+      "need": "相邻A/B业务名称/必要reply关联、拾取/右键其它完整业务及复合对象/菜单未因此关闭；原37全文/10组及相关能力保留。"
+    },
+    {
+      "id": "MF-U4",
+      "kind": "implementation-platform-and-current-acceptance",
+      "owner": "X04/X05/X07",
+      "need": "MF-D2..D4、真实网页/移动/微信、x87精度、当前同版消费者/交接与官方账号接受未完成；无测试账号。"
+    }
+  ],
+  "proposed_acceptance_cases": [
+    {
+      "id": "MF-T01",
+      "status": "not-executed",
+      "need": "核原场景 12 字段、A=2、B=0、20 字节头、短体与旧缓存。按 /legacy_map_context_reentry 覆盖返回选服、同进程重开、新目录值前后、A=0 与新实例，确认同 A/B 在目录值改变后定位正确文件。"
+    },
+    {
+      "id": "MF-T02",
+      "status": "not-executed",
+      "need": "核矩形越界零和请求行宽、固定 1458 字节及两种掩码、完整比较、同 B 异 A、可用的非活动 B、校验匹配后分别清准备字与区域失效位。按 /legacy_map_notice 注入缺文件和短读验实际宿主回执。"
+    },
+    {
+      "id": "MF-T03",
+      "status": "not-executed",
+      "need": "覆盖现有补片字节格式、裁剪和第三平面 C000。以同 B 异 A、不同 B、窗口边界格、负起点及目标文件缺失核消息所属缓存坐标、第三平面实时坐标和整块重读标志。注入短读和部分写失败核真实宿主回执。"
+    },
+    {
+      "id": "MF-T04",
+      "status": "not-executed",
+      "need": "mode1/普通碰撞、north footprint、class2和empty/lowbyte1先后。"
+    },
+    {
+      "id": "MF-T05",
+      "status": "not-executed",
+      "need": "负数pick/C截断、source456界限、250/500输入、auto release/next-down cancel。"
+    },
+    {
+      "id": "MF-T06",
+      "status": "not-executed",
+      "need": "方向候选/角落/合并/x-y fallback、same-point旧route、100容量与batch2发送。"
+    },
+    {
+      "id": "MF-T07",
+      "status": "not-executed",
+      "need": "保留速度、float32 和下一帧 idle。以中心未变、边界等于 10、上次中心失效、负读取、部分填充、前缘补全及小于 51 的窗口验重读和等待。两种模式均核移动先于画面重读及新一帧无重发续接。"
+    },
+    {
+      "id": "MF-T08",
+      "status": "not-executed",
+      "need": "地块进入前后两类、arrival countdown/selector、seq/guard和实际reply生命周期。"
+    },
+    {
+      "id": "MF-T09",
+      "status": "not-executed",
+      "need": "keyboard BFF358/mouse BFF354独立500ms及各自guard/strict wrap边界。"
+    },
+    {
+      "id": "MF-T10",
+      "status": "not-executed",
+      "need": "纠正窗口取旧点、display回退但target/scaled保持、facing/backup包分离及完整协议复核。"
+    },
+    {
+      "id": "MF-T11",
+      "status": "not-executed",
+      "need": "换场/重入/旧frame key/lease、remote清理与多cache持久namespace不混合。"
+    },
+    {
+      "id": "MF-T12",
+      "status": "not-executed",
+      "need": "三目标实际输入/存储/恢复/容量及现行同版/官方各自接受。"
+    }
+  ],
+  "scope_preserved": {
+    "capabilities": 40,
+    "registry_entries": 81,
+    "historical_requirements": 37,
+    "consumer_groups": 10,
+    "profiles": 6,
+    "original_owners_dependencies_batches": true,
+    "G08_G15_G17_ready": true,
+    "G02_G20_ready": false
+  },
+  "next_actions": [
+    "按完整原范围合并剩余已证业务规格，优先复用共同所有者，不为每个函数拆阶段。",
+    "仅对仍会改变实现的具名必要未知补REA；G02材料只沿新的正向来源，G20发送最终关联及X02必要context保留。",
+    "统一A1..A4通过后按D0–D6只补差异，MF-D1在对应开发批次修复后做受影响回归。"
+  ],
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "new_native_queries": 0,
+  "focused_original_fixture_probe_run": true,
+  "full_product_test_suites_or_builds_run": false,
+  "original_VM_official_network_account_device_actions": false,
+  "local_G04_full_specification_ready": true,
+  "G04_dependencies_integrated": false,
+  "G04_product_source_order_compatible": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false
+}

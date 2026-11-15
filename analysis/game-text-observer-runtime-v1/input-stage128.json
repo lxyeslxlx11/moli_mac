@@ -1,0 +1,55 @@
+{
+  "schema": "moli.input-stage128.v1",
+  "recorded_utc": "2026-11-02T07:16:03.556525+00:00",
+  "resumed_goal_audit": "Fresh resumed turn after stage127 blocked; actual progress, prior blocked count not reused.",
+  "current_app": "com.parallels.desktop.console",
+  "window_AX_id": "{bac7348c-9220-4447-94e4-e49b00f44939}",
+  "vm_uuid_separate_from_AX": "{0a440763-a14c-4cbe-b6df-abfa4fe079a3}",
+  "ordinary_input_recovery": {
+    "guest_time_window_local": "2026-11-02 14:29 to 14:35 +08:00",
+    "steps": [
+      "Bounded ordinary Ctrl+C/type1 initially no confirmed echo; no Return.",
+      "Fresh native Window menu selected the sole existing Windows11 once.",
+      "Fresh native Devices keyboard menu selected existing Win+Q once.",
+      "Search typed1 actually echoed; no Return.",
+      "Ordinary Escape actually closed search; Ctrl+C visibly returned ^C and empty original PowerShell prompt.",
+      "$wp126.Length fully read back, one Return, actual165 and new prompt."
+    ],
+    "subsequent_read_only_results": "Both WER texts/signatures/times/hashes, 10 exact attachment existence results, two archive counts and module comparison actually returned."
+  },
+  "issues": [
+    {
+      "symptom": "Literal backslash missing in a typed report filename suffix",
+      "execution": "Caught before Return and canceled by Ctrl+C",
+      "minimal_fix": "Use path variable plus [char]92 plus fixed filename; full readback before Return."
+    },
+    {
+      "symptom": "-split [char]92 interpreted as invalid regex trailing backslash",
+      "execution": "One read-only query submitted; ArgumentException, no path result",
+      "minimal_fix": "String.Split([char]92) is literal-char splitting."
+    },
+    {
+      "symptom": "Join-Path against the observed extended-length //?/ prefix failed with ArgumentNullException/empty-drive message",
+      "execution": "One submitted read-only construction failed; variable length165 and Test-Path True separately verified",
+      "minimal_fix": "Direct known path + [char]92 + Report.wer worked without privilege change."
+    },
+    {
+      "symptom": "Literal caret omitted from unsubmitted regex whitelist; a later long field query lost interior characters",
+      "execution": "Both caught in full readback and canceled; no Return",
+      "minimal_fix": "Use short StartsWith/like filters, split typing if necessary, verify all interior characters."
+    },
+    {
+      "symptom": "pressKey Ctrl+c returned keyNotFound(Ctrl)",
+      "execution": "API error before key delivery; following lowercase ctrl+c visibly canceled pending line",
+      "minimal_fix": "Use documented lowercase ctrl+c, verify ^C/new prompt."
+    }
+  ],
+  "state_at_last_verified_operation": "2026-11-02 15:13 +08:00: CDB signature Valid, ordinary empty PowerShell prompt; no pending execution line.",
+  "no_changes": [
+    "No new VM lifecycle, snapshot, network, clipboard/file share, keyboard definition, permissions, policy, protection or UAC change.",
+    "No game, reader, fixture or debugger execution.",
+    "No alternative UI backend or canceled Parallels CLI."
+  ],
+  "user_actions_or_new_questions_before_this_receipt": 0,
+  "general_input_stability_or_root_cause_proven": false
+}

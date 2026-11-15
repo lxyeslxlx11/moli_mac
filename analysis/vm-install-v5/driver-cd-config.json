@@ -1,0 +1,100 @@
+{
+  "config_sha256": "97cb2df7e4554cb742d6026ab02388f4333b847c75620a7c5798e2de585c3ce8",
+  "changed_sections": [
+    "Drive"
+  ],
+  "config": {
+    "Backend": "QEMU",
+    "ConfigurationVersion": 4,
+    "Display": [
+      {
+        "DownscalingFilter": "Linear",
+        "DynamicResolution": true,
+        "Hardware": "virtio-ramfb",
+        "NativeResolution": false,
+        "UpscalingFilter": "Linear"
+      }
+    ],
+    "Drive": [
+      {
+        "Identifier": "3CDE64AC-478C-4853-85AF-77DE92D646AB",
+        "ImageName": "3CDE64AC-478C-4853-85AF-77DE92D646AB.qcow2",
+        "ImageType": "Disk",
+        "Interface": "NVMe",
+        "InterfaceVersion": 1,
+        "ReadOnly": false
+      },
+      {
+        "Identifier": "DB62EA51-5009-4ED1-ADFD-D80FD123B251",
+        "ImageName": "Windows11_Client_arm64_zh-cn_26300_9457.qcow2",
+        "ImageType": "CD",
+        "Interface": "USB",
+        "InterfaceVersion": 1,
+        "ReadOnly": true
+      },
+      {
+        "Identifier": "EE8771ED-1F3E-45F6-AABE-E21D720C4E2E",
+        "ImageName": "netkvm-w11-arm64-0.1.274.qcow2",
+        "ImageType": "CD",
+        "Interface": "USB",
+        "InterfaceVersion": 1,
+        "ReadOnly": true
+      }
+    ],
+    "Information": {
+      "IconCustom": false,
+      "Name": "MoliOffline-ARM64-20261025",
+      "Notes": "moli-mac 隔离准备：空白 ARM64 磁盘，未安装 Windows、未导入官方程序。无网络/目录/剪贴板/USB 共享；取得镜像来源和许可确认后再安装。旧虚拟机保持原样。",
+      "UUID": "087A27D7-88CC-4E08-8FB7-0FE852DAA3C8"
+    },
+    "Input": {
+      "MaximumUsbShare": 3,
+      "UsbBusSupport": "3.0",
+      "UsbSharing": false
+    },
+    "Network": [
+      {
+        "Hardware": "virtio-net-pci",
+        "IsolateFromHost": false,
+        "MacAddress": "DA:78:E6:75:B0:9F",
+        "Mode": "Shared",
+        "PortForward": []
+      }
+    ],
+    "QEMU": {
+      "AdditionalArguments": [],
+      "BalloonDevice": false,
+      "DebugLog": false,
+      "Hypervisor": true,
+      "PS2Controller": false,
+      "RNGDevice": true,
+      "RTCLocalTime": true,
+      "TPMDevice": true,
+      "TSO": false,
+      "UEFIBoot": true
+    },
+    "Serial": [],
+    "Sharing": {
+      "ClipboardSharing": false,
+      "DirectoryShareMode": "None",
+      "DirectoryShareReadOnly": false
+    },
+    "Sound": [],
+    "System": {
+      "Architecture": "aarch64",
+      "CPU": "default",
+      "CPUCount": 4,
+      "CPUFlagsAdd": [],
+      "CPUFlagsRemove": [],
+      "ForceMulticore": false,
+      "JITCacheSize": 0,
+      "MemorySize": 8192,
+      "Target": "virt"
+    }
+  },
+  "driver_media_container_sha256": "532a8190e967ecd58deee6ee411fa3b3fed4d84cfcb06c39da3e0d1e28d0f4bc",
+  "driver_media_container_bytes": 3342336,
+  "existing_drives_unchanged": true,
+  "all_other_config_unchanged": true,
+  "initial_check_correction": "UTM imported ISO as qcow2; initial expected raw filename assertion failed before any run; actual conversion verified separately with qemu-img compare"
+}

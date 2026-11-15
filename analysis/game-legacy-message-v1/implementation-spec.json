@@ -1,0 +1,129 @@
+{
+  "schema": "moli.legacy-game-message-contract-stage154.v1",
+  "profile": "legacy-se6000-37c4-message-v1",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "coverage": {
+    "incoming_branches": 104,
+    "outgoing_formatter_callers": 60,
+    "maximum_incoming_fields": 17,
+    "maximum_outgoing_fields": 13,
+    "scope": "Exactly the retained4f8a40 text branches and all retained4fcea0 callers; not binary/control/gameplay completeness."
+  },
+  "reset_operation": {
+    "id": "receive-00567c14",
+    "tag": "]gQ",
+    "tag_address": "0x567c14",
+    "tag_file_offset": 1463316,
+    "tag_word_sha256": "cb9bfe76bde8c7ed135a8991fbf9b936976ee4692817ee1cd5158974199f37f0",
+    "fields": [],
+    "consumer": null,
+    "action": "reset-bootstrap",
+    "native_return": 0,
+    "evidence": "ev_0809b8da8d21004b16ae46167f89db08fb7148fe1a16468368bebc62cd9f374a"
+  },
+  "pose_operation": {
+    "id": "receive-00567da8",
+    "tag": "=X#",
+    "tag_address": "0x567da8",
+    "tag_file_offset": 1463720,
+    "tag_word_sha256": "bafabe897bec3ff729de5a5665c4f124cad215195a6f46dfcd62e952d2cf6ca1",
+    "fields": [
+      "int32",
+      "int32",
+      "int32"
+    ],
+    "consumer": "0x4ef840",
+    "action": "dispatch",
+    "native_return": 0,
+    "evidence": "ev_0809b8da8d21004b16ae46167f89db08fb7148fe1a16468368bebc62cd9f374a"
+  },
+  "facts": [
+    {
+      "claim": "Formatter4fcea0 uses %s followed by ASCII space; every observed sender appends typed fields each ending space, then4fce00. All60 recorded direct callers are fixed straight-line serializers with positional parameters.",
+      "evidence": "ev_6f2e27f1c2db69d6857bd0ff194a6b6165f0105d8f9d37171d64040ec7d1e9dd"
+    },
+    {
+      "claim": "4fcb40 string encoder escapes backslash/space/LF/CR as double-backslash/backslashS/n/r. Bytes>=128 consume one following byte; protected second byte becomes0x66.",
+      "evidence": "ev_16804b2c4c3922cc34790efc01f481812aec1d050636efc41274ffd3adcf3ebe"
+    },
+    {
+      "claim": "4fcc50 reverses S/n/r; any other nonempty backslash pair consumes both and yields one backslash. Trailing backslash remains backslash. High-byte pair copies unchanged.",
+      "evidence": "ev_fb3c2b20a0b4eb485d151e9cb0b4d9fdfdbbc1fcb704e4c76a6fd51d36377f54"
+    },
+    {
+      "claim": "4fcf80 base62 alphabet is0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ. Signed writer negates negative values; INT32_MIN remains negative and indexes before table, outside safe domain.4fcf00 wraps32-bit arithmetic per machine shifts/LEA, invalid digit yields0.",
+      "evidence": [
+        "ev_0ce4de7961ad1a04b91d5f5eb1009ad7b022cf722f45906f877c20787c0198f1",
+        "ev_5eed19406b861583a1afe83bd9b5fc97092e5e3b58162336eb19d9941e8c1f09"
+      ]
+    },
+    {
+      "claim": "4fcd30 records token starts on spaces only, then replaces spaces/CR/LF byNUL until original NUL. Empty fields survive.4fc990 bounds tag copy to1023. Main loop4edef0 clears token pointer table after dispatch, so absent fields receive null=>0/empty wrappers.",
+      "evidence": [
+        "ev_6f9d33be14829e1449fa80a99fff2b1f8274ca07c76314e1a9aa49dba61a3e84",
+        "ev_d90d25a4240d61809f8c94187b359683a64d139282548a48c7bd2cd98065c5c7",
+        "ev_5fd8bc4bf691062dea2ac1b7cdc4127f04dc060ef8e32b86446ec64bcecce480"
+      ]
+    },
+    {
+      "claim": "104 text dispatch branches include7 no-op handler aliases and one c60528=0 bootstrap-readiness reset. Dispatcher return is ignored by main caller. Reset clears readiness flag, not old64B material; pending112B uses bootstrap branch, other normal payloads can still use old material.",
+      "evidence": [
+        "ev_0809b8da8d21004b16ae46167f89db08fb7148fe1a16468368bebc62cd9f374a",
+        "ev_7bc6c46bd81519a5a9595ed3f9fa9cb872f34a6e101053c116e452f5dd6da1e2",
+        "ev_1b6684fdc97bcedfd5d8c2ec8abe75c6677c71f43120c9a514a328c68bd1f081"
+      ]
+    },
+    {
+      "claim": "Special payload prefix ]^i precedes four signedLE16 lengths and four segments; ]Pk precedes one signedLE16 length and one segment. Prefixes bypass normal transform and reach4eee80/4eee40 before text processing.",
+      "evidence": [
+        "ev_0809b8da8d21004b16ae46167f89db08fb7148fe1a16468368bebc62cd9f374a",
+        "ev_a1b4c1e6c29b8ee5b78c1267ba443d7e2c586300dbb95adde5f576c3fd31b649",
+        "ev_1e2778da4e7785aa65dd40b2f475ec08d942221670a641c8ad5d155993894d9a"
+      ]
+    },
+    {
+      "claim": "4ef840 three integer arguments feed position reset45f2f0, actor synchronization4ff5a0 and attribute4ff700.45f2f0 converts integer getters to float, multiplies two values by64 and resets two motion values0; third value is also produced by vector angle path461370/463d30.",
+      "evidence": [
+        "ev_ebece72c7e1cce16da62e8105f4c73a4c2c3eed3e967deb08e328f29246bacf8",
+        "ev_ea67c7d31c93f8de16de5b2cec2b47c4c9466b2bf6ea6caf3024d60ce62f7478",
+        "ev_99281c133ee9a235cf483f14cfe8c1aa9e720328a82bfec629030d63ceeab9a8",
+        "ev_d98d1e8dca521e05a0d19c09b8755df9449b28b5e795c19fd0f51812e6668c96"
+      ]
+    }
+  ],
+  "independent_policy": {
+    "message_bytes": 32760,
+    "binary_payload_bytes": 32767,
+    "tag_copy_bytes": 1023,
+    "field_input_bytes": 32760,
+    "escaped_field_bytes": 65520,
+    "C_string": "FirstNUL bounds helpers; ignored suffix metadata for message parser. No Unicode/encoding guess.",
+    "numeric": "Encoder only -2147483647..2147483647; INT32_MIN rejected. Decoder32-bit wrapping and invalid/empty0 preserved.",
+    "high_bytes": "Source pair behavior and lossy protected second byte preserved; dangling high lead before boundary rejected instead of reading past terminator.",
+    "fields": "Absent numeric/string fields default0/empty with explicit missing count; extra token count reported; independent outputs owned. Unknown tag remains opaque and is not applied.",
+    "binary": "Nonnegative signed lengths and in-bounds segments required; trailing native-ignored bytes counted, not interpreted.",
+    "protocol": "Initial bootstrap required; special binary first; pending112B rekeys; ready112B is normal cipher. Reset retains old codec for non112B input/outbound until successful replacement; close/failure clears all owned keys/queue/pose. Valid tag never claims official identity.",
+    "pose": "Canonical network-position projection only: integer coordinate pair, float32-times64 pair, raw facing candidate code and zero motion. Native actor rollback/interpolation/rendering/map state not reproduced."
+  },
+  "api": [
+    "LEGACY_GAME_MESSAGE_CATALOG",
+    "LEGACY_GAME_MESSAGE_PROFILE",
+    "LegacyGameMessageError",
+    "encodeLegacyGameInteger/decodeLegacyGameInteger",
+    "encodeLegacyGameTextField/decodeLegacyGameTextField",
+    "encodeLegacyGameCommand(operationId,values)",
+    "decodeLegacyGameMessage(bytes)",
+    "decodeLegacyGameBinary(bytes)",
+    "createLegacyGameProtocol():append/next/encodeCommand/finish/close/inspect/copyGameState"
+  ],
+  "remaining": [
+    "Actual business consumers other than reset and network-pose projection",
+    "Full authentication/control lifecycle beyond proven key readiness",
+    "Actor/map/renderer/state/movement/battle semantics",
+    "Host scheduling/cancellation for synchronous bootstrap and actual native/device/official acceptance",
+    "Current9baa/6e2ff compatibility"
+  ],
+  "source_program_execution": false,
+  "real_credentials_or_sessions": false,
+  "full_goal_complete": false
+}

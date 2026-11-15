@@ -1,0 +1,71 @@
+✔ explicit printable ASCII preserves case/spaces and rejects ambiguous encodings (0.971416ms)
+✔ bridge rejects absent or non-loopback targets and invalid settings before listen (0.4115ms)
+✔ HTTP exposes only source/runtime and protects host, method, query and cross-site reads (27.620084ms)
+✔ upgrade requires exact origin/path/subprotocol; no TCP on rejection (2.741458ms)
+✔ per-start token and endpoint ordinal are checked before TCP (7.807792ms)
+✔ actual WebSocket→TCP→independent Python: profiles (126.256792ms)
+✔ actual WebSocket→TCP→independent Python: empty (87.774333ms)
+✔ actual WebSocket→TCP→independent Python: rejected (86.77075ms)
+✔ browser port snapshots written views, reads actual bytes and preserves queued EOF data (3.939208ms)
+✔ pending browser read cancellation closes actual TCP and keeps abort reason private (2.262709ms)
+✔ one pending read only and explicit server close settles it (2.0215ms)
+✔ client validates explicit origins/endpoints and refuses caller targets outside its list (0.171292ms)
+✔ configuration Code11 drives request word11 and exact Game11 license identity, not12 (3.602042ms)
+✔ duplicate codes retain selected game ordinal and original leading-zero license text (0.936917ms)
+✔ binding preserves configured BIP order and snapshots allowlist/candidate data (0.532459ms)
+✖ closed, missing, ambiguous and unsupported Galaxy regions cannot become targets (1.717292ms)
+✔ every BIP must be approved; empty/mixed targets are rejected without pruning (1.286167ms)
+✔ catalog hash/model mutations and inherited selection fields cannot grant a target (0.317ms)
+✔ configuration code outside message slots is rejected before session creation (0.290209ms)
+✔ owned bootstrap source snapshots bytes, exposes fixed routes and disposes only its copies (0.227791ms)
+✔ bootstrap source rejects getters, malformed options and oversized metadata before listening (0.76625ms)
+✖ actual local HTTP bootstrap prepares new pair which binds to the exact allowed target (29.829208ms)
+✔ actual self-update branch returns a validated candidate without a usable catalog or execution (8.227459ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 21
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 480.437334
+
+✖ failing tests:
+
+test at web/tests/launcher-target-bootstrap.test.mjs:52:1
+✖ closed, missing, ambiguous and unsupported Galaxy regions cannot become targets (1.717292ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/lx/Documents/code/moli-mac/web/tests/launcher-target-bootstrap.test.mjs:58:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { code: 'TARGET_REGION' },
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at web/tests/launcher-target-bootstrap.test.mjs:96:1
+✖ actual local HTTP bootstrap prepares new pair which binds to the exact allowed target (29.829208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'original-session-2'
+  
+      at TestContext.<anonymous> (file:///Users/lx/Documents/code/moli-mac/web/tests/launcher-target-bootstrap.test.mjs:101:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'original-session-2',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

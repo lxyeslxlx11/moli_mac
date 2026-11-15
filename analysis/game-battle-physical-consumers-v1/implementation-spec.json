@@ -1,0 +1,276 @@
+{
+  "schema": "moli.physical-consumers-spec-stage205.v1",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "tool": "REA6.7.0/Ghidra12.1.4",
+  "analysis_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "classification": "事实: fixed-source byte-bound observations and verified independent code. 推测: proposed unfinished consumer interfaces. 待验证: all unknowns and native/platform/current/official acceptance.",
+  "generic_classes": [
+    0,
+    1,
+    3,
+    5,
+    6,
+    72,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    84,
+    85,
+    87,
+    94,
+    95,
+    96,
+    105,
+    110,
+    113,
+    257,
+    258,
+    259,
+    260,
+    262,
+    266
+  ],
+  "additional_related_class": 73,
+  "facts": [
+    {
+      "id": "reaction-factory",
+      "location": "41f310;40a120 cases26/160;41f2d0",
+      "fact": "41f310 allocates priority2,drawPriority204,resource1adb6 at the source body world position,normal flags68000 or alternate160000. It has no explicit random call and does not write a parent pointer.41f2d0 publishes truncated world coordinates without body screenOffset,animates to completion,and deletes. Cases12/13 instead calculate randomized positions and use41f3b0.",
+      "evidence_functions": [
+        {
+          "address": "0x41f310",
+          "evidence_id": "ev_f4394bf85eb2d046e9600bff7f139ad1e73113f13b88c625ea505d40e27bf00c"
+        }
+      ]
+    },
+    {
+      "id": "animation-probe-reset",
+      "location": "41a280;4fd5f0;body offsets2b4/2d0",
+      "fact": "The real probe advances the animation walker until a10000..19999 signal or completion,then writes lastAction2b4=-1 and signal2d0=0. This resets action binding/signal,not frame index/delay. Existing invalidate()+clearSignal() expresses the reset; blocking native cadence remains unverified.",
+      "evidence_functions": []
+    },
+    {
+      "id": "angle-normalization",
+      "location": "419b60/419d60 original instructions",
+      "fact": "419b60 corrects by360 at most once in either direction.419d60 compares target direction minus current angle,subtracts360 above180 and adds360 at or below-180. Do not replace this with unrestricted modulo or a different180 tie.",
+      "evidence_functions": [
+        {
+          "address": "0x419b60",
+          "evidence_id": "ev_6f803d9c90a76e1ae193ccceeb41ce8b13ca1eda2d4243d13c91ae87bcf66fd2"
+        },
+        {
+          "address": "0x419d60",
+          "evidence_id": "ev_143e8702b9b78b5a03adf3875cd3786689f94a593949b974510af8ca3066cbb0"
+        }
+      ]
+    },
+    {
+      "id": "projectile-construction",
+      "location": "41b2a0;41a740;533a74;52d4f0",
+      "fact": "41b2a0 constructs a body in state16 or238,copying tuple,RID and principal before visual children;class,variant and level are copied after those children and before two moves/animation initialization.41a8c0 instead copies class/variant/level after its first animation initialization and before41a550.41ab20 copies class/variant/level after its initialization body-callback loop.41a740 computes child heading from truncated aim+rand%90+135,then signed integer remainder360 and one negative correction.52d4f0 is original float32 135.0. C omits x87 arguments; instruction and original byte bindings govern.",
+      "evidence_functions": [
+        {
+          "address": "0x41a740",
+          "evidence_id": "ev_3167f678eaf5260b34f2bdce2727859e0280bc8581b355b6475a99286933728f"
+        },
+        {
+          "address": "0x41b2a0",
+          "evidence_id": "ev_ca5f98def5458ff60c3a0c23cfac3efd349a019d799aadd88c70f0d557a98f24"
+        }
+      ]
+    },
+    {
+      "id": "integer-distance",
+      "location": "419fd0 tail JMP51b4a8",
+      "fact": "The decompiler labels the wrapper void,but original instructions compute square-root distance and tail-jump to the truncating conversion that returns in EAX. The void C prototype is not an authority for a missing return.",
+      "evidence_functions": []
+    },
+    {
+      "id": "tiled-effect",
+      "location": "41f660/41f5b0;533a74",
+      "fact": "41f660 is a timed tiled visual constructor,not a generic screen-shake helper.41f5b0 increments/decrements a phase0..15 and emits100 tile draw requests at32+64*x,24+48*y for x/y0..9,priority3,using a16-entry resource row. Duration/elapsed use boxed values; their complete native getter and RNG behavior remains separate.",
+      "evidence_functions": [
+        {
+          "address": "0x41f5b0",
+          "evidence_id": "ev_074ba532b3f5a625db2de77c8e637b9c06ace8150d46734d5946fbef1e5716f9"
+        },
+        {
+          "address": "0x41f660",
+          "evidence_id": "ev_517a3f66069ae72022ed6321410b9fafc7f6fc7cbc8911489f684126d2b09ff7"
+        }
+      ]
+    },
+    {
+      "id": "boxed-counter-rng",
+      "location": "4033b0/403410 and retained4034f0/403530",
+      "fact": "4033b0 compares two boxed signed values and403410 increments through the getter/setter. Retained4034f0 periodically calls rand after its signed-byte read counter exceeds20 and remasks storage. This is a real global-RNG/scheduling obligation; the reaction-specific correction does not establish whole-native RNG parity. No original protection is changed.",
+      "evidence_functions": [
+        {
+          "address": "0x403410",
+          "evidence_id": "ev_35701fa94272dd55f6f872e0bbad27911657531890cff36caabe9efe6012c35e"
+        },
+        {
+          "address": "0x4033b0",
+          "evidence_id": "ev_5bdd1a3e837485a46ddce68d75dfb4cc329f8e8bf4595bce5e10fa652715cce3"
+        }
+      ]
+    },
+    {
+      "id": "parent-owned-effect",
+      "location": "41b110/41b0e0",
+      "fact": "41b110 constructs a parent-associated effect;41b0e0 animates and sets state1/hidden when complete. That callback is not evidence of immediate deletion; the parent owns the later lifecycle.",
+      "evidence_functions": [
+        {
+          "address": "0x41b0e0",
+          "evidence_id": "ev_1c23297da8627ccf80d440d0f576ec295772b5726a9099ec17dcfe2268ec0bb9"
+        },
+        {
+          "address": "0x41b110",
+          "evidence_id": "ev_685ca8bcef87bace9abf1c818254ea51a09e1b1e2c123a00cbe8ec99d4627c86"
+        }
+      ]
+    },
+    {
+      "id": "alternate-ko",
+      "location": "421850 and retained41b6e0",
+      "fact": "The alternate-renderer KO constructor and its callback are retained as a distinct backend path. Recovering the constructor does not validate original alternate/tinted/additive pixels.",
+      "evidence_functions": [
+        {
+          "address": "0x421850",
+          "evidence_id": "ev_a057aa6f8db56d32999a7ff2bfd7997569f1972888a28efbd81a06ba49fb2f68"
+        }
+      ]
+    },
+    {
+      "id": "derived-fade",
+      "location": "422080;analyst-seeded421f90(219B)",
+      "fact": "The canonical provider did not recognize421f90 as a procedure. A separate owned Ghidra project recovered the callback: alpha rises toward255,optional global background/state change,then states2/3/4 fade/hide/delete with native fallthrough. It contributes zero canonical REA functions.",
+      "evidence_functions": [
+        {
+          "address": "0x422080",
+          "evidence_id": "ev_a619f5357e6c76538dee43c81e7f5b188984b50351892a2a480be2973b6c60a5"
+        }
+      ]
+    },
+    {
+      "id": "derived-visual-child",
+      "location": "41a740;analyst-seeded41a660(224B)",
+      "fact": "The canonical provider did not recognize41a660 as a procedure. The derived callback marks deletion on parent deletion but continues that same callback,then follows parent priority,animation/optional flash and published coordinates/facing/counter. Do not invent an early return. Complete x87 geometry still needs port and independent tests.",
+      "evidence_functions": [
+        {
+          "address": "0x41a740",
+          "evidence_id": "ev_3167f678eaf5260b34f2bdce2727859e0280bc8581b355b6475a99286933728f"
+        }
+      ]
+    },
+    {
+      "id": "related73",
+      "location": "4260b0 related73 positive branches versus generic common family",
+      "fact": "Related73 positive variants have their own actor/class/level and24/15/41/23 or18 scripts; they do not share the generic38/147/53 cost prefix. Generic95/105/110 charge differences and complete result/cost ownership must be ported from their own producer branches.",
+      "evidence_functions": []
+    },
+    {
+      "id": "native-audio",
+      "location": "510000 original body551B",
+      "fact": "The decompiled formal prototype omits actual register/stack contracts and the implementation dispatches through COM/indirect calls. Retaining this entry does not accept native audio or indirect scheduling.",
+      "evidence_functions": [
+        {
+          "address": "0x510000",
+          "evidence_id": "ev_ed5478702b9a0a11d8408502f41a9388c57bd4c1a1428bd8499be5bba21bdc4e"
+        }
+      ]
+    }
+  ],
+  "inferences": [
+    "Distinct reactionPuff factory is the narrow independent interface for the already implemented26/160 path.",
+    "The indexed candidate states are a useful order for remaining consumer work,but are not a closed capability set."
+  ],
+  "tile_resource_indices": {
+    "0": [
+      28881,
+      28881,
+      28882,
+      28882,
+      28883,
+      28883,
+      28884,
+      28884,
+      28885,
+      28885,
+      28886,
+      28886,
+      28887,
+      28887,
+      28888,
+      28888
+    ],
+    "3": [
+      28905,
+      28905,
+      28906,
+      28906,
+      28907,
+      28907,
+      28908,
+      28908,
+      28909,
+      28909,
+      28910,
+      28910,
+      28911,
+      28911,
+      28912,
+      28912
+    ],
+    "5": [
+      28913,
+      28913,
+      28913,
+      28913,
+      28914,
+      28914,
+      28914,
+      28914,
+      28915,
+      28915,
+      28915,
+      28915,
+      28916,
+      28916,
+      28916,
+      28916
+    ]
+  },
+  "implemented_change": {
+    "files": [
+      "shared/legacy-game-battle-playback.mjs",
+      "shared/legacy-game-battle-strike-playback.mjs"
+    ],
+    "behavior": "26/160 now allocate a parentless reaction puff at the body position without spending the modeled RNG; escape12/13 keep their separate random factory.",
+    "newly_enabled_selectors": 0,
+    "newly_enabled_positive_variants": 0,
+    "tests": "One source and one neutral generated regression cover26/160/12 through the actual public owner/API,nonzero screen offset,and lifecycle."
+  },
+  "unknowns": [
+    "Complete positive-variant producer/probe/projectile/target-result implementation and exact parent/child ordering remain required.",
+    "The mechanical117-case/93-group candidate envelope omits general non-alias fallthrough and leaves14 dynamic seed actions plus one dynamic body-state write unresolved; it is not true reachability or source closure.",
+    "Callbacks recovered in a separate seeded project are derived observations,not canonical provider procedures; indirect calls and complete x87 contracts need further source-to-port work.",
+    "Guard/redirection/look-ahead/1010 charge,nested72/113,related73,96 and higher/self/attachedRID scripts remain required.",
+    "Whole-native boxed values/global RNG/cadence/object pool/window/hit/text/audio/backend semantics and native-versus-model comparison remain unverified.",
+    "Full game/nonbattle/mobile resources and networking,physical phone,native WeChat/DevTools/devices,current-version and official login/startup/business/disconnect acceptance remain required; no test account is available."
+  ],
+  "complete_common_family_closure": false,
+  "source_investigation_complete": false,
+  "runtime_implementation_complete": false,
+  "phase_complete": false,
+  "full_goal_complete": false,
+  "goal_status": "active"
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "moli.launcher-v28.implementation-spec.v1",
+  "source": "evidence-reuse.json",
+  "modules": {
+    "web/launcher-patch-files.mjs": "Explicit File/Blob payload acquisition with native intrinsics, common root stripping, pre-read metadata/path/budget validation, owned output and abort/deadline cleanup.",
+    "web/launcher-patch-state.mjs": "Page-local generation, total deadline, review/choice/private owned candidate, invalidation and late-provider discard.",
+    "web/launcher-patch-source.mjs": "Exact canonical numeric IPv4 loopback origin capabilities and runtime schema validation.",
+    "web/login-patch.mjs": "Actual directory/base-folder/download/cancel/review/explicit choose/discard controls; no credential access.",
+    "web/login-app.mjs": "Gate account/text controls for configured PatchEXE until choice; invalidate session/launch/consent; selected metadata prepares full resource context.",
+    "web/login-catalog.mjs": "Metadata patch selection and current ordinal-bound input creation.",
+    "web/login-launch.mjs": "Selected candidate path list supersedes launch-folder names for resource metadata; distinct field/preparation notifications.",
+    "web/login.html": "Conditional patch panel and explicit local payload disclosure.",
+    "web/login.css": "Existing layout with bounded/wrapping patch list/status styling.",
+    "adapters/node/launcher-patch-origins.mjs": "Reexports shared web origin validator for Node capabilities.",
+    "adapters/node/launcher-loopback.mjs": "Optional gamePatchOrigins runtime descriptor and exact CSP origins; default profile unchanged, no proxy.",
+    "web/tests/helpers/launcher-game-patch-fixture.mjs": "Exact opt-in browser CORS for original local fixtures only.",
+    "web/tests/helpers/launcher-patch-ui-fixture.mjs": "Original resource ZIPs and bootstrap configuration on loopback.",
+    "web/examples/launcher-browser-game-patch-local.mjs": "Runnable original patch + one independently verified test exchange on4174 with normal cleanup."
+  },
+  "files": {
+    "input": "Explicit entries own relativePath and native Blob/File; browser takes intrinsic webkitRelativePath from selected FileList only.",
+    "format": "One nonempty common root removed, slash separator; core relativeASCII path validation/aliases/tree conflicts applies before first payload read.",
+    "budgets": "1024 files,32MiB each,64MiB aggregate; empty input/file allowed; one bounded read deadline.",
+    "ownership": "Intrinsic Blob.size/slice/arrayBuffer bypass subclass overrides; returned bytes owned. Failure drops owned partials; late delivered buffers wiped; no JS heap-erasure claim.",
+    "errors": [
+      "PATCH_FILE_INPUT",
+      "PATCH_FILE_PATH",
+      "PATCH_FILE_BUDGET",
+      "PATCH_FILE_READ",
+      "PATCH_FILE_ABORTED",
+      "PATCH_FILE_TIMEOUT"
+    ]
+  },
+  "state": {
+    "states": [
+      "idle",
+      "preparing",
+      "ready",
+      "selected",
+      "cancelled",
+      "failed"
+    ],
+    "prepare": "Clear old candidate before new input validation; snapshot raw catalogs/scalars/origins before asynchronous files; fixed10second monotonic total across file and existing HTTP phases.",
+    "review": "Snapshot has filenames/counts/byte lengths/phase/binding and operation counts only; no payload aliases. Ready is selectable only when no skipped operations or unknown blocks.",
+    "choice": "Explicit choose while ready; selectedPaths returns frozen path strings. Resources derive from these paths; payload remains page-local and unverified.",
+    "lifecycle": "Configuration/game/region/Galaxy/cache restore, directory/path encoding/base folder changes, discard and pagehide clear choice. Cancel aborts current I/O and discards partial results. Generation blocks late providers replacing a new candidate.",
+    "cleanup": "Clear owned candidate file bytes/process plan/manifest byte fields on reset; referenced JS strings/external copies/engine heap not guaranteed erased."
+  },
+  "UI": {
+    "visibility": "Only when explicitly configured gamePatch runtime AND current game PatchEXE require preparation; default/no-patch flow retained.",
+    "readiness": "Configured required patch gates account/text review until explicit complete choice. Choice automatically prepares full process resource input. Errors/cancel/discard do not authorize exchange.",
+    "controls": "Existing Windows directory/path profile reused; separate base-folder reads payloads. Existing installation-folder input continues metadata-only when no chosen patch.",
+    "persistence": "No patch bytes/choice persisted. Existing explicit XML cache contains catalog bytes/options, restoration reparses and requires fresh preparation.",
+    "scope": "All patch application is virtual owned memory; no installed-directory write, upload, automatic process, officialendpoint or authentication assertion."
+  },
+  "local_capability": {
+    "option": "createLauncherLoopbackServer({gamePatchOrigins:[...]})",
+    "origins": "1..16 unique exact canonical http://127.0.0.1:port; no hostname, LAN, credentials, path, wildcard or HTTPS. Must independently match selected PIP/PPort; BIP is not HTTP permission.",
+    "runtime": "Optional gamePatch:{schema:moli.local-game-patch.v1,allowedOrigins}. Absent by default; exact configured origins only appended to connect-src.",
+    "source": "Original fixture CORS permits only its exact login origin; transport still omits credentials/referrer and rejects redirects. Node adapter exposes no HTTP proxy, new routes or official defaults.",
+    "offline": "Existing4173 offline page retains connect-src none; optional capability only affects opt-in session server."
+  },
+  "not_implemented": [
+    "Native installation commit/rollback, real filesystem changes or patcher process",
+    "Official update trust/signatures and real packages/accounts/service acceptance",
+    "Native ACP/DBCS/Win32 enumeration/EH/permissions equivalence",
+    "Safari/physicalmobile/WeChat and game consumer/implementation acceptance"
+  ],
+  "run": "node web/examples/launcher-browser-game-patch-local.mjs"
+}

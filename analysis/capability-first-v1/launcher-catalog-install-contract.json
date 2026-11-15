@@ -1,0 +1,389 @@
+{
+  "schema": "moli.capability.launcher-catalog-install-contract.v1",
+  "source": {
+    "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+    "bytes": 4111872,
+    "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+  },
+  "source_check": "analysis/capability-first-v1/launcher-catalog-install-source-check.json",
+  "capabilities": [
+    "L01",
+    "L02",
+    "L05",
+    "L06",
+    "L08"
+  ],
+  "facts": [
+    {
+      "id": "catalog-publication",
+      "kind": "fact",
+      "claim": "Both file loads and exact Gamelist/Games plus Regionlist/Regions containers precede row resets. After this gate the existing owner is populated in place, with caps, defaults and eligibility flags; this is not a proved all-or-nothing transaction. Normal return AL is false before the gate and true after traversal.",
+      "procedures": [
+        "0x40bf80",
+        "0x438750",
+        "0x438580"
+      ],
+      "limits": {
+        "games": 15,
+        "regions": 40,
+        "game_region_members": 20,
+        "BIPs_per_region": 10,
+        "Galaxy_rows_per_region": 15,
+        "Args_gamecode_slots": 15
+      },
+      "count_fields": {
+        "games": "CChildView+0x2b30",
+        "regions": "CChildView+0x2b34"
+      }
+    },
+    {
+      "id": "XML-lookup",
+      "kind": "fact",
+      "claim": "Element and attribute names use case-sensitive raw-byte equality. FirstChildElement searches children, NextSiblingElement searches following siblings, both requiring node type1. Field extraction accepts only the immediate first child when it is type4; it does not concatenate descendant text or skip a leading non-text child.",
+      "procedures": [
+        "0x40bf80",
+        "0x4372c0",
+        "0x4384a0",
+        "0x438800",
+        "0x437c20"
+      ]
+    },
+    {
+      "id": "game-row-fields",
+      "kind": "fact",
+      "claim": "The C82 producer uses the following byte offsets; matching names or addresses in another hash do not transfer these rules.",
+      "procedures": [
+        "0x40bf80",
+        "0x403990"
+      ],
+      "base": "CChildView+0x2bd8",
+      "stride_bytes": 164,
+      "string_fields": {
+        "Name": 0,
+        "EXE": 4,
+        "Argsline": 8,
+        "OldRegKey": 12,
+        "OldRegValue": 16,
+        "RegKey": 20,
+        "RegValue": 24,
+        "SpeFile": 28,
+        "OfficialSite": 32,
+        "CreateURL": 36,
+        "Code_attribute_raw": 40,
+        "PatchEXE": 44,
+        "ConfigEXE": 48,
+        "News": 52,
+        "Status": 56,
+        "IntroPage": 60,
+        "DownloadPage": 64
+      },
+      "other_fields": {
+        "member_indices": 68,
+        "member_count": 148,
+        "numeric_code": 152,
+        "installed": 156,
+        "byte_9d": 157,
+        "old_registry_source": 158,
+        "byte_9f": 159,
+        "windowed": 160,
+        "eligible": 161
+      },
+      "defaults": {
+        "strings": "empty",
+        "20_member_indices": -1,
+        "counts_and_code": 0,
+        "bytes_9c_through_9f": 0,
+        "windowed": 1,
+        "eligible": 0
+      }
+    },
+    {
+      "id": "DownloadPage-Windowed",
+      "kind": "fact",
+      "claim": "Windowed is read from the selected DownloadPage element, only if that element exists. An existing attribute is interpreted as atoi(value)!=0; absent element/attribute retains default1.",
+      "procedures": [
+        "0x40bf80",
+        "0x403990"
+      ]
+    },
+    {
+      "id": "realm-row-fields",
+      "kind": "fact",
+      "claim": "Region rows carry patch/status/BIP metadata, per-game Args and Galaxy records. Args are indexed by atoi(Gamecode): negatives skipped, values>=15 clamped to14, repeated writes replace the same slot. Galaxy admits unsigned Gamecode<=14 and preserves document order up to15, counting each admitted type.",
+      "procedures": [
+        "0x40bf80",
+        "0x403bb0"
+      ],
+      "base": "CChildView+0x3574",
+      "stride_bytes": 412,
+      "fields": {
+        "Name": 0,
+        "PIP": 4,
+        "PPort": 8,
+        "Closed_text": 12,
+        "StatusIP": 16,
+        "BIP_count": 20,
+        "Galaxy_count": 24,
+        "10_BIP_strings": 28,
+        "15_Args_strings": 68,
+        "10_BIP_ports": 128,
+        "15_Galaxy_type_counts": 168,
+        "15_Galaxy_rows": 228,
+        "Closed_present": 408
+      },
+      "Galaxy_row": {
+        "stride_bytes": 12,
+        "Gamecode": 0,
+        "Name_attribute": 4,
+        "immediate_text": 8
+      },
+      "defaults": "strings/counts/flags clear; all Galaxy counts clear; Closed presence sets flag even without text"
+    },
+    {
+      "id": "game-members",
+      "kind": "fact",
+      "claim": "Game/Regions/Region first-child text is matched case-sensitively against Region.Name. Each encountered member consumes one of20 entries even when unresolved, retaining default -1; no deduplication or ordinal-to-Code conversion is implied.",
+      "procedures": [
+        "0x40bf80",
+        "0x403990"
+      ]
+    },
+    {
+      "id": "game-admission",
+      "kind": "fact",
+      "claim": "A row remains in the capped catalog even if ineligible. Eligibility requires a nonempty <=6-byte digit-only Code whose checked numeric value equals the stored atoi value and is<=14, valid EXE and SpeFile paths, a valid SpeFile basename, optional valid PatchEXE, optional single-component ConfigEXE that is also an executable when nonempty, and paired valid registry key/value fields. Numeric Code need not equal the row ordinal.",
+      "procedures": [
+        "0x40bf80",
+        "0x436a40",
+        "0x436a80",
+        "0x436c90",
+        "0x436d30",
+        "0x436f30"
+      ]
+    },
+    {
+      "id": "filename-path-rules",
+      "kind": "fact",
+      "claim": "Relative paths are limited to<260 bytes and normalized to backslashes, with a single optional leading separator removed; doubled leading separators, empty/dot/dotdot components, edge whitespace, control bytes, a trailing dot, reserved DOS device stems and single-byte forbidden filename characters are rejected. Executable paths require a .exe suffix, leaf<=244 bytes and exclusion of the eight retained executable leaf names. Component and case operations include MBCS/locale-dependent calls.",
+      "procedures": [
+        "0x435350",
+        "0x434ed0",
+        "0x4347c0",
+        "0x432cc0",
+        "0x434380",
+        "0x436350",
+        "0x436a80",
+        "0x436a40"
+      ]
+    },
+    {
+      "id": "registry-field-rules",
+      "kind": "fact",
+      "claim": "Registry key text is relative, <241 bytes, with no leading/trailing backslash, empty/dot/dotdot component, quote, slash, control byte or edge whitespace. Value names are <256 bytes without either separator, quote, dot/dotdot, control byte or edge whitespace. Empty text is permitted only by the supplied flag and pairing rules.",
+      "procedures": [
+        "0x436d30",
+        "0x436f30",
+        "0x40bf80"
+      ]
+    },
+    {
+      "id": "registry-path-lookup",
+      "kind": "fact",
+      "claim": "Installation discovery tries HKCU RegKey/RegValue, then OldRegKey/OldRegValue. It accepts terminated REG_SZ/REG_EXPAND_SZ within the260-byte buffer, expands environment variables when applicable, and requires the directory normalization/existence predicate. Old-registry success sets row+0x9e.",
+      "procedures": [
+        "0x40bf80",
+        "0x40ba50",
+        "0x4355f0"
+      ]
+    },
+    {
+      "id": "profile-path-fallback",
+      "kind": "fact",
+      "claim": "A registry-discovered directory is published as installed and its Path/Game+rawCode profile write is attempted without checking that write result. Without such discovery, an eligible row reads the same profile key and becomes installed only when directory normalization succeeds. This discovery path does not perform the manual selection EXE/SpeFile existence pair.",
+      "procedures": [
+        "0x40bf80",
+        "0x4355f0"
+      ]
+    },
+    {
+      "id": "path-dialog",
+      "kind": "fact",
+      "claim": "Template295/CDirInfo binds edit1030 to dialog+0xa8, browse1009 to SHBrowseForFolderA and OK1 to the separately seeded callback. The OK callback performs UpdateData(1), copies at most260 bytes to Frame+0x277c before outer validation, then delegates through virtualslot0x180. The virtual delegate completion semantics are not independently closed here.",
+      "procedures": [
+        "0x412190",
+        "0x412640",
+        "0x4126d0",
+        "0x4127f0"
+      ],
+      "authority_note": "OK body is analyst-derived independent static evidence, not a canonical native dossier"
+    },
+    {
+      "id": "manual-install-flow",
+      "kind": "fact",
+      "claim": "The ordinary selection path checks game/busy/preparation/modal/controller work conditions, saves and sets the modal latch, prefills the current per-game directory, and commits only on modal result1. Cancel and ordinary failure restore the latch. Success either advances preparation tostep3 or refreshes the view and selects the same raw game index.",
+      "procedures": [
+        "0x426150",
+        "0x40d4d0",
+        "0x412290"
+      ]
+    },
+    {
+      "id": "manual-install-commit",
+      "kind": "fact",
+      "claim": "40d4d0 calls402000. Invalid game/index/null path/ineligible row sets error87. The chosen directory must normalize and exist, and joined SpeFile(row+0x1c) and EXE(row+4) must both exist. Failure sets161. The Path/Game+rawCode write precedes per-game path and installed-state publication; write failure preserves GetLastError or substitutes29. Success sets the installed word to1, updates current-game path aliases and reports success. Earlier dialog scratch writes are outside this commit.",
+      "procedures": [
+        "0x40d4d0",
+        "0x402000",
+        "0x4355f0",
+        "0x435ad0"
+      ]
+    },
+    {
+      "id": "helper-identity",
+      "kind": "fact",
+      "claim": "40d4f0 is a CString byte/MBCS Replace helper; it is not the installation apply target. 4355f0 is existing-directory normalization, whereas40ba50 is the registry lookup owner.",
+      "procedures": [
+        "0x40d4f0",
+        "0x4355f0",
+        "0x40ba50",
+        "0x40d4d0"
+      ]
+    },
+    {
+      "id": "App-startup",
+      "kind": "fact",
+      "claim": "App startup431000 parses the bounded decimal ID: argument, registers the activation message and creates the named mutex. An existing instance selects a window with a nonzero activation property in another process, then verifies the property equals the registered message before posting activation; it closes its mutex handle and returnsfalse. New-instance startup initializes base/OLE/helpers/channel, allocates Frame0x7768, loads resource128 through slot0x168, clears both Frame aliases on load failure, otherwise shows/updates the frame, runs the existing startup-ACK helper and returnstrue.",
+      "procedures": [
+        "0x431000",
+        "0x430f80",
+        "0x42e180"
+      ],
+      "dependencies": [
+        "Existing startup ACK/activation contracts remain separate; no new account or IPC observation."
+      ]
+    },
+    {
+      "id": "Frame-ownership",
+      "kind": "fact",
+      "claim": "Frame constructor owns CChildView at+0x120; CChildView owns the Main object at+0x1a8. Frame WM_CREATE creates the child view. PreCreateWindow clears extended-style0x200 and replaces style with0x80000000; this does not itself prove that hMenu is cleared or that static menu128 is attached.",
+      "procedures": [
+        "0x42e180",
+        "0x403040",
+        "0x42e2f0",
+        "0x42e3a0"
+      ]
+    },
+    {
+      "id": "login-close",
+      "kind": "fact",
+      "claim": "Frame WM_CLOSE checks Main login-busy+0x1a74. If busy,41a020 sets close-request+0x1a75 and calls41b690. 41b690 clears/releases the current login job reference, clears busy and related flags, kills the login timer, stops the channel and, when close-request was set, clears it and posts WM_CLOSE to the Frame. This closes the selected deferred-close state transition, without proving every late login callback or worker termination.",
+      "procedures": [
+        "0x42e260",
+        "0x41a020",
+        "0x41b690",
+        "0x4260e0"
+      ]
+    },
+    {
+      "id": "Main-destroy",
+      "kind": "fact",
+      "claim": "Main WM_DESTROY removes its activation property, takes and releases its login job reference, clears busy/close and related flags, unregisters its hotkey when present, removes the tray icon and kills the explicit timers0x332,100,0x65,0x36a,0x36c before base cleanup. Reference release is not worker termination.",
+      "procedures": [
+        "0x41fa60",
+        "0x431f60",
+        "0x4260e0",
+        "0x4269a0"
+      ]
+    },
+    {
+      "id": "catalog-job-ownership",
+      "kind": "fact",
+      "claim": "Catalog preparation allocates a64-byte job with two references, cancel0 and owner HWND, then starts406a00 and publishes job/handle at CChildView+0x2bc8/+0x2bc4. Start failure releases both references. The worker checks cancel before its0x80cc/0x80c9 posts and releases its reference on completion. The completion handler takes the current job, clears owner fields, closes the handle after a zero-time wait and releases the owner reference on observed return branches. The message contains no per-job identity.",
+      "procedures": [
+        "0x406290",
+        "0x406a00",
+        "0x40a320"
+      ]
+    },
+    {
+      "id": "CChildView-destruction",
+      "kind": "fact",
+      "claim": "Destruction sets the catalog-job cancel flag, clears its owner HWND, waits at most5000ms when a handle exists and closes it, without checking the wait result, then releases its reference and clears both owner fields. Other retained process/event handles are closed. Closing a handle does not prove its process or thread stopped.",
+      "procedures": [
+        "0x404410"
+      ]
+    },
+    {
+      "id": "App-exit",
+      "kind": "fact",
+      "claim": "App exit stops/releases its channel and clears the Frame alias before base exit. The destructor deletes its helper, closes the retained mutex and releases a remaining channel reference. The bounded68-entry code-pointer prefix and six option-mask accessors do not by themselves create new user requirements.",
+      "procedures": [
+        "0x430f30",
+        "0x430ce0",
+        "0x431f20",
+        "0x431f30",
+        "0x431f40",
+        "0x431f50",
+        "0x431d60",
+        "0x431d70"
+      ]
+    }
+  ],
+  "scope_refinement": [
+    "Same C82 source only; historical c7ba catalog/metadata specs remain separately qualified.",
+    "Registry discovery and manual installation commit have different predicates and publication rules.",
+    "The ordinary path dialog mutates a scratch buffer before the outer commit; no whole-flow atomicity claim.",
+    "The selected login deferred-close path is now specified; whole-owner lifecycle remains open."
+  ],
+  "inferences": [
+    {
+      "kind": "inference",
+      "claim": "A cross-platform reconstruction can share catalog/admission/path-plan and owner-state rules, while injecting filesystem/profile/window/process effects through platform ports.",
+      "implementation_added": false
+    }
+  ],
+  "remaining": [
+    "Full XML lexer, encoding/entity/error behavior and external-parser compatibility; selected tree lookup is not a complete XML specification.",
+    "Directory helper434200/434bd0 and all locale/filesystem/registry/profile persistence behavior; dynamic acceptance remains separate.",
+    "Explicit directory clear/remove/replace operations beyond the observed selection and catalog fallback, plus exception-unwind publication/latch behavior.",
+    "Actual static menu128 attachment/routing, other four static commands and resources296/30721/30734; do not infer capabilities from dormant/library metadata.",
+    "App constructor/static initializer full body; vptr store401051 and the bounded code-pointer prefix do not supply its complete entry/body.",
+    "All login, updater, patch, child-process and modal late-callback interleavings, queue draining, cancellation acknowledgement and reopen behavior.",
+    "Catalog completion consumes the current owner job without a message identity; absence of harmful overlap still needs the complete scheduling guards.",
+    "All-capability discovery/specification, cross-platform lifecycle/input/storage, real accounts and corresponding official compatibility."
+  ],
+  "requirement_answers": [
+    {
+      "question": 1,
+      "status": "partially-answered",
+      "result": "Same-source producer fields/defaults/caps/lookup, eligibility and selected failure/publication rules bound; full XML grammar remains."
+    },
+    {
+      "question": 2,
+      "status": "partially-answered",
+      "result": "Template295, browse/OK, ordinary modal latch, manual commit and registry/profile discovery bound; clear/unwind/OS behavior remains."
+    },
+    {
+      "question": 3,
+      "status": "partially-answered",
+      "result": "App startup/exit, Frame/CChildView/Main ownership and catalog job references bound; initializer and complete scheduling remain."
+    },
+    {
+      "question": 4,
+      "status": "partially-answered",
+      "result": "Login deferred close, Main destruction, catalog worker cancellation/reference release bounded; all callbacks/process exits/reentry not closed."
+    },
+    {
+      "question": 5,
+      "status": "partially-answered",
+      "result": "Frame resource128 load and popup-style mutation verified; menu attachment/remaining resources not established."
+    }
+  ],
+  "original_execution": false,
+  "account_or_session_observed": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "official_acceptance": false,
+  "full_goal_complete": false
+}

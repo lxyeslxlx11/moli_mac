@@ -1,0 +1,117 @@
+{
+  "schema": "moli.wechat-resource-cache.v1",
+  "requirement": "reports/development-plan.md#stage148",
+  "created_before_product_code": true,
+  "status": "implemented-and-local-JS-file-chain-verified",
+  "objective_preserved": "REA launcher -> independent launcher -> REA game -> playable independent game across web/mobile-web/WeChat",
+  "format": {
+    "magic": "MOLIRES1",
+    "headerBytes": 48,
+    "revision": "little-endian safe UInt64,1..2^53-2",
+    "metadata": "<=1MiB canonical ASCII JSON; exact snapshot schema/binding/files(path,length,md5)/trust",
+    "payload": "original owned file bytes in row order;1024files,32MiB/file,64MiB total",
+    "integrity": "MD5(header0..31+metadata) plus existing each-file MD5; non-authenticating corruption detection",
+    "strictness": "exact counts/lengths/revision/reserved fields/canonical JSON, current binding and existing v1/v2 semantics; no trailing bytes",
+    "header": {
+      "magic": [
+        0,
+        7
+      ],
+      "revisionLE64": [
+        8,
+        15
+      ],
+      "metadataLengthLE32": [
+        16,
+        19
+      ],
+      "payloadLengthLE32": [
+        20,
+        23
+      ],
+      "fileCountLE32": [
+        24,
+        27
+      ],
+      "reservedZero": [
+        28,
+        31
+      ],
+      "metadataHeaderMD5": [
+        32,
+        47
+      ],
+      "metadataStart": 48
+    },
+    "recordBytes": 68157488,
+    "metadataBudgetCoversAllExistingValidSnapshots": true,
+    "schemaPreserved": "Existing resources.v1 default/configured source and resources.v2 exact pinned source0/1; no caller-profile field added."
+  },
+  "store": {
+    "directory": "moli-launcher-resources-v1",
+    "slots": "explicit bounded profile.a.bin/profile.b.bin",
+    "algorithm": "extract prior catalog two-slot machinery; complete decode/readback, expectedRevision CAS, same-context lock, unknown native write outcome lifetime preserved",
+    "native_atomicity_or_durability_or_cross_process_guarantee": false
+  },
+  "host": {
+    "configuration": "optional resourceCacheProfile with patch config; default off, no startup IO",
+    "operations": "explicit check -> matching cached candidate restore -> explicit select -> optional save using checked revision",
+    "lifecycle": "source/selection/catalog change or hide clears preview/revision/owned data; issued write outcome must be rechecked; no automatic IO or retry",
+    "binding": "Existing exact v1/v2 binding; host passes only the explicitly selected resource snapshot, not its separate initialization file input, credentials or session fields. User-local resource contents are never executed by the store.",
+    "restoredBase": "Restored file rows share one page owner as base/candidate; dropping candidate does not clear its still-owned base. Next prepare copies base then runs existing consumer; operation history is not cached or asserted."
+  },
+  "validation": "independent Python original vectors, full existing file/byte limits, malformed/corrupt/alias/binding/CAS/cancel/late native writes; actual original filesystem+new host/generated Page+Python peer",
+  "new_REA_or_VM_or_game_CDB_or_official_requests": 0,
+  "native_WeChat_acceptance": false,
+  "full_goal_complete": false,
+  "actual_results": {
+    "new_Node_cases": 20,
+    "full_Node_passed": 822,
+    "generated_project_checks": 7,
+    "builds": [
+      {
+        "directory": "build/wechat-app-stage148",
+        "report": {
+          "path": "build/wechat-app-stage148/build-report.json",
+          "bytes": 13293,
+          "sha256": "080cda955c5ceda9fb678bc0d63fa7ae4ec3dc449cd56fbd64859cdd78353ab0"
+        },
+        "inputs": 68,
+        "outputs": 11,
+        "bytes": 669717,
+        "external_imports": 0
+      },
+      {
+        "directory": "build/wechat-app-local-stage148",
+        "report": {
+          "path": "build/wechat-app-local-stage148/build-report.json",
+          "bytes": 13343,
+          "sha256": "0be480559ab9cfe1dd1038e03d8d27dc41a7dcb1c626b77ab481aec4b3e3b2dd"
+        },
+        "inputs": 68,
+        "outputs": 11,
+        "bytes": 670975,
+        "external_imports": 0
+      },
+      {
+        "directory": "build/wechat-app-resources-stage148",
+        "report": {
+          "path": "build/wechat-app-resources-stage148/build-report.json",
+          "bytes": 13351,
+          "sha256": "55218f1857a155171a328570719cabb66e632c825213012b6a38b0f2e1c8a900"
+        },
+        "inputs": 68,
+        "outputs": 11,
+        "bytes": 670974,
+        "external_imports": 0
+      }
+    ],
+    "real_original_files_and_new_JS_context_verified": true,
+    "device_storage_or_official_acceptance": false
+  },
+  "remaining": [
+    "Actual native WeChat quota/memory/file semantics/AppID/domain/device and interruption durability",
+    "Cross-process/worker writers; corrupt-both-slots remains explicit failure with no automatic deletion or overwrite",
+    "Full current launcher/native paths, game consumers/business protocol and authenticated playable game acceptance"
+  ]
+}

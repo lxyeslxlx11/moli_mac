@@ -1,0 +1,173 @@
+{
+  "schema": "moli.capability.launcher-channel-contract.v1",
+  "source": {
+    "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+    "bytes": 4111872,
+    "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+  },
+  "source_check": "analysis/capability-first-v1/launcher-channel-source-check.json",
+  "capabilities": [
+    "L03",
+    "L08",
+    "X06"
+  ],
+  "facts": [
+    {
+      "id": "native-connection-identity",
+      "procedures": [
+        "0x587160",
+        "0x5875e0",
+        "0x58c5c0",
+        "0x589520",
+        "0x58b230"
+      ],
+      "claim": "CChannel stores the native connection pointer/serial at+d/+11,with another32-bit word at+15. Connection allocation increments global6407b4 and skips zero on wrap,stores the serial at connection+4,and returns the pointer/serial. Pool lookup requires a matching live bucket object,pointer,magic56434543 and serial. This is native connection identity,not a new login wire field or the Main candidate counters; finite serial wrap is not an infinite uniqueness proof.",
+      "kind": "fact"
+    },
+    {
+      "id": "context-bindings",
+      "procedures": [
+        "0x588690",
+        "0x58ce30",
+        "0x58cde0",
+        "0x589520",
+        "0x5875e0"
+      ],
+      "claim": "Initialization stores58c0d0/588d00 as context+68/+6c; allocation copies them to connection+fc/+100. Connect stores587440 as context+78 disconnect callback. AAChannel slots+14/+4 bind4316c0/431ce0; an observed vtable pointer alone does not establish every invocation path.",
+      "kind": "fact"
+    },
+    {
+      "id": "coordinator-registry",
+      "procedures": [
+        "0x588820",
+        "0x5889e0",
+        "0x588b40",
+        "0x586fc0",
+        "0x587050"
+      ],
+      "claim": "CCE owns an ordered registry keyed by the low pointer word and stores the CChannel owner in each row. Registering an existing key for another owner throws on that branch. Removal checks owner equality and has an owner scan fallback. Registry operations use the optional critical-section guard; no all-allocation-failure or OS synchronization result is claimed.",
+      "kind": "fact"
+    },
+    {
+      "id": "callback-leases",
+      "procedures": [
+        "0x588190",
+        "0x5877b0",
+        "0x588260",
+        "0x587780",
+        "0x587750",
+        "0x587790",
+        "0x5872b0"
+      ],
+      "claim": "Callback lookup finds the pointer-key row,compares current channel serial with the incoming serial,then acquires a channel borrow using two checks of operation gate+20 around active count+1c increment. Successful lookup also increments coordinator+1c. Normal release decrements both counts; null release is allowed. The third native handle ABI word is forwarded even where recovered pseudocode only declares two parameters.",
+      "kind": "fact"
+    },
+    {
+      "id": "host-pump",
+      "procedures": [
+        "0x420740",
+        "0x423910",
+        "0x588660",
+        "0x58bf60"
+      ],
+      "claim": "Main initialization requests timer0x332 at100ms. Its WM_TIMER branch calls CCE service; timer100 separately handles login deadlines. Service takes the coordinator guard,requires initialized+18 and enters the engine pump only when global6407c4 is zero. The pump sets that counter while synchronously servicing admitted contexts and clears/decrements it before deferred cleanup. It supplies a normal same-stack route and a nested-pump guard,not a measured scheduling/deadline guarantee.",
+      "kind": "fact"
+    },
+    {
+      "id": "framed-message-callback",
+      "procedures": [
+        "0x58a060",
+        "0x58c0d0",
+        "0x588d00",
+        "0x5878d0"
+      ],
+      "claim": "The selected context service calls its connection parser with pointer/serial,then revalidates the pool identity before further connection use. The frame callback reads the BE16 length,invokes connection+100 for a complete message,and again checks the same pool object and unchanged receive length before consuming bytes. Type11 forwards through5878d0: lookup/borrow,virtual+14 reply call,release. No separate asynchronous application reply queue is introduced by this selected call chain; arbitrary other threads/entry points are not excluded.",
+      "kind": "fact"
+    },
+    {
+      "id": "ordinary-stop",
+      "procedures": [
+        "0x587340",
+        "0x5873f2",
+        "0x58ba00"
+      ],
+      "claim": "Stop returns without a new operation when the operation gate is already held. Its admitted null-handle route releases that gate; the nonnull route saves the handle,removes its registry owner,clears the pointer/serial and requests transport close for the saved still-valid connection before releasing the gate. The close-request helper sets connection+ec when neither close nor destruction is already pending; it does not synchronously free the connection or wait for all acquired callbacks.",
+      "kind": "fact"
+    },
+    {
+      "id": "disconnect-and-unregister",
+      "procedures": [
+        "0x589c30",
+        "0x587440",
+        "0x5874da",
+        "0x587530",
+        "0x587593"
+      ],
+      "claim": "Transport destruction sets+f0 before optional disconnect callbacks,detaches the pool/list entries,clears magic and frees resources on the selected normal route. Disconnect lookup uses the current registered serial/borrow gate. If the channel has not recorded a reply,it invokes reply slot+14 with status-100; its normal tail unregisters/releases. Unregister first removes the owner row,then clears the stored handle pair only if both pointer and serial still match. That final pair check does not by itself protect a new registry binding from a callback already acquired before replacement.",
+      "kind": "fact"
+    },
+    {
+      "id": "normal-destruction",
+      "procedures": [
+        "0x430d70",
+        "0x587210",
+        "0x587261"
+      ],
+      "claim": "AAChannel deleting destruction reaches the CChannel destructor,which restores the base vptr and calls Stop. Its saved-register normal tail polls channel active-borrow count+1c with Sleep1 until zero,then continues base cleanup. There is no deadline in that selected wait loop. This establishes normal lease draining before object release,not completion of every global coordinator shutdown or exception path.",
+      "kind": "fact"
+    },
+    {
+      "id": "preserved-wire-and-Main-gates",
+      "procedures": [],
+      "claim": "The same-C82 login/control/record and lifecycle contracts are reused: the16-argument reply ABI,Main busy/deferred-close admission,candidate counters,DNS job and two selected deadline phases remain distinct. This package adds source ownership rules and no request/reply bytes,product feature or claimed original-server acceptance.",
+      "kind": "fact"
+    }
+  ],
+  "scope_refinement": [
+    "Native handle identity and Main candidate counters have different roles.",
+    "Normal synchronous dispatch/borrow/destruction paths are bound; all possible reentry or global exits are not declared closed.",
+    "Selected default codecs and earlier independent transport policies retain their version/scope boundaries."
+  ],
+  "inferences": [
+    {
+      "kind": "inference",
+      "implementation_added": false,
+      "claim": "A shared connection owner should carry an opaque local identity through asynchronous platform events,retain/release callback leases and make detach,close request and final destruction distinct. An asynchronous drain keeps the browser/WeChat event loop progressing. Current local attempt IDs remain independent routing mechanisms and never become new wire fields; full modal replacement semantics still need their own source rules."
+    }
+  ],
+  "requirement_answers": [
+    {
+      "question": 1,
+      "status": "answered-bounded-source",
+      "result": "Native pointer/serial producer,pool/registry checks and callback bindings are source-bound;canonical/composed views remain separate."
+    },
+    {
+      "question": 2,
+      "status": "answered-bounded-source",
+      "result": "Main pump,reentry guard,frame/type11 route and callback leases/ABI are bound on the selected normal call stack."
+    },
+    {
+      "question": 3,
+      "status": "partially-answered",
+      "result": "Stop,normal disconnect,pair clearing and normal destructor draining bound;already-acquired callback/modal or cross-thread replacement,all exceptions/global exits remain."
+    },
+    {
+      "question": 4,
+      "status": "answered-bounded-source",
+      "result": "Reusable owner/identity/drain implications recorded without new product implementation or acceptance claims."
+    }
+  ],
+  "remaining": [
+    "Already-acquired callback ordering during modal/concurrent Stop/reopen,global coordinator/engine exits and all exceptional/allocation/callback-throw paths.",
+    "Remaining launcher modal ownership,XML clear/remove and caller recovery,OS/locale/storage,dynamic menu targets and three resource uses.",
+    "Game actual alternate dispatch,graphics/input/shared-state owners and the remaining full capability inventory.",
+    "Independent shared implementation,actual platform/device/account and official acceptance remain outside this static package."
+  ],
+  "original_execution": false,
+  "account_or_session_observed": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "official_acceptance": false,
+  "full_goal_complete": false
+}

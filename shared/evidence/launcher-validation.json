@@ -1,0 +1,76 @@
+{
+  "schema": "moli.launcher-core.validation.v1",
+  "recorded_utc": "2026-10-26T05:04:57.398877+00:00",
+  "scope": "Independent pure-text GameList parsing, explicit directory snapshots, INI fallback and data-only file planning. Synthetic test inputs only; no official assets, registry/account access, network, process execution, VM changes or authentication implementation.",
+  "node": {
+    "version": "v26.9.0",
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "passed": 56,
+    "failed": 0,
+    "new_launcher_tests": 31,
+    "existing_resource_web_tests": 25,
+    "log": "launcher-node-tests.log"
+  },
+  "python": {
+    "version": "3.9.6",
+    "command": "python3 -m unittest discover -s analysis/resources-v2 -p 'test_*.py' -v",
+    "passed": 8,
+    "failed": 0,
+    "log": "launcher-python-regression.log"
+  },
+  "swift": {
+    "version": "Apple Swift 6.4 (swiftlang-6.4.0.34.1)",
+    "command": "CLANG_MODULE_CACHE_PATH=/tmp/moli-stage36-clang-cache SWIFTPM_MODULECACHE_OVERRIDE=/tmp/moli-stage36-module-cache swift test --disable-sandbox --cache-path /tmp/moli-stage36-swift-cache --scratch-path /tmp/moli-stage36-swift-build",
+    "working_directory": "native",
+    "passed": 16,
+    "failed": 0,
+    "log": "launcher-swift-regression.log",
+    "scope": "Unchanged historical prototype regression; no GUI launched or macOS-specific feature added"
+  },
+  "example": {
+    "command": "node shared/examples/launcher-plan.mjs",
+    "exit_code": 0,
+    "output": "launcher-example.json",
+    "fixture": "Original synthetic XML and INI"
+  },
+  "sources": [
+    {
+      "path": "shared/launcher.mjs",
+      "sha256": "e9347d890e30b2b3f563fbf0b1635cfcdd68a37f3a56a63bbe094826a7a391b2"
+    },
+    {
+      "path": "shared/index.mjs",
+      "sha256": "303911cd23e56ebd2820894e26cc2b69af93fe6fcfa543f5ba3e0bc71d6dfc11"
+    },
+    {
+      "path": "shared/tests/launcher.test.mjs",
+      "sha256": "d3e9f6b5fec7f2fd4bb495e535eea5adf8293a650a2d46e364a5b3a0225817b5"
+    },
+    {
+      "path": "shared/examples/launcher-plan.mjs",
+      "sha256": "05c449de1711fa9d813fb5f779ecdf96d25dfbefc729f2a0f22219eb8f757402"
+    }
+  ],
+  "evidence_refs": [
+    "../../analysis/launcher/config-summary.json",
+    "../../analysis/launcher-v5/directory-context.json",
+    "../../analysis/launcher-v4/launch-context.md",
+    "../../reports/logic-protocol-spec.md"
+  ],
+  "policy_limits": {
+    "XML_and_INI_are_supported_subsets_not_Win32_emulation": true,
+    "strict_default_bare_amp_mode_requires_explicit_opt_in": true,
+    "snapshot_paths_local_drive_rooted_Windows_only": true,
+    "UNC_URL_POSIX_paths_explicitly_unsupported": true,
+    "legacy_registry_migration_not_implemented": true,
+    "Argsline_opaque_no_commandline_or_ticket_construction": true,
+    "files_exist_and_runtime_readiness_unverified": true
+  },
+  "not_run": [
+    "Actual official GameList input against this new implementation",
+    "Actual registry/INI/file access",
+    "Browser/phone/miniprogram integration of launcher APIs",
+    "Game/launcher binary execution",
+    "Authentication, game protocol, gateway or official server connection"
+  ]
+}

@@ -1,0 +1,12 @@
+import test from 'node:test';
+import {readFileSync} from 'node:fs';
+import * as api from '../index.mjs';
+import {verifyResultModel} from '../../analysis/game-battle-physical-results-v1/verify_model.mjs';
+import {verifyResultCallbacks,verifyResultCorrections,verifyResultAtomic,verifyResultLifetime,verifyResultManagers} from '../../analysis/game-battle-physical-results-v1/verify_routes.mjs';
+const v=()=>JSON.parse(readFileSync(new URL('../../analysis/game-battle-physical-results-v1/original-vectors.json',import.meta.url)));
+test('E000 queues,owned storage,all modeled states and complete RGBA match independent native equations',async()=>console.log('results-independent '+JSON.stringify(await verifyResultModel(api,v()))));
+test('E000 actual HP/MP and RID recipients plus119/120/121 callbacks preserve source priority',async()=>console.log('results-callbacks '+JSON.stringify(await verifyResultCallbacks(api,v()))));
+test('native1004 remains distinct fromFD4 and266 uses ordinary9;0x106 special205 belongs to262',async()=>console.log('results-corrections '+JSON.stringify(await verifyResultCorrections(api,v()))));
+test('capacity and missing heal glyph reject before mutation',async()=>console.log('results-atomic '+JSON.stringify(await verifyResultAtomic(api,v(),{supportsEmptyTargets:true}))));
+test('result charge completion cannot write through a removed parent or reused body slot',async()=>console.log('results-lifetime '+JSON.stringify(await verifyResultLifetime(api,v()))));
+test('actual E000 command manager owns rounds,reflection follow-up,KO and244 exit',async()=>console.log('results-managers '+JSON.stringify(await verifyResultManagers(api,v()))));

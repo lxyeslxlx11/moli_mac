@@ -1,0 +1,131 @@
+{
+  "observed_utc": "2026-10-25T04:13:43.391375+00:00",
+  "command_exit_code": 1,
+  "interpretation": "Expected rejection of current temporary NAT configuration; not an offline pass.",
+  "result": {
+    "policy": "moli-fixed-three-drive-offline-v6",
+    "passed": false,
+    "vm_bundle": "/Users/lx/Documents/code/moli-mac/build/utm/MoliOffline-ARM64-20261025.utm",
+    "checks": [
+      {
+        "check": "bundle.real_directory",
+        "passed": true
+      },
+      {
+        "check": "config.known_root_keys",
+        "passed": true
+      },
+      {
+        "check": "config.Backend",
+        "passed": true
+      },
+      {
+        "check": "config.ConfigurationVersion",
+        "passed": true
+      },
+      {
+        "check": "config.Display",
+        "passed": true
+      },
+      {
+        "check": "config.Drive",
+        "passed": true
+      },
+      {
+        "check": "config.Information",
+        "passed": true
+      },
+      {
+        "check": "config.Input",
+        "passed": true
+      },
+      {
+        "check": "config.Network",
+        "passed": false
+      },
+      {
+        "check": "config.Serial",
+        "passed": true
+      },
+      {
+        "check": "config.Sound",
+        "passed": true
+      },
+      {
+        "check": "config.QEMU",
+        "passed": true
+      },
+      {
+        "check": "config.Sharing",
+        "passed": true
+      },
+      {
+        "check": "config.System",
+        "passed": true
+      },
+      {
+        "check": "Data.real_directory",
+        "passed": true
+      },
+      {
+        "check": "Data.exact_internal_files",
+        "passed": true
+      },
+      {
+        "check": "Data.system.regular_single_link",
+        "passed": true
+      },
+      {
+        "check": "Data.windows_readonly_cd.regular_single_link",
+        "passed": true
+      },
+      {
+        "check": "Data.netkvm_readonly_cd.regular_single_link",
+        "passed": true
+      },
+      {
+        "check": "Data.efi.regular_single_link",
+        "passed": true
+      },
+      {
+        "check": "Data.tpm.regular_single_link",
+        "passed": true
+      }
+    ],
+    "disk_metadata": [
+      {
+        "role": "system",
+        "bytes": 29173219328,
+        "allocated_bytes": 24832049152
+      },
+      {
+        "role": "windows_readonly_cd",
+        "bytes": 8849653760,
+        "allocated_bytes": 8863744000
+      },
+      {
+        "role": "netkvm_readonly_cd",
+        "bytes": 3342336,
+        "allocated_bytes": 3342336
+      }
+    ],
+    "provenance": {
+      "v5_config_sha256": "97cb2df7e4554cb742d6026ab02388f4333b847c75620a7c5798e2de585c3ce8",
+      "change_allowed_from_v5": "Network replaced by empty list only",
+      "expected_values_source": "fixed constants in this script, not a runtime receipt"
+    },
+    "limitations": [
+      "Opens only config.plist (at most 65537 bytes); other access is filesystem metadata.",
+      "Does not establish whether the VM is stopped, guest readiness, runtime isolation or global overrides.",
+      "Does not read disk headers, backing chains, EFI/TPM data, media hashes or guest contents.",
+      "Does not establish guest Secure Boot, driver trust, account state, activation or game compatibility.",
+      "Rejects leaf symlinks/hardlinks but does not exclude ancestor symlinks or all concurrent races.",
+      "Information.Notes is historical text fixed for delta auditing, not a current status assertion.",
+      "v1/v2 policies remain unchanged and intentionally reject this third CD."
+    ],
+    "config_sha256": "97cb2df7e4554cb742d6026ab02388f4333b847c75620a7c5798e2de585c3ce8",
+    "failed_checks": [
+      "config.Network"
+    ]
+  }
+}

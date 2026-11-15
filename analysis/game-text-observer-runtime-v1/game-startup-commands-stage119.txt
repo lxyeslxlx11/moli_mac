@@ -1,0 +1,37 @@
+# Prepared commands only. No game execution is evidenced by this file.
+# $gx119/$gd119/$ob119 are the exact paths in game-guest-preflight-stage119.json.
+# Prepare one NEW process object. Review actual StartInfo before the trigger.
+$gp119=New-Object Diagnostics.Process
+$gp119.StartInfo.FileName=$gx119
+$gp119.StartInfo.WorkingDirectory=$gd119
+$gp119.StartInfo.UseShellExecute=$false
+$gp119.StartInfo | fl FileName,WorkingDirectory,Arguments,UseShellExecute
+
+# Defining this block does not execute its body.
+$probe119={
+Get-Date -Format o
+$started119=$gp119.Start(); $started119
+if($started119){
+$gp119.Id
+try {
+$ended119=$gp119.WaitForExit(1500)
+if(!$ended119){
+& $ob119 game-installed $gp119.Id
+$readCode119=$LASTEXITCODE; $readCode119
+}
+} finally {
+$ended119=$gp119.WaitForExit(30000)
+if(!$ended119){
+$close119=$gp119.CloseMainWindow(); $close119
+$ended119=$gp119.WaitForExit(5000)
+}
+$gp119.HasExited
+if($ended119){$gp119.ExitCode}
+Get-Date -Format o
+}
+}
+}
+
+# Trigger ONCE, only after current preflight, full readback and action-time confirmation.
+# Do not invoke from a file if blocked by execution policy; no policy change is included.
+. $probe119

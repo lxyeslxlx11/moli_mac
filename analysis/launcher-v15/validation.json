@@ -1,0 +1,176 @@
+{
+  "schema": "moli.launcher-v15.validation.v1",
+  "recorded_utc": "2026-10-27T01:55:29.903305+00:00",
+  "stage": 60,
+  "status": "passed-bounded-local-configuration-cache-UI",
+  "scope": "Existing REA-backed configuration and candidate cache wired into actual offline page. Original synthetic XML and isolated temporary browser contexts only; no original EXE/VM/account/official request/game operation. Full launcher and ordered user goal remain incomplete.",
+  "requirements": "reports/development-plan.md",
+  "native_analysis": {
+    "new_REA_calls": 0,
+    "reason": "Ordinary UI integration reuses launcher-v6 configuration and launcher-v14 catalog-write/cache specifications; no new native behavior inferred from page tests.",
+    "fixed_main_sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31"
+  },
+  "preflight": {
+    "previous_manifest": "analysis/delivery-manifest-stage59.json",
+    "previous_files_verified_before_edit": 737,
+    "git_repository": false,
+    "baseline": "build/analysis/launcher-v15/baseline/"
+  },
+  "changes": {
+    "modified_previous_files": [
+      "README.md",
+      "analysis/protocol-v2/spec-matrix.json",
+      "reports/analysis-methods.md",
+      "reports/architecture-and-milestones.md",
+      "reports/development-plan.md",
+      "reports/known-issues.md",
+      "reports/launcher-static.md",
+      "reports/logic-protocol-spec.md",
+      "reports/module-interfaces.md",
+      "reports/resource-formats.md",
+      "reports/validation.md",
+      "scripts/serve_web.py",
+      "shared/README.md",
+      "web/README.md",
+      "web/launcher-app.mjs",
+      "web/launcher-file-io.mjs",
+      "web/launcher.css",
+      "web/launcher.html",
+      "web/tests/launcher-file-io.test.mjs"
+    ],
+    "old_files_unchanged": 718,
+    "new_product_source_files": 0,
+    "raw_file_reader": "one bounded slice, fixed size, native ArrayBuffer byte length, owned raw bytes; text API retained",
+    "UI": "explicit save/restore/recheck/cancel with known-revision CAS, clear old plan/directory on restore, controlled fallback/late-commit messages and generation isolation",
+    "server": "local backlog64 only, Handler/routes/CSP unchanged; exact target normal SIGINT restart"
+  },
+  "node": {
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "runtime": "v26.9.0",
+    "tests": 288,
+    "passed": 288,
+    "failed": 0,
+    "skipped": 0,
+    "new_tests": 3,
+    "log": "analysis/launcher-v15/node-tests.log"
+  },
+  "syntax": {
+    "ESM": [
+      "web/launcher-app.mjs",
+      "web/launcher-file-io.mjs",
+      "web/tests/launcher-file-io.test.mjs"
+    ],
+    "ESM_exit_codes": [
+      0,
+      0,
+      0
+    ],
+    "python_AST": "scripts/serve_web.py",
+    "python_AST_passed": true
+  },
+  "browser": {
+    "environment": "Playwright1.62.1 / Chrome155.0.8059.85, headless temporary contexts",
+    "routing": "Browser plugin not available; frontend-testing-debugging regular Playwright fallback",
+    "url": "http://127.0.0.1:4173/web/launcher.html",
+    "viewports": [
+      {
+        "width": 1280,
+        "height": 1000
+      },
+      {
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "actual_page_checks": 14,
+    "actual_page_GETs": 125,
+    "independent_fresh_narrow_GETs": 25,
+    "independent_GB18030_roundtrip_GETs": 50,
+    "total_source_loopback_GETs": 200,
+    "console_warn_error": 0,
+    "pageerror": 0,
+    "native_IDB": true,
+    "original_synthetic_fixtures_only": true,
+    "request_interception": false,
+    "failure_hooks": "temporary native IDB/Blob hooks restored in finally; no user storage",
+    "raw_GB18030_bytes_equal": true,
+    "receipts": [
+      "analysis/launcher-v15/ui-validation.json",
+      "analysis/launcher-v15/mobile-validation.json",
+      "analysis/launcher-v15/encoding-validation.json",
+      "analysis/launcher-v15/visual-review.json"
+    ]
+  },
+  "server_diagnosis": {
+    "receipt": "analysis/launcher-v15/server-burst-check.json",
+    "requests_per_burst": 16,
+    "same_Handler_queue5_success": 6,
+    "same_Handler_queue64_success": 16,
+    "updated_same_port_success": 16,
+    "route_boundary_checks": 5,
+    "queue": 64,
+    "normal_previous_exit_code": 0,
+    "left_running_session": 20345,
+    "bind": "127.0.0.1:4173",
+    "no_global_or_access_boundary_changes": true
+  },
+  "preservation": {
+    "native_files_hash_unchanged": 17,
+    "shared_non_README_files_hash_unchanged": 63,
+    "bootstrap_store_http_candidate_data_unchanged": true,
+    "Handler_AST_identical": true,
+    "suffix_allowlist_AST_identical": true,
+    "HTML_CSP_identical": true
+  },
+  "matrix": {
+    "revision": 8,
+    "IDs": 20,
+    "IDs_statuses_dependencies_unchanged": true,
+    "UPD_INTEGRITY": "unknown",
+    "updated_acceptance_notes": [
+      "LCH-CATALOG aligns stale product-parser-not-in-this-task with existing v6 parser and current page receipts",
+      "UPD-CATALOG adds bounded local UI acceptance",
+      "UPD-SELF next step narrows to HTTP initialization wiring",
+      "UPD-INTEGRITY retains unknown/native-trust limits"
+    ]
+  },
+  "documentation": {
+    "updated_files": [
+      "README.md",
+      "reports/analysis-methods.md",
+      "reports/architecture-and-milestones.md",
+      "reports/development-plan.md",
+      "reports/known-issues.md",
+      "reports/launcher-static.md",
+      "reports/logic-protocol-spec.md",
+      "reports/module-interfaces.md",
+      "reports/resource-formats.md",
+      "reports/validation.md",
+      "shared/README.md",
+      "web/README.md"
+    ],
+    "local_link_check": "passed",
+    "local_links_checked": 891,
+    "explicit_launcher_anchors_checked": 78
+  },
+  "failures_and_limits": [
+    "Initial fresh narrow readiness failed at4s and12s; four module ERR_CONNECTION_RESET recorded, controlled queue comparison then fix; final UI and fresh narrow reruns passed.",
+    "Initial resized screenshot extra header band cause unknown; no CSS change for it. Final two-frame/fresh-context captures clean.",
+    "UI receipt narrative corrected server-unchanged wording to Handler/routes/CSP unchanged; results/timestamp/assertions retained."
+  ],
+  "not_verified": [
+    "HTTP bootstrap wiring into actual page",
+    "Official HTTP/CORS/source authenticity",
+    "Native replacement/rollback/full original EH",
+    "Actual terms/account persistence/service session/game handoff",
+    "Safari/physical mobile devices/WeChat miniprogram",
+    "Old real XML and graphic UI file flows not rerun",
+    "Unchanged Swift/Python resource suites not rerun"
+  ],
+  "authorization": {
+    "ordinary_dependencies": "Use available tools directly; no missing package required or installed this phase.",
+    "original_programs_VM_accounts_official_requests": "none",
+    "commit_push_publish": "none"
+  },
+  "next": "Continue launcher terms/account storage and session evidence/independent implementation before ordered game phase; full goal remains active."
+}

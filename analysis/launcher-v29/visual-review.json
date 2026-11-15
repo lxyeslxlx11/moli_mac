@@ -1,0 +1,58 @@
+{
+  "schema": "moli.launcher-v29.visual-review.v1",
+  "record": "ui-cache-browser.json",
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 1100
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "checks": [
+    {
+      "name": "Page identity",
+      "passed": true,
+      "evidence": "Exact /web/login.html and Moli · 本地登录流程 title, actual local runtime."
+    },
+    {
+      "name": "Not blank",
+      "passed": true,
+      "evidence": "main contains meaningful content; desktop/mobile first view observed."
+    },
+    {
+      "name": "No framework overlay",
+      "passed": true,
+      "evidence": "No overlay selectors or visible framework overlay."
+    },
+    {
+      "name": "Console health",
+      "passed": true,
+      "evidence": "No relevant pageerror/warn/error across new and regression flows."
+    },
+    {
+      "name": "Screenshot evidence",
+      "passed": true,
+      "evidence": "Viewed desktop/mobile first viewport, desktop saved state and mobile cache review; labels/buttons readable, no clipping/overlap/horizontal scroll."
+    },
+    {
+      "name": "Interaction proof",
+      "passed": true,
+      "evidence": "13 UI cache,12 native IDB,13 previous patch and6default/Galaxy flows plus shipped example."
+    }
+  ],
+  "screenshots": [
+    "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-launcher-v29-eazraeov/desktop-first-viewport.png",
+    "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-launcher-v29-eazraeov/desktop-cache-saved.png",
+    "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-launcher-v29-eazraeov/desktop-cache-restored.png",
+    "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-launcher-v29-eazraeov/desktop-cache-conflict.png",
+    "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-launcher-v29-eazraeov/mobile-first-viewport.png",
+    "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-launcher-v29-eazraeov/mobile-cache-review.png",
+    "/var/folders/6x/dn2b4v591x184z9lb1tbv6yr0000gn/T/moli-launcher-v29-eazraeov/mobile-cache-handoff.png"
+  ],
+  "location": "Fresh project-external temp directory only; no PNGs delivered.",
+  "browser_path": "Browser plugin/skill absent; installed Playwright1.62.1/Chrome155 fallback. No new install.",
+  "limits": "390px viewport is not a device test; controlled pagehide is not full BFCache. No reference redesign."
+}

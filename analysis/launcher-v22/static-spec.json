@@ -1,0 +1,225 @@
+{
+  "schema": "moli.launcher-v22.static-spec.v1",
+  "recorded_utc": "2026-10-27T05:50:01.087326+00:00",
+  "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "tools": {
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "independent": "Python3 stdlib bit grouping/struct/hashlib; reused bounded PE32 source-anchor parser"
+  },
+  "private_bundle": {
+    "path": "build/analysis/launcher-v22/rea-evidence.json",
+    "bytes": 81755699,
+    "sha256": "1f8e54ff214e5ad6663d2b7eef30e6ef8cba6e86673090dcf933c4a0400811c2"
+  },
+  "closed_snapshot": {
+    "path": "build/analysis/launcher-v22/rea-snapshot.json",
+    "bytes": 158037110,
+    "sha256": "a580264a94c1f14367f2c1134932e249a01d09c2714c7b332c987ade8aaf6209"
+  },
+  "new_records": 7,
+  "total_records": 274,
+  "new_functions": [
+    {
+      "entry": "0x44dd67",
+      "evidence_id": "ev_58b2ea36885ea35ac0406b0e854c231b20fd5c056851033be5443d51f09ce372",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x44dd83",
+            "start": "0x44dd67"
+          }
+        ],
+        "span_bytes": 29,
+        "total_bytes": 29
+      },
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      },
+      "assembly_sha256": "62318eccd1f188565f35a94cbaabb6c2b71624e499aa4bf0cac4204fa3349380",
+      "pseudocode_sha256": "81c03a5435848bf0e4c75b99e24d0bf874a1651083e5c9d4585a22e8f62cb7a3"
+    },
+    {
+      "entry": "0x44dc00",
+      "evidence_id": "ev_7438e0c0b4a609ea02a38a58697645cf59dbdd0c07dbfc40834a8a2d340c0962",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x44dc06",
+            "start": "0x44dc00"
+          }
+        ],
+        "span_bytes": 7,
+        "total_bytes": 7
+      },
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "limitations": [
+          "Ghidra's caller inventory omits sources of 1 call reference(s) into this function's body."
+        ],
+        "limited_directions": [
+          "callers"
+        ],
+        "status": "partial"
+      },
+      "assembly_sha256": "fb9563fa2740b49df81e624a96d95c6be2dd4d7df14162282f7319aaf133cc44",
+      "pseudocode_sha256": "b0b33a5d7ea7dad537bda676a4c45a6698d86e5d6d9494467edd58be54481718"
+    },
+    {
+      "entry": "0x44dc10",
+      "evidence_id": "ev_8109973e3f82f799af46518f13b5278e873fbe2d4b649cb55d9190dfc3bc132c",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x44dcf7",
+            "start": "0x44dc10"
+          }
+        ],
+        "span_bytes": 232,
+        "total_bytes": 232
+      },
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      },
+      "assembly_sha256": "b865603a84e8e9f8ef05e627e746a0f8c72fe5f0ae56e053bf9ac45c263bea05",
+      "pseudocode_sha256": "2ae910ad0273a3baed0420da8d96d744e6497b9d087d8c615066c7e32213e2fd"
+    },
+    {
+      "entry": "0x44dcf8",
+      "evidence_id": "ev_e206be4e68264a98406bac7e397f83d2d029b543418f7262bca80de65fbcb488",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x44dd66",
+            "start": "0x44dcf8"
+          }
+        ],
+        "span_bytes": 111,
+        "total_bytes": 111
+      },
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      },
+      "assembly_sha256": "0ab4cfdfb4ee2f1a5c23383143fe70e3ed336f6d8c605649f6ad004752c59748",
+      "pseudocode_sha256": "f2b03931b1a48b2ba75f9e9a613a909937cb71136e93c125903980b919490ced"
+    }
+  ],
+  "other_evidence": [
+    {
+      "id": "ev_037fdd35be35be0ad684603b5007ca58b5b4cb61dbed8d0a45d2892d1522798a",
+      "operation": "resolve_containing_procedure",
+      "parameters": {
+        "address": "0x44dc75"
+      }
+    },
+    {
+      "id": "ev_bfcba371ba85350377b6340033860ba86c436a180b9db8b570643031e34c1106",
+      "operation": "read_bytes",
+      "parameters": {
+        "address": "0x4b2a7c",
+        "length": 40
+      }
+    },
+    {
+      "id": "ev_ec3d82741516564b29d00a3125ef2ce001c667bb9267facd5c9c5d3884382763",
+      "operation": "read_bytes",
+      "parameters": {
+        "address": "0x44dc00",
+        "length": 48
+      }
+    }
+  ],
+  "reused": [
+    {
+      "function": "0x407a00",
+      "id": "ev_dbedcd398f62cfc0101d98d128add039c7a90461c7435bb3b9077cb713da935e"
+    },
+    {
+      "function": "0x4133a0",
+      "id": "ev_e9ac7266533b7da9d5cfabf4958ff8aef1245e3adaf31e701de3ca865f5aa5cb"
+    },
+    "../launcher-v8/static-spec.json",
+    "../launcher-v5/launch-inputs-evidence.json"
+  ],
+  "facts": [
+    {
+      "source": [
+        "0x407f0c",
+        "0x407f35",
+        "0x407f5a",
+        "0x407f76"
+      ],
+      "text": "Separate local CString appends gid:, selected raw name, space+glt:, opaque C-string prefix, colon, converted scalar, trailing space. This is not argv."
+    },
+    {
+      "source": [
+        "0x413e18",
+        "0x413e23",
+        "0x407eeb..0x407f09",
+        "0x44dd67",
+        "0x44dcf8"
+      ],
+      "text": "tailWordA minus80000000h stores32-bit word; later high word zero and radix32 passed to unsigned64 wrapper, sign flag0. Digit branches add30h or57h, reverse digits and terminateNUL. Native value semantics/expiry remain unknown."
+    },
+    {
+      "source": [
+        "0x44dc00..0x44dc06",
+        "0x44dc75..0x44dcf7",
+        "0x4084e2"
+      ],
+      "text": "7-byte strcpy-like entry jumps into adjacent function body44dc10 at44dc75. Shared copy terminates including firstNUL and does not clear mapping tail. Entry dossier has partial caller coverage; do not treat its7-byte body as complete implementation."
+    },
+    {
+      "source": [
+        "0x407f9a..0x407fbf",
+        "0x408396..0x408452",
+        "0x408495",
+        "0x4084a2"
+      ],
+      "text": "Mapping-name choices in supported request slots0..14 are CG for0/1/2/4/11; KOH3,ZZ5,FE6,CGC7,CG2=9; other supported slots have empty name and skip mapping write. Capacity256B; native mapping failure may still continue process preparation."
+    }
+  ],
+  "anchor_manifest": "handoff-anchors.json",
+  "independent_source_audit": "handoff-anchor-audit.json",
+  "anchors_passed": 21,
+  "original_vectors": "original-handoff-vectors.json",
+  "scalar_cases": 94,
+  "raw_write_cases": 126,
+  "selected_reply_projections": 42,
+  "maximum_supported_write_bytes": 92,
+  "independent_policy": "Only the known producer prefix and closable private lease are implemented; no actual Windows mapping/process/argv or consumer acceptance. Input validation/own data snapshot and lifecycle clearing are independent portability policies.",
+  "unknowns": [
+    "Meaning/authenticity/lifetime of opaque byteField/tail words and official/game acceptance.",
+    "Complete argv quoting/resources/launch readiness and game-side mapping parser.",
+    "Native copy fault/EH ordering, actual mapping state/remaining bytes or global caller completeness.",
+    "Real account persistence/ACP/platform devices/official update trust and transactions."
+  ],
+  "scope": "Static fixed artifact and original-only local byte implementation. No original EXE/VM/account/IPC/official endpoint observation."
+}

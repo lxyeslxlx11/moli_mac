@@ -1,0 +1,362 @@
+{
+  "scope": "Focused v4 static increment: working directory, environment, argv and CGSharedMem-before-start ordering. No UI, target execution, credential observation, compatibility changes or network.",
+  "sample": {
+    "name": "POLCN_Launcher.unpacked.exe",
+    "bytes": 1735168,
+    "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "base": "0x400000"
+  },
+  "sources": {
+    "prior_evidence": "ev_dbedcd398f62cfc0101d98d128add039c7a90461c7435bb3b9077cb713da935e",
+    "prior_dossier_sha256": "ae86a0293ea8074c95746d208aedd07a2866e922f203bd6501527bc58c8bbcbe",
+    "function": "0x407a00..0x408656",
+    "high_pcode_truncated": true,
+    "tool": "GNU objdump 2.47.20260726 and independent bounded PE32 verifier; no new REA execution",
+    "prior_cg_catalog_sha256": "be8f1213d77bd294fbb79b2fb51a5e7fecdc9aa3c0854db7a6d821fad20ef85a"
+  },
+  "anchors": [
+    {
+      "id": "argv_source_field",
+      "va": "0x407e25",
+      "file_offset": "0x7225",
+      "expected_hex": "81c21c1b0000"
+    },
+    {
+      "id": "argv_to_local80",
+      "va": "0x407e2c",
+      "file_offset": "0x722c",
+      "expected_hex": "8d4d80e8fc3d0000"
+    },
+    {
+      "id": "cwd_source_field",
+      "va": "0x407e3e",
+      "file_offset": "0x723e",
+      "expected_hex": "05181b0000"
+    },
+    {
+      "id": "cwd_to_local14",
+      "va": "0x407e44",
+      "file_offset": "0x7244",
+      "expected_hex": "8d4dece8e43d0000"
+    },
+    {
+      "id": "argv_separator",
+      "va": "0x407e50",
+      "file_offset": "0x7250",
+      "expected_hex": "68702a4b00"
+    },
+    {
+      "id": "argsline_accessor_call",
+      "va": "0x407e69",
+      "file_offset": "0x7269",
+      "expected_hex": "e872110000"
+    },
+    {
+      "id": "region_optional_field",
+      "va": "0x407ea2",
+      "file_offset": "0x72a2",
+      "expected_hex": "81c2481b0000"
+    },
+    {
+      "id": "second_optional_field",
+      "va": "0x407edc",
+      "file_offset": "0x72dc",
+      "expected_hex": "81c14c1b0000"
+    },
+    {
+      "id": "code11_to_cg",
+      "va": "0x407fbf",
+      "file_offset": "0x73bf",
+      "expected_hex": "0f85d1030000",
+      "branch_target": "0x408396"
+    },
+    {
+      "id": "cg_mapping_name",
+      "va": "0x407fc5",
+      "file_offset": "0x73c5",
+      "expected_hex": "68942a4b00"
+    },
+    {
+      "id": "cg_branch_join",
+      "va": "0x408391",
+      "file_offset": "0x7791",
+      "expected_hex": "e9c1000000",
+      "branch_target": "0x408457"
+    },
+    {
+      "id": "mapping_empty_branch",
+      "va": "0x408464",
+      "file_offset": "0x7864",
+      "expected_hex": "0f8580000000",
+      "branch_target": "0x4084ea"
+    },
+    {
+      "id": "open_mapping",
+      "va": "0x408477",
+      "file_offset": "0x7877",
+      "expected_hex": "ff1540134b00",
+      "api": "OpenFileMappingA"
+    },
+    {
+      "id": "mapping_open_success",
+      "va": "0x40848a",
+      "file_offset": "0x788a",
+      "expected_hex": "7522",
+      "branch_target": "0x4084ae"
+    },
+    {
+      "id": "create_mapping_capacity",
+      "va": "0x408495",
+      "file_offset": "0x7895",
+      "expected_hex": "6800010000"
+    },
+    {
+      "id": "create_mapping",
+      "va": "0x4084a2",
+      "file_offset": "0x78a2",
+      "expected_hex": "ff1544134b00",
+      "api": "CreateFileMappingA"
+    },
+    {
+      "id": "zero_handle_join",
+      "va": "0x4084b5",
+      "file_offset": "0x78b5",
+      "expected_hex": "7433",
+      "branch_target": "0x4084ea"
+    },
+    {
+      "id": "map_view",
+      "va": "0x4084c6",
+      "file_offset": "0x78c6",
+      "expected_hex": "ff1548134b00",
+      "api": "MapViewOfFile"
+    },
+    {
+      "id": "map_return_store",
+      "va": "0x4084cc",
+      "file_offset": "0x78cc",
+      "expected_hex": "8985f0feffff"
+    },
+    {
+      "id": "mapping_source_local2c",
+      "va": "0x4084d2",
+      "file_offset": "0x78d2",
+      "expected_hex": "8d4dd4e896380000"
+    },
+    {
+      "id": "mapping_copy_call",
+      "va": "0x4084e2",
+      "file_offset": "0x78e2",
+      "expected_hex": "e819570400"
+    },
+    {
+      "id": "launch_status_init",
+      "va": "0x4084ea",
+      "file_offset": "0x78ea",
+      "expected_hex": "c745d000000000"
+    },
+    {
+      "id": "startup_size",
+      "va": "0x408501",
+      "file_offset": "0x7901",
+      "expected_hex": "c7458444000000"
+    },
+    {
+      "id": "guard_flag_zero",
+      "va": "0x408525",
+      "file_offset": "0x7925",
+      "expected_hex": "743c",
+      "branch_target": "0x408563"
+    },
+    {
+      "id": "guard_code3",
+      "va": "0x408534",
+      "file_offset": "0x7934",
+      "expected_hex": "742d",
+      "branch_target": "0x408563"
+    },
+    {
+      "id": "guard_code_low",
+      "va": "0x408543",
+      "file_offset": "0x7943",
+      "expected_hex": "760f",
+      "branch_target": "0x408554"
+    },
+    {
+      "id": "guard_middle",
+      "va": "0x408552",
+      "file_offset": "0x7952",
+      "expected_hex": "720f",
+      "branch_target": "0x408563"
+    },
+    {
+      "id": "guard_skip",
+      "va": "0x408561",
+      "file_offset": "0x7961",
+      "expected_hex": "762f",
+      "branch_target": "0x408592"
+    },
+    {
+      "id": "arg10_pi",
+      "va": "0x408563",
+      "file_offset": "0x7963",
+      "expected_hex": "8d4dd851"
+    },
+    {
+      "id": "arg9_startup",
+      "va": "0x408567",
+      "file_offset": "0x7967",
+      "expected_hex": "8d558452"
+    },
+    {
+      "id": "arg8_cwd",
+      "va": "0x40856b",
+      "file_offset": "0x796b",
+      "expected_hex": "8d4dece8fd37000050"
+    },
+    {
+      "id": "arg7_environment",
+      "va": "0x408574",
+      "file_offset": "0x7974",
+      "expected_hex": "6a00"
+    },
+    {
+      "id": "arg6_flags",
+      "va": "0x408576",
+      "file_offset": "0x7976",
+      "expected_hex": "6a00"
+    },
+    {
+      "id": "arg5_inherit",
+      "va": "0x408578",
+      "file_offset": "0x7978",
+      "expected_hex": "6a00"
+    },
+    {
+      "id": "arg4_thread_attrs",
+      "va": "0x40857a",
+      "file_offset": "0x797a",
+      "expected_hex": "6a00"
+    },
+    {
+      "id": "arg3_process_attrs",
+      "va": "0x40857c",
+      "file_offset": "0x797c",
+      "expected_hex": "6a00"
+    },
+    {
+      "id": "arg2_argv",
+      "va": "0x40857e",
+      "file_offset": "0x797e",
+      "expected_hex": "8d4d80e8ea37000050"
+    },
+    {
+      "id": "arg1_application",
+      "va": "0x408587",
+      "file_offset": "0x7987",
+      "expected_hex": "6a00"
+    },
+    {
+      "id": "create_game",
+      "va": "0x408589",
+      "file_offset": "0x7989",
+      "expected_hex": "ff156c134b00",
+      "api": "CreateProcessA"
+    }
+  ],
+  "create_process_arguments": [
+    {
+      "position": 1,
+      "name": "lpApplicationName",
+      "value": "NULL",
+      "push_va": "0x408587"
+    },
+    {
+      "position": 2,
+      "name": "lpCommandLine",
+      "value": "CString pointer from EBP-0x80; EXE/Argsline/optional/resource-derived fields",
+      "push_va": "0x408586"
+    },
+    {
+      "position": 3,
+      "name": "lpProcessAttributes",
+      "value": "NULL",
+      "push_va": "0x40857c"
+    },
+    {
+      "position": 4,
+      "name": "lpThreadAttributes",
+      "value": "NULL",
+      "push_va": "0x40857a"
+    },
+    {
+      "position": 5,
+      "name": "bInheritHandles",
+      "value": 0,
+      "push_va": "0x408578"
+    },
+    {
+      "position": 6,
+      "name": "dwCreationFlags",
+      "value": 0,
+      "push_va": "0x408576"
+    },
+    {
+      "position": 7,
+      "name": "lpEnvironment",
+      "value": "NULL; no custom environment buffer in this call",
+      "push_va": "0x408574"
+    },
+    {
+      "position": 8,
+      "name": "lpCurrentDirectory",
+      "value": "CString pointer from EBP-0x14, copied from object+0x1b18; Code11 does not take Code3/5 directory rewrite branches",
+      "push_va": "0x408573"
+    },
+    {
+      "position": 9,
+      "name": "lpStartupInfo",
+      "value": "EBP-0x7c; zeroed 0x44-byte structure, cb=0x44",
+      "push_va": "0x40856a"
+    },
+    {
+      "position": 10,
+      "name": "lpProcessInformation",
+      "value": "EBP-0x28; zeroed 0x10-byte structure",
+      "push_va": "0x408566"
+    }
+  ],
+  "findings": [
+    {
+      "id": "V4-LCH-CONTEXT",
+      "status": "observed",
+      "confidence": "high for fixed static call",
+      "fact": "Game launch passes a constructed command line and explicit working directory; NULL application and environment, zero creation flags, no inherited handles. This is not equivalent to assuming an argument-free direct start."
+    },
+    {
+      "id": "V4-IPC-ORDER",
+      "status": "observed",
+      "confidence": "high for bounded CFG",
+      "fact": "Mapping open/create/map/copy block precedes process-start initialization. If the mapping handle is zero, branch4084b5 goes to4084ea, so successful mapping is not enforced as a hard prerequisite of the later CreateProcess path."
+    },
+    {
+      "id": "V4-MAP-NULL",
+      "status": "observed",
+      "confidence": "high for local instruction sequence only",
+      "fact": "Between MapViewOfFile return4084c6 and helper call4084e2, local instructions do not branch on the returned pointer. No runtime failure or exploit conclusion is asserted."
+    },
+    {
+      "id": "V4-CODE11-GUARD",
+      "status": "observed",
+      "confidence": "high for condition; field role unknown",
+      "fact": "For Game Code11, object+0x1708==0 permits CreateProcess; nonzero skips it. The role and producer of that field remain unclosed."
+    },
+    {
+      "id": "V4-FAULT-CAUSE",
+      "status": "unknown",
+      "confidence": "insufficient",
+      "fact": "These differences do not prove that the prior standalone game fault was caused by missing arguments, cwd, shared memory, ARM translation or compatibility settings. Game-side consumers and failure path remain missing."
+    }
+  ],
+  "sensitive_values": "No runtime object values, credentials, process memory, account identifiers or session data read/exported. Only static constants and offsets."
+}

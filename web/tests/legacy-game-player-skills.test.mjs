@@ -1,0 +1,2 @@
+import test from'node:test';import*as api from'../../shared/index.mjs';import{createWeChatLegacyGameSession}from'../../adapters/wechat/legacy-game-session.mjs';import{playerSkillTCPModes,runPlayerSkillTCP}from'../../analysis/game-battle-player-skills-v1/tcp-flow.mjs';
+for(const mode of playerSkillTCPModes)test('actual player skill receive/menu/S/returned queues/round/return OS TCP '+mode,{timeout:30000},async()=>console.log('player-skills-source-tcp '+JSON.stringify(await runPlayerSkillTCP({...api,createWeChatLegacyGameSession},mode))));

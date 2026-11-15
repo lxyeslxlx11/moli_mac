@@ -1,0 +1,45 @@
+{
+  "schema": "moli.normal-install.run-plan.v1",
+  "recorded_utc": "2026-10-29T17:55:26.330768+00:00",
+  "status": "prepared; action-time source confirmation pending",
+  "purpose": "Establish the normally installed game directory and registration needed for subsequent REA consumer analysis.",
+  "target": {
+    "guest_path": "E:/CrossGate_Setup.exe",
+    "bytes": 1104268439,
+    "sha256": "e593e47fa09ac03e2213c7dc7bb80575e0295f0dc48a0e1edc73c4ac1982f983",
+    "guest_full_hash_matches_original": true,
+    "authenticode": "NotSigned",
+    "recognized_current_vendor_byte_chain": false
+  },
+  "recovery_point": "analysis/game-install-context-v1/recovery-point-stage102.json",
+  "known_static_side_effects": {
+    "declared_privileges": "administrator",
+    "default_dir_raw": "{autopf}\\PlayOnline\\魔力宝贝",
+    "registry": "HKCU\\SOFTWARE\\SECN\\PlayOnline\\CrossGatePUK3; Path={app}",
+    "declared_postinstall": [
+      "conditional bundled POLCN_Setup.exe",
+      "conditional POLCN_Launcher.exe"
+    ],
+    "compiled_helpers_evaluated": false
+  },
+  "proposed_execution": [
+    "Confirm fixed original game setup execution and its corresponding installation UAC at action time, disclosing unsigned/unverified origin.",
+    "Check fresh exact guest window, installer hash and selected existing destination state before starting once through the normal UI.",
+    "Use normal interactive installation, record actual prompts/destination and stop on newly presented binding terms or unexpected access/security changes.",
+    "Inspect and deselect postinstall launch options before finishing. Do not silently accept terms or allow unobserved child execution.",
+    "Read back actual installed directory, selected file hashes and registry view after the installer terminates. Select a later game observation profile only for verified installed identity."
+  ],
+  "excluded_actions": [
+    "No fabricated registry/IPC or substitute directory writes.",
+    "No CG5Reg manual registration, silent installer or policy weakening.",
+    "No replay of current.ps1/Restore or consumed prior quotas.",
+    "No account/credential collection, protection bypass, memory unpacking or unverified game execution.",
+    "No unchecked uninstaller or automatic snapshot restoration."
+  ],
+  "cu_policy_basis": {
+    "source": "mcp__cua_repl documentation: Computer/Browser Use Confirmation Policy, Confirmation Required at Action time",
+    "rule": "Installs or runs software from an unrecognized source: Uses software obtained outside a well-known package registry, official vendor website, or official extension marketplace.",
+    "scope": "Next normal interactive installer execution only. Existing ordinary Windows/network/tool authorization remains valid."
+  },
+  "execution_count": 0
+}

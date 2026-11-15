@@ -1,0 +1,77 @@
+{
+  "schema": "moli.launcher-startup-ack-tests-stage140.v1",
+  "node": "v26.9.0",
+  "before": {
+    "command": "node --test shared/tests/launcher-update-ack.test.mjs",
+    "exit_code": 1,
+    "tests": 23,
+    "pass": 0,
+    "fail": 23,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "targeted": {
+    "command": "node --test shared/tests/launcher-update-ack.test.mjs shared/tests/launcher-update-current.test.mjs shared/tests/launcher-update.test.mjs",
+    "exit_code": 0,
+    "tests": 72,
+    "pass": 72,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "full": {
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "exit_code": 0,
+    "tests": 686,
+    "pass": 686,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "independent_fixture": {
+    "producer": "analysis/launcher-startup-ack-v1/make_vectors.py",
+    "data": "analysis/launcher-startup-ack-v1/resource-vectors.json",
+    "cases": 23,
+    "positive": 6,
+    "negative": 17,
+    "vendor_bytes": false,
+    "executed_PE": false
+  },
+  "fixed_candidate_private_synthetic_container": {
+    "source_sha256": "6d459ddbdf80a86cf7a1e41b99ab7fb575b42842d7163522efb3c9fa6e6ac987",
+    "source_bytes": 1666048,
+    "container": "synthetic ZIP around unchanged original candidate; not an official downloaded archive",
+    "archive_bytes": 1639748,
+    "payload_equal_to_fixed_source": true,
+    "metadata": {
+      "declaration": "v1",
+      "languageCount": 1,
+      "validation": "resource-declaration-only",
+      "acknowledgement": "not-observed"
+    },
+    "trust": "unverified",
+    "replacement": "not-performed",
+    "vendor_executed": false
+  },
+  "private_logs": [
+    {
+      "path": "build/analysis/launcher-startup-ack-v1/node-before.log",
+      "bytes": 23105,
+      "sha256": "fdb3fc2ad8135a2345da03bc90e58acf4634e97b34ab029a290376d2fb7016bf"
+    },
+    {
+      "path": "build/analysis/launcher-startup-ack-v1/node-targeted.log",
+      "bytes": 5870,
+      "sha256": "98e944622ebd908633f93fb3a6cb58a056b9d3851fcd774cedac3a029ad79ddf"
+    },
+    {
+      "path": "build/analysis/launcher-startup-ack-v1/node-full.log",
+      "bytes": 65938,
+      "sha256": "6a7d48c9b37330a560430a01389e7f94947638cc28983dc76353e3b58c899470"
+    }
+  ],
+  "limits": "No native build, vendor execution, actual mobile/WeChat, official login or playable game acceptance."
+}

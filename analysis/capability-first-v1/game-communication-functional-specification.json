@@ -1,0 +1,2885 @@
+{
+  "schema": "moli.game-communication-functional-specification.v1",
+  "classification": "fixed37c4 full-original-G01 functional specification;product/dependencies/current acceptance not complete",
+  "requirement": "Analyze all required capabilities before grouped shared reconstruction;reuse complete evidence and old corrections.",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "original_G01": {
+    "id": "G01",
+    "title": "游戏连接、首包与通信分发",
+    "requirement_scope": "资源就绪、摘要、启动首包、帧/正文/文字、收发队列、空闲维护",
+    "existing_implementation_owners": [
+      "shared/legacy-game-envelope.mjs",
+      "shared/legacy-game-protocol.mjs",
+      "shared/legacy-game-client.mjs"
+    ],
+    "dependencies": [
+      "L07",
+      "X02",
+      "X06"
+    ],
+    "implementation_batch": "D2",
+    "source_profiles": [
+      "game-legacy-37c4"
+    ],
+    "registered_protocol_entries": [
+      "NET-FRAME-001",
+      "NET-CODEC-001",
+      "NET-CRYPTO-001",
+      "AUTH-HANDSHAKE-001",
+      "AUTH-SESSION-001",
+      "MSG-STATE-001",
+      "CFG-GAME-001",
+      "NET-LEGACY-ENVELOPE-001",
+      "NET-LEGACY-PAYLOAD-001",
+      "NET-LEGACY-MESSAGES-001",
+      "GAME-LEGACY-LOGIN-SESSION-001"
+    ]
+  },
+  "source_authentication": {
+    "path": "build/analysis/game-communication-functional-specification-v1/source-authentication.json",
+    "bytes": 191338,
+    "sha256": "216aae4fba06f45d2bd9f8c356dbb1e3a5508cf596bd6ad5372927c1472d4329"
+  },
+  "new_source_supplement": {
+    "path": "build/analysis/game-communication-functional-specification-v1/supplement-source-authentication.json",
+    "bytes": 165160,
+    "sha256": "28d83c2eae95e1788926d28050dbd42b233987b35aa19d4d58354e6cde3621e3"
+  },
+  "catalog_completion": {
+    "path": "build/analysis/game-communication-functional-specification-v1/catalog-completion-source.json",
+    "bytes": 41068,
+    "sha256": "27a6bfdedf0454d67d1ef52a0ac1686c9b0370b76caaf23c6777d9095885c0a5"
+  },
+  "retained_rule_nodes": [
+    {
+      "id": "game-legacy-network-v1:fact-0",
+      "file": {
+        "path": "analysis/game-legacy-network-v1/implementation-spec.json",
+        "bytes": 4647,
+        "sha256": "a9ff0b5778a24760939374dc6840e90358c523ce7f59d58b12506b84c050fd01"
+      },
+      "pointer": "/facts/0",
+      "canonical_sha256": "a585c6dc30a343e4ce86371d9bbabd7744dbbda7e5bb4164ba49c580d71bd4b8"
+    },
+    {
+      "id": "game-legacy-network-v1:fact-1",
+      "file": {
+        "path": "analysis/game-legacy-network-v1/implementation-spec.json",
+        "bytes": 4647,
+        "sha256": "a9ff0b5778a24760939374dc6840e90358c523ce7f59d58b12506b84c050fd01"
+      },
+      "pointer": "/facts/1",
+      "canonical_sha256": "d8389d88bae4975ef40afaa97389c7cabd0ebb7a5a267f844edaffb3c745979d"
+    },
+    {
+      "id": "game-legacy-network-v1:fact-2",
+      "file": {
+        "path": "analysis/game-legacy-network-v1/implementation-spec.json",
+        "bytes": 4647,
+        "sha256": "a9ff0b5778a24760939374dc6840e90358c523ce7f59d58b12506b84c050fd01"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "0acf06c81c7e7256024d48e14c2492d0528a9d1292fe60731077e6177240c255"
+    },
+    {
+      "id": "game-legacy-network-v1:fact-3",
+      "file": {
+        "path": "analysis/game-legacy-network-v1/implementation-spec.json",
+        "bytes": 4647,
+        "sha256": "a9ff0b5778a24760939374dc6840e90358c523ce7f59d58b12506b84c050fd01"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "5d87c8385c54634e2792cb8e87466db3a8f9f78cf6d5314b62244a8d4532973e"
+    },
+    {
+      "id": "game-legacy-network-v1:fact-4",
+      "file": {
+        "path": "analysis/game-legacy-network-v1/implementation-spec.json",
+        "bytes": 4647,
+        "sha256": "a9ff0b5778a24760939374dc6840e90358c523ce7f59d58b12506b84c050fd01"
+      },
+      "pointer": "/facts/4",
+      "canonical_sha256": "6065e84fc4653d4475c625eb81f0fa170d6cfbd9b90fe50d6c296ac688bd2afa"
+    },
+    {
+      "id": "game-legacy-network-v1:independent_policy",
+      "file": {
+        "path": "analysis/game-legacy-network-v1/implementation-spec.json",
+        "bytes": 4647,
+        "sha256": "a9ff0b5778a24760939374dc6840e90358c523ce7f59d58b12506b84c050fd01"
+      },
+      "pointer": "/independent_policy",
+      "canonical_sha256": "c8f1f8d1924b6e44c3b9814f424013cec796ceaba7d6d67323af4c6d87232c87"
+    },
+    {
+      "id": "game-legacy-network-v1:layout",
+      "file": {
+        "path": "analysis/game-legacy-network-v1/implementation-spec.json",
+        "bytes": 4647,
+        "sha256": "a9ff0b5778a24760939374dc6840e90358c523ce7f59d58b12506b84c050fd01"
+      },
+      "pointer": "/layout",
+      "canonical_sha256": "03b2b7a4a34c98d6f31b40b2bd8de86f4d159c889b9ef1caf2fd209411fa4a50"
+    },
+    {
+      "id": "game-legacy-network-v1:unknown",
+      "file": {
+        "path": "analysis/game-legacy-network-v1/implementation-spec.json",
+        "bytes": 4647,
+        "sha256": "a9ff0b5778a24760939374dc6840e90358c523ce7f59d58b12506b84c050fd01"
+      },
+      "pointer": "/unknown",
+      "canonical_sha256": "808275adbc7b4af9f30ab91d6754e8df6d8a78ab989c6c7455603a1ede3ae213"
+    },
+    {
+      "id": "game-legacy-transform-v1:fact-0",
+      "file": {
+        "path": "analysis/game-legacy-transform-v1/implementation-spec.json",
+        "bytes": 5196,
+        "sha256": "76ad6debb0848ff52d2215aa1170412800eddc3b41885a6425693ea616ed53a4"
+      },
+      "pointer": "/facts/0",
+      "canonical_sha256": "158ed0b8eb83a599e03ef53566badca060898d70b556302f34183c246a40f6e1"
+    },
+    {
+      "id": "game-legacy-transform-v1:fact-1",
+      "file": {
+        "path": "analysis/game-legacy-transform-v1/implementation-spec.json",
+        "bytes": 5196,
+        "sha256": "76ad6debb0848ff52d2215aa1170412800eddc3b41885a6425693ea616ed53a4"
+      },
+      "pointer": "/facts/1",
+      "canonical_sha256": "426b058618e00bcbf54f4344b1dd43f4881173dadc18834beaf84bfb176e94a7"
+    },
+    {
+      "id": "game-legacy-transform-v1:fact-2",
+      "file": {
+        "path": "analysis/game-legacy-transform-v1/implementation-spec.json",
+        "bytes": 5196,
+        "sha256": "76ad6debb0848ff52d2215aa1170412800eddc3b41885a6425693ea616ed53a4"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "07516adeaa1cda86ecf4271e5abd8ab0e9bf743e67ba1123d235c6772fb1bdcd"
+    },
+    {
+      "id": "game-legacy-transform-v1:fact-3",
+      "file": {
+        "path": "analysis/game-legacy-transform-v1/implementation-spec.json",
+        "bytes": 5196,
+        "sha256": "76ad6debb0848ff52d2215aa1170412800eddc3b41885a6425693ea616ed53a4"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "5fb95c877bd6196fb6e46ad2710d89ba1070b5f62f5b6097a222345cb5252284"
+    },
+    {
+      "id": "game-legacy-transform-v1:fact-4",
+      "file": {
+        "path": "analysis/game-legacy-transform-v1/implementation-spec.json",
+        "bytes": 5196,
+        "sha256": "76ad6debb0848ff52d2215aa1170412800eddc3b41885a6425693ea616ed53a4"
+      },
+      "pointer": "/facts/4",
+      "canonical_sha256": "88f54f5afc03e5f5a054a31c42d906e5415b55db7627a44e50be925b195c9668"
+    },
+    {
+      "id": "game-legacy-transform-v1:independent_policy",
+      "file": {
+        "path": "analysis/game-legacy-transform-v1/implementation-spec.json",
+        "bytes": 5196,
+        "sha256": "76ad6debb0848ff52d2215aa1170412800eddc3b41885a6425693ea616ed53a4"
+      },
+      "pointer": "/independent_policy",
+      "canonical_sha256": "d1a875be84acbc452a46e3c0c6478973fd764532c9a8674c7ff78ca0e14a9c1c"
+    },
+    {
+      "id": "game-legacy-transform-v1:remaining",
+      "file": {
+        "path": "analysis/game-legacy-transform-v1/implementation-spec.json",
+        "bytes": 5196,
+        "sha256": "76ad6debb0848ff52d2215aa1170412800eddc3b41885a6425693ea616ed53a4"
+      },
+      "pointer": "/remaining",
+      "canonical_sha256": "ee135b2c2580ecf7f1f2731ac202e59a9296c2d12001fbddbc3f3b3416e9a771"
+    },
+    {
+      "id": "game-legacy-transform-v1:additional_analysis_not_implemented",
+      "file": {
+        "path": "analysis/game-legacy-transform-v1/implementation-spec.json",
+        "bytes": 5196,
+        "sha256": "76ad6debb0848ff52d2215aa1170412800eddc3b41885a6425693ea616ed53a4"
+      },
+      "pointer": "/additional_analysis_not_implemented",
+      "canonical_sha256": "995fcdbd5b72af970ed9926e2471c33850388539aac23b0f513e41baf0eff7a3"
+    },
+    {
+      "id": "game-legacy-message-v1:fact-0",
+      "file": {
+        "path": "analysis/game-legacy-message-v1/implementation-spec.json",
+        "bytes": 7418,
+        "sha256": "5d8602bdd002c0617adecc7fde50e3ef75431a1598d40ace7b2026b5357b615a"
+      },
+      "pointer": "/facts/0",
+      "canonical_sha256": "4e3fce0a86e302706d882d352a21fa2c79e5543f324c4713f8551185a6212fa1"
+    },
+    {
+      "id": "game-legacy-message-v1:fact-1",
+      "file": {
+        "path": "analysis/game-legacy-message-v1/implementation-spec.json",
+        "bytes": 7418,
+        "sha256": "5d8602bdd002c0617adecc7fde50e3ef75431a1598d40ace7b2026b5357b615a"
+      },
+      "pointer": "/facts/1",
+      "canonical_sha256": "55efce43c1227b0f16d6d4f1c5edcacf93641b6b50df12eba91ff63a9a441b12"
+    },
+    {
+      "id": "game-legacy-message-v1:fact-2",
+      "file": {
+        "path": "analysis/game-legacy-message-v1/implementation-spec.json",
+        "bytes": 7418,
+        "sha256": "5d8602bdd002c0617adecc7fde50e3ef75431a1598d40ace7b2026b5357b615a"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "08b72e71f4fabc2b5429bac9534da12963465d58712a274ce495b261b29fc312"
+    },
+    {
+      "id": "game-legacy-message-v1:fact-3",
+      "file": {
+        "path": "analysis/game-legacy-message-v1/implementation-spec.json",
+        "bytes": 7418,
+        "sha256": "5d8602bdd002c0617adecc7fde50e3ef75431a1598d40ace7b2026b5357b615a"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "54b3b9e0f6fa4512ce8ef395429052355bd4cf339f41fa8fd369dd326f834a72"
+    },
+    {
+      "id": "game-legacy-message-v1:fact-4",
+      "file": {
+        "path": "analysis/game-legacy-message-v1/implementation-spec.json",
+        "bytes": 7418,
+        "sha256": "5d8602bdd002c0617adecc7fde50e3ef75431a1598d40ace7b2026b5357b615a"
+      },
+      "pointer": "/facts/4",
+      "canonical_sha256": "ff932f1e6e6fc108bb3fa3532feb3b1bec634b956a36534cefa808fd4e139258"
+    },
+    {
+      "id": "game-legacy-message-v1:fact-5",
+      "file": {
+        "path": "analysis/game-legacy-message-v1/implementation-spec.json",
+        "bytes": 7418,
+        "sha256": "5d8602bdd002c0617adecc7fde50e3ef75431a1598d40ace7b2026b5357b615a"
+      },
+      "pointer": "/facts/5",
+      "canonical_sha256": "47ba58ba36537857dac6391d377f8a7d6e8e062a7d9baf1195fc22363daa44bd"
+    },
+    {
+      "id": "game-legacy-message-v1:fact-6",
+      "file": {
+        "path": "analysis/game-legacy-message-v1/implementation-spec.json",
+        "bytes": 7418,
+        "sha256": "5d8602bdd002c0617adecc7fde50e3ef75431a1598d40ace7b2026b5357b615a"
+      },
+      "pointer": "/facts/6",
+      "canonical_sha256": "2440b7c6dcac15a4e07c433015ec769bda4802256fd2acceff512dbb0e0f2dd4"
+    },
+    {
+      "id": "game-legacy-message-v1:fact-7",
+      "file": {
+        "path": "analysis/game-legacy-message-v1/implementation-spec.json",
+        "bytes": 7418,
+        "sha256": "5d8602bdd002c0617adecc7fde50e3ef75431a1598d40ace7b2026b5357b615a"
+      },
+      "pointer": "/facts/7",
+      "canonical_sha256": "0cf8dc4d93b1760766aa3b38834b283adc8d6f794c61a302f94a3d228a74d010"
+    },
+    {
+      "id": "game-legacy-message-v1:independent_policy",
+      "file": {
+        "path": "analysis/game-legacy-message-v1/implementation-spec.json",
+        "bytes": 7418,
+        "sha256": "5d8602bdd002c0617adecc7fde50e3ef75431a1598d40ace7b2026b5357b615a"
+      },
+      "pointer": "/independent_policy",
+      "canonical_sha256": "88434b0b4f2c718a48c0075101b7f7e8c8615ec6361145fe765b81dbc445e7e7"
+    },
+    {
+      "id": "game-legacy-message-v1:coverage",
+      "file": {
+        "path": "analysis/game-legacy-message-v1/implementation-spec.json",
+        "bytes": 7418,
+        "sha256": "5d8602bdd002c0617adecc7fde50e3ef75431a1598d40ace7b2026b5357b615a"
+      },
+      "pointer": "/coverage",
+      "canonical_sha256": "f72c7bb6d57c729b948e95ac6ca3748a9757fdcb9bd88e14a2f6cca2c2eb9cf7"
+    },
+    {
+      "id": "game-legacy-message-v1:reset_operation",
+      "file": {
+        "path": "analysis/game-legacy-message-v1/implementation-spec.json",
+        "bytes": 7418,
+        "sha256": "5d8602bdd002c0617adecc7fde50e3ef75431a1598d40ace7b2026b5357b615a"
+      },
+      "pointer": "/reset_operation",
+      "canonical_sha256": "d81b8d3d274db08967006d379818ea3cc8d393271d815080a92b795c00aae199"
+    },
+    {
+      "id": "game-legacy-message-v1:remaining",
+      "file": {
+        "path": "analysis/game-legacy-message-v1/implementation-spec.json",
+        "bytes": 7418,
+        "sha256": "5d8602bdd002c0617adecc7fde50e3ef75431a1598d40ace7b2026b5357b615a"
+      },
+      "pointer": "/remaining",
+      "canonical_sha256": "50fdf3e9c52f3701f5f972cbac0a3eafcd003481889d7e5925fb57f09637df6e"
+    },
+    {
+      "id": "game-session-runtime-v1:authentication",
+      "file": {
+        "path": "analysis/game-session-runtime-v1/implementation-spec.json",
+        "bytes": 10165,
+        "sha256": "10a3f5907538ff764f2eaa7f7c475ae4ed92ba9fc7194f325c16b898d6e29020"
+      },
+      "pointer": "/authentication",
+      "canonical_sha256": "c5424964d14e3c1a6d0b8c71de87a67bfca23489b15942537150aec6732c5b5b"
+    },
+    {
+      "id": "game-session-runtime-v1:invariants",
+      "file": {
+        "path": "analysis/game-session-runtime-v1/implementation-spec.json",
+        "bytes": 10165,
+        "sha256": "10a3f5907538ff764f2eaa7f7c475ae4ed92ba9fc7194f325c16b898d6e29020"
+      },
+      "pointer": "/invariants",
+      "canonical_sha256": "4613ff63bb8874817c089af413c3d52e0717b890afeec0fb649dbb04844b26c9"
+    },
+    {
+      "id": "game-session-runtime-v1:implementation",
+      "file": {
+        "path": "analysis/game-session-runtime-v1/implementation-spec.json",
+        "bytes": 10165,
+        "sha256": "10a3f5907538ff764f2eaa7f7c475ae4ed92ba9fc7194f325c16b898d6e29020"
+      },
+      "pointer": "/implementation",
+      "canonical_sha256": "13c71021c053fb1845a2bf5062cf7fb601de2d8f3e5ef22c4d95be4da5b76c5b"
+    },
+    {
+      "id": "game-session-runtime-v1:remaining",
+      "file": {
+        "path": "analysis/game-session-runtime-v1/implementation-spec.json",
+        "bytes": 10165,
+        "sha256": "10a3f5907538ff764f2eaa7f7c475ae4ed92ba9fc7194f325c16b898d6e29020"
+      },
+      "pointer": "/remaining",
+      "canonical_sha256": "d6b481e9445c7a085b988af0e8f24da85c9ff436c9406985ee07b28c96983a45"
+    },
+    {
+      "id": "old-session-native-semantics",
+      "file": {
+        "path": "analysis/game-session-runtime-v1/source-check.json",
+        "bytes": 15176,
+        "sha256": "d95e37f5e3f9157639126a79913f6a6201a7170ff5d00673e3865a76aa33e452"
+      },
+      "pointer": "/native_semantics",
+      "canonical_sha256": "c5424964d14e3c1a6d0b8c71de87a67bfca23489b15942537150aec6732c5b5b"
+    },
+    {
+      "id": "later-module-digest-source",
+      "file": {
+        "path": "analysis/game-legacy-startup-materials-v1/source-check.json",
+        "bytes": 6431,
+        "sha256": "316fec8cc2dc385819f8a5b9013ab1ef838f7027076a9ed1187caea70564b79b"
+      },
+      "pointer": "/legacy",
+      "canonical_sha256": "3b4161809714353d97524c807c5958f62811fe65f6c4aa9ebcab5e85895f63aa"
+    },
+    {
+      "id": "later-module-digest-direct-calls",
+      "file": {
+        "path": "analysis/game-legacy-startup-materials-v1/source-check.json",
+        "bytes": 6431,
+        "sha256": "316fec8cc2dc385819f8a5b9013ab1ef838f7027076a9ed1187caea70564b79b"
+      },
+      "pointer": "/direct_calls",
+      "canonical_sha256": "4136c526633adc086a0225d3a7b5014e63fbba28ab35db59763a64341be15828"
+    },
+    {
+      "id": "idle-stream-contract",
+      "file": {
+        "path": "analysis/game-legacy-game-stream-v1/source-check.json",
+        "bytes": 7718,
+        "sha256": "1be4df36c4ef5caca3f77ceb2df6d3c2eecabad557cfb22f78c1f33d1663e129"
+      },
+      "pointer": "/contract",
+      "canonical_sha256": "a04771cf8805482f02255f16bca2eb4e7eca3d9d4f9340cadfc78e5b7b35205b"
+    },
+    {
+      "id": "IC-F3",
+      "file": {
+        "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+        "bytes": 39736,
+        "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "291986f7268d045f386252670e687c5a272ad40e6d43d4f908ac3c107d61121e"
+    },
+    {
+      "id": "IC-F4",
+      "file": {
+        "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+        "bytes": 39736,
+        "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "66a13abea36293cc9d469e59c4d515efb579f8f22a45326335cbb7c2b5c48cf8"
+    },
+    {
+      "id": "IC-F5",
+      "file": {
+        "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+        "bytes": 39736,
+        "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+      },
+      "pointer": "/facts/4",
+      "canonical_sha256": "e106b2634aee1100933f00951907ac47af6cb4ce13e07588ddddadd398ae6f2e"
+    },
+    {
+      "id": "IC-F9",
+      "file": {
+        "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+        "bytes": 39736,
+        "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+      },
+      "pointer": "/facts/8",
+      "canonical_sha256": "8ade51c08f5460fa59ede574520ecfba36ff613b8b5fe056918106dae74e75cc"
+    },
+    {
+      "id": "CT-F1",
+      "file": {
+        "path": "build/analysis/context-transition-contract-v1/specification.json",
+        "bytes": 58295,
+        "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+      },
+      "pointer": "/facts/0",
+      "canonical_sha256": "21e1eb1e6b594bbb7721e278f48ddaf3d87fe127c931897ea879430b5021eab5"
+    },
+    {
+      "id": "CT-F2",
+      "file": {
+        "path": "build/analysis/context-transition-contract-v1/specification.json",
+        "bytes": 58295,
+        "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+      },
+      "pointer": "/facts/1",
+      "canonical_sha256": "d5c362cb100e461387f313891421bde2acabec185b15aa23edce1810f7d18071"
+    },
+    {
+      "id": "CT-F3",
+      "file": {
+        "path": "build/analysis/context-transition-contract-v1/specification.json",
+        "bytes": 58295,
+        "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "af26f617b995606d335e1a7d047f64e307fb8a20bd25c61a36b8029bf476e51e"
+    },
+    {
+      "id": "CT-F4",
+      "file": {
+        "path": "build/analysis/context-transition-contract-v1/specification.json",
+        "bytes": 58295,
+        "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "6734d23deb5a523940d264eb34ca0774ec1d936a89249bdcac4cc8bb092b2be6"
+    },
+    {
+      "id": "CT-F5",
+      "file": {
+        "path": "build/analysis/context-transition-contract-v1/specification.json",
+        "bytes": 58295,
+        "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+      },
+      "pointer": "/facts/4",
+      "canonical_sha256": "db57970e2e47fadb09ea871c6d6a6067e677143df9346a555d958317a6901718"
+    },
+    {
+      "id": "CT-F6",
+      "file": {
+        "path": "build/analysis/context-transition-contract-v1/specification.json",
+        "bytes": 58295,
+        "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+      },
+      "pointer": "/facts/5",
+      "canonical_sha256": "ce208a660b0b1b42d1a63526dde537a0b37595c5362e37b7103e9b604b614c62"
+    },
+    {
+      "id": "UC-P01",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/0",
+      "canonical_sha256": "8c1fc7f885a3a5941cc291406f1cdd9b9b767f1146eb33e5b1b226b4c5c38ce1"
+    },
+    {
+      "id": "UC-P02",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/1",
+      "canonical_sha256": "1f06da196fce8b1610e7fe4f90b9b2b719298a39211cfa6cb3053abc3ca83d69"
+    },
+    {
+      "id": "UC-P04",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/3",
+      "canonical_sha256": "a317bf87973e44de60f6bddedcc319d633b4c3012990aa053773495643f9c611"
+    },
+    {
+      "id": "UC-P06",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/5",
+      "canonical_sha256": "8342259d1383465a762f42cf6200db7e4dd7be5c6cc4a21e9861d297e51d1476"
+    },
+    {
+      "id": "UC-P09",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/8",
+      "canonical_sha256": "49ef7de7d8b7341ccd1c6b2af011c15e246b5e8e311aeb74aad619265c3b9524"
+    },
+    {
+      "id": "UC-P11",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/10",
+      "canonical_sha256": "35dc86b5f7a8137e63d9df12af2bb4e376453ebc140c00377927c253fd8fa0a3"
+    },
+    {
+      "id": "UC-P12",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/11",
+      "canonical_sha256": "b6011186d82f5db47eb080c00a4640fd64cab6aba34a159532d5fd176878117a"
+    },
+    {
+      "id": "all104-incoming-branches",
+      "file": {
+        "path": "analysis/game-legacy-message-v1/dispatch-catalog.json",
+        "bytes": 72860,
+        "sha256": "5b1e4288ff90d9eb131466559e995b0ece53087c2f7ec38b5332fd73c954fd64"
+      },
+      "pointer": "/incoming",
+      "canonical_sha256": "89a37dce9a11ec125abe4673b4b4cdbe87e26d17ed1df944cbeb67660d1a499c"
+    },
+    {
+      "id": "original60-outgoing-formatters",
+      "file": {
+        "path": "analysis/game-legacy-message-v1/dispatch-catalog.json",
+        "bytes": 72860,
+        "sha256": "5b1e4288ff90d9eb131466559e995b0ece53087c2f7ec38b5332fd73c954fd64"
+      },
+      "pointer": "/outgoing",
+      "canonical_sha256": "d081b5bf6e30d3eb72caffcc59ba22e3971bfbf04f58934abbf43fa718079a0a"
+    },
+    {
+      "id": "family-management-source-check.json:outgoing",
+      "file": {
+        "path": "analysis/game-battle-shared-storage-v1/family-management-source-check.json",
+        "bytes": 34628,
+        "sha256": "58a97215f16826cc9edfd0088f1daa66f15f5a67704ef545118b7b85e5f1d523"
+      },
+      "pointer": "/outgoing",
+      "canonical_sha256": "8d2183aa188d75f3d74a33f4496ea15f1b2b1503987245f50beabdb94f3ec5c0"
+    },
+    {
+      "id": "family-members-source-check.json:remove",
+      "file": {
+        "path": "analysis/game-battle-shared-storage-v1/family-members-source-check.json",
+        "bytes": 28923,
+        "sha256": "20e890a7e8e5344852d2ab99a072583be59ac971fcf17dd622702be2f42bec30"
+      },
+      "pointer": "/remove",
+      "canonical_sha256": "f0b3c12bd6e0bb47e5c1328802225541afda1afae9d3a99be791029b48a13ca4"
+    },
+    {
+      "id": "family-members-source-check.json:assign_role",
+      "file": {
+        "path": "analysis/game-battle-shared-storage-v1/family-members-source-check.json",
+        "bytes": 28923,
+        "sha256": "20e890a7e8e5344852d2ab99a072583be59ac971fcf17dd622702be2f42bec30"
+      },
+      "pointer": "/assign_role",
+      "canonical_sha256": "ad00ab3ac6edc823e61a4f7a57907b46dbb742412080d8cb67e13a28e24f0e88"
+    }
+  ],
+  "facts": [
+    {
+      "id": "CF-F01",
+      "title": "Profile/material and module digest",
+      "classification": "fact: fixed37c4 static source unless explicitly marked independent policy",
+      "complete_native_entries": [
+        "0x457c30",
+        "0x505540",
+        "0x404c40",
+        "0x404d30",
+        "0x404150",
+        "0x404180",
+        "0x4041a0",
+        "0x404230",
+        "0x404310"
+      ],
+      "claim": {
+        "identity": "Only fixed37c4 file and its declared legacy handoff consumer;no C82/current game equivalence.",
+        "handoff": "CGSharedMem consumer searches first case-sensitive gid:/glt: substrings then C-locale whitespace-delimited tokens;both nonempty. Source max51-byte copy can include terminator;independent domain requires bounded terminated mapping<=256 and1..50-byte tokens.",
+        "digest": "505540 gets the current module filename,404C40 reads/hash-updates the file,404D30 emits16 digest bytes as32 lower hex;failure yields empty string. Later startup source binds the full MD5 rounds/update/finalization and file identity,covering the old session phase unknown.",
+        "ownership": "First request order is module digest,glt,gid. Material is input/owned bytes,not a claim of a current ticket consumer or authentication."
+      },
+      "limits": [
+        "BSS/virtual-zero observations in the old source check are not a live-memory receipt.",
+        "Input constraints of the independent core are distinguished from unsafe native unterminated/oversized copies."
+      ]
+    },
+    {
+      "id": "CF-F02",
+      "title": "Outer preparation and optional version readiness",
+      "classification": "fact: fixed37c4 static source unless explicitly marked independent policy",
+      "complete_native_entries": [
+        "0x4554f0",
+        "0x455500",
+        "0x4f5ed0",
+        "0x4f60c0",
+        "0x4f61a0",
+        "0x4f6200",
+        "0x4f63b0"
+      ],
+      "claim": {
+        "reset": "4554F0 sets outer924F60 andpreflight924F62 to0. Outer0 creates the progress owner and selects2,which starts network setup.",
+        "optional_outer1": "Sub0 calls4F5ED0;only result<0 rejects with outer-4. Then4F60C0 must return1 or reject-3. Send4F61A0,setsub1,poll4F6200. Result1 sets sub2,cleanup4F63B0,selectouter2. Result-1 givesouter-3;result-2 is not handled as terminal and remains pending. Entrysub2 also cleans up and selects2.",
+        "network_outer2_3_4": "Cleanup prior network,prepare the selected module/digest context,initialize network. Initialization0 givesouter-1;otherwise capture outer tick,clear cancel latch,reset native network stage and poll throughouter4.",
+        "outer_poll": "Native result1 wins before cancellation/unsigned elapsed>=20001 checks. Otherwise negative native result,timeout or cancel latch givesouter-2.",
+        "scope": "The optional branch is a version/catalog precheck. Asset parsing/readiness remains its upstream capability contract;these internal calls are not renamed as generic successful asset loads."
+      },
+      "limits": [
+        "There is no equivalent outer20s guard on the version-preflight branch.",
+        "Progress/cancel rendering belongs to its UI owner;only the observed latch/communication transition is specified here."
+      ]
+    },
+    {
+      "id": "CF-F03",
+      "title": "Version WinINet fast path and fallback selection",
+      "classification": "fact: fixed37c4 static source unless explicitly marked independent policy",
+      "complete_native_entries": [
+        "0x4f5ed0"
+      ],
+      "claim": {
+        "request": "Compiled historical URL format plus/update/newestV2.txt,agentCROSSGATE and source WinINet arguments;no live-service status asserted.",
+        "read": "Track response count;before each2048-byte read require count+2048<=16384. A failed read/open or absent selected endpoint substring falls back. The pre-read capacity branch displays its source error and returns0 without that fallback.",
+        "fast_match": "On EOF close both handles,terminate response,format selected endpoint as%s:%s and executable token asEXE:Cg_%d%d.exe:. An endpoint substring match sets fast flagD19024=1 BEFORE the executable substring check. Executable match returns1,miss-1.",
+        "fallback": "Setfastflag0,WSAStartup1.1;startupfailure returns0. Success clears response count and first byte,returns1.",
+        "eof_bound_derivation": "The pre-read guard also applies to the EOF probe. With ordinary API counts<=2048,an EOF-success iteration must begin with trackedcount<=14336;the nominal16384 allocation is not a16384-byte completed-response promise.",
+        "context": "Two executable-token words and selected endpoint bytes are required source-context inputs;no default0/version guess. Some0-return paths do not reset an earlier fast flag."
+      },
+      "limits": [
+        "Source matches C-string substrings;no stronger manifest/status/signature grammar is inferred.",
+        "The original caller tests first result<0,so0 is not a generic immediate rejection.",
+        "Decompiler stack-local aliases are not API pointer contracts;actual literals/call instructions corroborate this view."
+      ]
+    },
+    {
+      "id": "CF-F04",
+      "title": "Version fallback stream,poll and cleanup",
+      "classification": "fact: fixed37c4 static source unless explicitly marked independent policy",
+      "complete_native_entries": [
+        "0x4f60c0",
+        "0x4f61a0",
+        "0x4f6200",
+        "0x4f63b0"
+      ],
+      "claim": {
+        "connect": "Fastflag!=0 returns1. Otherwise create/connect the historical host:80 path;socket/DNS/connect errors return-3/-4/-5,except10035 is allowed pending.",
+        "send": "Fastflag0 sendsGET /update/newestV2.txt HTTP/1.0 with LF LF;source ignores the send result.",
+        "poll": "Fastflag!=0 returns1. No readable socket or recv(-1) returns0. Positive bytes append with source strncat semantics and tracked count;exceeding16383 clamps/appends the remaining bytes,terminates and returns-1. EOF endpoint missing gives-1;executable missing-2;both present1.",
+        "cleanup": "Only fastflag0 closes this preflight socket and callsWSACleanup.",
+        "distinction": "WinINet16384/pre-read2048 and fallback16383/clamp paths differ. CString content and tracked byte count can differ on embeddedNUL;do not substitute a JSON/HTTP parser."
+      },
+      "limits": [
+        "No historical host was contacted. Availability and actual read/send results remain explicit external observations."
+      ]
+    },
+    {
+      "id": "CF-F05",
+      "title": "Network creation and select states",
+      "classification": "fact: fixed37c4 static source unless explicitly marked independent policy",
+      "complete_native_entries": [
+        "0x4ee730",
+        "0x4ede90",
+        "0x4ee720"
+      ],
+      "claim": {
+        "inactive": "Network-activeD18E34=0 returns0 without normal setup.",
+        "stage0": "Capture inner tick;resolve selected endpoint row through4EDE90 (index0..1199,stride193,host string and port-helper low16). Build the source IPv4 socket/nonblocking/optional socket-option/address/connect path. Native returns-2 endpoint,-3 socket,-100 option,-4 DNS,-5 immediate connect error except10035;otherwise state1.",
+        "stages1_70": "Increment and hold69 at the source upper retry step;select/FD-set observations choose71 on writable or return-6 after close on exceptional readiness.",
+        "failure_close_effects": "Endpoint/socket failures do not close a newly valid socket;option failure returns-100 before a close. DNS-4/connect-5/selectexception-6 have explicit close paths. Flag/queue cleanup remains caller-owned rather than implied by every negative result.",
+        "reset": "4EE720 only resets native stageD5D7A4 and58510C;it is not a blanket queue/material reset."
+      },
+      "limits": [
+        "Numeric API effects/endpoint results are source inputs;actual Winsock/DNS behavior and target transports are not executed here.",
+        "Native hostname copies and port conversion have machine bounds distinct from the independent endpoint policy."
+      ]
+    },
+    {
+      "id": "CF-F06",
+      "title": "Bootstrap acceptance and first request states",
+      "classification": "fact: fixed37c4 static source unless explicitly marked independent policy",
+      "complete_native_entries": [
+        "0x4ee730",
+        "0x4ee470",
+        "0x4f83d0",
+        "0x455500"
+      ],
+      "claim": {
+        "stage71": "Select readable,receive up to the source1023-byte buffer,append and call frame consumer with120-byte output capacity. Exactly consumer return0 moves protocol-connectedCD8E21=1,state72 and dispatches first request;it does not separately test64-byte material availability at this branch.",
+        "send72": "Clear success latch,call4F83D0 with module/glt/gid,ackstate1,advance73.",
+        "wait73_80": "Wait forackstate2;failed success latch closes/rejects-7;success selects81 then reaches82 in that call. Pending increments and holds80.",
+        "delay81_98": "Advance by source poll calls,not elapsed milliseconds;99 returns1 and clears ack before inner timeout.",
+        "inner_timeout": "Other incomplete states return0 until unsigned elapsed>=600001,then-1. Outer caller normally imposes20001ms and checks success first."
+      },
+      "limits": [
+        "The independent login owner abstracts socket states0..70 as accepted transport;the exact source states are now preserved here."
+      ]
+    },
+    {
+      "id": "CF-F07",
+      "title": "Reply latch,status and owned publication",
+      "classification": "fact: fixed37c4 static source unless explicitly marked independent policy",
+      "complete_native_entries": [
+        "0x4eec00"
+      ],
+      "claim": {
+        "admission": "Onlyackstate1 consumes a reply and changes it to2;repeated/unsolicited replies do not update it.",
+        "status": "Store low16 status word,but only full int32==0 sets success. Nonzero exact detailbusy remaps statusword1234.",
+        "success_detail": "Sample the source time helpers,clear the128B prefix buffer,copy before the first pipe or full detail. When pipe exists,405620 receives a pointer AT that delimiter.",
+        "boundary": "Retain full owned detail plus delimiter offset for the named auxiliary/business/time owner;do not invent its business fields. Independent bounded success prefix<=127 is a declared policy."
+      },
+      "limits": [
+        "Auxiliary business/UI/time semantics are upstream/downstream ownership work,not extra inferred network fields."
+      ]
+    },
+    {
+      "id": "CF-F08",
+      "title": "Envelope and source queue cursor rules",
+      "classification": "fact: fixed37c4 static source unless explicitly marked independent policy",
+      "complete_native_entries": [
+        "0x4ee470",
+        "0x4ee330",
+        "0x4ee3d0",
+        "0x4fce00"
+      ],
+      "claim": {
+        "wire": "AF EF +little-endian signed16 payload length+payload+EF AF;overhead6. Receiver waits for8 bytes from firstAF even for short payloads.",
+        "scan": "NoAF leaves queue unconsumed. AF/nonEF consumes throughAF after8-byte guard. Incomplete payload/capacity/badtrailer returns-1 without that frame consumption. Complete accepted paths consume prefix+payload+6.",
+        "append": "Connected flag required;sum<=262144 admitted,larger returns-1 before copying. Consume rejects count>=262144;the source helper does not independently clamp count to pending.",
+        "sender": "Normal transform precedes envelope callback;the selected send callback copies bytes into its queue,so formatting scratch can be reused."
+      },
+      "limits": [
+        "Negative/high-bit lengths and unsafe native pointer cases are not emulated by the independent core.",
+        "Independent reader fails closed on complete malformed frames;this differs from the selected native blocked-queue behavior."
+      ]
+    },
+    {
+      "id": "CF-F09",
+      "title": "Binary precedence,bootstrap and normal body",
+      "classification": "fact: fixed37c4 static source unless explicitly marked independent policy",
+      "complete_native_entries": [
+        "0x4ee470",
+        "0x404db0",
+        "0x405110",
+        "0x4051f0",
+        "0x4eee40",
+        "0x4eee80"
+      ],
+      "claim": {
+        "precedence": "Binary]^i /]Pk bypass comes BEFORE the112-byte bootstrap predicate. Then bootstrap is selected when protocol-connected or key-ready isclear and length112. Only a decoded64-byte result installs material and marks readiness.",
+        "binary": "Four or one signedLE16 lengths followed by segments;independent bounds reject invalid/overrun lengths.",
+        "bootstrap": "Header16,ciphertext64,tag32 for selected112 branch;retained8192-round fixed-parameter SHA256 derivation,AES256-CBC and ciphertext HMAC rules apply. Candidate-write-before-tag-check source effects remain distinct from independent release-on-success.",
+        "normal": "64-byte C-string material,8-byte block rounding/permutation/XOR,trailing0x11 removal. A NUL-valued SOURCE BYTE is written0 without XOR;this is not a special first-position rule.",
+        "reset": "The known text reset clears readiness only;old64-byte material remains and can process non112 normal bodies until replacement."
+      },
+      "limits": [
+        "No peer identity/current-session authenticity is proved by these transforms or original synthetic vectors."
+      ]
+    },
+    {
+      "id": "CF-F10",
+      "title": "Text grammar and full declared catalog",
+      "classification": "fact: fixed37c4 static source unless explicitly marked independent policy",
+      "complete_native_entries": [
+        "0x4fcea0",
+        "0x4fcb40",
+        "0x4fcc50",
+        "0x4fcf80",
+        "0x4fcf00",
+        "0x4fcd30",
+        "0x4fc990",
+        "0x4f8a40",
+        "0x4f8990"
+      ],
+      "claim": {
+        "text": "Tag/typed fields end with ASCII spaces;firstNUL ends text. Source token starts use spaces;spaces/CR/LF becomeNUL. Missing field wrappers yield0/empty;extra tokens do not invent arguments.",
+        "fields": "Retained byte escape/high-byte pair rules and signed base62/wrapped32-bit getter rules apply;INT32_MIN writer and unsafe cases remain outside independent safe domain.",
+        "catalog": "104 incoming branches,including7 no-op aliases and one readiness reset;60 original outgoing formatters plus6 later source-bound formats=66 current unique operations.",
+        "tag_width": "Raw CString tags are variable length. GC is two bytes;four-byte storage-word hashes do not imply three-byte tags. Tag copy cap1023 is distinct.",
+        "dispatch": "Unknown text and native handler return do not stop the main caller. All104 argument/consumer/action mappings and all66 producer/field descriptors retain source identities."
+      },
+      "limits": [
+        "Catalog dispatch bindings do not prove every business consumer complete;those remain their original capabilities."
+      ]
+    },
+    {
+      "id": "CF-F11",
+      "title": "Active pump,refresh path and errors",
+      "classification": "fact: fixed37c4 static source unless explicitly marked independent policy",
+      "complete_native_entries": [
+        "0x4edef0",
+        "0x4ee470",
+        "0x4f8990",
+        "0x4ee6a0",
+        "0x4ee6e0"
+      ],
+      "claim": {
+        "gates": "Protocol-connected and network-active required. Error1 invokes the existing return/exit owner,sets2 and returns. Otherwise error0,connected and every eighth eligible-call counter service I/O.",
+        "receive": "Positive recv appends and resets the separate receive counter. The selected recv0 path does not immediately close. Recv(-1) uses4EE6A0;send(-1) uses4EE6E0.",
+        "error_class": "Both helpers return0 for10035,otherwise the original errorDWORD (including0/highbit). Caller closes and sets error1 only when its signed view>0.",
+        "readiness0": "When queued data exists and readiness is0,emit4F8990 then call the frame consumer. Any nonzero result invokes return/exit and sets error2;this differs from initial stage71 pending behavior.",
+        "ready1": "Consume/dispatch frames in order,ignore dispatcher return,then clear scratch/token arenas. A reset can change the next loop iteration path."
+      },
+      "limits": [
+        "No universal async need-more/cancel policy is inferred for all source stages.",
+        "The existing byte protocol correctly preserves material/reset precedence;active-pump orchestration is a separate integration rule."
+      ]
+    },
+    {
+      "id": "CF-F12",
+      "title": "Partial send and idle order",
+      "classification": "fact: fixed37c4 static source unless explicitly marked independent policy",
+      "complete_native_entries": [
+        "0x4edef0",
+        "0x4ee420",
+        "0x4f8760"
+      ],
+      "claim": {
+        "send": "After receive/dispatch,when send queue>0 and error0,try one send. Positive send updatesD18E30;non-error send consumes exactly the returned count. -1 classified as above;0 does not imply full packet completion.",
+        "idle": "After that send attempt,when network-active equals1,testunsigned now>uint32(lastSend+30000),then enqueue4F8760 with literalnr. This newly queued request is not sent earlier in the same already-finished send attempt.",
+        "clock": "First pump initializes lastSend tick;positive send resets it;receiving does not reset it. Native low3-bit pump cadence and source gates remain separate from the deadline."
+      },
+      "limits": [
+        "Current web host uses elapsed>=30001 and completion-oriented queued writes. The owning seam/unsigned arithmetic probe exposes two wrap differences;no full host/native timing run was performed."
+      ]
+    },
+    {
+      "id": "CF-F13",
+      "title": "Allocation and release ownership",
+      "classification": "fact: fixed37c4 static source unless explicitly marked independent policy",
+      "complete_native_entries": [
+        "0x4fc5c0",
+        "0x4fc6f0",
+        "0x4ee290"
+      ],
+      "claim": {
+        "allocation": "4FC6F0 requests4*N+4*N+4*(3*N)=20*N for9 arenas. 4FC5C0 adds72-byte descriptor plus18*N child arenas. At network N65536,successful dynamic requested bytes=2490440 (38*N+72).",
+        "init": "WSAStartup1.1;4EE290 registers4EE380 and calls the allocator,then marks active/error fields. It does not check that allocator return before publication.",
+        "derived_cleanup": "4EE2F0 when active clearsD18E38 and active/connected/error bytes,closes socket,WSACleanup,tail-calls4FC650. That block releases9 arenas,18 children and descriptor without clearing those pointer slots.",
+        "source_bounds": "Counts/material/other protocol flags are not a blanket reset by these tiny cleanup leaves;caller context must supply their actual state."
+      },
+      "limits": [
+        "Derived callback/cleanup/destructor leaves keep bounded machine-code authority;not counted as complete native dossiers.",
+        "2490440 excludes static queues,stack frames,allocator overhead,other game resources and target-runtime overhead;not a universal memory budget.",
+        "Allocation-failure source paths are not safe target initialization templates."
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "CF-O01",
+      "title": "Select fixed source and resource context",
+      "source_rules": [
+        "CF-F01",
+        "CF-F02"
+      ],
+      "inputs": [
+        "source identity",
+        "upstream ready/context snapshot"
+      ],
+      "ordered_behavior": [
+        "verify37c4 profile",
+        "retain original upstream ownership",
+        "choose outer state context"
+      ],
+      "completion_failure_cancel": [
+        "no C82/current merge",
+        "unavailable context remains explicit"
+      ]
+    },
+    {
+      "id": "CF-O02",
+      "title": "Consume handoff fields",
+      "source_rules": [
+        "CF-F01"
+      ],
+      "inputs": [
+        "bounded raw mapping"
+      ],
+      "ordered_behavior": [
+        "first case-sensitive gid/glt search",
+        "C-whitespace tokenization",
+        "owned bounded fields"
+      ],
+      "completion_failure_cancel": [
+        "missing/unsafe input separate from native oversized cases"
+      ]
+    },
+    {
+      "id": "CF-O03",
+      "title": "Produce module digest",
+      "source_rules": [
+        "CF-F01"
+      ],
+      "inputs": [
+        "selected module path/file bytes",
+        "source I/O result"
+      ],
+      "ordered_behavior": [
+        "module filename",
+        "MD5 file update/finalize",
+        "32 lowerhex or empty onfailure"
+      ],
+      "completion_failure_cancel": [
+        "later source supersedes old algorithm gap"
+      ]
+    },
+    {
+      "id": "CF-O04",
+      "title": "Reset outer owner",
+      "source_rules": [
+        "CF-F02"
+      ],
+      "inputs": [
+        "outer state"
+      ],
+      "ordered_behavior": [
+        "reset924F60/62",
+        "fresh state0 chooses2 after progress creation"
+      ],
+      "completion_failure_cancel": [
+        "UI/asset effects stay owned by their capabilities"
+      ]
+    },
+    {
+      "id": "CF-O05",
+      "title": "Version first HTTP read",
+      "source_rules": [
+        "CF-F03"
+      ],
+      "inputs": [
+        "historical URL/endpoint/version words",
+        "API results",
+        "prior fastflag"
+      ],
+      "ordered_behavior": [
+        "open/read2048 with16384 pre-read guard",
+        "close handles on observed branches"
+      ],
+      "completion_failure_cancel": [
+        "limit0 differs fromfallback",
+        "no live network result"
+      ]
+    },
+    {
+      "id": "CF-O06",
+      "title": "Version fast eligibility",
+      "source_rules": [
+        "CF-F03"
+      ],
+      "inputs": [
+        "response CString",
+        "endpoint/exe tokens"
+      ],
+      "ordered_behavior": [
+        "endpoint substring",
+        "setfastflag1",
+        "exe substring"
+      ],
+      "completion_failure_cancel": [
+        "1match/-1miss",
+        "not a formal manifest grammar"
+      ]
+    },
+    {
+      "id": "CF-O07",
+      "title": "Version fallback connect",
+      "source_rules": [
+        "CF-F03",
+        "CF-F04"
+      ],
+      "inputs": [
+        "fastflag",
+        "startup/socket/DNS/connect results"
+      ],
+      "ordered_behavior": [
+        "setfallback/clear response on source branch",
+        "historical socket path whenflag0"
+      ],
+      "completion_failure_cancel": [
+        "first0 is not immediate outer reject",
+        "-3/-4/-5 connect errors"
+      ]
+    },
+    {
+      "id": "CF-O08",
+      "title": "Version raw request",
+      "source_rules": [
+        "CF-F04"
+      ],
+      "inputs": [
+        "fallback socket"
+      ],
+      "ordered_behavior": [
+        "format LF HTTP/1.0 request",
+        "send once"
+      ],
+      "completion_failure_cancel": [
+        "source ignores send result"
+      ]
+    },
+    {
+      "id": "CF-O09",
+      "title": "Version response and EOF",
+      "source_rules": [
+        "CF-F04"
+      ],
+      "inputs": [
+        "readiness",
+        "recv bytes/result",
+        "tracked count"
+      ],
+      "ordered_behavior": [
+        "append with CString semantics",
+        "clamp16383",
+        "EOF substring tests"
+      ],
+      "completion_failure_cancel": [
+        "0wait/-1fail/-2exe miss/1match"
+      ]
+    },
+    {
+      "id": "CF-O10",
+      "title": "Version parent and cleanup",
+      "source_rules": [
+        "CF-F02",
+        "CF-F04"
+      ],
+      "inputs": [
+        "outer/substate",
+        "poll return",
+        "fastflag"
+      ],
+      "ordered_behavior": [
+        "handle1/-1 only",
+        "close fallback socket whenflag0",
+        "advance to network state2"
+      ],
+      "completion_failure_cancel": [
+        "-2 remains pending",
+        "no invented preflight20s deadline"
+      ]
+    },
+    {
+      "id": "CF-O11",
+      "title": "Network init and arenas",
+      "source_rules": [
+        "CF-F05",
+        "CF-F13"
+      ],
+      "inputs": [
+        "active/context",
+        "allocation/API results"
+      ],
+      "ordered_behavior": [
+        "cleanup previous network",
+        "WSAStartup",
+        "register callback/allocate",
+        "source publication"
+      ],
+      "completion_failure_cancel": [
+        "allocation policy differs from safe independent admission"
+      ]
+    },
+    {
+      "id": "CF-O12",
+      "title": "Resolve indexed endpoint",
+      "source_rules": [
+        "CF-F05"
+      ],
+      "inputs": [
+        "selected index",
+        "193-byte record/host/port text",
+        "resolver result"
+      ],
+      "ordered_behavior": [
+        "source index gate",
+        "copyhost/get port low16",
+        "IPv4 address path"
+      ],
+      "completion_failure_cancel": [
+        "-2/-4 and unsafe copy domains explicit"
+      ]
+    },
+    {
+      "id": "CF-O13",
+      "title": "Socket/connect stage0",
+      "source_rules": [
+        "CF-F05"
+      ],
+      "inputs": [
+        "socket/options/nonblocking/connect observations"
+      ],
+      "ordered_behavior": [
+        "capture tick",
+        "source setup",
+        "connect",
+        "selectstage1"
+      ],
+      "completion_failure_cancel": [
+        "-3/-100/-5;10035pending"
+      ]
+    },
+    {
+      "id": "CF-O14",
+      "title": "Connection select loop",
+      "source_rules": [
+        "CF-F05"
+      ],
+      "inputs": [
+        "stage1..70",
+        "writable/exception FD sets"
+      ],
+      "ordered_behavior": [
+        "increment/hold69",
+        "select71 or errorclose"
+      ],
+      "completion_failure_cancel": [
+        "-6exception",
+        "no host callback ordering assumed"
+      ]
+    },
+    {
+      "id": "CF-O15",
+      "title": "Initial bootstrap wait",
+      "source_rules": [
+        "CF-F06",
+        "CF-F09"
+      ],
+      "inputs": [
+        "stage71",
+        "readable/recv/queue"
+      ],
+      "ordered_behavior": [
+        "append",
+        "callconsumer(cap120)",
+        "exact0 advances72"
+      ],
+      "completion_failure_cancel": [
+        "incomplete stayspending",
+        "not a separate material check"
+      ]
+    },
+    {
+      "id": "CF-O16",
+      "title": "Build and queue first request",
+      "source_rules": [
+        "CF-F01",
+        "CF-F06",
+        "CF-F08"
+      ],
+      "inputs": [
+        "digest/glt/gid",
+        "material",
+        "callbackqueue"
+      ],
+      "ordered_behavior": [
+        "typed fields in source order",
+        "transform/envelope",
+        "callbackcopy",
+        "ack1/stage73"
+      ],
+      "completion_failure_cancel": [
+        "process/peer acceptance not implied"
+      ]
+    },
+    {
+      "id": "CF-O17",
+      "title": "Reply latch and status",
+      "source_rules": [
+        "CF-F07"
+      ],
+      "inputs": [
+        "ack",
+        "full32 status",
+        "owned detail"
+      ],
+      "ordered_behavior": [
+        "consume onlyack1",
+        "storelow16",
+        "full0 success/busy remap"
+      ],
+      "completion_failure_cancel": [
+        "unsolicited ignored",
+        "no low16-onlysuccess"
+      ]
+    },
+    {
+      "id": "CF-O18",
+      "title": "Reply prefix and auxiliary boundary",
+      "source_rules": [
+        "CF-F07"
+      ],
+      "inputs": [
+        "detail/pipe offset",
+        "time-helper observations"
+      ],
+      "ordered_behavior": [
+        "clear/copy source prefix",
+        "publish owned detail/offset to named downstream owner"
+      ],
+      "completion_failure_cancel": [
+        "do not invent auxiliary fields",
+        "independent prefix bounds declared"
+      ]
+    },
+    {
+      "id": "CF-O19",
+      "title": "Wait/delay/success/timeout",
+      "source_rules": [
+        "CF-F06",
+        "CF-F02"
+      ],
+      "inputs": [
+        "stages73..99",
+        "ack/success",
+        "outer/inner ticks",
+        "cancel"
+      ],
+      "ordered_behavior": [
+        "wait/hold80",
+        "success82 then poll-call advance",
+        "99 returns first",
+        "checktime/cancel otherwise"
+      ],
+      "completion_failure_cancel": [
+        "-7reject/inner-1/outer-2",
+        "20001/600001 distinct"
+      ]
+    },
+    {
+      "id": "CF-O20",
+      "title": "Append/scanner cursor",
+      "source_rules": [
+        "CF-F08"
+      ],
+      "inputs": [
+        "connected",
+        "queue bytes",
+        "capacity"
+      ],
+      "ordered_behavior": [
+        "copy ifsum<=262144",
+        "scanfirstAF",
+        "8-byte guard"
+      ],
+      "completion_failure_cancel": [
+        "noAF unconsumed",
+        "badsecond marker discardprefix+AF"
+      ]
+    },
+    {
+      "id": "CF-O21",
+      "title": "Envelope lengths and trailer",
+      "source_rules": [
+        "CF-F08"
+      ],
+      "inputs": [
+        "candidate",
+        "signed16 length",
+        "output capacity"
+      ],
+      "ordered_behavior": [
+        "checkcomplete/capacity/trailer",
+        "consumeacceptedprefix+len+6"
+      ],
+      "completion_failure_cancel": [
+        "blocked source errors vs strict independent failure"
+      ]
+    },
+    {
+      "id": "CF-O22",
+      "title": "Binary bypass",
+      "source_rules": [
+        "CF-F09"
+      ],
+      "inputs": [
+        "opaque payload"
+      ],
+      "ordered_behavior": [
+        "test]^i/]Pk beforebootstrap",
+        "forward signedlength segments to source consumer"
+      ],
+      "completion_failure_cancel": [
+        "independent bounded segment policy retained"
+      ]
+    },
+    {
+      "id": "CF-O23",
+      "title": "Bootstrap transform/material",
+      "source_rules": [
+        "CF-F09"
+      ],
+      "inputs": [
+        "112B payload",
+        "readiness/connected",
+        "old material"
+      ],
+      "ordered_behavior": [
+        "source derive/HMAC/CBC",
+        "install only64B result"
+      ],
+      "completion_failure_cancel": [
+        "native candidate-write/error effects explicit",
+        "no peer authentication claim"
+      ]
+    },
+    {
+      "id": "CF-O24",
+      "title": "Normal body and reset retention",
+      "source_rules": [
+        "CF-F09",
+        "CF-F10"
+      ],
+      "inputs": [
+        "64B nonNUL material",
+        "aligned payload",
+        "readiness reset"
+      ],
+      "ordered_behavior": [
+        "inverse permutation/XOR",
+        "strip max8 pad bytes",
+        "decode text",
+        "clearready without clearingoldmaterial"
+      ],
+      "completion_failure_cancel": [
+        "lossy NUL/padding domains retained"
+      ]
+    },
+    {
+      "id": "CF-O25",
+      "title": "Token fields and numeric/byte grammar",
+      "source_rules": [
+        "CF-F10"
+      ],
+      "inputs": [
+        "raw text",
+        "source field descriptors"
+      ],
+      "ordered_behavior": [
+        "firstNUL",
+        "space starts/CRLF NUL",
+        "typed getters",
+        "missing0/empty"
+      ],
+      "completion_failure_cancel": [
+        "source wrap/invalid digit rules",
+        "unsafe writer separate"
+      ]
+    },
+    {
+      "id": "CF-O26",
+      "title": "All source-declared dispatch/senders",
+      "source_rules": [
+        "CF-F10"
+      ],
+      "inputs": [
+        "104 branches/66 operations"
+      ],
+      "ordered_behavior": [
+        "variable byte-tag lookup",
+        "source field order",
+        "alias/noop/reset handling",
+        "unknownopaque"
+      ],
+      "completion_failure_cancel": [
+        "all source identities retained",
+        "business semantics separate"
+      ]
+    },
+    {
+      "id": "CF-O27",
+      "title": "Eligible active pump",
+      "source_rules": [
+        "CF-F11"
+      ],
+      "inputs": [
+        "active/protocol/transport/error/counter"
+      ],
+      "ordered_behavior": [
+        "service error1 once",
+        "advance eligiblelow3 counter",
+        "I/O onzero"
+      ],
+      "completion_failure_cancel": [
+        "no arbitrary all-interleaving assumption"
+      ]
+    },
+    {
+      "id": "CF-O28",
+      "title": "Receive error and EOF observations",
+      "source_rules": [
+        "CF-F11"
+      ],
+      "inputs": [
+        "recv result/errorDWORD"
+      ],
+      "ordered_behavior": [
+        "positiveappend",
+        "-1 classify10035 vsother",
+        "signedpositive close/error1"
+      ],
+      "completion_failure_cancel": [
+        "selectedrecv0 does not immediatelyclose"
+      ]
+    },
+    {
+      "id": "CF-O29",
+      "title": "Readiness-zero active path",
+      "source_rules": [
+        "CF-F11"
+      ],
+      "inputs": [
+        "queueddata",
+        "readiness0",
+        "old material"
+      ],
+      "ordered_behavior": [
+        "emit4F8990",
+        "attempt one frame"
+      ],
+      "completion_failure_cancel": [
+        "nonzero frame result invokes exit/error2",
+        "unlike initial71 waiting"
+      ]
+    },
+    {
+      "id": "CF-O30",
+      "title": "Ready dispatch and clearing",
+      "source_rules": [
+        "CF-F10",
+        "CF-F11"
+      ],
+      "inputs": [
+        "queuedframes",
+        "borrowed scratch/tokens"
+      ],
+      "ordered_behavior": [
+        "consume/dispatch sequentially",
+        "ignore handlerreturn",
+        "clear arenas aftereach"
+      ],
+      "completion_failure_cancel": [
+        "reset may change next loop path",
+        "owner events not replayed"
+      ]
+    },
+    {
+      "id": "CF-O31",
+      "title": "Send callback and partial drain",
+      "source_rules": [
+        "CF-F08",
+        "CF-F12",
+        "CF-F13"
+      ],
+      "inputs": [
+        "connected",
+        "sendqueue",
+        "send result/error"
+      ],
+      "ordered_behavior": [
+        "copy-enqueue callback",
+        "attempt one send",
+        "positive tick update",
+        "consume exact non-error count"
+      ],
+      "completion_failure_cancel": [
+        "-1 classified",
+        "0 notfullwrite"
+      ]
+    },
+    {
+      "id": "CF-O32",
+      "title": "Idle maintenance",
+      "source_rules": [
+        "CF-F12"
+      ],
+      "inputs": [
+        "eligible gates",
+        "uint32 now/lastSend"
+      ],
+      "ordered_behavior": [
+        "after send compare absolute wrappeddeadline",
+        "enqueue4F8760 nr"
+      ],
+      "completion_failure_cancel": [
+        "nextsend later",
+        "receive does not resetclock"
+      ]
+    },
+    {
+      "id": "CF-O33",
+      "title": "Native cleanup and independent retirement",
+      "source_rules": [
+        "CF-F13"
+      ],
+      "inputs": [
+        "active flags",
+        "socket",
+        "arenas/leases"
+      ],
+      "ordered_behavior": [
+        "source clear/close/free sequence",
+        "target physical release after owned leases"
+      ],
+      "completion_failure_cancel": [
+        "no inferred zeroing of other source state",
+        "actual targetdrain acceptance pending"
+      ]
+    }
+  ],
+  "required_behavior_readiness": [
+    {
+      "requirement": "资源就绪",
+      "scope_key": "resources",
+      "operations": [
+        "CF-O01",
+        "CF-O02",
+        "CF-O03",
+        "CF-O04",
+        "CF-O05",
+        "CF-O06",
+        "CF-O07",
+        "CF-O08",
+        "CF-O09",
+        "CF-O10",
+        "CF-O11"
+      ],
+      "fixed_source_functional_rules_composed": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "requirement": "摘要",
+      "scope_key": "digest",
+      "operations": [
+        "CF-O02",
+        "CF-O03",
+        "CF-O16"
+      ],
+      "fixed_source_functional_rules_composed": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "requirement": "启动首包",
+      "scope_key": "first",
+      "operations": [
+        "CF-O12",
+        "CF-O13",
+        "CF-O14",
+        "CF-O15",
+        "CF-O16",
+        "CF-O17",
+        "CF-O18",
+        "CF-O19"
+      ],
+      "fixed_source_functional_rules_composed": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "requirement": "帧/正文/文字",
+      "scope_key": "framing",
+      "operations": [
+        "CF-O20",
+        "CF-O21",
+        "CF-O22",
+        "CF-O23",
+        "CF-O24",
+        "CF-O25",
+        "CF-O26"
+      ],
+      "fixed_source_functional_rules_composed": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "requirement": "收发队列",
+      "scope_key": "queues",
+      "operations": [
+        "CF-O11",
+        "CF-O20",
+        "CF-O21",
+        "CF-O27",
+        "CF-O28",
+        "CF-O29",
+        "CF-O30",
+        "CF-O31",
+        "CF-O33"
+      ],
+      "fixed_source_functional_rules_composed": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "requirement": "空闲维护",
+      "scope_key": "idle",
+      "operations": [
+        "CF-O27",
+        "CF-O28",
+        "CF-O31",
+        "CF-O32"
+      ],
+      "fixed_source_functional_rules_composed": true,
+      "implementation_or_dependency_acceptance": false
+    }
+  ],
+  "source_context_contract": {
+    "policy": "Caller/source-owner snapshots are explicit required inputs. Address IDs identify source cells;they are not UI fields or permission to fill unknown origins with0.",
+    "groups": [
+      "selected endpoint/version words and outer/preflight/network stages",
+      "network-active/transport-connected/protocol-connected/error/key-ready bytes",
+      "owned material64,send/receive queued byte counts andformat callback",
+      "eligible pump counter,source GetTickCount domains andlastSend tick",
+      "ack/success/statusword/cancel andouter/inner stamps",
+      "upstream resource/module identity andnamed auxiliary/time owner effects"
+    ]
+  },
+  "source_catalog_binding": {
+    "incoming": 104,
+    "original_outgoing": 60,
+    "later_outgoing": 6,
+    "current_unique_outgoing": 66,
+    "source_word_checks": 164,
+    "not_a_three_byte_fixed_tag_grammar": true,
+    "full_business_consumer_semantics_claimed": false
+  },
+  "selected_supersession": [
+    {
+      "original": "old-session-native-semantics module_digest unresolved algorithm",
+      "effective": "later-module-digest-source/direct-calls+CF-F01",
+      "closed_for_fixed_profile": true
+    },
+    {
+      "original": "old-session accepted-transport abstraction0..70",
+      "effective": "CF-F02..06 exactsource graph;target port implementation pending",
+      "source_graph_closed": true
+    },
+    {
+      "original": "old layer remainingother business/actor/map/current/device acceptance",
+      "effective": "retained in original other capabilities/remaining;not claimed closed by catalog coverage",
+      "closed": false
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "CF-D1",
+      "batch": "D0/D2",
+      "operations": [
+        "CF-O04",
+        "CF-O05",
+        "CF-O06",
+        "CF-O07",
+        "CF-O08",
+        "CF-O09",
+        "CF-O10",
+        "CF-O11",
+        "CF-O12",
+        "CF-O13",
+        "CF-O14"
+      ],
+      "existing_ports": [
+        "ContextOwner",
+        "SourceValueContext",
+        "SessionTransport"
+      ],
+      "change": "Model the full pre-network/version andsocket-select operations through explicit observations. Existing pure login owner abstracts accepted transport and has no complete optional version-preflight branch. Do not skip that branch when its source context requires it.",
+      "implemented": false
+    },
+    {
+      "id": "CF-D2",
+      "batch": "D0/D2/D5",
+      "operations": [
+        "CF-O27",
+        "CF-O31",
+        "CF-O32"
+      ],
+      "existing_ports": [
+        "ClockDomains",
+        "SharedUpdatePump",
+        "SessionTransport"
+      ],
+      "change": "Reconcile source every-eighth eligible call,positive-partial-send tick and post-send absolute wrappeddeadline with current elapsed/completion-oriented host policy. The focused owning-seam arithmetic proves two wrap differences;full adapter effects remain untested.",
+      "implemented": false
+    },
+    {
+      "id": "CF-D3",
+      "batch": "D0/D2",
+      "operations": [
+        "CF-O15",
+        "CF-O23",
+        "CF-O24",
+        "CF-O27",
+        "CF-O28",
+        "CF-O29",
+        "CF-O30",
+        "CF-O33"
+      ],
+      "existing_ports": [
+        "ContextOwner",
+        "OwnerLifecycle",
+        "SessionTransport",
+        "BudgetAndLease"
+      ],
+      "change": "Preserve distinct initial bootstrap wait vs active ready0 emit/consume/error path,source error/recv0 conditions andborrowed scratch clearing. Reuse current correct reset-retained material/binary precedence;do not rewrite the codecs.",
+      "fixed_se_long_receive_pointer": "/fixed_se_long_receive_dispatch",
+      "implemented": false
+    },
+    {
+      "id": "CF-D4",
+      "batch": "D0/D2",
+      "operations": [
+        "CF-O01",
+        "CF-O11",
+        "CF-O18",
+        "CF-O20",
+        "CF-O21",
+        "CF-O25",
+        "CF-O26",
+        "CF-O33"
+      ],
+      "existing_ports": [
+        "SourceValueContext",
+        "TextEncodingAndLocalStateStore",
+        "BudgetAndLease",
+        "OwnerLifecycle"
+      ],
+      "change": "Keep source unsafe cases,native initializer result handling andstrict independent policies explicit. Carry required source context/auxiliary bytes without invented defaults. Use measured communication arenas as one budget component,not a whole-resource cap.",
+      "implemented": false
+    },
+    {
+      "id": "CF-D5",
+      "batch": "D2/D5/D6",
+      "operations": [
+        "CF-O01",
+        "CF-O02",
+        "CF-O03",
+        "CF-O16",
+        "CF-O17",
+        "CF-O19",
+        "CF-O26"
+      ],
+      "existing_ports": [
+        "ContextOwner",
+        "SessionTransport",
+        "OwnerLifecycle"
+      ],
+      "change": "Integrate existing module-digest,first-packet,grammar/catalog and byte core once;web/mobile/WeChat supply their accepted stream/lifetime ports. Keep matching-version game handoff,full business effects and official/device acceptance independent.",
+      "implemented": false
+    }
+  ],
+  "proposed_acceptance_cases": [
+    {
+      "id": "CF-A01",
+      "case": "Fresh/retained source contexts,material input bounds and module file failure/identity.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "CF-A02",
+      "case": "Optional version fast/fallback0/1/-1 values and flag publication before executable check.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "CF-A03",
+      "case": "WinINet2048 pre-read16384 vsfallback16383 clamp,embeddedNUL tracked length andEOF return-2 pending.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "CF-A04",
+      "case": "Source network/socket/option/DNS/connect/FD errors and69-hold/71 transition.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "CF-A05",
+      "case": "Initial71 frame-return0 vs key availability and outer/inner timeout priority.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "CF-A06",
+      "case": "First request module/glt/gid order,full32 status vs low16,busy/repeated reply andauxiliary delimiter ownership.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "CF-A07",
+      "case": "Native scan/8-byteguard/signed length/capacity/badtrailer boundaries andindependent strict policy.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "CF-A08",
+      "case": "Binary-before-bootstrap,112/64 material,invalid tag/decoded length/NUL material domains.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "CF-A09",
+      "case": "Reset keeps old material;active ready0 sends control and reacts differently to incompleteframe.",
+      "source_order_pointer": "/receive_retirement_order/acceptance",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "CF-A10",
+      "case": "All104/66 bindings,variable tag lengths,missing/extra fields,unknowntext and7 noops.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "CF-A11",
+      "case": "Parser allocations/failure publication,callback copy,consume bounds andclearing/free leases.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "CF-A12",
+      "case": "Recv0/10035/positive/highbit errors,partialsend/zero/error andqueued bytes ownership.",
+      "source_order_pointer": "/receive_retirement_order/acceptance",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "CF-A13",
+      "case": "Every-eighth eligible pump,source wrapped absolute deadline,send-before-idle andno receive reset.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "CF-A14",
+      "case": "Native post-connect99 success before20001 andsource600001 inner threshold.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "CF-A15",
+      "case": "Cancellation/open/write/callback tails and physical drain under the common14-port contract.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "CF-A16",
+      "case": "Actual web/mobile/WeChat flows,matchingcurrent game andauthorized official acceptance separately.",
+      "status": "not-executed-as-full-native-or-target-case"
+    }
+  ],
+  "focused_probe": {
+    "path": "build/analysis/game-communication-functional-specification-v1/focused-probe.json",
+    "bytes": 3540,
+    "sha256": "c4226e05aa13dd48310e53016d9f98f04855560c1f01fa6425544ac6363903f6"
+  },
+  "remaining": [
+    {
+      "id": "CF-U1",
+      "kind": "dependency integration",
+      "need": "OriginalL07/X02/X06 source-context,ownership/clock/stream integration andupstream resource/business effects retain their original scopes;no guessed origins/default0."
+    },
+    {
+      "id": "CF-U2",
+      "kind": "product differences",
+      "need": "CF-D1..5 unimplemented;known idle-clock seam difference remains. Independent strict/async policies are not claimed native parity."
+    },
+    {
+      "id": "CF-U3",
+      "kind": "actual target/current acceptance",
+      "need": "Original native/three-target/devices/current matching consumer andauthorized official sessions remain unverified. No test-account request is repeated."
+    }
+  ],
+  "stopping_rule": "G01 source operations and its necessary version/error wrappers are now bound. Reuse them;do not reopen known codec/MD5/Winsock wrappers for source counts or derive business meaning from tags. Only another named required behavior-changing source gap justifies new analysis.",
+  "summary": {
+    "retained_complete_native_records": 134,
+    "new_native_queries": 7,
+    "complete_native_records_total": 141,
+    "new_native_body_bytes": 1366,
+    "native_body_bytes_total": 66345,
+    "new_derived_machine_leaves": 3,
+    "derived_leaf_bytes": 282,
+    "cold_instructions": 502,
+    "later_derived_sender_windows": 5,
+    "canonical_native_queries_repeated": 0,
+    "retained_rule_or_port_nodes": 58,
+    "existing_byte_and_mapping_checks": 111,
+    "original_tag_words_checked": 164,
+    "later_derived_sender_windows_total": 6,
+    "derived_machine_leaves": 3,
+    "facts": 13,
+    "operations": 33,
+    "original_scope_groups": 6,
+    "implementation_deltas": 5,
+    "proposed_full_cases_not_executed": 16,
+    "envelope_split_positions_passed": 119,
+    "known_clock_arithmetic_differences": 2
+  },
+  "scope_preserved": {
+    "capabilities": 40,
+    "registry_entries": 81,
+    "historical_requirements": 37,
+    "consumer_groups": 10,
+    "primary_profiles": 6,
+    "original_scope_owners_dependencies_batches": true
+  },
+  "local_G01_full_specification_ready": true,
+  "G01_dependencies_integrated": false,
+  "G01_product_compatible_with_all_source_edges": false,
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "focused_original_fixture_probe_run": true,
+  "full_product_test_suites_or_builds_run": false,
+  "original_VM_official_network_account_device_actions": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "original_G01_snapshot": {
+    "file": {
+      "path": "build/analysis/game-communication-functional-specification-v1/before/analysis/capability-first-v1/capability-matrix.json",
+      "bytes": 890872,
+      "sha256": "58b29cb482230e95000a918d8a35da383c779969628fdfc3504ec77bd1fc4d15"
+    },
+    "pointer": "/capabilities/8",
+    "role": "phase-start historical row;only immutable scope/owner/dependency/batch/profile fields are the original_G01 contract above"
+  },
+  "item_disconnect_recovery": {
+    "specification": "analysis/capability-first-v1/game-flow-functional-specification.json#/item_disconnect_recovery",
+    "scope": "固定 Item 的断线标记、轮询准入与确认后的连接退役。目标宿主错误映射和同版继续验收。"
+  },
+  "fixed_se_player_window_wire": {
+    "classification": "固定 SE 两条出站格式和进入人物界面的回包消费者",
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "source": "build/analysis/fixed-se-classic-toolbar-status-v1/source-review.json",
+    "window_operations": "analysis/capability-first-v1/window-engine-contract.json#/fixed_se_classic_toolbar_status",
+    "attribute": {
+      "send": { "producer": "0x4f7fd0", "tag": "-gR", "tag_address": "0x567bb4", "fields": ["int32"] },
+      "selected_call": "0x46cd75",
+      "payload": "被选项 0 至 4，非点数或属性总值。",
+      "receive": { "consumer": "0x4f3270", "tag": "Or@", "fields": ["int32"], "source_store": "0xc450a8", "used_by": ["0x46d200", "0x46c820"] }
+    },
+    "personal_title": {
+      "send": { "producer": "0x4f7f30", "tag": "->#", "tag_address": "0x567bac", "fields": ["int32"] },
+      "selected_call": "0x46e6b4",
+      "custom_text_producers": "analysis/capability-first-v1/entry-admission.json#/selected_fixed_se_operations/send_operation_admission/selected_text_producers/personal_title",
+      "payload": "删除所选个人称号时，由可见副本编号反查的原表索引。",
+      "reuse": "Hr] 解析原 48 行，现有 -0] 编码用于设定或传 -1 清除，现有 -X} 继续提供 bytes 编码。已选名称草稿经窗口原字段变换后才交编码。"
+    },
+    "formation": {
+      "receive": { "consumer": "0x4f2300", "tag": "Q=[", "fields": ["int32"], "source_store_low16": "0xf536c8" },
+      "send_reused": { "producer": "0x4f8190", "tag": ".3+", "fields": [] }
+    },
+    "implementation": {
+      "batch": "D2",
+      "handoff": "沿现有世界收包发布两条标量，复用整型编码和消息目录。D3 的人物窗所有者按已证条件生成带单项的请求。",
+      "stage306_missing_serializers": ["send-004f7fd0", "send-004f7f30"],
+      "stage306_scalars_decoded_without_world_effect": ["Or@", "Q=["]
+    },
+    "acceptance_scope": "固定原字节及本机观察。真实启动、发送调度和服务器确认沿同版验收。",
+    "runtime_acceptance_verified": false
+  },
+  "fixed_se_outgoing_admission": {
+    "classification": "固定历史 SE 的已证静态范围及 stage306 本机对照",
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "capabilities": ["X01", "G01", "G02", "G03", "G04", "G09", "G10", "G14", "G16", "G18", "G20", "B01", "B02", "B04"],
+    "source_assignments": "build/analysis/fixed-se-outgoing-admission-v1/source-review.json#/assignments",
+    "stage306_comparison": "build/analysis/fixed-se-outgoing-admission-v1/stage306-probe.json",
+    "report": "reports/game-static.md#fixed-se-outgoing-admission",
+    "formatter_count": 18,
+    "formatter_bytes_checked": 2427,
+    "direct_text_call_count": 69,
+    "shared_encoder": "shared/legacy-game-message.mjs",
+    "typed_movement": {
+      "source": "build/analysis/fixed-se-outgoing-admission-v1/source-review.json#/type2_movement",
+      "rule": "所查普通扫描器在 4619FD 调用 4A31B0。固定函数返回零，而 461A8B 写类型 2 需要非零。延后分派须有挂起标记、剩余步数不大于零，且类型为 2，才在 461B05 进入 461BF0。4F6710 依次编码当时的逻辑 X、Y。",
+      "handoff": "D2 复用现有编码和已证的普通移动操作。合资格的类型 2 生产者或适用实测出现后，再决定相应入口。",
+      "case": "按固定普通扫描器的返回值执行，检查已证类型 1、3 的请求及本次无类型 2 请求。类型 2 的有界构帧测试核对两个有符号坐标的参数位置。"
+    },
+    "roster_lookup": "analysis/capability-first-v1/game-social-family-album-functional-specification.json#/classic_contact_detail_request",
+    "alternate_item_target": {
+      "source": "build/analysis/fixed-se-outgoing-admission-v1/source-review.json#/alternate_item_target",
+      "rule": "经典 47D6F0 和第二套 79 号窗的 4CFA40 都把目标槽放在首参、已保存源槽放在次参。所查第二套窗在命中存在的槽且输入位 0x01 置位时检查改选。候选须与当前已选槽、源槽不同，类别须异于 47，记录首部 F53D10 的值须小于 1，标志 0x100 须清且 0x200 置位时 0x400 须置位。发送点检查当时 C1FC10 非负，于 4CFD3E 发送 6=L，再请求音效 0x4D 和关窗。关窗的实际消费另沿 EA-U2。",
+      "handoff": "D3 复用 shared/legacy-game-items.mjs 的两槽操作及既有格式器。取得普通帧的正向准入证据后，按 79 号窗的实际输入与资料条件接入。",
+      "case": "以后续读取仍有选择和选择保持负值两种情形，核对参数顺序、无选中时的行为和发送后的关窗请求。第二套窗用例须经实际激活入口。"
+    },
+    "party_leave": {
+      "source": "analysis/capability-first-v1/game-party-social-contract.json#/facts",
+      "rule": "普通的 4F3310 分支先过 924F30 状态检查。mode=0、result=1 的所选分支清队伍状态后构造 /Re，参数为目标 X、目标 Y 和符号扩展后的朝向字节。",
+      "handoff": "D0 在已有状态入口核对源准入，D3 沿 SF-O05 复用现有离队与三参格式。现有本机离队用例已覆盖目标位置及有符号朝向，实际阶段准入仍须对照。",
+      "case": "对照 924F30 为零和非零的回复，检查是否更新成员、模式、待回状态以及是否排出 /Re。将显示格和目标格设为不同值。"
+    },
+    "work_notice": {
+      "source": "analysis/capability-first-v1/game-work-functional-specification.json#/operations",
+      "rule": "7ba 有五处固定 .text 直接调用。所选制造在抽样并计算秒数后通知，再登记截止时间。维修检查和装饰沿各自 WK-O21、WK-O27 的条件与计时。所选采集流程使用自己的操作。",
+      "handoff": "D3 沿 WK-O15、WK-O21、WK-O27 核对已知的阶段与发布顺序差异。stage306 的所选制造先登记截止和工作阶段，再向调用端返回发送请求。用同一时钟、失败和复入用例核对调用请求及本地阶段。"
+    },
+    "pending": [
+      "EA-U1 的其他所需业务入口和 EA-U2 的第二套窗口实际调度。",
+      "同版实测的分支准入及最终结果，以及三端产品按真实业务入口的验收。"
+    ],
+    "original_runtime_executed": false,
+    "all_business_paths_verified": false,
+    "same_version_or_product_full_acceptance_verified": false
+  },
+  "receive_retirement_order": {
+    "classification": "固定历史样本的静态事实与所列条件推导",
+    "capabilities": ["G01", "G02", "G03", "G19", "G20", "X02", "X06"],
+    "source_review": {
+      "path": "build/analysis/legacy-receive-retirement-order-v1/source-review.json",
+      "bytes": 27486,
+      "sha256": "c514063c2b4402ba444ef7c5159f94722064d2ee3dccebc23b359a6e1fc868ea"
+    },
+    "report": "reports/game-static.md#legacy-receive-retirement-order",
+    "profiles": {
+      "Item": {
+        "sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+        "frame_receive": "0x4874a5",
+        "frame_state_dispatch": "0x4874b9",
+        "receive_error_write": "0x571027",
+        "queued_data_check": "0x57103b",
+        "normal_message_dispatch": "0x5710d2",
+        "decoder_ready": "0xed6008",
+        "decoder_ready_reset": "0x582d3f",
+        "disconnect_flag": "0xf8e916",
+        "character_slot": "0x11d4b80"
+      },
+      "SE": {
+        "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+        "frame_receive": "0x44fc66",
+        "frame_state_dispatch": "0x44fc7a",
+        "receive_error_write": "0x4ee045",
+        "queued_data_check": "0x4ee04c",
+        "normal_message_dispatch": "0x4ee091",
+        "decoder_ready": "0xc60528",
+        "decoder_ready_reset": "0x4fc4ce",
+        "disconnect_flag": "0xd18e36",
+        "character_slot": "0xf5f048"
+      }
+    },
+    "facts": [
+      "两版普通帧先轮询接收，再派发游戏状态。轮询所选分支对 recv 返回 0 继续检查缓存。返回 -1 时，错误 10035 映射为 0。仅归类值按有符号比较大于 0 时调用关闭套接字并写断线标记 1。",
+      "两版写标记 1 后在同一轮继续检查已缓存字节。解码就绪且帧消费返回 0 时，依次分派已取得的记录、清理临时解析区并重新读取队列与就绪位。断线标记仍非零时跳过普通队列写出。",
+      "两版收到 ]gQ 清解码就绪位，仍按同一轮的缓存检查继续。队列有字节且就绪为零时先提交控制请求，再只尝试消费一条记录。返回 0 则离开本次接收分派。返回非零则在本轮发布主状态 11、子阶段 0 并置断线标记 2。",
+      "两版后续调用先核协议和网络活动位，标记仍为 1 则发布主状态 11、子阶段 0 并置 2，普通收包跳过。Item 主状态分派另外消费已登记的待切换状态，所选断线确认按既有顺序退役连接和返回选服。",
+      "两版的图鉴摘要和详情按执行时角色槽选择资料，记录或版本的业务检查仍适用。固定 Item 的个人和家族来信按当时槽和各自有效联系人规则写入。迷你来信沿独立联系人查询和存储。"
+    ],
+    "conditional_inferences": [
+      "已解析的选定消息若先于普通选角发布执行，使用旧槽。若同一连接仍可处理消息、角色槽已更新且合资格消息在后续轮询到达消费者，则使用新槽。此路径保留角色选择、主状态 5 的缓存读回及业务发布的原顺序。",
+      "若就绪状态在缓存分派中清零，本轮剩余数据可触发就绪为零的单条消费。它失败时会在本轮直接置断线标记 2。若标记 1 保留至后续合资格调用，则由该调用推进提示。"
+    ],
+    "implementation": {
+      "source": "CF-D3 由现有接收及会话所有者处理当轮已取得的数据、断线锁存和下一次轮询。D2 按实际派发顺序发布状态，D3 在业务处理时用有效角色槽和联系人。D0/D5 复用现有旧连接迟到回调防护，保留真实传输关闭回执与新会话身份。",
+      "local_difference": "现有共享解码已保留重置前资料，在单块重置后可立即处理随后的 48 字节图鉴详情。网页会话有本地代次和待处理读的取消保护。现有网页在宿主 EOF 时结束会话，CF-D3 和 GF-A19 继续核对宿主事件与原版接收结果的适用范围。仅有相同线路字段时，同一连接内的晚到结果归属仍待运行证据。",
+      "local_projection": {
+        "path": "build/analysis/legacy-receive-retirement-order-v1/local-projection.json",
+        "bytes": 413,
+        "sha256": "f7d9c90a8bb1612117ee4485396711d275ed317ddf86ad32ccf40a6b83ca524f"
+      },
+      "ports": ["SessionTransport", "ContextOwner", "OwnerLifecycle"],
+      "batches": ["D0", "D2", "D3", "D5", "D6"]
+    },
+    "acceptance": {
+      "existing_cases": ["CF-A09", "CF-A12", "CF-A15", "GF-A19", "SF-A29"],
+      "scenarios": [
+        "断线前缓存完整记录、短片段或无记录，分别核当轮分派、普通写出准入、下一次提示发布和标记 2。",
+        "同批先处理 ]gQ，再分别给无余量、一条可消费记录或不完整记录，核控制请求、停止分派和本轮可能发布的提示。",
+        "有效图鉴或个人、家族来信分别在选角前和后续合资格轮询进入，核当时角色槽及随后缓存读回。以迷你来信验证独立联系人定位。",
+        "旧连接关闭后才回到宿主的读结果与同一连接内已接纳的资料分开观察。实际远端到达、当前同版和三端按原用例核验。"
+      ],
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    "original_execution": false,
+    "actual_late_same_connection_reply_observed": false,
+    "current_version_equivalence_proven": false,
+    "product_code_changed": false
+  },
+  "legacy_address_notice_retention": {
+    "classification": "两份固定历史样本的静态事实与 stage306 本机对照",
+    "capabilities": ["X01", "G15", "X06"],
+    "wire": {"tag": "W(y", "fields": ["bytes"], "se_dispatch": "0x4FC338", "item_dispatch": "0x582C26"},
+    "source_review": {
+      "path": "build/analysis/fixed-se-address-notice-retention-v1/source-review.json",
+      "bytes": 21761,
+      "sha256": "6fbce3082d88e9a85d1fee0b3dceaa0d6e42494990385f54af0e6e65f8a8c767"
+    },
+    "local_comparison": {
+      "path": "build/analysis/fixed-se-address-notice-retention-v1/local-projection.json",
+      "bytes": 1403,
+      "sha256": "2eab9fe8168ffe99ef1d7c1d5a2ba8e5758ec52d354efcde19a6f962ef1cb185"
+    },
+    "shared_receive_retirement": "/receive_retirement_order",
+    "report": "reports/game-static.md#legacy-address-notice-retention",
+    "validation": "reports/validation.md#legacy-address-notice-retention-validation",
+    "rules": [
+      "SE 4F49E0 与 Item 57A4B6 处理一个解码后的字节串。保存区首字节为零时直接保存。旧串含完整新串时直接返回并保留旧值，旧串非空时空新串也属于命中。",
+      "不同文本先提交地址变化提示，再提交可能重连的提示，之后把新串连同首个 NUL 写入保存区。两份历史样本的两个模板字节相同。",
+      "SE D1D030 与 Item F92B10 是可写段零填充地址，两处与下一已证独立工作区相隔 260 字节。这个距离支持所见布局边界，原数组声明及服务实际长度待验证。",
+      "固定 SE 解析器初始化使用 65536 字节参数，字段临时复制保留结尾 NUL。提示回调另按字符串实际终止位置写入。",
+      "两版的选定连接退役辅助释放动态解析空间。固定 SE 的普通重开沿原入口重新分配解析器空间并重置连接状态。所选路径推导旧提示值随游戏进程保留，至下一条改变文本的消息或进程结束。其他外层清理和实际连接回执另验。"
+    ],
+    "implementation": {
+      "D0": "由当前游戏实例拥有旧值，活动接收身份沿已有会话端口。覆盖同实例建立新连接与全新实例两种作用域。",
+      "D2": "复用已有 W(y 字段解码与文字呈现，在匹配失败时按已证顺序补两个本地提示及旧值更新。",
+      "D5": "用首次、同值、子串、不同串、空串、连接重开与新实例的短串组合验三端。按 UC-P11 验退役回执和当前连接准入。"
+    },
+    "remaining": ["原数组声明和实际业务字段长度", "原版同进程重开实读与其他外层清理", "当前同版及三端产品接受"],
+    "original_execution": false,
+    "same_process_reconnect_observed": false,
+    "product_code_changed": false
+  },
+  "legacy_unassigned_receive_outcomes": {
+    "classification": "固定 SE 与 Item 的分派、后续写入及 stage306 本机对照",
+    "capabilities": ["X01", "X08"],
+    "source_review": {
+      "path": "build/analysis/legacy-unassigned-receive-v1/source-review.json",
+      "bytes": 17334,
+      "sha256": "13084b08a42c9ea7606a48b6b5dc65994a7498fa1947e4071ed221e7c14091a4"
+    },
+    "local_comparison": {
+      "path": "build/analysis/legacy-unassigned-receive-v1/local-projection.json",
+      "bytes": 1501,
+      "sha256": "476cfface90359374e991fb2d8a7daed269fd25102fe3e52a287e727eea7d4b9"
+    },
+    "report": "reports/game-static.md#legacy-unassigned-receive-outcomes",
+    "validation": "reports/validation.md#legacy-unassigned-receive-validation",
+    "failure_notice": {
+      "tag": "Ok?",
+      "wire_fields": ["int32", "int32", "int32", "int32"],
+      "SE": {"dispatch": "0x4FB589", "consumer": "0x4F3230", "prompt_call": "0x4F3256"},
+      "Item": {"dispatch": "0x581F77", "consumer": "0x57891E", "prompt_call": "0x57894C"},
+      "rule": "消费者仅比较第一项的完整 32 位。等于零时用相同定文和参数 4、3 发布通用失败提示。非零时返回。后三项由分派读取并传入。",
+      "handoff": "D2 复用已有四整型解码与本地文字呈现。D5 用首项为零、负值和 65536，核零条件和后三项变化的影响。",
+      "remaining": "实际业务触发需同版具名请求与对应回复。",
+      "correlated_request_proven": false
+    },
+    "opaque_word": {
+      "tag": "Kh>",
+      "wire_fields": ["int32"],
+      "SE": {"dispatch": "0x4FADC8", "write": "0x4F36C5", "storage": "0xF5F16E", "reset": "0x4FF39D"},
+      "Item": {"dispatch": "0x581929", "write": "0x578DDE", "storage": "0x11D4CA6", "reset": "0x58969A"},
+      "rule": "两版保存解码值的低 16 位，所核角色初始化流程写同一存储字为零。Item 的写零沿主状态 9 的子状态 0 调用进入。两版记录的精确地址引用均为接收写或写零。",
+      "remaining": "实际读取可能经直接、间接或重叠路径。取得正向读者后判定字段含义和业务准入。",
+      "business_consumer_proven": false
+    },
+    "original_execution": false,
+    "production_or_target_case_executed": false,
+    "product_code_changed": false
+  },
+  "execution_record": {
+    "path": "build/analysis/game-communication-functional-specification-v1/execution-record.json",
+    "bytes": 2203,
+    "sha256": "5ffaa4ac7400cb6fc81b16c441e019c4af9cd42f5e009aeebc7923dd704d22b9"
+  },
+  "fixed_se_player_profile_wire": {
+    "classification": "固定 SE 静态事实。stage306 本机对照使用原创合成字节。",
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "window_operations": "analysis/capability-first-v1/window-engine-contract.json#/fixed_se_classic_player_profile",
+    "source_review": "build/analysis/fixed-se-classic-player-profile-v1/source-review.json",
+    "retained_context": [
+      "analysis/capability-first-v1/game-producer-context-contract.json#/producer_contexts/6",
+      "analysis/capability-first-v1/game-producer-context-contract.json#/producer_contexts/7"
+    ],
+    "profile": {
+      "id": "send-004f73c0",
+      "producer": "0x4f73c0",
+      "tag": ";+]",
+      "fields": [
+        "int32",
+        "bytes",
+        "int32",
+        "bytes",
+        "int32",
+        "bytes",
+        "bytes"
+      ],
+      "field_roles": [
+        "贩卖目录编号",
+        "贩卖说明",
+        "购买目录编号",
+        "购买说明",
+        "描述目录编号",
+        "目录描述",
+        "自由描述"
+      ],
+      "preprocessing": "517A80 四个文本均经 511180，单次输出缓冲 0x100，随后走通用 4FCAB0。原编辑器输入限额和框架转义按各自证据。",
+      "mode_0": "按原空白源比较四段草稿，命中时以 56CA0C 的未设定写入。前三段在对应当前编号为 0 时送 56CA14 的不公开。517F56 首先调用组包，再写当前角色对应介绍字段；包含目录展示数据。该分支不更新独立可见性字。",
+      "mode_1": "发送缓存的三个编号。前三段按对应实时草稿编号是否为 0 选择已保存文字或不公开。第四段直接取已保存文本。517C6D 调共享组包；这一分支没有之后模式 0 的缓存复制。"
+    },
+    "visibility": {
+      "id": "send-004f7630",
+      "producer": "0x4f7630",
+      "tag": "=Nd",
+      "fields": [
+        "int32"
+      ],
+      "owner": "FDDA44 + F5F048 * 0x828"
+    },
+    "event_order": [
+      {
+        "entry": "0x46f9a8",
+        "condition": "窗 58 手动开启公开",
+        "calls_in_order": [
+          "=Nd(1)",
+          "517A80(1)",
+          "缓存可见性置 1"
+        ]
+      },
+      {
+        "entry": "0x46f942",
+        "condition": "窗 58 手动关闭公开",
+        "calls_in_order": [
+          "=Nd(0)",
+          "缓存可见性置 0"
+        ]
+      },
+      {
+        "entry": "0x45654f",
+        "condition": "入场 518090 依缓存可见性分支",
+        "calls_in_order": [
+          "517A80(1)",
+          "=Nd(按入场采样的公开位取 0/1)"
+        ]
+      },
+      {
+        "entry": "0x46f8cf",
+        "condition": "窗 58 确认草稿",
+        "calls_in_order": [
+          "517A80(0)",
+          "内部 ;+] 组包后写角色缓存"
+        ]
+      }
+    ],
+    "directory_receive": [
+      {
+        "id": "receive-00567d28",
+        "tag": "^-/",
+        "source": "analysis/capability-first-v1/game-entry-review-contract.json#/receive_publication_review/entry_rules/13",
+        "world_consumer": "0x4f5540"
+      },
+      {
+        "id": "receive-00567d24",
+        "tag": "^/`",
+        "source": "analysis/capability-first-v1/game-entry-review-contract.json#/receive_publication_review/entry_rules/14",
+        "world_consumer": "0x4f5b80"
+      },
+      {
+        "id": "receive-00567d2c",
+        "tag": "]op",
+        "source": "analysis/capability-first-v1/game-entry-review-contract.json#/receive_publication_review/entry_rules/12",
+        "world_consumer": "0x4f5640"
+      }
+    ],
+    "stage306_baseline": {
+      "probe": "build/analysis/fixed-se-classic-player-profile-v1/stage306-probe.json",
+      "reusable": [
+        "send-004f73c0",
+        "send-004f7630",
+        "send-004f7370"
+      ],
+      "missing": "窗 58 的业务触发及角色草稿/保存所有权、目录接收后的世界发布、版本触发和持久化联动"
+    },
+    "persistence": "analysis/capability-first-v1/window-engine-contract.json#/fixed_se_classic_player_profile/persistence",
+    "acceptance": "analysis/capability-first-v1/window-engine-contract.json#/fixed_se_classic_player_profile/proposed_acceptance_cases",
+    "runtime_acceptance_verified": false,
+    "directory_publication": {
+      "classification": "事实为固定 SE 的原件静态规则及留存材料字节。目标端设计和待验证事项各自列出。",
+      "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+      "analysis_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "source_review": "build/analysis/fixed-se-player-directory-v1/source-review.json",
+      "report": "reports/game-static.md#fixed-se-player-directory",
+      "validation": "reports/validation.md#fixed-se-player-directory-validation",
+      "capabilities": [
+        "X01",
+        "X02",
+        "X03",
+        "G01",
+        "G03",
+        "G05",
+        "G07",
+        "G20"
+      ],
+      "notification": {
+        "tag": "]op",
+        "consumer": "0x4f5640",
+        "receive_id": "receive-00567d2c",
+        "field_format": "单个外层字节字段，内部四个竖线分隔的十进制字段。",
+        "fields": [
+          {
+            "ordinal": 1,
+            "role": "贩卖和购买共用的目录版本比较值",
+            "compared_to": "0xfc8b18",
+            "difference_mask": 1
+          },
+          {
+            "ordinal": 2,
+            "role": "描述目录版本比较值",
+            "compared_to": "0xfc8b1c",
+            "difference_mask": 2
+          },
+          {
+            "ordinal": 3,
+            "role": "迷你邮件界面的发信金额提示",
+            "published_to": "0xfc8b28"
+          },
+          {
+            "ordinal": 4,
+            "role": "当前角色迷你邮件历史方向比较值",
+            "published_to": "0xfdda40 + signext16(F5F048) * 0x828"
+          }
+        ],
+        "order": [
+          "先写第三值和当前角色的第四值，再比较两个版本。即使两项版本相等也写这两项。",
+          "版本按相等比较，来值较低也置差异位。两位均为零时返回，其余以 :_d 送一个掩码并沿收到通知的连接提交。",
+          "通知不写本地的两项已知版本。对应列表回包从自己的首字段写版本，现有消费函数无等待请求、单调版本或迟到拒绝判断。"
+        ],
+        "request": {
+          "id": "send-004f7370",
+          "producer": "0x4f7370",
+          "tag": ":_d",
+          "fields": [
+            "int32"
+          ],
+          "verified_nonzero_masks": [
+            1,
+            2,
+            3
+          ]
+        }
+      },
+      "row_publication": {
+        "payload": "目录版本 | 行编号 | 展示资源编号 | 名称，每增加一行再附三个字段。",
+        "consumers": [
+          {
+            "tag": "^-/",
+            "id": "receive-00567d28",
+            "consumer": "0x4f5540",
+            "source": "analysis/capability-first-v1/game-entry-review-contract.json#/receive_publication_review/entry_rules/13",
+            "version": "0xfc8b18",
+            "count": "0xfc8b20",
+            "table_bases": [
+              "0xfc8b2c",
+              "0xfcf56c"
+            ]
+          },
+          {
+            "tag": "^/`",
+            "id": "receive-00567d24",
+            "consumer": "0x4f5b80",
+            "source": "analysis/capability-first-v1/game-entry-review-contract.json#/receive_publication_review/entry_rules/14",
+            "version": "0xfc8b1c",
+            "count": "0xfc8b24",
+            "table_bases": [
+              "0xfd5fac"
+            ]
+          }
+        ],
+        "facts": [
+          "先逐槽清对应表的活动字，再写版本并清本组行数。进入至少一轮。每轮先置活动 1，取两个整数及名称，贩卖/购买分支同步复制给第二张表，最后增行数。只清活动字的部分仍可能保留旧编号及名称字节。",
+          "内部字段是 1 基序号。0x510D50 跳过多字节字符的后续字节；0x510DE0 在 255 限额内命中名称结束分隔符返回 0，遇 NUL、目标字段不存在或到达限额返回 1。发布本轮以后才检查结果。名称先提取再通过 0x5111A0 做内层反转义，固定样本 0x507690 为直接返回。",
+          "整数读取 0x510E50 允许最多 127 字节，空或不存在返回 -1，非空按十进制前缀读取。没有完整性先验检查。只有版本或列表体为空时仍发布一条活动行；活动位为 1、编号及资源编号为 -1，名称为空。缺资源编号或名称仍提交当前行；正常行名称后的尾随竖线使空的下一行发布。",
+          "合法内层名称以原字节计，达到 255 时直接结束当前列表，后续行不会经过本次循环。每表物理容纳 100 行，包装体无同等上界检查。跨平台规则只承接有界的输入，在目标用例中验证越界分类及上一次可用资料。"
+        ],
+        "window": {
+          "source": "analysis/capability-first-v1/window-engine-contract.json#/fixed_se_classic_player_profile/directory",
+          "semantics": "59 的创建和每帧控件前回调 4B5B40 调 4B6300，从现有 C15B44 带出的十行检查活动字。仅回调入参 -1 重置偏移。两条接收体无清滚动偏移或改介绍草稿指令。滚动按两种行数；实际命中以当前表活动字判定。",
+          "row_shrink_case": "已有偏移超出新活动范围时，可先显示空行，沿原滚动或重开更新偏移。用上一帧显示和本帧活动字变化验证实际点击。"
+        }
+      },
+      "local_material": {
+        "member_path": "bin/category.dat",
+        "matched_release_member": {
+          "path": "build/analysis/game-legacy-resource-archive-v1/material-root/Bin/category.dat",
+          "size": 81620,
+          "sha256": "b4c4cff80f03200153e3d0b84efade9d5952a4d91e674914ebc287208fbf963e"
+        },
+        "release_manifest": "build/analysis/game-legacy-resource-archive-v1/full-material-pack.json",
+        "bytes": 81620,
+        "record_layout": {
+          "header_bytes": 20,
+          "endian": "little",
+          "header_i32": [
+            "贩卖和购买版本",
+            "描述版本",
+            "贩卖和购买行数",
+            "描述行数",
+            "迷你邮件金额提示"
+          ],
+          "row_tallies_in_retained_material": [
+            29,
+            29,
+            11
+          ],
+          "row_offsets": [
+            20,
+            27220,
+            54420
+          ],
+          "row_slots_per_table": 100,
+          "row_stride": 272,
+          "row": {
+            "active_offset": 0,
+            "id_i32_offset": 4,
+            "display_i32_offset": 8,
+            "name_offset": 12,
+            "name_capacity": 256
+          }
+        },
+        "cold_read": "450555 调 4673C0，末尾跳至 518710，从相对 bin/category.dat 以 rb+ 读 1 个 0x13ED4 字节块到 FC8B18。单次文件读取在建立场景与按角色恢复前处理公共资料。45055A 后续照常调用 518990，所查调用点不读打开返回值。",
+        "ordinary_cleanup": "4EA1B0 的主状态 7 或 11 选择 4EA1D7，经过关窗清理跳至 467580。467594 先调用 518570 试写按角色的 profile.dat，467599 再跳 5186A0 以 wb+ 写公共目录块。前一写成功与否不改变后一步调用。",
+        "transfer_results": "打开失败返回 0。打开成功后函数不检查传输或关闭结果并返回 1。静态 fread 路径允许已读取的前缀写到目标，未读部分保留原状态。实际短读后的窗口效果与宿主写入仍待验。",
+        "role_separation": "目录是公共三表及邮费提示。profile.dat 含角色记录，包括第四通知字段写入的槽首字。活动草稿与两种磁盘材料各自发布。"
+      },
+      "adjacent_consumers": {
+        "mini_mail": {
+          "source": "analysis/capability-first-v1/game-mail-data-contract.json#/fixed_se_directory_notification",
+          "fee_display_sites": [
+            "0x4b79b8",
+            "0x4b7a19",
+            "0x4b7cb7",
+            "0x4b7d0a",
+            "0x4b7d6c"
+          ],
+          "history": "收到 _EP 时，所选角色槽首字与正文第七字段相等则写方向 1 并直接返回；不等才写方向 0 并走提示。只描述本地历史与提示。",
+          "classic_submission": "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/fixed_se_classic_directory_mini_mail"
+        },
+        "other_player_profile": {
+          "receive": "^=0",
+          "source": "analysis/capability-first-v1/game-entry-review-contract.json#/receive_publication_review/entry_rules/15",
+          "entry": "0x4f56f0",
+          "rule": "最后的 5180E0 请求经典 64。5180F0 以活动字恰为 1 并匹配实际编号找第一行，前两项用 mode 0 中第一张目录，第三项用 mode 1 中描述目录。取 +8 展示资源编号；未找到保留本次预置 0x3C0F0。分别在 4F5A36/53/6E 调用。",
+          "display_and_window_specification": "analysis/capability-first-v1/game-communication-functional-specification.json#/fixed_se_player_profile_wire/other_player_profile"
+        }
+      },
+      "implementation": {
+        "stage306": "build/analysis/fixed-se-player-directory-v1/stage306-probe.json",
+        "deltas": [
+          {
+            "batch": "D0",
+            "owner": "既有资源与持久化端口",
+            "reuse": "使用 ZIP 大小写一致的资源查找及原范围接口。目录只有 81,620 字节。",
+            "gap": "为原模式独立读取目录候选，宿主成功读回后发布。保存沿现有存储回执，移植时维护角色和公共目录各自的记录，不把打开或开始写入当成完整提交。"
+          },
+          {
+            "batch": "D2",
+            "owner": "共享游戏通信和资料状态",
+            "reuse": "三条报文解码、:_d 编码、纯字节字段切分和反转义。",
+            "gap": "接入版本比较、两组发布、角色槽首字及迷你邮件邮费显示值。实现法需保留可验性并对有效最大长度、缺尾及超界结果给出确定行为。"
+          },
+          {
+            "batch": "D3",
+            "owner": "人物简介和邮件的窗口操作",
+            "reuse": "旧 58/59 及现有输入、渲染、退役。",
+            "gap": "用同一目录交接可见行与实际命中，链接 64 的查找和迷你邮件文字/历史。网页、移动网页及微信用同一组操作预期。"
+          }
+        ]
+      },
+      "proposed_acceptance": [
+        {
+          "id": "PROFILE-A03",
+          "extension": "清表发布后验证相同帧可见行和先后、缩表且偏移保留、切类别、空行及活动短行。"
+        },
+        {
+          "id": "PROFILE-A05",
+          "extension": "按角色缓存和公共目录分别验证缺失、完整读回、短传输、写入失败和跨进程重开。"
+        },
+        {
+          "id": "PROFILE-A06",
+          "expected": "比较版本相等、仅一项不同、均不同、到达反序和降低版本。每条回包只推进相应本地版本。"
+        },
+        {
+          "id": "PROFILE-A07",
+          "expected": "字节夹具覆盖空、短行、尾随分隔符、内转义、字节 254/255 和 100 行；窗 64 使用实际资源编号，未命中保留默认。"
+        },
+        {
+          "id": "PROFILE-A08",
+          "expected": "同一四字段通知在版本匹配时也更新邮费提示值与当前角色。造两个角色，两个 _EP 条件只走各自的历史方向和提示。"
+        }
+      ],
+      "pending": [
+        "以实际固定版本运行验证最新帧点击、短读及退出短写的用户结果；在目标三端完成目录、简介和迷你邮件联动。",
+        "当前同版目录首包与服务端策略、迷你邮件实际扣款、最终投递及附件结算继续按原要求验收。",
+        "经典 64 已绑定全部显示字段和通用关窗。四类查询与服务端简介的直接配对、窗口运行接受继续验收。"
+      ],
+      "original_runtime_executed": false,
+      "stage306_business_publication_verified": false,
+      "required_business_admission_closed": false
+    },
+    "other_player_profile": {
+      "classification": "固定 SE 原件可见规则为事实。查询与服务端具体回复的关系待验证。",
+      "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+      "profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "source_review": "build/analysis/fixed-se-other-player-profile-v1/source-review.json",
+      "report": "reports/game-static.md#fixed-se-other-player-profile",
+      "validation": "reports/validation.md#fixed-se-other-player-profile-validation",
+      "related_capabilities": [
+        "X01",
+        "X02",
+        "G01",
+        "G05",
+        "G07",
+        "G10",
+        "G14",
+        "G16",
+        "G20"
+      ],
+      "window": "analysis/capability-first-v1/window-engine-contract.json#/fixed_se_other_player_profile",
+      "known_query": {
+        "id": "send-004f74e0",
+        "producer": "0x4f74e0",
+        "tag": ";JE",
+        "fields": [
+          "int32",
+          "int32"
+        ],
+        "view_to_args": [
+          {
+            "kind": 0,
+            "entry": "经典名片行",
+            "target": "真实名片槽",
+            "source": "analysis/capability-first-v1/game-social-family-album-functional-specification.json#/classic_contact_detail_request"
+          },
+          {
+            "kind": 1,
+            "entry": "经典家族成员行",
+            "target": "有效成员 ID",
+            "source": "analysis/capability-first-v1/game-social-family-album-functional-specification.json#/classic_contact_detail_request"
+          },
+          {
+            "kind": 2,
+            "entry": "经典迷你联系人行",
+            "target": "有效联系人 ID",
+            "source": "analysis/capability-first-v1/game-social-family-album-functional-specification.json#/classic_contact_detail_request"
+          },
+          {
+            "kind": 3,
+            "entry": "地图右键实体",
+            "target": "同逻辑坐标中首个合资格活动身体的实体 ID",
+            "source": "reports/game-static.md#stage221-actor-interaction"
+          }
+        ],
+        "direct_calls": [
+          "0x460cb6",
+          "0x494b0e",
+          "0x494b87",
+          "0x4962d1",
+          "0x496319"
+        ],
+        "pairing_scope": "所选查询的入参和 ^=0 的显示路径均已单独证实。原客户端的 4F56F0 直接消费资料，无请求关联步骤。每类查询的服务端响应标签、顺序及可能的其他回复需配对证据。"
+      },
+      "receive": {
+        "id": "receive-00567d20",
+        "consumer": "0x4f56f0",
+        "tag": "^=0",
+        "wire_fields": [
+          "bytes",
+          "int32",
+          "bytes",
+          "bytes",
+          "bytes",
+          "int32",
+          "int32",
+          "bytes",
+          "int32",
+          "bytes",
+          "int32",
+          "bytes",
+          "bytes"
+        ],
+        "dispatch": "0x4fa1b7",
+        "fields": [
+          {
+            "ordinal": 1,
+            "kind": "bytes",
+            "store": "0xfdd220",
+            "store_instruction": "0x4f5756",
+            "control_indices": [
+              0
+            ],
+            "display_role": "名称"
+          },
+          {
+            "ordinal": 2,
+            "kind": "int32",
+            "store": "0xfdd320",
+            "store_instruction": "0x4f5775",
+            "control_indices": [
+              1
+            ],
+            "display_role": "十进制显示数值，具体标签待适用语言或字段生产证据核对"
+          },
+          {
+            "ordinal": 3,
+            "kind": "bytes",
+            "store": "0xfdd428",
+            "store_instruction": "0x4f57ba",
+            "control_indices": [
+              3
+            ],
+            "display_role": "职业栏文字"
+          },
+          {
+            "ordinal": 4,
+            "kind": "bytes",
+            "store": "0xfdd328",
+            "store_instruction": "0x4f5817",
+            "control_indices": [
+              2
+            ],
+            "display_role": "称号栏文字"
+          },
+          {
+            "ordinal": 5,
+            "kind": "bytes",
+            "store": "0xfdd528",
+            "store_instruction": "0x4f5872",
+            "control_indices": [
+              4
+            ],
+            "display_role": "家族栏文字"
+          },
+          {
+            "ordinal": 6,
+            "kind": "int32",
+            "store": "0xfdd324",
+            "store_instruction": "0x4f56fa",
+            "control_indices": [
+              13
+            ],
+            "display_role": "肖像外观代码"
+          },
+          {
+            "ordinal": 7,
+            "kind": "int32",
+            "store": "0xfdd628",
+            "store_instruction": "0x4f58fc",
+            "control_indices": [
+              14
+            ],
+            "display_role": "购买类别编号"
+          },
+          {
+            "ordinal": 8,
+            "kind": "bytes",
+            "store": "0xfdd630",
+            "store_instruction": "0x4f5948",
+            "control_indices": [
+              5
+            ],
+            "display_role": "购买栏文字"
+          },
+          {
+            "ordinal": 9,
+            "kind": "int32",
+            "store": "0xfdd730",
+            "store_instruction": "0x4f5891",
+            "control_indices": [
+              15
+            ],
+            "display_role": "贩卖类别编号"
+          },
+          {
+            "ordinal": 10,
+            "kind": "bytes",
+            "store": "0xfdd738",
+            "store_instruction": "0x4f58d6",
+            "control_indices": [
+              6
+            ],
+            "display_role": "贩卖栏文字"
+          },
+          {
+            "ordinal": 11,
+            "kind": "int32",
+            "store": "0xfdd838",
+            "store_instruction": "0x4f5967",
+            "control_indices": [
+              16
+            ],
+            "display_role": "描述类别编号"
+          },
+          {
+            "ordinal": 12,
+            "kind": "bytes",
+            "store": "0xfdd840",
+            "store_instruction": "0x4f59ac",
+            "control_indices": [
+              7
+            ],
+            "display_role": "描述类别行文字"
+          },
+          {
+            "ordinal": 13,
+            "kind": "bytes",
+            "store": "0xfdd940",
+            "store_instruction": "0x4f5a10",
+            "control_indices": [
+              8,
+              9,
+              10,
+              11
+            ],
+            "display_role": "四行自由简介"
+          }
+        ],
+        "text_handling": [
+          "分派器先处理外层文字，再调用 4F56F0。八个字节串各经 256 字节局部输入副本，再由 5111A0 反转义内层。五个整型按字段位置写入。",
+          "八次副本均包含终止字节。所查局部输入布局容纳 255 内容字节（含内转义序列）及终止字节。拟按这个长度检验目标独立实现并在输入失败时保留已有可用资料。实际服务端最大长度待验。"
+        ],
+        "publication": [
+          "接收体先更新公共展示资料区。依次把三项类别资源设为 0x3C0F0，调用 5180F0 后仅在返回值不等于 -1 时替换。贩卖、购买都查第一张表，描述查第三张表。按物理行序取首条活动字恰为 1 且类别编号一致的 +8 值。",
+          "资料、默认和查找完成后立即调用 5180E0 请求 468190(64)。三项类别资源在收包时求值，所查窗口帧仅读此结果。目录版本更新后，对已经打开的简介，类别资源到下一次简介发布才重算。"
+        ],
+        "existing_directory_rule": "analysis/capability-first-v1/game-communication-functional-specification.json#/fixed_se_player_profile_wire/directory_publication/adjacent_consumers/other_player_profile",
+        "same_session_terminal_or_delivery_confirmed": false
+      },
+      "implementation": {
+        "comparison": "build/analysis/fixed-se-other-player-profile-v1/stage306-probe.json",
+        "deltas": [
+          {
+            "owner": "D0 共享窗口与资料生命周期",
+            "gap": "窗口 64 的活动对象、重新排序、关闭请求与实际退役沿既有经典所有者。"
+          },
+          {
+            "owner": "D2 世界与角色资料发布",
+            "gap": "接已证 13 项收包及目录查找，复用旧解码和外观换算 helper。保留已证来包次序，不附加未证的请求 ID。"
+          },
+          {
+            "owner": "D3 角色交互与三端呈现",
+            "gap": "复用现有地图右键，第 0–2 类沿原 SF-D3 一次接线。读同一资料视图，补肖像、三项分类图块、字节换行及关窗。"
+          }
+        ],
+        "reuse_sources": [
+          "shared/legacy-game-message.mjs",
+          "shared/legacy-game-state.mjs",
+          "shared/legacy-game-character-codes.mjs",
+          "shared/legacy-game-protocol.mjs"
+        ]
+      },
+      "proposed_acceptance": [
+        {
+          "id": "PROFILE-A09",
+          "expected": "沿 SF-A09 核四种已证查询参数，按可用的实际配对回复材料分别验同版消费。迟到或乱序的独立简介包用单一活动资料区对照。"
+        },
+        {
+          "id": "PROFILE-A10",
+          "expected": "13 字段取各不相等的值，核窗口控件、数字文本、肖像资源及三个分类图块。用物理首条有效、活动值 2、重复 ID 与 -1 资源分别验选择与默认。"
+        },
+        {
+          "id": "PROFILE-A11",
+          "expected": "自由简介覆盖空串、28 字节临界、双字节临界、CR 与 LF、四行和多余行。用 255/256 字节资料核目标的边界和保留策略。"
+        },
+        {
+          "id": "PROFILE-A12",
+          "expected": "活动窗重复收包、已标记关闭再到包、实际退役后再到包、存储更新但分配失败。沿既有窗口帧核坐标、组 2 其它窗清理、每帧读值和关窗完成。"
+        }
+      ],
+      "window64_original_runtime_executed": false,
+      "world_consumer_implemented_in_stage306": false,
+      "required_business_admission_closed": false
+    }
+  },
+  "fixed_se_battle_results": {
+    "outer_fields": ["bytes"],
+    "owner_specification": "analysis/capability-first-v1/game-entry-review-contract.json#/state_consumer_closure/fixed_se_battle_results",
+    "stage306_decoder_reusable": true,
+    "stage306_world_publication_verified": false,
+    "selected_display_rules_verified_by_static_source": true
+  },
+  "fixed_se_long_receive_dispatch": {
+    "classification": "固定 SE 原指令事实、所选条件推导与 stage306 本机对照",
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "report": "reports/game-static.md#battle-266-long-receive",
+    "validation": "build/analysis/battle-266-long-receive-v1/validation.json",
+    "evidence": "build/analysis/battle-266-long-receive-v1/rea-evidence.json",
+    "related_rules": ["CF-F08", "CF-F09", "CF-D3", "BF-D7", "BF-T36", "BF-U1"],
+    "scope": "固定 SE 的第八次合资格普通接收，合规非负帧长、已初始化缓冲区、正常变换及所选战斗正文 M。解析时 0x567DE4 回调为空、0xD5E608 日志首字节为零，后续调用保持所列范围。",
+    "other_paths": "二进制旁路、解码失败、可选解析回调或文件日志及其他业务分派按各自的写入核验。本项的原始区结论用于所选正常文字路径。",
+    "facts": {
+      "raw_write": "就绪非零时，4EDFEE 清零原始接收区 262144 字节。4EE004 的输入上限为 262143，正返回的字节从起始位置覆写相应前缀。4EE016 清 D1901C；4EE020 传原始指针和正返回值给 4EE330。",
+      "append": "4EE330 以 0xC60520 为有效长度，将字节复制到 0xCD8E28 之后的空闲区。合计可到 262144，超出先返回 -1，并保留旧队列。4EE04C 仍检查有效队列。其余原始输入字节保留在本次栈区。",
+      "consume": "4EE470 在全局队列找第一个 AF，从该字节起至少有 8 字节才检查头。正常非负长度上限 32767，完整线帧最多 32773 字节，接受时消费前缀、正文和 6 字节开销。4EE3D0 向全局队列首部前移余留，调用方重查有效长度。余量不足、未找到起始字节或坏尾返回 -1，所选正常就绪路径停止本轮普通分派。",
+      "false_marker": "AF 后非 EF 且达到八字节守卫时，4EE66E 按 AF 位置加一消费至该 AF，4EE67D 返回 0。所选用例先成功分派一条 M，清过解码区，再遇无效起始标记。外层回到 4EE04C 并继续检查余留完整 M。",
+      "dispatch": "活动解码路径经 4EE073 使用独立的 32768 字节解码区。所选正常正文过 4EE091 到 4F8A40，目录标签 ?+e 在 4FC0A7 调 4F36D0。M 分支在 0x58FB4C 的 4096 字节槽复制合规正文，以 0x593B4C 为四槽循环写序号。4EE0A7 清解码区，另清解析器自有区，再由 4EE1AF 回到 4EE04C。战斗消费者在游戏状态帧内按既有队列和时序读取。"
+    },
+    "raw_receive_capacity": 262144,
+    "maximum_positive_read": 262143,
+    "raw_word_offsets": {"0x14": 260492, "0x38": 260528, "0x3c": 260532},
+    "static_interpretation": "以 44FC66 调用前为零，原始区为 [-262148,-4)，解码区为 [-294916,-262148)。所核队列追加、前移、解码清理和 M 发布不写回原始区。三个暂存字的接收阶段来源取本次原始读取对应的字节，未覆盖部分沿接收先行清零。就绪为零时可消费既有队列而不写入这些接收暂存字。",
+    "implementation": "D0/D2 沿 CF-D3 及现有 world.next 和传输循环处理收包。接收健康且一次 discard 已推进游标时，在同一处理批次重查余留。D4 沿现有 BF-D7 处理与解析结果独立的逐字来源，原版字段取值只按已证接收及命令调用条件导出。网页会话当前收到 discard 会退出处理循环，等下一次流读取。",
+    "acceptance": [
+      "沿 CF-D3 对照完整两条 M、第二帧只到七字节、第二帧的尾部无效，以及容量拒绝时已在队列里的完整记录。",
+      "正常活动解码下，同一批先成功处理第一条 M，随后无效 AF 推进游标，并在无新数据时仍检查其后的完整 M。",
+      "BF-T36 在正返回跨过三个字的各一字节、四字节边界时，核原始字节、分派和首次读取的最后写入。就绪为零、已有余留和拒绝新增各自保留条件。"
+    ],
+    "local_comparison": "build/analysis/battle-266-long-receive-v1/local-comparison.json",
+    "native_values_observed": false,
+    "same_version_or_product_full_acceptance_verified": false
+  },
+  "fixed_se_ccl_scene_publication": {
+    "id": "receive-00567d5c",
+    "tag": "CcL",
+    "fields": [
+      "int32",
+      "int32",
+      "int32",
+      "int32",
+      "int32",
+      "int32",
+      "int32",
+      "bytes"
+    ],
+    "dispatch": "0x4f98cf",
+    "consumer": "0x4f4080",
+    "dispatch_native_return": 0,
+    "fields_by_ordinal": [
+      "扩展分支的特效结束查找 ID。直接分支恒用 -1。",
+      "图形资源候选，经 500A70 处理。扩展记录的自身资源另读正文 6。",
+      "直接分支场景 X。",
+      "直接分支场景 Y。",
+      "直接分支的方向，选择 3 还把该值送独立参数格。",
+      "是否走扩展正文的整型，0 直接，其余扩展。",
+      "当前分支的 0–3 序号。",
+      "沿原外层文字解码后的扩展正文。直接分支忽略。"
+    ],
+    "owner_specification": "analysis/capability-first-v1/game-actor-functional-specification.json#/fixed_se_ccl_scene_publication",
+    "validation": "reports/validation.md#fixed-se-ccl-scene-publication-validation"
+  }
+}

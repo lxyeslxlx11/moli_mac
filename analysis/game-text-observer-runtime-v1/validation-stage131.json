@@ -1,0 +1,92 @@
+{
+  "schema": "moli.validation-stage131.v1",
+  "recorded_utc": "2026-11-02T12:10:19.653354+00:00",
+  "scope": "Actual bounded guest WER/CDB diagnostic plus source-only REA correlation; no product code change",
+  "prior_manifest": {
+    "path": "analysis/delivery-manifest-stage130.json",
+    "sha256": "68557d7a493643faa383309f993d80ba0da6400385b386447deb06c9abd11775",
+    "files_verified_at_preflight": 1713,
+    "total_bytes_at_preflight": 45549477,
+    "closeout_intended_modified_paths": [
+      "README.md",
+      "analysis/game-text-observer-runtime-v1/README.md",
+      "analysis/game-text-observer-runtime-v1/game-wer-plan-stage128.md",
+      "reports/development-plan.md",
+      "reports/game-static.md",
+      "reports/known-issues.md",
+      "reports/validation.md",
+      "reports/vm-environment.md"
+    ],
+    "other_prior_files_unchanged": 1705
+  },
+  "private_prechange_copies": {
+    "canonical_documents": 7,
+    "original_plan_before_closeout": 1,
+    "all_match_prior_manifest": true
+  },
+  "guest_runtime": {
+    "actual_game_starts": 1,
+    "pid": 5304,
+    "elapsed_seconds": 6.466299,
+    "natural_exit_code": "0xc0000005",
+    "dump_files_qualified": 2,
+    "combined_dump_bytes": 33850522,
+    "cdb_offline_exit_codes": [
+      0,
+      0
+    ],
+    "wer_both_views_restored": true,
+    "postrun_hash_unchanged": true,
+    "postrun_game_and_cdb_process_count": 0,
+    "raw_guest_data_exported": false
+  },
+  "host_static_validation": {
+    "rea_records_checked": 24,
+    "linked_evidence_ids_exact": true,
+    "private_bundle_digest_matched": true,
+    "candidate_return_boundaries_verified": 6,
+    "original_call_bytes_compared": 6,
+    "static_direct_edges": 4,
+    "static_indirect_call_sites_with_unknown_runtime_target": 2,
+    "raw_text_section_file_bytes": 0,
+    "rea_final_open": false,
+    "rea_cleanup_pending": false
+  },
+  "consistency_checks": [
+    "Single ordinary game lifecycle and consumed authorization agree",
+    "Both logical views restored and admin session closed",
+    "Dump identities, stable lengths, timestamps and CDB digest references agree",
+    "Both stack warnings retained; secondary numeric rows equal primary rows2-9",
+    "All24 public Evidence references resolve to private complete records",
+    "Six original-file CALL bytes and function-body/return-end boundaries match",
+    "Eight changed prior paths limited to seven canonical documents and original plan",
+    "211 prior product files unchanged; protocol rev30 remains7observed/13unknown"
+  ],
+  "document_links": {
+    "scope": "new stage131 sections, unique VM troubleshooting addition, revised original plan",
+    "references_to_check_after_manifest_write": 72,
+    "anchors_checked": true
+  },
+  "product_files_checked": 211,
+  "product_files_unchanged": true,
+  "protocol_revision": 30,
+  "protocol_status_counts": {
+    "observed": 7,
+    "unknown": 13
+  },
+  "product_tests_run": false,
+  "product_build_run": false,
+  "reason": "Only diagnostic evidence/documentation changed; actual runtime and static-byte checks cover the change. Interfaces, architecture, resource formats and build flow unaffected.",
+  "timestamp_comparison_note": "Host parser reduces submicrosecond precision for bounded interval comparisons only; original seven-digit values retained unchanged.",
+  "full_goal_complete": false,
+  "game_consumer_recovered": false,
+  "root_cause_established": false,
+  "unverified": [
+    "Reliable runtime unwind/call chain",
+    "Runtime indirect targets and static-memory byte equality",
+    "Fault owner and cause",
+    "Recovery boot and long-term input stability",
+    "Normal authenticated game startup and protocol consumers",
+    "Full web/mobile-web/WeChat and official-server acceptance"
+  ]
+}

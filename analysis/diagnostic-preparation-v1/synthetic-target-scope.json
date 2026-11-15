@@ -1,0 +1,46 @@
+{
+  "schema": "moli.synthetic-target-source.v1",
+  "source": "synthetic-diagnostic-target.c",
+  "source_sha256": "1193363795781ad0c1656233c40695efcff82ed17e2ff6f19ef07d9f5b544e80",
+  "source_bytes": 1542,
+  "binary_supplied": false,
+  "compiled": false,
+  "imported_to_guest": false,
+  "run_in_guest": false,
+  "future_expected_target": "moli-diagnostic-fixture.exe",
+  "future_machine": "x86 PE32 / 0x14c",
+  "ordinary_user_only": true,
+  "explicit_source_calls_exclude": [
+    "network",
+    "child process creation",
+    "file I/O",
+    "account queries",
+    "game namespaces",
+    "mapped-buffer read/write"
+  ],
+  "owned_mapping": "MoliSyntheticDiagnostic_<current PID>, 64 bytes, refuses pre-existing object",
+  "expected_observation_fields": [
+    "api",
+    "callerModule",
+    "callerRva",
+    "elapsedMs"
+  ],
+  "required_order": [
+    "GetCommandLineW",
+    "CreateFileMappingW",
+    "OpenFileMappingW",
+    "MapViewOfFile",
+    "UnmapViewOfFile",
+    "CloseHandle",
+    "CloseHandle"
+  ],
+  "natural_exit_intent": "1500ms +250ms sleeps and ordinary handle cleanup; not a hard wall-clock or external stop guarantee",
+  "host_tests": "synthetic-trace-tests.log: 6/6 metadata-contract tests only",
+  "not_proven": [
+    "Windows compilation",
+    "x86 observation compatibility on ARM",
+    "real observer identity/privacy",
+    "real API trace",
+    "game consumer or protocol semantics"
+  ]
+}

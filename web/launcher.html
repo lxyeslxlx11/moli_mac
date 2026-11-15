@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; font-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+    <meta name="referrer" content="no-referrer">
+    <title>Moli · 本地登录器配置</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./launcher.css">
+    <script type="module" src="./launcher-app.mjs"></script>
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">M</span><span>Moli</span></div>
+      <a class="resource-link" href="./">图形资源核验</a>
+      <p class="privacy-note"><span class="status-dot" aria-hidden="true"></span>配置留在本机</p>
+    </header>
+    <main>
+      <div class="page-heading">
+        <div><h1>本地登录器配置</h1><p>读取与恢复配置，选择游戏和区域，核对离线计划。</p></div>
+        <p class="scope-note">离线配置与本机缓存 · 登录和游戏待接入</p>
+      </div>
+      <div class="launcher-columns">
+        <section class="launcher-section" aria-labelledby="config-title">
+          <h2 id="config-title">配置来源</h2>
+          <p id="launcher-source" class="section-note">尚未读取配置。</p>
+          <div class="file-control"><label for="game-catalog-file">GameList.xml</label><input id="game-catalog-file" type="file" accept=".xml"><p id="game-file-label" class="file-name">尚未选择</p></div>
+          <div class="file-control"><label for="region-catalog-file">RegionList.xml</label><input id="region-catalog-file" type="file" accept=".xml"><p id="region-file-label" class="file-name">尚未选择</p></div>
+          <label class="launcher-field" for="catalog-encoding">文件编码<select id="catalog-encoding"><option value="gb18030">GB18030</option><option value="utf-8">UTF-8</option></select></label>
+          <label class="compatibility-label"><input id="allow-bare-ampersands" type="checkbox">兼容裸 &amp; 符号（显式开启）</label>
+          <p class="field-hint">每份文件上限 1 MiB；解析后保留兼容处理计数。</p>
+          <div class="launcher-actions"><button id="load-catalogs" type="button">读取所选配置</button><button id="load-launcher-fixture" class="secondary-button" type="button">载入原创示例</button></div>
+        </section>
+        <section class="launcher-section" aria-labelledby="selection-title">
+          <h2 id="selection-title">游戏与区域</h2>
+          <p id="catalog-counts" class="section-note">请选择配置或载入示例。</p>
+          <label class="launcher-field" for="launcher-game">游戏<select id="launcher-game" disabled></select></label>
+          <label class="launcher-field" for="launcher-region">区域<select id="launcher-region" disabled></select></label>
+          <ul id="region-diagnostics" class="region-diagnostics" aria-label="区域可用性"></ul>
+          <label class="launcher-field" for="launcher-directory">配置中的安装目录<input id="launcher-directory" type="text" placeholder="C:\Local Games\Classic" autocomplete="off" spellcheck="false"></label>
+          <p class="field-hint">用于核对原 Windows 配置路径；页面不会访问此目录。</p>
+          <button id="make-launcher-plan" type="button" disabled>生成离线计划</button>
+          <div class="launcher-cache" aria-labelledby="cache-title">
+            <h3 id="cache-title">本机缓存</h3>
+            <p id="launcher-cache-status" role="status" aria-live="polite" data-kind="waiting">正在检查本机缓存…</p>
+            <div class="cache-actions">
+              <button id="save-launcher-cache" type="button" disabled>保存当前配置</button>
+              <button id="restore-launcher-cache" type="button" disabled>恢复缓存配置</button>
+              <button id="recheck-launcher-cache" class="secondary-button" type="button" disabled>重新检查缓存</button>
+              <button id="cancel-launcher-cache" class="secondary-button" type="button" disabled>取消缓存操作</button>
+            </div>
+            <p class="field-hint">保存两份 XML 与解析选项，再次保存会替换本机缓存。恢复后请单独填写安装目录；配置来源保持未验证。</p>
+          </div>
+        </section>
+      </div>
+      <section class="launcher-section launcher-result" aria-labelledby="plan-title">
+        <div id="launcher-status" role="status" aria-live="polite" data-kind="waiting">等待配置。</div>
+        <h2 id="plan-title">计划结果</h2>
+        <p class="section-note">配置中的地址与参数仅作为文本展示；认证状态保持未验证。</p>
+        <pre id="launcher-plan">尚未生成计划。</pre>
+      </section>
+    </main>
+    <footer><span>独立离线实现 · 官方资源不随工程提供</span><span>REA 证据 → 规格 → 实现 → 验收</span></footer>
+  </body>
+</html>

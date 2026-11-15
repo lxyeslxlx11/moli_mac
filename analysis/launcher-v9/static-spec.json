@@ -1,0 +1,540 @@
+{
+  "schema": "moli.launcher-v9.static-spec.v1",
+  "recorded_utc": "2026-10-26T23:32:18.926812+00:00",
+  "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "tools": {
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "independent": "Apple LLVM21.0.0"
+  },
+  "private_bundle": {
+    "path": "build/analysis/launcher-v9/rea-evidence.json",
+    "bytes": 47155241,
+    "sha256": "52a239c855d2669be62d7f02fd8e97a984aaf4bce3a1ec6fd35d827505e52547",
+    "records": 126,
+    "new_function_dossiers": 9,
+    "new_evidence_records": 11,
+    "scope_function_dossiers": 16
+  },
+  "closed_session_snapshot": {
+    "path": "build/analysis/launcher-v9/rea-snapshot.json",
+    "bytes": 93912457,
+    "sha256": "67b69db6fd53a01b13a207194a63d2126f78fa3b9312fe63a955591fab840222",
+    "session": "closed after final export"
+  },
+  "procedures": [
+    {
+      "address": "0x40b320",
+      "evidence_id": "ev_ce7483e729592173425350117f1da3f309fc23ea09645c3f53ceb25562e6b68d",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x40b345",
+            "start": "0x40b320"
+          }
+        ],
+        "span_bytes": 38,
+        "total_bytes": 38
+      },
+      "pseudocode_sha256": "825a42b3a15b9360c06834f20b05907b72bfef9fc4f46f5769cbe1c992862990",
+      "assembly_sha256": "b018c82d155c40a6ee041062a5e019e9d203881833f3f755945193c0bb3ce0e5",
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      }
+    },
+    {
+      "address": "0x410c80",
+      "evidence_id": "ev_e887e950438807724b83f6cee4d2d2f1a55bfef6f2b62c4c55f1dfdba1ad7e3f",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x410d60",
+            "start": "0x410c80"
+          }
+        ],
+        "span_bytes": 225,
+        "total_bytes": 225
+      },
+      "pseudocode_sha256": "c2ca2e7df62cd49cb10358b1693af736cb3d33eafc7b24cd05e71d0da672a43a",
+      "assembly_sha256": "8fe328a6d0085a4277e17e450f1f62e77ce281967259b01046e024bfd5365edd",
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "limitations": [
+          "Ghidra's caller inventory omits sources of 2 call reference(s) into this function's body."
+        ],
+        "limited_directions": [
+          "callers"
+        ],
+        "status": "partial"
+      }
+    },
+    {
+      "address": "0x410df0",
+      "evidence_id": "ev_09855f02def1ac0b7a013784572e401e7c469f6f159df2345084e98f322ac26a",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x41195d",
+            "start": "0x410df0"
+          }
+        ],
+        "span_bytes": 2926,
+        "total_bytes": 2926
+      },
+      "pseudocode_sha256": "9e094cef65edb69556eabce3667a9233bfd9bfed2d782a83689cf48c1e85189d",
+      "assembly_sha256": "93dd387d1e23b73f967dbc8308b6966538a916dec7ebf320a75346fa5b928ff8",
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "limitations": [
+          "Ghidra's callee inventory omits targets of 1 call reference(s) or decoded call(s) without destinations."
+        ],
+        "limited_directions": [
+          "callees"
+        ],
+        "status": "partial"
+      }
+    },
+    {
+      "address": "0x41195e",
+      "evidence_id": "ev_1d0f175283f5dc85a2e5a19f2346428ef6b1a93b8eb07f014808a76d494c2f16",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x411bb8",
+            "start": "0x41195e"
+          }
+        ],
+        "span_bytes": 603,
+        "total_bytes": 603
+      },
+      "pseudocode_sha256": "2b165621b8acb7613588a4eabc4c3be963cdc7213c253587e3a3267cb8fb4095",
+      "assembly_sha256": "dcdbf6e41e6a09196c870460b7eb4542548511f44795b3f4676080f763dcf83a",
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      }
+    },
+    {
+      "address": "0x411bb9",
+      "evidence_id": "ev_8720e5f5a47d531d9f8ab4114fe4a72127a6e3d455ed5d3b3c1b530a06715937",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x411be0",
+            "start": "0x411bb9"
+          },
+          {
+            "end": "0x41203d",
+            "start": "0x412021"
+          }
+        ],
+        "span_bytes": 1157,
+        "total_bytes": 69
+      },
+      "pseudocode_sha256": "72e95906c94ec4bb484d0813bc26e4e83da7934a22447e0d39f655fd60bdb043",
+      "assembly_sha256": "0e03316b96bce81068fb6c05e379cd6b84f666d0179bb176a05554e96dd41e9f",
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      }
+    },
+    {
+      "address": "0x412060",
+      "evidence_id": "ev_d7802e7d96786f10e7a8aa29518a7ace10eb6fc8dc561fcd9d5c4a01b158185c",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x412194",
+            "start": "0x412060"
+          }
+        ],
+        "span_bytes": 309,
+        "total_bytes": 309
+      },
+      "pseudocode_sha256": "cd91e2889bcfe1c6e4c67f4fdae7a8164d848243ffb44ef2e454943096e184f0",
+      "assembly_sha256": "72554133992172d8529952ed0056179189f9e8efad0431cdf69e07d75dd0e711",
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      }
+    },
+    {
+      "address": "0x4121a0",
+      "evidence_id": "ev_104199368fb3857cae7bea3945d5d80b9df40df07490e901c4f7aa251891ad12",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x412306",
+            "start": "0x4121a0"
+          }
+        ],
+        "span_bytes": 359,
+        "total_bytes": 359
+      },
+      "pseudocode_sha256": "e0cfea775cf81ae21d1c306853cfb539f2ec86e45c5ba5753176ddb67e342915",
+      "assembly_sha256": "c5de39f7dbd4f07f1dfad6ba119645a2340d13aff202a7becb81e50abccefa13",
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      }
+    },
+    {
+      "address": "0x414a00",
+      "evidence_id": "ev_8fa9d6d5403f95066d3e9d2599b753110e814bf0ae79c3900905ebf0da8a4370",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x414c5b",
+            "start": "0x414a00"
+          }
+        ],
+        "span_bytes": 604,
+        "total_bytes": 604
+      },
+      "pseudocode_sha256": "4e1f74c13d77391252facee9e2fe31839f40a1609091ff6a4ef92a675868bd78",
+      "assembly_sha256": "b994d316c746df4296e8b89b11b20ecac6ffdbadaff2563e2d540733fbaa48a7",
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      }
+    },
+    {
+      "address": "0x416660",
+      "evidence_id": "ev_4a015e30bbc4f0ecd0cefc84cb589c034306c33d1802b52ed376a68459d2fd49",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x41667d",
+            "start": "0x416660"
+          }
+        ],
+        "span_bytes": 30,
+        "total_bytes": 30
+      },
+      "pseudocode_sha256": "08d1a8fa6ed3ac1d71ccacc78b5f38679c6704a11a300e0c2df5fbd15952e316",
+      "assembly_sha256": "3629534a709708ef7fbbd3df36ae778068719da83c0e48a913acf88ab0d6cece",
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      }
+    },
+    {
+      "address": "0x469200",
+      "evidence_id": "ev_b24407a22b5b19ad51096820a5c6b6a9ddd6afeb9600d813c674f9bb12eb709c",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x46920f",
+            "start": "0x469200"
+          }
+        ],
+        "span_bytes": 16,
+        "total_bytes": 16
+      },
+      "pseudocode_sha256": "f24f62a3010e2e08636b07e75d2ef1498bebc2a4b7e4ecbd22e637ad9ab78401",
+      "assembly_sha256": "4eecdd43c57541d218fc18af889ac6f1c0c2b80e789b540b6456d5ce95e96b19",
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      }
+    },
+    {
+      "address": "0x46cad0",
+      "evidence_id": "ev_e43fe2ac8d3730b102fac47f5598550f33c3101b848f1337d695185591493085",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x46cb5b",
+            "start": "0x46cad0"
+          }
+        ],
+        "span_bytes": 140,
+        "total_bytes": 140
+      },
+      "pseudocode_sha256": "d3da4edc6dfbd28ce5df0188a50d17a428186c3b0ee167615d558f030464278c",
+      "assembly_sha256": "d9e2a7fbfe7e2f2fc8885187ec80f776d83e4dd2faead9932c392befea806251",
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      }
+    },
+    {
+      "address": "0x46cb60",
+      "evidence_id": "ev_4eb2e3435e9a1cb30a623958c328f2432c1bc7c5552b78eb662b6b6397ab9aaa",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x46cbd0",
+            "start": "0x46cb60"
+          }
+        ],
+        "span_bytes": 113,
+        "total_bytes": 113
+      },
+      "pseudocode_sha256": "9cbb9a6544546187c9c3119d4ee9edf3ca6ee21e2677dafd96bda23924ec389c",
+      "assembly_sha256": "57361f76d3507bdf651672d9b692b91d334a569abee4ed057ac3f0927fbb1775",
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "limitations": [
+          "Ghidra's callee inventory omits targets of 1 call reference(s) or decoded call(s) without destinations."
+        ],
+        "limited_directions": [
+          "callees"
+        ],
+        "status": "partial"
+      }
+    },
+    {
+      "address": "0x46cbe0",
+      "evidence_id": "ev_1f3ff5a39541ab927745f4f15780d26c29efdc6ee3223a52d3331d1ea63db72f",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x46cd0c",
+            "start": "0x46cbe0"
+          }
+        ],
+        "span_bytes": 301,
+        "total_bytes": 301
+      },
+      "pseudocode_sha256": "2d106bda7539b96145fe882e8decb2d0ff76937e6d8c66777ba1f1c5c2e76cdf",
+      "assembly_sha256": "7cb61138620e6d609e1b39e5785424b76de2710358bddf3672526322c7493adc",
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      }
+    },
+    {
+      "address": "0x46cf90",
+      "evidence_id": "ev_f5207e469813eb271a0be3143deef850a955a1752bb031630dd83ea60a50c721",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x46cfd7",
+            "start": "0x46cf90"
+          }
+        ],
+        "span_bytes": 72,
+        "total_bytes": 72
+      },
+      "pseudocode_sha256": "cf23824d227e69e5cf3860afb75504af5a134f0b4e41276c5126845a9ef5f106",
+      "assembly_sha256": "8d5658f28188f09f81b251807e704e6134c40a52c2dce419c924432a3c782a69",
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      }
+    },
+    {
+      "address": "0x4738b0",
+      "evidence_id": "ev_e6b11dbe56d7ed1211148bcec81f0ab051346a8f6d0b60e6c651c1fe59627026",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4738d5",
+            "start": "0x4738b0"
+          }
+        ],
+        "span_bytes": 38,
+        "total_bytes": 38
+      },
+      "pseudocode_sha256": "db7dc13604789ef924e6e6dea533ffb983125f74b7a50aca055b0662752a24bd",
+      "assembly_sha256": "73d4109b42d71b98900663f65a48c8bc2d9080edc28770d0ee684b691f90a2f7",
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      }
+    },
+    {
+      "address": "0x476a70",
+      "evidence_id": "ev_22839302ec8e0514167cc9f8fc1580d1a9588537b71f58d35f059f40b437e968",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x476b38",
+            "start": "0x476a70"
+          }
+        ],
+        "span_bytes": 201,
+        "total_bytes": 201
+      },
+      "pseudocode_sha256": "dae5ab6988f068d6ace586c85bd580eac593bb4585183ddce39ca494c065a3aa",
+      "assembly_sha256": "51b50f0b9bcd842feffadcf093376ef4efe7b5fc3bfe8749415e961f200c86b5",
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      }
+    }
+  ],
+  "facts": [
+    {
+      "kind": "fact",
+      "source": "410df0:4116d1..4116eb;40b320",
+      "text": "Case3 calls SetTimer(window,100,10000,NULL), stores its returned value atUI+12b8 and setsUI+1186=0 before connection. Original return success and actual timer delivery were not observed."
+    },
+    {
+      "kind": "fact",
+      "source": "4b47e0;414a00;416660",
+      "text": "Observed WM_TIMER map row points to414a00. Timer100 calls KillTimer with stored value, removes wait item, marksUI+1186=1, closes channel and restores UI; it does not rotate endpoints in this branch."
+    },
+    {
+      "kind": "fact",
+      "source": "41195e;411bb9;retry-independent.json",
+      "text": "Catch-like block checks current endpoint versus wrapped previous(first-1), andUI+1186. Continuing path advances(current+1)%count, copies address/port, sets local retry flag1 and closes the channel. Continuation tests that flag and jumps41171b. The native additional cleanup comparison is unwrapped first-1; independent controller does not copy that edge case or treat pseudocode self-call as recursion."
+    },
+    {
+      "kind": "fact",
+      "source": "410df0:4115aa..411629;4b49a8",
+      "text": "Initial index uses native random/scaling and divisor32767.0; first index and previous wrapped index are separate stack values. New core requires a caller-supplied valid ordinal instead of copying this RNG/scaling behavior."
+    },
+    {
+      "kind": "fact",
+      "source": "46cf90;469200;4738b0",
+      "text": "Writable wait repeats capacity query,context service andSleep1 with no local time bound/cancel predicate. The context wrapper calls service helpers; complete downstream Windows message scheduling was not established. New async controller performs no busy-wait or sleep."
+    },
+    {
+      "kind": "fact",
+      "source": "412060;4121a0;46cb60;46cad0",
+      "text": "Success/failure reset paths call the timer-cancellation helper, mark UI completion and close channel; success increments wizard stage. Connection close callback sends local result-100 only while its separate C+0c flag is false. Close removes manager mapping and clears two connection token words; current callback and UI flags are not authentication proof."
+    },
+    {
+      "kind": "fact",
+      "source": "410c80",
+      "text": "Wizard stage>=5 can call game launch and then reset stage3. Independent flow produces only unverified selection data and does not execute game/update/registration actions."
+    }
+  ],
+  "independent_policy": {
+    "scope": "Post-local-preconditions single login exchange; pure bytes/local control state only",
+    "endpoint_count": "1..10, explicit first ordinal; circular one pass only on opening failure before opened event",
+    "replay": "No automatic retry after opened/credential submission; new flow required for a new user attempt",
+    "clock": "Explicit nondecreasing safe integer milliseconds; one10000ms deadline from start; boundary wins before packet/open processing; no deadline reset on failover",
+    "attempt_id": "Local routing identity only, never a wire field; noncurrent events ignored before touching clock or buffers",
+    "challenge": "Incremental exact supported challenge; bounded2122B, strict ASCII hex, no trailing pre-answer ciphertext; caller explicitly supplies20 exponent bytes",
+    "final_reply": "Type2 preliminary notices<=64; type11 final must be last complete message in the batch with no pending record/frame; close intent emitted. Later events ignored.",
+    "ownership": "Outputs are owned byte copies; internal choices cannot be changed via returned models; cancel/select/failure release internal buffers and schedules best effort, not guaranteed JS erasure",
+    "authentication": "Always unverified; no socket/account/filesystem/random/clock/timer API accessed",
+    "not_native_equivalence": [
+      "Strict monotonic hard deadline versus Windows queued WM_TIMER delivery",
+      "Finite/open-only fallback and normalized initial index versus incomplete native EH/cleanup edge cases",
+      "Strict final batch/count/group/shape policies and no native UI/process side effects"
+    ]
+  },
+  "unknowns": [
+    "All exception types/throw sites, native timer creation failure and complete context/message scheduling",
+    "Platform CSPRNG, actual Windows code page, local consent/profile persistence and socket adapter lifecycle",
+    "Current service authentication acceptance, opaque data lifetime and official compatibility",
+    "Trusted update/rollback and game handoff acceptance; game phase not started"
+  ],
+  "byte_observations": [
+    {
+      "evidence_id": "ev_3a9ae56293aef44d3e09d78d2e6d45a22f68665b756f46f8e8230ae8bd047c9a",
+      "address": "0x4b49a8",
+      "requested_bytes": 8,
+      "returned_bytes": 8,
+      "complete": true
+    },
+    {
+      "evidence_id": "ev_d506eaa1680791c574ef245460f6736311edc16b49b4e5f8254d025b9f292a09",
+      "address": "0x4b46a8",
+      "requested_bytes": 768,
+      "returned_bytes": 768,
+      "complete": true
+    }
+  ]
+}

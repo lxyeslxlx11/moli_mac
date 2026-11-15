@@ -1,0 +1,196 @@
+{
+  "schema": "moli.launcher-update-recovery-v1.original-vectors.v1",
+  "producer": "Python stdlib struct; original synthetic headers, no shipped payload or credentials",
+  "profile": "Exact16byte header. Native selected ReadFile consumes only first16bytes, so two tail cases differ explicitly.",
+  "cases": [
+    {
+      "name": "recorded-stage-1",
+      "header_hex": "504f4c5501000000010000000aea16f0",
+      "native_first16_accepts": true,
+      "expected_error": null,
+      "expected_stage": 1
+    },
+    {
+      "name": "recorded-stage-2",
+      "header_hex": "504f4c55010000000200000009ea16f0",
+      "native_first16_accepts": true,
+      "expected_error": null,
+      "expected_stage": 2
+    },
+    {
+      "name": "recorded-stage-3",
+      "header_hex": "504f4c55010000000300000008ea16f0",
+      "native_first16_accepts": true,
+      "expected_error": null,
+      "expected_stage": 3
+    },
+    {
+      "name": "recorded-stage-4",
+      "header_hex": "504f4c5501000000040000000fea16f0",
+      "native_first16_accepts": true,
+      "expected_error": null,
+      "expected_stage": 4
+    },
+    {
+      "name": "recorded-stage-5",
+      "header_hex": "504f4c5501000000050000000eea16f0",
+      "native_first16_accepts": true,
+      "expected_error": null,
+      "expected_stage": 5
+    },
+    {
+      "name": "wrong-magic",
+      "header_hex": "514f4c5501000000010000000aea16f0",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_MAGIC",
+      "expected_stage": null
+    },
+    {
+      "name": "wrong-version-0",
+      "header_hex": "504f4c5500000000010000000aea16f0",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_VERSION",
+      "expected_stage": null
+    },
+    {
+      "name": "wrong-version-2",
+      "header_hex": "504f4c5502000000010000000aea16f0",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_VERSION",
+      "expected_stage": null
+    },
+    {
+      "name": "wrong-version-4294967295",
+      "header_hex": "504f4c55ffffffff010000000aea16f0",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_VERSION",
+      "expected_stage": null
+    },
+    {
+      "name": "out-of-range-stage-0",
+      "header_hex": "504f4c5501000000000000000bea16f0",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_STAGE",
+      "expected_stage": null
+    },
+    {
+      "name": "out-of-range-stage-6",
+      "header_hex": "504f4c5501000000060000000dea16f0",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_STAGE",
+      "expected_stage": null
+    },
+    {
+      "name": "out-of-range-stage-2147483648",
+      "header_hex": "504f4c5501000000000000800bea1670",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_STAGE",
+      "expected_stage": null
+    },
+    {
+      "name": "out-of-range-stage-4294967295",
+      "header_hex": "504f4c5501000000fffffffff415e90f",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_STAGE",
+      "expected_stage": null
+    },
+    {
+      "name": "wrong-check-1",
+      "header_hex": "504f4c5501000000010000000bea16f0",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_CHECKSUM",
+      "expected_stage": null
+    },
+    {
+      "name": "wrong-check-5",
+      "header_hex": "504f4c5501000000050000000fea16f0",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_CHECKSUM",
+      "expected_stage": null
+    },
+    {
+      "name": "short-header-0",
+      "header_hex": "",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_HEADER_LENGTH",
+      "expected_stage": null
+    },
+    {
+      "name": "short-header-1",
+      "header_hex": "50",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_HEADER_LENGTH",
+      "expected_stage": null
+    },
+    {
+      "name": "short-header-3",
+      "header_hex": "504f4c",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_HEADER_LENGTH",
+      "expected_stage": null
+    },
+    {
+      "name": "short-header-4",
+      "header_hex": "504f4c55",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_HEADER_LENGTH",
+      "expected_stage": null
+    },
+    {
+      "name": "short-header-7",
+      "header_hex": "504f4c55010000",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_HEADER_LENGTH",
+      "expected_stage": null
+    },
+    {
+      "name": "short-header-8",
+      "header_hex": "504f4c5501000000",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_HEADER_LENGTH",
+      "expected_stage": null
+    },
+    {
+      "name": "short-header-11",
+      "header_hex": "504f4c5501000000010000",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_HEADER_LENGTH",
+      "expected_stage": null
+    },
+    {
+      "name": "short-header-12",
+      "header_hex": "504f4c550100000001000000",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_HEADER_LENGTH",
+      "expected_stage": null
+    },
+    {
+      "name": "short-header-15",
+      "header_hex": "504f4c5501000000010000000aea16",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_HEADER_LENGTH",
+      "expected_stage": null
+    },
+    {
+      "name": "extra-byte-is-not-an-exact-header",
+      "header_hex": "504f4c5501000000010000000aea16f000",
+      "native_first16_accepts": true,
+      "expected_error": "JOURNAL_HEADER_LENGTH",
+      "expected_stage": null
+    },
+    {
+      "name": "extra16bytes-is-not-an-exact-header",
+      "header_hex": "504f4c5501000000050000000eea16f000000000000000000000000000000000",
+      "native_first16_accepts": true,
+      "expected_error": "JOURNAL_HEADER_LENGTH",
+      "expected_stage": null
+    },
+    {
+      "name": "big-endian-is-not-the-observed-layout",
+      "header_hex": "554c4f500000000100000001f016ea0a",
+      "native_first16_accepts": false,
+      "expected_error": "JOURNAL_MAGIC",
+      "expected_stage": null
+    }
+  ]
+}

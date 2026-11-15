@@ -1,0 +1,20 @@
+$$ Original fixture only. Verify SHA256 01588841278dcb7360c91333f0f7c5ec81aec84625ca274be54ad9011aaf10eb before launch.
+$$ ASLR is enabled. Derive actual image base from executable entry point minus reviewed entryRVA1270.
+$$ Reviewed SizeOfImage 00006000. Not a general API collector.
+$$ These are the seven reviewed success-path return sites after indirect Win32 calls.
+$$ Print actual instruction-pointer RVA only. No argument, command-line, mapping, stack or payload reads.
+.effmach x86
+.radix 16
+.expr /s masm
+r $t0 = @$exentry-0x1270
+.echo MOLI_FIXTURE_BEGIN
+.printf "MOLI_FIXTURE_BASE|%p\n", @$t0
+lm m moli*
+bp @$t0+0x102f ".printf \"MOLI_META|GetCommandLineW|%x\\n\", @eip-@$t0; gc"
+bp @$t0+0x1137 ".printf \"MOLI_META|CreateFileMappingW|%x\\n\", @eip-@$t0; gc"
+bp @$t0+0x1192 ".printf \"MOLI_META|OpenFileMappingW|%x\\n\", @eip-@$t0; gc"
+bp @$t0+0x11e5 ".printf \"MOLI_META|MapViewOfFile|%x\\n\", @eip-@$t0; gc"
+bp @$t0+0x1236 ".printf \"MOLI_META|UnmapViewOfFile|%x\\n\", @eip-@$t0; gc"
+bp @$t0+0x1249 ".printf \"MOLI_META|CloseHandle|%x\\n\", @eip-@$t0; gc"
+bp @$t0+0x1259 ".printf \"MOLI_META|CloseHandle|%x\\n\", @eip-@$t0; gc"
+g

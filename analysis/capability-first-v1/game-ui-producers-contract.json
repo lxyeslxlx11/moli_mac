@@ -1,0 +1,246 @@
+{
+  "schema": "moli.capability.game-ui-producers-contract.v1",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "source_check": "analysis/capability-first-v1/game-ui-producers-source-check.json",
+  "capabilities": [
+    "G05",
+    "G10",
+    "X01",
+    "X02"
+  ],
+  "facts": [
+    {
+      "id": "partial-body-and-anchored-flow",
+      "kind": "fact",
+      "entries": [
+        "0x4de9a0",
+        "0x4df420"
+      ],
+      "claim": "4de9a0的局部三项回调数组实际选择4df420。旧默认函数范围仅502字节，止于4df615；4df616有原文件MOV字节，规范Listing却未解码。独立副本沿正向指令流恢复903条指令/3211字节及五项20字节跳转表；这是派生回调流证据，不代表规范函数归属或97项全局分发已闭合。"
+    },
+    {
+      "id": "pet-point-fields",
+      "kind": "fact",
+      "entries": [
+        "0x4df420",
+        "0x481a30"
+      ],
+      "claim": "4f8020发送由d72fb2+selected*8取得的有符号宠物索引及属性索引0..4：生命、力量、防御、速度、魔法。另一套界面先取宠物快照，要求ef365c剩余字非零、事件mask1且当前属性<有符号(五属性+剩余之和)/2，首次发送后跳出循环；所见分支没有本地乐观改点。"
+    },
+    {
+      "id": "per-UI-eligibility",
+      "kind": "fact",
+      "entries": [
+        "0x481a30",
+        "0x4df420",
+        "0x4e9d00"
+      ],
+      "claim": "经典控件9..13在事件bit2时发送索引0..4，当前回调未见另一套界面的半数检查，构造器/禁用控件条件仍待查。另一套mask1表示首鼠标边沿、0x10表示重复、0x40表示命中。共用报文不等于共用全部交互资格。"
+    },
+    {
+      "id": "pet-return-and-selection",
+      "kind": "fact",
+      "entries": [
+        "0x4df420",
+        "0x4ea460",
+        "0x4ea5b0"
+      ],
+      "claim": "返回控件先调用close(561670所存窗口ID)，再调用open(20)，均忽略返回值。上一/下一重复事件按d72fa8环绕c5e934；本次操作仍使用事件前取得的宠物索引快照。open/close保留各自主状态、槽和lookup门槛，发起返回不证明导航一定成功。",
+      "selection_specification": "analysis/capability-first-v1/game-service-selection-contract.json#/fixed_se_pet_count_and_selection"
+    },
+    {
+      "id": "prompt-construction",
+      "kind": "fact",
+      "entries": [
+        "0x4f6440",
+        "0x47e4e0",
+        "0x47e440",
+        "0x47e040"
+      ],
+      "claim": "接收者保存d5d7b0，再以type0x43、mode3、image0x3c405、999999/999999、初值0和4f63e0回调调用工厂。工厂申请泛型图形及36字节附加区；分配失败会立即设置经典窗口42，同时返回0。成功时47e440推进半宽/高，计数>=10后设置窗口42并标记图形待删；该计数不是毫秒。"
+    },
+    {
+      "id": "prompt-submit-and-masking",
+      "kind": "fact",
+      "entries": [
+        "0x47e0d0",
+        "0x47e110",
+        "0x47e160",
+        "0x47e2d0",
+        "0x47e390"
+      ],
+      "claim": "窗口42有8控件。47e0d0仅在参数=-1时重设默认值并调用焦点准备；47e040发布本次上限、回调、控件初值和type/mode。type0x43调用46de10并禁用加减回调，其他type调用46b530。值先限至c10f88；提交bit2先调用非空c10f90(value)，再置窗口bit8000。length<7时还把显示缓冲[length-1]写为加号、[length]写NUL；完整编辑规则待补证。"
+    },
+    {
+      "id": "numeric-reply-format",
+      "kind": "fact",
+      "entries": [
+        "0x4f63e0",
+        "0x4f6440",
+        "0x47e160"
+      ],
+      "claim": "汇编证明回调取一个整数，先用%6d格式化到已清零的8字节局部缓冲，再把ASCII空格改为0，随后调用4f89d0(connection,d5d7b0,text)。%6d是最小宽度6，不自行替换成所有整数均适用的%06d或截断。沿用Jl<的整数/字节字段顺序；这是人工数字输入，与518d70的人工选数挑战分开。"
+    },
+    {
+      "id": "single-prompt-ownership",
+      "kind": "fact",
+      "entries": [
+        "0x47e040",
+        "0x47e160",
+        "0x4f6440"
+      ],
+      "claim": "窗口句柄c10f84、回调c10f90、type/mode和服务端标识d5d7b0均为可变全局值，复用可覆盖它们，不是每个弹窗的独立代次。提交在回调后置隐藏位，未清回调，也不证明已物理销毁。本轮未读取真实账号、输入秘密或会话。"
+    }
+  ],
+  "inferences": [
+    {
+      "kind": "inference",
+      "claim": "Reuse onepet-point request andone numeric-prompt owner acrossplatforms,whilekeepingtheclassic/alternate inputconditions distinct;thisshouldreduce duplicated logic.",
+      "acceptance": "Architecture proposal only;shared implementationandactualplatform acceptance unchanged."
+    }
+  ],
+  "supersedes_bounded_roles": [
+    {
+      "entry": "0x4f8020",
+      "tag": "-iA",
+      "wire_fields": [
+        "int32",
+        "int32"
+      ],
+      "previous_role": "selected-pet-mode",
+      "current_role": "pet-attribute-point-allocation",
+      "wire_definition_changed": false,
+      "complete_business_lifecycle": false
+    },
+    {
+      "entry": "0x4f89d0",
+      "tag": "Jl<",
+      "wire_fields": [
+        "int32",
+        "bytes"
+      ],
+      "previous_role": "prompt-reply-positive-reference",
+      "current_role": "manual-masked-numeric-input-reply",
+      "wire_definition_changed": false,
+      "complete_business_lifecycle": false
+    }
+  ],
+  "module_contract_proposal": {
+    "status": "not-implemented",
+    "D0": "统一输入、可见性、窗口/图形所有权与源调用节奏；数字格式化保留原顺序和边界。",
+    "D3": "宠物加点索引0..4和手动数字输入复用现有字节核心；保留两套界面的资格判断、宠物快照及服务端状态发布。",
+    "platform_ports": "人工键盘/文本输入、掩码呈现、焦点、隐藏/取消和时钟单列端口；不得自动回答或推定官方接受。"
+  },
+  "requirement_answers": [
+    {
+      "question": 1,
+      "status": "partially-answered",
+      "answer": "Factory,animation,fallback,window42,submission callback,mask presentation andreply fields are bound. Detailed46de10/46b530 editoradmission andallcancel/reentry remain."
+    },
+    {
+      "question": 2,
+      "status": "answered-with-scope-limit",
+      "answer": "Actual localtab dispatch reachespet callback andsend4df808. Stat indices0..4,sourceadmission,previous/next andreturn requests are bound;global97 dispatcher/serverresult acceptance remain."
+    },
+    {
+      "question": 3,
+      "status": "answered-with-coverage-limit",
+      "answer": "Old502-byte callback view was partial;903instruction flow/3211bytes and20-byte switch table now verified. Fiveexisting UIcallback bodies andsixnative helpers reused;no duplicate root decompilation."
+    },
+    {
+      "question": 4,
+      "status": "answered-with-scope-limit",
+      "answer": "Source-backed roleoverlayupdatesonlyG05/G10/X01/X02;38/81/37/10 andglobalgate remain unchanged."
+    }
+  ],
+  "remaining": [
+    {
+      "id": "numeric-editors",
+      "capabilities": [
+        "G10",
+        "X02"
+      ],
+      "question": "两数字盘的按键准入、普通32位/上限及掩码六位编辑/提交已由输入准入合同补证并在IC-F2归并；其余调用者生命周期、异常边界及实际宿主输入继续保留，不重新申请同两体。"
+    },
+    {
+      "id": "prompt-lifecycle",
+      "capabilities": [
+        "G10",
+        "X02"
+      ],
+      "question": "补齐默认取消、焦点恢复、共享回调/服务端标识覆盖、所有者丢失和重入。bit8000不等于销毁，共享全局值不是请求代次。"
+    },
+    {
+      "id": "pet-eligibility-and-result",
+      "capabilities": [
+        "G05"
+      ],
+      "question": "经典回调只见事件bit2，须另查构造器/禁用控件资格和服务端完整状态发布；不自行加入另一套界面的半数门槛、本地乐观改点或猜测ack。"
+    },
+    {
+      "id": "global-frontiers",
+      "capabilities": [
+        "X01",
+        "X02"
+      ],
+      "question": "邻接/菜单/资料mode0/手动挑战、97业务回调分发、物理时间/输入、资源/模态/版本及实际平台/官方接受继续保留；已证两条回调链不重复分析。"
+    }
+  ],
+  "original_execution": false,
+  "account_or_session_observed": false,
+  "runtime_features_changed": false,
+  "module_interfaces_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "official_acceptance": false,
+  "full_goal_complete": false,
+  "shared_clock_input_review": {
+    "specification": {
+      "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+      "bytes": 39736,
+      "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+    },
+    "source_inputs": {
+      "path": "build/analysis/shared-clock-input-review-v1/source-inputs.json",
+      "bytes": 4173,
+      "sha256": "a4736ed0e2a48266f6b187b091571609393987fd2a0ab28881a02ad2d03e9148"
+    },
+    "validation_record_path": "build/analysis/shared-clock-input-review-v1/validation.json",
+    "source_summary": {
+      "views": 19,
+      "reused_complete_native_views": 16,
+      "new_complete_native_views": 0,
+      "reused_derived_views": 3,
+      "body_ranges": 19,
+      "body_bytes": 6799,
+      "derived_instructions": 1163,
+      "direct_E8_CALLs": 147,
+      "new_native_queries": 0,
+      "native_views": 16,
+      "derived_views": 3,
+      "cold_instructions": 2060,
+      "extra_cold_helper_bytes": 220,
+      "extra_cold_helper_instructions": 75,
+      "literal_bytes": 20,
+      "calendar_division_domain": 2592000,
+      "source_fact_groups": 10,
+      "architecture_inferences": 2,
+      "independent_design_groups": 4,
+      "stale_prior_repeat_topics_resolved": 3,
+      "current_code_inputs": 10,
+      "proposed_not_executed_cases": 10
+    },
+    "scope": "Selected same37c4 shared keyboard/numeric/calendar/frame/audio rules, current code deltas and finite remaining categories",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "shared_reference": "analysis/capability-first-v1/game-entry-review-contract.json#/shared_clock_input_review",
+    "all_input_lifetimes_or_global_timing_closed": false
+  }
+}

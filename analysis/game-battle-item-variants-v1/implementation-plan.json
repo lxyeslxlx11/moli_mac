@@ -1,0 +1,18 @@
+{
+  "stage": 301,
+  "objective": "使用REA核对当前仍被item-variant-handler拒绝的ITM变体1..5，以及其他值与既有0/6/7生产者、真实物品输入的关系；按证据补齐消费者和客户端流程。",
+  "previous_goal_turn": "progress:回城生命周期已绑定，17函数/15221字节和253字节菜单，3739回归、1800状态/98整帧及20条实际材料产品路径完成。",
+  "baseline_files": 4502,
+  "authoritative_scope": ["AGENTS.md", "reports/development-plan.md#stage300-city-water", "analysis/game-city-water-v1/goal-audit.json"],
+  "questions": [
+    "432616的ITM分派对0..7及其他值的真实行为、游标推进和分组完成规则是什么？",
+    "1..5是否有队列、数值、对象生命周期消费者，能否复用已有动作而不猜测道具效果？",
+    "真实物品选择、目标、服务器M结果、回合和退出如何在共享核心与产品中闭合？"
+  ],
+  "execution": ["先恢复固定样本REA静态来源并核对原字节，再决定实现。", "用独立原创输入、状态与像素参考验证源码和生成消费者，运行本机原创对端产品路径。", "保留37项需求和10个未完成组，按改动运行完整检查并同步13份项目文档。"],
+  "decision": "REA确认0/6/7是本样本仅有的ITM效果分支；其余值在本次回调读取编号后返回，不是待补造的五类道具效果。本轮完成来源复核、既有消费者回归及文档纠正，不增加运行分支。",
+  "implementation_disposition": "no runtime change required by the recovered dispatch",
+  "next_verified_gap": "继续从4f0290/4ff030等既有来源追踪工艺配方及普通上下文；先确认接收、状态与输入生产者，再实现完整切面。",
+  "goal_status": "active",
+  "full_goal_complete": false
+}

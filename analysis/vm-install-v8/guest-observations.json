@@ -1,0 +1,83 @@
+{
+  "observed_utc": "2026-10-25T13:26:00.191476+00:00",
+  "vm": "MoliOffline-ARM64-20261025",
+  "one_time_login": "succeeded once after window raise and input capture; authorization consumed; no credential value retained",
+  "input_cause": "focus/capture plausible, sole cause not established",
+  "network": "remained absent; host directory/clipboard/USB sharing disabled",
+  "cd_labels": {
+    "D:": "CCCOMA_A64FRE_ZH-CN_DV9",
+    "E:": "MOLI_BASEDRV",
+    "F:": "MOLI_NETKVM"
+  },
+  "driver_installations": [
+    {
+      "inf": "E:\\viorng\\viorng.inf",
+      "tool": "pnputil /add-driver exact_inf /install",
+      "published_name": "oem3.inf",
+      "installed": true,
+      "name": "VirtIO RNG Device",
+      "version": "100.100.104.27100",
+      "is_signed": true,
+      "signer": "Microsoft Windows Hardware Compatibility Publisher",
+      "present_device_status": "OK"
+    },
+    {
+      "inf": "E:\\viogpudo\\viogpudo.inf",
+      "tool": "pnputil /add-driver exact_inf /install",
+      "published_name": "oem4.inf",
+      "installed": true,
+      "name": "Red Hat VirtIO GPU DOD controller",
+      "version": "22.7.38.43",
+      "is_signed": true,
+      "signer": "Microsoft Windows Hardware Compatibility Publisher",
+      "present_device_status": "OK"
+    }
+  ],
+  "pnputil_restart_request_observed": false,
+  "signature_warning_observed": false,
+  "display_after_install": "visible console; resolution changed; no 3D or game compatibility claim",
+  "device_errors": {
+    "before": 36,
+    "after": 34,
+    "code": 28,
+    "present_only_group_counts": {
+      "QEMU0002": 1,
+      "VEN_1AF4&DEV_1003&SUBSYS_00031AF4&REV_00": 1,
+      "LNRO0005": 32
+    },
+    "grouping": "Get-PnpDevice -PresentOnly, Status != OK; group InstanceId backslash component 1",
+    "transcription_note": "Original screenshot shows eight-character LNRO0005; earlier chat omitted letter O. No machine-readable guest export."
+  },
+  "tpm_health": {
+    "command": "Get-Tpm with selected health fields only",
+    "status": "failed",
+    "hresult": "0x80284001",
+    "message": "TPM support program internal error; no health data acquired",
+    "no_tpm_configuration_change": true
+  },
+  "secure_boot": {
+    "command": "Confirm-SecureBootUEFI",
+    "result": true,
+    "configuration_modified": false
+  },
+  "not_performed": [
+    "PIN/login settings change",
+    "reboot after driver install",
+    "game installation/execution",
+    "game server connection",
+    "vioserial/SPICE/experimental3D installation",
+    "TPM reset or security override"
+  ],
+  "screenshots": [
+    "cd-labels.png",
+    "viorng-installed.png",
+    "viogpudo-installed.png",
+    "driver-signatures.png",
+    "device-errors.png",
+    "present-device-errors.png",
+    "remaining-device-families.png",
+    "tpm-query-error.png",
+    "secureboot-state.png",
+    "installed-device-status.png"
+  ]
+}

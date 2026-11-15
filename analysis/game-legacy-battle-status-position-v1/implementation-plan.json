@@ -1,0 +1,19 @@
+{
+  "stage": 245,
+  "previous_checkpoint": {
+    "path": "analysis/game-legacy-battle-status-slots-v1/checkpoint-audit.json",
+    "sha256": "85d15517e92a9be3f4dab1736f3fdf7188826c36031081cdfd7e0577ee18260e"
+  },
+  "requirement": "实现固定旧版 SKL98 变体 7 的目标换位、施法激活、人物与附属对象迁移，并让网页和微信 Page 按当前本方槽继续战斗。",
+  "baseline_files": 3959,
+  "source": "analysis/game-legacy-battle-status-position-v1/source-check.json",
+  "scope": [
+    "使用 REA 核验两次槽标记、成对注册表交换、角色体坐标、当前本方槽与施法者槽，以及受状态 32 影响的配对目标。",
+    "沿原顺序预检和提交同一条记录的多个换位，迁移显示及输入使用的角色记录，保留原 P 参数边界。施法动作与 135 信号复用共享回合。",
+    "核对换位后角色体和附属对象身份、队列、位置、资源与 RID0。使用原创回环对端验证网页和微信 Page 的真实战斗入口、退出及后续移动。"
+  ],
+  "remaining": ["SKL98 变体 12 和 13，缺席目标的原版跳转和等待清理，以及其余 RID0 组合", "完整游戏、真实设备、现行版交接及官服验收"],
+  "VM_actions": 0,
+  "original_execution": 0,
+  "official_sessions": 0
+}

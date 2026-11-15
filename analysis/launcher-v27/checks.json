@@ -1,0 +1,48 @@
+{
+  "schema": "moli.launcher-v27.checks.v1",
+  "source_anchors": {
+    "passed": 32,
+    "negative_cases": 3,
+    "record": "entry-anchor-audit.json"
+  },
+  "independent": {
+    "producer": "patch_entry_oracle.py",
+    "entries": 32,
+    "exits": 21,
+    "fixed_configuration_commands": 8
+  },
+  "syntax": {
+    "Node": [
+      "shared/launcher.mjs",
+      "shared/game-patch.mjs",
+      "shared/index.mjs",
+      "shared/launcher-patch.mjs",
+      "shared/tests/launcher-patch.test.mjs",
+      "web/launcher-game-patch.mjs",
+      "web/tests/launcher-game-patch.test.mjs",
+      "web/tests/helpers/launcher-game-patch-fixture.mjs",
+      "web/examples/launcher-game-patch-local.mjs"
+    ],
+    "PythonAST": [
+      "analysis/launcher-v27/patch_entry_oracle.py"
+    ]
+  },
+  "node": {
+    "tests": 478,
+    "passed": 478,
+    "new_tests": 21,
+    "focused_with_catalog_regression": 52,
+    "log": "node-tests-verified.log"
+  },
+  "browser": "browser-qa-verified.json",
+  "example": "example.log",
+  "runtimes": {
+    "Node": "26.9.0",
+    "Python": "3.9.6",
+    "Chrome": "155.0.8059.85",
+    "Playwright": "1.62.1"
+  },
+  "original_EXE_execution": false,
+  "streamed_body_cancellation": true,
+  "streamed_body_received_prefix_bytes": 123
+}

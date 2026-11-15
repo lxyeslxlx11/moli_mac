@@ -1,0 +1,624 @@
+{
+  "stage": 242,
+  "recorded_utc": "2026-11-06T16:24:44.590584+00:00",
+  "source": {
+    "path": "analysis/game-legacy-battle-status-variant-v1/source-check.json",
+    "bytes": 18098,
+    "sha256": "bee0f50d4672ce4a6bc75c5a5c6cf59acd2aa53dd7ae33ffec64138cee467e51"
+  },
+  "rea_closure": {
+    "path": "build/analysis/game-legacy-battle-status-variant-v1/rea-closure.json",
+    "bytes": 53,
+    "sha256": "43b2cb3403240ad3badd80c1c3d6d619c698b2bd88f33215983ac0b46320a0c8"
+  },
+  "targeted": {
+    "counts": {
+      "tests": 16,
+      "pass": 16,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "log": {
+      "path": "build/analysis/game-legacy-battle-status-variant-v1/targeted.log",
+      "bytes": 3459,
+      "sha256": "ec04227c96ed13c344598b9ac8dcbbce68cd4fa6d390423670044711e269587c"
+    }
+  },
+  "old_status": {
+    "counts": {
+      "tests": 35,
+      "pass": 35,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "log": {
+      "path": "build/analysis/game-legacy-battle-status-variant-v1/legacy-status.log",
+      "bytes": 8730,
+      "sha256": "ce8793f86c347f31f2dd21c11753d779ac6c62ddadff4a2130954b463a1a3ed4"
+    },
+    "independent_projection": {
+      "scenarios": 416,
+      "states": 12775,
+      "rasters": 6384,
+      "settled": 416
+    }
+  },
+  "legacy86_tcp": {
+    "counts": {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "log": {
+      "path": "build/analysis/game-legacy-battle-status-variant-v1/legacy86-tcp.log",
+      "bytes": 1444,
+      "sha256": "bc8037fc45aab150d874224e8549e9414b1b3370e97ad904e7b649c807b89f40"
+    },
+    "observations": {
+      "mode": "class86",
+      "category": 86,
+      "rendered": 399,
+      "rounds": 1,
+      "retries": 0,
+      "reentries": 0,
+      "cancelled": 0,
+      "failedRead": false,
+      "mpUpdates": 1,
+      "hpUpdates": 1,
+      "values": [
+        {
+          "kind": "battle-vital",
+          "slot": 0,
+          "field": "MP",
+          "before": 10,
+          "value": 6,
+          "delta": -4
+        },
+        {
+          "kind": "battle-vital",
+          "slot": 10,
+          "field": "HP",
+          "before": 100,
+          "value": 0,
+          "delta": -100
+        }
+      ],
+      "effectKinds": [
+        "status-skill-chant",
+        "status-skill-charge"
+      ],
+      "uniqueParticleNodes": 50,
+      "fieldResources": [],
+      "overlaysSeen": 300,
+      "resultState": {
+        "bodies": [
+          {
+            "slot": 0,
+            "vitals": [
+              100,
+              100,
+              6,
+              10
+            ],
+            "dynamicFlags": 1,
+            "rawStatusFlags": 0
+          }
+        ],
+        "field": {
+          "used": true,
+          "fieldNodeId": null,
+          "fieldResource": null
+        },
+        "persistentNodes": []
+      },
+      "closedOwners": true,
+      "presentationCommitsOwned": true,
+      "noOptimisticMP": true,
+      "receipt": {
+        "mode": "class86",
+        "category": 86,
+        "long_original_fixture_chant": false,
+        "normal_startup_requests_verified": 5,
+        "skill_packets_verified": 5,
+        "automatic_skill_queries_verified": [
+          3
+        ],
+        "commands_verified": [
+          "S|2|0|A"
+        ],
+        "exit_requests_verified": 1,
+        "movement_requests_verified": 2,
+        "no_duplicate_or_invented_actions": true,
+        "official_session": false,
+        "original_execution": false,
+        "input_cost_is_not_server_M_cost": true
+      }
+    }
+  },
+  "original_reference": {
+    "path": "analysis/game-battle-status-skills-v1/original-vectors.json",
+    "bytes": 4620107,
+    "sha256": "54d97c6ceddc03b54eab5bdcd1b5ee7cdf28e069c7bbebb5d9ad6a7ee2a926fa"
+  },
+  "corrected_reference": {
+    "path": "analysis/game-legacy-battle-status-variant-v1/hp-zero-traces.json",
+    "bytes": 247413,
+    "sha256": "79f6d8c0b00b512840d6c021b24104bca3287fcf8f47bb574779441146231519"
+  },
+  "entries": {
+    "ko-web": {
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/ko-web.log",
+        "bytes": 879,
+        "sha256": "615c1ff69b7f1f5b2d0b363e3fc1d5adc316b13163291a4a869191fb8462bd66"
+      },
+      "observations": [
+        {
+          "surface": "desktop-web",
+          "statusVariant": "ko",
+          "targetHP": null,
+          "completedRound": 1,
+          "casterMP": 7,
+          "resumedMovement": true
+        },
+        {
+          "surface": "mobile-web",
+          "statusVariant": "ko",
+          "targetHP": null,
+          "completedRound": 1,
+          "casterMP": 7,
+          "resumedMovement": true
+        }
+      ],
+      "exact_guard": 1,
+      "exact_exit": 1,
+      "exact_movement_requests": 2
+    },
+    "ko-wechat-source": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/ko-wechat-source.log",
+        "bytes": 482,
+        "sha256": "7b8a2673fdf8c6915b8325830019203c24eeaee8b9bca7a48e0322da9873024c"
+      },
+      "observations": [
+        {
+          "surface": "wechat-page",
+          "statusVariant": "ko",
+          "targetHP": null,
+          "casterMP": 7,
+          "resumedMovement": true
+        }
+      ],
+      "exact_guard": 1,
+      "exact_exit": 1,
+      "exact_movement_requests": 2
+    },
+    "ko-wechat-generated": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/ko-wechat-generated.log",
+        "bytes": 483,
+        "sha256": "56029aacb208439a984816cac60b2bf3cbb44065da2ad11d809da4e9a4ccdf18"
+      },
+      "observations": [
+        {
+          "surface": "wechat-page",
+          "statusVariant": "ko",
+          "targetHP": null,
+          "casterMP": 7,
+          "resumedMovement": true
+        }
+      ],
+      "exact_guard": 1,
+      "exact_exit": 1,
+      "exact_movement_requests": 2
+    },
+    "revive-web": {
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/revive-web.log",
+        "bytes": 902,
+        "sha256": "dbeac516b1c82b633a28dcc813acaaf3c7a6e5bf9ad7e931ff49d0d811e74997"
+      },
+      "observations": [
+        {
+          "surface": "desktop-web",
+          "statusVariant": "revive",
+          "targetHP": 100,
+          "completedRound": 1,
+          "casterMP": 7,
+          "resumedMovement": true
+        },
+        {
+          "surface": "mobile-web",
+          "statusVariant": "revive",
+          "targetHP": 100,
+          "completedRound": 1,
+          "casterMP": 7,
+          "resumedMovement": true
+        }
+      ],
+      "exact_guard": 1,
+      "exact_exit": 1,
+      "exact_movement_requests": 2
+    },
+    "revive-wechat-source": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/revive-wechat-source.log",
+        "bytes": 494,
+        "sha256": "3c68da2ad2e1a361b6fc12544953c63f87bf3de5e1b31f5ee8719b40334fb0e4"
+      },
+      "observations": [
+        {
+          "surface": "wechat-page",
+          "statusVariant": "revive",
+          "targetHP": 100,
+          "casterMP": 7,
+          "resumedMovement": true
+        }
+      ],
+      "exact_guard": 1,
+      "exact_exit": 1,
+      "exact_movement_requests": 2
+    },
+    "revive-wechat-generated": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/revive-wechat-generated.log",
+        "bytes": 494,
+        "sha256": "e713b3c0bda78a0f87a72f4727fc66f970ed5114a982d2722e07818cc91d9bed"
+      },
+      "observations": [
+        {
+          "surface": "wechat-page",
+          "statusVariant": "revive",
+          "targetHP": 100,
+          "casterMP": 7,
+          "resumedMovement": true
+        }
+      ],
+      "exact_guard": 1,
+      "exact_exit": 1,
+      "exact_movement_requests": 2
+    }
+  },
+  "local_tcp_paths": 8,
+  "page_regressions": {
+    "source": {
+      "counts": {
+        "tests": 25,
+        "pass": 25,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/page-source.log",
+        "bytes": 20804,
+        "sha256": "7ae058de20cb528d0b8a69c1652a63249b6e1f45f4879e2c38e8a1a706eaf455"
+      }
+    },
+    "generated": {
+      "counts": {
+        "tests": 25,
+        "pass": 25,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/page-generated.log",
+        "bytes": 20877,
+        "sha256": "979e452bfc2a82c32d05bec6bb8ba23fda11df562a83c6c4851f47b183a15372"
+      }
+    }
+  },
+  "summon_regressions": {
+    "web": {
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/summon-regression-web.log",
+        "bytes": 862,
+        "sha256": "e5199591ec42f5104ca602f0ce8ad44d486e6da94646b9425be7de5455b9d755"
+      }
+    },
+    "wechat-source": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/summon-regression-wechat-source.log",
+        "bytes": 470,
+        "sha256": "d8b110717e1b0a427be50ddb9c51d90cf9032af3ecf87aac97ff91cff987078d"
+      }
+    },
+    "wechat-generated": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/summon-regression-wechat-generated.log",
+        "bytes": 475,
+        "sha256": "d911c2b5ad84f9238799b6e6545d0f43a62c6f23639c28dc606eb57c853f8cd0"
+      }
+    }
+  },
+  "builds": [
+    {
+      "name": "default",
+      "report": {
+        "path": "build/wechat-app-stage242-default-final/build-report.json",
+        "bytes": 44824,
+        "sha256": "847f2d4c6ce2c9584c4c8e0abce8d3f406db73ae9d22530082f103cde408c31d"
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/build-default.log",
+        "bytes": 188,
+        "sha256": "b899a1e866a7895d82a0bce7bcf132b47f4ee487b9953fdce92b18cd88b3d520"
+      }
+    },
+    {
+      "name": "local",
+      "report": {
+        "path": "build/wechat-app-stage242-local-final/build-report.json",
+        "bytes": 44859,
+        "sha256": "538829511a6fc8fa79ebb3a2f302f1d2658ae3922466037dac8a169e7df3cdab"
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/build-local.log",
+        "bytes": 185,
+        "sha256": "0c27868310fcc4362a6e53d2d72d82ec27cc1630b65417ccf1c6cd1d57182be9"
+      }
+    },
+    {
+      "name": "resources",
+      "report": {
+        "path": "build/wechat-app-stage242-resources-final/build-report.json",
+        "bytes": 44867,
+        "sha256": "83b899deb6be84f098a869833a61fdf254eb1dd204d35ee5d7bfbbf250449013"
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/build-resources.log",
+        "bytes": 189,
+        "sha256": "2ce8906f65c48a2bebe5f5808acec2ef26e266c65ae58b609d7677061e35c0bc"
+      }
+    },
+    {
+      "name": "page",
+      "report": {
+        "path": "build/wechat-app-stage242-page-final/build-report.json",
+        "bytes": 44987,
+        "sha256": "413388a95bf5b9f0d0d874f491c6a1c4cb415a07235cb82c342fdc48c6c6c0b7"
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/build-page.log",
+        "bytes": 184,
+        "sha256": "447245bf63f94c01d5c06a1d2b7d4888a0dc61ae831d294e122db9a8f39985d4"
+      }
+    },
+    {
+      "name": "api",
+      "report": {
+        "path": "build/wechat-game-stage242-api-final/build-report.json",
+        "bytes": 30986,
+        "sha256": "d5f513552a1433e50bcbfb750c6a1d7df7df0400b550fe0e9958826239fe96fe"
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/build-api.log",
+        "bytes": 369,
+        "sha256": "c7dfec4073dbc2befe613722a33268c7505ff3c1e8d97cd7aa409baa463694d8"
+      }
+    }
+  ],
+  "template_compilers": [
+    {
+      "name": "wcc",
+      "output": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/native-verified-wxml.js",
+        "bytes": 178518,
+        "sha256": "e0b8866482e4dabc966d55463578638243f263553345d7d8b36db197f6741950"
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/wcc.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "wcsc",
+      "output": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/native-verified-wxss.js",
+        "bytes": 9026,
+        "sha256": "be677ce40585517a65bb007589b049577ca62076e1a6cfbc53e673730db6735e"
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/wcsc.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "path": "analysis/game-battle-status-skills-v1/reference.mjs",
+      "bytes": 1843,
+      "sha256": "b229acff260bd445d5549dcd3e763debc27b00d69c6ea0d8babe4c79d5c30639"
+    },
+    {
+      "path": "analysis/game-battle-status-skills-v1/tcp-flow.mjs",
+      "bytes": 13561,
+      "sha256": "42d54369e47fa662e842128483abb815c56625e7964dd59244e239ae897ec4f8"
+    },
+    {
+      "path": "analysis/game-browser-owner-v1/original_peer.py",
+      "bytes": 15406,
+      "sha256": "34c8d954211ef4095955e9b79f69c8772910d2fe9a5e08aae40936f16378324a"
+    },
+    {
+      "path": "analysis/game-legacy-ordinary-context-v1/entry-test.mjs",
+      "bytes": 30287,
+      "sha256": "52de5cc82962a2ea4e106e3adfa99493a3b1cdee36eca391f5a10b11ca26af5d"
+    },
+    {
+      "path": "shared/tests/legacy-game-battle-status-skills.test.mjs",
+      "bytes": 11276,
+      "sha256": "a58e0a60b0ef57f342f3fc78dd5da4c11f50d97a79ff67f7f3d84ffd4ab569a0"
+    },
+    {
+      "path": "shared/tests/legacy-game-battle-status-variant.test.mjs",
+      "bytes": 8596,
+      "sha256": "e95e33c5c2757f78eef3288827d43773b0a75fbd0560b0efbe2d8410e91ebfc5"
+    }
+  ],
+  "regression": {
+    "counts": {
+      "tests": 2762,
+      "pass": 2762,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "log": {
+      "path": "build/analysis/game-legacy-battle-status-variant-v1/regression.log",
+      "bytes": 1342629,
+      "sha256": "ac9a2580ab4530b9dd87fbfb728358b1a056332f739790ac3ec91f9d766121c6"
+    },
+    "test_files": 228,
+    "receipt": {
+      "path": "build/analysis/game-legacy-battle-status-variant-v1/regression-receipt.json",
+      "bytes": 12333,
+      "sha256": "987b593de2a7b6ac4f9e588daf5fc599fe850ad9264c73cc5cea783c9156a702"
+    },
+    "inputs": {
+      "path": "build/analysis/game-legacy-battle-status-variant-v1/regression-inputs.json",
+      "bytes": 179579,
+      "sha256": "71694bcb49a53cdde5594534098a8f2d194d0ff3c916fc6c12080932cb460928"
+    }
+  },
+  "fixture_recovery": {
+    "first_entry_logs": {
+      "ko": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/ko-web-first.log",
+        "bytes": 3390,
+        "sha256": "afa4c710825eff98be9b0561dc74766f8dedd48d1f69802c450f0587e6cc70de"
+      },
+      "revive": {
+        "path": "build/analysis/game-legacy-battle-status-variant-v1/revive-web-first.log",
+        "bytes": 1969,
+        "sha256": "cf47f64bf631eaa9587313ccf6f5594a998a27583ebee31c4e533a2f293d56d0"
+      }
+    },
+    "first_targeted": {
+      "path": "build/analysis/game-legacy-battle-status-variant-v1/targeted-first.log",
+      "bytes": 5345,
+      "sha256": "7fd186dded46ba01d780da6df8c9008fc31c51a486073b82a14ea677268fc18c"
+    },
+    "result": "The first Web tests reached the default 10-second bridge lifetime. The status scenarios use the existing bounded 45-second option. The targeted order assertion follows the dead-body wait gate, and the style helper is imported from its actual module."
+  },
+  "cases": {
+    "pair_variants": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      9,
+      10,
+      11,
+      14
+    ],
+    "all_ten_levels": true,
+    "caster_precast_passes": 270,
+    "active_signal_and_seed": true,
+    "special_slot_aliases": true,
+    "existing_condition_clear": true,
+    "action43_live_hp_and_random_draw": true,
+    "revival_after_CFP": true,
+    "caster_self_reset": true,
+    "absent_caster": true,
+    "empty_list": true,
+    "ordinary_movement_resumed": true
+  },
+  "native_original_runtime_verified": false,
+  "native_wechat_runtime_verified": false,
+  "physical_devices_verified": false,
+  "current_handoff_verified": false,
+  "original_execution": 0,
+  "VM_actions": 0,
+  "official_sessions": 0,
+  "bounded_slice_complete": true,
+  "full_goal_complete": false
+}

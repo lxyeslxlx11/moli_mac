@@ -1,0 +1,2 @@
+import test from'node:test';import*as api from'../../shared/index.mjs';import{createWeChatLegacyGameSession}from'../../adapters/wechat/legacy-game-session.mjs';import{runCharacterChangeTCP,characterChangeTCPModes}from'../../analysis/game-battle-character-change-v1/tcp-flow.mjs';
+for(const mode of characterChangeTCPModes)test('actual source CBC/resources/vitals/linked ownership/round/return OS TCP '+mode,{timeout:30000},async()=>console.log('battle-character-change-tcp '+JSON.stringify(await runCharacterChangeTCP({...api,createWeChatLegacyGameSession},mode))));

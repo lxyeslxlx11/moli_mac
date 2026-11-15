@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-25",
+  "host": {
+    "model": "MacBook Pro Mac15,7",
+    "chip": "Apple M3 Pro",
+    "architecture": "arm64",
+    "cores": 12,
+    "performance_cores": 6,
+    "efficiency_cores": 6,
+    "memory_GB_reported": 36,
+    "macOS": "27.0.1",
+    "build": "26A434",
+    "available_disk_bytes_at_observation": 260505600000,
+    "initial_df_available_GiB_rounded": 246,
+    "available_disk_bytes_observation_timing": "captured later while Windows ISO download was in progress; not initial df observation",
+    "after_iso_available_GiB": 237.66
+  },
+  "tools": {
+    "UTM": {
+      "path": "/Applications/UTM.app",
+      "version": "5.0.8",
+      "bundle_id": "com.utmapp.UTM",
+      "signature_check": "codesign --verify --deep --strict: pass outside sandbox",
+      "gatekeeper": "accepted; Notarized Developer ID; Turing Software, LLC (WDNLXAD4W8)"
+    },
+    "Homebrew_QEMU_aarch64": "11.1.2",
+    "Homebrew_QEMU_x86_64": "11.1.2",
+    "note": "UTM machine alias virt-10.0 is not a measured embedded engine version"
+  },
+  "existing_VMs_observed_in_UTM": [
+    {
+      "name": "Win11CG",
+      "path": "/Users/lx/.Trash/moli-mac/build/utm/Win11CG.utm",
+      "state": "stopped",
+      "architecture": "aarch64",
+      "memory_GB": 4,
+      "size_UI_GB": 28.12,
+      "network": "shared virtio-net-pci",
+      "decision": "do not restore, start, copy, inspect guest contents or modify without selection and safe reuse context"
+    },
+    {
+      "name": "Win10CG",
+      "path": "/Users/lx/.Trash/moli-mac/build/utm/Win10CG.utm",
+      "state": "stopped",
+      "architecture": "x86_64",
+      "memory_GB": 4,
+      "size_UI_GB": 38.37,
+      "network": "shared e1000",
+      "decision": "same as Win11CG"
+    },
+    {
+      "name": "ImportTest",
+      "architecture_UI": "ARM64",
+      "details": "not inspected"
+    },
+    {
+      "name": "Bisect1",
+      "architecture_UI": "x86 PC",
+      "details": "not inspected"
+    },
+    {
+      "name": "Bisect4",
+      "architecture_UI": "x86 PC",
+      "details": "not inspected"
+    }
+  ],
+  "image_inventory": {
+    "scope": "top-level filenames only; no broad private directory scan",
+    "roots": [
+      "/Users/lx/Downloads",
+      "/Users/lx/Documents/code/moli-mac/moli",
+      "/Users/lx/Documents/Codex/2026-10-25/task"
+    ],
+    "extensions": [
+      ".iso",
+      ".vhdx",
+      ".vhd",
+      ".qcow2",
+      ".utm",
+      ".pvm",
+      ".vmwarevm"
+    ],
+    "matches": [],
+    "limitation": "does not prove no image exists elsewhere"
+  },
+  "tool_limits": [
+    {
+      "action": "sysctl hw.memsize",
+      "status": "sandbox denied; system_profiler supplied memory without escalation"
+    },
+    {
+      "action": "read UTM container Documents",
+      "status": "Operation not permitted; no permission change or retry; UI used for app inventory"
+    },
+    {
+      "action": "utmctl --help",
+      "status": "exit134 in sandbox; not used further"
+    },
+    {
+      "action": "codesign/spctl in sandbox",
+      "status": "failed; exact read-only external review then both succeeded; no security setting changed"
+    },
+    {
+      "action": "cua.getApp UTM",
+      "status": "returned valid UI after unusually long 1513s tool wait; no VM start in this call"
+    }
+  ]
+}

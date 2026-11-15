@@ -1,0 +1,86 @@
+{
+  "schema": "moli.launcher-v26.implementation-spec.v1",
+  "source": "static-spec.json",
+  "product": [
+    "shared/game-patch.mjs",
+    "shared/launcher-update.mjs",
+    "shared/index.mjs"
+  ],
+  "manifest_grammar": {
+    "whole_trim_hex": [
+      "20",
+      "09",
+      "0d",
+      "0a"
+    ],
+    "block_separator_hex": "7d",
+    "sequential_remove_hex": [
+      "0d",
+      "09",
+      "20",
+      "7b0a"
+    ],
+    "block_trim": "same byte set",
+    "command_separator_hex": "0a",
+    "commands": [
+      "create",
+      "append",
+      "replaceto"
+    ],
+    "field_separator_hex": "3a",
+    "field_segments_required": 2,
+    "empty_pieces": "Retain interior empties; omit only the final empty tail.",
+    "key_policy": "case-sensitive bytes, first duplicate retained",
+    "unknown_commands": "skip with block ordinal and explicit reason",
+    "field_encoding": "opaque non-NUL bytes; no implicit locale decoding"
+  },
+  "archive": {
+    "observed_suffix": ".bz2?time=...",
+    "consumer": "classic ZIP; all central entries",
+    "reuse": "existing fixed Pako3.0.2 rawDeflate/CRC and ZIP parser; no bzip2 dependency",
+    "profile": "stored/rawDeflate; existing classic nonencrypted single-disk constraints",
+    "directories": "permitted including first entry, empty payload only; strict relative paths and tree conflicts checked",
+    "self_updater": "still selects first regular central entry; new all-entry API separate"
+  },
+  "native_operations": {
+    "create": "name/md5/path; matching target digest skips, otherwise download ZIP and extract to target parent",
+    "append": "name/old_name/path; missing names or missing base skip; ZIP extract to unzip staging, append named chunk to old file then move to name",
+    "replaceto": "create-like plus optional pre-download shell deletion of old_name; never executed by independent implementation",
+    "retries": "Application attempts each operation at most three times; actual failures not dynamically validated",
+    "file_digest_scope": "Native mapped file with low32 byte length; above4GiB unverified. Independent profile <=32MiB.",
+    "post_download": "Native digest is logged; observed success path has no mandatory second equality branch"
+  },
+  "independent_policies": {
+    "paths": "memory keys only, ASCII printable non-space relative paths, normalized backslash to slash, <=259B; reject traversal, empty components, drives, reserved names, trailing dot/space, aliases and file/directory collisions",
+    "final_digest": "all operations require32 lowercase hex MD5 and final destination comparison; append enforcement and native post-download enforcement are stronger independent policies",
+    "input_ownership": "clone byte inputs; own data fields; preserve caller originals; no partial output on failure",
+    "archive_binding": "explicit blockOrdinal, unique matching consumed package; unused packages rejected",
+    "filesystem_transaction": "none; provisional memory map only; no files touched",
+    "replacement_delete": "old_name removed only from successful memory candidate, no shell or filesystem actions",
+    "repeat": "no automatic retries or network; caller supplies all bytes",
+    "unverified": "trust and authentication unverified, replacement not-performed"
+  },
+  "budgets": {
+    "manifestBytes": 262144,
+    "blocks": 512,
+    "operations": 256,
+    "linesPerBlock": 256,
+    "fieldBytes": 4096,
+    "files": 1024,
+    "fileBytes": 33554432,
+    "totalFileBytes": 67108864,
+    "archiveBytesEach": 33554432,
+    "totalArchiveBytes": 67108864,
+    "zipEntriesEach": 64,
+    "zipAggregateOutputEach": 33554432,
+    "pathBytes": 259
+  },
+  "run": "node shared/examples/game-patch.mjs",
+  "tested": "31 Python grammar vectors,10 PythonZIP/hashlib candidates,21 newNode tests,38 focused,457 total,actualChrome samevectors+8 negatives",
+  "not_implemented": [
+    "Patcher process start/official downloader/update-source authority",
+    "Win32 filesystem permissions/attributes/timestamps/ANSI-DBCS and native rollback",
+    "Browser update UI/storage/actualinstallation write transaction",
+    "Original Update.TXT/officialpayloads/gamebusinessprotocol/target-device acceptance"
+  ]
+}

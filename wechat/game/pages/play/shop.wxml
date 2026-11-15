@@ -1,0 +1,38 @@
+<view class="card" wx:if="{{shop}}">
+  <view class="section-title">{{shop.action}} · {{shop.title}}</view>
+  <view class="hint">{{shop.balance}}<text wx:if="{{shop.purchase}}"> · 背包空格 {{shop.freeBagSlots}}</text></view>
+  <view wx:for="{{shop.messages}}" wx:key="id" class="line commerce-text">{{item.text}}</view>
+  <view wx:if="{{shop.notice}}" class="hint" role="status">{{shop.notice}}</view>
+  <view wx:if="{{!shop.reviewing}}">
+    <view class="hint" wx:if="{{!shop.rows.length}}">当前没有可选物品。</view>
+    <view wx:for="{{shop.rows}}" wx:key="row" class="commerce-section">
+      <view class="line">{{item.name}}</view>
+      <view class="hint">{{item.details}}</view>
+      <view wx:if="{{item.description}}" class="line commerce-text">{{item.description}}</view>
+      <button wx:if="{{shop.service}}" size="mini" disabled="{{shop.busy || !item.maximum}}" data-action="toggle"
+        data-row="{{item.row}}" data-revision="{{shop.revision}}" bindtap="onShop">{{item.selected ? '已选' : '选择'}}</button>
+      <input wx:else class="field commerce-amount" type="number" value="{{item.quantity}}" maxlength="10"
+        disabled="{{shop.busy || !item.maximum}}" placeholder="数量" data-action="quantity"
+        data-row="{{item.row}}" data-revision="{{shop.revision}}" bindinput="onShop" />
+    </view>
+  </view>
+  <view wx:else class="commerce-section">
+    <view class="line" wx:for="{{shop.quote.lines}}" wx:key="row">{{item.name}}<text wx:if="{{!shop.service}}"> × {{item.quantity}}</text></view>
+  </view>
+  <view wx:if="{{shop.quote}}" class="line">
+    {{shop.conversion ? '折算值' : '合计'}} {{shop.quote.total}} <text wx:if="{{!shop.conversion}}">{{shop.unit}}</text>
+    <text wx:if="{{shop.purchase}}"> · 需要 {{shop.quote.requiredBagSlots}} 个空格</text>
+    <text wx:if="{{shop.quote.releasedBagSlots}}"> · 付款腾出 {{shop.quote.releasedBagSlots}} 格</text>
+  </view>
+  <view class="controls">
+    <button wx:if="{{shop.reviewing}}" type="primary" disabled="{{!shop.canConfirm}}" data-action="confirm"
+      data-revision="{{shop.revision}}" bindtap="onShop">确认{{shop.action}}</button>
+    <button wx:else type="primary" disabled="{{!shop.canReview}}" data-action="review"
+      data-revision="{{shop.revision}}" bindtap="onShop">核对订单</button>
+    <button wx:if="{{shop.reviewing}}" size="mini" disabled="{{shop.busy}}" data-action="back"
+      data-revision="{{shop.revision}}" bindtap="onShop">返回修改</button>
+    <button wx:else size="mini" disabled="{{shop.busy}}" data-action="clear"
+      data-revision="{{shop.revision}}" bindtap="onShop">清空订单</button>
+    <button size="mini" disabled="{{shop.busy}}" data-action="cancel" data-revision="{{shop.revision}}" bindtap="onShop">离开商店</button>
+  </view>
+</view>

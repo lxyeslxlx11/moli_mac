@@ -1,0 +1,36 @@
+{
+  "schema": "moli.normal-platform-install.runtime.v1",
+  "recorded_utc": "2026-10-30T03:41:53.570924+00:00",
+  "plan": "analysis/game-install-context-v1/platform-plan-stage106.json",
+  "preflight": "analysis/game-install-context-v1/platform-preflight-stage106.json",
+  "stage": "Original installer running; actual license page reached, default refusal retained; awaiting new agreement acceptance confirmation.",
+  "source": "E:/POLCN_Setup.exe",
+  "sha256": "dc90bb88e35a82a649f1c026bd0b7b6e7039ddbe5e872f40ffebfb4b16b0fb11",
+  "start_command": "sv platform106 (start-process e:/POLCN_Setup.exe -verb runas -passthru); $platform106 | fl id,hasexited",
+  "explicit_start_submissions": 1,
+  "UAC_acceptances": 1,
+  "Install_clicks": 0,
+  "new_binding_terms_accepted": false,
+  "installation_complete": false,
+  "game_launcher_updater_launch_actions": 0,
+  "events": [
+    {
+      "kind": "start-submitted-once",
+      "recorded_utc": "2026-10-30T03:43:34.837184+00:00",
+      "result": "Reviewed complete command, Return150ms once; no repeat."
+    },
+    {
+      "kind": "exact-uac-accepted",
+      "recorded_utc": "2026-10-30T03:43:34.837184+00:00",
+      "observed": "Expanded UAC: POLCN_Setup.exe, unknown publisher, CD/DVD, exact E:\\POLCN_Setup.exe. Clicked observed Yes once; UAC disappeared. No credential or policy action."
+    },
+    {
+      "kind": "actual-license-page",
+      "recorded_utc": "2026-10-30T03:48:13.119176+00:00",
+      "observed": "Welcome shown, PID3440/HasExitedFalse in retained Start-Process result; Next once opened actual license page. Default refusal selected, Next disabled. No acceptance or Install click."
+    }
+  ],
+  "actual_initial_pid": 3440,
+  "actual_initial_HasExited": false,
+  "license_review_record": "analysis/game-install-context-v1/platform-license-stage106.json"
+}

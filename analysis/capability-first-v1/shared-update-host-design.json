@@ -1,0 +1,2992 @@
+{
+  "schema": "moli.shared-update-host-design.v1",
+  "classification": "independent-host-protocol-refinement-reviewed-feasibility-and-implementation-open",
+  "requirement": "UF-U2 concrete three-platform resource publication,handoff,reload and recovery under the original all-capability-first workflow",
+  "document_catalog": {
+    "source": {
+      "path": "build/analysis/shared-update-host-design-v1/source-review.json",
+      "bytes": 13730,
+      "sha256": "c6e1327f00ca737d8bd6d0186b3a67e98285af721aeedf147cff7447f537c1f5"
+    },
+    "design_input": {
+      "path": "build/analysis/shared-update-host-design-v1/design-content.json",
+      "bytes": 33715,
+      "sha256": "3529ff75cd2cc1458ec83fdd4068eaccb26d69317aff316ecc332a27bb308e2d"
+    },
+    "target": {
+      "path": "analysis/capability-first-v1/shared-target-contract.json",
+      "bytes": 68467,
+      "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+    },
+    "L05": {
+      "path": "analysis/capability-first-v1/launcher-update-ack-reconciliation.json",
+      "bytes": 40464,
+      "sha256": "deda1401332f428e973ea1d691d0a7dcd551d1a9d88aa5ddb23e66c9d5443bf7"
+    },
+    "resource_design": {
+      "path": "build/analysis/resource-platform-contract-v1/specification.json",
+      "bytes": 25758,
+      "sha256": "5a82d4c657f027b7c83b9599140622b791ec7013e0867c1c222f3172a6c9514f"
+    },
+    "browser_observations": {
+      "path": "analysis/capability-first-v1/browser-host-profile.json",
+      "bytes": 22336,
+      "sha256": "5f164e6a44945a89eff56426c51db7a542c23a6e53e83fcddf04708872e4b151"
+    },
+    "wechat_observations": {
+      "path": "analysis/capability-first-v1/wechat-host-profile.json",
+      "bytes": 23156,
+      "sha256": "2704e0876f01e4f63bfc58451dfcbe83a1a7fedacda7a153cb2adf3678807b86"
+    },
+    "web_store": {
+      "path": "web/launcher-resource-store.mjs",
+      "bytes": 7987,
+      "sha256": "8d2c0fc8d2c71653812c3eb90a3dbc7ac8597042b7b19d8c04bb09cd3d3956ec"
+    },
+    "wechat_store": {
+      "path": "adapters/wechat/launcher-slot-store.mjs",
+      "bytes": 9391,
+      "sha256": "be8c2b97c7b9cc774a51577b6e44e977545de0bbeb841b5da691aa8848077e6d"
+    },
+    "native_header_parser": {
+      "path": "shared/launcher-update-journal.mjs",
+      "bytes": 3066,
+      "sha256": "2a09c9ac34fb07dff6490dba6d54aeff0a29feb0f72b8595082c9053bdd0bae1"
+    },
+    "native_candidate_limits": {
+      "path": "analysis/launcher-current-updater-v1/implementation-spec.json",
+      "bytes": 4181,
+      "sha256": "9ca64458a21a0ff2bc7c2caac2a19e4c5fa6068ccae8a9a0e30fd4c588d94d28"
+    },
+    "reused_digest": {
+      "path": "shared/md5.mjs",
+      "bytes": 1918,
+      "sha256": "be2a12f5fca9f133155c821a8e30660ea8d7b31b08952a6d55119579998b984e"
+    }
+  },
+  "scope_preserved": {
+    "capabilities": [
+      "L05",
+      "X03",
+      "X04",
+      "X05",
+      "X06"
+    ],
+    "inventory": "40/81/37/10/6",
+    "source_ready_capabilities": 19,
+    "ports": 14,
+    "methods": 62,
+    "all_original_owner_dependency_batch_profile_fields": {
+      "L05": {
+        "existing_implementation_owners": [
+          "shared/launcher-update.mjs",
+          "shared/launcher-update-arguments.mjs",
+          "shared/launcher-update-journal.mjs"
+        ],
+        "dependencies": [
+          "L01"
+        ],
+        "implementation_batch": "D1",
+        "source_profiles": [
+          "launcher-legacy-601b",
+          "launcher-updated-c82f",
+          "launcher-historical-c7ba"
+        ]
+      },
+      "X03": {
+        "existing_implementation_owners": [
+          "shared/legacy-game-resource-archive.mjs",
+          "shared/launcher-resource-cache.mjs"
+        ],
+        "dependencies": [
+          "X01"
+        ],
+        "implementation_batch": "D0",
+        "source_profiles": [
+          "game-legacy-37c4",
+          "platform"
+        ]
+      },
+      "X04": {
+        "existing_implementation_owners": [
+          "web/game.html",
+          "web/legacy-game-craft-controls.mjs"
+        ],
+        "dependencies": [
+          "L08",
+          "G03",
+          "B04",
+          "X06"
+        ],
+        "implementation_batch": "D5",
+        "source_profiles": [
+          "platform"
+        ]
+      },
+      "X05": {
+        "existing_implementation_owners": [
+          "wechat/game/pages/play/index.js"
+        ],
+        "dependencies": [
+          "L08",
+          "G03",
+          "B04",
+          "X06"
+        ],
+        "implementation_batch": "D5",
+        "source_profiles": [
+          "platform"
+        ]
+      },
+      "X06": {
+        "existing_implementation_owners": [
+          "adapters/node/launcher-stream.mjs",
+          "adapters/wechat/launcher-stream.mjs"
+        ],
+        "dependencies": [
+          "X01"
+        ],
+        "implementation_batch": "D0",
+        "source_profiles": [
+          "platform"
+        ]
+      }
+    }
+  },
+  "implementation_facts": [
+    {
+      "id": "UH-F01",
+      "classification": "事实",
+      "claim": "The existing14-port/62-method target contract is reviewed but unimplemented;UC-P08 andUC-P10 already own storage publication and restart. This refinement adds no new port or method.",
+      "input": "target",
+      "pointers": [
+        "/ports/7",
+        "/ports/9",
+        "/types",
+        "/state_machines"
+      ]
+    },
+    {
+      "id": "UH-F02",
+      "classification": "事实",
+      "claim": "The selected web adapter reads expectedRevision and writes one full resource record in one IndexedDB transaction;it reports commit only from transaction.oncomplete. This is not a chunked version store or restart coordinator.",
+      "views": [
+        "web_transaction_complete_and_CAS"
+      ]
+    },
+    {
+      "id": "UH-F03",
+      "classification": "事实",
+      "claim": "The selected WeChat adapter has a module-context Map lock,two complete record slots,highest-valid revision selection,same-revision mismatch detection and native write/readback. After write issuance timeout/failure is commit-unknown;pending native write retains payload and lock. No cross-App writer authority is established.",
+      "views": [
+        "wechat_context_lock_and_completion",
+        "wechat_native_write_retention",
+        "wechat_slot_selection_publish_readback"
+      ]
+    },
+    {
+      "id": "UH-F04",
+      "classification": "事实",
+      "claim": "The existing Win32 journal module only parses its16-byte historical header. It does not inspect files,recover storage or implement portable publication;the portable capsule must have a distinct schema.",
+      "views": [
+        "native_header_only"
+      ]
+    },
+    {
+      "id": "UH-F05",
+      "classification": "事实",
+      "claim": "The retained real Chrome cases proved selected abort-after-request-success,CAS conflict and clean reopen behavior for their original fixture. They did not test this proposed full update protocol,abrupt termination,capacity or device lifecycle.",
+      "input": "browser_observations",
+      "pointers": [
+        "/facts/2",
+        "/facts/3",
+        "/facts/5",
+        "/facts/9"
+      ]
+    },
+    {
+      "id": "UH-F06",
+      "classification": "事实",
+      "claim": "The retained WeChat probe records0 executed SDK cases;its historical pending request was not polled or proved live. Current advertised tools have no WeChat-specific match;the task status remains unverified. Official typings guide only declaration-level design and all approval/settings stay untouched.",
+      "input": "wechat_observations",
+      "pointers": [
+        "/SDK_probe_executed",
+        "/summary",
+        "/pending_scope"
+      ]
+    },
+    {
+      "id": "UH-F07",
+      "classification": "事实",
+      "claim": "L05 has18 fixed-source review cells complete after C7 ACK binding;source predicates/versions remain distinct from independent host receipt semantics.",
+      "input": "L05",
+      "pointers": [
+        "/profile_group_cells",
+        "/facts",
+        "/remaining"
+      ]
+    },
+    {
+      "id": "UH-F08",
+      "classification": "事实",
+      "claim": "The retained modern updater source admits larger bounds than the current32MiB/ASCII candidate subset. Existing subset limits are implementation deltas,not permission to remove required resources from the portable manifest.",
+      "input": "native_candidate_limits",
+      "pointers": [
+        "/source_contracts",
+        "/implementation/policies"
+      ]
+    }
+  ],
+  "primary_API_facts": [
+    {
+      "id": "UH-API1",
+      "classification": "事实",
+      "kind": "primary-standard-not-host-test",
+      "url": "https://www.w3.org/TR/2026/WD-IndexedDB-3-20261030/",
+      "date": "2026-10-30",
+      "sections": [
+        "2.7",
+        "4.10",
+        "5.4"
+      ],
+      "paraphrase": "Request success can precede abort;transaction complete is the commit receipt. Durability is a hint,not observed crash or power-loss behavior."
+    },
+    {
+      "id": "UH-API2",
+      "classification": "事实",
+      "kind": "primary-standard-not-host-test",
+      "url": "https://www.w3.org/TR/2026/WD-web-locks-20261109/",
+      "date": "2026-11-09",
+      "sections": [
+        "2.4",
+        "3.2.1",
+        "4.2",
+        "4.3"
+      ],
+      "paraphrase": "Shared and exclusive locks coordinate clients in the same manager. A lock lasts for the callback promise;abort after grant does not release it. ifAvailable may return a null lock."
+    },
+    {
+      "id": "UH-API3",
+      "classification": "事实",
+      "kind": "primary-standard-not-host-test",
+      "url": "https://www.w3.org/TR/2026/CRD-service-workers-20261029/",
+      "date": "2026-10-29",
+      "sections": [
+        "3.2",
+        "4.1.4",
+        "Try Activate"
+      ],
+      "paraphrase": "A worker can wait before activation. skipWaiting can move a waiting worker toward active while old clients still exist;this is not an application readiness acknowledgement."
+    },
+    {
+      "id": "UH-API4",
+      "classification": "事实",
+      "kind": "official-type-declaration-not-SDK-test",
+      "url": "https://raw.githubusercontent.com/wechat-miniprogram/api-typings/e5dc50ccea71e7999a8aa8a942a6f68045e141ca/types/wx/lib.wx.api.d.ts",
+      "commit": "e5dc50ccea71e7999a8aa8a942a6f68045e141ca",
+      "views": {
+        "update_manager": {
+          "file": {
+            "path": "build/analysis/shared-update-host-design-v1/primary-api/lib.wx.api.d.ts",
+            "bytes": 1647088,
+            "sha256": "047ea9ccf4b4b17be816730fb0bcf7152a4205f33b15c5d80a691163cad4971f"
+          },
+          "start_line": 21581,
+          "end_line": 21630,
+          "selected_bytes": 2772,
+          "selected_sha256": "177bdcf5b490235084af2a1b91f891f9f70055bdd5b947d0f9c15e12277fd35e"
+        },
+        "check_result": {
+          "file": {
+            "path": "build/analysis/shared-update-host-design-v1/primary-api/lib.wx.api.d.ts",
+            "bytes": 1647088,
+            "sha256": "047ea9ccf4b4b17be816730fb0bcf7152a4205f33b15c5d80a691163cad4971f"
+          },
+          "start_line": 13792,
+          "end_line": 13795,
+          "selected_bytes": 127,
+          "selected_sha256": "4613f179cac340016cf9c180f142d6155c73bfa281ca03d81fb65c747a9d87be"
+        },
+        "ready_callback": {
+          "file": {
+            "path": "build/analysis/shared-update-host-design-v1/primary-api/lib.wx.api.d.ts",
+            "bytes": 1647088,
+            "sha256": "047ea9ccf4b4b17be816730fb0bcf7152a4205f33b15c5d80a691163cad4971f"
+          },
+          "start_line": 36979,
+          "end_line": 36981,
+          "selected_bytes": 97,
+          "selected_sha256": "9ced4c05fcd49bd05e56f5687bc9317a83fbbc5b4efac0c08ffa7c0bc0707081"
+        },
+        "rename_options": {
+          "file": {
+            "path": "build/analysis/shared-update-host-design-v1/primary-api/lib.wx.api.d.ts",
+            "bytes": 1647088,
+            "sha256": "047ea9ccf4b4b17be816730fb0bcf7152a4205f33b15c5d80a691163cad4971f"
+          },
+          "start_line": 10730,
+          "end_line": 10747,
+          "selected_bytes": 995,
+          "selected_sha256": "5f0b02a7d3224306ba61257e9536ae50d86f7d0d3ccf99c9d6e1b0d78c22a34e"
+        },
+        "rename_signature": {
+          "file": {
+            "path": "build/analysis/shared-update-host-design-v1/primary-api/lib.wx.api.d.ts",
+            "bytes": 1647088,
+            "sha256": "047ea9ccf4b4b17be816730fb0bcf7152a4205f33b15c5d80a691163cad4971f"
+          },
+          "start_line": 17695,
+          "end_line": 17695,
+          "selected_bytes": 43,
+          "selected_sha256": "26bdc5b940e99f115c9879da60802602c29cb397c8221566eebb81946b46841a"
+        }
+      },
+      "paraphrase": "The official typing declares ready/failed/check callbacks and applyUpdate returning void;the check result supplies hasUpdate. The selected ready declaration supplies no target build identity. Rename has callback declarations;these do not establish crash atomicity or filesystem durability."
+    }
+  ],
+  "independent_design": {
+    "classification": "推测：独立目标设计，静态接口细化；不是原程序ABI或已完成实现",
+    "refines_ports": [
+      "UC-P08",
+      "UC-P10"
+    ],
+    "support_ports": [
+      "UC-P01",
+      "UC-P06",
+      "UC-P07",
+      "UC-P09",
+      "UC-P11",
+      "UC-P14"
+    ],
+    "new_ports": 0,
+    "new_methods": 0,
+    "schemas": {
+      "StoreIdentity": {
+        "fields": {
+          "namespace": "owned application namespace",
+          "backend": "indexeddb|wechat-single-app-files",
+          "storageScope": "actual browser storage key/bucket/database or declared WeChat App sandbox",
+          "storeGeneration": "non-reused local incarnation of the portable publications inside that scope",
+          "sourceProfile": "admitted existing profile id plus artifact hash",
+          "formatRevision": "portable-format revision"
+        },
+        "rules": [
+          "账号、GameID、密码、票据、连接密钥与聊天内容均不属于该identity。",
+          "同一URI/目录名不能替代实际storageScope，跨设备与跨App不共享一个CAS。",
+          "显式初始化或重建使用新代际。旧记录与准备令牌保留原归属。当前代际丢失或有冲突时，沿恢复判定后再开放发布。"
+        ]
+      },
+      "ContentManifest": {
+        "fields": {
+          "schema": "moli.portable-content-manifest.v1",
+          "storeIdentity": "StoreIdentity",
+          "candidateId": "unique within store",
+          "manifestId": "scoped manifest identity;not a self-hash",
+          "sourceProfile": "existing SourceProfile",
+          "formatBindings": "resource/catalog format identities and encoding authority",
+          "requiredCoreSchema": "admitted core schema revision",
+          "files": "paged descriptors:logical file id,lossless byteLength,ordered chunk ranges,existing digest profile",
+          "totalBytes": "checked lossless integer",
+          "completeDigest": "md5 over canonical root metadata excluding this digest field;pages carry their own checked digests"
+        },
+        "rules": [
+          "自己的metadata采用版本化确定性UTF8 JSON字段顺序；large integer用规范十进制字符串，原始名字字节显式编码，不作Unicode规范化。复用已有MD5字节核心作完整性检查，digest排除自身字段，manifestId独立分配，避免自引用hash。",
+          "root只带分页descriptor引用及各页digest；逐页校验，不能要求把完整清单一次性复制进内存。",
+          "大整数位置保持lossless表示，转宿主Number前必须精确可表示；短读失败。",
+          "资源原字节与名字编码按已证格式，物理路径使用自己的chunk id。",
+          "完整清单不得因现有32MiB/4096项等子集限制被删减；分块、分层目录与分批校验服从根预算。",
+          "digest用于完整性核对，不能据此宣称来源认证。"
+        ]
+      },
+      "CommitCapsule": {
+        "fields": {
+          "schema": "moli.portable-update-commit.v1",
+          "storeIdentity": "StoreIdentity",
+          "updateId": "unique idempotency id within the store generation",
+          "revision": "positive safe local integer",
+          "parentRevision": "expected previous local revision",
+          "parentCapsuleId": "previous capsule identity or explicit empty store",
+          "candidateId": "verified candidate",
+          "manifestId": "complete ContentManifest identity",
+          "restartIntent": "RestartIntent or explicit content-only intent",
+          "integrity": "md5 of canonical capsule excluding this integrity field;integrity-only"
+        },
+        "rules": [
+          "这是独立目标格式，不使用Win32 POLU/16B stage header伪装为宿主journal。",
+          "revision是本地发布序号，不替换source count、raw RID、连接identity或源timer。",
+          "回滚内容通过新revision引用旧manifest，绝不倒减revision或抹去失败提交的receipt。"
+        ]
+      },
+      "RestartIntent": {
+        "fields": {
+          "schema": "moli.portable-restart-intent.v1",
+          "intentId": "id scoped by matching store generation and publication",
+          "updateId": "matching operation",
+          "kind": "content-rebind|application-code",
+          "targetManifestId": "expected committed content",
+          "targetRevision": "expected local publication",
+          "sourceProfile": "admitted profile",
+          "oldBuildId": "actual old reconstructed-app build",
+          "buildExpectation": "exact build|admitted build set|platform-managed target not supplied",
+          "requiredCoreSchema": "declared compatible core schema",
+          "oldOwnerEpoch": "nonsecret local ownership context"
+        },
+        "rules": [
+          "只存非秘密重启意图；不保存原进程/IPC凭据或账号会话来伪造跨端交接。",
+          "单调deadline不跨进程持久化复用；恢复操作建立新context/deadline。",
+          "目标平台未提供new build identity时保留该事实；不能捏造expected hash或把ready事件改称新build已运行。"
+        ]
+      },
+      "BootReadinessReceipt": {
+        "fields": {
+          "intentId": "matching intent scoped by store generation and publication",
+          "updateId": "matching operation",
+          "bootId": "actual host boot identity;unchanged for content-root-rebind",
+          "activationKind": "host-boot|content-root-rebind",
+          "resourceRootEpoch": "actual admitted content-root owner epoch",
+          "buildId": "compiled actual reconstructed-app identity",
+          "coreSchema": "actual core schema",
+          "manifestId": "actually acquired immutable content root",
+          "revision": "actually inspected active revision",
+          "sourceProfile": "actual admitted profile",
+          "readiness": "started|content-root-ready|bootstrap-ready|game-entered|failed|unknown",
+          "proofs": "host boot,store inspection,required resource/preflight and owner readiness receipts"
+        },
+        "rules": [
+          "reload/applyUpdate/worker激活只是请求或平台状态，不产生bootstrap-ready。",
+          "内容rebind保留实际host bootId，仅创建content-root epoch并报告content-root-ready，不捏造新宿主启动。",
+          "bootstrap-ready需绑定实际内容/构建，必要初始化与资源读取通过，新root输入接入；不是登录/游戏/官服成功。",
+          "intent缺失、build不匹配、资源缺块或更高revision已取代本次时，报告明确状态并重新inspect，不覆盖后来的发布。"
+        ]
+      },
+      "PortableUpdateReceipt": {
+        "fields": {
+          "commit": "existing CommitReceipt",
+          "restart": "pending|started|active|failed|unknown|not-requested plus detailed readiness receipt",
+          "inspectionKey": "storeIdentity/updateId/intentId",
+          "oldReaderState": "existing DrainReceipt",
+          "effects": "actual staged,published,retained,retired,history proof,current content availability and cleanup effects"
+        },
+        "rules": [
+          "内容commit和code/restart沿独立轴记录；已commit后cancel/restart失败不能逆转commit。",
+          "历史commit与当前内容可用性分别报告；合法回收旧root不把已有commit receipt变成not_committed。",
+          "API回调、同context回读、重开验证与断电持久化是不同证据层。"
+        ]
+      }
+    },
+    "rules": [
+      {
+        "id": "UH-D01",
+        "title": "划分内容与程序更新",
+        "classification": "推测/独立设计",
+        "rules": [
+          "目录pair、游戏资源与重构App代码使用不同版本身份。Win32 EXE只是参考格式/候选检查输入，三端代码通过自己的发布通道更新。",
+          "复用L05三来源全部源规则，source重试/期限、guard及不检查的API结果仍按版本说明；下述发布/lease/重启协议属于独立目标设计。"
+        ]
+      },
+      {
+        "id": "UH-D02",
+        "title": "统一提交状态",
+        "classification": "推测/独立设计",
+        "rules": [
+          "prepare只写不可变候选/完整manifest，不改变active。publish在同一权威内比较存储代际、父提交和expectedRevision，并把active head、update receipt与restart intent组成一个逻辑提交。",
+          "提交开始前可取消；提交已发出且无权威结果则unknown，先inspect并阻止相同store的不明重放。committed不可变成cancelled。",
+          "同updateId且内容相同的重试返回已有结果；同id不同内容拒绝。较高revision不证明旧操作未提交，需查receipt/history或保留unknown。"
+        ]
+      },
+      {
+        "id": "UH-D03",
+        "title": "完整资源与预算",
+        "classification": "推测/独立设计",
+        "rules": [
+          "prepare统一计入旧pin、新候选、输入/输出/scratch/queued copy和native inflight；无预算则报告不足，保留原需求和旧active。",
+          "chunk大小及批次由已核BudgetProfile确定，不能靠固定32MiB等限制缩小原资源域。WeChat自己的多级目录限制单次readdir工作集，不限制总文件数。",
+          "按已证profile采用相应摘要/Range/重试规则；不重新查询已完成的decoder、curl或native updater。"
+        ]
+      },
+      {
+        "id": "UH-D04",
+        "title": "网页发布",
+        "classification": "推测/独立设计",
+        "rules": [
+          "同storage scope使用一个版本化IndexedDB库，存heads/manifests/chunks/receipts/intents。下载、摘要和完整性检查在最终事务外完成。",
+          "一个覆盖head/receipt/intent及候选metadata的readwrite事务中读当前revision、核candidate prepared，再排队写新capsule/receipt/intent；不在活事务里await网络/哈希。",
+          "调用方存活时以 transaction complete 或 abort 结算本事务。显式 commit() 返回后调用上下文中断时，先按 updateId 查询权威记录，再根据读回结果处理原操作。",
+          "重开根据活动根、回执、意图及已知发布预期判断恢复。已知有待核对的发布结果而权威记录缺失时进入recovery-required，按仍可核验的制品恢复。全新配置仍走初始化。"
+        ]
+      },
+      {
+        "id": "UH-D05",
+        "title": "微信发布",
+        "classification": "推测/独立设计",
+        "rules": [
+          "全部Page将写请求交给唯一App级publisher；模块内Map只协调其JS上下文，不能宣称跨App/跨进程CAS。无法证明单writer范围时不宣称persistent publish已可用。",
+          "新chunks和manifest使用不可变自有路径，完整写后回读核验；active使用A/B两个完整CommitCapsule。选最高valid revision，同revision不同bytes为conflict，不按文件名选赢家。",
+          "重用非当前槽之前，先把将覆盖的有效capsule按updateId存入不可变history并回读；archive失败保留旧槽且不覆盖，避免旧操作receipt被新版本抹去。",
+          "在唯一writer范围检查expectedRevision，写非当前槽的完整新capsule，再回读验证。写发出后超时/取消/失败均先unknown，payload/锁和预算保留至native完成。",
+          "恢复先检查完整capsule及其revision。新槽未形成valid capsule可继续旧head，但不能据此抹去已知commit；若高revision capsule合法而内容缺失，进入recovery-required，不能静默降revision选旧head。两槽/history不能定论也保留unknown。不以rename/write回调推断断电原子性。"
+        ]
+      },
+      {
+        "id": "UH-D06",
+        "title": "旧读者与清理",
+        "classification": "推测/独立设计",
+        "rules": [
+          "每个source/decoder/render/audio/IO owner pin不可变manifest；active head更新不重定向已有读者。版本切换后旧游戏仍可读取其原版本。",
+          "网页若使用Web Locks：读者持有同store/root shared锁的callback promise直到physical drain；GC只用exclusive+ifAvailable，不用steal，也不把abort/心跳超时当释放。",
+          "GC持独占锁后在同一IDB事务复核root不是active、prepared/pending intent或仍需history的根，才删除。新reader拿shared锁后再核manifest存在，必要时重新inspect。",
+          "没有已核跨context锁时，不自动回收不明读者的root；容量不足仍保留完整需求并报告能力缺口。微信仅在已声明唯一App scope内按P06/P09确认drain后清理自有无引用root。"
+        ]
+      },
+      {
+        "id": "UH-D07",
+        "title": "接管与会话",
+        "classification": "推测/独立设计",
+        "rules": [
+          "quiesceOld按affectedOwners停止新接入；已经准入的源callback按InvocationLease完成其必要尾部，known effects仍记账，不把尾部切成统一throw。",
+          "不受本次内容变更影响的游戏会话可继续pin旧root；目录/资源准备与下一次会话使用新root的时机明确分开。",
+          "整App code restart需要受影响的Page/IO/render/audio与会话按正常流程退役。活动会话未就绪时记录restart-pending并延后，不偷偷复制/持久化认证材料；需要结束会话时走既有正常产品流程。",
+          "CAS conflict/取消后需要恢复交互时，inspect当前head并创建新owner epoch，不复活已退役的旧token。"
+        ]
+      },
+      {
+        "id": "UH-D08",
+        "title": "重启与新启动确认",
+        "classification": "推测/独立设计",
+        "rules": [
+          "publish同时持久化非秘密RestartIntent；requestRestart只记录请求，不声称新App已运行。",
+          "新root读取intent和实际active，核实际build/core schema/source profile/content revision，完成该profile的必要bootstrap/资源preflight后，bindNewBoot写绑定receipt；内容rebind与真正host boot用不同activationKind。",
+          "完成启动准备后，在与发布互斥的最终写入边界重新核对活动root、updateId、revision及对应提交和重启意图。活动发布身份仍匹配且实际构建与引导输入一致才可写入确认。",
+          "构建/内容不匹配或缺块按原因保留提交并报告失败、待恢复或未知。已证后续发布时按旧updateId保留提交并返回superseded。原已绑定的同一启动回执可幂等读回，不同启动身份按冲突处理。"
+        ]
+      },
+      {
+        "id": "UH-D09",
+        "title": "平台代码更新",
+        "classification": "推测/独立设计",
+        "rules": [
+          "网页/移动网页共享同一代码方案：版本化自己的build URL/cache；有Service Worker时区分installed/waiting/active/controller和应用新boot receipt。不得把skipWaiting完成当bootstrap-ready。",
+          "代码激活发生在已安排的quiescence窗口；不让新worker在旧game读者仍用旧资源时盲删全部旧cache。无SW时可用自己的版本化构建入口重载，但同样核new boot，不把普通reload成功当完成。",
+          "微信通过平台UpdateManager通道：ready才有待应用代码；applyUpdate没有本设计可依赖的新启动成功返回。其已选类型不提供目标build id，须用自己的发布描述符/已准入build集合，并核新包内编译build identity。",
+          "若平台未给目标身份且无已核发布绑定，restart只能报started-unbound/unknown，保留UH-U03。微信平台App代码的自动退回旧包能力未在本轮证实，不能冒称等价Win32回滚；受控内容回滚仍用新revision。"
+        ]
+      },
+      {
+        "id": "UH-D10",
+        "title": "恢复与回滚",
+        "classification": "推测/独立设计",
+        "rules": [
+          "重开先inspect/recover，不先下载/重放替换。半成品候选不成为active；未知native写尚未drain时一次旧head读取也不足以证明未提交。",
+          "当确证只有本次失败发布仍是当前head且旧compatible root保留时，可通过新的CAS发布把旧manifest重新设为active；保留原committed receipt，结果称内容恢复而非取消原提交。",
+          "后续版本已发布时不覆盖它；所有恢复写也检查expectedRevision。缺失/冲突/不兼容时保留文件并返回recovery-required，而非猜一个profile或构建。"
+        ]
+      },
+      {
+        "id": "UH-D11",
+        "title": "迁移与原实现复用",
+        "classification": "推测/独立设计",
+        "rules": [
+          "保留现有正确的原始字节核心、codec与局部CAS/双slot检查。整记录cache与Win32 header parser不是完整便携更新器。",
+          "旧本地cache迁移应先只读解码核源、写新staging/manifest并回读，旧记录保留至新root实际可用及其旧读者drain；不在本轮改数据。",
+          "原D0公共store/budget/owner先实现一次，D1接入L05/目录与平台薄适配；原D2-D6业务消费者绑定相同immutable root，不各写一套更新规则。"
+        ]
+      }
+    ],
+    "operation_refinements": [
+      {
+        "port": "UC-P08",
+        "method": "stage",
+        "preconditions": [
+          "current OperationContext and budget lease"
+        ],
+        "sequence": [
+          "write immutable own chunks under candidateId",
+          "record complete manifest descriptors without changing active"
+        ],
+        "outcomes": [
+          "candidate identity",
+          "failure/cancel retains old active and charged inflight buffers"
+        ]
+      },
+      {
+        "port": "UC-P08",
+        "method": "prepare",
+        "preconditions": [
+          "all required chunks and profile/format bindings available"
+        ],
+        "sequence": [
+          "verify sizes/ranges/digests and candidate manifest",
+          "persist prepared metadata and expectedRevision"
+        ],
+        "outcomes": [
+          "verified candidate",
+          "missing/corrupt candidate remains inactive"
+        ]
+      },
+      {
+        "port": "UC-P08",
+        "method": "publish",
+        "preconditions": [
+          "verified candidate;expected store generation, parent capsule and revision;required writer scope;eligible owner"
+        ],
+        "sequence": [
+          "perform backend-specific CAS/capsule protocol",
+          "record head,receipt,intent logical commit",
+          "settle via authoritative transaction or readback"
+        ],
+        "outcomes": [
+          "not_committed",
+          "committed",
+          "unknown requiring inspection"
+        ]
+      },
+      {
+        "port": "UC-P08",
+        "method": "inspectCommit",
+        "preconditions": [
+          "inspection key with store generation and update id;actual backend scope"
+        ],
+        "sequence": [
+          "wait for or report still-pending native write",
+          "inspect receipt or active/history capsule by store generation and updateId",
+          "separate historical commit proof,current content availability and supersession"
+        ],
+        "outcomes": [
+          "committed",
+          "not_committed when issuance is disproven or when authority proves both absence and no pending write",
+          "unknown/conflict/expired-scope;never infer absence from higher revision alone"
+        ]
+      },
+      {
+        "port": "UC-P08",
+        "method": "recover",
+        "preconditions": [
+          "new root or ambiguous store"
+        ],
+        "sequence": [
+          "inspect head/capsules and validate manifest/chunks",
+          "leave staging inactive;do not skip a higher structurally valid head with missing content and silently lower revision",
+          "choose only authoritative compatible published root or return conflict/recovery-required"
+        ],
+        "outcomes": [
+          "validated active revision",
+          "needs-selection/recovery-required"
+        ]
+      },
+      {
+        "port": "UC-P08",
+        "method": "acquire",
+        "preconditions": [
+          "reader owner and target snapshot"
+        ],
+        "sequence": [
+          "hold required shared root lease/lock",
+          "revalidate metadata after lock",
+          "bind immutable ranges and accounting to reader"
+        ],
+        "outcomes": [
+          "snapshot lease",
+          "unavailable or re-inspection if root is gone"
+        ]
+      },
+      {
+        "port": "UC-P08",
+        "method": "collectOwnUnreferenced",
+        "preconditions": [
+          "physical drain;zero leases;backend writer/GC scope known"
+        ],
+        "sequence": [
+          "obtain exclusive root authority without stealing",
+          "recheck active/prepared/intent/history references at deletion boundary",
+          "delete only owned unreachable objects"
+        ],
+        "outcomes": [
+          "cleanup receipt",
+          "retained/busy/unknown;no source-count-byte inference"
+        ]
+      },
+      {
+        "port": "UC-P10",
+        "method": "prepareUpdate",
+        "preconditions": [
+          "source profile;old root;newContent;sourceEffectPlan"
+        ],
+        "sequence": [
+          "P01 begin and P06 reserve for complete overlapping lifetime",
+          "source-specific acquisition/guards then P08 stage/prepare",
+          "retain source effect ledger independently of target publication"
+        ],
+        "outcomes": [
+          "verified candidate",
+          "failure with known effects;no active change"
+        ]
+      },
+      {
+        "port": "UC-P10",
+        "method": "quiesceOld",
+        "preconditions": [
+          "updateId;explicit affectedOwners"
+        ],
+        "sequence": [
+          "stop new admission only for affected owners",
+          "allow admitted source tails to settle",
+          "P09 closeAndDrain;keep independent old game root pinned if still active"
+        ],
+        "outcomes": [
+          "DrainReceipt",
+          "draining/unknown holds leases and may defer code restart"
+        ]
+      },
+      {
+        "port": "UC-P10",
+        "method": "commitUpdate",
+        "preconditions": [
+          "candidate;expectedRevision;eligible affected-owner state"
+        ],
+        "sequence": [
+          "delegate once to P08 publish",
+          "retain operation id for unknown inspection",
+          "do not repeat publication merely because UI went away"
+        ],
+        "outcomes": [
+          "CommitReceipt with independent restart state"
+        ]
+      },
+      {
+        "port": "UC-P10",
+        "method": "requestRestart",
+        "preconditions": [
+          "committed identity and RestartIntent;required code/session quiescence"
+        ],
+        "sequence": [
+          "record pending intent before host request",
+          "content-only rebind or platform code request at its valid boundary",
+          "preserve commit on cancel/request failure"
+        ],
+        "outcomes": [
+          "restart-pending",
+          "failed/unknown/requires normal session retirement"
+        ]
+      },
+      {
+        "port": "UC-P10",
+        "method": "inspectRestart",
+        "preconditions": [
+          "intentId and actual bootIdentity"
+        ],
+        "sequence": [
+          "inspect current head/intent and matching actual boot receipt",
+          "check compiled build/core schema/profile/content/revision",
+          "do not accept stale old-owner acknowledgements"
+        ],
+        "outcomes": [
+          "started",
+          "active with content-root-ready or bootstrap-ready evidence",
+          "unknown",
+          "failed/superseded"
+        ]
+      },
+      {
+        "port": "UC-P10",
+        "method": "bindNewBoot",
+        "preconditions": [
+          "actual manifest/profile/revision;fresh boot root"
+        ],
+        "sequence": [
+          "acquire root lease",
+          "finish required bootstrap/preflight and install eligible owner/input bindings",
+          "within the final receipt write, revalidate store generation, active root, updateId, revision and the matching durable commit and restart intent against the prepared boot",
+          "persist BootReadinessReceipt with actual code identity only for the active publication"
+        ],
+        "outcomes": [
+          "new active root receipt",
+          "matching prior boot binding is idempotent; a different boot for the settled active intent conflicts",
+          "a newer publication supersedes the pending boot and preserves the historical commit",
+          "failure keeps content commit and reports recovery-required or unknown according to the available records"
+        ]
+      }
+    ],
+    "target_profiles": [
+      {
+        "target": "web",
+        "shared_coordinator": "UC-P08+UC-P10 same core",
+        "content_backend": "versioned IndexedDB CAS and operation receipts",
+        "reader_backend": "Web Locks shared/exclusive when verified;otherwise conservative no uncertain GC",
+        "code_backend": "own versioned build entry;optional SW lifecycle with actual boot verification",
+        "required_evidence": [
+          "UH-U01",
+          "UH-U03",
+          "UH-U04",
+          "UH-U05"
+        ]
+      },
+      {
+        "target": "mobile-web",
+        "shared_coordinator": "UC-P08+UC-P10 same core",
+        "content_backend": "same web IndexedDB protocol",
+        "reader_backend": "same web root-lease protocol",
+        "code_backend": "same versioned build/SW protocol;foreground re-inspection",
+        "required_evidence": [
+          "UH-U01",
+          "UH-U03",
+          "UH-U04",
+          "UH-U05"
+        ]
+      },
+      {
+        "target": "wechat-mini-program",
+        "shared_coordinator": "UC-P08+UC-P10 same core",
+        "content_backend": "single-App publisher;immutable chunks/manifest;A/B complete capsules plus protected history",
+        "reader_backend": "App-owned P06/P09 registry with Page epochs and physical native completion",
+        "code_backend": "platform UpdateManager,own admitted build binding and actual new boot receipt",
+        "required_evidence": [
+          "UH-U02",
+          "UH-U03",
+          "UH-U04",
+          "UH-U05"
+        ]
+      }
+    ],
+    "case_crosswalk": [
+      {
+        "id": "UH-T01",
+        "name": "stage-partial",
+        "targets": "all",
+        "trigger": "download/chunk failure before prepared",
+        "expected": "old head unchanged;partial candidate inactive",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T02",
+        "name": "candidate-corrupt",
+        "targets": "all",
+        "trigger": "wrong digest,range,profile,encoding or incomplete manifest",
+        "expected": "reject candidate;retain old valid root",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T03",
+        "name": "capacity-overlap",
+        "targets": "all",
+        "trigger": "old pins plus new content/scratch exceed measured budget",
+        "expected": "explicit unavailable;full original manifest remains required",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T04",
+        "name": "IDB-put-then-abort",
+        "targets": "web/mobile-web",
+        "trigger": "put success followed by transaction abort",
+        "expected": "not_committed;no new head/intent/receipt visible",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T05",
+        "name": "IDB-two-publishers",
+        "targets": "web/mobile-web",
+        "trigger": "two overlapping transactions expect same revision",
+        "expected": "one commit;other conflict;no duplicated success for same next revision",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T06",
+        "name": "IDB-lost-complete",
+        "targets": "web/mobile-web",
+        "trigger": "complete receipt not delivered to retired UI",
+        "expected": "inspect updateId;keep committed if authoritative receipt exists",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T07",
+        "name": "wx-pending-write",
+        "targets": "wechat",
+        "trigger": "timeout before native write callback",
+        "expected": "unknown;payload/lock/budget retained;no new writer",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T08",
+        "name": "wx-torn-slot",
+        "targets": "wechat",
+        "trigger": "new inactive slot is incomplete",
+        "expected": "old valid capsule remains;new candidate not selected",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T09",
+        "name": "published-content-lost",
+        "targets": "all",
+        "trigger": "high-revision commit metadata valid but referenced content missing",
+        "expected": "commit/history status retained;recovery-required;no silent lower-revision active head",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T10",
+        "name": "wx-equal-revision-conflict",
+        "targets": "wechat",
+        "trigger": "two valid same revisions with different bytes",
+        "expected": "conflict,not filename winner;writer-scope violation stays open",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T11",
+        "name": "wx-history-failure",
+        "targets": "wechat",
+        "trigger": "cannot archive/readback old capsule before slot reuse",
+        "expected": "do not overwrite that slot;preserve inspection proof",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T12",
+        "name": "old-game-pinned",
+        "targets": "all",
+        "trigger": "publish while unaffected old game owns snapshot",
+        "expected": "old reads remain bound;new readers use their admitted root",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T13",
+        "name": "GC-held-shared-lock",
+        "targets": "web/mobile-web",
+        "trigger": "collector sees old reader holding root lock",
+        "expected": "retain root;no steal/heartbeat expiry",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T14",
+        "name": "new-reader-GC-race",
+        "targets": "web/mobile-web",
+        "trigger": "root removed before new reader obtains lock",
+        "expected": "revalidate after lock;retry inspect or fail before reading",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T15",
+        "name": "page-unload-late-write",
+        "targets": "wechat",
+        "trigger": "Page retires while App writer callback remains",
+        "expected": "known effects settle at App;old Page cannot publish new UI;no early release",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T16",
+        "name": "cancel-after-commit",
+        "targets": "all",
+        "trigger": "cancel or restart error after confirmed publication",
+        "expected": "committed retained;restart recorded separately",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T17",
+        "name": "same-update-retry",
+        "targets": "all",
+        "trigger": "same updateId same candidate after ambiguous response",
+        "expected": "inspect existing receipt/history;no blind duplicate publication",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T18",
+        "name": "superseded-update",
+        "targets": "all",
+        "trigger": "current head advanced beyond old update",
+        "expected": "history/receipt or unknown;no inference old was uncommitted and no overwrite of newer head",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T19",
+        "name": "code-ready-with-active-session",
+        "targets": "all",
+        "trigger": "new platform code available while game/session not drained",
+        "expected": "restart-pending;old game stays on pinned root until normal retirement",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T20",
+        "name": "worker-active-before-boot",
+        "targets": "web/mobile-web",
+        "trigger": "worker state active/controller change before app initialization",
+        "expected": "started/pending only;not bootstrap-ready",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T21",
+        "name": "wx-ready-no-build-id",
+        "targets": "wechat",
+        "trigger": "ready callback has no declared target build identity",
+        "expected": "use admitted release binding;otherwise started-unbound/unknown",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T22",
+        "name": "boot-mismatch",
+        "targets": "all",
+        "trigger": "new code/schema/profile/content identity mismatch",
+        "expected": "committed content retained;recovery-required;no fabricated ready/official success",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T23",
+        "name": "boot-ok",
+        "targets": "all",
+        "trigger": "matching fresh root and complete required bootstrap/preflight",
+        "expected": "bind actual BootReadinessReceipt with activationKind;content rebind does not invent new host boot;game/official acceptance separate",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T24",
+        "name": "rollback-versus-newer-head",
+        "targets": "all",
+        "trigger": "failed restart but another update has committed",
+        "expected": "CAS prevents replacing newer head;retain both receipts",
+        "status": "specified-not-executed"
+      },
+      {
+        "id": "UH-T25",
+        "name": "abrupt-termination",
+        "targets": "all",
+        "trigger": "no final unload/hide callback",
+        "expected": "recover only validated authoritative records;no final-callback assumption",
+        "status": "specified-not-executed"
+      }
+    ],
+    "remaining": [
+      {
+        "id": "UH-U01",
+        "kind": "actual-browser-backend-conformance",
+        "need": "Integrate the observed desktop and simulated mobile Safari persisted ZIP behavior with the product publication port, including bounded materialization of the selected composite chunk. Test in-flight retirement, abrupt interruption, eviction and physical mobile lifecycle."
+      },
+      {
+        "id": "UH-U02",
+        "kind": "WeChat-required-host-capability",
+        "need": "Integrate the product's single App writer and complete publication history. The fixed DevTools profile restored the small user-data ZIP, two-slot cache, fixture history and boot records after ordinary process exit. A separate complete archive probe restored both temporary segments after process exit and repaired a controlled missing second segment on the next fresh process. Both large saveFile calls and ordinary writeFile at block 13 were refused. Verify supported complete durable storage, actual product history after restart or interruption, and selection, capacity and recovery on iOS and Android."
+      },
+      {
+        "id": "UH-U03",
+        "kind": "code-distribution-and-new-boot-binding",
+        "need": "Own release/build descriptor or admitted build set,actual browser code activation and WeChat new-boot identity must be bound. Type-level ready/applyUpdate is insufficient;no tested WeChat automatic code-package rollback is claimed."
+      },
+      {
+        "id": "UH-U04",
+        "kind": "complete-manifest-budget",
+        "need": "Track prepared, partial and active archive payload from verified manifests. Reuse the Safari estimate discrepancy and WeChat SDK write-refusal evidence. Measure full-scene decoding, audio, scratch, storage overhead and physical-device limits."
+      },
+      {
+        "id": "UH-U05",
+        "kind": "original-unified-gate-and-full-delivery",
+        "need": "Other necessary source/entry rules,current paired game consumer,full three-platform product and account/official acceptance remain. No test account is available;do not invent current fields or startup acceptance."
+      }
+    ],
+    "design_questions_answered": [
+      "explicit publication boundary and idempotent inspection",
+      "separate commit/restart/new-boot receipts",
+      "browser CAS/root leases and WeChat scoped writer/capsules/history",
+      "old game pins and normal session quiescence without persisted secrets",
+      "independent code distribution and source-specific reference semantics"
+    ],
+    "UF_U2_disposition": "具体方案已形成；必要Host可行性/实现和接受仍未通过，不把UF-U2整体标为完成。",
+    "refinement_reviewed": true,
+    "host_design_admission_passed": false,
+    "implemented": false,
+    "host_conformance_passed": false,
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "new_product_tests_or_builds": 0,
+    "new_native_REA_queries": 0,
+    "new_VM_SDK_account_actions": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false
+  },
+  "existing_evidence_disposition": {
+    "L05_source": "UF/AU18 original cells reused;no new native queries",
+    "browser": "AH-F3/F4/F6/F10 retained primitive/clean-reopen cases cited;not re-run or promoted to full protocol evidence",
+    "wechat": "Official pinned API declarations only. The retained request had pending approval but is not verified live;current advertised tools have no WeChat-specific match. No SDK action or new SDK case was executed."
+  },
+  "summary": {
+    "existing_ports": 14,
+    "existing_methods": 62,
+    "local_implementation_facts": 8,
+    "primary_API_facts": 4,
+    "retained_browser_fact_references": 4,
+    "new_native_REA_queries": 0,
+    "new_host_or_SDK_tests": 0,
+    "product_changes": false,
+    "portable_schemas": 6,
+    "design_rule_groups": 11,
+    "refined_methods": 13,
+    "target_profiles": 3,
+    "specified_cases_not_executed": 25,
+    "named_required_host_gaps": 5,
+    "source_local_ready_before": 19,
+    "source_local_ready_after": 19
+  },
+  "host_design_refinement_reviewed": true,
+  "host_design_admission_passed": false,
+  "host_conformance_passed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "new_product_tests_or_builds": 0,
+  "new_native_REA_queries": 0,
+  "new_VM_SDK_account_actions": false,
+  "validation_record_path": "build/analysis/shared-update-host-design-v1/validation.json",
+  "stopping_rule": "Do not reopen solved native update or browser primitive evidence. Next work is the named necessary capability/source gap or actual host conformance when available,then gated D0/D1 implementation.",
+  "desktop_browser_recovery_observations": {
+    "classification": "事实：macOS 桌面 Chrome 原创夹具实测，覆盖网页宿主的所选行为",
+    "runtime": {
+      "path": "build/analysis/browser-update-recovery-v1/runtime.json",
+      "bytes": 5614,
+      "sha256": "6fb72d37a5a3b1ae8a3457ec872562ff4b6b280ad7a3cf8eed64d5e73c001eb6"
+    },
+    "source_files": [
+      {
+        "path": "build/analysis/browser-update-recovery-v1/implementation-plan.json",
+        "bytes": 1262,
+        "sha256": "7b0febaed9663e1b7745de38842915371831cd55f168ca456f403da596a59544"
+      },
+      {
+        "path": "build/analysis/browser-update-recovery-v1/probe.mjs",
+        "bytes": 7864,
+        "sha256": "0eecc9f33e1ce2be2dae22629e7a2efb7cccef37201d4fd3d898b5e8024996b8"
+      },
+      {
+        "path": "build/analysis/browser-update-recovery-v1/run.mjs",
+        "bytes": 11792,
+        "sha256": "9c5df808e07fbb78f18b23a5c11e495b3e78942984e2bae34b1f5141f75e9ed6"
+      }
+    ],
+    "browser_version": "156.0.8078.80",
+    "design_rules": [
+      "UH-D02",
+      "UH-D04",
+      "UH-D06",
+      "UH-D10"
+    ],
+    "existing_ports": [
+      "UC-P06",
+      "UC-P07",
+      "UC-P08",
+      "UC-P09"
+    ],
+    "observations": {
+      "UH-T01": "分块和 manifest 暂存后，活动根仍为 A revision 1，新操作回执和意图为空。",
+      "UH-T12": "发布 B revision 2 后，旧页持共享锁仍按 A 读取两块，新页按 B 读取两块。四块实际读取的 SHA-256 均匹配原创输入。",
+      "UH-T13": "旧页持共享锁时独占 ifAvailable 回收返回 busy。完成读取并释放后，回收删除 A 的 manifest 和两块，保留初始操作回执。活动根与已准备根均留存。",
+      "UH-T14": "第三页在回收前读取 A 身份，回收后取得共享锁并重核 manifest，读请求未获准进入分块读取。",
+      "UH-T06": "提交完成事件后、调用结果交付前中断进程。重开后 C revision 3、提交回执和 pending intent 一致，同一 updateId 返回已有回执。",
+      "UH-T25": "写请求已成功但事务由测试屏障保持未完成时中断，重开仍为 B revision 2，C 留在准备态，未出现该操作回执和意图。提交完成后中断的另一回合可实际读回 C 的两块。"
+    },
+    "scope": {
+      "fixture_root_count": 3,
+      "chunk_bytes": 16384,
+      "chunks_per_root": 2,
+      "abrupt_owned_browser_exits": 2,
+      "profile_removed": true,
+      "product_port_implemented": false,
+      "full_target_cases_executed": 0
+    },
+    "explicit_commit_interruption": {
+      "classification": "事实",
+      "affected_capabilities": ["X03", "X04"],
+      "related_gap": "UH-U01",
+      "design_rules": ["UH-D02", "UH-D04"],
+      "case_subsets": ["UH-T06", "UH-T25"],
+      "host": "macOS arm64 Chrome 157.0.8103.51, Playwright 1.64.1",
+      "runtimes": [
+        "build/analysis/browser-update-commit-unknown-v1/first-runtime.json",
+        "build/analysis/browser-update-commit-unknown-v1/runtime.json"
+      ],
+      "retained_fixture_sha256": "0eecc9f33e1ce2be2dae22629e7a2efb7cccef37201d4fd3d898b5e8024996b8",
+      "durability_requested": "strict",
+      "observed_process_interruptions": 4,
+      "boundary": "最后一项写请求成功后调用原生 commit()。Worker 在同一回调内报告返回并等待，调用方收到完成或中止事件前终止本轮 Chrome 主进程。",
+      "outcomes": [
+        "两轮的立即中断试次分别重开并读到 B 的修订 2、提交回执、待处理重启意图和发布清单。",
+        "两轮的第二页均在发布方仍等待时读到 C 的修订 3 及同一次提交记录，浏览器中断重开后四类记录一致。",
+        "四次按同一 updateId 重放都返回已有回执，修订未增加，两个版本的实际分块摘要均匹配。"
+      ],
+      "product_port_implemented": false,
+      "full_target_cases_executed": 0
+    },
+    "remaining": "UH-U01 继续验证实际 SnapshotStore 与源适配、默认持久性下的同一中断窗、配额或淘汰、完整保留与回收策略及手机网页生命周期。其它微信、实际构建重启和联合接受仍按 UH-U02..05。"
+  },
+  "desktop_browser_full_resource_budget": {
+    "classification": "事实：本机 Chrome 的双版本等量载荷与 Blob 持有实测",
+    "corpus": {
+      "path": "analysis/capability-first-v1/resource-corpus-budget.json",
+      "bytes": 17884,
+      "sha256": "933d09a7890c48746e677cefb218d463579895899f4ca01a9013b7dcd5afc014"
+    },
+    "runtime": {
+      "path": "build/analysis/browser-full-resource-budget-v1/runtime.json",
+      "bytes": 9689,
+      "sha256": "2d80e82443249294d09013279df4bc6def2d9134e1c91104a75e98e9d8424ccd"
+    },
+    "blob_lifetime_runtime": {
+      "path": "build/analysis/browser-full-resource-budget-v1/blob-lifetime.json",
+      "bytes": 797,
+      "sha256": "25138270200fe1c256ddee73df85b2c4261180c74aa63c56be95f3c94d9cb369"
+    },
+    "source_files": [
+      {
+        "path": "build/analysis/browser-full-resource-budget-v1/implementation-plan.json",
+        "bytes": 1243,
+        "sha256": "6a45eabfa08d964c9f3a918d667bf277bfb93689fd41d1a0c28157f2ccc59363"
+      },
+      {
+        "path": "build/analysis/browser-full-resource-budget-v1/run.mjs",
+        "bytes": 13982,
+        "sha256": "7dc13e938753b31ac94564dcb26f4e2ba166cd7f4920449745595aa5fc4fb9ec"
+      },
+      {
+        "path": "build/analysis/browser-full-resource-budget-v1/scale-probe.mjs",
+        "bytes": 3496,
+        "sha256": "fc9a17ce7e93d49eabd4c5a93defd1b128934429d84013f0f6b504cc9a27c7ee"
+      },
+      {
+        "path": "build/analysis/browser-full-resource-budget-v1/blob-lifetime.mjs",
+        "bytes": 6454,
+        "sha256": "d258bb123a2ab426079c43ead773248e9ee1d5cb565b0be8388e76d0afa28352"
+      }
+    ],
+    "retained_publication_and_lease_fixture": {
+      "path": "build/analysis/browser-update-recovery-v1/probe.mjs",
+      "bytes": 7864,
+      "sha256": "0eecc9f33e1ce2be2dae22629e7a2efb7cccef37201d4fd3d898b5e8024996b8"
+    },
+    "browser_version": "156.0.8078.80",
+    "related_design_rules": [
+      "UH-D02",
+      "UH-D03",
+      "UH-D04",
+      "UH-D06"
+    ],
+    "related_remaining": [
+      "UH-U01",
+      "UH-U04"
+    ],
+    "load": {
+      "root_count": 2,
+      "payload_bytes_per_root": 2613885785,
+      "payload_bytes_at_coexistence": 5227771570,
+      "chunk_limit_bytes": 8388608,
+      "chunks_per_root": 312,
+      "indexedDB_logical_bytes_with_two_roots": 5228300664,
+      "indexedDB_allocated_bytes_with_two_roots": 5228376064,
+      "sampled_process_tree_rss_sum_bytes": 2247475200,
+      "rss_scope": "阶段采样的浏览器进程树 RSS 合计，包含共享页重复计数。实际游戏的解码、绘制及音频另验。"
+    },
+    "observations": [
+      "两份与实际 bin/map 等量的原创载荷分别分块存入 IndexedDB，候选 B 完整暂存时活动根仍为 A。发布后两页各持对应租约，完整读回两根并逐块核对 SHA-256。",
+      "旧租约存在时回收返回忙。释放后逻辑删除 A 的 312 块和清单，保留原发布回执。此时 IndexedDB 文件逻辑长度回落到 2955186343 字节，约 12 秒观察窗末的测量仍为该值。",
+      "同一自有目录正常关闭并重开后，活动 B、提交回执和意图一致，重复操作返回已有回执。完整读回 B 的 312 块。与重开后相比，回收观察窗末的 IndexedDB 文件逻辑长度多 340566006 字节。",
+      "独立 32 MiB 夹具中，删除后索引项为 0，另一页持有的 Blob 仍可读且摘要匹配。关闭该页约 2.08 秒后，文件占用在同一进程内下降到仅剩数据库元数据。",
+      "本次 storage.estimate 五次读数中 quota 随 usage 变化，两者差值均为 10737418240。实测成功载荷、浏览器估计与系统可用空间分别记录。"
+    ],
+    "budget_design_update": [
+      "把索引事务完成和空间回落作为两个可观察结果。旧读者结束实际读取并释放可控 Blob 引用后结束租约。",
+      "准备下一版本时，按实际仍占用的旧数据与在途资源计费。逻辑删除回执可以更新目录状态，释放多少空间由宿主可观察的用量和后续分块写入结果校正。",
+      "沿用旧活动根、候选、暂存、解码及渲染的共同预算。等量存储试验已证桌面所选分块尺度的可行性，完整产品工作集继续实测。"
+    ],
+    "desktop_equal_size_storage_fit_observed": true,
+    "full_product_or_host_acceptance": false,
+    "actual_mobile_or_wechat_executed": false,
+    "quota_failure_eviction_or_power_loss_executed": false,
+    "cleanup_verified": true
+  },
+  "desktop_browser_resource_working_set": {
+    "classification": "实际 Chrome 资源 ZIP 范围读取、历史路径投影、两份独立目录的工作集及一次退役后渲染对照",
+    "runtime": {
+      "path": "build/analysis/legacy-resource-handoff-v1/runtime.json",
+      "bytes": 13379,
+      "sha256": "e649c75ef2ed427dc791fc02820a83f93169f273988622efa00d56596fd198ee"
+    },
+    "archive": {
+      "path": "build/analysis/game-legacy-resource-archive-v1/full-material.zip",
+      "bytes": 2549171845,
+      "sha256": "6ff08fd6251c748afaaa36a894b027a4992bdcc1e1a615d3f739809c5d6d2c8e"
+    },
+    "browser": "Chrome/156.0.8078.80",
+    "legacy_profile": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "scope": [
+      "网页适配器在 2,367 个路径中选中 28 个长名，得到 480 字节参数。原顺序和逆序都以随包 Config.dat 走旧版合并入口，另核无配置输入。三者都得到既有七槽和调色板路径。",
+      "两份独立资源库以同一个既有 2,549,171,845 字节 ZIP 初始化。各自实读资源逻辑字节 74,804,745，ZIP 层物理读取 74,949,739 字节。两次取样画面都与固定历史参考 SHA-256 一致，第二次在退役首份后执行。"
+    ],
+    "measurement": {
+      "metric": "Chrome DevTools Runtime.getHeapUsage.backingStorageSize",
+      "metric_scope": "同一 V8 isolate 的数组缓冲区和外部字符串后备存储",
+      "sample_before_palette": "在现有资源库请求调色板前暂停同一 stat 端口，此时元数据和动画目录已建立。",
+      "samples": {
+        "beforeOwnersAfterGC": {
+          "bytes": 3378486,
+          "forced_gc": true
+        },
+        "ABeforePalette": {
+          "bytes": 267390109,
+          "forced_gc": false
+        },
+        "AReady": {
+          "bytes": 202741528,
+          "forced_gc": false
+        },
+        "AReadyAfterGC": {
+          "bytes": 127715372,
+          "forced_gc": true
+        },
+        "BBeforePalette": {
+          "bytes": 401847282,
+          "forced_gc": false
+        },
+        "BReady": {
+          "bytes": 327034053,
+          "forced_gc": false
+        },
+        "BReadyAfterGC": {
+          "bytes": 252064297,
+          "forced_gc": true
+        },
+        "AClosed": {
+          "bytes": 252064297,
+          "forced_gc": false
+        },
+        "AClosedAfterGC": {
+          "bytes": 127715379,
+          "forced_gc": true
+        },
+        "BClosed": {
+          "bytes": 127750795,
+          "forced_gc": false
+        },
+        "BClosedAfterGC": {
+          "bytes": 3378493,
+          "forced_gc": true
+        }
+      }
+    },
+    "design_updates": [
+      "旧读者仍持有资源目录时，预算包括新版初始化的暂存和重复后备存储。本次第二份初始化的样点为 401,847,282 字节，既有数组下界继续作为静态对照。",
+      "关闭资源库和 ZIP 端口后释放所有者引用。已测关闭调用后的即时占用和显式 GC 后占用，按宿主实际回收量计下一次预算。",
+      "继续按原资源根和租约处理读者、取消和排空。还需实测实际持久化后端联动、完整场景和设备工作集及配额失败。"
+    ],
+    "legacy_selected_chain_observed": true,
+    "actual_product_archive_port_exercised": true,
+    "current_same_version_consumer_proven": false,
+    "mobile_or_wechat_observed": false,
+    "host_design_admission_passed": false,
+    "full_host_conformance_passed": false,
+    "product_code_changed": false
+  },
+  "desktop_browser_persisted_resource_archive": {
+    "classification": "事实：桌面 Chrome 157.0.8103.51 的独立 IndexedDB 夹具与现有 ZIP 资源库组合实测",
+    "runtime": {
+      "path": "build/analysis/browser-persisted-resource-archive-v1/runtime.json",
+      "bytes": 16815,
+      "sha256": "b7f8a9d0a9028bb0ef2f3c760a9deb02e980d03d11514d7b0ce5c88f10ca3505"
+    },
+    "affected_capabilities": ["X03", "X04"],
+    "related_gaps": ["UH-U01", "UH-U04"],
+    "case_scope": "A 使用留存实际 ZIP。B 追加 27 字节 ZIP 注释，两根资源成员相同。各 304 个持久化 Blob，块上限 8 MiB。复用原事务夹具和未改的网页 ZIP、共享资源库。",
+    "observed": {
+      "root_payload_bytes": [2549171845, 2549171872],
+      "coexistence_reported_storage_usage_bytes": 5098859384,
+      "after_collect_reported_storage_usage_bytes": 2616990488,
+      "reopened_reported_storage_usage_bytes": 2549882617,
+      "checked_resource_library_runs": 3,
+      "reference_frame_hashes_matched": 19,
+      "cut_counts": [100, 16, 5],
+      "sampled_ranges_per_library_run": 87,
+      "sampled_range_bytes_per_library_run": 75085013,
+      "ranges_crossing_chunks_per_library_run": 5,
+      "ranges_at_or_above_2GiB_per_library_run": 18,
+      "largest_range_bytes": 27867440,
+      "reopened_chunks_verified": 304,
+      "old_root_read_and_collection_after_retirement_verified": true
+    },
+    "design_updates": [
+      "UC-P07 复用既有 ZIP 读取入口。每个资源库从已取得的根租约取文件长度与分块清单，按安全整数偏移将一次 ZIP 范围分到所需 Blob。8 MiB 存储块可服务跨多块的 27,867,440 字节读取。",
+      "UC-P08 与 UC-P09 沿同一活动根标识核对发布、旧库继续使用和资源回收。资源库及读任务退役后归还租约，进程重开按已发布根和回执取得后端。",
+      "本次浏览器用量为 StorageManager 采样。内存为各标签的 V8 后备存储样点，正式预算仍需实际产品并发及设备取样。"
+    ],
+    "remaining": "产品更新端口接线、读取消与突停、完整场景及音频峰值、实际不同内容的版本和移动宿主继续验收。",
+    "full_host_conformance_passed": false,
+    "product_code_changed": false
+  },
+  "desktop_browser_quota_failure": {
+    "classification": "observed-desktop-IndexedDB-quota-with-controlled-local-origin-override",
+    "runtime": {
+      "path": "build/analysis/browser-update-quota-v1/runtime.json",
+      "bytes": 30362,
+      "sha256": "44edfd9b50741c37e3578cc0fee3dd37be4293057d7a6dd41be8ad3b2e172f73"
+    },
+    "reused_fixtures": [
+      {
+        "path": "build/analysis/browser-update-recovery-v1/probe.mjs",
+        "bytes": 7864,
+        "sha256": "0eecc9f33e1ce2be2dae22629e7a2efb7cccef37201d4fd3d898b5e8024996b8"
+      },
+      {
+        "path": "build/analysis/browser-full-resource-budget-v1/scale-probe.mjs",
+        "bytes": 3496,
+        "sha256": "fc9a17ce7e93d49eabd4c5a93defd1b128934429d84013f0f6b504cc9a27c7ee"
+      }
+    ],
+    "fixture_sources": [
+      {
+        "path": "build/analysis/browser-update-quota-v1/run.mjs",
+        "bytes": 14548,
+        "sha256": "03b365c57f054b37191648480973629a44fa2a6f686ca69bceb9bf1ef73d63ca"
+      },
+      {
+        "path": "build/analysis/browser-update-quota-v1/observe.mjs",
+        "bytes": 1721,
+        "sha256": "fb90816b10bc2358c8ec4f772e68e0f9bea9b6fb3a96187c66ec3cb73aa0899b"
+      }
+    ],
+    "browser_version": "Chrome/156.0.8078.80",
+    "existing_port": "UC-P08",
+    "affected_capabilities": [
+      "X03",
+      "X04"
+    ],
+    "original_case_relationships": [
+      {
+        "id": "UH-T01",
+        "observed": "second Blob block aborts; first committed block survives clean reopen; root stays unprepared"
+      },
+      {
+        "id": "UH-T03",
+        "observed": "real capacity rejection on controlled desktop origin with active data"
+      },
+      {
+        "id": "UH-T04",
+        "observed": "publication requests report success, then the native transaction aborts; head, receipt and intent remain old or absent"
+      },
+      {
+        "id": "UH-T17",
+        "observed": "after successful retry, duplicate update id returns its existing receipt"
+      }
+    ],
+    "controlled_results": [
+      {
+        "operation": "prepare",
+        "before_bytes": 2105870,
+        "override_bytes": 3154446,
+        "transaction_result": "abort:QuotaExceededError",
+        "readback": "active A and its receipt and payload retained; B manifest and blocks absent; same B prepared after restoring quota and reopening"
+      },
+      {
+        "operation": "publish",
+        "before_bytes": 8400988,
+        "override_bytes": 7352412,
+        "transaction_result": "abort:QuotaExceededError",
+        "readback": "A active, B prepared with all blocks, no B receipt or intent; same update id publishes after restoring quota and reopening"
+      },
+      {
+        "operation": "staged-Blob-blocks",
+        "before_bytes": 6310295,
+        "override_bytes": 9456023,
+        "transaction_result": "first block complete; second abort:QuotaExceededError",
+        "readback": "first 2 MiB Blob SHA-256 matches after reopen; B active; C publish returns unprepared"
+      }
+    ],
+    "existing_cache_source_review": [
+      {
+        "source": {
+          "path": "web/launcher-resource-store.mjs",
+          "bytes": 7987,
+          "sha256": "8d2c0fc8d2c71653812c3eb90a3dbc7ac8597042b7b19d8c04bb09cd3d3956ec"
+        },
+        "site": 81,
+        "facts": "abort reports failure; complete can publish a receipt for an observed put"
+      },
+      {
+        "source": {
+          "path": "web/launcher-candidate-store.mjs",
+          "bytes": 7475,
+          "sha256": "5e0e4e24d83e6d2895efd084ec7c183e9e187308e07e3c204c76f6a744a8eca3"
+        },
+        "site": 76,
+        "facts": "same transaction-finalization rule in single-record cache"
+      }
+    ],
+    "design_rules": [
+      "UC-P08 将事务完成与中止作为权威结果。配额导致中止时可报告该事务的容量失败，随后按活动根和更新标识读回。",
+      "同一原子准备事务中止时其清单和分块都未提交。逐块方案中，先前完成的块仍归候选根，完整清单和分块验证通过后才允许发布。",
+      "恢复容量后按活动根与回执重新核验再重试。既有更新回执保持可读，未观察到事务终态的情况继续走查询路径。"
+    ],
+    "remaining": [
+      "实际产品分块与持久化端口联动、完整资源工作集与其它宿主的配额压力。",
+      "自然淘汰、系统断电、已发出提交但无权威事件、完整三端设备与原宿主用例。"
+    ],
+    "full_original_host_cases_executed": false,
+    "product_store_executed": false,
+    "actual_mobile_or_wechat_executed": false,
+    "host_conformance_passed": false,
+    "implementation_gate_passed": false,
+    "product_code_changed": false
+  },
+  "mobile_safari_resource_lifecycle": {
+    "classification": "observed-Mobile-Safari-on-owned-iOS-simulator",
+    "runtime": {
+      "path": "build/analysis/mobile-safari-resource-lifecycle-v1/runtime.json",
+      "bytes": 14585,
+      "sha256": "6f0980f26cc9f9a712e4318f85b4920e336f36ffbc16af38c5e17a99a40d4fc3"
+    },
+    "simulator_receipt": {
+      "path": "build/analysis/mobile-safari-resource-lifecycle-v1/simulator-receipt.json",
+      "bytes": 997,
+      "sha256": "c3731c0c581f8a354542daf3b5b65b6b742cc4a151178e11f869536a58e5ad35"
+    },
+    "retained_fixture": {
+      "path": "build/analysis/browser-update-recovery-v1/probe.mjs",
+      "bytes": 7864,
+      "sha256": "0eecc9f33e1ce2be2dae22629e7a2efb7cccef37201d4fd3d898b5e8024996b8"
+    },
+    "fixture_sources": [
+      {
+        "path": "build/analysis/mobile-safari-resource-lifecycle-v1/page.mjs",
+        "bytes": 5756,
+        "sha256": "7248754b96f07d9d7b87187112176e1c79899b9464a7384e612304d223099e50"
+      },
+      {
+        "path": "build/analysis/mobile-safari-resource-lifecycle-v1/run.mjs",
+        "bytes": 11980,
+        "sha256": "761e9e8abcb8d5c8fd9197bc6f2632bfd80173155dc43cbd7a0ea924c9e61446"
+      }
+    ],
+    "screenshots": [
+      {
+        "path": "build/analysis/mobile-safari-resource-lifecycle-v1/safari-foreground.png",
+        "bytes": 148861,
+        "sha256": "2e5a7d462a2fb4ab923a2b763a6e4005715ee79d0cb9efe28b73da400b4619f7"
+      },
+      {
+        "path": "build/analysis/mobile-safari-resource-lifecycle-v1/settings-foreground.png",
+        "bytes": 319216,
+        "sha256": "b6de6c76839d632f733380f2e56b63c3d628fea445186645e687c97b3e31a220"
+      }
+    ],
+    "device_type": "iPhone 17 Pro",
+    "os_version": "iOS 27.0 (24A434)",
+    "safari": {
+      "identifier": "com.apple.mobilesafari",
+      "version": "27.0",
+      "build": "8625.1.29.10.29",
+      "platform_build": "24A433",
+      "info_plist_sha256": "875c1fa3380f055993437749388023a6b4556a7a04c2c17aba4bf771b7500d01"
+    },
+    "affected_capabilities": [
+      "X03",
+      "X04",
+      "X06"
+    ],
+    "existing_ports": [
+      "UC-P08",
+      "UC-P09"
+    ],
+    "measurements": {
+      "hidden_monotonic_ms": 2119,
+      "hidden_wall_ms": 2120,
+      "frames_at_hide": 84,
+      "frames_at_show": 84,
+      "largest_frame_gap_ms": 2358,
+      "hidden_native_socket_payload_bytes": 4,
+      "socket_connections": 1,
+      "bytes_per_root": 32768
+    },
+    "observations": [
+      "同源页面与 iframe 用原生 IndexedDB 和 Web Locks，两个发布事务返回 strict。旧读者持 A 时，B 成为活动根，A 的内容仍可按原摘要读回。",
+      "实际切到设置后，Safari 同一文档隐藏，帧计数停止。所选回环 WebSocket 保持同一连接，四字节消息在可见性恢复前交付给 JavaScript。",
+      "回前台后继续读 A，释放租约后回收 A，新读者读 B。终止并重开 Safari 后新进程恢复 B 和两个回执，重复发布读回原结果。"
+    ],
+    "design_rules": [
+      "移动网页按资源根持有租约，切换前后台沿实际读者与排空状态管理。",
+      "帧暂停期间允许传输和队列事件到达，恢复时核对连接与业务状态。",
+      "重开从活动根、清单和按更新标识的回执读回，保留原有未知提交处理。"
+    ],
+    "remaining": [
+      "实际产品持久化与桥接、真机资源预算和配额、长时后台、系统淘汰和电源中断。",
+      "微信 SDK 和真机，以及完整产品与现行版接受。"
+    ],
+    "same_document_background_and_resume": true,
+    "actual_safari_process_reopen": true,
+    "physical_device_executed": false,
+    "product_transport_or_store_executed": false,
+    "actual_wechat_executed": false,
+    "full_host_cases_executed": false,
+    "host_conformance_passed": false,
+    "implementation_gate_passed": false,
+    "product_code_changed": false
+  },
+  "wechat_devtools_gui_observations": {
+    "classification": "observed-local-WeChat-DevTools-simulator",
+    "runtime": {
+      "path": "build/analysis/wechat-offline-sdk-v1/runtime.json",
+      "bytes": 8539,
+      "sha256": "60a69406ae73d3b57d3cee0dad67ffbc44d8effad0901a2bfdcc162edbbd7b8f"
+    },
+    "execution_record": {
+      "path": "build/analysis/wechat-offline-sdk-v1/execution-record.json",
+      "bytes": 3171,
+      "sha256": "a29389ac9b17b4b93fbfc22a55442fd586124c9f56d235c5457cbcc1998b3ee7"
+    },
+    "original_preparation_profile": {
+      "path": "analysis/capability-first-v1/wechat-host-profile.json",
+      "bytes": 23156,
+      "sha256": "2704e0876f01e4f63bfc58451dfcbe83a1a7fedacda7a153cb2adf3678807b86"
+    },
+    "compiled_candidate_manifest": {
+      "path": "build/analysis/wechat-offline-sdk-v1/compiled-candidate-files.json",
+      "bytes": 998,
+      "sha256": "5769161841ed067ea359df8e9ac63e2a26b9ab57f78f7754e4ac8598d889f979"
+    },
+    "observed_tool_version": "2.02.2609250",
+    "sdk_runtime": {
+      "SDKVersion": "3.18.0",
+      "wechatVersion": "8.0.5",
+      "platform": "devtools",
+      "system": "iOS 10.0.1",
+      "model": "iPhone 12/13 (Pro)",
+      "screenWidth": 390,
+      "screenHeight": 844,
+      "pixelRatio": 3
+    },
+    "affected_capabilities": [
+      "X03",
+      "X05"
+    ],
+    "results": {
+      "record_count": 18,
+      "exact_positioned_reads": 8,
+      "returned_supplied_buffers": 8,
+      "native_data_file_bytes": 1048576,
+      "renamed_file_sha256": "3d27861ab6d3057e77764cfa152c70fc35fa926372a9ce6f066ed2dcda988bbc",
+      "canvas_pixel_match": true,
+      "foreground_canvas_frames": 20,
+      "page_and_app_events": [
+        [
+          "App",
+          "launch"
+        ],
+        [
+          "App",
+          "show"
+        ],
+        [
+          "probe-page",
+          "load"
+        ],
+        [
+          "probe-page",
+          "show"
+        ],
+        [
+          "probe-page",
+          "hide"
+        ],
+        [
+          "park-page",
+          "load"
+        ],
+        [
+          "park-page",
+          "show"
+        ],
+        [
+          "park-page",
+          "unload"
+        ],
+        [
+          "probe-page",
+          "show"
+        ]
+      ],
+      "pending_io_after_read": 0
+    },
+    "design_rules": [
+      "定位读取的SDK回调报告实际字节数，并可能把结果写入传入的ArrayBuffer。读取和所有者退役依实际回调排空。",
+      "文件重命名后在本机模拟器实测旧描述符可读。旧版本资源的删除、发布和实际设备能力仍按根、回执及租约验证。",
+      "Page导航的hide、unload和再次show已观察，App级写入所有权、App后台和进程重开需分别验证。"
+    ],
+    "scope": {
+      "actual_gui_sdk_probe_executed": true,
+      "tourist_appid": true,
+      "complete_original_host_cases_executed": false,
+      "product_executed": false,
+      "physical_device_executed": false,
+      "native_tcp_executed": false,
+      "original_service_task_used": false
+    },
+    "remaining": [
+      "完整大档位置/配额、真实App级文件发布及写入所有权、App长后台和断电。",
+      "TCP、真机、22原工具完整用例、25共用宿主用例、产品和同版接受。"
+    ],
+    "host_conformance_passed": false,
+    "implementation_gate_passed": false,
+    "product_code_changed": false
+  },
+  "reconstructed_build_identity": {
+    "required_gap": "UH-U03",
+    "affected_capabilities": ["L05", "X03", "X04", "X05"],
+    "source_review": "build/analysis/wechat-build-identity-v1/source-review.json",
+    "classification": "生成产物及入口为事实，包内身份和启动绑定为独立设计。",
+    "observations": {
+      "configured_same_outputs": "两个独立目录与留存 stage306 各 27 个产物均逐字节一致。",
+      "diagnostic_difference": "两次同配置生成的构建报告只有 output 字段不同。",
+      "default_difference": ["game/runtime-config.js"],
+      "same_projection_across_node_and_python": true,
+      "rea_selected_imports": 7
+    },
+    "build_id": {
+      "encoding": "固定字段顺序的紧凑 UTF-8 JSON，顶层为 schema、target、files。逐项为 path、bytes、sha256。取 SHA-256 的小写十六进制。",
+      "schema": "moli.portable-build-id.v1",
+      "targets": ["web", "wechat-mini-program"],
+      "file_order": "按输出根相对路径的 UTF-8 字节排序，保留大小写。",
+      "source": "微信复用生成身份文件前的 build-report.outputs。网页和移动网页共用实际版本化发布清单。产物中使用身份的入口文件已列入清单。",
+      "stamp": "由上述清单计算后生成包内身份文件。发布描述符核对最终文件列表和每个产物的字节校验，含生成的身份文件。"
+    },
+    "boot_binding": {
+      "port": "UC-P10.bindNewBoot",
+      "wechat": "App 首次启动读取主包身份。按需进入游戏时读取该分包的包内身份，与本次 App 绑定的值核对。",
+      "browser": "版本化入口读取该版本身份，桌面和移动网页共用。实际新启动持有独立 bootId。",
+      "readiness": "按旧有阶段要求核对期望 buildId 或准入集合、实际 bootId、核心规格、来源、发布与活动内容。确认后按当前阶段记录就绪。",
+      "content_rebind": "在同一实际宿主启动更新内容所有者，保留原 bootId 和 buildId。",
+      "unbound": "目标版本尚未绑定时保留现有 started-unbound 或 unknown。"
+    },
+    "acceptance_cases": [
+      "同配置的两个生成目录身份相同。构建报告路径字段变化时由文件表决定身份。",
+      "游戏分包配置字节变化导致身份变化，完整发布描述符包含对应配置文件。",
+      "App 已启动后按需载入游戏分包。匹配的包内身份继续，迟到的旧分包依原就绪合同处理。",
+      "内容重绑、旧 App 回调、新代码启动以及目标构建未绑定各沿原 UC-P10 验收。"
+    ],
+    "build_identity_input_verified": true,
+    "target_code_boot_binding_verified": false,
+    "implementation_batches": ["D0", "D5", "D6"]
+  },
+  "wechat_sdk_slot_store_observations": {
+    "classification": "observed-local-simulator-resource-cache-slice",
+    "runtime": {
+      "path": "build/analysis/wechat-sdk-slot-store-v1/runtime.json",
+      "bytes": 4374,
+      "sha256": "fa0ad78c0e72b09a3c0fb5f27ce1187abbf52ce6affd5023876e3e5c7ba6fdf5"
+    },
+    "execution_record": {
+      "path": "build/analysis/wechat-sdk-slot-store-v1/execution-record.json",
+      "bytes": 1261,
+      "sha256": "bc82a2825cedb144830b5b16a4be6b009f24cfe43c5cf803fc7a66dfc1f7a1f9"
+    },
+    "affected_capabilities": [
+      "X03",
+      "X05"
+    ],
+    "related_host_gap": "UH-U02",
+    "SDKVersion": "3.18.0",
+    "results": {
+      "distinct_App_boots": 2,
+      "routes": [
+        "pages/probe/index",
+        "game/pages/store/index"
+      ],
+      "App_owner_shared_by_pages": true,
+      "overlap": "RESOURCE_CACHE_BUSY",
+      "stale_expected_revision": "RESOURCE_CACHE_CONFLICT",
+      "first_boot_commits": [
+        1,
+        2
+      ],
+      "both_pages_read_revision": 2,
+      "controlled_inactive_candidate_bytes": 60,
+      "new_App_boot_read_revision": 2,
+      "repair_revision": 3,
+      "corrupt_slots_after_repair": 0,
+      "first_boot_lifecycle_events": 9,
+      "navigation_callback_timeout_observed": true,
+      "matched_binary_records": 5,
+      "matched_candidate_prefixes": 1
+    },
+    "design_rules": [
+      "同一 App 的主包和普通分包可持有同一个现有缓存写入者。",
+      "同上下文重叠操作和已落定后的过期修订分别保留 BUSY 与 CONFLICT 的语义。",
+      "已有双槽读取可跳过受控短候选，下一次 App 启动仍可读回有效槽并写入下一修订。"
+    ],
+    "remaining": [
+      "产品 App owner、通用 SnapshotStore 的完整发布、历史回执与生命周期接线。",
+      "真机容量、实际异常中止、独立进程竞争及断电持久性。",
+      "原 25 项共同宿主及 22 项微信用例的整体验收。"
+    ],
+    "host_conformance_passed": false,
+    "implementation_gate_passed": false,
+    "product_code_changed": false
+  },
+  "wechat_sdk_cache_recovery_observations": {
+    "classification": "observed-local-SDK-resource-cache-recovery",
+    "runtime": {
+      "path": "build/analysis/wechat-sdk-cache-recovery-v1/runtime.json",
+      "bytes": 2827,
+      "sha256": "e101e27922c9663f31673c2771d94c7b89f3d2823a22033f0ffa14494a5d400c"
+    },
+    "report": "reports/architecture-and-milestones.md#wechat-sdk-cache-recovery",
+    "affected_capabilities": ["X03", "X05"],
+    "related_host_gap": "UH-U02",
+    "existing_ports": ["UC-P08", "UC-P10"],
+    "implementation_batches": ["D0", "D5"],
+    "facts": [
+      "SDK 3.18.0 read revision 0 after both fixture slots were removed. An expected revision of 2 conflicted. After rebuilding revision 1, a request holding the old revision 1 was accepted and wrote revision 2.",
+      "The native SDK wrote and read back the candidate while adapter delivery of its success callback was held. The issued write returned RESOURCE_CACHE_COMMIT_UNKNOWN and a concurrent read returned RESOURCE_CACHE_BUSY. After callback delivery the same App read the committed bytes."
+    ],
+    "development_acceptance": [
+      "Bind the current active root identity and revision to the staged publication context. Check both under the publication owner at the active-pointer update. A rebuilt root has a distinct identity even if revision and contents match.",
+      "Keep the original unknown result and ownership of the issued write until the callback is accounted for. Inspect by publication identity and validate the authoritative readback before any retry.",
+      "After process restart, reconcile the persistent intent and verified active record or receipt before replay. Preserve the last verified root while the authority is unavailable."
+    ],
+    "original_SDK_cases_observed": 2,
+    "focused_existing_tests_passed": 7,
+    "persistent_intent_restart_accepted": false,
+    "natural_eviction_or_process_crash_verified": false,
+    "physical_device_executed": false,
+    "host_conformance_passed": false,
+    "implementation_gate_passed": false,
+    "product_code_changed": false
+  },
+  "wechat_sdk_archive_files": {
+    "classification": "事实：微信开发者工具游客工程的真实 SDK 文件定位读写、分块容量拒写与新 App 读回",
+    "runtime": {
+      "path": "build/analysis/wechat-sdk-archive-files-v1/runtime.json",
+      "bytes": 7840,
+      "sha256": "64ce181fa1f8cfb0cccf0ae05329717ec40c1b494614dbf9c53a27cf8180cdc9"
+    },
+    "report": "reports/architecture-and-milestones.md#wechat-sdk-archive-files",
+    "affected_capabilities": ["X03", "X05"],
+    "related_gaps": ["UH-U02", "UH-U04"],
+    "runtime_profile": {"devtools": "2.02.2609250", "SDKVersion": "3.18.0", "platform": "devtools"},
+    "observations": {
+      "positioned_file_bytes": 4294967329,
+      "matched_fd_and_readFile_positions": [0, 2147483616, 2147483680, 4294967313],
+      "largest_verified_readFile_range": {"position": 2147483680, "bytes": 27867440},
+      "chunk_limit_fixture_bytes": 8388608,
+      "root_payload_bytes_requested": [2549171845, 2549171872],
+      "root_payload_bytes_written": [2549171845, 1845493760],
+      "accepted_chunks": [304, 220],
+      "coexisting_payload_bytes": 4394665605,
+      "next_8MiB_write_refused": true,
+      "quota_error": "writeFile:fail the maximum size of the file storage limit is exceeded",
+      "host_byte_verification_for_all_524_written_chunks": true,
+      "new_app_reopen_range_samples_matched": 8,
+      "full_dual_root_payload_persisted": false
+    },
+    "design_updates": [
+      "UC-P07 沿既有 readFile 的 position 与 length 参数使用安全整数偏移。D5 在实际选择的归档及物理设备上复用所选大偏移、最大请求和缓冲区归属用例。",
+      "UC-P06 将两根与部分写入的有效载荷均计入预算。分块写入拒绝时，UC-P08 保持候选未准备并保留已验证旧根，按现有保留和回收政策处理候选块。",
+      "本次拒写边界采用当前游客模拟器的原回执。产品使用实际容量和错误结果，并独立核对 iOS 和 Android。"
+    ],
+    "physical_device_acceptance": false,
+    "full_host_conformance_passed": false,
+    "product_code_changed": false
+  },
+  "wechat_sdk_archive_selection": {
+    "classification": "游客工程的真实 ZIP 选择与大文件临时复制拒绝",
+    "runtime": {
+      "path": "build/analysis/wechat-sdk-archive-selection-v1/runtime.json",
+      "bytes": 5091,
+      "sha256": "055d9f0cbe0635d8f8efd1422f26380180ae47c92932a369bf17732aa99eede2"
+    },
+    "report": "reports/architecture-and-milestones.md#wechat-sdk-archive-selection",
+    "affected_capabilities": [
+      "X03",
+      "X05"
+    ],
+    "related_gap": "UH-U02",
+    "runtime_profile": {
+      "devtools": "2.02.2609250",
+      "SDKVersion": "3.18.0",
+      "platform": "devtools"
+    },
+    "observations": {
+      "small_archive_bytes": 136,
+      "stat_size_matches": true,
+      "control_payload_bytes_verified": 8,
+      "large_archive_bytes": 2549171845,
+      "reported_picker_copy_limit_bytes": 2147483648,
+      "large_file_envelope_success": true,
+      "large_file_item_copy_error": true,
+      "large_file_readable_path": false,
+      "large_file_stat_and_read_calls": 0,
+      "large_file_adapter_code": "FILE_SIZE",
+      "selection_timeouts_observed_separately": 2
+    },
+    "design_updates": [
+      "UC-P07 接纳可读路径及 stat 核实的 ZIP 大小。按实际回执区分选择超时、文件项复制失败及范围读失败，候选打开后才替换活动资源。",
+      "D0/D5 沿 UH-U02 核验完整素材的受支持输入路径。大偏移读取、选择复制边界和根存储配额各沿原用例验证。"
+    ],
+    "complete_archive_acquisition_verified": false,
+    "full_host_conformance_passed": false,
+    "physical_device_acceptance": false,
+    "product_code_changed": false
+  },
+  "wechat_sdk_segmented_archive": {
+    "classification": "现有微信开发者工具以实际选择器获得两段完整资源，按范围读通过原 ZIP 解析器",
+    "runtime": {
+      "path": "build/analysis/wechat-sdk-segmented-archive-v1/runtime.json",
+      "bytes": 6454,
+      "sha256": "7f88e526691f56477cff543976300c265e15254108f42db96a3ee819fc393118"
+    },
+    "report": "reports/architecture-and-milestones.md#wechat-sdk-segmented-archive",
+    "affected_capabilities": [
+      "X03",
+      "X05"
+    ],
+    "related_gap": "UH-U02",
+    "profile": {
+      "devtools": "2.02.2609250",
+      "SDKVersion": "3.18.0",
+      "platform": "devtools",
+      "project": "existing local tourist fixture"
+    },
+    "observations": {
+      "parts_bytes": [
+        1275068416,
+        1274103429
+      ],
+      "verified_archive_bytes": 2549171845,
+      "whole_sha256": "6ff08fd6251c748afaaa36a894b027a4992bdcc1e1a615d3f739809c5d6d2c8e",
+      "cross_boundary_bytes": 64,
+      "zip_entries": 1072,
+      "reference_frames_matched": 6,
+      "cut_records": 121,
+      "saveFile_quota_refusals": 2
+    },
+    "selection_lifetime": {
+      "runtime": "build/analysis/wechat-sdk-selection-lifetime-v1/runtime.json",
+      "report": "reports/architecture-and-milestones.md#wechat-sdk-selection-lifetime",
+      "fixture_bytes": 167,
+      "same_App_new_Page_reopened_both_paths": true,
+      "fresh_App_reopened_both_paths": true,
+      "fresh_App_after_controlled_removal_reported_missing_temporary_path": true,
+      "user_data_copy_reopened_after_temporary_loss": true,
+      "design": "D0/D5 从已存清单逐段复核路径、大小和归档身份。缺段时复用选择入口补选，按既有租约保留验证活动根。UC-P08 依据完整持久副本的写入及读回回执发布。",
+      "complete_archive_reopen_verified": false,
+      "devtools_process_restart_verified": false,
+      "physical_device_acceptance": false
+    },
+    "complete_selection_reopen": {
+      "classification": "固定 DevTools 的实际 SDK 重开、缺段和单段恢复，辅以原包静态核验",
+      "affected_capabilities": ["X03", "X05"],
+      "related_gap": "UH-U02",
+      "runtime": {
+        "path": "build/analysis/wechat-sdk-segment-resume-v1/runtime.json",
+        "bytes": 3956,
+        "sha256": "0c555b51b46ab689bad09cef7f47d5147d90d9c585cbd479975537ded1144685"
+      },
+      "source": {
+        "path": "build/analysis/wechat-sdk-segment-resume-v1/source-review.json",
+        "bytes": 3036,
+        "sha256": "81bd3f2f21743a49cac67c6da999bc97091dc0f508f8de058fd9c0997fac3745"
+      },
+      "report": "reports/architecture-and-milestones.md#wechat-sdk-segment-resume",
+      "validation": "reports/validation.md#wechat-sdk-segment-resume-validation",
+      "observations": [
+        "普通编译创建新 App。当两段临时路径仍可用时，清单读回后重新核对两段、整包摘要、跨段读取和六个参考画面。",
+        "移开已核验的第 2 段临时副本后另起 App，保留第 1 段，通过实际选择器只补第 2 段，整包再次通过相同核验。",
+        "同版 DevTools ASAR 中，普通 copyFile 把实际源文件长度带到 writeFile 共用的存储配额检查，成功后更新计数。固定样本的实际分段另存和普通分块结果沿原用例。",
+        "对照 stage306，微信游戏页在隐藏时退役当前会话并清除所选 ZIP 引用，重新进入需要经现有接入端口处理选择清单。"
+      ],
+      "design": [
+        "清单保存文件选择依据，UC-P07 在当前访问周期用匹配的长度和内容身份接纳可读段，经同一 ZIP 解析器准备归档。缺一段时保留其余可重新核验的段。",
+        "UC-P08 的完整发布仍需由可持久化来源提供全部范围及回执。正读的旧活动根沿 UC-P09 的租约和排空规则退役，候选损坏或缺失时继续按旧根及原恢复策略处理。",
+        "准备所需的访问路径可以变化，完整匹配的内容身份保持不变。恢复返回所需补选的段，配额拒写保留原发布结果。"
+      ],
+      "acceptance_cases": ["UH-T01", "UH-T03", "UH-T25"],
+      "complete_temporary_archive_reopen_in_same_devtools_process": true,
+      "complete_durable_source_verified": false,
+      "devtools_process_restart_verified": false,
+      "physical_device_acceptance": false
+    },
+    "independent_devtools_process_reopen": {
+      "classification": "固定 DevTools 正常跨进程重开与受控缺段已观察。完整素材持久化、产品接线及真机待验证。",
+      "affected_capabilities": ["X03", "X05"],
+      "related_gap": "UH-U02",
+      "runtime": {
+        "path": "build/analysis/wechat-sdk-segment-process-reopen-v1/runtime.json",
+        "bytes": 6595,
+        "sha256": "48eb3da6c33ada487c378ab479fe9346b587c1b0ed762de05851c81b2a27d464"
+      },
+      "report": "reports/architecture-and-milestones.md#wechat-sdk-segment-process-reopen",
+      "validation": "reports/validation.md#wechat-sdk-segment-process-reopen-validation",
+      "observations": [
+        "同一游客工程经过两次正常退出，取得三个不同的工具 PID 和 App 启动标识，两次重开前均核实工具主进程为空。首次跨进程重开直接使用原清单及两段临时副本。",
+        "工具退出后移开已核摘要的第 2 段副本。第三个工具进程沿原清单读回，在 stat 阶段识别缺段 2。第 1 段保持同一副本，原生选择器只补选第 2 段。",
+        "首次、跨进程重开及补选均匹配 2,549,171,845 字节的整包与两段摘要、跨段 64 字节、1,072 项归档目录和六张参考画面。"
+      ],
+      "handoff": "D0/D5 继续用同一 UC-P07 恢复入口逐段复核，区分候选待补选与完整可读。重选按原归档身份及顺序更新访问路径。UC-P08 依据完整持久化及权威读回发布，UC-P09 按原租约退役，UC-P10 按实际活动记录及当前启动身份确认。",
+      "cases": ["UH-T01", "UH-T03", "UH-T25"],
+      "clean_process_restart_verified": true,
+      "complete_durable_source_verified": false,
+      "product_publication_or_physical_device_verified": false
+    },
+    "design_updates": [
+      "UC-P07 沿同一归档身份、总长和只读范围接口接纳已核对的有序分段。跨段读按清单映射各本地范围并保持字节顺序。",
+      "D0/D5 按实际读回验证所选段，失败时保留已验证活动根。将临时选取和持久化发布分别验收，沿 UC-P08 处理拒写及重开。",
+      "iOS 和 Android 各自确认可用的实际文件来源、单段大小、总容量、进程重开及产品接线。"
+    ],
+    "ordinary_write_quota": {
+      "classification": "DevTools 实际 SDK 对照与所选发行包静态核验",
+      "runtime": {
+        "path": "build/analysis/wechat-sdk-archive-reopen-v1/runtime.json",
+        "bytes": 5104,
+        "sha256": "a13d3ad8711e2d60d310151c19cead14c3cd1b4d21ec025c1b9093082f9268bf"
+      },
+      "source_review": {
+        "path": "build/analysis/wechat-sdk-archive-reopen-v1/source-review.json",
+        "bytes": 4808,
+        "sha256": "7d2b8f559cc562d1f30aea6bb03d65b87a6e946038af36e8e32e9c590adb25c4"
+      },
+      "report": "reports/architecture-and-milestones.md#wechat-sdk-archive-ordinary-quota",
+      "affected_capabilities": [
+        "X03",
+        "X05"
+      ],
+      "related_gaps": [
+        "UH-U02",
+        "UH-U04"
+      ],
+      "implementation_batches": [
+        "D0",
+        "D5"
+      ],
+      "existing_ports": [
+        "UC-P06",
+        "UC-P07",
+        "UC-P08",
+        "UC-P09"
+      ],
+      "case_crosswalk": [
+        "UH-T01",
+        "UH-T03"
+      ],
+      "facts": {
+        "selected_bytes": 2549171845,
+        "verified_chunk_bytes": 8388608,
+        "actual_material_blocks_checked": 12,
+        "actual_material_bytes_checked": 100663296,
+        "actual_first_refused_block": 13,
+        "fresh_App_synthetic_first_refused_block": 13,
+        "refused_after_candidate_cleanup": true,
+        "historical_synthetic_bytes": 4394665605,
+        "historical_sparse_logical_bytes": 4294967329,
+        "ordinary_quota_checked_by_user_and_store_combined": true,
+        "full_manifest_published": false
+      },
+      "inference": "旧测试先删除用描述符写出的超大逻辑文件。按已核字节的目录计数路径，这可能使下一阶段的缓存计数偏低。旧计数和有效限额未观测，保留原写入结果作为历史回执。",
+      "design": [
+        "UC-P06 以实际宿主回执和当前应用文件预算决定候选容量，计入保存块、清单及仍持有的旧根。所选临时素材的读成功只给 UC-P07 可读租约。",
+        "UC-P08 按实际写入及完整归档读回判定准备。配额拒绝后保留验证活动根及其回执，候选不发布。UC-P09 等待读写退役后回收该候选的自有部分块。",
+        "D5 沿 UH-T01 和 UH-T03 覆盖拒写、重开未发布候选与旧根保留。完整归档在微信的可持久化承载方式以实际平台支持和完整字节回执确认。"
+      ],
+      "host_subcases_observed": [
+        "ordinary material prefix and refusal",
+        "fresh App refuses ordinary synthetic block after owned candidate cleanup"
+      ],
+      "complete_case_executed": false,
+      "old_active_root_preservation_observed_in_this_probe": false,
+      "effective_quota_value_observed": false,
+      "complete_archive_reopen_verified": false,
+      "physical_device_acceptance": false,
+      "full_host_conformance_passed": false,
+      "product_code_changed": false
+    },
+    "devtools_complete_archive_acquisition_verified": true,
+    "persistent_segment_storage_verified": false,
+    "physical_device_acceptance": false,
+    "full_host_conformance_passed": false,
+    "product_code_changed": false
+  },
+  "desktop_browser_resource_cache_interruption": {
+    "classification": "observed-existing-single-record-browser-cache",
+    "production_source": "web/launcher-resource-store.mjs",
+    "browser_version": "156.0.8078.80",
+    "validation": "build/analysis/browser-resource-cache-interruption-v1/validation.json",
+    "report": "reports/architecture-and-milestones.md#browser-resource-cache-interruption",
+    "observed": {
+      "fresh_profile_rechecks": 5,
+      "fixture_files_per_revision": 2,
+      "fixture_bytes_per_revision": 32768,
+      "same_revision_writer_outcome": "one commit and one conflict, old snapshot bytes retained in the reader",
+      "put_success_interruption_reopened_revision": 2,
+      "complete_event_interruption_reopened_revision": 3,
+      "old_revision_retry": "RESOURCE_CACHE_CONFLICT",
+      "prior_empty_reopen": "build/analysis/browser-resource-cache-interruption-v1/second-attempt.json",
+      "prior_empty_reopen_cause": "unresolved"
+    },
+    "receipt_and_rebuild_recheck": {
+      "browser_version": "157.0.8103.39",
+      "report": "reports/architecture-and-milestones.md#browser-cache-receipt-recovery",
+      "validation": "build/analysis/browser-cache-receipt-recovery-v1/validation.json",
+      "runtime": [
+        "build/analysis/browser-cache-receipt-recovery-v1/runtime-default-a.json",
+        "build/analysis/browser-cache-receipt-recovery-v1/runtime-default-b.json",
+        "build/analysis/browser-cache-receipt-recovery-v1/runtime-strict-a.json"
+      ],
+      "platform_durability_reference": "https://developer.chrome.com/blog/indexeddb-durability-mode-now-defaults-to-relaxed",
+      "native_durability_hints_reported": ["default", "strict"],
+      "after_put_success_reopened_revision": 2,
+      "after_transaction_complete_reopened_revision": 3,
+      "after_delivered_caller_receipt_reopened_revision": 4,
+      "explicit_test_database_deletion": {
+        "known_previous_revision": 4,
+        "reopened_revision": 0,
+        "reopened_files": 0,
+        "stale_revision_4_write": "RESOURCE_CACHE_CONFLICT",
+        "explicit_reseed_revision": 1,
+        "old_revision_1_matches_rebuilt_revision_1": true,
+        "old_revision_1_write_accepted_as_revision": 2
+      },
+      "separate_default_open_error": {
+        "evidence": "build/analysis/browser-cache-receipt-recovery-v1/default-open-error.json",
+        "boundary": "indexedDB.databases() during reopen after transaction-complete interruption",
+        "error": "UnknownError",
+        "resource_read_observed": false,
+        "cause": "unresolved"
+      },
+      "open_and_queue_outcomes": {
+        "browser_version": "157.0.8103.39",
+        "production_source": "web/launcher-resource-store.mjs",
+        "runtime": {
+          "path": "build/analysis/browser-cache-open-outcomes-v1/runtime.json",
+          "bytes": 3722,
+          "sha256": "595403aac69730ca0a03fbf35a310ee7c0ba34113297c446764e13aee1d93ff7"
+        },
+        "rea_capture": {
+          "path": "build/analysis/browser-cache-open-outcomes-v1/rea-capture.json",
+          "bytes": 41458,
+          "sha256": "7cf401ab24921eba4978d60eb5117be6fae5387cf519ffb76a5b4a9ac40023c3",
+          "evidence_id": "ev_f706aa2a0e036575309c15de23f068e4f366b66a4882e6ac752445867c733e14"
+        },
+        "report": "reports/architecture-and-milestones.md#browser-cache-open-outcomes",
+        "observed": [
+          "An ordinary version-1 operation with another version-1 connection open commits revision 1.",
+          "An existing version-2 database fails the version-1 open with native VersionError and RESOURCE_CACHE_SCHEMA. An extra object store produces the same product code after successful native open and close.",
+          "A diagnostic version-2 open reuses the existing product callbacks. It returns RESOURCE_CACHE_BLOCKED while the version-1 connection holds. After release the late upgrade aborts and version 1 remains.",
+          "A production version-1 commit queued behind blocked deletion returns RESOURCE_CACHE_TIMEOUT before a native result. Its late successful connection closes without a transaction after an explicit replacement is opened. The replacement reads revision 0.",
+          "A production version-1 read queued behind blocked deletion returns RESOURCE_CACHE_ABORTED. Its late fresh-database upgrade aborts after the deletion completes, leaving the database absent."
+        ],
+        "acceptance": "Preserve the result already returned to the caller. Close a late successful connection and abort a late upgrade. Determine resource availability from authoritative readback and retain the active-root and revision checks for republishing.",
+        "mobile_safari_simulator": {
+          "device_type": "iPhone 17 Pro",
+          "ios_version": "27.0",
+          "ios_build": "24A434",
+          "safari_version": "27.0",
+          "safari_build": "8625.1.29.10.29",
+          "runtime": {
+            "path": "build/analysis/mobile-safari-cache-open-outcomes-v1/runtime.json",
+            "bytes": 3876,
+            "sha256": "bbe92d84ebde73a9f02925ff77e6d1c286ddc22f9ecc649ef92be5156612bb64"
+          },
+          "simulator_receipt": {
+            "path": "build/analysis/mobile-safari-cache-open-outcomes-v1/simulator-run.json",
+            "bytes": 696,
+            "sha256": "e200f382ecc0354e121f4a87071664e3ceb9a3f0b7ce262477df176986dea0f9"
+          },
+          "validation": "build/analysis/mobile-safari-cache-open-outcomes-v1/validation.json",
+          "matching_fixture_cases": 6,
+          "matching_product_modules": 10
+        },
+        "physical_mobile_and_wechat_verified": false,
+        "multi_record_port_verified": false
+      },
+      "existing_ports": ["UC-P08", "UC-P10"],
+      "recovery_acceptance": [
+        "Preserve pending inspection on a backing-store error. Use a successful readback to determine resource availability.",
+        "When a known publication has no authoritative record, enter recovery and verify an available resource root before republishing.",
+        "Compare the current active root or publication identity and revision when retrying after rebuild. An old root with the same revision must fail the comparison."
+      ],
+      "actual_product_recovery_accepted": false,
+      "system_power_loss_observed": false
+    },
+    "related_partial_cases": ["UH-T05", "UH-T06", "UH-T25"],
+    "full_host_cases_accepted": 0,
+    "remaining": "UH-U01 全产品分块发布、版本和回执联动、实际回收与设备。保留权威记录缺失的恢复条件。",
+    "host_conformance_passed": false,
+    "product_code_changed": false
+  },
+  "mobile_safari_persisted_resource_archive": {
+    "classification": "事实：iOS 27.0（24A434）iPhone 17 Pro 模拟器的 Safari 27.0 持久化换版与进程重开",
+    "runtime": {
+      "path": "build/analysis/mobile-safari-persisted-resource-archive-v1/runtime.json",
+      "bytes": 18291,
+      "sha256": "754983cb0b77c1838a6dc59e70eb39769535bbcbd75f2524b56bb27af8868bbe"
+    },
+    "composite_reopen_failure": {
+      "path": "build/analysis/mobile-safari-persisted-resource-archive-v1/runtime-tail-reopen-failure.json",
+      "sha256": "4720b38633d9fe58d84b4dcc0c09e2c6f6904f5a4ebea2b7b0e7953e61b2efba"
+    },
+    "report": "reports/architecture-and-milestones.md#mobile-safari-persisted-resource-archive",
+    "affected_capabilities": ["X03", "X04"],
+    "related_gaps": ["UH-U01", "UH-U04"],
+    "observations": {
+      "root_payload_bytes": [2549171845, 2549171872],
+      "coexistence_payload_bytes": 5098343717,
+      "coexistence_storage_estimate_usage_bytes": 345097,
+      "chunks_per_root": 304,
+      "maximum_chunk_bytes": 8388608,
+      "original_member_content_equal": true,
+      "source_asset_requests_after_B_publication": 0,
+      "ranges_per_resource_library_run": 87,
+      "ranges_at_or_above_2GiB_per_library_run": 18,
+      "ranges_crossing_chunks_per_library_run": 5,
+      "reference_frame_hashes_matched": 19,
+      "reopened_chunks_verified": 304,
+      "composite_reported_blob_size": 7423648,
+      "composite_actual_readback_bytes": 7423670,
+      "composite_readback_contains_untrimmed_original_eocd": true,
+      "materialized_readback_bytes": 7423648
+    },
+    "design_updates": [
+      "UC-P08 在移动 Safari 将以源 Blob 切片拼接的分块先按单块上限读为连续字节，再保存新的 Blob。独立对照匹配未裁掉原 ZIP 结束记录的重组结果。按实际回读长度和摘要校验分块。",
+      "UC-P06 用已核验的候选、活动根和租约清单计入有效载荷。将浏览器 estimate 用作辅助观测，并计入物化块所需的工作内存。",
+      "UC-P07/P09 与桌面共用绑定到根的范围读和退役顺序。首次回收返回 busy，旧库关闭并释放租约后再删除旧根。"
+    ],
+    "remaining": "正式产品端口、实际不同素材的版本、突停、系统淘汰、完整场景工作集和物理设备仍待验收。",
+    "physical_device_acceptance": false,
+    "full_host_conformance_passed": false,
+    "product_code_changed": false
+  },
+  "mobile_safari_actual_archive": {
+    "classification": "observed-iOS-simulator-actual-archive-range-and-frame-slice",
+    "runtime": "build/analysis/mobile-safari-resource-archive-v1/runtime.json",
+    "report": "reports/architecture-and-milestones.md#mobile-safari-resource-archive",
+    "affected_capabilities": [
+      "G06",
+      "X03",
+      "X04"
+    ],
+    "existing_ports": [
+      "StableRangeSource",
+      "BudgetAndLease"
+    ],
+    "archive": {
+      "path": "build/analysis/game-legacy-resource-archive-v1/full-material.zip",
+      "bytes": 2549171845,
+      "sha256": "6ff08fd6251c748afaaa36a894b027a4992bdcc1e1a615d3f739809c5d6d2c8e"
+    },
+    "runtime_build": "24A434",
+    "reader": "Existing browser ZIP adapter and shared library, using a file-like slice over same-origin HTTP 206.",
+    "measurements": {
+      "indexed_files_per_library": 1072,
+      "initialization_resource_bytes_per_library": 74804745,
+      "completed_http_ranges": 138,
+      "completed_http_range_bytes": 149902934,
+      "largest_single_range_bytes": 27867440,
+      "largest_observed_range_start": 2549171747,
+      "ranges_starting_beyond_signed_32_bit": 30,
+      "reference_rgba_bytes": 12288,
+      "reference_rgba_sha256": "643f3bce432e471b768294a19c6044b4abc6a1225d35286a98cb0eed12b0cba2"
+    },
+    "observed": [
+      "两份资源库共用同一归档内容，分别维护归档读状态。",
+      "第二份资源库就绪时第一份仍就绪，关闭第一份后第二份参考帧与桌面摘要相符。",
+      "服务端完成范围的数量和字节、客户端实际收取和归档物理读取计数一致。",
+      "两份资源库和归档均关闭，临时模拟器已清理。"
+    ],
+    "design_rule": "D0 复用精确范围端口与现有关闭顺序，按最大有界请求和旧读者占用保留宿主预算。",
+    "remaining": [
+      "UH-U04 真机内存峰值、不同资源版本在持久化后端共存及完整场景。",
+      "UH-U01 产品持久化换版、自然回收和移动端长时后台。",
+      "三端产品与同版联合接受。"
+    ],
+    "host_design_admission_passed": false,
+    "physical_device_acceptance": false,
+    "product_code_changed": false
+  },
+  "desktop_browser_resource_version_isolation": {
+    "classification": "桌面 Chrome 独立 IndexedDB 与 Web Locks 夹具，使用现有 ZIP 适配器及资源库",
+    "fixture": "build/analysis/browser-resource-version-isolation-v1/fixture.json",
+    "runtime": "build/analysis/browser-resource-version-isolation-v1/runtime.json",
+    "report": "reports/architecture-and-milestones.md#browser-resource-version-isolation",
+    "source_path_rules": "build/analysis/legacy-item-resource-handoff-v1/source-review.json",
+    "observed_capabilities": ["X03", "X04"],
+    "reuse_for_host_acceptance": ["X04", "X05"],
+    "existing_cases": ["RP-AC-07", "RP-AC-11"],
+    "related_gaps": ["UH-U01", "UH-U02", "UH-U04"],
+    "existing_ports": ["UC-P07", "UC-P08", "UC-P09"],
+    "observed": [
+      "两个同名归档各 2549171845 字节、304 块，候选的调色板内容及两处 ZIP CRC 更新只改变两块摘要。",
+      "新根发布后，旧页与新页通过各自根重新读取同名成员，调色板及渲染摘要分别匹配独立参考。",
+      "旧库逻辑关闭时仍有 1660 字节的图块读取待完成。旧根回收返回 busy，读取恢复后字节匹配原样本，旧绘制返回取消。",
+      "读任务返回后释放租约，旧根分块记录被回收且发布回执保留。Chrome 正常重开后新根 304 块、调色板和画面通过核验。"
+    ],
+    "design_rule": "保留由内容清单和租约绑定的旧读者。逻辑关闭阻止新工作，并在宿主读取和已准入消费任务排空前继续持有租约和对应预算。释放后复核活动根及其他保留引用，再执行存储回收。",
+    "remaining": [
+      "正式产品更新入口及其它已准入资源操作的整体排空。",
+      "移动 Safari、微信、突停及真机容量。"
+    ],
+    "full_host_conformance_passed": false,
+    "product_code_changed": false
+  },
+  "mobile_safari_explicit_commit_readback": {
+    "classification": "实际 iOS 模拟器 Safari，同源 IndexedDB 严格事务与原分块夹具",
+    "capabilities": ["X03", "X04"],
+    "ports": ["UC-P08", "UC-P09", "UC-P10"],
+    "related_gaps": ["UH-U01"],
+    "runtime": {
+      "path": "build/analysis/mobile-safari-stream-lifecycle-v1/commit-recovery-runtime.json",
+      "bytes": 6004,
+      "sha256": "92c1f8b24b9bada412553e2f82718dd7b12f5f110d800c724b7a00f435675807"
+    },
+    "report": "reports/architecture-and-milestones.md#mobile-safari-explicit-commit",
+    "observed": [
+      "复用桌面分块和发布 Worker 原件。strict 事务的 commit() 返回后，发布方的完成和中止事件计数均为零。标记后 145 毫秒内观测到旧 Safari PID 退出。",
+      "不同 Safari PID 在同源按原编号读回 B 修订 2、提交回执、发布清单和 pending 重启意图。",
+      "按原编号重试返回 already-committed，修订与四项权威记录一致。两块资源长度和摘要均匹配。"
+    ],
+    "design_rule": "发布调用方丢失后先按更新编号读回权威记录。确认活动根、修订、清单和意图再接续原操作。",
+    "remaining": ["正式更新端口与完整场景", "默认持久性与淘汰", "真机与微信"],
+    "full_host_conformance_passed": false,
+    "product_code_changed": false
+  },
+  "game_page_lifecycle": {
+    "classification": "事实：stage306 宿主观察。推导：D0/D5 共用验收规则。",
+    "capabilities": ["X04", "X05", "X06"],
+    "ports": ["UC-P09", "UC-P11", "UC-P14"],
+    "implementation_batches": ["D0", "D5"],
+    "source_review": "build/analysis/target-game-lifecycle-v1/source-review.json",
+    "report": "reports/network-portability.md#target-game-page-lifecycle",
+    "validation": "reports/validation.md#target-game-page-lifecycle-validation",
+    "owners": {
+      "shared_client": "shared/legacy-game-client.mjs",
+      "browser_page": "web/game-app.mjs",
+      "browser_session": "web/legacy-game-session.mjs",
+      "wechat_page": "wechat/game/pages/play/index.js",
+      "wechat_app": "wechat/lifecycle.js",
+      "wechat_host": "adapters/wechat/legacy-game-host.mjs",
+      "wechat_stream": "adapters/wechat/launcher-stream.mjs"
+    },
+    "observed": {
+      "chrome": {
+        "receipt": "build/analysis/target-game-lifecycle-v1/chrome-runtime.json",
+        "scope": "实际产品页及原创对端。手动结束、迟到启动读、同页重进及真实重载。普通标签页的可信隐藏和可见事件另见 desktop_chrome_tab_visibility。"
+      },
+      "mobile_safari": {
+        "receipt": "build/analysis/target-game-lifecycle-v1/mobile-safari-runtime.json",
+        "scope": "iOS 模拟器实际产品模块。短后台保留 ZIP 与 TCP，前台继续前核对同连接或已结束，手动继续或重选重进。离页期间图形范围读取的浏览器错误与旧所有者收尾见 safari_navigation_resource_read。"
+      },
+      "wechat": {
+        "source_receipt": "build/analysis/target-game-lifecycle-v1/wechat-source-runtime.json",
+        "generated_receipt": "build/analysis/target-game-lifecycle-v1/wechat-generated-runtime.json",
+        "sdk_connection_reference": "build/analysis/wechat-devtools-local-tcp-v1/runtime.json",
+        "scope": "Node 驱动源码/生成的 Page 和 wx 形状。原创 TCP 和旧文件、消息及关闭回调。SDK 已有两次未成功的本机建连回执。"
+      }
+    },
+    "implementation_differences": [
+      {"port": "UC-P09", "expected": "从现有关闭及取消返回中分出已禁用、宿主读取结束、素材租约可回收。在相同旧代校验完成前保留持久根，迟到缓冲收归旧所有者并清理。"},
+      {"port": "UC-P11", "expected": "区分正常活跃连接、对端 EOF、本地取消和回调排空。停止后的旧回调须拒绝影响新连接，仍存活的同一连接继续按来源消费已准入记录。"},
+      {"port": "UC-P14", "expected": "保留网页暂停和微信关闭各自的宿主事件。前台继续前核连接身份、实际栈、可用素材和输入准入。明确分类正常导航与活动资源错误，重新打开时走既有准备入口。"}
+    ],
+    "cases": [
+      {"trigger": "页面隐藏后同一连接有回复",
+       "expectation": "在所测网页普通场景停止绘制和操作，明确保留所选 ZIP 与流，前台检查后手动继续。微信 Page 隐藏并退役连接时，晚到的旧回调不能发布。"},
+      {"trigger": "页面在后台期间收到对端 EOF",
+       "expectation": "保存真实 EOF 或适用错误、旧关闭及资源回收阶段，新连接走独立启动凭据和所选资源。"},
+      {"trigger": "准备期间取消或关闭后旧文件范围读返回",
+       "expectation": "旧结果不生效、已有新代保持、旧读在观测到结束后才计作排空。对前台真实资源读取失败保留原提示。"},
+      {"trigger": "入场后导航或卸载，再建新页面",
+       "expectation": "按宿主证据核对旧所有者、资源、真实连接结束及新页面初始态。已发布根按 UH-U01/U02 另行读回。"}
+    ],
+    "desktop_chrome_tab_visibility": {
+      "classification": "事实。stage306 实际网页与原创回环对端的本机结果。设计。桌面和移动网页复用原生命周期用例。",
+      "report": "reports/network-portability.md#desktop-game-tab-visibility",
+      "validation": "build/analysis/desktop-game-tab-visibility-v1/validation.json",
+      "runtime": {
+        "path": "build/analysis/desktop-game-tab-visibility-v1/runtime.json",
+        "bytes": 49440,
+        "sha256": "09e996cf23ab4db9157de538005548ea717b66533dd0becda08ee3ac22ad142e"
+      },
+      "environment": {
+        "baseline": "stage306",
+        "page": "/web/game.html",
+        "macos": "27.2 (26B123)",
+        "chrome": "157.0.8103.51",
+        "playwright": "1.64.1",
+        "profile": "ordinary-owned-ephemeral"
+      },
+      "related_rules": ["UC-P09", "UC-P11", "UC-P14", "UH-U01"],
+      "observed": {
+        "visibility": "同一普通窗口的两标签页得到四次可信可见性事件。受控临时上下文早期尝试保持可见。",
+        "background_reply": "首次隐藏 1192 毫秒。画面计数维持 5，场景输入暂停，当前 ZIP 和流保留。后台消费一条 22 字节原创回复，角色朝向从 6 变 2。前台仍处于暂停，点击继续后原连接恢复绘制。",
+        "peer_eof": "第二次隐藏时对端结束。前台前记录 peer-eof，旧 ZIP 关闭，继续不可用，页面保留准备入口。重选材料后独立建立第二条连接。原有桥接入口累计两个连接，最终活动数为零。"
+      },
+      "covered": "实际 Chrome 游戏页的普通短时标签页切换。两个原创 TCP 对端、215 个产品响应体与 102 项相关本机回归。",
+      "handoff": "继续复用既有可见性、会话状态及资源所有者。D0/D5 对照同连接保持、后台 EOF 和新连接重进，并从旧连接、旧 ZIP 及在途读采集各自回执。",
+      "pending": "桌面窗口最小化和系统切换、长时后台、战斗及在途读和持久根组合、真机、微信 SDK 建连与同版会话。",
+      "product_code_changed": false,
+      "physical_device_or_official_acceptance_executed": false
+    },
+    "safari_navigation_resource_read": {
+      "classification": "事实：原有 stage306 网页模块和 iOS 27.0 模拟器 Safari 27.0 的本地实测。设计：后续复刻的导航意图及失败归属。",
+      "receipt": "build/analysis/safari-navigation-resource-read-v1/runtime.json",
+      "validation": "build/analysis/safari-navigation-resource-read-v1/validation.json",
+      "report": "reports/network-portability.md#safari-navigation-resource-read",
+      "related_rules": ["UH-D02", "UC-P07", "UC-P09", "UC-P11", "UC-P14"],
+      "observed": {
+        "regular_navigation": "受控同源 location.replace 后，Safari 对已发出的 ZIP 内 Bin/Graphic.bin 读返回 NotReadableError，此时视图、库和文件仍处于活动状态。浏览器读失败经共享资源库转为 LEGACY_ASSET_READ_FAILED。旧页的可信 pagehide 处理后，视图、文件及库已关闭，会话原因为 caller-closed，客户状态保留 failed。该边界复现两次，范围在同一成员内随帧变化。",
+        "active_read_error": "页面仍在游玩时将已发出的 3088 字节读取以 NotReadableError 拒绝。在导航意图发出前按原逻辑显示资源失败并关闭。",
+        "late_result": "同一读在可信 pagehide 的现有关闭路径结束后才恢复。成功回到文件适配器时清零缓冲，失败由已关闭的旧所有者结算。两例在采集至导航后新文档读回的范围内保持 closed，无新增读取或用户可见旧错误。拒绝夹具收回自身持有的缓冲。",
+        "fresh_documents": "每次同源替换的新页面开始于没有客户实例及空文件选择。四个原创 TCP 对端分别收到 EOF，九条本地桥接流最后均已结束。"
+      },
+      "implementation_delta": "由现有页面所有者在可获的导航开始时绑定关闭意图，然后把该页范围读、绘制和新旧结果沿现有资源代归属。旧页的真实读结束独立结算。没有导航意图且仍活动的读失败保留资源错误。宿主只能提供 pagehide 时，验收覆盖先于该事件完成的错误与实际显示分类。",
+      "covered": "Safari 27.0 的所选同源导航和三种受控结果，原产品模块完整哈希匹配，原创 ZIP 与本机对端。",
+      "pending": "D0/D5 接线、设备 Safari 的浏览器后退或系统离页、无法提前获知导航的错误分类、跨进程持久根与长时后台。",
+      "product_fix_applied": false,
+      "physical_device_acceptance_executed": false
+    },
+    "remaining": "桌面窗口和系统的其他切换路径、长时后台及移动真机、支持环境下微信成功建连与真实回执、Safari 设备与其他离页入口的归属接线，以及独立持久化根恢复。",
+    "analysis_reviewed": true,
+    "full_host_conformance_passed": false,
+    "product_code_changed": false
+  },
+  "publication_and_boot_readback": {
+    "classification": "固定 F5A 静态来源、浏览器独立夹具及微信现有适配器文件对照",
+    "capabilities": ["X03", "X04", "X05", "L05", "L08"],
+    "existing_ports": ["UC-P08", "UC-P09", "UC-P10"],
+    "implementation_handoff": ["D0", "D1", "D5"],
+    "related_cases": ["UH-T11", "UH-T12", "UH-T13", "UH-T17", "UH-T18", "UH-T23", "UH-T24"],
+    "related_gaps": ["UH-U01", "UH-U02", "UH-U03", "UH-U04"],
+    "report": "reports/architecture-and-milestones.md#portable-update-handoff-readback",
+    "validation": "reports/validation.md#portable-update-handoff-validation",
+    "original": {
+      "contract": "analysis/capability-first-v1/launcher-update-ack-reconciliation.json#/f5a_update_handoff_and_ack",
+      "functions": {
+        "launcher": ["0x4096b0", "0x43f240"],
+        "embedded_updater": ["0x407290", "0x4069f0"]
+      },
+      "source_order": "原更新器在旧进程退出后继续处理事务。支持确认的候选在主窗绘制后尝试置位，原更新器等待确认或候选退出，再走阶段 5 提交及清理或恢复。"
+    },
+    "new_evidence": {
+      "chrome": {
+        "path": "build/analysis/portable-update-handoff-v1/chrome-runtime.json",
+        "bytes": 6438,
+        "sha256": "c4a35f11c9662b779a9c0087271de781890d918f79b325ab14a90c83171790a2"
+      },
+      "mobile_safari": {
+        "path": "build/analysis/portable-update-handoff-v1/mobile-safari-runtime.json",
+        "bytes": 6428,
+        "sha256": "c2e8372c821db88d203264324fcb6533729fdb5876c26e922494554bd16350b6"
+      },
+      "wechat_adapter": {
+        "path": "build/analysis/portable-update-handoff-v1/wechat-cache-comparison.json",
+        "bytes": 2443,
+        "sha256": "90bc1f5c5e0942e6ae0f37aa0be52460d808d6853e998735b4c2aafab77d86ec"
+      }
+    },
+    "retained_sdk_evidence": [
+      "analysis/capability-first-v1/shared-update-host-design.json#/wechat_sdk_slot_store_observations",
+      "analysis/capability-first-v1/shared-update-host-design.json#/wechat_sdk_cache_recovery_observations",
+      "analysis/capability-first-v1/shared-update-host-design.json#/wechat_sdk_segmented_archive"
+    ],
+    "observed_browser": [
+      "两端使用相同的小型合成分块。B 已提交并持有读租约，第二个同源文档提交 C。B 启动确认返回 superseded，按编号重试返回原提交。",
+      "旧读者继续读 B。回收先返回 busy；释放租约后回收 B 内容，仍保留 B 的提交和已取代重启意图。旧修订回滚返回冲突。",
+      "不同进程正常重开同一存储，读回 C 的活动记录、内容及 B 历史。C 的夹具启动绑定首次成功、重复幂等，不同 bootId 冲突。"
+    ],
+    "observed_wechat": "现有适配器写入两槽后，第三次发布把第一槽从修订 1 写为 3，第二槽和已读版本 2 保持，新实例读回修订 3。拒绝过期修订没有增加写入。对照使用 Node 文件和微信形状的回调。",
+    "independent_target_design": [
+      "现有跨端设计先发布完整内容和重启意图，再确认宿主启动，沿 UH-D08 在最终回执写入时重查仍活动的发布及准备所读的身份。",
+      "浏览器让最终确认与发布在重叠的 IndexedDB 写事务范围内决议，沿既有根租约延后物理回收。回收内容后仍按原更新编号读回提交。",
+      "微信的槽位复用前由单 App 写入者保存并读回被覆盖的提交资料。保存失败保留槽。确认时由同一写入者比较活动记录、对应意图和实际构建，再持久化及读回结果。"
+    ],
+    "remaining": [
+      "实际产品端口、启动准备和生成构建身份的完整绑定及失败恢复。",
+      "微信 SDK 上历史保存、槽位失败和实际新 App 重开，完整资源持久化及物理设备验收。",
+      "原版实际关闭、候选启动及同版端到端接受。"
+    ],
+    "new_REA_queries": 0,
+    "actual_product_boot_binding_executed": false,
+    "new_wechat_sdk_executed": false,
+    "full_host_conformance_passed": false,
+    "product_code_changed": false
+  },
+  "wechat_publication_history": {
+    "classification": "事实：固定 F5A、留存 REA、现有微信缓存与 DevTools 真实文件回执。推测：UC-P08/UC-P10 的历史及启动恢复设计。",
+    "capabilities": ["L05", "L08", "X03", "X05"],
+    "existing_ports": ["UC-P08", "UC-P10"],
+    "related_gaps": ["UH-U02", "UH-U03"],
+    "implementation_batches": ["D0", "D1", "D5"],
+    "report": "reports/architecture-and-milestones.md#wechat-publication-history",
+    "validation": "build/analysis/wechat-publication-history-v1/validation.json",
+    "evidence": {
+      "original_update": "analysis/capability-first-v1/launcher-update-ack-reconciliation.json#/f5a_update_handoff_and_ack",
+      "sdk_and_original_source": "build/analysis/wechat-publication-history-v1/source-review.json",
+      "earlier_callback_observation": "#/wechat_sdk_cache_recovery_observations",
+      "sdk_two_boots": "build/analysis/wechat-publication-history-v1/runtime.json",
+      "sdk_first": "build/analysis/wechat-publication-history-v1/sdk-evidence/phase1.json",
+      "sdk_after_recompile": "build/analysis/wechat-publication-history-v1/sdk-evidence/phase2.json",
+      "existing_cross_platform_rules": "#/publication_and_boot_readback",
+      "existing_boot_inputs": "#/portable_boot_entry_identity"
+    },
+    "observed": [
+      "DevTools 2.02.2609250、基础库 3.18.0 的原资源适配器重建修订 1 时重写同一候选。文件逐字节一致，仍接受按旧修订 1 提交的第三组资源。活动字节变为 9。",
+      "使用原双槽写入者与小型原创提交记录。一个历史文件仅写入前 40 字节，夹具没有请求复用原槽。普通编译产生的第二次 App 启动读回两份完整原槽和不完整历史。将原槽完整按编号保存并读回后，修订 3 覆盖原修订 1。移开自有历史文件作为对照时，修订 3 仍在，修订 1 的提交结论变为 unknown。",
+      "实际 SDK 写成功后，探针扣留适配器回调。取消原调用返回 RESOURCE_CACHE_COMMIT_UNKNOWN，同一写入者读返回 RESOURCE_CACHE_BUSY。原句柄排空后，新 App 读回同一提交。扣留、取消及交付由探针控制。",
+      "串行夹具中，B 的晚到启动确认遇到已证活动后继 C，返回 superseded。C 的原确认幂等，另一启动身份冲突。独立探针槽代表重建代际，复用原修订、清单及更新号，旧确认返回 scope-expired。只生成匹配当前发布的两份启动回执。"
+    ],
+    "publication_rules": {
+      "identity": "复用 StoreIdentity 的物理范围及来源定义。新格式在实际存储范围内持久绑定独立、不重用的 storeGeneration。显式初始化或重建时先验证该代际的起点；恢复时核现有代际及父提交，保留空盘、损坏和已知状态丢失各自的结果。每次发布在同一写入者内核代际、父提交身份和修订。同一内容重建也取得新代际，修订及内容摘要继续分别使用。",
+      "issuance": "候选完整、当前发布身份匹配且要被覆盖的合法记录已有可检索的历史证明时，读回本次发布意图再发出目标槽写入。意图固定代际、updateId、候选身份、期望父提交与修订及目标槽，用于未知结果恢复。准备意图只说明本次操作已准备；活动提交仍以包含重启意图的严格解码记录为准。",
+      "reuse": "持同一 App 写入者范围，先将非活动槽的合法提交按代际和 updateId 保留到不可变历史，核原字节、父关系、候选、清单及重启意图，并验证按该键可读回。已有相同历史直接复用，身份相同而内容不同返回冲突。空间拒绝、半文件或读回失败时保留两槽。若有完好原槽，可写新的历史候选并在完整读回后纳入索引；损坏的已知历史保留恢复证据。历史保留证明与负面查找覆盖沿同一保留范围，旧素材回收另核租约和清单。",
+      "pending": "已发出写入后，UI 取消、超时或只看到旧活动文件时返回 unknown 并保留写入者、载荷和预算。收到实际完成回调后仍须沿代际与 updateId 读活动槽、另一槽和历史。新 App 先取得该范围的写入权威并读回发布意图及合法记录；进程退出本身不给出存储结果。无法确认独立写入者已排除或证据冲突时返回待恢复。",
+      "inspect": "查到匹配的完整槽或历史可保留 committed，同时独立报告活动、已取代、历史及内容可用性。仅在确定未发出发布，或同一代际已排空且权威提交记录和覆盖足以证明未提交时，返回 not_committed 并允许按原编号重试。更高修订、历史丢失、不能归属的损坏和重建后修订重用保留 unknown 或过期范围。受控清除版本时仍可查到的旧提交保留原结果。高版本合法但缺内容时进入待恢复。",
+      "confirm": "完成网页/分包实际准备后，用与发布互斥的同一写入者复核存储代际、活动胶囊、updateId、清单、修订、对应意图、已取得的根和真实构建。只在实际匹配的活动发布写并读回就绪。已知同代后继返回 superseded；异代返回范围过期。现行活动意图中相同确认幂等，身份冲突不覆盖，证据不足先读回。历史确认可作为历史记录，当前是否活动始终看权威活动记录。"
+    },
+    "implementation": [
+      {"batch": "D0", "change": "由现有 UC-P08/UC-P10 所有者共用发布比较、历史/当前结果查询、恢复意图和就绪决议。已知提交与准备状态各自持有独立回执。"},
+      {"batch": "D1", "change": "登录器自更新和目录/素材准备沿原操作编号查询结果，提交未判定时可继续显示已验证活动项。旧启动确认不能为本次操作提供就绪。"},
+      {"batch": "D5", "change": "复用现有微信两槽、读回及回调排空。将独立版本的提交元数据和历史交给同一 App 写入者，迁移可验证的旧资源及原回执边界。SDK 和设备实测核中断后的权威结果。"}
+    ],
+    "acceptance_extensions": [
+      {"reuse": ["UH-T10", "UH-T11", "UH-T25"], "case": "历史持久化在提交前部分完成、回读失败或写入被拒时保留两槽。重开补齐并读回，允许覆盖。覆盖后验证旧提交仍可查询。若历史随后缺失或校验失败，旧结论保持已知历史或待恢复，按实际剩余权威记录判定。"},
+      {"reuse": ["UH-T15", "UH-T17", "UH-T25"], "case": "原调用取消或超时但原生写尚在途，验证锁及载荷持有，重放先查旧操作。分别覆盖写成、未发出及可疑缺失。新 App 协调写入权威后按完整原记录给出结果。"},
+      {"reuse": ["UH-T17", "UH-T18", "UH-T23", "UH-T24"], "case": "同一 revision、updateId 与内容跨代重建，旧提交请求和启动确认失效。测试准备末段新发布、已证同代后继、同身份重试及不同 bootId。只匹配当前根和真实构建的一次绑定写入。"}
+    ],
+    "remaining": "小型原创夹具已通过正常工具进程重开。实际产品发布、历史迁移、配额与真实写失败、异常退出、分包代码更新、完整持久来源及真机继续沿 UH-U02、UH-U03 验收。",
+    "selected_operation_review_complete": true,
+    "new_REA_queries": 0,
+    "actual_devtools_App_boots": 2,
+    "actual_product_publication_executed": false,
+    "product_code_changed": false,
+    "full_host_conformance_passed": false,
+    "independent_devtools_process_reopen": {
+      "classification": "事实：游客工程正常退出与新进程读回。设计：正式产品复用 UC-P08/UC-P10 及实际构建绑定。",
+      "capabilities": ["X03", "X05", "L08", "X08"],
+      "existing_ports": ["UC-P07", "UC-P08", "UC-P10"],
+      "related_gaps": ["UH-U02", "UH-U03"],
+      "implementation_batches": ["D0", "D1", "D5"],
+      "report": "reports/architecture-and-milestones.md#wechat-devtools-process-reopen",
+      "validation": "reports/validation.md#wechat-devtools-process-reopen-validation",
+      "runtime": {
+        "path": "build/analysis/wechat-devtools-process-reopen-v1/runtime.json",
+        "sha256": "ab3ec17420c06df0ff300f3db86ff7208773e398f21ae6304909dcc2319ac9d6"
+      },
+      "retained_REA_review": "build/analysis/wechat-devtools-process-reopen-v1/source-review.json",
+      "release_profile": {"devtools": "2.02.2609250", "base_library": "3.18.0", "tourist": true},
+      "observations": {
+        "first_tool_pid": 3392,
+        "second_tool_pid": 15385,
+        "same_project_and_storage_scope": true,
+        "normal_exit_observed": true,
+        "files_unchanged": 8,
+        "fixture_zip_bytes": 1150,
+        "fixture_zip_member_bytes": 1024,
+        "range_reads_per_boot": 5,
+        "existing_resource_cache_revision": 2,
+        "fixture_publication_revision": 3,
+        "old_boot_and_history_readback": "historical",
+        "stale_parent_fixture_result": "superseded",
+        "new_boot_fixture_readback_verified": true
+      },
+      "design": "在新宿主按原合同核对合法活动提交、可读根、启动意图和实际构建后，再确认新实例。已验证的旧提交及启动保持可查询历史。按具体载荷与存储回执判定根是否可重开。",
+      "remaining": "完整素材的可持久化来源及临时段跨工具进程，实际端口及构建更新，异常程序退出、中断未决写入和手机真机。",
+      "new_REA_queries": 0,
+      "reused_REA_file_operations": 6,
+      "selected_fixture_reopen_verified": true,
+      "actual_product_publication_executed": false,
+      "complete_archive_persisted": false,
+      "physical_device_tested": false,
+      "full_host_conformance_passed": false
+    }
+  },
+  "portable_boot_entry_identity": {
+    "classification": "事实：生成文件、固定范围 REA 及本机入口对照。推测：共用启动绑定设计。",
+    "capabilities": ["L05", "L08", "X01", "X03", "X04", "X05"],
+    "existing_ports": ["UC-P07", "UC-P08", "UC-P09", "UC-P10"],
+    "related_gaps": ["UH-U02", "UH-U03"],
+    "implementation_batches": ["D0", "D1", "D5"],
+    "report": "reports/architecture-and-milestones.md#portable-boot-entry-identity",
+    "validation": "build/analysis/portable-boot-entry-identity-v1/validation.json",
+    "evidence": {
+      "retained_build_inventory_and_imports": "build/analysis/wechat-build-identity-v1/source-review.json",
+      "configuration_modules": {
+        "configured": "build/analysis/portable-boot-entry-identity-v1/rea-first.json",
+        "default": "build/analysis/portable-boot-entry-identity-v1/rea-default.json",
+        "alternate": "build/analysis/portable-boot-entry-identity-v1/rea-alternate.json"
+      },
+      "browser_entry": "build/analysis/portable-boot-entry-identity-v1/web-runtime.json",
+      "wechat_entry": "build/analysis/portable-boot-entry-identity-v1/wechat-runtime.json",
+      "related_publication": "#/publication_and_boot_readback",
+      "sdk_navigation_limits": "#/wechat_sdk_slot_store_observations"
+    },
+    "observations": {
+      "wechat_generation": "同一 esbuild 0.25.12 生成规范。配置版、默认版及另一份有效游戏配置版各复核 27 个产物，差异只在 game/runtime-config.js。REA 6.7.0 对三个文件各执行一次精确来源分析，确认其 CommonJS default 导出及文件身份。旧证据的七条实际生成依赖继续适用。",
+      "wechat_entry": "真实生成主包加载 App、共享 lifecycle 和登录页。游戏入口按需同步加载宿主 bundle、游戏配置及主包 lifecycle，模块求值完成后注册 Page，onLoad 才接收待交接字节并初始化宿主。匹配配置的受控试次接收资源一次，依次通过启动资料和可用 Canvas，canConnect 成为 true。未配置版混入时已进入 onLoad，消费并清零交接字节。混入另一份有效配置时按该配置建立宿主，旧交接的字节仍可用，canConnect 亦变为 true。独立端口统计三者均未开始 TCP。",
+      "wechat_interleavings": "受控加载在游戏配置依赖缺失时失败于 Page 注册前，调用方已收到夹具的 navigateTo 成功回调，选定字节留到 App.onHide 清理。连续两次准备时，新选择先替换旧槽，晚到 Page 可取当前槽。另一组按旧页已卸载、新页已暂存、旧导航失败晚到的顺序交付两个各一次回调，旧失败处理先清空共享槽，新页拿到零份资源。夹具验证代码对这些顺序的结果，平台实际送达条件仍待 SDK 或设备回执。",
+      "web_entry": "Chrome 157.0.8103.51 加载真实游戏页。入口读取 no-store 的 runtime.json 后可配置。所选静态模块依赖缺失时，模块图求值失败，连接保持禁用。两份所见入口字节一致的试次只替换共享依赖字节，混用版本仍能配置。所选新旧和混合页各观测 214 个静态文件。不同依赖字节采用无行为修改的版本标记供本机核对。",
+      "browser_preflight_and_store": "独立夹具使用已保存的 IndexedDB 发布模块和 final compare。由读回的原创 ZIP 供给实际产品页，错误启动资料在客户端创建前退回，未请求本地 WebSocket。有效材料到达 library ready、client connecting，三个 WebSocket 请求均由浏览器夹具截获，没有对端握手。旧根 A 在实际预检后遇 B 发布，同一事务夹具报 superseded，A 的提交可读。B 可绑定一次，同一输入重试返回 already-bound。同一页面改绑 C 后保留夹具产生的 bootId 和相同代码，ZIP 身份改变。文件选择和使用材料、浏览器写回夹具及产品的正式接线各有证据。"
+    },
+    "binding_rules": {
+      "classification": "推测",
+      "code_and_configuration": "生成当前版本的完整文件表，复用 reconstructed_build_identity 的编码。以主包、游戏分包及各自参数按同一 release 描述绑定实际加载值。微信从 App 主包及普通分包内各自读取发布绑定，从业务初始化使用的配置取得对应身份。浏览器桌面和移动端共用版本化依赖映射，HTML 入口、直接和传递模块、配置及其它必要产物都沿已发布表核对。实验证明仅校验入口字节可接受混合依赖。生成清单、完整发布描述符及真实加载观察分别保留；按实际可核范围确认同一版本。",
+      "ownership": "微信交接使用对应导航尝试、App/调用方所有者、实际构建和资源根身份，并绑定准备结果。验证它们已匹配后才把选定资源交给 game onLoad。晚到加载、成功、失败及卸载只结算各自导航对应的交接。未消费的准备沿 UC-P09 在对应尝试结束、重选或 App 退役时清理。已转交的根由接收所有者持有至借用结束。手动直达原游戏页仍按实际选择和预检接入。",
+      "readiness": "复用 BootReadinessReceipt 的 stages。注册入口、导航回调和运行配置获取提供启动观察。对已准入的目标构建、核心规格、来源、当前发布和必要宿主能力完成相应的读与初始化，再写该阶段回执。游戏分包实际需经过匹配的资源与启动资料、Canvas 及所需宿主准备。网页的已配置控件和 local connecting、微信的 canConnect 均为阶段观察，进入游戏仍使用原实际会话结果。目标构建未知时保留 started-unbound 或 unknown。",
+      "settlement": "应用已准备后，在 UC-P10 的最终写入边界用 UC-P08 复核 store identity、当前发布的 root、updateId、revision、对应 commit/intent 与实际加载的构建、核心规格和资源所有者。构建、配置或资料失配标原意图待恢复，保留提交。更高修订已成活动则标 superseded；旧读者等 UC-P09 排空。同一已结算意图只有同一有效回执可幂等查询。真实重开新 App/文档有新 bootId，同一实际宿主更换内容保持 bootId、建立新资源 owner epoch。迟到的一次尝试和当前活动确认按各自身份处理。"
+    },
+    "implementation": [
+      {"batch": "D0", "owners": ["tools/build-wechat-app.mjs", "shared/legacy-game-client-config.mjs"], "change": "复用生成清单、原品类配置校验和启动资料准备。共享构建/内容证明及旧所有者结算沿原 UC-P07 至 UC-P10，不向原游戏协议增加字段。"},
+      {"batch": "D1", "owners": ["shared/launcher-update-journal.mjs", "web/launcher-resource-store.mjs", "adapters/wechat/launcher-resource-store.mjs"], "change": "沿既有发布和回执入口写实际版本期望与准备回执。保存历史提交、失败恢复和当前活动结算各自的状态，沿实际版本与配置的同一来源核验。"},
+      {"batch": "D5", "owners": ["web/game-app.mjs", "wechat/app.js", "wechat/lifecycle.js", "wechat/pages/launcher/index.js", "wechat/game/pages/play/index.js", "adapters/wechat/legacy-game-host.mjs"], "change": "版本化入口加载和内容转交从实际 App/页面接线。保留对应导航的身份，区分配置读回、入场条件和最终发布核验。旧回调仅处理其持有的准备，不清后来版本的选择。"}
+    ],
+    "acceptance_extensions": [
+      {"reuse": ["UH-T20", "UH-T21", "UH-T22", "UH-T23"], "case": "按实际加载清单试匹配、混入有效或空配置、同入口而旧依赖及缺成员。分别观察 Page 注册、输入和 Canvas 就绪，以及是否准入对应构建和内容。"},
+      {"reuse": ["UH-T12", "UH-T15", "UH-T22", "UH-T25"], "case": "两次导航、旧页卸载后的晚到失败、模块分包未注册、App 隐藏与迟到旧 Page 依次验。核对哪个导航取得或清理哪个根，查看关闭后缓冲和订阅的实际状态。"},
+      {"reuse": ["UH-T17", "UH-T18", "UH-T23", "UH-T24"], "case": "从持久候选读材料，覆盖预检失败、匹配写回、相同回执重试、最终写入前新发布，以及同一 App 或文档重新绑定。按真实更新编号读回各自活动和历史结果。"}
+    ],
+    "remaining": "UH-U03 的生成包身份文件、实际分包/网页发布加载与 UC-P10 产品端口接线待 D0/D1/D5。微信实际代码更新与导航消息、移动真机和同版联合验收分别留原用例。所选本机组合给出实现差异与验收边界。",
+    "selected_operation_review_complete": true,
+    "new_REA_queries": 3,
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "product_boot_binding_executed": false,
+    "full_host_conformance_passed": false
+  },
+  "resource_budget_retirement": {
+    "classification": "事实：固定历史来源、Chrome 端口实测、微信回调夹具与留存宿主回执。推测：共同预算、借用与关闭端口的复刻设计。",
+    "capabilities": ["G06", "G08", "X03", "X04", "X05"],
+    "existing_ports": ["UC-P06", "UC-P07", "UC-P08", "UC-P09", "UC-P10"],
+    "related_gaps": ["UH-U01", "UH-U02", "UH-U04"],
+    "implementation_batches": ["D0", "D5"],
+    "report": "reports/architecture-and-milestones.md#resource-budget-retirement",
+    "validation": "build/analysis/resource-budget-retirement-v1/validation.json",
+    "evidence": {
+      "native_graphics": "analysis/capability-first-v1/game-graphics-lifetime-contract.json#/facts/4",
+      "native_bulk_marking": "analysis/capability-first-v1/game-graphics-lifetime-contract.json#/facts/6",
+      "native_audio": "build/analysis/audio-runtime-ownership-v1/specification.json#/facts/4",
+      "chrome": "build/analysis/resource-budget-retirement-v1/browser-runtime.json",
+      "wechat_callbacks": "build/analysis/resource-budget-retirement-v1/wechat-callbacks.json",
+      "desktop_persistent_lease": "#/desktop_browser_resource_version_isolation",
+      "desktop_quota": "#/desktop_browser_quota_failure",
+      "mobile_persisted_archive": "#/mobile_safari_persisted_resource_archive",
+      "wechat_temporary_segments": "#/wechat_sdk_segmented_archive"
+    },
+    "facts": {
+      "native": "固定 SE 将图形标记与实际解除链接逐步处理。50F4A0 的流式音频分支在实际 Stop 和等待 FBA3D4 后才释放数据，普通音乐与进程级关闭各有路径。复用已核的 REA 文件位置和原字节，跨端发布与预算属于独立设计。",
+      "browser": "Chrome 157.0.8103.51 同页从相同的 2549171845 字节 ZIP 建两个独立来源。旧库在图块 1660 字节和音乐 WAV 4311856 字节的 arrayBuffer 返回给适配器前挂起。新库在调色板返回前仍可准备，随后产出 12288 字节参考帧，实际 Web Audio 缓冲按 2 声道、2155830 帧、22050 Hz 创建并启动。旧库关闭立即拒绝新读。音频上下文已关闭且绘制仍在取消中，两个宿主缓冲仍未交回。先放回图块，旧帧以已取消结算，仍留音乐读。晚到的两个缓冲均在关闭路径被清零，旧音乐未产生 PCM 或播放。",
+      "heap_measurement": "图块及音乐旧范围合计 4313516 字节。所测重叠点 Runtime.getHeapUsage.backingStorageSize 为 396017670 字节，旧库逻辑关闭前后的所测值均为 256404750 字节，采样前的显式 GC 条件见实测。只记录该 V8 isolate 所选时间点，PCM 的 17246640 字节由 Float32 声道样本数推算，独立于进程总内存与存储用量。新库调色板成功路径的原始传输缓冲仍含内容，资源库收尾清的是自有副本。",
+      "wechat": "在源码适配器的四个受控回调夹具中，直接关归档、外部信号中止和超时均先拒绝读、移除等待定时器。迟到成功的 ArrayBuffer 被清零，迟到失败保留此前的超时结果。外部信号中止时外层 inspect 仍为 open，读取由已关闭的宿主源拒绝。超时后归档仍允许读其它成员。同一成员的本地头读若已经失败，其缓存 Promise 保留原失败，下一次读取复用该拒绝。实际宿主完成仍需 readFile 回调或已验证的取消完成证据。",
+      "authority": "Chrome 的新证据使用真实浏览器 ZIP 读取、资源库和 Web Audio，空间发布、回收和拒写复用独立存储试次。微信本轮为适配器回调夹具，分段容量及持久拒写引用原实际 SDK 试次。"
+    },
+    "accounting_and_release": {
+      "classification": "推测",
+      "reserve": "UC-P06 按实际清单和来源身份登记仍实际持有的旧根与候选块，按每个实际独立分配计在途范围、目录初始化、解码、合成、待呈现帧、音频输入、PCM 和原生输出副本。视图借用共享现有分配，所有权转交沿 retain/transfer，重复初始化形成独立分配。按安全整数校验增量，余量来自适用宿主预算和实际回执。",
+      "storage": "同一组存储预算包含旧活动版本、仍被读者持有或仍占盘的退役版本，以及已写入但未发布的候选块。候选完整清单和读回是 UC-P08 发布前提。分配或配额拒绝保持先前已验证活动根，用独立结果记录已经完成的候选块。准许回收后按宿主实际用量或后续写入重新评价。候选暂存与换版提交失败分别按原事务、写入者和恢复规则报告。",
+      "admission": "准备从第一次宿主读之前持根。UC-P09 关入场、帧与音频的新请求并登记取消请求。记账继续覆盖已发读及其各个消费分支，至少等本次宿主读返回或可证明的原生中止完成，以及返回缓冲、解码、已发绘制与音频任务结算。取消后迟到的字节沿原所有者清理，迟到错误保持对应操作归属。",
+      "release": "一次读完成可释放其读取分配。独立读还在途、音频声部仍持样本或 Canvas 尚持待展示帧时各保留实际引用和预算。音频停止命令与具体节点释放分别观察。关闭时立即执行已同步可完成的清理，未知完成的资源继续保留。UC-P08 依据最后结算、租约清零和活动、候选、意图及历史保留引用复核后再回收旧根。",
+      "fallback": "若完整并行准备超出适用预算，先释放未被引用缓存，沿已证范围和分段端口处理可降低暂存的步骤。仍无足够预算时返回所需量、可用量和出错阶段，沿原入口保留正常停止当前旧会话后重新准备的选择。目标同源重试使用原范围所有者，确认超时的宿主请求已结算后再重新读取成员头，或用同一已验证来源重开。重复调用已有错误的缓存 Promise 只提供首次错误回执。"
+    },
+    "implementation": [
+      {"batch": "D0", "owners": ["shared/legacy-game-resource-archive.mjs", "shared/legacy-game-resource-library.mjs", "shared/legacy-game-client.mjs"], "change": "复用实际 ZIP、图形及世界资料解析。准备、渲染、CUT、缩略图和晚到回调共同保留根身份及在途记账。已归档字节向消费者交接后沿同一分配保留，深拷贝、解码、输出另行保留。协调公共关闭与排空，给已有快照发布、读回和重启确认提供权威结算。"},
+      {"batch": "D5", "owners": ["web/legacy-game-resource-archive.mjs", "web/legacy-game-audio-host.mjs", "web/legacy-game-client.mjs", "adapters/wechat/legacy-game-resource-archive.mjs", "adapters/wechat/legacy-game-host.mjs"], "change": "沿现有文件和音频端口回报实际读取、上下文关闭及消费任务。浏览器等待已发 Blob 读回，微信在回调层保留 native 完成身份。共同状态驱动退役和预算。宿主依据各自存储回执验发布拒绝、迟到完成与重开。"}
+    ],
+    "acceptance_extensions": [
+      {"reuse": ["UH-T01", "UH-T03", "UH-T14"], "case": "旧根同时阻塞图形和音乐读取，新根准备后先绘制并播放。记录存储和工作集的分配身份。关闭旧根后交回图块，此时取消帧但仍不可结算最后根租约。交回音频后按实际后置引用决定是否归还。"},
+      {"reuse": ["UH-T06", "UH-T07", "UH-T15", "UH-T17"], "case": "候选分块或最终发布拒绝时保留活动版本，核对存储仍占用的已写块与未完成写入。迟到失败和完成按同一发布身份读回，再释放符合条件的候选占用。"},
+      {"reuse": ["UH-T12", "UH-T13", "UH-T15", "UH-T19"], "case": "以迟到成功、迟到失败和有明确完成依据的中止验入场与页面关闭。微信分开记录 JS 拒绝、native 回调及持有读者。超时后用同成员重试和其它成员读取核缓存失败的范围。旧任务或生成的 PCM 只向原来仍有效的消费者发布。"}
+    ],
+    "real_map_viewport": {
+      "classification": "事实：本机 Chrome 真实素材的地图视口、音乐缓冲和资源统计。推测：跨端计量和验收设计。",
+      "receipt": "build/analysis/real-map-resource-budget-v1/runtime.json",
+      "validation": "reports/validation.md#real-map-resource-budget-validation",
+      "case": "固定素材的 map/0/1000.dat。静态模式 0，以 640×480 显示六个所选坐标，各首访和复访一次。使用固定音轨选择 200，启动 AudioBufferSourceNode 后再开始绘制。",
+      "samples": {
+        "map_bytes": 540020,
+        "dimensions": [300, 300],
+        "frames": 12,
+        "commands_per_frame": [245, 257],
+        "rgba_bytes_per_frame": 1228800,
+        "decoded_images": 272,
+        "warm_additional_physical_reads": 0,
+        "sprite_cache_bytes": 11430752,
+        "audio_float32_bytes": 17246640,
+        "maximum_sampled_v8_backing_bytes": 238427118,
+        "active_after_explicit_gc_v8_backing_bytes": 139690848,
+        "closed_after_explicit_gc_v8_backing_bytes": 3515542
+      },
+      "implementation": "UC-P06/P07 复用归档范围读、现有图块缓存、场景绘制及音频所有者，分别取得候选准备、已缓存图块、在途输出和释放回执。UC-P09 将资源视口、音频和根租约结算归到同一用例。D5 使用各端实际宿主分配与生命周期复验。",
+      "remaining": "实际人物、战斗和音效混播，动态调色、原生输出和自然资源压力下的联合高水位，正式持久发布及物理设备。"
+    },
+    "real_map_mixed_playback": {
+      "classification": "事实。Chrome 以固定原地图和 ZIP 测同页绘制、调色、重叠声部及晚到读。角色与音效事件由原创夹具提供，调色使用现有战斗调色所有者。",
+      "capabilities": ["G06", "G08", "X03", "X04"],
+      "report": "reports/architecture-and-milestones.md#real-map-mixed-resource-budget",
+      "validation": "reports/validation.md#real-map-mixed-resource-budget-validation",
+      "receipt": {
+        "path": "build/analysis/real-map-mixed-resource-budget-v1/runtime.json",
+        "bytes": 56484,
+        "sha256": "4d6a7250acfa86892576356c3113262bedf68b2415358537ad7d95e9188d5ee2"
+      },
+      "observed": {
+        "browser": "Chrome/157.0.8103.51",
+        "source_map": "map/0/1000.dat",
+        "viewports": [[150,150],[148,149]],
+        "actor_resource": 100002,
+        "actor_graphic_index": 20797,
+        "palette": {"target": 13, "midpoint_tint": [112,112,112], "final_tint": [96,96,96]},
+        "canvas": {"width": 640, "height": 480, "rgba_bytes": 1228800, "frames": 8, "revisit_matches": 3},
+        "warm_cache": {"decoded_images": 212, "bytes": 4290648, "additional_reads": 0, "additional_decodes": 0, "palette_repaints": 194},
+        "audio_at_canvas_paint": {"music_voices": 1, "effect_voices": 2, "effect_id": 280, "effect_file_reads": 1, "logical_float32_pcm_bytes": 17819580},
+        "audio_total_logical_pcm_allocated_bytes": 17842172,
+        "v8_backing_bytes": {"at_mixed_frame_sample": 137359575, "maximum_selected_sample": 206080585, "after_close_drain_and_explicit_gc": 3532371},
+        "late_read": {"member": "Bin/Graphic_20.bin", "member_offset": 6516714, "bytes": 1696, "pending_after_audio_context_closed": true, "cleared": true, "new_presentations_after_close": 0}
+      },
+      "implementation": "D0/D5 共用 UC-P06、UC-P07、UC-P09、UC-P13、UC-P14。按图像缓存项实际持有的索引和已准备像素记账，颜色修订复用索引。按 AudioBuffer 身份计活跃 PCM，偏声像输出占独立缓冲。关闭显示和音频时，已发宿主读及尚未结算的帧继续占用，待原返回清理与帧取消均确认后归还。V8 后备存储样点与逻辑分配分开采集。",
+      "acceptance": [
+        "固定一次角色帧，分开核无角色、角色和调色变化的画布摘要，复访同样条件时比对读量、解码和重绘计数。",
+        "在场景音乐仍活跃时用同一个音效文件分别产生居中和偏声像输出。核一个源读、分配身份及实际 Canvas 提交时两路音效的活动时间。",
+        "持有一笔确定的图块返回时关闭页面所有者。核停止中的声部、图块等待、缓存、画布清空、晚到清理和最终帧结算。"
+      ],
+      "remaining": "真实游戏场景调度、其它场景和宿主、自然压力、持久换版和真机继续沿 UH-U01/U02/U04 与 D5 验收。"
+    },
+    "animation_coordinate_storage": {
+      "classification": "事实。实际 ZIP 的现有目录与本机单份坐标快照试次。D0/D5 设计沿所选原版规则。",
+      "capabilities": ["G06", "X03"],
+      "ports": ["UC-P06", "UC-P07", "UC-P09"],
+      "owners": ["shared/legacy-game-resource-library.mjs", "shared/legacy-game-animation.mjs"],
+      "native_source": "analysis/capability-first-v1/game-presentation-functional-specification.json#/legacy_animation_coordinate_source",
+      "load_and_first_lookup": "analysis/capability-first-v1/game-presentation-functional-specification.json#/legacy_animation_coordinate_source/load_and_first_lookup",
+      "report": "reports/architecture-and-milestones.md#animation-coordinate-storage",
+      "validation": "reports/validation.md#animation-coordinate-sharing-validation",
+      "receipt": {
+        "path": "build/analysis/animation-coordinate-sharing-v1/runtime.json",
+        "bytes": 7680,
+        "sha256": "2ee5db6394f940315acf5e6eec560f563ecd9fef7cdd94766673b3b3bc9e4c1e"
+      },
+      "observed": {
+        "groups": 7,
+        "coordinate_member": "Bin/coordinatev3_2.bin",
+        "coordinate_member_bytes": 7991056,
+        "animation_data_bytes": 41065094,
+        "current_coordinate_copies": 7,
+        "test_coordinate_copies": 1,
+        "current_retained_payload_bytes": 97002486,
+        "test_retained_payload_bytes": 49056150,
+        "saved_retained_payload_bytes": 47946336,
+        "matching_animation_records": 2520,
+        "matching_frames": 1699203,
+        "matching_attachment_rows": 639484,
+        "attachment_index_rows": 2235
+      },
+      "implementation": "沿已有范围读取和目录构造，以资源根与已核的同一成员范围作为私有坐标数据身份。在同一目录内保留一份不可向外部写入的快照。保留各组的 graphicBase 与最后保留的动画记录。坐标索引是否应用由原版文件名别名和已开句柄规则决定。UC-P06 按实际持有量计候选和旧根，继续核解码及准入上限。UC-P07 与 UC-P09 在目录关闭或构造失败时结算各自的持有量，清理该根的一份坐标快照。",
+      "acceptance": [
+        "在同一份实际 ZIP 保留七组索引、组别和图形基址，分批遍历实际动画，核动作、帧、首个匹配的附件和附件坐标。A/B/A 及同名不同 AP 索引沿固定原版推导的期望核对。",
+        "两个候选根即使读取相同文件也各有一份私有快照。旧根关闭两次仅清一次，新根首次查找仍命中原值。中途错误后核已建分配仅结算一次及借入输入可重用。",
+        "实际空可选组、只有索引的可选组首次查找及坐标索引失败沿 load_and_first_lookup。把完整成员末尾的索引残行、宿主范围短读与索引非 1 标记按各自结果验收。候选失败后旧根仍可首次查找，补齐材料后的新根单独验收。",
+        "分别核对在用素材字节、临时构建量、解码上限和宿主峰值。异名不同成员即使内容相同也沿各自数据范围读取。"
+      ],
+      "measurement_scope": "原有逻辑准入计数在对照中保留。49,056,150 字节由实际动作数据和试次持有的一份坐标数据相加。为保持每目录 1,048,576 帧的解码上限，2,520 个动画分两批遍历。所测为目录保留的素材字节，实际三端峰值沿 UH-U04。",
+      "product_code_changed": false,
+      "full_host_conformance_passed": false
+    },
+    "audio_voice_lifetime": {
+      "classification": "事实：固定 SE 的单次音效入口、stage306 音频宿主的槽持有及 Chrome 所选播放。推测：共享预算和退役设计。",
+      "native_source": "analysis/game-legacy-battle-audio-v1/source-check.json",
+      "current_owner": "web/legacy-game-audio-host.mjs",
+      "receipt": "build/analysis/browser-audio-voice-budget-v1/runtime.json",
+      "validation": "reports/validation.md#browser-audio-voice-budget-validation",
+      "observed": {
+        "scene_music_code": 200,
+        "effect_id": 134,
+        "effect_reads": 1,
+        "centered_voices": 2,
+        "same_pan_voices": 2,
+        "music_bytes": 17246640,
+        "return_cue_bytes": 22592,
+        "effect_decoded_bytes": 26700,
+        "each_panned_output_bytes": 53400,
+        "total_logical_pcm_bytes_created": 17402732,
+        "naturally_ended_sources_still_reachable_after_gc": 4,
+        "late_effect_id": 255,
+        "late_read_bytes": 33008,
+        "late_read_zeroed": true,
+        "additional_allocations_or_starts_after_close": 0
+      },
+      "ownership": "居中播放复用按音效 ID 缓存的解码缓冲。偏左播放每次另建两声道 AudioBuffer。32 MiB 音效缓存只追踪解码项字节。stage306 自然结束时 release 从 voices 退役并断开节点，soundSlots 的 reservation.voice 仍持有该节点。实测四个音效节点及其缓冲在结束后仍可通过弱引用访问，关停排空后本次观测均不可访问。",
+      "implementation": "AF-D3/AF-D7 沿 UC-P06/P09/P13 记录共享 PCM、独立声部输出和仍在途的读。按声部身份归还输出，结束通知只解除仍属于该声部的槽引用，并防止旧回调改变复用后的槽。宿主关闭与实际读排空各自确认，排空后交还来源租约。D5 复用同一输入核目标宿主的分配和关闭。",
+      "cases": [
+        {"acceptance": ["AF-T10", "AF-T11"], "expected": "同源音效两次居中只计一份解码 PCM，两次偏左分别计不同输出。自然结束后解除该声部所持独立输出，在槽位已经复用时保持当前所有者。"},
+        {"acceptance": ["AF-T10", "AF-T12"], "expected": "关停时还有已取得但未交回的读取。等待实际读结算，清理迟到数据且音频分配、播放和新读计数均保持。"}
+      ],
+      "wechat_devtools": {
+        "classification": "事实：开发者工具 2.02.2609250 Stable 的 SDK 3.18.0 离线游客工程运行。",
+        "receipt": "build/analysis/wechat-sdk-audio-voice-v1/ready-receipt.json",
+        "validation": "reports/validation.md#wechat-sdk-audio-voice-validation",
+        "source_owner": "adapters/wechat/legacy-game-host.mjs",
+        "input": "原创 PCM WAV 输入内存端口，对应曲目 200、返回提示和音效 134/255。音乐有 smpl 循环块，134 为 22050 Hz、6675 帧单声道。前置双声道缓冲从偏移 1 写入并读回两个不同的 Float32 序列。",
+        "observed": {
+          "devtools": "2.02.2609250 Stable",
+          "sdk": "3.18.0",
+          "initial_context_rate": 48000,
+          "created_audio_buffer_rate": 22050,
+          "allocated_buffers_in_audio_host": 5,
+          "effect_reads": 1,
+          "centered_uses_same_buffer": true,
+          "panned_uses_separate_stereo_buffers": true,
+          "natural_ended_receipts": 4,
+          "close_resolved_and_state_closed": true,
+          "held_read_bytes": 32940,
+          "held_cleared_after_return": true,
+          "additional_allocations_or_starts_after_close": 0
+        },
+        "implementation": "所选 SDK 的 createBuffer、copyToChannel、getChannelData、节点开始/结束及 close 支持复用现有音频宿主。D0 继续按声部身份退役，D5 将 close Promise 和在途读取各自结算。关闭回执到达时，夹具尚持有未交回的 WAV，释放仍需读取回执。",
+        "remaining": "使用 SDK 真上下文并将输出增益设为零。WAV 迟到由原创内存端口控制。实际小程序产品、后台、物理设备可闻输出和完整场景峰值继续验收。"
+      },
+      "mobile_safari": {
+        "classification": "事实：iOS 27.0 模拟器的 Mobile Safari 27.0 真实触摸、音频和导航回执。",
+        "receipt": "build/analysis/mobile-safari-audio-lifecycle-v1/runtime.json",
+        "validation": "reports/validation.md#mobile-safari-audio-lifecycle-validation",
+        "product_open_site": "web/game-app.mjs",
+        "observed": {
+          "cold_state": "suspended",
+          "cold_resume": "pending",
+          "trusted_pointer_type": "touch",
+          "user_activation_at_handler": true,
+          "state_after_trusted_resume": "running",
+          "audio_starts": 2,
+          "natural_ended_receipts": 1,
+          "pagehide_persisted": false,
+          "state_after_close_request": "running",
+          "close_promise_completion_observed_before_replacement": false,
+          "held_read_bytes": 4454,
+          "held_cleared_after_return": true,
+          "reads_issued_after_retirement": 0
+        },
+        "implementation": "UC-P13 在可信触摸的同步处理段申请打开和恢复音频上下文。以实际 running 和声部回执更新可用状态。现有游戏页在首次材料 await 前调用音频入口，复用该位置。UC-P14 的 pagehide 通知停止接收新音频请求并关现有节点，独立跟踪 close Promise、在途读取和资源租约。若浏览器替换发生在关闭完成可观测前，保留关闭请求和已确认结算，最终结果由实际回执确认。",
+        "remaining": "使用零增益原创测试页和真实 Safari 上下文。后台系统中断、可闻播放、物理设备和实际产品接线继续验收。离页时旧上下文的最终状态未被本次页面记录观察。"
+      },
+      "remaining": "桌面 Chrome、移动 Safari 模拟器和微信开发者工具已取得选定音频边界。设备后台、实际小程序及网页产品、设备可闻输出、完整场景与混播峰值沿 AF-T12、UH-U04。"
+    },
+    "remaining": "所选 Chrome 组合已有原地图、单角色、调色和音效节点的共同回执。完整普通与战斗场景、实际产品画布和音频端口、其他宿主及自然资源压力仍沿 UH-U04 核验。实际产品持久发布及微信跨进程存储沿 UH-U01/U02。",
+    "selected_operation_review_complete": true,
+    "new_REA_queries": 0,
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "full_host_conformance_passed": false
+  },
+  "game_resource_reopen": {
+    "classification": "事实：固定 F5A 来源及 stage306 所测入口。独立设计：三端重开、资源发布和旧工作关闭的组合规则。",
+    "capabilities": ["L05", "L08", "X03", "X04", "X05", "X06"],
+    "ports": ["UC-P06", "UC-P07", "UC-P08", "UC-P09", "UC-P10", "UC-P11", "UC-P14"],
+    "source_and_behavior": {
+      "native_references": "analysis/capability-first-v1/launcher-update-ack-reconciliation.json#/f5a_update_handoff_and_ack",
+      "launcher_sha256": "f5abc77a1d6c7b1875bae8cdea948469424a8e683d72939e2118d1a38de06842",
+      "embedded_updater_sha256": "c1b2c8b7870275a2268364bfb1e8a8a7a09444174f8be4e9274ed74d6dae4b5b",
+      "original_order": "固定 F5A 从 4096B0 请求旧窗关闭，内嵌更新器的 407290 等到父进程退出才进入后续处理。候选 43F240 绘制后尝试确认，更新器的 4069F0 等候该结果。可移植发布和租约的次序按 UH-D02、UH-D06 至 UH-D10。",
+      "page_lifecycle": "analysis/capability-first-v1/shared-update-host-design.json#/game_page_lifecycle",
+      "store_fixtures": "analysis/capability-first-v1/shared-update-host-design.json#/publication_and_boot_readback",
+      "desktop_cancel_during_archive_open": "build/analysis/game-resource-reopen-composition-v1/chrome-retired-archive.json",
+      "mobile_safari_navigation": "#/game_page_lifecycle/safari_navigation_resource_read",
+      "desktop_finding": "web/game-app.mjs 的 close 增加页面序号，begin 直到等待浏览器 ZIP 初始化完成后才复核序号。在所测首段读取被延迟返回时，旧页面取消后仍额外发起一次中央目录读取；原两段缓冲区最终清零，报错和连接均未泄漏到下一次准备。同步可调用的关闭入口直到 ZIP 初始化返回才由 begin 持有。",
+      "wechat_finding": "现有 Page/App 隐藏通过适配器取消选择和会话。在 Node 驱动原 Page 处理函数的夹具中，首次待回调读取被拒绝、迟到缓冲清零，旧连接的迟到数据与关闭未改变新 Page。实际连接及独立进程持久根继续按原用例验证。"
+    },
+    "implementation_differences": [
+      {
+        "batch": "D0",
+        "existing_owners": ["shared/legacy-game-resource-archive.mjs", "shared/legacy-game-client.mjs"],
+        "change": "沿 UC-P07/P09 将准备中的读取归属在第一次读取前交给原所有者。停止接入后禁止该所有者发起下一段读取；已发出的读、解码及绘制完成后才结算并释放占用。按 UC-P08 区分活动根、旧读者与历史提交，按 UC-P11 分别结算读取和连接关闭。现有 ZIP 解析和会话解码继续复用。"
+      },
+      {
+        "batch": "D1",
+        "existing_owners": ["web/launcher-resource-store.mjs", "adapters/wechat/launcher-resources.mjs", "adapters/wechat/launcher-slot-store.mjs"],
+        "change": "沿自更新所有者交接候选、预期修订、根身份和重启意图，复用现有缓存读取及结算原语。完整发布采用原 UH-D02、UH-D04/05 的事务或单 App 写入者，按更新编号读回提交和恢复。"
+      },
+      {
+        "batch": "D5",
+        "existing_owners": ["web/game-app.mjs", "web/legacy-game-resource-archive.mjs", "web/legacy-game-session.mjs", "wechat/game/pages/play/index.js", "wechat/lifecycle.js", "adapters/wechat/legacy-game-host.mjs", "adapters/wechat/legacy-game-resource-archive.mjs", "adapters/wechat/launcher-stream.mjs"],
+        "change": "在现有暂停、取消、关闭和新建入口提交实际读完成、连接结束和重开结果。新页面在确认有效资源和启动前检后才准入，UC-P10 仍在最终写入边界核活动发布与构建。浏览器以对端及宿主回执验已有关闭，微信以实际 App 写入者和所支持的宿主文件来源验收。"
+      }
+    ],
+    "acceptance": [
+      {
+        "trigger": "打开 ZIP 时取消，旧首段读取延迟返回，同时用户选择另一份 ZIP。",
+        "expected": "旧读归旧所有者，清理其迟到缓冲后才报告排空；禁止旧选取再发目录读取。新所有者在所需容量与来源有效时可独立准备。旧取消或错误不改新状态；新活动读取真的失败时仍保留错误。准备未通过前不启动连接。",
+        "reuse": ["UH-T01", "UH-T03", "UH-T15"],
+        "stage306": "Chrome 所测旧选取额外发出一次目录读，其他所选隔离行为通过。"
+      },
+      {
+        "trigger": "页隐藏后返回，或在后台收到对端结束后重进。",
+        "expected": "仍保留原会话的暂停页仅在同一连接、素材与画面仍有效且收到继续操作时恢复。已结束的页走新的连接准备；旧读取与回调不改变新页，旧租约直到实际完成才可释放。",
+        "reuse": ["UH-T12", "UH-T13", "UH-T15"],
+        "stage306": "Safari 模拟器短后台和 EOF 已测；微信既有 Node 夹具覆盖重新选取及晚到消息。"
+      },
+      {
+        "trigger": "发布新根时旧会话仍读旧根，或整 App 更新等待旧会话结束。",
+        "expected": "内容发布可在旧会话不受影响且容量足够时完成，旧读继续绑定原根。整 App 重启等待受影响的读、连接与其他工作退役；回收时重查活动、候选、待确认意图和历史引用。提交已结算与旧根仍被持有可以同时成立。",
+        "reuse": ["UH-T03", "UH-T12", "UH-T13", "UH-T14", "UH-T19"],
+        "stage306": "两浏览器独立存储夹具已核旧租约，真实游戏页与发布端口的组合待连接。"
+      },
+      {
+        "trigger": "关闭发布方时写入已发出，随后重开或用户重试同一发布。",
+        "expected": "沿同一 store scope 及 updateId 取得权威写入结果。未知时等待实际写及必要读回，保留占用并阻止同一操作重复写入。已确认的提交在页面取消及后续更新后仍可查询。",
+        "reuse": ["UH-T06", "UH-T07", "UH-T11", "UH-T15", "UH-T16", "UH-T17", "UH-T25"],
+        "stage306": "浏览器事务和微信本机双槽各有部分回执；微信按更新编号的持久历史待接入。"
+      },
+      {
+        "trigger": "新页面重开后核对活动发布、构建、配置及实际素材，或在准备期间发生下一次发布。",
+        "expected": "先读回有效根和相关提交，再按已用的根、配置及构建执行启动前检。仅在最后确认时仍匹配同一活动发布才绑定就绪；临时来源缺段需补选且不生成持久发布回执，已提交根缺块进入待恢复，构建不匹配留存原提交，较新发布使迟到确认返回已取代。独立游戏入场另以实际会话结果验收。",
+        "reuse": ["UH-T08", "UH-T09", "UH-T17", "UH-T18", "UH-T22", "UH-T23", "UH-T24", "UH-T25"],
+        "stage306": "浏览器所选发布、历史与读回在夹具验证，微信完整临时分段与单段补选已有独立工具进程回执，实际产品组合待执行。"
+      }
+    ],
+    "remaining": ["UH-U01", "UH-U02", "UH-U03", "UH-U04", "UH-U05"],
+    "report": "reports/architecture-and-milestones.md#portable-update-handoff-readback",
+    "validation": "reports/validation.md#game-resource-reopen-composition-validation",
+    "validation_record": "build/analysis/game-resource-reopen-composition-v1/validation.json",
+    "reader_identity_and_publication": {
+      "classification": "固定 DevTools 静态核验、留存宿主实测及现有适配器对照。共用发布与排空为独立目标设计。",
+      "capabilities": ["X03", "X04", "X05", "X06"],
+      "ports": ["UC-P06", "UC-P07", "UC-P08", "UC-P09", "UC-P10"],
+      "related_gaps": ["UH-U01", "UH-U02", "UH-U04"],
+      "implementation_batches": ["D0", "D1", "D5"],
+      "report": "reports/architecture-and-milestones.md#resource-reopen-reader-identity",
+      "validation": "reports/validation.md#resource-reopen-reader-identity-validation",
+      "source_review": {
+        "path": "build/analysis/resource-reopen-reader-identity-v1/source-review.json",
+        "bytes": 6896,
+        "sha256": "82abe3a70971becd1ffc2fe067340aca315002378ef5e2b1897572f476211472"
+      },
+      "local_comparison": {
+        "path": "build/analysis/resource-reopen-reader-identity-v1/local-comparison.json",
+        "bytes": 1109,
+        "sha256": "582c17a9e6dd9de26b4d25c6afddd8d2e4fe1501d161ca72293e6c7868a6f58c"
+      },
+      "facts": {
+        "sdk_paths_and_descriptors": "DevTools 2.02.2609250 的已选 readFile 分支每次解析当前路径，然后调用文件服务 open、read、close。openFD 路径由新核的 FDOperator 保存文件服务返回值，后续 read 和 fstat 从该关联取得参数，关闭成功后删除关联，模拟器重启清空登记。新 REA 证据和既有档案各核独立 ASAR 成员。真实微信读描述符与晚到完成仍待运行。",
+        "local_path_replacement": "用两份 135 字节的有效原创 ZIP，经 Node 实际文件驱动现有微信选择适配器。旧版已读过成员头，原路径换成同长的另一版后，旧读取的一字节切片由 65 变成 66，整成员读取报 CRC 失配。现有网页适配器持有原创不可变 File，旧值仍为 65。Node 打开的原读描述符在换路径后也保留旧值。单独用原位写替换字节时，同一已打开的 Node 描述符读取到新内容。",
+        "local_drain_and_repair": "旧微信适配器关闭后 JS 立即返回 FILE_ABORTED，宿主回调仍有 1 笔在途。新读取成功，旧回调返回后清零其缓冲并使在途数归零。另取临时分段，缺段先报缺失，同长度的另一版本段摘要失配。复用第一段并换回正确第二段后，整包摘要、跨段范围和共享 ZIP 消费一致。",
+        "host_observations": "Chrome 的两个独立素材版本可并存，活动切换后旧读仍固定到原根，实际回调完成后才回收；所测两类配额失败均保留权威发布顺序。移动 Safari 模拟器回读了 304 个已保存块，所选复合 Blob 先按块实体化。微信完整 2,549,171,845 字节两段可跨两次正常工具重启重开及补选。普通写入只验证了 100,663,296 字节，第 13 个 8 MiB 块拒绝，试次没有已有活动根。微信小 ZIP、历史提交与启动记录另有真实重开回执。"
+      },
+      "common_rules": {
+        "verify_content_and_source": "资源身份使用内容总长和摘要，分段记录按位置、长度和各段摘要核验。路径、文件名及 stat 长度只用于定位和准入读取。重开旧清单时核对当前可用来源。已有可保证不可变的来源可复用当时的校验，文件描述符仅作为该次来源持有凭据；同一 backing 在租约期间禁止原位改写。未知来源完整验证后才交给同一共享 ZIP 读入口。",
+        "temporary_reopen": "临时素材沿 UC-P07 准备。现有持久启动记录可以保留对应的选择清单。正常重开按已记录内容逐段恢复、缺段只补失效段。补选成功给当前准备交付新来源，原读者保持旧的已绑定来源。完整内容验证及实际启动前检通过时，可以使用已验证临时素材新开会话；它的读回状态保持会话用途。",
+        "durable_publish": "UC-P06 计入实际在盘的旧根、正在写入及已写候选、尚需保留的历史引用和存储开销。UC-P08 只接受全部持久块和完整清单的读回，在权威事务或单 App 写入者边界比较预期活动根及修订。失败时保留最近验证通过的活动根。发出的写入结果未知时先按原 updateId 查权威状态，待占用释放或有新预算再评估。完整持久数据容量不足时可以继续支持临时选择和重开，不生成持久发布回执。",
+        "settle_readers": "UC-P09 在首次范围读前保留原来源和读者归属。关闭先停止新读并结算可同步释放的任务，已发读等待回调或已证原生中止完成。回调与其后解码、呈现、音频任务各自在原读者下结算，清理晚到缓冲再归还引用。UC-P08 检查当时活动、候选、意图、历史和在途引用后回收旧根。",
+        "new_boot_confirmation": "UC-P10 在既有启动写入边界复核当前发布、已完成的根、内容、实际构建及本次启动证明。晚到确认依据当前活动和所属旧代返回历史结果或已取代。相同内容补回失效路径后按实际取得的来源重新准备，不能让旧读者的关闭或迟到结果作用于新来源。"
+      },
+      "implementation": {
+        "D0": "复用现有归档、分段范围和库读取，统一把来源绑定到根与读者。状态保留实际需要的待读、已结算和持有引用。原路径规则和 CRC 继续复用，根校验在取得来源后完成。",
+        "D1": "沿 UC-P08/UC-P10 复用现有浏览器事务和微信单写入者，接完整读回、预期发布比较、未知提交查询与最终启动绑定。临时恢复继续由 UC-P07 与会话启动使用。",
+        "D5": "浏览器沿所选 File、经核的存储块及关闭回执。微信沿已实测的分段选择考虑每段生命周期，并由实际支持的只读句柄或独立结果文件实现固定来源。公开句柄接口、取消完成语义、持久容量及移动设备沿同一组用例验收。"
+      },
+      "cases": {
+        "reopen_and_supplement": "正常恢复从完整清单用原长度和摘要读取。移开第二段，补选相同长度但不同摘要的段，然后补入匹配段。比较第一段实际保留、预检结果与是否获得持久发布回执。",
+        "version_isolation": "准备中的 A 已读成员头，与并发候选 B 的写出及发布重叠。让路径相同或两个来源指向同一文件，验证旧受借用数据持续对应 A。用单独原位写入或丢失来源检查无法继续时的实报错误。",
+        "quota_and_recovery": "保留可用 A，启动 B 写入，覆盖分块及最终发布被拒、应用在回调前结束、重开后按原编号读回。核预算、候选占用的释放时间和已验证临时来源的会话结果。",
+        "close_and_late_bytes": "挂起旧读并让新来源通过同一部分读取。核 JS 拒绝后的真实未决回调、返回清零、第二读者结果和最后租约的释放。再验次序互换、实际中止及候选失败。",
+        "ready_after_supersession": "按相同资源内容更换失效文件和按新发布更新两种场景。旧回执到达时复核当时发布、启动构建、有效来源及所有者，再决定继续、恢复或已取代。"
+      },
+      "remaining": "正式三端产品发布、微信实测描述符和读取消、完整持久化来源、自然容量压力、真机容量和实际峰值继续沿 UH-U01、UH-U02、UH-U04。完成所选规则审定，A4 整体和发布接线待验收。",
+      "selected_operation_review_complete": true,
+      "host_conformance_passed": false,
+      "product_code_changed": false
+    },
+    "product_composition_tested": false,
+    "host_conformance_passed": false
+  }
+}

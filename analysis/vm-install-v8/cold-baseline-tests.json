@@ -1,0 +1,63 @@
+{
+  "prepared_utc": "2026-10-25T13:16:29.857829+00:00",
+  "staging_root": "/Users/lx/Documents/Codex/2026-10-25/task",
+  "python": "3.9.6",
+  "script": "/Users/lx/Documents/Codex/2026-10-25/task/analysis/vm-install-v8/create_cold_baseline.py",
+  "script_sha256": "d730abf1d0a4d05a302eb0b3ad0774211894b6e6416b098842acd4a2ae7398a7",
+  "test_sha256": "fbaedf80ed2ab7ab12cd4c857e686f9d5fc904f648c53db2ed06dd9977ba0b32",
+  "policy_path": "analysis/vm-install-v7/verify_offline_four_drive.py",
+  "policy_sha256": "b72b8234cd52625552a6df95afacffe9a011af233cd7cc1ae09014051bbfcc87",
+  "exactly_equivalent_to_v7_except_stage_output_paths_and_header": true,
+  "v7_source_files_match_stage11_after_work": {
+    "create_cold_baseline.py": true,
+    "test_cold_baseline.py": true,
+    "verify_offline_four_drive.py": true
+  },
+  "fixed_files_count": 7,
+  "source_vm_unchanged": "No real VM access performed by this branch",
+  "target_basename": "MoliOffline-ARM64-20261025-windows-v8.utm",
+  "required_ui_receipt": "analysis/vm-install-v8/final-ui-state.json",
+  "output_receipt": "analysis/vm-install-v8/windows-cold-baseline.json",
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis/vm-install-v8",
+        "-p",
+        "test_cold_baseline.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "test_methods": 19,
+      "log": "cold-baseline-tests-normal.log"
+    },
+    {
+      "mode": "optimized",
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis/vm-install-v8",
+        "-p",
+        "test_cold_baseline.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "test_methods": 19,
+      "log": "cold-baseline-tests-optimized.log"
+    }
+  ],
+  "scope": "Synthetic temporary files only; lsof/cp/chmod mocked. No real --apply/preflight/VM read/guest/UI action. No successful shutdown receipt created.",
+  "limitations": [
+    "Unit tests do not prove current VM shutdown/health, actual clone behavior, completed baseline or restore boot.",
+    "The unchanged v7 policy requires the exact four-drive offline layout; it does not validate guest credentials or disk backing chains."
+  ]
+}

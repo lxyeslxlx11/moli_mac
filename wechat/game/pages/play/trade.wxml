@@ -1,0 +1,48 @@
+<view class="hint" wx:if="{{tradeNotice}}" role="status">{{tradeNotice}}</view>
+<view class="card" wx:if="{{trade}}">
+  <view class="section-title">{{trade.title}}</view>
+  <view class="hint" wx:if="{{trade.notice}}" role="status">{{trade.notice}}</view>
+  <view wx:if="{{trade.kind === 'candidates'}}" class="controls">
+    <view wx:if="{{!trade.candidates.length}}" class="hint">附近没有可交易的玩家。</view>
+    <button wx:for="{{trade.candidates}}" wx:key="id" size="mini" disabled="{{trade.busy}}" data-action="select"
+      data-slot="{{item.id}}" data-revision="{{trade.revision}}" data-version="{{trade.version}}" bindtap="onTrade">{{item.label}}</button>
+  </view>
+  <block wx:else>
+    <view class="line">对方报价 · {{trade.remotePhaseText}} · 金币 {{trade.remoteGold}}</view>
+    <view wx:for="{{trade.peerItems}}" wx:key="id" class="line commerce-text">{{item.label}}<view class="hint" wx:if="{{item.description}}">{{item.description}}</view></view>
+    <view wx:for="{{trade.peerPets}}" wx:key="id" class="line commerce-text">{{item.label}}<view class="hint" wx:if="{{item.description}}">{{item.description}}</view></view>
+    <view class="commerce-section">
+      <view class="line">我的报价 · {{trade.localPhaseText}}</view>
+      <block wx:if="{{trade.localPhase === 0}}">
+        <view class="hint">持有金币 {{trade.gold === null ? '等待同步' : trade.gold}}</view>
+        <view class="controls">
+          <button wx:for="{{trade.items}}" wx:key="slot" size="mini" type="{{item.selected ? 'primary' : 'default'}}"
+            disabled="{{trade.busy}}" data-action="item" data-slot="{{item.slot}}" data-row-revision="{{item.revision}}"
+            data-revision="{{trade.revision}}" data-version="{{trade.version}}" bindtap="onTrade">物品 {{item.label}}</button>
+          <button wx:for="{{trade.pets}}" wx:key="slot" size="mini" type="{{item.selected ? 'primary' : 'default'}}"
+            disabled="{{trade.busy}}" data-action="pet" data-slot="{{item.slot}}" data-row-revision="{{item.revision}}"
+            data-revision="{{trade.revision}}" data-version="{{trade.version}}" bindtap="onTrade">宠物 {{item.label}}</button>
+        </view>
+        <input class="field" type="number" value="{{trade.goldText}}" maxlength="10" disabled="{{trade.busy}}" placeholder="报价金币"
+          data-action="gold" data-revision="{{trade.revision}}" data-version="{{trade.version}}" bindinput="onTrade" />
+      </block>
+      <block wx:else>
+        <view class="line">金币 {{trade.offer.gold}}</view>
+        <view wx:for="{{trade.offer.items}}" wx:key="slot" class="line">物品 {{item.label}}</view>
+        <view wx:for="{{trade.offer.pets}}" wx:key="slot" class="line">宠物 {{item.label}}</view>
+      </block>
+    </view>
+  </block>
+  <view class="controls">
+    <button wx:if="{{trade.kind === 'open' && trade.localPhase === 0}}" size="mini" type="primary" disabled="{{!trade.canPublish}}"
+      data-action="publish" data-revision="{{trade.revision}}" data-version="{{trade.version}}" bindtap="onTrade">发布报价</button>
+    <block wx:if="{{trade.kind === 'open' && trade.localPhase > 0}}">
+      <button size="mini" type="primary" disabled="{{!trade.canConfirm}}" data-action="confirm"
+        data-revision="{{trade.revision}}" data-version="{{trade.version}}" bindtap="onTrade">确认交易</button>
+      <button size="mini" disabled="{{trade.busy}}" data-action="withdraw"
+        data-revision="{{trade.revision}}" data-version="{{trade.version}}" bindtap="onTrade">撤回报价</button>
+    </block>
+    <button size="mini" disabled="{{trade.busy}}" data-action="close" data-revision="{{trade.revision}}"
+      data-version="{{trade.version}}" bindtap="onTrade">{{trade.kind === 'candidates' ? '关闭列表' : '退出交易'}}</button>
+  </view>
+</view>

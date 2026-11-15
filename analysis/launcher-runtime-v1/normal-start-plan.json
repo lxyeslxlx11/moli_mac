@@ -1,0 +1,41 @@
+{
+  "schema": "moli.launcher-runtime-v1.normal-start-plan.v1",
+  "recorded_utc": "2026-10-27T19:48:13.234237+00:00",
+  "purpose": "Observe fixed original normal network update check and first visible launcher result; compare with existing REA startup control flow before consumer analysis.",
+  "state": "prepared; original run not submitted; concrete source-risk confirmation pending",
+  "target": "C:\\MoliOffline\\launcher-probe\\POLCN_Launcher.exe",
+  "sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+  "launch_count": 1,
+  "privilege": "Original requireAdministrator manifest through normal UAC; no manifest/security modification.",
+  "network": "Existing Shared/NAT connected. Mac directory sharing isolation unchanged.",
+  "compatibility": "User-confirmed Windows 7 mode retained.",
+  "window_observation_budget_seconds": 90,
+  "budget_start": "Command submission before UAC; record UAC waiting separately and close normally before budget if possible.",
+  "allowed_observation": [
+    "Normal startup and built-in update-check display",
+    "Ordinary UAC for exact launcher path",
+    "Known fixed embedded LauncherUpdater.exe may run automatically; do not deliberately invoke another EXE"
+  ],
+  "expected_embedded_updater_sha256": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+  "risk": "Unsigned supplied sample; authoritative publisher provenance unresolved. Administrator execution can modify guest files/settings and contact configured update endpoints; built-in checks may download/update and run child code. Existing Windows identity and untested snapshot restore remain relevant. Prior public HTTP digest match is not authenticated provenance.",
+  "stops": [
+    "First stable login screen or failure result",
+    "Unexpected permission, new executable/update choice or different legal agreement",
+    "Any requested credential entry: leave to human",
+    "Budget reached: request normal window close; if cannot close, preserve state and report, no force kill"
+  ],
+  "excluded": [
+    "No login or game launch in this observation",
+    "No account identifiers, passwords, ticket or mapping payload collection",
+    "No debugger attachment, memory dump, API hook or raw network payload capture",
+    "No protection bypass, bridge, shared folders, clipboard sharing, restore, reboot or cleanup"
+  ],
+  "at_action_gate": {
+    "origin": "CUA Computer/Browser Use Confirmation Policy section 2",
+    "rule": "Installs or runs software from an unrecognized source; confirmation required at action time even with preapproval.",
+    "basis": "Supplied fixed sample, fresh Windows NotSigned; no authenticated publisher provenance established.",
+    "not_an_auto_review_rejection": true
+  },
+  "prior_v23_once_budget": "Consumed historical offline observation; this plan does not reuse it.",
+  "goal_complete": false
+}

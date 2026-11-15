@@ -1,0 +1,11 @@
+import test from'node:test';
+import{readFileSync}from'node:fs';
+import*as api from'../index.mjs';
+import{verifyNestedPhysicalModel}from'../../analysis/game-battle-nested-physical-v1/verify_model.mjs';
+import{verifyNestedPhysicalCallbacks,verifyNestedPhysicalPreparation,verifyNestedPhysicalAtomic,verifyNestedPhysicalManagers}from'../../analysis/game-battle-nested-physical-v1/verify_routes.mjs';
+const v=()=>JSON.parse(readFileSync(new URL('../../analysis/game-battle-nested-physical-v1/original-vectors.json',import.meta.url)));
+test('nested independent queues,owned storage,all modeled states and complete RGBA',async()=>console.log('nested-physical-model '+JSON.stringify(await verifyNestedPhysicalModel(api,v()))));
+test('actual232 owns nested HP,mask priority,zero messages and two guards',async()=>console.log('nested-physical-callbacks '+JSON.stringify(await verifyNestedPhysicalCallbacks(api,v()))));
+test('source113 runtime support is distinct from72-only nested M preparation',async()=>console.log('nested-physical-preparation '+JSON.stringify(await verifyNestedPhysicalPreparation(api,v()))));
+test('nested undefined RID storage,capacity and actual graphics reject atomically',async()=>console.log('nested-physical-atomic '+JSON.stringify(await verifyNestedPhysicalAtomic(api,v()))));
+test('real nested manager separates natural guard completion,bounded waits and exit',async()=>console.log('nested-physical-managers '+JSON.stringify(await verifyNestedPhysicalManagers(api,v()))));

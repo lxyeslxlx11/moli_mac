@@ -1,0 +1,126 @@
+{
+  "schema": "moli.public-update-metadata.observation.v1",
+  "requests": [
+    {
+      "url": "http://launch.polchina.com.cn/Launcher/launcher_url.dat",
+      "utc_started": "2026-10-26T01:59:17.460489+00:00",
+      "method": "GET",
+      "request_limit": 1,
+      "redirects_followed": 0,
+      "proxy_used": false,
+      "cookie_or_auth_headers_sent": false,
+      "program_state_parameters_sent": false,
+      "time_limit_seconds": 20,
+      "body_limit_bytes": 4096,
+      "http_status": 200,
+      "content_type": "text/plain",
+      "bounded_bytes_read": 69,
+      "inspection": "bounded public update text classified; no returned URL accessed",
+      "response_sha256": "1fd391df44b3e86cb7ac109d89a75535064ee02f28bdb1094b9d4479e1a3af17",
+      "text_structure": {
+        "nonempty_lines": 2,
+        "whitespace_fields": 2,
+        "line_token_types": [
+          [
+            "public-download-URL"
+          ],
+          [
+            "other-text-withheld"
+          ]
+        ]
+      },
+      "public_hex_digests": [],
+      "public_download_targets": [
+        {
+          "url": "http://launch.polchina.com.cn/Launcher/POLCN_Launcher.exe.zip",
+          "query_values_withheld": false,
+          "visited": false
+        }
+      ],
+      "explicit_version_fields": [],
+      "elapsed_seconds": 0.028,
+      "utc_finished": "2026-10-26T01:59:17.488646+00:00"
+    },
+    {
+      "url": "http://launch.polchina.com.cn/Launcher/xml_md5.dat",
+      "utc_started": "2026-10-26T01:59:17.489022+00:00",
+      "method": "GET",
+      "request_limit": 1,
+      "redirects_followed": 0,
+      "proxy_used": false,
+      "cookie_or_auth_headers_sent": false,
+      "program_state_parameters_sent": false,
+      "time_limit_seconds": 20,
+      "body_limit_bytes": 4096,
+      "http_status": 200,
+      "content_type": "text/plain",
+      "bounded_bytes_read": 66,
+      "inspection": "bounded public update text classified; no returned URL accessed",
+      "response_sha256": "11f2051c90d62c31a7b4f71a4c6eefbf52ba422c8c4a16cc704244de85ff7361",
+      "text_structure": {
+        "nonempty_lines": 2,
+        "whitespace_fields": 2,
+        "line_token_types": [
+          [
+            "hex32"
+          ],
+          [
+            "hex32"
+          ]
+        ]
+      },
+      "public_hex_digests": [
+        "6e6baee59d3bb79338c69b61bf07ab7b",
+        "3ec6d76a6b8aea889d3683f63032d443"
+      ],
+      "public_download_targets": [],
+      "explicit_version_fields": [],
+      "elapsed_seconds": 0.02,
+      "utc_finished": "2026-10-26T01:59:17.509315+00:00"
+    }
+  ],
+  "max_requests": 2,
+  "no_follow_up_downloads": true,
+  "no_vm_or_security_changes": true,
+  "requests_completed": 2,
+  "static_source": "update-failure-static.json",
+  "client": "Python http.client.HTTPConnection; direct, no cookie jar, authentication handler, environment proxies, redirects or retries",
+  "local_comparison": {
+    "original_launcher": {
+      "sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+      "md5": "494fac15abf1ecef69c1c8732c19fba0",
+      "bytes": 599040,
+      "remote_current_launcher_digest": "Not available: earlier one-request observation retained only hex32 structure; this two-request scope did not refetch launcher_md5.dat. No claim of same/different launcher binary version."
+    },
+    "GameList.xml": {
+      "local_md5": "6e6baee59d3bb79338c69b61bf07ab7b",
+      "remote_xml_digest_slot1": "6e6baee59d3bb79338c69b61bf07ab7b",
+      "equal": true
+    },
+    "RegionList.xml": {
+      "local_md5": "264183451c12882d57ada7a5f19ec3d2",
+      "remote_xml_digest_slot2": "3ec6d76a6b8aea889d3683f63032d443",
+      "equal": false
+    },
+    "slot_mapping": {
+      "confidence": "static inference from cached REA initializer and local filename reads; no new instruction-level audit",
+      "function": "FUN_004015a0",
+      "evidence_id": "ev_4ea494bd8b8e5faa814b6cf1b3bee5baca6625e3e7de0fc364901b54a7ee8e17",
+      "dossier_sha256": "c31c584a2cdd52a1ce2f86d36044ef1685e30a8d64ccb87643f6847568e6508c",
+      "pseudocode_lines": "451-452 stream extraction; 465-476 compare slot1 against GameList digest and conditionally request GameList.xml; 506-517 compare slot2 against RegionList digest and conditionally request RegionList.xml",
+      "limit": "Decompiler second extraction argument is stack-aliased; slot names/order are not a runtime trace."
+    }
+  },
+  "version_conclusion": {
+    "fact": "Public XML metadata differs from the local RegionList digest; GameList digest matches. Returned launcher target is a fixed .exe.zip URL, not a version-specific identifier.",
+    "unknown": "No explicit version field was extracted. launcher_url.dat has a second unclassified ASCII line whose value was not retained; do not infer version or semantics from it. No repeat request is authorized in this stage.",
+    "launcher_binary_version_difference": "unverified"
+  },
+  "automatic_update_risk": {
+    "still_unknown": true,
+    "detail": "Existing static code can release fixed embedded LauncherUpdater.exe and start it with administrator-inherited context, conditional on comparison. Returned payload was not fetched; archive contents, file identity/signature, final redirects/hosts, file replacements/relaunch and whether updater would run for this sample remain unverified. Plain HTTP metadata is not authenticated proof of official current bytes.",
+    "download_target_visited": false
+  },
+  "boundary_reached": true,
+  "next_minimum_action": "Stop metadata networking now. Review these results and the exact update/elevation boundary before proposing any VM network/sample experiment. No further request, download or automatic execution is implied; current safe continuation is offline inspection of the already extracted updater replacement/relaunch branches."
+}

@@ -1,0 +1,105 @@
+{
+  "schema": "moli.animation-load-failure-validation.v1",
+  "scope": {
+    "capabilities": 40,
+    "protocol_registrations": 81,
+    "historical_requirements": 37,
+    "consumer_groups": 10,
+    "source_profiles": 6,
+    "fixed_source_local_specs": 19,
+    "open_capabilities": 21,
+    "analysis_groups": 6,
+    "development_batches": 7
+  },
+  "specification": "analysis/capability-first-v1/game-presentation-functional-specification.json#/legacy_animation_coordinate_source/load_and_first_lookup",
+  "host_acceptance": "analysis/capability-first-v1/shared-update-host-design.json#/resource_budget_retirement/animation_coordinate_storage",
+  "source_review": {
+    "path": "build/analysis/animation-load-failure-v1/source-review.json",
+    "bytes": 12306,
+    "sha256": "3afb1bf46149c74dbed0260f075bf7b1d6c200eebdc24ff435b462b8c0228227"
+  },
+  "local_receipt": {
+    "path": "build/analysis/animation-load-failure-v1/runtime.json",
+    "bytes": 9297,
+    "sha256": "32db9777252d5d46455a8b23c2ca426098e20e5bfc6fa8eb5f3dbddbf48ff78c"
+  },
+  "source_functions_reused": 7,
+  "new_rea_queries": 0,
+  "direct_calls_checked": 19,
+  "instruction_anchors_checked": 55,
+  "null_stream_boundary": {
+    "slot": "0x52d210",
+    "library": "KERNEL32.dll",
+    "symbol": "EnterCriticalSection"
+  },
+  "actual_optional_group": {
+    "zip": {
+      "path": "build/analysis/game-legacy-resource-archive-v1/full-material.zip",
+      "bytes": 2549171845,
+      "sha256": "6ff08fd6251c748afaaa36a894b027a4992bdcc1e1a615d3f739809c5d6d2c8e"
+    },
+    "group": 2,
+    "animationIndex": "Bin/AnimeInfoV2.bin",
+    "animationData": "Bin/AnimeV2.bin",
+    "indexStat": null,
+    "dataStat": null,
+    "dataLookedUpByLibrary": false,
+    "resources": 2520,
+    "firstLookup": {
+      "id": 100000,
+      "group": 0,
+      "attachments": 528,
+      "sha256": "652842904e9e229d512e2b2b573b43672efd2eca6de642992b03787208eb2cd6"
+    },
+    "missingId": 120499
+  },
+  "member_absence_checked_in_zip_directory": true,
+  "authored_local_cases": 12,
+  "startup_errors": {
+    "main_animation_index_missing": "LEGACY_ASSET_REQUIRED_FILE",
+    "main_animation_data_missing": "LEGACY_ASSET_REQUIRED_FILE",
+    "optional_animation_index_partial_last_row": "LEGACY_ANIMATION_INDEX_LENGTH",
+    "coordinate_index_wrong_marker": "LEGACY_ANIMATION_ATTACHMENT_INDEX",
+    "coordinate_index_partial_last_row": "LEGACY_ANIMATION_ATTACHMENT_INDEX",
+    "coordinate_read_shorter_than_listed_size": "LEGACY_ASSET_SHORT_READ"
+  },
+  "candidate_recovery": {
+    "oldLookup": {
+      "group": 0,
+      "attachments": 3,
+      "firstGraphic": 1002
+    },
+    "newLookup": {
+      "group": 0,
+      "attachments": 3,
+      "firstGraphic": 1002
+    },
+    "failedClosed": true
+  },
+  "existing_regressions_passed": 83,
+  "regression_duration_ms": 715.771584,
+  "regression_selection": "animation, resource library, range ZIP and web ZIP; excludes original Python TCP test",
+  "references_checked": 12,
+  "prior_baseline_paths_checked": 4978,
+  "unchanged_product_paths": 713,
+  "unchanged_product_and_tools": 724,
+  "changed_publications": [
+    "README.md",
+    "analysis/capability-first-v1/game-presentation-functional-specification.json",
+    "analysis/capability-first-v1/implementation-plan.json",
+    "analysis/capability-first-v1/shared-update-host-design.json",
+    "reports/architecture-and-milestones.md",
+    "reports/development-plan.md",
+    "reports/game-static.md",
+    "reports/known-issues.md",
+    "reports/module-interfaces.md",
+    "reports/requirements-index.md",
+    "reports/resource-formats.md",
+    "reports/validation.md"
+  ],
+  "original_executed": false,
+  "complete_target_acceptance": false,
+  "product_code_changed": false,
+  "implementation_gate_passed": false,
+  "next_requirement": "BF-U1"
+}

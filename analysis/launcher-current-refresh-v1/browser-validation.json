@@ -1,0 +1,791 @@
+{
+  "schema": "moli.launcher-current-refresh-v1.browser-validation.v1",
+  "recorded_utc": "2026-10-28T18:10:57.906Z",
+  "browser": "155.0.8059.85",
+  "driver": "Installed Playwright, existing Chrome headless in fresh context",
+  "checks": [
+    {
+      "name": "actual current-profile HTTP -> initial IndexedDB pair revision1",
+      "passed": true
+    },
+    {
+      "name": "same pair no-op preserves actual IndexedDB revision",
+      "passed": true
+    },
+    {
+      "name": "only game catalog changed commits a complete pair at revision2",
+      "passed": true
+    },
+    {
+      "name": "invalid HTTP XML cannot change the stored pair",
+      "passed": true
+    },
+    {
+      "name": "another IndexedDB writer wins CAS during HTTP preparation",
+      "passed": true
+    },
+    {
+      "name": "unchanged byte comparison cannot hide an intervening IndexedDB revision",
+      "passed": true
+    },
+    {
+      "name": "native store abort before opening a commit transaction keeps revision4",
+      "passed": true
+    },
+    {
+      "name": "actual committed transaction survives cancellation before wrapper receipt",
+      "passed": true
+    },
+    {
+      "name": "total deadline after a delayed native read starts no write or HTTP operation",
+      "passed": true
+    },
+    {
+      "name": "reopened native store has both exact files and owns its copies",
+      "passed": true
+    },
+    {
+      "name": "two actual controllers read revision5; one commits6 and one loses CAS",
+      "passed": true
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/harness",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/web/launcher-catalog-refresh.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/web/launcher-bootstrap.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/web/launcher-catalog-data.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/web/launcher-candidate-store.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/index.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/web/launcher-http.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/map01.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/install-inventory.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-message10.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-replies.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-channel.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-login.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-flow.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-local.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-update.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-catalog.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/game-patch.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-patch.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-first-config.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-resources.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-manifest.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-text.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-preferences.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-handoff.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-process.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/launcher-launch.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/local-paths.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/md5.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/vendor/egoroof-blowfish/4.0.3/blowfish.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/vendor/pako/3.0.2/pako_inflate.esm.min.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/shared/vendor/windows-936/table.mjs",
+      "query": "",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/self",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/hashes",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/games",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/regions",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/self",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/hashes",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/games",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/regions",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/self",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/hashes",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/games",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/regions",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/self",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/hashes",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/games",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/regions",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/self",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/hashes",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/games",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/regions",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/self",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/hashes",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/games",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/regions",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/self",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/hashes",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/games",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/regions",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/self",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/hashes",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/games",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/regions",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/self",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/self",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/hashes",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/hashes",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/games",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/games",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/regions",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    },
+    {
+      "method": "GET",
+      "path": "/regions",
+      "query": "?rtm=94",
+      "sameOrigin": true
+    }
+  ],
+  "serverRequests": [
+    {
+      "path": "/harness",
+      "method": "GET"
+    },
+    {
+      "path": "/web/launcher-catalog-refresh.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/web/launcher-bootstrap.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/web/launcher-catalog-data.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/web/launcher-candidate-store.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/index.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/web/launcher-http.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/map01.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/install-inventory.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-message10.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-replies.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-login.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-flow.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-local.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-channel.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-update.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-catalog.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/game-patch.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-patch.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-first-config.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-resources.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-manifest.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-text.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-preferences.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-handoff.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-process.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/launcher-launch.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/local-paths.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/md5.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/vendor/egoroof-blowfish/4.0.3/blowfish.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/vendor/pako/3.0.2/pako_inflate.esm.min.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/shared/vendor/windows-936/table.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/self",
+      "method": "GET"
+    },
+    {
+      "path": "/hashes",
+      "method": "GET"
+    },
+    {
+      "path": "/games",
+      "method": "GET"
+    },
+    {
+      "path": "/regions",
+      "method": "GET"
+    },
+    {
+      "path": "/self",
+      "method": "GET"
+    },
+    {
+      "path": "/hashes",
+      "method": "GET"
+    },
+    {
+      "path": "/games",
+      "method": "GET"
+    },
+    {
+      "path": "/regions",
+      "method": "GET"
+    },
+    {
+      "path": "/self",
+      "method": "GET"
+    },
+    {
+      "path": "/hashes",
+      "method": "GET"
+    },
+    {
+      "path": "/games",
+      "method": "GET"
+    },
+    {
+      "path": "/regions",
+      "method": "GET"
+    },
+    {
+      "path": "/self",
+      "method": "GET"
+    },
+    {
+      "path": "/hashes",
+      "method": "GET"
+    },
+    {
+      "path": "/games",
+      "method": "GET"
+    },
+    {
+      "path": "/regions",
+      "method": "GET"
+    },
+    {
+      "path": "/self",
+      "method": "GET"
+    },
+    {
+      "path": "/hashes",
+      "method": "GET"
+    },
+    {
+      "path": "/games",
+      "method": "GET"
+    },
+    {
+      "path": "/regions",
+      "method": "GET"
+    },
+    {
+      "path": "/self",
+      "method": "GET"
+    },
+    {
+      "path": "/hashes",
+      "method": "GET"
+    },
+    {
+      "path": "/games",
+      "method": "GET"
+    },
+    {
+      "path": "/regions",
+      "method": "GET"
+    },
+    {
+      "path": "/self",
+      "method": "GET"
+    },
+    {
+      "path": "/hashes",
+      "method": "GET"
+    },
+    {
+      "path": "/games",
+      "method": "GET"
+    },
+    {
+      "path": "/regions",
+      "method": "GET"
+    },
+    {
+      "path": "/self",
+      "method": "GET"
+    },
+    {
+      "path": "/hashes",
+      "method": "GET"
+    },
+    {
+      "path": "/games",
+      "method": "GET"
+    },
+    {
+      "path": "/regions",
+      "method": "GET"
+    },
+    {
+      "path": "/self",
+      "method": "GET"
+    },
+    {
+      "path": "/self",
+      "method": "GET"
+    },
+    {
+      "path": "/hashes",
+      "method": "GET"
+    },
+    {
+      "path": "/hashes",
+      "method": "GET"
+    },
+    {
+      "path": "/games",
+      "method": "GET"
+    },
+    {
+      "path": "/games",
+      "method": "GET"
+    },
+    {
+      "path": "/regions",
+      "method": "GET"
+    },
+    {
+      "path": "/regions",
+      "method": "GET"
+    }
+  ],
+  "errors": [],
+  "failures": [],
+  "failure": null,
+  "context_browser_and_fixture_closed": true,
+  "scope": "Original loopback HTTP plus actual ESM/IndexedDB only; no user browser profile, official service, account or game."
+}

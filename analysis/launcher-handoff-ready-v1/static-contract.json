@@ -1,0 +1,155 @@
+{
+  "schema": "moli.launcher-handoff-ready-contract-stage139.v1",
+  "recorded_utc": "2026-11-03T07:07:11.865908+00:00",
+  "source_evidence": "analysis/launcher-handoff-ready-v1/source-check.json",
+  "scope": "Selected current Win32 normal five-argument updater request. This defines observed lifecycle semantics; it is not a portable execution API.",
+  "facts": [
+    {
+      "id": "READY-CREATOR",
+      "kind": "fact",
+      "target": "launcher",
+      "procedures": [
+        "0x40a320"
+      ],
+      "claim": "After argument preparation, get own PID and process creation FILETIME, format Local\\POLCN_UpdateHandoff_%lu_%08lX%08lX with PID/high/low, then create manual-reset initially-unsignaled event. Null handle or ERROR_ALREADY_EXISTS183 enters failure cleanup.",
+      "anchors": [
+        "0x40a795",
+        "0x40a7c4",
+        "0x40a7ce..0x40a831"
+      ],
+      "evidence": "analysis/launcher-update-arguments-v1/source-check.json"
+    },
+    {
+      "id": "READY-LAUNCH",
+      "kind": "fact",
+      "target": "launcher",
+      "procedures": [
+        "0x40a320"
+      ],
+      "claim": "ShellExecuteExA uses runas/mask0x440/directory from prepared context. Success still requires a returned process handle and SetTimer0x232b at100ms. Handle cleanup is not child-process termination or update commit.",
+      "anchors": [
+        "0x40a890",
+        "0x40a89a",
+        "0x40a8d5",
+        "0x40a8f1..0x40a91f",
+        "0x40a94d",
+        "0x40a953",
+        "0x40a95f"
+      ]
+    },
+    {
+      "id": "READY-POLL",
+      "kind": "fact",
+      "target": "launcher",
+      "procedures": [
+        "0x40b010"
+      ],
+      "claim": "Event present and wait0 ==0 means ready. Process present and wait0 ==0x102 means still running. Other process result or missing handle is not running for this branch. Wait only while not ready, process running and unsigned tick difference below60000.",
+      "anchors": [
+        "0x40b03d..0x40b0a3"
+      ]
+    },
+    {
+      "id": "READY-TERMINAL",
+      "kind": "fact",
+      "target": "launcher",
+      "procedures": [
+        "0x40b010",
+        "0x404410"
+      ],
+      "claim": "Terminal branch kills timer, closes existing process/event handles and zeroes both slots. Ready plus running and non-null app/virtual-slot0x74 retrieval checks requests WM_CLOSE0x10 via PostMessageA; other terminal states call window helpers and show failure. The virtual pointer is retrieved again; actual window receiver/exit is not observed. Destructor also kills timer and closes held handles. Handle closure is not child termination or update commit.",
+      "anchors": [
+        "0x40b0a3..0x40b1cb",
+        "0x404410..0x40480d"
+      ]
+    },
+    {
+      "id": "PARENT-IDENTITY",
+      "kind": "fact",
+      "target": "updater",
+      "procedures": [
+        "0x403830",
+        "0x402d60"
+      ],
+      "claim": "Open parent by request PID using access0x101000 then fallback0x100400. Dynamically query QueryFullProcessImageNameW, resolve GetFullPathNameW within260WCHAR and trim trailing separators above length3, then compare with the requested target using __wcsicmp. Failure closes and zeroes handle. This is path comparison, not final-file or publisher authentication. Raw AL return/caller tests corroborate the default-void pseudocode.",
+      "anchors": [
+        "0x403888",
+        "0x4038ae",
+        "0x4039cd..0x403cbd",
+        "0x402d60..0x402e5b"
+      ]
+    },
+    {
+      "id": "READY-SIGNAL",
+      "kind": "fact",
+      "target": "updater",
+      "procedures": [
+        "0x4071c0"
+      ],
+      "claim": "Selected normal path follows request validation, named transaction-mutex existence guard and parent check. It obtains parent creation FILETIME and formats the same PID/high/low event name. OpenEventW uses2, no inheritance; successful open is SetEvent then CloseHandle. Missing event with last error2 follows compatibility fallback without signaling; other failures abort this branch.",
+      "anchors": [
+        "0x40774b..0x407848"
+      ],
+      "format_argument_stack_proof": "Creation FILETIME at entry-SP+0x20/+0x24; formatter varargs PID fromSP+0x18, high, low observed at4077e1..407801."
+    },
+    {
+      "id": "PARENT-EXIT-BEFORE-UPDATE",
+      "kind": "fact",
+      "target": "updater",
+      "procedures": [
+        "0x4071c0"
+      ],
+      "claim": "After signal success or missing-event compatibility fallback, wait at most60000ms for the parent. Close parent handle, require wait result0, then invoke unfinished-transaction recovery and proceed toward later update work. Readiness occurs before those operations, so it cannot be reused as a completed-update or child-start ACK.",
+      "anchors": [
+        "0x40784e",
+        "0x407854",
+        "0x40785d",
+        "0x40785f",
+        "0x407861",
+        "0x4078d7"
+      ]
+    }
+  ],
+  "timer_truth_table": [
+    {
+      "event_ready": false,
+      "process_running": true,
+      "elapsed_uint32_ms": "0..59999",
+      "result": "keep waiting; no terminal cleanup"
+    },
+    {
+      "event_ready": false,
+      "process_running": true,
+      "elapsed_uint32_ms": ">=60000",
+      "result": "terminal cleanup and failure UI"
+    },
+    {
+      "event_ready": true,
+      "process_running": true,
+      "elapsed_uint32_ms": "not needed by branch",
+      "result": "terminal cleanup; request parent close only if main-window retrieval checks pass, otherwise failure UI"
+    },
+    {
+      "event_ready": "either",
+      "process_running": false,
+      "elapsed_uint32_ms": "not needed by branch",
+      "result": "terminal cleanup and failure UI; ready alone insufficient"
+    }
+  ],
+  "interpretation_limits": [
+    "Truth table summarizes static branch decisions, not an executed vendor test or proof of asynchronous race behavior",
+    "Unsigned DWORD subtraction has wrap semantics; no monotonic JavaScript deadline substitution is asserted",
+    "The two observed60000ms waits and100ms polling period do not establish whole-update time limits",
+    "Named event and path checks do not establish account authentication or publisher identity",
+    "Replacement, new-child startup acknowledgement, commit and recovery acceptance remain separate"
+  ],
+  "product_decision": {
+    "new_product_code": false,
+    "reason": "This is a Win32 process/named-event lifecycle contract. The current web/mobile/WeChat architecture has no such executor port; no unused execution helper or guessed browser equivalence is added. Existing pure argument encoder and journal parser remain unchanged.",
+    "native_code_changed": false,
+    "module_interfaces_changed": false,
+    "resource_formats_changed": false,
+    "build_procedure_changed": false
+  },
+  "next": "Trace the separate new-launcher startup acknowledgement consumer and its exact current argument/event contract, then choose implementation only against an actual supported platform port. Original game business consumers still require independently bound evidence."
+}

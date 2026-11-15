@@ -1,0 +1,101 @@
+{
+  "schema": "moli.cg5reg-static.v1",
+  "recorded_utc": "2026-10-29T17:32:53.749355+00:00",
+  "target": {
+    "private_path": "build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/CG5Reg.exe",
+    "bytes": 13824,
+    "sha256": "c3baedb2f82a2da785e8d27e5d49560175f09f5a38319edb935995b8e7e228a9"
+  },
+  "tools": {
+    "rea": "6.7.0",
+    "ghidra": "12.1.4",
+    "profile_digest": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+    "selected_handler_supplement": "i686-w64-mingw32-objdump -d --start-address=0x401180 --stop-address=0x4012d0; private output retained"
+  },
+  "observations": [
+    {
+      "classification": "fact: static",
+      "statement": "Dialog Init0x401410 calls GetModuleFileNameA with size0x100, truncates at last backslash, displays module directory and sets key/value-name CString members.",
+      "evidence_ids": [
+        "ev_fec0938e52192a49cae44249cdd3109eea5f4d80b6f297a9083acf1846bd2667"
+      ]
+    },
+    {
+      "classification": "fact: static bytes",
+      "statement": "Selected AFX message-map row: WM_COMMAND0x111, code0, control-id range1..1, signature numeric0x35, handler0x4011d0.",
+      "fields_u32": [
+        273,
+        0,
+        1,
+        1,
+        53,
+        4198864
+      ],
+      "evidence_ids": [
+        "ev_e6173aed60ff1f7e58522c534c1d04501c47d22296a70f5dfdffabeba22c4f1f"
+      ]
+    },
+    {
+      "classification": "inference from REA bytes, PE imports and independent static disassembly",
+      "statement": "Selected handler0x4011d0..0x4012a1 calls RegCreateKeyA and RegOpenKeyExA on HKCU0x80000001, then RegSetValueExA(type1, value-name Path, module directory plus NUL); shows branch-dependent message and closes the key/dialog. It does not synthesize account or authentication data.",
+      "evidence_ids": [
+        "ev_3cf8c86e370b2f527186cb231a4ab854c09f11586a5326779a7b09fa595b776e",
+        "ev_544295bd407221c400bb783eeb6ea00ea651876e666235edce3895ecc3117b6c"
+      ],
+      "imports_correspondence": "analysis/game/CG5Reg.exe.objdump.txt:275-278; complete target hash reverified"
+    }
+  ],
+  "normal_install_relation": "Inno metadata declares HKCU Path={app} itself; no CG5Reg in the two declared postinstall run entries. Do not invoke helper or write a substitute registry entry to satisfy observer path.",
+  "anchors": [
+    {
+      "name": "registration_handler_entry",
+      "va": "0x4011d0",
+      "file_offset": 1488,
+      "bytes": 16,
+      "hex": "5153568bf1578d44240c8dbed4010000",
+      "file_mapping_evidence_id": "ev_ced7262293889c0081e64502852ac67c625d93e1e9b7c2b0eb0feb5ec2b861cc"
+    },
+    {
+      "name": "message_map_ok",
+      "va": "0x402498",
+      "file_offset": 6296,
+      "bytes": 24,
+      "hex": "1101000000000000010000000100000035000000d0114000",
+      "file_mapping_evidence_id": "ev_6fd5e86f5a61ddc043e68742519fe4267b5b6e9c993e0b1baa76dc5f5d53e63f"
+    },
+    {
+      "name": "path_value_name",
+      "va": "0x4027fc",
+      "file_offset": 7164,
+      "bytes": 5,
+      "hex": "5061746800",
+      "file_mapping_evidence_id": "ev_c545dd43f3add6da60c8002701cd8db5a6e6f7f121cce99cf0dd6037f1a4d171"
+    },
+    {
+      "name": "registry_key_prefix",
+      "va": "0x402804",
+      "file_offset": 7172,
+      "bytes": 16,
+      "hex": "536f6674776172655c5345434e5c506c",
+      "file_mapping_evidence_id": "ev_bf60c4c5170e8a64885784f8d4e228a0aeb4826a1e17ff1896218ddbab7e2373"
+    }
+  ],
+  "private_bundle": {
+    "path": "build/analysis/game-install-context-v1/rea-cg5reg-stage102.json",
+    "bytes": 414226,
+    "sha256": "5485d396c004be6e7c68edde7959c481272efc6c565c5a3b687c0d503425ae80",
+    "evidence_records": 25
+  },
+  "private_snapshot": {
+    "path": "build/analysis/game-install-context-v1/rea-cg5reg-stage102.snapshot.json",
+    "bytes": 659816,
+    "sha256": "e86cdd61fdc34ddd797f7215b9ce973f6c6cb618142c7faebd1cfb9adc2764d5"
+  },
+  "limits": [
+    "Ghidra default analysis did not define the selected handler as a procedure; empty xrefs at its IAT slots do not establish no call. The handler summary is supplemented by exact mapped bytes and independent static disassembly, not a fabricated REA decompilation.",
+    "Init routine fields are decompiler-derived with uncertain original types; numeric addresses/bytes are retained.",
+    "Static code and message-map declarations do not prove actual user input, registration success, Windows registry view, process startup or installer behavior.",
+    "No auxiliary helper, installer, original launcher or game executed; no registry changed."
+  ],
+  "rea_session_closed": true
+}

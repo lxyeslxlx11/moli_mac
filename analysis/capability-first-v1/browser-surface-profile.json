@@ -1,0 +1,549 @@
+{
+  "schema": "moli.browser-surface-observations.v1",
+  "classification": "事实：指定Chrome实验；推测：适配约束；待验证：完整源/端口/设备/同版接受",
+  "runtime_receipt": {
+    "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-57-25-181Z-77529/runtime.json",
+    "bytes": 890106,
+    "sha256": "3e4829d7b4f90faf80e1f2bc1e580bb44d86fce9aad69326ad8ea375aa860ac9"
+  },
+  "fixture_specification": {
+    "path": "build/analysis/browser-surface-conformance-v1/fixtures.json",
+    "bytes": 16090,
+    "sha256": "d63d1d0a3bb51aacf361555b3a6eafcb32a0a2f2c717ef01ac1bc58d6b9d29a6"
+  },
+  "external_API_facts": {
+    "path": "build/analysis/browser-surface-conformance-v1/external-api-facts.json",
+    "bytes": 1303,
+    "sha256": "503e6af6ef77f4c97df83d1b63f80ad7a626d7d51c2eb580338a30c4f4ffa084"
+  },
+  "pinned_contracts": [
+    {
+      "path": "analysis/capability-first-v1/shared-target-contract.json",
+      "bytes": 68467,
+      "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+    },
+    {
+      "path": "analysis/capability-first-v1/browser-host-profile.json",
+      "bytes": 22336,
+      "sha256": "5f164e6a44945a89eff56426c51db7a542c23a6e53e83fcddf04708872e4b151"
+    }
+  ],
+  "source_inputs": [
+    {
+      "path": "shared/launcher-text.mjs",
+      "bytes": 7877,
+      "sha256": "56f1b68b3de521a8ac91e84b7971bcb60c9c5ca6900d2847388a8b5687b13e46"
+    },
+    {
+      "path": "shared/vendor/windows-936/table.mjs",
+      "bytes": 144791,
+      "sha256": "cb9d3482a1264abe3cbe4876ba1d88d6161780394f0e855786299717e85ba1dd"
+    },
+    {
+      "path": "shared/legacy-game-text.mjs",
+      "bytes": 5390,
+      "sha256": "31c6329310bf94e7eb6f26ffb7ba7f3cbbc1e046d92cc80b4c53d09a73b583b2"
+    },
+    {
+      "path": "web/legacy-game-text-raster.mjs",
+      "bytes": 3052,
+      "sha256": "dd738267e32aeefbcf5fbe0c8bf52a60bbeabdcc057e750ffd098cce8208b3cd"
+    },
+    {
+      "path": "shared/legacy-game-audio.mjs",
+      "bytes": 5125,
+      "sha256": "2c09f3564b6f21fc53d00a3956528bf172fb424a3902fa094d9f26f4770a7d6e"
+    },
+    {
+      "path": "web/legacy-game-audio-host.mjs",
+      "bytes": 12164,
+      "sha256": "4f5b548dc80b0948f3eb00ca5ba0429074d9c8807e929f3d1737e1d29658255a"
+    },
+    {
+      "path": "web/legacy-game-canvas.mjs",
+      "bytes": 8948,
+      "sha256": "6ddb5cfc3e0d8c37d9f59cf5636094181e9069cab67cbc4ac1b55b69c6854053"
+    }
+  ],
+  "summary": {
+    "browser": "156.0.8078.80",
+    "playwright": "1.64.1",
+    "host_observation_groups": 10,
+    "codec_double_cells": 23940,
+    "codec_single_cells": 256,
+    "source_mapped_exact": 21791,
+    "host_additional_double_cells": 2149,
+    "single_byte_mismatches": 0,
+    "alpha_readback_differences": [
+      {
+        "willReadFrequently": false,
+        "differingPixels": 192
+      },
+      {
+        "willReadFrequently": true,
+        "differingPixels": 194
+      }
+    ],
+    "opaque_fixture_dimensions": [
+      640,
+      480
+    ],
+    "manual_PCM_cases": 4,
+    "manual_PCM_exact_channels": 6,
+    "manual_PCM_rate": 22050,
+    "loop_maximum_absolute_error": 0,
+    "raw_browser_PCM_maximum_difference": 0.0078125,
+    "resampled_frames": 128,
+    "live_context_rate": 48000,
+    "pre_gesture_suspended": true,
+    "resume_pending_before_gesture": true,
+    "audio_end_events": 1,
+    "source_font_logical_widths": [
+      45,
+      35
+    ],
+    "host_font_widths": [
+      48.22200012207031,
+      37.50599670410156
+    ],
+    "expected_autoplay_warnings": 1,
+    "other_warnings": 0,
+    "console_errors": 0,
+    "observed_page_external_requests": 0,
+    "screenshots": 2,
+    "failed_probe_runs_retained": 2,
+    "browser_commandline_inspection_available": false
+  },
+  "facts": [
+    {
+      "id": "AS-F1",
+      "classification": "事实",
+      "rule": "All23940 legal double-byte positions were queried through actual TextDecoder(gbk,fatal).All21791 mapped entries of the pinned project CP936 table agree;the browser also accepts2149 positions undefined by that declared table.256 single-byte positions agree.",
+      "evidence": {
+        "file": {
+          "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-57-25-181Z-77529/runtime.json",
+          "bytes": 890106,
+          "sha256": "3e4829d7b4f90faf80e1f2bc1e580bb44d86fce9aad69326ad8ea375aa860ac9"
+        },
+        "pointer": "/codecs/counts",
+        "canonical_sha256": "69eb29b001a4cf80dad1cb7b7d75147517e2c4e9c5dd7b489ecdc18fb5f8c77b"
+      },
+      "complete_results": {
+        "file": {
+          "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-57-25-181Z-77529/runtime.json",
+          "bytes": 890106,
+          "sha256": "3e4829d7b4f90faf80e1f2bc1e580bb44d86fce9aad69326ad8ea375aa860ac9"
+        },
+        "pointer": "/codecs/pairCodepoints",
+        "canonical_sha256": "c63ab720f1e922707438056c97a4ed61b9df5e99264523bc6342042faadc8b47"
+      },
+      "limit": "Complete finite comparison with this project table;not proof of the original native ACP/codepage configuration or all source text domains."
+    },
+    {
+      "id": "AS-F2",
+      "classification": "事实",
+      "rule": "windows-936 is rejected as a decoder label;ascii resolves to windows-1252.TextEncoder(requested windows-936) still emits UTF-8.Browser gbk accepts81308130 as U+0080.BOM,malformed and split-input behavior differ by options.",
+      "evidence": {
+        "file": {
+          "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-57-25-181Z-77529/runtime.json",
+          "bytes": 890106,
+          "sha256": "3e4829d7b4f90faf80e1f2bc1e580bb44d86fce9aad69326ad8ea375aa860ac9"
+        },
+        "pointer": "/codecs/boundaries",
+        "canonical_sha256": "371e7acd4ced0b0a2daf3e8c0b762666a7639125620c531ad5334fc7f1eed0a7"
+      },
+      "additional": {
+        "file": {
+          "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-57-25-181Z-77529/runtime.json",
+          "bytes": 890106,
+          "sha256": "3e4829d7b4f90faf80e1f2bc1e580bb44d86fce9aad69326ad8ea375aa860ac9"
+        },
+        "pointer": "/codecs/labels",
+        "canonical_sha256": "6bd3e8f7e1f8fe8b227574a5fc4bb6750ae889618a0f066b0f3e335e0b6ca9a1"
+      },
+      "limit": "Accepted individual codepoints do not imply the source field byte-domain,NUL,normalization,roundtrip or per-field decoder-state rules."
+    },
+    {
+      "id": "AS-F3",
+      "classification": "事实",
+      "rule": "Opaque640x480 RGBA readback matches exactly.Two256-pixel full-alpha ramps have192/194 differing pixels for the two requested context options,while alpha and the fully opaque sample are retained.",
+      "evidence": {
+        "file": {
+          "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-57-25-181Z-77529/runtime.json",
+          "bytes": 890106,
+          "sha256": "3e4829d7b4f90faf80e1f2bc1e580bb44d86fce9aad69326ad8ea375aa860ac9"
+        },
+        "pointer": "/canvas",
+        "canonical_sha256": "5a87bae719b59363226fb5e3b79d4bb7b48aa97dfa03a2fc9fbfb54131e0a8cc"
+      },
+      "limit": "Observed presentation readback differences;no unobserved CPU/GPU causal attribution,no change to source blending rules and no maximum dimension/budget inference."
+    },
+    {
+      "id": "AS-F4",
+      "classification": "事实",
+      "rule": "OffscreenCanvas transferToImageBitmap preserves the tested opaque draw result;the first offscreen pixel is transparent after transfer.ImageBitmap dimensions become0 after close.",
+      "evidence": {
+        "file": {
+          "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-57-25-181Z-77529/runtime.json",
+          "bytes": 890106,
+          "sha256": "3e4829d7b4f90faf80e1f2bc1e580bb44d86fce9aad69326ad8ea375aa860ac9"
+        },
+        "pointer": "/canvas/offscreen",
+        "canonical_sha256": "69edf1b9e09785d857a422a2f529588eb083fa588211a1b42c2eafd41be7df66"
+      },
+      "limit": "Finite transfer/close observations;not a complete lease/drain implementation,worker pipeline or proof that an early logical delete permits physical close."
+    },
+    {
+      "id": "AS-F5",
+      "classification": "事实",
+      "rule": "The two requested host fonts measure48.222/37.506px for source logical45/35px.The corresponding DOM sample realizes Songti SC.A synthetic family with no declared FontFace passes FontFaceSet.check but load returns0 faces.",
+      "evidence": {
+        "file": {
+          "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-57-25-181Z-77529/runtime.json",
+          "bytes": 890106,
+          "sha256": "3e4829d7b4f90faf80e1f2bc1e580bb44d86fce9aad69326ad8ea375aa860ac9"
+        },
+        "pointer": "/fonts",
+        "canonical_sha256": "8bf180fe9890c4b1609d6968e63be0cda2f4969e3c10e35ee9886b1eac88fe11"
+      },
+      "additional": {
+        "file": {
+          "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-57-25-181Z-77529/runtime.json",
+          "bytes": 890106,
+          "sha256": "3e4829d7b4f90faf80e1f2bc1e580bb44d86fce9aad69326ad8ea375aa860ac9"
+        },
+        "pointer": "/DOMPlatformFonts",
+        "canonical_sha256": "182e2a70ac42fd12f0a7652f6af5fe27b2e15ff5e184c216b8ecabe72f9f721f"
+      },
+      "limit": "DOM realized-face evidence is not a direct Canvas-typeface query;nor native Windows/GMN glyph equivalence or complete source font coverage."
+    },
+    {
+      "id": "AS-F6",
+      "classification": "事实",
+      "rule": "Automatic page startup records AudioContext suspended/currentTime0 and pending resume before any controller Runtime evaluation or activation.The later trusted click resumes it;one ended event,suspended-clock stability and closed state are observed.",
+      "evidence": {
+        "file": {
+          "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-57-25-181Z-77529/runtime.json",
+          "bytes": 890106,
+          "sha256": "3e4829d7b4f90faf80e1f2bc1e580bb44d86fce9aad69326ad8ea375aa860ac9"
+        },
+        "pointer": "/liveAudio",
+        "canonical_sha256": "cbc7489ad11de539c281e4493f64e9069389b666dcc44981b5cc4f8a32b56916"
+      },
+      "additional": {
+        "file": {
+          "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-57-25-181Z-77529/runtime.json",
+          "bytes": 890106,
+          "sha256": "3e4829d7b4f90faf80e1f2bc1e580bb44d86fce9aad69326ad8ea375aa860ac9"
+        },
+        "pointer": "/controllerOperations",
+        "canonical_sha256": "12caf458278f3a4ab9fabfcc3b07f5831b3114b160c89cc139f4804f379e76b1"
+      },
+      "limit": "Live gain is0;physical audibility/device restrictions/source RNG-maintenance cadence are not accepted."
+    },
+    {
+      "id": "AS-F7",
+      "classification": "事实",
+      "rule": "For four PCM8/16 mono/stereo fixtures,decodeAudioData positive sample normalization differs from the project converter;maximum observed absolute difference0.0078125.Creating/copying the declared floats into AudioBuffer and rendering gain0.5 reproduces the project values exactly for all6 channels.",
+      "evidence": {
+        "file": {
+          "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-57-25-181Z-77529/runtime.json",
+          "bytes": 890106,
+          "sha256": "3e4829d7b4f90faf80e1f2bc1e580bb44d86fce9aad69326ad8ea375aa860ac9"
+        },
+        "pointer": "/offlineAudio/PCM",
+        "canonical_sha256": "c72e65c403d7601ba9ca23e07085131637e0f98a0f1a1251f50a9428c9042662"
+      },
+      "limit": "Exact manual-buffer path for these bounded vectors,not a claim of native hardware normalization,complete WAV corpus or arbitrary codec equivalence."
+    },
+    {
+      "id": "AS-F8",
+      "classification": "事实",
+      "rule": "The declared8..16 loop rendered32 expected samples with maximum error0.Browser decodeAudioData at44100 changes a22050/64-frame fixture to44100/128 frames.",
+      "evidence": {
+        "file": {
+          "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-57-25-181Z-77529/runtime.json",
+          "bytes": 890106,
+          "sha256": "3e4829d7b4f90faf80e1f2bc1e580bb44d86fce9aad69326ad8ea375aa860ac9"
+        },
+        "pointer": "/offlineAudio/loop",
+        "canonical_sha256": "cd544973fed535c2de809c31402c1db3b0a01c73ed8ed4fd4600ce4b66881192"
+      },
+      "additional": {
+        "file": {
+          "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-57-25-181Z-77529/runtime.json",
+          "bytes": 890106,
+          "sha256": "3e4829d7b4f90faf80e1f2bc1e580bb44d86fce9aad69326ad8ea375aa860ac9"
+        },
+        "pointer": "/offlineAudio/resampled",
+        "canonical_sha256": "99258bbd2d49108a532f2817f46813eb42f374c723912d0136249a0473684ae9"
+      },
+      "limit": "Finite loop/rate observation;do not silently replace source frame/sample-rate contracts with context-dependent decoded values."
+    },
+    {
+      "id": "AS-F9",
+      "classification": "事实",
+      "rule": "Browser.getBrowserCommandLine is unavailable in this runtime because enable-automation is not set.No flags were added to obtain it.Two failed probe runs,including the falsified PCM-equality assumption,are retained separately.",
+      "evidence": {
+        "file": {
+          "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-57-25-181Z-77529/runtime.json",
+          "bytes": 890106,
+          "sha256": "3e4829d7b4f90faf80e1f2bc1e580bb44d86fce9aad69326ad8ea375aa860ac9"
+        },
+        "pointer": "/browserCommandLineInspection",
+        "canonical_sha256": "f56cdecdf30cc4b72f8c5a7aeec45c0bdb8eb10e262c5b405325b84b5afc832b"
+      },
+      "limit": "Launch-flag effects remain unverified.The failed decoder hypothesis is preserved as a negative result,not promoted to source equivalence."
+    },
+    {
+      "id": "AS-F10",
+      "classification": "事实",
+      "rule": "The desktop and390x844 viewport fixture checks pass with two screenshots,0 console errors,1 explained pregesture autoplay warning and no other warnings/page-external requests.The dedicated browser and local service close normally.",
+      "evidence": {
+        "file": {
+          "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-57-25-181Z-77529/runtime.json",
+          "bytes": 890106,
+          "sha256": "3e4829d7b4f90faf80e1f2bc1e580bb44d86fce9aad69326ad8ea375aa860ac9"
+        },
+        "pointer": "/pageChecks",
+        "canonical_sha256": "5e65bb4a23fd4d183f5bb6aac74e0c98311ceb5eeb1146fafe1d7f2dc6a09f41"
+      },
+      "limit": "Analysis fixture only;product code and pinned contracts remain unchanged.Whole A1..A4/ports/real devices/current official flows remain unpassed."
+    }
+  ],
+  "implementation_constraints": [
+    {
+      "id": "AS-D1",
+      "classification": "推测：基于实测的实现约束",
+      "ports": [
+        "UC-P12"
+      ],
+      "rule": "Keep explicit strict encoding profiles and source byte limits.The browser decoder label/accepted domain,BOM/default replacement and streaming state cannot substitute for per-field source admission.",
+      "sources": [
+        "shared/launcher-text.mjs",
+        "shared/vendor/windows-936/table.mjs"
+      ],
+      "target_batch": "D0",
+      "implemented_this_phase": false
+    },
+    {
+      "id": "AS-D2",
+      "classification": "推测：基于实测的实现约束",
+      "ports": [
+        "UC-P13"
+      ],
+      "rule": "Keep canonical core RGBA/source compositing distinct from host readback/presentation oracles.Use only the tested opaque equality as exact evidence;do not weaken source formulas to match quantized alpha readback.",
+      "sources": [
+        "web/legacy-game-canvas.mjs"
+      ],
+      "target_batch": "D5",
+      "implemented_this_phase": false
+    },
+    {
+      "id": "AS-D3",
+      "classification": "推测：基于实测的实现约束",
+      "ports": [
+        "UC-P13"
+      ],
+      "rule": "Preserve source byte-layout widths independently of host glyph metrics.A font-check boolean or requested CSS string does not establish native typeface/pixels;retain explicit glyph/raster readiness and failure receipts.",
+      "sources": [
+        "shared/legacy-game-text.mjs",
+        "web/legacy-game-text-raster.mjs"
+      ],
+      "target_batch": "D5",
+      "implemented_this_phase": false
+    },
+    {
+      "id": "AS-D4",
+      "classification": "推测：基于实测的实现约束",
+      "ports": [
+        "UC-P06",
+        "UC-P13"
+      ],
+      "rule": "The existing manual PCM/createBuffer/copyToChannel route can preserve its declared float/rate contract in this host.Do not replace it with decodeAudioData without accounting for normalization,resampling,input detachment and actual owned copies.",
+      "sources": [
+        "shared/legacy-game-audio.mjs",
+        "web/legacy-game-audio-host.mjs"
+      ],
+      "target_batch": "D5",
+      "implemented_this_phase": false
+    },
+    {
+      "id": "AS-D5",
+      "classification": "推测：基于实测的实现约束",
+      "ports": [
+        "UC-P02",
+        "UC-P09",
+        "UC-P13",
+        "UC-P14"
+      ],
+      "rule": "A context object or resume call is not a running/played receipt.Wait for actual state/promise and end/drain ownership;keep hardware currentTime separate from source ticks,callback counters and RNG/audio-maintenance order.",
+      "sources": [
+        "web/legacy-game-audio-host.mjs"
+      ],
+      "target_batch": "D0/D5",
+      "implemented_this_phase": false
+    },
+    {
+      "id": "AS-D6",
+      "classification": "推测：基于实测的实现约束",
+      "ports": [
+        "UC-P09",
+        "UC-P13",
+        "UC-P14"
+      ],
+      "rule": "Treat bitmap transfer/close as destructive host ownership effects,not proof of source logical-tail completion.Missing introspection remains unavailable rather than an invented default capability.",
+      "sources": [],
+      "target_batch": "D0/D5",
+      "implemented_this_phase": false
+    }
+  ],
+  "partial_supersession": {
+    "prior_profile": "analysis/capability-first-v1/browser-host-profile.json",
+    "prior_remaining_id": "AH-U2",
+    "selected_desktop_codec_font_canvas_audio_primitives_now_measured": true,
+    "all_original_host_requirements_passed": false,
+    "boundaries": [
+      "Other source encodings/native ACP configuration",
+      "Complete glyph corpus/native pixels",
+      "Actual audible/device lifecycle",
+      "Full manifest,limits and port implementation"
+    ]
+  },
+  "complete_case_fragments": [
+    {
+      "case_id": "UC-T06",
+      "full_original_case_passed": false,
+      "observed_part": "bounded buffer/bitmap copy/close observations;not budget/cancel lifetime acceptance"
+    },
+    {
+      "case_id": "UC-T12",
+      "full_original_case_passed": false,
+      "observed_part": "Web Audio actual state,offline gain/loop;not shared source RNG/audio-maintenance cadence"
+    },
+    {
+      "case_id": "UC-T20",
+      "full_original_case_passed": false,
+      "observed_part": "selected desktop codecs/glyphs/canvas/audio primitives and mobile-shaped viewport;not real devices/full resources"
+    }
+  ],
+  "failure_records": [
+    {
+      "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-54-02-714Z-77382/harness-correction.json",
+      "bytes": 1070,
+      "sha256": "4c293302b82f52bedbff75a6e19348da37f5a021264781a389434d1d03644c47"
+    },
+    {
+      "path": "build/analysis/browser-surface-conformance-v1/runs/2026-11-09T23-54-56-296Z-77451/harness-correction.json",
+      "bytes": 1948,
+      "sha256": "ee8b2ebcd939671242585d51fba74e7122e94c63d4f5f740181c99ec2504c5d4"
+    }
+  ],
+  "QA": {
+    "environment": {
+      "url": "http://127.0.0.1:60930/surface.html?audio=1",
+      "title": "Moli A4 Surface Probe",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "viewport": {
+        "width": 1120,
+        "height": 1100,
+        "dpr": 1
+      },
+      "activation": {
+        "isActive": true,
+        "hasBeenActive": true
+      },
+      "secureContext": true
+    },
+    "Browser_availability": "absent",
+    "fallback": "Browser plugin not available;existing Playwright1.64.1",
+    "flow": "Automatic page-start pregesture audio receipt -> CDP DOM-box trusted click -> actual codecs/canvas/fonts/offline PCM/loop -> desktop and mobile-shaped viewport evidence",
+    "commands": [
+      "python3 build/analysis/browser-surface-conformance-v1/prepare_fixtures.py",
+      "/opt/homebrew/bin/node build/analysis/browser-surface-conformance-v1/run.mjs"
+    ],
+    "page_checks": {
+      "pageIdentity": true,
+      "notBlank": true,
+      "noFrameworkOverlay": true,
+      "consoleHealth": true,
+      "screenshotEvidence": true,
+      "interactionProof": true
+    },
+    "expected_autoplay_warning": [
+      "The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio"
+    ],
+    "other_warnings": [],
+    "screenshots": [
+      {
+        "path": "/Users/lx/.codex/visualizations/2026/11/10/01a17a35-6c8e-7721-9ea5-8dc56564b109/a4-surfaces-2026-11-09T23-57-25-181Z-77529/desktop-surfaces.png",
+        "bytes": 66568,
+        "sha256": "9b93569a87c7c57edc0f319501ba758bfbda7205e0495275a26b5eb29c59ebec"
+      },
+      {
+        "path": "/Users/lx/.codex/visualizations/2026/11/10/01a17a35-6c8e-7721-9ea5-8dc56564b109/a4-surfaces-2026-11-09T23-57-25-181Z-77529/mobile-surface-viewport.png",
+        "bytes": 57744,
+        "sha256": "3576efee7aeb8260684c17d6998f6c1ae2d03ce0d11594270e712237c1218087"
+      }
+    ]
+  },
+  "remaining": [
+    {
+      "id": "AS-U1",
+      "scope": "full-resource capacity",
+      "work": "Complete original manifest,pinned/decoded/concurrent peak memory,storage and real backend maximums remain unmeasured;the640x480/64-frame fixtures do not define caps."
+    },
+    {
+      "id": "AS-U2",
+      "scope": "real target and appearance",
+      "work": "Actual mobile/WeChat/native glyph corpus,audible output,hidden/resume and full original resource/game flows need their own evidence;viewport emulation and DOM face queries do not replace them."
+    },
+    {
+      "id": "AS-U3",
+      "scope": "backend ports/recovery",
+      "work": "Actual14-port implementation,full cancellation/unknown commit/corrupt state/abrupt termination and WeChat journal/positioned FS remain open;reuse AH data without rerunning its completed primitives."
+    },
+    {
+      "id": "AS-U4",
+      "scope": "necessary source semantics",
+      "work": "CH-U1 category7 material923C40,UC-U1 RID/foreign/scratch/105 origins,G20 final result/attachment association and matching current consumer/handoff stay required."
+    },
+    {
+      "id": "AS-U5",
+      "scope": "full delivery",
+      "work": "A1 business admission/A3 and unified gate remain open before D0-D6 development.All40/81/37/10/6 and real-device/current-official acceptance are preserved;no test account exists."
+    }
+  ],
+  "next_work": {
+    "priority": "Resume named necessary source semantics;first check already retained positive initialization/alias/registration material for CH-U1 at459BC0/923C40.",
+    "rule": "Only follow a positive appropriate-source edge.If none is available,retain the gap and move to another necessary business rule;do not repeat the exact-pointer search or known helper decompilation.",
+    "source": {
+      "file": {
+        "path": "build/analysis/character-operation-composition-v1/specification.json",
+        "bytes": 82977,
+        "sha256": "62542a41f3a680e0437c357ac6bab184bbb219ecd00e00650fe9d830c745a271"
+      },
+      "pointer": "/remaining/0",
+      "canonical_sha256": "d0c8dc00c7ad32cbd3a9567befb2e3ff57d9130c62cff81a9b8aca316cb5191b"
+    },
+    "host_policy": "AH-U2 now has these selected desktop primitives;complete resource/device/backend acceptance remains explicit,not another generic host-frontier repackaging."
+  },
+  "scope_preserved": {
+    "capabilities": 40,
+    "registry_entries": 81,
+    "historical_composite_requirements": 37,
+    "consumer_groups": 10,
+    "profiles": 6
+  },
+  "product_baseline": "stage306",
+  "source_CP936_game_ACP_identity_proven": false,
+  "native_font_pixels_accepted": false,
+  "physical_audible_output_accepted": false,
+  "product_code_changed": false,
+  "product_full_suite_or_builds_run": false,
+  "shared_contract_changed": false,
+  "shared_ports_implemented": false,
+  "full_host_conformance_passed": false,
+  "unified_gate_passed": false,
+  "full_goal_complete": false
+}

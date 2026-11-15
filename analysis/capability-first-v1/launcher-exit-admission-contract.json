@@ -1,0 +1,870 @@
+{
+  "schema": "moli.launcher-exit-admission.contract.v1",
+  "revision": 1,
+  "requirement": "沿全部需求先REA成规顺序，补LS-U3托盘About/Exit到Main/Frame关闭、已在栈borrow和销毁准入的具名普通路径。",
+  "capability": "L03",
+  "related_existing_capability": "L08",
+  "parent": {
+    "path": "analysis/capability-first-v1/launcher-callback-reentry-contract.json",
+    "bytes": 42134,
+    "sha256": "5c50ed323dc7c3984e58f809ba78aa07e260022c4b3ce350ac273c1a31681a97"
+  },
+  "source": {
+    "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+    "bytes": 4111872,
+    "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+  },
+  "source_profile": "launcher-updated-c82f",
+  "source_review": {
+    "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+    "bytes": 66250,
+    "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+  },
+  "reused_focused_probe": {
+    "path": "build/analysis/launcher-callback-reentry-v1/focused-probe.json",
+    "bytes": 1248,
+    "sha256": "009c3fac2d0356492edd9b9543ab8688d1584a7c7e93f86e37a62a48f26188a4"
+  },
+  "probe_reexecuted": false,
+  "scope_preserved": {
+    "capabilities": 40,
+    "registry_entries": 81,
+    "historical_requirements": 37,
+    "consumer_groups": 10,
+    "source_profiles": 6,
+    "L03_groups": [
+      "连接",
+      "挑战",
+      "提交",
+      "记录/消息分片",
+      "回复",
+      "取消",
+      "超时",
+      "错误"
+    ],
+    "L03_source_profiles": [
+      "launcher-legacy-601b",
+      "launcher-updated-c82f"
+    ],
+    "owners_dependencies_batches_unchanged": true,
+    "whole_L03_specification_ready": false
+  },
+  "summary": {
+    "body_entries": 33,
+    "required_body_entries": 32,
+    "first_time_complete_native_records": 10,
+    "first_time_complete_native_bytes": 1201,
+    "new_required_native_records": 9,
+    "new_required_native_bytes": 1198,
+    "unused_constant_slot_views": 1,
+    "duplicate_native_queries": 2,
+    "reused_complete_native_records": 19,
+    "reused_derived_views": 4,
+    "range_windows": 33,
+    "range_bytes": 4851,
+    "decoded_instructions": 1587,
+    "vtable_slots": 12,
+    "operations": 8,
+    "facts": 16,
+    "conditional_inferences": 2,
+    "acceptance_cases": 8,
+    "new_target_test_cases": 0,
+    "reused_prior_target_cases": 4,
+    "selected_source_unknowns_closed": [],
+    "required_unknowns_remaining": [
+      "LS-U3"
+    ]
+  },
+  "facts": [
+    {
+      "id": "EA-F01",
+      "kind": "fact",
+      "claim": "App固定vtable+50指431000；其正常初始化分配并经42e180构造CMainFrame，保存App+20/+d4后调用Frame+168创建；创建失败会删除候选并清两个槽。42e180实际写CMainFrame vptr。App主窗口归属有间接写的正向来源，63c820空direct-xrefs不能否定该写。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/10",
+          "canonical_sha256": "94146d72103a8bd746960cedd6e9b02142541a24e422fae389a6b0453d4485a1"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/6",
+          "canonical_sha256": "9debb32ca58d0318d54a4c100e8cbe9def023e53906742cd16eca0c23d4d0df3"
+        }
+      ]
+    },
+    {
+      "id": "EA-F02",
+      "kind": "fact",
+      "claim": "实际托盘右键只发布E140/E141；已绑定App E141的431690先4269a0后45c22f，后者同步SendMessage(App+20对象的HWND,WM_CLOSE,0,0)，不是ExitProcess或无条件终止承诺。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/5",
+          "canonical_sha256": "7e49c820980d5eefd0dff910c4f879601fb6bb55029e8340936265d964d61ba5"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/12",
+          "canonical_sha256": "435f692be056a9c5de271ab86d617760d71db6270008191c8f8b806bfe1a99b9"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/4",
+          "canonical_sha256": "497acb5bfa7fe32a3ff15f060aad0c1d6a2b1dcef42e63130b6b6382cef755f1"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/27",
+          "canonical_sha256": "3fda6d96151ff82d4092dfddaa62c3ee5cdadaf90b0c32d6a4a92583982133cb"
+        }
+      ]
+    },
+    {
+      "id": "EA-F03",
+      "kind": "fact",
+      "claim": "Frame自定义WM_CLOSE为42e260：嵌入对象HWND有效才询问41a020；其busy时置deferred-close并MainStop、返回1，使本次Frame close直接返回。busy为0返回0后才进45745a。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/7",
+          "canonical_sha256": "f61bc9a767dd2eafd302848cc1797e68993eb88f6b6d054449ef8e6870703d95"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "094423a1190d6fd967b4dfbbc05fd2b8ec570c67336b69ca2f0f4dcdeb859a84"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/2",
+          "canonical_sha256": "bf0867f997164e10508ae694d9cba3b1b106d1a2250159226134f302314813e5"
+        }
+      ]
+    },
+    {
+      "id": "EA-F04",
+      "kind": "fact",
+      "claim": "错误422a70的普通提示先MainStop清busy等，之后才MessageBox。因此提示期间不能依赖Frame的busy检查阻止fallback close；已有borrow也未被MainStop撤回。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/3",
+          "canonical_sha256": "6f711f151035a5fbf0b0f3338f8901f940693599fc6a2fde0928d5945c99831b"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/2",
+          "canonical_sha256": "bf0867f997164e10508ae694d9cba3b1b106d1a2250159226134f302314813e5"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/32",
+          "canonical_sha256": "8e3ba6266532a1629a8c2b420981892b1c6b5c63fd5d004448b2cfc5851cb52f"
+        }
+      ]
+    },
+    {
+      "id": "EA-F05",
+      "kind": "fact",
+      "claim": "45745a首先在Frame+e0存在时直接调用该回调并返回；否则取得virtual+16c文档，非空时调用doc+ d4，返回0即拒绝close。后续App主窗口、save/recovery及document/view分支也有独立条件，不能把调用该函数等同已销毁。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/23",
+          "canonical_sha256": "bfe11a5507cd56a4b0fd8cd4401ac6d376644fafb5f51cbfd0f1cf605b9a5958"
+        }
+      ]
+    },
+    {
+      "id": "EA-F06",
+      "kind": "fact",
+      "claim": "固定Frame+16c为45662b：Frame+dc非空时取该view+80，否则无document。固定App+b0为45c39f：App+5c manager为空返回1，非空委托manager+24。此处只绑定所选条件和目标，不假定所有运行时字段恒为空。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/22",
+          "canonical_sha256": "1001a2a72cf7c7ef9e980888aad0879e5e0b8bd4ab00bc72856663ecb8d01897"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/28",
+          "canonical_sha256": "18aeee85efdb6ff24306bd79faab6e82d12c36d3dbfb08c3bb69b3492b3cffe9"
+        }
+      ]
+    },
+    {
+      "id": "EA-F07",
+      "kind": "fact",
+      "claim": "固定App+fc为45aa7b；它先询问App虚槽+d8/+dc，再按global63e540和App+90条件创建/初始化recovery对象，最后返回该槽。helper本身不是业务modal总锁；虚目标/运行时hook的未验副作用不能被默认为空。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/25",
+          "canonical_sha256": "fac9ba3cc636d7f3c7260e85cafdbf69607a21faf520ee06329ad74e045f1945"
+        }
+      ]
+    },
+    {
+      "id": "EA-F08",
+      "kind": "fact",
+      "claim": "45745a正常到末尾时可调用Frame虚槽+60；固定目标448dc2依据对象HWND/+74状态调用DestroyWindow或该wrapper+58，并返回结果。该完整体没有直接调用587110；间接OS销毁消息和hook的完整影响另属接受。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/23",
+          "canonical_sha256": "bfe11a5507cd56a4b0fd8cd4401ac6d376644fafb5f51cbfd0f1cf605b9a5958"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/14",
+          "canonical_sha256": "70b51d0f6882c9e2d3ee6544100d1442d0b846ab5c3df8666df1793311667a71"
+        }
+      ]
+    },
+    {
+      "id": "EA-F09",
+      "kind": "fact",
+      "claim": "App E140的431620以模板100、owner参数0构造About，换leaf vptr，调用共同44f422并在正常返回后调用44ee87。该wrapper没有Main busy/+10f2准入或写入，也没有直接登录提交、Connect或通道Release。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/11",
+          "canonical_sha256": "764abd187add738d1c25becb37f19e7678a20cadce5b6e1335249f7dde5de4db"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/16",
+          "canonical_sha256": "3b5fcc621cfe59e76d043482042179373ab69945c4b55d9ab650333b023f102e"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/17",
+          "canonical_sha256": "eed122eed0f28d6a77d2c8421608ebc2b8a4abab40131f52e886a4e6b962602f"
+        }
+      ]
+    },
+    {
+      "id": "EA-F10",
+      "kind": "fact",
+      "claim": "About共同DoModal仍沿已有owner解析/disable/restore、创建与正常返回合同；不能据App wrapper未写Main latch，便认定整个宿主没有modal约束，也不能把它等同MessageBoxA内部实现。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/17",
+          "canonical_sha256": "eed122eed0f28d6a77d2c8421608ebc2b8a4abab40131f52e886a4e6b962602f"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-modal-recovery-contract.json",
+            "bytes": 11481,
+            "sha256": "12153aa0718e5ea50a0216b39d0d7d66bbb66b674de97ef1581172dcde87b326"
+          },
+          "pointer": "/facts/1",
+          "canonical_sha256": "9acea5d69b5367f740ff7ebd83e1771340291041a907a0b7be6fe7f8a038be09"
+        }
+      ]
+    },
+    {
+      "id": "EA-F11",
+      "kind": "fact",
+      "claim": "App+54为45b1ba，正常调用450354；该外层Run循环在每次App+5c pump返回0后才调用App+68并返回。固定+5c为45034f，+68为430f30；pump源在GetMessage返回非0时，仅对message非0x36a且未被预处理的消息同步Translate/Dispatch，再返回1。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/26",
+          "canonical_sha256": "19e424221c01f337e9a5e99b60f9436feafc083273d55550033d89cb8f279cfb"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/21",
+          "canonical_sha256": "397ba3cd62ca12b1b9d3be974921845253031b9568e98a3c377e66aa1c309f49"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/20",
+          "canonical_sha256": "666e7dacbf955914b8b3bd1ce44bf614cb3bd7a7e70e36825db2dc31a83cc718"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/18",
+          "canonical_sha256": "b89589d991788affad1beeab5e985ffdd7e8c20f837be9aa32f24ed1b73f8129"
+        }
+      ]
+    },
+    {
+      "id": "EA-F12",
+      "kind": "fact",
+      "claim": "MFC嵌套44bad6通过44ff3b调用App+5c pump；其返回0分支调用45a8a6(0)然后返回-1，而非在该函数体直接调用App+68。所选正常/quit返回与外层Run的退出入口必须分别表达。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/15",
+          "canonical_sha256": "22abac5cf230b210ded6782ea06bceee65bd777ff1ca06cb949a315b1cc9b413"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/19",
+          "canonical_sha256": "492c89ff43521fca58967b99302ce82aba598e2fe3652b01efca71f19938d0d4"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/24",
+          "canonical_sha256": "cffe5d867561f3af7c3bb38bd9449d89807c1dee82a901f1361f39a20c29c215"
+        }
+      ]
+    },
+    {
+      "id": "EA-F13",
+      "kind": "fact",
+      "claim": "45a8a6先调用44fd1f取得对象；若返回非0且该对象+3c callback非空则间接调用，之后tail到PostQuitMessage。它不是只做PostQuit的空副作用helper；callback本体、普通安装来源及真实OS消息顺序未在本批关闭。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/24",
+          "canonical_sha256": "cffe5d867561f3af7c3bb38bd9449d89807c1dee82a901f1361f39a20c29c215"
+        }
+      ]
+    },
+    {
+      "id": "EA-F14",
+      "kind": "fact",
+      "claim": "430f30在App+d8非空时Stop，再重读非空后587110，随后清+d8、调用588900并清+d4，最后转45a9d0。该App退出路径与E141的WM_CLOSE发送、Frame窗口销毁请求分开；588900全局shutdown和最终进程退出不由本批声明完整。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/9",
+          "canonical_sha256": "5063f935ef43f402a363ebcb18a0a043f9ef53124b0c1f1b9f4632b36824f393"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/32",
+          "canonical_sha256": "8e3ba6266532a1629a8c2b420981892b1c6b5c63fd5d004448b2cfc5851cb52f"
+        }
+      ]
+    },
+    {
+      "id": "EA-F15",
+      "kind": "fact",
+      "claim": "587110调用587140(this+4)，返回0且this非空时走虚槽0(flag1)；固定AAChannel槽0是430d70，删除路径到CChannel587210/587261。源正常尾部等待borrow+1c归零，没有本地期限。这里仅使用返回0准入，不将未单独分析的587140任意错误结果映射成业务失败。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/29",
+          "canonical_sha256": "e9e4c6740fe0ca85b00e29093bc1fb4140c1c41fae959d65ddb7842197dc8dc8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/8",
+          "canonical_sha256": "39e4dca7bca3ed46fd0bb6602575cfadc968828258161e231268c419ba617eed"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/30",
+          "canonical_sha256": "0c9b6639e38968543c99ef466e07ec8ceedcfc285c49754991cb0e5ad1ddf8ea"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/31",
+          "canonical_sha256": "cba1c66cae41f5737a38c278b711835131e818481de36df2a0ed2745ea474ec8"
+        }
+      ]
+    },
+    {
+      "id": "EA-F16",
+      "kind": "fact",
+      "claim": "AAChannel槽+4是431ce0，其所选体调用422cb0，属于坏结果/重试通知；不是槽0删除体。析构结论必须使用实际slot0->430d70链，不能凭位置相邻或函数名推断。",
+      "source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/13",
+          "canonical_sha256": "94329d33cff8faf7d41257ebe537af3bda080b3aebbf02ebb835d36c0bc45bc1"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-exit-admission-v1/source-review.json",
+            "bytes": 66250,
+            "sha256": "2b47ed200ec829ba26c9a1f083b9385a73d04964bfb20b027240d9df6b6e8d18"
+          },
+          "pointer": "/bodies/8",
+          "canonical_sha256": "39e4dca7bca3ed46fd0bb6602575cfadc968828258161e231268c419ba617eed"
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "EA-O01",
+      "name": "App About普通命令",
+      "trigger": "实际托盘E140已获宿主准入",
+      "normal_rule": "模板100/owner0走已有modal合同，正常返回后清理About。",
+      "ending_failure_cancel": "App wrapper未持Main latch；实际被禁用owner的命令/焦点投递仍待验。",
+      "facts": [
+        "EA-F02",
+        "EA-F09",
+        "EA-F10"
+      ],
+      "owner": "original L03 shared owner and thin host UI/lifecycle adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    },
+    {
+      "id": "EA-O02",
+      "name": "App Exit普通命令",
+      "trigger": "实际托盘E141已获宿主准入",
+      "normal_rule": "移托盘图标，再同步请求App主框架WM_CLOSE。",
+      "ending_failure_cancel": "消息发送不代表Frame准许或进程已退出。",
+      "facts": [
+        "EA-F01",
+        "EA-F02"
+      ],
+      "owner": "original L03 shared owner and thin host UI/lifecycle adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    },
+    {
+      "id": "EA-O03",
+      "name": "Frame忙碌关闭",
+      "trigger": "Frame有有效嵌入窗口且busy非0",
+      "normal_rule": "设置延迟关闭、MainStop并返回，不在本次close调用fallback。",
+      "ending_failure_cancel": "后台DNS可晚完成；清busy后重投的close沿空闲规则，旧borrow未撤销。",
+      "facts": [
+        "EA-F03",
+        "EA-F04"
+      ],
+      "owner": "original L03 shared owner and thin host UI/lifecycle adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    },
+    {
+      "id": "EA-O04",
+      "name": "Frame空闲及关闭谓词",
+      "trigger": "busy检查未拦截",
+      "normal_rule": "保留close hook、doc许可、App/save/recovery和window-wrapper条件。",
+      "ending_failure_cancel": "hook可接管，许可可拒绝，DestroyWindow请求仍须OS接受。",
+      "facts": [
+        "EA-F05",
+        "EA-F06",
+        "EA-F07",
+        "EA-F08"
+      ],
+      "owner": "original L03 shared owner and thin host UI/lifecycle adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    },
+    {
+      "id": "EA-O05",
+      "name": "嵌套modal接收quit",
+      "trigger": "MFC modal pump返回0",
+      "normal_rule": "先走带可选对象callback的quit请求，再返回-1。",
+      "ending_failure_cancel": "不能凭此推定+3c callback无副作用或把MessageBoxA改写为同一loop。",
+      "facts": [
+        "EA-F10",
+        "EA-F12",
+        "EA-F13"
+      ],
+      "owner": "original L03 shared owner and thin host UI/lifecycle adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    },
+    {
+      "id": "EA-O06",
+      "name": "外层Run与App退出",
+      "trigger": "外层pump已正常返回0",
+      "normal_rule": "外层才调用固定App+68->430f30，Stop/release通道并进行其余清理。",
+      "ending_failure_cancel": "此顺序只绑定该正常外层入口；别的hook、直接调用及完整全局shutdown不据此关闭。",
+      "facts": [
+        "EA-F11",
+        "EA-F14"
+      ],
+      "owner": "original L03 shared owner and thin host UI/lifecycle adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    },
+    {
+      "id": "EA-O07",
+      "name": "通道owner释放与borrow排空",
+      "trigger": "587110返回零准入",
+      "normal_rule": "沿AAChannel槽0实际删除链Stop并等待既有borrow归还。",
+      "ending_failure_cancel": "源Sleep等待不是跨端同步阻塞实现方案，不能将槽+4通知当析构。",
+      "facts": [
+        "EA-F15",
+        "EA-F16"
+      ],
+      "owner": "original L03 shared owner and thin host UI/lifecycle adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    },
+    {
+      "id": "EA-O08",
+      "name": "已在栈callback的退出/重绑组合",
+      "trigger": "原LS-U3所要求普通入口",
+      "normal_rule": "结合LR已绑定的旧tail，区分窗口close、外层exit、正常borrow返回与新binding。",
+      "ending_failure_cancel": "新binding普通producer/原生modal投递和可选quit hook仍缺准入；不强制调用伪造原序列。",
+      "facts": [
+        "EA-F03",
+        "EA-F04",
+        "EA-F11",
+        "EA-F12",
+        "EA-F13",
+        "EA-F14",
+        "EA-F15"
+      ],
+      "owner": "original L03 shared owner and thin host UI/lifecycle adapters",
+      "dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "batch": "D1"
+    }
+  ],
+  "inferences": [
+    {
+      "id": "EA-I01",
+      "kind": "inference",
+      "claim": "若旧callback在外层同步Dispatch中，且所有嵌套callback/hook正常返回、没有另一路直接提前调用App退出，则该次外层pump必须在旧callback返回后才返回，随后外层+68退出清理不会在同一callback尚在栈时由这一个入口先执行。该结论有明确前提，不覆盖可选quit callback或MessageBox OS内部调度。",
+      "facts": [
+        "EA-F11",
+        "EA-F12",
+        "EA-F13",
+        "EA-F14"
+      ]
+    },
+    {
+      "id": "EA-I02",
+      "kind": "inference",
+      "claim": "错误prompt之前busy已清，普通Frame busy guard不能独自证明modal期间会拒绝close；完整host必须保留来源中的关闭准入和退役区分。窗口请求、对象Release、borrow等待不应合并成一个立即完成布尔值。",
+      "facts": [
+        "EA-F03",
+        "EA-F04",
+        "EA-F08",
+        "EA-F14",
+        "EA-F15"
+      ]
+    }
+  ],
+  "remaining": [
+    {
+      "id": "LS-U3",
+      "kind": "conditional-entry-admission",
+      "profiles": [
+        "launcher-updated-c82f"
+      ],
+      "groups": [
+        "回复",
+        "取消",
+        "错误"
+      ],
+      "question": "已取得borrow的callback穿过modal/替换，再执行尾部unregister的原必要普通序列仍须准入证据；不要求任意全交错，不报告必现故障或全交错安全。",
+      "existing_source": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/operation_rows/14",
+          "canonical_sha256": "2c95401fc2e9a4a9b1d52b66f8c84052a10217ec31e1fa63ec68f56f411576b3"
+        }
+      ],
+      "next_action": "复用required-entry-admission及engine重入规则，仅取得具名普通入口条件后追尾部。",
+      "selected_progress": "About/Exit producers, positive App MainWnd writer, Frame busy/fallback guards, outer Run versus nested modal and actual AAChannel deletion slot are now bound. Required LS-U3 remains open.",
+      "specific_contexts": [
+        "A legitimate ordinary producer/delivery context that forms the required replacement binding while the existing callback is held across native modal processing.",
+        "Optional quit callback at the object returned by44fd1f+3c: retain its explicit source condition; only follow a concrete ordinary installation/consumer if needed for the required sequence.",
+        "Actual native modal/tray/close/timer/DNS admission and complete shutdown on the target platforms; source normal returns and selected guards are not runtime acceptance."
+      ],
+      "stop_rule": "The selected About/Exit source body questions are answered. Do not continue default framework/recovery-helper inventory. Follow only an original required positive producer/consumer; otherwise progress other original capability specs."
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "EA-A01",
+      "case": "accepted E140 -> About -> accept/cancel while original callback held",
+      "status": "source-normal-path-bound-original-not-executed"
+    },
+    {
+      "id": "EA-A02",
+      "case": "accepted E141 -> exact App main Frame WM_CLOSE",
+      "status": "source-route-bound-original-not-executed"
+    },
+    {
+      "id": "EA-A03",
+      "case": "busy Frame close -> Stop/deferred close -> later idle close",
+      "status": "source-rule-bound-original-not-executed"
+    },
+    {
+      "id": "EA-A04",
+      "case": "idle close with hook/doc/save/recovery/window-wrapper predicate decisions",
+      "status": "source-conditions-bound-runtime-values-not-accepted"
+    },
+    {
+      "id": "EA-A05",
+      "case": "nested modal quit with optional quit object callback absent/present",
+      "status": "source-conditional-hook-and-platform-admission-open"
+    },
+    {
+      "id": "EA-A06",
+      "case": "old borrowed callback return and normal outer Run exit -> App channel Release",
+      "status": "conditional-source-order-inference-original-not-executed"
+    },
+    {
+      "id": "EA-A07",
+      "case": "ordinary modal replacement binding followed by old unregister tail",
+      "status": "LS-U3-required-entry-open"
+    },
+    {
+      "id": "EA-A08",
+      "case": "full original session cases, actual web/mobile/WeChat close behavior and current official acceptance",
+      "status": "not-executed-by-this-phase"
+    }
+  ],
+  "selected_context_answers": [
+    {
+      "question": "About wrapper and return",
+      "answer": "Bound to template100/owner0/common modal; no Main business latch in wrapper. Actual host admission remains separate."
+    },
+    {
+      "question": "Exit owner and Frame route",
+      "answer": "Bound positive App+20 Frame writer, E141 synchronous WM_CLOSE, busy/deferred gate and selected fallback/window predicates."
+    },
+    {
+      "question": "Channel cleanup timing",
+      "answer": "Bound normal outer pump->App+68 and App+d8 release/deleting slot; nested quit helper has explicit optional callback. Conditional normal order is not an all-path safety proof."
+    }
+  ],
+  "target_comparison": [
+    {
+      "id": "EA-D01",
+      "owner": "existing L03 shared flow/session and host adapter",
+      "rule": "Reuse distinct-session cancellation/late-I/O behavior already checked by LR; no test rerun or new API here. Whole-host close permission, request, callback drain and final disposal still need unified implementation/acceptance."
+    },
+    {
+      "id": "EA-D02",
+      "owner": "original thin platform lifecycle adapter",
+      "rule": "Source Sleep(1) borrow drain and Windows object/message machinery describe ownership, not portable blocking behavior. Compose asynchronous retirement using original owner after unified gate."
+    },
+    {
+      "id": "EA-D03",
+      "owner": "original D1/D5/D6 batches",
+      "rule": "Preserve LS-U1/LS-U2 deltas, original two-profile eight-group session scope and actual SDK/official prerequisites; no profile fallback or synthetic login acceptance."
+    }
+  ],
+  "selected_supersession": [
+    {
+      "parent": "analysis/capability-first-v1/launcher-callback-reentry-contract.json",
+      "pointer": "/entry_dispositions/3",
+      "rule": "Expands the source About/Exit routing and guarded normal cleanup; original actual held-borrow acceptance remains open."
+    },
+    {
+      "parent": "analysis/capability-first-v1/launcher-callback-reentry-contract.json",
+      "pointer": "/remaining/0",
+      "rule": "Replaces missing body questions with concrete ordinary-entry/hook/platform residuals; LS-U3 is not closed."
+    }
+  ],
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "source_capability_readiness_promoted": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "original_program_or_VM_executed": false,
+  "SDK_or_setting_changed": false,
+  "account_or_official_network_observed": false,
+  "limitations": [
+    "Fixed C82 is not current official binary identity or runtime acceptance.",
+    "Only selected normal routes and exact static predicates are specified; runtime extension callbacks are conditional.",
+    "No vendor bytes, resource payloads, credentials or decompiled source are published."
+  ],
+  "execution_record": {
+    "path": "build/analysis/launcher-exit-admission-v1/execution-record.json",
+    "bytes": 3708,
+    "sha256": "17c1a2857561c24c53ae2cd602873acd0afcc535feb2a962acdca57db9490da3"
+  },
+  "validation_record_path": "build/analysis/launcher-exit-admission-v1/validation.json"
+}

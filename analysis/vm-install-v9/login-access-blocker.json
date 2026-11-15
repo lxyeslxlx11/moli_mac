@@ -1,0 +1,41 @@
+{
+  "observed_utc": "2026-10-25T14:10:30.748523+00:00",
+  "target": "MoliRestoreTest-ARM64-20261025-v9",
+  "authorization": "Fresh specific one-time Windows sign-in on this test clone approved by user; not used. No secret value is recorded here.",
+  "blocked_action": "Read current UTM window before selecting/starting clone or entering credential",
+  "reads": [
+    {
+      "tool": "cua_repl utmApp.getAXState({disableDiffing:true})",
+      "result": "The Mac is locked and automatic unlock could not unlock it. Ask the user to unlock the Mac manually before continuing."
+    },
+    {
+      "tool": "cua_repl cua.getApp(UTM) refresh",
+      "result": "The Mac is locked and automatic unlock could not unlock it. Ask the user to unlock the Mac manually before continuing."
+    }
+  ],
+  "classification": "Tool-reported host access lock repeated after fresh rebind; actual physical screen not independently observable. Not an approval rejection.",
+  "clone_started_this_login_turn": false,
+  "credential_entered": false,
+  "login_submitted": false,
+  "authorization_consumed": false,
+  "outcome_uncertain": false,
+  "last_verified_clone_state": "Normally stopped after stage13 restore boot to lock screen",
+  "last_verified_original_state": "Running at empty PIN page after noncredential navigation; input capture1. No login submitted.",
+  "physical_keyboard_status": "User reports failure; tool navigation responded earlier but does not verify physical input.",
+  "minimum_next_step": "Restore legitimate computer-control access and reobserve exact target before the authorized one-time action. If Mac is already unlocked, bring UTM foreground and reconnect control rather than assuming user screen is locked. No alternate control route or credentials attempted.",
+  "independent_work_completed": "Input focus observation, documented distinction between tool navigation and user physical input; prior restore boot remains verified.",
+  "game_or_security_actions": false,
+  "recovery_refresh": {
+    "observed_utc": "2026-10-25T14:12:15Z",
+    "parent_connection_observation": "Parent reports MacBook Pro connected, attached, authorized at14:11 UTC; not independently a screen-unlock assertion.",
+    "read_count_this_followup": 1,
+    "tool": "cua_repl cua.getApp(UTM)",
+    "result": "The Mac is locked and automatic unlock could not unlock it. Ask the user to unlock the Mac manually before continuing.",
+    "ui_actions_after_error": 0,
+    "clone_started": false,
+    "credential_entered": false,
+    "login_submitted": false,
+    "authorization_consumed": false,
+    "interpretation": "Connector authorization/attachment and interactive host-session availability differ. Actual physical lock screen not independently visible. No alternative control route or host-security change."
+  }
+}

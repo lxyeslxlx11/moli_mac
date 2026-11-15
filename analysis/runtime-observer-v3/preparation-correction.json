@@ -1,0 +1,13 @@
+{
+  "schema": "moli.runtime-observer-v3.preparation-correction.v1",
+  "recorded_utc": "2026-10-27T19:17:23.779409+00:00",
+  "initial_script_sha256": "8aa06882e5166425765c40fc7766f7cf61f4ca4b11aae2f9a128f3a153bfed5a",
+  "check_failed_before_media_payload_write_or_guest_execution": true,
+  "cause": "Initial fixture script assumed preferred ImageBase equals runtime base; original reviewed PE has DllCharacteristics0x140 including DYNAMIC_BASE0x40.",
+  "correction_plan": "Keep original PE and ASLR unchanged; derive runtime image base from debugger executable entry point minus verified entryRVA0x1270. Break and print RVAs relative to that base. Validate actual loaded base in guest.",
+  "host_preparation_exit_code": 1,
+  "synthetic_fixture_executions": 0,
+  "original_program_executions": 0,
+  "empty_private_media_directory_created": true,
+  "media_members_written": false
+}

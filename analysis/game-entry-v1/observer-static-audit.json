@@ -1,0 +1,85 @@
+{
+  "schema": "moli.game-entry-v1.observer-static-audit.v1",
+  "target_sha256": "417595a96f0189353d47e8f1f86776e95ad4e0054d3123b3892b305e10dc6699",
+  "target_is_original_tool": true,
+  "rea_records": 13,
+  "main_pseudocode_evidence_id": "ev_2836ee238bdeae6ac793dca5ed18edfb563bf480eecaf9ad72a105e6f0148bd8",
+  "main_assembly_evidence_id": "ev_7efa04132830ef03de354cc6590635d3c9bdde90e2afd649e9f0a08732bb2fd6",
+  "compiler_main_address": "0x402a00",
+  "pseudocode_limit": "Ghidra reports stack/type-propagation warnings; width/slot/call claims are anchored in assembly and original C, not recovered types.",
+  "read_api_incoming_sites": [
+    "0x403644"
+  ],
+  "read_api_xref_evidence_id": "ev_6aec049d7c851dad4cd43d63be0525b8e844cc498b215781a674e9403c28d8b8",
+  "source_anchors": [
+    {
+      "address": "0x403619",
+      "evidence_id": "ev_4ed8410d92e0f921e07aa87a7b08b03dab6621cd16470da3f2fa9bff05c2c622",
+      "mapping_evidence_id": "ev_a9455ccb6920bd1e074acbd03138d4ec73cf54d4e43278d11d9bf5c4baafe1f5",
+      "instruction": "MOV dword ptr [ESP + 0xc],0x8",
+      "bytes_hex": "c744240c08000000",
+      "file_offset": 10777,
+      "source_match": true
+    },
+    {
+      "address": "0x403634",
+      "evidence_id": "ev_1c395b316e5cb37ec3e37e4c5a2b8a4f1d6f88a72d9dad415f32d03ec14bf0f5",
+      "mapping_evidence_id": "ev_708380dc69456ab42d9be55e90953e039003c024df9fde55e8d3b3fc63a99336",
+      "instruction": "ADD EAX,0xe65db8",
+      "bytes_hex": "05b85de600",
+      "file_offset": 10804,
+      "source_match": true
+    },
+    {
+      "address": "0x403644",
+      "evidence_id": "ev_33dba95d3b6a37189d9f3c674c7e173ede47e9f9a270fbfce61811c7e1423e6f",
+      "mapping_evidence_id": "ev_904b81cf033413073a17186143d4f137562a7b1aef65a8e9e4839c12c424bad7",
+      "instruction": "CALL dword ptr [0x004072b0]",
+      "bytes_hex": "ff15b0724000",
+      "file_offset": 10820,
+      "source_match": true
+    },
+    {
+      "address": "0x40365a",
+      "evidence_id": "ev_30e5e1458a31d2dbc52944ef9cd102067b387c8eab87c1afb65ea36bca9c056c",
+      "mapping_evidence_id": "ev_92d9f7f1da3351bb3f4d96f1ae82e3466f7c0a1552ad815d92d38d9d7a6c9403",
+      "instruction": "CMP dword ptr [ESP + 0x94],0x8",
+      "bytes_hex": "83bc249400000008",
+      "file_offset": 10842,
+      "source_match": true
+    },
+    {
+      "address": "0x403853",
+      "evidence_id": "ev_f484e15437774d0743d513477b16acc887b809dc98ce9252e4c69b795c70efb6",
+      "mapping_evidence_id": "ev_6b258febaf49b3db85eb6c13b46884d362aa287cccf7d184a8bb64a25419be3b",
+      "instruction": "CALL dword ptr [0x004072cc]",
+      "bytes_hex": "ff15cc724000",
+      "file_offset": 11347,
+      "source_match": true
+    }
+  ],
+  "source_read_budget": 8,
+  "source_slot_rva": "0xe65db8",
+  "private_exports": [
+    {
+      "path": "build/analysis/game-entry-v1/observer-rea-evidence.json",
+      "bytes": 194784,
+      "sha256": "f9d8ea4101fd3950361340e5056d6076b8e65e9609774431aa6613f0ce1f0c8a",
+      "private": true
+    },
+    {
+      "path": "build/analysis/game-entry-v1/observer-rea-snapshot.json",
+      "bytes": 196746,
+      "sha256": "176094fe2b00d6e519584e397cf0af5b13af6d14c28fb21e91f55c8d36275ac8",
+      "private": true
+    }
+  ],
+  "exported_closed": true,
+  "direct_import_surface": "analysis/game-entry-v1/observer-imports.json",
+  "scope": "Static source/PE/API/assembly consistency only. No Windows execution or actual no-extra-access proof.",
+  "preparation_failures": [
+    "First C build rejected DWORD* versus uint32_t*; fixed the variable type, retained Werror and initial log.",
+    "Initial REA main-selector result lacked structured content and could not be stored; used actual nm/_main address402a00. No analysis or approval configuration changed."
+  ],
+  "fixture_or_game_observed": false
+}

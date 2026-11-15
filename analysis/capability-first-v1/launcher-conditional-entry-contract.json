@@ -1,0 +1,596 @@
+{
+  "schema": "moli.launcher-conditional-entry.contract.v1",
+  "requirement": "按FR-U1/LF-U4收敛真实条件入口；补四菜单的同版owner/初始化/update/结果规则，其余条件保持具名。",
+  "document_catalog": {
+    "source": {
+      "path": "build/analysis/launcher-conditional-entry-v1/source-review.json",
+      "bytes": 97180,
+      "sha256": "575e2e1466b2f6b191d3345f264f60d2b5fa858cbfb88615c2f6e9a15243a5e1"
+    },
+    "FR": {
+      "path": "analysis/capability-first-v1/launcher-startup-final-reconciliation.json",
+      "bytes": 49579,
+      "sha256": "c2784dd329b6f0f082588a05c4d139d5e3d21b91f8f89a0784129c4f4bf96874"
+    },
+    "LF": {
+      "path": "analysis/capability-first-v1/launcher-functional-specification.json",
+      "bytes": 111980,
+      "sha256": "68ebb9f01779d04be26ed66a5a8ae16f2246cac514a8161c5c6af53bf0a13bc6"
+    },
+    "routing": {
+      "path": "analysis/capability-first-v1/launcher-host-routing-contract.json",
+      "bytes": 8438,
+      "sha256": "aca0fbfe061e58bdf31747798bf13b20be3b9ac153210c11c8485a9026a6de98"
+    },
+    "routing_source": {
+      "path": "analysis/capability-first-v1/launcher-host-routing-source-check.json",
+      "bytes": 107725,
+      "sha256": "fcc2835912fb8aa16bdad996838d68d64f5a773e6312137c0639406b8eecc0b9"
+    },
+    "bindings": {
+      "path": "analysis/capability-first-v1/launcher-dialog-bindings.json",
+      "bytes": 248223,
+      "sha256": "f7aea4b788fbdd321bc3c5136235de92407670a54199c88e97cf4524aaba057a"
+    },
+    "admission": {
+      "path": "build/analysis/required-entry-admission-v1/entry-admission.candidate.json",
+      "bytes": 1301154,
+      "sha256": "54adf53127e8339aec70b2bca1b6bbc3d28962afb97e76017b5b6337a70cd30b"
+    },
+    "presets": {
+      "path": "analysis/capability-first-v1/launcher-presets-contract.json",
+      "bytes": 12757,
+      "sha256": "e416ebe282e8dae1fe30530a8ba6c1107a5de986777a7ad7e1e54e76f9704402"
+    },
+    "metadata": {
+      "path": "analysis/capability-first-v1/launcher-id-metadata-contract.json",
+      "bytes": 12485,
+      "sha256": "a78e6638d2f39f38dac16ab4a45bfb77920ba668844f3b0ab1d20bd3ddbec93c"
+    }
+  },
+  "scope_preserved": {
+    "capabilities": 40,
+    "registry_entries": 81,
+    "historical_requirements": 37,
+    "consumer_groups": 10,
+    "source_profiles": 6,
+    "capability_rows": {
+      "L01": {
+        "requirement_scope": "配置读取、区域目录初始化、来源选择、首次配置与失效恢复",
+        "source_profiles": [
+          "launcher-legacy-601b",
+          "launcher-updated-c82f",
+          "launcher-historical-c7ba"
+        ],
+        "existing_implementation_owners": [
+          "shared/launcher-catalog.mjs",
+          "shared/launcher-first-config.mjs"
+        ],
+        "dependencies": [
+          "X01"
+        ],
+        "implementation_batch": "D1",
+        "registered_protocol_entries": [
+          "LCH-CATALOG-001",
+          "UPD-CATALOG-001",
+          "CFG-GAME-001"
+        ]
+      },
+      "L04": {
+        "requirement_scope": "账号输入的编码/长度、模式/取消/清理、非秘密偏好与条款决定",
+        "source_profiles": [
+          "launcher-legacy-601b",
+          "launcher-updated-c82f"
+        ],
+        "existing_implementation_owners": [
+          "shared/launcher-text.mjs",
+          "shared/launcher-preferences.mjs",
+          "shared/launcher-local.mjs"
+        ],
+        "dependencies": [
+          "L01"
+        ],
+        "implementation_batch": "D1",
+        "registered_protocol_entries": []
+      },
+      "L08": {
+        "requirement_scope": "配置→检查/更新→输入→候选→交接及关闭/取消/恢复",
+        "source_profiles": [
+          "launcher-legacy-601b",
+          "launcher-updated-c82f",
+          "platform"
+        ],
+        "existing_implementation_owners": [
+          "web/launcher-app.mjs",
+          "wechat/pages/launcher/index.js"
+        ],
+        "dependencies": [
+          "L01",
+          "L02",
+          "L03",
+          "L04",
+          "L05",
+          "L06",
+          "L07",
+          "X03"
+        ],
+        "implementation_batch": "D5",
+        "registered_protocol_entries": []
+      },
+      "X01": {
+        "requirement_scope": "固定样本、安装/更新关系、主状态/菜单/窗口/消息/资源目录的全入口登记",
+        "source_profiles": [
+          "launcher-legacy-601b",
+          "launcher-updated-c82f",
+          "game-legacy-37c4",
+          "game-current-unclosed"
+        ],
+        "existing_implementation_owners": [
+          "shared/launcher-source-profile.mjs",
+          "shared/legacy-game-state-catalog.mjs"
+        ],
+        "dependencies": [],
+        "implementation_batch": "D0",
+        "registered_protocol_entries": [
+          "EVID-SAMPLE-001",
+          "NET-VERSION-001"
+        ]
+      }
+    }
+  },
+  "facts": [
+    {
+      "id": "CE-F01",
+      "classification": "事实",
+      "claim": "本补充仅使用固定C82原件及同版已留存startup/routing/资源/预设材料。原40能力、81登记、37需求、10消费者、6来源及原owner/依赖/批次保持；L01/L04/L08/X01的来源列表不扩大，尤其不增加C7覆盖。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/source"
+        },
+        {
+          "document": "FR",
+          "pointer": "/scope_preserved"
+        },
+        {
+          "document": "LF",
+          "pointer": "/remaining"
+        }
+      ]
+    },
+    {
+      "id": "CE-F02",
+      "classification": "事实",
+      "claim": "资源128中E12B/E123/E122/E125四叶命令的本版文本分别表示撤消、剪切、复制、粘贴。既有来源已证明资源128菜单进入Frame创建；文字/数字不意味着独立游戏业务或已运行剪贴板操作。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/four_commands"
+        },
+        {
+          "document": "routing",
+          "pointer": "/facts/4"
+        }
+      ]
+    },
+    {
+      "id": "CE-F03",
+      "classification": "事实",
+      "claim": "42E180先调用455B87基Frame构造，后设CMainFrame vtable。455B87在构造中将Frame+DC写0、+80写1；最后456034将Frame登记到框架链表。这里只记录初始化和登记，不以字段曾清零证明所有后续消息期间一直为0。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/8"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/2"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/6"
+        }
+      ]
+    },
+    {
+      "id": "CE-F04",
+      "classification": "事实",
+      "claim": "实际App431000以resource128/styleCF8000/parent0/createContext0请求LoadFrame。已有4568AD→45621B→448BE6传递创建上下文；42E2F0的WM_CREATE调用457807→457848，由实际Frame slot1A0调用457823。457823仅在context非空且首个runtime-class字段非0时请求CreateView，否则直接返回1；不能由一般active-view分支虚构该普通启动创建了一个编辑view。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/app_creation_context"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/13"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/14"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/15"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/10"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/7"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/3"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/5"
+        },
+        {
+          "document": "source",
+          "pointer": "/Frame_OnCreateClient_slot"
+        }
+      ]
+    },
+    {
+      "id": "CE-F05",
+      "classification": "事实",
+      "claim": "42E2A0先把命令交给Frame+120的Child对象，未处理再457666。后者仅在Frame+DC非空时委托该active view，随后Frame map及App；不等同把任意Frame菜单转发给当前焦点edit。按原件核读的三owner完整表中，四命令没有普通或update-command-UI匹配；活动view或其它新动态接收者不在该结论内。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/9"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/11"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/12"
+        },
+        {
+          "document": "source",
+          "pointer": "/owner_message_rows"
+        },
+        {
+          "document": "source",
+          "pointer": "/four_commands"
+        }
+      ]
+    },
+    {
+      "id": "CE-F06",
+      "classification": "事实",
+      "claim": "Frame继承消息表的WM_INITMENUPOPUP117实际到457ECE。该体先AfxCancelModes；system-menu参数非0跳过其余菜单更新。普通菜单的control-bar委托可以先接管；否则逐项处理，跳过ID0，子菜单另取第一命令。普通叶命令在Frame+80非0且ID<=EFFF时传auto-disable1给446881；不能把所有popup/系统菜单套同一策略。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/1"
+        },
+        {
+          "document": "source",
+          "pointer": "/Frame_popup_binding"
+        }
+      ]
+    },
+    {
+      "id": "CE-F07",
+      "classification": "事实",
+      "claim": "446881先将CmdUI+18的enable-changed清0，用codeFFFFFFFF请求update-UI。仅auto-disable非0且该标志仍0时，再以code0及非空handler-info地址走普通命令查询，将其结果交CmdUI虚函数slot0。四命令在已核三owner表和active-view为空条件下，两次查找均无匹配，结果0；若其它接收者处理或更新改变标志，则此结论不适用。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/bodies/4"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/12"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/11"
+        },
+        {
+          "document": "source",
+          "pointer": "/owner_message_rows"
+        }
+      ]
+    },
+    {
+      "id": "CE-F08",
+      "classification": "事实",
+      "claim": "457ECE构造的CCmdUI由4467E7原字节绑定vtable5DB3A8；slot0实际446913。menu分支使用item position：参数0请求EnableMenuItem flags403，任意非0参数请求400，调用后置CmdUI+18=1且不按该API返回回滚。submenu/control/null/越界分支分别保留；这是请求和内部标志，不是屏幕或实际系统菜单验收。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/CCmdUI_constructor"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/1"
+        },
+        {
+          "document": "source",
+          "pointer": "/bodies/0"
+        }
+      ]
+    },
+    {
+      "id": "CE-F09",
+      "classification": "事实",
+      "claim": "296/30721/30734分别保留4/5/0控件的固定资源观察。既有296数字候选42DFE9是删除析构的对象大小参数；旧.literal搜索仅限定.text的完整u32，30721/30734未命中不能证明未使用。当前仍没有本补充可准入的实际构造/加载owner，不将资源名称加入能力或宣布它们是死代码。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/conditional_resources"
+        },
+        {
+          "document": "source",
+          "pointer": "/retained_literal_search"
+        },
+        {
+          "document": "bindings",
+          "pointer": "/excluded_numeric_candidate"
+        }
+      ]
+    },
+    {
+      "id": "CE-F10",
+      "classification": "事实",
+      "claim": "既有7901预设选择与7926保存当前记录，使用目录相邻LaunchPresets.dat及LPS1格式；已证路径生成、编辑、读写/临时替换和取消效果直接复用。这些内部文件操作不自动证明用户可选任意文件的导入/导出入口；未准入import/export继续等待正向业务owner。",
+      "source_refs": [
+        {
+          "document": "presets",
+          "pointer": "/facts/entries"
+        },
+        {
+          "document": "presets",
+          "pointer": "/facts/file"
+        },
+        {
+          "document": "metadata",
+          "pointer": "/scope_refinement"
+        },
+        {
+          "document": "LF",
+          "pointer": "/remaining/3"
+        }
+      ]
+    }
+  ],
+  "inferences": [
+    {
+      "id": "CE-I01",
+      "classification": "推测",
+      "claim": "在全能力设计时将普通文本编辑交给薄宿主适配，按已证状态合同补差异，可减少为继承菜单重复实现业务；具体产品菜单与平台政策仍须统一设计。",
+      "source_refs": [
+        {
+          "document": "source",
+          "pointer": "/four_commands"
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "CE-O1",
+      "capabilities": [
+        "L04",
+        "L08"
+      ],
+      "commands": [
+        57643,
+        57635,
+        57634,
+        57637
+      ],
+      "normal_sequence": "继承popup→创建CmdUI→update-UI→必要normal handler查询→Enable请求",
+      "preconditions": "普通叶菜单，无先行control-bar接管；active view为空且已核三owner无对应handler时才给出无处理器结果。",
+      "publication": "按item position请求flags403，记录enable-changed；源不检查API返回。",
+      "failure_and_recovery": "API请求不保证实际显示；null/menu/control及item越界分支按原体，不能外推所有系统状态。",
+      "cancel_or_close": "本操作不启动游戏/登录/外部任务；不据菜单关闭回滚其它owner。",
+      "late_or_reopen": "下次popup重新查询当前接收者；不把一次无active view冻结为永久没有view。",
+      "fact_ids": [
+        "CE-F03",
+        "CE-F04",
+        "CE-F05",
+        "CE-F06",
+        "CE-F07",
+        "CE-F08"
+      ],
+      "owner": [
+        "shared/launcher-text.mjs",
+        "shared/launcher-preferences.mjs",
+        "shared/launcher-local.mjs"
+      ],
+      "batch": "D1",
+      "actual_acceptance_executed": false
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "CE-D1",
+      "batches": [
+        "D1",
+        "D5"
+      ],
+      "need": "复用文本输入/薄宿主菜单，保留接收者和可用性条件；没有对应源业务时不发明四类游戏请求；平台默认编辑行为与原菜单请求分别验。",
+      "fact_ids": [
+        "CE-F02",
+        "CE-F05",
+        "CE-F07",
+        "CE-F08"
+      ]
+    }
+  ],
+  "selected_supersession": {
+    "LF-U4 four non-App menu portion": "fixed-source conditional rule specified;no global runtime-unreachability claim",
+    "FR-U1": "four-menu source rule supplemented;templates/import-export remain CE-U1/U2;whole closure false"
+  },
+  "remaining": [
+    {
+      "id": "CE-U1",
+      "classification": "待验证",
+      "kind": "conditional-resource-admission",
+      "analysis_gate": "A1/A3",
+      "preserves": [
+        "LF-U4",
+        "FR-U1"
+      ],
+      "need": "296/30721/30734仍需要实际构造、模板间接赋值或加载owner与原必要能力的正向关联；不能由资源/字面量无命中删需求，也不递归扫描全部库。",
+      "next_action": "在已需业务owner暴露正向边时接续；没有新正向证据时推进其它矩阵能力，不重查这三个资源等外部变化。"
+    },
+    {
+      "id": "CE-U2",
+      "classification": "待验证",
+      "kind": "conditional-user-import-export",
+      "analysis_gate": "A1/A3",
+      "preserves": [
+        "LF-U4",
+        "FR-U1"
+      ],
+      "need": "内部预设/ID存储不是任意文件导入导出用户入口；仅在实际控件/菜单/调用者准入后追加相应规格，原条件保留。"
+    },
+    {
+      "id": "CE-U3",
+      "classification": "待验证",
+      "kind": "other-source-and-required-host-design",
+      "analysis_gate": "A1..A4",
+      "need": "原L03 LS-U3、当前同版游戏消费者及其它能力必要规则继续独立；Host输入/生命周期/存储等设计与完整实现仍待。停止已闭四菜单及startup/helper查询。"
+    },
+    {
+      "id": "CE-U4",
+      "classification": "待验证",
+      "kind": "post-implementation-acceptance",
+      "analysis_gate": null,
+      "need": "实际菜单状态、输入/剪贴板、消息次序、三端SDK/设备及同版官方接受均未验。本轮不运行原程序/VM/SDK，不修改设置；原SDK设置请求仍pending，无测试账号。"
+    }
+  ],
+  "acceptance": {
+    "supplement_cases": [
+      {
+        "id": "CE-A01",
+        "context": "四叶命令、active view为空、三owner无update/normal匹配，auto1",
+        "expected": "请求flags403禁用；不发剪切/复制/粘贴业务请求。",
+        "fact_ids": [
+          "CE-F05",
+          "CE-F07",
+          "CE-F08"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CE-A02",
+        "context": "Frame+80为0或命令ID>EFFF",
+        "expected": "不以auto-disable fallback强制菜单状态；update-UI自身效果分开。",
+        "fact_ids": [
+          "CE-F06",
+          "CE-F07"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CE-A03",
+        "context": "其它实际接收者把enable-changed置1",
+        "expected": "跳过普通命令fallback；不能强写为无handler状态。",
+        "fact_ids": [
+          "CE-F07"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CE-A04",
+        "context": "Frame+DC非空且active view处理命令",
+        "expected": "先委托该view；本补充不假设该目标的业务语义或全局不可达。",
+        "fact_ids": [
+          "CE-F05"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CE-A05",
+        "context": "系统菜单、control-bar先处理、separator0和submenu",
+        "expected": "保留先CancelModes和各自跳过/委托/子菜单分支。",
+        "fact_ids": [
+          "CE-F06"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CE-A06",
+        "context": "Enable参数0、非0与API请求失败",
+        "expected": "位置flags403/400分开；源调用后仍置enable-changed，不凭请求报实际效果。",
+        "fact_ids": [
+          "CE-F08"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CE-A07",
+        "context": "创建context为空、runtime-class为空及CreateView失败",
+        "expected": "分别不创建view返回1或明确失败返回0；不由继承方法存在猜活动view。",
+        "fact_ids": [
+          "CE-F04"
+        ],
+        "executed": false
+      },
+      {
+        "id": "CE-A08",
+        "context": "三资源、u32无命中、内部LPS1读写",
+        "expected": "保留条件资源与导入导出准入未知，不把未命中当删除需求或把内部存储当用户入口。",
+        "fact_ids": [
+          "CE-F09",
+          "CE-F10"
+        ],
+        "executed": false
+      }
+    ],
+    "cases_executed": 0
+  },
+  "summary": {
+    "new_complete_native_records": 8,
+    "new_native_body_bytes": 1258,
+    "reused_complete_native_records": 8,
+    "native_range_windows": 16,
+    "native_range_bytes": 2770,
+    "native_instruction_boundaries": 961,
+    "reused_composed_source_windows": 1,
+    "reused_composed_window_bytes": 22,
+    "derived_code_windows": 1,
+    "derived_code_bytes": 38,
+    "derived_code_instructions": 13,
+    "owner_message_rows_checked": 124,
+    "new_search_records": 4,
+    "retained_REA_records": 178,
+    "menu_commands_reviewed": 4,
+    "conditional_templates_preserved": 3,
+    "new_product_tests_or_builds": 0,
+    "actual_UI_or_official_actions": 0,
+    "facts": 10,
+    "operations": 1,
+    "implementation_deltas": 1,
+    "supplement_cases_not_executed": 8,
+    "local_ready_capabilities": 16
+  },
+  "selected_four_menu_source_rule_bound": true,
+  "whole_LF_U4_closed": false,
+  "whole_FR_U1_closed": false,
+  "whole_L01_L04_L08_specification_ready": false,
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "new_VM_SDK_settings_account_or_official_actions": false,
+  "stopping_rule": "四菜单所需条件规则足够后停止追框架helper。无正向owner的资源/导入导出仍保条件，推进其它必要能力；全能力A1..A4后再D0..D6。",
+  "validation_record_path": "build/analysis/launcher-conditional-entry-v1/validation.json",
+  "execution_record": {
+    "path": "build/analysis/launcher-conditional-entry-v1/execution-record.json",
+    "bytes": 1260,
+    "sha256": "11bddf2f86ee76a2bb04f7098760bb04997d809a5ae2b68528e7a2a08da0a279"
+  }
+}

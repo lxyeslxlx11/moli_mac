@@ -1,0 +1,150 @@
+{
+  "schema": "moli.official-repair-readonly.v1",
+  "stage": 42,
+  "observed_utc": "2026-10-26 08:00-08:06 UTC",
+  "current_install": {
+    "app_path": "/Applications/Parallels Desktop.app",
+    "static_version": "26.3.3",
+    "build": "57507",
+    "cli": [
+      {
+        "path": "/Applications/Parallels Desktop.app/Contents/MacOS/prlctl",
+        "sha256": "875188a582bfc81770078e5e835c4274f88d2cf30c890de6ff47ce25ce3baf85",
+        "same_bytes_as_stage41": true
+      },
+      {
+        "path": "/Applications/Parallels Desktop.app/Contents/MacOS/parallels_wrapper",
+        "sha256": "f3148009278eb55192910cd9fa8e956656a87296cd9cfc7a3597515e89e026c7",
+        "same_bytes_as_stage41": true
+      }
+    ],
+    "signature_fact": "Stage41 prlctl arm64 invalid-signature result still pertains to identical file bytes; no CLI or signature check rerun this turn",
+    "entrypoint_fact": "Existing /usr/local/bin/prlctl wrapper remains unchanged; ps/init/service risks from stage41 remain unresolved"
+  },
+  "pvm_preservation": {
+    "path": "/Users/lx/Parallels/Windows 11.pvm",
+    "exists": true,
+    "pvm_symlink": false,
+    "config_disk": "harddisk.hdd",
+    "snapshots": [
+      {
+        "name": "Moli-before-client-probe-20261025-v19",
+        "guid": "{cd6af400-d740-4aac-83f0-b70bbd78cde4}"
+      },
+      {
+        "name": "Moli-before-launcher-probe-20261026-v22",
+        "guid": "{7d7de628-ef85-4b19-873d-99071422ea2b}"
+      }
+    ],
+    "disk_package_symlink": false,
+    "descriptor_refs": [
+      {
+        "relative_to_disk_package": "harddisk.hdd.0.{5fbaabe3-6958-40ff-92a7-860e329aab41}.hds",
+        "exists": true,
+        "symlink": false,
+        "resolved_under_pvm": true
+      },
+      {
+        "relative_to_disk_package": "harddisk.hdd.0.{7d7de628-ef85-4b19-873d-99071422ea2b}.hds",
+        "exists": true,
+        "symlink": false,
+        "resolved_under_pvm": true
+      },
+      {
+        "relative_to_disk_package": "harddisk.hdd.0.{cd6af400-d740-4aac-83f0-b70bbd78cde4}.hds",
+        "exists": true,
+        "symlink": false,
+        "resolved_under_pvm": true
+      }
+    ],
+    "scope_limit": "These are current named metadata/path checks, not a complete integrity or dependency proof. vm.lock/memory-named files exist but do not prove runtime state; no memory or guest logs read. No cold copy, shutdown or restore performed.",
+    "backup_proposal": "After normal shutdown and app quit are separately allowed and verified, copy the entire PVM to a fresh private local backup preserving config, NVRAM, all snapshot descriptors/state and every disk layer; check space and cold-copy identities first. Keep original PVM unchanged, do not merge/delete snapshots or convert disks. Preserve existing macOS keychain/security state; encrypted/TPM restore requirements remain unverified."
+  },
+  "official_sources": [
+    {
+      "url": "https://kb.parallels.com/en/124255",
+      "facts": "Application upgrade can replace the current app without prior uninstall; application removal is separate from .pvm deletion. We do not perform removal or follow the page empty-Trash step.",
+      "locations": "lines40-49; reviewed2024-02-20"
+    },
+    {
+      "url": "https://kb.parallels.com/en/124250",
+      "facts": "Existing VM can be reused after application upgrade; back it up first. Active subscription upgrade eligibility is conditional, not proof of this user license.",
+      "locations": "lines38-49; reviewed2021-03-25"
+    },
+    {
+      "url": "https://kb.parallels.com/en/4859",
+      "facts": "Manual backup copies the whole .pvm; general recommendation is VM shut down. Snapshot is not an independently verified full backup.",
+      "locations": "lines49,62-64,75-94; reviewed2020-09-14"
+    },
+    {
+      "url": "https://docs.parallels.com/landing/parallels-desktop-developers-guide/command-line-interface-utility",
+      "facts": "CLI is documented for Pro and Business/Enterprise, installed with the application; not a proof this current license is eligible.",
+      "locations": "lines3,9-14"
+    },
+    {
+      "url": "https://docs.parallels.com/landing/parallels-desktop-developers-guide/command-line-interface-utility/manage-virtual-machines-from-cli/general-virtual-machine-management/execute-a-command-in-a-virtual-machine",
+      "facts": "exec requires guest Parallels Tools; current-user selects the already logged-in guest user. No guarantee about host screen lock or effective guest token.",
+      "locations": "lines3-14"
+    },
+    {
+      "url": "https://kb.parallels.com/en/131014",
+      "facts": "Official release notes contain26.3.3(57507) and list26.5.0(57613). Matching version text does not authenticate current bytes.26.3.3 notes describe Secure Boot key updates for existing Windows11 VMs; whether already applied here is unknown.",
+      "locations": "lines39-46,104-110; reviewed2026-10-13"
+    },
+    {
+      "url": "https://www.parallels.com/blogs/parallels-desktop-27/",
+      "facts": "Official27 release post explicitly states macOS27 compatibility; Pro includes CLI. This does not prove free upgrade rights or26 incompatibility.",
+      "locations": "lines122,131-159; published2026-08-21"
+    },
+    {
+      "url": "https://www.parallels.com/products/desktop/download/",
+      "facts": "Official distribution entry provides automatic/full-image choices and existing-license account download; trial and purchase links are separate and not activated. Exact desired licensed installer URL/hash not yet selected or downloaded.",
+      "locations": "lines104-118,137-157"
+    },
+    {
+      "url": "https://kb.parallels.com/en/130231",
+      "facts": "Installer may request EULA, administrator authentication and folder/access permissions; later may request license/account or Tools changes. No such actions approved/executed in this read-only phase.",
+      "locations": "lines42-84; reviewed2026-05-21"
+    },
+    {
+      "url": "https://www.parallels.com/about/legal/eula/",
+      "facts": "Current web EULA describes downloading/installing/using as acceptance and distinguishes applicable business terms. This is a report of vendor wording, not a legal conclusion or consent; actual applicable installer/license terms must be confirmed.",
+      "locations": "lines110-128,143-147"
+    },
+    {
+      "url": "https://kb.parallels.com/en/123513",
+      "facts": "Requested old all-versions URL redirected to KB homepage ?err=1; not used as a verified installer source.",
+      "locations": "actual redirect observed"
+    }
+  ],
+  "conclusions": {
+    "fact": "Official application replacement/reinstall workflow can retain existing VM; no evidence here requires Windows reinstall or a new VM. Existing26.3.3 version/build is recognized by official notes, but its CLI bytes still fail prior integrity check.",
+    "documented_edition_gate": "Pro or Business/Enterprise; user actual eligible edition/license/upgrade coverage unknown. Standard app reinstall alone does not establish supported CLI.",
+    "version_selection": "Current host27.0.1 is from stage41.27 has explicit vendor macOS27 support; user right to27 upgrade unknown.26.5 official notes exist but exact26/27 licensed full installer not selected. Do not automatically choose a new major or trial.",
+    "no_component_patch": "Checked sources support app installer replacement; no verified individual prlctl repair-package route found in these sources. Do not copy isolated binaries, re-sign or remove quarantine. This is not proof vendor has no other repair procedure.",
+    "remaining_prerequisite": "A clean official reinstall does not itself remove the prohibition on wrapper host ps/init behavior. Inspect replacement standard entry and obtain its precise permitted scope before invoking; no alternate-route bypass.",
+    "lock_limit": "Non-GUI CLI candidate must later pass a no-credential guest echo/query test; neither official docs nor file presence prove immunity from host/guest lock, sleep or transport loss."
+  },
+  "minimal_steps_not_executed": [
+    "User identifies eligible Pro/Business/Enterprise edition and covered major version, without sending license key/account credentials; if unknown use their own account lookup, no trial/purchase.",
+    "Agree exact trusted target build/source and applicable EULA before software download/install; prefer full official image after eligibility/host support checks, verify vendor signature/hash and actual installer terms.",
+    "Separately approve saving work/normal VM shutdown/app quit and verified private cold whole-PVM backup; no forced close and no new VM.",
+    "Then approve exact whole-app replacement and standard administrator installer authentication; user enters secrets in system prompt. Do not delete PVM/snapshots or empty Trash. New TCC/Full Disk Access/Accessibility/folder/service requests require exact scope review, not blanket approval.",
+    "Verify installed app/CLI signatures and normal-entry behavior without executing denied host queries; any incompatible signature/entry/permissions/license requirement stops.",
+    "Only after trust/license/Tools/entry gates pass, obtain bounded fixed-VM current-user echo and named observer query authorization. No account data, elevated/default account, game/API attach, network or automatic VM start."
+  ],
+  "actual_operations": {
+    "local_readonly_files_and_metadata": true,
+    "public_official_web_pages_read": true,
+    "software_binaries_downloaded": 0,
+    "installer_or_CLI_executions": 0,
+    "guest_commands": 0,
+    "VM_start_stop_or_backup": 0,
+    "uninstall_install_purchase_trial_terms_acceptance": 0,
+    "security_network_changes": 0,
+    "retries_of_denied_ps_or_hardware_queries": 0,
+    "GUI_actions": 0,
+    "pending_tools": false
+  },
+  "validation": "Source/path/hash/metadata checks only; no new product code/test changes or regression reruns."
+}

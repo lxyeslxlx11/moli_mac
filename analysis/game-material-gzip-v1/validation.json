@@ -1,0 +1,128 @@
+{
+  "schema": "moli.game-gzip-validation-stage133.v1",
+  "recorded_utc": "2026-11-02T14:21:36.062735+00:00",
+  "classification": "analysis capability and material qualification progress; no recovered game protocol or gameplay",
+  "prior_manifest": {
+    "path": "analysis/delivery-manifest-stage132.json",
+    "sha256": "abf1f5ed8d070eb112a3d17e5baec9379cf29bed4d4875caad0a38c56ad7dce4",
+    "files_at_preflight": 1733,
+    "bytes_at_preflight": 46283185,
+    "all_hashes_matched_at_preflight": true,
+    "changed_canonical_paths": [
+      "README.md",
+      "analysis/game-text-observer-runtime-v1/README.md",
+      "analysis/protocol-v2/spec-matrix.json",
+      "reports/development-plan.md",
+      "reports/game-static.md",
+      "reports/known-issues.md",
+      "reports/logic-protocol-spec.md",
+      "reports/resource-formats.md",
+      "reports/validation.md"
+    ],
+    "other_prior_paths_unchanged": true
+  },
+  "private_prechange_copies": 9,
+  "analysis_helper": {
+    "sources": [
+      {
+        "path": "analysis/diagnostic-preparation-v1/inspect_gzip_member.py",
+        "bytes": 4456,
+        "sha256": "e4e574d5ac8a8fec0ef6615d2a43bb15f1185d37f0a3c6ea2f046423a59fb4ea"
+      },
+      {
+        "path": "analysis/diagnostic-preparation-v1/test_inspect_gzip_member.py",
+        "bytes": 3753,
+        "sha256": "99847820329123f558db0862610635f81061a5ac6c344bbedfe59bfbebeb002c"
+      }
+    ],
+    "actual_test_exit": 0,
+    "actual_test_cases": 10,
+    "test_record_private_path": "build/analysis/game-material-gzip-v1/test-run.json",
+    "test_record_sha256": "78a4968fa057a4003d3abd252e50115c306229d0b19388013511405039295542",
+    "coverage": [
+      "complete synthetic roundtrip",
+      "bad CRC and truncated trailer",
+      "concatenated members and trailing bytes",
+      "compressed and expanded budgets",
+      "non-gzip and invalid limits",
+      "wrong hash creates no output",
+      "existing output and source preserved"
+    ],
+    "default_compressed_limit": 1048576,
+    "default_expanded_limit": 8388608,
+    "global_dependencies_installed": false
+  },
+  "actual_material": {
+    "gzip_source_and_expanded_sha_match": true,
+    "source_unchanged": true,
+    "source_bytes": 500154,
+    "expanded_bytes": 706686,
+    "crc32_and_isize_match": true,
+    "single_complete_member_no_tail": true,
+    "private_output_directory_mode": "0700",
+    "payload_exported": false,
+    "standard_header_candidates": 9,
+    "plausible_standard_header_candidates": 0,
+    "MZ_literal_candidates": 19,
+    "complete_MZ_PE_pairs": 0,
+    "rea_open_error": "unsupported_target/file_format_rejected",
+    "rea_final_open": false,
+    "rea_final_cleanup_pending": false,
+    "new_native_functions_or_game_consumers": 0
+  },
+  "spec_matrix": {
+    "from_revision": 30,
+    "revision": 31,
+    "entries": 20,
+    "status_counts": {
+      "observed": 7,
+      "unknown": 13
+    },
+    "only_semantically_changed_entries": {
+      "EVID-SAMPLE-001": [
+        "claim",
+        "evidence"
+      ],
+      "LCH-HANDOFF-001": [
+        "acceptance_state",
+        "claim",
+        "evidence",
+        "next_verification"
+      ],
+      "NET-DEPENDENCIES-001": [
+        "claim",
+        "evidence",
+        "next_verification"
+      ]
+    },
+    "touched_evidence_paths_checked": 68,
+    "old_root_spelled_evidence_paths_normalized": 5,
+    "new_game_fields": false
+  },
+  "documentation": {
+    "new_local_references_checked": 44,
+    "new_primary_reference_urls": [
+      "https://docs.python.org/3.9/library/zlib.html",
+      "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
+      "https://www.rfc-editor.org/info/rfc1952/"
+    ],
+    "anchors_verified": true,
+    "VM_troubleshooting_anchor_count": 1
+  },
+  "product_files_checked": 211,
+  "product_files_unchanged": true,
+  "product_tests_run": false,
+  "product_build_run": false,
+  "new_vm_actions": 0,
+  "new_game_vendor_program_executions": 0,
+  "new_game_server_requests": 0,
+  "new_live_process_or_dump_reads": 0,
+  "full_goal_complete": false,
+  "goal_status": "active",
+  "current_impasse_interval_turns": 1,
+  "known_limits": [
+    "gzip integrity does not prove publisher, game version role or business behavior",
+    "standard PE candidate/literal checks do not prove no custom code or encoded data",
+    "no real login, game protocol/state/movement/battle, target-platform gameplay or official acceptance"
+  ]
+}

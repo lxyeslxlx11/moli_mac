@@ -1,0 +1,24 @@
+{
+  "schema": "moli.launcher-provenance-v1.browser-observation.v1",
+  "recorded_utc": "2026-10-27T19:55:08.929533+00:00",
+  "browser": "Codex in-app browser, normal public HTTPS page, no sign-in or forms",
+  "page": "https://www.polchina.com.cn/staticHtml/download.html",
+  "visible_label": "易玩通官方下载 / HTTP下载",
+  "actual_DOM_href": "http://launch.polchina.com.cn/download/POLCN_Setup_20240423.zip",
+  "observation": "Fresh documented locator getByRole(link,name=HTTP下载,exact=true).getAttribute(href) returned literal http URL. Search tool click had attempted https; this does not prove original DOM used https.",
+  "normal_browser_download": {
+    "operation": "locator.downloadMedia(timeoutMs15000)",
+    "state": "canceled",
+    "handle": "69091b0a-bd64-461d-9dbd-2119efde07a7",
+    "file_path_returned": false,
+    "reason": "Not supplied by tool; no actual security warning was observed. Do not label as automatic approval rejection or assert insecure-download cause."
+  },
+  "console": {
+    "one_error": "ReferenceError: ThunderEncode is not defined at download.html:519:10",
+    "causality": "Not established for canceled download."
+  },
+  "policy_or_browser_security_settings_changed": false,
+  "security_warning_bypassed": false,
+  "credentials_read_or_submitted": false,
+  "next": "Static bounded incoming archive acquisition from actual vendor-listed HTTP URL using ordinary HTTP client; no TLS setting disabled, no executable run; preserve transport-authentication limitation."
+}

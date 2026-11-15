@@ -1,0 +1,2 @@
+import test from'node:test';import * as api from'../../shared/index.mjs';import{createWeChatLegacyGameSession}from'../../adapters/wechat/legacy-game-session.mjs';import{runStatusTCP,statusTCPModes}from'../../analysis/game-battle-status-v1/tcp-flow.mjs';
+for(const mode of statusTCPModes)test('actual source PSN numeric/resource/round/return OS TCP '+mode,{timeout:30000},async()=>console.log('battle-status-tcp '+JSON.stringify(await runStatusTCP({...api,createWeChatLegacyGameSession},mode))));

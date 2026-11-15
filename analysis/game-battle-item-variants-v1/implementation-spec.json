@@ -1,0 +1,32 @@
+{
+  "stage": 301,
+  "classification": "fact: fixed PE byte and instruction evidence; portable policy and unverified continuation are separate",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "source_check": "analysis/game-battle-item-variants-v1/source-check.json",
+  "scope": "ITM phase0/phase1 variant dispatch, reader cursor and common return versus group completion",
+  "facts": {
+    "producer_values": [0, 6, 7],
+    "producer_entries": {"0": "0x432a35", "6": "0x432752", "7": "0x43269d"},
+    "default_entry": "0x4335a3",
+    "default_phase0": "Read one integer via434670, save58fb44, return through common epilogue without queue production or436930 completion.",
+    "saved_variant": "58fb44 is saved at object+84 and restored at4263b4; the raw cursor is object+64, a separate field.",
+    "phase1": "Values other than0/6/7 also return without completion; this does not establish that such a phase1 object occurs in normal play.",
+    "next_callback": "Phase0 reads again at its advanced raw cursor; behavior depends on remaining bytes, so a permanent wait and a successful no-op are both unproven.",
+    "group_completion": "436930 decrements remaining grouped records and advances/releases them. The default ITM path does not call it."
+  },
+  "portable_contract": {
+    "retained_producers": "Existing ITM0 HP recovery, ITM6 capture and ITM7 animation remain unchanged.",
+    "other_values": "Existing item-variant-handler unavailability retains record boundaries and does not invent HP/MP effects or mark the round complete.",
+    "native_equivalence_claimed_for_default": false,
+    "new_wire_fields": 0,
+    "new_runtime_branches": 0,
+    "new_platform_API": 0
+  },
+  "validation": "Recheck2251 raw window bytes,407 helper bytes and retained derived54685 bytes; rerun63 existing source and63 generated API tests.",
+  "pending": [
+    "Native execution of default ITM continuation and original timing are unobserved.",
+    "Craft recipes and nonzero ordinary context require a separate source-backed consumer and input implementation.",
+    "Full game, original37 requirements/10 incomplete groups and actual platform/current/official acceptance remain active."
+  ],
+  "full_goal_complete": false
+}

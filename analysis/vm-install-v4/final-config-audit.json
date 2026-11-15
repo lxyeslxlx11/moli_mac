@@ -1,0 +1,183 @@
+{
+  "policy": "moli-fixed-two-drive-nvme-v2",
+  "passed": true,
+  "vm_bundle": "/Users/lx/Documents/code/moli-mac/build/utm/MoliOffline-ARM64-20261025.utm",
+  "checks": [
+    {
+      "check": "bundle.real_directory",
+      "passed": true
+    },
+    {
+      "check": "baseline.known_receipt_keys",
+      "passed": true
+    },
+    {
+      "check": "baseline.recorded_prior_config_hash",
+      "passed": true
+    },
+    {
+      "check": "baseline.config.known_root_keys",
+      "passed": true
+    },
+    {
+      "check": "baseline.config.Backend",
+      "passed": true
+    },
+    {
+      "check": "baseline.config.ConfigurationVersion",
+      "passed": true
+    },
+    {
+      "check": "baseline.config.Display",
+      "passed": true
+    },
+    {
+      "check": "baseline.config.Input",
+      "passed": true
+    },
+    {
+      "check": "baseline.config.Network",
+      "passed": true
+    },
+    {
+      "check": "baseline.config.Serial",
+      "passed": true
+    },
+    {
+      "check": "baseline.config.Sound",
+      "passed": true
+    },
+    {
+      "check": "baseline.config.Sharing",
+      "passed": true
+    },
+    {
+      "check": "baseline.config.System",
+      "passed": true
+    },
+    {
+      "check": "baseline.config.QEMU",
+      "passed": true
+    },
+    {
+      "check": "baseline.config.Information.known_keys",
+      "passed": true
+    },
+    {
+      "check": "baseline.config.Information.identity",
+      "passed": true
+    },
+    {
+      "check": "baseline.config.Drive.exact_fixed_roles_interfaces_and_paths",
+      "passed": true
+    },
+    {
+      "check": "current.config.known_root_keys",
+      "passed": true
+    },
+    {
+      "check": "current.config.Backend",
+      "passed": true
+    },
+    {
+      "check": "current.config.ConfigurationVersion",
+      "passed": true
+    },
+    {
+      "check": "current.config.Display",
+      "passed": true
+    },
+    {
+      "check": "current.config.Input",
+      "passed": true
+    },
+    {
+      "check": "current.config.Network",
+      "passed": true
+    },
+    {
+      "check": "current.config.Serial",
+      "passed": true
+    },
+    {
+      "check": "current.config.Sound",
+      "passed": true
+    },
+    {
+      "check": "current.config.Sharing",
+      "passed": true
+    },
+    {
+      "check": "current.config.System",
+      "passed": true
+    },
+    {
+      "check": "current.config.QEMU",
+      "passed": true
+    },
+    {
+      "check": "current.config.Information.known_keys",
+      "passed": true
+    },
+    {
+      "check": "current.config.Information.identity",
+      "passed": true
+    },
+    {
+      "check": "current.config.Drive.exact_fixed_roles_interfaces_and_paths",
+      "passed": true
+    },
+    {
+      "check": "current.only_system_interface_delta",
+      "passed": true
+    },
+    {
+      "check": "Data.real_directory",
+      "passed": true
+    },
+    {
+      "check": "Data.exact_internal_files",
+      "passed": true
+    },
+    {
+      "check": "Data.file_0.regular_single_link",
+      "passed": true
+    },
+    {
+      "check": "Data.file_1.regular_single_link",
+      "passed": true
+    },
+    {
+      "check": "Data.file_2.regular_single_link",
+      "passed": true
+    },
+    {
+      "check": "Data.file_3.regular_single_link",
+      "passed": true
+    }
+  ],
+  "disk_metadata": [
+    {
+      "role": "system",
+      "bytes": 20054671360,
+      "allocated_bytes": 20009779200
+    },
+    {
+      "role": "readonly_cd",
+      "bytes": 8849653760,
+      "allocated_bytes": 8863744000
+    }
+  ],
+  "limitations": [
+    "Reads two bounded text files and metadata only; no disk contents read.",
+    "Only permits the fixed prior config plus system Interface VirtIO -> NVMe.",
+    "Baseline's prior plist hash is recorded provenance, not independently rehashed prior bytes.",
+    "Does not prove runtime isolation, guest NVMe detection, installation, media equivalence or disk integrity.",
+    "EFI, TPM and system-disk bytes may change during installation; sizes are observations, not invariants.",
+    "Does not exclude ancestor-directory symlinks, races or later/global overrides.",
+    "The unchanged v1 VirtIO policy intentionally rejects this NVMe configuration."
+  ],
+  "config_sha256": "f93fc4e4da000f9738212ef6cd1ba1ee5968bcea441fd273b81c8d2324231d16",
+  "before_interface_json_sha256": "60731369544f3d7e46387696037427d62cbfab1434ff300b82ba287654a82359",
+  "failed_checks": []
+}

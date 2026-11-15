@@ -1,0 +1,58 @@
+{
+  "schema": "moli.normal-install.runtime.v1",
+  "recorded_utc": "2026-10-30T02:56:17.079335+00:00",
+  "authorization": "authorization-stage105.json",
+  "source": "E:/CrossGate_Setup.exe",
+  "sha256": "e593e47fa09ac03e2213c7dc7bb80575e0295f0dc48a0e1edc73c4ac1982f983",
+  "start_command": "sv install105 (start-process e:/CrossGate_Setup.exe -verb runas -passthru); $install105 | fl id,hasexited",
+  "explicit_launch_submissions": 1,
+  "stage": "Normal interactive installation completed; automatic platform install deselected, original process exited0; installed context read back.",
+  "uac_acceptances": 1,
+  "actual_process_identity": {
+    "initial_process_id": 6368,
+    "initial_HasExited": false,
+    "source": "actual PowerShell Start-Process -PassThru result"
+  },
+  "installation_complete": true,
+  "vendor_game_or_launcher_actions": 0,
+  "events": [
+    {
+      "kind": "start-submitted-once",
+      "observed": "Current foreground terminal command was fully reviewed then Return150ms once. Parent output not yet available; no installation success inferred."
+    },
+    {
+      "kind": "uac-accepted",
+      "recorded_utc": "2026-10-30T02:57:50.889053+00:00",
+      "observed": "Expanded UAC details show E:\\CrossGate_Setup.exe, Unknown publisher, CD/DVD source. Clicked the observed Yes once; UAC disappeared. No credential prompt or security-policy change."
+    },
+    {
+      "kind": "normal-wizard-install-committed-once",
+      "recorded_utc": "2026-10-30T03:01:25.901661+00:00",
+      "observed": "Welcome -> destination -> Start Menu -> Ready -> Install. No binding-terms page was shown on this observed route. Ready lists exact destination and Start Menu folder; one Install click starts file extraction. First path shown bin/Anime_3.bin.",
+      "install_button_clicks": 1
+    },
+    {
+      "kind": "finish-page-option-deselected",
+      "recorded_utc": "2026-10-30T03:12:43.969185+00:00",
+      "observed": "魔力宝贝安装完成; sole visible install-platform checkbox changed from checked to unchecked, pointer moved away and empty box confirmed before one Finish click."
+    },
+    {
+      "kind": "actual-original-handle-exit",
+      "recorded_utc": "2026-10-30T03:12:43.969185+00:00",
+      "pid": 6368,
+      "WaitForExit_0": true,
+      "HasExited": true,
+      "ExitCode": 0
+    },
+    {
+      "kind": "installed-context-readback",
+      "recorded_utc": "2026-10-30T03:12:43.969185+00:00",
+      "record": "analysis/game-install-context-v1/guest-installed-context-stage105.json",
+      "selected_identity_matches": 4,
+      "game_path_views_success": 2,
+      "matching_process_count_after": 0
+    }
+  ],
+  "destination_observed": "C:/Program Files (x86)/PlayOnline/魔力宝贝",
+  "installed_context_record": "analysis/game-install-context-v1/guest-installed-context-stage105.json"
+}

@@ -1,0 +1,126 @@
+{
+  "schema": "moli.game-config-investigation.v1",
+  "requirement": "reports/development-plan.md#stage149",
+  "created_before_product_code": true,
+  "status": "source-bound-config-helper-implemented-local-JS-verified",
+  "target": {
+    "path": "build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/Config.exe",
+    "bytes": 61440,
+    "sha256": "9389add9c04cbc6bd313a34098ed94aef11a866ba721c6ccf7f984973efa0f7d"
+  },
+  "data": {
+    "path": "build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/Config.dat",
+    "bytes": 23,
+    "sha256": "57d6c1cfa1601d14fb478b2c58732338024831de212910e63a46c1efb7a20391"
+  },
+  "questions": [
+    "Exact read/write grammar and field/byte ordering?",
+    "Observed defaults, parsing failure, range/canonicalization and dialog control mappings?",
+    "Which independent pure contract can be implemented without assuming game protocol consumers?"
+  ],
+  "runtime_or_official_IO": false,
+  "protection_bypass_or_payload_reconstruction": false,
+  "game_business_consumers_recovered": false,
+  "full_goal_complete": false,
+  "facts": [
+    {
+      "kind": "fact",
+      "functions": [
+        "0x401180",
+        "0x401480"
+      ],
+      "claim": "Writer emits leading SP,3Ddevice:1..4 plus SP then windowmode/onlyactive/soundoff/musicoff plus SP in that order; writes strlen bytes, no terminating NUL or newline. Missing-file path writes device1/all flags0."
+    },
+    {
+      "kind": "fact",
+      "functions": [
+        "0x401480:0x4015ca..0x40162e"
+      ],
+      "claim": "Read asks for256 bytes, uses first exact case-sensitive strstr3Ddevice:, sscanf%d at+9, and independent substring checks. The observed segment does not check returned read count, append a terminator or validate sscanf result/range before radioId1004-device."
+    },
+    {
+      "kind": "fact",
+      "functions": [
+        "objdump0x401140..0x401177",
+        "objdump0x401420..0x401471",
+        "resource5/102/2052"
+      ],
+      "claim": "Default callback selects radio1003 and clears four fields. DDX1004/1005/1006/1007 binds+7c/+80/+84/+88; dialog labels map to window/background skip/sound/music; radio1000..1003 maps4..1. Actual renderer/OS/game effects unverified."
+    }
+  ],
+  "contract": {
+    "module": "shared/game-config.mjs",
+    "exports": [
+      "GAME_CONFIG_PROFILE",
+      "GameConfigError",
+      "createDefaultGameConfig",
+      "decodeGameConfig",
+      "encodeGameConfig"
+    ],
+    "writer": "Exactly own deviceCode1..4 and four Boolean fields; canonical12..52 ASCII bytes, SP delimiters, no NUL/newline, owned output. Source native nonzero BOOL normalized as explicit Boolean API policy.",
+    "reader": "Actual attached nonshared bytes; copy only firstmin(length,256), stop at first NUL within read, otherwise explicit bounded EOF-as-terminator replacement policy. First case-sensitive substring and C-ASCII whitespace/sign/decimal prefix, independent substring flags; reject missing/failed/overflow/out-of-range device rather than native uninitialized/range-dependent behavior. Returns settings/offset/boundary metadata, no source text.",
+    "retained_semantics": "Flags match inside other text; duplicate device first wins; trailing bytes outside first256 are unread; no token splitting, case folding, renderer backend mapping, authentication or IO.",
+    "default": "Separate explicit missing-file/default state; parser errors do not silently reset or write files.",
+    "unsafe_native_boundaries": "No claim to emulate reads beyond returned bytes, stack termination, failed sscanf/uninitialized local, overflow or unsupported radio values. Actual native runtime and game application remain unverified."
+  },
+  "actual_results": {
+    "REA_records": 34,
+    "Ghidra_dossiers": 4,
+    "decoded_instruction_checks": 14,
+    "source_reads": 6,
+    "source_maps": 3,
+    "objdump_callback_instructions_checked": 43,
+    "resource_payloads_rehashed": 5,
+    "dialog_controls": 13,
+    "source_template_canonical_match": true,
+    "source_template_has_NUL": false,
+    "new_Node_cases": 7,
+    "full_Node_passed": 829,
+    "portable_checks": 3,
+    "generated_checks": 7,
+    "builds": [
+      {
+        "directory": "build/wechat-app-stage149",
+        "report": {
+          "path": "build/wechat-app-stage149/build-report.json",
+          "bytes": 13450,
+          "sha256": "97eae2496aa0640a20485f77cc76bdade6525070fe2df00fd08386fad1779c42"
+        },
+        "inputs": 69,
+        "outputs": 11,
+        "bytes": 670597,
+        "external_imports": 0
+      },
+      {
+        "directory": "build/wechat-app-local-stage149",
+        "report": {
+          "path": "build/wechat-app-local-stage149/build-report.json",
+          "bytes": 13481,
+          "sha256": "05cdcb2b582d6208222eb2a4b83e237bf98a7ac9572e44b48ae3b27108059c3b"
+        },
+        "inputs": 69,
+        "outputs": 11,
+        "bytes": 671855,
+        "external_imports": 0
+      },
+      {
+        "directory": "build/wechat-app-resources-stage149",
+        "report": {
+          "path": "build/wechat-app-resources-stage149/build-report.json",
+          "bytes": 13489,
+          "sha256": "599a9c97cdc2afb16051bd0b4b0cefd182f17055337df9df9487ab9abc96f371"
+        },
+        "inputs": 69,
+        "outputs": 11,
+        "bytes": 671854,
+        "external_imports": 0
+      }
+    ]
+  },
+  "scope_limits": [
+    "Source is the selected Config.exe helper. Protected main game argv/IPC/socket/state/movement/battle consumers remain missing.",
+    "No original config GUI/process/file writes or game execution; resource dialog labels and instructions do not prove effects or current official identity.",
+    "Bounded EOF policy and strict explicit model reject undefined/uninitialized/range/locale-dependent native edges; not a claim of native stack behavior.",
+    "No host settings UI, renderer backend mapping or real-platform/official acceptance implemented in this slice."
+  ]
+}

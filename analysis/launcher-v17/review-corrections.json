@@ -1,0 +1,46 @@
+{
+  "schema": "moli.launcher-v17.review-corrections.v1",
+  "recorded_utc": "2026-10-27T02:56:58.310931+00:00",
+  "reviewer": "Primary agent source/lifecycle review with direct reproductions; not an independent agent or native-target run.",
+  "accepted_close_method": {
+    "before": {
+      "state": "profiles",
+      "originalCloseCalls": 0,
+      "replacementCloseCalls": 1
+    },
+    "after": {
+      "state": "profiles",
+      "originalCloseCalls": 1,
+      "replacementCloseCalls": 0
+    },
+    "cause": "Accepted stream copied read/write but re-read mutable raw.close at cleanup.",
+    "fix": "Capture close with accepted read/write; cleanup invokes captured function with its receiver. Late never-accepted ports still use bounded best-effort own close discovery.",
+    "reproduction_source": {
+      "path": "/private/tmp/moli-launcher-v17-browser-WrLi3R/session-before-review.mjs",
+      "sha256": "6d8ed601631ab486d7095c76e6427e7cb4c154ac36b901d23c7a1f22f958d4f0",
+      "note": "Private own-code snapshot with only import URLs changed to absolute file URLs for isolated reproduction."
+    },
+    "regression": "accepted read/write/close methods are captured before a mutable provider changes them"
+  },
+  "failure_metadata": {
+    "before": {
+      "before": "SESSION_WRITE",
+      "returnedErrorMutable": true,
+      "after": "CHANGED"
+    },
+    "after": {
+      "before": "SESSION_WRITE",
+      "returnedErrorMutable": false,
+      "after": "SESSION_WRITE"
+    },
+    "cause": "Returned runtime Error was the same mutable object used by later snapshot.errorCode.",
+    "fix": "Keep only a frozen controlled code/message record; provider text and mutable Error reference never escape.",
+    "regression": "write failures close the opened stream without another endpoint or raw error exposure; browser failure metadata also checked."
+  },
+  "additional_contract_checks": [
+    "Explicit null setTimer/clearTimer rejected rather than silently defaulted.",
+    "Error constructor accepts only own known message codes; inherited prototype keys and coercion objects fall back to controlled SESSION_INTERNAL."
+  ],
+  "final_validation": "node-tests.log:335/335 after all production fixes, browser-session-smoke.json rerun after portable failure fix.",
+  "native_or_official_operations": "none; original synthetic vector/loopback only."
+}

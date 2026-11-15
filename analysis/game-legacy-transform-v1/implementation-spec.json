@@ -1,0 +1,94 @@
+{
+  "schema": "moli.legacy-game-payload-contract-stage153.v1",
+  "profile": "legacy-se6000-37c4-payload-v1",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "facts": [
+    {
+      "claim": "405110 requires64-byte C-string key, rounds input upward to8 without an extra aligned block; source byte0 is written0 without XOR. Padding bytes use0x11 XOR key. Permutation destination [7,2,5,1,6,3,0,4].",
+      "entry": "0x405110",
+      "evidence": "ev_0a4c58bf9a721869688d9a12b0fa23cc3d45ae5a43ef67540f0343806f1f7a95"
+    },
+    {
+      "claim": "4051f0 requires key length64 and input multiple8, inverse permutation [6,3,1,5,7,2,4,0], XOR with key indexed by original position modulo64; strips at most8 trailing0x11. Zero-length decode reads before start and is outside independent domain.",
+      "entry": "0x4051f0",
+      "evidence": "ev_d28f7d3428efe7025c71d0c5a43112db3a9d92a095b8977a873d44e10bfcca9c"
+    },
+    {
+      "claim": "404db0 consumes header16/ciphertext multiple16/tag32. Seed=header16+zero16;8192 SHA256(seed32+fixedParameter128) iterations; AES256-CBC with derived32 and header as IV, HMAC-SHA256 over ciphertext only with same derived32. Header[15]&15 selects final valid bytes if nonzero.",
+      "entry": "0x404db0",
+      "evidence": "ev_cbbf234900fdbb2a15621c87371f1778e267b604afde0351126365995ac8c6cd"
+    },
+    {
+      "claim": "4ee470 existing consumer selects112-byte bootstrap branch before key ready and installs only a64-byte result; special binary prefixes bypass normal transform. No business meaning assigned.",
+      "entry": "0x4ee470",
+      "evidence": "ev_1b6684fdc97bcedfd5d8c2ec8abe75c6677c71f43120c9a514a328c68bd1f081"
+    },
+    {
+      "claim": "SHA256 standard correspondence: init8 words, BE length/digest and64 ordered round constants matched, canonical rotations/state update. AES source uses GF0x1b/S-box affine0x63,256-bit key14 rounds and inverse block. Algorithm identification derived statically, not source-program execution.",
+      "entry": [
+        "0x405a40",
+        "0x405a90",
+        "0x409b70",
+        "0x409c30",
+        "0x401000",
+        "0x4012d0",
+        "0x4017b0"
+      ],
+      "evidence": [
+        "ev_428b83ced3bb5e3aba0ecf2a4823b639232dcb8ab5d3bd621cda8c6d45014b9d",
+        "ev_68710ee4296d84f12065916f7d655b5feace858eef79e9db152542b64481d9a7",
+        "ev_75ae8ddbe11cff89e164b00cf5cb31e5237c23736bea0bb1c32ad250a5ca5207",
+        "ev_b6a3ad909ee4785b41609ace378d4a5d7e3ec2344e790d5f725d4213cfd4b4ea"
+      ]
+    }
+  ],
+  "fixed_parameter": {
+    "address": "0x53360c",
+    "bytes": 128,
+    "sha256": "f9a97e723b6c83fc128a96645518949e89748bea29131d19f59181a6ce684539",
+    "role": "fixed shipped derivation input, not user credentials or a captured session key"
+  },
+  "independent_policy": {
+    "bootstrap": "Exactly112 bytes, header low nibble0, valid tag and non-NUL64-byte result required; returns owned codec, never exposes candidate plaintext on failure. Verify tag before decrypt (native writes candidate bytes before tag comparison).",
+    "normal_encode": "0..32760 input bytes; empty encode returns0 bytes as source helper; byte0 special handling preserved. Caller-supplied bytes, no text encoding/field interpretation.",
+    "normal_decode": "8..32760 bytes, divisible8; strips up to8 trailing0x11 even if actual content; source transform is not a general invertible byte codec.",
+    "key": "Exactly64 non-NUL bytes copied on construction, owned key zeroed on close; no inspect/log key output.",
+    "budget": "32760 chosen so rounded wire payload fits previous signed positive outer-frame domain.",
+    "identity": "Valid bootstrap tag is not official peer identity/authentication; normal payload integrity unverified.",
+    "errors": "Sanitized fixed codes, owned temporary buffers cleared, validation errors do not mutate existing codec state."
+  },
+  "api": [
+    "LEGACY_GAME_PAYLOAD_PROFILE",
+    "LegacyGamePayloadError",
+    "createLegacyGamePayloadCodec(keyBytes): encode(bytes), decode(bytes), close(), inspect()",
+    "createLegacyGamePayloadCodecFromBootstrap(wirePayloadBytes)"
+  ],
+  "crypto_dependency": {
+    "packages": [
+      "@noble/hashes@2.4.0",
+      "@noble/ciphers@2.4.0"
+    ],
+    "license": "MIT",
+    "source_policy": "Exact static local import closure and original licenses; archive SRI and per-file SHA verified, no install/lifecycle scripts, no modified third-party source."
+  },
+  "primary_standards": [
+    "https://csrc.nist.gov/pubs/fips/197/final",
+    "https://csrc.nist.gov/pubs/fips/180-4/upd1/final",
+    "https://csrc.nist.gov/pubs/sp/800/38/a/final",
+    "https://www.rfc-editor.org/rfc/rfc4231"
+  ],
+  "additional_analysis_not_implemented": [
+    "4fcb40 byte escape/lead-byte behavior",
+    "4fcf00 base62 numeric consumer",
+    "4fcea0/%s space tag and4fca20 bounded append"
+  ],
+  "remaining": [
+    "Full binary-prefix and control/handshake lifecycle",
+    "Text/field grammar and consumers",
+    "State/movement/battle and renderer",
+    "Current9baa/6e2ff compatibility and native/official acceptance"
+  ],
+  "target_execution": false,
+  "real_credentials_or_session_keys": false,
+  "full_goal_complete": false
+}

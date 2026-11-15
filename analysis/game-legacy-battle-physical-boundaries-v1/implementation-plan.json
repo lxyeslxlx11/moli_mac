@@ -1,0 +1,21 @@
+{
+  "stage": 252,
+  "previous_checkpoint": {
+    "path": "analysis/game-legacy-battle-physical-registry-v1/checkpoint-audit.json",
+    "sha256": "7b2376e5b60e9e1af35f8fdb521066ac59f82a9850bb9cb9e17b647321fdd38a"
+  },
+  "baseline_files": 4006,
+  "requirement": "固定旧版物理技能的嵌套目标和自身结果边界进入正常回合，并保留能结算的动作及服务器结果。",
+  "source": "analysis/game-legacy-battle-physical-boundaries-v1/source-check.json",
+  "scope": [
+    "区分 SKL72 预读与 SKL72、113 执行端的嵌套字段，追到动作 232 和护卫回调的实际角色读取。",
+    "区分计划时的空槽和已排队后的退场，保留源预约计数。",
+    "核对无外部目标的正变体、终止元组、动作 15、18、41 及 SKL266 自身结算。",
+    "保留有目标时的飞行物，处理无目标时的动画、耗魔、收尾及已证自身结果。",
+    "通过真实命令所有者和本机 TCP 入口验收。"
+  ],
+  "remaining": ["原版越界或空槽的运行结果", "没有外部 RID 时的栈槽来源", "现行版交接、微信运行时、真机及官服"],
+  "VM_actions": 0,
+  "original_execution": 0,
+  "official_sessions": 0
+}

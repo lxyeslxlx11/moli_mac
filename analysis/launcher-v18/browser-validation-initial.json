@@ -1,0 +1,74 @@
+{
+  "schema": "moli.launcher-v18.browser.v1",
+  "browser": "155.0.8059.85",
+  "browserPlugin": "Browser plugin not available; existing Playwright1.62.1 fallback",
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 1000
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "checks": [],
+  "issues": [
+    {
+      "type": "requestfailed",
+      "path": "/styles.css",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "type": "requestfailed",
+      "path": "/login.css",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "type": "requestfailed",
+      "path": "/login-app.mjs",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "type": "assertion",
+      "name": "TimeoutError",
+      "message": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('会话服务已就绪 · 仅允许启动时明确指定的回环对端', { exact: true }) to be visible\u001b[22m\n",
+      "stack": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('会话服务已就绪 · 仅允许启动时明确指定的回环对端', { exact: true }) to be visible\u001b[22m\n\n    at pageFor (/private/tmp/moli-launcher-v18-browser-5RWqgn/qa.mjs:38:70)\n    at async file:///private/tmp/moli-launcher-v18-browser-5RWqgn/qa.mjs:61:31"
+    }
+  ],
+  "browserLogs": [
+    {
+      "type": "error",
+      "text": "Refused to apply style from 'http://127.0.0.1:59647/styles.css' because its MIME type ('text/plain') is not a supported stylesheet MIME type, and strict MIME checking is enabled."
+    },
+    {
+      "type": "error",
+      "text": "Refused to apply style from 'http://127.0.0.1:59647/login.css' because its MIME type ('text/plain') is not a supported stylesheet MIME type, and strict MIME checking is enabled."
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ],
+  "requests": {
+    "total": 5,
+    "distinctOrigins": [
+      "http://127.0.0.1:59647"
+    ],
+    "methods": [
+      "GET"
+    ]
+  },
+  "screenshots": [
+    "/private/tmp/moli-launcher-v18-browser-5RWqgn/desktop-initial.png",
+    "/private/tmp/moli-launcher-v18-browser-5RWqgn/desktop-ready.png",
+    "/private/tmp/moli-launcher-v18-browser-5RWqgn/desktop-profiles.png",
+    "/private/tmp/moli-launcher-v18-browser-5RWqgn/mobile-initial.png",
+    "/private/tmp/moli-launcher-v18-browser-5RWqgn/mobile-profiles.png"
+  ],
+  "scope": "Original local runtime, original four test texts, public synthetic credentials, Python independent algorithm; no official game requests, original executables or real account."
+}

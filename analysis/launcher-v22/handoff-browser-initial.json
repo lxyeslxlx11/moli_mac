@@ -1,0 +1,70 @@
+{
+  "schema": "moli.launcher-v22.handoff-browser.v1",
+  "browser": "155.0.8059.85",
+  "tool": "Existing Playwright1.62.1; Browser plugin not available",
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 1100
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "checks": [
+    {
+      "name": "actual original browser reply selection prepares native17-byte CG write without exposing payload or persistence",
+      "passed": true
+    },
+    {
+      "name": "username change clears the prepared handoff and cannot reuse disabled old selection",
+      "passed": true
+    },
+    {
+      "name": "mode confirmation cancellation preserves handoff; accepted switch clears it and all inputs",
+      "passed": true
+    },
+    {
+      "name": "password change clears a prepared handoff after a fresh counter2 exchange",
+      "passed": true
+    },
+    {
+      "name": "replacing local text invalidates a previously selected handoff",
+      "passed": true
+    },
+    {
+      "name": "configuration selection change clears handoff and all prior session choices",
+      "passed": true
+    },
+    {
+      "name": "390px encoding change clears handoff and keeps byte profile choice explicit",
+      "passed": true
+    }
+  ],
+  "errors": [
+    {
+      "type": "assertion",
+      "name": "AssertionError",
+      "message": "Expected values to be strictly equal:\n\ntrue !== false\n",
+      "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\ntrue !== false\n\n    at noSelection (file:///private/tmp/moli-launcher-v22-browser-v4qdqlx7/handoff-qa.mjs:41:41)\n    at async file:///private/tmp/moli-launcher-v22-browser-v4qdqlx7/handoff-qa.mjs:63:248\n    at async pass (file:///private/tmp/moli-launcher-v22-browser-v4qdqlx7/handoff-qa.mjs:35:30)\n    at async file:///private/tmp/moli-launcher-v22-browser-v4qdqlx7/handoff-qa.mjs:63:4"
+    }
+  ],
+  "consoleLogs": [],
+  "requests": {
+    "total": 135,
+    "origins": [
+      "http://127.0.0.1:50721",
+      "http://127.0.0.1:50759",
+      "http://127.0.0.1:50780"
+    ],
+    "methods": [
+      "GET"
+    ]
+  },
+  "screenshots": [
+    "/private/tmp/moli-launcher-v22-browser-v4qdqlx7/desktop-handoff-ready.png",
+    "/private/tmp/moli-launcher-v22-browser-v4qdqlx7/mobile-handoff-ready.png"
+  ],
+  "scope": "Actual original-only HTTP/native WS/TCP/Python verified requests. pagehide is a controlled PageTransitionEvent handler test, not a physical-device or full BFCache acceptance test. No original EXE/VM/shared mapping or official/account session."
+}

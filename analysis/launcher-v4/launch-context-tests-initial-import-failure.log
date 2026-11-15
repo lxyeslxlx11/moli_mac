@@ -1,0 +1,24 @@
+test_launch_context (unittest.loader._FailedTest) ... ERROR
+
+======================================================================
+ERROR: test_launch_context (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_launch_context
+Traceback (most recent call last):
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "/Users/lx/Documents/Codex/2026-10-25/task/analysis/launcher-v4/test_launch_context.py", line 12, in <module>
+    F=load('prior_fixture',HERE.parent/'protocol-v3/launch/test_verify_launch.py')
+  File "/Users/lx/Documents/Codex/2026-10-25/task/analysis/launcher-v4/test_launch_context.py", line 10, in load
+    spec=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+  File "/Users/lx/Documents/Codex/2026-10-25/task/analysis/protocol-v3/launch/test_verify_launch.py", line 4, in <module>
+    from verify_launch import PE32, EvidenceError, inspect_anchor, verify
+ModuleNotFoundError: No module named 'verify_launch'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

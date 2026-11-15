@@ -1,0 +1,39 @@
+{
+  "schema": "moli.launcher-v21.preferences-browser.v1",
+  "browser": "155.0.8059.85",
+  "tool": "Existing Playwright1.62.1; Browser plugin not available",
+  "flow": "login -> explicit mode change/confirmation -> save -> native Storage readback -> reload restores only UserMode -> actual original request",
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 1100
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "checks": [],
+  "errors": [
+    {
+      "type": "assertion",
+      "name": "TimeoutError",
+      "message": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#prepare-catalogs')\u001b[22m\n",
+      "stack": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#prepare-catalogs')\u001b[22m\n\n    at prepare (/private/tmp/moli-launcher-v21-browser-z9r7qxtt/preferences-qa.mjs:44:62)\n    at /private/tmp/moli-launcher-v21-browser-z9r7qxtt/preferences-qa.mjs:56:48\n    at async pass (/private/tmp/moli-launcher-v21-browser-z9r7qxtt/preferences-qa.mjs:49:30)\n    at async file:///private/tmp/moli-launcher-v21-browser-z9r7qxtt/preferences-qa.mjs:53:2"
+    }
+  ],
+  "logs": [],
+  "requests": {
+    "total": 36,
+    "origins": [
+      "http://127.0.0.1:49387"
+    ],
+    "methods": [
+      "GET"
+    ]
+  },
+  "screenshots": [
+    "/private/tmp/moli-launcher-v21-browser-z9r7qxtt/desktop-initial.png"
+  ],
+  "scope": "Native Storage positive paths. Only failure/readback negative fixtures use controlled method hooks; all calls otherwise delegate to real browser Storage. Actual original Python peer for one request, no original EXE/VM/official service or real accounts."
+}

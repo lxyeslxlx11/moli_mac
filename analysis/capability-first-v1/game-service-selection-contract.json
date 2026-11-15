@@ -1,0 +1,550 @@
+{
+  "schema": "moli.capability.game-service-selection-contract.v1",
+  "status": "bounded-static-entry-comparison-and-required-scope-frontier-recorded",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4"
+  },
+  "capabilities": [
+    "G10",
+    "G12",
+    "X01",
+    "X02"
+  ],
+  "plan": "analysis/capability-first-v1/game-service-selection-plan.json",
+  "source_check": "analysis/capability-first-v1/game-service-selection-source-check.json",
+  "facts": [
+    {
+      "id": "observed-Qm-entry-is-classic",
+      "kind": "fact",
+      "entries": [
+        "0x4f4410",
+        "0x48fce0"
+      ],
+      "rules": [
+        "固定37c4的Q?m消费者在924f30/c5ec18等已证门槛内，mask=-1按活动模式/身份关闭经典组3，否则调用48fce0并继续既有对象交互。完整留存消费者体中没有在经典与alternate之间选择的另一条服务分派分支。",
+        "48fce0的已证十模式转入经典师范、学习遗忘、宠物报价/选宠/技能栏和治疗入口。此为该固定消费者/分派体的正向事实，不能外推为程序所有其他入口均不可能激活另一套UI。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-service-selection-source-check.json",
+        "analysis/capability-first-v1/game-training-services-contract.json"
+      ]
+    },
+    {
+      "id": "candidate-table-is-not-ingress",
+      "kind": "fact",
+      "entries": [
+        "0x4bcf90",
+        "0x4bd2e0",
+        "0x4bd720",
+        "0x4bdcf0",
+        "0x4be4a0",
+        "0x4beac0",
+        "0x4bf140",
+        "0x4c2b70"
+      ],
+      "rules": [
+        "另表55/56/57/58/59/60/61/67的指针、group2及每业务descriptor+0x10的ID均核原PE。表项证明保留了这些静态回调，未证明普通资料进入它们或由主循环实际调用。",
+        "技能栏60的合格行打开61，确认61返回可打开60，这两条有原指令的局部转换不是外部服务入口。已知共同open/close/inactive清理规则直接复用，不再次当作新业务恢复。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-service-selection-source-check.json"
+      ]
+    },
+    {
+      "id": "menu-and-learning-reuse-normal-wire-values",
+      "kind": "fact",
+      "entries": [
+        "0x4bcf90",
+        "0x4bd2e0"
+      ],
+      "rules": [
+        "55候选的三个动作中，前两项将序号+1格式化为1/2并发送，第三项仅关闭；这些动作随后调用自己的close。56候选两个动作将序号+1格式化为1/2发送并关闭。",
+        "56读取人物学习金额/容量作显示，所审查确认链未出现基于金币/容量的拒绝。这与前组经典正常规则可复用；不因呈现字段存在而增加本地业务门槛。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-service-selection-source-check.json",
+        "analysis/capability-first-v1/game-training-services-contract.json"
+      ]
+    },
+    {
+      "id": "forget-return-has-source-guard",
+      "kind": "fact",
+      "entries": [
+        "0x4bd720",
+        "0x5296c1"
+      ],
+      "rules": [
+        "两版第二套窗口 57 的返回控件先置动作 99。扫描 15 行，行首按下可将动作覆写为行号加一。发送要求动作非零且以扫描索引读取的有符号值非负。",
+        "未命中时索引为 15，读取 SE 的 C1DF78 或 Item 的 CBB140。两地址由经典背包窗的说明索引分支写入。寄存器索引和写入范围见 FR-F01 至 FR-F04。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-service-selection-source-check.json",
+        "analysis/capability-first-v1/game-service-selection-contract.json#/historical_forget_return_and_quote_pages"
+      ]
+    },
+    {
+      "id": "offer-pages-and-admission",
+      "kind": "fact",
+      "entries": [
+        "0x4bdcf0"
+      ],
+      "rules": [
+        "候选报价显示/命中每页8行，使用page C4BE7C与局部行号构成globalIndex=page*8+row，记录步长0x60；提交格式化该全局零基序号，成功准入后关闭。页切换使用自己的重复事件并按已存页数C07F8C回绕。",
+        "有名称/存在记录的点击先比较当前金币和报价，再检查D72FA8是否为零；失败仅改变提示状态/声音而不走该提交。金币等于报价不被该余额比较拒绝。",
+        "FBY/G:w 的有效更新由 4FF000 重算并写入 D72FA8。报价页数另读 C07F8C，初始化、其他写入及异常资料仍待适用证据。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-service-selection-source-check.json",
+        "analysis/capability-first-v1/game-pet-publication-contract.json#/facts/5"
+      ]
+    },
+    {
+      "id": "threshold-and-tooltip-fields-corrected",
+      "kind": "fact",
+      "entries": [
+        "0x4b0020",
+        "0x4b0200",
+        "0x4b2d00",
+        "0x4be4a0"
+      ],
+      "rules": [
+        "两种经典选宠解析在名字基址C5E284+0x11即C5E295写入阈值结果；+0x14即C5E298是类型，+0x18即C5E29C是提示标志。普通解析设类型-1、提示1，扩展解析读取二者；它们均受经典window54对象C11374存在门槛。",
+        "经典4b2d00和候选59都将C5E278存在字与C5E295阈值字节用于选行准入。经典额外检查requiredType，并只将C5E29C=0用于悬停提示；候选59的所查显式命中条件未读这两个类型/提示字段。不能据此忽略前置资料发布可能已有的过滤。",
+        "本轮早期评论混淆C5E295与C5E29C后提出的提示/准入差异已撤回。两个字段不得合并，也不得据该误读修改独立核心。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-service-selection-source-check.json"
+      ]
+    },
+    {
+      "id": "pet-selection-and-capacity",
+      "kind": "fact",
+      "entries": [
+        "0x4be4a0",
+        "0x4beac0"
+      ],
+      "rules": [
+        "候选59直接按5个远端0x28记录的存在/阈值条件命中，发送该零基行号并保存C07A64；返回发送button2空文本，随后关闭。此回调不是经典以本地元数据空槽压缩映射的绘制路径。",
+        "候选60有10个可命中的技能槽，另要求row<所选远端capacity。合格点击保存C3B634并打开确认61；返回发送button2空文本后关闭。只查到10个屏幕槽不等于资料解析器拒绝capacity>10。",
+        "报价、选宠、技能栏的取消层次以及等待/关闭语义仍分开；这些候选路径未由当前Q?m消费者激活，不能用其资格替换经典路径。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-service-selection-source-check.json"
+      ]
+    },
+    {
+      "id": "confirmation-is-a-separate-selection",
+      "kind": "fact",
+      "entries": [
+        "0x4bf140",
+        "0x4beac0"
+      ],
+      "rules": [
+        "候选确认61的确认动作发送C3B634零基技能栏并关闭自身；返回动作open(60)，不发送。60的inactive回调查询61，仅在61不活动时清全局对话模式；61的inactive回调反向查询60后作同样判定。实际调度仍另列待证。",
+        "经典正常来源采用window54内部覆盖层，取消只关闭覆盖层并保留父窗口；两个层级可共享业务意图，但其活动槽/图形清理不能合并成一条无条件退役操作。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-service-selection-source-check.json",
+        "analysis/capability-first-v1/game-training-services-contract.json",
+        "analysis/capability-first-v1/alternate-window-contract.json"
+      ]
+    },
+    {
+      "id": "treatment-numbering-and-cancel-are-distinct",
+      "kind": "fact",
+      "entries": [
+        "0x4c2b70",
+        "0x490db0",
+        "0x4903e0"
+      ],
+      "rules": [
+        "候选67在七个0x20行的正首字门槛内命中行j，点击后格式化j+1，发送并关闭。j的扫描域0..6给出条件映射1..7，不证明七行均有可用发布数据。金币/费用在该回调用于显示，未在所查发送链形成余额拒绝。",
+        "经典治疗的通用控件回调按显示控件序号+1，已证人物行为3..8、合计9；经典取消发送button2空文本。候选67取消只关闭而不走这个发送。",
+        "这是固定源中两条选定路径的差异，未证明服务器同时接受二者或二者共享同一完整资料发布链。当前需求不能自动改用另一套编号。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-service-selection-source-check.json",
+        "analysis/capability-first-v1/game-training-services-contract.json"
+      ]
+    },
+    {
+      "id": "close-wait-and-cleanup-are-not-one-state",
+      "kind": "fact",
+      "entries": [
+        "0x4bcf90",
+        "0x4bdcf0",
+        "0x4be4a0",
+        "0x4beac0",
+        "0x4bf140",
+        "0x4c2b70"
+      ],
+      "rules": [
+        "多条候选发送后关闭自己的活动选择，再由共同inactive/dirty路径处理各自缓存和全局模式。不同页面有不同peer检查、缓存指针和声音副作用。",
+        "前组经典宠物报价/选宠将全局模式置-2且保持窗口的等待规则依然有效；候选中的立即关闭不能成为所有服务的统一等待模型。实际回调调度、晚到回复和跨层交错未由静态表关系闭合。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-service-selection-source-check.json",
+        "analysis/capability-first-v1/game-service-invalidation-contract.json",
+        "analysis/capability-first-v1/alternate-window-contract.json"
+      ]
+    },
+    {
+      "id": "open-funnel-has-layered-evidence",
+      "kind": "fact",
+      "entries": [
+        "0x4ea460"
+      ],
+      "rules": [
+        "对固定文件可执行且有文件字节的节，到4ea460的E8/E9 rel32字节候选共99，均为E8。647原图留存指令证明74点，既有独立补充来源再证明5点，总79处；原图范围保持。",
+        "图外25处分为5处指令已证、15处仅旧typed xref与编码对应、5处纯字节未决。后五处为40413c/4decf8/4dedc4/4e024f/4e9eec。相邻原字节或caller头不升级为完整调用者体。",
+        "326字节open完整原记录及19旧incoming/3旧caller头原样保留。此轮不覆盖所有间接调用/别名/外部模块或参数值流，也不重复已做的97回调有限零入边搜索。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-service-selection-source-check.json"
+      ]
+    },
+    {
+      "id": "required-scope-is-not-every-retained-view",
+      "kind": "fact",
+      "entries": [],
+      "rules": [
+        "已证当前Q?m经典入口与候选另一套回调分栏维护。另一套的局部UI转换和普通规则可供比对，但尚无足够证据把其全部界面视为新必做需求，也不能声称它们永不激活。",
+        "全部38域/81协议登记/37历史要求/10组保持。后续以用户操作、版本/资料入口和实际激活界定必要合同；共享规则直接复用，只对已纳入需求的路径补差异。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-service-selection-source-check.json"
+      ]
+    }
+  ],
+  "fixed_se_pet_count_and_selection": {
+    "capabilities": ["G05", "G10", "G12", "X02"],
+    "source_check": "build/analysis/fixed-se-pet-selection-v1/validation.json",
+    "REA_ranges": "build/analysis/fixed-se-pet-selection-v1/rea-ranges.json",
+    "retained_pet_publishers": "analysis/capability-first-v1/game-pet-publication-source-check.json#/native_bodies",
+    "retained_points_flow": "build/analysis/capability-game-ui-producers-v1/derived-pet-flow-expanded.json",
+    "retained_quote_flow": "analysis/capability-first-v1/game-service-selection-source-check.json#/source_bodies/12",
+    "retained_pet_tab_dispatch": "analysis/capability-first-v1/entry-source-check.json#/functions/433",
+    "facts": [
+      {
+        "id": "PS-F01",
+        "kind": "事实",
+        "rule": "FBY 4F0FCE 与 G:w 4F121A 先调用 4FF000。它按 EF35F0 起的五个 0x6D8 记录数非零存在字，并在 4FF021 写 D72FA8。随后两路都调用 4FDE20 按原槽逐行写 D72FB0，再调用 4855A0 置刷新。映射保留空槽，存在计数、映射行及物理槽各有用途。"
+      },
+      {
+        "id": "PS-F02",
+        "kind": "事实",
+        "rule": "第 21 号宠物详情的 4DE9A0 在局部页数组选择 4DEB40 或 4DF420 等回调。两处前/后箭头识别重复位 0x10，减一若为负写 D72FA8-1，加一若达到 D72FA8 写 0。4DEB40 完成控件分支后才在 4DEDCC/4DEDD2 读取 C5E934 及 D72FB2+8*row 的有符号槽。预览存在且该槽图号变化时，写预览 +0x2A8 并置 +0x2B8 为 6。"
+      },
+      {
+        "id": "PS-F03",
+        "kind": "事实",
+        "rule": "4DF420 在 4DF621/4DF63A 于箭头前快照行与有符号物理槽。4DF808 的加点发送和 4DF821 后的资料读取沿用快照。两页的分数式文本各自用当时的 C5E934+1 与 D72FA8。局部调用证明页内的读写顺序，外层普通帧激活与零宠物访问条件仍待证。"
+      },
+      {
+        "id": "PS-F04",
+        "kind": "事实",
+        "rule": "固定 SE 候选窗 58 的报价索引取 C4BE7C*8+局部行。有效点击先比金币和该报价，再比 D72FA8 与零。失败提示分别为 1、2，调用音效 0x37。成功在 4BDF69 存局部行至 C07F78，通过固定 %d 格式提交全局索引至 4F8240 的 /1I 正文，然后请求关窗。后续 59、60、61 的所查标题用当时 C4BE7C 与已存局部行重算索引。报价翻页使用自己的 C07F8C。"
+      }
+    ],
+    "handoff": [
+      {"batch": "D2", "owner": "shared/legacy-game-pets.mjs", "rule": "复用五物理槽、存在计数及 J_J 技能资料，现有快照的 order 保留空槽。沿 PS-F01 验证接收发布与帧读取的先后。"},
+      {"batch": "D0", "owner": "窗口帧与选择状态", "rule": "为第二套宠物资料页、加点页保留各自的选择采样时点。验收同一箭头事件中的预览、资料、标签与请求目标。"},
+      {"batch": "D3", "owner": "shared/legacy-game-map-dialog.mjs", "rule": "沿已有 /1I 编码、金币和宠物资料复用经典训练。另一套报价所需页计数、局部行与全局回复按其自身合同接入，实际激活沿原证据条件。"}
+    ],
+    "proposed_acceptance": [
+      {"id": "PS-A01", "input": "仅槽 1、4 存在，再依次收到 G:w 撤销槽 1 和 FBY 撤销槽 4。", "expected": "存在计数依次为 2、1、0，五个映射行仍按物理槽。经典训练显示两条占用行，撤销使当时的选择失效。"},
+      {"id": "PS-A02", "input": "两个存在槽分别占映射行 0、1，并从 0 触发下一页重复事件。", "expected": "资料页用新行取值，合资格的加点页用原槽发送和读资料，两个页标均按更新后行与总数格式化。实际同次控制事件准入沿原帧用例核验。"},
+      {"id": "PS-A03", "input": "有效报价页 1、行 3，分别构造余额不足、余额相等但零宠物、余额相等且有宠物。", "expected": "前两次分别为提示 1 和 2 且无该请求。准入时局部行 3 保留，正文为 11，提交调用后请求关闭。后继标题按当时页号和保存的行读取。"}
+    ],
+    "stage306_probe": "build/analysis/fixed-se-pet-selection-v1/stage306-probe.json",
+    "remaining": "报价窗的局部取值和固定 Item 同号替换已在 quote_page_and_replacement 核对。继续取得固定 SE 的页数写入和两版实际活动分派，再判断空表及旧选择在常规流程中的可达性。宠物详情和加点页的零宠物准入仍待证。",
+    "quote_page_and_replacement": {
+      "capabilities": ["X02", "G05", "G10", "G12"],
+      "review": "reports/game-static.md#fixed-se-training-quote-pages",
+      "validation": "build/analysis/fixed-se-training-quote-pages-v1/validation.json",
+      "REA_evidence": "build/analysis/fixed-se-training-quote-pages-v1/rea-evidence.json",
+      "shared_handler": "analysis/capability-first-v1/alternate-window-contract.json#/facts/3",
+      "classic_wait": "analysis/capability-first-v1/game-training-services-contract.json#/classic_pet_training_wait_owner",
+      "item_publisher": "analysis/capability-first-v1/game-service-selection-contract.json#/historical_forget_return_and_quote_pages/facts/4",
+      "facts": [
+        {
+          "id": "PS-F05",
+          "kind": "事实",
+          "entries": ["0x4BDCF0", "0x4BDD4E", "0x4BDDD4", "0x4BDDE0", "0x4BDDE6", "0x4BDE07", "0x4BDE3C", "0x4BDE4F", "0x4BDE83", "0x4BE16E"],
+          "rule": "固定 SE 的第 80 行登记窗 58、group 2、回调 4BDCF0。回调把首参、55EC88、初始化器 4BDCC0 和 flags=1 交 4E94D0。返回 0 跳过报价，2 复位活动模式、退役 C5E9FC 预览后返回，1 进入局部输入和绘制。距离检查 4B98E0(2,2) 非零会请求关窗，然后仍进入当次行扫描。行命中与绘制各取八个 0x60 字节记录，存在条件是 C15B70+0x60*(8*当前页+行) 的首字非零。"
+        },
+        {
+          "id": "PS-F06",
+          "kind": "事实",
+          "entries": ["0x4BDECB", "0x4BDF15", "0x4BDF69", "0x4BDFBB", "0x4BDFC6", "0x4BDFFF", "0x4BE024", "0x4BE111", "0x4BE116", "0x4BE16E"],
+          "rule": "窗口内先处理报价点击或取消。两种提示拒绝、提交和取消均跳过箭头并继续本帧绘制。进入箭头路径时前箭头先测重复位 0x10。减一为负则写总页数减一，后箭头加一达到总页数则写 0。随后用当时页号加一与 C07F8C 显示 %d/%d，并以新页重新读取绘制行。总页数、页号和行表在固定 PE 虚拟区初始为零。若已进入该回调且总页数和页号为 0，上一页按指令写 -1 并进入后续读行，下一页在单独的起始页 0 用例中回到 0。实际可达性待验证。"
+        },
+        {
+          "id": "PS-F07",
+          "kind": "事实",
+          "entries": ["0x52A048", "0x52A320", "0x52A33F", "0x52A346", "0x56BC24", "0x56BC58", "0x52A6DE", "0x52B426"],
+          "rule": "固定 Item 的窗 58 生产者先清完两页资料，写当前页 0、总页数，再请求 group 2 打开。主槽已为 58 时，打开器在 56BC58 返回 0，保留同号主槽，已经写入的资料和页号仍生效。所查生产者不改提交保存的局部行 CA5104。窗 59 后续按当时 EC16B4 页号和 CA5104 取同一表。空表发布一页，不含有效行。真实分派及跨窗时序待验证。"
+        },
+        {
+          "id": "PS-F08",
+          "kind": "事实",
+          "entries": ["0x4F447F", "0x48FD15", "0x48FE9A", "0x490041", "0x490156", "0x4AFBCB", "0x4AFE8B", "0x4AFCF7", "0x4AFFB7"],
+          "rule": "固定 SE 经典 Q?m 的 0x18 和 0x2A 沿实际跳转表分派至 4AFAA0、4AFD60。两函数清填 C447D8 起的报价行表及 C1DF80 行计数，重置 C1DF7C，并按窗 54 原转换字决定就地重建或请求重开。入站外层已有活动模式时，指定六个替换序号且来包模式非 0x20 先做两次组扫及复位，普通同模式报价仍走活动门槛。两条已证经典分支的行表和偏移都有独立来源。"
+        }
+      ],
+      "stage306": {
+        "owner": "shared/legacy-game-map-dialog.mjs",
+        "parser": "shared/legacy-game-map-pet-training.mjs",
+        "observations": "build/analysis/fixed-se-training-quote-pages-v1/stage306-probe.json",
+        "rule": "普通同模式空报价保持旧版本和两行，已登记替换序号 0x146 发布零行的新版本。旧版本点击、空表点击和取消均不发送。已提交后新报价清旧训练资料，迟到选宠不会借用新报价。现有回复编码、零基行选择及版本检查可复用，经典等待与窗体重建继续由原 OS-D7 负责。"
+      },
+      "handoff": {
+        "batches": ["D0", "D2", "D3"],
+        "shared_owner": "D0 复用已有窗口、选择和退役所有者，按各样本已证条件维护局部页、行及实例。D2 复用金币和五槽宠物发布。D3 复用 Q?m 解析和 /1I 编码，经典资料替换、等待与晚到沿 OS-D7；第二套资料只由实际证实的生产与活动路径接入。"
+      },
+      "proposed_acceptance": [
+        {"id": "PS-A04", "input": "令窗 58 分别收到跳过、非活动退役和有效参与，再覆盖距离关窗、空表、有效行、双箭头和同时提交。", "expected": "退役清活动模式和预览。核对距离关窗请求后的同帧局部逻辑、有效点击先于箭头、绘制用处理后的页。历史 Item 的空表一页，同号刷新先发布新资料，保留已选主槽。固定 SE 的总页数零算例用于识别源条件，研发端仅在已证的实际页范围内取行。"},
+        {"id": "PS-A05", "input": "经典报价两行、空表、替换后单行，覆盖普通与替换序号、旧版本点击、替换前已提交及晚到选宠回复。", "expected": "按固定 SE 已证的外层活动门槛、窗 54 转换字和等待状态决定发布、重建及下一步。复用现有编码与本机空表夹具，D0/D3 按 OS-A24 验收原窗口生命周期，D5/D6 复查三端与同版。"}
+      ],
+      "remaining": "需同源 C07F8C 或报价表的具名写入、同版本配置启用分支或适用运行材料，确定 SE 的实际发布、两版实际活动参数和旧选择在替换后能否被后续窗消费。空引用与独立字节扫描只限定本轮覆盖。保留 SC-GAP-04 与 OS-U1。",
+      "alternate_business_activation_proven": false,
+      "original_or_target_alternate_window_executed": false
+    },
+    "original_or_target_alternate_window_executed": false
+  },
+  "historical_forget_return_and_quote_pages": {
+    "capabilities": ["X02", "G09", "G10", "G12", "B01"],
+    "item_source": {
+      "path": "build/analysis/game-release-current-v1/legacy-members/cg_item_6000.exe",
+      "sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+      "source_check": "build/analysis/legacy-item-window-producers-v1/source-review.json"
+    },
+    "retained_sources": [
+      "analysis/capability-first-v1/game-service-selection-source-check.json#/source_bodies/11",
+      "analysis/capability-first-v1/game-training-services-source-check.json#/native_bodies/6",
+      "analysis/capability-first-v1/game-training-services-source-check.json#/derived_bodies/9",
+      "analysis/capability-first-v1/entry-source-check.json#/functions/225",
+      "analysis/capability-first-v1/entry-source-check.json#/functions/226",
+      "analysis/capability-first-v1/entry-source-check.json#/functions/229",
+      "analysis/capability-first-v1/entry-source-check.json#/functions/230",
+      "build/analysis/legacy-item-window-producers-v1/source-review.json#/body_ranges/14",
+      "build/analysis/legacy-item-window-producers-v1/source-review.json#/body_ranges/16",
+      "build/analysis/legacy-item-window-producers-v1/source-review.json#/body_ranges/17",
+      "build/analysis/legacy-item-training-ingress-v1/source-review.json#/body_ranges/15",
+      "build/analysis/legacy-item-training-ingress-v1/source-review.json#/body_ranges/27"
+    ],
+    "verification": "build/analysis/fixed-se-forget-return-v1/validation.json",
+    "facts": [
+      {
+        "id": "FR-F01",
+        "kind": "事实",
+        "rule": "SE 正常 Q?m 的 0x12 分派在 48FF65 调用 4AF910。其循环从正文第 4 字段起，每组三字段，恰写 15 行。首个数值在 C1DF3C+4*i，第二个数值在 C1E668+4*i，名字为空时两值均为 -1。写入域 i=0..14，末项地址 C1DF74。发布经典模式 1 并请求窗 54。另两个明写零的地址为 C1DF7C 与 C1DF80。"
+      },
+      {
+        "id": "FR-F02",
+        "kind": "事实",
+        "rule": "两版第 57 号回调在返回控件首按时设动作 99，然后执行 15 行命中扫描。命中且行首按下可把动作换成 i+1。只有动作非零才比较首数值表基址加 4*i，比较非负时发送按钮 0 的 /1I 十进制正文，再申请关闭。无行命中时 i=15，地址在 SE 为 C1DF78，在 Item 为 CBB140。正常发送技能选择的域仍为 1..15。"
+      },
+      {
+        "id": "FR-F03",
+        "kind": "事实",
+        "rule": "SE 经典窗 27 的 48CC00(-1) 和 48D2A2 的选中项变化分支写 C1DF78=0。控件回调 48CF50 与 48D970 的所查分支对该值加一，达到各自物品记录的上界则置零。帧回调 48CCFD 将当时的 C1DF78 传到 47EA00，后者用它取物品说明片段。该值是背包说明索引。经典训练窗 54 采用独立返回分支，SE 在 4B205D、Item 在 5153FC 直接格式化 99，随后发送并标记经典窗退役。"
+      },
+      {
+        "id": "FR-F04",
+        "kind": "事实",
+        "rule": "Item 的 529468 为窗 57 写同样 15 组技能资料并请求打开，经典 51182B 同样只写 15 项首数值并请求窗 54。首数值表最后一项是 CBB13C。邻接 CBB140 由背包分支写入，4E10E1 在参数 -1 时置零，4E1DBC 增加、4E1DDB 按实际槽资料的上界归零。4E1246 将该索引传至说明消费者 4CE2E4。5298ED 对扫描索引读取这个地址。"
+      },
+      {
+        "id": "FR-F05",
+        "kind": "事实",
+        "rule": "Item 报价生产者 529E48 清两组共 16 条记录，以 8 条为每组上限。52A307 在条目写入后增加计数 n。52A320 将当前页 EC16B4 置 0，52A33F 将 trunc((n-1)/8)+1 写 CA5148，52A346 才请求打开窗 58。n=0 或 1..8 时值为 1，n=9..16 时值为 2。52A385 使用两字段翻页和绘制，记录存在条件仍由各行判断。"
+      },
+      {
+        "id": "FR-U01",
+        "kind": "待验证",
+        "rule": "SE 报价页数 C07F8C 在所查原指令仅见三处读取，当前 REA 精确查询未返回它们。其真实发布、两版第 57/58 号窗的外层激活与同帧操作可达性，继续等实际入口、具名写入或适用运行证据。已观察的背包索引写入未证明正常返回可见抑制，也未排除其他写入或异常值。"
+      }
+    ],
+    "handoff": [
+      {"batch": "D3", "rule": "经典训练沿现有技能资料与普通返回入口复用。需要接入第二套遗忘时，按当前已证入口明确区分 15 个技能资料值与已知取值归属的背包说明索引。保持各自生命周期及按钮 0 编码。"},
+      {"batch": "D0", "rule": "沿窗口所有者核对扫描、发送与退役。仅在对应版本具备实际帧准入时接入跨窗口值读取及其交错用例。报价发布与页事件共用该帧合同。"}
+    ],
+    "proposed_acceptance": [
+      {"id": "FR-A01", "input": "第二套遗忘窗返回，无技能行命中，注入说明索引 0、1 和 -1。", "expected": "0/1 两次均格式化 99 并请求关闭。-1 时格挡该发送与其关闭请求。-1 为判定边界夹具。"},
+      {"id": "FR-A02", "input": "第二套遗忘窗命中第一行或第十五行，首数值取 -1、0，另测同回调返回位先出现。", "expected": "首数值非负且首次按行时发 1 或 15。若本次也设过 99，行首次按下后的动作值优先；首数值为负时该动作被挡。"},
+      {"id": "FR-A03", "input": "经典 Q?m 0x12 列表为空或现有行变旧，分别点击返回控件和离页。", "expected": "经典返回发送 99。stage306 的离页只退役。现有客户端的过期技能选择保护单独验收。"},
+      {"id": "FR-A04", "input": "固定 Item 报价生产者接受 0、1、8、9、16 条，并测试从第二页重发一份空资料。", "expected": "总页数组为 1、1、1、2、2，先清旧条目并重置当前页再请求打开，空资料的显示行保持无记录。"}
+    ],
+    "original_and_target_alternate_callbacks_executed": false
+  },
+  "remaining": [
+    {
+      "id": "alternate-ingress-and-dispatch",
+      "kind": "pending",
+      "capabilities": [
+        "G10",
+        "G12",
+        "X02"
+      ],
+      "need": "必要版本/模块中另一套服务的资料入口、参数值到open55..59/67以及真实callback消费/调度仍未闭合。不能由互相open60/61、相同存储或表项推定外部激活，也不能由当前消费者只有经典而作全程序排除。",
+      "next_evidence": "复用已缓存99候选和19旧xref的精确地址/指针，仅在找到实际版本/资料/参数生产者新边时扩展；不要再次扫描同一97回调零入边。"
+    },
+    {
+      "id": "publication-and-exception-order",
+      "kind": "pending",
+      "capabilities": [
+        "G10",
+        "G12",
+        "X02"
+      ],
+      "need": "D72FA8 发布沿 PS-F01 至 PS-F04，遗忘返回的索引归属和历史 Item 报价发布沿 FR-F01 至 FR-F05。仍需 SE 的 C07F8C 生产者、另一套数据重用与类型过滤、实际激活及失效/晚到资料顺序。",
+      "next_evidence": "沿已有数据所有者的具体写入者和必要业务别名取证；没有实际入口依赖的候选呈现不先行扩展实现。"
+    },
+    {
+      "id": "unified-capability-gate",
+      "kind": "pending",
+      "capabilities": [
+        "X01",
+        "X02"
+      ],
+      "need": "其余需求能力的共同合同与A4复核未完成，源视图、规则、共享实现、本地产品、真实平台及同版官方接受分别验收。",
+      "next_evidence": "下一组归并G11商店/鉴修/兑换/给予的报价变化、数量/余额/取消失效与共同所有者；保留本组明确激活前沿，不在一个未证UI分支反复兜圈。"
+    }
+  ],
+  "source_summary": {
+    "reused_native_records": 7,
+    "reused_derived_views": 11,
+    "selected_source_views": 18,
+    "declared_source_body_bytes": 15738,
+    "native_listing_boundaries": 1339,
+    "derived_instructions_byte_verified": 3565,
+    "selected_source_E8_CALLs_verified": 418,
+    "selected_table_bindings": 8,
+    "open_rel32_byte_candidates": 99,
+    "open_instruction_confirmed_sites": 79,
+    "open_typed_xref_only_sites": 15,
+    "open_byte_only_unresolved_sites": 5,
+    "new_REA_records": 0,
+    "new_decompilation": false,
+    "runtime_features_changed": false,
+    "all_capability_analysis_complete": false
+  },
+  "question_answers": [
+    {
+      "question": 1,
+      "status": "current-handler-classic-path-bound-alternate-ingress-pending",
+      "facts": [
+        "observed-Qm-entry-is-classic",
+        "candidate-table-is-not-ingress"
+      ],
+      "remaining": [
+        "alternate-ingress-and-dispatch"
+      ]
+    },
+    {
+      "question": 2,
+      "status": "bounded-open-source-inventory-answered-parameter-flow-open",
+      "facts": [
+        "open-funnel-has-layered-evidence"
+      ],
+      "remaining": [
+        "alternate-ingress-and-dispatch"
+      ]
+    },
+    {
+      "question": 3,
+      "status": "selected-rules-compared-publication-and-abnormal-order-pending",
+      "facts": [
+        "menu-and-learning-reuse-normal-wire-values",
+        "threshold-and-tooltip-fields-corrected",
+        "treatment-numbering-and-cancel-are-distinct"
+      ],
+      "remaining": [
+        "publication-and-exception-order"
+      ]
+    },
+    {
+      "question": 4,
+      "status": "dependencies-and-required-scope-separated-global-gate-open",
+      "facts": [
+        "required-scope-is-not-every-retained-view"
+      ],
+      "remaining": [
+        "unified-capability-gate"
+      ]
+    }
+  ],
+  "implementation_dependencies": [
+    {
+      "batch": "D0",
+      "kind": "inference",
+      "requirement": "统一已证资料/身份/活动/等待所有者；阈值/类型/提示字段和关闭层级保持区分。只绑定实际入口所需状态，不用表ID生成新产品能力。"
+    },
+    {
+      "batch": "D3",
+      "kind": "inference",
+      "requirement": "复用经典正常业务请求与数据核心；已纳入需求的另一套路径才使用其必要编号/取消/准入差异，不复制整套共享业务。"
+    },
+    {
+      "batch": "D5",
+      "kind": "inference",
+      "requirement": "以用户操作适配网页/移动网页/微信薄层，布局分页与服务语义分开；平台实际流程验收仍待完成。"
+    }
+  ],
+  "proposed_acceptance_cases": [
+    {
+      "id": "field-identity",
+      "kind": "proposed-not-executed",
+      "expectation": "阈值C5E295与提示C5E29C独立；不复用本轮已撤回的误读。扩展类型规则与资料发布过滤另验。"
+    },
+    {
+      "id": "quote-global-index",
+      "kind": "proposed-not-executed",
+      "case": "/fixed_se_pet_count_and_selection/proposed_acceptance/2"
+    },
+    {
+      "id": "quote-rejection",
+      "kind": "proposed-not-executed",
+      "case": "/fixed_se_pet_count_and_selection/proposed_acceptance/2"
+    },
+    {
+      "id": "forget-return",
+      "kind": "proposed-not-executed",
+      "case": "/historical_forget_return_and_quote_pages/proposed_acceptance/0"
+    },
+    {
+      "id": "slot-admission",
+      "kind": "proposed-not-executed",
+      "expectation": "命中域仅十槽且row<capacity；不要把显示命中域解释为资料解析器的容量拒绝。"
+    },
+    {
+      "id": "confirmation-back",
+      "kind": "proposed-not-executed",
+      "expectation": "确认发送所选零基槽；返回仅打开60。经典内部覆盖层取消的副作用另按既有合同。"
+    },
+    {
+      "id": "treatment-projection",
+      "kind": "proposed-not-executed",
+      "expectation": "在同样选定有效行的局部条件下，候选j+1与经典显示序号+1保持独立；取消是否发包不可按共同UI动作猜测。"
+    },
+    {
+      "id": "activation-boundary",
+      "kind": "proposed-not-executed",
+      "expectation": "表项、局部open和规则核验不充当真实激活；实际产品/设备与同版服务器接受需各自证据。"
+    }
+  ],
+  "original_execution": false,
+  "VM_operations": false,
+  "account_or_official_session_observed": false,
+  "runtime_features_changed": false,
+  "alternate_service_activation_closed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false
+}

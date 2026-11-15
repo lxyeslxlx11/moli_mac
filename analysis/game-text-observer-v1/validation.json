@@ -1,0 +1,43 @@
+{
+  "schema": "moli.game-text-observer-v1.validation.v1",
+  "recorded_utc": "2026-10-31T01:22:25.966608+00:00",
+  "result": "host-preparation-verified; Windows/game acceptance pending",
+  "host_C_boundary_assertions": {
+    "passed": 39,
+    "failed": 0
+  },
+  "host_original_fixture_oracle_unittests": {
+    "passed": 6,
+    "failed": 0
+  },
+  "repeat_own_PE_builds_identical": true,
+  "linked_profile_count": 2,
+  "ASLR_NX_preserved": true,
+  "static_import_names": 78,
+  "observer": {
+    "path": "build/analysis/game-text-observer-v1/tool/text-observer.exe",
+    "bytes": 146798,
+    "sha256": "163864829f3b47eaa0b640c44b5de1d46f0e44658919b7c4e51974e5b83732f5"
+  },
+  "fixture": {
+    "path": "build/analysis/game-entry-v1/probe-stage101/entry-fixture.exe",
+    "bytes": 129968,
+    "sha256": "cf8bd654d9daf5c222f5a8ee565085013cf284ee74165a25558c5bbe0cf41c2a"
+  },
+  "successful_REA_records": 3,
+  "actual_windows_fixture_qualification": "not run",
+  "actual_game_text_read": "not run",
+  "actual_official_game_or_mobile_WeChat_acceptance": "not run",
+  "product_code_changes": false,
+  "new_product_tests_or_browser_runs": false,
+  "new_VM_or_security_config_changes": false,
+  "new_account_credentials_or_IPC_reads": false,
+  "known_limits": [
+    "One non-atomic read and mutable-page race; file hash does not attest runtime bytes.",
+    "Static import review does not prove every runtime behavior; API deadlines are best effort.",
+    "Oracle host vectors are not a real Windows snapshot, and oracle only accepts original fixture.",
+    "Locked input needs ordinary restoration; initial readable UI does not prove keyboard readiness."
+  ],
+  "next": "windows-qualification-plan.json",
+  "full_goal_complete": false
+}

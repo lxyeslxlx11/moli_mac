@@ -1,0 +1,69 @@
+{
+  "schema": "moli.battle-entry-spec-stage185.v1",
+  "source_check": "analysis/game-battle-entry-v1/source-check.json",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "implemented_slice": [
+    "Source fade13/case6 alternating480-row capture displacement with actual numeric completion",
+    "Owned partial main10 entry0/1, callbacks/frame-before-C consumption in2, arrival-after-frame in3, honest input wait4",
+    "Source begin-entry marks old battle pool nodes deleted and clears global slots; physical deletion waits until callback traversal",
+    "Automatic context from actual P local-slot/control fields and configured resource owner; no injected substate or C-ready signal",
+    "Actual client captures real640x480 background resources, shifts retained pixels and owns cancellable advance/render jobs",
+    "Source popup-dependent branches remain explicitly unavailable when window32 is absent and control bits request creation; no fake popup handle or input/M execution"
+  ],
+  "configuration": {
+    "entryWindowPresent": "explicit bool for existing source window32: pointer slot0xc101bc+32*84=0xc10c3c, derived from46c6b0 and4378d0; full application window lifecycle is not reconstructed",
+    "playback": "must already be configured with actual owned animations/geometry; no synthetic completion callback",
+    "viewport": "source capture fixed640x480; output explicitly clipped to client display dimensions"
+  },
+  "native_order": {
+    "phase0": [
+      "mark old pool deleted/reset command-global slots",
+      "capture real background",
+      "one fade helper call",
+      "phase1"
+    ],
+    "phase1": [
+      "one fade helper call",
+      "on actual completion recapture background then phase2"
+    ],
+    "phase2": [
+      "callback traversal",
+      "depth/sprite draw plan snapshot",
+      "at most one C consume",
+      "C end requests7; otherwise source facing then phase3"
+    ],
+    "phase3": [
+      "source popup dependency check",
+      "callbacks",
+      "draw snapshot",
+      "arrival check first20 slots sets missing bodies to state2 for next call",
+      "when all arrived phase4 and30000ms selection deadline"
+    ],
+    "phase4": [
+      "callbacks and basic frame",
+      "native input remains unimplemented; do not consume queued M"
+    ]
+  },
+  "not_implemented": [
+    "Complete main10 native UI/audio/input, source M acceptance and phases5/6/7/8/9 exit/map return",
+    "Entry-popup46c6b0/46c560, observer/selection UI and all optional scene effects",
+    "Remaining15 M opcodes, ESC2/209, full body/mount/shadow/transformation/special effects",
+    "Scaled/tinted/additive backend pixels and full native captured-surface interactions",
+    "Actual webpage/gamePage controls, full gameplay and official/platform acceptance"
+  ],
+  "invariants": [
+    "No timeout or test-provided completion booleans",
+    "C/M rings retain native4-slot semantics, including equality after wrap; C is never consumed early",
+    "Snapshot of phase2 rendered objects precedes C creation; phase3 body state2 requests take effect next call",
+    "Rendering cannot mutate captured source input; close/reentry wipes private captured pixels and cancels old jobs",
+    "No original executables/resources/decompilation or sensitive account data selected for delivery",
+    "A cancelled asynchronous frame retries pixel IO for the already-computed source step; it cannot advance fade/callbacks or consume C twice"
+  ],
+  "phase_complete": false,
+  "full_goal_complete": false,
+  "goal_status": "active"
+}

@@ -1,0 +1,130 @@
+{
+  "schema": "moli.launcher-v23.validation.v1",
+  "recorded_utc": "2026-10-27T06:27:27.871123+00:00",
+  "stage": 68,
+  "result": "Fixed-sample raw command/cwd and seven-group resource argument production implemented from explicit snapshots under ASCII/C file-title profile. Core only; full launcher/game/platform/official acceptance incomplete.",
+  "preflight": "preflight.json",
+  "native_evidence": {
+    "record": "static-spec.json",
+    "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "new_functions": 24,
+    "new_reads": 7,
+    "new_records": 31,
+    "total_records": 305,
+    "source_anchors_passed": 49,
+    "source_audit": "process-anchor-audit.json",
+    "source_negative_cases_passed": 3,
+    "negative_record": "checks.json",
+    "closed": true,
+    "cleanup_pending": false,
+    "limit": "No native runtime, full exceptional behavior/locale or caller prerequisites/game consumer accepted. Ghidra library labels resolved against raw operands and actual callees."
+  },
+  "independent_reference": {
+    "producer": "process_oracle.py",
+    "record": "original-process-vectors.json",
+    "process_cases": 48,
+    "resource_cases": 4,
+    "profile": "Explicit ASCII/C title case behavior, ordered snapshots, original raw fields.",
+    "manual_sentinels": true,
+    "prior_resource_names": 5,
+    "prior_resource_record": "resource-name-observations.json",
+    "prior_resource_limit": "Previously extracted partial metadata only, not same-version/full install/game acceptance proof."
+  },
+  "node": {
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "runtime": "v26.9.0",
+    "tests": 404,
+    "new_tests": 14,
+    "passed": 404,
+    "failed": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "log": "node-tests.log",
+    "focused_log": "process-tests.log",
+    "initial_focused_run": {
+      "tests": 14,
+      "passed": 13,
+      "failed": 1,
+      "log": "process-tests-initial.log",
+      "cause": "Test compared extra oracle bytes_hex field against group metadata, while full command bytes matched. Corrected only test projection; no product change."
+    },
+    "syntax": "checks.json:4 ESM checks and1 Python AST passed."
+  },
+  "browser": {
+    "version": "155.0.8059.85",
+    "tool": "Existing Playwright1.62.1; Browser plugin unavailable",
+    "record": "browser-core.json",
+    "process_vectors": 48,
+    "resource_vectors": 4,
+    "prior_resource_names": 5,
+    "requests": 30,
+    "errors": [],
+    "console_warning_errors": [],
+    "ui_changed": false,
+    "full_ui_or_visual_regression_performed": false,
+    "scope": "Actual Chrome ESM pure-core import/execution using unchanged offline4173 page/server. No new UI, OS enumeration/process/IPC, physical device or official service."
+  },
+  "implementation_contract": "implementation-spec.json",
+  "example": "../../shared/examples/launcher-process.mjs",
+  "example_result": "checks.json: original public fields printed; normal exit0, no execution.",
+  "dependencies": {
+    "new_acquisitions": 0,
+    "versions_retained": "Node26.9/Python3.9/Chrome155/Playwright1.62.1 and existing pinned dependencies; no global config, install script or new tools required."
+  },
+  "not_verified": [
+    "Actual native CRT locale/ACP/DBCS/bestfit and filesystem/path/error/full exceptional behavior",
+    "Win32 wildcard/8.3/actual enumeration order/completeness",
+    "Upstream launch prerequisites, game-side argv/mapping consumer, authentication/identity/opaque lifetime",
+    "Real account persistence/update source trust/native filesystem transaction and official compatibility",
+    "New full UI regression, Safari, physical/remote mobile and WeChat mini-program"
+  ],
+  "authorization": {
+    "original_EXE_or_VM_executions": 0,
+    "actual_process_creation_or_shared_mapping_operations": 0,
+    "real_accounts_or_credentials_read": 0,
+    "official_game_requests": 0,
+    "original_assets_or_full_decompilation_added": false,
+    "commit_push_publish": false
+  },
+  "historical_preservation": "Current outputs confined tov23/stage68 and new temporary QA directory. Prior stage65 historical receipt incident remains disclosed and unchanged.",
+  "existing_preview_lifecycle": "checks.json: session48946 exit1, no4174 listener; originalPeerVerified/stoppedfalse, causeunassigned, no retry/restart. Not partof passingcoreevidence.",
+  "goal_status": "active, not complete",
+  "delivery_check": "delivery-check.json",
+  "delivery_checks_passed": true,
+  "preservation": {
+    "previous_files": 940,
+    "unchanged_previous_files": 926,
+    "planned_baseline_files": 14,
+    "baseline_targets_only": true,
+    "unchanged_native_files": 17,
+    "unchanged_prior_shared_product_files": 70,
+    "previous_manifest_unchanged_sha256": "788cb58335c5bfd22853d2906ec957de6a9c9e296af0758e82e37de90747907d"
+  },
+  "documentation": {
+    "files": 44,
+    "local_links_checked": 1703,
+    "explicit_anchors_checked": 170,
+    "errors": []
+  },
+  "delivery_manifest": "../delivery-manifest-stage68.json",
+  "tested_product_files": [
+    {
+      "path": "shared/index.mjs",
+      "sha256": "86a6607d6d53797730a7a8fe51952d00ad29bb835699cb5376cbe1449e6f40a4"
+    },
+    {
+      "path": "shared/launcher-process.mjs",
+      "sha256": "4508e629d9abb52aafdb1489d1aef47cb30df131baa7b44b521553f3d303fdf0"
+    },
+    {
+      "path": "shared/tests/launcher-process.test.mjs",
+      "sha256": "fce6a154e9e9758169a2c447824c4767b4e2c482e47bc2ba31b6d0009573272c"
+    },
+    {
+      "path": "shared/examples/launcher-process.mjs",
+      "sha256": "060a8736664160c325403ed2b2738235689fb32dc40b5cdd7a41c53b875ccd7b"
+    }
+  ]
+}

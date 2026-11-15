@@ -1,0 +1,62 @@
+{
+  "schema": "moli.launcher-v18.review-corrections.v1",
+  "root_review_only": true,
+  "independent_algorithm": "Python/PyCryptodome peer; not an independent agent review",
+  "changes": [
+    {
+      "kind": "implementation-defect",
+      "symptom": "Root entry returned HTML while its relative resources resolved at/styles.css,/login.css,/login-app.mjs and404.",
+      "evidence": "browser-validation-initial.json",
+      "fix": "302 root entry to canonical/web/login.html; HTTP regression checks response Location and final pathname.",
+      "verification": "347 Node and final10 browser checks pass."
+    },
+    {
+      "kind": "test-assumption",
+      "symptom": "Second browser run expected6 profile rows; retained fixture actually has4. No console error.",
+      "evidence": [
+        "browser-validation-second.json",
+        "browser-diagnostic.json",
+        "../launcher-v17/example-output.json"
+      ],
+      "fix": "Use4, consistent with unchanged original reply; preserve exact request/decryption and gated-choice assertions. No production parser or fixture weakened."
+    },
+    {
+      "kind": "implementation-defect",
+      "symptom": "Changing username after a result left4 rows/2 old selectable candidates.",
+      "before": {
+        "before": {
+          "rows": 4,
+          "selectable": 2
+        },
+        "after": {
+          "rows": 4,
+          "selectable": 2
+        },
+        "server": {
+          "activeStreams": 0,
+          "connectionAttempts": 1,
+          "peerEOFs": 0
+        },
+        "peerVerified": true
+      },
+      "after": {
+        "before": {
+          "rows": 4,
+          "selectable": 2
+        },
+        "after": {
+          "rows": 0,
+          "selectable": 0
+        },
+        "server": {
+          "activeStreams": 0,
+          "connectionAttempts": 1,
+          "peerEOFs": 0
+        },
+        "peerVerified": true
+      },
+      "fix": "Explicit username/password edit or new text preparation/review cancels/releases old session and clears rows/selection; username edit also invalidates consent. Programmatic default input clearing after a completed request retains that request result.",
+      "verification": "Actual original Python-backed before/after browser reproduction plus final whole UI regression including stale-row assertion."
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "moli.launcher-runtime-v1.guest-preflight.v1",
+  "recorded_utc": "2026-10-27T19:48:13.234237+00:00",
+  "evidence": "Fresh CUA Windows PowerShell terminal visual observation; normalized metadata only. No screenshots or raw terminal history retained.",
+  "guest_directory": "C:\\MoliOffline\\launcher-probe",
+  "root_entries": [
+    "XML",
+    "Log.htm",
+    "POLCN_Launcher.exe"
+  ],
+  "sha256": {
+    "POLCN_Launcher.exe": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+    "XML/GameList.xml": "be8f1213d77bd294fbb79b2fb51a5e7fecdc9aa3c0854db7a6d821fad20ef85a",
+    "XML/RegionList.xml": "0c94ca78c40c1940f241940a97aabef7849e9ad3285310046f346b69128a8438",
+    "Log.htm": "c5f0f478115a770fd4afe906465d6bb136e40f645535ce0fcf4335b83494371b"
+  },
+  "three_fixed_sample_hashes_match": true,
+  "authenticode": {
+    "query": "Get-AuthenticodeSignature *.exe",
+    "path": "POLCN_Launcher.exe",
+    "status": "NotSigned",
+    "signer_certificate_display": "blank"
+  },
+  "xml_query": "Get-FileHash XML/* | fl Path,Hash",
+  "input_correction": {
+    "unsubmitted": "Get-FileHash .XML* | fl Path,Hash",
+    "intended_backslashes_missing": true,
+    "cancelled_with": "Ctrl+C before Return",
+    "forward_slash_replacement_visually_verified": true,
+    "wrong_command_executed": false
+  },
+  "log_content_read": false,
+  "original_program_launched_this_phase": false,
+  "interpretation": "Fixed bytes match; hash identity does not establish publisher provenance. Windows reports no recognized Authenticode signer.",
+  "host_configuration": {
+    "config_sha256": "fa070e788a7675c61a52c2d4ba9942ed9dfe66929c105ba527d23c884e71530a",
+    "network_enabled": "1",
+    "network_connected": "1",
+    "network_emulated_type": "1",
+    "IsolatedVm": "1",
+    "ShareAllMacDisks": "0",
+    "ShareUserHomeDir": "0"
+  },
+  "existing_snapshot": {
+    "name": "Moli-before-observer-install-20261028-stage81",
+    "name_count": 1,
+    "metadata_sha256": "1b8b0309d8b459fee1d12ba5878fd108833584f7cc289371c757e791a94a686b",
+    "restore_boot_verified": false
+  },
+  "compatibility_mode": "Both originals Windows 7 mode previously confirmed by user; not rechecked or changed."
+}

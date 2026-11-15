@@ -1,0 +1,189 @@
+{
+  "schema": "moli.updater.restart-context.static.v1",
+  "recorded_utc": "2026-10-26T02:04:40.451939+00:00",
+  "scope": "Bounded local static closeout. Reused existing consumer/lifecycle reports; no new network, download, sample execution or VM change.",
+  "samples": {
+    "launcher": {
+      "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+      "bytes": 1735168,
+      "image_base": "0x400000"
+    },
+    "updater": {
+      "sha256": "62dbd66e6eac296862e214a2d92e5332b87cd811bb4f555dd5d49fe8e426b0a4",
+      "bytes": 86016,
+      "image_base": "0x400000"
+    }
+  },
+  "packed_embedded_updater_sha256": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+  "tools": {
+    "REA": "6.7.0 cached evidence",
+    "Ghidra": "12.1.4 cached evidence",
+    "GNU objdump": "2.47.20260726"
+  },
+  "reused_evidence": {
+    "consumer": "../consumer-evidence.json",
+    "lifecycle": "lifecycle-evidence.json",
+    "producer": "../../../protocol-v2/updater-argument-provenance.json",
+    "prior_result": "../verification-result.json",
+    "historical_passed_anchors": 88,
+    "historical_passed_ranges": 8,
+    "historical_suite_rerun": false,
+    "rea_consumer_id": "ev_7ab9a567815cb07f2f231a52bb23b0ba9c540595119674957c8e9d4a5c2ecc42",
+    "rea_launcher_id": "ev_4ea494bd8b8e5faa814b6cf1b3bee5baca6625e3e7de0fc364901b54a7ee8e17"
+  },
+  "focused_anchors": [
+    {
+      "sample": "launcher",
+      "id": "UPDATER-CREATE",
+      "va": "0x401d46",
+      "file_offset": "0x1146",
+      "expected_hex": "ff156c134b00",
+      "matched": true
+    },
+    {
+      "sample": "launcher",
+      "id": "UPDATER-CWD-ENV-FLAGS-ATTRS-NULL",
+      "va": "0x401d2c",
+      "file_offset": "0x112c",
+      "expected_hex": "6a006a006a006a006a006a00",
+      "matched": true
+    },
+    {
+      "sample": "launcher",
+      "id": "UPDATER-APPLICATION-NAME-NULL",
+      "va": "0x401d44",
+      "file_offset": "0x1144",
+      "expected_hex": "6a00",
+      "matched": true
+    },
+    {
+      "sample": "launcher",
+      "id": "CREATE-FAILURE-JOINS-EXIT",
+      "va": "0x401db4",
+      "file_offset": "0x11b4",
+      "expected_hex": "eb0d",
+      "matched": true
+    },
+    {
+      "sample": "launcher",
+      "id": "LAUNCHER-EXIT-ZERO",
+      "va": "0x401dc3",
+      "file_offset": "0x11c3",
+      "expected_hex": "6a00e8c0ba0400",
+      "matched": true
+    },
+    {
+      "sample": "updater",
+      "id": "RESTART-CWD-ENV-FLAGS-ATTRS-NULL",
+      "va": "0x401989",
+      "file_offset": "0x1989",
+      "expected_hex": "6a006a006a006a006a006a00",
+      "matched": true
+    },
+    {
+      "sample": "updater",
+      "id": "RESTART-APPLICATION-NAME-NULL-CREATE",
+      "va": "0x4019a2",
+      "file_offset": "0x19a2",
+      "expected_hex": "6a00ff1504b04000",
+      "matched": true
+    },
+    {
+      "sample": "updater",
+      "id": "RESTART-TARGET-SLOT3",
+      "va": "0x40195a",
+      "file_offset": "0x195a",
+      "expected_hex": "8b85b8f2ffff",
+      "matched": true
+    }
+  ],
+  "inputs": [
+    {
+      "slot": 1,
+      "source": "launcher GetWindowThreadProcessId return401be0; updater atoi4012a4",
+      "use": "OpenProcess third parameter; not established as valid process ID"
+    },
+    {
+      "slot": 2,
+      "source": "first token from launcher_url.dat stream401c41; space-to-pipe then reverse4012fa",
+      "use": "OpenURL40147a download locator; URL supplied by metadata, no fixed-host policy established"
+    },
+    {
+      "slot": 3,
+      "source": "GetModuleFileNameA(NULL,buffer,0x100) in existing launcher initializer; wrapped401ca5, reverse pipe conversion401310",
+      "use": "replacement and restart target; current launcher module path"
+    },
+    {
+      "slot": 4,
+      "source": "second token from launcher_url.dat stream401c4a; atoi4012af",
+      "use": "download progress denominator/display, not independently proved final byte-count verification or version number"
+    },
+    {
+      "slot": 5,
+      "source": "earlier launcher_md5.dat candidate copied401a7c",
+      "use": "expected output digest text compared with .new result; MD5-like algorithm inferred, not full signature/authenticity proof"
+    }
+  ],
+  "file_lifecycle": {
+    "download_output": "POL_Launcher.pak (relative filename)",
+    "transform_output": "POL_Launcher.new (relative filename)",
+    "transform_helpers": [
+      "0x4030e0",
+      "0x402d60",
+      "0x402160"
+    ],
+    "transform_limit": "file-to-file chunked helper observed; exact archive/compression algorithm not closed",
+    "replacement": [
+      "DeleteFileA(slot3) at4018b2",
+      "CopyFileA(.new,slot3,FALSE) at4018cd",
+      "DeleteFileA(.new) at4018dd"
+    ],
+    "replacement_limit": "No branch on delete/copy return in this local block; atomicity/rollback not demonstrated"
+  },
+  "wait_and_exit": {
+    "launcher": "CreateProcess401d46 success and failure paths converge to401dc3/401dc5 _exit(0).",
+    "updater": "OpenProcess4013ce gets access=0, inheritHandle=0x1f0fff, processId=atoi(slot1); WaitForSingleObject4013d7 uses returned handle and INFINITE without result check in immediate path.",
+    "limit": "Producer returns a thread ID; anomalous OpenProcess arguments and unchecked wait prevent claiming successful parent-process synchronization."
+  },
+  "restart": {
+    "create_process_va": "0x4019a4",
+    "lpApplicationName": null,
+    "lpCommandLine_template": "%s ID:%d",
+    "target": "slot3 current launcher module path",
+    "id_source": "GetWindowThreadProcessId(hWnd,NULL) return401913; thread ID, not account/session identity",
+    "lpCurrentDirectory": null,
+    "lpEnvironment": null,
+    "dwCreationFlags": 0,
+    "bInheritHandles": false,
+    "process_thread_attributes": null,
+    "quote_limit": "Format adds no quotes around target; path-with-spaces behavior not tested",
+    "cwd_limit": "Both launcher->updater401d2c and updater->launcher401989 pass NULL cwd. Under standard CreateProcess semantics caller cwd is used; actual inherited cwd and intermediate cwd/environment changes were not observed/exhaustively traced. Do not replace NULL with an assumed installation/exe directory.",
+    "result_limit": "Both restart logging branches exit0 (4019bb/4019cf ->401abb); exit0 does not establish success."
+  },
+  "integrity_and_failures": {
+    "observed": [
+      "HTTP status query succeeds and status>=400 errors; query-false path may continue",
+      "download ends when read result is zero; slot4 used for progress, no observed equality gate in inspected loop",
+      "candidate digest comparison gates replacement; mismatch deletes .new and exits-1",
+      "replacement APIs not checked in local block",
+      "restart failure may still exit0"
+    ],
+    "unknown": [
+      "exact transform format/errors",
+      "complete digest rounds/output and trusted manifest/signature policy",
+      "all exception paths",
+      "runtime permissions/file-lock behavior",
+      "remote payload identity/contents",
+      "actual waiting and child execution"
+    ]
+  },
+  "verification": {
+    "focused_anchors_passed": 8,
+    "focused_anchors_total": 8,
+    "local_sample_identities_passed": 2,
+    "product_tests_rerun": false,
+    "network_requests": 0,
+    "target_executions": 0
+  },
+  "stop": "Requested bounded chain has been summarized. No further analysis loop or dynamic work started."
+}

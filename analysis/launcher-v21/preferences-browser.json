@@ -1,0 +1,83 @@
+{
+  "schema": "moli.launcher-v21.preferences-browser.v1",
+  "browser": "155.0.8059.85",
+  "tool": "Existing Playwright1.62.1; Browser plugin not available",
+  "flow": "login -> explicit mode change/confirmation -> save -> native Storage readback -> reload restores only UserMode -> actual original request",
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 1100
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "checks": [
+    {
+      "name": "desktop identity, meaningful first screen, no overlay and no automatic preference write",
+      "passed": true
+    },
+    {
+      "name": "mode confirmation locks save and fields; Escape cancellation preserves current inputs",
+      "passed": true
+    },
+    {
+      "name": "confirmed mode change clears inputs and initializes flags without an automatic write",
+      "passed": true
+    },
+    {
+      "name": "explicit save stores only mode; reload restores mode but resets inputs, encoding, checkbox choices and consent",
+      "passed": true
+    },
+    {
+      "name": "actual original request after restore retains owned mode; locked synthetic actions cannot save or alter it",
+      "passed": true
+    },
+    {
+      "name": "switching back to clear mode invalidates candidates and is persisted only by explicit save",
+      "passed": true
+    },
+    {
+      "name": "future/invalid record is preserved on read and replaced only by an explicit save",
+      "passed": true
+    },
+    {
+      "name": "unavailable native storage leaves configuration and input flow usable, with controlled status",
+      "passed": true
+    },
+    {
+      "name": "quota exception remains unconfirmed, preserves current inputs and never echoes provider details",
+      "passed": true
+    },
+    {
+      "name": "competing native readback is reported unconfirmed and never rolled back automatically",
+      "passed": true
+    },
+    {
+      "name": "completed write plus failed verification stays unconfirmed; next load reads the actual saved mode",
+      "passed": true
+    },
+    {
+      "name": "390px actual save/reload/restore has readable controls and no horizontal overflow",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "logs": [],
+  "requests": {
+    "total": 495,
+    "origins": [
+      "http://127.0.0.1:49451"
+    ],
+    "methods": [
+      "GET"
+    ]
+  },
+  "screenshots": [
+    "/private/tmp/moli-launcher-v21-browser-z9r7qxtt/desktop-initial.png",
+    "/private/tmp/moli-launcher-v21-browser-z9r7qxtt/desktop-saved-mode.png",
+    "/private/tmp/moli-launcher-v21-browser-z9r7qxtt/mobile-restored-mode.png"
+  ],
+  "scope": "Native Storage positive paths. Only failure/readback negative fixtures use controlled method hooks; all calls otherwise delegate to real browser Storage. Actual original Python peer for one request, no original EXE/VM/official service or real accounts."
+}

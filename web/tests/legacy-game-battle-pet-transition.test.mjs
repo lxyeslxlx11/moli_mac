@@ -1,0 +1,2 @@
+import test from'node:test';import{createWeChatLegacyGameSession}from'../../adapters/wechat/legacy-game-session.mjs';import*as api from'../../shared/index.mjs';import{runPetTransitionTCP,petTransitionTCPModes}from'../../analysis/game-battle-pet-transition-v1/tcp-flow.mjs';
+for(const mode of petTransitionTCPModes)test('source normal M/received MON/presentation/nextC/return TCP '+mode,{timeout:30000},async()=>console.log('battle-pet-transition-source-tcp '+JSON.stringify(await runPetTransitionTCP({...api,createWeChatLegacyGameSession},mode))));

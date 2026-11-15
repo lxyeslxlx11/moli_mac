@@ -1,0 +1,1162 @@
+{
+  "schema": "moli.original-current-catalog-vectors.v1",
+  "oracle": "Python3 ElementTree direct-child exact tag matching and bytes equality; original synthetic inputs only",
+  "xml": [
+    {
+      "name": "empty-containers",
+      "gameListText": "<Gamelist><Games/></Gamelist>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": true,
+        "regionList": true,
+        "containersPresent": true
+      }
+    },
+    {
+      "name": "unknown-fields",
+      "gameListText": "<Gamelist><Games><Unknown/></Games></Gamelist>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": true,
+        "regionList": true,
+        "containersPresent": true
+      }
+    },
+    {
+      "name": "root-text",
+      "gameListText": "<Gamelist>text<Games/>tail</Gamelist>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": true,
+        "regionList": true,
+        "containersPresent": true
+      }
+    },
+    {
+      "name": "comment-and-pi",
+      "gameListText": "<?xml version=\"1.0\"?><!--x--><Gamelist><?q a?><Games/></Gamelist>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": true,
+        "regionList": true,
+        "containersPresent": true
+      }
+    },
+    {
+      "name": "duplicates-are-presence",
+      "gameListText": "<Gamelist><Games/><Games/></Gamelist>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": true,
+        "regionList": true,
+        "containersPresent": true
+      }
+    },
+    {
+      "name": "preceding-unrelated-child",
+      "gameListText": "<Gamelist><Other/><Games/></Gamelist>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": true,
+        "regionList": true,
+        "containersPresent": true
+      }
+    },
+    {
+      "name": "unknown-region-entries",
+      "gameListText": "<Gamelist><Games/></Gamelist>",
+      "regionListText": "<Regionlist><Regions><Unknown/></Regions></Regionlist>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": true,
+        "regionList": true,
+        "containersPresent": true
+      }
+    },
+    {
+      "name": "lowercase-root",
+      "gameListText": "<gamelist><Games/></gamelist>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": false,
+        "regionList": true,
+        "containersPresent": false
+      }
+    },
+    {
+      "name": "wrong-child-case",
+      "gameListText": "<Gamelist><games/></Gamelist>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": false,
+        "regionList": true,
+        "containersPresent": false
+      }
+    },
+    {
+      "name": "nested-game-container",
+      "gameListText": "<Gamelist><Wrap><Games/></Wrap></Gamelist>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": false,
+        "regionList": true,
+        "containersPresent": false
+      }
+    },
+    {
+      "name": "missing-game-container",
+      "gameListText": "<Gamelist/>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": false,
+        "regionList": true,
+        "containersPresent": false
+      }
+    },
+    {
+      "name": "wrong-region-root",
+      "gameListText": "<Gamelist><Games/></Gamelist>",
+      "regionListText": "<RegionList><Regions/></RegionList>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": true,
+        "regionList": false,
+        "containersPresent": false
+      }
+    },
+    {
+      "name": "wrong-region-child",
+      "gameListText": "<Gamelist><Games/></Gamelist>",
+      "regionListText": "<Regionlist><regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": true,
+        "regionList": false,
+        "containersPresent": false
+      }
+    },
+    {
+      "name": "nested-region-container",
+      "gameListText": "<Gamelist><Games/></Gamelist>",
+      "regionListText": "<Regionlist><Wrap><Regions/></Wrap></Regionlist>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": true,
+        "regionList": false,
+        "containersPresent": false
+      }
+    },
+    {
+      "name": "both-wrong",
+      "gameListText": "<Wrong/>",
+      "regionListText": "<Wrong/>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": false,
+        "regionList": false,
+        "containersPresent": false
+      }
+    },
+    {
+      "name": "cdata-is-text",
+      "gameListText": "<Gamelist><![CDATA[<Games/>]]></Gamelist>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": false,
+        "regionList": true,
+        "containersPresent": false
+      }
+    },
+    {
+      "name": "decoded-name-entity",
+      "gameListText": "<Gamelist name=\"x&amp;y\"><Games/></Gamelist>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expected": {
+        "gameList": true,
+        "regionList": true,
+        "containersPresent": true
+      }
+    },
+    {
+      "name": "bare-ampersand-enabled",
+      "gameListText": "<Gamelist a=\"x&y\"><Games/></Gamelist>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": true,
+      "expected": {
+        "gameList": true,
+        "regionList": true,
+        "containersPresent": true
+      }
+    },
+    {
+      "name": "bare-ampersand-disabled",
+      "gameListText": "<Gamelist a=\"x&y\"><Games/></Gamelist>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expectedError": true
+    },
+    {
+      "name": "unknown-entity",
+      "gameListText": "<Gamelist a=\"&missing;\"><Games/></Gamelist>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expectedError": true
+    },
+    {
+      "name": "truncated",
+      "gameListText": "<Gamelist><Games/>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expectedError": true
+    },
+    {
+      "name": "bad-numeric-character",
+      "gameListText": "<Gamelist a=\"&#0;\"><Games/></Gamelist>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expectedError": true
+    },
+    {
+      "name": "text-outside-root",
+      "gameListText": "x<Gamelist><Games/></Gamelist>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expectedError": true
+    },
+    {
+      "name": "wrong-closing-name",
+      "gameListText": "<Gamelist><Games/></Wrong>",
+      "regionListText": "<Regionlist><Regions/></Regionlist>",
+      "allowBareAmpersands": false,
+      "expectedError": true
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "equal-0",
+      "input": {
+        "currentGameListBytes": {
+          "length": 0,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 0,
+          "seed": 7,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "identical",
+        "regionList": "identical",
+        "requiresReplacement": false
+      }
+    },
+    {
+      "name": "equal-1",
+      "input": {
+        "currentGameListBytes": {
+          "length": 1,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 1,
+          "seed": 7,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "identical",
+        "regionList": "identical",
+        "requiresReplacement": false
+      }
+    },
+    {
+      "name": "last-byte-1",
+      "input": {
+        "currentGameListBytes": {
+          "length": 1,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 1,
+          "seed": 7,
+          "patches": [
+            [
+              0,
+              8
+            ]
+          ]
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "different",
+        "regionList": "identical",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "equal-2",
+      "input": {
+        "currentGameListBytes": {
+          "length": 2,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 2,
+          "seed": 7,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "identical",
+        "regionList": "identical",
+        "requiresReplacement": false
+      }
+    },
+    {
+      "name": "last-byte-2",
+      "input": {
+        "currentGameListBytes": {
+          "length": 2,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 2,
+          "seed": 7,
+          "patches": [
+            [
+              1,
+              45
+            ]
+          ]
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "different",
+        "regionList": "identical",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "equal-3",
+      "input": {
+        "currentGameListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "identical",
+        "regionList": "identical",
+        "requiresReplacement": false
+      }
+    },
+    {
+      "name": "last-byte-3",
+      "input": {
+        "currentGameListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": [
+            [
+              2,
+              82
+            ]
+          ]
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "different",
+        "regionList": "identical",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "equal-4",
+      "input": {
+        "currentGameListBytes": {
+          "length": 4,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 4,
+          "seed": 7,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "identical",
+        "regionList": "identical",
+        "requiresReplacement": false
+      }
+    },
+    {
+      "name": "last-byte-4",
+      "input": {
+        "currentGameListBytes": {
+          "length": 4,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 4,
+          "seed": 7,
+          "patches": [
+            [
+              3,
+              119
+            ]
+          ]
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "different",
+        "regionList": "identical",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "equal-5",
+      "input": {
+        "currentGameListBytes": {
+          "length": 5,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 5,
+          "seed": 7,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "identical",
+        "regionList": "identical",
+        "requiresReplacement": false
+      }
+    },
+    {
+      "name": "last-byte-5",
+      "input": {
+        "currentGameListBytes": {
+          "length": 5,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 5,
+          "seed": 7,
+          "patches": [
+            [
+              4,
+              156
+            ]
+          ]
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "different",
+        "regionList": "identical",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "equal-4095",
+      "input": {
+        "currentGameListBytes": {
+          "length": 4095,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 4095,
+          "seed": 7,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "identical",
+        "regionList": "identical",
+        "requiresReplacement": false
+      }
+    },
+    {
+      "name": "last-byte-4095",
+      "input": {
+        "currentGameListBytes": {
+          "length": 4095,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 4095,
+          "seed": 7,
+          "patches": [
+            [
+              4094,
+              190
+            ]
+          ]
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "different",
+        "regionList": "identical",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "equal-4096",
+      "input": {
+        "currentGameListBytes": {
+          "length": 4096,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 4096,
+          "seed": 7,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "identical",
+        "regionList": "identical",
+        "requiresReplacement": false
+      }
+    },
+    {
+      "name": "last-byte-4096",
+      "input": {
+        "currentGameListBytes": {
+          "length": 4096,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 4096,
+          "seed": 7,
+          "patches": [
+            [
+              4095,
+              227
+            ]
+          ]
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "different",
+        "regionList": "identical",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "equal-4097",
+      "input": {
+        "currentGameListBytes": {
+          "length": 4097,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 4097,
+          "seed": 7,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "identical",
+        "regionList": "identical",
+        "requiresReplacement": false
+      }
+    },
+    {
+      "name": "last-byte-4097",
+      "input": {
+        "currentGameListBytes": {
+          "length": 4097,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 4097,
+          "seed": 7,
+          "patches": [
+            [
+              4096,
+              8
+            ]
+          ]
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "different",
+        "regionList": "identical",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "equal-8192",
+      "input": {
+        "currentGameListBytes": {
+          "length": 8192,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 8192,
+          "seed": 7,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "identical",
+        "regionList": "identical",
+        "requiresReplacement": false
+      }
+    },
+    {
+      "name": "last-byte-8192",
+      "input": {
+        "currentGameListBytes": {
+          "length": 8192,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 8192,
+          "seed": 7,
+          "patches": [
+            [
+              8191,
+              227
+            ]
+          ]
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "different",
+        "regionList": "identical",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "equal-8193",
+      "input": {
+        "currentGameListBytes": {
+          "length": 8193,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 8193,
+          "seed": 7,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "identical",
+        "regionList": "identical",
+        "requiresReplacement": false
+      }
+    },
+    {
+      "name": "last-byte-8193",
+      "input": {
+        "currentGameListBytes": {
+          "length": 8193,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 8193,
+          "seed": 7,
+          "patches": [
+            [
+              8192,
+              8
+            ]
+          ]
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "different",
+        "regionList": "identical",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "first-byte",
+      "input": {
+        "currentGameListBytes": {
+          "length": 8193,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 0,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 8193,
+          "seed": 7,
+          "patches": [
+            [
+              0,
+              8
+            ]
+          ]
+        },
+        "regionListBytes": {
+          "length": 0,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "different",
+        "regionList": "identical",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "chunk-boundary-byte",
+      "input": {
+        "currentGameListBytes": {
+          "length": 8193,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 4,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 8193,
+          "seed": 7,
+          "patches": [
+            [
+              4096,
+              8
+            ]
+          ]
+        },
+        "regionListBytes": {
+          "length": 4,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "different",
+        "regionList": "identical",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "different-length",
+      "input": {
+        "currentGameListBytes": {
+          "length": 4096,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 0,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 4097,
+          "seed": 7,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 0,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "different",
+        "regionList": "identical",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "region-only",
+      "input": {
+        "currentGameListBytes": {
+          "length": 10,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 10,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 10,
+          "seed": 7,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 10,
+          "seed": 8,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "identical",
+        "regionList": "different",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "both-different",
+      "input": {
+        "currentGameListBytes": {
+          "length": 10,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": {
+          "length": 10,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 10,
+          "seed": 8,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 9,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "different",
+        "regionList": "different",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "both-unavailable",
+      "input": {
+        "currentGameListBytes": null,
+        "currentRegionListBytes": null,
+        "gameListBytes": {
+          "length": 2,
+          "seed": 7,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "unavailable",
+        "regionList": "unavailable",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "game-unavailable",
+      "input": {
+        "currentGameListBytes": null,
+        "currentRegionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        },
+        "gameListBytes": {
+          "length": 2,
+          "seed": 7,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "unavailable",
+        "regionList": "identical",
+        "requiresReplacement": true
+      }
+    },
+    {
+      "name": "region-unavailable",
+      "input": {
+        "currentGameListBytes": {
+          "length": 2,
+          "seed": 7,
+          "patches": []
+        },
+        "currentRegionListBytes": null,
+        "gameListBytes": {
+          "length": 2,
+          "seed": 7,
+          "patches": []
+        },
+        "regionListBytes": {
+          "length": 3,
+          "seed": 7,
+          "patches": []
+        }
+      },
+      "expected": {
+        "gameList": "identical",
+        "regionList": "unavailable",
+        "requiresReplacement": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "schema": "moli.launcher-v11.validation.v1",
+  "recorded_utc": "2026-10-27T00:15:50.335237+00:00",
+  "scope": "Fixed updater static ZIP/CRC/MD5 and independent offline candidate decoder; bytes only, no original execution/download/replace.",
+  "node": {
+    "version": "v26.9.0",
+    "tests": 232,
+    "pass": 232,
+    "fail": 0,
+    "skipped": 0,
+    "new_tests": 17,
+    "previous_tests": 215,
+    "log": "node-tests.log",
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs"
+  },
+  "static": {
+    "sample_sha256": "62dbd66e6eac296862e214a2d92e5332b87cd811bb4f555dd5d49fe8e426b0a4",
+    "function_dossiers": 23,
+    "byte_observations": 3,
+    "records": 26,
+    "native_md5_rounds": 64,
+    "crc_table_entries": 256,
+    "old_lifecycle_anchors": 48,
+    "old_range_hashes": 5,
+    "session": "exported/snapshotted/closed",
+    "spec": "static-spec.json",
+    "review": "native-md5-review.json",
+    "lifecycle": "lifecycle-check.json"
+  },
+  "independent": {
+    "python_original_zip_cases": 15,
+    "oracle": "struct/raw zlib/binascii/hashlib + zipfile independent read",
+    "vectors": "original-update-vectors.json",
+    "real_zip_comparison": "real-package-comparison.json",
+    "real_zip_bytes": 580477,
+    "real_output_bytes": 599040,
+    "python_node_exact_original_bytes_match": true,
+    "browser_sha256_match": true,
+    "internal_md5_node_lengths": 20,
+    "previous_local_digest_regressions": "23 hashlib vectors plus4080 comparisons included in232 tests"
+  },
+  "review": {
+    "issues_found": 1,
+    "issue": "Unsigned descriptor CRC can itself equal0x08074b50; signature-only selection rejected valid data",
+    "original_reproduction_payload_hex": "ac0a7ad5",
+    "fix": "Match12/16B candidates against central CRC/sizes, check16B boundary first, require unique match",
+    "independent_fix_confirmation": "Exact116B unsigned/120B signed inputs and2 filtered tests pass; trust staysunverified",
+    "regressions": "Both forms included in15 Python ZIP cases and descriptor test"
+  },
+  "browser": {
+    "checks": 6,
+    "requests": 44,
+    "errors": 0,
+    "all_loopback_get": true,
+    "browser": "155.0.8059.85",
+    "receipt": "browser-update-smoke.json",
+    "actual_scope": "15 original ZIP cases, existing real ZIP as inert bytes, rejection/ownership,23 local license regressions, existing pages"
+  },
+  "syntax": {
+    "esm_files": 4,
+    "python_ast_files": 1,
+    "passed": true
+  },
+  "example": {
+    "path": "example-output.json",
+    "exit_code": 0,
+    "scope": "Original fixture counts/status only, trustunverified/replacementnot-performed"
+  },
+  "dependencies": {
+    "added_library": "pako3.0.2 Inflate-only browser ESM",
+    "license": "MIT AND Zlib",
+    "provenance": "shared/vendor/pako/3.0.2/provenance.json",
+    "registry_sha512_verified": true,
+    "selected_published_runtime_and_MIT_license_unchanged": true,
+    "zlib_notice_preserved": true,
+    "ordinary_library_tarball_downloads": 1,
+    "installs": 0,
+    "lifecycle_scripts": 0,
+    "transitive_dependencies": 0,
+    "runtime_downloads": 0
+  },
+  "sources": [
+    {
+      "path": "analysis/launcher-v11/build_update_vectors.py",
+      "bytes": 5571,
+      "sha256": "53a9f5b1bbe6c02d9871ede63caf658a06ef2d8e72fa018527d786b411c6b56f"
+    },
+    {
+      "path": "analysis/launcher-v11/original-update-vectors.json",
+      "bytes": 14150,
+      "sha256": "2b22deff1d00b8e34e88c34e868c6e796f9ff940b94bed4bcc4cc812600df10a"
+    },
+    {
+      "path": "shared/examples/launcher-update.mjs",
+      "bytes": 731,
+      "sha256": "246524a0133e9fd1ae58ca6dd199a63a7cbaac691e7b5dc3cd71bc5dac1ae538"
+    },
+    {
+      "path": "shared/index.mjs",
+      "bytes": 10783,
+      "sha256": "f1827d727330facc04e68284efb601c02bb4b5131bd87393d7b6fccc0ea0e11f"
+    },
+    {
+      "path": "shared/launcher-local.mjs",
+      "bytes": 6357,
+      "sha256": "c731da50e6f252630716c1f782dba9a24b3201fca2430eac28abe028e9e6c44b"
+    },
+    {
+      "path": "shared/launcher-update.mjs",
+      "bytes": 11547,
+      "sha256": "8b7a50c468f60b18995b46f64fbe41bf2d4e288c35fd49f940589ff3323c3f3a"
+    },
+    {
+      "path": "shared/md5.mjs",
+      "bytes": 1918,
+      "sha256": "be2a12f5fca9f133155c821a8e30660ea8d7b31b08952a6d55119579998b984e"
+    },
+    {
+      "path": "shared/tests/launcher-update.test.mjs",
+      "bytes": 12147,
+      "sha256": "976ea82e3f717b397a6ce5e9988aae37c33a6e874927ecfdd1b81b2577ed704b"
+    },
+    {
+      "path": "shared/vendor/pako/3.0.2/LICENSE",
+      "bytes": 1104,
+      "sha256": "a04665b3b2de56c66730c1f720f528175739e4104f79073614aa611da1e85539"
+    },
+    {
+      "path": "shared/vendor/pako/3.0.2/LICENSE.zlib",
+      "bytes": 960,
+      "sha256": "170d7d544d380b38d5f76ab5eda29475b44ef537f4564163d6d9bece85c51c13"
+    },
+    {
+      "path": "shared/vendor/pako/3.0.2/pako_inflate.esm.min.mjs",
+      "bytes": 31943,
+      "sha256": "630242d5040cfdfce8aa75823554f53852d264b2f93139e13e17dc9aebc34603"
+    },
+    {
+      "path": "shared/vendor/pako/3.0.2/provenance.json",
+      "bytes": 1672,
+      "sha256": "1f5b37ab20da4c371a3bacbf3bcea256afd9b883df82223ab3764928a9d2fb6f"
+    }
+  ],
+  "not_verified": [
+    "Complete native CFile/ZIP/EH/runtime equivalence beyond checked source path",
+    "Upstream manifest normalization, source trust and actual downloads",
+    "Actual file transaction/rollback/restart and platform storage adapter",
+    "Real terms/account persistence, complete service session/transport, game and official compatibility",
+    "Other ZIP entry payloads; metadata only",
+    "Safari/mobile/miniprogram, old real-file narrow suite; unchanged Python/Swift resource suites not rerun"
+  ],
+  "preservation": {
+    "native_files": 17,
+    "all_match_stage55": true,
+    "fixed_updater_and_two_launcher_hashes_match": true,
+    "private_bundle_snapshot_hashes_match": true,
+    "real_zip_hash_matches": true,
+    "original_execution": false,
+    "vm_operations": false,
+    "account_reads": false,
+    "new_official_payload_downloads": false,
+    "file_replacement": false,
+    "official_connection": false,
+    "git_repository": false
+  },
+  "documentation": {
+    "markdown_files": [
+      "README.md",
+      "shared/README.md",
+      "web/README.md",
+      "reports/development-plan.md",
+      "reports/launcher-static.md",
+      "reports/logic-protocol-spec.md",
+      "reports/architecture-and-milestones.md",
+      "reports/module-interfaces.md",
+      "reports/resource-formats.md",
+      "reports/validation.md",
+      "reports/known-issues.md",
+      "reports/analysis-methods.md",
+      "analysis/protocol-v3/updater/findings.md",
+      "analysis/protocol-v3/updater/lifecycle/lifecycle-summary.md"
+    ],
+    "relative_local_links_checked": 744,
+    "missing": [],
+    "matrix_entries_unique": 20,
+    "matrix_dependencies_evidence_paths_valid": true
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "schema": "moli.game-entry-v1.observer-plan.v1",
+  "recorded_utc": "2026-10-29T04:15:04.180Z",
+  "requirement": "reports/development-plan.md#\u5f53\u524d\u7528\u6237\u9700\u6c42",
+  "purpose": "Observe registered callbacks in an already running approved process without attaching a debugger or forcing target decisions. Separate runtime evidence must establish the actual normal path; static zero never establishes a runtime value.",
+  "static_basis": {
+    "game_sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+    "writer": "0x119591a/0x1195923",
+    "callback_slot_va": "0x1265db8",
+    "callback_slot_rva": "0xe65db8",
+    "bytes": 8,
+    "call_site": "0x1197031",
+    "runtime_registration": "FUN_01195380 receives outputs of SetFunctionAddresses, then writes callbacks",
+    "limits": "Slot target and actual target code/consumer semantics remain unknown; static zero is not the runtime value."
+  },
+  "tool_contract": {
+    "input": "Exactly fixture|game plus one canonical decimal PID; no caller paths/addresses/ranges/hashes",
+    "observation_only": true,
+    "launches_target": false,
+    "profiles": [
+      {
+        "name": "game",
+        "image": "C:/MoliOffline/launcher-probe/cg_se_3000.exe",
+        "source_sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+        "slot_rva": "0xe65db8",
+        "bytes": 8
+      },
+      {
+        "name": "fixture",
+        "image": "C:/MoliOffline/observer-fixture/entry-fixture.exe",
+        "source_sha256": "fixed after deterministic own fixture build; embedded in observer at build time",
+        "slot_rva": "0xe65db8",
+        "bytes": 8
+      }
+    ],
+    "checks": [
+      "Exact main image path and final file-handle path, regular disk file, nonreparse target, i386 target architecture",
+      "Read-only image handle with share-read only, max16MiB source file, CNG SHA256 exact profile",
+      "Toolhelp observed module base/SizeOfImage under actual ASLR, fixed slot range without uint32 overflow",
+      "One ReadProcessMemory of exactly8bytes and process-liveness checks; no arbitrary memory range or retries",
+      "VirtualQueryEx of nonzero pointer values for memory-region metadata only; no dereference/code/string/IPC/session/commandline reads"
+    ],
+    "process_rights": "First QUERY_LIMITED_INFORMATION|SYNCHRONIZE for identity, then only after disk-file/path/hash guards QUERY_INFORMATION|VM_READ|SYNCHRONIZE; process creation times compared. No privilege adjustment.",
+    "outputs": "Fixed numeric status, requested profile/PID, actual main-image base/size, pointer values and derived RVA if inside image, VirtualQueryEx region metadata, elapsed milliseconds; no paths/window titles/argv or raw payload",
+    "target_integrity": "No attach/injection/patching/debugger flags, protection changes, target control/termination or unknown-process fallback. Existing protective decisions remain unchanged.",
+    "observation_limits": [
+      "Single8byte read is not an atomic or enduring pair snapshot and does not prove callback invocation.",
+      "Disk-image SHA binding does not cryptographically attest mutable running pages; no code bytes read.",
+      "Synchronous local API calls have no hard wall-clock guarantee; hash-loop5second checks are best effort only.",
+      "Protected/denied/ambiguous/changed target or file guards stop, no fallback or forced branch."
+    ]
+  },
+  "fixture_contract": "Original x86 console image with same slot RVA; sets two own function pointers then naturally exits0 after30seconds, no network/account/IPC or user data. Normal Windows validation must precede any game observation.",
+  "current_stage": "Prepare source, compile, verify deterministic identities/PE/API footprint and static byte anchors. Mac locked; no guest execution, target observation or instrumented-game result.",
+  "host_validation": "Native C boundary checks and compiled PE/source review are preparation only, not Windows API/privacy/ASLR proof.",
+  "acceptance_remaining": [
+    "Actual original fixture/observer Windows lifecycle, callback RVAs under ASLR and guard rejection cases",
+    "Fresh current game file/context/source authority and normal approved original flow before observing an existing PID",
+    "Actual consumer ownership/socket/frame/auth/state rules and independent playable game/platform/official acceptance"
+  ]
+}

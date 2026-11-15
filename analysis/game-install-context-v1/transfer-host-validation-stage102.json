@@ -1,0 +1,51 @@
+{
+  "schema": "moli.media-transfer.host-validation.v1",
+  "recorded_utc": "2026-10-29T17:41:54.641031+00:00",
+  "script_sha256": "fa4655755e66981b8989645e72465b8ec9d125da4f3b3c761328a74f44e0c0b7",
+  "synthetic_unittest_methods_passed": 7,
+  "synthetic_initial_failures": "Initial temporary path included macOS /var symlink; canonicalized only fixture parent. A completion assertion then ran before server-side finalization; synchronized using next handled request. Production source admission/HTTP guards unchanged.",
+  "nat_ready": {
+    "allowed_get_peer": "10.211.55.3",
+    "bind": "10.211.55.2",
+    "bytes": 1106515968,
+    "event": "ready",
+    "port": 52721,
+    "sha256": "e013e939d934471787b78c7c388e5a704eb133fc29cc9b53c0cb6325f9a6a2d8",
+    "ttl_seconds": 10
+  },
+  "nat_requests": [
+    {
+      "method": "HEAD",
+      "status": 200,
+      "body_bytes": 0,
+      "headers": {
+        "Content-Length": "1106515968",
+        "Connection": "close",
+        "Cache-Control": "no-store",
+        "Content-Type": "application/octet-stream",
+        "X-Content-SHA256": "e013e939d934471787b78c7c388e5a704eb133fc29cc9b53c0cb6325f9a6a2d8"
+      }
+    },
+    {
+      "method": "GET",
+      "status": 403,
+      "body_bytes": 0,
+      "headers": {
+        "Content-Length": "0",
+        "Connection": "close",
+        "Cache-Control": "no-store"
+      }
+    }
+  ],
+  "nat_natural_exit_code": 0,
+  "nat_output_after_ready": [
+    "{\"attempted\": false, \"event\": \"closed\", \"guest_hash_or_execution_verified\": false, \"response_complete\": false}"
+  ],
+  "nat_stderr": "",
+  "socket_connect_after_exit": 61,
+  "vendor_payload_sent_to_host": false,
+  "limits": [
+    "Host checks are HEAD or denied GET; no guest transfer, guest hash or execution implied.",
+    "TTL is an application deadline with per-request socket timeout5s; not a hard global kill deadline."
+  ]
+}

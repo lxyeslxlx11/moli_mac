@@ -1,0 +1,1158 @@
+{
+  "schema": "moli.launcher-v8.original-login-vectors.v1",
+  "identity": "All names, input bytes and opaque values are original public test constants; never real credentials/accounts/sessions.",
+  "oracle": "Independent Python struct and byte-order model; observed pairwise row swaps and canonical-state selection checks. Not original program execution.",
+  "requests": [
+    {
+      "name": "original-public-ASCII",
+      "username_hex": "53796e7468657469635531",
+      "password_hex": "53796e7468657469635031",
+      "counter": 16909060,
+      "game_code": 11,
+      "body_hex": "0a010203040b53796e74686574696355310b53796e74686574696350310000000b",
+      "frame_hex": "00210a010203040b53796e74686574696355310b53796e74686574696350310000000b"
+    },
+    {
+      "name": "original-byte-limit",
+      "username_hex": "4142434445464748494a4b4c4d4e4f50",
+      "password_hex": "8182838485868788898a8b8c8d8e8f90",
+      "counter": 4294967295,
+      "game_code": 14,
+      "body_hex": "0affffffff104142434445464748494a4b4c4d4e4f50108182838485868788898a8b8c8d8e8f900000000e",
+      "frame_hex": "002b0affffffff104142434445464748494a4b4c4d4e4f50108182838485868788898a8b8c8d8e8f900000000e"
+    },
+    {
+      "name": "original-preserve-case-space",
+      "username_hex": "2041206120",
+      "password_hex": "2070205020",
+      "counter": 0,
+      "game_code": 0,
+      "body_hex": "0a0000000005204120612005207020502000000000",
+      "frame_hex": "00150a0000000005204120612005207020502000000000"
+    }
+  ],
+  "profiles": [
+    {
+      "name": "original-paired-columns",
+      "body_hex": "0b123456780000000020000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f04047a65746105416c7068610462657461044265746101000000630500000000fffffffffffffffc00000000deadbeef050000000000000001000000000000000100000058050000000a000000140000001e000000280000004d05000000010000000000000001000000010000004280000001ffffffff",
+      "expected": {
+        "disposition": "profiles",
+        "remaining_points_signed": -1,
+        "rows": [
+          {
+            "source_ordinal": 1,
+            "display_ordinal": 0,
+            "name_hex": "416c706861",
+            "state": -1,
+            "words": [
+              4294967295,
+              1,
+              20,
+              0
+            ],
+            "passes": false,
+            "blocked_reason": "state"
+          },
+          {
+            "source_ordinal": 3,
+            "display_ordinal": 1,
+            "name_hex": "42657461",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              40,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 2,
+            "display_ordinal": 2,
+            "name_hex": "62657461",
+            "state": -4,
+            "words": [
+              4294967292,
+              0,
+              30,
+              1
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 0,
+            "display_ordinal": 3,
+            "name_hex": "7a657461",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              10,
+              1
+            ],
+            "passes": true,
+            "blocked_reason": null
+          }
+        ]
+      }
+    },
+    {
+      "name": "original-duplicate-swaps",
+      "body_hex": "0b12345678000000000f4f726967696e616c4669787475726503044563686f044563686f05416c7068610003000000000000000000000000030000000000000000000000000300000065000000ca0000012f030000000000000000000000000000000000000013",
+      "expected": {
+        "disposition": "profiles",
+        "remaining_points_signed": 19,
+        "rows": [
+          {
+            "source_ordinal": 2,
+            "display_ordinal": 0,
+            "name_hex": "416c706861",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              303,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 1,
+            "display_ordinal": 1,
+            "name_hex": "4563686f",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              202,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 0,
+            "display_ordinal": 2,
+            "name_hex": "4563686f",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              101,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          }
+        ]
+      }
+    },
+    {
+      "name": "original-unsigned-byte-order",
+      "body_hex": "0b1234567800000000000501ff018001610141024141000500000000000000000000000000000000000000000500000000000000000000000000000000000000000500000000000000010000000200000003000000040500000000000000000000000000000000000000000000000780000000",
+      "expected": {
+        "disposition": "profiles",
+        "remaining_points_signed": -2147483648,
+        "rows": [
+          {
+            "source_ordinal": 3,
+            "display_ordinal": 0,
+            "name_hex": "41",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              3,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 4,
+            "display_ordinal": 1,
+            "name_hex": "4141",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              4,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 2,
+            "display_ordinal": 2,
+            "name_hex": "61",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              2,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 1,
+            "display_ordinal": 3,
+            "name_hex": "80",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 0,
+            "display_ordinal": 4,
+            "name_hex": "ff",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          }
+        ]
+      }
+    },
+    {
+      "name": "original-no-profiles",
+      "body_hex": "0b12345678000000000000020000000100000002000000000000000300000058",
+      "expected": {
+        "disposition": "no-profiles",
+        "remaining_points_signed": null,
+        "rows": []
+      }
+    },
+    {
+      "name": "original-nonzero-result-ignores-rows",
+      "body_hex": "0b12345678ffffff9c000201000000000000000000000400000059",
+      "expected": {
+        "disposition": "nonzero-result",
+        "remaining_points_signed": null,
+        "rows": []
+      }
+    },
+    {
+      "name": "original-max-rows",
+      "body_hex": "0b123456780000000020aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa40074974656d303633074974656d303632074974656d303631074974656d303630074974656d303539074974656d303538074974656d303537074974656d303536074974656d303535074974656d303534074974656d303533074974656d303532074974656d303531074974656d303530074974656d303439074974656d303438074974656d303437074974656d303436074974656d303435074974656d303434074974656d303433074974656d303432074974656d303431074974656d303430074974656d303339074974656d303338074974656d303337074974656d303336074974656d303335074974656d303334074974656d303333074974656d303332074974656d303331074974656d303330074974656d303239074974656d303238074974656d303237074974656d303236074974656d303235074974656d303234074974656d303233074974656d303232074974656d303231074974656d303230074974656d303139074974656d303138074974656d303137074974656d303136074974656d303135074974656d303134074974656d303133074974656d303132074974656d303131074974656d303130074974656d303039074974656d303038074974656d303037074974656d303036074974656d303035074974656d303034074974656d303033074974656d303032074974656d303031074974656d30303040000000000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f40fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc0000000000000000fffffffc400000000000000001000000000000000100000000000000010000000000000001000000000000000100000000000000010000000000000001000000000000000100000000000000010000000000000001000000000000000100000000000000010000000000000001000000000000000100000000000000010000000000000001000000000000000100000000000000010000000000000001000000000000000100000000000000010000000000000001000000000000000100000000000000010000000000000001000000000000000100000000000000010000000000000001000000000000000100000000000000010000000000000001000000000000000140000003e8000003e9000003ea000003eb000003ec000003ed000003ee000003ef000003f0000003f1000003f2000003f3000003f4000003f5000003f6000003f7000003f8000003f9000003fa000003fb000003fc000003fd000003fe000003ff000004000000040100000402000004030000040400000405000004060000040700000408000004090000040a0000040b0000040c0000040d0000040e0000040f000004100000041100000412000004130000041400000415000004160000041700000418000004190000041a0000041b0000041c0000041d0000041e0000041f000004200000042100000422000004230000042400000425000004260000042740000000000000000100000002000000030000000000000001000000020000000300000000000000010000000200000003000000000000000100000002000000030000000000000001000000020000000300000000000000010000000200000003000000000000000100000002000000030000000000000001000000020000000300000000000000010000000200000003000000000000000100000002000000030000000000000001000000020000000300000000000000010000000200000003000000000000000100000002000000030000000000000001000000020000000300000000000000010000000200000003000000000000000100000002000000031234567800000384",
+      "expected": {
+        "disposition": "profiles",
+        "remaining_points_signed": 900,
+        "rows": [
+          {
+            "source_ordinal": 63,
+            "display_ordinal": 0,
+            "name_hex": "4974656d303030",
+            "state": -4,
+            "words": [
+              4294967292,
+              1,
+              1063,
+              3
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 62,
+            "display_ordinal": 1,
+            "name_hex": "4974656d303031",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1062,
+              2
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 61,
+            "display_ordinal": 2,
+            "name_hex": "4974656d303032",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1061,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 60,
+            "display_ordinal": 3,
+            "name_hex": "4974656d303033",
+            "state": -4,
+            "words": [
+              4294967292,
+              0,
+              1060,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 59,
+            "display_ordinal": 4,
+            "name_hex": "4974656d303034",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1059,
+              3
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 58,
+            "display_ordinal": 5,
+            "name_hex": "4974656d303035",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1058,
+              2
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 57,
+            "display_ordinal": 6,
+            "name_hex": "4974656d303036",
+            "state": -4,
+            "words": [
+              4294967292,
+              1,
+              1057,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 56,
+            "display_ordinal": 7,
+            "name_hex": "4974656d303037",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1056,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 55,
+            "display_ordinal": 8,
+            "name_hex": "4974656d303038",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1055,
+              3
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 54,
+            "display_ordinal": 9,
+            "name_hex": "4974656d303039",
+            "state": -4,
+            "words": [
+              4294967292,
+              0,
+              1054,
+              2
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 53,
+            "display_ordinal": 10,
+            "name_hex": "4974656d303130",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1053,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 52,
+            "display_ordinal": 11,
+            "name_hex": "4974656d303131",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1052,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 51,
+            "display_ordinal": 12,
+            "name_hex": "4974656d303132",
+            "state": -4,
+            "words": [
+              4294967292,
+              1,
+              1051,
+              3
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 50,
+            "display_ordinal": 13,
+            "name_hex": "4974656d303133",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1050,
+              2
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 49,
+            "display_ordinal": 14,
+            "name_hex": "4974656d303134",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1049,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 48,
+            "display_ordinal": 15,
+            "name_hex": "4974656d303135",
+            "state": -4,
+            "words": [
+              4294967292,
+              0,
+              1048,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 47,
+            "display_ordinal": 16,
+            "name_hex": "4974656d303136",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1047,
+              3
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 46,
+            "display_ordinal": 17,
+            "name_hex": "4974656d303137",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1046,
+              2
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 45,
+            "display_ordinal": 18,
+            "name_hex": "4974656d303138",
+            "state": -4,
+            "words": [
+              4294967292,
+              1,
+              1045,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 44,
+            "display_ordinal": 19,
+            "name_hex": "4974656d303139",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1044,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 43,
+            "display_ordinal": 20,
+            "name_hex": "4974656d303230",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1043,
+              3
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 42,
+            "display_ordinal": 21,
+            "name_hex": "4974656d303231",
+            "state": -4,
+            "words": [
+              4294967292,
+              0,
+              1042,
+              2
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 41,
+            "display_ordinal": 22,
+            "name_hex": "4974656d303232",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1041,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 40,
+            "display_ordinal": 23,
+            "name_hex": "4974656d303233",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1040,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 39,
+            "display_ordinal": 24,
+            "name_hex": "4974656d303234",
+            "state": -4,
+            "words": [
+              4294967292,
+              1,
+              1039,
+              3
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 38,
+            "display_ordinal": 25,
+            "name_hex": "4974656d303235",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1038,
+              2
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 37,
+            "display_ordinal": 26,
+            "name_hex": "4974656d303236",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1037,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 36,
+            "display_ordinal": 27,
+            "name_hex": "4974656d303237",
+            "state": -4,
+            "words": [
+              4294967292,
+              0,
+              1036,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 35,
+            "display_ordinal": 28,
+            "name_hex": "4974656d303238",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1035,
+              3
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 34,
+            "display_ordinal": 29,
+            "name_hex": "4974656d303239",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1034,
+              2
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 33,
+            "display_ordinal": 30,
+            "name_hex": "4974656d303330",
+            "state": -4,
+            "words": [
+              4294967292,
+              1,
+              1033,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 32,
+            "display_ordinal": 31,
+            "name_hex": "4974656d303331",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1032,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 31,
+            "display_ordinal": 32,
+            "name_hex": "4974656d303332",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1031,
+              3
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 30,
+            "display_ordinal": 33,
+            "name_hex": "4974656d303333",
+            "state": -4,
+            "words": [
+              4294967292,
+              0,
+              1030,
+              2
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 29,
+            "display_ordinal": 34,
+            "name_hex": "4974656d303334",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1029,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 28,
+            "display_ordinal": 35,
+            "name_hex": "4974656d303335",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1028,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 27,
+            "display_ordinal": 36,
+            "name_hex": "4974656d303336",
+            "state": -4,
+            "words": [
+              4294967292,
+              1,
+              1027,
+              3
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 26,
+            "display_ordinal": 37,
+            "name_hex": "4974656d303337",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1026,
+              2
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 25,
+            "display_ordinal": 38,
+            "name_hex": "4974656d303338",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1025,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 24,
+            "display_ordinal": 39,
+            "name_hex": "4974656d303339",
+            "state": -4,
+            "words": [
+              4294967292,
+              0,
+              1024,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 23,
+            "display_ordinal": 40,
+            "name_hex": "4974656d303430",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1023,
+              3
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 22,
+            "display_ordinal": 41,
+            "name_hex": "4974656d303431",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1022,
+              2
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 21,
+            "display_ordinal": 42,
+            "name_hex": "4974656d303432",
+            "state": -4,
+            "words": [
+              4294967292,
+              1,
+              1021,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 20,
+            "display_ordinal": 43,
+            "name_hex": "4974656d303433",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1020,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 19,
+            "display_ordinal": 44,
+            "name_hex": "4974656d303434",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1019,
+              3
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 18,
+            "display_ordinal": 45,
+            "name_hex": "4974656d303435",
+            "state": -4,
+            "words": [
+              4294967292,
+              0,
+              1018,
+              2
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 17,
+            "display_ordinal": 46,
+            "name_hex": "4974656d303436",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1017,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 16,
+            "display_ordinal": 47,
+            "name_hex": "4974656d303437",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1016,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 15,
+            "display_ordinal": 48,
+            "name_hex": "4974656d303438",
+            "state": -4,
+            "words": [
+              4294967292,
+              1,
+              1015,
+              3
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 14,
+            "display_ordinal": 49,
+            "name_hex": "4974656d303439",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1014,
+              2
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 13,
+            "display_ordinal": 50,
+            "name_hex": "4974656d303530",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1013,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 12,
+            "display_ordinal": 51,
+            "name_hex": "4974656d303531",
+            "state": -4,
+            "words": [
+              4294967292,
+              0,
+              1012,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 11,
+            "display_ordinal": 52,
+            "name_hex": "4974656d303532",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1011,
+              3
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 10,
+            "display_ordinal": 53,
+            "name_hex": "4974656d303533",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1010,
+              2
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 9,
+            "display_ordinal": 54,
+            "name_hex": "4974656d303534",
+            "state": -4,
+            "words": [
+              4294967292,
+              1,
+              1009,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 8,
+            "display_ordinal": 55,
+            "name_hex": "4974656d303535",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1008,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 7,
+            "display_ordinal": 56,
+            "name_hex": "4974656d303536",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1007,
+              3
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 6,
+            "display_ordinal": 57,
+            "name_hex": "4974656d303537",
+            "state": -4,
+            "words": [
+              4294967292,
+              0,
+              1006,
+              2
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 5,
+            "display_ordinal": 58,
+            "name_hex": "4974656d303538",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1005,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 4,
+            "display_ordinal": 59,
+            "name_hex": "4974656d303539",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1004,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 3,
+            "display_ordinal": 60,
+            "name_hex": "4974656d303630",
+            "state": -4,
+            "words": [
+              4294967292,
+              1,
+              1003,
+              3
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 2,
+            "display_ordinal": 61,
+            "name_hex": "4974656d303631",
+            "state": 0,
+            "words": [
+              0,
+              0,
+              1002,
+              2
+            ],
+            "passes": true,
+            "blocked_reason": null
+          },
+          {
+            "source_ordinal": 1,
+            "display_ordinal": 62,
+            "name_hex": "4974656d303632",
+            "state": 0,
+            "words": [
+              0,
+              1,
+              1001,
+              1
+            ],
+            "passes": false,
+            "blocked_reason": "billing-expired"
+          },
+          {
+            "source_ordinal": 0,
+            "display_ordinal": 63,
+            "name_hex": "4974656d303633",
+            "state": -4,
+            "words": [
+              4294967292,
+              0,
+              1000,
+              0
+            ],
+            "passes": true,
+            "blocked_reason": null
+          }
+        ]
+      }
+    }
+  ]
+}

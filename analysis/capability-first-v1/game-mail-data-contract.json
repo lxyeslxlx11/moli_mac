@@ -1,0 +1,4028 @@
+{
+  "schema": "moli.capability.game-mail-data-contract.v1",
+  "requirement_plan": "analysis/capability-first-v1/game-mail-data-plan.json",
+  "source_check": "analysis/capability-first-v1/game-mail-data-source-check.json",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "tool_versions": {
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "LLVM_objdump": "Apple LLVM version 21.0.0"
+  },
+  "status": "bounded-source-contract-with-family-attachment-flow-and-config-publication-supplement",
+  "fixed_se_entry_admission": {
+    "classification": "事实：固定 SE 登记、部分调用准入及现有邮件操作的来源归属。",
+    "source_review": "build/analysis/target-game-lifecycle-v1/mail-entry-source-review.json",
+    "original_ledger": "analysis/capability-first-v1/entry-admission.json#/game_roots",
+    "capabilities": ["G20", "X01", "X02", "G14"],
+    "implementation_batches": ["D0", "D3"],
+    "fixed_source_entries_mapped": 30,
+    "selected_extra_control_uses_mapped": 3,
+    "classic": {
+      "entries": 14,
+      "windows": [22, 23, 49],
+      "rules": ["MAIL-06", "MAIL-08", "MAIL-17", "MAIL-18", "MAIL-19", "MAIL-20", "MAIL-21", "MAIL-22"],
+      "behavior": "归属草稿恢复、宠物选择、父子窗请求和退役、普通文本与群发。窗口 22/23 正文控件与 49 滚动拖动沿已核回调位接入。"
+    },
+    "receive": {
+      "entries": 6,
+      "rules": ["MAIL-01", "MAIL-02"],
+      "behavior": "名片和个人、家族、迷你记录及家族缓存清理沿已登记标签和外层字段进入既有邮件规则。"
+    },
+    "alternate": {
+      "entries": 10,
+      "rules": ["MAIL-06", "MAIL-23", "MAIL-25", "MAIL-26", "MAIL-29", "MAIL-30", "MAIL-31", "MAIL-33"],
+      "behavior": "表项已归属到附件、群发、名单与排序。后续沿可核的活动行、调度入口和各控件准入验证真实调用。",
+      "ordinary_frame_dispatch_closed": false
+    },
+    "a1_all_required_business_admission_closed": false,
+    "same_version_or_final_delivery_verified": false,
+    "product_code_changed": false
+  },
+  "item_mail_history": {
+    "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+    "source_review": "build/analysis/legacy-item-mail-history-v1/source-review.json",
+    "historical_cache_lifecycle": "reports/game-static.md#legacy-item-album-mail-lifecycle",
+    "receive_retirement_order": "analysis/capability-first-v1/game-communication-functional-specification.json#/receive_retirement_order",
+    "report": "reports/game-static.md#legacy-item-mail-history",
+    "fields": {
+      "receive": {
+        "@iV": ["int32", "bytes", "int32"],
+        "ZV'": ["int32", "bytes", "int32"],
+        "^Q^": ["int32", "bytes", "int32"],
+        "GC": []
+      },
+      "submit": {
+        "'b2": ["int32", "bytes", "int32"],
+        "9%#": ["int32", "bytes", "int32"],
+        "<y=": ["bytes", "int32"],
+        "(>#": ["int32", "int32", "int32", "bytes", "int32"],
+        ":+(": ["int32", "int32", "int32", "bytes", "int32"]
+      }
+    },
+    "receive_outer_integer_retained": true,
+    "selected_submit_trailing_integer": 0,
+    "row": {
+      "bytes": 320,
+      "records_per_contact": 10,
+      "insert_index": 0,
+      "received_header": [1, 0],
+      "sent_history_header": [0, 1],
+      "string_offsets": [2, 20],
+      "personal": {"contacts_per_role_slot": 60, "bytes_per_role_slot": 192000},
+      "guild": {"contacts_per_role_slot": 200, "bytes_per_role_slot": 641600, "contact_prefix_bytes": 8},
+      "mini": {"independently_addressed_contacts": 20}
+    },
+    "unread": {
+      "owner": "0x588281",
+      "category_scan": ["personal", "guild", "mini"],
+      "record_scan_direction": ["ascending", "ascending", "descending"],
+      "contacts_per_page": 4,
+      "empty_category": 0,
+      "restores_saved_page_when_empty": true
+    },
+    "selected_history_order": ["submit_request", "insert_local_history", "save_personal_and_guild_where_selected"],
+    "actual_sender_result_or_attachment_settlement_proven": false,
+    "current_version_equivalence_proven": false,
+    "remaining_requirement": "MM-R1"
+  },
+  "capabilities": [
+    "G01",
+    "G02",
+    "G03",
+    "G05",
+    "G09",
+    "G14",
+    "G16",
+    "G19",
+    "G20",
+    "X01",
+    "X02",
+    "G15"
+  ],
+  "runtime_baseline": "stage306",
+  "questions": [
+    {
+      "question": 1,
+      "status": "partially_answered",
+      "answer": "六个接收/清理入口和一般可见文字已绑定；邮件发送者投递/错误结果的服务器归属仍待证"
+    },
+    {
+      "question": 2,
+      "status": "partially_answered",
+      "answer": "所选家族选择/附件/发送清理、行号生产及独立排序已绑定；全部分派、其他引用/重置和失效有效域仍待证"
+    },
+    {
+      "question": 3,
+      "status": "partially_answered",
+      "answer": "两编辑器发布、out表项选择与当前配置保存/缓存复制差异已绑定；完整字段/表生产、索引不变量、转换边界和迟到仍待证"
+    },
+    {
+      "question": 4,
+      "status": "answered_for_this_bounded_batch",
+      "answer": "共用依赖、来源/政策区分、未决来源和提案用例已登记，不提升统一门槛"
+    }
+  ],
+  "source_facts": [
+    {
+      "id": "MAIL-01",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4f3a50",
+          "source_check_pointer": "/source_bodies/6",
+          "evidence_id": "ev_0b210fc23b2a9655c8ac2caa69790362046a812287713483f325b350464ee77c",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4f3cf0",
+          "source_check_pointer": "/source_bodies/7",
+          "evidence_id": "ev_6a7e0940c24e90327356948ccca92d986129eadd08735a536148c91945eaff83",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "Cly的bytes正文按60行、每行7个分隔字段处理；CmV另有线路int32索引。两体均以924f30==0为处理条件。协议外层字段数与正文分隔字段分开。",
+        "活动名片表EAC458共60条、步长0x74；+0活动16位、+2状态16位，+4/+8/+0xc为三个32位数值，+0x10/+0x21为两个17字节名称区，+0x32/+0x53为两个33字节区。具体业务命名只沿已绑定UI使用，不按偏移猜测。",
+        "正文presence<1只清活动标志及两个名称的首字节；否则置活动并更新各字段。两个名称反转义后长度不超过16字节才复制，过长保留旧值；不是整行无条件替换。Cly首名称提取返回1会中途返回，未证明原子发布。",
+        "CmV正文第8值为1时清当前bank该联系人十条0x140记录；第9/10字段各允许不超过32字节，再调用4d29a0重建映射。索引有效域由相关调用链保证与否仍须分别复核。"
+      ]
+    },
+    {
+      "id": "MAIL-02",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4f3f80",
+          "source_check_pointer": "/source_bodies/0",
+          "evidence_id": "ev_52f5905ea45fbd9dfbea277e3ca45d4c8d0b8421d540bfc30b591d74e09e69b0",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4f5430",
+          "source_check_pointer": "/source_bodies/2",
+          "evidence_id": "ev_0367f67ffea3816992dc1670b90ac0a73a218e4cfe4cdab2967d27face95a19a",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4f5a90",
+          "source_check_pointer": "/source_bodies/1",
+          "evidence_id": "ev_b854712acaa7da34805825958e60d0ab069862bc1210b15b53a9e8b9be877487",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4f4ad0",
+          "source_check_pointer": "/source_bodies/3",
+          "evidence_id": "ev_e802f1e64d642ee60980e134fb7b98703c7f41dfd203685aaa0e97aef1ee7c3e",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "@iV、ZV'和^Q^均保留int32,bytes,int32外层布局；所选接收体未消费额外线路整数，不能删除该字段。日期提取上限31，个人/家族正文上限299，迷你正文上限511，随后反转义。",
+        "个人接收始终调用4fe9a0(index,0,date,body)，正文第三值只改变普通/宠物提示，再保存个人缓存、重算未读并调整正在浏览的历史索引。",
+        "家族接收经4feda0查名、4feb50插入，随后提示并保存家族缓存；插入函数拒绝无名册ID，接收体并未在查名返回-1时单独终止提示链，不能把它写成全路径无效ID保护。",
+        "迷你接收先以518170映射发送者ID，未找到则返回；有效时写迷你历史、提示、重算未读及调整浏览索引。该体没有调用个人/家族缓存保存。",
+        "这些是接收通知与本地资料更新；未找到发送者投递确认或失败回执，不据提示、声音或本地保存宣称投递成功。GC在普通门槛通过时清当前家族bank并保存全部家族bank。"
+      ]
+    },
+    {
+      "id": "MAIL-03",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4fe9a0",
+          "source_check_pointer": "/source_bodies/26",
+          "evidence_id": "ev_f480dcd66b304184856572a298f3653be1720cfb46dadc09606fd55bdf789142",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4feb50",
+          "source_check_pointer": "/source_bodies/16",
+          "evidence_id": "ev_b864d8539bbdf0963b41af767618ae5cdf3a2a29400e02738839bb539016ee8c",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4fedd0",
+          "source_check_pointer": "/source_bodies/29",
+          "evidence_id": "ev_2351ee8f0b074af7d8f70d45cd9691e03411872a9f08eadcb14f706be9c56e0a",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4feda0",
+          "source_check_pointer": "/source_bodies/24",
+          "evidence_id": "ev_e7289fa3281d58113815bf385480914f12f2bd4569f6602476897c5c98e720df",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x518170",
+          "source_check_pointer": "/source_bodies/30",
+          "evidence_id": "ev_49c7f78daa73d4ad7d358ef431ebe9a1de98dc523d3731e2a563a70c31a34753",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x5181c0",
+          "source_check_pointer": "/source_bodies/31",
+          "evidence_id": "ev_13a0662a14b5d92ba50d6556953f2883f6095536e5e39520c6c47138dcd3f963",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "个人历史使用EF5838+(bank*60+contact)*0xc80，十条记录；插入先将0..8向1..9搬移，再写记录0。方向参数0使未读字节为1，其余为0，并在+1保存方向低字节。",
+        "家族历史每bank200槽、每槽0xc88，前8字节是ID和有效标志，后十条记录。4feda0按有效名册找首个ID；4fedd0按缓存有效标志恰为1查找，并返回最后一个匹配槽。不得合并这两个查找。",
+        "家族插入要求ID存在于名册；无缓存槽时占用首个有效标志为0的槽并写ID/标志，满200槽返回。已有槽才执行九次历史搬移。",
+        "迷你资料20条、步长0x74；ID查找返回首个活动标志为1的匹配。历史以FDF4A8为基址，每联系人0xc80，不使用F5F048 bank。",
+        "三类历史共同记录步长0x140，+0未读字节、+1方向字节、+2日期串、+0x14正文串。记录可用空间与各接收提取上限不是同一规则；插入体按NUL串复制，没有独立的同长度检查。复刻须显式定义有效输入边界。"
+      ]
+    },
+    {
+      "id": "MAIL-04",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4fe580",
+          "source_check_pointer": "/source_bodies/17",
+          "evidence_id": "ev_d5bc66ff63e8b06b2225b37802bf7c42c1c4ad681804ded1e81a8e6a223cca41",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4fe870",
+          "source_check_pointer": "/source_bodies/22",
+          "evidence_id": "ev_3d795a04977a18a2002c6472fc138a8907a7e7503dd20b082c4c76cf4f1f1596",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4fe8d0",
+          "source_check_pointer": "/source_bodies/25",
+          "evidence_id": "ev_f020cee93b8eda703ac88876002bebbe1b11c4677e15639871e0390ce15e60ce",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4fe950",
+          "source_check_pointer": "/source_bodies/23",
+          "evidence_id": "ev_cceff5700562cb132a834d0c1922657199c2e64aa6afb9150b7b4e3dc2a04402",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x497070",
+          "source_check_pointer": "/source_bodies/15",
+          "evidence_id": "ev_ab9245c79a23db82b0254e1503bb0665621ece6f3b4e9f0673705473ebaa8156",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4d1300",
+          "source_check_pointer": "/source_bodies/46",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x496f60",
+          "source_check_pointer": "/source_bodies/21",
+          "evidence_id": "ev_13f023c068522a928e52ef0013c6f2ae908658718fd7ecad27f476d47d676128",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "未读扫描按个人→家族→迷你优先级，找到首个未读后设置614634为1/2/3及C1EC14为可见序号/4；无未读则类别0并恢复C1E0E4。通知类别不自动等于资料view值0/1/2。",
+        "个人检查有0..59及活动检查，迷你检查有0..19及活动检查；家族辅助先执行ID/缓存映射，不能对所有来源外推相同的边界保护。",
+        "经典阅读发布按C22580分别访问个人、家族映射槽或迷你历史，并清所读条目的未读字节；现代所选阅读体也有个人标志消费。阅读体中清标志不等于已经保存文件。",
+        "496f60从第9条倒查未读标志以选择初始阅读位置，找不到则保持0；新接收的插入与现有浏览索引调整相互配合，不能把记录编号当永久ID。"
+      ]
+    },
+    {
+      "id": "MAIL-05",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4d29a0",
+          "source_check_pointer": "/source_bodies/32",
+          "evidence_id": "ev_0f04c3e99a364969068b89c40f7f5b31bcc08d755ceb3a769516ed84e1ef8d8a",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4d2830",
+          "source_check_pointer": "/source_bodies/55",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x493d60",
+          "source_check_pointer": "/source_bodies/20",
+          "evidence_id": "ev_ec717be63494c4e41a36f8b2eff4de16748aca37d2b68d1f2a5e058791a95a79",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x493d80",
+          "source_check_pointer": "/source_bodies/19",
+          "evidence_id": "ev_ec36de551fbaefe48a49ee801ae41ebad54530c59f01773304a657a3c5284315",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x493e50",
+          "source_check_pointer": "/source_bodies/10",
+          "evidence_id": "ev_1e98001805c9c12ac15c084b1f4a4a93f07aac6a403b4a1febb50995b510997e",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x495330",
+          "source_check_pointer": "/source_bodies/12",
+          "evidence_id": "ev_5a36f0803be90783b4094831aacb7efb842ef0035f968d240c3b897ad00f130e",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x495e50",
+          "source_check_pointer": "/source_bodies/52",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4930f0",
+          "source_check_pointer": "/source_bodies/11",
+          "evidence_id": "ev_56840636182a1b387a30e43f064624f2488da0b0a7179463312adff13c590dcb",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x495390",
+          "source_check_pointer": "/source_bodies/77",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        }
+      ],
+      "clauses": [
+        "4d29a0先将F53438填为0..59，再以4d2830对60个4字节索引排序。比较器按C5EA70区分+4数值、+0x10名称的原字节比较加数值次序、以及+2状态与数值分支。",
+        "比较器对若干相等、未活动和非正状态仍返回-1，不能自行宣称严格弱序、稳定排序或Unicode/locale排序；已知输入及跨宿主相等项政策仍须明确。",
+        "经典列表由495330重建C153E4，495390按view和排序mode分派十个比较辅助；本次已恢复全部有限分派及辅助体，见MAIL-13。495e50的两布局索引/滚动映射不改变。",
+        "493d60只依次调用493d80布局设置和493e50 view设置，它们调整可见性/图形/布局，不是F53438排序写者。前序将其宽称为排序/映射辅助，本组收窄为布局/view辅助，旧证据保留。"
+      ]
+    },
+    {
+      "id": "MAIL-06",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4d0ef0",
+          "source_check_pointer": "/source_bodies/45",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4d0420",
+          "source_check_pointer": "/source_bodies/43",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4d0e60",
+          "source_check_pointer": "/source_bodies/53",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x499370",
+          "source_check_pointer": "/source_bodies/57",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x497ab0",
+          "source_check_pointer": "/source_bodies/40",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x497db0",
+          "source_check_pointer": "/source_bodies/41",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4989b0",
+          "source_check_pointer": "/source_bodies/42",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4d0e00",
+          "source_check_pointer": "/source_bodies/60",
+          "evidence_id": "ev_1449e5b73a220bfd7f29dc5c9ec395ebcbaa770427e191958b27619980a723a7",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4f0aa0",
+          "source_check_pointer": "/source_bodies/59",
+          "evidence_id": "ev_7435ae9863c8d533454557f0c18ba7ba880a4449d7c0e9a97b38a1831a53c2bd",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "现代发送的第二整数来自C20F00，选择时取D72FB0五行8字节表内的16位实际宠物槽；活动和4d0e60谓词均通过且输入位1有效才发布。",
+        "4d0e60以0x22c4..0x22c7调用4d0e00；后者先要求槽0..4活动，再查十个0x8c字节记录中有效标志非零且16位ID匹配的项，找到即返回1，否则0。",
+        "现代第三整数C1FC28来自8起的5×4物品网格；活动且F53D1E掩码0x1通过、输入0x10时选择或重复点击置-1。点击输入标志与物品资料标志分开。",
+        "经典C44DE0为紧凑可选宠物列表位置，经C224D4映射后才发送真实槽；初始化/刷新复用上述谓词，但普通窗口另有main10、人物flag0x80与43b420抑制，另一宠物窗口条件不同。",
+        "经典物品要求槽>=8及资料掩码0x1，替换/清除改变C5E94C计数；499370拒绝宠物EF3C9A处16位值为3。该值来自FBY资料中去掉0x10后的状态；无选择有效域和完整失效/别名写者仍分别保留。"
+      ]
+    },
+    {
+      "id": "MAIL-07",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4d0950",
+          "source_check_pointer": "/source_bodies/44",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x498b00",
+          "source_check_pointer": "/source_bodies/37",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4f7290",
+          "source_check_pointer": "/source_bodies/13",
+          "evidence_id": "ev_6aa172158248893513ef59b186954401e6114b8e6d4e3a6fbb1766345d0f51f6",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4f6e30",
+          "source_check_pointer": "/source_bodies/49",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        }
+      ],
+      "clauses": [
+        "个人附件发送(>#与家族附件发送:+(均为三int32、bytes、一int32；末值在所选UI调用中为0。个人目标为联系人槽；所选经典家族路径经名册行取得ID，再发送映射后的宠物槽和物品槽。",
+        "所选附件发送回调先编码/排队请求，随即以方向1写本地历史，保存个人与家族缓存，播放反馈并关闭/清空草稿。本段没有等待投递确认，不创建无来源的成功回执或请求代次。",
+        "普通文本和经典群发另走MAIL-20/21的格式化器；本次已绑定所选客户端群发链，完整发送者结果与附带对象最终状态仍未关闭。"
+      ]
+    },
+    {
+      "id": "MAIL-08",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x497d10",
+          "source_check_pointer": "/source_bodies/38",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x499340",
+          "source_check_pointer": "/source_bodies/56",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x497ab0",
+          "source_check_pointer": "/source_bodies/40",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x497db0",
+          "source_check_pointer": "/source_bodies/41",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4d08d0",
+          "source_check_pointer": "/source_bodies/54",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4d0400",
+          "source_check_pointer": "/source_bodies/78",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        }
+      ],
+      "clauses": [
+        "经典析构将当前上下文和文本保存到C3B698起的草稿区，必要时释放所选物品计数并标子窗隐藏；取消不是一概丢弃草稿。",
+        "经典重开将当前与已保存的0x270字节上下文按值放入栈供499340比较；该体只比较两边开头两个32位值。要结合实际调用栈解释，不能照不完整的两个int原型当完整ABI，更不能宣称比较了全部宠物/物品字段。",
+        "现代4d08d0仍只安装文本/焦点，不重置附件字段；物品选择子窗另以4d0400初始化C20EF8=0、C1FC28=-1。它不清C20F00宠物选择。初始化是否重跑取决于共用框架的构造/缓存路径，不能外推每次显示都清选择。"
+      ]
+    },
+    {
+      "id": "MAIL-09",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4d2300",
+          "source_check_pointer": "/source_bodies/47",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4feaa0",
+          "source_check_pointer": "/source_bodies/51",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        }
+      ],
+      "clauses": [
+        "确认删除名片的所选现代路径发送(R!单int32联系人槽，再清当前bank该联系人0xc80历史、保存个人缓存并关闭对应view。",
+        "4feaa0只清个人历史，不清EAC458活动名片；后续Cly/CmV资料与本地历史清理是不同动作。删除名片不等于清全部邮件、全部bank或即刻收到服务端确认。"
+      ]
+    },
+    {
+      "id": "MAIL-10",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4feae0",
+          "source_check_pointer": "/source_bodies/27",
+          "evidence_id": "ev_135b99a2ad95f9ce1d5e84f67a960b2911aaf0906f7499c5d7db2a649b4cc746",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4fed30",
+          "source_check_pointer": "/source_bodies/18",
+          "evidence_id": "ev_eb57c3ada262e6824cb7b47a9d3c36cbbcc80c6270a4decd9cff3e3798b5b516",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4fe490",
+          "source_check_pointer": "/source_bodies/9",
+          "evidence_id": "ev_0718b1d43c04ff1f47e5921187ec80b697a785ee291eb16954747d365c01433f",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "个人mail.dat以wb写EF5838整块0x5dc00=384000字节；家族guildmail.dat以wb写D72FD8整块0x139480=1283200字节。均涵盖两bank，不是只保存当前bank。",
+        "路径为FC2240+FC5474[FC549C]*0x100目录加文件名，目录映射与角色bank不是同一索引。所选保存体没有album变换、格式头或字段序列化步骤，是原始固定缓冲。",
+        "加载先读个人，再读家族；个人文件不存在时调用个人保存并直接返回，该次不继续家族加载。家族不存在时调用家族保存返回。",
+        "两次fread返回长度未检查；没有在所选加载体中预先清缓冲、验证头/长度或原子替换。所选保存体只在打开成功时写/关闭，写入返回值也未用于发布确认。独立跨端存储政策须另行说明。"
+      ]
+    },
+    {
+      "id": "MAIL-11",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x458900",
+          "source_check_pointer": "/source_bodies/4",
+          "evidence_id": "ev_3fba7a5e4ec8ae133383e2aaed238a1224db51fa7d379a68a07ea7fc5cbfd523",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4fea70",
+          "source_check_pointer": "/source_bodies/34",
+          "evidence_id": "ev_901d456b9ec352db395d65a1d82ad19abfa0bbe77cfc8aed901945c614095d07",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4feca0",
+          "source_check_pointer": "/source_bodies/28",
+          "evidence_id": "ev_68a7b79d0cc2a4de7aa5695781d6892cf02da700ff2eb548408944877ec4e709",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4ff080",
+          "source_check_pointer": "/source_bodies/5",
+          "evidence_id": "ev_7324c177e6f9d26a60a0ffa71d47052f578b52e4ae49273ee0258b4c65e7f214",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4fe3f0",
+          "source_check_pointer": "/source_bodies/8",
+          "evidence_id": "ev_96a5020b78a95baee1e54638ba826a96ba4b3c8e9322d39a0cb7d447b6ab67c2",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x517660",
+          "source_check_pointer": "/source_bodies/33",
+          "evidence_id": "ev_054217b3e2a7beed02e563c4a62c25a1edb4127aabb279b4633b240aeb942ac0",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x5015a0",
+          "source_check_pointer": "/source_bodies/58",
+          "evidence_id": "ev_62e7544fa25ad153cc695a31e8ce0f254a994c9d0ed12111f2ef0940c273aec0",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x45be60",
+          "source_check_pointer": "/source_bodies/66",
+          "evidence_id": "ev_fc3c46bf33c7a36cfe6c2cfa66e78c840985cd3a7bc512d0e091d48985be45b3",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "角色选择所有者458900的两行循环将16位F5F048设为所选槽。其4593b0结果0分支调用其他资料区清理、当前个人bank清理及当前家族bank清理，再保存两类全缓冲；其他选择分支只按各自路径处理，不能外推每次切角都清所有邮件。",
+        "4fea70清当前个人bank的48000个32位单元；4feca0清当前家族bank的0x27290个32位单元。4ff080另清活动EAC458整表0x6cc个32位单元，历史缓存并未在该体中同样清零。",
+        "4fe3f0清D5EA54当前索引的值和D5EA5C按bank偏移0xa000的区域，再调用4fdf40；这不是EAC458名片表清理。本组不展开该其他资料区的变换内部。",
+        "517660按目录槽尝试删除save.dat、mail.dat、guildmail.dat且不消费返回值；本次绑定到5015a0的main1/925084==4配置流程：45be60子状态8的45ba70返回1后转9，下一次执行对子槽映射FC5474[FC549C]调用删除，再转10。普通退出不据此宣称删除缓存。"
+      ]
+    },
+    {
+      "id": "MAIL-12",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4f0aa0",
+          "source_check_pointer": "/source_bodies/59",
+          "evidence_id": "ev_7435ae9863c8d533454557f0c18ba7ba880a4449d7c0e9a97b38a1831a53c2bd",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x480ac0",
+          "source_check_pointer": "/source_bodies/63",
+          "evidence_id": "ev_1f7faf39238c05b74401e31ba9c4534b0670ede3730c1bb6bc6dd1314869722f",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4d0e00",
+          "source_check_pointer": "/source_bodies/60",
+          "evidence_id": "ev_1449e5b73a220bfd7f29dc5c9ec395ebcbaa770427e191958b27619980a723a7",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "FBY外层保持int32槽+bytes；924f30==0且槽0..4时处理。正文掩码0清整条0x6d8宠物资料，否则按各掩码增量更新，bit0参加所选全量条件。",
+        "掩码&0x1000001非零时消费当前状态字段；0x10从16位状态中去掉后写EF3C9A，辅助32位EF3CC4另记0/1。不能把0x10继续留在499370比较的原状态内。",
+        "480ac0把五个16位状态投影到C1FC14起五个32位值；值1进入C22520列表，值2记录到C22518，辅助字段非零另记C2251C。这只证明各数值消费者，不猜其完整业务枚举名。",
+        "C1FC28也是上述五元素数组的结束地址；把它作为CMP立即数不等于访问附件选择值。"
+      ]
+    },
+    {
+      "id": "MAIL-13",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x495390",
+          "source_check_pointer": "/source_bodies/77",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4956e0",
+          "source_check_pointer": "/source_bodies/67",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x495740",
+          "source_check_pointer": "/source_bodies/68",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4957a0",
+          "source_check_pointer": "/source_bodies/69",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4957d0",
+          "source_check_pointer": "/source_bodies/70",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x495830",
+          "source_check_pointer": "/source_bodies/71",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x495860",
+          "source_check_pointer": "/source_bodies/72",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x495890",
+          "source_check_pointer": "/source_bodies/73",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4958b0",
+          "source_check_pointer": "/source_bodies/74",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x495900",
+          "source_check_pointer": "/source_bodies/75",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x495930",
+          "source_check_pointer": "/source_bodies/76",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        }
+      ],
+      "clauses": [
+        "view0个人、view1家族、view2迷你先按各自活动字段判断：右项不活动即返回-1，随后左项不活动返回1；两项不活动也不返回0。",
+        "个人mode0比+0x10原字节串，mode1比+0x32字节串，mode2比+8的32位数值差，mode3只比+4，mode4比+2有符号16位值且0改为0x7fffffff。",
+        "家族传入FBB6C4基址：mode0比+0x18字节串，mode1比+0的32位差，mode2比+0x10的32位差，mode3比+4，mode4比+10有符号16位值且0改为0x7fffffff。字段相对基址不能直接套个人布局。",
+        "迷你view在模式分派前就使用+2有符号16位差，忽略上述mode。各辅助相等时以+4作非零结果回退，<=返回-1、>返回1。数值差保留源32位运算，字节比较不替换为localeCompare，不宣称稳定严格序。"
+      ]
+    },
+    {
+      "id": "MAIL-14",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x5171a0",
+          "source_check_pointer": "/source_bodies/61",
+          "evidence_id": "ev_256b373847bcba6c4d0cc75366a1c0aa3f59f5a06707452d67ce27b5e1774b0b",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x517210",
+          "source_check_pointer": "/source_bodies/64",
+          "evidence_id": "ev_1b5599142fc80b17817c03575b6e66b27f9bb83e6d733104428635c3b30f67b6",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x5172b0",
+          "source_check_pointer": "/source_bodies/65",
+          "evidence_id": "ev_7a434eb76301fb34dad1f6b1c0c3886b303947c28ae303ca42e422f127cbdacd",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x45cc40",
+          "source_check_pointer": "/source_bodies/62",
+          "evidence_id": "ev_e8aab27c55e8558075b3852d5eb7b51c085bb616827423cc2a9cf877b6f4d898",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "5171a0生成十个data\\%d目录缓冲，初始化FC5474映射为-1，并清计数与当前配置索引；目录名来自固定原文件静态格式，不读取真实用户目录。",
+        "517210依次尝试打开十目录save.dat，任一能打开即返回0；都未打开时再试旧data\\save.dat，能打开返回1，否则2。它不验证文件内容，也不是邮件缓存加载函数。",
+        "5172b0遍历十物理槽调用516d20，成功项写FC5440有效标志及FC5474映射并递增计数；若计数<11且5176f0给出非-1槽，则追加映射、标有效、调用516ff0并记录FC5470。5176f0仅找十槽中首个标志0，因此不能因<11条件推定存在第十一物理槽。读入/缺省与失败规则现见MAIL-27。",
+        "45cc40先按旧FC549C调用三个字符串setter及517530，再赋新FC549C并尾跳45c820。所选调用者在保存正常返回后未检查成功。编辑字段发布、数值选择和另一当前配置保存路径现见MAIL-32/33；全部字段、映射不变量和全局生命周期仍未关闭。"
+      ]
+    },
+    {
+      "id": "MAIL-15",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x5015a0",
+          "source_check_pointer": "/source_bodies/58",
+          "evidence_id": "ev_62e7544fa25ad153cc695a31e8ce0f254a994c9d0ed12111f2ef0940c273aec0",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x45be60",
+          "source_check_pointer": "/source_bodies/66",
+          "evidence_id": "ev_fc3c46bf33c7a36cfe6c2cfa66e78c840985cd3a7bc512d0e091d48985be45b3",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "main5的5015a0先执行原重置/对象与窗口步骤、置924f30=0，再经4fe460与4fe490恢复资料；随后转main6。此为缓存加载在该入场路径中的实际调用条件。",
+        "main5尾部将C5E94C起7个32位单元清零，共28字节物品计数；这不等于所有现代附件选择器都已清零。",
+        "main1配置分支经925084==4进入45be60；文件删除只在其子状态9，前接子状态8的返回1。后续提示和状态恢复不提供DeleteFileA成功确认，也不等于已经观察真实删除。"
+      ]
+    },
+    {
+      "id": "MAIL-16",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4d0400",
+          "source_check_pointer": "/source_bodies/78",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        }
+      ],
+      "clauses": [
+        "整段可执行节的两个绝对地址字面值检索共17处：C20F00两处，C1FC28十五处，全部已对到留存/补出/单指令证据。四个CMP是立即数比较，不是字段读写。",
+        "新找到4d0420传给共用框架的4d0400代码指针；21字节初始化体清C20EF8并置C1FC28=-1。两个已有C1FC28写点仍属于实际选择/取消，C20F00可见写点属于宠物选择。",
+        "这关闭字面值候选归属，未穷尽寄存器别名、区域填充和运行时写者；不能据两次或零次typed引用推定不存在其他重置。"
+      ]
+    },
+    {
+      "id": "MAIL-17",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x494ce0",
+          "source_check_pointer": "/source_bodies/105",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x496340",
+          "source_check_pointer": "/source_bodies/36",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x497ab0",
+          "source_check_pointer": "/source_bodies/40",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x497d10",
+          "source_check_pointer": "/source_bodies/38",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4a6cd0",
+          "source_check_pointer": "/source_bodies/91",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4a6d40",
+          "source_check_pointer": "/source_bodies/93",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        }
+      ],
+      "clauses": [
+        "494ce0在输入位2且选择子窗C111D0为空时设置C44DE8=1、普通view上下文C44DD8=0，并打开经典22；已有子窗时只标隐藏。496340普通写信入口设置C44DE8=0，两者不能合并为同一初始化条件。",
+        "497ab0在初始化参数-1且C44DE8==1时按C45044条件设置C20278，并打开经典49。4a6cd0仅在初始化参数-1执行：C20278==0时清滚动、复位列表并重建类型0；随后清C20278。C20278不是请求代次，C45044也未证为选中人数。",
+        "子窗后续帧发现父窗C108F4为空时标自身C111D0隐藏；子窗析构在父窗存在且群发模式时标父窗隐藏。标记、业务析构、公共框架物理回收分别处理；父窗析构仍沿MAIL-08保存草稿及释放计数。完整缓存重用和迟到重入不由这些有限路径推定。"
+      ]
+    },
+    {
+      "id": "MAIL-18",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4a7800",
+          "source_check_pointer": "/source_bodies/85",
+          "evidence_id": "ev_7a8b51016099e68139b2f0cc7b2088489dd537948b7be33477d51f4ee36bbbd0",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4a7830",
+          "source_check_pointer": "/source_bodies/86",
+          "evidence_id": "ev_92ae99e0bce5b1fafb15c30159d53338fba24630228f37cc4322a4fd13e81995",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4a7930",
+          "source_check_pointer": "/source_bodies/89",
+          "evidence_id": "ev_88b175f3d87c203dbda656692b0d950750d740688d63839da6060d51eb8e5e47",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4a7980",
+          "source_check_pointer": "/source_bodies/110",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4a73e0",
+          "source_check_pointer": "/source_bodies/96",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4a6ff0",
+          "source_check_pointer": "/source_bodies/88",
+          "evidence_id": "ev_cda358ff97c55fd3d4507bb303064e4e9c0fb64dbe76551e04e94386fbc36c83",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "群发类型C1FC34的0/1/2分别为交换过名片的人、家族成员、家族称号；三个文字经552ecc/552ed4/552edc实际指针和目标原字节绑定。普通邮件C44DD8的第三类是迷你联系人，不能共用一个未经区分的enum。",
+        "C1FC38与C1FF58各200个32位项，分别为目标映射与选择旗标；C1FC30是本次构建时符合条件的计数。4a7800清两数组并复位计数/类型；4a7830先将映射填-1、旗标填0，再按类型建立。",
+        "类型0按排序索引遍历60个名片、仅活动字段==1写入；类型1遍历200个家族资料、仅活动字段==1写入；类型2遍历32个0x30字节称号记录、首dword非零时写入称号序号。它们在原循环位置写映射并独立加计数，不能擅自改成稠密压缩列表或证明任意稀疏输入都受支持。",
+        "4a7930先建立200个索引，排序长度个人60/家族200，实际PUSH绑定比较器4a7980；比较器复用MAIL-13的十个辅助与全局五种排序mode。相等项的非零回退不等于严格、稳定排序。",
+        "类型切换控制8/9循环0..2、重建并清选择/滚动；显示七行并按类型选择姓名源。称号显示地址用可见位置，发送目标用映射值，二者不随意合并。"
+      ]
+    },
+    {
+      "id": "MAIL-19",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4a7720",
+          "source_check_pointer": "/source_bodies/98",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4a7590",
+          "source_check_pointer": "/source_bodies/97",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4a6d80",
+          "source_check_pointer": "/source_bodies/94",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4a6e70",
+          "source_check_pointer": "/source_bodies/95",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4a6f80",
+          "source_check_pointer": "/source_bodies/106",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4a6fc0",
+          "source_check_pointer": "/source_bodies/87",
+          "evidence_id": "ev_17ac3a0e9e6f20f3140ac8f1c4607889212c4c4eedb18e10ab56c093c30df124",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4a7c10",
+          "source_check_pointer": "/source_bodies/99",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4a6d60",
+          "source_check_pointer": "/source_bodies/92",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        }
+      ],
+      "clauses": [
+        "经典49的37个控件均核原字节；20..26是七个4a7720复选项。运行参数按控件序号换算C1FF58[scroll+ordinal-20]，位2将非零清0、零置1；hover文字和选择音是本地选择状态，不能作为投递证明。",
+        "4a7590对个人/家族的有效映射与在线状态置1，对称号有效映射置1；它不清除原先手动选择的离线项。批量操作不是用当前在线集替换整个选择集合。",
+        "翻页按±7，行滚动按±1。4a6f80先将负滚动归0，再用count-7作上界，因此count<7时本体可写出负值；4a6fc0与4a7c10另有max(0,count-7)分支。不能把三段描述成同一个已保证非负的clamp，实际输入有效域与帧间效果仍待验。"
+      ]
+    },
+    {
+      "id": "MAIL-20",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x498030",
+          "source_check_pointer": "/source_bodies/90",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x498810",
+          "source_check_pointer": "/source_bodies/83",
+          "evidence_id": "ev_93f007d1c9ac9c3d24719421e089a68ccb20486fbc80b7091aeefd9fa7698969",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x499130",
+          "source_check_pointer": "/source_bodies/84",
+          "evidence_id": "ev_9a83e05fbff27be75d5ee49a5e45ec8189a0cff48a067e6dd54c472eaf736974",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4f6d50",
+          "source_check_pointer": "/source_bodies/107",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4f7200",
+          "source_check_pointer": "/source_bodies/108",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4f75c0",
+          "source_check_pointer": "/source_bodies/109",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        }
+      ],
+      "clauses": [
+        "普通文本个人发送4f6d50标记'b2、字段int32/bytes/int32；家族文本4f7200标记9%#、相同字段；迷你4f75c0标记<y=、字段bytes/int32。三标记原字节与初始化→逐字段编码/追加→4fce00顺序均核验；fd是调用参数，不算这些报文字段。它们不在旧60格式化器清单内，本轮只补源绑定，81条产品登记不变。",
+        "498030的普通分支按个人联系人槽、家族名册行映射出的成员ID或迷你嵌套正文选用上述包装，末整数在所选调用均为0。个人/家族紧接着写本地历史；迷你更新独立历史，不能由此推定落盘。",
+        "498810在群发和迷你模式使附件控制2不活动，普通个人/家族再按所选宠物条件处理；498030群发使用文本包装，不发送宠物或物品槽。499130是另一附件表单的标签/资格呈现，不能因按钮相似与纯文本群发合并。"
+      ]
+    },
+    {
+      "id": "MAIL-21",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x498030",
+          "source_check_pointer": "/source_bodies/90",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4fe9a0",
+          "source_check_pointer": "/source_bodies/26",
+          "evidence_id": "ev_f480dcd66b304184856572a298f3653be1720cfb46dadc09606fd55bdf789142",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4feb50",
+          "source_check_pointer": "/source_bodies/16",
+          "evidence_id": "ev_b864d8539bbdf0963b41af767618ae5cdf3a2a29400e02738839bb539016ee8c",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4feae0",
+          "source_check_pointer": "/source_bodies/27",
+          "evidence_id": "ev_135b99a2ad95f9ce1d5e84f67a960b2911aaf0906f7499c5d7db2a649b4cc746",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4fed30",
+          "source_check_pointer": "/source_bodies/18",
+          "evidence_id": "ev_eb57c3ada262e6824cb7b47a9d3c36cbbcc80c6270a4decd9cff3e3798b5b516",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "经典群发要求正文非空及C1FC30>0；随后仅遍历0..count-1内旗标==1的项。该体没有选中人数>0的附加门槛：count>0但全旗标0时可发送0条而继续本地结束反馈。",
+        "类型0以目标映射值调用个人文本包装并写个人历史；类型1先把映射的名册行转换成员ID，调用家族文本包装并写家族历史；类型2以映射称号值+0x400为线路目标，每个选中称号发一次，再为名册中称号字段相同的成员逐个写本地家族历史。",
+        "这些请求在同一次回调循环依次排入公共发送器；所选体没有逐收件人等待回包、服务端事务ID、限速或失败回滚。循环后保存个人/家族缓存、播放反馈、清正文并标父窗隐藏。这只证明客户端动作，不能提升为服务器投递成功。"
+      ]
+    },
+    {
+      "id": "MAIL-22",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x498030",
+          "source_check_pointer": "/source_bodies/90",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x511060",
+          "source_check_pointer": "/source_bodies/82",
+          "evidence_id": "ev_9e5fd3ce850a9d045359b27f83daf283fa41f9e3db477cb9b8a686f95a5bff0b",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4f75c0",
+          "source_check_pointer": "/source_bodies/109",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        }
+      ],
+      "clauses": [
+        "迷你正文先分别以511060处理收件人姓名和文本，再按5643d0处%d|%s|%s加入迷你ID，最后经511180外层转义进入<y=的bytes字段；内层、外层和线路字节编码是不同步骤。",
+        "511060的56bd40八字节表绑定四对：换行→反斜杠n、逗号→反斜杠c、竖线→反斜杠z、反斜杠→反斜杠y。输入0xff跳过，其他高位字节在剩余输入/容量允许时成对复制，保留终止NUL；没有证明完整字符集合法性，半个末尾或满缓冲停止条件不能替换成通用Unicode转义。"
+      ]
+    },
+    {
+      "id": "MAIL-23",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4d1a20",
+          "source_check_pointer": "/source_bodies/101",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x511b90",
+          "source_check_pointer": "/source_bodies/102",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x512b40",
+          "source_check_pointer": "/source_bodies/103",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        }
+      ],
+      "clauses": [
+        "另一套窗口表46/87/90行分别绑定4d1a20/511b90/512b40，表记录不等于全部激活已证。4d1a20遍历60个F53438索引，按实际联系人槽读C1E6FC，正文C5DB88→个人文本请求/个人历史，保存个人缓存，随后请求4ea460(42)切换回父列表。",
+        "511b90正文FBA730，调用个人附件包装4f6e30并使用FBA97C/FBA960/FBA958，随后写家族历史4feb50，却只调用个人保存4feae0，再请求4ea460(94)。保留原始差异，不据外观改包装或宣称家族缓存成功落盘。",
+        "512b40遍历200个FBA408表值，用FBA88C字节旗标按该值判断，正文FBAEF8→家族文本请求/家族历史，保存家族缓存后请求4ea460(94)。该表值直接作为目标与历史参数，不自动套经典行→ID转换。4ea460是活动行选择，旧表单的非活动清理另在后续回调；前序将此简写为关闭的解释在此更正。 FBA408现已绑定为0..199名册行号的排序映射，见MAIL-31；不假设它与每行的成员ID恒等。"
+      ]
+    },
+    {
+      "id": "MAIL-24",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4fce00",
+          "source_check_pointer": "/source_bodies/81",
+          "evidence_id": "ev_927800ed78fb04882782b77fda74840cb97f122371617a6462322401c8e082b8",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4f2df0",
+          "source_check_pointer": "/source_bodies/80",
+          "evidence_id": "ev_521fe5a7dde9df714e7c5d662b04d63e5e36727612973299ea5e8875636230b4",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4f30d0",
+          "source_check_pointer": "/source_bodies/79",
+          "evidence_id": "ev_0bbf3ebd5f34926ee43cf30f30a05abd4acf303045a18171125ed8e44542f2a4",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "4fce00把已组装内容送到405110边界、追加EF/AF并调用567DB0公共出站回调，所选体不处理服务端回复。其栈探测使反编译原型不完整，不能把void伪签名或伪栈偏移当准确ABI；405110内部边界保持。",
+        "Cz>接收int32/bytes/int32/int32，4f2df0处理一般文本、普通场景门槛、解转义/过滤及记录/气泡；DMK仅bytes，4f30d0处理一般系统文字/公告分流和可选提示音。它们证明通用可见反馈通道存在，没有证据将某条服务器邮件错误或投递结果归入它们。"
+      ]
+    },
+    {
+      "id": "MAIL-25",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4d1980",
+          "source_check_pointer": "/source_bodies/118",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x511b10",
+          "source_check_pointer": "/source_bodies/119",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x512aa0",
+          "source_check_pointer": "/source_bodies/120",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4d2a40",
+          "source_check_pointer": "/source_bodies/48",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x513bb0",
+          "source_check_pointer": "/source_bodies/121",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        }
+      ],
+      "clauses": [
+        "三个初始化分别复制现有C5DB88/FBA730/FBAEF8的NUL结尾正文到临时缓冲，再以同一正文地址安装443ab0编辑器并调用445220获得编辑焦点；它们不是一律清空草稿。实参10/0x1c/0x14仅按源登记，不推定为字符上限。",
+        "4d1980清60字节C1E6FC后将C45D30索引置1；512aa0清200字节FBA88C后将FBAEF0索引置1；511b10本体不清这两选择集合，也不写FBA960/FBA958附件字段。所选索引的全调用有效域和附件其他重置仍待证。",
+        "依赖已证共用4e94d0规则：仅活动输入且无缓存对象时执行创建与可选初始化；初始化在创建尝试后调用，即使创建返回空也可能执行。现有缓存的参与帧不会因此自动重置选择；关闭、非活动清理和物理回收是不同阶段。"
+      ]
+    },
+    {
+      "id": "MAIL-26",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x4d2a40",
+          "source_check_pointer": "/source_bodies/48",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x513bb0",
+          "source_check_pointer": "/source_bodies/121",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4d0e60",
+          "source_check_pointer": "/source_bodies/53",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        }
+      ],
+      "clauses": [
+        "个人列表4d2a40对活动名片的首项按钮先发布当前联系人到C21BA8/C45D30和页码；主状态F5F17C==10时请求行46，否则扫描五个4d0e60资格，任一成立请求45，全不成立请求46。它不是始终打开同一种附件表单。",
+        "家族列表513bb0对活动映射行先发布FBA97C/FBAEF0并继承页码；主状态10请求90，否则五项资格任一成立请求91，全不成立请求90。本次已补91到90/88/94、88到87/86的所选衔接及FBA408生产，见MAIL-29/31；共用全分派与其他晚到仍未推定。",
+        "513bb0旧记录只含1658字节前缀，首业务CALL及后续分支不在其指令集；该记录未被提升为完整规则。本组以同版表94/真实字节和留存反编译位置限定3600字节独立LLVM视图，核809指令、旧242前缀指令及311处原未覆盖位置。它是派生字节视图，不改变或冒充REA原生函数体元数据。"
+      ]
+    },
+    {
+      "id": "MAIL-27",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x516d20",
+          "source_check_pointer": "/source_bodies/111",
+          "evidence_id": "ev_8278218ac7604199212ea87c91e69e04a40b2130ac682d3465c2050788d49046",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x516ff0",
+          "source_check_pointer": "/source_bodies/112",
+          "evidence_id": "ev_183c02039b1bd14014f9d8413c0bf21672d71e83649f43d900c8c56c3c5091ed",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x5176f0",
+          "source_check_pointer": "/source_bodies/113",
+          "evidence_id": "ev_a9ea5f9cdc70efc8f7f5b145b4cdd3c006ee4cd261f07a2fcbc35994b48aa635",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x5172b0",
+          "source_check_pointer": "/source_bodies/65",
+          "evidence_id": "ev_7a434eb76301fb34dad1f6b1c0c3886b303947c28ae303ca42e422f127cbdacd",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "配置存储采用十物理槽、每槽0x400字节内存记录，目录字符串步长0x100，FC5474可见索引映射与F5F048角色bank分离。5176f0返回FC5440首个0标志位置，满十槽返回-1。",
+        "516d20清F63150后以实际rb+模式打开该物理槽save.dat，最多读0x800字节，检查FILE错误位并关闭；通过511310既有转换边界写入记录，只有输出长度0x400且首32位0x7002才返回真。它不要求原文件恰为1024字节，解码发生在验证前，不提供失败时原记录未变的保证。",
+        "516ff0先清整记录、首值置0x7002；三个字符串初值来自无文件字节的5849c8运行源，不能据样本猜其内容。所见字节默认在+0x9d/+0x9e/+0x9f为1/15/15，+0xa0复制运行时FBA3F8起16字节；+0x31a为1，+0x30c..30d为8、+0x30e..30f为5、+0x310..311为1。其余所选清零与步长0x19的24个首字节保持源规则，不据地址命名全部设置语义。"
+      ]
+    },
+    {
+      "id": "MAIL-28",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x5173b0",
+          "source_check_pointer": "/source_bodies/114",
+          "evidence_id": "ev_9d3ed30c7d997a51f7e8aeb3d2339ab8c2d0320155d36a9729369f8f1bc8f93b",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x5173f0",
+          "source_check_pointer": "/source_bodies/115",
+          "evidence_id": "ev_fdd87026c289557c6d6ef9c190cc1a51ae279db7582b873b3f870f1f0e6957b9",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x517470",
+          "source_check_pointer": "/source_bodies/116",
+          "evidence_id": "ev_8a710d44f1bf4ea3b2aa2585d4b3139be3ce6a05891fd2fb07eef15f380cde13",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x517530",
+          "source_check_pointer": "/source_bodies/117",
+          "evidence_id": "ev_c106c105aff3f1e21e1327409dad33f878601022852ee35c0f1bdebb1edd3480",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x45cc40",
+          "source_check_pointer": "/source_bodies/62",
+          "evidence_id": "ev_e8aab27c55e8558075b3852d5eb7b51c085bb616827423cc2a9cf877b6f4d898",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "三个setter通过旧可见索引映射到物理槽，写记录偏移+0x04/+0x37/+0x6a三个51字节区。非空源指针最多复制51字节，遇NUL提前返回且不清旧尾部；满51未遇NUL不额外补终止符。",
+        "517530遍历十物理槽，只对有效标志==1且第二/第三字符串首字节均非零的记录尝试保存。先复制1024字节到临时区，再清临时第二字段51字节；内存记录本身的第二字段未因此清空。",
+        "按实际汇编栈核对：5111c0收到临时输入/1024、现有模式0、输出缓冲/长度指针/2048容量，转换内部保持边界。随后以wb+打开该目录save.dat、写转换返回长度；打开失败立即返回，短写先关闭再返回，后续槽不再尝试。已写槽没有本组所见事务回滚，fclose返回值未检查。",
+        "45cc40在保存调用正常返回后不读成功/失败结果，也不据此中止，仍赋新FC549C并调用45c820；不由伪代码void推定原ABI。本地选择已改变、尝试写出、写出成功和完整新配置发布须分别表示，不能据正常切换宣称持久化成功。"
+      ]
+    },
+    {
+      "id": "MAIL-29",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x513250",
+          "source_check_pointer": "/source_bodies/130",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x512030",
+          "source_check_pointer": "/source_bodies/131",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x511b90",
+          "source_check_pointer": "/source_bodies/102",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x511660",
+          "source_check_pointer": "/source_bodies/132",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x512b40",
+          "source_check_pointer": "/source_bodies/103",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        }
+      ],
+      "clauses": [
+        "现代行91/513250通过三个控件的输入位1分别请求90、88、94；helper返回0或2时跳过参与。90接既有家族文本群发，88是宠物选择，94回家族列表，不按悬浮字样猜报文。",
+        "行88/512030每帧以D72FB2起五个8字节映射项调用4d0e60，命中行还要求宠物存在且资格非零；全局输入位1有效时把有符号16位实际槽写FBA960，再请求87主表单与86副窗。取消控件请求94。所选body不在进入时重置FBA960。",
+        "行87发送表单收到一次非活动清理返回2时，转移编辑焦点并请求关闭现代行86；行86在自己的非活动清理分支关闭现代行49。这里不是经典群发窗口49；活动槽切换、一次清理、待删标记及物理回收分别处理，完整调度顺序仍待证。"
+      ]
+    },
+    {
+      "id": "MAIL-30",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x511640",
+          "source_check_pointer": "/source_bodies/134",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x511660",
+          "source_check_pointer": "/source_bodies/132",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x511b90",
+          "source_check_pointer": "/source_bodies/102",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4d0950",
+          "source_check_pointer": "/source_bodies/44",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4f0aa0",
+          "source_check_pointer": "/source_bodies/59",
+          "evidence_id": "ev_7435ae9863c8d533454557f0c18ba7ba880a4449d7c0e9a97b38a1831a53c2bd",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "86副窗的实际初始化511640清FBA95C并把FBA958置32位全1；是否执行依赖共用无缓存创建路径。现有缓存参与帧不因此重新置空，不能据显示动作假定每次都清附件。",
+        "511660按8起五列四行得到8..27槽，存在字非零且资料word的bit0允许时可选；输入0x10切换FBA958为该槽或再次点击置-1，同时记录网格坐标并播放本地反馈。悬浮变化清FBA95C，输入bit2可翻转该辅助值。所选选择分支不等于经典保留计数逻辑。",
+        "所选另一套个人49和家族87表单取得参与及提交输入且正文非空时，把持有的宠物/物品字段传给4F6E30。45是个人选择页。两个所选提交分支沿用先前保存的槽号，实际窗口与接收交点见本合同 inventory_refresh_and_attachment_selection。",
+        "FBY零掩码清整宠物资料与G:w只清存在/名字的区别沿既有发布合同复用；它们的资料状态不能自动命名为邮件请求回执。四字段的34处绝对字面引用均有留存指令定位，但引用不是自动写者证明，别名、区域重置与全部晚到仍未关闭。"
+      ]
+    },
+    {
+      "id": "MAIL-31",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x513b40",
+          "source_check_pointer": "/source_bodies/135",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x513b10",
+          "source_check_pointer": "/source_bodies/136",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x5139b0",
+          "source_check_pointer": "/source_bodies/137",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x513700",
+          "source_check_pointer": "/source_bodies/133",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x513bb0",
+          "source_check_pointer": "/source_bodies/121",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x4fe580",
+          "source_check_pointer": "/source_bodies/17",
+          "evidence_id": "ev_d5bc66ff63e8b06b2225b37802bf7c42c1c4ad681804ded1e81a8e6a223cca41",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "家族列表初始化513b40先重建排序并调用既有未读扫描4fe580，再从FBA954恢复页码到FBA728，缺少的四个行提示图形才尝试创建。列表非活动清理分支对FBA968起四个非空指针调用40a090并清指针；物理释放沿共享图形合同，未直接推定同帧回收。",
+        "513b10先把FBA408的200个32位项填为0..199，再按4字节元素调用原qsort入口并用实际PUSH绑定5139b0。此表保留名册行号，不能统一改写为成员ID。",
+        "5139b0使用独立FC1824：值0按FBB6C8的有符号32位字段；值1按FBB6DC姓名原字节再按FBB6D0；其他值按有符号16位FBB6CE的正/零状态与FBB6D0分支。活动项条件、非零相等回退及负状态路径按源保持，不补稳定/严格排序保证，也不共享经典C5EA70五mode状态。",
+        "93/513700的三项点击立即写FC1824为0..2并本地反馈；确认才调用505950、505450，再请求94并反馈，调用者不检查保存返回。该回调没有保存旧FC1824用于退出回滚；完整宿主退出和全局重置仍单列。"
+      ]
+    },
+    {
+      "id": "MAIL-32",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x45c820",
+          "source_check_pointer": "/source_bodies/123",
+          "evidence_id": "ev_5d8da5706f748a94df8d2d57b0f558bc3b2915ed11a6c518ed8a5b8b7fd5da99",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x4544e0",
+          "source_check_pointer": "/source_bodies/122",
+          "evidence_id": "ev_3083d00489d9945af072a599033f2e2c64e2e0710bacfc405439c4c1fa9d6dcd",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x452fe0",
+          "source_check_pointer": "/source_bodies/126",
+          "evidence_id": "ev_f039551d8226184e4ffce47e023e899b7a586ad06c6e9b24b08df6a708d86a31",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x517430",
+          "source_check_pointer": "/source_bodies/124",
+          "evidence_id": "ev_e19aa48fd0a8a8442befa3af709611895b2aa53d2bd743929adfcae4782cc350",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x5174b0",
+          "source_check_pointer": "/source_bodies/125",
+          "evidence_id": "ev_96bfbc8e2d03c4a1be6f3fa73f279c5d676bef3a3ff5415696076652a23b3a05",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "45c820把4544e0结果写925084，清两组编辑缓冲/状态字段，分别以5174b0/517430取得字符串安装编辑器；再置924F44=1、请求539630所指9236A8获得焦点，置924328=0xff。该段不把925084当配置索引。",
+        "517430/5174b0通过FC5474[索引]读取偏移+0x37/+0x6a；目的指针空则不写，映射为-1时只写目的首字节0，否则最多复制51字节并遇NUL停，不清目的旧尾，也不对满51补NUL。其他非法索引域未由本体验证。",
+        "4544e0按固定五个ID 3c39f/3bd9f/5727/56c4/55f2查表项，遇非零后从同一位置再次查询到后续首非零，返回4减位置；全未命中返回-1。稳定表值时等于4减首非零位置；不能把重复查询改写为已证快照。",
+        "452fe0把921AA8所指表的第ID个32位值写out参数，自身返回1。选择器检查out值，不是固定返回1；本组不猜该表值的完整业务语义、生产和全局晚到顺序。旧4544e0完整原记录已独立核原profile，未把缺profile的文档候选当原记录。"
+      ]
+    },
+    {
+      "id": "MAIL-33",
+      "classification": "事实",
+      "evidence_type": "fixed-sample-static-code-and-byte-evidence",
+      "source_refs": [
+        {
+          "entry": "0x505950",
+          "source_check_pointer": "/source_bodies/128",
+          "evidence_id": "ev_839583e6454e1f6337adde08d519f99fd926011c8056e896e5a9118188054bba",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x505450",
+          "source_check_pointer": "/source_bodies/127",
+          "evidence_id": "ev_18649b59c7791d55c64ae2cb625d5841d5b81c22c5546d0519dbfa008f3b1b8d",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x517510",
+          "source_check_pointer": "/source_bodies/129",
+          "evidence_id": "ev_d94fcec5aa812f7bba626843746477c3daaafceee10ff11aadd29a420424badd",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        },
+        {
+          "entry": "0x513700",
+          "source_check_pointer": "/source_bodies/133",
+          "evidence_id": null,
+          "kind": "derived",
+          "native_profile": null
+        },
+        {
+          "entry": "0x517530",
+          "source_check_pointer": "/source_bodies/117",
+          "evidence_id": "ev_c106c105aff3f1e21e1327409dad33f878601022852ee35c0f1bdebb1edd3480",
+          "kind": "native",
+          "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+        }
+      ],
+      "clauses": [
+        "505950只把经典C5EA70的低8位写到当前运行配置F62D50+0x313，未把本窗口FC1824直接写到该位置；不能因家族排序确认调用它就宣称两排序状态相同或FC1824已落盘。",
+        "505450从F62D50复制1024字节，清临时副本+0x37起51字节，以原5111c0边界转换到2048容量，再用wb+打开由FC5474[FC549C]取得的目录save.dat。原运行内存的第二区未因此清空，转换内部与完整字段意义不扩写。",
+        "实际汇编确认打开失败返回0，短写将返回标志清0；正常写/关闭后返回标志，但fclose结果未检查，编码调用也不按其返回值分支。打开失败和打开后的路径都会调用517510。因此该BOOL不等于完整持久化确认，93仍继续活动行切换。",
+        "517510逐32位复制整个运行记录到FC2C40+FC549C*0x400，直接使用当前索引，不读取FC5474；保存目录却经FC5474[FC549C]映射。两个定位表达式不能擅自归一，映射非恒等且索引有效时目标不同；正常全流程的索引不变量仍待证。内存复制包含被文件临时副本遗漏的第二区。"
+      ]
+    }
+  ],
+  "cache_formats": [
+    {
+      "name": "mail.dat",
+      "authority": "事实",
+      "bytes": 384000,
+      "banks": 2,
+      "contacts_per_bank": 60,
+      "history_per_contact": 10,
+      "record_bytes": 320,
+      "buffer": "0xef5838",
+      "transform_in_selected_save": "none; direct fixed-buffer write"
+    },
+    {
+      "name": "guildmail.dat",
+      "authority": "事实",
+      "bytes": 1283200,
+      "banks": 2,
+      "slots_per_bank": 200,
+      "slot_header_bytes": 8,
+      "history_per_slot": 10,
+      "record_bytes": 320,
+      "buffer": "0xd72fd8",
+      "transform_in_selected_save": "none; direct fixed-buffer write"
+    },
+    {
+      "name": "mini-mail-memory",
+      "authority": "事实",
+      "contacts": 20,
+      "history_per_contact": 10,
+      "record_bytes": 320,
+      "buffer": "0xfdf4a8",
+      "F5F048_bank_used": false,
+      "persistence_proven": false
+    }
+  ],
+  "architecture_proposals": [
+    {
+      "classification": "推测",
+      "batch": "D0",
+      "proposal": "共享资料/记录、显示映射、未读和存储所有者；显式区分目录槽、角色bank、可见序号、资料槽和线路ID。保持两套UI条件与原始字节语法。"
+    },
+    {
+      "classification": "推测",
+      "batch": "D3",
+      "proposal": "复用已有发送器和资料消费者，只补合同确认的字段/状态差异；本地发送历史与服务端结果采用独立状态。"
+    },
+    {
+      "classification": "待验证",
+      "batch": "D5",
+      "proposal": "网页、移动网页和微信复用业务核心；编辑、焦点、缓存成功/失败及生命周期由薄适配返回明确结果。"
+    }
+  ],
+  "proposed_acceptance_cases": [
+    {
+      "id": "MAIL-CASE-01",
+      "status": "proposed_not_executed",
+      "case": "合成60行资料、逐行清除、提取提前返回及16/32字节边界",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-02",
+      "status": "proposed_not_executed",
+      "case": "个人两bank十条历史搬移、方向与未读、正在浏览索引保持",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-03",
+      "status": "proposed_not_executed",
+      "case": "家族名册首匹配、缓存末匹配、首空槽与200槽满额",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-04",
+      "status": "proposed_not_executed",
+      "case": "迷你20条ID映射、未匹配丢弃及独立历史，不推定落盘",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-05",
+      "status": "proposed_not_executed",
+      "case": "普通/宠物提示沿同一记录插入；提示不提升投递状态",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-06",
+      "status": "proposed_not_executed",
+      "case": "未读个人/家族/迷你优先级、可见序号分页和阅读消费",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-07",
+      "status": "proposed_not_executed",
+      "case": "原字节姓名/数值/状态比较分支；相等项政策另列",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-08",
+      "status": "proposed_not_executed",
+      "case": "经典两布局控件到映射槽；资料索引/显示位置/线路ID分开",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-09",
+      "status": "proposed_not_executed",
+      "case": "宠物紧凑列表到实际槽及两套UI资格；未定谓词先补规格",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-10",
+      "status": "proposed_not_executed",
+      "case": "物品选择替换/取消/析构计数和草稿上下文重开",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-11",
+      "status": "proposed_not_executed",
+      "case": "删除名片请求与个人历史清除，等待资料回复后再更新名片",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-12",
+      "status": "proposed_not_executed",
+      "case": "两类固定缓存布局、双bank完整写、缺个人文件提前返回、短读尾部政策与失败",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-13",
+      "status": "proposed_not_executed",
+      "case": "当前bank清理不清另一bank，目录槽与角色槽分离，迟到归属待补",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-14",
+      "status": "proposed_not_executed",
+      "case": "宠物十槽有效项与四编号、FBY全量/增量/清除以及0x10状态分离",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-15",
+      "status": "proposed_not_executed",
+      "case": "物品子窗初始化-1与宠物选择分离、17处字面候选及别名边界",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-16",
+      "status": "proposed_not_executed",
+      "case": "三view/五mode、字节比较、数值差与非零相等回退",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-17",
+      "status": "proposed_not_executed",
+      "case": "十目录、旧目录和不存在的探查结果；配置映射及删除分支",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-18",
+      "status": "proposed_not_executed",
+      "case": "main5加载先后、物品计数28字节清零和迟到归属待补",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-19",
+      "status": "proposed_not_executed",
+      "case": "经典群发打开/已有子窗切换、父子关闭标记和草稿恢复；完整缓存重用另待证",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-20",
+      "status": "proposed_not_executed",
+      "case": "个人/家族成员/家族称号三枚举、固定位置映射、切换清选择及比较器复用",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-21",
+      "status": "proposed_not_executed",
+      "case": "七复选框与批量在线置1保留旧选择，滚动count0..6和>=7分支、原帧顺序及有效域",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-22",
+      "status": "proposed_not_executed",
+      "case": "三种文本包装逐字段顺序与附件格式区分、末0保留、产品登记暂不扩展",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-23",
+      "status": "proposed_not_executed",
+      "case": "群发全旗标0与个人/家族/称号目标、称号+0x400、多份本地历史、无服务端成功推断",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-24",
+      "status": "proposed_not_executed",
+      "case": "迷你四转义、0xff、高位成对/半尾/容量与嵌套外层处理，使用原创字节夹具",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-25",
+      "status": "proposed_not_executed",
+      "case": "另一套三发送路径目标/正文/历史/保存差异，初始化未知不套经典转换",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-26",
+      "status": "proposed_not_executed",
+      "case": "一般Cz>/DMK可见通道与邮件投递结果分离，迟到/拒绝和对象最终状态仍需额外证据",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-27",
+      "status": "proposed_not_executed",
+      "case": "三个初始化保留正文、60/200字节选择清零与预选；有缓存及创建失败时的共用所有者条件",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-28",
+      "status": "proposed_not_executed",
+      "case": "个人/家族活动项、主状态10、五资格和目标行45/46/90/91；返回父列表后延迟清理",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-29",
+      "status": "proposed_not_executed",
+      "case": "十物理槽映射/首空/满额与角色bank分离，1024记录头及解码前后失败状态",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-30",
+      "status": "proposed_not_executed",
+      "case": "三个51字节setter的NUL早停、旧尾保留及满长无补NUL；临时遗漏第二字段不改内存",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-31",
+      "status": "proposed_not_executed",
+      "case": "rb+/wb+模式、合格槽筛选、打开失败/短写停止后续、关闭失败和转换未知不假定成功",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-32",
+      "status": "proposed_not_executed",
+      "case": "保存失败仍继续配置索引切换，完整新配置发布与晚到归属单独验证",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-33",
+      "status": "proposed_not_executed",
+      "case": "91三项控件到90/88/94、参与返回0/2及不同框架输入位；注册不替代全分派证明",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-34",
+      "status": "proposed_not_executed",
+      "case": "88五映射宠物的存在/资格、实际槽发布与87/86联动；选择后资料变化与提交分支再验证分别表示",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-35",
+      "status": "proposed_not_executed",
+      "case": "86首次初始化/缓存重用、8..27网格、重复取消-1和辅助hover标志；不套经典计数逻辑",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-36",
+      "status": "proposed_not_executed",
+      "case": "87非活动关闭86、86非活动关闭现代49；94四缓存清理与物理回收/调度分离",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-37",
+      "status": "proposed_not_executed",
+      "case": "200行号映射与FC1824三类比较、原字节/有符号状态/非零相等回退及成员ID不相等输入",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-38",
+      "status": "proposed_not_executed",
+      "case": "93即时模式选择、确认保存调用及退出不按该回调回滚；与C5EA70快照分开",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-39",
+      "status": "proposed_not_executed",
+      "case": "两编辑器NULL/缺映射/51字节边界、focus指针；五ID重复out查询及稳定/变化表值",
+      "fixtures": "original-synthetic-only"
+    },
+    {
+      "id": "MAIL-CASE-40",
+      "status": "proposed_not_executed",
+      "case": "当前保存目录映射/直接缓存索引、打开失败/短写/关闭返回忽略、临时第二区与完整内存副本差异",
+      "fixtures": "original-synthetic-only"
+    }
+  ],
+  "remaining_required_gaps": [
+    {
+      "id": "MAIL-GAP-01",
+      "impact": [
+        "G14",
+        "G20",
+        "X02"
+      ],
+      "question": "经典有限排序规则已绑定；剩余全部view激活、缓存重用和迟到/重入边界",
+      "next_sources": [
+        "共用回调列实际分派/活动生产及跨能力退出恢复所有者",
+        "其他缓存恢复/全局晚到交错；不重取所选家族链"
+      ],
+      "resolved_subparts": [
+        "495390与十个辅助完整体",
+        "经典群发入口/49初始化及父子标隐藏",
+        "4a7980复用有限比较器",
+        "三个实际初始化和选择/正文所有者",
+        "个人/家族列表所选入场条件",
+        "4ea460活动行选择与非活动清理区别",
+        "91到90/88/94与88到87/86所选衔接",
+        "86/87副窗清理及94行图形清理",
+        "FBA408行号生产、FC1824比较器与93选择"
+      ]
+    },
+    {
+      "id": "MAIL-GAP-02",
+      "impact": [
+        "G05",
+        "G09",
+        "G20",
+        "X02"
+      ],
+      "question": "所选宠物/物品选择和提交分支已绑定；别名/区域重置、全调度交错与对象失效有效域仍待证",
+      "next_sources": [
+        "既有资料更新与共用全局调度/退出的实际交点",
+        "未覆盖别名/区域初始化和输入有效域；两组已闭合字面查询不重复"
+      ],
+      "resolved_subparts": [
+        "4d0e00资格",
+        "EF3C9A状态生产",
+        "4d0400初始化",
+        "17处字面候选",
+        "FBA958初始-1与网格切换",
+        "FBA960实际槽选择",
+        "所选提交分支不再次资格检查",
+        "34处四字段直接字面引用定位",
+        "FBY资料到状态3经典谓词链与两提交布局差异",
+        "所选物品单项/交换发布及4E1D20匹配尾跳门槛",
+        "4E1D20匹配尾跳的4E1CF0原43字节体及六直接写入；非全局邮件失效证明"
+      ]
+    },
+    {
+      "id": "MAIL-GAP-03",
+      "impact": [
+        "G14",
+        "G16",
+        "G20"
+      ],
+      "question": "所选客户端本地拒绝、排队、历史/保存/提示、收件发布与宠物/物品资料变化已分层；发送者真实投递/错误/拒绝/撤销及附带对象最终归属仍待证",
+      "next_sources": [
+        "接收登记与附件/对象资料更新中可影响最终状态的实际消费者",
+        "服务器结果关联只按可取得的同版协议/运行证据验收，不重复离线材料等待账号"
+      ],
+      "resolved_subparts": [
+        "经典49三类收件人及选择",
+        "文本/附件分流、称号+0x400目标与本地历史",
+        "三个新增源格式化器及迷你内外层处理",
+        "通用可见反馈与本地结束反馈的区别",
+        "经典返回1不等于已发送；另一套提交无相同状态3复核",
+        "@iV是收件发布，不将第三整数或通用Cz>/DMK改名为ACK",
+        "删除名片/通用设置与邮件拒收分别登记"
+      ]
+    },
+    {
+      "id": "MAIL-GAP-04",
+      "impact": [
+        "G02",
+        "G03",
+        "G19",
+        "G20"
+      ],
+      "question": "所选编辑发布/数值选择/当前保存与缓存复制已绑定；完整字段、921AA8表生产、索引不变量、原转换及全角色/晚到仍待证",
+      "next_sources": [
+        "与跨能力资源/初始化合同归并921AA8表生产及其他配置发布",
+        "尚未覆盖的索引不变量、字段与入场/退出/晚到；转换边界保持"
+      ],
+      "resolved_subparts": [
+        "main5实际加载",
+        "main1配置子状态9实际删除",
+        "十目录初始化/探查/映射",
+        "516d20长度/头值/错误条件",
+        "516ff0和5176f0十槽默认/首空槽",
+        "三个字符串setter与保存临时遗漏字段",
+        "517530短写/打开失败及45cc40继续切换",
+        "45c820两编辑器及焦点",
+        "4544e0/452fe0实际out查询与数值范围",
+        "505450失败后仍复制缓存",
+        "目录映射与517510直接索引不同"
+      ]
+    },
+    {
+      "id": "MAIL-GAP-05",
+      "impact": [
+        "G14",
+        "G20",
+        "X04",
+        "X05",
+        "X07"
+      ],
+      "question": "边界输入、计数/稀疏映射与低于七行滚动的有效域、相等项/宿主存储策略、现行版本与真实平台接受；三编辑器NUL复制及51字节配置字段的有效域/平台策略；部分旧界面字节可作多编码候选但真实渲染编码尚未证明",
+      "next_sources": [
+        "同版合同与独立实现差异审查",
+        "目标平台合同及后续真实条件；静态材料不替代运行验收"
+      ]
+    }
+  ],
+  "source_summary": {
+    "selected_views": 138,
+    "selected_native_entries": 70,
+    "reused_native_entries": 33,
+    "new_required_native_observations": 37,
+    "reused_derived_views": 36,
+    "new_unique_derived_views": 32,
+    "additional_same_entry_native_observations": 1,
+    "redundant_native_observations": 4,
+    "complete_original_native_records_for_authentication": 71,
+    "native_source_body_bytes": 22815,
+    "native_listing_boundaries": 6721,
+    "reused_derived_body_bytes": 25506,
+    "reused_derived_instructions": 7288,
+    "new_derived_body_bytes": 7855,
+    "new_derived_instructions": 2265,
+    "declared_source_body_bytes": 56176,
+    "direct_E8_CALL_occurrences_verified": 996,
+    "unique_E8_CALL_sites_verified": 996,
+    "classic_descriptors": 4,
+    "classic_controls_identity_checked": 182,
+    "modern_table_rows": 14,
+    "protocol_bindings": 15,
+    "selected_static_literal_spans": 33,
+    "actual_CALL_anchors": 56,
+    "actual_code_pointer_anchors": 12,
+    "final_REA_export_records": 3,
+    "final_REA_snapshot_records": 3,
+    "runtime_features_changed": false,
+    "all_capability_analysis_complete": false,
+    "actual_tail_JMP_anchors": 1,
+    "REA_new_export_records_in_this_batch": 7,
+    "REA_export_batch_counts": [
+      4,
+      3
+    ],
+    "REA_sessions_closed_in_this_batch": 2
+  },
+  "new_product_protocol_fields": 0,
+  "protocol_registry_entries": 81,
+  "capability_scope_count": 40,
+  "historical_requirements": 37,
+  "consumer_groups": 10,
+  "product_code_changed": false,
+  "product_tests_or_build_run": false,
+  "original_execution": false,
+  "real_data_reads": false,
+  "full_mail_lifecycle_complete": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "classic_sort_matrix": {
+    "contact": {
+      "0": "bytes+0x10",
+      "1": "bytes+0x32",
+      "2": "i32-difference+8",
+      "3": "i32-key+4",
+      "4": "i16+2; zero-as-INT32_MAX"
+    },
+    "family_base_FBB6C4": {
+      "0": "bytes+0x18",
+      "1": "i32-difference+0",
+      "2": "i32-difference+0x10",
+      "3": "i32-key+4",
+      "4": "i16+10; zero-as-INT32_MAX"
+    },
+    "mini": "all modes: signed-i16 difference+2",
+    "ties": "all: i32+4; <= yields -1, > yields +1",
+    "strict_stable_order_proven": false
+  },
+  "supplement": {
+    "plan": "build/analysis/capability-game-attachment-lifecycle-v1/implementation-plan.json",
+    "added_source_views": 21,
+    "complete_native_records": 9,
+    "new_derived_views": 12,
+    "new_derived_instructions": 551,
+    "new_derived_bytes": 1464,
+    "original_fact_IDs_preserved": true,
+    "old_fixed_cache_layouts_unchanged": true,
+    "all_required_gaps_closed": false
+  },
+  "group_supplement": {
+    "plan": "build/analysis/capability-game-mail-group-v1/implementation-plan.json",
+    "added_source_views": 32,
+    "complete_native_records": 11,
+    "new_derived_views": 5,
+    "new_derived_instructions": 342,
+    "new_derived_bytes": 1089,
+    "reused_derived_views_added": 16,
+    "exact_existing_views_not_added": 1,
+    "original_fact_IDs_preserved": true,
+    "old_fixed_cache_layouts_unchanged": true,
+    "all_required_gaps_closed": false
+  },
+  "shared_owner_dependencies": [
+    {
+      "classification": "事实",
+      "source": "analysis/capability-first-v1/alternate-window-contract.json",
+      "rules": [
+        "open-and-restore",
+        "common-business-helper"
+      ],
+      "recompiled_in_this_batch": false,
+      "full_dispatch_closed": false
+    },
+    {
+      "classification": "事实",
+      "source": "analysis/capability-first-v1/game-graphics-lifetime-contract.json",
+      "rules": [
+        "待删标记/物理回收分离"
+      ],
+      "recompiled_in_this_batch": false
+    },
+    {
+      "classification": "事实",
+      "source": "analysis/capability-first-v1/game-pet-publication-contract.json",
+      "rules": [
+        "mask-and-deletion"
+      ],
+      "recompiled_in_this_batch": false
+    },
+    {
+      "classification": "事实",
+      "source": "analysis/capability-first-v1/game-trade-storage-contract.json",
+      "rules": [
+        "item-eligibility-and-cache-ownership"
+      ],
+      "recompiled_in_this_batch": false
+    }
+  ],
+  "profile_configuration_subset": {
+    "classification": "事实",
+    "source_fact_ids": [
+      "MAIL-27",
+      "MAIL-28"
+    ],
+    "physical_slots": 10,
+    "record_bytes": 1024,
+    "header": {
+      "offset": 0,
+      "bytes": 4,
+      "value": 28674
+    },
+    "raw_string_regions": [
+      {
+        "offset": 4,
+        "bytes": 51
+      },
+      {
+        "offset": 55,
+        "bytes": 51
+      },
+      {
+        "offset": 106,
+        "bytes": 51
+      }
+    ],
+    "save_copy_omits_region": {
+      "offset": 55,
+      "bytes": 51
+    },
+    "physical_directory_stride": 256,
+    "read_mode": "rb+",
+    "write_mode": "wb+",
+    "serialized_file_size_fixed": false,
+    "original_transform_internals_reconstructed": false,
+    "all_configuration_field_semantics_closed": false,
+    "runtime_default_string_file_bytes_available": false,
+    "real_config_or_account_reads": false,
+    "new_product_format_or_parser": false,
+    "current_runtime_record": {
+      "address": "0xf62d50",
+      "bytes": 1024
+    },
+    "current_save_path_index": "FC5474[FC549C]",
+    "current_save_memory_copy_record_index": "FC549C",
+    "current_memory_copy_includes_file_omitted_region": true,
+    "current_sort_snapshot": {
+      "offset": 787,
+      "source": "low8(C5EA70)",
+      "same_as_family_FC1824": false
+    },
+    "current_writer_validates_header_before_save": false,
+    "current_writer_checks_fclose_result": false,
+    "normal_flow_index_identity_invariant_proven": false
+  },
+  "owner_supplement": {
+    "plan": "build/analysis/capability-game-mail-owner-recovery-v1/implementation-plan.json",
+    "added_source_views": 11,
+    "complete_native_records": 7,
+    "new_derived_views": 4,
+    "new_derived_instructions": 947,
+    "new_derived_bytes": 4011,
+    "unchanged_existing_view_reused": 1,
+    "old_incomplete_prefix_not_promoted": true,
+    "independent_byte_flow_view_not_canonical_body": true,
+    "all_required_gaps_closed": false
+  },
+  "source_constrained_design_notes": [
+    {
+      "classification": "推测",
+      "proposal": "D0保留两套UI的状态命名空间及输入/退出时序，D3复用字节命令但保留目标坐标差异。"
+    },
+    {
+      "classification": "推测",
+      "proposal": "D5把目录索引解析、内存记录更新、写出尝试与持久化结果分别表达；不以统一映射函数改写原分支。"
+    }
+  ],
+  "attachment_flow_supplement": {
+    "plan": "build/analysis/capability-game-mail-attachment-owners-v1/implementation-plan.json",
+    "added_source_views": 16,
+    "complete_native_records": 8,
+    "reused_native_records": 1,
+    "new_native_observations": 7,
+    "reused_derived_views": 4,
+    "new_derived_views": 4,
+    "new_derived_instructions": 165,
+    "new_derived_bytes": 509,
+    "finite_direct_literal_candidates": 34,
+    "finite_literal_candidates_resolved": 34,
+    "all_alias_or_runtime_writes_closed": false,
+    "caption_rendering_encoding_proven": false,
+    "all_required_gaps_closed": false
+  },
+  "album_bank_lifecycle": {
+    "specification": {
+      "path": "build/analysis/album-bank-lifecycle-v1/specification.json",
+      "bytes": 106358,
+      "sha256": "9d6bdcbfc3afe8e8ade6bfed300439f8c84ab48f3e3c03f6b3a5fac8b9eb42a1"
+    },
+    "source_inputs": {
+      "path": "build/analysis/album-bank-lifecycle-v1/source-inputs.json",
+      "bytes": 7237,
+      "sha256": "75efe225ed5153f2eb92da137f39c73d2f3f4d06d9378a36301285d12f435db2"
+    },
+    "source_summary": {
+      "views": 14,
+      "reused_complete_native_views": 13,
+      "reused_derived_views": 1,
+      "body_ranges": 14,
+      "body_bytes": 7012,
+      "derived_instructions": 351,
+      "direct_E8_CALLs": 253,
+      "literal_instruction_sites": 157,
+      "new_native_function_queries": 0,
+      "new_targeted_xref_queries": 3,
+      "fact_groups": 9,
+      "explicit_bank_word_writes": 3,
+      "capacity_dword_writes": 1,
+      "pagecount_dword_writes": 1
+    },
+    "validation_record_path": "build/analysis/album-bank-lifecycle-v1/validation.json",
+    "contract": "analysis/capability-first-v1/game-entry-review-contract.json",
+    "source_check": "analysis/capability-first-v1/game-entry-review-source-check.json",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "fact_ids": [
+      "AB01",
+      "AB02",
+      "AB05",
+      "AB06",
+      "AB07",
+      "AB09"
+    ],
+    "remaining_required_groups": [
+      {
+        "id": "AB-R1",
+        "capabilities": [
+          "G19",
+          "X02"
+        ],
+        "need": "另一套实际激活、页游标初始化/恢复与全部详情资格；只有新正向注册/模块/调用证据才扩展旧调度分支。"
+      },
+      {
+        "id": "AB-R2",
+        "capabilities": [
+          "G19",
+          "G20",
+          "G04",
+          "X02"
+        ],
+        "need": "完整配置/选角/世界切换和晚到资料归属、必要间接副作用与共享状态组合；字面量清单不当作所有别名闭合。"
+      },
+      {
+        "id": "AB-R3",
+        "capabilities": [
+          "G19",
+          "G20",
+          "X03"
+        ],
+        "need": "若需求需原文件互操作，单列opaque格式与失败验收；未确定需要前不展开转换内部。"
+      },
+      {
+        "id": "AB-R4",
+        "capabilities": [
+          "G20",
+          "G15"
+        ],
+        "need": "发送者投递/拒绝/结果、完整资料权限/黑名单关联、产品入口；保持原邮件/聊天合同未决。"
+      },
+      {
+        "id": "AB-R5",
+        "capabilities": [
+          "X01",
+          "X04",
+          "X05",
+          "X07",
+          "X08"
+        ],
+        "need": "全能力必要规则复核、后续共享实现与实际平台/同版接受；没有测试账号，真实登录验收未完成。"
+      }
+    ]
+  },
+  "mail_delivery_results": {
+    "specification": {
+      "path": "build/analysis/mail-delivery-results-v1/specification.json",
+      "bytes": 18050,
+      "sha256": "660752a7faa8ef27c88070e91fb3e459ce16ee9fc29112fff6e6fa79a62fb03e"
+    },
+    "source_inputs": {
+      "path": "build/analysis/mail-delivery-results-v1/source-inputs.json",
+      "bytes": 19064,
+      "sha256": "58eaf20648136fcebd639d104798b66454f035e1cc2b9e940d9d1f3b0a4432a5"
+    },
+    "validation_record_path": "build/analysis/mail-delivery-results-v1/validation.json",
+    "source_summary": {
+      "views": 14,
+      "reused_complete_native_views": 9,
+      "reused_derived_views": 5,
+      "body_ranges": 15,
+      "body_bytes": 7848,
+      "derived_instructions": 1422,
+      "direct_E8_CALLs": 191,
+      "new_native_queries": 0,
+      "independently_redecoded_native_bodies": 9,
+      "independently_redecoded_native_bytes": 3084,
+      "independently_redecoded_native_instructions": 980,
+      "declared_helper_instruction_views": 2,
+      "declared_helper_bytes": 201,
+      "fact_groups": 10,
+      "proposed_not_executed_cases": 8,
+      "source_arithmetic_examples": 7
+    },
+    "scope": "selected-client-submission-local-rejection-recipient-history-and-typed-data-effects-not-sender-delivery-acceptance",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "facts": [
+      {
+        "id": "MR-01",
+        "classification": "事实",
+        "basis": "fixed37c4-selected-static-source-and-original-bytes",
+        "title": "经典提交的本地拒绝和事件返回",
+        "clauses": [
+          "498B00 的发送分支要求正文非空且499370(mappedPet)==0；失败只播放0x37，仍可返回1表示事件已处理。不能把回调返回1当成请求已发送或服务端接受。",
+          "499370只比较EF3C9A+slot*0x6D8的16位值是否为3，所选体不检查槽边界/活动/技能；值3的完整业务枚举名未证。",
+          "通过后先编码并调用4F6E30或4F7290，再立即写方向1本地历史、保存个人/家族缓存、播放0x4E、清草稿及标记经典窗口8000。该链没有等待服务端结果。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x498b00",
+            "token": "FUN_00499370",
+            "lines": [
+              96,
+              175
+            ]
+          },
+          {
+            "entry": "0x498b00",
+            "token": "FUN_004f6e30",
+            "lines": [
+              125
+            ]
+          },
+          {
+            "entry": "0x498b00",
+            "token": "FUN_004f7290",
+            "lines": [
+              201
+            ]
+          },
+          {
+            "entry": "0x499370",
+            "token": "== 3",
+            "lines": [
+              5
+            ]
+          }
+        ],
+        "limits": []
+      },
+      {
+        "id": "MR-02",
+        "classification": "事实",
+        "basis": "fixed37c4-selected-static-source-and-original-bytes",
+        "title": "另一套个人附件表单保留自身提交条件",
+        "clauses": [
+          "4D0950经共用view gate后，发送按钮输入位1且正文非空时，直接以C21BA8/C20F00/C1FC28和末整数0调用4F6E30，随后方向1历史、两种缓存保存、反馈、4EA460(42)和清正文。完整所选提交体没有499370复核；不能复制经典状态3门槛到这里。",
+          "共用gate返回2时恢复输入焦点并4EA5B0(0x32)返回；取消按钮请求4EA460(42)，该按钮分支没有显式清正文。后续非活动回调/清理继续复用窗口合同。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x4d0950",
+            "token": "FUN_004e94d0",
+            "lines": [
+              65
+            ]
+          },
+          {
+            "entry": "0x4d0950",
+            "token": "FUN_004f6e30",
+            "lines": [
+              114
+            ]
+          },
+          {
+            "entry": "0x4d0950",
+            "token": "FUN_004ea460",
+            "lines": [
+              78,
+              119
+            ]
+          }
+        ],
+        "limits": []
+      },
+      {
+        "id": "MR-03",
+        "classification": "事实",
+        "basis": "fixed37c4-selected-static-source-and-original-bytes",
+        "title": "另一套家族附件表单的源差异",
+        "clauses": [
+          "511B90在按钮位1与正文非空时调用个人附件包装4F6E30(FBA97C,FBA960,FBA958,body,0)，却写家族历史4FEB50，只调用个人保存4FEAE0，最后4EA460(94)并清正文。不得为表面一致而改成家族包装或补造家族落盘成功。",
+          "共用gate返回2走输入焦点及4EA5B0(0x56)；取消按钮只请求4EA460(94)。所选提交体没有499370复核。表行绑定不替代全部实际活动回调分派。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x511b90",
+            "token": "FUN_004f6e30",
+            "lines": [
+              114
+            ]
+          },
+          {
+            "entry": "0x511b90",
+            "token": "FUN_004feb50",
+            "lines": [
+              115
+            ]
+          },
+          {
+            "entry": "0x511b90",
+            "token": "FUN_004feae0",
+            "lines": [
+              116
+            ]
+          }
+        ],
+        "limits": []
+      },
+      {
+        "id": "MR-04",
+        "classification": "事实",
+        "basis": "fixed37c4-selected-static-source-and-original-bytes",
+        "title": "来信接收属于收件方资料发布",
+        "clauses": [
+          "4F3F80提取日期、正文和正文第三整数，反转义后，无论第三整数是否-1，均调用4FE9A0(contact,0,date,body)。第三整数仅在所选体选择两种提示模板，不据此命名交易号/投递结果码。",
+          "随后保存个人缓存、重算未读、必要时推进当前浏览历史游标并显示提示；本体没有924F30门槛。外围调度/连接/角色归属仍需对应规则。",
+          "它没有匹配所选发送者的待处理请求；收件方历史/提示不是发送者投递回执。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x4f3f80",
+            "token": "FUN_004fe9a0",
+            "lines": [
+              16,
+              20
+            ]
+          },
+          {
+            "entry": "0x4f3f80",
+            "token": "FUN_004feae0",
+            "lines": [
+              24
+            ]
+          }
+        ],
+        "limits": []
+      },
+      {
+        "id": "MR-05",
+        "classification": "事实",
+        "basis": "fixed37c4-selected-static-source-and-original-bytes",
+        "title": "个人历史写入和反编译步长歧义",
+        "clauses": [
+          "4FE9A0先检查EAC458+contact*0x74的活动word，随后以signed16 F5F048*60+contact定位0xC80历史组；九次0x140搬移后写最新记录。所选体没有先检查contact/bank有效域。",
+          "未读、方向、日期和正文共享同一EDX组偏移：未读为direction==0，方向取低8位，日期+2，正文+0x14。NUL复制没有独立容量检查。",
+          "伪代码某未读表达式显示param_1*800，但4FE9CE/4FE9D6/4FE9D9的LEA/SHL得到*0xC80，4FE9FE/4FEA07与其它字段都用同一EDX。按原指令解释，不将该反编译表达式实现为800字节步长；原MAIL-03的0xC80规则保持。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x4fe9a0",
+            "token": "DAT_00f5f048",
+            "lines": [
+              18
+            ]
+          },
+          {
+            "entry": "0x4fe9a0",
+            "token": "param_1 * 800",
+            "lines": [
+              34,
+              37
+            ]
+          },
+          {
+            "entry": "0x4fe9a0",
+            "token": "param_1 * 0xc80",
+            "lines": [
+              20
+            ]
+          }
+        ],
+        "limits": []
+      },
+      {
+        "id": "MR-06",
+        "classification": "事实",
+        "basis": "fixed37c4-selected-static-source-and-original-bytes",
+        "title": "宠物资料驱动资格而非请求结果",
+        "clauses": [
+          "FBY/4F0AA0只有924F30==0且槽0..4时处理；掩码0清整个0x6D8资料，否则按实际掩码条件增量更新。",
+          "mask&0x1000001非零时消费状态：原值0x10被去掉后存16位EF3C9A，EF3CC4另存0/1。因此raw0x13与raw3都能让499370读到3；这只闭合资料到经典拒绝谓词，不证明特定邮件最终成功。",
+          "4D0E00要求活动槽0..4，再查十个0x8C记录中的有效标志和16位能力ID。选择资格与提交时比较3是不同规则；不猜技能ID的业务名称。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x4f0aa0",
+            "token": "0x1000001",
+            "lines": [
+              242
+            ]
+          },
+          {
+            "entry": "0x4f0aa0",
+            "token": "0xffef",
+            "lines": [
+              249
+            ]
+          },
+          {
+            "entry": "0x4d0e00",
+            "token": "0x46",
+            "lines": [
+              16
+            ]
+          }
+        ],
+        "limits": []
+      },
+      {
+        "id": "MR-07",
+        "classification": "事实",
+        "basis": "fixed37c4-selected-static-source-and-original-bytes",
+        "title": "单项物品资料发布的实际副作用",
+        "clauses": [
+          "4F25A0在924F30==0时按正文14字段一组读取槽/物品资料；先对读到的槽调用4E1D20，再尝试取名称。若终止取字段失败，先前这个调用仍已发生。",
+          "解转义后的名称为空则只清活动word；非空写活动和各资料字段，包括F53D1E标志word。槽>=8的所选更新随后触发4CBCE0/4C69A0；下一组同样先调用4E1D20再检查提取结果。",
+          "本体按物理槽更新，没有邮件请求ID或投递结果归属。完整非法槽/输入域及辅助链仍分开保留，不能把所有物品变化都归因于邮件。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x4f25a0",
+            "token": "FUN_004e1d20",
+            "lines": [
+              22,
+              161
+            ]
+          },
+          {
+            "entry": "0x4f25a0",
+            "token": "DAT_00f53d1e",
+            "lines": [
+              113
+            ]
+          },
+          {
+            "entry": "0x4f25a0",
+            "token": "FUN_004cbce0",
+            "lines": [
+              39,
+              156
+            ]
+          }
+        ],
+        "limits": []
+      },
+      {
+        "id": "MR-08",
+        "classification": "事实",
+        "basis": "fixed37c4-selected-static-source-and-original-bytes",
+        "title": "交换资料先变更再触发所选通知",
+        "clauses": [
+          "4F2C40在924F30==0时先5009B0(a,b)，再分别4E1D20(a/b)，然后4CC550与4C80B0。",
+          "独立180字节指令视图证明5009B0仅先拒绝负a/b，交换F536CC+a/b*0x65C的整条资料；a或b<8时对应交换后标志word OR0x80，随后47F200(a,b)。本体未见上界检查；不把它当通用安全索引实现。",
+          "独立21字节4E1D20视图仅证明561AEC>=0且等于参数时尾跳4E1CF0；其它情况返回。4E1CF0完整效果尚未纳入本组，不能宣称已清全部邮件附件或证明对象最终失效。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x4f2c40",
+            "token": "FUN_005009b0",
+            "lines": [
+              6
+            ]
+          },
+          {
+            "entry": "0x4f2c40",
+            "token": "FUN_004e1d20",
+            "lines": [
+              7,
+              8
+            ]
+          }
+        ],
+        "limits": []
+      },
+      {
+        "id": "MR-09",
+        "classification": "事实",
+        "basis": "fixed37c4-selected-static-source-and-original-bytes",
+        "title": "名片扩展资料与删除请求保持各自角色",
+        "clauses": [
+          "4F3BD0受924F30门槛约束，更新60个名片记录内两段最多32字节的字符串，超限保留原字段；首项提取终止可提前结束，随后4D29A0重排。该资料体不解释邮件投递结果。",
+          "(R!的已证生产者为4F6F10，单int32联系人槽。4F6F50在本次六份限定元数据无精确命中，不将候选地址改名为已证删除包装。删除名片请求、本地清历史和拒收邮件是不同操作。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x4f3bd0",
+            "token": "FUN_004d29a0",
+            "lines": [
+              94
+            ]
+          }
+        ],
+        "limits": []
+      },
+      {
+        "id": "MR-10",
+        "classification": "事实",
+        "basis": "fixed37c4-selected-static-source-and-original-bytes",
+        "title": "共用设置与通用反馈不自动归属邮件",
+        "clauses": [
+          "469D20以F536BC低16位调用4F7780；4F22E0受924F30门槛约束，将回复截为16位并清0x2后写F536BC。它们证明通用设置同步，不能单凭共享字段命名邮件拒收。",
+          "468AB0所选菜单路由及固定字节的GBK候选解码指向组队、交易、家族邀请等设置；实际渲染编码及未覆盖设置体另待证。当前没有来源将这些选项绑定到邮件拒收。",
+          "复用MAIL-24：Cz>/DMK是通用反馈通道，尚无具体邮件成功/错误与发送请求的来源关联。不把它们登记为新邮件ACK。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x469d20",
+            "token": "FUN_004f7780",
+            "lines": [
+              7
+            ]
+          },
+          {
+            "entry": "0x4f22e0",
+            "token": "0xfffd",
+            "lines": [
+              8
+            ]
+          },
+          {
+            "entry": "0x468ab0",
+            "token": "FUN_00469a40",
+            "lines": [
+              134
+            ]
+          }
+        ],
+        "limits": []
+      }
+    ],
+    "remaining_required_gaps": [
+      {
+        "id": "MR-PENDING-01",
+        "classification": "待验证",
+        "question": "发送者实际投递/失败/拒绝/撤销与附带对象最终状态的同版关联；未证专用回执或请求标识",
+        "next": "只按可取得的必要同版来源/协议/后续运行条件验收；不重复离线包装等待账号"
+      },
+      {
+        "id": "MR-PENDING-02",
+        "classification": "待验证",
+        "question": "4E1CF0及其它真实别名/区域初始化/全部晚到资料对各选择器的效果和必要输入域",
+        "next": "全量、逐槽和交换三条已知处理路径、三套表单与重开已按选定输入核对。影响实际重置或提交的其余来源沿具名窗口回调、发布入口或同版观察复核。",
+        "selected_inventory_refresh": "/inventory_refresh_and_attachment_selection"
+      },
+      {
+        "id": "MR-PENDING-03",
+        "classification": "待验证",
+        "question": "两套view实际外层调度、全局共享bank/角色/连接变化和取消后非活动清理",
+        "next": "复用统一窗口/输入/状态合同，保留不同布局及版本"
+      },
+      {
+        "id": "MR-PENDING-04",
+        "classification": "待验证",
+        "question": "全部需求发现、G15其它状态所有者、X03总资源预算/持久化及目标存储/设备合同",
+        "next": "按11个共用分析依赖归并，已证邮件提交与接收包装停止重复取证"
+      },
+      {
+        "id": "MR-PENDING-05",
+        "classification": "待验证",
+        "question": "当前游戏消费者、同版交接、真实手机/微信和必要官方接受",
+        "next": "保留后续独立验收；静态源规则不替代外部条件"
+      }
+    ],
+    "proposed_acceptance_cases": [
+      {
+        "id": "MR-AC-01",
+        "kind": "proposed-not-executed",
+        "case": "经典正文空或状态3：事件可返回1，但无所选出站/历史/清空；不显示投递成功。"
+      },
+      {
+        "id": "MR-AC-02",
+        "kind": "proposed-not-executed",
+        "case": "同一状态3分别进入经典与另一套表单，保留提交规则差异，选择资格另行核验。"
+      },
+      {
+        "id": "MR-AC-03",
+        "kind": "proposed-not-executed",
+        "case": "另一套家族附件保留个人包装、家族历史、个人保存三者差异。"
+      },
+      {
+        "id": "MR-AC-04",
+        "kind": "proposed-not-executed",
+        "case": "FBY raw0x13/3与clear mask0，核对资料变化及经典谓词，不生成邮件ACK。"
+      },
+      {
+        "id": "MR-AC-05",
+        "kind": "proposed-not-executed",
+        "case": "物品交换先交换整行再通知；记录选择槽匹配tail gate，未覆盖callee效果保持待证。"
+      },
+      {
+        "id": "MR-AC-06",
+        "kind": "proposed-not-executed",
+        "case": "@iV第三整数两分支均写收件方向历史，不匹配发送者请求。"
+      },
+      {
+        "id": "MR-AC-07",
+        "kind": "proposed-not-executed",
+        "case": "历史bank/contact与未读/方向/正文统一0xC80组步长，NUL合法域和宿主存储政策单列。"
+      },
+      {
+        "id": "MR-AC-08",
+        "kind": "proposed-not-executed",
+        "case": "通用Cz>/DMK、名片删除、组队/交易设置各保留原角色；无证据不生成邮件结果语义。"
+      }
+    ]
+  },
+  "chat_state_storage": {
+    "specification": {
+      "path": "build/analysis/chat-state-storage-v1/specification.json",
+      "bytes": 19614,
+      "sha256": "7b68a122289fe8d7e681ecb2730774c410cbd7e377f7706f88409f157b217387"
+    },
+    "source_inputs": {
+      "path": "build/analysis/chat-state-storage-v1/source-inputs.json",
+      "bytes": 24021,
+      "sha256": "88de2f510532d2f2291312f8088b9aace5576ccc29e2a6cbe03fb9fde7392ae8"
+    },
+    "validation_record_path": "build/analysis/chat-state-storage-v1/validation.json",
+    "source_summary": {
+      "views": 18,
+      "reused_complete_native_views": 17,
+      "reused_derived_views": 1,
+      "body_ranges": 19,
+      "body_bytes": 14739,
+      "derived_instructions": 345,
+      "direct_E8_CALLs": 451,
+      "new_native_queries": 0,
+      "independently_redecoded_native_bodies": 17,
+      "independently_redecoded_native_bytes": 13617,
+      "independently_redecoded_native_instructions": 3978,
+      "new_REA_xref_observations": 8,
+      "new_REA_containing_lookup_observations": 1,
+      "new_REA_function_observations": 0,
+      "fact_groups": 12,
+      "proposed_not_executed_cases": 10,
+      "static_code_input_files": 5,
+      "static_named_buffer_examples": 2,
+      "new_REA_exact_reference_edges": 61
+    },
+    "scope": "selected-shared-item-tail-blacklist-identity-count-chat-state-file-flows-and-independent-resource-budgets",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "facts": [
+      {
+        "id": "CS-01",
+        "classification": "事实",
+        "basis": "fixed37c4-retained-REA-and-original-instruction-bytes",
+        "title": "物品选择失效的尾目标已复用闭合",
+        "clauses": [
+          "4E1D20仅在561AEC非负且等于更新槽时尾跳4E1CF0；后者43字节本体将561AEC置-1，C5EAC4/C221C8/C221CC/C16214置0，5625E4置1，无进一步CALL。",
+          "这闭合MR-PENDING-02中已定位的尾目标与六个直接写入；本体没有直接写已知邮件附件C1FC28/C44DE4。完整别名/区域初始化和全局晚到效果仍不能由这条边代替。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x4e1cf0",
+            "token": "DAT_00561aec",
+            "lines": [
+              7
+            ]
+          },
+          {
+            "entry": "0x4e1cf0",
+            "token": "DAT_00c221c8",
+            "lines": [
+              9
+            ]
+          },
+          {
+            "entry": "0x4e1cf0",
+            "token": "DAT_005625e4",
+            "lines": [
+              12
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CS-02",
+        "classification": "事实",
+        "basis": "fixed37c4-retained-REA-and-original-instruction-bytes",
+        "title": "黑名单加载保留计数并发布路径身份",
+        "clauses": [
+          "402910先清512字节路径和100×17字节数组，以%d构造blacklist文件名，用原模式rb+打开；它没有在清数组时重置5849C4计数。",
+          "打开成功后按stream标志0x10循环，调用51B1ED以17字节缓冲写当前count槽；首字节NUL、LF或CRLF时count减1并清该槽，其它分支去换行后count加1，到100才停止。该调用返回值未用于分支。",
+          "打开失败也将5331A8置为参数并返回1。不能据返回1、路径发布或数组清空断言文件已加载/计数归零；空行、短读/失败和已有非零计数的输入域仍需明确。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x402910",
+            "token": "DAT_005849c4 + -1",
+            "lines": [
+              35
+            ]
+          },
+          {
+            "entry": "0x402910",
+            "token": "DAT_005849c4 + 1",
+            "lines": [
+              57
+            ]
+          },
+          {
+            "entry": "0x402910",
+            "token": "DAT_005331a8 = param_1",
+            "lines": [
+              64
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CS-03",
+        "classification": "事实",
+        "basis": "fixed37c4-retained-REA-and-original-instruction-bytes",
+        "title": "保存返回和离开身份分开",
+        "clauses": [
+          "402A80先以参数生成路径，与5847C4当前路径按字节比较；不等返回0。相等时以w打开，从slot0连续写非空名称及换行，遇首空槽停止，关闭并返回1。所选体未检查打开/写入/关闭结果，不提供可靠落盘成功回执。",
+          "4028E0先调用该保存；返回0时不改身份/计数，非0才把5331A8置-1、5849C4置0。它不清名称数组或路径；相同/不同路径与保存I/O结果不能合并。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x402a80",
+            "token": "if (iVar4 != 0)",
+            "lines": [
+              42
+            ]
+          },
+          {
+            "entry": "0x402a80",
+            "token": "FUN_0051b2e4",
+            "lines": [
+              45
+            ]
+          },
+          {
+            "entry": "0x4028e0",
+            "token": "DAT_005849c4 = 0",
+            "lines": [
+              12
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CS-04",
+        "classification": "事实",
+        "basis": "fixed37c4-retained-REA-and-original-instruction-bytes",
+        "title": "新增清除查找和界面上限各自成规",
+        "clauses": [
+          "402B50仅在count恰为100时拒绝；否则找首空槽并NUL复制后count加1。若没有空槽仍可走保存并返回1；本体不作名称长度/重复检查，调用者条件与此分开。",
+          "402D50只在slot0非空且count非0时清1700字节并置count0，再按已设置ID尝试保存；否则返回0。402CB0扫描100槽作字节精确比较，不按count或首空槽终止，并保留对5849C8的特殊比较。",
+          "402D90先查存在性：已有名称走删除；不存在时count>0x47就拒绝新增，即本界面最多从71增到72。不能把72界面限制与100物理槽容量写成统一上限。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x402b50",
+            "token": "== 100",
+            "lines": [
+              12
+            ]
+          },
+          {
+            "entry": "0x402d50",
+            "token": "DAT_005849c4 != 0",
+            "lines": [
+              8
+            ]
+          },
+          {
+            "entry": "0x402cb0",
+            "token": "0x11",
+            "lines": [
+              59
+            ]
+          },
+          {
+            "entry": "0x402d90",
+            "token": "0x47",
+            "lines": [
+              76,
+              125
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CS-05",
+        "classification": "事实",
+        "basis": "fixed37c4-retained-REA-and-original-instruction-bytes",
+        "title": "删除可能先修改再返回失败",
+        "clauses": [
+          "402BD0按匹配槽向前拷贝后继NUL串，索引等于原count时才count减1并清该槽。范围边界可使它在拷贝后直接返回0，不能把返回0解释为没有修改。",
+          "在count=100的条件例中，最后一次从slot100拷入slot99后到数组边界即返回0，未走count递减；这只是原指令控制流推导，没有运行原程序或构造真实名单。该边界与跨端有界数据政策须明确保留差异。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x402bd0",
+            "token": "if (iVar9 == iVar3)",
+            "lines": [
+              51
+            ]
+          },
+          {
+            "entry": "0x402bd0",
+            "token": "0x5847c3",
+            "lines": [
+              89,
+              98
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CS-06",
+        "classification": "事实",
+        "basis": "fixed37c4-retained-REA-and-original-instruction-bytes",
+        "title": "连接路径按阶段保存与重载",
+        "clauses": [
+          "455500在进入所选连接阶段时先4EE2F0，再4028E0(539684)，且未使用4028E0返回值；随后进入连接尝试。",
+          "局部结果非0时，包括成功及所选失败码，先释放所选进度窗口，再402910(539684)。两次分别即时读取539684，未在该体中保存为同一身份快照。",
+          "539684原文件初值为-1，针对该地址的查询记录14处精确引用；完整上游身份生产归属继续与连接/选择合同关联，不命名为账号或声称所有切换都能正确复位count。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x455500",
+            "token": "FUN_004028e0",
+            "lines": [
+              28
+            ]
+          },
+          {
+            "entry": "0x455500",
+            "token": "FUN_00402910",
+            "lines": [
+              102
+            ]
+          },
+          {
+            "entry": "0x455500",
+            "token": "if (iVar5 == 0)",
+            "lines": [
+              96
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CS-07",
+        "classification": "事实",
+        "basis": "fixed37c4-retained-REA-and-original-instruction-bytes",
+        "title": "聊天抑制有两套按键路径与复位入口",
+        "clauses": [
+          "4B4170两套布局都在7286AC位2及7286C0位4条件下，依据旧C1016C是否等于1写新C1016C，并把逻辑反值写60FF18；不是直接取反60FF18。具体键位/外层输入门槛继续引用已有输入合同。",
+          "49A960只有所需窗口指针有效、执行窗口切换后才设C1016C=1和60FF18=0；4F2AE0在普通接收门槛通过后发布节流资料并复位60FF18。467760在其为0时设置C1016C，但不在该体写60FF18。",
+          "Cz>/4F2DF0在60FF18非0时跳过所选黑名单/日志分支，继续后续显示路径。此状态不能概括为名单永久屏蔽所有气泡，也不能与文件句柄是否存在合并。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x4b4170",
+            "token": "DAT_0060ff18 = (uint)!bVar2",
+            "lines": [
+              41,
+              412
+            ]
+          },
+          {
+            "entry": "0x49a960",
+            "token": "DAT_0060ff18 = 0",
+            "lines": [
+              22
+            ]
+          },
+          {
+            "entry": "0x4f2ae0",
+            "token": "DAT_0060ff18 = 0",
+            "lines": [
+              12
+            ]
+          },
+          {
+            "entry": "0x4f2df0",
+            "token": "DAT_0060ff18 != 0",
+            "lines": [
+              50
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CS-08",
+        "classification": "事实",
+        "basis": "fixed37c4-retained-REA-and-original-instruction-bytes",
+        "title": "日志初始化尝试打开日期文件",
+        "clauses": [
+          "443B60清512×0x134日志环及所选输入对象，准备输入/显示状态。它只在60FF20为0时生成Log目录下chat_YYMMDD.txt路径：先r试开，随后使用a；新文件分支先写日期分隔头，既有分支先关闭再a重开。",
+          "所选成功句柄分支写会话时间头，随后调用51B745；打开结果和文件操作存在未检查路径，不能把初始化返回void当作落盘成功。已有非0句柄时本段不重新生成当天文件名。",
+          "精确60FF20查询共17处：初始化、444F20及另3处444E6B/444EBB/444ECE。后三处本轮Ghidra未能归属到函数，完整其他关闭/写入所有者保持待证，不报告全局文件生命周期已关闭。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x443b60",
+            "token": "DAT_0060ff20 == 0",
+            "lines": [
+              38,
+              46
+            ]
+          },
+          {
+            "entry": "0x443b60",
+            "token": "DAT_0060fb34",
+            "lines": [
+              44,
+              45,
+              47,
+              54
+            ]
+          },
+          {
+            "entry": "0x443b60",
+            "token": "FUN_0051b745",
+            "lines": [
+              62
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CS-09",
+        "classification": "事实",
+        "basis": "fixed37c4-retained-REA-and-original-instruction-bytes",
+        "title": "逐条日志的内存与文件效果",
+        "clauses": [
+          "444F20先NUL复制到512槽环；句柄存在时加本地时间写文件，关闭后按已保留路径以a重开，再推进环索引/颜色/样式/刷新状态。逐条重开与初始化路径重算是不同操作。",
+          "所选函数只见颜色<12、样式<14的上界，负数/任意NUL串并不享有现有纯核心的严格有效域保证。文件写入没有每条成功回执，关闭重开失败不能升级为保存成功。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x444f20",
+            "token": "FUN_0051b170",
+            "lines": [
+              50
+            ]
+          },
+          {
+            "entry": "0x444f20",
+            "token": "DAT_0060ff0c = iVar8 + 1",
+            "lines": [
+              54
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CS-10",
+        "classification": "事实",
+        "basis": "fixed37c4-retained-REA-and-original-instruction-bytes",
+        "title": "气泡配置的初值和引用边界",
+        "clauses": [
+          "534354的原文件32位初值为1，精确地址引用查询只给43D5BD；43D150在讲话未过期时根据该值和bodyFlags&0x180选择图标/文字。",
+          "这个有限查询没有发现直接配置写者，不证明没有按基址/指针/别名的写入。原绝对deadline与独立elapsed的回绕差异继续保留，未提升声音/骑乘/完整图形接受。"
+        ],
+        "source_anchors": [
+          {
+            "entry": "0x43d150",
+            "token": "DAT_00534354 == 0",
+            "lines": [
+              172
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CS-11",
+        "classification": "事实",
+        "basis": "current-independent-repository-source-static-inspection",
+        "title": "按需档案的局部预算不等于总预算",
+        "clauses": [
+          "archive模块的目录、每次读取和保留inflate缓存各32MiB；deflate工作经inflateTail串行，但method0读与调用者保留的返回数组不受该队列限制。close清保留缓存/名称并调用source.close，底层I/O终止回执与宿主资源域另论。",
+          "cold miss会同时分配请求output和可保留整条whole，旧缓存到remember时才淘汰。在旧缓存32MiB、新whole32MiB、output32MiB条件例中，三个已命名数组合计96MiB，另有解码器/元数据/宿主对象。这是静态算术例，不是实测峰值或总内存上界。"
+        ],
+        "code_view_pointers": [
+          "/inputs/shared~1legacy-game-resource-archive.mjs"
+        ],
+        "source_anchors": []
+      },
+      {
+        "id": "CS-12",
+        "classification": "事实",
+        "basis": "current-independent-repository-source-static-inspection",
+        "title": "快照codec的限制及职责",
+        "clauses": [
+          "resource-cache经launcher-resources/game-patch/game-patch-data引用1024文件、单文件32MiB、合计64MiB；记录上限为48+1MiB元数据+64MiB负载。encode/decode需要自有复制及元数据，格式预算不是总堆预算。",
+          "这两个模块的纯字节codec和按需ZIP读取不是大游戏包完整持久化后端。版本归属、宿主磁盘/存储、并发总额、整段导入期限和取消回执继续保留为X03必要合同，未改产品。"
+        ],
+        "code_view_pointers": [
+          "/inputs/shared~1launcher-resource-cache.mjs",
+          "/inputs/shared~1launcher-resources.mjs",
+          "/inputs/shared~1game-patch-data.mjs"
+        ],
+        "source_anchors": []
+      }
+    ],
+    "remaining_required_gaps": [
+      {
+        "id": "CS-R1",
+        "classification": "待验证",
+        "question": "539684全部身份生产/切换、名单合法输入域、文件I/O失败与计数/数组不变量及平台持久化政策；所选保存/加载/编辑控制流已成规",
+        "next": "按实际连接/选择所有者复用证据；已证名单辅助不重复取证"
+      },
+      {
+        "id": "CS-R2",
+        "classification": "待验证",
+        "question": "444E6B/444EBB/444ECE的完整所属及日志关闭链；534354基址/别名写入和配置发布边界",
+        "next": "只沿已定位三处引用和实际配置来源补必要边；精确xref无写者不算全局缺失"
+      },
+      {
+        "id": "CS-R3",
+        "classification": "待验证",
+        "question": "完整角色/窗口交错、原绝对时钟与独立elapsed差异、声音/骑乘/图形/公告与输入/编码域的整合",
+        "next": "复用共有输入/图形/公告合同，按用户流程归并"
+      },
+      {
+        "id": "CS-R4",
+        "classification": "待验证",
+        "question": "X03整体峰值/并发、临时缓冲、持久化/版本身份、整段导入期限和真实微信/手机资源域",
+        "next": "以当前模块和宿主合同统一预算；局部32MiB与64MiB快照不替代整包接受"
+      },
+      {
+        "id": "CS-R5",
+        "classification": "待验证",
+        "question": "全部需求发现/必要规则、同版交接、当前游戏与真实平台/官方接受",
+        "next": "维持40域原始范围和门槛；统一必要规格复核后才按D0–D6补实现差异"
+      }
+    ],
+    "proposed_acceptance_cases": [
+      {
+        "id": "CS-AC-01",
+        "kind": "proposed-not-executed",
+        "case": "选槽匹配尾跳后验证六直接写入；已知邮件选择字段不由本体直接清零。"
+      },
+      {
+        "id": "CS-AC-02",
+        "kind": "proposed-not-executed",
+        "case": "分别从count0/非0加载正常/空行/缺失文件，区分路径发布、计数与读入结果。"
+      },
+      {
+        "id": "CS-AC-03",
+        "kind": "proposed-not-executed",
+        "case": "相同/不同路径保存和离开；落盘失败不从函数返回1推定成功。"
+      },
+      {
+        "id": "CS-AC-04",
+        "kind": "proposed-not-executed",
+        "case": "编辑新增在71/72，底层在99/100；已有名称删除保留不同分支。"
+      },
+      {
+        "id": "CS-AC-05",
+        "kind": "proposed-not-executed",
+        "case": "count100删除和中间空槽，核对修改后失败及扫描100/保存连续前缀差异。"
+      },
+      {
+        "id": "CS-AC-06",
+        "kind": "proposed-not-executed",
+        "case": "两布局抑制依据C1016C，窗口切换失败不复位，接收节流复位另验。"
+      },
+      {
+        "id": "CS-AC-07",
+        "kind": "proposed-not-executed",
+        "case": "文件句柄0/非0、跨日期和逐条重开失败；内存日志与持久化结果分层。"
+      },
+      {
+        "id": "CS-AC-08",
+        "kind": "proposed-not-executed",
+        "case": "气泡默认1与bodyFlags/绝对deadline、完整配置写者另验。"
+      },
+      {
+        "id": "CS-AC-09",
+        "kind": "proposed-not-executed",
+        "case": "旧缓存+whole+output组合及method0并发，统一资源预算不能只检查每次32MiB。"
+      },
+      {
+        "id": "CS-AC-10",
+        "kind": "proposed-not-executed",
+        "case": "快照1024/32/64MiB与大ZIP、宿主持久化/取消/总期限分别验收。"
+      }
+    ]
+  },
+  "chat_owner_closure": {
+    "specification": {
+      "path": "build/analysis/chat-owner-closure-v1/specification.json",
+      "bytes": 17193,
+      "sha256": "4ca2fab0010da1717e0f26e69ad7ef5d939c3dc0b50961a82cbd38b5137252dd"
+    },
+    "source_inputs": {
+      "path": "build/analysis/chat-owner-closure-v1/source-inputs.json",
+      "bytes": 7485,
+      "sha256": "6a72c9a293226b72840d3213953ab2b683fa330381ab90919f429f9437f4bd89"
+    },
+    "validation_record_path": "build/analysis/chat-owner-closure-v1/validation.json",
+    "source_summary": {
+      "views": 3,
+      "reused_complete_native_views": 3,
+      "reused_derived_views": 0,
+      "body_ranges": 4,
+      "body_bytes": 5613,
+      "derived_instructions": 0,
+      "direct_E8_CALLs": 84,
+      "new_native_queries": 0,
+      "independently_redecoded_native_bytes": 5613,
+      "independently_redecoded_native_instructions": 1626,
+      "analyst_selected_span_bytes": 247,
+      "analyst_selected_span_instructions": 76,
+      "storage_key_exact_references": 14,
+      "storage_key_direct_stores": 2,
+      "new_REA_observations": 5,
+      "new_REA_function_observations": 0,
+      "fact_groups": 7,
+      "proposed_not_executed_cases": 6
+    },
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "facts": [
+      {
+        "id": "CO-01",
+        "classification": "事实",
+        "basis": "selected-retained-REA-original-bytes-and-focused-instruction-observations",
+        "title": "三处未归属日志引用是读操作",
+        "clauses": [
+          "444E6B/444EBB/444ECE分别把60FF20读入EAX/ECX/EDX；REA每条均明确READ=true、WRITE=false且没有所属函数。它们不是三个关闭/写入点。",
+          "对候选入口444E20的已分析静态xref为空；只说明本次精确查询没有已分析引用，不证明动态不可达，也不注册为已验UI入口。"
+        ],
+        "instruction_refs": [
+          {
+            "address": "0x444e6b",
+            "bytesHex": "a120ff6000",
+            "mnemonic": "mov",
+            "operands": "eax, dword ptr [0x60ff20]",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x444ebb",
+            "bytesHex": "8b0d20ff6000",
+            "mnemonic": "mov",
+            "operands": "ecx, dword ptr [0x60ff20]",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x444ece",
+            "bytesHex": "8b1520ff6000",
+            "mnemonic": "mov",
+            "operands": "edx, dword ptr [0x60ff20]",
+            "authority": "original-PE-and-independent-instruction-view"
+          }
+        ],
+        "body_tokens": []
+      },
+      {
+        "id": "CO-02",
+        "classification": "事实",
+        "basis": "selected-retained-REA-original-bytes-and-focused-instruction-observations",
+        "title": "未归属247字节片段的局部行为",
+        "clauses": [
+          "独立原文件指令视图从444E20原序言至444F16 RET，范围247字节；它是分析者选定span，不冒充Ghidra规范函数或新REA dossier。",
+          "所选片段只见颜色<12的有符号上界；NUL复制到512槽环当前记录，清记录+0x128/+0x12C，写+0x124颜色并推进/回绕写索引，置刷新计数20。未在此片段写+0x130样式字段，不能与444F20三参数路径合并。",
+          "句柄非0时使用共同时间/格式输出并调用51B745；本片段没有写60FF20，也没有普通逐条路径的51B170/51B2E4关闭重开调用。局部CALL集合和到达条件分别保留。"
+        ],
+        "instruction_refs": [
+          {
+            "address": "0x444e25",
+            "bytesHex": "83fd0c",
+            "mnemonic": "cmp",
+            "operands": "ebp, 0xc",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x444e77",
+            "bytesHex": "89b3b84a5e00",
+            "mnemonic": "mov",
+            "operands": "dword ptr [ebx + 0x5e4ab8], esi",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x444e7f",
+            "bytesHex": "89b3bc4a5e00",
+            "mnemonic": "mov",
+            "operands": "dword ptr [ebx + 0x5e4abc], esi",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x444ed5",
+            "bytesHex": "e86b680d00",
+            "mnemonic": "call",
+            "operands": "0x51b745 <.text+0x11a745>",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x444ef9",
+            "bytesHex": "892c85b44a5e00",
+            "mnemonic": "mov",
+            "operands": "dword ptr [4*eax + 0x5e4ab4], ebp",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x444f0a",
+            "bytesHex": "c70514ff600014000000",
+            "mnemonic": "mov",
+            "operands": "dword ptr [0x60ff14], 0x14",
+            "authority": "original-PE-and-independent-instruction-view"
+          }
+        ],
+        "body_tokens": []
+      },
+      {
+        "id": "CO-03",
+        "classification": "事实",
+        "basis": "selected-retained-REA-original-bytes-and-focused-instruction-observations",
+        "title": "存储键14处精确引用已经配对",
+        "clauses": [
+          "539684既有14处精确引用全部落入三个已有完整原记录：455500两处、457C30十处、4930F0两处；无新函数反编译。",
+          "该有限地址集合中只有457D10写-1、457D72写ESI，其余12处均读；不能把格式化/呈现读者当身份生产者。别名/批量写入不在精确集合的完整性证明内。",
+          "五输入worker初表未匹配4932F9/49366F，补查已声明mail源即找到完整4930F0；索引未命中不是仓库没有证据。原457D10查询参数与规范457C30入口分别保留。"
+        ],
+        "instruction_refs": [
+          {
+            "address": "0x455652",
+            "bytesHex": "a184965300",
+            "mnemonic": "mov",
+            "operands": "eax, dword ptr [0x539684]",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x455706",
+            "bytesHex": "8b0d84965300",
+            "mnemonic": "mov",
+            "operands": "ecx, dword ptr [0x539684]",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x457d10",
+            "bytesHex": "c70584965300ffffffff",
+            "mnemonic": "mov",
+            "operands": "dword ptr [0x539684], 0xffffffff",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x457d72",
+            "bytesHex": "893584965300",
+            "mnemonic": "mov",
+            "operands": "dword ptr [0x539684], esi",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x4932f9",
+            "bytesHex": "8b0d84965300",
+            "mnemonic": "mov",
+            "operands": "ecx, dword ptr [0x539684]",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x49366f",
+            "bytesHex": "a184965300",
+            "mnemonic": "mov",
+            "operands": "eax, dword ptr [0x539684]",
+            "authority": "original-PE-and-independent-instruction-view"
+          }
+        ],
+        "body_tokens": []
+      },
+      {
+        "id": "CO-04",
+        "classification": "事实",
+        "basis": "selected-retained-REA-original-bytes-and-focused-instruction-observations",
+        "title": "分组选择是本地名单路径身份的生产者",
+        "clauses": [
+          "457C30的所选选择阶段在分组按钮输入位1、对应计数>0且当前539684<0时，写入该分组行索引；分组表有限循环120行、步长0x1C，不把%12布局换算当容量。",
+          "539684的原初值为-1。返回/取消相关按钮分支将其置-1并复位页码924FD0；另一个所选按钮路径请求窗口关闭。完整输入外层继续引用已有合同。",
+          "本体另用924FD0页码、923B38行选择，以及group*20+page*10+row产生的16位56769C最终线路索引；不能把这些身份与名单%d分组键或角色/账号ID互换。"
+        ],
+        "instruction_refs": [
+          {
+            "address": "0x457d10",
+            "bytesHex": "c70584965300ffffffff",
+            "mnemonic": "mov",
+            "operands": "dword ptr [0x539684], 0xffffffff",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x457d44",
+            "bytesHex": "a184965300",
+            "mnemonic": "mov",
+            "operands": "eax, dword ptr [0x539684]",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x457d72",
+            "bytesHex": "893584965300",
+            "mnemonic": "mov",
+            "operands": "dword ptr [0x539684], esi",
+            "authority": "original-PE-and-independent-instruction-view"
+          }
+        ],
+        "body_tokens": [
+          {
+            "entry": "0x457c30",
+            "token": "DAT_00539684 = iVar4"
+          },
+          {
+            "entry": "0x457c30",
+            "token": "DAT_00924fd0 = 0"
+          },
+          {
+            "entry": "0x457c30",
+            "token": "DAT_0056769c"
+          }
+        ]
+      },
+      {
+        "id": "CO-05",
+        "classification": "事实",
+        "basis": "selected-retained-REA-original-bytes-and-focused-instruction-observations",
+        "title": "不同页和线路不等于不同名单键",
+        "clauses": [
+          "所选服务器/线路列表的布局与呈现反复读取539684，页码和行另行变化；最终线路选择没有在已证写入集合中另写名单键。",
+          "4930F0内两条真实指令只读取该分组键，参与已有名片资料的所选格式化。该函数伪代码的栈/调用参数不能单独作为新增准确ABI；本轮结论限于已核的两条读取与已有MAIL呈现合同。"
+        ],
+        "instruction_refs": [
+          {
+            "address": "0x4583a0",
+            "bytesHex": "a184965300",
+            "mnemonic": "mov",
+            "operands": "eax, dword ptr [0x539684]",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x458455",
+            "bytesHex": "8b0d84965300",
+            "mnemonic": "mov",
+            "operands": "ecx, dword ptr [0x539684]",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x4584c6",
+            "bytesHex": "a184965300",
+            "mnemonic": "mov",
+            "operands": "eax, dword ptr [0x539684]",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x458590",
+            "bytesHex": "a184965300",
+            "mnemonic": "mov",
+            "operands": "eax, dword ptr [0x539684]",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x4932f9",
+            "bytesHex": "8b0d84965300",
+            "mnemonic": "mov",
+            "operands": "ecx, dword ptr [0x539684]",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x49366f",
+            "bytesHex": "a184965300",
+            "mnemonic": "mov",
+            "operands": "eax, dword ptr [0x539684]",
+            "authority": "original-PE-and-independent-instruction-view"
+          }
+        ],
+        "body_tokens": []
+      },
+      {
+        "id": "CO-06",
+        "classification": "事实",
+        "basis": "selected-retained-REA-original-bytes-and-focused-instruction-observations",
+        "title": "切换身份与保存加载的次序不能猜测",
+        "clauses": [
+          "455500的保存/离开与重新加载分别即时读取539684。结合本轮生产者，已知它来自当前分组选择，不能假定前一调用仍持有旧分组快照。",
+          "复用CS-03：路径不等时4028E0不重置count；复用CS-06：该返回未被455500消费，非0连接结果走重新加载。完整全局退役、有效输入域和平台存储策略仍须明确；不据这些局部条款宣称真实换组故障已运行复现。"
+        ],
+        "instruction_refs": [
+          {
+            "address": "0x455652",
+            "bytesHex": "a184965300",
+            "mnemonic": "mov",
+            "operands": "eax, dword ptr [0x539684]",
+            "authority": "original-PE-and-independent-instruction-view"
+          },
+          {
+            "address": "0x455706",
+            "bytesHex": "8b0d84965300",
+            "mnemonic": "mov",
+            "operands": "ecx, dword ptr [0x539684]",
+            "authority": "original-PE-and-independent-instruction-view"
+          }
+        ],
+        "body_tokens": [
+          {
+            "entry": "0x455500",
+            "token": "FUN_004028e0"
+          },
+          {
+            "entry": "0x455500",
+            "token": "FUN_00402910"
+          }
+        ]
+      },
+      {
+        "id": "CO-07",
+        "classification": "事实",
+        "basis": "retained-selected-configuration-source-clauses",
+        "title": "配置生产仍按真实缺口归并",
+        "clauses": [
+          "继续复用CS-10的534354原初值1、精确读引用与气泡两分支，不重取同一查询。该证据没有给出完整别名/配置发布链，不能据此宣称无写者或增加未证用户设置。",
+          "三处日志读引用的方向已闭合；剩余应用退出/间接文件生命周期与跨角色上下文按共用所有者处理。必要平台/全局问题保持待验证，不把未归属span扩成一项已可用功能。"
+        ],
+        "instruction_refs": [],
+        "body_tokens": []
+      }
+    ],
+    "remaining_required_gaps": [
+      {
+        "id": "CO-R1",
+        "classification": "待验证",
+        "question": "全部跨角色/入退场和别名/批量写入、名单格式/I/O错误域与宿主存储；精确分组键14处已归并",
+        "next": "按共用上下文及平台持久化合同复用规则，不重复三旧体或已证名单辅助"
+      },
+      {
+        "id": "CO-R2",
+        "classification": "待验证",
+        "question": "完整应用退出/间接日志生命周期和534354配置发布/别名；247字节未归属span的动态可达性未证",
+        "next": "仅实际用户流程需要时沿主退出/配置来源补证，不将空xref当全局不可达或强行注册UI入口"
+      },
+      {
+        "id": "CO-R3",
+        "classification": "待验证",
+        "question": "完整时钟/输入/声音/骑乘/公告整合，以及X03总峰值/并发/持久化/版本/整段期限和取消回执",
+        "next": "集中共用状态与宿主合同，停止对已证局部包装/辅助的重复分析"
+      },
+      {
+        "id": "CO-R4",
+        "classification": "待验证",
+        "question": "全需求发现、必要规格和同版交接、当前游戏消费者及实际三端/官方接受",
+        "next": "保留40原域/版本/依赖/验收；统一规格门槛通过后再成组补实现差异"
+      }
+    ],
+    "proposed_acceptance_cases": [
+      {
+        "id": "CO-AC-01",
+        "kind": "proposed-not-executed",
+        "case": "三条未归属指令读取方向，与该span内零句柄/非零句柄路径分别核验。"
+      },
+      {
+        "id": "CO-AC-02",
+        "kind": "proposed-not-executed",
+        "case": "未归属日志span不清样式字段、不注册用户入口；真实到达需独立证据。"
+      },
+      {
+        "id": "CO-AC-03",
+        "kind": "proposed-not-executed",
+        "case": "分组0/119及无资料行、取消-1；页码/线路变化不互换名单键。"
+      },
+      {
+        "id": "CO-AC-04",
+        "kind": "proposed-not-executed",
+        "case": "分组键与最终16位线路、名片格式化读者分别核验。"
+      },
+      {
+        "id": "CO-AC-05",
+        "kind": "proposed-not-executed",
+        "case": "旧路径与新分组键不匹配时不能假定保存成功或计数已清零。"
+      },
+      {
+        "id": "CO-AC-06",
+        "kind": "proposed-not-executed",
+        "case": "配置默认/气泡分支保持，别名/退出/平台真实I/O单列。"
+      }
+    ],
+    "resolved_selected_prior_subparts": [
+      "CS-R2 three unowned references are reads, not three close writers",
+      "CS-R1 exact539684 producer/consumer map and selected group identity"
+    ]
+  },
+  "context_transition_contract": {
+    "specification": {
+      "path": "build/analysis/context-transition-contract-v1/specification.json",
+      "bytes": 58295,
+      "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+    },
+    "source_inputs": {
+      "path": "build/analysis/context-transition-contract-v1/source-inputs.json",
+      "bytes": 6210,
+      "sha256": "88b294dc02ec5b120d8bfddaac66a8099f19b2e7c041eeaecbe377109a74cb4c"
+    },
+    "validation_record_path": "build/analysis/context-transition-contract-v1/validation.json",
+    "source_summary": {
+      "views": 35,
+      "reused_complete_native_views": 34,
+      "new_complete_native_views": 1,
+      "reused_derived_views": 0,
+      "body_ranges": 36,
+      "body_bytes": 8156,
+      "derived_instructions": 0,
+      "direct_E8_CALLs": 289,
+      "new_native_queries": 1,
+      "native_views": 35,
+      "native_instructions": 2185,
+      "direct_calls": 289,
+      "additional_cold_helper_bytes": 72,
+      "additional_cold_helper_instructions": 29,
+      "source_fact_groups": 13,
+      "independent_design_groups": 4,
+      "current_code_inputs": 5,
+      "proposed_not_executed_cases": 10,
+      "exported_evidence_records": 51,
+      "retained_imported_records": 50,
+      "new_records": 1
+    },
+    "scope": "fixed37c4 selected entry/reset/return/shared-owner source clauses plus separate cross-platform design",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "shared_fact_reference": "analysis/capability-first-v1/game-entry-review-contract.json#/context_transition_contract",
+    "shared_clauses": [
+      "CT-F3",
+      "CT-F4",
+      "CT-F6",
+      "CT-F13",
+      "CT-D1",
+      "CT-D2",
+      "CT-D3",
+      "CT-D4"
+    ],
+    "full_social_mail_or_global_lifecycle_closed": false
+  },
+  "inventory_refresh_and_attachment_selection": {
+    "classification": "固定历史 SE 的静态事实与独立实现交接",
+    "sample_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+    "source_review": "build/analysis/mail-inventory-selection-v1/source-review.json",
+    "local_comparison": "build/analysis/mail-inventory-selection-v1/local-comparison.json",
+    "validation": "build/analysis/mail-inventory-selection-v1/validation.json",
+    "report": "reports/game-static.md#legacy-se-mail-attachment-refresh",
+    "capabilities": ["G09", "G20", "X02"],
+    "existing_rules": [
+      "analysis/capability-first-v1/game-ordinary-services-functional-specification.json#/facts/1",
+      "analysis/capability-first-v1/game-mail-data-contract.json#/source_facts/29",
+      "build/analysis/mail-operation-composition-v1/specification.json#/facts/1",
+      "build/analysis/mail-operation-composition-v1/specification.json#/facts/2"
+    ],
+    "ordinary_inventory_selection": {
+      "binding": {"window_id": 14, "table_row": "0x559c74", "callback": "0x4e12c0", "descriptor": "0x561948"},
+      "rule": "4E12A0 初始化选择，命中有效非空槽并取得所选左键输入后，4E1658 保存图形、4E165E 保存实际槽到 561AEC、4E1664 置活动字。后续选择、移动及丢弃分支读取该状态。",
+      "slot_notification": "4E1D20 先检查 561AEC 非负且等于参数，4E1D2F 命中时尾跳 4E1CF0。重置将 561AEC 置 -1，清 C5EAC4/C221C8/C221CC/C16214，并将 5625E4 置 1。",
+      "mail_fields_outside_direct_reset": ["0xc44de0", "0xc44de4", "0xc20f00", "0xc1fc28", "0xfba960", "0xfba958"]
+    },
+    "receive_order": {
+      "shared_admission": "924F30 为零",
+      "full": {
+        "tag": "?<E",
+        "consumer": "0x4f2310",
+        "slot_count": 28,
+        "first_name_token_1_based": 2,
+        "fields_per_implicit_slot": 13,
+        "rule": "每槽先通知 4E1D20，再读取名称。空名清活记录的存在字和名字首字节。物品槽 8–27 在本槽写入后调用 4CBCE0(1, slot-8)。首 token 的生产者语义待证。"
+      },
+      "delta": {
+        "tag": "?l)",
+        "consumer": "0x4f25a0",
+        "fields_per_explicit_slot": 14,
+        "rule": "读取实际槽后先通知，再读名称。尾部组可在名称提取失败前使匹配的普通选择失效。有效的空名称更新只清存在字，匹配的缓存更新按已证分支执行。"
+      },
+      "swap": {
+        "tag": "@Y)",
+        "consumer": "0x4f2c40",
+        "rule": "按已接纳的两个有效背包槽，5009B0 交换 0x65C 字节活记录，47F200 处理槽引用并交换 C5E94C 中两个槽的占用字节。返回后按包内参数次序通知两槽，最后调用 4CC550、4C80B0 更新各自缓存投影。",
+        "mail_selector": "所选普通交换发布和缓存路径没有写三套表单保存的附件槽号。独立事件之间，原槽号继续指向这个位置的当前记录。C5E94C 是由多个功能共用的占用字节，交换这两个字节不能确定哪一个功能占用或释放了哪一槽。"
+      }
+    },
+    "forms": {
+      "classic": {
+        "window_id_with_send_controls": 23,
+        "control_callback": "0x498b00",
+        "item_slot": "0xc44de4",
+        "pet_selection": "0xc44de0",
+        "choose": "所选放置再读物品资格位。更换时先递减旧槽占用字节，保存新绝对槽后递增新槽。取消可清当前槽并递减。",
+        "submit": "正文及当前宠物经所选检查后，498E87/499016 再读 C44DE4，未再次核验这一物品的存在字或资格位。已证状态 3 的宠物可使控件处理返回而未发送。家族分支使用 :+(，个人分支使用 (>#。",
+        "reenter": "497D10 保存上下文及草稿，记录附带的槽号，并在持有槽时清实时选项、递减该已存槽当前的占用字节。497AB0/497DB0 以 499340 比较草稿上下文的前两个字后可恢复正文；所选路径不会从草稿恢复附件占用。"
+      },
+      "alternate": {
+        "personal": {"chooser": 45, "pet_picker": 48, "form": 49, "item_grid": 50, "item_slot": "0xc1fc28", "pet_slot": "0xc20f00"},
+        "family": {"pet_picker": 88, "form": 87, "item_grid": 86, "item_slot": "0xfba958", "pet_slot": "0xfba960"},
+        "choose": "所选宠物入口保存实际宠物槽，依次请求打开表单和网格。网格查实时存在字、资格 bit0 和 C5FB2C 原始双击位 0x10，同槽再次命中切回 -1。0x203 经 45E4F4 分支可置这个双击位。另一套窗口助手的重复输入位属于不同字段。",
+        "submit": "49、87 的选定分支在窗助手给出确认位且正文非空时读保存的实际宠物和附件槽。两表单均调用 4F6E30 发送 (>#。资格和存在检查位于所选网格的选择分支。保留家族表单既有请求、历史和保存的各自来源。",
+        "reenter": "4E94D0 对活动且无缓存的网格在尝试分配后调用非空初始化回调，并重新读取缓存。4D0400/511640 各清附件和网格辅助值，宠物值由各自入口持有。复用活动缓存时跳过初始化，非活动消费可清缓存并一次返回 2。表单和网格的开关请求及真正回收仍按受证回调条件验收。"
+      }
+    },
+    "implementation": {
+      "classification": "推测",
+      "D0": "共用 28 槽活记录发布入口，发布槽变化及普通窗选择失效。保持全量隐式槽与增量显式槽的字节入口，验证有效空值、缺字段与版本化发布。已有独立 revision 校验继续用于原调用者。",
+      "D3": "G09 复用现有单槽及交换实现，把 ?<E 从已解码消息接入同一物品状态。G20 沿 MM-D3/D4/D7 补各布局的附件、提交和草稿复用，沿既有来源增补个人命令编码。已证历史行为的表单读当时保存的槽号，测试名称、资格或位置发生变化时的实际参数与各窗口准入。目标若要求额外的变化后确认，须先明确其预期并作为独立验收条件。",
+      "observed_baseline": {
+        "inventory_owner": "shared/legacy-game-items.mjs",
+        "receive_owner": "shared/legacy-game-protocol.mjs",
+        "full_refresh_decodes_without_inventory_publication": true,
+        "delta_and_swap_update_inventory_with_revisions": true,
+        "family_formatter_registered": true,
+        "personal_formatter_registered": false
+      }
+    },
+    "acceptance_extensions": [
+      {"cases": ["MM-T07", "MM-T08", "MM-T09"], "expected": "全量、逐槽及交换依各自时序通知。普通选择为负、命中、未命中的结果各异。有效空名和截断尾组单独验收。"},
+      {"cases": ["MM-T11", "MM-T12", "MM-T13"], "expected": "对比附件同槽换物、移除、资格变化和双槽交换。经典选定提交重新检查宠物，另一套先以网格资格与双击位选槽，提交由活动窗和正文准入。记录实际请求参数，并与本地发件状态分别核验。"},
+      {"cases": ["MM-T03", "MM-T05", "MM-T25", "MAIL-CASE-10", "MAIL-CASE-15"], "expected": "经典取消和析构释放其所选槽，同一上下文只按所证恢复正文。另一套覆盖已有缓存、无缓存分配成功或失败、非活动及重开，并检查占用字节与附件槽各自的生命周期。"}
+    ],
+    "remaining": [
+      {"classification": "待验证", "references": ["MM-R1", "MR-PENDING-01"], "rule": "发送者最终投递、失败、拒绝或撤销与附件结算的实际同版关联。"},
+      {"classification": "待验证", "references": ["MM-R2", "MR-PENDING-03"], "rule": "另一套窗口的外层实际普通帧调度，以及能改变该选择结果的其他发布者与别名。"}
+    ],
+    "selected_operation_review_complete": true,
+    "original_game_executed": false,
+    "full_target_cases_executed": false,
+    "current_version_equivalence_proven": false,
+    "product_code_changed": false
+  },
+  "fixed_se_classic_mail_compose_controls": {
+    "classification": "固定 SE 静态事实与所选帧次序推导",
+    "source": {
+      "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+      "bytes": 1569280,
+      "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+    },
+    "control_register": "analysis/capability-first-v1/entry-admission.json#/selected_fixed_se_operations/classic_mail_compose_controls",
+    "report": "reports/game-static.md#fixed-se-classic-mail-compose-controls",
+    "validation_report": "reports/validation.md#fixed-se-classic-mail-compose-controls-validation",
+    "source_review": "build/analysis/fixed-se-classic-mail-compose-controls-v1/source-review.json",
+    "source_evidence": "build/analysis/fixed-se-classic-mail-compose-controls-v1/rea-evidence.json",
+    "validation": "build/analysis/fixed-se-classic-mail-compose-controls-v1/validation.json",
+    "reused_specs": [
+      "analysis/capability-first-v1/game-mail-data-contract.json#/fixed_se_entry_admission",
+      "analysis/capability-first-v1/game-mail-data-contract.json#/fixed_se_classic_mail_reopen",
+      "analysis/capability-first-v1/game-mail-data-contract.json#/inventory_refresh_and_attachment_selection",
+      "analysis/capability-first-v1/game-mail-data-contract.json#/mail_delivery_results",
+      "analysis/capability-first-v1/entry-admission.json#/selected_fixed_se_operations/classic_contact_list_controls"
+    ],
+    "previous_registration_review": "build/analysis/target-game-lifecycle-v1/mail-entry-source-review.json",
+    "capabilities": [
+      "G09",
+      "G14",
+      "G16",
+      "G20",
+      "X02",
+      "X08"
+    ],
+    "compose_and_reply": "回复沿现有名单设置实际 view、收件目标和群发标志。22/23 共用正文编辑控件。22 的控件 2 按 0x02 依次复制 C5DB88 到 C3B6AC、请求 23 与 14。23 的首次初始化标记已有 22。反向入口 23 的控件 2 先标记本窗，再请求 22。草稿复用、输入恢复和占用释放沿实际创建、退役及原比较键。",
+    "attachment": "23 的控件 8/9 循环修改可选宠物位置 C44DE0，提交按 C224D4 取实际槽。控件 5 单独处理 C44DE4 上的物品，按类别、槽号和标志判断拖入，更新占用。控件 3 读现用个人或家族收件上下文与正文。499370 的状态 3 分支可消耗点击，实际提交继续沿 MAIL-06/07。",
+    "group_scroll": {
+      "fact": "控件 1/2 按 0x0400 步进一行，6/7 按 0x02 步进七行，调用 4A6F80。它先处理负值，再用 count-7 限制，因此 count<7 时写回 count-7。4A6D60 在控件遍历后先经 4A6FC0 用非负上限重算偏移，再更新可见行并绘制。控件 20 至 26 在自己的槽位分派时读取当时偏移。",
+      "inference": "同一控件遍历中，滚动与后续行的参与和取值发生在重算前。若后续回调具备实际分派前提，重算前的值及渲染时的偏移可以不同。保留实际事件位、控件参与和索引有效域验收。"
+    },
+    "reuse_and_deltas": {
+      "D0": "复用经典输入、同号请求、群组关闭、占用释放与控件顺序。",
+      "D3": "在同一邮件状态提供当前收件人、草稿、宠物位置、附件和群发资料。沿 MM-D3/MM-D4/MM-D7 接现有编解码并登记缺失格式器与业务发布。",
+      "D5": "用同一组窗口切换、实际选中、发信与退出用例执行三端对照。",
+      "local_codec_comparison": "build/analysis/fixed-se-classic-mail-compose-controls-v1/local-codec-comparison.json"
+    },
+    "acceptance": [
+      {
+        "id": "MAIL-CASE-45",
+        "expectation": "区分正文焦点、附件按钮复制草稿、发送按钮和反向返回。核窗口申请失败、复用及实际退役发生前后的同一收件人和草稿。"
+      },
+      {
+        "id": "MAIL-CASE-46",
+        "expectation": "在投递宠物前后切换和附件更换、清除后，按当前个人及家族收件人核真实宠物槽、物品槽。对照当前宠物状态 3、正常发送及正文空。"
+      },
+      {
+        "id": "MAIL-CASE-47",
+        "expectation": "用人数 0、1、6、7、8 核步进写入、当轮后继回调和绘制前的偏移。验证名单缩短、原选中、低于七行与下次输入。"
+      }
+    ],
+    "remaining": {
+      "MM-R1": "发送者同版投递、拒绝、失败或撤销，以及附件最终结算的关联。",
+      "MM-R2": "另一套窗口的实际普通分派和适用条件。"
+    },
+    "full_mail_specification_ready": false,
+    "original_or_platform_runtime_executed": false
+  },
+  "fixed_se_classic_mail_reopen": {
+    "classification": "固定 SE 静态事实及所选分支推导",
+    "source": {
+      "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+      "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+      "REA": "6.7.0",
+      "Ghidra": "12.1.4",
+      "LLVM": "Apple LLVM version 21.0.0",
+      "profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+    },
+    "source_evidence": "build/analysis/fixed-se-classic-mail-reopen-v1/rea-evidence.json",
+    "validation": "build/analysis/fixed-se-classic-mail-reopen-v1/validation.json",
+    "report": "reports/game-static.md#fixed-se-classic-mail-reopen",
+    "baseline_comparison": "build/analysis/fixed-se-classic-mail-reopen-v1/local-comparison.json",
+    "entry_admission": "analysis/capability-first-v1/entry-admission.json#/selected_fixed_se_operations/mail_reopen",
+    "capabilities": ["G03", "G09", "G20", "X02"],
+    "related_rules": ["GF-A10", "GF-A11", "MAIL-08", "MAIL-17", "MM-D3", "MM-D7"],
+    "lifecycle": {
+      "classification": "事实",
+      "capture_and_retire": "9/1 的 4EA222 单独记录窗口 21、40、22、23 是否活动。9/200 和 9/250、252 的所查路径使用 468EE0 记录活动窗。468E50 按活动池槽遍历，执行业务退役后清指针，再将 C5E94C 开始的 28 个占用字节清零。22 和 23 共用 497D10，在 467FC0 清其活动指针前写同一暂存区。",
+      "saved_draft": "497D10 将当前 view、目标、宠物位置、附件槽和群发模式分别写入 C3B698 至 C3B6A8，再复制 C5DB88 的 NUL 终止正文至 C3B6AC。活动附件槽非 -1 时，递减该槽的占用字节并将活动宠物位置和附件槽写 -1。附件槽已为 -1 时，所查回调保留活动宠物位置。若群发窗 49 活动，置其 0x8000 退役标记。",
+      "ordinary_rebuild": "467760 先清活动池和登记并重置 28 个占用字节，再调用 469590。外层游标位于 21、22、23、40 之一且其标记为 1 时进入共用分支，依次检查 21、40、22、23 的非零标记。22 经 497A90 先写 C45044=1 再直接构造。23 直接构造。各标记在各次调用返回后清除。49 的保存标记为 1 时按范围外的默认分支清除标记，活动群发窗的创建由 22 的初始化请求。",
+      "battle_entry_rebuild": "10/1 从 4EA29F 到 467EC0。同一重建入口先清活动池与占用字节。22 或 23 任一标记非零时直接请求 22 一次，返回后清两标记。该入口未调用 497A90，判断列表保留时使用当时已有的 C45044。两种重建在没有活动 22 和 23 时调用 49A130 恢复普通输入目标。9/250 的 0 至 7 号占用后置增加沿已有工作窗规则处理。",
+      "ordinary_openers": "494CE0 的所选群发入口在 49 为空时设 view=0、群发模式=1，沿过渡请求 22。活动 49 存在时标其退役。496E80 的回复设置当前目标和 view，并将群发模式置 0。有已选物品则先释放当前占用并清宠物和物品选择。后续草稿比较使用这些写入后的当前值。"
+    },
+    "draft_and_focus": {
+      "classification": "事实",
+      "body_match": "497AB0 与 497DB0 的初始化用两份 0x270 字节参数调用 499340。比较的两个字段是当前与保存的 view、目标。匹配时把保存正文复制到 55BCB0。所查恢复路径没有从草稿头部回写当前目标、群发模式或附件。23 入口另外检查当前合资格宠物并可置活动宠物位置为 0。",
+      "editor_seed": "55BC98 的 PE 初值指向 C5DB88，正文暂存在描述符 +0x18。46CF90 的模式 0 经 46CFC8 调用 443AB0。描述符指针非零且高字节为 0 时，编辑器先清正文头、长度及游标，暂存全局输入目标 60FF08，临时绑定正文区，按 NUL 和最多 0x11F 字节经 443F20、444B80 装入，再恢复调用前的输入目标。有效空暂存初始化为空正文。编辑器保留原字节输入规则。",
+      "focus_publication": "22 在描述符被拒绝时先把 55BC98 的指针改回 C5DB88，本次装入随拒绝结束。22 和 23 随后都将实际输入目标绑定 C5DB88，清 55BCB0 首字节，将当前控件的记录写入 C4BE9C，并绑定该控件的正文指针。22 的后续 498810 经模式 2 同步编辑器位置。草稿恢复、编辑器装入和焦点绑定按此顺序执行。",
+      "attachment_reentry": "新建 22 时若 23 活动，先标记其 0x8000。若当时附件槽非 -1，立即递减所在槽占用字节并清两处活动选择。之后实际退役回调重读活动附件槽。经典附件重开沿当前活动值及新选择，已保存的旧槽不参与该次恢复。"
+    },
+    "group_list": {
+      "classification": "事实",
+      "request_and_consume": "22 的 -1 初始化仅在当前 C44DE8==1 时请求 46C6B0(49,1,0,0)。此时 C45044 非零先写 C20278=1。22 绑定编辑器后清 C45044。49 的新 -1 初始化独立读取 C20278。为零时清 C5E9C0、重置 C1FC30/C1FC34 和两组列表表，再按类型 0 重建映射并写控制块 +0x2C4 为 1。非零时跳过这组初始化写入。两支均在 4A6D15 清 C20278。",
+      "transition_and_reuse": "过渡对象分配失败时 46C595 同步调用 468190(49)。成功分配时 46C4E0 计数从零开始，在第十一次实际更新调用构造。新窗先登记入池、执行 -1，再发布活动指针。有效同号实例沿 468210 置 0x2000 后直接返回，满池和主分配失败也在 -1 前返回。所选重复和失败分支均未执行业务初始化。普通恢复标记、C45044 与 C20278 各在各自的写入点结算。",
+      "retirement": "22 的析构标记活动 49。49 的 4A6CD0 在控件前的普通更新发现活动父窗 22 为空时标记自身。其后的 4A6D60 调用列表处理和共用绘制。49 析构在活动父窗存在且当前群发模式为 1 时标记父窗。打开请求亦可先标记已有 49。22 和 49 的表项均属组 1，所查构造先同步清组 2，然后再找同号。标记与实际退役之间保留原活动检查。所选同步回退中 49 的 -1 可先于新 22 的活动指针发布。"
+    },
+    "derived_reentry": {
+      "classification": "推测",
+      "rule": "从所选指令分支推导。新建 22 成功而 49 尚未初始化时，父窗入口字已清，列表保留字仍在。旧 49 被标退役后，若同步回退重用它，列表保留字继续存在。其稍后实际退役时按当时群发模式及父窗活动状态处理，因而可以再标记新父窗。后续一次真正成功的 49 初始化读取当时的列表保留字。实际帧间交错留待验收。"
+    },
+    "implementation": {
+      "classification": "推测",
+      "D0": "沿共用经典窗口、编辑器和物品状态管理保存标记、实际退役、组清理及焦点。分开登记恢复请求、活动对象、28 槽占用和子窗初始化条件。复用 GF-A10/GF-A11 与窗池顺序。",
+      "D3": "沿 MM-D3/MM-D7 让同一邮件所有者处理草稿键、在途子窗、群发表、附件活槽和取消重开。复用现有单槽、交换、文本字段和已证发送格式。现有全量背包解码接发布仍沿原差异。网页、移动网页和微信共享草稿和窗口规则。",
+      "D5": "在各端实际切换、关闭和重开用例核对编辑区、当前输入目标和附件的可选状态。群发保留条件及附件释放由同一业务状态提供。"
+    },
+    "acceptance_extensions": [
+      {"case": "MAIL-CASE-41", "related": ["MM-T03", "MM-T05", "MAIL-CASE-10"], "expected": "在正常清空过的暂存区，同 view 与同目标恢复合资格的原字节正文，任一变化以空暂存初始化。只有群发模式、宠物位置或物品槽变化时，比较结果仍由这两个字段决定。分别覆盖描述符拒绝、暂存首字节归零和实际输入目标绑定。"},
+      {"case": "MAIL-CASE-42", "related": ["GF-A10", "GF-A11", "MAIL-CASE-15"], "expected": "普通标记依序恢复 22 或 23。战斗 10/1 用 22、23 的非零标记合并请求 22。比较两条的 C45044 读写、普通默认焦点及父子窗的创建前后顺序。"},
+      {"case": "MAIL-CASE-43", "related": ["MM-T05", "MM-T25"], "expected": "覆盖新 49 初始化前的十次更新、同步回退、同号重用和满池/主分配失败。验证 22 清恢复入口字与 49 消费列表保留字分别发生。子窗未初始化时保留列表标记，正常新建按零和非零两支验证重建或跳过。"},
+      {"case": "MAIL-CASE-44", "related": ["MM-T11", "MM-T12", "MM-T13"], "expected": "尚持有物品时在 22 或 23 的实际退役释放原槽。已有 23 在重开 22 时被标记，先释放时后续析构读取已清的活动槽。无附件时析构保留当前宠物位置。分别核对单窗释放、整批清零和群发父子标记。"}
+    ],
+    "remaining": {
+      "classification": "待验证",
+      "rules": ["MAIL-GAP-01", "MAIL-GAP-02", "MM-R1", "MM-R2"],
+      "scope": "所选历史路径已可交接。其它会改变同一草稿或列表的后到生产者沿具名入口复核。另一套窗口实际调度、同版邮件最终结果、附件权威结算与产品三端用例待验证。"
+    },
+    "selected_operation_review_complete": true,
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "original_game_executed": false,
+    "full_target_cases_executed": false,
+    "current_version_equivalence_proven": false
+  },
+  "fixed_se_directory_notification": {
+    "classification": "固定 SE 静态事实，沿原迷你邮件规格接线。",
+    "source": "analysis/capability-first-v1/game-communication-functional-specification.json#/fixed_se_player_profile_wire/directory_publication/adjacent_consumers/mini_mail",
+    "notification": "analysis/capability-first-v1/game-communication-functional-specification.json#/fixed_se_player_profile_wire/directory_publication/notification",
+    "related_acceptance_case": "PROFILE-A08",
+    "current_runtime_verified": false,
+    "classic_directory_and_mini_mail": "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/fixed_se_classic_directory_mini_mail",
+    "submission_or_final_delivery_accepted": false
+  }
+}

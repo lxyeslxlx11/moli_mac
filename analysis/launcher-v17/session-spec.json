@@ -1,0 +1,49 @@
+{
+  "schema": "moli.launcher-v17.session-spec.v1",
+  "recorded_utc": "2026-10-27T02:32:32.568536+00:00",
+  "reused_native_evidence": [
+    "analysis/launcher-v7/static-spec.json",
+    "analysis/launcher-v9/static-spec.json"
+  ],
+  "new_REA_calls": 0,
+  "reason": "Existing handshake, record, reply and flow facts unchanged; implement platform I/O ports rather than reanalyze identical functions.",
+  "native_sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "facts_reused": [
+    "hello BE32(1,8), exact challenge and public-value message, uncompressed flag1/key8 record branch",
+    "UI type10 byte requests, type2 notices/type11 final and profile projection/selection",
+    "10s Windows timer and raw close/failure branches are static facts; strict core flow policies remain independent"
+  ],
+  "port_contract": {
+    "session": "createLauncherSession receives explicit1..10 endpoints, first ordinal and request bytes, openStream; construction performs no network, no entropy request or account lookup. start executes one exchange; repeated start returns same Promise.",
+    "stream": "openStream(endpoint,{signal}) returns own read/write/close methods. read returns nonempty actual Uint8Array/ArrayBuffer<=64KiB or null EOF; write consumes ordered bytes and resolves on local completion, not peer acknowledgement; close is idempotent best-effort.",
+    "entropy": "Platform getRandomValues by default; exactly20 fresh bytes per reached challenge; explicit randomBytes override is labelled caller-provided and never claimed platform entropy. No Math.random fallback or native legacy hash generator.",
+    "clock_timer": "Monotonic safe integer milliseconds; one10s core deadline covers connect/read/write/entropy. Check absolute deadline before and after awaited success/rejection; AbortSignal cancels, late opened stream closed.",
+    "cleanup": "Dispose awaited/late ports, wipe owned exponent/chunk/output buffers best effort. Native close request/call completion is not remote-close proof; peer EOF verifies actual local adapter in test.",
+    "limits": "4MiB cumulative inbound independent policy,64KiB per chunk; no empty-read spin, only pre-open finite failover, no credential replay.",
+    "method_ownership": "Capture accepted own read/write/close once; returned failure code/message is frozen metadata, not the mutable internal Error."
+  },
+  "node_adapter": {
+    "path": "adapters/node/launcher-stream.mjs",
+    "scope": "Explicit allowed endpoint tuples only, no default official target/proxy. ASCII hostnames or unbracketed IP, decimal port1..65535. Socket AbortSignal/noDelay/highWaterMark64KiB; owned bounded reads/writes, one pending read/write per stream.",
+    "testing": "Only127.0.0.1 ephemeral original Python/PyCryptodome oracle; independently derive key/decrypt credential frame and compare original known frame; no private exponent/key/request logging."
+  },
+  "primary_sources": [
+    {
+      "url": "https://nodejs.org/api/net.html",
+      "observed_doc_version": "26.12.1",
+      "use": "asynchronous TCP API, AbortSignal, highWaterMark and socket.destroy; actual runtime26.9.0 verified separately"
+    },
+    {
+      "url": "https://nodejs.org/download/release/v26.8.2/docs/api/webcrypto.html",
+      "use": "getRandomValues fills typed arrays with cryptographically strong random values; runtime/browsers tested directly"
+    }
+  ],
+  "source_fetch_limit": "Versioned docs/v26.9.0 paths were inaccessible through web tool, so official indexed pages above support stable API contracts, not exact installed-version documentation.",
+  "unknowns": [
+    "Peer identity, group strength/current official service acceptance",
+    "Browser raw TCP route/authorized gateway and WeChat adapter",
+    "Codepage/actual terms/local account persistence",
+    "Full game handoff/consumer and full launcher/game/official compatibility"
+  ],
+  "authorization": "Static evidence reuse and independent local implementation. No original target/VM/official-game/real-account operation; no install or approval-setting change. Official Node documentation lookup was separate development research."
+}

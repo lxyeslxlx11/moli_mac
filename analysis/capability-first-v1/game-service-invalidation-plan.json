@@ -1,0 +1,128 @@
+{
+  "schema": "moli.capability.game-service-invalidation-plan.v1",
+  "requirement": "全部能力先成规再分组实现；复用位置锚点与服务退出来源，合并移动失效、所有者和请求/资料交错，避免逐窗口重复分析。",
+  "capabilities": [
+    "G04",
+    "G10",
+    "G12",
+    "G18",
+    "X01",
+    "X02"
+  ],
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "baseline": "build/analysis/capability-game-training-services-v1/next-baseline.json",
+  "questions": [
+    "复用4b98c0/4b98e0的完整原记录和原字节，明确逻辑网格/呈现位置、稳定门槛、阈值及共有状态，不展开原生数值保护实现。",
+    "把已留存incoming、647根实际CALL与新训练视图交叉归并，跟踪各窗口的阈值、隐藏/取消/工作结束及锚点更新；缺口留具体来源。",
+    "复用当前对话/工艺与移动核心，核对共享实现差异和资料交错边界；静态来源、输入边界与运行验收分开。",
+    "按需求相关性归并D0/D3/D5依赖，保留38域/81登记/37历史要求/10组以及完整目标；不以本组代替全需求闭合。"
+  ],
+  "original_execution": false,
+  "VM_operations": false,
+  "account_or_official_session_observed": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "question_review": [
+    {
+      "question": 1,
+      "status": "answered-for-ordinary-finite-domain",
+      "facts": [
+        "shared-anchor-and-ABI",
+        "stable-pose-gate",
+        "axiswise-strict-threshold"
+      ]
+    },
+    {
+      "question": 2,
+      "status": "partially-answered",
+      "facts": [
+        "old-incoming-is-not-call-completeness",
+        "callback68-positive-flow-supplements-truncated-body"
+      ],
+      "remaining": [
+        "service-activation-and-guards",
+        "shared-owner-and-reply-order"
+      ]
+    },
+    {
+      "question": 3,
+      "status": "partially-answered",
+      "facts": [
+        "classic-manufacture-does-not-return-after-hide",
+        "classic-gather-deadline-precedes-distance",
+        "shared-implementation-has-order-and-owner-gaps"
+      ],
+      "remaining": [
+        "shared-owner-and-reply-order"
+      ]
+    },
+    {
+      "question": 4,
+      "status": "dependency-grouped-global-gate-open",
+      "remaining": [
+        "whole-capability-gate-and-acceptance"
+      ]
+    }
+  ],
+  "source_summary": {
+    "complete_reused_native_records": 11,
+    "reused_derived_bodies": 48,
+    "new_derived_close_helpers": 2,
+    "complete_selected_bodies": 61,
+    "selected_body_bytes": 69351,
+    "native_listing_boundaries": 1565,
+    "derived_instructions_byte_verified": 17585,
+    "supplemental_flow_instructions": 1125,
+    "supplemental_flow_instruction_bytes": 4647,
+    "supplemental_flow_gaps": 0,
+    "all_direct_E8_CALL_occurrences_verified": 1345,
+    "unique_direct_E8_CALL_sites_verified": 1345,
+    "helper_actual_unique_CALL_sites": 64,
+    "helper_incoming_references": 32,
+    "helper_CALL_sites_missing_old_incoming": 32,
+    "selected_table_relations": 50,
+    "new_REA_records": 0,
+    "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+    "runtime_features_changed": false,
+    "all_capability_analysis_complete": false
+  },
+  "remaining": [
+    {
+      "id": "service-activation-and-guards",
+      "kind": "pending",
+      "capabilities": [
+        "G10",
+        "G12",
+        "X02"
+      ],
+      "need": "Bind classic versus alternate selection/activation and map it to required profiles/flows. Analyze additional training/treatment admission/cancel/reply rules only where the requirement is admitted; a sourced inactive/out-of-scope exclusion may avoid rebuilding unused UI. Reuse the ten-mode classic normal paths.",
+      "next_evidence": "Actual producer/data dispatch edges to open IDs55..61/67 and the alternate callback consumer; do not repeat an empty incoming search or infer activity from a table row."
+    },
+    {
+      "id": "shared-owner-and-reply-order",
+      "kind": "pending",
+      "capabilities": [
+        "G04",
+        "G10",
+        "G12",
+        "G18",
+        "X02"
+      ],
+      "need": "Finish only requirement-relevant anchor writers, reset0x4706e0, stale selection/late reply and movement/phase/reset priority; old global state and native field aliases must be reconciled before a shared API.",
+      "next_evidence": "Use explicit six filename-only creator gaps, the separate0x4ea7a0 Listing frontier and positive owner paths. Preserve exact source identities; reuse known helpers."
+    },
+    {
+      "id": "whole-capability-gate-and-acceptance",
+      "kind": "pending",
+      "capabilities": [
+        "X01",
+        "X02"
+      ],
+      "need": "Other required launcher/game/resource/battle/platform/version capabilities and unified A4 review remain. This bounded service package does not close the discovery or implementation gate.",
+      "next_evidence": "Update capability-specific gaps and batch dependencies. Runtime, device and same-version official acceptance remain distinct; no current test account exists."
+    }
+  ]
+}

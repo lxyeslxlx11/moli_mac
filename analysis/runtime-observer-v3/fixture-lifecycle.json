@@ -1,0 +1,55 @@
+{
+  "schema": "moli.runtime-observer-v3.fixture-lifecycle.v1",
+  "recorded_utc": "2026-10-27T19:37:48.388384+00:00",
+  "source": "Fresh CUA readback, bounded original fixture only; no raw UI/account/register data retained.",
+  "entry": "cmd.exe /d /c D:\\life.cmd",
+  "runner_sha256": "dc621d0e54cdb0756d041b57b18ea85fb7ed23c211a9f2abcc8412bc2c4500cb",
+  "CDB_script_sha256": "269c8bb3c05b7e0314b5fc094c29f673ae083c2f53fcf32b66cba933e847a47d",
+  "fixture_sha256": "01588841278dcb7360c91333f0f7c5ec81aec84625ca274be54ad9011aaf10eb",
+  "debugger": "Microsoft SDK x86 CDB 10.0.26100.9457",
+  "runtime_base": "0x00810000",
+  "module_end": "0x00816000",
+  "runtime_base_matches_lm": true,
+  "actual_return_site_events": [
+    {
+      "api": "GetCommandLineW",
+      "instruction_pointer_rva": 4143
+    },
+    {
+      "api": "CreateFileMappingW",
+      "instruction_pointer_rva": 4407
+    },
+    {
+      "api": "OpenFileMappingW",
+      "instruction_pointer_rva": 4498
+    },
+    {
+      "api": "MapViewOfFile",
+      "instruction_pointer_rva": 4581
+    },
+    {
+      "api": "UnmapViewOfFile",
+      "instruction_pointer_rva": 4662
+    },
+    {
+      "api": "CloseHandle",
+      "instruction_pointer_rva": 4681
+    },
+    {
+      "api": "CloseHandle",
+      "instruction_pointer_rva": 4697
+    }
+  ],
+  "first_event_normalization": "CDB timestamp warning interleaved between label and 102f. Visual transcription joins only these observed parts.",
+  "comment_semicolon_error_absent": true,
+  "target_exit_event_observed": true,
+  "target_exit_code": 0,
+  "exact_non_sensitive_event_summary": "Exit process 0:<fixture-process>, code 0",
+  "exit_handler_error": "After .lastevent displayed exit code 0, the following g reported No runnable debuggees. Target already exited. No target or PC was altered.",
+  "debugger_prompt_after_target_exit": true,
+  "debugger_close_pending": true,
+  "timed_contract_tested": false,
+  "general_collector_privacy_tested": false,
+  "CDB_default_output_limit": "Initial and final general registers printed automatically for the original fixture; not retained.",
+  "original_launcher_game_executed": false
+}

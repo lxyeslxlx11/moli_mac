@@ -1,0 +1,67 @@
+{
+  "schema": "moli.diagnostic-readiness-stage128.v1",
+  "recorded_utc": "2026-11-02T07:16:03.556525+00:00",
+  "method": "CUA full command/output readback, ordinary PowerShell; no target execution.",
+  "game": {
+    "path": "C:\\Program Files (x86)\\PlayOnline\\魔力宝贝\\cg_se_3000.exe",
+    "current_sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+    "guest_time_local": "2026-11-02 15:09 +08:00",
+    "matches_fixed_sample": true,
+    "expected_bytes_from_prior_preflight": 2904064,
+    "bytes_freshly_queried_this_turn": false
+  },
+  "cdb": {
+    "path": "C:\\Program Files (x86)\\Windows Kits\\10\\Debuggers\\x86\\cdb.exe",
+    "current_sha256": "6ca9dd8ee2d764087c4a561ecfee05cdf17751dfd9c2f21700211a897cd68129",
+    "signature_status": "Valid",
+    "guest_time_local": "2026-11-02 15:11 to 15:13 +08:00",
+    "matches_prior_x86_qualified_binary": true,
+    "historical_qualification": "analysis/runtime-observer-v3/x86-debugger-attempt.json",
+    "fresh_version_or_dump_open_test": false
+  },
+  "selected_method": "game-wer-plan-stage128.md",
+  "source_references": [
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/wer/collecting-user-mode-dumps",
+      "checked_date": "2026-11-02",
+      "selected_facts": [
+        "Per-app LocalDumps configuration",
+        "Administrator privilege for enabling",
+        "DumpType1 mini dump",
+        "Custom reporting and automatic-debugging limitations"
+      ]
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/sysinfo/32-bit-and-64-bit-application-data-in-the-registry",
+      "checked_date": "2026-11-02",
+      "selected_facts": [
+        "Separate logical views and explicit32/64 access flags"
+      ]
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/opening-a-crash-dump-file-using-cdb",
+      "checked_date": "2026-11-02",
+      "selected_facts": [
+        "-z existing dump file entry"
+      ]
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/cdb-command-line-options",
+      "checked_date": "2026-11-02",
+      "selected_facts": [
+        "-sins ignores symbol/image environment paths",
+        "Explicit -y local path",
+        "-noshell disables shell commands"
+      ]
+    }
+  ],
+  "not_yet_done": [
+    "Exact per-app keys/AeDebug and registry-view inspection",
+    "New lab/dump directory or registry writes",
+    "New recovery point",
+    "New game start, minidump collection, dump analysis or policy change",
+    "Action-time confirmation for this new execution/collection plan"
+  ],
+  "source_authenticity": "Selected game still not authenticated as current official-distribution bytes; matching hash/manifest declarations are not publisher authentication.",
+  "whole_goal_complete": false
+}

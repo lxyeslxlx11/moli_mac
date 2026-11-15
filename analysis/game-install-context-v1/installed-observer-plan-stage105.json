@@ -1,0 +1,31 @@
+{
+  "schema": "moli.installed-game-observer-profile-plan.v1",
+  "recorded_utc": "2026-10-30T03:14:36.500115+00:00",
+  "status": "implementation plan before source change; not game execution authorization",
+  "evidence": "analysis/game-install-context-v1/guest-installed-context-stage105.json",
+  "source_before": {
+    "path": "analysis/game-entry-v1/probe/callback_probe.c",
+    "sha256": "3e8e2d0636d0e3b555972b52fe97066f5ba54633a5c662c6090e72ed089a3b25"
+  },
+  "new_profile": {
+    "name": "game-installed",
+    "image_path": "C:/Program Files (x86)/PlayOnline/魔力宝贝/cg_se_3000.exe",
+    "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+    "image_bytes": 17018880,
+    "slot_rva": 15097272,
+    "slot_bytes": 8
+  },
+  "implementation": [
+    "Add a separate fixed profile for the verified normal installation. Keep existing fixture and legacy game profiles byte-for-byte in the table.",
+    "Keep all identity/hash/final-path/architecture/creation-time/module-size/access/range guards and single8B read unchanged; no caller paths or addresses.",
+    "Build in a new private stage105 directory against the retained qualified fixture identity; do not overwrite prior binary/ISO/evidence.",
+    "Inspect compiled profile table and UTF16 strings independently and run existing meaningful original core assertions.",
+    "Qualify the new binary with an original fixture before considering any original game observation."
+  ],
+  "boundaries": [
+    "Observer does not launch or modify a target.",
+    "No code/IPC/string/account reads, debugger, injection or protection recovery. Access refusal or identity change stops.",
+    "No game run in this preparation. The specific installer approval already used does not become a new original-game execution quota.",
+    "Retain user-provided Win7 and launcher workflow requirement; no direct game launch solely to satisfy this tool."
+  ]
+}

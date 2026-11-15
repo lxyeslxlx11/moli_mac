@@ -1,0 +1,16 @@
+{
+  "action": "rea function 0x41ab70 --provider ghidra",
+  "sample": "POLCN_Launcher.unpacked.exe",
+  "result": "execution_failure",
+  "cause": "Standard Swift module cache write blocked by workspace sandbox",
+  "retry_strategy": "Request review of exact installed-tool static analysis invocation; no tool settings changed",
+  "captured": {
+    "stdout": "",
+    "stderr": "2026-10-25 04:48:25.244 xcodebuild[11892:8644257]  DVTFilePathFSEvents: Failed to start fs event stream.\n2026-10-25 04:48:25.367 xcodebuild[11892:8644256] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 \"Input/output error\". Using NSCachesDirectory instead.\n2026-10-25 04:48:25.865 xcodebuild[11902:8644295]  DVTFilePathFSEvents: Failed to start fs event stream.\n2026-10-25 04:48:25.995 xcodebuild[11902:8644294] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 \"Input/output error\". Using NSCachesDirectory instead.\n<unknown>:0: error: error opening '/Users/lx/.cache/clang/ModuleCache/Swift-7JL1KBZ3A6V3.swiftmodule' for output: /Users/lx/.cache/clang/ModuleCache: Operation not permitted\n<unknown>:0: error: unable to load standard library for target 'arm64-apple-macosx27.0.0'\n",
+    "truncated": false,
+    "stdout_bytes": 0,
+    "stderr_bytes": 952,
+    "exit_code": 1,
+    "signal": null
+  }
+}

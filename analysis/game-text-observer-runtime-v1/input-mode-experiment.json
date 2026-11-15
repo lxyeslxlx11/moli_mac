@@ -1,0 +1,50 @@
+{
+  "stage": 118,
+  "status": "not_applied_no_value_change_observed",
+  "target": "Existing Windows 11 VM only",
+  "window_vm_id": "{bac7348c-9220-4447-94e4-e49b00f44939}",
+  "evidence": "Actual Parallels Mouse and Keyboard configuration UI, read after ordinary guest input stopped responding",
+  "before": {
+    "mouse": "Auto-detect for games",
+    "keyboard": "Auto-detect for games"
+  },
+  "proposed": {
+    "mouse": "Don't optimize for games",
+    "keyboard": "Don't optimize for games"
+  },
+  "purpose": "One reversible desktop-input experiment, then verify a single character at the known PowerShell debugger prompt before submitting its normal quit command. Current scope remains original fixture qualification.",
+  "basis": {
+    "url": "https://docs.parallels.com/landing/pdfm-ug/v20-en-us/parallels-desktop-for-mac-20-users-guide/parallels-desktop-preferences-and-virtual-machine-settings/virtual-machine-settings/hardware-settings/mouse-and-keyboard-settings",
+    "access_date": "2026-11-01",
+    "interpretation": "The v20 guide describes game auto-detection and modifier processing differences. These support checking desktop input modes; they do not establish this incident's cause or guarantee a repair."
+  },
+  "restore_condition": "If this bounded experiment does not restore verifiable guest input, return both fields to their observed Auto-detect baseline using the native UI and verify the values.",
+  "no_change_to": [
+    "network",
+    "sharing",
+    "security",
+    "permissions",
+    "keyboard shortcut definitions",
+    "VM lifecycle",
+    "game executable"
+  ],
+  "root_cause_proven": false,
+  "actual_result": {
+    "mouse_dropdown_open_attempts": "No expanded choices observed; value stayed Auto-detect",
+    "setValue_result": "Cannot set a value for an element that is not settable",
+    "mouse_last_observed": "Auto-detect for games",
+    "keyboard_last_observed": "Auto-detect for games",
+    "desired_mode_selected": false,
+    "settings_window": "Final closure through File > Close Window; fresh AX and screenshot returned existing running VM and unchanged guest Search/own PowerShell DBG state.",
+    "input_repair_verified": false,
+    "followup_native_controls": "Raised configuration window, clicked observed mouse combo, title and arrow, tried Space and exposed target text; no expanded popup or target value selected. Both fields re-read Auto-detect."
+  },
+  "limit": "No disabled/non-settable field forced, no VM shutdown/restart, no configuration file or shortcut definition changed. Native-window transitions can appear after an initial unchanged observation; re-read fresh context before following actions.",
+  "host_version_current": {
+    "path": "/Applications/Parallels Desktop.app/Contents/Info.plist",
+    "CFBundleShortVersionString": "26.3.3",
+    "CFBundleVersion": "57507",
+    "basis": "fresh local plist read; not inferred from guest recent items"
+  },
+  "documentation_limit": "Linked v20 primary manual describes these option names; it is not verification of v26.3.3 incident root cause or repair. No forum advice or hidden/system flag applied."
+}

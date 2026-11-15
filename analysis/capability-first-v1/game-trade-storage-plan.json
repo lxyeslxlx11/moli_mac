@@ -1,0 +1,151 @@
+{
+  "schema": "moli.capability.game-trade-storage-plan.v1",
+  "requirement": "先统一REA全部需求能力，再成组开发；归并玩家交易、银行/仓储和饲料箱的共享物品、确认/撤回/取消、资料变化与所有权。",
+  "capabilities": [
+    "G09",
+    "G10",
+    "G11",
+    "G13",
+    "X01",
+    "X02"
+  ],
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "baseline": "build/analysis/capability-game-shop-services-v1/next-baseline.json",
+  "questions": [
+    "复用既有完整来源，交易邀请/候选/双方报价/确认/撤回/结算关闭及银行/仓储资料如何连接实际窗口和请求？",
+    "物品/宠物/金币的资格、位置编号、资料发布及占用/拖拽状态如何共享；哪些是原版规则，哪些为现有独立revision/pending/重查政策？",
+    "共同窗口的移动/owner失效、重入、关闭回复抑制、晚到资料和银行额外普通输入路径有哪些可追溯规则及必要缺口？",
+    "形成D0/D3/D5依赖和验收用例，维持38域/81登记/37历史要求/10组，明确普通域/异常域及实际平台/同版接受边界。"
+  ],
+  "original_execution": false,
+  "VM_operations": false,
+  "account_or_official_session_observed": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "question_review": [
+    {
+      "question": 1,
+      "status": "ordinary-wire-entry-phase-and-window-rules-bound",
+      "facts": [
+        "wire-bindings-and-scope",
+        "two-independent-trade-phases",
+        "storage-parser-precedes-window-decision"
+      ],
+      "remaining": [
+        "global-selection-and-late-owner-order"
+      ]
+    },
+    {
+      "question": 2,
+      "status": "selected-qualification-cache-copy-and-independent-policy-separated",
+      "facts": [
+        "publish-retains-offer-positions",
+        "item-eligibility-and-cache-ownership",
+        "bag-move-updates-two-caches",
+        "independent-policies-and-host-routing"
+      ],
+      "remaining": [
+        "selection-helpers-and-shared-counters"
+      ]
+    },
+    {
+      "question": 3,
+      "status": "confirm-cancel-distance-and-input-association-frontiers-recorded",
+      "facts": [
+        "confirm-toggle-and-separate-withdraw",
+        "trade-close-reply-suppression",
+        "storage-close-and-feedbox-close-differ",
+        "numeric-prompt-attribution-stays-separate"
+      ],
+      "remaining": [
+        "global-selection-and-late-owner-order",
+        "prompt-business-version-and-abnormal-domain"
+      ]
+    },
+    {
+      "question": 4,
+      "status": "dependencies-and-proposed-cases-recorded-unified-gate-open",
+      "facts": [
+        "bounded-reuse-and-shared-writer-frontier"
+      ],
+      "remaining": [
+        "unified-capability-and-host-gate"
+      ]
+    }
+  ],
+  "source_summary": {
+    "selected_source_views": 101,
+    "unique_reused_native_entries": 52,
+    "native_source_body_bytes": 16033,
+    "native_listing_boundaries": 5379,
+    "reused_derived_views": 43,
+    "reused_derived_body_bytes": 17744,
+    "reused_derived_instructions": 5294,
+    "new_derived_views": 6,
+    "new_derived_body_bytes": 3501,
+    "new_derived_instructions": 1109,
+    "declared_source_body_bytes": 37278,
+    "direct_E8_CALL_occurrences_verified": 817,
+    "unique_E8_CALL_sites_verified": 817,
+    "original_complete_native_records_factory_validated": 52,
+    "old_helper_ID_bindings_verified": 47,
+    "classic_descriptors": 4,
+    "classic_controls_identity_checked": 79,
+    "old_bounded_raw_windows_verified": 105,
+    "storage_wire_modes": 3,
+    "storage_record_operations": 4,
+    "trade_protocol_bindings": 14,
+    "new_REA_records": 0,
+    "runtime_features_changed": false,
+    "all_capability_analysis_complete": false
+  },
+  "remaining": [
+    {
+      "id": "global-selection-and-late-owner-order",
+      "kind": "pending",
+      "capabilities": [
+        "G09",
+        "G11",
+        "G13",
+        "X02"
+      ],
+      "need": "物品/宠物/金币变化到已发布报价、当前选择、数量提示及关闭抑制的完整先后；跨owner复用C3B2CC/C43F58和原缓存搬移对等待中的业务含义。",
+      "next_evidence": "沿4f25a0→4cbce0/4c69a0、4f2c40→4cc550/4c80b0复用已证体；补4ccc20等有限原读窗所指的变化/撤回消费者，不能由调用编码升级成完整体。"
+    },
+    {
+      "id": "selection-helpers-and-shared-counters",
+      "kind": "pending",
+      "capabilities": [
+        "G09",
+        "G11",
+        "G13",
+        "X02"
+      ],
+      "need": "4a3bc0/4a4300/4a49d0/4a5220、4a2290/4a23a0及选择写入、跨服务占用byte和C5E9C8的必要发布/退役配对；无效拖拽及窗口重入的完整合同。",
+      "next_evidence": "复用本轮精确指针/调用和480候选索引，仅沿实际相关新边补证；467350已在父体内，4ccd00无独立正向入口证据，不因精确入口未命中制造函数。"
+    },
+    {
+      "id": "prompt-business-version-and-abnormal-domain",
+      "kind": "pending",
+      "capabilities": [
+        "G13",
+        "X01"
+      ],
+      "need": "六位提示的实际业务归属、必要版本/其他仓储owner、无效资料槽/整数/快捷键组合及真实拒绝；不默认数位提示即银行认证。",
+      "next_evidence": "以实际资料入口/所需版本和用户操作补证，原普通数字格式直接复用；没有测试账号不反复索取，也不扩大保护内部分析。"
+    },
+    {
+      "id": "unified-capability-and-host-gate",
+      "kind": "pending",
+      "capabilities": [
+        "X01",
+        "X02"
+      ],
+      "need": "其余能力与A4统一依赖/规格复核、网页/移动网页/微信真实运行及同版接受分别未完成。",
+      "next_evidence": "下一组G14队伍/好友的共享身份与资料失效；本组普通交易/仓储规格复用，完整需求门槛前不新增产品分支功能。"
+    }
+  ]
+}

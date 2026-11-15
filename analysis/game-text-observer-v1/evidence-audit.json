@@ -1,0 +1,112 @@
+{
+  "schema": "moli.game-text-observer-v1.evidence-audit.v1",
+  "recorded_utc": "2026-10-31T01:22:25.966608+00:00",
+  "plan": {
+    "path": "analysis/game-text-observer-v1/plan.json",
+    "bytes": 5044,
+    "sha256": "83165efd4dfe517fa9fea4bd483345c528e5a04233e319cc679f1a83ec9fedf2"
+  },
+  "successful_REA_records": [
+    {
+      "evidence_id": "ev_728eed40e261eb2cf86fea7c9cea8399c1e6aeb7dfc634cc7a4d045fc8df766e",
+      "operation": "inspect_pe_resources",
+      "provider": {
+        "id": "rea-pe-resources",
+        "name": "REA PE resource parser",
+        "version": "1"
+      },
+      "subject": {
+        "name": "cg_se_3000.exe",
+        "digest": {
+          "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126"
+        },
+        "local_path": "/Users/lx/Documents/code/moli-mac/build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/cg_se_3000.exe",
+        "format": "pe",
+        "architecture": "x86"
+      },
+      "limitations": [
+        "Static PE32/PE32+ type/name/language resource inventory; payloads other than RT_GROUP_ICON remain opaque.",
+        "Icon candidates are resource-table relationships. Language fallback, image decoding and actual shell/window loading are not observed.",
+        "Exact shared byte ranges are retained; non-identical overlapping resource structures or payloads are rejected."
+      ]
+    },
+    {
+      "evidence_id": "ev_b7c7786f1f81198c5b0f98242786a435974aec0cebc62072b91abda9300eb9d5",
+      "operation": "inspect_with_objdump",
+      "provider": {
+        "id": "gnu.objdump",
+        "name": "GNU objdump",
+        "version": null
+      },
+      "subject": {
+        "name": "text-observer.exe",
+        "digest": {
+          "sha256": "163864829f3b47eaa0b640c44b5de1d46f0e44658919b7c4e51974e5b83732f5"
+        },
+        "local_path": "/Users/lx/Documents/code/moli-mac/build/analysis/game-text-observer-v1/tool/text-observer.exe",
+        "format": "unknown",
+        "architecture": null
+      },
+      "limitations": [
+        "The executable version and supported formats are reported as unknown because no reliable version probe was performed.",
+        "A non-zero process exit is preserved as an observed command result.",
+        "When both are available, pre-run and post-run digests detect artifact changes across the provider call but cannot prove the exact bytes consumed during the call."
+      ]
+    },
+    {
+      "evidence_id": "ev_34b96aa7065192d6c6442ce63ba8227c818cb3e976627b32d416b99f8fae8650",
+      "operation": "inspect_with_objdump",
+      "provider": {
+        "id": "gnu.objdump",
+        "name": "GNU objdump",
+        "version": null
+      },
+      "subject": {
+        "name": "text-observer.exe",
+        "digest": {
+          "sha256": "163864829f3b47eaa0b640c44b5de1d46f0e44658919b7c4e51974e5b83732f5"
+        },
+        "local_path": "/Users/lx/Documents/code/moli-mac/build/analysis/game-text-observer-v1/tool/text-observer.exe",
+        "format": "unknown",
+        "architecture": null
+      },
+      "limitations": [
+        "The executable version and supported formats are reported as unknown because no reliable version probe was performed.",
+        "A non-zero process exit is preserved as an observed command result.",
+        "When both are available, pre-run and post-run digests detect artifact changes across the provider call but cannot prove the exact bytes consumed during the call."
+      ]
+    }
+  ],
+  "REA_success_count": 3,
+  "unavailable_call": {
+    "operation": "inspect_binary_layout",
+    "code": "capability_unavailable",
+    "reason": "Initial pwntools profile supports Linux x64 only; not PE evidence; no config/install/retry."
+  },
+  "initial_argument_rejection": "inspect_pe_resources detail key rejected before execution; supported path-only call succeeded.",
+  "direct_file_checks": "Game complete SHA256, .text PE row and822B manifest hash matched; ElementTree parsed asInvoker/uiAccess=false. Separate from opaque REA resource payload inventory.",
+  "initial_build_failures": [
+    {
+      "error": "KeyError name",
+      "fix": "Use numerical layout row and separately verify original PE section name."
+    },
+    {
+      "error": "DWORD* versus uint32_t* with -Werror",
+      "fix": "Use exact uint32_t output variable; keep compiler errors enabled."
+    },
+    {
+      "error": "objdump import parser omitted <none> and hexadecimal hint columns",
+      "fix": "Parse actual installed output shape; required imports then present."
+    }
+  ],
+  "failed_attempt_receipts": [
+    "build/analysis/game-text-observer-v1/initial-build-failure.json",
+    "build/analysis/game-text-observer-v1/tool/initial-compiler-failure.json",
+    "build/analysis/game-text-observer-v1/tool/initial-import-parser-failure-commands.json"
+  ],
+  "source_and_output_hashes_rechecked": true,
+  "opened_native_target": false,
+  "target_close_needed": false,
+  "windows_execution_or_game_code_recovery": false,
+  "full_goal_complete": false
+}

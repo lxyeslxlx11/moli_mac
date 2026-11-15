@@ -1,0 +1,11 @@
+import test from 'node:test';
+import{readFileSync}from'node:fs';
+import*as api from'../index.mjs';
+import{verifySelfPhysicalModel}from'../../analysis/game-battle-self-physical-v1/verify_model.mjs';
+import{verifySelfPhysicalCallbacks,verifySelfPhysicalMetadata,verifySelfPhysicalAtomic,verifySelfPhysicalManagers}from'../../analysis/game-battle-self-physical-v1/verify_routes.mjs';
+const v=()=>JSON.parse(readFileSync(new URL('../../analysis/game-battle-self-physical-v1/original-vectors.json',import.meta.url)));
+test('saved self queues, independent frames, guard flight and near return results',async()=>console.log('self-physical-model '+JSON.stringify(await verifySelfPhysicalModel(api,v(),{sourceGuardReturn:true,sourceSelfCatch:true}))));
+test('actual216 owns HP,mask precedence,zero/messages,impact and last self record',async()=>console.log('self-physical-callbacks '+JSON.stringify(await verifySelfPhysicalCallbacks(api,v()))));
+test('actual216 RID uses saved self first word and last foreign tail',async()=>console.log('self-physical-metadata '+JSON.stringify(await verifySelfPhysicalMetadata(api,v()))));
+test('self undefined RID context,capacity and actual graphics reject before mutation',async()=>console.log('self-physical-atomic '+JSON.stringify(await verifySelfPhysicalAtomic(api,v()))));
+test('real self command manager completes guard and caster aliases and handles local exit',async()=>console.log('self-physical-managers '+JSON.stringify(await verifySelfPhysicalManagers(api,v(),{sourceGuardReturn:true,sourceSelfCatch:true}))));

@@ -1,0 +1,124 @@
+{
+  "schema": "moli.launcher-current-catalog-v1.validation.v1",
+  "recorded_utc": "2026-10-28T12:09:25.884141+00:00",
+  "requirement": "reports/development-plan.md",
+  "previous_turn_classification": "progress; current independent static+implementation+actual tests also progress",
+  "implementation": {
+    "added": [
+      "shared/launcher-catalog.mjs",
+      "shared/tests/launcher-catalog.test.mjs"
+    ],
+    "changed": [
+      "shared/launcher.mjs",
+      "shared/index.mjs"
+    ],
+    "new_exports": [
+      "inspectWin32LauncherCatalogContainers",
+      "compareWin32LauncherCatalogPair",
+      "LauncherCatalogPairError",
+      "LAUNCHER_CATALOG_PAIR_LIMITS"
+    ],
+    "no_product_page_or_default_bootstrap_change": true,
+    "full_game_region_parsers_behavior_preserved": true
+  },
+  "static": {
+    "new_dossiers": 11,
+    "new_records": 17,
+    "retained_old": 14,
+    "total_exported": 31,
+    "source_anchors": 14,
+    "identity_negatives": 2,
+    "session_closed": true,
+    "evidence": {
+      "path": "analysis/launcher-current-catalog-v1/static-audit.json",
+      "bytes": 25551,
+      "sha256": "479e53a569fac027e2ad8c836cde2cb5a97e0c39a1adb20c9a146e05eeafc6d5"
+    }
+  },
+  "original_vectors": {
+    "xml": 24,
+    "comparisons": 29,
+    "xml_profile_exclusions": 1,
+    "oracle": "Python ElementTree and bytes comparison",
+    "generator": {
+      "path": "analysis/launcher-current-catalog-v1/make_vectors.py",
+      "bytes": 5824,
+      "sha256": "978e58f9e7a979d4cbab2926c5464e86a4e1aa729487149ccbad9f6c6592b2fa"
+    },
+    "vectors": {
+      "path": "analysis/launcher-current-catalog-v1/original-vectors.json",
+      "bytes": 26775,
+      "sha256": "7e29dc0b0fe9327f4d78aba38290c0411ccc3b06279d64813093cfe815196bf5"
+    }
+  },
+  "node": {
+    "version": "26.9.0",
+    "targeted_tests": 10,
+    "full_tests": 558,
+    "full_pass": 558,
+    "full_fail": 0,
+    "full_skip": 0,
+    "duration_ms": 11622.302917,
+    "actual_completed_process_exit": 0,
+    "log": {
+      "path": "build/analysis/launcher-current-catalog-v1/node-tests.log",
+      "bytes": 128262,
+      "sha256": "69b7acde76ba304db7e7ed75102ec5b6fb76f9acce3e1c20210127a6f777c271"
+    }
+  },
+  "browser": {
+    "version": "155.0.8059.85",
+    "driver": "Existing Playwright 1.62.1",
+    "xml_vectors": 24,
+    "byte_vectors": 29,
+    "profile_exclusions": 1,
+    "additional_groups": 4,
+    "errors": 0,
+    "request_failures": 0,
+    "actual_completed_process_exit": 0,
+    "receipt": {
+      "path": "analysis/launcher-current-catalog-v1/browser-validation.json",
+      "bytes": 6173,
+      "sha256": "28d780b9f665d497444311c1aae19f77214deabc3e53aef8f8db30a6ffeac5b8"
+    },
+    "no_visual_or_device_acceptance_claim": true
+  },
+  "failures_and_corrections": [
+    {
+      "kind": "preparation",
+      "result": "Initial architecture.md path absent;9partial baselines verified, corrected architecture-and-milestones.md and completed12, no overwrite."
+    },
+    {
+      "kind": "original targeted test",
+      "initial_result": {
+        "tests": 10,
+        "pass": 9,
+        "fail": 1,
+        "exit": 1
+      },
+      "error": "XML_UNSUPPORTED for original comment-and-pi vector; ElementTree accepts internal PI, existing bounded parser rejects.",
+      "correction": "Original oracle vectors retained unchanged. Added explicit profile-exclusions.json; no parser relaxation. Corrected targeted10 and full558 then passed.",
+      "evidence": {
+        "path": "analysis/launcher-current-catalog-v1/profile-exclusions.json",
+        "bytes": 409,
+        "sha256": "08765b2b705f309036053da7414dbb49063a315d7f438f4710eade119082fc0e"
+      }
+    }
+  ],
+  "windows": {
+    "RemoteSigned_specific_question": "still unanswered",
+    "new_policy_or_helper_action": false,
+    "new_vm_or_source_execution": false,
+    "stage90_guest_evidence_retained": true
+  },
+  "not_verified": [
+    "New exports in production page/default HTTP branch",
+    "Win32 path/I/O/flush/pair commit/recovery and crash behavior",
+    "Normal current launcher/UAC and complete authentication",
+    "Game business consumers/frames/playability",
+    "Safari/mobile/WeChat devices or official compatibility"
+  ],
+  "goal_status": "active",
+  "goal_status_mutation": false,
+  "goal_complete": false
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "moli.battle-mounted-input-spec-stage195.v1",
+  "classification": "fact: fixed sample static consumers; derived: independent logical byte records and semantic intents; unverified: native popup/hit/audio scheduling and official compatibility",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "tool": "REA6.7.0/Ghidra12.1.4",
+  "carriers": [
+    {"operation":"receive-00567cfc","tag":"FBY","arguments":["int32 slot","bytes"],"consumer":"0x4f0aa0","record_stride":1752,"slots":5,"fields":25,"mask":"base62; bit0 all, otherwise bit ordinal+1; omitted values retained; zero clears record and skills","strings":"inner-unescaped bytes; name/nickname <=16, otherwise prior value retained","mode":"u16 offset0x6aa, bit0x10 separately in0x6d4"},
+    {"operation":"receive-00567cf8","tag":"G:w","arguments":["int32 slot","bytes"],"consumer":"0x4f1000","fields":16,"mask":"same mask rule; zero clears present and name/nickname only"},
+    {"operation":"receive-00567cd0","tag":"J_J","arguments":["int32 slot","bytes"],"consumer":"0x4f1420","skills":10,"skill_stride":140,"fields":["decimal slot","u16 id","name bytes","description bytes","i32 MP cost","u16 flags","u16 target mask","i32 sort key"],"behavior":"absent pet ignored; replace ten skills, iterate until negative/missing slot; name <=24 and description <=96, otherwise observed 3f3f3f fallback"}
+  ],
+  "record_boundaries": ["Invalid pet slots ignored before byte parsing; source ordinary DAT924f30 gate is not a whole native UI implementation", "Numeric tokens retain source127-byte limit, missing=-1, wrapping decimal and base62 mask; names first255 before inner unescape", "Out-of-range skill index has no native upper guard; independent parser rejects >9 atomically", "Source4f157e jumps to4f148c without4f1671 cursor advance for empty skill name; independent parser rejects empty names atomically instead of reproducing the native loop", "Auxiliary present/slot/sort-key metadata follows4fde20/4fde60; UI refresh4855a0 is unmodeled"],
+  "battle_parameters": {"consumer":"0x4f36d0","P3":"allowed pet skill bitmask599c9c","P5":"mounted pet index599d5c; signed interpretation","body_MP":"current decoded body1b0, local for mount, paired419840 for ordinary pet","ownership":"13b4 must be the actual live rider child of the current local body"},
+  "input": {
+    "source":["0x48b810","0x48b5b0","0x437460","0x437430","0x4374e0","0x437080","0x403560","0x471200"],
+    "callbacks":["analyst-seeded original byte callback48b170 (359B)","analyst-seeded original byte callback48b2e0 (362B)"],
+    "initial_words":"5340e0: -1,1,-1,-1; skill, pet-stage, prior-button, remembered-pet",
+    "begin":"reset timer/counters/input; reset currentSkill only if rememberedPet differs from first present pet mode2",
+    "mounted":"state0 actual13b4 takes priority; flag8 sends N, clears8 or with20000 sends N again and phase5; otherwise menuMode4/state4",
+    "ordinary_pet":"state3 flag20 opens mode3/state4 or with flag8 sends W|FF and phase5; acting body is paired local slot",
+    "remembered":"allowed bit and current MP>=cost and target-enabled required; invalid => currentSkill=-1/petStage1",
+    "choice":"present skill from received owner, source allowed-mask/MP bounds; signed16 target mask; no target => W|skill|pet-index, otherwise stage2 then3 and W|skill|target-code on target intent; MP never deducted optimistically",
+    "wait":"callback negative -> W|FF, petStage0, petCount++, state5, close; source duplicate sound39 preserved",
+    "reselect":"source right-click semantic clears targets/currentSkill and returns stage1; no wire request",
+    "completion":"state5 waits real menu close; actual13b4 and petCount<2 returns state0, otherwise phase5",
+    "timeout":"48b5b0 after current state: actual13b4 sends one W|FF and phase5, sound37; ordinary source timeout unchanged",
+    "limits":"semantic intents are thin web/touch adapters, not native hit testing or native popup reproduction; full main10 and whole game remain incomplete"
+  },
+  "verification": "Independent Python carrier/command reference, source/generated real OS TCP peers and ordinary product controls/lifecycle; no original execution, VM actions, credentials or official sessions",
+  "phase_complete": false,
+  "full_goal_complete": false,
+  "goal_status": "active"
+}

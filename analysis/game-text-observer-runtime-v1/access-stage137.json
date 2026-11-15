@@ -1,0 +1,75 @@
+{
+  "schema": "moli.game-fingerprint-input-stage137.v1",
+  "recorded_utc": "2026-11-03T06:24:10.257722+00:00",
+  "purpose": "Compare two fixed32B ranges in the existing PID5304 secondary dump with original-file references. No new game run.",
+  "source_reference": {
+    "schema": "moli.game-code-fingerprint-static-reference.v1",
+    "source_path": "build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/cg_se_3000.exe",
+    "source_bytes": 2904064,
+    "source_sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+    "image_base": "0x400000",
+    "recorded_game_module_base": "0x00400000",
+    "observed_init_candidate": "0x0b7c7cc0",
+    "source_wrapper": "0x011bccc0",
+    "candidate_delta": "0xa60b000",
+    "ordinary_main_image_relocation_supported": false,
+    "reason": "Recorded main module remains atpreferred400000. A delta selected from a single opaque callback pair does not bind a whole module or another address. Need actual recorded bytes before any ownership or instruction inference.",
+    "fixed_comparisons": [
+      {
+        "guest_dump_address": "0x0b7c7cc0",
+        "source_va": "0x11bccc0",
+        "file_offset": 449728,
+        "section": ".text1",
+        "bytes": 32,
+        "sha256": "83cc94e8b291ac7e7c08661fc3ec85edc1d8a65fb97a2ad6c5a2425984de783d"
+      },
+      {
+        "guest_dump_address": "0x0b7c8152",
+        "source_va": "0x11bd152",
+        "file_offset": 450898,
+        "section": ".text1",
+        "bytes": 32,
+        "sha256": "a466c64d99f8b448df1d2c768771f10f3674865a41da9ced7c395fda94382407"
+      }
+    ],
+    "scope": "Reference bytes only from known file-backed original text1; not reconstructed/decrypted image or a disassembly of unknown runtime memory."
+  },
+  "actions": [
+    {
+      "action": "Read existing Parallels Windows11 window and native menus",
+      "result": "Desktop and historical stage132 console output visible; no Mac-locked report this turn."
+    },
+    {
+      "action": "Guest clicks, plain typeText1 and pressKey1 including200ms duration, exposed Raise",
+      "result": "No confirmed guest text response; no Return pressed."
+    },
+    {
+      "action": "Select existing native keyboard-menu Win+Q",
+      "result": "Windows search opened; this does not validate ordinary typing."
+    },
+    {
+      "action": "Select existing Windows11 through normal native Window menu",
+      "result": "Existing Windows search/console remained; input not recovered."
+    },
+    {
+      "action": "Inspect native Edit menu and cancel it through exposed Cancel",
+      "result": "Menu closed; no paste or clipboard transfer performed."
+    }
+  ],
+  "result": "not-executed-input-unverified",
+  "actual_guest_dump_bytes_read": 0,
+  "planned_guest_dump_bytes": 64,
+  "fresh_guest_CDB_dump_preflight_completed": false,
+  "guest_commands_submitted": 0,
+  "CDB_invocations": 0,
+  "game_launches": 0,
+  "guest_process_count": "not-rechecked-this-turn",
+  "last_guest_UI": "Windows search open over the existing consoles; no confirmed new characters. Treat potentially delayed input as unverified before any later command.",
+  "configuration_or_backend_changes": false,
+  "snapshot_or_lifecycle_changes": false,
+  "WER_UAC_policy_changes": false,
+  "account_or_game_server_operation": false,
+  "manual_user_request": false,
+  "interpretation": "One pointer-pair delta is not main-image relocation or code ownership; host reference bytes are not runtime evidence. Old stage132 output is historical.",
+  "next_step": "When ordinary input actually recovers, freshly verify clean prompt, dump/CDB identity/signature, no relevant process, empty local symbols/ntsd.ini and new output absence before the exact bounded passive query. Do not replay consumed game-run authorization or replace the control backend."
+}

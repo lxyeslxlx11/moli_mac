@@ -1,0 +1,94 @@
+{
+  "schema": "moli.inno.install-metadata.v1",
+  "recorded_utc": "2026-10-29T17:31:43.880827+00:00",
+  "upstream_version": "innoextract1.9 debug build with recorded build patches",
+  "observations": [
+    {
+      "installer": "CrossGate_Setup.exe",
+      "classification": "static metadata, not execution",
+      "selected_header": {
+        "App name": "\"魔力宝贝\"",
+        "App id": "\"魔力宝贝\"",
+        "Version": "\"3.0.0.0\"",
+        "Default dir name": "\"{autopf}\\PlayOnline\\魔力宝贝\"",
+        "Default group name": "\"易玩通\\魔力宝贝\"",
+        "Privileges required": "2",
+        "Architectures allowed": "(none)",
+        "Architectures installed in 64-bit mode": "(none)",
+        "Disable dir page": "auto",
+        "Disable program group page": "auto",
+        "Min version": "0.0  nt 6.1 (Windows 7) service pack 1",
+        "File entries": "2369",
+        "File location entries": "2368",
+        "Registry entries": "1",
+        "Run entries": "2"
+      },
+      "selected_sections": {
+        "Registry entries": [
+          " - HKCU\\\"SOFTWARE\\SECN\\PlayOnline\\CrossGatePUK3\"",
+          "  \"Path\" = \"{<00>a<00>p<00>p<00>}<00>\" (string)",
+          "  Options: uninstall delete value, uninstall delete key if empty"
+        ],
+        "Run entries": [
+          " - \"{tmp}\\POLCN_Setup.exe\":",
+          "  Check: \"not CheckPolCNSetup\"",
+          "  Wait: 1",
+          "  Options: post install, skip if silent",
+          " - \"{code:GetLauncherPath}\\POLCN_Launcher.exe\":",
+          "  Check: \"CheckPolCNSetup\"",
+          "  Wait: 1",
+          "  Options: post install, skip if silent"
+        ]
+      },
+      "license_fields_printed": 0,
+      "compiled_code_present": true
+    },
+    {
+      "installer": "POLCN_Setup.exe",
+      "classification": "static metadata, not execution",
+      "selected_header": {
+        "App name": "\"“易玩通”娱乐平台\"",
+        "App id": "\"“易玩通”娱乐平台\"",
+        "Version": "\"1.7.9\"",
+        "Default dir name": "\"{autopf}\\易玩通\\“易玩通”娱乐平台\"",
+        "Default group name": "\"易玩通\\“易玩通”娱乐平台\"",
+        "Privileges required": "2",
+        "Architectures allowed": "(none)",
+        "Architectures installed in 64-bit mode": "(none)",
+        "Disable dir page": "auto",
+        "Disable program group page": "auto",
+        "Min version": "0.0  nt 6.1 (Windows 7) service pack 1",
+        "File entries": "5",
+        "File location entries": "3",
+        "Registry entries": "1",
+        "Run entries": "1"
+      },
+      "selected_sections": {
+        "Registry entries": [
+          " - HKCU\\\"SOFTWARE\\SECN\\Launcher\"",
+          "  \"InstallDir\" = \"{<00>a<00>p<00>p<00>}<00>\" (string)",
+          "  Options: uninstall delete value, uninstall delete key if empty"
+        ],
+        "Run entries": [
+          " - \"{app}\\POLCN_Launcher.exe\":",
+          "  Wait: 1",
+          "  Options: post install, skip if silent"
+        ]
+      },
+      "license_fields_printed": 1,
+      "compiled_code_present": true
+    }
+  ],
+  "derived_interpretation": [
+    "Privilege2 maps to AdminPriviliges in checksum-pinned setup/header.hpp; default installation requests administrator privileges.",
+    "CrossGate registry value display uses <00> escapes for embedded zero bytes; interpreting the selected string as UTF-16LE gives {app}.",
+    "Game installer owns its normal HKCU Path registration. CG5Reg is not named in the two declared run entries.",
+    "Post-install branch chooses bundled platform setup when not CheckPolCNSetup, or launcher GetLauncherPath when CheckPolCNSetup. These are conditional declarations; helper/Pascal implementation and evaluated result are unverified.",
+    "Wait1 maps to NoWait in checksum-pinned setup/run.hpp, so the declared postinstall launch does not wait for termination."
+  ],
+  "limits": [
+    "Preliminary Inno6.1 parser support; counts and declarations do not prove every compiled-code behavior.",
+    "No install, registry write, UAC, terms acceptance, postinstall, launcher/game or official traffic executed.",
+    "CrossGate has no license field printed in this selected header/language metadata; actual UI may differ or display other terms. POLCN license text exists and is withheld from public artifacts."
+  ]
+}

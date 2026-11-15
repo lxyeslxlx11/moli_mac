@@ -1,0 +1,191 @@
+{
+  "schema": "moli.launcher-v17.browser-session-smoke.v1",
+  "recorded_utc": "2026-10-27T02:56:58.332Z",
+  "scope": "Actual portable session ESM with original injected streams; browser WebCrypto, clock/cancel/late cleanup, existing offline UI. This is not browser TCP or official transport.",
+  "browser": "155.0.8059.85",
+  "playwright": "1.62.1",
+  "browser_routing": "Browser plugin not available; existing regular Playwright fallback",
+  "url": "http://127.0.0.1:4173/web/launcher.html",
+  "viewport": {
+    "width": 1280,
+    "height": 1000
+  },
+  "checks": [
+    {
+      "name": "existing actual configuration page identity/content/CSP and no framework overlay",
+      "passed": true
+    },
+    {
+      "name": "three independent full-vector exchanges through browser injected streams, not browser TCP",
+      "passed": true
+    },
+    {
+      "name": "actual browser WebCrypto path reaches key/request writes with fresh platform entropy",
+      "passed": true
+    },
+    {
+      "name": "pending stream read AbortSignal cancellation closes once",
+      "passed": true
+    },
+    {
+      "name": "late connection disposal, own-input validation and immutable safe failure metadata",
+      "passed": true
+    },
+    {
+      "name": "existing actual offline plan control remains usable; screenshot reviewed separately",
+      "passed": true
+    }
+  ],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:4173/web/launcher.html",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/web/styles.css",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/web/launcher.css",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/web/launcher-app.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/shared/index.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/web/launcher-file-io.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/web/launcher-fixture.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/web/launcher-catalog-data.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/web/launcher-candidate-store.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/shared/launcher.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/shared/map01.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/shared/install-inventory.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/shared/launcher-message10.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/shared/launcher-replies.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/shared/launcher-channel.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/shared/launcher-login.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/shared/launcher-flow.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/shared/launcher-local.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/shared/launcher-update.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/shared/launcher-manifest.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/shared/local-paths.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/shared/vendor/egoroof-blowfish/4.0.3/blowfish.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/shared/md5.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/shared/vendor/pako/3.0.2/pako_inflate.esm.min.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/web/favicon.svg",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/web/launcher-session.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:4173/web/launcher-session-data.mjs",
+      "method": "GET"
+    }
+  ],
+  "errors": [],
+  "consoleMessages": [],
+  "requestFailures": [],
+  "result": {
+    "entropy": {
+      "state": "failed",
+      "errorCode": "FLOW_REMOTE_CLOSED",
+      "source": "platform-csprng",
+      "requests": 1,
+      "writes": [
+        8,
+        36,
+        48
+      ],
+      "closes": 1
+    },
+    "cancellation": {
+      "state": "cancelled",
+      "closes": 1,
+      "errorCode": null
+    },
+    "deadline": {
+      "state": "timed-out",
+      "errorCode": "FLOW_TIMEOUT",
+      "closes": 1,
+      "writes": 0
+    },
+    "failure": {
+      "frozen": true,
+      "changed": false,
+      "currentCode": "SESSION_WRITE",
+      "safeMessage": true
+    }
+  },
+  "screenshot": "/private/tmp/moli-launcher-v17-browser-WrLi3R/configuration-still-offline.png",
+  "status": "passed",
+  "not_verified": [
+    "Browser raw TCP/authorized bridge",
+    "Miniprogram/Safari/physical mobile",
+    "Real accounts/terms/official service/game",
+    "No login/session controls added to existing page"
+  ]
+}

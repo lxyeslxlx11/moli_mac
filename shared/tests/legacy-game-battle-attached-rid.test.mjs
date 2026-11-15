@@ -1,0 +1,4 @@
+import test from'node:test';import{readFileSync}from'node:fs';import*as api from'../index.mjs';import{verifyAttachedRIDModel}from'../../analysis/game-battle-attached-rid-v1/verify_model.mjs';import{verifyAttachedRIDRoutes}from'../../analysis/game-battle-attached-rid-v1/verify_routes.mjs';
+const vectors=()=>JSON.parse(readFileSync(new URL('../../analysis/game-battle-attached-rid-v1/original-vectors.json',import.meta.url)));
+test('attached RID independent native producer,handoff,states,owned storage and RGBA',async()=>console.log('attached-rid-model '+JSON.stringify(await verifyAttachedRIDModel(api,vectors()))));
+test('attached RID source context,atomic rejection,names,ownership,gating and capacity',async()=>console.log('attached-rid-routes '+JSON.stringify(await verifyAttachedRIDRoutes(api,vectors()))));

@@ -1,0 +1,30 @@
+✔ stream runner matches all3 independently generated full exchange byte vectors (9.247625ms)
+✔ real Python TCP oracle verifies fresh-entropy requests and closes for profiles/empty/rejected (285.871166ms)
+✔ separate real TCP sessions each invoke platform entropy and independently verify new public values (174.920666ms)
+✔ real stream EOF, rejected challenge and truncated encrypted record fail without replay (166.080625ms)
+✔ actual10s total deadline cancels a stalled TCP peer and the peer observes client close (10059.028375ms)
+✔ pre-open failures rotate finite endpoints and never reset deadline or send early bytes (1.84775ms)
+✔ opening all endpoints fails finitely without leaking provider text or requesting entropy (0.352834ms)
+✔ cancelling a pending open returns promptly and closes the same late stream once (1.788ms)
+✔ AbortSignal cancels a pending read and write, without another request or retry (0.807208ms)
+✔ cancelling pending entropy closes wire and does not mutate late caller-owned entropy (0.517708ms)
+✔ deadline wins over late open success and rejection even before timer callback delivery (0.480167ms)
+✔ a deadline crossed by synchronous write completion prevents all subsequent writes (0.164542ms)
+✔ input, endpoint and request bytes are snapshotted before any connection (0.78575ms)
+✔ profile choices remain owned and can be explicitly selected or abandoned after wire closes (1.005959ms)
+✔ bad read shapes and empty/oversized chunks fail without spinning or reusing stale data (0.25225ms)
+✔ invalid entropy is a controlled failure and caller-owned nonce input remains intact (0.970916ms)
+✔ zero entropy retains the core nontrivial-exponent rejection and never retries (0.112041ms)
+✔ own properties and native byte lengths reject coercion, sparse endpoints and hostile metadata (0.332667ms)
+✔ cancel before start and already-aborted signal perform no transport or entropy requests (0.083083ms)
+✔ invalid signals, clock and timer providers fail without leaking provider messages (0.199166ms)
+✔ a malformed opened port is disposed and exhausted as a pre-open contract failure (0.076083ms)
+✔ write failures close the opened stream without another endpoint or raw error exposure (0.087708ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10821.309667

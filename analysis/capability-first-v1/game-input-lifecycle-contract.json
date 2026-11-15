@@ -1,0 +1,408 @@
+{
+  "schema": "moli.capability.game-input-lifecycle-contract.v1",
+  "requirement": "全部需求先形成可追溯规格，再按共享所有者成组开发；本合同归并共用键状态、字节输入及有正向来源的焦点链。",
+  "source": {
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "kind": "固定旧版PE；不外推现行受保护版本",
+    "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+    "tools": {
+      "REA": "6.7.0",
+      "Ghidra": "12.1.4"
+    }
+  },
+  "capabilities": [
+    "G10",
+    "X01",
+    "X02"
+  ],
+  "source_check": "analysis/capability-first-v1/game-input-lifecycle-source-check.json",
+  "source_verifier": "analysis/capability-first-v1/derive_game_input_lifecycle.py",
+  "facts": [
+    {
+      "id": "registration",
+      "entries": [
+        "0x45cc90",
+        "0x45dd10",
+        "0x45dd80"
+      ],
+      "rule": "45cdb5把45dd80写入WNDCLASSA的窗口过程字段924ff4，45ce3b经RegisterClassA注册。45dd10仅取消息、翻译及分派并识别退出；不能把它的104字节范围当作按键生产体。规范REA无45dd80过程，窗口过程在独立副本中按该真实指针恢复891指令/2877字节，所有指令核原PE，保留派生权限。"
+    },
+    {
+      "id": "key-storage",
+      "entries": [
+        "0x45dd80",
+        "0x4523e0",
+        "0x452400"
+      ],
+      "rule": "共享键槽72869c按字节索引，所述正常键域为0..255。已见掩码0x01=抬起事件，0x02=按住，0x04=首次按下，0x08=按下锁存，0x10=每次按下消息产生的触发。原生产者直接用wParam索引，不在此处额外钳制索引。"
+    },
+    {
+      "id": "key-down",
+      "entries": [
+        "0x45dd80"
+      ],
+      "rule": "消息0x100只在53cb88==2时写键槽：置0x02；旧槽未置0x08时再置0x04/0x08；每次都置0x10。重复keydown沿消息到达产生0x10，锁存0x08抑制新的0x04。不得给这些位额外假定毫秒重复定时器。53cb88是原生状态门槛，尚不能等同于共享文本焦点。 一个泵内多次消息合并到槽位，业务读取位状态，不读取重复次数。"
+    },
+    {
+      "id": "key-up-and-system-key",
+      "entries": [
+        "0x45dd80"
+      ],
+      "rule": "消息0x101执行(slot&0xf5)|1，清按住0x02及锁存0x08，保留同次泵内已有0x04/0x10。该分支没有53cb88==2门槛。消息0x104对0x79键单独生产相同按下位，其他系统键另有Enter处理或交给默认窗口过程；不能把全部系统键无差别并入普通分支。"
+    },
+    {
+      "id": "key-clear",
+      "entries": [
+        "0x44fb60",
+        "0x4523e0",
+        "0x452400",
+        "0x45dd80"
+      ],
+      "rule": "主循环先处理45dd10消息，再经现有状态/业务/绘制调用，后执行4523e0：256槽各与0xea，清0x01/0x04/0x10，保留0x02/0x08。激活消息0x06调用452400：各与0xe8，同时清0x02但仍保留0x08。激活清理不是全槽归零；按下又抬起落在同泵内时，清理前可以同时保留事件位。"
+    },
+    {
+      "id": "key-queries",
+      "entries": [
+        "0x452420",
+        "0x452430",
+        "0x452440"
+      ],
+      "rule": "452420返回指定槽&0x04；452430返回槽&0x10；两者只读。452440在Ctrl槽7286ad的0x02位和指定槽0x10位都非零时返回1，否则0；它与普通查询不同。数字盘已证的452420调用因此使用首次按下事件，F键服务的452430可看见按下重复消息。"
+    },
+    {
+      "id": "focus-writes",
+      "entries": [
+        "0x445220",
+        "0x445530",
+        "0x443ab0"
+      ],
+      "rule": "445220立即设置60ff08。REA对该精确符号报告106条incoming引用，3个WRITE点为445224、4455b2、4455db；后两点属于临时选择/还原。该枚举只覆盖提供者报告的符号引用，未穷尽寄存器别名、其他模块或间接写。"
+    },
+    {
+      "id": "descriptor-initial-text",
+      "entries": [
+        "0x443ab0",
+        "0x443f20",
+        "0x445220"
+      ],
+      "rule": "文本描述符初始化写布局及长度/光标字段；存在初始文本时保存旧目标，选择新描述符，调用443f20插入，再还原旧目标。旧值是保存的指针，不能因零字面搜索无命中就断言它永不还原为零。"
+    },
+    {
+      "id": "temporary-format-target",
+      "entries": [
+        "0x445530",
+        "0x443f20"
+      ],
+      "rule": "445530按参数选择5e4820或60fc38临时文本目标，设置相应状态，清其文本/长度/光标后插入，最后还原保存的60ff08。它还按最多287字节范围处理反斜杠及后续字节为空格；这是临时格式化链，不是所有窗口的统一退出复位。"
+    },
+    {
+      "id": "byte-insertion",
+      "entries": [
+        "0x443f20",
+        "0x444b80"
+      ],
+      "rule": "443f20要求目标非零，对输入strlen最多取287字节，并逐字节调用444b80。444b80按源有符号char规则筛选控制字节，允许CR及高位字节；使用+0x128光标、+0x12c长度和布局限额。越界分支有回滚、布局截断及提示位60ff2c等差异，不能统一成整串拒绝或统一截断；本链无直接聊天发送。"
+    },
+    {
+      "id": "byte-boundaries",
+      "entries": [
+        "0x445060",
+        "0x4450a0"
+      ],
+      "rule": "两辅助函数用高位80判断一步一字节或两字节，区分空串0、最后单字节1、双字节2、尾部孤立高位字节3。4450a0对指定前缀做同类判断。它们不是Unicode字符计数或完整编码合法性验证。"
+    },
+    {
+      "id": "character-message",
+      "entries": [
+        "0x45dd80",
+        "0x444b80"
+      ],
+      "rule": "消息0x102忽略CR，GetAsyncKeyState(0x12)为任意非零时返回，否则把字符参数交444b80的字节入口。宏/初始文本的CR入口和该字符消息分支应分别保留。仅为静态来源，不代表Mac、网页或微信输入法已验收。"
+    },
+    {
+      "id": "composition",
+      "entries": [
+        "0x452200",
+        "0x45dd80"
+      ],
+      "rule": "消息0x10f把原标志交452200。正常非负API长度下，每次API拷贝上限255：0x800结果串逐字节插入；0x08预编辑串写728488；0x10属性写728588；0x80光标位置写728688并重置闪烁20。分支按上述顺序处理，255字节API片段上限与287字节目标上限分开。负值API失败/非正常布局未在本合同外推为已妥善处理。"
+    },
+    {
+      "id": "composition-end-and-candidates",
+      "entries": [
+        "0x45dd80"
+      ],
+      "rule": "消息0x10d直接返回；0x10e仅将预编辑串728488首字节置零，未在该分支重置目标/全部属性。0x282处理转换状态及候选列表通知3/4/5的释放、分配、读取；这些是原生宿主生命周期来源，目标平台需各自适配验证。"
+    },
+    {
+      "id": "function-key-text",
+      "entries": [
+        "0x445230",
+        "0x443f20"
+      ],
+      "rule": "445230检查0x70..0x77八槽的重复触发；Shift按住优先选择16号银行偏移，随后Ctrl偏移8，否则0。扫描不提前停止，同批多个命中取最高序号；以0x15c（348字节）步长选择24个文本槽之一，调用443f20并播放源音效。它既不直接发聊天报文，也不是焦点复位函数。"
+    },
+    {
+      "id": "default-text-history",
+      "entries": [
+        "0x443f70"
+      ],
+      "rule": "只有60ff08为默认60fda8时执行历史输入分支。64槽索引及0x121（289字节）步长、Up/Down触发和修饰键门槛按来源处理；预编辑串非空时跳过相关历史切换。切换清文本/长度/光标再用443f20填充。其他历史持久化和协议发送不由此函数证明。"
+    },
+    {
+      "id": "explicit-default-restore",
+      "entries": [
+        "0x49a130",
+        "0x4994b0",
+        "0x49b890",
+        "0x4a2c80",
+        "0x4884d0"
+      ],
+      "rule": "49a130依c5dce4选择610d38或11470所有者，恢复对应控件布局/当前控件c4be9c，再选择默认60fda8并返回1。没有适用所有者时返回0，本函数不调用设置目标。已见49b890控件资格变化、4a2c80状态变化和4884d0宏面板切页等具体调用；其余关闭/所有者丢失链仍需逐业务证据，不能推成通用自动清理。"
+    },
+    {
+      "id": "focus-readers",
+      "entries": [
+        "0x469670",
+        "0x44f3e0",
+        "0x45c420",
+        "0x437b30",
+        "0x501a50"
+      ],
+      "rule": "469670在当前控件与默认目标匹配的特定case中调用499ba0；44f3e0在绘制时检查是否是当前目标。45c420按双输入字段选择状态设置目标；437b30和501a50有显式选择默认目标的进入分支。这些是各自上下文的读写，不能互换成帧末统一复位。"
+    }
+  ],
+  "focused_reference_review": {
+    "selected_roots": 647,
+    "positive_literal_focus_roots": 13,
+    "complete_reused_derived_instructions": 2482,
+    "complete_reused_derived_bytes": 8578,
+    "roots": [
+      "0x476170",
+      "0x4769d0",
+      "0x47e160",
+      "0x4884d0",
+      "0x48f4f0",
+      "0x497fa0",
+      "0x4994b0",
+      "0x49b890",
+      "0x49dc80",
+      "0x49fa00",
+      "0x4a01f0",
+      "0x4a2c80",
+      "0x4b7fa0"
+    ],
+    "assignment": "保留每个根的来源及短上下文；比较、数字键盘资格、绘制及显式目标切换分开。本组只解释上述有具体规则的链，13个阳性根不等于13项新增功能。",
+    "zero_search_repeated": false,
+    "all_aliases_or_full_business_lifecycle_closed": false,
+    "held_out_function": "4b4170的旧完整5500字节已机械复用；本合同没有据地址名称将它认作键盘生产或焦点调度者。"
+  },
+  "architecture_inferences": [
+    {
+      "kind": "推测，待实现",
+      "batch": "D0",
+      "rule": "一个共享所有者持有键槽、文字目标、字节长度/光标、预编辑和帧末清理；业务读取统一状态，避免各组件各自吞键。"
+    },
+    {
+      "kind": "推测，待实现",
+      "batch": "D0/D3",
+      "rule": "区分持久目标选择、临时插入目标和有来源的业务恢复；保留恢复失败返回及所有者，隐藏不自动等同销毁或焦点清零。"
+    },
+    {
+      "kind": "推测，待实现",
+      "batch": "D5",
+      "rule": "网页、移动网页、微信提供各自输入/组合文字/失焦宿主事件，按经过复核的兼容合同进入共享核心；不移植Win32窗口过程本身。"
+    },
+    {
+      "kind": "推测，待实现",
+      "batch": "D0/D3",
+      "rule": "复用已有数字输入和F键槽定义，保留首次触发与重复触发的差别；协议字段、业务提交与文本插入各有自己的来源。"
+    }
+  ],
+  "remaining": [
+    "普通方向/删除/Enter和451D60的IME呈现职责已由文本编辑合同补齐；其它描述符/业务关闭、取消、重入和丢失恢复、异常IME及所有实际宿主输入仍待。不要再按451DB0地址邻近重做编辑入口。",
+    "其他调用者的关闭、取消、重入、所有者销毁/丢失和别名写入；三个符号写点不证明穷尽全部生命周期。",
+    "主状态/错误/停止及原生帧数/时钟与全部业务的联合调度，另一套97回调的实际分派仍未关闭。",
+    "4b4170在全业务/调度中的作用按既有角色来源和实际调用继续归并，未因本轮机械复用提升为输入覆盖。",
+    "异常IME返回、完整候选列表/属性解释、编码与原生显示适配的边界。",
+    "其他普通业务、宠物状态发布、战斗/物理与RNG等其余38域要求。",
+    "网页/微信宿主真实输入法、设备及同版官方登录/业务接受；目前没有测试账号。"
+  ],
+  "acceptance": {
+    "source": "本合同限定来源规则已审查并由字节/身份/分支锚核验",
+    "specification": "共用按键/字节输入及显式恢复已成规；完整输入和全需求规格仍未闭合",
+    "shared_implementation": "本轮未改",
+    "local_product": "本轮未运行",
+    "actual_platform_device": "未验收",
+    "same_version_official": "未验收"
+  },
+  "original_execution": false,
+  "real_keyboard_or_account_observed": false,
+  "VM_operations": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "shared_clock_input_review": {
+    "specification": {
+      "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+      "bytes": 39736,
+      "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+    },
+    "source_inputs": {
+      "path": "build/analysis/shared-clock-input-review-v1/source-inputs.json",
+      "bytes": 4173,
+      "sha256": "a4736ed0e2a48266f6b187b091571609393987fd2a0ab28881a02ad2d03e9148"
+    },
+    "validation_record_path": "build/analysis/shared-clock-input-review-v1/validation.json",
+    "source_summary": {
+      "views": 19,
+      "reused_complete_native_views": 16,
+      "new_complete_native_views": 0,
+      "reused_derived_views": 3,
+      "body_ranges": 19,
+      "body_bytes": 6799,
+      "derived_instructions": 1163,
+      "direct_E8_CALLs": 147,
+      "new_native_queries": 0,
+      "native_views": 16,
+      "derived_views": 3,
+      "cold_instructions": 2060,
+      "extra_cold_helper_bytes": 220,
+      "extra_cold_helper_instructions": 75,
+      "literal_bytes": 20,
+      "calendar_division_domain": 2592000,
+      "source_fact_groups": 10,
+      "architecture_inferences": 2,
+      "independent_design_groups": 4,
+      "stale_prior_repeat_topics_resolved": 3,
+      "current_code_inputs": 10,
+      "proposed_not_executed_cases": 10
+    },
+    "scope": "Selected same37c4 shared keyboard/numeric/calendar/frame/audio rules, current code deltas and finite remaining categories",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "shared_reference": "analysis/capability-first-v1/game-entry-review-contract.json#/shared_clock_input_review",
+    "all_input_lifetimes_or_global_timing_closed": false
+  },
+  "legacy_item_keyboard_frame": {
+    "classification": "fixed historical Item source supplement",
+    "source": {
+      "path": "build/analysis/game-release-current-v1/legacy-members/cg_item_6000.exe",
+      "bytes": 2213376,
+      "sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9"
+    },
+    "source_review": "build/analysis/legacy-item-keyboard-frame-v1/source-review.json",
+    "rules": {
+      "keyboard_state": {
+        "address": "0x7c54a4",
+        "slots": 256
+      },
+      "message_pump": {
+        "call": "0x487461",
+        "entry": "0x4a0178",
+        "peek_remove": 1,
+        "quit_returns_zero_before_state_frame": true
+      },
+      "window_proc": "0x4a01bd",
+      "keydown": {
+        "message": 256,
+        "target": "0x4a051e",
+        "input_mode": 2,
+        "held": 2,
+        "first_press": 4,
+        "first_press_latch": 8,
+        "down_or_repeat": 16
+      },
+      "keyup": {
+        "message": 257,
+        "target": "0x4a0597",
+        "clear": [
+          2,
+          8
+        ],
+        "set": [
+          1
+        ]
+      },
+      "activation": {
+        "message": 6,
+        "target": "0x4a02b1",
+        "clear": [
+          2,
+          1,
+          4,
+          16
+        ],
+        "retains_latch": 8
+      },
+      "normal_frame": {
+        "entry": "0x48733e",
+        "main_dispatch": "0x4874b9",
+        "main_state": 9,
+        "substate": 3,
+        "selected_key_consumer": "0x58d8a2",
+        "classic_window_call": "0x58d8ac",
+        "clear_call": "0x4874e9",
+        "clear": [
+          1,
+          4,
+          16
+        ],
+        "preserves": [
+          2,
+          8
+        ],
+        "selected_mode_1_to_2_after_clear": "0x4875a0"
+      },
+      "local_album": {
+        "record": {
+          "index": 9,
+          "modifier_state_index": 17,
+          "key_state_index": 68,
+          "reserved_word": 0,
+          "callback": "0x56b600",
+          "source": {
+            "address": "0x5d0170",
+            "file_offset": 1892208,
+            "bytes": 8,
+            "sha256": "35840f8ca3639f7c543cacaa4db0fdc5b7ef13276c3eaf7a353abce7e2fc5144"
+          },
+          "indirect_call": "0x48aaa5",
+          "toggle_call": "0x56b605",
+          "window": 23,
+          "condition": "state[0x11]&2 and state[0x44]&4 are both nonzero"
+        },
+        "modifier_mask": 2,
+        "key_mask": 4,
+        "key_state_producer_bound": true,
+        "normal_dispatcher_admission_proven": false
+      }
+    },
+    "static_cases": "build/analysis/legacy-item-keyboard-frame-v1/source-derived-cases.json",
+    "existing_target_regressions": {
+      "path": "build/analysis/legacy-item-keyboard-frame-v1/focused-regression.log",
+      "passed": 4,
+      "scope": "existing pointer and clock only"
+    },
+    "implementation_batches": [
+      "D0",
+      "D3",
+      "D6"
+    ],
+    "implementation_differences": [
+      "Reuse the existing frame input owner. Admit the ordered keyboard messages before a logic frame, then retire the transient bits after state and window callbacks.",
+      "Keep held, first press, latch, repeated-down pulse and key-up values distinct in the selected Item message mode. Treat the activation and mode 1 to 2 boundaries as separate operations.",
+      "Bind the G19 local match to the same key state values after the required normal dispatcher admission is established."
+    ],
+    "source_mode_2_lifecycle_bound": true,
+    "normal_album_dispatcher_admission_proven": false,
+    "alternate_frame_dispatch_proven": false,
+    "original_execution": false,
+    "current_version_equivalence_proven": false,
+    "target_keyboard_acceptance_proven": false
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "sample": {
+    "name": "POLCN_Launcher.unpacked.exe",
+    "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "bytes": 1735168
+  },
+  "scope": "Static +0x1708 producer, control binding and Code11 launch condition only; no target/UI/VM execution or network.",
+  "sources": {
+    "disassembly": "cached GNU objdump 2.47.20260726 launcher.asm; fresh bounded PE byte and import verification",
+    "prior_rea": "REA6.7/Ghidra12.1.4 stage3 launch dossier; high-pcode truncated; no new engine invocation",
+    "resource_evidence_id": "ev_b7ec0f3b54328ce8e68e1eb5e8ee35e510ef9a4c80911504bb0b6e4e1c25338c"
+  },
+  "alias": {
+    "parent_member_offset": "0x11c",
+    "subobject_field_offset": "0x15ec",
+    "parent_field_offset": "0x1708"
+  },
+  "dialog": {
+    "type": 5,
+    "name": 133,
+    "language": 2052,
+    "payload_va": "0x5af6c8",
+    "file_offset": "0x1a46c8",
+    "bytes": 1016,
+    "sha256": "e297cbefcf050bacfa668feb4f4b6f8da710012f0668dafb256de2526d26170d",
+    "control": {
+      "index": 16,
+      "id": 1029,
+      "relative_offset": 752,
+      "label_relative_offset": 780,
+      "style": 1476468739,
+      "class": {
+        "ordinal": 128
+      },
+      "label": "仅刷新通行证",
+      "record_bytes": 44
+    },
+    "control_file_offset": "0x1a49b8",
+    "label_file_offset": "0x1a49d4"
+  },
+  "anchors": [
+    {
+      "id": "member_this",
+      "va": "0x401054",
+      "file_offset": "0x454",
+      "expected_hex": "81c11c010000"
+    },
+    {
+      "id": "member_ctor",
+      "va": "0x40105a",
+      "file_offset": "0x45a",
+      "expected_hex": "e831ec0000",
+      "target": "0x40fc90"
+    },
+    {
+      "id": "ctor_vtable",
+      "va": "0x40fcd1",
+      "file_offset": "0xf0d1",
+      "expected_hex": "c7013c454b00"
+    },
+    {
+      "id": "initial_zero",
+      "va": "0x40fec0",
+      "file_offset": "0xf2c0",
+      "expected_hex": "c782ec15000000000000"
+    },
+    {
+      "id": "ddx_virtual_slot",
+      "va": "0x4b4638",
+      "file_offset": "0xb3838",
+      "expected_hex": "50024100"
+    },
+    {
+      "id": "field_binding",
+      "va": "0x41046c",
+      "file_offset": "0xf86c",
+      "expected_hex": "81c2ec150000"
+    },
+    {
+      "id": "control_id",
+      "va": "0x410473",
+      "file_offset": "0xf873",
+      "expected_hex": "6805040000"
+    },
+    {
+      "id": "field_transfer",
+      "va": "0x41047c",
+      "file_offset": "0xf87c",
+      "expected_hex": "e8123d0200",
+      "target": "0x434193"
+    },
+    {
+      "id": "save_mode_test",
+      "va": "0x4341b7",
+      "file_offset": "0x335b7",
+      "expected_hex": "3916"
+    },
+    {
+      "id": "save_mode_branch",
+      "va": "0x4341ba",
+      "file_offset": "0x335ba",
+      "expected_hex": "7417",
+      "target": "0x4341d3"
+    },
+    {
+      "id": "get_check_message",
+      "va": "0x4341be",
+      "file_offset": "0x335be",
+      "expected_hex": "68f0000000"
+    },
+    {
+      "id": "get_check_send",
+      "va": "0x4341c6",
+      "file_offset": "0x335c6",
+      "expected_hex": "ff154c164b00",
+      "api": "SendMessageA"
+    },
+    {
+      "id": "write_destination",
+      "va": "0x4341cc",
+      "file_offset": "0x335cc",
+      "expected_hex": "8b4d10"
+    },
+    {
+      "id": "write_check_result",
+      "va": "0x4341cf",
+      "file_offset": "0x335cf",
+      "expected_hex": "8901"
+    },
+    {
+      "id": "range_low",
+      "va": "0x4341da",
+      "file_offset": "0x335da",
+      "expected_hex": "7c05",
+      "target": "0x4341e1"
+    },
+    {
+      "id": "range_upper",
+      "va": "0x4341dc",
+      "file_offset": "0x335dc",
+      "expected_hex": "83f902"
+    },
+    {
+      "id": "range_high_branch",
+      "va": "0x4341df",
+      "file_offset": "0x335df",
+      "expected_hex": "7e02",
+      "target": "0x4341e3"
+    },
+    {
+      "id": "invalid_state_zero",
+      "va": "0x4341e1",
+      "file_offset": "0x335e1",
+      "expected_hex": "8910"
+    },
+    {
+      "id": "set_check_message",
+      "va": "0x4341e6",
+      "file_offset": "0x335e6",
+      "expected_hex": "68f1000000"
+    },
+    {
+      "id": "set_check_send",
+      "va": "0x4341ee",
+      "file_offset": "0x335ee",
+      "expected_hex": "ff154c164b00",
+      "api": "SendMessageA"
+    },
+    {
+      "id": "prelaunch_save_true",
+      "va": "0x410cfa",
+      "file_offset": "0x100fa",
+      "expected_hex": "6a01"
+    },
+    {
+      "id": "prelaunch_exchange_call",
+      "va": "0x410cff",
+      "file_offset": "0x100ff",
+      "expected_hex": "e8e8ae0100",
+      "target": "0x42bbec"
+    },
+    {
+      "id": "exchange_mode_arg",
+      "va": "0x42bbfa",
+      "file_offset": "0x2affa",
+      "expected_hex": "8b4508"
+    },
+    {
+      "id": "exchange_mode_local",
+      "va": "0x42bbff",
+      "file_offset": "0x2afff",
+      "expected_hex": "8945d4"
+    },
+    {
+      "id": "exchange_context_arg",
+      "va": "0x42bc21",
+      "file_offset": "0x2b021",
+      "expected_hex": "8d4dd451"
+    },
+    {
+      "id": "exchange_virtual_dispatch",
+      "va": "0x42bc2d",
+      "file_offset": "0x2b02d",
+      "expected_hex": "ff90fc000000"
+    },
+    {
+      "id": "prelaunch_root_accessor",
+      "va": "0x410d09",
+      "file_offset": "0x10109",
+      "expected_hex": "e89282ffff",
+      "target": "0x408fa0"
+    },
+    {
+      "id": "launch_method_call",
+      "va": "0x410d10",
+      "file_offset": "0x10110",
+      "expected_hex": "e8eb6cffff",
+      "target": "0x407a00"
+    },
+    {
+      "id": "resource_gate_read",
+      "va": "0x407fd8",
+      "file_offset": "0x73d8",
+      "expected_hex": "83b90817000000"
+    },
+    {
+      "id": "resource_gate_branch",
+      "va": "0x407fdf",
+      "file_offset": "0x73df",
+      "expected_hex": "0f85ac030000",
+      "target": "0x408391"
+    },
+    {
+      "id": "launch_gate_read",
+      "va": "0x40851e",
+      "file_offset": "0x791e",
+      "expected_hex": "83ba0817000000"
+    },
+    {
+      "id": "launch_gate_zero",
+      "va": "0x408525",
+      "file_offset": "0x7925",
+      "expected_hex": "743c",
+      "target": "0x408563"
+    },
+    {
+      "id": "code11_cmp",
+      "va": "0x40855a",
+      "file_offset": "0x795a",
+      "expected_hex": "83b89c6c00000b"
+    },
+    {
+      "id": "code11_skip",
+      "va": "0x408561",
+      "file_offset": "0x7961",
+      "expected_hex": "762f",
+      "target": "0x408592"
+    },
+    {
+      "id": "game_create",
+      "va": "0x408589",
+      "file_offset": "0x7989",
+      "expected_hex": "ff156c134b00",
+      "api": "CreateProcessA"
+    },
+    {
+      "id": "postlaunch_read",
+      "va": "0x40859e",
+      "file_offset": "0x799e",
+      "expected_hex": "83b80817000000"
+    },
+    {
+      "id": "postlaunch_zero_error",
+      "va": "0x4085a5",
+      "file_offset": "0x79a5",
+      "expected_hex": "7427",
+      "target": "0x4085ce"
+    },
+    {
+      "id": "accessor_owner",
+      "va": "0x408faa",
+      "file_offset": "0x83aa",
+      "expected_hex": "8b88a8000000"
+    },
+    {
+      "id": "accessor_member",
+      "va": "0x408fca",
+      "file_offset": "0x83ca",
+      "expected_hex": "05e8000000"
+    }
+  ],
+  "conclusions": [
+    {
+      "status": "fact",
+      "confidence": "high fixed sample",
+      "text": "Constructor initializes field to zero through subobject alias +11c +15ec = +1708."
+    },
+    {
+      "status": "fact",
+      "confidence": "high fixed sample",
+      "text": "Control0x405 static label is 仅刷新通行证; data exchange writes SendMessageA message0xf0 result to the field; reverse path sends0xf1 and accepts integer0..2."
+    },
+    {
+      "status": "inference",
+      "confidence": "high; Win32 control semantics plus resource binding",
+      "text": "Field is the check-state integer for refresh-passport-only UI, not a bitmask or proof of authentication success."
+    },
+    {
+      "status": "fact",
+      "confidence": "high local control flow",
+      "text": "Caller passes1 to data-exchange42bbec before407a00; constructor vtable+fc points410250, whose41047c transfers the field."
+    },
+    {
+      "status": "fact",
+      "confidence": "high bounded Code11 path",
+      "text": "Code11 zero field permits resource-argument construction and CreateProcessA; nonzero skips resource enumeration, process creation and zero-result error branch. Mapping block remains reachable."
+    },
+    {
+      "status": "unknown",
+      "text": "Actual current UI state/object identity and game-side launch acceptance were not observed; no conclusion on prior crash or Windows7 compatibility effects."
+    }
+  ],
+  "user_reported_context": "Parent relayed user23:31UTC: win7 两个都设置. Launcher and game Windows7 compatibility are user-provided normal-flow prerequisites; current VM settings and effects unverified; no new execution/settings authorization.",
+  "no_sensitive_values": "Only static labels/offsets and original verifier fixtures. No runtime account values, process memory or credentials."
+}

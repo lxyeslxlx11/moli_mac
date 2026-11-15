@@ -1,0 +1,27 @@
+{
+  "stage": 304,
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "source_check": "analysis/game-work-actions-v1/source-check.json",
+  "implementation": "Extend the existing ordinary work owner with known kind2 weapon/armor repair,appraisal,engraving and kind1/id255 decoration;the full original game objective and other branches remain active.",
+  "selection": "Existing sorted skills and10 enabled level rows remain.The four known kind2 ids217..220 and kind1/id255 open their own work mode directly after level selection;normal craft keeps recipe selection.",
+  "items": "Repair accepts identified/description-ready weapon categories0..6 for217 or armor7..14 for218 and itemLevel<=mainRank.Appraisal219 accepts a present description-empty item within rank.Engraving220 requires description-ready,count<=0,category!=47,and qualification100/200 clear unless400 is set.",
+  "decoration": "Six positions hold at most one base and one extra25/38/39.Extra needs description readiness.Base also needs qualification800 and an exchangeCode found among all56 product ids of any skill with identifier200..214;no prefix termination or kind/presence condition is invented.Replacement removes the old target before class-quota checks;swapping preserves associations.",
+  "cost_and_duration": "Repair/appraise cost int32(itemLevel*10) and consume one owned CRT draw for int32((rand%6+5+int32(itemLevel*3))*1000),then7ba before deadline+>L.Engraving costs10 and sends+>L immediately.Decoration costs100,8000ms and7ba without consuming rand.",
+  "wire": "Existing+>L uses skillSlot,source signed work-level byte,target slot,text.Item work sends current owned initial source byte0 and absolute target slot,empty text except engraving.Decoration sends0,-1,decimal baseSlot|extraSlot.The source byte is read from virtual-zero-fill c5bd1b;it is not the user-selected level.No wire field is added.",
+  "mark_text": "The source editor is one16-byte line,not12 bytes.Standalone7c/5c are rejected with source DBCS stepping.Blank checking removes each20/81/40 byte.Empty text clears only a prior400 mark;new marks require nonblank text.The original input bytes,not the stripped copy,are submitted.",
+  "results": "Lor kind2 decodes seven numbers:exp,raw unknown,levelUp,three attribute deltas,injury;kind1 decoration retains the existing eight-number manufacturing result.No result changes inventory/MP.Retry resets selections and cancellation/scene/owner interruption prevents delayed sends.",
+  "independent_choices": [
+    "The pure owner models the observed source work-level initial byte0;universal native alias lifetime is not claimed.",
+    "Semantic result2 UI uses its evidenced payload attribute deltas;native widget stale-global alias equivalence is not claimed.",
+    "Current28-slot inventory and copied controls remain bounded;native8..99 guard is not expansion proof.",
+    "Existing semantic web/mobile/Page UI and frame clock are shared;full native animations/global RNG interleaving remain pending."
+  ],
+  "validation": "Original independent vectors,real owners and coalesced client/session requests,source/generated checks,actual1072-file desktop/touch/Page local peer flows,appropriate full regression and13 canonical documents.",
+  "pending": [
+    "Lor kind3 treatment/first-aid/disguise/transform and kind4 gathering/discovery inputs/results",
+    "Nonzero contexts and complete native animations/window/global aliases",
+    "All original37 requirements/10 incomplete groups and actual platform/current/official acceptance"
+  ],
+  "goal_status": "active",
+  "full_goal_complete": false
+}

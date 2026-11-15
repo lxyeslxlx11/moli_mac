@@ -1,0 +1,258 @@
+{
+  "schema": "moli.launcher-v17.validation.v1",
+  "recorded_utc": "2026-10-27T03:01:23.747641+00:00",
+  "stage": 62,
+  "status": "passed-bounded-launcher-byte-stream-runtime-and-loopback-TCP",
+  "scope": "Existing REA-backed launcher byte flow executed through cancellable stream ports, platform entropy/clock/deadline, and explicit-allowlist Node TCP. Only original synthetic inputs and127.0.0.1 Python peers; browser uses injected streams. Full launcher/game/official goal remains incomplete.",
+  "preflight": {
+    "previous_manifest": "analysis/delivery-manifest-stage61.json",
+    "previous_files_verified_before_edit": 756,
+    "git_repository": false,
+    "baseline": "build/analysis/launcher-v17/baseline/",
+    "knowledge_requirement_index": "query failed missing mandatory role; current repository development-plan is the explicit requirement truth; no other project/global rule modification"
+  },
+  "analysis": {
+    "new_REA_calls": 0,
+    "reused": [
+      "analysis/launcher-v7/static-spec.json",
+      "analysis/launcher-v9/static-spec.json"
+    ],
+    "reason": "No new native behavior claim; platform I/O implementation follows already analyzed bytes/control with new policies kept separate.",
+    "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "spec": "analysis/launcher-v17/session-spec.json"
+  },
+  "implementation": {
+    "runtime": "web/launcher-session.mjs",
+    "contract": "web/launcher-session-data.mjs",
+    "Node_TCP": "adapters/node/launcher-stream.mjs",
+    "example": "web/examples/launcher-session-local.mjs",
+    "network_on_construction": false,
+    "default_official_target": false,
+    "shared_core_changed": false,
+    "close_policy": "best-effort close with captured accepted method; no guarantee of remote closure from a method-return counter",
+    "failure_metadata": "frozen controlled code/message; cannot mutate later snapshots",
+    "entropy": "platform WebCrypto default; explicit override labelled caller-provided; no real generated material stored"
+  },
+  "node": {
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "runtime": "v26.9.0",
+    "tests": 335,
+    "passed": 335,
+    "failed": 0,
+    "skipped": 0,
+    "new_tests": 35,
+    "new_session_tests": 25,
+    "new_Node_port_tests": 10,
+    "log": "analysis/launcher-v17/node-tests.log",
+    "actual_timeout_test_ms": 10061.495167
+  },
+  "independent_TCP": {
+    "source": "analysis/launcher-v17/original_tcp_peer.py",
+    "oracle": "Python pow/struct/PyCryptodome3.23.0; original public fixtures only; derive from fresh client public, decrypt and compare exact original frame",
+    "Node_test_sessions": 9,
+    "actual_default_entropy_request_verifications": 6,
+    "cases": [
+      "profiles",
+      "empty",
+      "rejected",
+      "two separate fresh-entropy profiles",
+      "drop after hello",
+      "bad challenge",
+      "truncated encrypted record",
+      "actual10s stalled-peer timeout and client EOF"
+    ],
+    "example_sessions": 3,
+    "example_states": [
+      "profiles",
+      "no-profiles",
+      "rejected"
+    ],
+    "example_peerVerified": [
+      true,
+      true,
+      true
+    ],
+    "example_exit_code": 0,
+    "peer_termination": "normal protocol completion or stdin stop; owned child/socket handles, no unknown program execution",
+    "no_generated_nonce_key_or_request_body_in_output": true
+  },
+  "browser": {
+    "environment": "Playwright1.62.1/Chrome155.0.8059.85 headless fresh context",
+    "routing": "Browser plugin not available; existing regular Playwright fallback",
+    "checks": 6,
+    "source_loopback_GETs": 27,
+    "console_warn_error": 0,
+    "pageerror": 0,
+    "requestfailed": 0,
+    "viewport": {
+      "width": 1280,
+      "height": 1000
+    },
+    "actual_TCP": false,
+    "streams": "original injected byte ports; actual browser WebCrypto/default clock/timer path tested separately",
+    "existing_UI": "Exact URL/title/h1/options, no error overlay, original offline-plan click verified; no session controls added",
+    "receipt": "analysis/launcher-v17/browser-session-smoke.json",
+    "screenshot": {
+      "path": "/private/tmp/moli-launcher-v17-browser-WrLi3R/configuration-still-offline.png",
+      "sha256": "a2f296778e4598ac1167c3c45fdb5d0a303eb5860a46d5508d9d41be0350c2d6",
+      "reviewed": true,
+      "finding": "Existing desktop configuration/fixture/cache controls readable, no overlay; UI remains offline."
+    },
+    "temporary_script": {
+      "path": "/private/tmp/moli-launcher-v17-browser-WrLi3R/qa.mjs",
+      "sha256": "6e4c38a8888925e1096c50bbbae93271489d15484787ddf1bc60a3b110a92a3e"
+    }
+  },
+  "review": {
+    "receipt": "analysis/launcher-v17/review-corrections.json",
+    "accepted_method_reproduction": {
+      "before": [
+        0,
+        1
+      ],
+      "after": [
+        1,
+        0
+      ],
+      "order": [
+        "original close",
+        "replacement close"
+      ]
+    },
+    "returned_error_reproduction": {
+      "before": "mutable changed later snapshot to CHANGED",
+      "after": "frozen and snapshot stays SESSION_WRITE"
+    },
+    "additional": "explicit null timers and error-code prototype/coercion boundary rejected",
+    "test_assumption_failures": "test-corrections.json plus two retained failed stream logs; actual accept/close event waits replace one-turn assumptions; no behavior assertion weakened"
+  },
+  "syntax": {
+    "ESM_files": [
+      "web/launcher-session-data.mjs",
+      "web/launcher-session.mjs",
+      "adapters/node/launcher-stream.mjs",
+      "web/examples/launcher-session-local.mjs",
+      "web/tests/launcher-session.test.mjs",
+      "web/tests/launcher-node-stream.test.mjs",
+      "analysis/launcher-v17/peer-helper.mjs"
+    ],
+    "ESM_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "Python_AST": "analysis/launcher-v17/original_tcp_peer.py",
+    "Python_AST_passed": true
+  },
+  "preservation": {
+    "modified_previous_files": [
+      "README.md",
+      "analysis/protocol-v2/spec-matrix.json",
+      "reports/analysis-methods.md",
+      "reports/architecture-and-milestones.md",
+      "reports/development-plan.md",
+      "reports/known-issues.md",
+      "reports/launcher-static.md",
+      "reports/logic-protocol-spec.md",
+      "reports/module-interfaces.md",
+      "reports/resource-formats.md",
+      "reports/validation.md",
+      "shared/README.md",
+      "web/README.md"
+    ],
+    "unchanged_previous_files": 743,
+    "native_files_hash_unchanged": 17,
+    "shared_non_README_hash_unchanged": 63,
+    "web_previous_non_README_hash_unchanged": 31,
+    "vendor_hash_unchanged": 7,
+    "server_hash_unchanged": true,
+    "server_access_boundary_checks": [
+      {
+        "path": "/web/launcher.html",
+        "status": 200,
+        "connect_src_none": true
+      },
+      {
+        "path": "/web/launcher-session.mjs",
+        "status": 200,
+        "connect_src_none": true
+      },
+      {
+        "path": "/shared/index.mjs",
+        "status": 200,
+        "connect_src_none": true
+      },
+      {
+        "path": "/adapters/node/launcher-stream.mjs",
+        "status": 404,
+        "connect_src_none": true
+      },
+      {
+        "path": "/analysis/launcher-v17/example-output.json",
+        "status": 404,
+        "connect_src_none": true
+      },
+      {
+        "path": "/moli/POLCN_Setup.exe",
+        "status": 404,
+        "connect_src_none": true
+      },
+      {
+        "path": "/web/../moli/POLCN_Setup.exe",
+        "status": 404,
+        "connect_src_none": true
+      }
+    ],
+    "server_bind": "127.0.0.1:4173",
+    "server_left_running_session": 20345
+  },
+  "documentation": {
+    "updated_files": [
+      "README.md",
+      "reports/analysis-methods.md",
+      "reports/architecture-and-milestones.md",
+      "reports/development-plan.md",
+      "reports/known-issues.md",
+      "reports/launcher-static.md",
+      "reports/logic-protocol-spec.md",
+      "reports/module-interfaces.md",
+      "reports/resource-formats.md",
+      "reports/validation.md",
+      "shared/README.md",
+      "web/README.md"
+    ],
+    "link_check": "passed",
+    "local_links_checked": 985,
+    "explicit_launcher_anchors_checked": 97
+  },
+  "matrix": {
+    "revision": 10,
+    "IDs": 20,
+    "IDs_statuses_dependencies_unchanged": true,
+    "AUTH_SESSION": "unknown",
+    "game_protocol_not_upgraded_from_launcher_tests": true
+  },
+  "dependencies": {
+    "new_installations": 0,
+    "existing": "Node26.9.0,Python3/PyCryptodome3.23.0,Playwright1.62.1/Chrome155",
+    "Node_API_sources": "session-spec.json records official sources and versioned-document-access limitation"
+  },
+  "authorization": {
+    "original_EXE_VM_accounts_official_game_endpoints": "none",
+    "official_documentation_reads": "Node API development research only",
+    "commit_push_publish_or_global_config": "none"
+  },
+  "not_verified": [
+    "Actual browser TCP/authorized gateway and WeChat transport",
+    "Session UI, text codepage, actual terms/mode/account persistence",
+    "Official peer identity/group/current service acceptance and opaque lifecycle",
+    "Full native update transaction/game handoff/game behavior/official compatibility",
+    "Safari/physical mobile/miniprogram",
+    "Old real-file UI/full narrow and unchanged Swift/Python suites not rerun"
+  ],
+  "next": "Continue launcher UI/text/local consent-account and actual service lifecycle evidence/adapters; preserve ordered game phase and full user goal."
+}

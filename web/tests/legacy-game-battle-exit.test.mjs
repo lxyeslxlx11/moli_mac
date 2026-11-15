@@ -1,0 +1,2 @@
+import test from'node:test';import * as api from'../../shared/index.mjs';import {createWeChatLegacyGameSession}from'../../adapters/wechat/legacy-game-session.mjs';import {exitTCPModes,runExitTCP}from'../../analysis/game-battle-exit-v1/tcp-flow.mjs';
+for(const mode of exitTCPModes)test('actual source battle capture/exit9 boundary and OS TCP '+mode,{timeout:30000},async()=>{console.log('battle-exit-tcp '+JSON.stringify(await runExitTCP({...api,createWeChatLegacyGameSession},mode)));});

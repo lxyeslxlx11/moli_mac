@@ -1,0 +1,21 @@
+{
+  "warning": "Historical commands only. Single execution authorization consumed. Do not rerun launch. No credentials or full event payloads included.",
+  "guest_working_directory": "C:\\MoliOffline\\client-probe",
+  "launch_submitted_once": "[datetime]::utcnow; $p=start-process .\\cg_se_3000.exe -nonewwindow -passthru -workingdirectory $d; $p.id; if(!$p.waitforexit(70000)){$p.closemainwindow(); $p.waitforexit(10000)}; $p|fl id,hasexited,exitcode; [datetime]::utcnow",
+  "pre_checks": [
+    "Get-NetAdapter | ft Name,Status",
+    "Get-Volume",
+    "gci D:\\ | Get-FileHash | fl",
+    "Test-Path $d",
+    "whoami /groups | findstr S-1-16"
+  ],
+  "post_checks": [
+    "gci -force | ft name,length,attributes",
+    "get-ciminstance win32_process -filter \"parentprocessid=600\" | ft name,processid",
+    "gci | get-filehash | fl"
+  ],
+  "event_xpath": "*[System[EventID=1000 and TimeCreated[@SystemTime>='2026-10-25T23:10:07Z' and @SystemTime<='2026-10-25T23:10:24Z']] and EventData[Data='cg_se_3000.exe']]",
+  "event_query": "$e=get-winevent -logname application -filterxpath $q",
+  "unsubmitted_cancelled_commands": "IME-corrupted long launch and one short cd command were cancelled with Escape/Ctrl+C; they were not execution attempts",
+  "input_mitigation": "Click active guest taskbar IME indicator to English, return focus, verify short harmless text; type long commands in short chunks and wait for full visible text before Return. Initial short screenshot prefix can be delayed arrival, not lost text."
+}

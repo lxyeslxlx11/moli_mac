@@ -1,0 +1,109 @@
+{
+  "recorded_utc": "2026-10-25T14:41:49.229148+00:00",
+  "target": "MoliRestoreTest-ARM64-20261025-v9",
+  "vm_uuid": "52490BAF-23BC-4E29-A39A-AA9F4E11A1F9",
+  "privilege": "ordinary non-elevated Windows PowerShell",
+  "desktop_restoration": "verified after a single specifically authorized login; approval consumed",
+  "queries": [
+    {
+      "command": "get-service tbs",
+      "result": "NoServiceFoundForGivenName,Microsoft.PowerShell.Commands.GetServiceCommand",
+      "evidence": "tbs-query.png",
+      "interpretation": "No matching visible service object returned; not AccessDenied, not Stopped, not proof TPM absent"
+    },
+    {
+      "command": "get-pnpdevice -presentonly -class securitydevices | fl status,class,friendlyname,instanceid",
+      "devices": [
+        {
+          "status": "OK",
+          "class": "SecurityDevices",
+          "friendly_name": "受信任的平台模块 2.0",
+          "instance_id": "ACPI\\MSFT0101\\1"
+        },
+        {
+          "status": "OK",
+          "class": "SecurityDevices",
+          "friendly_name": "Microsoft Pluton security processor",
+          "instance_id": "ROOT\\PLUTONQC\\0000"
+        }
+      ],
+      "evidence": "security-pnp-query.png",
+      "interpretation": "PnP enumeration OK does not prove all TPM/Pluton functions; no claim physical Pluton hardware present"
+    },
+    {
+      "command": "tpmtool getdeviceinformation",
+      "exit_code": 0,
+      "readable_values": [
+        "TPM 2.0",
+        "IBM",
+        "SW TPM",
+        "8217.4131.22.13878",
+        "INFORMATION_EK_CERTIFICATE",
+        "TPM 1.64",
+        "Tuesday, March 16, 2021"
+      ],
+      "evidence": [
+        "tpmtool-query.png",
+        "os-query.png"
+      ],
+      "limitations": "Many labels and value fields rendered blank; do not infer Ready/Enabled/Owned/PPI or certificate-health values. Cause not established."
+    },
+    {
+      "command": "get-ciminstance win32_operatingsystem | fl caption,version,osarchitecture",
+      "caption": "Microsoft Windows 11 家庭版",
+      "version": "10.0.26300",
+      "osarchitecture": "ARM 64 位处理器",
+      "evidence": "os-query.png",
+      "limitation": "Patch revision 9711 was observed in v8, not freshly queried here."
+    },
+    {
+      "command": "get-ciminstance win32_pnpentity | where configmanagererrorcode -ne 0 | group configmanagererrorcode | ft count,name",
+      "groups": [
+        {
+          "count": 34,
+          "name": "CM_PROB_FAILED_INSTALL"
+        }
+      ],
+      "evidence": "device-problems-query.png"
+    },
+    {
+      "command": "get-ciminstance win32_pnpsigneddriver | where devicename -match 'VirtIO' | ft devicename,driverversion,issigned",
+      "drivers": [
+        {
+          "name": "VirtIO RNG Device",
+          "version": "100.100.104.27100",
+          "is_signed": true
+        },
+        {
+          "name": "Red Hat VirtIO GPU DOD controller",
+          "version": "22.7.38.43",
+          "is_signed": true
+        }
+      ],
+      "evidence": "restored-driver-query.png",
+      "limitation": "OS-reported signature field; no new independent trust-chain or graphics compatibility test."
+    }
+  ],
+  "sign_in_options_readonly": {
+    "observed_utc": "2026-10-25T14:41:00Z",
+    "entry": "ms-settings:signinoptions",
+    "wake_reauthentication": "从不 (Never)",
+    "hello_only": "开 (On)",
+    "pin": "present",
+    "face_and_fingerprint": "unavailable",
+    "changes_made": false,
+    "original_vm_options": "not inspected this phase",
+    "screenshot_saved": false,
+    "reason": "Page included an account identifier; preserve only necessary non-identifying settings as structured observations."
+  },
+  "final_ui": "Settings page closed; ordinary PowerShell and logged-in test-clone desktop left running per user request. No reboot/shutdown.",
+  "prohibited_actions_performed": false,
+  "not_run": [
+    "Get-Tpm elevated retry",
+    "Clear/Initialize TPM or Secure Boot/PIN changes",
+    "Autologon download/run/Enable/EULA",
+    "Startup or sleep no-auth test",
+    "Original VM account/settings session",
+    "Game execution or game network connection"
+  ]
+}

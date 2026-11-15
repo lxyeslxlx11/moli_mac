@@ -1,0 +1,730 @@
+{
+  "schema": "moli.capability.game-training-services-contract.v1",
+  "requirement": "全部需求能力先成规再按依赖成组开发；复用既有NPC、人物和宠物训练，按实际生产/消费核报价、容量、选择、取消、关闭和状态发布。",
+  "source": {
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+    "kind": "固定旧版；原REA记录与独立副本派生体分开，不外推现行客户端或服务器",
+    "tools": {
+      "REA": "6.7.0",
+      "Ghidra": "12.1.4"
+    }
+  },
+  "capabilities": [
+    "G12",
+    "G10",
+    "X01",
+    "X02"
+  ],
+  "source_check": "analysis/capability-first-v1/game-training-services-source-check.json",
+  "source_verifier": "analysis/capability-first-v1/derive_game_training_services.py",
+  "dispatch": {
+    "incoming": {
+      "tag": "Q?m",
+      "consumer": "0x4f4410",
+      "fields": [
+        "int32 mode",
+        "int32 mask",
+        "int32 dialogId",
+        "int32 actorId",
+        "bytes"
+      ]
+    },
+    "outgoing": {
+      "tag": "/1I",
+      "producer": "0x4f8240",
+      "fields": [
+        "int32 x",
+        "int32 y",
+        "int32 dialogId",
+        "int32 actorId",
+        "int32 button",
+        "bytes"
+      ]
+    },
+    "source_modes": [
+      {
+        "mode": "0x10",
+        "parser": "0x492d50",
+        "role": "人物师范选择",
+        "window": 52
+      },
+      {
+        "mode": "0x11",
+        "parser": "0x4af7d0",
+        "role": "人物学习",
+        "window": 54,
+        "local_mode": 0
+      },
+      {
+        "mode": "0x12",
+        "parser": "0x4af910",
+        "role": "人物遗忘",
+        "window": 54,
+        "local_mode": 1
+      },
+      {
+        "mode": "0x13",
+        "parser": "0x490db0",
+        "role": "治疗列表及合计"
+      },
+      {
+        "mode": "0x18",
+        "parser": "0x4afaa0",
+        "role": "宠物报价",
+        "window": 54,
+        "local_mode": 2
+      },
+      {
+        "mode": "0x19",
+        "parser": "0x4b0020",
+        "role": "选宠",
+        "window": 54,
+        "local_mode": 3
+      },
+      {
+        "mode": "0x1a",
+        "parser": "0x4b0490",
+        "role": "选技能栏",
+        "window": 54,
+        "local_mode": 4
+      },
+      {
+        "mode": "0x2a",
+        "parser": "0x4afd60",
+        "role": "扩展宠物报价",
+        "window": 54,
+        "local_mode": 12
+      },
+      {
+        "mode": "0x2b",
+        "parser": "0x4b0200",
+        "role": "扩展选宠",
+        "window": 54,
+        "local_mode": 13
+      },
+      {
+        "mode": "0x2c",
+        "parser": "0x4b0490",
+        "role": "扩展选技能栏",
+        "window": 54,
+        "local_mode": 4
+      }
+    ],
+    "new_protocol_fields_or_registry_entries": false
+  },
+  "facts": [
+    {
+      "id": "dialog-publication-and-close",
+      "kind": "事实",
+      "entries": [
+        "0x4f4410",
+        "0x48fce0"
+      ],
+      "rule": "复用普通/非战斗及原有局部准入；mask==-1时按mode和actorId匹配关闭，dialogId不是额外匹配项。普通分派先判断活动mode及特殊替换dialogId，再发布mode/mask/dialogId/actorId和调用对应解析器。上述匹配和字段不构成请求代次或服务器成功回执；未恢复含义的局部getter不伪造常量返回。"
+    },
+    {
+      "id": "trainer-menu-production-and-dispatch",
+      "kind": "事实",
+      "entries": [
+        "0x492d50",
+        "0x4926f0",
+        "0x4929f0",
+        "0x492cd0"
+      ],
+      "rule": "师范页经4926f0打开window52，保存实际回调492cd0及3行选项。4929f0按命中行调用该指针，然后隐藏窗口；492cd0仅对行0/1发送button0及十进制1/2，第三行离开和-1退出不发送。不是每个显示行都产生协议请求。"
+    },
+    {
+      "id": "menu-owner-close",
+      "kind": "事实",
+      "entries": [
+        "0x492770",
+        "0x492890",
+        "0x4929c0"
+      ],
+      "rule": "window52初始化保存本页状态；正常准入检查非零时隐藏并尝试回调(-1)。frame在活动mode不再属于本页时隐藏；析构仅在自身标志非零且活动mode仍匹配时把活动mode清为-1。完整通用焦点恢复仍属既有窗口框架，不据这三体宣称全部生命周期已闭合。"
+    },
+    {
+      "id": "human-learn-input",
+      "kind": "事实",
+      "entries": [
+        "0x4af7d0"
+      ],
+      "rule": "学习资料按|字段读取：图形、标题、说明、技能名、技能描述、所需栏位、金额；标题取21字节，说明取511字节并分5行21列，名称取80字节，技能描述取511字节并分8行32列。随后设本地mode0并尝试打开window54。此解析体没有按名称为空、金额或栏位为负而拒绝打开的分支；不能把现有独立解析器的较窄输入边界当成原生规则。"
+    },
+    {
+      "id": "human-capacity-is-display",
+      "kind": "事实",
+      "entries": [
+        "0x4b0680",
+        "0x4b1410",
+        "0x4b1e70",
+        "0x4b1a70"
+      ],
+      "rule": "本页按15行技能元数据的存在项读取原槽，累加该技能+0x19的signed8栏位值，剩余=max(容量F53694-已用,0)，列表行数为存在技能数加剩余。报价金额与所需栏位被格式化显示。已审查的初始化、列表构建及mode0确认路径没有宠物报价式的余额不足/容量不足拒绝；不能只因字段名称新增这种本地准入。正常回调更新金币显示，不等于重做所有初始化。"
+    },
+    {
+      "id": "human-request-and-return",
+      "kind": "事实",
+      "entries": [
+        "0x4b1e70",
+        "0x4b1f60"
+      ],
+      "rule": "window54在事件bit2下，mode0确认发送button0/文本1，返回发送button0/文本2并隐藏；mode1返回为button0/文本99并隐藏。确认/返回都不在这些体中直接学习、遗忘技能或扣款。"
+    },
+    {
+      "id": "human-forget-ordinal",
+      "kind": "事实",
+      "entries": [
+        "0x4af910",
+        "0x4b08a0",
+        "0x4b1590",
+        "0x4b2bc0"
+      ],
+      "rule": "遗忘资料有15组三字段，空名字把两个数值置-1。显示按技能元数据原槽映射，再减去此前不存在的原槽，得到服务端紧密列表序号；点击要求映射非负且第一远端数值非负，再发送该序号+1的十进制文本并隐藏。不是直接发送本地原技能槽，第二数值不在此点击准入内。"
+    },
+    {
+      "id": "pet-offer-input",
+      "kind": "事实",
+      "entries": [
+        "0x4afaa0",
+        "0x4afd60"
+      ],
+      "rule": "普通和扩展报价使用16行0x60记录，分别存名称、值、金额和两行28列描述；名称读255字节，超过24字节替换为占位名，描述读255字节。图形/标题及三段文字在列表之前读取，本地mode分别2/12。复用旧分隔/转义/结束条件，不把16行报价数当作宠物技能容量。"
+    },
+    {
+      "id": "pet-offer-price-and-pets",
+      "kind": "事实",
+      "entries": [
+        "0x4b2f60",
+        "0x4b1710"
+      ],
+      "rule": "实际报价点击先要求名称非空；事件bit2下，当前金币小于报价则仅提示/声音，不发送；再数EF35F0的5个存在字，零宠物同样只提示。金币等于金额可继续。成功准入仅保存报价序号、发送button0/该零基序号，并把活动mode置-2以允许后续资料；本窗口没有直接隐藏，也不扣款。"
+    },
+    {
+      "id": "pet-selection-input-and-context",
+      "kind": "事实",
+      "entries": [
+        "0x4b0020",
+        "0x4b0200"
+      ],
+      "rule": "选宠解析只在window54实例C11374非零时处理。先清5行0x28远端宠物记录；普通每行3字段，扩展每行5字段。阈值比较预先写成可用byte；扩展另存requiredType及每行type、hintFlag，普通type=-1且hintFlag=1。两种解析更新本地mode3/13并重建该页，不在此函数要求或产生线路请求代次。"
+    },
+    {
+      "id": "pet-selection-mapping-and-guards",
+      "kind": "事实",
+      "entries": [
+        "0x4b0ed0",
+        "0x4b2d00"
+      ],
+      "rule": "选宠显示从五行本地元数据原槽减去之前的不存在槽，得到远端紧密序号。点击准入为远端存在、阈值byte非零，以及requiredType<0或type相等；hintFlag为0只影响悬停提示，不禁止提交。合法点击保存远端序号，发送button0/该零基序号，活动mode置-2；此回调没有以capacity<=10作为准入，也不改实际宠物资料。"
+    },
+    {
+      "id": "pet-quote-column-role",
+      "kind": "事实",
+      "entries": [
+        "0x4b1710",
+        "0x4b3150"
+      ],
+      "rule": "右侧报价栏在本地mode2/12安装可提交报价的4b2f60，在mode3/13改装4b3150；后者只在该报价等于已选序号时绘制选中框并返回0，没有发送。选宠阶段不能继续把同一右栏当成另一次报价提交入口。"
+    },
+    {
+      "id": "pet-capacity-and-slots",
+      "kind": "事实",
+      "entries": [
+        "0x4b0490",
+        "0x4b11e0",
+        "0x4b18d0"
+      ],
+      "rule": "两种技能栏回复共用4b0490：window54存在时清十行0x5c技能记录，按每行名称/值/描述读取；空名称为未占用，有名者超过16字节替换并分两行28列描述。实际显示行数取先前选宠远端capacity，已用数按这些记录存在字累计；原体未对capacity作0..10本地上界检查。独立核心已知十槽的显式边界与原生无检查必须分开。"
+    },
+    {
+      "id": "pet-slot-confirm-overlay",
+      "kind": "事实",
+      "entries": [
+        "0x4b2ea0",
+        "0x4b31d0"
+      ],
+      "rule": "点击技能栏保存左栏滚动位置与控件序号计算出的零基技能栏，打开window54自身control0的确认覆盖层并置父窗口bit2。空栏和已占用栏均有该路径。确认覆盖层发送button0/该栏序号，关闭覆盖层并隐藏父窗口；取消覆盖层只关该层，不发送也不隐藏父窗口。不能把覆盖层取消当作整个服务取消。"
+    },
+    {
+      "id": "cancel-paths",
+      "kind": "事实",
+      "entries": [
+        "0x4b1f60"
+      ],
+      "rule": "事件bit2下，宠物报价mode2/12只隐藏，不发送；选宠或技能栏mode3/4/13发送button2及空文本，把活动mode置-2，保留本窗口等待后续。这与人物返回、报价离开、局部确认取消具有不同协议和窗口副作用。"
+    },
+    {
+      "id": "window54-entry-frame-destruction",
+      "kind": "事实",
+      "entries": [
+        "0x4b1a70",
+        "0x4b1c00",
+        "0x4af790"
+      ],
+      "rule": "初始化按本地mode重建相应面板并置滚动位置、提示选择；正常回调保留原局部准入和本页mode归属检查，必要时隐藏。frame分别处理十行/五行滚动及提示。析构只有在转换标志C5E270!=2且活动mode仍属本页时清活动mode，再将该标志归0；不清人物/宠物资料，不据隐藏或析构单独认定全局焦点已还原。"
+    },
+    {
+      "id": "treatment-list",
+      "kind": "事实",
+      "entries": [
+        "0x490db0",
+        "0x4fee60"
+      ],
+      "rule": "mode13按六个0x20记录读取level/injury/name/fee；负level停止，level0不显示可选角色行但此前已读取的金额/伤势仍累加。名字最多16字节，伤势图标等级为0、<26、<51、<76及其余。合计记录始终单列，取消按钮使用2，而非直接沿用入站mask。"
+    },
+    {
+      "id": "treatment-display-versus-request",
+      "kind": "事实",
+      "entries": [
+        "0x490b80",
+        "0x4903e0"
+      ],
+      "rule": "治疗呈现读取实时金币、个体伤势及合计伤势作文字/图标/悬停提示；已审查的治疗分支没有余额比较来阻止提交。通用回调对被选显示行加1格式化，因此角色行发送3..8、合计发送9；取消button2发送空文本。原回调同时服务其它输入模式，本合同只采用其治疗路径；没有本地治疗或扣款。"
+    },
+    {
+      "id": "state-publication-is-separate",
+      "kind": "事实",
+      "entries": [
+        "0x4f0000",
+        "0x4f0290",
+        "0x4fdea0"
+      ],
+      "rule": "人物技能容量F53694从既有F8%掩码字段发布，技能列表由既有接收及元数据重建更新；宠物仍由前组四载体分开发布。服务回复、发送返回值或窗口关闭不等于服务成功、余额改变或技能已学习；不添加未经来源证实的ack或本地结算。"
+    },
+    {
+      "id": "versions-and-guards",
+      "kind": "事实",
+      "entries": [
+        "0x4af7d0",
+        "0x4b0020",
+        "0x4b2d00"
+      ],
+      "rule": "原生体没有独立模型的rosterVersion/identity/skills版本对象，也没有报文请求代次字段。现有共享核心以这些本地版本拒绝失效选择，并要求选宠/栏回复有匹配进度和actor；这是独立实现的窄接受策略，不外推为原生已有的完整重入/失效检查。完整别名写入和原生调度仍待统一分析。"
+    },
+    {
+      "id": "reuse-boundary",
+      "kind": "事实",
+      "entries": [
+        "0x4b0680",
+        "0x4903e0",
+        "0x492cd0"
+      ],
+      "rule": "本组先从旧REA包保留完整原记录，再仅为有实际CALL/回调指针的缺失体在独立分析副本取视图。所有派生体保持analyst-seeded及native_profile=null；来源字节匹配不提升为规范REA体。恢复后的REA导出与前组逐字节相同，没有新增REA Evidence或重复取旧解析器作为新覆盖。"
+    }
+  ],
+  "implementation_review": [
+    {
+      "kind": "事实",
+      "owner": "shared/legacy-game-map-dialog.mjs",
+      "status": "已定位差异，未修改",
+      "rule": "response统一清当前对话，选宠/选栏等返回路径还清训练进度；与原生保留窗口并以-2等待后续不同。后续D0/D3需统一等待、返回和新资料发布，不能仅让网页关闭画面代替原状态。"
+    },
+    {
+      "kind": "事实",
+      "owner": "shared/legacy-game-map-pet-training.mjs",
+      "status": "已有受限实现",
+      "rule": "已复用报价余额/无宠拒绝、阈值/type、十槽正常域和本地失效检查。正常capacity0..10、非负金额、有效上下文是已选实现范围；原生缺少其中若干检查，需在后续规格/验收明确越界或缺失字段的接受政策。"
+    },
+    {
+      "kind": "事实",
+      "owner": "shared/legacy-game-map-npc-services.mjs",
+      "status": "已有受限实现",
+      "rule": "人物学习显示字段不在reply中附加余额或容量拒绝，符合本组已查正常确认路径；本轮没有把它当缺陷修复。当前解析器拒绝负金额/栏位及空技能名，比原解析体的显式接受条件窄，异常输入兼容仍待决定。"
+    },
+    {
+      "kind": "推测，待实现",
+      "owner": "shared/ 与薄适配层",
+      "status": "D0/D3/D5后续批次",
+      "rule": "保留一份服务阶段/所有者/请求与状态发布核心，网页和微信分别呈现列表与局部确认；复用旧解析与正常规则，仅补来源确认的差异，不重写整套训练服务。"
+    }
+  ],
+  "dependencies": [
+    {
+      "batch": "D0",
+      "kind": "推测，待实现",
+      "rule": "活动对话mode、dialogId、actor、window52/54所有者、局部确认与等待各自成状态；按源区分隐藏/销毁及新资料发布，不发明线路代次。"
+    },
+    {
+      "batch": "D3",
+      "kind": "推测，待实现",
+      "rule": "治疗/人物学习遗忘/宠物三阶段复用既有协议和资料；保留各页资格、稀疏原槽到紧密序号及取消差异，不统一增加扣款或成功结果。"
+    },
+    {
+      "batch": "D0/D5",
+      "kind": "推测，待实现",
+      "rule": "共享核心保留来源业务规则，列表滚动/提示/局部确认在宿主适配；完整取消/关闭/焦点和真实平台验收分别补齐。"
+    }
+  ],
+  "proposed_acceptance_cases": [
+    "师范菜单前两行发送1/2，第三行与失效退出不发送；隐藏与析构按本页归属处理。",
+    "人物学习显示容量和报价；正常确认不新增未证的余额/容量拒绝；发送后由资料更新发布结果。",
+    "稀疏、重排后的遗忘列表仍发送紧密序号+1，负远端第一值不参与，返回为99。",
+    "宠物报价余额等于价格可提交，小于价格或零宠物仅提示，不扣款或发送。",
+    "普通/扩展选宠保留阈值和type条件；hintFlag0不当成禁止学习；容量0..10之外的窄接受边界显式记录。",
+    "空栏与替换均进入局部确认；局部取消无请求且留父窗口，整个阶段返回按各自报文和等待副作用处理。",
+    "治疗的六行/合计、level0、停止记录、3..9和button2空回复分开；显示余额不自动成为本地拒绝规则。",
+    "回复、资料更新和用户返回交错时按已证所有权重建，保持本地失效策略与原生已证检查的区别。"
+  ],
+  "legacy_item_producer_evidence": {
+    "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+    "source_review": {
+      "path": "build/analysis/legacy-item-window-producers-v1/source-review.json",
+      "bytes": 20462,
+      "sha256": "04d719af60ec83ee2c4b1fd35b390e761d260affefeb5453d4c2e7e7acacb78b"
+    },
+    "classification": "固定历史Item样本的条件规则；原SE及当前同版的入口需要对应来源。",
+    "operations": [
+      {"window": 55, "producer": "0x5287d0", "callback": "0x5288f9", "rule": "读取第1字段的数值、第2字段文本及第3字段的五行资料，写共享文本后请求打开。"},
+      {"window": 56, "producer": "0x528d37", "callback": "0x528f2f", "rule": "共同前三字段后读取独立文本和八行资料，发布第6和7字段的两个数值，再请求打开。"},
+      {"window": 57, "producer": "0x529468", "callback": "0x5296c1", "rule": "前置资料之后读取15组名称和两个数值。空名称使对应两个数值置-1，资料就绪后请求打开。返回的索引范围与背包状态另见 FR-F02、FR-F04。"},
+      {"window": 58, "producer": "0x529e48", "callback": "0x52a385", "rule": "发布第1字段数值及前置文本，清原列表，再读取两组、每组最多八条。请求打开前发布当前页及总页数，算式及空表用例沿 FR-F05、FR-A04。"},
+      {"window": 59, "producer": "0x52adf2", "callback": "0x52b108", "rule": "写前置文本和第1字段数值，清记录区，读取第4字段数值及最多五条列表资料，再请求打开。"},
+      {"window": 67, "producer": "0x531f70", "callback": "0x53217b", "rule": "清记录区，逐组写入最多六条资料。首数值为负时清该项并结束读取，向ED3A28写1后请求打开。"}
+    ],
+    "service_selection_specification": "analysis/capability-first-v1/game-service-selection-contract.json#/historical_forget_return_and_quote_pages",
+    "shared_open_rule": "56BB80按99行表查找六个group 2窗口。主槽变化时写入所请求ID、清副槽并置该行dirty。producer的选定调用均在写入资料之后，直接返回且忽略open的返回值。",
+    "remaining_required_rule": "固定 Item 和 SE 的六个窗口已核到所选初始化和返回 2 的活动模式及预览清理。正常输入分派、回调列帧调用、两版的适用入口、当前同版及实际业务接受继续按对应来源复核。已证 Item 普通训练链见 legacy_item_classic_ingress。",
+    "runtime_accepted": false,
+    "alternate_window_selection_and_cleanup": "analysis/capability-first-v1/alternate-window-contract.json#/alternate_window_selection_and_cleanup/facts/training_preview"
+  },
+  "legacy_item_classic_ingress": {
+    "classification": "事实：固定历史Item的普通训练接收及所选经典窗口绑定",
+    "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+    "source_review": {
+      "path": "build/analysis/legacy-item-training-ingress-v1/source-review.json",
+      "bytes": 36256,
+      "sha256": "82b6750699684a9a78078cd64f37a86470d46332c1884cdabe9f728cbe09da0f"
+    },
+    "dispatch": "57F79E中的58207A比较Q?m及终止字节。四个整数与一段字节负载经58214B交579EAF，按门槛进入4E5313。mask=-1时以活动mode和actor匹配，走经典组掩码3的清理并清活动mode。",
+    "mode_windows": [
+      {"mode": "0x10", "parser": "0x4e9072", "window": 52, "operation": "create"},
+      {"mode": "0x11", "parser": "0x511667", "window": 54, "operation": "create", "local_mode": 0},
+      {"mode": "0x12", "parser": "0x51182b", "window": 54, "operation": "create", "local_mode": 1},
+      {"mode": "0x13", "parser": "0x4e681a", "window": 37, "operation": "create"},
+      {"mode": "0x18", "parser": "0x511a6b", "window": 54, "operation": "create", "local_mode": 2},
+      {"mode": "0x19", "parser": "0x5123bf", "window": 54, "operation": "update-existing", "local_mode": 3},
+      {"mode": "0x1a", "parser": "0x512b6f", "window": 54, "operation": "update-existing", "local_mode": 4},
+      {"mode": "0x2a", "parser": "0x511f15", "window": 54, "operation": "create", "local_mode": 12},
+      {"mode": "0x2b", "parser": "0x5126e6", "window": 54, "operation": "update-existing", "local_mode": 13},
+      {"mode": "0x2c", "parser": "0x512b6f", "window": 54, "operation": "update-existing", "local_mode": 4}
+    ],
+    "window_owner": "普通路径经4B5B8E及经典创建器4AF678，读取指针表5F1568。窗口54的活指针CAE53C等于CAD384+54×0x54。四条update-existing路径在指针存在时才处理所选资料。入站外层状态发布按4E5313的准入另行处理。",
+    "selected_input": "窗口52的选项回调4E8BF3消费构造时发布的4E8FF6。治疗窗口37的所选控件4E4D90消费4E4398发布的4E5B46。窗口54所选控件2和3分别绑定5150C1和5151E7。上述提交路径调用57EDC7发送/1I，字段为五个整数和一个字节串。",
+    "source_applicability": "两套窗口可共享训练资料。例如4E9072和5287D0均写CBD740，实际请求分别归经典52和另一套55。普通Q?m路径以实际分支、描述符和打开调用确定适用范围。固定SE十模式另沿dispatch.source_modes。",
+    "after_dialog_dispatch": "analysis/capability-first-v1/game-ordinary-services-functional-specification.json#/dialog_actor_facing",
+    "remaining": "另一套窗口的正常激活与帧分派、固定SE对应入口及当前同版消费者仍需各自证据。完整业务和设备接受待执行。",
+    "runtime_accepted": false
+  },
+  "classic_pet_training_wait_owner": {
+    "classification": "固定 Item 与 SE 的经典窗口 54 静态规则及本地共享实现对照",
+    "capabilities": [
+      "G12",
+      "X02"
+    ],
+    "report": "reports/game-static.md#legacy-pet-training-wait-owner",
+    "source_review": {
+      "path": "build/analysis/legacy-training-wait-owner-v1/source-review.json",
+      "bytes": 73786,
+      "sha256": "1f388b1b343c8a5c1711fbdef809cc48d3e618d8158ca0fd5d297f0f2bed1081"
+    },
+    "focused_probe": {
+      "path": "build/analysis/legacy-training-wait-owner-v1/focused-probe.json",
+      "bytes": 1497,
+      "sha256": "c797adc82bdcde4920764f03491d0f14981e38b447a0e56cb35ee763b44bd371"
+    },
+    "focused_tests": {
+      "path": "build/analysis/legacy-training-wait-owner-v1/focused-tests.log",
+      "bytes": 423,
+      "sha256": "cf017105f7d71389f2f3baba3dfec403a20466ce597ec12e9a70865756dd933b"
+    },
+    "validation_record_path": "build/analysis/legacy-training-wait-owner-v1/validation.json",
+    "versions": {
+      "Item": {
+        "sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+        "active_mode": "0x5f7224",
+        "saved_page_mode": "0xcbcc7c",
+        "local_page": "0xca50f8",
+        "transition": "0xed3aa8",
+        "actor": "0xeb9900",
+        "sequence": "0xcbd5a8",
+        "live_window_54": "0xcae53c",
+        "receiver": "0x579eaf",
+        "dispatcher": "0x4e5313"
+      },
+      "SE": {
+        "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+        "active_mode": "0x55e4d4",
+        "saved_page_mode": "0xc1fab4",
+        "local_page": "0xc07f6c",
+        "transition": "0xc5e270",
+        "actor": "0xc440cc",
+        "sequence": "0xc203e0",
+        "live_window_54": "0xc11374",
+        "receiver": "0x4f4410",
+        "dispatcher": "0x48fce0"
+      }
+    },
+    "facts": [
+      {
+        "id": "select-and-wait",
+        "rule": "报价或选宠的合资格点击使用当前对话序号、角色及已选零基序号调用 /1I 发送入口。调用正常返回后把全局活动模式写为 -2，所选分支保留窗口 54 与当前页面。",
+        "Item": [
+          "0x514791",
+          "0x5147d7",
+          "0x513d14",
+          "0x51693b",
+          "0x516943",
+          "0x516587",
+          "0x51658f"
+        ],
+        "SE": [
+          "0x4b1784",
+          "0x4b17b2",
+          "0x4b1050",
+          "0x4b3120",
+          "0x4b3131",
+          "0x4b2e3f",
+          "0x4b2e50"
+        ]
+      },
+      {
+        "id": "close-match",
+        "rule": "满足外层接收门槛时，掩码 -1 按当时的有符号活动模式和角色匹配。序号不参与匹配。等待时的活动模式为 -2，旧的正模式关闭消息因此无法触发组清理。匹配时同步执行组掩码 3 清理，再写活动模式 -1。",
+        "Item": [
+          "0x579edc",
+          "0x579ee5",
+          "0x579ef0",
+          "0x579efa",
+          "0x579f02"
+        ],
+        "SE": [
+          "0x4f4434",
+          "0x4f4443",
+          "0x4f4450",
+          "0x4f4456",
+          "0x4f445e"
+        ]
+      },
+      {
+        "id": "publish-and-rebuild",
+        "rule": "普通资料分支在活动模式为负时依次写来包模式、掩码、序号、角色，更新距离基准，再分派解析。所选路径发布前无上一步训练、旧角色或旧序号匹配。0x19、0x1a、0x2b、0x2c 的资料处理查窗口 54 活指针。已有实例时保存活动模式，设置本地页 3、4 或 13，清转换字并更新同一窗口。指针为空时所选解析尾部直接返回，外层已写字段仍保留。",
+        "Item": [
+          "0x4e5529",
+          "0x4e5539",
+          "0x4e5542",
+          "0x4e554b",
+          "0x4e5553",
+          "0x4e556f",
+          "0x5123bf",
+          "0x5126e6",
+          "0x512b6f"
+        ],
+        "SE": [
+          "0x48fe9a",
+          "0x48feb0",
+          "0x48feb5",
+          "0x48febb",
+          "0x48fec1",
+          "0x48fed8",
+          "0x4b0020",
+          "0x4b0200",
+          "0x4b0490"
+        ]
+      },
+      {
+        "id": "return-and-offer-reentry",
+        "rule": "报价页本地模式 2、12 的返回键标记 0x8000 并走共同尾部写转换字 1。选宠和选栏页的本地模式 3、13、4 发送按钮 2，发送入口返回后写活动模式 -2 和转换字 1，保留窗口。三处字节参数的 PE 初值为零，实际发送时的字节未观测。已进入报价资料处理时，若窗口 54 仍活且转换字非零，则清转换字并就地重建报价。若活且转换字为零，则标记旧窗、写转换字 2、请求打开 54。若窗口已空，则清转换字后请求打开。",
+        "Item": [
+          "0x515393",
+          "0x515471",
+          "0x5154ba",
+          "0x5154ff",
+          "0x515511",
+          "0x511ea9",
+          "0x512353"
+        ],
+        "SE": [
+          "0x4b1ff8",
+          "0x4b20c9",
+          "0x4b2103",
+          "0x4b210b",
+          "0x4b2126",
+          "0x4afceb",
+          "0x4affab"
+        ]
+      },
+      {
+        "id": "distance-and-retirement",
+        "rule": "普通窗口回调先执行参数 2、2 的距离检查，非零结果可在等待期间标记 0x8000。其后的独立页面模式检查在活动模式为 -2 时跳过。退役回调在转换字非 2 且保存的页面模式等于活动模式时才写活动模式 -1，随后一律清转换字。",
+        "Item": [
+          "0x514c3e",
+          "0x514c52",
+          "0x514c5d",
+          "0x514c7b",
+          "0x511633"
+        ],
+        "SE": [
+          "0x4b1b6d",
+          "0x4b1b80",
+          "0x4b1b85",
+          "0x4b1b9e",
+          "0x4af790"
+        ]
+      }
+    ],
+    "local_comparison": [
+      "共享 replyMapDialog 提交选择时移除当前页面，使用局部训练进度保存旧正模式和角色。六组原创收发对照中，顺序回复以新页面修订号打开，等待时旧正模式关闭会清掉进度。该时点收到模式 -2 的关闭后，匹配选宠仍可进入。",
+      "现有共享入口在等待时过滤不同角色的选宠消息。选宠和选栏的按钮 2 发空文本并清掉当前页及训练进度。固定旧版的普通发布顺序和按钮 2 保留路径分别由上方事实规定。"
+    ],
+    "implementation": {
+      "delta": "OS-D7",
+      "acceptance_case": "OS-A24",
+      "batches": [
+        "D0",
+        "D3"
+      ],
+      "owners": [
+        "ContextOwner",
+        "SourceValueContext",
+        "SharedUpdatePump",
+        "InputAndTextFocus"
+      ],
+      "existing_entry_points": [
+        "shared/legacy-game-map-dialog.mjs",
+        "shared/legacy-game-map-pet-training.mjs",
+        "shared/legacy-game-protocol.mjs"
+      ],
+      "change": "复用协议编解码、训练资料、序号和资格。由现有窗口所有者保留等待中的实例和页面，分开保存线路活动字段与本地页面修订。沿接收分派、关闭匹配、距离检查及退役顺序消费等待状态，三端共用。现有基于修订的本地操作防失效及额外接收准入逐项对照原版后落实。",
+      "implemented": false
+    },
+    "acceptance_cases": [
+      "普通及扩展报价、选宠和选栏依次核对发送、-2、窗口身份及回包更新，含缺少活动指针时的外层字段发布。",
+      "等待时旧正模式关闭保留窗口。回包更新后以新模式和匹配角色关闭，即使序号不同。以合成输入单独核对有符号模式 -2 的匹配边界。",
+      "核对报价离开、选宠或选栏的按钮 2 及局部确认取消各自的发送、窗口和转换字。对返回后的报价覆盖转换字 0、非零及窗口已退役。",
+      "核对等待时距离检查与页面模式检查的不同作用，以及延后退役在转换字 2 或页面模式失配时保留活动模式。"
+    ],
+    "remaining": [
+      "返回请求的实际文本、等待期间再次输入的运行结果、发送异常、真实服务端回复及当前同版行为待运行证据。再次输入的静态条件见本规则的 controls。",
+      "另一套窗口正常激活和帧分派仍沿 OS-U1。原版运行、桌面及移动网页和微信流程继续验收。"
+    ],
+    "original_runtime_observed": false,
+    "same_version_acceptance_observed": false,
+    "full_acceptance_executed": false,
+    "controls": {
+      "classification": "固定 Item 与 SE 经典窗 54 的输入、确认和退役",
+      "report": "reports/game-static.md#legacy-pet-training-controls",
+      "source_review": {
+        "path": "build/analysis/legacy-pet-training-controls-v1/source-review.json",
+        "bytes": 40554,
+        "sha256": "d8436e9abe20d820d2894279ac022ce4ca0a9c60307749f2e9125af898600492"
+      },
+      "source_cases": "build/analysis/legacy-pet-training-controls-v1/source-cases.json",
+      "local_comparison": "build/analysis/legacy-pet-training-controls-v1/local-comparison.json",
+      "common_window_rule": "analysis/capability-first-v1/alternate-window-contract.json#/item_classic_frame_dispatch/classic_callback_lifecycle/control_admission",
+      "facts": [
+        "Item 5146E1 在本地页 2、12 向右侧五行安装 5166D9，在 3、13 改装 516971。SE 4B1710 分别安装 4B2F60 与 4B3150。所选后一回调只检查报价有记录且等于已选序号，然后绘制并返回零。",
+        "两版报价及选宠成功分支调用 /1I 发送入口后写活动模式 -2，保留本地页。活窗口的 +0x30 回调仍执行距离检查，-2 跳过页面模式失配。报价及选宠的所选提交函数按当时行及输入条件准入，本体没有以 -2 禁止再次提交的分支。",
+        "Item 514933 安装 5165EC，SE 4B18D0 安装 4B2EA0。技能栏点击把左侧偏移加控件序号减 69 保存为零基栏位，启用本窗控件 0 并置父窗位 0x02。此步骤没有发送。",
+        "窗口 54 描述符的首个控件分别登记 Item 516A8E 与 SE 4B31D0。启用后的回调按各自的确认和取消矩形测试，并读取当时原始鼠标事件位 0x01。确认先清参与值，按当时对话序号、角色及保存栏位调用 /1I 按钮 0 的发送入口。正常返回后清父窗位 0x02 并置 0x8000。取消只清参与值及父窗位 0x02。两者均保留当前回调的绘制尾部。"
+      ],
+      "inference": "后续一次经典遍历若窗口仍活动、本地页仍为报价或选宠、控件与行合资格且收到新点击，可以再次发同类请求。普通输入消费按本次经典遍历判断。所选技能栏的索引大于 0，启用控件 0 时本次遍历已越过它，确认层从下一次合资格遍历参与。已标退役的窗若到达下一次整理仍在池中，先走退役再处理其他活动控件。",
+      "implementation": {
+        "delta": "OS-D7",
+        "acceptance_case": "OS-A24",
+        "batches": ["D0", "D3"],
+        "owners": ["shared/legacy-game-map-dialog.mjs", "shared/legacy-game-map-pet-training.mjs"],
+        "reuse": "沿用资料、现有零基选项和 /1I 编码，复用网页与微信已有确认交互。",
+        "difference": "由共享窗口所有者持有等待页、有效输入、确认层及待退役。当前共享入口在报价或选宠提交后清页，重复提交会返回 LEGACY_GAME_DIALOG_STALE。结合既有页面修订和传输在途条件，按来源实现后续合资格输入及实际回包后的替换。"
+      },
+      "remaining": "实际输入与回包的交错、距离与发送失败的运行结果、另一套训练窗的正常准入与帧分派，以及当前同版和三端实测。",
+      "actual_frame_input_executed": false,
+      "alternate_table_dispatch_proven": false,
+      "current_version_equivalence_proven": false,
+      "source_capability_readiness_promoted": false
+    }
+  },
+  "remaining": [
+    "全部普通业务的共享所有者丢失、局部准入函数及间接回调/焦点的全局顺序，97项实际消费、其它模态与资源/物理/RNG/版本能力仍未整体闭合。",
+    "训练异常/缺失字段、负金额/容量、超十槽及失效选择的完整接受范围；不得把窄实现边界或未覆盖原生分支标成兼容完成。",
+    "其它服务/业务回复和全部资料写入交错、真实同版服务器结算、现行版本及网页/微信/手机设备验收；当前无测试账号。"
+  ],
+  "question_answers": [
+    {
+      "question": 1,
+      "status": "answered-for-listed-source-modes",
+      "result": "十模式及既有字段/映射按来源复用；金额/容量的显示和实际本地拒绝分开，异常接受另列。"
+    },
+    {
+      "question": 2,
+      "status": "answered-for-window52-and54-normal-paths",
+      "result": "菜单真实间接回调、学习/遗忘、两套宠物三阶段、局部确认与不同取消有具体来源；全框架顺序不外推。"
+    },
+    {
+      "question": 3,
+      "status": "partially-answered",
+      "result": "资料发布、当前窄策略和窗口等待差异已定位，全部交错/异常及官方成功尚未验收。"
+    },
+    {
+      "question": 4,
+      "status": "answered",
+      "result": "保持38域/81登记/37历史要求/10组，D0/D3/D5拟依赖和六维验收单列，本轮未新增功能。"
+    }
+  ],
+  "acceptance": {
+    "source": "本合同指定正常路径完成来源审查与字节/身份核验；派生体不冒充原生规范记录",
+    "specification": "列出的服务正常路径成规，完整异常/全局生命周期及全部需求未闭合",
+    "shared_implementation": "既有受限模块保留，等待/取消等差异已定位但未修改",
+    "local_product": "本轮未运行产品测试/构建或UI流程",
+    "actual_platform_device": "未验收",
+    "same_version_official": "未验收"
+  },
+  "original_execution": false,
+  "VM_operations": false,
+  "account_or_official_session_observed": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "alternate_work_unification": {
+    "specification": {
+      "path": "build/analysis/alternate-work-unification-v1/specification.json",
+      "bytes": 172070,
+      "sha256": "f601a2755ad77f51d1239ba9b8ffd9228b9fc748e3586583300fce1cda98774c"
+    },
+    "source_inputs": {
+      "path": "build/analysis/alternate-work-unification-v1/source-inputs.json",
+      "bytes": 20540,
+      "sha256": "d949d07a5d2fb54f2f7c55756d949e9068f48d5897b39a573e233b9e876cd8fb"
+    },
+    "source_summary": {
+      "views": 35,
+      "reused_complete_native_views": 4,
+      "reused_derived_views": 30,
+      "original_instruction_views": 1,
+      "new_native_queries": 0,
+      "body_ranges": 39,
+      "body_bytes": 38130,
+      "derived_instructions": 10598,
+      "fact_groups": 11,
+      "direct_E8_CALLs_verified": 619,
+      "level_literal_instruction_sites": 18,
+      "explicit_byte_writes": 4,
+      "modern_table_rows_verified": 16,
+      "new_product_protocol_fields": 0,
+      "all_native_nonCALL_independently_redecoded": false
+    },
+    "validation_record_path": "build/analysis/alternate-work-unification-v1/validation.json",
+    "contract": "analysis/capability-first-v1/game-entry-review-contract.json",
+    "source_check": "analysis/capability-first-v1/game-entry-review-source-check.json",
+    "conditional_alternate_activation_unproved": true,
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "selected_storage_scope": "492B90 normalbyte choicearray stores onlyC5BD18..1A; indexedread492B20 isBYTE,knownword-write candidate disproved;not allservice/globalalias closure.",
+    "fact_pointer": "/alternate_work_unification/facts/8"
+  }
+}

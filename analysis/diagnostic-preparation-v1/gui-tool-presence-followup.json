@@ -1,0 +1,118 @@
+{
+  "schema": "moli.gui-tool-presence-followup.v1",
+  "stage": 45,
+  "recorded_utc": "2026-10-26 13:13:53 UTC",
+  "time_note": "record clock, not exact click time",
+  "current_control_route": "Normal existing Windows GUI only; Parallels CLI and related repair/reinstall investigation ended. No Win7 or Business-edition recheck.",
+  "binding": {
+    "normal_full_path": "/Applications/Parallels Desktop.app",
+    "same_existing_window": "Windows 11 / {b0583b09-10ab-47dd-99c2-bc80be499944}",
+    "result": "successful AX/screenshot read; prior bundle-ID ambiguity resolved",
+    "reused_knowledge": "reports/known-issues.md v19 and reports/vm-environment.md v19",
+    "host_ps_or_equivalent_process_enumeration": false,
+    "application_or_VM_launch_requested": false,
+    "installed_volume_ejected": false
+  },
+  "REPL_binding_note": {
+    "symptom": "one subsequent call said guiProbeVM is not defined",
+    "minimal_resolution": "explicit top-level var assignment to the known full-path getApp binding, followed by screenshot",
+    "root_cause": "not established; do not label a missing REPL variable as guest input failure or security denial"
+  },
+  "guest_UI": {
+    "user_report": "Start opened manually at13:10UTC",
+    "observed": "Windows Start/search panel with Popular Apps and visible Settings tile, existing terminal behind",
+    "action": "one click at observed Settings tile [2060,740]",
+    "tool_return": "completed without error",
+    "following_observation": "same search panel, cursor over Settings; Settings window not observed",
+    "classification": "navigation result not confirmed; no assumption it executed or did not execute after the observed interval",
+    "stopped_without_retry": true
+  },
+  "observer_check": {
+    "candidate_names": [
+      "API Monitor",
+      "WinDbg",
+      "Frida",
+      "Process Monitor"
+    ],
+    "installed_name_or_version_observed": [],
+    "absence_proven": false,
+    "help_or_API_capability_verified": false,
+    "reason": "could not reach an installed-app/tool view through confirmed guest navigation; not proof tools absent"
+  },
+  "restrictions_observed": {
+    "Parallels_CLI_invocations": 0,
+    "guest_commands_submitted": 0,
+    "official_sample_runs_or_attach": 0,
+    "installs_downloads_UAC": 0,
+    "security_network_or_other_setting_changes": 0,
+    "credential_or_license_data_read": false,
+    "raw_screen_or_account_artifact_saved": false,
+    "pending_tools": false
+  },
+  "minimal_next": "Current focused physical-key route is verified with a visible marker and cleanup. Use this bounded result for the next authorized GUI work; mouse and full navigation remain unverified. Do not request repeated user tool searches or infer a need for wider permissions.",
+  "validation": "GUI observations only; product source unchanged, no new tests or repeated historical regression.",
+  "focused_key_followup_stage47": {
+    "recorded_utc": "2026-10-26T14:02:21.239920+00:00",
+    "scope": "One visible harmless marker test and its cleanup in the existing focused Installed apps search; no settings change or extra navigation.",
+    "target": {
+      "app_path": "/Applications/Parallels Desktop.app",
+      "window_title": "Windows 11",
+      "window_id": "{b0583b09-10ab-47dd-99c2-bc80be499944}",
+      "same_binding": true
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 3456,
+      "height": 2010,
+      "saved": false,
+      "note": "Detected JPEG signature and SOF dimensions from returned in-memory bytes. Earlier PNG-offset arithmetic on these JPEG bytes was invalid and is discarded; not DPI/coordinate evidence."
+    },
+    "before": {
+      "visible_search": "windbg",
+      "focus_evidence": "blue underline and end caret",
+      "AX_scope": "Mac wrapper exposes VM window, not guest search control"
+    },
+    "single_test": {
+      "API": "App.pressKey",
+      "key": "x",
+      "duration_ms": 120,
+      "coordinate_clicks": 0,
+      "visible_result": "windbgx plus Chinese IME candidate composition popup",
+      "result": "passed: key reached guest; not merely tool success"
+    },
+    "uncertain_output_handling": "The action tool output was truncated. No key was repeated; one read-only observation resolved the outcome before cleanup.",
+    "cleanup": {
+      "API": "App.pressKey",
+      "key": "BackSpace",
+      "duration_ms": 120,
+      "visible_result": "windbg, caret at end; candidate popup gone",
+      "result": "passed"
+    },
+    "facts": [
+      "Full-path binding and current focused physical-key route worked without new permissions.",
+      "Single character input and cleanup are verified; current guest is not universally ignoring injected keyboard input.",
+      "Current search still shows no registered WinDbg match; portable tools remain unknown."
+    ],
+    "hypotheses_not_proven": [
+      "Unicode text injection versus physical-key handling, key duration/timing, and focus may explain earlier failures, but they were not isolated in a controlled comparison.",
+      "Chinese IME affected the test character as visible composition; it does not establish the root cause of prior clicks or typeText failure."
+    ],
+    "unverified": [
+      "Mouse click navigation",
+      "App.typeText restoration",
+      "Multi-step navigation/continue/normal debugger close",
+      "User physical keyboard health",
+      "Window point-to-image mapping/DPI ratio",
+      "API observer installed/version/capability"
+    ],
+    "minimal_usable_route": "Retain the exact current app binding; ordinary pressKey with120ms at an observed focus is an evidenced route. Read actual UI changes after actions. Do not claim general automation repaired or request TCC/Tools/security changes without new evidence.",
+    "actions_not_taken": [
+      "No extra input probe after the one marker and cleanup",
+      "No app/VM launch, restart or kill",
+      "No TCC/Accessibility/Parallels Tools or security/network settings changes",
+      "No CLI or denied host queries",
+      "No package install, elevation, official sample run/attach or credentials"
+    ],
+    "pending_tools": false
+  }
+}

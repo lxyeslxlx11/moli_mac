@@ -1,0 +1,42 @@
+{
+  "schema": "moli.game-text-observer-v1.fixture-oracle-validation.v1",
+  "recorded_utc": "2026-10-31T01:22:25.966608+00:00",
+  "python_version": "3.9.6",
+  "command": "python3 -m unittest discover -s analysis/game-text-observer-v1/tool -p 'test_fixture_oracle.py' -v",
+  "exit_code": 0,
+  "tests": 6,
+  "passed": 6,
+  "test_cases": [
+    "preferred base original digest",
+    "negative delta and3word anchors",
+    "positive delta and3word anchors",
+    "wrong fixture identity",
+    "malformed base rejection",
+    "snapshot length/byte/base mismatch"
+  ],
+  "fixture": {
+    "path": "build/analysis/game-entry-v1/probe-stage101/entry-fixture.exe",
+    "bytes": 129968,
+    "sha256": "cf8bd654d9daf5c222f5a8ee565085013cf284ee74165a25558c5bbe0cf41c2a"
+  },
+  "fixture_text_bytes": 6624,
+  "original_text_sha256": "c9db2d224a7f56cda6217c60d5abd3646970117be2a11a54cbbbe45566837e79",
+  "text_highlow_fixups": 245,
+  "specification": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format#the-reloc-section-image-only",
+  "sources": [
+    {
+      "path": "analysis/game-text-observer-v1/tool/fixture_oracle.py",
+      "bytes": 4458,
+      "sha256": "434a7b1004fa65727436609e1bd781ec528c6cb475e8f07acb7b3b9da782f53c"
+    },
+    {
+      "path": "analysis/game-text-observer-v1/tool/test_fixture_oracle.py",
+      "bytes": 2223,
+      "sha256": "3788663fd14759462926306666e12eae32d15778f978dbdfd55181fbe9fb8075"
+    }
+  ],
+  "evidence_layer": "Actual host unittest exit0; inputs are retained original fixture and offline derived byte vectors. No new Windows snapshot or actual ASLR observation.",
+  "windows_fixture_byte_comparison_done": false,
+  "vendor_image_supported": false,
+  "full_goal_complete": false
+}

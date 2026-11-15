@@ -1,0 +1,90 @@
+{
+  "schema": "moli.vc71-app-local-remediation.plan.v1",
+  "recorded_utc": "2026-10-30T11:11:19.095822+00:00",
+  "requirement": "reports/development-plan.md#stage108",
+  "authorization_basis": "User explicitly permits continued development, Windows/network/tools operations and directly supplying missing dependencies. This is a fresh evidence-driven dependency repair, not replay of a consumed historical grant.",
+  "purpose": "Make the normal original updater able to resolve its statically identified x86 runtime imports, then observe one normal launcher handoff to test the loader hypothesis.",
+  "status": "Executed once; dependencies/backup verified, restart/UI/file-change observed, own subscriptions/admin cleaned. Partial lifecycle coverage and late process readback retained.",
+  "payloads": [
+    {
+      "name": "mfc71.dll",
+      "bytes": 1060864,
+      "sha256": "4da5efdc46d126b45daeee8bc69c0ba2aa243589046b7dfd12a7e21b9bee6a32",
+      "machine": "0x14c",
+      "optional_header_magic": "0x10b",
+      "requested_imports": 214,
+      "missing_requested_exports": [],
+      "dependent_dlls": [
+        "MSVCR71.dll",
+        "KERNEL32.dll",
+        "GDI32.dll",
+        "USER32.dll",
+        "SHLWAPI.dll"
+      ],
+      "export_forwarders": []
+    },
+    {
+      "name": "msvcp71.dll",
+      "bytes": 499712,
+      "sha256": "df96156f6a548fd6fe5672918de5ae4509d3c810a57bffd2a91de45a3ed5b23b",
+      "machine": "0x14c",
+      "optional_header_magic": "0x10b",
+      "requested_imports": 5,
+      "missing_requested_exports": [],
+      "dependent_dlls": [
+        "MSVCR71.dll",
+        "KERNEL32.dll"
+      ],
+      "export_forwarders": []
+    },
+    {
+      "name": "msvcr71.dll",
+      "bytes": 348160,
+      "sha256": "8094af5ee310714caebccaeee7769ffb08048503ba478b879edfef5f1a24fefe",
+      "machine": "0x14c",
+      "optional_header_magic": "0x10b",
+      "requested_imports": 39,
+      "missing_requested_exports": [],
+      "dependent_dlls": [
+        "KERNEL32.dll"
+      ],
+      "export_forwarders": []
+    }
+  ],
+  "destination": "Existing actual installed platform directory, three exact DLL names, app-local only",
+  "transfer": "Prepare four-member read-only media: exact three DLLs plus official bundle for non-executing Windows signature inspection; no autorun or scripts",
+  "preconditions": [
+    "Fresh exact four original file hashes and process point count0",
+    "Re-read destination3 DLLs absent; CreateNew semantics, no overwrite or system DLL/PATH/security changes",
+    "Read/hash source4 files and inspect Windows bundle Authenticode without executing the bundle; accurately classify signature outcome, never modify trust stores to force a pass",
+    "Retain current native recovery point and exact four original launcher/updater/XML backups in new own guest directory before the normal update path"
+  ],
+  "new_explicit_original_launcher_starts_maximum": 1,
+  "starts_used": 1,
+  "observation_budget_seconds_including_uac": 90,
+  "launch": "Only exact original launcher with explicit actual installed cwd; user-chosen Win7 values retained. No direct updater or game start.",
+  "lifecycle": "Scoped start/stop filters; improve stop matching to exact vendor basenames/prefixes if supported, without collecting unrelated process events. Clean own subscribers/queue and close own admin console afterward.",
+  "acceptance": [
+    "DLL copy full hashes match source3; no unrelated writes/overwrites",
+    "Actual returned PID, bounded visible UI, sanitized parent/child events and any actual exit status",
+    "Afterward original4 full hashes and selected directory metadata; do not equate unchanged files or exit0 with update success"
+  ],
+  "rollback": "Three added app-local DLLs have no prior target files; preserve exact source identities and recovery metadata. Original4 backup before observed update. No automated restore or old script/Restore replay.",
+  "stop_conditions": [
+    "Actual new terms, unrecognized source, unexpected security/privilege prompt or tool refusal",
+    "Changed/ambiguous source or existing destination file/hash, live duplicate vendor process",
+    "No normal close/expiry receipt: preserve state, no force termination or reset"
+  ],
+  "excluded": [
+    "Credentials/IPC/code memory capture",
+    "Authentication/protection bypass",
+    "Machine-wide runtime install, registry/PATH/trust/approval changes",
+    "Original game execution"
+  ],
+  "copy_primitive": "System.IO.File.Copy(String,String), equivalent overwrite=False; fails if destination exists. Exact3 whitelist only, both source and destination absolute.",
+  "copy_primitive_reference": "https://learn.microsoft.com/en-us/dotnet/api/system.io.file.copy?view=netframework-4.8.1",
+  "scoped_prefix_matching_reference": "https://learn.microsoft.com/en-us/windows/win32/wmisdk/like-operator",
+  "stop_matching_note": "Use literal-underscore escape POLCN[_]Launcher% and LauncherUpdater% only. Name truncation remains a hypothesis until actual stop data, not a root-cause claim.",
+  "runtime": "vc71-remediation-runtime-stage108.json",
+  "copy_used": true
+}

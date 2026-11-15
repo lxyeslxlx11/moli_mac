@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import * as api from '../../shared/index.mjs';
+import {createWeChatLegacyGameSession} from '../../adapters/wechat/legacy-game-session.mjs';
+import {runMotionTCP} from '../../analysis/game-battle-runtime-v1/tcp-flow.mjs';
+import {post} from './helpers/legacy-game-client-fixture.mjs';
+const v=JSON.parse(readFileSync(new URL('../../analysis/game-battle-runtime-v1/original-vectors.json',import.meta.url))),bytes=h=>new Uint8Array(Buffer.from(h,'hex'));
+test('actual catalog outer M message prepares owned source fields without executing or consuming the motion ring',()=>{const world=api.createLegacyGameWorldProtocol(),codec=api.createLegacyGamePayloadCodec(bytes(post.bootstrap.keyHex));try{world.append(api.encodeLegacyGameEnvelope(bytes(post.bootstrap.payloadHex)));world.next();const row=api.LEGACY_GAME_MESSAGE_CATALOG.incoming.find(r=>r.consumer==='0x4f36d0');assert.ok(row);world.append(api.encodeLegacyGameEnvelope(codec.encode(new Uint8Array([...new TextEncoder().encode(row.tag+' '),...api.encodeLegacyGameTextField(bytes(v.flow.motionHex)),32]))));assert.equal(world.next().effect.command,'motion');const before=world.copyBattleState();assert.deepEqual(world.copyBattleMotionPlan().commands.map(c=>c.token),v.flow.tokens);assert.deepEqual(world.copyBattleState(),before);assert.equal(world.copyBattleState().actionExecution,'unimplemented');}finally{world.close();codec.close();}assert.throws(()=>world.copyBattleMotionPlan());});
+for(const mode of ['records','ring-wrap'])test('actual OS TCP source M preparation '+mode,()=>runMotionTCP({...api,createWeChatLegacyGameSession},mode));

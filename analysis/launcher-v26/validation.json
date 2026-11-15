@@ -1,0 +1,140 @@
+{
+  "schema": "moli.launcher-v26.validation.v1",
+  "recorded_utc": "2026-10-27T07:55:33.759657+00:00",
+  "stage": 71,
+  "result": "Fixed Patcher manifest/vtable/ZIP consumers observed; original in-memory create/append/replaceto candidates implemented and verified. Full launcher/game/platform/official goal remains incomplete.",
+  "preflight": "preflight.json",
+  "native_evidence": {
+    "record": "static-spec.json",
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "LLVM": "Apple LLVM21.0.0",
+    "sample_sha256": "195f3afda41f342147b0616a4c005a4cb308ae6869b52c4a558fded5f5d9aaa8",
+    "function_dossiers": 35,
+    "byte_reads": 2,
+    "records": 37,
+    "source_anchors": 28,
+    "source_negative_cases": 3,
+    "source_audit": "patch-anchor-audit.json",
+    "closed": true,
+    "cleanup_pending": false,
+    "retained_http_dossier_reused": true
+  },
+  "independent_reference": {
+    "producer": "patch_oracle.py",
+    "record": "original-patch-vectors.json",
+    "grammar_vectors": 31,
+    "candidate_scenarios": 10,
+    "libraries": "Python byte scan, zipfile/zlib/hashlib; original synthetic data only"
+  },
+  "node": {
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "tests": 457,
+    "new_tests": 21,
+    "passed": 457,
+    "failed": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "log": "node-tests.log",
+    "focused_tests": 38,
+    "focused_log": "patch-tests-final.log",
+    "initial_failure": "review-corrections.json"
+  },
+  "browser": {
+    "record": "core-browser.json",
+    "version": "155.0.8059.85",
+    "driver": "Playwright1.62.1; Browser plugin unavailable",
+    "grammar_vectors": 31,
+    "candidate_scenarios": 10,
+    "negative_cases": 8,
+    "requests": 30,
+    "errors": [],
+    "console_errors": [],
+    "external_requests": 0,
+    "new_UI": false,
+    "visual_or_device_acceptance": false
+  },
+  "example": {
+    "command": "node shared/examples/game-patch.mjs",
+    "cases": 3,
+    "exit_code": 0,
+    "log": "example.log"
+  },
+  "implementation_contract": "implementation-spec.json",
+  "checks": "checks.json",
+  "dependencies": {
+    "new_acquisitions": 0,
+    "supplement": "Existing xcrun LLVM supplies missing PATH objdump capability; existing Pako/REA/Ghidra/Java/Python/Chrome/Playwright reused after consumer validation. No bzip2 need inferred from suffix."
+  },
+  "matrix": {
+    "revision": 19,
+    "IDs": 20,
+    "status_changes": [
+      {
+        "id": "UPD-GAME-001",
+        "before": "inferred",
+        "after": "observed",
+        "meaning": "Fixed sample direct static observations only; acceptance remains partial."
+      }
+    ],
+    "other19statuses_unchanged": true,
+    "all_dependencies_unchanged": true
+  },
+  "authorization": {
+    "original_EXE_or_VM_executions": 0,
+    "installed_client_files_modified": 0,
+    "real_accounts_or_sessions_read": 0,
+    "official_game_requests": 0,
+    "official_assets_or_full_decompilation_added": false,
+    "global_security_config_modified": false,
+    "commit_push_publish": false
+  },
+  "not_verified": [
+    "ActualUpdate.TXT/officialpackages/update-source trust",
+    "Nativefilesystem/permissions/ANSI-DBCS/over4GiB/failure/retry/rollback",
+    "ConfiguredPatcher entryargument binding and browser storage/update UI",
+    "Full launcher/service-account semantics/gameimplementation/Safari/physicalmobile/WeChat/officialcompatibility"
+  ],
+  "goal_status": "active, not complete",
+  "historical_preservation": "No historical receipt rewritten this phase; priorstage65 incident remains disclosed.",
+  "delivery_check": "delivery-check.json",
+  "delivery_checks_passed": true,
+  "preservation": {
+    "previous_files": 1007,
+    "unchanged_previous_files": 992,
+    "planned_baseline_files": 15,
+    "baseline_targets_only": true,
+    "unchanged_native_files": 17,
+    "unchanged_prior_shared_product_files": 76,
+    "previous_manifest_unchanged_sha256": "5ecfcbd1a1a8e823e03ea6f40237e14328a7ef3464d399c2a97187c5c7d7b158"
+  },
+  "documentation": {
+    "files": 44,
+    "local_links_checked": 1838,
+    "explicit_anchors_checked": 193,
+    "errors": []
+  },
+  "delivery_manifest": "../delivery-manifest-stage71.json",
+  "tested_product_files": [
+    {
+      "path": "shared/game-patch.mjs",
+      "sha256": "8e138821f6ba878dbabe935d4e10d1ecf2f6d8167c1bbbb99d9f6946540f7adc"
+    },
+    {
+      "path": "shared/launcher-update.mjs",
+      "sha256": "bfacc75296937caff846040a0be7817ba96b564160baa7050ddc279d7e68e9ca"
+    },
+    {
+      "path": "shared/index.mjs",
+      "sha256": "2ec44314b12bf99142980b6bb8c2cb67828413cff0f38a264c45e38e0ffcb0ca"
+    },
+    {
+      "path": "shared/tests/game-patch.test.mjs",
+      "sha256": "768e53c9cb8eccd9ab9da0fc7d96e27d3ac408c96a1fd13910ba6683c14c35c3"
+    },
+    {
+      "path": "shared/examples/game-patch.mjs",
+      "sha256": "ecccd118ea91d862c85b26550d7e7c9d0839ff205d2cb721817011d217e599a7"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "schema": "moli.launcher-wechat-source-stage142.v1",
+  "recorded_utc": "2026-11-03T08:10:37.004470+00:00",
+  "requirement": "reports/development-plan.md#stage142",
+  "originals": [
+    {
+      "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.observed-update.exe",
+      "bytes": 1666048,
+      "sha256": "6d459ddbdf80a86cf7a1e41b99ab7fb575b42842d7163522efb3c9fa6e6ac987"
+    },
+    {
+      "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+      "bytes": 4111872,
+      "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+    }
+  ],
+  "reused_REA_contracts": [
+    {
+      "path": "analysis/launcher-current-channel-v1/implementation-spec.json",
+      "bytes": 3853,
+      "sha256": "23d35324b9d1f917857d44181de530f3a76f76e67a216d35aeb6cba5e14cda56"
+    },
+    {
+      "path": "analysis/launcher-current-record-v1/implementation-spec.json",
+      "bytes": 4401,
+      "sha256": "bffdfb953bb7cab648f80e004b50bbd9bea57bcbf5422b95dcb56f57b7372774"
+    },
+    {
+      "path": "analysis/launcher-current-control-v1/implementation-spec.json",
+      "bytes": 3257,
+      "sha256": "ceb8178bf4c7a4582ce17765d12368497dc50f5ded847df362bc59a3695cacae"
+    },
+    {
+      "path": "analysis/launcher-current-page-v1/source-check.json",
+      "bytes": 21997,
+      "sha256": "4180540cea67582e79bb85b94db9aa81b7eded573ec7ae05b745aa2adcd17643"
+    }
+  ],
+  "new_REA_queries": 0,
+  "vendor_executed": false,
+  "primary_platform_source": {
+    "url": "https://raw.githubusercontent.com/wechat-miniprogram/api-typings/master/types/wx/lib.wx.api.d.ts",
+    "bytes": 1633209,
+    "sha256": "25e9e6fdab1b4282ee5231d8f8de7a31a177d2edc690ec834e0da479cc166245",
+    "primary_repository": "wechat-miniprogram/api-typings",
+    "license": "MIT notice retained in private original source",
+    "selected_APIs": [
+      "TCPSocket.connect/write/close/on/off events",
+      "UserCryptoManager.getRandomValues"
+    ],
+    "not_runtime_acceptance": true,
+    "clock_correction": "Downloaded official Performance interface does not declare now; default adapter uses an independent local logical deadline clock/timer floor."
+  },
+  "primary_repository": "https://github.com/wechat-miniprogram/api-typings",
+  "direct_developer_pages": {
+    "web_status": "non-retryable-unavailable",
+    "retried_same_request": false,
+    "fallback": "Official public api-typings; no platform/security configuration changes."
+  },
+  "confirmed_clock_correction": "Official Performance interface captured here has no now member. Independent local deadline clock replaces initial assumption before acceptance.",
+  "runtime_files": [
+    {
+      "path": "adapters/wechat/launcher.mjs",
+      "bytes": 3631,
+      "sha256": "223f4b10467432d1ef5e0cf5e22ee34eef8addc04ee92b9247772e0a365430b1"
+    },
+    {
+      "path": "adapters/wechat/launcher-stream.mjs",
+      "bytes": 8773,
+      "sha256": "944a0c9a1447647d55ee7cab5952f1a6d461cfa19c11d2ededb53b844b3b03c0"
+    },
+    {
+      "path": "adapters/wechat/launcher-control.mjs",
+      "bytes": 888,
+      "sha256": "aa120adb48b421c4bd00b2de250c3440851e3dbcc9438bb34dee96358afceb55"
+    },
+    {
+      "path": "adapters/wechat/launcher-clock.mjs",
+      "bytes": 1317,
+      "sha256": "e57ee6e87e4a7b16e65e28c151dd1a7236ca9d1cbb06e071ec9e3f74871ea2c0"
+    },
+    {
+      "path": "web/launcher-session.mjs",
+      "bytes": 12139,
+      "sha256": "af7bda090a5e997d5f9af3b83d88dda37d869e0ba72d5fc243a3f3f147e88f42"
+    },
+    {
+      "path": "web/launcher-session-data.mjs",
+      "bytes": 5458,
+      "sha256": "3c67dd7781e8b68b2ced1e8d27ca53cc653b528c9681e211b5194ee6f19e2e81"
+    }
+  ],
+  "build_tool": {
+    "name": "esbuild",
+    "version": "0.25.12",
+    "registry": "https://registry.npmjs.org",
+    "integrity": "sha512-bbPBYYrtZbkt6Os6FiTLCTFxvq4tt3JKall1vRwshA3fdVztsLAatFaZobhkBC8/BrPetoa0oksYoKXoG4ryJg==",
+    "lockfile": {
+      "path": "build/dependencies/esbuild-0.25.12/package-lock.json",
+      "bytes": 13959,
+      "sha256": "93997eaaab1c55a3cb81ad50bc3fedd45d81f18caae7da6533d5a2b78685eea2"
+    },
+    "local_only": true,
+    "install_scripts": "disabled; platform binary optional dependency used normally"
+  },
+  "original_oracle_reused": {
+    "path": "analysis/launcher-current-page-v1/original_peer.py",
+    "bytes": 7140,
+    "sha256": "766534a39f1cb4d5e26523fc9a6ac2c371a90ec5bc898897c0f1960fdd7225ad"
+  },
+  "limitations": [
+    "No new binary/runtime protocol observation; existing current source contract is reused.",
+    "Official API declaration is not native WeChat execution evidence.",
+    "Node-backed API facade maps fixed fixture.invalid:12345 to one owned loopback peer only; this is not a native-domain bypass.",
+    "No AppID/domain/JS-version/device/official-account or playable-game acceptance."
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "schema": "moli.windbg.offline-plan.v1",
+  "stage": 46,
+  "recorded_utc": "2026-10-26 13:42:10 UTC",
+  "UI_facts": {
+    "installed_apps_total": 29,
+    "previous_visible_rows": 10,
+    "registered_Parallels_Tools_version": "26.3.3.57507",
+    "registered_Edge_version": "156.0.4314.42",
+    "WinDbg_search": "user-entered windbg in Installed apps, all drives; observed no matching entries at13:29UTC",
+    "limit": "not absence proof for portable copies/SDK tools; no observer/version/help/runtime health verified; no extra user tool-search steps requested"
+  },
+  "official_document": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/",
+  "platform_and_update_facts": {
+    "documented": "Windows11 all versions, x64 andARM64; direct/Store installs periodically check and auto-update in background",
+    "important_limit": "ARM64 host support does not prove this exact debugger can observe the x86 synthetic target; a future exercise must establish it. Offline NIC blocks external transfers, not necessarily update attempts; no global update-policy changes proposed."
+  },
+  "metadata_receipt": {
+    "schema": "moli.windbg.public-metadata.v1",
+    "started_utc": "2026-10-26T13:36:50.799650+00:00",
+    "binary_downloaded": false,
+    "installer_executed": false,
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/"
+      },
+      {
+        "method": "HEAD",
+        "url": "https://aka.ms/windbg/download"
+      },
+      {
+        "method": "HEAD",
+        "url": "https://windbg.download.prss.microsoft.com/dbazure/prod/1-0-0/windbg.appinstaller"
+      }
+    ],
+    "official_document": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/",
+    "download_link_from_document": "https://aka.ms/windbg/download",
+    "status": "stopped",
+    "error": "HEAD failed with status 403"
+  },
+  "exact_current_feed": "https://windbg.download.prss.microsoft.com/dbazure/prod/1-0-0/windbg.appinstaller",
+  "current_payload": {
+    "version": null,
+    "URL": null,
+    "download_bytes": null,
+    "dependencies": null,
+    "signature_verified": false,
+    "actual_license_text_verified": false,
+    "reason": "Official document link resolved, but HEAD of the feed returned403. No GET retry, user-agent/TLS changes, alternate feed or binary download."
+  },
+  "known_pinned_older_candidate_not_selected": {
+    "source": "https://github.com/microsoft/winget-pkgs/blob/master/manifests/m/Microsoft/WinDbg/1.2506.12002.0/Microsoft.WinDbg.installer.yaml",
+    "version": "1.2506.12002.0",
+    "architecture_entry": "arm64 (same multi-architecture bundle URL also listed for x86/x64)",
+    "minimum_os_version": "10.0.17763.0",
+    "type": "msix",
+    "package_family": "Microsoft.WinDbg_8wekyb3d8bbwe",
+    "url": "https://windbg.download.prss.microsoft.com/dbazure/prod/1-2506-12002-0/windbg.msixbundle",
+    "published_InstallerSha256": "7E7F01AE4A5949CD5B3013E022681F4F23BF70CDF4BF85A41AD55ADF69308A1E",
+    "published_SignatureSha256": "230A91527F7FE3101B4C05437B7855741B7EC14A222366D94329CBF510C4780E",
+    "bytes": null,
+    "access_or_signature_validated_this_turn": false,
+    "not_latest_or_recommended_automatically": true,
+    "repository_limit": "Microsoft-hosted public WinGet metadata, not our validation of downloaded package bytes or actual certificate trust"
+  },
+  "offline_install_conditions": [
+    {
+      "source": "https://learn.microsoft.com/en-us/windows/msix/app-installer/install-update-app-installer",
+      "fact": "Windows App Installer supports local MSIX/MSIXBundle installation; current VM presence/health not established."
+    },
+    {
+      "source": "https://learn.microsoft.com/en-us/windows/msix/desktop/managing-your-msix-deployment-enterprise",
+      "fact": "Local package can be installed through App Installer GUI; no Parallels CLI/guest shell route proposed."
+    },
+    {
+      "source": "https://learn.microsoft.com/en-us/windows/msix/app-installer/troubleshoot-appinstaller-issues",
+      "fact": "Trusted signing certificate and required framework dependencies must be satisfied; online dependency acquisition is possible, so complete offline dependencies must be supplied/verified first. Do not import certificates or relax policies after failure."
+    }
+  ],
+  "license_and_privilege": {
+    "metadata_source": "https://github.com/microsoft/winget-pkgs/blob/master/manifests/m/Microsoft/WinDbg/1.2506.12002.0/Microsoft.WinDbg.locale.en-US.yaml",
+    "metadata_license": "Proprietary; no exact agreement text/acceptance workflow established by this metadata",
+    "store_page": "https://apps.microsoft.com/detail/9pgjgd53tn86",
+    "store_result": "requires JavaScript in public text tool; actual License terms not obtained",
+    "rule": "Before installation/first use present applicable package terms and obtain required specific consent; do not infer prior Windows terms cover WinDbg or silently accept EULA. Ordinary current-user local GUI installation only; new UAC/service, certificate/policy/Developer Mode or license requirement stops, not an automatic elevation."
+  },
+  "bounded_future_scope_not_executed": [
+    {
+      "step": "Mac preparation",
+      "scope": "Only after a legally accessible fixed official package/version is established: download into fresh private build/tools/windbg-offline directory, verify SHA256 and Microsoft signature/identity, inspect bundle ARM64 member/dependency/capability/License manifests without executing. Missing official dependencies or unexpected payload stop; no automatic old-version substitution."
+    },
+    {
+      "step": "Recovery and transfer",
+      "scope": "Verify current VM offline and host shares closed, and a suitable verified recovery point before changes. If a new recovery point/normal shutdown is necessary obtain concrete scope; no forced shutdown or old PIN reuse. Prepare read-only ISO with only approved debugger/dependencies and original fixture/local symbols, import into fresh C:\\MoliOffline\\WinDbgLab. No host-folder sharing or VM network."
+    },
+    {
+      "step": "Install",
+      "scope": "Use local MSIXBundle GUI App Installer for current user after actual terms consent. No Store/winget/network dependency fetch, re-signing, trust/policy/security changes, extra service or unapproved UAC. App Installer itself or missing frameworks are not presumed authorized to install."
+    },
+    {
+      "step": "Synthetic-only exercise",
+      "scope": "Only reviewed original synthetic-diagnostic-target.c compiled as x86 PE32 using an already verified toolchain, with exact binary hash/identity/local symbols recorded first. Existing C is source only: no compiled fixture currently supplied. No new SDK/compiler install under this scope."
+    },
+    {
+      "step": "Observation",
+      "scope": "Launch only that original ordinary-user fixture from WinDbg GUI; no attach to existing/official processes, no TTD, dump, symbol server, network, arguments or mapped-buffer output. Expected five ordered API names/module-relative callsites and natural exit0; reuse the6-test schema, not proof any real debugger output is available."
+    },
+    {
+      "step": "Stop gate",
+      "scope": "Do not start until normal GUI input/continue/close is reliable. If UI/architecture/permission/dependency/signature/license fails, stop and report without retry, force-kill, forced VM close or widening scope. Sleep1.75s in source is not a debugger wall-clock limit; no untested90s guarantee."
+    }
+  ],
+  "current_readiness": "NOT READY for install-and-exercise: fixed package/signature/size, actual dependencies/terms, App Installer state, reviewed compiled x86 fixture and full reliable GUI control remain unresolved. A prior feed HEAD403 is one request failure, not proof all official distribution is unavailable; focused physical-key input has now passed a limited visible test.",
+  "precise_next_boundary": "Do not retry the refused feed. Microsoft documents an independent Store GUI route, requiring a separately approved concrete network/install/terms scope. No new security repair is evidenced by the successful focused-key test. Strict offline package completeness remains unverified.",
+  "other_tool_limits": {
+    "GitHub_WinDbg_directory": "web tool returned restricted URL; no directory/API retry or equivalent version enumeration",
+    "CLI_route": "remains abandoned; no prlctl/prlexec, host ps or denied hardware retry"
+  },
+  "actual_operations": {
+    "tool_binary_bytes_downloaded": 0,
+    "installer_runs": 0,
+    "guest_commands_or_GUI_actions": 0,
+    "sample_runs_or_attach": 0,
+    "VM_network_security_changes": 0,
+    "pending_tools": false,
+    "metadata_script_exit": "0 with status stopped; explicitly not a successful feed/package validation"
+  },
+  "validation": "Official source/receipt reconciliation only; no new product code/test changes or rerun of prior6 schema/85Node/8Python/16Swift regressions.",
+  "distribution_followup_stage47": {
+    "recorded_utc": "2026-10-26T14:02:21.239920+00:00",
+    "official_source": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/",
+    "independently_documented_routes": [
+      {
+        "route": "Microsoft Store GUI",
+        "product_page": "https://apps.microsoft.com/detail/9pgjgd53tn86",
+        "status": "Official installation route documented; this session did not contact Store service or obtain/install a payload.",
+        "conditions": "Would require separately authorized temporary VM network, applicable actual terms, and any encountered account handling. No offline guarantee; periodic background updates are documented."
+      },
+      {
+        "route": "Windows Package Manager, Microsoft.WinDbg",
+        "status": "Officially documented alternative, not executed or proposed here because VM CLI route is abandoned."
+      },
+      {
+        "route": "Direct App Installer download",
+        "status": "Documented; prior HEAD403 receipt remains unchanged, no rejected endpoint retry."
+      }
+    ],
+    "HTTP_sources": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.3.2",
+      "https://www.rfc-editor.org/rfc/rfc9110.html#section-15.5.4",
+      "https://www.rfc-editor.org/rfc/rfc9110.html#section-15.5.6"
+    ],
+    "HTTP_facts": "HEAD retrieves metadata without response content.403 records refusal to fulfill that request;405 specifically denotes an unsupported method.403 by itself neither identifies a HEAD-method problem nor establishes that all independent official distributions are unavailable.",
+    "unknown": "No Microsoft-specific evidence was found establishing whether the observed feed refusal was method/CDN/access policy or another cause. GET success is not inferred or tested.",
+    "access_boundaries": "No GET/HEAD retry of the rejected feed or package endpoint, no proxy/credential/User-Agent/TLS/source workaround, no tool binary download or execution.",
+    "GUI_followup": "One physical x key and cleanup were visibly verified. Mouse/full navigation and safe debugger continue/close remain unverified; not an installation readiness pass.",
+    "next_minimum": "The Microsoft Store GUI is a documented independent normal route if the user later approves its temporary VM network and actual installation/terms scope. This is an alternative plan, not present authorization or proof of availability. For a strictly offline install, exact signed package, actual dependencies and terms remain missing."
+  },
+  "store_attempt_stage48": {
+    "recorded_utc": "2026-10-26T15:05:05.838696+00:00",
+    "authorization": "Temporary current-VM network and official Store WinDbg installation approved; new terms, login, UAC, certificate or policy prompts stop. No debugging or fixture run.",
+    "recovery": "v19/v22 visible in snapshot manager, v22 selected with Go To available; all three internal disk layers exist, no symlinks. Restore not executed or tested.",
+    "guest_process_check": "Task Manager Details: committed Latin launcher search and separate cg search each showed no filter results. Task Manager closed normally; no process killed.",
+    "input": "120ms taskbar right-click and left-click worked; Task Manager appeared on the following observation. Details/search clicks and literal keys plus Return worked. Ctrl+Shift+Escape had no confirmed effect. This is not full GUI input acceptance.",
+    "isolation": "Security checkbox Isolate Windows and Mac=1; sharing menu disabled; no sharing changes.",
+    "blocker": "Network Source remained Disconnected. Normal center/arrow clicks and keys did not visibly expand it. Exact configuration window rebound; direct Shared Network child click returned server error-10005 cannotClickOffscreenElement. Stopped that item, no retry or alternative config write.",
+    "other_error": "Nested Keyboard Win+Q item returned AXError.invalidUIElement; stopped that item. Neither error was an approval denial.",
+    "final_config": {
+      "NIC_enabled": 1,
+      "NIC_connected": 0,
+      "IsolatedVm": 1,
+      "ShareAllMacDisks": 0,
+      "ShareUserHomeDir": 0
+    },
+    "network": "Never verified enabled; final config Connected0, UI Source Disconnected. No restoration action needed; do not claim restored after installation.",
+    "Store_opened": false,
+    "installation_started": false,
+    "installation_completed": false,
+    "new_prompts": null,
+    "sample_fixture_or_debug_runs": 0,
+    "pending_tools": false,
+    "minimum_next": "Restore normal native dropdown interaction. Minimal handoff: open current Source:Disconnected dropdown and leave it open without selecting or connecting. No repeat approval, CLI, security changes or Tools repair."
+  },
+  "focus_recovery_stage49": {
+    "recorded_utc": "2026-10-26T15:08:29.746917+00:00",
+    "scope": "One bounded normal keyboard-focus recovery; no hidden-option clicks or user handoff request.",
+    "target": "Existing configuration window e196ecdc-ec88-4deb-b4b6-6a23390df6cf, Network Source Disconnected",
+    "before": "AX focus18: ComboBox Disconnected, children enumerated but popup not visibly open",
+    "action": "One Tab key held120ms",
+    "after": "No AX-tree change; focus still18 ComboBox Disconnected. No visible popup or selectable visible item established.",
+    "result": "Recovery not demonstrated; stopped without repeating Space/arrows, clicking hidden items or enabling network.",
+    "final_config": {
+      "NIC_connected": "0",
+      "IsolatedVm": "1"
+    },
+    "Store_installation_started": false,
+    "pending_tools": false,
+    "denial": false,
+    "cause": "Unknown: no inference that Tab was delivered or why native focus did not change. Guest character/mouse successes do not establish native popup control.",
+    "next_boundary": "Cannot safely promise connection and disconnection with this native input state. Preserve offline state; exact Store approval remains, no extra consent requested and no CLI/security workaround."
+  },
+  "reconnect_stage50": {
+    "recorded_utc": "2026-10-26T15:25:19.837104+00:00",
+    "latest_goal": "User requests restore current Windows11 VM network and leave connected; no installs or game runs. Preserve Mac sharing isolation.",
+    "attempt": "One normal getApp of exact /Applications/Parallels Desktop.app",
+    "tool_result": "The Mac is locked and automatic unlock could not unlock it. Ask user to unlock manually.",
+    "known_execution": "No window/menu obtained, no network change or installation; stopped with no retry or alternate control path.",
+    "final_file_config": {
+      "NIC_connected": "0",
+      "IsolatedVm": "1"
+    },
+    "limit": "Current file metadata only; live Windows connectivity not observed. Tool locked report is not independent proof of actual screen state.",
+    "minimum_next": "Normal manual Mac unlock, then one fresh screen-access check under the same network approval. No password/PIN request or use.",
+    "pending_tools": false
+  }
+}

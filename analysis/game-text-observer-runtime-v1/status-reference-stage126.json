@@ -1,0 +1,33 @@
+{
+  "schema": "moli.status-reference-stage126.v1",
+  "classification": "primary-source-reference",
+  "observed_utc": "2026-11-01T09:56:47.332295+00:00",
+  "url": "https://raw.githubusercontent.com/microsoft/win32metadata/main/generation/WinSDK/RecompiledIdlHeaders/shared/ntstatus.h",
+  "retrieval": "One normal unauthenticated GET, HTTP200, no redirect, 2MiB limit. Read only; nothing executed.",
+  "source_bytes": 688716,
+  "source_sha256": "457c375cd907d235d4f036ed9262ff9f245becf55c819bb3d1d1323c03d0195f",
+  "private_source_path": "build/analysis/game-text-observer-runtime-v1/stage126/ntstatus.h",
+  "declarations": [
+    {
+      "symbol": "STATUS_INVALID_EXCEPTION_HANDLER",
+      "hex": "0xc00001a5",
+      "line_1_based": 5943,
+      "declaration": "#define STATUS_INVALID_EXCEPTION_HANDLER ((NTSTATUS)0xC00001A5L)"
+    },
+    {
+      "symbol": "STATUS_ACCESS_VIOLATION",
+      "hex": "0xc0000005",
+      "line_1_based": 2121,
+      "declaration": "#define STATUS_ACCESS_VIOLATION          ((NTSTATUS)0xC0000005L)    // winnt"
+    }
+  ],
+  "meaning_zh": {
+    "0xc00001a5": "检测到无效的异常处理程序例程。",
+    "0xc0000005": "访问违例。"
+  },
+  "limits": [
+    "These definitions classify status values, not the cause in CrossGate.",
+    "They do not establish an ARM incompatibility, missing dependency, SafeSEH/SEHOP state or protection cause.",
+    "The current official MS-ERREF NTSTATUS page did not contain0xc00001a5 when searched; the Microsoft-maintained SDK header is the positive mapping source."
+  ]
+}

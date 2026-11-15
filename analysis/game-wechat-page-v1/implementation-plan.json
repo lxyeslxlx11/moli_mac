@@ -1,0 +1,27 @@
+{
+  "stage": 222,
+  "scope": "Native WeChat game page for the fixed legacy client",
+  "previous_checkpoint": {
+    "path": "analysis/game-battle-shared-storage-v1/checkpoint-audit.json",
+    "bytes": 494610,
+    "sha256": "a8b3eb9d2d7a1f73835e0a2635b08be94671b9d3eb151cc26bc2b0e437f47992"
+  },
+  "verified_baseline_files": 3764,
+  "requirements_preserved": 37,
+  "incomplete_consumer_groups": 10,
+  "evidence_order": [
+    "Bind the roster, character entry, ordinary scene, pointer movement and battle lifecycle to retained REA evidence and PE bytes",
+    "Connect the launcher to a native game subpackage with independently selected, validated startup and resources",
+    "Use the existing world, scene, battle, TCP and text APIs through thin WeChat page ports",
+    "Verify actual Page handlers, loopback TCP, native template compilation and the current DevTools gate"
+  ],
+  "exclusions": [
+    "The launcher ticket conversion and current official service are open requirements"
+  ],
+  "official_sessions": 0,
+  "original_execution": 0,
+  "phase_complete": false,
+  "status": "implemented-and-locally-verified",
+  "native_runtime_accepted": false,
+  "validation": "analysis/game-wechat-page-v1/validation.json"
+}

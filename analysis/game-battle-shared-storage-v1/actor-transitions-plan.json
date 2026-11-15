@@ -1,0 +1,15 @@
+{
+  "stage": 221,
+  "status": "finite-local-verification",
+  "previous_checkpoint_sha256": "b3deebf111c2150bb49c5a871d2715542cf729a13ec15b5875b56d18051eec3c",
+  "sample_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "requirements": [
+    "Byte-bind REB and PLV dispatch, queue producers, element state 158 and the PLV random coordinate selection.",
+    "Use the existing tuple, element-effect ownership, renderer and queue completion paths for apply and clear. Preserve real backup and ordering.",
+    "Use two independently selected raw entry coordinates and remove the corresponding registry actor only after the source departure queue.",
+    "Verify source and generated core, actual local receive and rendering, normal continuation, departure and cleanup without claiming platform acceptance."
+  ],
+  "source_check": "actor-transitions-source-check.json",
+  "validation": "validation.json",
+  "phase_complete": false
+}

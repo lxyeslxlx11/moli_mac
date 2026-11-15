@@ -1,0 +1,84 @@
+{
+  "schema": "moli.launcher-handoff-ready-goal-audit-stage139.v1",
+  "recorded_utc": "2026-11-03T07:07:11.865908+00:00",
+  "objective": "先使用rea分析登录器，再实现登录器，再使用rea分析游戏，实现游戏。",
+  "platforms": "web/mobile-web/WeChat, historical native preserved",
+  "previous_turn": {
+    "stage": 138,
+    "classification": "progress",
+    "reason": "Existing ended-process64B query completed and arbitrary source mapping failed; it changes the next game analysis action."
+  },
+  "current_turn": {
+    "stage": 139,
+    "classification": "progress",
+    "reason": "New source-bound normal ready/parent-exit handshake contract from both launcher and updater. It separates readiness from update completion/startup ACK; no product or game consumer progress claimed."
+  },
+  "requirements": [
+    {
+      "requirement": "REA analyze launcher",
+      "state": "selected normal handoff contract expanded; whole lifecycle incomplete",
+      "evidence": [
+        "analysis/launcher-handoff-ready-v1/source-check.json",
+        "analysis/launcher-handoff-ready-v1/static-contract.json"
+      ],
+      "remaining": "Separate new-child startup ACK consumer, whole EH/locale and runtime transaction acceptance."
+    },
+    {
+      "requirement": "Implement independent launcher",
+      "state": "bounded shared/local-page implementation retained; full acceptance incomplete",
+      "evidence": [
+        "analysis/launcher-current-page-v1/test-results.json",
+        "analysis/launcher-update-arguments-v1/test-results.json",
+        "shared/launcher-flow.mjs"
+      ],
+      "remaining": "Real authenticated login, supported-platform lifecycle integration and complete update acceptance. No product code changed this stage."
+    },
+    {
+      "requirement": "REA analyze game",
+      "state": "startup/resources and finite diagnostics only; business consumers missing",
+      "evidence": [
+        "analysis/game-text-observer-runtime-v1/code-fingerprint-stage138.json",
+        "reports/game-static.md"
+      ],
+      "remaining": "Independently bound argv/IPC/socket/messages/state/movement/battle consumers."
+    },
+    {
+      "requirement": "Implement playable game",
+      "state": "incomplete",
+      "evidence": [
+        "analysis/protocol-v2/spec-matrix.json"
+      ],
+      "remaining": "Proven business contract and verified playable implementation."
+    },
+    {
+      "requirement": "Web/mobile/WeChat and official acceptance",
+      "state": "incomplete",
+      "evidence": [
+        "reports/validation.md",
+        "analysis/protocol-v2/spec-matrix.json"
+      ],
+      "remaining": "Real platform/gameplay and official authenticated acceptance; local bytes/viewport/builds do not prove it."
+    }
+  ],
+  "goal_status": "active",
+  "full_goal_complete": false,
+  "old_blocked_counts_reused": false,
+  "already_authorized_scope_preserved": true,
+  "new_approval_or_manual_requests": 0,
+  "new_game_CDB_VM_network_account_actions": 0,
+  "tests_or_builds_this_stage": 0,
+  "historical_tests": "663 full Node passes are stage137, no new rerun claim.",
+  "knowledge_query": {
+    "roles": [
+      "experience",
+      "requirement-index"
+    ],
+    "domain": "development",
+    "budget": 3000,
+    "exit_code": 2,
+    "missing": "requirement-index",
+    "authoritative_requirement": "reports/development-plan.md#stage139",
+    "external_KB_written": false
+  },
+  "next": "Follow current-source separate startup ACK consumer, preserving game consumer and complete platform/official gates. No replay of old game/CDB plan and no repeated account/PDB request."
+}

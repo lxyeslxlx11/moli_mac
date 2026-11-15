@@ -1,0 +1,80 @@
+{
+  "schema": "moli.launcher-current-runtime-v4.observation-readback.v1",
+  "client_date": "2026-10-29",
+  "recorded_host_utc": "2026-10-28T17:48:37.079814+00:00",
+  "method": "Fresh CUA gc of fixed guest observation.json, full visible selected fields transcribed, not raw-file export or screenshot archive.",
+  "command": "powershell.exe -NoLogo -NoProfile -ExecutionPolicy RemoteSigned -File D:/current.ps1 -Mode Observe",
+  "submissions": 1,
+  "output": "MOLI_STAGE89_OBSERVATION_RECORDED_NO_FORCED_CLOSE",
+  "receipt": {
+    "SubmissionUtc": "2026-10-28T17:44:14.4411536Z",
+    "StartProcessReturnedUtc": "2026-10-28T17:44:53.5657735Z",
+    "UacAndStartMs": 39039,
+    "TotalElapsedMs": 42507,
+    "Parent": {
+      "Pid": 2384,
+      "StartUtc": "2026-10-28T17:44:53.5296499Z",
+      "Exited": true,
+      "ExitCode": 0,
+      "ExitUtc": "2026-10-28T17:44:57.0121306Z",
+      "ObservationLimitMs": 90000,
+      "ElapsedMs": 3424,
+      "RunningAtLimit": false,
+      "ExitMetadata": "complete",
+      "ChildLifecycle": "not-tracked",
+      "ForcedTermination": false
+    },
+    "MatchingNamesAtReadback": [
+      {
+        "Id": 1020,
+        "ProcessName": "LauncherUpdater"
+      }
+    ],
+    "Files": [
+      {
+        "name": "POLCN_Launcher.exe",
+        "Bytes": 1496576,
+        "Sha256": "71180e5bdda771e7d57dd27d2b879beddee55d61b957dadf7a2da60c907cb69a",
+        "Attributes": 32
+      },
+      {
+        "name": "LauncherUpdater.exe",
+        "Bytes": 814080,
+        "Sha256": "22d56137a48d3c95f4a779c5c68ba85b3ea4fe2439e3e561159d003c697ce479",
+        "Attributes": 32
+      },
+      {
+        "name": "XML/GameList.xml",
+        "Bytes": 4377,
+        "Sha256": "be8f1213d77bd294fbb79b2fb51a5e7fecdc9aa3c0854db7a6d821fad20ef85a",
+        "Attributes": 33
+      },
+      {
+        "name": "XML/RegionList.xml",
+        "Bytes": 6205,
+        "Sha256": "0c94ca78c40c1940f241940a97aabef7849e9ad3285310046f346b69128a8438",
+        "Attributes": 33
+      }
+    ],
+    "StableWindow": "requires-fresh-UI",
+    "ChildLifecycle": "not-tracked",
+    "CredentialsCollected": false
+  },
+  "ui_evidence": "analysis/launcher-current-runtime-v4/ui-observation.json",
+  "interpretation": {
+    "fact": "Initial returned handle exited0, named updater1020 present at readback, embedded updater file now matches new known814080B sample. Later usage dialog/main V2.01 observed and closed ordinarily.",
+    "inference": "Sequence is consistent with automatic updater/relaunch; exact parent-child relationship and updater exit/replacement operation not captured.",
+    "not_proven": [
+      "full updater lifecycle",
+      "exact updater commit API/journal and its metadata outcome (later final EXE identity is separately established)",
+      "game registration/auth/consumer/frame behavior",
+      "persistent mode setting location"
+    ]
+  },
+  "game_executions": 0,
+  "goal_complete": false,
+  "later_distinct_readback": {
+    "file": "analysis/launcher-current-runtime-v4/new-candidate.json",
+    "meaning": "Final EXE changed after this early receipt. Early1496576B main and814080B updater values are time-local observations, not final files or full updater completion."
+  }
+}

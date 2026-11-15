@@ -1,0 +1,73 @@
+{
+  "stage": 118,
+  "status": "windows_read_observed_full_byte_oracle_pending",
+  "evidence_method": "CUA full input readback before submission and actual Windows PowerShell output; raw screenshots and user prompt paths excluded",
+  "fixture": {
+    "path": "C:\\MoliOffline\\observer-fixture\\entry-fixture.exe",
+    "sha256": "cf8bd654d9daf5c222f5a8ee565085013cf284ee74165a25558c5bbe0cf41c2a",
+    "bytes": 129968,
+    "pid": 260,
+    "ready_line": "MOLI_ENTRY_FIXTURE_V1 pid=260 slot_rva=e65db8 ready=1 wait_ms=30000",
+    "start_time_guest_local": "2026-11-01 14:46:53",
+    "exit_time_guest_local": "2026-11-01 14:47:23",
+    "wait_for_exit_40000_returned": true,
+    "has_exited": true,
+    "exit_code": 0,
+    "termination_requested": false
+  },
+  "process_start_info_readback": {
+    "FileName": "C:\\MoliOffline\\observer-fixture\\entry-fixture.exe",
+    "WorkingDirectory": "C:\\MoliOffline\\observer-fixture",
+    "UseShellExecute": false,
+    "RedirectStandardOutput": true,
+    "CreateNoWindow": true
+  },
+  "observer": {
+    "path": "C:\\MoliOffline\\game-text-observer-stage115\\text-observer.exe",
+    "sha256": "163864829f3b47eaa0b640c44b5de1d46f0e44658919b7c4e51974e5b83732f5",
+    "bytes": 146798,
+    "profile": "fixture",
+    "pid_argument": 260,
+    "image_base": "0x00da0000",
+    "image_bytes": "0x00e82000",
+    "text_rva": "0x00001000",
+    "read_bytes": 6624,
+    "regions": 1,
+    "snapshot_sha256": "13da500e013b8455352dd26985f04d8a9c853af45584b0f53ba99b1eb146a9d9",
+    "elapsed_ms": 15,
+    "last_exit_code": 0
+  },
+  "snapshot": {
+    "guest_path": "C:\\MoliOffline\\game-text-observer-stage115\\fixture-text.bin",
+    "host_received": false,
+    "all_bytes_compared": false
+  },
+  "scope": {
+    "own_fixture_only": true,
+    "game_execution": false,
+    "game_memory_read": false,
+    "account_session_observation": false,
+    "product_compatibility_claim": false
+  },
+  "submission_interruption": {
+    "first_return_call_reported_app_change": true,
+    "fresh_screen_showed_same_complete_pending_line": true,
+    "subsequent_return_produced_ready_and_observer_output": true,
+    "fixture_executions_observed": 1
+  },
+  "host_oracle": {
+    "fixture_sha256": "cf8bd654d9daf5c222f5a8ee565085013cf284ee74165a25558c5bbe0cf41c2a",
+    "preferred_base": 4194304,
+    "observed_base": 14286848,
+    "text_rva": 4096,
+    "text_bytes": 6624,
+    "highlow_fixups": 245,
+    "expected_sha256": "13da500e013b8455352dd26985f04d8a9c853af45584b0f53ba99b1eb146a9d9",
+    "scope": "Original fixture expected bytes only; no Windows execution proof.",
+    "actual_reader_stdout_sha256_matches": true,
+    "source": "analysis/game-text-observer-v1/tool/fixture_oracle.py",
+    "source_sha256": "434a7b1004fa65727436609e1bd781ec528c6cb475e8f07acb7b3b9da782f53c"
+  },
+  "evidence_limit": "Actual Windows read length and stdout SHA match expected relocated fixture .text; original guest file has not been returned for direct all-byte equality. Frozen complete qualification remains pending; no game data observed.",
+  "updated_utc": "2026-11-01T07:20:57.568797+00:00"
+}

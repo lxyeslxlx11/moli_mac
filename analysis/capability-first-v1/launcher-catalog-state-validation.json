@@ -1,0 +1,950 @@
+{
+  "schema": "moli.capability.launcher-catalog-state-validation.v1",
+  "recorded_utc": "2026-11-08T06:41:06.984154+00:00",
+  "source_check": {
+    "path": "analysis/capability-first-v1/launcher-catalog-state-source-check.json",
+    "bytes": 88227,
+    "sha256": "fca992683461b3aac324ce2fb8e613730c2a6b2b510136fc05d80b21084d9184"
+  },
+  "contract": {
+    "path": "analysis/capability-first-v1/launcher-catalog-state-contract.json",
+    "bytes": 11138,
+    "sha256": "7c29d26b65898f09fdcb659893ec00ec34617d0b80b56e804a05f3ab6a264368"
+  },
+  "source_verifier": {
+    "path": "analysis/capability-first-v1/derive_launcher_catalog_state.py",
+    "bytes": 29022,
+    "sha256": "e3f01b431d22741228ae1cd92d6d89a97eaf02b0f13dc2605a2796fd0dea6635"
+  },
+  "plan": {
+    "path": "analysis/capability-first-v1/launcher-catalog-state-plan.json",
+    "bytes": 1746,
+    "sha256": "1496cec6071445e20b6c269431797f0049e085acb422a22b1a6d7cb4be44e880"
+  },
+  "source_summary": {
+    "body_entries": 49,
+    "new_native_dossiers": 30,
+    "reused_native_dossiers": 14,
+    "composed_reused_bodies": 5,
+    "range_reads": 50,
+    "range_bytes": 43452,
+    "semantic_anchor_groups": 21,
+    "data_ranges": 7,
+    "derived_prototype_views": 5,
+    "derived_instructions": 1624,
+    "derived_instruction_bytes": 6267
+  },
+  "source_verifier_deterministic": true,
+  "read_memory_kind": "static Ghidra loaded image; not a process, VM or crash-dump memory capture",
+  "native_loaded_image_bytes_match_original_PE": true,
+  "canonical_composed_and_analyst_derived_views_kept_separate": true,
+  "canonical_helper_signatures_unchanged_after_independent_experiment": true,
+  "retained_previous_export_records_unchanged": 376,
+  "additional_old_patch_ledger_records": 220,
+  "canonical_native_bodies_reused_from_old_patch_ledger": [
+    "0x408460",
+    "0x40b010",
+    "0x435ad0"
+  ],
+  "source_read_evidence_new_to_export": 37,
+  "source_read_evidence_reused_from_export": 13,
+  "REA_export": {
+    "path": "build/analysis/capability-launcher-catalog-state-v1/rea-launcher-evidence.json",
+    "bytes": 58576129,
+    "sha256": "e458a820075cada24e2bedd4de4031a2b0fd165e9e92635dbeb0f971bfbd06e8"
+  },
+  "REA_snapshot": {
+    "path": "build/analysis/capability-launcher-catalog-state-v1/rea-launcher-snapshot.json",
+    "bytes": 114590831,
+    "sha256": "7c80fb45a50b1882c81ba908de94b828f99040c02934e318db6c0b6d8a57b970"
+  },
+  "REA_export_records": 452,
+  "REA_snapshot_records": 452,
+  "REA_open": false,
+  "REA_cleanup_pending": false,
+  "baseline_files_checked": 4632,
+  "changed_baseline_files": [
+    {
+      "path": "README.md",
+      "bytes": 374080,
+      "sha256": "b1b4327cdfe51437bc52ff4f7656730ed6fc04d45dddfdf3f6a8d01f81f4f6dd"
+    },
+    {
+      "path": "analysis/capability-first-v1/capability-matrix.json",
+      "bytes": 101151,
+      "sha256": "cc3b1314c60950b77550fa650525fdac7e0024e764839b8924a6d24e484dafaa"
+    },
+    {
+      "path": "analysis/capability-first-v1/derive_launcher_apply.py",
+      "bytes": 23441,
+      "sha256": "8aa9fc1ec38307c15d9a84fb2690e755bb098db2ea20700795775f210e06cdff"
+    },
+    {
+      "path": "analysis/capability-first-v1/entry-findings.json",
+      "bytes": 9324,
+      "sha256": "21f859aef5d941341bcf227de14e71dca1ce9661ffe90ffd63dd6af1f3ba3c5a"
+    },
+    {
+      "path": "analysis/capability-first-v1/launcher-apply-contract.json",
+      "bytes": 11656,
+      "sha256": "0ab805c57cfa28e2e8a4bdfe6b4bde53f3f3e540e96ab06a807790cc5d3ed8c8"
+    },
+    {
+      "path": "reports/architecture-and-milestones.md",
+      "bytes": 285268,
+      "sha256": "7ff6df419fe9279cdc9329380db245e3621404ecb5c7270e1bfb0376c4fd7d1a"
+    },
+    {
+      "path": "reports/development-plan.md",
+      "bytes": 467544,
+      "sha256": "33632a4a7e675b570a0e31510ad9db035e65ceb08d3a0ee8531ed020f9494d90"
+    },
+    {
+      "path": "reports/known-issues.md",
+      "bytes": 510934,
+      "sha256": "ad488530c8f0ea8cc2d1656071bd8f4dc480ed54148e43463dc2cd1fefdbef9f"
+    },
+    {
+      "path": "reports/launcher-static.md",
+      "bytes": 191891,
+      "sha256": "3317ab72e3ca6f6e5fa0773e0c67e400a76013f4eceb5dfeca629dbc74483e5f"
+    },
+    {
+      "path": "reports/logic-protocol-spec.md",
+      "bytes": 357769,
+      "sha256": "7b1028731367464d90b52f39066620431ed877225fc0213c113c7cbbcfd0b911"
+    },
+    {
+      "path": "reports/requirements-index.md",
+      "bytes": 148382,
+      "sha256": "9055f9452d124aa15c90390dbb4137e9a4e9d08f9da3dddc65a22d951fdb2311"
+    },
+    {
+      "path": "reports/resource-formats.md",
+      "bytes": 293670,
+      "sha256": "56b0f63ae8bf9898f8dda831e100aaa62f467e9decd4945ac1181f902ca89584"
+    },
+    {
+      "path": "reports/validation.md",
+      "bytes": 639901,
+      "sha256": "a37f52e1b9ccf1a70339eb3b7b7ff5fa2684275d5fbbf7d922290871b38a4307"
+    }
+  ],
+  "created_public_artifacts": [
+    "analysis/capability-first-v1/launcher-catalog-state-plan.json",
+    "analysis/capability-first-v1/derive_launcher_catalog_state.py",
+    "analysis/capability-first-v1/launcher-catalog-state-contract.json",
+    "analysis/capability-first-v1/launcher-catalog-state-source-check.json",
+    "analysis/capability-first-v1/launcher-catalog-state-validation.json"
+  ],
+  "previous_apply_contract_and_generator_only_filter_role_label_corrected": true,
+  "previous_apply_source_check_and_historical_receipts_unchanged": true,
+  "all_38_capabilities_81_registry_entries_37_requirements_10_groups_preserved": true,
+  "protected_runtime_and_tool_files_unchanged": true,
+  "all_other_baseline_files_unchanged": true,
+  "fixed_analysis_source_unchanged": true,
+  "installer_originals_not_written_or_executed": true,
+  "baseline_scope_note": "4632-file public baseline excludes private moli installer blobs; no installer hash-baseline comparison is claimed",
+  "checked_current_document_links": 195,
+  "document_links": [
+    {
+      "document": "README.md",
+      "target": "analysis/capability-first-v1/entry-inventory.json"
+    },
+    {
+      "document": "README.md",
+      "target": "analysis/capability-first-v1/entry-source-check.json"
+    },
+    {
+      "document": "README.md",
+      "target": "analysis/capability-first-v1/business-entry-map.json"
+    },
+    {
+      "document": "README.md",
+      "target": "analysis/capability-first-v1/alternate-window-contract.json"
+    },
+    {
+      "document": "README.md",
+      "target": "analysis/capability-first-v1/game-dispatch-findings.json"
+    },
+    {
+      "document": "README.md",
+      "target": "analysis/capability-first-v1/launcher-dialog-bindings.json"
+    },
+    {
+      "document": "README.md",
+      "target": "analysis/capability-first-v1/dispatch-bindings-validation.json"
+    },
+    {
+      "document": "README.md",
+      "target": "analysis/capability-first-v1/launcher-presets-contract.json"
+    },
+    {
+      "document": "README.md",
+      "target": "analysis/capability-first-v1/launcher-apply-contract.json"
+    },
+    {
+      "document": "README.md",
+      "target": "analysis/capability-first-v1/launcher-apply-validation.json"
+    },
+    {
+      "document": "README.md",
+      "target": "analysis/capability-first-v1/launcher-catalog-state-contract.json"
+    },
+    {
+      "document": "README.md",
+      "target": "analysis/capability-first-v1/launcher-catalog-state-validation.json"
+    },
+    {
+      "document": "README.md",
+      "target": "reports/requirements-index.md#capability-first-inventory"
+    },
+    {
+      "document": "README.md",
+      "target": "reports/development-plan.md#capability-first-workflow"
+    },
+    {
+      "document": "README.md",
+      "target": "reports/architecture-and-milestones.md#capability-first-architecture"
+    },
+    {
+      "document": "README.md",
+      "target": "reports/validation.md#capability-first-validation"
+    },
+    {
+      "document": "reports/architecture-and-milestones.md",
+      "target": "requirements-index.md#capability-first-inventory"
+    },
+    {
+      "document": "reports/architecture-and-milestones.md",
+      "target": "development-plan.md#capability-first-workflow"
+    },
+    {
+      "document": "reports/architecture-and-milestones.md",
+      "target": "../analysis/capability-first-v1/window-engine-contract.json"
+    },
+    {
+      "document": "reports/architecture-and-milestones.md",
+      "target": "../analysis/capability-first-v1/window-engine-source-check.json"
+    },
+    {
+      "document": "reports/architecture-and-milestones.md",
+      "target": "../analysis/capability-first-v1/alternate-window-contract.json"
+    },
+    {
+      "document": "reports/architecture-and-milestones.md",
+      "target": "../analysis/capability-first-v1/business-entry-map.json"
+    },
+    {
+      "document": "reports/architecture-and-milestones.md",
+      "target": "../analysis/capability-first-v1/launcher-message-map.json"
+    },
+    {
+      "document": "reports/architecture-and-milestones.md",
+      "target": "../analysis/capability-first-v1/launcher-dialog-bindings.json"
+    },
+    {
+      "document": "reports/architecture-and-milestones.md",
+      "target": "../analysis/capability-first-v1/game-dispatch-findings.json"
+    },
+    {
+      "document": "reports/architecture-and-milestones.md",
+      "target": "../analysis/capability-first-v1/launcher-presets-contract.json"
+    },
+    {
+      "document": "reports/architecture-and-milestones.md",
+      "target": "../analysis/capability-first-v1/launcher-apply-contract.json"
+    },
+    {
+      "document": "reports/architecture-and-milestones.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-contract.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "requirements-index.md#capability-first-inventory"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/implementation-plan.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/capability-matrix.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/entry-inventory.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/entry-evidence-index.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/window-engine-contract.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/window-engine-source-check.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/business-entry-map.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/alternate-window-contract.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/launcher-message-map.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/launcher-dialog-bindings.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/game-dispatch-findings.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/launcher-presets-contract.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/dispatch-bindings-validation.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/launcher-presets-validation.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/launcher-apply-source-check.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/launcher-apply-contract.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-contract.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-validation.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../analysis/game-work-context-v1/validation.json"
+    },
+    {
+      "document": "reports/development-plan.md",
+      "target": "../build/analysis/game-work-context-v1/regression-receipt.json"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "requirements-index.md#capability-first-inventory"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "development-plan.md#capability-first-workflow"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "../analysis/capability-first-v1/entry-source-check.json"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "../analysis/capability-first-v1/entry-findings.json"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "../analysis/capability-first-v1/window-engine-source-check.json"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "../analysis/capability-first-v1/business-entry-map.json"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "../analysis/capability-first-v1/alternate-window-contract.json"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "../analysis/capability-first-v1/launcher-message-map.json"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "../analysis/capability-first-v1/launcher-dialog-bindings.json"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "../analysis/capability-first-v1/game-dispatch-findings.json"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "../analysis/capability-first-v1/window-engine-contract.json"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "../analysis/game-work-lifetime-v1/research-summary.json"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "../analysis/capability-first-v1/launcher-presets-source-check.json"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "../analysis/capability-first-v1/launcher-presets-contract.json"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "../analysis/capability-first-v1/launcher-apply-source-check.json"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "../analysis/capability-first-v1/launcher-apply-contract.json"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-source-check.json"
+    },
+    {
+      "document": "reports/known-issues.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-contract.json"
+    },
+    {
+      "document": "reports/launcher-static.md",
+      "target": "requirements-index.md#capability-first-inventory"
+    },
+    {
+      "document": "reports/launcher-static.md",
+      "target": "development-plan.md#capability-first-workflow"
+    },
+    {
+      "document": "reports/launcher-static.md",
+      "target": "../analysis/capability-first-v1/entry-inventory.json"
+    },
+    {
+      "document": "reports/launcher-static.md",
+      "target": "../analysis/capability-first-v1/launcher-message-map.json"
+    },
+    {
+      "document": "reports/launcher-static.md",
+      "target": "../analysis/capability-first-v1/launcher-dialog-bindings.json"
+    },
+    {
+      "document": "reports/launcher-static.md",
+      "target": "../analysis/capability-first-v1/launcher-dialog-bindings.json"
+    },
+    {
+      "document": "reports/launcher-static.md",
+      "target": "../analysis/capability-first-v1/dispatch-bindings-validation.json"
+    },
+    {
+      "document": "reports/launcher-static.md",
+      "target": "../analysis/capability-first-v1/launcher-presets-contract.json"
+    },
+    {
+      "document": "reports/launcher-static.md",
+      "target": "../analysis/capability-first-v1/launcher-presets-source-check.json"
+    },
+    {
+      "document": "reports/launcher-static.md",
+      "target": "../analysis/capability-first-v1/launcher-presets-validation.json"
+    },
+    {
+      "document": "reports/launcher-static.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-contract.json"
+    },
+    {
+      "document": "reports/launcher-static.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-source-check.json"
+    },
+    {
+      "document": "reports/launcher-static.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-validation.json"
+    },
+    {
+      "document": "reports/launcher-static.md",
+      "target": "../analysis/capability-first-v1/launcher-apply-contract.json"
+    },
+    {
+      "document": "reports/launcher-static.md",
+      "target": "../analysis/capability-first-v1/launcher-apply-source-check.json"
+    },
+    {
+      "document": "reports/launcher-static.md",
+      "target": "../analysis/capability-first-v1/launcher-apply-validation.json"
+    },
+    {
+      "document": "reports/logic-protocol-spec.md",
+      "target": "../analysis/capability-first-v1/entry-inventory.json"
+    },
+    {
+      "document": "reports/logic-protocol-spec.md",
+      "target": "../analysis/capability-first-v1/entry-source-check.json"
+    },
+    {
+      "document": "reports/logic-protocol-spec.md",
+      "target": "../analysis/capability-first-v1/window-engine-contract.json"
+    },
+    {
+      "document": "reports/logic-protocol-spec.md",
+      "target": "../analysis/capability-first-v1/window-engine-source-check.json"
+    },
+    {
+      "document": "reports/logic-protocol-spec.md",
+      "target": "development-plan.md#capability-first-workflow"
+    },
+    {
+      "document": "reports/logic-protocol-spec.md",
+      "target": "../analysis/capability-first-v1/business-entry-map.json"
+    },
+    {
+      "document": "reports/logic-protocol-spec.md",
+      "target": "../analysis/capability-first-v1/alternate-window-contract.json"
+    },
+    {
+      "document": "reports/logic-protocol-spec.md",
+      "target": "../analysis/capability-first-v1/game-dispatch-findings.json"
+    },
+    {
+      "document": "reports/logic-protocol-spec.md",
+      "target": "../analysis/capability-first-v1/launcher-presets-contract.json"
+    },
+    {
+      "document": "reports/logic-protocol-spec.md",
+      "target": "../analysis/capability-first-v1/launcher-apply-contract.json"
+    },
+    {
+      "document": "reports/logic-protocol-spec.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-contract.json"
+    },
+    {
+      "document": "reports/logic-protocol-spec.md",
+      "target": "../analysis/capability-first-v1/launcher-dialog-bindings.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "development-plan.md#capability-first-workflow"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/capability-matrix.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/entry-inventory.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/entry-evidence-index.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/entry-source-check.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/business-entry-map.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/game-dispatch-findings.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/launcher-dialog-bindings.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/dispatch-bindings-validation.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/launcher-presets-validation.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/launcher-apply-contract.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/launcher-apply-validation.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-contract.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-source-check.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-validation.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/launcher-v7/static-spec.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/launcher-v7/static-spec.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/launcher-v17/session-spec.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/launcher-v21/static-spec.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/launcher-presets-contract.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/launcher-update-arguments-v1/source-check.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/launcher-v26/implementation-spec.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/launcher-current-login-v1/source-verification.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/launcher-dialog-bindings.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-release-current-v1/source-check.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "game-static.md"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-city-water-v1/goal-audit.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "game-static.md"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "game-static.md"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-legacy-material-compat-v1/implementation-spec.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "game-static.md"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-legacy-battle-audio-v1/goal-audit.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-battle-shared-storage-v1/ordinary-items-source-check.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-battle-shared-storage-v1/map-special-dialogs-source-check.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-battle-shared-storage-v1/map-shop-source-check.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-battle-shared-storage-v1/npc-services-source-check.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-battle-shared-storage-v1/player-trade-source-check.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-battle-shared-storage-v1/friend-roster-source-check.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-battle-shared-storage-v1/ordinary-chat-source-check.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-battle-shared-storage-v1/family-members-source-check.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-battle-shared-storage-v1/message-board-source-check.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-work-context-v1/source-check.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-work-context-v1/goal-audit.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-battle-shared-storage-v1/goal-audit.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-battle-shared-storage-v1/consumer-obligations.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-city-water-v1/goal-audit.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/business-entry-map.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/capability-first-v1/alternate-window-contract.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-legacy-material-compat-v1/implementation-spec.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-work-context-v1/validation.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/game-work-context-v1/validation.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "network-portability.md"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "../analysis/protocol-v2/spec-matrix.json"
+    },
+    {
+      "document": "reports/requirements-index.md",
+      "target": "requirements-index.md"
+    },
+    {
+      "document": "reports/resource-formats.md",
+      "target": "../analysis/capability-first-v1/window-engine-contract.json"
+    },
+    {
+      "document": "reports/resource-formats.md",
+      "target": "../analysis/capability-first-v1/window-engine-source-check.json"
+    },
+    {
+      "document": "reports/resource-formats.md",
+      "target": "../analysis/capability-first-v1/alternate-window-contract.json"
+    },
+    {
+      "document": "reports/resource-formats.md",
+      "target": "../analysis/capability-first-v1/business-map-source-check.json"
+    },
+    {
+      "document": "reports/resource-formats.md",
+      "target": "../analysis/capability-first-v1/launcher-message-map.json"
+    },
+    {
+      "document": "reports/resource-formats.md",
+      "target": "../analysis/capability-first-v1/extract_launcher_message_maps.py"
+    },
+    {
+      "document": "reports/resource-formats.md",
+      "target": "../analysis/capability-first-v1/launcher-dialog-bindings.json"
+    },
+    {
+      "document": "reports/resource-formats.md",
+      "target": "../analysis/capability-first-v1/launcher-presets-contract.json"
+    },
+    {
+      "document": "reports/resource-formats.md",
+      "target": "../analysis/capability-first-v1/analyze_launcher_presets.py"
+    },
+    {
+      "document": "reports/resource-formats.md",
+      "target": "../analysis/capability-first-v1/launcher-apply-contract.json"
+    },
+    {
+      "document": "reports/resource-formats.md",
+      "target": "../analysis/capability-first-v1/launcher-apply-source-check.json"
+    },
+    {
+      "document": "reports/resource-formats.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-source-check.json"
+    },
+    {
+      "document": "reports/resource-formats.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-contract.json"
+    },
+    {
+      "document": "reports/resource-formats.md",
+      "target": "../analysis/capability-first-v1/dispatch-binding-source-check.json"
+    },
+    {
+      "document": "reports/resource-formats.md",
+      "target": "../analysis/capability-first-v1/derive_dispatch_bindings.py"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-contract.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-source-check.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/launcher-catalog-state-validation.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/derive_launcher_catalog_state.py"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/launcher-apply-contract.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/launcher-apply-source-check.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/launcher-apply-validation.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/derive_launcher_apply.py"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/launcher-presets-source-check.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/launcher-presets-contract.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/launcher-presets-validation.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/analyze_launcher_presets.py"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/game-dispatch-findings.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/launcher-dialog-bindings.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/dispatch-binding-source-check.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/dispatch-bindings-validation.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/derive_dispatch_bindings.py"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/business-entry-map.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/business-map-validation.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/alternate-window-contract.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/launcher-message-map.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/business-map-validation.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/build_business_map.py"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/extract_launcher_message_maps.py"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/window-engine-validation.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/entry-inventory.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/entry-inventory-validation.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "requirements-index.md#capability-first-inventory"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "development-plan.md#capability-first-workflow"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/capability-first-v1/validation.json"
+    },
+    {
+      "document": "reports/validation.md",
+      "target": "../analysis/game-work-lifetime-v1/research-summary.json"
+    }
+  ],
+  "original_execution": false,
+  "VM_or_computer_control_newly_run": false,
+  "account_or_session_observed": false,
+  "runtime_features_changed": false,
+  "module_interfaces_changed": false,
+  "product_resource_formats_changed": false,
+  "build_process_changed": false,
+  "product_tests_newly_run": false,
+  "builds_newly_run": false,
+  "browser_or_device_flows_newly_run": false,
+  "complete_catalog_XML_install_or_bootstrap": false,
+  "complete_local_editing_persistence": false,
+  "all_close_reentry_retry_or_owner_lifecycle_paths_complete": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "official_acceptance": false,
+  "goal_status": "active",
+  "full_goal_complete": false,
+  "next_semantic_package": "local ID metadata editing/persistence, complete XML/install/App and owner cancel/close/reentry, remaining resource/menu uses, game common dispatch/graphics lifecycle"
+}

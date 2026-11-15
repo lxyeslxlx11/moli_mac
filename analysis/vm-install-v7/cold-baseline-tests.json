@@ -1,0 +1,93 @@
+{
+  "recorded_utc": "2026-10-25T10:01:26.513411+00:00",
+  "python": "3.9.6",
+  "layout": "fixed four-drive offline configuration; config + four disk/CD files + EFI + TPM = seven files",
+  "policy_sha256": "b72b8234cd52625552a6df95afacffe9a011af233cd7cc1ae09014051bbfcc87",
+  "script_sha256": "eedb424823b60c094811239977dd71f29c641b91cf93c68be9c65bff6c68b731",
+  "operator_script_sha256": "eedb424823b60c094811239977dd71f29c641b91cf93c68be9c65bff6c68b731",
+  "operator_and_archived_bytes_equal": true,
+  "test_sha256": "bf03f19a6dd340ec20fdca32497598285a54e1fea37c963132a218ea98224633",
+  "policy_test_sha256": "d0403b2ec6d35eb3b45adbec569c88c51d9d9f2f894d917276b98a54e1d7f1f8",
+  "fixed_expected_matches_supplied_config": true,
+  "supplied_config_receipt_sha256": "bb2e3f6819f67e98673c486254a586eac5b9339e9e188cb1682aaf1391492364",
+  "supplied_config_sha256": "c7c980a646028c867429f2bc047361bcc92e9e396d871c1b438f1e58c14f8743",
+  "v6_policy_unchanged": true,
+  "v6_policy_sha256": "cffbd08e6ca1fbb9dbce0cc0e42085453b8b2c54e1fcd3b8643e12058ba37d10",
+  "runs": [
+    {
+      "suite": "four-drive-policy",
+      "mode": "normal",
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis/vm-install-v7",
+        "-p",
+        "test_offline_four_drive.py",
+        "-v"
+      ],
+      "test_methods": 12,
+      "exit_code": 0,
+      "log": "four-drive-policy-four-drive-tests-normal.log"
+    },
+    {
+      "suite": "four-drive-policy",
+      "mode": "optimized",
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis/vm-install-v7",
+        "-p",
+        "test_offline_four_drive.py",
+        "-v"
+      ],
+      "test_methods": 12,
+      "exit_code": 0,
+      "log": "four-drive-policy-four-drive-tests-optimized.log"
+    },
+    {
+      "suite": "cold-baseline",
+      "mode": "normal",
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis/vm-install-v7",
+        "-p",
+        "test_cold_baseline.py",
+        "-v"
+      ],
+      "test_methods": 17,
+      "exit_code": 0,
+      "log": "cold-baseline-four-drive-tests-normal.log"
+    },
+    {
+      "suite": "cold-baseline",
+      "mode": "optimized",
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis/vm-install-v7",
+        "-p",
+        "test_cold_baseline.py",
+        "-v"
+      ],
+      "test_methods": 17,
+      "exit_code": 0,
+      "log": "cold-baseline-four-drive-tests-optimized.log"
+    }
+  ],
+  "scope": "All test data synthetic. lsof/cp/chmod mocked. Real VM preflight, disk reading/copy, configuration audit and UI actions were not performed by this branch."
+}

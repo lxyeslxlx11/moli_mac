@@ -1,0 +1,130 @@
+{
+  "schema": "moli.launcher-v13.http-bindings.v1",
+  "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "source_bytes": 1735168,
+  "anchors": [
+    {
+      "va": "0x4ba968",
+      "file_offset": "0xb9b68",
+      "bytes": 4,
+      "context": "vtable slot -> 0x445f74",
+      "range_sha256": "6b697734abd59732f247d24f0644e0bd3df4474ad23d70623d4ca429d0e0e22b",
+      "passed": true
+    },
+    {
+      "va": "0x4ba900",
+      "file_offset": "0xb9b00",
+      "bytes": 4,
+      "context": "vtable slot -> 0x445f74",
+      "range_sha256": "6b697734abd59732f247d24f0644e0bd3df4474ad23d70623d4ca429d0e0e22b",
+      "passed": true
+    },
+    {
+      "va": "0x4ba980",
+      "file_offset": "0xb9b80",
+      "bytes": 4,
+      "context": "vtable slot -> 0x445b3d",
+      "range_sha256": "a1bacb0d71e2bc1c9b611e8c70fa252878cfe045f7a7ceb1121f0d5076dc5fc9",
+      "passed": true
+    },
+    {
+      "va": "0x446688",
+      "file_offset": "0x45a88",
+      "bytes": 6,
+      "context": "constructor writes vptr 0x4ba934",
+      "range_sha256": "10001311928b2eb7c66f1a7824af830edc0ede8e0d7b75a9f34b10413b9a48d7",
+      "passed": true
+    },
+    {
+      "va": "0x446508",
+      "file_offset": "0x45908",
+      "bytes": 6,
+      "context": "constructor writes vptr 0x4ba8cc",
+      "range_sha256": "62294ffe74464dfa6d26381581fde98254c2a60c83bccc8bb546822b61f8f5c7",
+      "passed": true
+    },
+    {
+      "va": "0x445fa4",
+      "file_offset": "0x453a4",
+      "bytes": 6,
+      "context": "IAT -> InternetReadFile",
+      "range_sha256": "405f57c85d0e082775c2a777d64c89724344016a50e706192e081b6b333f87cc",
+      "passed": true
+    },
+    {
+      "va": "0x446006",
+      "file_offset": "0x45406",
+      "bytes": 6,
+      "context": "IAT -> InternetReadFile",
+      "range_sha256": "405f57c85d0e082775c2a777d64c89724344016a50e706192e081b6b333f87cc",
+      "passed": true
+    },
+    {
+      "va": "0x44604a",
+      "file_offset": "0x4544a",
+      "bytes": 6,
+      "context": "IAT -> InternetReadFile",
+      "range_sha256": "405f57c85d0e082775c2a777d64c89724344016a50e706192e081b6b333f87cc",
+      "passed": true
+    },
+    {
+      "va": "0x445b50",
+      "file_offset": "0x44f50",
+      "bytes": 6,
+      "context": "IAT -> InternetCloseHandle",
+      "range_sha256": "204c426817dcefb619c884bbe76add26373fc4829605d48f9442e38d839681de",
+      "passed": true
+    },
+    {
+      "va": "0x4463c9",
+      "file_offset": "0x457c9",
+      "bytes": 6,
+      "context": "IAT -> InternetCloseHandle",
+      "range_sha256": "204c426817dcefb619c884bbe76add26373fc4829605d48f9442e38d839681de",
+      "passed": true
+    },
+    {
+      "va": "0x41ae2d",
+      "file_offset": "0x1a22d",
+      "bytes": 5,
+      "context": "0x400 buffer allocation request",
+      "range_sha256": "185416322b4a4189d57dad1ae0a9bfb2cd877b99f05420d47e1c3774135dcf2f",
+      "passed": true
+    },
+    {
+      "va": "0x41ae4f",
+      "file_offset": "0x1a24f",
+      "bytes": 5,
+      "context": "0x3ff read request",
+      "range_sha256": "6d83d4a04087918bc7ccb751508f33c7e9b4801d1c902ebab702d98db00272a6",
+      "passed": true
+    },
+    {
+      "va": "0x41ae63",
+      "file_offset": "0x1a263",
+      "bytes": 2,
+      "context": "indirect CALL EAX from vptr+0x34",
+      "range_sha256": "491e503ba40e8d303d46b4b51b14826ae08e8c8c3ded6f1441ef1d5d53c42534",
+      "passed": true
+    },
+    {
+      "va": "0x41ae80",
+      "file_offset": "0x1a280",
+      "bytes": 3,
+      "context": "NUL after returned chunk",
+      "range_sha256": "7fbc7a87d4ed973cce561cdcd5d5dc377f41f05503e32de957de91d427acef51",
+      "passed": true
+    }
+  ],
+  "negative_identities_rejected": [
+    "modified",
+    "truncated",
+    "empty"
+  ],
+  "passed": true,
+  "limits": [
+    "Fixed offline operand audit, not a general PE loader",
+    "No target execution or observed native I/O",
+    "Vtable/normal path only; complete EH and all runtime dispatch are not proven"
+  ]
+}

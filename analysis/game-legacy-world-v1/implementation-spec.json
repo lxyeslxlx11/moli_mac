@@ -1,0 +1,557 @@
+{
+  "schema": "moli.legacy-world-contract-stage155.v1",
+  "profile": "legacy-se6000-37c4-map-cache-v1",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "tools": {
+    "rea": "6.7.0",
+    "ghidra": "12.1.4",
+    "analysis_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+  },
+  "status": "source-bound safe map-cache projection; full game incomplete",
+  "facts": {
+    "layout": {
+      "reader": "0x45fbf0",
+      "writer": "0x45f850",
+      "header_bytes": 20,
+      "dimensions_offsets": [
+        12,
+        16
+      ],
+      "cell_bytes": 2,
+      "planes": 3,
+      "storage": "three contiguous row-major little-endian uint16 planes",
+      "roles": "plane0/plane1/plane2 only; graphical/collision roles unassigned",
+      "opaque_header_offsets": [
+        4,
+        12
+      ]
+    },
+    "rectangle": {
+      "coordinates": [
+        "x1",
+        "y1",
+        "x2",
+        "y2"
+      ],
+      "extent": "half-open",
+      "read_outside": "zero, preserving requested row stride",
+      "native_scratch_cells": 2601,
+      "native_scratch_bytes_per_plane": 5202,
+      "write_outside": "clip to existing cache; no creation or resize",
+      "written_plane2_or_mask": 49152
+    },
+    "checksum": {
+      "entry": "0x4601f0",
+      "caller": "0x460240",
+      "initial": 0,
+      "recurrence": "c = ((c & 255) << 8) XOR polynomialTable[c >> 8] XOR reverse8(byte)",
+      "generated_table_polynomial": 4129,
+      "fixed_bytes_per_plane": 1458,
+      "requested_plane2_mask": "mode===1 ? 0x01ff : 0x0fff",
+      "order": [
+        "plane0",
+        "plane1",
+        "plane2"
+      ],
+      "zero_scratch_padding": true,
+      "not_a_standard_crc_name": true
+    },
+    "notice": {
+      "id": "receive-00567da4",
+      "tag": "=]M",
+      "consumer": "0x4ef510",
+      "check": "0x460240",
+      "arguments": [
+        "identityA",
+        "identityB",
+        "x1",
+        "y1",
+        "x2",
+        "y2",
+        "check0",
+        "check1",
+        "check2"
+      ],
+      "cache_lookup": "active identityA from009257fc, message identityB; notice identityA is retained for the source request",
+      "mismatch_command": {
+        "id": "send-004f6610",
+        "tag": "!hM",
+        "arguments": "first6 notice fields"
+      }
+    },
+    "patch": {
+      "id": "receive-00567da0",
+      "tag": "=mJ",
+      "consumer": "0x4ef580",
+      "arguments": [
+        "identityA",
+        "identityB",
+        "x1",
+        "y1",
+        "x2",
+        "y2",
+        "byteData"
+      ],
+      "outer_separator": 124,
+      "first_outer_fields": 3,
+      "maximum_outer_field_bytes": 18191,
+      "inner_separator": 44,
+      "maximum_cell_token_bytes": 99,
+      "number_entry": "0x510f00",
+      "numeric_rule": "multiply accumulator by62 before every character; digits0..9/a..z/A..Z; any minus sets sign-1, other invalid=>0; int32 wrap then uint16",
+      "separator_scanning": "byte>=128 consumes following byte as pair; firstNUL ends input",
+      "extra_outer_fields": "ignored"
+    },
+    "binary": {
+      "four_slots": "0x518c30 ->0x518a90 ->0x518ad0/0x518b70; BMP14-byte file-header skip and DIB StretchDIBits path",
+      "single": "0x5187c0 calls global00feeeac when nonzero",
+      "higher_purpose": "unresolved; no map/captcha/protection semantic assigned"
+    }
+  },
+  "independent_policy": {
+    "cache": "explicit installation, positive validated MAP01 version1 using existing layout limits; own copy; do not infer map creation, path, current version or identity",
+    "rectangles": "four signed-int32 coordinates, positive extents, area<=2601; fully outside safe zero/no-op, avoiding native negative IO lengths",
+    "patches": "all three planes required and each has exactly rectangle area cells; <=2601 cells/plane; do not reproduce missing/uninitialized native cells or buffer overflow; reject overlong tokens instead of native truncation",
+    "state": "one explicit active cache and signed-int32 mode; explicit source identityA/B pair, transactional configure and patch; source scene guard/refresh flags unmodeled",
+    "protocol": "map effects only after explicit configureMapCache; raw typed messages unchanged; mismatch offers command descriptor, never auto-sends; no configured cache leaves raw map message effect null",
+    "lifecycle": "clear/wipe cache on protocol EOF/failure/close; copies own their bytes; invalid configure preserves prior cache; invalid in-stream patch fail-closes like other next errors",
+    "no_platform_api": true
+  },
+  "planned_api": {
+    "module": "shared/legacy-game-map.mjs",
+    "exports": [
+      "LEGACY_GAME_MAP_PROFILE",
+      "LegacyGameMapError",
+      "readLegacyGameMapRectangle",
+      "checksumLegacyGameMapRectangle",
+      "decodeLegacyGameMapPatch",
+      "applyLegacyGameMapPatch",
+      "createLegacyGameMapState"
+    ],
+    "protocol_extensions": [
+      "configureMapCache(identityA,identityB,bytes,mode)",
+      "copyMapCache()",
+      "copyGameState().map",
+      "message.effect map notice/patch only when configured"
+    ]
+  },
+  "unknown": [
+    "plane game roles",
+    "cache identity/path ownership beyond observed global/arguments",
+    "native scene guards/viewport refresh and actor state",
+    "binary higher UI purpose/indirect target",
+    "all remaining business/gameplay/renderer",
+    "current-version equivalence",
+    "account/official login and three platform acceptance"
+  ],
+  "source_evidence": "analysis/game-legacy-world-v1/source-check.json",
+  "functions": [
+    {
+      "id": "ev_14ac826d766b2f07cafffbd44231f5b41ca364c3b3d8f325186cdb3a8e13ac53",
+      "entry": "0x45fbf0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x45fed4",
+            "start": "0x45fbf0"
+          }
+        ],
+        "span_bytes": 741,
+        "total_bytes": 741
+      },
+      "assembly_rows": 244,
+      "pseudocode_characters": 3392,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_14d16a27726746ee886bd62b85280a086882139fafab53268635423a75677c5c",
+      "entry": "0x518a90",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x518ac9",
+            "start": "0x518a90"
+          }
+        ],
+        "span_bytes": 58,
+        "total_bytes": 58
+      },
+      "assembly_rows": 23,
+      "pseudocode_characters": 272,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_38807aeb46b1aa8cd97d399bc75517fc5ca44cff6e72422c50c7dad192e096a8",
+      "entry": "0x45f4e0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x45f529",
+            "start": "0x45f4e0"
+          }
+        ],
+        "span_bytes": 74,
+        "total_bytes": 74
+      },
+      "assembly_rows": 25,
+      "pseudocode_characters": 316,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_4b90abb684ab515bbc9d923fb0f3fb42361b93854167ba5a7412b69416bb2547",
+      "entry": "0x518cd0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x518d67",
+            "start": "0x518cd0"
+          }
+        ],
+        "span_bytes": 152,
+        "total_bytes": 152
+      },
+      "assembly_rows": 35,
+      "pseudocode_characters": 656,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_4d318d4d17e355b5519c320377c41431013d3fcac1fbd9a34c19c4e820cc9727",
+      "entry": "0x45f850",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x45fba4",
+            "start": "0x45f850"
+          }
+        ],
+        "span_bytes": 853,
+        "total_bytes": 853
+      },
+      "assembly_rows": 274,
+      "pseudocode_characters": 3550,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_57a2126d7fef9b38523d82fb26f5dbcbd6d6fbb77652a5ed90d83c04d6f6c21d",
+      "entry": "0x510f00",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x510f71",
+            "start": "0x510f00"
+          }
+        ],
+        "span_bytes": 114,
+        "total_bytes": 114
+      },
+      "assembly_rows": 49,
+      "pseudocode_characters": 727,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_6425ed9ee01c001626fa0083e2e850a795841bd2d0a0c5b11758fa52210cb851",
+      "entry": "0x518ad0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x518b30",
+            "start": "0x518ad0"
+          }
+        ],
+        "span_bytes": 97,
+        "total_bytes": 97
+      },
+      "assembly_rows": 38,
+      "pseudocode_characters": 808,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_774a87e58fe59e64aead338f4b3d0305c0ac4b3f4fae446d082a094db2e7c70a",
+      "entry": "0x45fbb0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x45fbe1",
+            "start": "0x45fbb0"
+          }
+        ],
+        "span_bytes": 50,
+        "total_bytes": 50
+      },
+      "assembly_rows": 11,
+      "pseudocode_characters": 215,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_8fef704198c25ceb4f78b4521aaaa3c0da543592dae35afab450be8cb01f2391",
+      "entry": "0x460180",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4601e8",
+            "start": "0x460180"
+          }
+        ],
+        "span_bytes": 105,
+        "total_bytes": 105
+      },
+      "assembly_rows": 25,
+      "pseudocode_characters": 448,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_993384c0301d454778f2c962de944db17852e9b2a12390ff62270cb288cdde2a",
+      "entry": "0x510de0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x510e4c",
+            "start": "0x510de0"
+          }
+        ],
+        "span_bytes": 109,
+        "total_bytes": 109
+      },
+      "assembly_rows": 49,
+      "pseudocode_characters": 795,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_ae878ca9c94799e19a148ffc08f59b6254efdb2514ca824753a0d9fc2d9a00af",
+      "entry": "0x518b70",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x518c20",
+            "start": "0x518b70"
+          }
+        ],
+        "span_bytes": 177,
+        "total_bytes": 177
+      },
+      "assembly_rows": 64,
+      "pseudocode_characters": 1099,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_ca8bfa510d8b83fff9c7a43f9256c9f43b902f786eb6027f202b933521facf6e",
+      "entry": "0x460240",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x460398",
+            "start": "0x460240"
+          }
+        ],
+        "span_bytes": 345,
+        "total_bytes": 345
+      },
+      "assembly_rows": 106,
+      "pseudocode_characters": 1190,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_ce0db565ea349c3af37891cac7d71c2e6f571bcc3223092351fee206d5e2b8c9",
+      "entry": "0x457a40",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x457a6b",
+            "start": "0x457a40"
+          }
+        ],
+        "span_bytes": 44,
+        "total_bytes": 44
+      },
+      "assembly_rows": 14,
+      "pseudocode_characters": 132,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_ce77ef4b1130e766e47bbcd454e7e023852f2249cd0999a1901ef09bc2299573",
+      "entry": "0x4601f0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x460233",
+            "start": "0x4601f0"
+          }
+        ],
+        "span_bytes": 68,
+        "total_bytes": 68
+      },
+      "assembly_rows": 27,
+      "pseudocode_characters": 186,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_d992930695b7b48e7d7cfb29e04fbf1e8446174c62b490cabc5b55ed40c0f41f",
+      "entry": "0x510d50",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x510d7e",
+            "start": "0x510d50"
+          }
+        ],
+        "span_bytes": 47,
+        "total_bytes": 47
+      },
+      "assembly_rows": 23,
+      "pseudocode_characters": 432,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_e070d0eaabbfb5b655aaf26b124d097e6cd0055936912b76d2db1a27ca8d20bc",
+      "entry": "0x510d80",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x510dd6",
+            "start": "0x510d80"
+          }
+        ],
+        "span_bytes": 87,
+        "total_bytes": 87
+      },
+      "assembly_rows": 40,
+      "pseudocode_characters": 498,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_e328dadbc9324093018f7ad6564659addf94ba9f5f8d46284e78550c25b29877",
+      "entry": "0x4ef580",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4ef835",
+            "start": "0x4ef580"
+          }
+        ],
+        "span_bytes": 694,
+        "total_bytes": 694
+      },
+      "assembly_rows": 197,
+      "pseudocode_characters": 1855,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_fa7f12bb1eb6e3367703407eb14829185183a0c367fb2238c1d33d5a8d32af99",
+      "entry": "0x518c30",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x518c63",
+            "start": "0x518c30"
+          },
+          {
+            "end": "0x518c91",
+            "start": "0x518c68"
+          }
+        ],
+        "span_bytes": 98,
+        "total_bytes": 94
+      },
+      "assembly_rows": 38,
+      "pseudocode_characters": 849,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_ffefd9708ede0a54ce7ff7a07f93a7aeda2e834607b175586d5ea5d86b47a7ed",
+      "entry": "0x5187c0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x5187da",
+            "start": "0x5187c0"
+          }
+        ],
+        "span_bytes": 27,
+        "total_bytes": 27
+      },
+      "assembly_rows": 11,
+      "pseudocode_characters": 161,
+      "value_flow_truncated": false
+    }
+  ]
+}

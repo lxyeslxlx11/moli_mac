@@ -1,0 +1,106 @@
+{
+  "observed_utc": "2026-10-25T17:10:15.915228+00:00",
+  "scope": "Relevant read-only Parallels installation/registered and standard project VM assessment; no VM launch or modifications",
+  "host": {
+    "architecture": "arm64",
+    "macos": "27.0.1",
+    "evidence": "uname -m; sw_vers -productVersion"
+  },
+  "application_check": {
+    "exact_path": "/Applications/Parallels Desktop.app",
+    "exists": false,
+    "metadata_search_roots": [
+      "/Applications (immediate .app bundles, Info.plist identity/version only)",
+      "/Users/lx/Applications (absent)"
+    ],
+    "matching_bundle_ids_or_names": [],
+    "running_app_inventory_match": false,
+    "path_commands_found": {
+      "prlctl": false,
+      "prlsrvctl": false
+    },
+    "pkgutil_matching_receipts": []
+  },
+  "standard_vm_directories": [
+    {
+      "path": "/Users/lx/Parallels",
+      "exists": false
+    },
+    {
+      "path": "/Users/lx/Documents/Parallels",
+      "exists": false
+    },
+    {
+      "path": "/Users/Shared/Parallels",
+      "exists": false
+    }
+  ],
+  "registration_files": [
+    {
+      "path": "/Library/Preferences/Parallels/vmdirectorylist.desktop.xml",
+      "exists": false
+    },
+    {
+      "path": "/Library/Parallels/vmdirectorylist.desktop.xml",
+      "exists": false
+    },
+    {
+      "path": "/Users/lx/Library/Preferences/Parallels/vmdirectorylist.desktop.xml",
+      "exists": false
+    }
+  ],
+  "project_checks": [
+    {
+      "path": "/Users/lx/Documents/code/moli-mac",
+      "exists": true,
+      "immediate_pvm_entries": []
+    },
+    {
+      "path": "/Users/lx/Documents/code/moli-mac/build",
+      "exists": true,
+      "immediate_pvm_entries": []
+    },
+    {
+      "path": "/Users/lx/Documents/code/moli-mac/build/parallels",
+      "exists": false,
+      "immediate_pvm_entries": []
+    }
+  ],
+  "version": "not established; no app found at checked locations",
+  "license_or_trial_status": "unknown; no license/activation/secret files read and no trial initiated",
+  "registered_reusable_vm": "not found in checked locations; custom/external/other-host locations not excluded",
+  "limitations": [
+    "No machine-wide search, Trash access, unrelated private directories or old VM cleanup.",
+    "Absence from checked locations is not proof of absence everywhere or license invalidity.",
+    "User reported prior Windows11+Parallels experience, not actual CrossGate compatibility."
+  ],
+  "utm_pause": {
+    "last_target": "MoliRestoreTest-ARM64-20261025-v9",
+    "power_actions": false,
+    "media_swap": false,
+    "new_login": false,
+    "single_login_approval_used": false,
+    "autologon_run_or_uac": false,
+    "security_changes": false,
+    "last_ui": "Correct clone running window; only native menu navigation and menu cancellation before parent stop. Ordinary PowerShell remained the last observed guest screen.",
+    "current_directive": "UTM Autologon/configuration paused; no further login/restart/UAC until resumed in scope."
+  },
+  "utm_config_preservation": [
+    {
+      "bundle": "MoliOffline-ARM64-20261025.utm",
+      "config_sha256": "c7c980a646028c867429f2bc047361bcc92e9e396d871c1b438f1e58c14f8743",
+      "network": [],
+      "directory_share_mode": "None",
+      "clipboard_sharing": false,
+      "usb_sharing": false
+    },
+    {
+      "bundle": "MoliRestoreTest-ARM64-20261025-v9.utm",
+      "config_sha256": "2f657b4963adc7180e75fe3de152505449e2e643921d1d471ba5ffc18646159c",
+      "network": [],
+      "directory_share_mode": "None",
+      "clipboard_sharing": false,
+      "usb_sharing": false
+    }
+  ]
+}

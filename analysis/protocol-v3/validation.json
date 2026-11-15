@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "scope": "Static evidence integration, not protocol compatibility or target runtime tests",
+  "launch_anchors": 52,
+  "updater_anchors": 88,
+  "updater_range_hashes": 8,
+  "updater_REA_receipts": 3,
+  "http_anchors": 17,
+  "patcher_anchors": 16,
+  "negative_checks": {
+    "updater": {
+      "wrong_sample_rejected": true,
+      "wrong_anchor_rejected": true
+    },
+    "http": {
+      "modified_sample": "rejected",
+      "truncated_sample": "rejected",
+      "empty_sample": "rejected"
+    }
+  },
+  "specification_counts": {
+    "observed": 6,
+    "inferred": 1,
+    "unknown": 13
+  },
+  "evidence_dependencies_and_document_links": "passed",
+  "unchanged_runtime_sources": [
+    "native/Package.swift",
+    "native/Sources/MoliCore/BinaryReader.swift",
+    "native/Sources/MoliCore/GraphicIndex40.swift",
+    "native/Sources/MoliCore/OfflineWorld.swift",
+    "native/Sources/MoliCore/PEInspector.swift",
+    "native/Sources/MoliInspect/main.swift",
+    "native/Sources/MoliOffline/MoliOfflineApp.swift",
+    "native/Tests/MoliCoreTests/MoliCoreTests.swift",
+    "shared/index.mjs",
+    "shared/tests/resources.test.mjs",
+    "shared/tests/validate-local-samples.mjs",
+    "web/app.mjs",
+    "web/file-io.mjs",
+    "web/fixture.mjs",
+    "web/index.html",
+    "web/pixel-view.mjs",
+    "web/styles.css",
+    "web/tests/file-io.test.mjs"
+  ],
+  "not_run": [
+    "Windows target execution",
+    "HTTP or game connections",
+    "account or running shared memory inspection",
+    "browser file import",
+    "game protocol compatibility"
+  ]
+}

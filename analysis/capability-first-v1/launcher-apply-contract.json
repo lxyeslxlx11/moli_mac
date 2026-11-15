@@ -1,0 +1,207 @@
+{
+  "schema": "moli.capability.launcher-apply-contract.v1",
+  "source": {
+    "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+    "bytes": 4111872,
+    "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+    "official_current_version_proven": false
+  },
+  "source_check": "analysis/capability-first-v1/launcher-apply-source-check.json",
+  "list_and_persistence_contract": "analysis/capability-first-v1/launcher-presets-contract.json",
+  "capabilities": [
+    "L01",
+    "L02",
+    "L03",
+    "L04",
+    "L08"
+  ],
+  "facts": {
+    "ownership": {
+      "selected_record": "main+0x10f4",
+      "pending_preset": "byte main+0x10f0",
+      "manual_fallback_marker": "byte main+0x10f1",
+      "modal_latch": "byte main+0x10f2",
+      "main_step": "main+0xa88",
+      "account": "main+0x21fc",
+      "password": "main+0x2200",
+      "preset_account_string": "main+0x1170 = selected_record+0x7c (field 5)",
+      "preset_game_id_string": "main+0x1188 = selected_record+0x94 (field 6)",
+      "source_offset_scope": "fixed x86 layout; not proposed portable API fields"
+    },
+    "catalog_views": {
+      "base": "controller+0x120",
+      "game_count": "base+0x2b30",
+      "game_rows": {
+        "base": "base+0x2bd8",
+        "stride": 164,
+        "display_string_pointer_offset": 0,
+        "secondary_string_pointer_offset": 4,
+        "member_realm_indices_offset": 68,
+        "member_count_offset": 148,
+        "type_u32_offset": 152,
+        "availability_byte_offset": 156
+      },
+      "realm_count": "base+0x2b34",
+      "realm_rows": {
+        "base": "base+0x3574",
+        "stride": 412,
+        "display_string_pointer_offset": 0,
+        "subrealm_count_offset": 24,
+        "per_type_subrealm_counts_offset": 168,
+        "subrealm_rows_offset": 228,
+        "unavailable_byte_offset": 408
+      },
+      "source_binding_status": "consumer offsets verified; complete producer/XML/installation meaning is pending"
+    },
+    "admission": {
+      "procedure": "0x428c00",
+      "ordered_conditions": [
+        "Clear an older pending preset first, setting manual marker if it had been active.",
+        "Scan game display names with __mbscmp and require exactly one name match; separately require type plus equal-length byte equality of display and secondary identity for the selected row.",
+        "Require exactly one realm display-name match in the global realm list and membership in the selected game's realm indices.",
+        "Require the record validator 0x429980 to pass.",
+        "If the per-type subrealm count is below one, require an empty optional subrealm field; otherwise require one matching name across subrealm rows and a matching type.",
+        "Require realm unavailable byte zero and game availability byte nonzero before publication."
+      ],
+      "failure_before_publication": "show rebind-required message; do not replace the stored selected record; the earlier pending flag/marker change is not rolled back",
+      "comparison_scope": "source byte/MBCS comparisons; no new case folding, fuzzy matching or ordinal fallback"
+    },
+    "application": [
+      {
+        "step": "publish",
+        "rule": "copy admitted record to main+0x10f4, set pending=1/manual-marker=0, clear normalized game-ID filter query and password/UI, clear 74 bytes at main+0x11ac and startup option main+0x2428"
+      },
+      {
+        "step": "resolve-game",
+        "rule": "populate the ordinary game view, locate the catalog row through visible-to-raw mapping, then prepare the ordinary realm view and installation/path checks"
+      },
+      {
+        "step": "revalidate-game",
+        "rule": "after those helpers, require availability still true and controller current game equal to the admitted game; otherwise clear pending, set manual marker when applicable and show selection-invalid; prior effects remain"
+      },
+      {
+        "step": "resolve-realm",
+        "rule": "copy selected realm name into the normal controller field and call 0x40de40 with ECX=controller+0x120; clear normal subrealm string/current index"
+      },
+      {
+        "step": "resolve-optional-subrealm",
+        "rule": "when required, copy name, call 0x40e0e0 with the same controller receiver, prepare subrealm view and its mapped selection"
+      },
+      {
+        "step": "credentials",
+        "rule": "set main step 3 and call 0x42d120, then 0x417fe0; do not synthesize a successful login or game-ID reply"
+      }
+    ],
+    "preparation_and_account": {
+      "entry": "0x42d120",
+      "check": "0x40f430(controller+0x120)",
+      "check_result_0": "continue to credential presentation",
+      "check_result_1": "record saved step from 0x41c060, set preparation flag main+0x1a5e and temporary step, return 0; later preparation callbacks remain a separate analysis boundary",
+      "check_result_2": "mark/clear pending preset, clear preparation flag and invoke ordinary error helpers, return 0",
+      "credential_presentation": "when pending, assign preset field 5 into normal account main+0x21fc and clear password main+0x2200; the source prompt asks for a password",
+      "no_submission_here": "this path presents the ordinary credential stage and focus handling; it does not call the credential-stage Next command"
+    },
+    "ordinary_submit": {
+      "entry": "0x41e420 case 3",
+      "conditions": [
+        "Ignore while normal login-in-progress main+0x1a74 is set.",
+        "Update normal input fields; when pending and account differs from the preset or option main+0x2428 is nonzero, mark/clear pending and warn, then continue normal login.",
+        "Require nonempty normal account and password.",
+        "Require ordinary prelogin helper 0x4285d0 return value 1; cancellation/nonacceptance clears pending and returns.",
+        "Require at least one ordinary authentication candidate; otherwise clear pending and report failure."
+      ],
+      "next": "initialize normal candidate attempt fields and timer 100 at 100ms; call 0x4291d0",
+      "wire_dependencies": [
+        "analysis/launcher-current-login-v1/source-verification.json",
+        "analysis/launcher-current-login-v1/implementation-spec.json"
+      ],
+      "new_protocol_or_credential_bypass": false
+    },
+    "reply_and_game_id": {
+      "reply_owner": "0x423c30",
+      "nonpositive_reply_count": "mark/clear pending before ordinary failure handling",
+      "positive_reply_path": "populate received IDs/state, call list rebuild 0x425790 and then preset consumer 0x418590",
+      "preset_consumer": "0x418590",
+      "ordered_rules": [
+        "Return immediately if pending is zero.",
+        "Copy the selected record to a local record and clear pending/set manual marker BEFORE searching or invoking the normal Next handler.",
+        "Copy received ID strings into a temporary list and require exactly one equal-length byte match to preset field 6; a duplicate match invalidates selection.",
+        "Require the current normal account to match preset field 5 using __mbscmp.",
+        "Require status word 0 or -4 and at least one of restriction fields main+0x1278/main+0x1478 for that ID to be zero.",
+        "Map the raw received ID index to a currently visible row with 0x41b610; missing/hidden/unusable/ambiguous results remain manual.",
+        "On success set the ordinary list selection and call 0x41e420; its case 4 repeats eligibility checks, clears both preset flags, copies game ID to main+0x11cd and enters normal handoff preparation."
+      ],
+      "raw_vs_visible_indices": "0x43e4a0 maps visible ordinal <64 to raw stored row ID, otherwise -1; 0x41b610 searches visible rows for a bounded raw reply index",
+      "fallback_effect": "clear visible selection for mismatch/ambiguity/unusable status; a missing visible-row mapping has its own source message; do not choose another ID automatically"
+    },
+    "normal_handoff_boundary": {
+      "entry": "0x42d830",
+      "observed": "step>=5 invokes existing 0x410c00; absent main+0x1a5f and no controller work may restore step 3; step 2 can skip optional subrealm to step 3",
+      "current_game_consumer_or_official_acceptance_proven": false,
+      "dependency": "analysis/game-legacy-startup-materials-v1/source-check.json"
+    },
+    "timers": {
+      "main_map": "WM_TIMER 0x113 -> 0x423910",
+      "0x36a": {
+        "period_ms": 100,
+        "purpose": "keyboard/Caps Lock hint; main+0x1a6c stops it and main+0x1a72 gates hint processing",
+        "initiator": "0x417fe0",
+        "submits_login": false
+      },
+      "100": {
+        "period_ms": 100,
+        "purpose": "ordinary login progress 0x424cf0; handler stops timer when main+0x1a74 is zero",
+        "preset_specific_retry_loop": false
+      }
+    },
+    "abort_and_reentry": {
+      "attempt_exhausted_or_stopped": "0x4291d0 marks/clears pending before stop/error handling",
+      "normal_stop": "0x41b690 clears active request, in-progress/attempt fields and timer 100, and may post a window-close request; not a process-exit guarantee",
+      "preset_reentry": "the post-reply consumer clears pending before direct normal-command dispatch, so it cannot select the same preset twice through that flag",
+      "scope": "the listed static branches only; full late callbacks, dialog lifetime, preparation recovery and every host-close path remain pending"
+    }
+  },
+  "design_inferences": [
+    "D1 can coordinate preset ownership with the existing shared launcher-flow/login/channel/replies/local modules, preserving source-specific rules and the real receive boundary.",
+    "Use the same normal selection/submit/game-ID path after applying a preset, with an explicit one-use pending selection and manual fallback; thin platforms should not duplicate authentication logic."
+  ],
+  "requirement_answers": [
+    {
+      "question": "catalog field identity and ambiguity predicates",
+      "status": "partially-answered",
+      "remaining": "producer/XML and full installation meaning of secondary identity"
+    },
+    {
+      "question": "record ownership and state progression",
+      "status": "answered-for-listed-static-paths"
+    },
+    {
+      "question": "normal account/password and received game-ID dependency",
+      "status": "answered-for-listed-static-paths"
+    },
+    {
+      "question": "all failure/cancel/reentry conditions",
+      "status": "partially-answered",
+      "remaining": "asynchronous preparation/late callback and full host teardown"
+    },
+    {
+      "question": "all UI command creation and delivery",
+      "status": "partially-answered",
+      "remaining": "other dynamic IDs, framework input/focus and resources with unclosed use"
+    }
+  ],
+  "pending": [
+    "Complete catalog producer/XML identities, installation/path predicates and all configuration/version ownership.",
+    "Complete asynchronous preparation restoration/late callbacks and all normal abort/close/reentry paths, including step helper 0x41c060.",
+    "Close list rebuild/filtering 0x425790 and all candidate retry branches with assembly or corrected independent analysis; current decompiler warnings are not coverage proof.",
+    "Complete keyboard/MBCS/framework delivery, remaining dialogs/menus/dynamic controls, and platform persistence.",
+    "Same-version current game handoff, actual web/mobile/WeChat devices and official service acceptance remain separate requirements."
+  ],
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "runtime_features_changed": false,
+  "original_execution": false,
+  "account_or_session_observed": false,
+  "official_acceptance": false,
+  "full_goal_complete": false
+}

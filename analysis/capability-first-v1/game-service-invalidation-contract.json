@@ -1,0 +1,2016 @@
+{
+  "schema": "moli.capability.game-service-invalidation-contract.v1",
+  "status": "bounded-static-source-rules-and-shared-differences-recorded",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4"
+  },
+  "plan": "analysis/capability-first-v1/game-service-invalidation-plan.json",
+  "source_check": "analysis/capability-first-v1/game-service-invalidation-source-check.json",
+  "capabilities": [
+    "G04",
+    "G10",
+    "G12",
+    "G18",
+    "X01",
+    "X02"
+  ],
+  "scope": "Selected position-anchor, service invalidation and deadline/exit ordering, reusing prior normal-path contracts. No whole-service/global closure.",
+  "facts": [
+    {
+      "id": "shared-anchor-and-ABI",
+      "kind": "fact",
+      "functions": [
+        "0x4b98c0"
+      ],
+      "rules": [
+        "The 20-byte setter writes one global anchor pair at0xc22564/0xc2256c. Its Listing reads both ESP+4 and ESP+8. Preserved recovered signature/caller pseudocode may omit arguments; that does not prove the second coordinate is absent.",
+        "Multiple independent business owners call this setter. Per-window immutable origins are not automatically equivalent to this shared mutable pair; caller admission and order must be reviewed before changing ownership."
+      ],
+      "evidence": "analysis/capability-first-v1/game-service-invalidation-source-check.json"
+    },
+    {
+      "id": "stable-pose-gate",
+      "kind": "fact",
+      "functions": [
+        "0x4b98e0"
+      ],
+      "rules": [
+        "The 205-byte getter calls the existing logical-coordinate getter with ECX0x96b9c8 then0x96b9e0. Each value is multiplied by the file-backed float32 constant64.0 at0x52d928 and compared with display float32 values0x957e6c/0x957e70. The ordinary finite unequal path returns0 before testing distance.",
+        "A player in interpolation therefore does not invalidate solely because a displayed intermediate position has passed a threshold. This helper does not request movement, choose a network target or clean a window. Numeric representation/protection internals are outside this work."
+      ],
+      "evidence": "analysis/capability-first-v1/game-service-invalidation-source-check.json"
+    },
+    {
+      "id": "axiswise-strict-threshold",
+      "kind": "fact",
+      "functions": [
+        "0x4b98e0"
+      ],
+      "rules": [
+        "After the stable gate, anchors and each integer threshold are shifted left6 in a 32-bit register, loaded as signed int32, and compared against absolute axis differences using x87. Both axes strictly below their own scaled thresholds return0; either axis reaching its boundary returns1.",
+        "For ordinary finite, representable coordinates and positive thresholds, the distance rule is axiswise. With threshold2, stable grid delta(1,1) returns0 and delta(2,0) returns1; it is not a Manhattan or Euclidean radius.",
+        "The contract does not claim unrestricted JavaScript-number equivalence to native shifts/x87 unordered/overflow behavior or invent a native input validation guard."
+      ],
+      "evidence": "analysis/capability-first-v1/game-service-invalidation-source-check.json"
+    },
+    {
+      "id": "accepted-dialog-refreshes-anchor",
+      "kind": "fact",
+      "functions": [
+        "0x48fce0"
+      ],
+      "rules": [
+        "In the reviewed accepted-new-mode path and repeated mode0x15 path, dialog mode/mask/identity are assigned and the shared anchor is refreshed before business parsing/opening. The setter call is bound in actual Listing rather than the truncated recovered one-argument pseudocode.",
+        "Ordinary packets ignored while a service is active do not take the same snapshot path. The earlier mask=-1 close and -2 pending rules remain governed by the existing service contract. This is not a proof of all reply/frame interleavings."
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-service-invalidation-source-check.json",
+        "analysis/capability-first-v1/game-training-services-contract.json"
+      ]
+    },
+    {
+      "id": "classic-manufacture-does-not-return-after-hide",
+      "kind": "fact",
+      "functions": [
+        "0x476170"
+      ],
+      "rules": [
+        "The callback selected by classic descriptor11 calls distance(1,1). A nonzero result sets the pointed window flag0x8000 and plays sound0x39; it does not return at that branch.",
+        "The same invocation subsequently tests work phase0xc439fc==1 and deadline0xc3ab34<=GetTickCount. If admitted, it formats materials and reaches sender0x4f7c70 even after the hide flag was set.",
+        "This is a reachable local sender path under those conditions, not evidence of server acceptance or of a particular runtime frame schedule. Generic destruction/pose cleanup must not be substituted at the hide point."
+      ],
+      "evidence": "analysis/capability-first-v1/game-service-invalidation-source-check.json"
+    },
+    {
+      "id": "classic-gather-deadline-precedes-distance",
+      "kind": "fact",
+      "functions": [
+        "0x479f80",
+        "0x479880"
+      ],
+      "rules": [
+        "In work phase0xc21908==1, if deadline0xc1e808<GetTickCount, the callback reaches sender0x4f7c70 and assigns phase2. That due branch does not check distance.",
+        "Only the alternative not-yet-due branch checks distance(1,1) and can call0x479880. Phases3/4 use separate result timers; distance is not a universal early guard for every phase.",
+        "479880在C21908不属于0/3/4时先调用4706E0，再清phase/text/result/visibility等字段。4706C0/D0/E0分别只清零/递增/递减C5E948字节；原4706B0是另一470660父体内部地址。全局工作先后按实际调用者补证。"
+      ],
+      "evidence": "analysis/capability-first-v1/game-service-invalidation-source-check.json"
+    },
+    {
+      "id": "classic-generic-dialog-gate",
+      "kind": "fact",
+      "functions": [
+        "0x48f4f0"
+      ],
+      "rules": [
+        "For classic36/37, movement checking is enabled only when0xc1e862&4 is zero. Its stored byte0xc1e861 supplies both thresholds; do not force every dialog to distance1 or2.",
+        "A true result marks0x8000 and plays sound0x39; execution continues into the remaining callback logic."
+      ],
+      "evidence": "analysis/capability-first-v1/game-service-invalidation-source-check.json"
+    },
+    {
+      "id": "classic-trainer-versus-service-owner",
+      "kind": "fact",
+      "functions": [
+        "0x492770",
+        "0x4b1a70"
+      ],
+      "rules": [
+        "Classic52 checks distance(2,2), marks hide, plays sound0x39, and invokes its installed callback with-1. The reviewed trainer callback0x492cd0 sends only for indices0/1; -1 does not select a trainer request.",
+        "Classic54 checks distance(2,2) and marks hide. A separate owner-mode mismatch also marks hide, with current mode-2 exempting that mismatch. Formatting/presentation continues afterward. A hide bit is not automatically a request cancel, activity reset or callback(-1)."
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-service-invalidation-source-check.json",
+        "analysis/capability-first-v1/game-training-services-contract.json"
+      ]
+    },
+    {
+      "id": "other-classic-owners-remain-distinct",
+      "kind": "fact",
+      "functions": [
+        "0x4ab510",
+        "0x4b3b20",
+        "0x4b6570",
+        "0x4b6aa0",
+        "0x4b75f0"
+      ],
+      "rules": [
+        "The selected classic53/56/60/61/62 contexts include distance2 checks; independent owner/mode gates and sound/presentation effects differ. Their exact complete source selectors and table bindings are retained, rather than forcing one universal close routine.",
+        "Other selected classic contexts include threshold1. The caller inventory is mechanical coverage of actual calls and source extents; it is not a claim that every guard in each body has a finished business specification."
+      ],
+      "evidence": "analysis/capability-first-v1/game-service-invalidation-source-check.json"
+    },
+    {
+      "id": "special-classic-reset-and-board-close",
+      "kind": "fact",
+      "functions": [
+        "0x489260",
+        "0x4892d0",
+        "0x4a7ca0",
+        "0x4a8df0"
+      ],
+      "rules": [
+        "The selected classic34 callback checks distance(1,1) and calls0x4892d0, whose 29-byte body zeroes five consecutive state words0xc3b930..0xc3b940. This reset is not a generic hide implementation.",
+        "Classic50 checks distance(2,2) and calls0x4a8df0. Its 43-byte body assigns activity0x55e4d4=-1, sets the pointed window0x8000 and plays sound0x39.",
+        "Both helpers were derived only at verified real CALL targets in an independent project. Their native_profile remains null. The old canonical board helper hash/range independently agrees; a new derived view is not a new native Evidence record."
+      ],
+      "evidence": "analysis/capability-first-v1/game-service-invalidation-source-check.json"
+    },
+    {
+      "id": "alternate-close-and-callback-fallthrough",
+      "kind": "fact",
+      "functions": [
+        "0x4ea5b0"
+      ],
+      "rules": [
+        "Selected alternate/modern callback contexts call0x4ea5b0 with their own descriptor ID after the distance check. Ordinary service thresholds are2; selected work38/31/26/29 use1. Sound and subsequent business operations remain callback-specific.",
+        "Closing updates active alternate slot(s), with optional restoration of ID1 under existing group rules. A return0 can change state. The helper itself neither destroys the cached graphics object nor globally clears input state.",
+        "The callbacks can continue after this helper. Inactive graphics cleanup and common dispatch timing are separate established source contracts; do not turn close(id) into an unconditional early return."
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-service-invalidation-source-check.json",
+        "analysis/capability-first-v1/alternate-window-contract.json"
+      ]
+    },
+    {
+      "id": "modern-training-family-has-unreviewed-business-guards",
+      "kind": "fact",
+      "functions": [
+        "0x4bcf90",
+        "0x4bd2e0",
+        "0x4bd720",
+        "0x4bdcf0",
+        "0x4be4a0",
+        "0x4beac0",
+        "0x4bf140",
+        "0x4c2b70"
+      ],
+      "rules": [
+        "Table55/56/57/58/59/60/61/67 selects alternate trainer/learn/forget/pet-offer/pet-select/pet-slot/confirmation/treatment callback contexts. Their distance and close/fallthrough branches are source-bound here.",
+        "The previous ten-mode classic normal/extended service specification does not close this alternate family. First establish style selection/activation and its relation to required G12/G10/X02 flows. A table row alone does not make every visual family a required feature; analyze additional guards only for admitted requirements, or record a sourced exclusion."
+      ],
+      "evidence": "analysis/capability-first-v1/game-service-invalidation-source-check.json"
+    },
+    {
+      "id": "old-incoming-is-not-call-completeness",
+      "kind": "fact",
+      "functions": [
+        "0x4b98c0",
+        "0x4b98e0"
+      ],
+      "rules": [
+        "The retained helper records expose32 incoming CALL references. Scanning647 selected roots with646 retained instruction views plus exact native caller sources yields64 distinct original-PE E8 sites: setter16/getter48.",
+        "Thirty-two real sites were absent from the historical incoming lists. Thus empty/partial caller metadata cannot prove the absence of a feature or owner. One selected graph root0x4ea7a0 has no retained Listing, so the scan retains that frontier.",
+        "The filename-only lookup missed creator0x48fce0, although a complete native record exists in the previous training package and is reused here. Six other listed creator entries and remaining source-owner gaps stay bounded lookup frontiers, not a global no-source claim."
+      ],
+      "evidence": "analysis/capability-first-v1/game-service-invalidation-source-check.json"
+    },
+    {
+      "id": "callback68-positive-flow-supplements-truncated-body",
+      "kind": "fact",
+      "functions": [
+        "0x4c4880"
+      ],
+      "rules": [
+        "Actual table68 row0x55a1d8 points to0x4c4880. Its old selected view declares721 body bytes and120 retained instructions, while the known actual CALL0x4c5077->0x4b98e0 lies outside that range. A longer pseudocode string does not make the old body complete for this business path.",
+        "Walking positive decoded instruction successors from the pointer in a private Ghidra copy yields1,125 instructions/4,647 instruction bytes within an explicit upper bound0x4c5ba0, no reported flow gap, and reaches the distance(2,2) call. The nonzero branch calls close at0x4c5089, sound at0x4c509a, and rejoins subsequent callback work at0x4c50a2.",
+        "Only stale Listing metadata at0x4c4b51..0x4c4b5f was cleared in the private copy. Original bytes and canonical function metadata were not changed; call targets were not entered. This decoded-flow supplement is not canonical function-body or runtime activation evidence."
+      ],
+      "evidence": "analysis/capability-first-v1/game-service-invalidation-source-check.json"
+    },
+    {
+      "id": "shared-implementation-has-order-and-owner-gaps",
+      "kind": "fact",
+      "functions": [],
+      "rules": [
+        "Current shared/legacy-game-craft.mjs keeps per-work origin and checks stable position/distance before either manufacture or gather deadline. On movement it resets applicable context, retires and returns. Its ordinary threshold1 projection does not resolve native shared-anchor ownership or callback ordering.",
+        "This early exit differs from the reviewed manufacture hide-then-deadline and gather due-first branches. Native flag/reset/close distinctions must be modeled before altering the shared core.",
+        "Current map-dialog response() calls clear() to retire the visible dialog and clear training progress, then explicitly restores nextTraining when supplied. It does not universally lose all training progress. Retiring the dialog still differs from the documented classic -2 wait with a continued window. No product implementation or interface is changed in this phase."
+      ],
+      "evidence": "analysis/capability-first-v1/game-service-invalidation-source-check.json"
+    }
+  ],
+  "remaining": [
+    {
+      "id": "service-activation-and-guards",
+      "kind": "pending",
+      "capabilities": [
+        "G10",
+        "G12",
+        "X02"
+      ],
+      "need": "Bind classic versus alternate selection/activation and map it to required profiles/flows. Analyze additional training/treatment admission/cancel/reply rules only where the requirement is admitted; a sourced inactive/out-of-scope exclusion may avoid rebuilding unused UI. Reuse the ten-mode classic normal paths.",
+      "next_evidence": "Actual producer/data dispatch edges to open IDs55..61/67 and the alternate callback consumer; do not repeat an empty incoming search or infer activity from a table row."
+    },
+    {
+      "id": "shared-owner-and-reply-order",
+      "kind": "pending",
+      "capabilities": [
+        "G04",
+        "G10",
+        "G12",
+        "G18",
+        "X02"
+      ],
+      "need": "Selectedclassic lifecycle andconditionalalternate level/admission/timer/cleanup differences are sourcebound. Actualalternate dispatcher/relevance stillopen; remainingnecessaryerror/reentry/alias questions followconcretepositiveevidence only.",
+      "next_evidence": "Do not repeat4E5A50/knownbytearray bodyreview orprior97zerosearch. Revisit alternate activation onlyfromnewpositive registration/module/calledge; meanwhile reviewother originalcapabilitygaps.",
+      "resolved_source_lookup_entries": [
+        "0x4cb050",
+        "0x4ca810",
+        "0x4902a0"
+      ]
+    },
+    {
+      "id": "whole-capability-gate-and-acceptance",
+      "kind": "pending",
+      "capabilities": [
+        "X01",
+        "X02"
+      ],
+      "need": "Other required launcher/game/resource/battle/platform/version capabilities and unified A4 review remain. This bounded service package does not close the discovery or implementation gate.",
+      "next_evidence": "Update capability-specific gaps and batch dependencies. Runtime, device and same-version official acceptance remain distinct; no current test account exists."
+    }
+  ],
+  "source_summary": {
+    "complete_reused_native_records": 11,
+    "reused_derived_bodies": 48,
+    "new_derived_close_helpers": 2,
+    "complete_selected_bodies": 61,
+    "selected_body_bytes": 69351,
+    "native_listing_boundaries": 1565,
+    "derived_instructions_byte_verified": 17585,
+    "supplemental_flow_instructions": 1125,
+    "supplemental_flow_instruction_bytes": 4647,
+    "supplemental_flow_gaps": 0,
+    "all_direct_E8_CALL_occurrences_verified": 1345,
+    "unique_direct_E8_CALL_sites_verified": 1345,
+    "helper_actual_unique_CALL_sites": 64,
+    "helper_incoming_references": 32,
+    "helper_CALL_sites_missing_old_incoming": 32,
+    "selected_table_relations": 50,
+    "new_REA_records": 0,
+    "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+    "runtime_features_changed": false,
+    "all_capability_analysis_complete": false
+  },
+  "question_answers": [
+    {
+      "question": 1,
+      "status": "answered-for-ordinary-finite-domain",
+      "facts": [
+        "shared-anchor-and-ABI",
+        "stable-pose-gate",
+        "axiswise-strict-threshold"
+      ]
+    },
+    {
+      "question": 2,
+      "status": "partially-answered",
+      "facts": [
+        "old-incoming-is-not-call-completeness",
+        "callback68-positive-flow-supplements-truncated-body"
+      ],
+      "remaining": [
+        "service-activation-and-guards",
+        "shared-owner-and-reply-order"
+      ]
+    },
+    {
+      "question": 3,
+      "status": "partially-answered",
+      "facts": [
+        "classic-manufacture-does-not-return-after-hide",
+        "classic-gather-deadline-precedes-distance",
+        "shared-implementation-has-order-and-owner-gaps"
+      ],
+      "remaining": [
+        "shared-owner-and-reply-order"
+      ]
+    },
+    {
+      "question": 4,
+      "status": "dependency-grouped-global-gate-open",
+      "remaining": [
+        "whole-capability-gate-and-acceptance"
+      ]
+    }
+  ],
+  "implementation_dependencies": [
+    {
+      "batch": "D0",
+      "kind": "inference",
+      "requirement": "A shared service-state/anchor owner and explicit activity/visibility/request/cleanup transitions; preserve source branch ordering and version identity.",
+      "product_interfaces_changed": false
+    },
+    {
+      "batch": "D3",
+      "kind": "inference",
+      "requirement": "Reuse that owner for services and work; retain per-window threshold/admission/exit/timer rules rather than duplicate global lifecycle logic.",
+      "product_interfaces_changed": false
+    },
+    {
+      "batch": "D5",
+      "kind": "inference",
+      "requirement": "Thin browser/mobile/WeChat input and presentation adapt the same transitions. Actual platform/device validation remains required.",
+      "product_interfaces_changed": false
+    }
+  ],
+  "proposed_acceptance_cases": [
+    {
+      "id": "stable-pose",
+      "kind": "proposed-not-executed",
+      "expectation": "At interpolation the ordinary finite getter returns0; only stable cell/display equality proceeds to distance."
+    },
+    {
+      "id": "axis-boundary",
+      "kind": "proposed-not-executed",
+      "expectation": "At threshold2 distinguish delta(1,1) from delta(2,0), including exact equality at the boundary."
+    },
+    {
+      "id": "shared-anchor-refresh",
+      "kind": "proposed-not-executed",
+      "expectation": "An admitted new dialog/repeated0x15 refreshes the common anchor; ignored ordinary replies do not use that same path."
+    },
+    {
+      "id": "manufacture-hide-and-due",
+      "kind": "proposed-not-executed",
+      "expectation": "Given admitted working phase and deadline<=now, movement sets hide yet the reviewed invocation can still reach the sender."
+    },
+    {
+      "id": "gather-phase-priority",
+      "kind": "proposed-not-executed",
+      "expectation": "Given phase1 and deadline<now, due request takes priority; in the alternative branch movement calls the source reset. Do not equate deadline==now with due."
+    },
+    {
+      "id": "window-specific-exit",
+      "kind": "proposed-not-executed",
+      "expectation": "Keep trainer callback(-1), service hide/-2 ownership, five-word reset and board activity=-1 close effects separate."
+    },
+    {
+      "id": "alternate-fallthrough",
+      "kind": "proposed-not-executed",
+      "expectation": "Close updates slots; callbacks may still examine controls/draw in that invocation. Verify actual activity scheduling separately."
+    },
+    {
+      "id": "reply-interleaving",
+      "kind": "proposed-not-executed",
+      "expectation": "Exercise moved position plus accepted/rejected/late data only after dispatch ordering is sourced; this case has no invented native priority yet."
+    }
+  ],
+  "original_execution": false,
+  "VM_operations": false,
+  "account_or_official_session_observed": false,
+  "runtime_features_changed": false,
+  "full_service_exception_or_global_lifecycle_closed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "service_receiver_consumers": {
+    "specification": {
+      "path": "build/analysis/service-receiver-consumers-v1/specification.json",
+      "bytes": 133568,
+      "sha256": "e39acbd1fc4f92320c686fa0c1ade1c6eb745cbf852bae34b33bd26e68a72581"
+    },
+    "source_inputs": {
+      "path": "build/analysis/service-receiver-consumers-v1/source-inputs.json",
+      "bytes": 24379,
+      "sha256": "1f16038cbdcbc55ba020e0978d10cc40ee2986310954774939710ca266dead2e"
+    },
+    "validation_record_path": "build/analysis/service-receiver-consumers-v1/validation.json",
+    "source_summary": {
+      "views": 45,
+      "new_native": 6,
+      "reused_complete_native": 8,
+      "reused_derived": 31,
+      "body_ranges": 45,
+      "body_bytes": 8817,
+      "derived_instructions": 1506,
+      "source_fact_groups": 14,
+      "direct_E8_calls_verified": 167,
+      "classic_descriptors": 5,
+      "selected_control_rows": 130,
+      "source_rules_executed_as_product": false,
+      "new_product_protocol_fields": 0,
+      "native_non_CALL_bytes_individually_redecoded": false
+    },
+    "scope": "Three known receiver delegates, their necessary target lists and classic UI source clauses; all40 original capability scopes retained.",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "facts": [
+      {
+        "id": "SC-01",
+        "classification": "事实：固定37c4样本的所选静态条款",
+        "title": "来源与共同锚点",
+        "entries": [
+          "0x4cb050",
+          "0x4ca810",
+          "0x4902a0"
+        ],
+        "clauses": [
+          "4F4680/4F46A0在原局部门槛为0时委派两体；4F5C30另有924F30与C5EC18门槛。线路字段复用前组，不新增字段。",
+          "三体均先读取ECX=96B9E0和96B9C8的数值，以Listing中两个PUSH交4B98C0，快照C22564/C2256C。伪代码一个参数的外形不代表缺少第二坐标；共用锚点保持共享。"
+        ],
+        "source_refs": [
+          {
+            "entry": "0x4cb050",
+            "source_check_pointer": "/service_receiver_consumers/bodies/8",
+            "authority": "native",
+            "evidence_id": "ev_45dc61ff33dfb706703923e04d8454da3d9be1d3352985cd47876a439ff930ac"
+          },
+          {
+            "entry": "0x4ca810",
+            "source_check_pointer": "/service_receiver_consumers/bodies/9",
+            "authority": "native",
+            "evidence_id": "ev_df0158e89a3082aea4132373b2ab997198332725df816aafb9b219e6d85db025"
+          },
+          {
+            "entry": "0x4902a0",
+            "source_check_pointer": "/service_receiver_consumers/bodies/0",
+            "authority": "native",
+            "evidence_id": "ev_08d801c1387ad7764e18e12cb3453153b8fe5ea5fbef638accd1bb8cd40869f7"
+          }
+        ],
+        "complete_business_or_runtime_acceptance_proven": false
+      },
+      {
+        "id": "SC-02",
+        "classification": "事实：固定37c4样本的所选静态条款",
+        "title": "一级目标发布",
+        "entries": [
+          "0x4cb050"
+        ],
+        "clauses": [
+          "先清C1E738起200字节：10行，每行0x14，首16位类别，名称从+2开始。放入本地姓名的类别0行，再读5条队伍记录，存在且ID非本地者追加类别1；无body指针仍可追加空名行。",
+          "随后按正文名称/整数对追加，整数0映射类别2，其余映射3，总行数不超过10。名称先提取最多255字节再反转义并按NUL复制，不能将18字节名称存储自动当作原生检查。",
+          "发布C21A50行数、C218F8=(count+4)/5、C2205C=0，再调用47E7A0；没有在此体重置所选行C1E6D4。"
+        ],
+        "source_refs": [
+          {
+            "entry": "0x4cb050",
+            "source_check_pointer": "/service_receiver_consumers/bodies/8",
+            "authority": "native",
+            "evidence_id": "ev_45dc61ff33dfb706703923e04d8454da3d9be1d3352985cd47876a439ff930ac"
+          }
+        ],
+        "complete_business_or_runtime_acceptance_proven": false
+      },
+      {
+        "id": "SC-03",
+        "classification": "事实：固定37c4样本的所选静态条款",
+        "title": "二级本地与远端分支",
+        "entries": [
+          "0x4ca810"
+        ],
+        "clauses": [
+          "先清C22574计数，按C1E738[selected*0x14]类别分支。类别0从本地人物加最多5个存在且状态不等于3的宠物建立列表，宠物名称优先别名，否则原名，类别字段为4。",
+          "本地宠物的记录+0x30选择值由入选时才递增的计数生成，不能擅自替换为原宠物槽。",
+          "非零类别从正文按1名称+6整数、每组7字段解析最多6行，类别1生成首行1/余行5，类别2生成2/6，类别3均为3；未给其他类别添加源中没有的清零/拒绝规则。",
+          "资料行步长0x34：名称+0，六整数+0x14..+0x28，类别+0x2c，选择值+0x30；逐行增加C22574并调用47E910。"
+        ],
+        "source_refs": [
+          {
+            "entry": "0x4ca810",
+            "source_check_pointer": "/service_receiver_consumers/bodies/9",
+            "authority": "native",
+            "evidence_id": "ev_df0158e89a3082aea4132373b2ab997198332725df816aafb9b219e6d85db025"
+          }
+        ],
+        "complete_business_or_runtime_acceptance_proven": false
+      },
+      {
+        "id": "SC-04",
+        "classification": "事实：固定37c4样本的所选静态条款",
+        "title": "进入经典45/46",
+        "entries": [
+          "0x47e7a0",
+          "0x47e910",
+          "0x491a00",
+          "0x492160"
+        ],
+        "clauses": [
+          "47E7A0把10行名称地址及类别映射字节传491A00，绑定47E740。491A00发布列表/属性/计数/回调，再请求46C6B0(45,1,0,0)。",
+          "47E910按二级行构建0x1c步长摘要并绑定47E880，492160发布摘要/计数/回调，再请求经典46。摘要与0x34资料不是同一个数组。",
+          "46C6B0仍是已证过渡请求，不等于即时构造成功；这几体没有按其返回值回滚占用计数。"
+        ],
+        "source_refs": [
+          {
+            "entry": "0x47e7a0",
+            "source_check_pointer": "/service_receiver_consumers/bodies/10",
+            "authority": "native",
+            "evidence_id": "ev_a5849354efc65e540e3264d6da7363eab51ed5b874d3e3484ec0bc4df031df9b"
+          },
+          {
+            "entry": "0x47e910",
+            "source_check_pointer": "/service_receiver_consumers/bodies/11",
+            "authority": "native",
+            "evidence_id": "ev_0edeb12a3352e61263d3b9eb782c7a6d143d04175729bbede134cf411a881280"
+          },
+          {
+            "entry": "0x491a00",
+            "source_check_pointer": "/service_receiver_consumers/bodies/12",
+            "authority": "native",
+            "evidence_id": "ev_74a88f8ec05c59d52961ac72c695cbbddc47e520ca3e14787633a8630ae911c2"
+          },
+          {
+            "entry": "0x492160",
+            "source_check_pointer": "/service_receiver_consumers/bodies/13",
+            "authority": "native",
+            "evidence_id": "ev_b2799f44ca0474082111e29b7937709ce1997b34ad8fcff9d6d179fd5f419c81"
+          }
+        ],
+        "complete_business_or_runtime_acceptance_proven": false
+      },
+      {
+        "id": "SC-05",
+        "classification": "事实：固定37c4样本的所选静态条款",
+        "title": "共用占用所有者",
+        "entries": [
+          "0x47e7a0",
+          "0x47e910",
+          "0x47e740",
+          "0x47e880"
+        ],
+        "clauses": [
+          "两入口都把C10600/C11080/C110D4非空对象标8000，并增加C5E94C[owner]及C5E968字节计数。47E7A0在C1F684<0时用C1E6D0补owner；47E910没有同样的负索引修复。",
+          "47E740/47E880仅在callback参数-1时退还计数：owner非负则减其字节，随后减共用计数；原有符号比较不大于0时owner=-1。非负选择、-2取消信号和-3返回信号不在此回调里退还。",
+          "这是可追溯的普通生命周期账目，不证明所有重入、构造失败或迟到回调都平衡。"
+        ],
+        "source_refs": [
+          {
+            "entry": "0x47e7a0",
+            "source_check_pointer": "/service_receiver_consumers/bodies/10",
+            "authority": "native",
+            "evidence_id": "ev_a5849354efc65e540e3264d6da7363eab51ed5b874d3e3484ec0bc4df031df9b"
+          },
+          {
+            "entry": "0x47e910",
+            "source_check_pointer": "/service_receiver_consumers/bodies/11",
+            "authority": "native",
+            "evidence_id": "ev_0edeb12a3352e61263d3b9eb782c7a6d143d04175729bbede134cf411a881280"
+          },
+          {
+            "entry": "0x47e740",
+            "source_check_pointer": "/service_receiver_consumers/bodies/4",
+            "authority": "native",
+            "evidence_id": "ev_0eac8c1518d33d8b359758f71474b14b344fd8559badc07c6918e3edb3953ff9"
+          },
+          {
+            "entry": "0x47e880",
+            "source_check_pointer": "/service_receiver_consumers/bodies/5",
+            "authority": "native",
+            "evidence_id": "ev_f7e1d932828a178f4dd0de289ef1e0350f21efe7496cd8712a9996a8b96f19ab"
+          }
+        ],
+        "complete_business_or_runtime_acceptance_proven": false
+      },
+      {
+        "id": "SC-06",
+        "classification": "事实：固定37c4样本的所选静态条款",
+        "title": "一级选择与取消",
+        "entries": [
+          "0x491a60",
+          "0x491a40",
+          "0x492080",
+          "0x491fc0",
+          "0x47e740"
+        ],
+        "clauses": [
+          "经典45初始化offset=0、latch=1，并把源回调C10174复制到C161B0。行点击用offset+control-14，发送*~/的一个整数，保存C1E6D4，47E740返回0使窗口继续等待。",
+          "控件在event bit2、latch及回调非空时才调用，然后清latch；回调非零才标8000。取消控件传-2，47E740对此返回1而不发送。",
+          "析构491A40仍调用保存回调(-1,0)，不以latch是否已清作条件；标待关闭与退还计数不是同一时刻。"
+        ],
+        "source_refs": [
+          {
+            "entry": "0x491a60",
+            "source_check_pointer": "/service_receiver_consumers/bodies/17",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x491a40",
+            "source_check_pointer": "/service_receiver_consumers/bodies/16",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x492080",
+            "source_check_pointer": "/service_receiver_consumers/bodies/25",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x491fc0",
+            "source_check_pointer": "/service_receiver_consumers/bodies/24",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x47e740",
+            "source_check_pointer": "/service_receiver_consumers/bodies/4",
+            "authority": "native",
+            "evidence_id": "ev_0eac8c1518d33d8b359758f71474b14b344fd8559badc07c6918e3edb3953ff9"
+          }
+        ],
+        "complete_business_or_runtime_acceptance_proven": false
+      },
+      {
+        "id": "SC-07",
+        "classification": "事实：固定37c4样本的所选静态条款",
+        "title": "二级选择/返回与取消",
+        "entries": [
+          "0x492190",
+          "0x492490",
+          "0x492550",
+          "0x492610",
+          "0x47e880"
+        ],
+        "clauses": [
+          "经典46按相应latch调用全局C3B3EC；行号为C5E0B4+control-16。非负选择按原Listing发送$gW的四整数：本地X、本地Y、C1E6D0、所选资料+0x30，返回1请求关闭。",
+          "返回控件传-3，47E880发送*pT空参数并返回0；取消传-2，不发送且返回1。两个控件都会清latch。",
+          "析构492190再以-1调用当前全局回调。它与经典45初始化复制回调的策略不同；不能默认为所有旧回调天然绑定请求代次。"
+        ],
+        "source_refs": [
+          {
+            "entry": "0x492190",
+            "source_check_pointer": "/service_receiver_consumers/bodies/26",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x492490",
+            "source_check_pointer": "/service_receiver_consumers/bodies/29",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x492550",
+            "source_check_pointer": "/service_receiver_consumers/bodies/30",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x492610",
+            "source_check_pointer": "/service_receiver_consumers/bodies/31",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x47e880",
+            "source_check_pointer": "/service_receiver_consumers/bodies/5",
+            "authority": "native",
+            "evidence_id": "ev_f7e1d932828a178f4dd0de289ef1e0350f21efe7496cd8712a9996a8b96f19ab"
+          }
+        ],
+        "complete_business_or_runtime_acceptance_proven": false
+      },
+      {
+        "id": "SC-08",
+        "classification": "事实：固定37c4样本的所选静态条款",
+        "title": "一级可见范围",
+        "entries": [
+          "0x491c60",
+          "0x491d10",
+          "0x491dd0",
+          "0x491e90",
+          "0x491f70",
+          "0x491ba0"
+        ],
+        "clauses": [
+          "经典45只有5个行控件；按总行数与count-5启停滚动，步进1或5并夹取offset。初始化自己的offset为0，不把生产者C2205C等同于这个变量。",
+          "491F70还按原输入mask调用滚动辅助；标签填充/命中/绘制继续引用既有经典窗口、控件和文本合同，不复制一套平台专用状态。"
+        ],
+        "source_refs": [
+          {
+            "entry": "0x491c60",
+            "source_check_pointer": "/service_receiver_consumers/bodies/19",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x491d10",
+            "source_check_pointer": "/service_receiver_consumers/bodies/20",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x491dd0",
+            "source_check_pointer": "/service_receiver_consumers/bodies/21",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x491e90",
+            "source_check_pointer": "/service_receiver_consumers/bodies/22",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x491f70",
+            "source_check_pointer": "/service_receiver_consumers/bodies/23",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x491ba0",
+            "source_check_pointer": "/service_receiver_consumers/bodies/18",
+            "authority": "derived",
+            "evidence_id": null
+          }
+        ],
+        "complete_business_or_runtime_acceptance_proven": false
+      },
+      {
+        "id": "SC-09",
+        "classification": "事实：固定37c4样本的所选静态条款",
+        "title": "另一组服务器UI路由",
+        "entries": [
+          "0x4902a0"
+        ],
+        "clauses": [
+          "旧55E4D4>=0且dialogId属于146/147/171/184/185/186(hex)时，新type不是0x20才请求关闭组2和3。随后发布type、mask、dialogId、actorId并刷新共同锚点。",
+          "type0x26/27/28分别先调用4B64D0/4B69C0/4B72F0，再请求经典窗口60/61/62。其他type仍可发布上下文但不走这三条窗口路径。",
+          "这里的经典60/61与另一套窗口表60/61不是同一所有者，也没有因此关闭另一套训练窗口的激活缺口。"
+        ],
+        "source_refs": [
+          {
+            "entry": "0x4902a0",
+            "source_check_pointer": "/service_receiver_consumers/bodies/0",
+            "authority": "native",
+            "evidence_id": "ev_08d801c1387ad7764e18e12cb3453153b8fe5ea5fbef638accd1bb8cd40869f7"
+          }
+        ],
+        "complete_business_or_runtime_acceptance_proven": false
+      },
+      {
+        "id": "SC-10",
+        "classification": "事实：固定37c4样本的所选静态条款",
+        "title": "版本名册的实际消费者",
+        "entries": [
+          "0x4b64d0"
+        ],
+        "clauses": [
+          "先对整段正文处理转义；按FC8B20行数，低bit0写primary行+0x10c、bit1写shadow行+0x10c，步长0x110。然后按FC8B24行数继续读取，将低bit0写第三表行+0x10c。",
+          "这把此前4F5540/4F5B80发布的计数/名册连接到经典60；不是按来源文件名推定业务。行数上限、未知位及输入有效域仍保留源与独立策略的区别。"
+        ],
+        "source_refs": [
+          {
+            "entry": "0x4b64d0",
+            "source_check_pointer": "/service_receiver_consumers/bodies/1",
+            "authority": "native",
+            "evidence_id": "ev_626a3c5528c7d3128e15c5ae68b192813ecb533664581d6e2afeb0965f2a99f2"
+          }
+        ],
+        "complete_business_or_runtime_acceptance_proven": false
+      },
+      {
+        "id": "SC-11",
+        "classification": "事实：固定37c4样本的所选静态条款",
+        "title": "经典61资料布局",
+        "entries": [
+          "0x4b69c0"
+        ],
+        "clauses": [
+          "先清20个0x20c行的活动字段，读取两个头整数FC54A0/FC54A4；每行读两整数与两字符串，第一整数为-1时结束。行内+0活动、+4名称256区、+0x104/+0x108数值、+0x10c说明256区。",
+          "写入逐行进行；不把全清标志再填充推定为原子发布、空名拒绝或服务器接受。"
+        ],
+        "source_refs": [
+          {
+            "entry": "0x4b69c0",
+            "source_check_pointer": "/service_receiver_consumers/bodies/2",
+            "authority": "native",
+            "evidence_id": "ev_b75d4bd0b80adfeab8aba8cd34f3ba7d770211a3fb0a41976896530bf7d71838"
+          }
+        ],
+        "complete_business_or_runtime_acceptance_proven": false
+      },
+      {
+        "id": "SC-12",
+        "classification": "事实：固定37c4样本的所选静态条款",
+        "title": "经典62资料与金额门槛",
+        "entries": [
+          "0x4b72f0",
+          "0x4b7980"
+        ],
+        "clauses": [
+          "4B72F0依次解析14个正文token到FC7DE8..FC8510资料区，三项资源先设0x3c0f0，仅当5180F0查到时替换。完整字段业务命名不凭地址猜测。",
+          "经典62主按钮仅在FC8B28<=本地金币F53624时把当前资料ID/名称复制到下一上下文，清另一文本并请求经典63确认；金额不足仅走本地提示。",
+          "FC8B28由此前版本资料接收发布，这里取得一个真实消费者；打开确认页不等于扣款、服务器成功或最终结果。"
+        ],
+        "source_refs": [
+          {
+            "entry": "0x4b72f0",
+            "source_check_pointer": "/service_receiver_consumers/bodies/3",
+            "authority": "native",
+            "evidence_id": "ev_e82d12d441caf656b088918e9ff93bbadd1456c3063eaa05c99c48b68bac7a1c"
+          },
+          {
+            "entry": "0x4b7980",
+            "source_check_pointer": "/service_receiver_consumers/bodies/43",
+            "authority": "derived",
+            "evidence_id": null
+          }
+        ],
+        "complete_business_or_runtime_acceptance_proven": false
+      },
+      {
+        "id": "SC-13",
+        "classification": "事实：固定37c4样本的所选静态条款",
+        "title": "经典60..62失效与析构",
+        "entries": [
+          "0x4b6570",
+          "0x4b6aa0",
+          "0x4b75f0",
+          "0x4b6990",
+          "0x4b71f0",
+          "0x4b7bc0"
+        ],
+        "clauses": [
+          "三页初始化/重复回调均按4B98E0(2,2)结果标8000；继续执行各页刷新，不把标记当立即返回。共同锚点及插值稳定门槛复用旧合同。",
+          "三析构均无条件把55E4D4置-1，再分别调用4B8030的组2/3/4、3/4、4；本批不把该辅助调用自动扩大成所有资料/输入缓存已释放。"
+        ],
+        "source_refs": [
+          {
+            "entry": "0x4b6570",
+            "source_check_pointer": "/service_receiver_consumers/bodies/34",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x4b6aa0",
+            "source_check_pointer": "/service_receiver_consumers/bodies/37",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x4b75f0",
+            "source_check_pointer": "/service_receiver_consumers/bodies/42",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x4b6990",
+            "source_check_pointer": "/service_receiver_consumers/bodies/36",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x4b71f0",
+            "source_check_pointer": "/service_receiver_consumers/bodies/40",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x4b7bc0",
+            "source_check_pointer": "/service_receiver_consumers/bodies/44",
+            "authority": "derived",
+            "evidence_id": null
+          }
+        ],
+        "complete_business_or_runtime_acceptance_proven": false
+      },
+      {
+        "id": "SC-14",
+        "classification": "事实：固定37c4样本的所选静态条款",
+        "title": "经典窗口回复复用",
+        "entries": [
+          "0x4b6830",
+          "0x4b6d80",
+          "0x4b7050",
+          "0x4b7220"
+        ],
+        "clauses": [
+          "经典60所选行提交、经典61按钮3/4/5及资料行点击均复用4F8240，即/1I六字段回复；按钮3/4/5的源button值为1/0x10/0x20，资料行分支为4。",
+          "源伪代码缩写的getter/调用形状不改变真实Listing和旧发送器的X/Y、dialogId、actorId、button、bytes布局。文本编辑器焦点/提交继续用已有输入合同。"
+        ],
+        "source_refs": [
+          {
+            "entry": "0x4b6830",
+            "source_check_pointer": "/service_receiver_consumers/bodies/35",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x4b6d80",
+            "source_check_pointer": "/service_receiver_consumers/bodies/38",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x4b7050",
+            "source_check_pointer": "/service_receiver_consumers/bodies/39",
+            "authority": "derived",
+            "evidence_id": null
+          },
+          {
+            "entry": "0x4b7220",
+            "source_check_pointer": "/service_receiver_consumers/bodies/41",
+            "authority": "derived",
+            "evidence_id": null
+          }
+        ],
+        "complete_business_or_runtime_acceptance_proven": false
+      }
+    ],
+    "architecture_proposals": [
+      {
+        "classification": "推测/设计，未实现",
+        "proposal": "共用锚点/占用生命周期；不同接收保留各自资料布局和选择规则。发布、选择、发送、待关闭和析构分成事件，按原callback返回值及latch保持等待。"
+      },
+      {
+        "classification": "推测/设计，未实现",
+        "proposal": "跨端用同一上下文管理占用和迟到资料，但任何独立代次/边界保护都标为产品政策，不声称源协议含有该字段。"
+      }
+    ],
+    "proposed_acceptance_cases": [
+      {
+        "id": "SC-T01",
+        "rule": "一级：本地+有效非本人队员+正文行，10行上限、5行可见、空body名称和滚动offset分别验证。",
+        "executed": false
+      },
+      {
+        "id": "SC-T02",
+        "rule": "二级：本地人物+状态不为3的有效宠物，保留过滤后选择值；远端1/2/3类别与首行/余行代码分别验证。",
+        "executed": false
+      },
+      {
+        "id": "SC-T03",
+        "rule": "一级点击只发一个整数并留窗等待；二级点击发四整数；-3返回、-2取消和析构-1的发送及退还职责分别验证。",
+        "executed": false
+      },
+      {
+        "id": "SC-T04",
+        "rule": "源latch清零、callback复制/全局读取与过渡构造失败、旧窗待删/新窗占用交错作为独立用例，不宣称全部已闭合。",
+        "executed": false
+      },
+      {
+        "id": "SC-T05",
+        "rule": "0x26/27/28实际打开经典60/61/62并先发布资料；相同数字的另一套表不得误激活。",
+        "executed": false
+      },
+      {
+        "id": "SC-T06",
+        "rule": "100行版本名册标志、20行0x20c列表、14token资料与终止/部分写入的合法输入政策分别验证。",
+        "executed": false
+      },
+      {
+        "id": "SC-T07",
+        "rule": "价格等于金币只进入经典63；不足不进入；本地确认和提示不产生扣款/服务器成功。",
+        "executed": false
+      },
+      {
+        "id": "SC-T08",
+        "rule": "稳定距离(2,2)与插值、标8000后仍刷新、析构无条件清mode及所有者迟到分开验证。",
+        "executed": false
+      }
+    ],
+    "remaining_required_groups": [
+      {
+        "id": "SC-GAP-01",
+        "question": "经典 60–63 的目录、名单、资料和迷你邮件已核所选提交与取消。实际服务回复配对、收费/投递、所余未命名资料与运行时退出继续沿原需求。",
+        "next_entries": [
+          "0x4f5c30",
+          "0x4902a0",
+          "0x4b7d30",
+          "0x4f5c80"
+        ],
+        "source_rule_supplement": "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/fixed_se_classic_directory_mini_mail"
+      },
+      {
+        "id": "SC-GAP-02",
+        "question": "经典 45/46 的资料重写、旧控件取值、取消与换场的退役分派已核到固定样本。实际服务配对、无合法一级选择的原版表现、另一套窗口的普通帧与同版运行仍待证。",
+        "next_entries": [
+          "0x47e740",
+          "0x47e880",
+          "0x4cb050",
+          "0x4ca810"
+        ],
+        "source_rule_supplement": "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/fixed_se_item_target_menus/classic_replacement_and_invalidation"
+      },
+      {
+        "id": "SC-GAP-03",
+        "question": "固定 SE 已核 200、205、204 与 250、251、252 的所选窗口退役和过渡队列。实际消息与回调交错、其它计数和退役写入、三端运行仍待验。",
+        "next_entries": [
+          "0x501d12",
+          "0x4ef820",
+          "0x4f32d5"
+        ],
+        "resolved_transition_scope": "analysis/capability-first-v1/game-work-functional-specification.json#/se_classic_work_transition_retirement",
+        "classic_scene_and_window_queue": "analysis/capability-first-v1/game-work-functional-specification.json#/se_classic_work_transition_retirement/classic_scene_and_window_queue",
+        "resolved_menu_scope": "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/fixed_se_item_target_menus/classic_replacement_and_invalidation"
+      },
+      {
+        "id": "SC-GAP-04",
+        "question": "已核 SE 窗 58 的局部准入与翻页，Item 的同号替换先写资料后保留窗口槽。固定 SE 的 C07F8C 发布、两版外层活动分派及替换后旧选择的实际可达性继续取证。",
+        "next_entries": [
+          "0xc07f8c",
+          "0xc15b70",
+          "0x55a254"
+        ],
+        "count_source": "analysis/capability-first-v1/game-pet-publication-contract.json#/facts/5",
+        "resolved_selection_rules": "analysis/capability-first-v1/game-service-selection-contract.json#/fixed_se_pet_count_and_selection",
+        "item_quote_publication": "analysis/capability-first-v1/game-service-selection-contract.json#/historical_forget_return_and_quote_pages/facts/4",
+        "quote_page_and_replacement": "analysis/capability-first-v1/game-service-selection-contract.json#/fixed_se_pet_count_and_selection/quote_page_and_replacement",
+        "resume_evidence": "取得实际页数或行表写入、向窗 58–61 传入活动参数的调用、或适用的同版本行为样本后恢复。"
+      }
+    ],
+    "selected_receive_to_menu_source_bound": true,
+    "all_lifecycle_interleavings_closed": false,
+    "related_capabilities": [
+      "G01",
+      "G04",
+      "G05",
+      "G10",
+      "G14",
+      "G16",
+      "G18",
+      "G20",
+      "X02"
+    ],
+    "related_capability_scope": "dependency routing; unknown business labels are not completed attribution or added requirements",
+    "resolved_lookup_entries": [
+      "0x4cb050",
+      "0x4ca810",
+      "0x4902a0"
+    ],
+    "fixed_se_item_target_menus": {
+      "title": "固定 SE 经典普通用物的两级目标",
+      "classification": "事实绑定固定样本。原版触发及目标实现、验收分别记录。",
+      "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+      "source_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "source_review": "build/analysis/fixed-se-item-target-menus-v1/source-review.json",
+      "report": "reports/game-static.md#fixed-se-item-target-menus",
+      "validation": "reports/validation.md#fixed-se-item-target-menus-validation",
+      "capabilities": [
+        "X01",
+        "X02",
+        "G01",
+        "G05",
+        "G09",
+        "G10"
+      ],
+      "receive": [
+        {
+          "id": "receive-00567cb4",
+          "tag": "LC=",
+          "tag_address": "0x567cb4",
+          "tag_file_offset": 1463476,
+          "tag_word_sha256": "83a3da731d8f3a58bb4f92d138047ab1754e8e145166fe96ec253f60d8de204a",
+          "fields": [
+            "bytes"
+          ],
+          "consumer": "0x4f4680",
+          "action": "dispatch",
+          "native_return": 0,
+          "evidence": "ev_0809b8da8d21004b16ae46167f89db08fb7148fe1a16468368bebc62cd9f374a",
+          "condition": "9250C8 经 4034D0 转 4034F0 的读取为零",
+          "body": "0x4cb050",
+          "classic_window": 45,
+          "rule_review": "analysis/capability-first-v1/game-entry-review-contract.json#/receive_publication_review/entry_rules/21"
+        },
+        {
+          "id": "receive-00567cb0",
+          "tag": "LHm",
+          "tag_address": "0x567cb0",
+          "tag_file_offset": 1463472,
+          "tag_word_sha256": "2fa46b6abda7eb53c6c50186ba7354eeb415f62b65413fa18aae04e2b0d06183",
+          "fields": [
+            "bytes"
+          ],
+          "consumer": "0x4f46a0",
+          "action": "dispatch",
+          "native_return": 0,
+          "evidence": "ev_0809b8da8d21004b16ae46167f89db08fb7148fe1a16468368bebc62cd9f374a",
+          "condition": "9250C8 经同一读取为零",
+          "body": "0x4ca810",
+          "classic_window": 46,
+          "rule_review": "analysis/capability-first-v1/game-entry-review-contract.json#/receive_publication_review/entry_rules/22"
+        }
+      ],
+      "send": [
+        {
+          "id": "send-004f68b0",
+          "tag": "$fa",
+          "tag_address": "0x567af8",
+          "tag_file_offset": 1463032,
+          "tag_word_sha256": "7fc69ecde5f3fdae512538a3d246749aa72901c3a0f1a914e600dc66451a9772",
+          "fields": [
+            "int32",
+            "int32",
+            "int32",
+            "int32"
+          ],
+          "producer": "0x4f68b0",
+          "evidence": "ev_7e36348adf1c44e242445eba5908904784cef7fadd8e2a28ac4e0c276871f443",
+          "arguments": [
+            "当前逻辑 X",
+            "当前逻辑 Y",
+            "绝对物品槽",
+            0
+          ]
+        },
+        {
+          "id": "send-004f7a90",
+          "tag": "*~/",
+          "tag_address": "0x567b80",
+          "tag_file_offset": 1463168,
+          "tag_word_sha256": "bef66320ec8a7ff241a6f1c922d0f33db253665ab4dbccbf0ac2b38692836281",
+          "fields": [
+            "int32"
+          ],
+          "producer": "0x4f7a90",
+          "evidence": "ev_f28bd00e3b58e01e3bb71381899f5258852a3674ebb9055c0faac16b32a1dfbf",
+          "arguments": [
+            "一级表绝对行序号"
+          ]
+        },
+        {
+          "id": "send-004f6970",
+          "tag": "$gW",
+          "tag_address": "0x567afc",
+          "tag_file_offset": 1463036,
+          "tag_word_sha256": "4216d032a120a3acf57761408bc7474f476bae60e09f7eb78d71213bb35ce5e3",
+          "fields": [
+            "int32",
+            "int32",
+            "int32",
+            "int32"
+          ],
+          "producer": "0x4f6970",
+          "evidence": "ev_a15fefa6b915d77813d37b4ed2477ecc4e9a142faba024e769d7c59f5749a53a",
+          "arguments": [
+            "点击时逻辑 X",
+            "点击时逻辑 Y",
+            "点击时 C1E6D0",
+            "选中资料行 +0x30"
+          ]
+        },
+        {
+          "id": "send-004f7a50",
+          "tag": "*pT",
+          "tag_address": "0x567b7c",
+          "tag_file_offset": 1463164,
+          "tag_word_sha256": "34101e1321ace113dd914a9f213f92a1048d038d4c6b5ebba83610d7b335bd34",
+          "fields": [],
+          "producer": "0x4f7a50",
+          "evidence": "ev_ea92c7180d9f0b411888c301d64de2ed5e60fbd2f275fdc5ec9db7200c2ca74b",
+          "arguments": []
+        },
+        {
+          "id": "send-004f7ae0",
+          "tag": "6=L",
+          "tag_address": "0x567b84",
+          "tag_file_offset": 1463172,
+          "tag_word_sha256": "1d4c028f37b5e0de515ac0fcc08cb1b37ccc12d907f0a297f80369610945961f",
+          "fields": [
+            "int32",
+            "int32"
+          ],
+          "producer": "0x4f7ae0",
+          "evidence": "ev_7e54e2627c1318bc83dd6f7d25acfa342de2d19b177b568ccb5809d96ebb3058",
+          "arguments": [
+            "目标物品绝对槽",
+            "来源物品绝对槽"
+          ]
+        }
+      ],
+      "retained_fact_references": [
+        "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/facts/0",
+        "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/facts/1",
+        "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/facts/2",
+        "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/facts/3",
+        "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/facts/4",
+        "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/facts/5",
+        "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/facts/6",
+        "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/facts/7"
+      ],
+      "facts": [
+        {
+          "id": "SC-15",
+          "classification": "事实",
+          "anchors": [
+            "0x47cb30",
+            "0x47cbcf",
+            "0x47cbec",
+            "0x47d2c1",
+            "0x47d361",
+            "0x47d37f",
+            "0x47e8a6"
+          ],
+          "rule": "经典背包 47C880 将格号加 8，装备 47CFE0 已持绝对槽号。普通使用通过既有控件、存在字、用物位、普通状态位及 43B420 门槛后，在取坐标和发送 $fa 前写 C1E6D0。两处发送共享 [逻辑 X, 逻辑 Y, 绝对槽, 0]。经典 46 最终发送时重新读当时的坐标与 C1E6D0。"
+        },
+        {
+          "id": "SC-16",
+          "classification": "事实",
+          "anchors": [
+            "0x47cb8f",
+            "0x47d323",
+            "0x47d9c7",
+            "0x49009b",
+            "0x47ba30"
+          ],
+          "rule": "物品代码 0x67C9 从前述两入口进入物品选物品分支，也写 C1E6D0，但所查提交是 6=L。NPC 模式 0x1D 经 47BA20 可从正文另写同一格。C1E6D0 是复用的来源槽暂存，开发由实际发起操作管理其上下文。"
+        },
+        {
+          "id": "SC-17",
+          "classification": "事实",
+          "anchors": [
+            "0x4f2c55",
+            "0x500a33",
+            "0x500a51",
+            "0x47f225",
+            "0x47f231",
+            "0x47f24b",
+            "0x47f263",
+            "0x47f275",
+            "0x47f281",
+            "0x47f29e",
+            "0x47f2a3"
+          ],
+          "rule": "普通 0–27 槽实际交换两条 0x65C 记录后，在通知其他消费者之前调用 47F200。该体把 C1F684 从匹配端点移到另一端。只在任一交换后的端点物品代码为 0x67C9 时，同样重映射 C1E6D0。四项下游调用按 4A22B0、474420、49F260、4707C0 排列，之后读取并交换 C5E94C 两字节。槽 7 的条件调节沿原交易与仓储合同。"
+        },
+        {
+          "id": "SC-18",
+          "classification": "事实",
+          "anchors": [
+            "0x4cb20c",
+            "0x47e750",
+            "0x47e758",
+            "0x4ca835",
+            "0x4ca84c",
+            "0x4caa44",
+            "0x4cac17"
+          ],
+          "rule": "经典 45 在发送 *~/ 后写 C1E6D4。LC= 重建资料并归零另一套的页偏移 C2205C，保留 C1E6D4。LHm 到达时用它重查当前一级类型，并清零二级行数再构造。二级本地宠物按过滤后序号从 1 增长，远端行按入选序号从 0 增长，-1 是缺数字的读取值。"
+        },
+        {
+          "id": "SC-19",
+          "classification": "事实",
+          "anchors": [
+            "0x510e42",
+            "0x4cb150",
+            "0x4cb165",
+            "0x4caa90",
+            "0x4caaa2",
+            "0x47e975",
+            "0x47e97e"
+          ],
+          "rule": "两级名称通过 510D80 按双字节跨越规则找竖线，选取预算分别是 255 和 127 字节。遇到名字段找不到、提前到 NUL 或预算内未到分隔符时，返回 1 并结束该列表的追加。预算内的空名称加分隔符仍可进入。内层整数通过 510E50，分开处理空格子值 -1 与非空字节的十进制转换。二级资料保留六个整型，展示摘要对其中第二项只写低字节。"
+        },
+        {
+          "id": "SC-20",
+          "classification": "事实",
+          "anchors": [
+            "0x47e9cf",
+            "0x47e9dc",
+            "0x47e9ec",
+            "0x492185",
+            "0x46c6df",
+            "0x46c595",
+            "0x46c529",
+            "0x46c555",
+            "0x4681ae",
+            "0x4681b4",
+            "0x468f41"
+          ],
+          "rule": "两组组号均为 2，请求前增加占用。旧同 ID 对象可被标记退役。过渡分配失败时同步调用 468190，成功时由 46C4E0 的计数达到 10 后调用，常规零初值在第 11 次合资格回调检查。实际构造先按掩码 3 清理组内旧窗，调用析构后才清空相应对象槽，再进入新窗查找与构造。"
+        },
+        {
+          "id": "SC-21",
+          "classification": "事实",
+          "anchors": [
+            "0x4e15c3",
+            "0x4e15e1",
+            "0x4cb461",
+            "0x4cb466",
+            "0x4cb573",
+            "0x4cad9f",
+            "0x4cada4",
+            "0x4cadca",
+            "0x4cae09"
+          ],
+          "rule": "另一套注册 77/78 的同资料消费者分别在 4CB240/4CAC50。77 在发 *~/ 之前写 C1E6D4。78 复用 $gW 和 *pT，所查 $gW 第三项读 C1DF84，4E15E1 在自身 $fa 后写该格。第四项仍读二级资料 +0x30。两套注册的正常调度和顺序分别按实际入口验收。"
+        }
+      ],
+      "inferred_from_selected_order": [
+        "若两条普通物品记录交换且占用槽与来源槽原来相同，一个跟随交换，另一个保留原数。若任一端代码为 0x67C9，则来源槽只在匹配端点时重映射。",
+        "若 LC= 在一次 *~/ 与随后的 LHm 之间把所存序号对应的类别换掉，后来的 LHm 按新类别取资料。只是客户端代码组合的结果，真实到达次序仍待核。",
+        "若 45 仍活动且 46 的构造进入组清理，46 的占用先加，45 析构-1再退。在此前若 45 已由其他路径退役，则按当时的实际占用状态处理。"
+      ],
+      "implementation": {
+        "stage306_probe": "build/analysis/fixed-se-item-target-menus-v1/stage306-probe.json",
+        "reuse": [
+          "shared/legacy-game-message.mjs",
+          "shared/legacy-game-state.mjs",
+          "shared/legacy-game-protocol.mjs",
+          "shared/legacy-game-items.mjs",
+          "shared/legacy-game-party.mjs",
+          "shared/legacy-game-input.mjs",
+          "shared/legacy-game-frame.mjs"
+        ],
+        "related_owners": [
+          "analysis/capability-first-v1/window-engine-contract.json",
+          "analysis/capability-first-v1/game-trade-storage-contract.json",
+          "analysis/capability-first-v1/game-ordinary-services-functional-specification.json"
+        ],
+        "differences": [
+          {
+            "batch": "D3",
+            "work": "在现有普通物品与世界服务入口接入两级资料。共用编解码、逻辑坐标、队伍和宠物状态。对合法资料保留保存行、用物来源槽和占用槽各自的读取/交换时点。工艺和物品选物品继续沿各自的操作状态。"
+          },
+          {
+            "batch": "D0",
+            "work": "复用已登记的经典窗口、共同组清理和退役账目。目标实现用有界字节与行索引，并检查当前操作上下文。无主、无合法行或跨上下文迟到的处理作为目标用例，原版有界有效域及服务时序独立取证。"
+          },
+          {
+            "batch": "D5",
+            "work": "三端复用同一选取及返回语义，适配鼠标、触摸和以当前视图选择。沿相同夹具验收待关闭、实际退役与刷新。"
+          }
+        ]
+      },
+      "proposed_acceptance": [
+        {
+          "id": "SC-T09",
+          "rule": "以不同来源槽、菜单占用槽、宠物槽和行序号检测取值。覆盖背包格加 8、装备实槽，两普通端点或任一为 0x67C9、槽 7 特殊调节及无关交换。检查发送的坐标取点击时点，6=L 与原 NPC 另外验收。",
+          "executed": false
+        },
+        {
+          "id": "SC-T10",
+          "rule": "重复 LC= 后用同一保存序号读不同类别。分别核第一级 5/6/10 行、空身体、缺/空名称或未终止、255/127 字节与多字节边界，二级最多六行、过滤后的宠物选择值和第二数字低字节摘要。核合法重复及过期输入的目标处理。",
+          "executed": false
+        },
+        {
+          "id": "SC-T11",
+          "rule": "覆盖 45 的旧窗仍活、新窗延迟或同步构造、旧窗提前标记退役、-3 返回继续等候、-2 取消及实际析构 -1。检查同一占用的一次取得与一次释放，以及过期回包对相邻操作的影响。",
+          "executed": false
+        }
+      ],
+      "remaining": [
+        "实际服务的 $fa 与 LC=、*~/ 与 LHm 配对条件、物品可用范围和最终执行结果。无合法一级行、重复资料与跨场景迟到的原版运行沿现有验收。",
+        "另一套 77/78 的实际活动分派、多个过渡请求的真实帧顺序及未证计数别名。三端与当前同版的组合仍待验。"
+      ],
+      "classic_replacement_and_invalidation": {
+        "classification": "固定 SE 的静态事实及有边界的组合预期",
+        "report": "reports/game-static.md#fixed-se-item-target-retirement",
+        "source_and_validation": "build/analysis/fixed-se-item-target-lifecycle-v1/validation.json",
+        "REA_receipt": "build/analysis/fixed-se-item-target-lifecycle-v1/rea-receipt.json",
+        "related_capabilities": ["G03", "G05", "G09", "G18", "X02"],
+        "facts": [
+          {
+            "id": "SC-27",
+            "entries": ["0x4f4680", "0x4f46a0", "0x4cb050", "0x4ca810", "0x47e7a0", "0x47e910"],
+            "rule": "所选收包包装只读取 9250C8 并在零时调用相应资料构造体。两个包装与所查资料构造入口没有另查窗 45/46 的活动槽、一次性选择或匹配请求身份。LC= 重建一级并发布计数，LHm 读保存的 C1E6D4 并清二级生产计数，随后读一级表相应类别。直接读取对保存的下标没有先按新的一级行数校验。47E7A0 在占用槽为负时从 C1E6D0 补入，47E910 则直接使用当前 C1F684。固定样本所查入口未给无主二级资料提供本地拒绝分支。"
+          },
+          {
+            "id": "SC-28",
+            "entries": ["0x491a00", "0x491a60", "0x491aa0", "0x491ba0", "0x492080", "0x492160", "0x4921b0", "0x4921e0", "0x492440", "0x492610"],
+            "rule": "一级的新打开请求在排过渡前写 C45A50/C1F6A8/C22514 和候选回调 C10174。窗 45 以 -1 初始化时先将偏移写 0 并填五行，再把 C10174 复制到 C161B0 并允许输入。普通帧在滚动控件的状态位满足时重填可见行。已有 45 使用共用行资料、当前行数和已保存回调。二级的新打开请求先写 C1E160/C20564/C3B3EC。窗 46 以 -1 初始化时按当前偏移和资料填至多六行，清空无资料行的控件与文字，再允许输入。所查普通绘制回调只画现有控件。两窗行回调先比较控件相对行与当前行数，再用偏移加该行提交，其中窗 46 重读 C3B3EC。显示值和提交时的共享资料可处于不同更新时点。"
+          },
+          {
+            "id": "SC-29",
+            "entries": ["0x47e740", "0x47e880", "0x491fc0", "0x492490", "0x492550", "0x491a40", "0x492190", "0x46a0e0", "0x468f00"],
+            "rule": "用物的一级提交在发 *~/ 后保存序号，并使旧窗失去本次输入资格。二级返回 -3 发 *pT、返回 0 并清已用输入资格，两级取消 -2 返回 1、清资格并标 0x8000，二级确认发 $gW 后同样标退役。上述选择、返回或取消都未在自身回调退还占用。实际整理或同步分组使窗 45 调用已保存回调 -1，使窗 46 重读当前全局回调并调用 -1。只有仍调用用物分支 47E740/47E880 时，先按非负 C1F684 减槽字节，再减 C5E968。后者按有符号低字节大于 0 才保留占用槽，否则写 -1。两个用物析构中的本地计数释放没有清除已保存一级序号或资料。"
+          },
+          {
+            "id": "SC-30",
+            "entries": ["0x47aa90", "0x47acd0", "0x47a960", "0x47abc0", "0x491a00", "0x492160", "0x46c6b0", "0x46c4e0", "0x468190"],
+            "rule": "急救、治疗等所选工作资料入口也经 491A00/492160 请求这两个窗，分别登记 47A960/47ABC0。工作回调 -1 释放其工作计数和姿势条件，与用物占用有各自的副作用。对应入口写全局资料和回调后才排窗口过渡。46C6B0 对仍活动的同号窗先标 0x8000，分配失败可立即进入 468190。成功过渡到期也进入 468190，按组掩码同步析构旧对象，再查找或创建。因而对同号二级窗，资料与 C3B3EC 的发布先于旧窗的任一所选析构，新旧回调归属需要按实际调用时点验证。"
+          },
+          {
+            "id": "SC-31",
+            "entries": ["0x4ef870", "0x502810", "0x4ea1b0", "0x468e50", "0x467760"],
+            "rule": "TfD 的普通换场分支在已有条件下写 9/200，调用 502810 可在之后的分派前选中 250 或 252。按实际进入的分派使用原场景规格。9/200 同步退役所查活动窗口，清共用槽字节。9/250、9/252 在同步退役后重建，467760 再将 C1F684 置 -1 并清 C5E968。9/204 的本处分派直接进入重建。当前两级窗口的已证退役分支及 467760 的直接清零没有另写 C1E6D4。材料复用与事实只涵盖所选调用。"
+          }
+        ],
+        "bounded_expectations": [
+          "推测。重复同号回包若在旧窗被真正析构之前发布，同一个经典 46 的旧析构会取此次发布的回调。工作转用物与用物转工作可能分别触发不同退还分支，源规格以实际读出的函数为准，不承诺每次替换的账目天然平衡。",
+          "推测。若一次 `LC=` 已减少行数但所存一级序号仍在十个物理槽内，`LHm` 仍按该槽字面类型取值。完整资料清零会令未重建的槽类型为零。该静态预期不确定服务器会否给出这样的到达顺序。",
+          "待验证。所查多个过渡的到期及取消规则见 classic_scene_and_window_queue。实际消息交错、共享资料其它别名、窗口与服务同版接受沿原用例继续取证。"
+        ],
+        "implementation_handoff": {
+          "D0": "复用经典窗口帧和活动槽，记录待退役与实际析构两次不同效果。用明确的业务归属释放本次占用。把固定样本的全局回调取值留在组合用例，目标状态对过期输入和重复退役有明确结果。",
+          "D2": "沿既有世界收包入口分离资料接收、场景发布与可提交的本地操作。换场取消旧操作和已排显示的所有者。两条单字段回包沿既有解码。",
+          "D3": "沿现有物品、普通工作目标和坐标所有者管理操作类别、来源槽、所选行及资料修订。可共用窗口和选择呈现，按业务调用各自的编码和退役。目标实现用本地操作与场景代次拒绝已失效的点击，无明确本地归属时不允许提交。同一阶段内无法由线格式辨认服务端归属的重复回复留在原验收。",
+          "D5": "三端共用下列完整操作与同一状态和请求契约，设备输入接已有宿主接口。",
+          "stage306": "交互夹具在实际用物请求、替换一级资料、工作二级活动及换场后新地图待就绪期间共送达六份 LC=/LHm。现有收包没有相应世界发布或副作用。工作目标返回及换场退役已可复用。",
+          "local_comparison": "build/analysis/fixed-se-item-target-lifecycle-v1/stage306-probe.json"
+        },
+        "proposed_acceptance": {
+          "SC-T10": "合成两份一级资料，变更同一序号的类别或使它落在清零尾部。分别检查已保存序号、一级及二级行数、读到的类别、画面刷新与点击时实际读取。保留原名称、数字和容量用例。",
+          "SC-T11": "一级、二级各覆盖首次选中、返回、取消、重复输入及真实析构。分别让旧窗在正常整理中先关闭、在同步构造中关闭及过渡到期时关闭。核每次分配、回调选择、退还顺序，沿现有消息语义检查发送。",
+          "SC-T16": "用物与急救或治疗依次在同一个 45 或 46 发布，分别记录 45 已保存回调与 46 实时回调发生的 -1、62 和用物占用分支。跟踪新资料写入与旧对象析构，不使用业务表互相替代。",
+          "SC-T17": "覆盖从 9/200 进入同步退役，与直接选择 9/250、9/252、9/204 的差异。验证保存序号、实际可点击状态、槽与字节清零及离场后迟到回复。目标在换场时保持现有会话，覆盖无本地归属时拒绝选择、旧场景数据不能重开和正常新操作。"
+        },
+        "classic_scene_and_window_queue": "analysis/capability-first-v1/game-work-functional-specification.json#/se_classic_work_transition_retirement/classic_scene_and_window_queue",
+        "original_or_target_composition_executed": false,
+        "same_version_service_verified": false
+      },
+      "selected_source_analysis_complete": true,
+      "world_business_effect_in_stage306": false,
+      "full_user_flow_specification_closed": false,
+      "same_version_server_or_three_platforms_accepted": false
+    },
+    "fixed_se_classic_directory_mini_mail": {
+      "title": "固定 SE 的目录搜索、玩家资料和迷你邮件",
+      "classification": "原版静态事实按所选样本绑定。目标用例和同版验收有各自边界。",
+      "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+      "source_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+      "source_review": "build/analysis/fixed-se-classic-directory-confirm-v1/source-review.json",
+      "report": "reports/game-static.md#fixed-se-classic-directory-mini-mail",
+      "validation": "reports/validation.md#fixed-se-classic-directory-mini-mail-validation",
+      "capabilities": [
+        "X01",
+        "X02",
+        "G01",
+        "G07",
+        "G10",
+        "G20"
+      ],
+      "receive": {
+        "id": "receive-00567d14",
+        "tag": "_&`",
+        "tag_address": "0x567d14",
+        "tag_file_offset": 1463572,
+        "tag_word_sha256": "088e58910b3e815bfd88e0d5d38f8b753c15b4ce4b026fe20adbebfed9bc0c0f",
+        "fields": [
+          "int32",
+          "int32",
+          "int32",
+          "int32",
+          "bytes"
+        ],
+        "consumer": "0x4f5c30",
+        "action": "dispatch",
+        "native_return": 0,
+        "evidence": "ev_0809b8da8d21004b16ae46167f89db08fb7148fe1a16468368bebc62cd9f374a",
+        "delegate": "0x4902a0",
+        "rule_review": "analysis/capability-first-v1/game-entry-review-contract.json#/receive_publication_review/entry_rules/18",
+        "fields_by_ordinal": [
+          "类型",
+          "掩码或资料上下文值",
+          "对话编号",
+          "参与者 ID",
+          "业务字节串"
+        ],
+        "mode_to_window": {
+          "38": 60,
+          "39": 61,
+          "40": 62
+        }
+      },
+      "related_receive": [
+        {
+          "id": "receive-00567d2c",
+          "tag": "]op",
+          "tag_address": "0x567d2c",
+          "tag_file_offset": 1463596,
+          "tag_word_sha256": "86e5b6682a9127f2a3fcbc13dbce855d84e0cfc8f233166bfd9339f9001c5f7e",
+          "fields": [
+            "bytes"
+          ],
+          "consumer": "0x4f5640",
+          "action": "dispatch",
+          "native_return": 0,
+          "evidence": "ev_0809b8da8d21004b16ae46167f89db08fb7148fe1a16468368bebc62cd9f374a"
+        },
+        {
+          "id": "receive-00567d28",
+          "tag": "^-/",
+          "tag_address": "0x567d28",
+          "tag_file_offset": 1463592,
+          "tag_word_sha256": "4b5662af3b93483f54aad68bd80f43b08701e89c409b83d76772accb327df1dd",
+          "fields": [
+            "bytes"
+          ],
+          "consumer": "0x4f5540",
+          "action": "dispatch",
+          "native_return": 0,
+          "evidence": "ev_0809b8da8d21004b16ae46167f89db08fb7148fe1a16468368bebc62cd9f374a"
+        },
+        {
+          "id": "receive-00567d24",
+          "tag": "^/`",
+          "tag_address": "0x567d24",
+          "tag_file_offset": 1463588,
+          "tag_word_sha256": "0306c6899613d1abc5d604166e88d045ab8ae345f6884552dc31ed714d1c7eba",
+          "fields": [
+            "bytes"
+          ],
+          "consumer": "0x4f5b80",
+          "action": "dispatch",
+          "native_return": 0,
+          "evidence": "ev_0809b8da8d21004b16ae46167f89db08fb7148fe1a16468368bebc62cd9f374a"
+        },
+        {
+          "id": "receive-00567d10",
+          "tag": "_EP",
+          "tag_address": "0x567d10",
+          "tag_file_offset": 1463568,
+          "tag_word_sha256": "39eab39ed63dc37e436e058c842f07a681a850ec13ed359f83ed3f1a9d6eeb63",
+          "fields": [
+            "bytes"
+          ],
+          "consumer": "0x4f5c80",
+          "action": "dispatch",
+          "native_return": 0,
+          "evidence": "ev_0809b8da8d21004b16ae46167f89db08fb7148fe1a16468368bebc62cd9f374a"
+        }
+      ],
+      "directory": "analysis/capability-first-v1/game-communication-functional-specification.json#/fixed_se_player_profile_wire/directory_publication",
+      "body_fields": {
+        "0x26": "整段先走 511000。按 FC8B20 读排序名册标志，bit0 和 bit1 分给同物理行的贩卖及购买表，然后按 FC8B24 读描述表标志 bit0。每组写行 +0x10C，缓存行长 0x110。界面活动字与选择标志各有独立读取。",
+        "0x27": {
+          "head": [
+            "FC54A0",
+            "FC54A4"
+          ],
+          "rows": "先清 20 条活动字，再写两个头值。至多 20 行，每行依次两个十进制值、两段文本。第一个值为 -1 时停止。布局为活动 +0、名称 +4、两数 +0x104/+0x108、说明 +0x10C，步长 0x20C。"
+        },
+        "0x28": {
+          "token_destinations_1_to_14": [
+            "FC7DE8",
+            "FC7DF0",
+            "FC7EF0",
+            "FC7FF8",
+            "FC7EF8",
+            "FC80F8",
+            "FC7EF4",
+            "FC81F8",
+            "FC8200",
+            "FC8300",
+            "FC8308",
+            "FC8408",
+            "FC8410",
+            "FC8510"
+          ],
+          "numeric_ordinals": [
+            1,
+            3,
+            7,
+            8,
+            10,
+            12
+          ],
+          "recipient_fields": [
+            1,
+            2
+          ],
+          "category_graphics": "第 10 与第 8 项分别按模式 0、第 12 项按模式 1 查 5180F0。三个资源格先写 0x3C0F0，再按查找结果更换。其它业务命名继续沿真实显示或调用证据。"
+        }
+      },
+      "send": {
+        "id": "send-004f8240",
+        "tag": "/1I",
+        "tag_address": "0x567bcc",
+        "tag_file_offset": 1463244,
+        "tag_word_sha256": "ee2f54a19275db06c548d922b8f3e82d404bb4127acaa4aec9bcce09a1ce76ba",
+        "fields": [
+          "int32",
+          "int32",
+          "int32",
+          "int32",
+          "int32",
+          "bytes"
+        ],
+        "producer": "0x4f8240",
+        "evidence": "ev_40d478fc8b87549dbe1a354fa24dab98ca7f2182a7eead628c6aa84b0b4a8666",
+        "fields_by_ordinal": [
+          "当前逻辑 X",
+          "当前逻辑 Y",
+          "对话编号",
+          "参与者 ID",
+          "按钮值",
+          "已按对应业务构造的内层字节串"
+        ],
+        "classic_buttons": [
+          {
+            "window": 60,
+            "control": "79–157, 依实际活动位和类型",
+            "value": 0,
+            "inner_source": "%d|%d|"
+          },
+          {
+            "window": 61,
+            "control": "3/4/5",
+            "value_by_control": [
+              1,
+              16,
+              32
+            ],
+            "inner_source": "%d|%d|%s"
+          },
+          {
+            "window": 61,
+            "control": "48–67",
+            "value": 4,
+            "inner_source": "%d|%s"
+          },
+          {
+            "window": 63,
+            "control": 2,
+            "value": 8,
+            "inner_source": "%d|%s|%s|%d",
+            "last_integer": 0
+          }
+        ]
+      },
+      "retained_fact_references": [
+        "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/facts/8",
+        "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/facts/9",
+        "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/facts/10",
+        "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/facts/11",
+        "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/facts/12",
+        "analysis/capability-first-v1/game-service-invalidation-contract.json#/service_receiver_consumers/facts/13"
+      ],
+      "role_corrections": [
+        "G10 使用同一 /1I 对话包装，G20 拥有迷你邮件提交和历史，G07 提供字节编辑。目录和资料视图复用人物资料已核规则。旧 G14 仅留作相邻候选，没有证明这里需要好友关系。",
+        "0x26 选择、0x27 检索、0x28 资料为客户端消费及按钮语义。目录选择或其他查询到特定回复的配对，按实际服务证据验收。",
+        "发送后本地历史方向 1 表示当前客户端的发信方向。_EP 沿已有方向比较规则接收，不能仅凭本地历史或相关字段补造发送方成功回执。"
+      ],
+      "facts": [
+        {
+          "id": "SC-22",
+          "classification": "事实",
+          "subject": "目录、名单与资料的回包及顺序",
+          "entries": [
+            "0x4f5c30",
+            "0x4902a0",
+            "0x4b64d0",
+            "0x4b69c0",
+            "0x4b72f0"
+          ],
+          "clauses": [
+            "先判 924F30，再判 C5EC18，两者均为零才以 9250C8 经 4034D0 读取，返回 0 才委派。保留上游四个 int32 和一段 bytes 的已有格式。",
+            "4902A0 先按当前模式、收到的对话编号和新类型处理同步组清理，再发布类型、掩码或内部上下文值、对话编号、参与者 ID，并快照本机逻辑坐标。0x26、0x27、0x28 分别先写资料后请求经典 60、61、62。其他类型仍写公共上下文，所选体无这三类窗的构造。"
+          ]
+        },
+        {
+          "id": "SC-23",
+          "classification": "事实",
+          "subject": "目录选择、关键词与资料名单绑定",
+          "entries": [
+            "0x4b6830",
+            "0x4b7ac0",
+            "0x4b7b30",
+            "0x4b6d80",
+            "0x4b7050",
+            "0x4b7220"
+          ],
+          "clauses": [
+            "窗 60 所证目录控件 79–110、111–142、143–157 读三组原表。4B7AC0 从控件序号算组及行，检查该行 +0x10C 非零。4B7B30 从同一行 +4 取真实编号，三组的 kind 为 0、1、2。三组首个原记录索引依次为 1、1、1，首记录地址为 FC8C3C、FCF56C+0x110、FD5FAC+0x110。结果行序与表的物理行序绑定。",
+            "窗 60 组装 kind|目录编号|，对整段用 511180 的 255 字节预算，发 /1I 按钮 0，发送后从默认字串恢复关键词 FDEA90。",
+            "窗 61 控件 3、4、5 为关键词查找、上一页、下一页，请求按钮分别为 1、0x10、0x20。每种使用 FC54A0、FC54A4 和经 511060 以 0x100 为预算预转义的关键词，按两数加关键词构成正文后再对整段以 0xFF 为预算转义。控件 7 负责关键词输入焦点。",
+            "窗 61 的 48–67 号控件映射原名单第 0–19 行。提交用该条的第一个数与名字构成两字段，再作整段转义，发 /1I 按钮 4。0x565000 的界面文字指向查看此名玩家的资料。所查按钮中共用 X/Y、对话编号与参与者 ID，具体服务配对继续沿原用例。"
+          ]
+        },
+        {
+          "id": "SC-24",
+          "classification": "事实",
+          "subject": "玩家资料页至迷你邮件编辑",
+          "entries": [
+            "0x4b72f0",
+            "0x4b7980",
+            "0x468190",
+            "0x4b7be0",
+            "0x4b7c60",
+            "0x4b7fa0"
+          ],
+          "clauses": [
+            "窗 62 的正文第 1 项、第 2 项写 FC7DE8、FC7DF0，所查点击回调按有符号金币 F53624 比较迷你邮件费 FC8B28。0x565028 是 GBK 可解的迷你邮件发信费用提示。金币等于费用可以继续，低于费用只走反馈 0x37。",
+            "合资格时复制收件人编号和名称到 FC8610、FC8614，以默认 NUL 字串初始化 FC8714，再同步请求 468190(63)。窗 62、63 均为组 1。构造入口先清掩码 2 匹配的其他组，再处理已有窗 63 或分配。已有同号活动对象时请求 0x2000 重排并返回该对象。构造返回不作本段的成功回执。",
+            "实际新窗的 -1 初始化按 FC8610 与 C5E220 是否相等选编辑模式 1 或 0。两者不同的模式 0 经 443AB0 清 C15880 首字节、长度和光标，模式 1 走 455290 设置位置与编辑参数。初始化随后把 C15880 设为输入目标并记录输入控件到 C4BE9C，清 55E080 首字节并写 C5E220 为收件人。后续帧更新收件人名称、编辑位置和八位费用图形，控件 1 可重取焦点。",
+            "构造后窗 63 的收件人取已暂存编号和名字。发请求所用坐标和对话/参与者字段取发送时原变量。当前费用用于窗 63 的显示，费用和金币的比较只在所查进入路径。"
+          ]
+        },
+        {
+          "id": "SC-25",
+          "classification": "事实",
+          "subject": "确认的两层正文与现有包",
+          "entries": [
+            "0x4b7d30",
+            "0x511060",
+            "0x511180",
+            "0x4f8240"
+          ],
+          "clauses": [
+            "控件 2 的事件位 0x02 才进行提交，控件 3–11 即使复用回调地址也先按序号返回。C15880 首字节为零时只播放 0x37。非空分支不再复查金币余额或编辑焦点身份。",
+            "对已暂存收件人名及当前编辑正文分别用 511060，含终止预算分别为 0x100 和 0x400。然后组装十进制收件人编号、已转义名称、已转义正文、末尾十进制 0，中间用竖线。511180 在该样本经 507690 的单指令返回，再对整串做 0x3FF 预算的 511060。",
+            "内层已证字节映射为 LF/逗号/竖线/反斜线至反斜线加 n/c/z/y。依源函数给 NUL 留位置，边界内双字节成对写，独立的 0xFF 被跳过。内层 0x3FF 的最大内容为 1022 字节。现有普通 reply helper 有 254 字节上限，复用规则时保留各自预算。最终沿 4F8240 对外层再转义并发送 /1I(X,Y,对话编号,参与者ID,8,内层结果)。"
+          ]
+        },
+        {
+          "id": "SC-26",
+          "classification": "事实",
+          "subject": "发送之后的本地历史与退役",
+          "entries": [
+            "0x4b7d30",
+            "0x518170",
+            "0x5181c0",
+            "0x4b8030",
+            "0x49fdd0",
+            "0x4678a0",
+            "0x467fc0"
+          ],
+          "clauses": [
+            "先调用 4F8240，之后以 FC8610 查 20 条迷你联系人，活动字为 1 且同 ID 取首条。找到时取本机日期与时间，按 5181C0 写方向 1，本地历史用未转义编辑正文，移动旧九行并写新首行，未读为 0。未找到时跳过追加，仍走相同标记和输入清理。",
+            "4B8030 参数 2、3、4 分别绑定经典窗 61、62、63 的活动指针。存在时仅 OR 0x8000。提交顺序是调用 4B8030(3)、(4)，播放反馈 0x4E、清 C15880 首字节、写 C5E220 为 -1。标记与帧整理后的实际销毁是两个时点。",
+            "窗 60、61、62 的析构分别按 2/3/4、3/4、4 标记后续窗并写公共类型 -1。窗 63 自身的 4678A0 只返回 1。其通用类型 5 控件释放仅在所持输入指针等于 C4BE9C 时调用 49A130 的既有焦点恢复。",
+            "取消由窗 63 的控件 0 经 49FDD0 在事件位 0x02 时直接标记当前对象 0x8000、播放 0x39。所查取消路径不发包且未显式清 C15880、C5E220 或标记父窗。已实际销毁后再新建，同一收件人仍走模式 1；更换收件人走模式 0。通用焦点释放和实际输入法表现仍按各宿主验证。"
+          ]
+        }
+      ],
+      "source_inferences": [
+        "若牌价或余额在窗 62 允许打开至窗 63 点击之间变化，所选发送体仍只按正文前置条件执行。服务端收费或拒绝取实际结果。",
+        "重复打开同一活动窗 63 时，构造函数可能复用对象且不走 -1 初始化。收件人槽已经在前页写入，后续帧读它，编辑目标是否重置依实际构造或焦点路径。",
+        "切换活动窗期间旧析构会无条件写公共类型 -1。仅按既有帧次序与所选对象的先后验收，避免把标记和同步关闭当成同一步。"
+      ],
+      "proposed_acceptance": [
+        {
+          "id": "SC-T12",
+          "rule": "各取不同类型、掩码、编号和参与者。覆盖三段接收门槛的短路、回城期间、目录缩表和选择三组首末控件。分别核三组活动位、返回值、按钮和上下文。",
+          "executed": false
+        },
+        {
+          "id": "SC-T13",
+          "rule": "核关键词输入消失恢复、两级正文分隔、缺字段/空行、GBK 双字节及边界预算。分别核组号 1 到 63 同步和已有窗复用。",
+          "executed": false
+        },
+        {
+          "id": "SC-T14",
+          "rule": "费用低于、等于及高于余额，窗 63 打开后费用或钱包变化、空正文、确认与相邻控件。分别核按钮 8 真实整型顺序、嵌套字节和本机历史的原字节。",
+          "executed": false
+        },
+        {
+          "id": "SC-T15",
+          "rule": "用有联系/缺联系人和已满十行、取消、晚到与重开验证历史写回和窗 61/62/63 各退役时点、非当前输入的焦点恢复及服务收费/最终投递。",
+          "executed": false
+        }
+      ],
+      "implementation": {
+        "stage306_probe": "build/analysis/fixed-se-classic-directory-confirm-v1/stage306-probe.json",
+        "reuse": [
+          "shared/legacy-game-protocol.mjs",
+          "shared/legacy-game-message.mjs",
+          "shared/legacy-game-state.mjs",
+          "shared/legacy-game-map-dialog.mjs",
+          "shared/legacy-game-input.mjs",
+          "shared/legacy-game-frame.mjs"
+        ],
+        "existing_shared_rules": [
+          "analysis/capability-first-v1/window-engine-contract.json",
+          "analysis/capability-first-v1/game-text-editing-contract.json",
+          "analysis/capability-first-v1/game-mail-data-contract.json",
+          "analysis/capability-first-v1/game-communication-functional-specification.json#/fixed_se_player_profile_wire/directory_publication"
+        ],
+        "differences": [
+          {
+            "batch": "D3",
+            "work": "接普通世界的目录及名单至已有来源和对话状态。复用外层编解码、现有坐标与内层转义映射，共用一次实际目录、搜索及迷你邮件接线。提供逐阶段的字节预算和本地历史，保持 G20 的发送/退役与服务结果关联。"
+          },
+          {
+            "batch": "D0",
+            "work": "复用已登记的窗组构造与焦点生命周期。由现有输入端口支持关键词与迷你编辑实际切换。目标边界检查和合法的迟到策略沿已有上下文身份规则。"
+          },
+          {
+            "batch": "D5/D6",
+            "work": "三端沿同一场景验证真实编辑、选择、支付前门槛、发送后本地历史及退役；服务扣款、拒绝、投递与同版通信沿 MM-R1 和原受方用例。"
+          }
+        ]
+      },
+      "remaining": [
+        "实际服务如何关联目录/关键词/名单查询与具体回复，正文未命名字段，真实投递或扣款以及附件意外变动仍待适用证据。",
+        "活动窗复用与场景切换交错的运行结果，窗 63 独立焦点、来源版本边界及三端实装仍待验。"
+      ],
+      "selected_source_analysis_complete": true,
+      "world_business_effect_in_stage306": false,
+      "full_user_flow_specification_closed": false,
+      "same_version_server_or_three_platforms_accepted": false
+    }
+  },
+  "state_consumer_closure": {
+    "specification": {
+      "path": "build/analysis/state-consumer-closure-v1/specification.json",
+      "bytes": 56668,
+      "sha256": "e255f8921bdfe67aab2a5f9dc5ba63ca85ae002792bdccea49f1d75f35191569"
+    },
+    "source_inputs": {
+      "path": "build/analysis/state-consumer-closure-v1/source-inputs.json",
+      "bytes": 21344,
+      "sha256": "26242ab14b79b2acde65910f8744b5713479f3f2ea3833ada05a055ef7cba71f"
+    },
+    "source_summary": {
+      "views": 16,
+      "new_native": 1,
+      "reused_complete_native": 7,
+      "reused_derived": 8,
+      "body_ranges": 16,
+      "body_bytes": 5857,
+      "derived_instructions": 682,
+      "source_fact_groups": 9,
+      "direct_E8_calls_verified": 176,
+      "classic_descriptors": 2,
+      "selected_control_rows": 2,
+      "new_xref_observations": 3,
+      "native_non_CALL_bytes_individually_redecoded": false,
+      "new_product_protocol_fields": 0
+    },
+    "validation_record_path": "build/analysis/state-consumer-closure-v1/validation.json",
+    "scope": "Result slot publication/positive battle producer/classic30-31, manual reply state assignment, one work counter decrement and one configuration pool; full40 scope retained.",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "contract": "analysis/capability-first-v1/game-entry-review-contract.json",
+    "source_check": "analysis/capability-first-v1/game-entry-review-source-check.json",
+    "resolved_subordinate_body": "0x4706e0",
+    "full_global_work_accounting_closed": false
+  },
+  "state_owner_rules": {
+    "specification": {
+      "path": "build/analysis/state-owner-rules-v1/specification.json",
+      "bytes": 91547,
+      "sha256": "29982c605be8e30b2125162c6fa752dc6170e1860bfa657720af72fca02c3bf0"
+    },
+    "source_inputs": {
+      "path": "build/analysis/state-owner-rules-v1/source-inputs.json",
+      "bytes": 20597,
+      "sha256": "5997cbb33bcdebfda77e34db6e100b1fad6b14ccac8d160e5963b30493fc4bc1"
+    },
+    "source_summary": {
+      "views": 22,
+      "new_native_views": 2,
+      "reused_complete_native_views": 17,
+      "reused_derived_views": 2,
+      "original_opcode_views": 1,
+      "body_ranges": 22,
+      "body_bytes": 7569,
+      "derived_instructions": 383,
+      "new_analyze_observations": 3,
+      "duplicate_existing_parent_observations": 1,
+      "new_xref_observations": 2,
+      "fact_groups": 10,
+      "direct_E8_CALLs_verified": 279,
+      "exact_restore_reference_sites": 19,
+      "new_product_protocol_fields": 0,
+      "all_native_nonCALL_independently_redecoded": false
+    },
+    "validation_record_path": "build/analysis/state-owner-rules-v1/validation.json",
+    "contract": "analysis/capability-first-v1/game-entry-review-contract.json",
+    "source_check": "analysis/capability-first-v1/game-entry-review-source-check.json",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "counter_helpers": {
+      "reset": "0x4706c0",
+      "increment": "0x4706d0",
+      "decrement": "0x4706e0"
+    },
+    "resolved_previous_interior_selector": {
+      "requested": "0x4706b0",
+      "parent": "0x470660"
+    },
+    "full_work_count_balance_accepted": false
+  },
+  "ordinary_action_workflows": {
+    "specification": {
+      "path": "build/analysis/ordinary-action-workflows-v1/specification.json",
+      "bytes": 153162,
+      "sha256": "f66eb8e6d2b05a3531a0745ff047779c5906d4b5b58ab92f5a0caf0f34160368"
+    },
+    "source_inputs": {
+      "path": "build/analysis/ordinary-action-workflows-v1/source-inputs.json",
+      "bytes": 25809,
+      "sha256": "7a66ae82ace644755058f5dc7192d005cbb1def566ca160705c0fecb31627708"
+    },
+    "source_summary": {
+      "views": 37,
+      "reused_complete_native_views": 24,
+      "reused_derived_views": 12,
+      "original_opcode_views": 1,
+      "new_native_queries": 0,
+      "body_ranges": 37,
+      "body_bytes": 26529,
+      "derived_instructions": 3133,
+      "fact_groups": 10,
+      "direct_E8_CALLs_verified": 523,
+      "keyboard_request_bindings": 4,
+      "classic_descriptor_bindings": 3,
+      "supplemental_old_research_entries_scanned": 27,
+      "supplemental_old_instructions_verified": 8892,
+      "supplemental_old_instruction_bytes_verified": 31250,
+      "new_product_protocol_fields": 0,
+      "all_native_nonCALL_independently_redecoded": false
+    },
+    "validation_record_path": "build/analysis/ordinary-action-workflows-v1/validation.json",
+    "contract": "analysis/capability-first-v1/game-entry-review-contract.json",
+    "source_check": "analysis/capability-first-v1/game-entry-review-source-check.json",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "selected_classic_counter_lifecycle_bound": true,
+    "phase0_late_gather_result_can_display": true,
+    "global_failure_reentry_or_alternate_flow_closed": false
+  },
+  "alternate_work_unification": {
+    "specification": {
+      "path": "build/analysis/alternate-work-unification-v1/specification.json",
+      "bytes": 172070,
+      "sha256": "f601a2755ad77f51d1239ba9b8ffd9228b9fc748e3586583300fce1cda98774c"
+    },
+    "source_inputs": {
+      "path": "build/analysis/alternate-work-unification-v1/source-inputs.json",
+      "bytes": 20540,
+      "sha256": "d949d07a5d2fb54f2f7c55756d949e9068f48d5897b39a573e233b9e876cd8fb"
+    },
+    "source_summary": {
+      "views": 35,
+      "reused_complete_native_views": 4,
+      "reused_derived_views": 30,
+      "original_instruction_views": 1,
+      "new_native_queries": 0,
+      "body_ranges": 39,
+      "body_bytes": 38130,
+      "derived_instructions": 10598,
+      "fact_groups": 11,
+      "direct_E8_CALLs_verified": 619,
+      "level_literal_instruction_sites": 18,
+      "explicit_byte_writes": 4,
+      "modern_table_rows_verified": 16,
+      "new_product_protocol_fields": 0,
+      "all_native_nonCALL_independently_redecoded": false
+    },
+    "validation_record_path": "build/analysis/alternate-work-unification-v1/validation.json",
+    "contract": "analysis/capability-first-v1/game-entry-review-contract.json",
+    "source_check": "analysis/capability-first-v1/game-entry-review-source-check.json",
+    "conditional_alternate_activation_unproved": true,
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "remaining_required_groups": [
+      {
+        "id": "AW-GAP-01",
+        "need": "Actualalternate active/inactive dispatcher/registration/moduleedge andrequirements relevance; do not repeat prior97 zeroresult scan orrecursively expand allhelpers.",
+        "next_entries": []
+      },
+      {
+        "id": "AW-GAP-02",
+        "need": "Other original40-domain source/version/host requirements continue; conditionalmodernbranch detail waitsforpositiveactivation evidence. Fullcaller/error/reentry domains andrealplatform/currentofficialacceptance notpassed.",
+        "next_entries": []
+      }
+    ],
+    "analysis_stop_for_unadmitted_alternate_guard_expansion": true
+  }
+}

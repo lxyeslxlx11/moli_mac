@@ -1,0 +1,18 @@
+$$ Original fixed x86 fixture only. SHA256 01588841278dcb7360c91333f0f7c5ec81aec84625ca274be54ad9011aaf10eb.
+$$ Use the SDK x86 debugger for this x86 target. Keep ASLR enabled.
+$$ Only executable-entry metadata and instruction-pointer RVAs are read.
+n 16
+.expr /s masm
+r $t0 = @$exentry-0x1270
+.echo MOLI_FIXTURE_BEGIN
+.printf "MOLI_FIXTURE_BASE|%p\n", @$t0
+lm m moli*
+bp @$t0+0x102f ".printf \"MOLI_META|GetCommandLineW|%x\\n\", @eip-@$t0; gc"
+bp @$t0+0x1137 ".printf \"MOLI_META|CreateFileMappingW|%x\\n\", @eip-@$t0; gc"
+bp @$t0+0x1192 ".printf \"MOLI_META|OpenFileMappingW|%x\\n\", @eip-@$t0; gc"
+bp @$t0+0x11e5 ".printf \"MOLI_META|MapViewOfFile|%x\\n\", @eip-@$t0; gc"
+bp @$t0+0x1236 ".printf \"MOLI_META|UnmapViewOfFile|%x\\n\", @eip-@$t0; gc"
+bp @$t0+0x1249 ".printf \"MOLI_META|CloseHandle|%x\\n\", @eip-@$t0; gc"
+bp @$t0+0x1259 ".printf \"MOLI_META|CloseHandle|%x\\n\", @eip-@$t0; gc"
+sxe -c ".lastevent; g" epr
+g

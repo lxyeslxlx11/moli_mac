@@ -1,0 +1,502 @@
+{
+  "sample": {
+    "name": "POLCN_Launcher.unpacked.exe",
+    "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "bytes": 1735168
+  },
+  "scope": "One bounded static readiness increment before410c80/410d10. No target execution, VM, network or runtime values.",
+  "sources": {
+    "cached_disassembly": "/tmp/moli-analysis/launch-v3/launcher.asm",
+    "method": "GNU objdump2.47.20260726 cached instructions plus independent fixed-sample PE32/relative-target checks",
+    "rea_context": "Existing REA6.7/Ghidra12.1.4 cache; prior high-pcode truncated; no new full analysis"
+  },
+  "dialog": {
+    "type": 5,
+    "name": 133,
+    "language": 2052,
+    "payload_va": "0x5af6c8",
+    "file_offset": "0x1a46c8",
+    "bytes": 1016,
+    "sha256": "e297cbefcf050bacfa668feb4f4b6f8da710012f0668dafb256de2526d26170d",
+    "control": {
+      "index": 16,
+      "id": 1029,
+      "relative_offset": 752,
+      "label_relative_offset": 780,
+      "style": 1476468739,
+      "class": {
+        "ordinal": 128
+      },
+      "label": "仅刷新通行证",
+      "record_bytes": 44
+    },
+    "control_file_offset": "0x1a49b8",
+    "label_file_offset": "0x1a49d4"
+  },
+  "dialog_validation_dependency": "Existing fixed dialog/hash and405 control reused by unchanged verifier; three selected readiness controls separately checked below.",
+  "anchors": [
+    {
+      "id": "member_alias",
+      "va": "0x401054",
+      "file_offset": "0x454",
+      "expected_hex": "81c11c010000"
+    },
+    {
+      "id": "member_constructor",
+      "va": "0x40105a",
+      "file_offset": "0x45a",
+      "expected_hex": "e831ec0000",
+      "target": "0x40fc90"
+    },
+    {
+      "id": "initial_ui_stage_zero",
+      "va": "0x410892",
+      "file_offset": "0xfc92",
+      "expected_hex": "c7826809000000000000"
+    },
+    {
+      "id": "root_alias_set_three",
+      "va": "0x404ba6",
+      "file_offset": "0x3fa6",
+      "expected_hex": "c782840a000003000000"
+    },
+    {
+      "id": "readiness_compare_five",
+      "va": "0x410c8b",
+      "file_offset": "0x1008b",
+      "expected_hex": "83b86809000005"
+    },
+    {
+      "id": "readiness_signed_gte",
+      "va": "0x410c92",
+      "file_offset": "0x10092",
+      "expected_hex": "7d66",
+      "target": "0x410cfa"
+    },
+    {
+      "id": "state_two_compare",
+      "va": "0x410c97",
+      "file_offset": "0x10097",
+      "expected_hex": "83b96809000002"
+    },
+    {
+      "id": "state_two_skip_metadata",
+      "va": "0x410cd9",
+      "file_offset": "0x100d9",
+      "expected_hex": "83bc86d400000000"
+    },
+    {
+      "id": "state_two_metadata_positive",
+      "va": "0x410ce1",
+      "file_offset": "0x100e1",
+      "expected_hex": "7f15",
+      "target": "0x410cf8"
+    },
+    {
+      "id": "state_two_increment",
+      "va": "0x410cec",
+      "file_offset": "0x100ec",
+      "expected_hex": "83c201"
+    },
+    {
+      "id": "state_two_write",
+      "va": "0x410cf2",
+      "file_offset": "0x100f2",
+      "expected_hex": "899068090000"
+    },
+    {
+      "id": "launch_data_exchange",
+      "va": "0x410cff",
+      "file_offset": "0x100ff",
+      "expected_hex": "e8e8ae0100",
+      "target": "0x42bbec"
+    },
+    {
+      "id": "launch_call",
+      "va": "0x410d10",
+      "file_offset": "0x10110",
+      "expected_hex": "e8eb6cffff",
+      "target": "0x407a00"
+    },
+    {
+      "id": "postlaunch_stage_three",
+      "va": "0x410d52",
+      "file_offset": "0x10152",
+      "expected_hex": "c7816809000003000000"
+    },
+    {
+      "id": "next_message_entry",
+      "va": "0x4b46d8",
+      "file_offset": "0xb38d8",
+      "expected_hex": "1101000000000000010000000100000039000000f00d4100"
+    },
+    {
+      "id": "list_double_click_entry",
+      "va": "0x4b4708",
+      "file_offset": "0xb3908",
+      "expected_hex": "1101000002000000f4030000f403000039000000b0254100"
+    },
+    {
+      "id": "back_message_entry",
+      "va": "0x4b4720",
+      "file_offset": "0xb3920",
+      "expected_hex": "1101000000000000f1030000f103000039000000d0254100"
+    },
+    {
+      "id": "list_to_next_wrapper",
+      "va": "0x4125ba",
+      "file_offset": "0x119ba",
+      "expected_hex": "e831e8ffff",
+      "target": "0x410df0"
+    },
+    {
+      "id": "forward_stage_read",
+      "va": "0x410ec4",
+      "file_offset": "0x102c4",
+      "expected_hex": "8b9168090000"
+    },
+    {
+      "id": "forward_range_branch",
+      "va": "0x410ed7",
+      "file_offset": "0x102d7",
+      "expected_hex": "0f8744110000",
+      "target": "0x412021"
+    },
+    {
+      "id": "forward_table_dispatch",
+      "va": "0x410ee3",
+      "file_offset": "0x102e3",
+      "expected_hex": "ff248540204100"
+    },
+    {
+      "id": "forward_table",
+      "va": "0x412040",
+      "file_offset": "0x11440",
+      "expected_hex": "ea0e4100ac114100401d4100ee144100e11b4100"
+    },
+    {
+      "id": "stage_zero_increment",
+      "va": "0x411182",
+      "file_offset": "0x10582",
+      "expected_hex": "83c001"
+    },
+    {
+      "id": "stage_zero_write",
+      "va": "0x41118b",
+      "file_offset": "0x1058b",
+      "expected_hex": "898168090000"
+    },
+    {
+      "id": "stage_zero_advance",
+      "va": "0x411197",
+      "file_offset": "0x10597",
+      "expected_hex": "e8e4faffff",
+      "target": "0x410c80"
+    },
+    {
+      "id": "stage_one_increment",
+      "va": "0x41130e",
+      "file_offset": "0x1070e",
+      "expected_hex": "83c101"
+    },
+    {
+      "id": "stage_one_write",
+      "va": "0x411317",
+      "file_offset": "0x10717",
+      "expected_hex": "898a68090000"
+    },
+    {
+      "id": "stage_one_advance",
+      "va": "0x411323",
+      "file_offset": "0x10723",
+      "expected_hex": "e858f9ffff",
+      "target": "0x410c80"
+    },
+    {
+      "id": "stage_four_increment",
+      "va": "0x411d21",
+      "file_offset": "0x11121",
+      "expected_hex": "83c001"
+    },
+    {
+      "id": "stage_four_write",
+      "va": "0x411d2a",
+      "file_offset": "0x1112a",
+      "expected_hex": "898168090000"
+    },
+    {
+      "id": "stage_four_advance",
+      "va": "0x411d36",
+      "file_offset": "0x11136",
+      "expected_hex": "e845efffff",
+      "target": "0x410c80"
+    },
+    {
+      "id": "stage_two_forward_increment",
+      "va": "0x411e55",
+      "file_offset": "0x11255",
+      "expected_hex": "83c101"
+    },
+    {
+      "id": "stage_two_forward_write",
+      "va": "0x411e5e",
+      "file_offset": "0x1125e",
+      "expected_hex": "898a68090000"
+    },
+    {
+      "id": "stage_two_forward_advance",
+      "va": "0x411e6a",
+      "file_offset": "0x1126a",
+      "expected_hex": "e811eeffff",
+      "target": "0x410c80"
+    },
+    {
+      "id": "callback_member_this",
+      "va": "0x41a046",
+      "file_offset": "0x19446",
+      "expected_hex": "051c010000"
+    },
+    {
+      "id": "callback_advance_call",
+      "va": "0x41a04d",
+      "file_offset": "0x1944d",
+      "expected_hex": "e80e80ffff",
+      "target": "0x412060"
+    },
+    {
+      "id": "callback_increment",
+      "va": "0x4120ac",
+      "file_offset": "0x114ac",
+      "expected_hex": "83c101"
+    },
+    {
+      "id": "callback_write",
+      "va": "0x4120b2",
+      "file_offset": "0x114b2",
+      "expected_hex": "898a68090000"
+    },
+    {
+      "id": "callback_to_gate",
+      "va": "0x4120bb",
+      "file_offset": "0x114bb",
+      "expected_hex": "e8c0ebffff",
+      "target": "0x410c80"
+    },
+    {
+      "id": "back_state_minus_one",
+      "va": "0x412641",
+      "file_offset": "0x11a41",
+      "expected_hex": "83e901"
+    },
+    {
+      "id": "back_table_dispatch",
+      "va": "0x412654",
+      "file_offset": "0x11a54",
+      "expected_hex": "ff24951c274100"
+    },
+    {
+      "id": "back_table",
+      "va": "0x41271c",
+      "file_offset": "0x11b1c",
+      "expected_hex": "5b2641007d2641009c264100d9264100f8264100"
+    },
+    {
+      "id": "back_from_three_write",
+      "va": "0x4126ab",
+      "file_offset": "0x11aab",
+      "expected_hex": "898a68090000"
+    },
+    {
+      "id": "back_adjust_helper",
+      "va": "0x4126b4",
+      "file_offset": "0x11ab4",
+      "expected_hex": "e8b7e6ffff",
+      "target": "0x410d70"
+    },
+    {
+      "id": "back_state_two_subtract",
+      "va": "0x410ddc",
+      "file_offset": "0x101dc",
+      "expected_hex": "83ea01"
+    },
+    {
+      "id": "back_state_two_write",
+      "va": "0x410de2",
+      "file_offset": "0x101e2",
+      "expected_hex": "899068090000"
+    },
+    {
+      "id": "additional_forward_caller",
+      "va": "0x413e9d",
+      "file_offset": "0x1329d",
+      "expected_hex": "e84ecfffff",
+      "target": "0x410df0"
+    }
+  ],
+  "field_alias": {
+    "ui_offset": "0x968",
+    "parent_member_offset": "0x11c",
+    "parent_offset": "0xa84"
+  },
+  "ui_controls": [
+    {
+      "index": 0,
+      "id": 1,
+      "relative_offset": 44,
+      "label_relative_offset": 72,
+      "style": 1342242827,
+      "class": {
+        "ordinal": 128
+      },
+      "label": "下一步",
+      "record_bytes": 38
+    },
+    {
+      "index": 2,
+      "id": 1009,
+      "relative_offset": 120,
+      "label_relative_offset": 148,
+      "style": 1476460555,
+      "class": {
+        "ordinal": 128
+      },
+      "label": "上一步",
+      "record_bytes": 38
+    },
+    {
+      "index": 4,
+      "id": 1012,
+      "relative_offset": 216,
+      "label_relative_offset": 244,
+      "style": 1344340321,
+      "class": {
+        "ordinal": 131
+      },
+      "label": "",
+      "record_bytes": 32
+    }
+  ],
+  "message_entries": [
+    {
+      "va": "0x4b46d8",
+      "fields_message_notification_first_id_last_id_signature_handler": [
+        "0x111",
+        "0x0",
+        "0x1",
+        "0x1",
+        "0x39",
+        "0x410df0"
+      ]
+    },
+    {
+      "va": "0x4b4708",
+      "fields_message_notification_first_id_last_id_signature_handler": [
+        "0x111",
+        "0x2",
+        "0x3f4",
+        "0x3f4",
+        "0x39",
+        "0x4125b0"
+      ]
+    },
+    {
+      "va": "0x4b4720",
+      "fields_message_notification_first_id_last_id_signature_handler": [
+        "0x111",
+        "0x0",
+        "0x3f1",
+        "0x3f1",
+        "0x39",
+        "0x4125d0"
+      ]
+    }
+  ],
+  "forward_table": {
+    "0": "0x410eea",
+    "1": "0x4111ac",
+    "2": "0x411d40",
+    "3": "0x4114ee",
+    "4": "0x411be1"
+  },
+  "back_table_after_subtract_one": {
+    "1": "0x41265b",
+    "2": "0x41267d",
+    "3": "0x41269c",
+    "4": "0x4126d9",
+    "5": "0x4126f8"
+  },
+  "conclusions": [
+    {
+      "kind": "fact",
+      "confidence": "high fixed sample",
+      "text": "UI+968 is initialized to0 at410892; parent+a84 alias can independently be assigned3 at404ba6 under prior configuration predicates. Do not claim every launch starts at0."
+    },
+    {
+      "kind": "fact",
+      "confidence": "high machine control flow",
+      "text": "410c8b compares signed stage with5, 410c92 jge enters410cfa->410cff data exchange->410d10 launch. If returned normally,410d52 sets stage3. It is a stage integer, not a ready boolean."
+    },
+    {
+      "kind": "fact",
+      "confidence": "high static data and resource binding",
+      "text": "Message table maps WM_COMMAND ID1 notification0 to410df0; RT_DIALOG133 ID1 label下一步. ID3f1 label上一步 maps4125d0. Listbox ID3f4 notification2 maps4125b0 wrapper, which calls410df0."
+    },
+    {
+      "kind": "fact",
+      "confidence": "high bounded branch mapping",
+      "text": "410df0 dispatches stage0..4 via412040. Successful paths for0/1/2/4 increment then call410c80. Each has early exits; stage3 at4114ee has no synchronous +968 write/direct410c80 call in this bounded function."
+    },
+    {
+      "kind": "fact",
+      "confidence": "high local instructions; metadata role unknown",
+      "text": "In410c80, stage2 inspects parent+24f4 + selected_index(+6c74)*1c8 + d4 + game_code(+6c9c)*4. Signed value<=0 increments2to3, skipping that stage; similar reverse helper410d70 decrements2to1. No business meaning inferred for the indexed value."
+    },
+    {
+      "kind": "fact",
+      "confidence": "high direct call; source meaning unverified",
+      "text": "A419fe0 dispatch branch reaches41a04d with parent+11c UI this, calls412060, increments stage at4120ac/4120b2, then calls410c80. Dispatch event source/asynchronous or completion semantics are not established by this bounded chain."
+    },
+    {
+      "kind": "fact",
+      "confidence": "high direct references only",
+      "text": "410df0 has bounded additional direct callers4125ba and413e9d; the latter preceding input comparison and its producer were not expanded."
+    },
+    {
+      "kind": "unknown",
+      "text": "The meanings of stages0..4, validation/authentication outcomes, callback event origins, actual event ordering and current state are not proven. Static message routing is not observed user execution. No stage is named login-success."
+    }
+  ],
+  "limitations": [
+    "Normal-flow branches do not prove remote acceptance, official compatibility, or cause of prior direct-start fault.",
+    "No exhaustive alias or whole-program state-machine claim.",
+    "User Windows7 compatibility for both EXEs remains reported prerequisite; no settings changed."
+  ],
+  "validation": {
+    "all_passed": true,
+    "anchor_count": 47,
+    "message_entries_checked": 3,
+    "selected_controls_checked": 3,
+    "jump_tables_checked": 2,
+    "negative_checks": [
+      {
+        "case": "sample_hash",
+        "rejected": true
+      },
+      {
+        "case": "instruction",
+        "rejected": true
+      },
+      {
+        "case": "branch_target",
+        "rejected": true
+      },
+      {
+        "case": "message_table",
+        "rejected": true
+      }
+    ],
+    "existing_verifier": "analysis/launcher-v5/verify-state-field.py verify(data,manifest), unchanged",
+    "existing_self_tests": "6/6 previously passed; not rerun because verifier unchanged",
+    "no_additional_files": "This readiness-evidence.json is the only new artifact for this increment."
+  }
+}

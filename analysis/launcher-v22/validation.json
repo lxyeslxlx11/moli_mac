@@ -1,0 +1,184 @@
+{
+  "schema": "moli.launcher-v22.validation.v1",
+  "recorded_utc": "2026-10-27T05:54:10.390040+00:00",
+  "stage": 67,
+  "result": "Proven launcher mapping-write producer and closable in-page handoff lease implemented and verified. No game consumer/OS mapping/argv or official acceptance; full objective incomplete.",
+  "preflight": "preflight.json",
+  "native_evidence": {
+    "record": "static-spec.json",
+    "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4",
+    "new_functions": 4,
+    "new_records": 7,
+    "total_records": 274,
+    "source_anchors_passed": 21,
+    "source_audit": "handoff-anchor-audit.json",
+    "closed": true,
+    "cleanup_pending": false,
+    "limit": "Copy entry7-byte body shares loop inside adjacent function; entry caller inventory partial. Producer shape does not establish game consumer/identity/lifetime or entire call graph."
+  },
+  "independent_reference": {
+    "producer": "handoff_oracle.py",
+    "record": "original-handoff-vectors.json",
+    "scalar_cases": 94,
+    "write_cases": 126,
+    "selected_original_reply_projections": 42,
+    "maximum_write_prefix_bytes": 92,
+    "mapping_capacity": 256,
+    "format": "Raw gid/name, space+glt/firstNUL opaque prefix, colon, adjusted unsigned32 lowercase base32, trailing space/NUL. Only prefix written, remaining mapping bytes untouched."
+  },
+  "node": {
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "runtime": "v26.9.0",
+    "tests": 390,
+    "new_tests": 10,
+    "passed": 390,
+    "failed": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "log": "node-tests.log",
+    "focused_log": "handoff-tests.log",
+    "product_unchanged_after_final_whole_suite": true,
+    "syntax": "checks.json:4 ESM node --check and1 Python AST passed."
+  },
+  "browser": {
+    "version": "155.0.8059.85",
+    "tool": "Existing Playwright1.62.1; Browser plugin not available",
+    "viewports": [
+      {
+        "width": 1280,
+        "height": 1100
+      },
+      {
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "handoff": {
+      "record": "handoff-browser.json",
+      "checks": 8,
+      "requests": 135,
+      "complete_original_requests_independently_verified": 7,
+      "errors": [],
+      "console_warning_errors": []
+    },
+    "encoding_regression": {
+      "record": "encoding-regression.json",
+      "checks": 9,
+      "requests": 262,
+      "complete_original_requests_verified": 6,
+      "errors": [],
+      "console_warning_errors": []
+    },
+    "configuration_regression": {
+      "record": "config-session-regression.json",
+      "scenario_checks": 17,
+      "measurement_records": 1,
+      "requests": 473,
+      "actual_composite_deadline_ms": 10039,
+      "preload_delay_ms": 5500,
+      "complete_original_requests_verified": 5,
+      "cancelled_closed_connection": 1,
+      "errors": [],
+      "console_warning_errors": [],
+      "expected_aborts": [
+        {
+          "path": "/bootstrap/catalog-digests",
+          "reason": "net::ERR_ABORTED"
+        }
+      ]
+    },
+    "six_checks": {
+      "identity": "passed",
+      "meaningful_first_screen": "passed",
+      "no_framework_overlay": "passed",
+      "console_health": "passed",
+      "screenshots": "passed",
+      "interaction": "passed"
+    },
+    "scope": "Actual HTTP/native WS/owned TCP/Python original peer. pagehide is controlled persisted PageTransitionEvent handler validation, not full BFCache or physical device. Only existing deadline/cancel negatives hold local responses."
+  },
+  "review": "review-corrections.json",
+  "visual": "visual-review.json",
+  "product_fix": "pagehide now clears DOM candidates/ready status and mode modal as well as pending lease; initial failure retained then corrected flow passes.",
+  "ownership": "Lease takeWrite exposes its view once; close wipes owned/borrowed view, not outside copies/entire JS GC. UI only shows metadata and holds private lease, never writes raw payload to DOM/storage/download.",
+  "dependencies": {
+    "new_acquisitions": 0,
+    "versions_retained": "Existing Node/Python/PyCryptodome/Playwright/Chrome and pinned ws/Pako/Blowfish/CP936 unchanged; no global configuration or install script."
+  },
+  "not_verified": [
+    "game-side mapping/argv consumer, full argv quoting/resource enumeration/launch readiness",
+    "actual opaque semantics/identity/lifetime and official service acceptance",
+    "global real account persistence/ACP/IME/native update trust and transaction",
+    "Safari, actual BFCache lifecycle, physical/remote mobile, WeChat mini-program and official compatibility"
+  ],
+  "authorization": {
+    "original_EXE_or_VM_executions": 0,
+    "actual_Windows_shared_mapping_reads_or_writes": 0,
+    "real_accounts_or_credentials_read": 0,
+    "official_game_requests": 0,
+    "official_assets_or_full_decompilation_added": false,
+    "commit_push_publish": false
+  },
+  "historical_preservation": "Current outputs guarded tostage22; initial failures/logs/pixels retained before replay. Prior stage65 historical receipt incident remains disclosed and unchanged.",
+  "goal_status": "active, not complete",
+  "delivery_check": "delivery-check.json",
+  "delivery_checks_passed": true,
+  "preview_lifecycle": {
+    "previous_owned_preview_session": 76700,
+    "observed_terminal_exit": 1,
+    "reported_summary": {
+      "originalPeerVerified": false,
+      "stopped": false
+    },
+    "cause": "Not assigned from compact summary; not used as passing functional evidence. All declared browser QA independently completed on owned per-test peers.",
+    "new_owned_preview_session": 48946,
+    "new_profile": "original ASCII fixture",
+    "TCP_validation_not_yet_performed_by_preview": true
+  },
+  "preservation": {
+    "previous_files": 911,
+    "unchanged_previous_files": 895,
+    "planned_baseline_files": 16,
+    "baseline_targets_only": true,
+    "unchanged_native_files": 17,
+    "unchanged_prior_shared_product_files": 68,
+    "previous_manifest_unchanged_sha256": "bc00b2e76a59a9529a29c579d464d95aa7e8313ac9734d9e2b1449fa33d90634"
+  },
+  "documentation": {
+    "files": 44,
+    "local_links_checked": 1657,
+    "explicit_anchors_checked": 163,
+    "errors": []
+  },
+  "delivery_manifest": "../delivery-manifest-stage67.json",
+  "current_original_preview": {
+    "url": "http://127.0.0.1:4174/",
+    "status": 200,
+    "original_ascii_fixture": true,
+    "TCP_exchange_not_triggered_by_HTTP_GET": true
+  },
+  "tested_product_files": [
+    {
+      "path": "shared/index.mjs",
+      "sha256": "dd6bf511493764f264e5e8fd4aebc9a6ce87e807844bbdf8e7f1fa7186ec5ce9"
+    },
+    {
+      "path": "shared/launcher-handoff.mjs",
+      "sha256": "ec4631b9da0ddd7c982504aecc733a1d37b2b70e48939a7aafb3681dbb30727d"
+    },
+    {
+      "path": "shared/tests/launcher-handoff.test.mjs",
+      "sha256": "e1e1ff12da06e8d1379a69d37f7bba17b1478006317a35151a667c705190dedf"
+    },
+    {
+      "path": "web/login-app.mjs",
+      "sha256": "9b34c9ddf297bbac1b6596a3fb3e15ffa3aaa61124b4dd853d673475e807fff6"
+    },
+    {
+      "path": "web/login.html",
+      "sha256": "89d1db2306620af878cf60ed971acd1c5d09a03a376cc2f67b4827ec22e6de2a"
+    }
+  ]
+}

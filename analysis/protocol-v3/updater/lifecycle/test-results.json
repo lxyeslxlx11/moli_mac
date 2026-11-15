@@ -1,0 +1,22 @@
+{
+  "positive_sample": {
+    "passed": true,
+    "anchors": 48,
+    "region_hashes": 5
+  },
+  "synthetic_different_sample": {
+    "passed": true,
+    "expected_exit_code": 1,
+    "observed_exit_code": 1,
+    "result": {
+      "passed": false,
+      "error": "sample SHA256 mismatch; refusing to apply version-specific anchors"
+    }
+  },
+  "not_run": [
+    "Windows updater execution",
+    "Live HTTP update",
+    "Actual file replacement/relaunch",
+    "Official login or game connection"
+  ]
+}

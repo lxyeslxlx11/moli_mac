@@ -1,0 +1,479 @@
+{
+  "stage": 272,
+  "recorded_utc": "2026-11-07T04:10:07.546794+00:00",
+  "source": {
+    "path": "analysis/game-legacy-battle-round-ack-v1/source-check.json",
+    "bytes": 6854,
+    "sha256": "75e9461d4d7429e4cc620164c3814c197a83f285c7c7d9e3c8b51bf7ddad9c79"
+  },
+  "regression": {
+    "counts": {
+      "tests": 2881,
+      "pass": 2881,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "log": {
+      "path": "build/analysis/game-legacy-battle-round-ack-v1/regression.log",
+      "bytes": 1372333,
+      "sha256": "fe968262f311041143d1df280bd6810585a10662168154884222a252d66e875f"
+    },
+    "receipt": {
+      "path": "build/analysis/game-legacy-battle-round-ack-v1/regression-receipt.json",
+      "bytes": 12817,
+      "sha256": "b6891d4df3a0b5bc9d10a4a5f53da08e304e27c9ae038fa15256f6865f4b1295"
+    },
+    "inputs": {
+      "path": "build/analysis/game-legacy-battle-round-ack-v1/regression-inputs.json",
+      "bytes": 181923,
+      "sha256": "2cd2d3e5b161f4cb7ced7ae9277c8576b7e9816f289e148111498501d0d72e89"
+    },
+    "input_files": 1525,
+    "test_files": 236
+  },
+  "regression_before_fix": {
+    "counts": {
+      "tests": 1,
+      "pass": 0,
+      "fail": 1,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "log": {
+      "path": "build/analysis/game-legacy-battle-round-ack-v1/ack-before-fix.log",
+      "bytes": 977,
+      "sha256": "9e148dccdab94e800e7fb2814fed5b8afc57e7dedea7164cecde1c19fac51cd7"
+    }
+  },
+  "regression_after_fix": {
+    "counts": {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "log": {
+      "path": "build/analysis/game-legacy-battle-round-ack-v1/ack-after-fix.log",
+      "bytes": 321,
+      "sha256": "fdd1536e73f48c24176eae6796dcf7a984062f524175e7bb8101191f0ecff099"
+    }
+  },
+  "core_patch": {
+    "path": "build/analysis/game-legacy-battle-round-ack-v1/core.patch",
+    "bytes": 1888,
+    "sha256": "4a17c5702aa854951753736380c3a6f34016f0364a6c4ad9278d70e76fa9d584"
+  },
+  "replay": {
+    "source": {
+      "path": "build/analysis/game-legacy-battle-round-ack-v1/replay-source.log",
+      "bytes": 660,
+      "sha256": "fe3688c15556a77925fb500cd91ff91a939257722757709f1ca3ce753913d9af"
+    },
+    "generated": {
+      "path": "build/analysis/game-legacy-battle-round-ack-v1/replay-generated.log",
+      "bytes": 660,
+      "sha256": "fe3688c15556a77925fb500cd91ff91a939257722757709f1ca3ce753913d9af"
+    },
+    "runner": {
+      "path": "build/analysis/game-legacy-battle-round-ack-v1/replay.mjs",
+      "bytes": 449,
+      "sha256": "30198ff8ad96d42028ba01689eacec926bb5fc8f9c8ab30ab10ee67ff9abe829"
+    },
+    "cases": [
+      {
+        "kind": "registered",
+        "secondRegistered": 229,
+        "firstRegistered": 238,
+        "sourceId": 2,
+        "firstId": 5,
+        "secondId": 6,
+        "CMetadataForB": false,
+        "marked": [
+          2,
+          5
+        ],
+        "oldSourceFlagsPreserved": true,
+        "round": 0
+      },
+      {
+        "kind": "future",
+        "flying": 142,
+        "drained": 370,
+        "consumed": 371,
+        "priorLocal": 0,
+        "inputLocal": 5,
+        "candidateLocal": 0,
+        "marksAtInput": [
+          5
+        ],
+        "partialPAssignments": 2,
+        "finalVitals": [
+          90,
+          100,
+          8,
+          10
+        ],
+        "finalRound": 2
+      },
+      {
+        "kind": "stale",
+        "flying": 142,
+        "drained": 370,
+        "consumed": 371,
+        "priorLocal": 0,
+        "inputLocal": 5,
+        "candidateLocal": 0,
+        "marksAtInput": [],
+        "partialPAssignments": 2,
+        "finalVitals": [
+          90,
+          100,
+          8,
+          10
+        ],
+        "finalRound": 2
+      },
+      {
+        "kind": "wrap",
+        "initialRound": 4294967295,
+        "round": 0,
+        "marked": [
+          10
+        ],
+        "partialAssignments": 1
+      }
+    ],
+    "equal": true
+  },
+  "tcp_entries": {
+    "tcp-ack-web": {
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-round-ack-v1/tcp-ack-web.log",
+        "bytes": 1463,
+        "sha256": "069c42aaf8e8c563aebd1d3cab02b57774e9937c4ad1e756ffa334442f944d23"
+      },
+      "observations": [
+        {
+          "surface": "desktop-web",
+          "statusVariant": "casting-skl19-queued-ack",
+          "queuedDuringMotion": true,
+          "firstRoundActors": [
+            [
+              0,
+              90,
+              100,
+              9,
+              10
+            ],
+            [
+              5,
+              90,
+              100,
+              9,
+              10
+            ]
+          ],
+          "nextRoundActors": [
+            [
+              0,
+              90,
+              100,
+              9,
+              10
+            ],
+            [
+              5,
+              90,
+              100,
+              8,
+              10
+            ]
+          ],
+          "completedRound": 1,
+          "nextCompletedRound": 2,
+          "resumedMovement": true,
+          "nextLocalSlot": 5
+        },
+        {
+          "surface": "mobile-web",
+          "statusVariant": "casting-skl19-queued-ack",
+          "queuedDuringMotion": true,
+          "firstRoundActors": [
+            [
+              0,
+              90,
+              100,
+              9,
+              10
+            ],
+            [
+              5,
+              90,
+              100,
+              9,
+              10
+            ]
+          ],
+          "nextRoundActors": [
+            [
+              0,
+              90,
+              100,
+              9,
+              10
+            ],
+            [
+              5,
+              90,
+              100,
+              8,
+              10
+            ]
+          ],
+          "completedRound": 1,
+          "nextCompletedRound": 2,
+          "resumedMovement": true,
+          "nextLocalSlot": 5
+        }
+      ],
+      "transport": [
+        {
+          "queuedTCP": true,
+          "requests": 10,
+          "guards": 2,
+          "exit": true,
+          "movement": 2,
+          "official": false
+        },
+        {
+          "queuedTCP": true,
+          "requests": 10,
+          "guards": 2,
+          "exit": true,
+          "movement": 2,
+          "official": false
+        }
+      ]
+    },
+    "tcp-ack-page-source": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-round-ack-v1/tcp-ack-page-source.log",
+        "bytes": 753,
+        "sha256": "e782e59620e0297a12a9462058527610013befdd52c680120fe23377b03b1296"
+      },
+      "observations": [
+        {
+          "surface": "wechat-page",
+          "statusVariant": "casting-skl19-queued-ack",
+          "queuedDuringMotion": true,
+          "firstRoundActors": [
+            [
+              0,
+              90,
+              100,
+              9,
+              10
+            ],
+            [
+              5,
+              90,
+              100,
+              9,
+              10
+            ]
+          ],
+          "nextRoundActors": [
+            [
+              0,
+              90,
+              100,
+              9,
+              10
+            ],
+            [
+              5,
+              90,
+              100,
+              8,
+              10
+            ]
+          ],
+          "resumedMovement": true,
+          "nextLocalSlot": 5
+        }
+      ],
+      "transport": [
+        {
+          "queuedTCP": true,
+          "requests": 10,
+          "guards": 2,
+          "exit": true,
+          "movement": 2,
+          "official": false
+        }
+      ]
+    },
+    "tcp-ack-page-generated": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-round-ack-v1/tcp-ack-page-generated.log",
+        "bytes": 750,
+        "sha256": "4f711b959a6a27e5f9ee12435aff4f27dde44cd97c26698ce852bca5f9f36ba2"
+      },
+      "observations": [
+        {
+          "surface": "wechat-page",
+          "statusVariant": "casting-skl19-queued-ack",
+          "queuedDuringMotion": true,
+          "firstRoundActors": [
+            [
+              0,
+              90,
+              100,
+              9,
+              10
+            ],
+            [
+              5,
+              90,
+              100,
+              9,
+              10
+            ]
+          ],
+          "nextRoundActors": [
+            [
+              0,
+              90,
+              100,
+              9,
+              10
+            ],
+            [
+              5,
+              90,
+              100,
+              8,
+              10
+            ]
+          ],
+          "resumedMovement": true,
+          "nextLocalSlot": 5
+        }
+      ],
+      "transport": [
+        {
+          "queuedTCP": true,
+          "requests": 10,
+          "guards": 2,
+          "exit": true,
+          "movement": 2,
+          "official": false
+        }
+      ]
+    }
+  },
+  "tcp_controls": {
+    "control-queue-web": {
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-round-ack-v1/control-queue-web.log",
+        "bytes": 1448,
+        "sha256": "eabce5c36ce4269afe1d798999800f1ffaa9344f20faf057ba246e9ecd18d493"
+      }
+    },
+    "control-rid-page": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-round-ack-v1/control-rid-page.log",
+        "bytes": 670,
+        "sha256": "7f723beeda6143560421721dbc01cec1a423c7ae3f538e8060fe8bd669a0f353"
+      }
+    }
+  },
+  "builds": {
+    "api": {
+      "report": {
+        "path": "build/wechat-game-stage272-api-final/build-report.json",
+        "bytes": 30990,
+        "sha256": "706d8397dfd577b23528131b43226597f42023570d9822ab09cc6c7d1c541d65"
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-round-ack-v1/build-api.log",
+        "bytes": 369,
+        "sha256": "2082381c4fc18cbff2142af1dd0531cd558c15b02b1911ae4be57a20667ff2b9"
+      },
+      "inputs": 179,
+      "external_imports": 0
+    },
+    "page": {
+      "report": {
+        "path": "build/wechat-app-stage272-page-final/build-report.json",
+        "bytes": 44991,
+        "sha256": "37ac7bb8fac598d5e9102d0effa2c4ed282bba3004c67213a1b792ed2d7f752f"
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-round-ack-v1/build-page.log",
+        "bytes": 184,
+        "sha256": "5e1c454926a2baf5a74ce450a64ea2b771f0c0d9111f27fef4faf6bb69701fc9"
+      },
+      "inputs": 236,
+      "external_imports": 0
+    }
+  },
+  "changed_runtime": [
+    "shared/legacy-game-battle.mjs"
+  ],
+  "unchanged_api_inputs": 178,
+  "original_runtime_verified": false,
+  "native_wechat_runtime_verified": false,
+  "physical_devices_verified": false,
+  "original_execution": 0,
+  "VM_actions": 0,
+  "official_sessions": 0,
+  "bounded_slice_complete": true,
+  "phase_complete": false,
+  "full_goal_complete": false
+}

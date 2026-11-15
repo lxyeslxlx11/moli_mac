@@ -1,0 +1,1920 @@
+{
+  "schema": "moli.game-audio-functional-specification.v1",
+  "classification": "fixed-source-functional-operation-composition-not-product-acceptance",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "original_G08_scope": "地图/选服/战斗音乐、事件音效、停止/切换/重复",
+  "original_owners": [
+    "shared/legacy-game-audio.mjs",
+    "shared/legacy-game-battle-audio.mjs"
+  ],
+  "original_dependencies": [
+    "X03",
+    "X02"
+  ],
+  "original_profiles": [
+    "game-legacy-37c4"
+  ],
+  "original_implementation_batch": "D0",
+  "record_authentication": {
+    "path": "build/analysis/audio-functional-specification-v1/source-authentication.json",
+    "bytes": 139393,
+    "sha256": "66c4f54c8d02ff930d3c91732b13e3ec619adacf525a5f2b60ac6a85892c24eb"
+  },
+  "source_summary": {
+    "baseline_paths": 4757,
+    "facts": 42,
+    "carrier_files": 59,
+    "record_bindings": 78,
+    "native_bindings": 67,
+    "derived_bindings": 11
+  },
+  "retained_rule_groups": [
+    "CA",
+    "AR",
+    "AL",
+    "AO",
+    "MS",
+    "EF",
+    "legacy-WAV/music/battle-audio"
+  ],
+  "source_rules": [
+    {
+      "id": "CA-F4",
+      "file": {
+        "path": "build/analysis/calendar-audio-ownership-v1/specification.json",
+        "bytes": 35466,
+        "sha256": "0199564716c07d1ad276e2ed98ecc6d7b2623fec3d35ed51966fcecd831e3fc8"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "45fcaa2c37d449adf4a80d671e21c7a957e27d9edd8709d9359bd2beb7db1fca",
+      "title": "声音总门槛的所选字面写点不是通用暂停协议",
+      "rules": [
+        "FBA38C精确地址的当前typed引用为4WRITE/6READ；四写均落在507D70..507DEC局部段。924FE8 bit20、GetAsyncKeyState(0x10)高位或507DF0返回0的路径写1；后续50F5A0后写0。这是125字节冷指令旁证，不冒充新完整REA函数体。",
+        "门槛的完整业务名称及跨模块/别名仍待验证。510B50只在门槛0时维护，510BE0随后FAC128=1仍按IC-F8保留。"
+      ]
+    },
+    {
+      "id": "CA-F5",
+      "file": {
+        "path": "build/analysis/calendar-audio-ownership-v1/specification.json",
+        "bytes": 35466,
+        "sha256": "0199564716c07d1ad276e2ed98ecc6d7b2623fec3d35ed51966fcecd831e3fc8"
+      },
+      "pointer": "/facts/4",
+      "canonical_sha256": "5c80c452d2be45abd628e212c2fe4648b2bd7bd76ff3f1a8fa09b6f807c59e0f",
+      "title": "持续声音有50行续租式维护和渐变声像",
+      "rules": [
+        "510A00处理FB7E60起步长0x24、共50行。+8标志为0时，已分配声部在0..63内则调用该声部COM+0x48并清其占用，行声部置-1；不能把未续标记的行无限保留。",
+        "标志非0时，未分配行取FBA3E4，重置指定缓存字段。空间选项关闭时声像64，否则按signed x/5向零截断再钳0..127；新分配立即采用目标，已有行每维护最多向目标移动2。",
+        "随后510230(row,newAllocation)并清+8标志，要求生产者在其适用更新中重新标记。完整标记生产/分配/COM生命周期仍待，不把此调用顺序当作50路物理播放已接受。"
+      ]
+    },
+    {
+      "id": "CA-F6",
+      "file": {
+        "path": "build/analysis/calendar-audio-ownership-v1/specification.json",
+        "bytes": 35466,
+        "sha256": "0199564716c07d1ad276e2ed98ecc6d7b2623fec3d35ed51966fcecd831e3fc8"
+      },
+      "pointer": "/facts/5",
+      "canonical_sha256": "26ae838b75a8ca44d118d245898430234ef8490c425dad38f5a81bf3d7fac221",
+      "title": "音乐切换是请求、淡出、等待、启动四阶段",
+      "rules": [
+        "FBA3CC为0时，只在FBA3C8!=0且当前56A918不同于请求FBA3D0时转1并调用5059B0(bank)/505450；随后清请求标记。状态1调用50F550并转2，状态2等待FBA3C4清0后转3，状态3调用50FA10(requested)再转0。",
+        "50F550只在当前track为0..43时捕获待淡出量并标FBA3C4。510AF0若FBA3C0为0则清淡出标志；否则在flag非0、量非0且接口指针存在时每次减1并COM+0x3C更新；其余结束分支50F500并把当前track置-1。不能按墙钟欠时一次跨过所有原阶段。",
+        "510B50在每次合资格维护内先510A00、再5104C0、最后尾跳510AF0。因此状态1捕获后同一维护可推进一格淡出；完成flag的观察发生在后续维护，不是一个原子selectMusic。"
+      ]
+    },
+    {
+      "id": "CA-F7",
+      "file": {
+        "path": "build/analysis/calendar-audio-ownership-v1/specification.json",
+        "bytes": 35466,
+        "sha256": "0199564716c07d1ad276e2ed98ecc6d7b2623fec3d35ed51966fcecd831e3fc8"
+      },
+      "pointer": "/facts/6",
+      "canonical_sha256": "922e1bccbc3116529f0f978a4b39ce795a4929f001d85c0759047e3c9966e4bf",
+      "title": "FAC128另有MCI路径，不能当作一声部/每帧一次cue门槛",
+      "rules": [
+        "所选精确引用仅见510BEA写1与510B90读。510B90在值==1时直接返回true，否则发mciSendCommandA的0x808/0x804命令，保存后者返回值并以其==0返回bool。",
+        "该函数没有清标记或把它当作剩余声部计数；完整MCI后端与其它宿主初始化失败政策不在本批关闭，网页/微信不直接复制Windows命令。"
+      ]
+    },
+    {
+      "id": "AR-F1",
+      "file": {
+        "path": "build/analysis/ambient-rng-activation-v1/specification.json",
+        "bytes": 34863,
+        "sha256": "3255a2c3e2fcbfa1c87a2b39a53b4ed720fee812074e2805492a621032e6d165"
+      },
+      "pointer": "/facts/0",
+      "canonical_sha256": "30e99940c79c7c0a7cf4025d2ea28f062c4f439c40f8966c3a16da55ecc9392e",
+      "title": "环境请求的ABI是三个整数，距离在函数内计算",
+      "rules": [
+        "510890原低置信度伪代码/native_api只列两个参数且省略距离表达式；真实Listing在3次push后读取ESP+10/+14/+18三个DWORD，分别为code/x/y。510C10调用点按y、x、code压栈并清12字节，三参数ABI由独立指令证明，未修改REA签名或数据库。",
+        "函数将x-320与y-240分别FILD，x87平方相加FSQRT后经ftol转整数d，再按signed32(d<<4)/106缩放。缩放>=127直接返回0；该0也用于正常路径，不能当作已接纳/已播放的bool回执。",
+        "正常code仅250..299，映射row=code-250与catalogId=code-249，分别0..49和1..50。它不是one-shot原样catalog ID，也不改变线路字段。"
+      ]
+    },
+    {
+      "id": "AR-F2",
+      "file": {
+        "path": "build/analysis/ambient-rng-activation-v1/specification.json",
+        "bytes": 34863,
+        "sha256": "3255a2c3e2fcbfa1c87a2b39a53b4ed720fee812074e2805492a621032e6d165"
+      },
+      "pointer": "/facts/1",
+      "canonical_sha256": "8bd41d132ddecfe67acd5971c2fcc3fab05af0eb28ed2884d33c7c33b8f1940f",
+      "title": "同键的多候选按截断距离保留，标记次数单列",
+      "rules": [
+        "510890在本轮row.touch==0时保存整数距离和按目录level、衰减及569AD8/15计算的level；只有voice==-1时更新该行catalog ID。",
+        "已有touch时仅新距离严格更小才覆盖距离/level/x；较远或相等候选保留先前值，但仍将touch加1。筛掉的code/距离不续标记。相等距离的声像因此依首次顺序保留，不应排序或每次覆盖。",
+        "同一+0xC字段先存原距离，510230维护时再原地改为缩放值；父维护结束清touch，下一轮首个候选重新写原距离。这是分阶段暂存字段，不能统一为永远使用同一单位。"
+      ]
+    },
+    {
+      "id": "AR-F3",
+      "file": {
+        "path": "build/analysis/ambient-rng-activation-v1/specification.json",
+        "bytes": 34863,
+        "sha256": "3255a2c3e2fcbfa1c87a2b39a53b4ed720fee812074e2805492a621032e6d165"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "210b44ce45b974ad48e975f0f660e9bed618f81faa33665ed3e81c21686672c6",
+      "title": "分配、复用、参数更新和声部保护分别处理",
+      "rules": [
+        "510230要求FBA38C==0、569AC8!=0、row0..49、catalog索引<501且已加载；本体catalog没有同层非负检查，producer正常域为1..50。voice原判据为0..64，正常cursor按&3F分配0..63，两个范围分别保留。",
+        "新分配且voice上样本不同则更新样本号、按条件Release旧接口、清指针并Duplicate；失败设样本哨兵-2并返回-1。已有voice不重启，level/pan按与已应用缓存的差异更新，频率沿目录元数据分支处理。",
+        "新分配设置当前位置并按目录flag选播放参数；flag非0时置声部保护字段。cursor前进时跳过该保护字段非0的声部。外层510A00忽略该函数返回值，仍清touch；原失败域不作独立实现的成功回执。",
+        "维护看到touch==0时对合法已有声部调用停止槽、清保护并使行voice=-1。原声部接口/样本缓存的保留、Release和逻辑撤回不是同一步，CA-D2/CT-D4继续共享。"
+      ]
+    },
+    {
+      "id": "AR-F4",
+      "file": {
+        "path": "build/analysis/ambient-rng-activation-v1/specification.json",
+        "bytes": 34863,
+        "sha256": "3255a2c3e2fcbfa1c87a2b39a53b4ed720fee812074e2805492a621032e6d165"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "5d8bfbb23d4355aff92d68a0ec92db3e61c4303f42d2802fe9a3035e2af73510",
+      "title": "地图原值200段与250段进入不同音频命名空间",
+      "rules": [
+        "463EA0先清FBA3C8。原957E88!=1分支且param1!=0时，normalized primitive200..249调用既有510570并置音乐请求标记；250..299提交510890(code,x,y)。一格内先ground后object，按原遍历序执行。",
+        "ground环境请求传resolved ID；object先用resolved ID判定250段，实参却从原object plane word重新读取。raw/resolved两个值与所属plane必须同时保留，不能一律归一后发送。",
+        "原mode1路径没有这段直接primitive生产，但两种模式完成正常遍历后都调用510C10。加载失败可提前返回；param1==0仅跳过上述primitive效果，不统一关闭后备扫描。",
+        "510000则是独立目录ID请求及5次维护冷却/64声部路径；地图200段音乐、250段环境键与普通catalog ID不要合并为一个无来源整数。"
+      ]
+    },
+    {
+      "id": "AR-F5",
+      "file": {
+        "path": "build/analysis/ambient-rng-activation-v1/specification.json",
+        "bytes": 34863,
+        "sha256": "3255a2c3e2fcbfa1c87a2b39a53b4ed720fee812074e2805492a621032e6d165"
+      },
+      "pointer": "/facts/4",
+      "canonical_sha256": "8ac3afe1951b72f5d895366680b8d3f6d3dca0f49380b8d84ed6645afa69aa71",
+      "title": "后备50行扫描有独立距离原点与整段提前返回",
+      "rules": [
+        "510C10遍历FAB470附近步长0x14的50行，catalog ID!=-1时先用stored x/y的signed32平方和，经FILD/FSQRT/ftol及同样16/106缩放；此处没有先减320/240。",
+        "该预筛要求20..126；任一进入的行超出时直接return整个函数，不是continue。合格行以catalogId+249、原x/y调用510890，再置本行used=1。producer内还会按中心原点再次计算距离，两层不能用一个距离替代。",
+        "此used标记不等于物理播放成功；表的注册、初始化、排序和其它回收仍是具体剩余源问题，本批未因50行扫描而宣称完整原音频生命周期。"
+      ]
+    },
+    {
+      "id": "AL-F1",
+      "file": {
+        "path": "build/analysis/ambient-registry-lifecycle-v1/specification.json",
+        "bytes": 33029,
+        "sha256": "9bb3fbad13ae67f255057ec9e4b528b31060d117de93c571aad261d08fdb5b7f"
+      },
+      "pointer": "/facts/0",
+      "canonical_sha256": "6fa3ecc46fc1b438f5176778ced78e9a0dbb008cc4968d6b01c220bd8e35e9cc",
+      "title": "已登记三整数接收包装直接提交环境登记",
+      "rules": [
+        "复用既有receive-00567c58、tag ]bS、三个int32及consumer4F49C0来源绑定；原tag四字节含NUL另核原件，不新增线路字段。",
+        "4F49C0是原有analyst-derived24字节包装，9条原指令核PE；忽略首个上下文参数，无本地条件地按原序把随后三个值压栈，调用510C90并清12字节。派生权限不提升为完整native dossier。",
+        "510C90对第一个值直接按20字节步长索引表，第二/第三个值用于下述投影；所选包装/登记本体没有同层下标上下界判断或本地ack。原parser分支native_return0不是登记或播放成功回执。"
+      ]
+    },
+    {
+      "id": "AL-F2",
+      "file": {
+        "path": "build/analysis/ambient-registry-lifecycle-v1/specification.json",
+        "bytes": 33029,
+        "sha256": "9bb3fbad13ae67f255057ec9e4b528b31060d117de93c571aad261d08fdb5b7f"
+      },
+      "pointer": "/facts/1",
+      "canonical_sha256": "c77e5e98b8261035fc67460bec58bd44fc8262d2a2eef931871473dcdad357fe",
+      "title": "50行逻辑初始化有两个已证来源，保留其它字段",
+      "rules": [
+        "510BF0从FAB468起每次加0x14，直到FAB850；恰好50行。只把marker(+0)置1、catalogId(+4)置-1，未清screenX(+8)/screenY(+C)/distance(+10)。未登记行靠ID哨兵跳过，旧坐标不自动成为有效记录。",
+        "50F5A0初始化声音目录/声部/查表后调用510BF0；4649B0在任何本地mode分支之前先调用510BF0，再写957E7C/957E78/957E88等源上下文，mode1的其它selector分支不改变该先后。",
+        "4649B0的场景准备归属复用已有4EF870→45F2A0→4649B0合同；本批不重复这些大生产者或据两处直接caller外推所有别名。510BF0本体无物理Stop/Release，逻辑失效与下一次声音维护的撤回分开。"
+      ]
+    },
+    {
+      "id": "AL-F3",
+      "file": {
+        "path": "build/analysis/ambient-registry-lifecycle-v1/specification.json",
+        "bytes": 33029,
+        "sha256": "9bb3fbad13ae67f255057ec9e4b528b31060d117de93c571aad261d08fdb5b7f"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "217b0306507551bb5758f905b5bacf0f8aea480570559c0be0d02555fdbf1cfa",
+      "title": "接收时投影并比较浮点屏幕距离，随后才截断存坐标",
+      "rules": [
+        "第二/第三整数分别FILD并乘float32常量64.0，按float32实参交给463D70；输出也以float32写回。原栈输出位置交叉复用，不能凭反编译param名字交换x/y。",
+        "463D70读float32原点BF22C8/BF22C4，令u=(worldX-originX)/64、v=(worldY-originY)/64；screenX=(u+v)*32+signed32(53D578)，screenY=(v-u)*24+signed32(53D57C)。两个offset由FIADD证明是整数字，而非float32。",
+        "510C90对已存出的float32屏幕输出先减(320,240)，x87平方/求和/FSQRT/ftol得登记距离；接纳后才各自ftol屏幕x/y，写成整数。它不同于510890对整数x/y重新求距离，也不同于510C10的原点0预筛。",
+        "坐标在接收登记时投影并持有；510C10扫描不重新调用463D70，不把镜头变化自动解释为每帧重新投影。x87极值/NaN或溢出域不因这条正常来源公式而宣称完全可移植。"
+      ]
+    },
+    {
+      "id": "AL-F4",
+      "file": {
+        "path": "build/analysis/ambient-registry-lifecycle-v1/specification.json",
+        "bytes": 33029,
+        "sha256": "9bb3fbad13ae67f255057ec9e4b528b31060d117de93c571aad261d08fdb5b7f"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "3f91459188f997a9fdcc10abe16ddf12b78f942da01f68f3eed0d9bf11902624",
+      "title": "登记标记控制下一次候选窗口，不是心跳或寿命",
+      "rules": [
+        "本次登记在marker!=0、ID==-1或新截断距离严格小于已存距离时接纳；否则保留原ID/x/y/距离。相等距离保留先到者。接纳写ID=第一个实参、两个截断屏幕整数及距离，最后marker=0。",
+        "510C10对进入扫描的已登记行提交后把marker=1，但不清ID/坐标；所以后续扫描即使没有新包仍可继续提交旧记录。marker=1允许下一次登记无条件开启新的候选窗口，不代表物理播放成功或记录过期。",
+        "扫描若在前面某行的原点0距离预筛提前return，后面的行不会被处理/置marker=1；那些行原来的近候选窗口仍保留。不要改成逐行continue或统一按本帧清表。"
+      ]
+    },
+    {
+      "id": "AL-F5",
+      "file": {
+        "path": "build/analysis/ambient-registry-lifecycle-v1/specification.json",
+        "bytes": 33029,
+        "sha256": "9bb3fbad13ae67f255057ec9e4b528b31060d117de93c571aad261d08fdb5b7f"
+      },
+      "pointer": "/facts/4",
+      "canonical_sha256": "787c36eaa80c461cbfb00c7658ee59855acb5cd72e59c0ad831b56157578ee57",
+      "title": "表行、保存ID与环境键的偏移保留真实边界",
+      "rules": [
+        "50行按物理row0..49扫描；正常登记写catalogId=row，提交码为catalogId+249。原510890只接250..299，因此本表row0提交249会被正常code门槛拒绝，但扫描仍写marker=1；row49提交298，对应环境row48。",
+        "不能把表row0..49自动改成目录1..50或ambient row0..49的同一索引。原登记无同层bounds检查不证明任意int32是合法协议下标；正常服务端允许的ID域尚未由实测或资料证明。独立实现的边界拒绝政策需单独明确。",
+        "复用AR-F5：后备预筛用stored整数x/y的signed32平方和与原点0，缩放后需20..126；不通过时整个扫描return。随后producer再次按中心(320,240)计算，不据used标记或恒为0的producer返回值推播放接受。"
+      ]
+    },
+    {
+      "id": "AL-F6",
+      "file": {
+        "path": "build/analysis/ambient-registry-lifecycle-v1/specification.json",
+        "bytes": 33029,
+        "sha256": "9bb3fbad13ae67f255057ec9e4b528b31060d117de93c571aad261d08fdb5b7f"
+      },
+      "pointer": "/facts/5",
+      "canonical_sha256": "a408a669643ac4255d3f036ea6249f00bd17301895e84325ee35ddbfbd62e634",
+      "title": "逻辑表与物理持续声部沿现有维护链汇合",
+      "rules": [
+        "后备表提交与直接地图250段最终都进入510890的50行touch/近候选表，按实际提交顺序竞争，不为后备来源建立第二套物理播放器。",
+        "510A00根据touch分配/更新或停止已有声部；本批复用AR-F2..F4的同键聚合、marker阶段、保护声部和地图完成时扫描，不重取这些大body或改成从每个网络包直接Play。",
+        "登记表reset只让后备记录失效；物理声部仍依其它producer是否续touch及后续合资格maintenance决定去留，不能把逻辑reset等同立即清全部资源/缓存。具体全局调度与其它后端仍属全域未决。"
+      ]
+    },
+    {
+      "id": "AL-F8",
+      "file": {
+        "path": "build/analysis/ambient-registry-lifecycle-v1/specification.json",
+        "bytes": 33029,
+        "sha256": "9bb3fbad13ae67f255057ec9e4b528b31060d117de93c571aad261d08fdb5b7f"
+      },
+      "pointer": "/facts/7",
+      "canonical_sha256": "a3969739e1465ec7cb38819f3826a4245a1c0a08b632ba18153094f19b1e889c",
+      "title": "引用与表字段的机器解释分别核验",
+      "rules": [
+        "FAB468/FAB46C/FAB470的12条provider incoming引用保留READ/WRITE/DATA原标签，另核各源地址的机器字节；DATA可指向indexed写入或基址构造，不能据标签推“没有写入”。",
+        "表50行、20字节步长和六个float32不可变常量24字节核固定PE；可变BSS的当前内存未读取，未把文件无字节当初始化为0的运行证明。源规则与独立输入/失败政策分栏。"
+      ]
+    },
+    {
+      "id": "AO-F1",
+      "file": {
+        "path": "build/analysis/audio-runtime-ownership-v1/specification.json",
+        "bytes": 53173,
+        "sha256": "acb7c5ec0e49fe7b2b76a58f44c0a34f6848922fc5188a3107a25cf9f657f531"
+      },
+      "pointer": "/facts/0",
+      "canonical_sha256": "10c36c726a8be04a6f04e17453e10193663d4f6743cc2b9c9860619778198aa6",
+      "title": "声音总门槛绑定到实际初始化流程",
+      "rules": [
+        "507D70在924FE8 bit0x20置位、GetAsyncKeyState(0x10)高位置位、或507DF0返回0时写FBA38C=1并返回0；成功先50F5A0再清门槛为0并返回1。该所选门槛是启动声音可用状态，不命名为每帧pause计数。",
+        "450250到达所选音频步骤后顺序调用507D70及44D7D0，未按前者返回值分支后才进入后续启动步骤。该局部非致命处理不外推为整个游戏初始化永不失败。",
+        "此前CA-F4只覆盖125字节冷指令，本批复用完整旧507D70记录补业务归属；不因此证明所有别名/跨模块写入已穷尽。"
+      ]
+    },
+    {
+      "id": "AO-F2",
+      "file": {
+        "path": "build/analysis/audio-runtime-ownership-v1/specification.json",
+        "bytes": 53173,
+        "sha256": "acb7c5ec0e49fe7b2b76a58f44c0a34f6848922fc5188a3107a25cf9f657f531"
+      },
+      "pointer": "/facts/1",
+      "canonical_sha256": "e9e0c7b18441578bcaced47cef9cb781754a92dd7a30894cfd22205b5746684a",
+      "title": "后端初始化与部分失败清理保留不同路径",
+      "rules": [
+        "507DF0是29,684字节含大段目录赋值的旧完整record，原查询50EF6D经provider归一到507DF0；参数/ID/截断标志原样保留。本批审初始化/失败尾段，不把整份目录赋值或所有控制流宣称逐语义审完。",
+        "所选尾段清64个voice指针、501个backing-buffer指针并初始化目录映射，再创建接口/主缓冲与逐项PCM资料；可用目录ID与loaded-buffer计数是两个索引域。",
+        "接口创建、主缓冲、格式或读文件阶段存在直接返回0、跳到逐项清理和按已建数量释放的不同路径；不能把所有失败当作已完成同一原子回滚。独立实现的完整失败清理政策另列。"
+      ]
+    },
+    {
+      "id": "AO-F3",
+      "file": {
+        "path": "build/analysis/audio-runtime-ownership-v1/specification.json",
+        "bytes": 53173,
+        "sha256": "acb7c5ec0e49fe7b2b76a58f44c0a34f6848922fc5188a3107a25cf9f657f531"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "5470ae294348403440f58f850247443f89e5bc9888ae6dd3376067255bee70eb",
+      "title": "PCM读取与音乐请求的原判断顺序可复用",
+      "rules": [
+        "50F2D0用mmio定位WAVE/fmt/data，要求一次读取0x12字节、format tag==1，发布data chunk长度；它是PCM块头读者，不是设备初始化器。实际mmio行为和当前便携解析器覆盖分开。",
+        "50FA10先处理same-track且force==0的早返回，随后清force、检查FBA38C、停止旧音乐、处理-2哨兵、track0..43与569ACC门槛，再打开资料/选择全缓冲或流式路径。顺序、1/0/-1回值与物理播放成功不可合并。",
+        "流式路径按源循环帧与blockAlign转字节，50FD10创建buffer/事件/worker并等待就绪，若部分创建失败有多种返回；事件/worker逻辑不是网页必须照搬的Windows机制。完整worker50F8F0仍须审必要循环/停止确认。"
+      ]
+    },
+    {
+      "id": "AO-F4",
+      "file": {
+        "path": "build/analysis/audio-runtime-ownership-v1/specification.json",
+        "bytes": 53173,
+        "sha256": "acb7c5ec0e49fe7b2b76a58f44c0a34f6848922fc5188a3107a25cf9f657f531"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "ac67425a6eb23a5ef837d264e8dadacc05b029ae018399994a1b2675a29e9cd3",
+      "title": "维护随逻辑更新推进，位于网络后和主分派前",
+      "rules": [
+        "复用IC-F3/F8：所选循环先45DD10/450640/451A80/44F870/4EDEF0，再44FC72调用510BE0，之后5015A0与后续palette/展示。catch-up回到更新入口也会重新走该次维护；绘制省略不等于声音停止计时。",
+        "510BE0先510B50再FAC128=1；B50仅FBA38C==0时处理500个冷却字段并顺序510A00→5104C0→510AF0。FAC128写1不证明实际cue数或设备播放成功。",
+        "地图/后备环境提交复用AR/AL已有条款，接收与逻辑帧/物理输出不同步时不能从每个包或每次render直接播放；全局时钟/输入依赖继续属于X02。"
+      ]
+    },
+    {
+      "id": "AO-F5",
+      "file": {
+        "path": "build/analysis/audio-runtime-ownership-v1/specification.json",
+        "bytes": 53173,
+        "sha256": "acb7c5ec0e49fe7b2b76a58f44c0a34f6848922fc5188a3107a25cf9f657f531"
+      },
+      "pointer": "/facts/4",
+      "canonical_sha256": "3885742d2081c960ee5898a2808f6f0a3dff2f327116fb6a204625f4c9fe63f1",
+      "title": "普通音乐停止、流式确认及进程关闭分别有所有者",
+      "rules": [
+        "50F4A0在流式标志非0时先检查buffer/Stop，等待FBA3D4==1才清流式状态和free数据，之后按条件Release/清buffer；buffer已空的流式分支会提前return。不能把该原忙等当作独立宿主无界等待政策。",
+        "50F500按流式/普通buffer分别处理，再清force/play/fade等标志；50F1F0仅门槛0才继续音乐停止、可选通知接口、64 voice与按loaded数量backing buffers的Stop/Release、主buffer及设备释放。",
+        "4505F0顺序包含44DA80、50F1F0、510B90，原MCI关闭仍受FAC128谓词控制。进程级关闭、单曲停止、场景失效和返回/重入分别接受，不由一个close名字替代。"
+      ]
+    },
+    {
+      "id": "AO-F6",
+      "file": {
+        "path": "build/analysis/audio-runtime-ownership-v1/specification.json",
+        "bytes": 53173,
+        "sha256": "acb7c5ec0e49fe7b2b76a58f44c0a34f6848922fc5188a3107a25cf9f657f531"
+      },
+      "pointer": "/facts/5",
+      "canonical_sha256": "9cb28e1c355dc00a6f5284cc4cf28a89114cc6db352917c9169a78936b59743a",
+      "title": "两条接收入口确实请求声音而非业务成功",
+      "rules": [
+        "复用R]=单整数包装：924F30==0且值0..8时分别提交0x47/48/44/45/44/41/42/43/49与(320,240)，其它值不调用。510000的门槛/目录/冷却规则继续适用。",
+        "XR(三整数包装首值>999时调用44DE20(first-1000,second)并忽略第三值，否则把原三值交510000。分支分界999并不改变callee各自有效域，调用也不是服务器业务成功回执。"
+      ]
+    },
+    {
+      "id": "AO-F7",
+      "file": {
+        "path": "build/analysis/audio-runtime-ownership-v1/specification.json",
+        "bytes": 53173,
+        "sha256": "acb7c5ec0e49fe7b2b76a58f44c0a34f6848922fc5188a3107a25cf9f657f531"
+      },
+      "pointer": "/facts/6",
+      "canonical_sha256": "52e73fca66d5888e10762295260e0c9879d2ce32dc473015066b21ac4c3cc2c7",
+      "title": "内嵌MIDI分支及被反编译漏掉的第二参数有机器证明",
+      "rules": [
+        "44DE20要求loader指针，先停止/释放旧段，再按sourceId0/1选择原件两段MThd内存及descriptor长度1204/16；其它ID返回0。只保留头/长度/轨道边界/hash，不保存乐谱事件payload。",
+        "原native_api只有1个参数；真实44DF2B在0x350局部栈及尚未清理8字节cdecl参数下读取entryESP+8，再压栈给44E010，最后清12字节。第二word不是伪代码声称的局部MIDI指针；原record/数据库未改。",
+        "44E010将该word转发到已加载segment的+0x18接口槽；44DF50经音量设置后调用performance+0x10并返回HRESULT符号判断，44DE20不检查它而最终返回1。加载成功分支返回1不等于物理播放接受。",
+        "16字节第二载体在声明span内不足一个完整MTrk头；这是静态边界事实，不推断Windows loader实际成功/失败，也不擅自把内存长度改成更大值。"
+      ]
+    },
+    {
+      "id": "AO-F8",
+      "file": {
+        "path": "build/analysis/audio-runtime-ownership-v1/specification.json",
+        "bytes": 53173,
+        "sha256": "acb7c5ec0e49fe7b2b76a58f44c0a34f6848922fc5188a3107a25cf9f657f531"
+      },
+      "pointer": "/facts/7",
+      "canonical_sha256": "17ac6ae7399ab9f191584babde670f7a6b1f95fc698dca91f48ace4ad61bada1",
+      "title": "MIDI音量与控制参数不等同WAV目录level",
+      "rules": [
+        "44DFA0取(569ADC*输入)/15，结果0..127才从6143A8表取signed32参数，按GUID/4字节通过performance+0x88提交；表的构造/乐器初始化仍待44D7D0来源，不用文件BSS零值代替。",
+        "44DE20固定调用44DBD0(30,7)；机器构造4个float32控制字为0、-9、3000、0x3A83126F，KS属性ID0/SET标志2与payload16字节独立核。具体参数名由外部接口资料佐证，并非本批运行声音观测。",
+        "44DF50调用音量输入127后播放；设备/合成器/乐器库与真实音色接受仍未验证。"
+      ]
+    },
+    {
+      "id": "AO-F11",
+      "file": {
+        "path": "build/analysis/audio-runtime-ownership-v1/specification.json",
+        "bytes": 53173,
+        "sha256": "acb7c5ec0e49fe7b2b76a58f44c0a34f6848922fc5188a3107a25cf9f657f531"
+      },
+      "pointer": "/facts/10",
+      "canonical_sha256": "ce0c92e4b929cbf717bd936b433c070f9fdb9a803e861a46338bdc4681a3a815",
+      "title": "现有WAV/异步输出能复用，不能覆盖全部音频来源",
+      "rules": [
+        "当前audio模块是WAV/PCM目录与读者，web host从WAVE资料创建AudioBuffer并以现有epoch/generation/reservation管理播放；battle selector仍声明nativeCadenceComplete=false和protectedAmbientVoices=false。",
+        "host完整293行与battle selector63行已保留核对；显式fade timer、render触发的selector.advance与源逻辑维护单位不同。已有PCM/目录/异步保护继续复用，补MIDI合成/控制及共享维护接线的实际差异。",
+        "协议catalog/decoder认识上述消息，但所审protocol.next未见这些消费者的专用处理分支。限定源码差异不是全仓任意动态路径不存在的证明；真实手机/微信/音色/现行版本接受另列。"
+      ]
+    },
+    {
+      "id": "MS-F1",
+      "file": {
+        "path": "build/analysis/midi-stream-contract-v1/specification.json",
+        "bytes": 42401,
+        "sha256": "0de9b320f8bdaea5a6f9d8963aec20098985178f62ee37300011ef41cb5c1f3c"
+      },
+      "pointer": "/facts/0",
+      "canonical_sha256": "f655b181462cba034337623bd37d619f671cad7b3a9bd90d6263bf85a6f40a36",
+      "title": "MIDI前置门槛来自接口能力探测",
+      "rules": [
+        "451780动态加载DDRAW.DLL/DINPUT.DLL，尝试DirectDrawCreate/DirectInputCreateA与接口/表面能力，所选返回常量0/0x100/0x200/0x300/0x500/0x600；451A60存7283E0并判断结果<0x501。它不是Windows版本查询或本批设备能力实测。",
+        "44D7D0门槛非0立即返回1；通过后先44DA80，再CoInitialize与对象初始化。未运行该探测，不以ARM/VM/当前系统版本猜结果。"
+      ]
+    },
+    {
+      "id": "MS-F2",
+      "file": {
+        "path": "build/analysis/midi-stream-contract-v1/specification.json",
+        "bytes": 42401,
+        "sha256": "0de9b320f8bdaea5a6f9d8963aec20098985178f62ee37300011ef41cb5c1f3c"
+      },
+      "pointer": "/facts/1",
+      "canonical_sha256": "db6a2f0cd80c2ada74e2adda341834040997dc02885ab450ddc5adcbfd4a6302",
+      "title": "MIDI初始化的实际上下文参数和部分失败语义",
+      "rules": [
+        "原native_api/pseudocode声明零参数，但44D820在局部栈与两保存寄存器后读取entryESP+4；450250传入925054上下文word，后向初始化接口转发。独立ABI按真实一word建模，不改原记录或canonical数据库。",
+        "依次创建performance614398、初始化core6143A0并使用原DirectSound接口FBA390与上下文、创建loader6143A4、配置port61439C。端口参数结构size0x24、mask9、字段值64与22050；所选端口/通道分配与Activate后创建32字节MIDI buffer6145A8及clock6145B8。字段命名属于MS-I1接口解释。",
+        "不同失败点返回1..8；AddPort负值可以落到最终return0。默认乐器加载44DCA0(0)的返回未检查，成功尾调用44DBD0(25,6)。父450250也不按所选MIDI返回值分支。返回0不是完整可播放状态回执，各阶段资源存活不能当原子回滚。"
+      ]
+    },
+    {
+      "id": "MS-F3",
+      "file": {
+        "path": "build/analysis/midi-stream-contract-v1/specification.json",
+        "bytes": 42401,
+        "sha256": "0de9b320f8bdaea5a6f9d8963aec20098985178f62ee37300011ef41cb5c1f3c"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "0343acd87a315819d708e148d300c12601b51fad6299a97540cabf087e044990",
+      "title": "乐器源为默认集合描述符而非已取得的音色文件",
+      "rules": [
+        "44DCA0先Release旧collection614394；descriptor size0x350、class GUID480ff4b0-28b2-11d1-bef7-00c04fbf8fef。参数0使用object GUIDf17e8673-c3b4-11d1-870b-00600893b1bd及flags3；非0走文件名字串/flags0x32。当前正常生产者只证明参数0，未读系统实际bank路径或任何乐器payload。",
+        "GetObject后按EnumInstrument循环并调用44DB80。Enum结果非0时释放collection并return0；GetObject或下载失败有return1，不把枚举结束与所有失败合并为同一语义。",
+        "44DB80通过entry参数word的地址取得instrument接口并在44DBA4重新装入它，再向port+0x18传递；不能沿用伪代码中旧patch-word变量。GetInstrument失败返1、Download失败返2；成功释放instrument返0，6145B0只保留最后一次下载接口。"
+      ]
+    },
+    {
+      "id": "MS-F4",
+      "file": {
+        "path": "build/analysis/midi-stream-contract-v1/specification.json",
+        "bytes": 42401,
+        "sha256": "0de9b320f8bdaea5a6f9d8963aec20098985178f62ee37300011ef41cb5c1f3c"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "adae2404345ecc623a2f9e8dd25166aa3efb1c5eaa065443780caa5bd2da0ba7",
+      "title": "主音量表在初始化时由x87构造",
+      "rules": [
+        "源循环从127到0写6143A8..6145A7共128个signed32条目；字面double为+10000/-10000/127/100，共32字节。辅助__ftol39字节由已取callee元数据定位并冷解码，临时设截断舍入、FISTP64后恢复控制字并返回低32位；它不是新增完整native record。",
+        "对1..127有限数学域，算法等价于先base=trunc(-10000*ln(127)/ln(100))，再table[i]=-min(10000,-base-trunc(10000*ln(i)/ln(100)))；源使用x87扩展精度，不宣称宿主浮点逐bit相同。0输入实际也进入对数/转换，FPU异常屏蔽状态未观测，不能把普通宿主log(0)或BSS零值当原表0观测。",
+        "44DFA0仍按(569ADC*input)/15得到索引，0..127才取表并提交；44DF50先输入127再播放。MIDI主音量域与WAV目录level不同，真实音量/音色另验。"
+      ]
+    },
+    {
+      "id": "MS-F5",
+      "file": {
+        "path": "build/analysis/midi-stream-contract-v1/specification.json",
+        "bytes": 42401,
+        "sha256": "0de9b320f8bdaea5a6f9d8963aec20098985178f62ee37300011ef41cb5c1f3c"
+      },
+      "pointer": "/facts/4",
+      "canonical_sha256": "176739b1e6e779bae2a30211ee4b92597155599f33ea61b0715bda48979ef6a4",
+      "title": "MIDI退役按各接口存活状态释放",
+      "rules": [
+        "44DE00只Release/null loader6143A4，不是Stop。44DA80先调用它，再对存活segment作+0x4C参数调用并Release/null，后依次处理buffer6145A8、clock6145B8、最后download6145B0、collection614394、loader、port61439C停用/释放、core6143A0和performance614398。",
+        "4505F0先MIDI退役再WAV后端关闭。本体未见CoUninitialize，不外推全局COM或所有下载/线程句柄都已释放；普通停止、场景作废、流式确认和进程结束继续分开。"
+      ]
+    },
+    {
+      "id": "MS-F6",
+      "file": {
+        "path": "build/analysis/midi-stream-contract-v1/specification.json",
+        "bytes": 42401,
+        "sha256": "0de9b320f8bdaea5a6f9d8963aec20098985178f62ee37300011ef41cb5c1f3c"
+      },
+      "pointer": "/facts/5",
+      "canonical_sha256": "b914e2fce5b23311e8d29d031ddc85c5b63728d533df70a11a62b17a59cbb110",
+      "title": "流式线程的就绪、事件补充与停止确认有确定来源",
+      "rules": [
+        "50F8F0是50FD10/CreateThread实际传入的回调，canonical resolve明确not_in_procedure；以固定原项目的独立副本、原已验exporter恢复281字节。该体是analyst static derived，不冒充canonical native function。",
+        "cursor初值0；有数据才调用50F790(offset0,sizeFAC150)，随后FBA3F4=1。填充helper返回void，ready并不保证Lock或复制成功。WaitForMultipleObjects以3事件/INFINITE等待，result0补offsetFAC150、result1补offset0，先更新原cursor/offset全局并增加计数。",
+        "其它wait结果均写FBA3D4=1并ExitThread(1)，不是自动重试。50F4A0 Stop后忙等该确认才清流式状态/释放数据；独立宿主的有界停止与资源失效政策单列，不能照搬原无界忙等。"
+      ]
+    },
+    {
+      "id": "MS-F7",
+      "file": {
+        "path": "build/analysis/midi-stream-contract-v1/specification.json",
+        "bytes": 42401,
+        "sha256": "0de9b320f8bdaea5a6f9d8963aec20098985178f62ee37300011ef41cb5c1f3c"
+      },
+      "pointer": "/facts/6",
+      "canonical_sha256": "fdb9c5737dadfbaa4d5733c3d073b4c3b263fea1d98bf8f9c9d19e8fcb8265e1",
+      "title": "流式格式几何与循环终点的发布顺序不能简化",
+      "rules": [
+        "50FD10从格式结构+0x8取word并按2倍分配buffer；FAC150与第二通知offset则取格式+0x4的word。保存EDI前后ESP相差4已逐指令核对，不能误读成同一局部。按WAVEFORMATEX解释分别是nAvgBytesPerSec与nSamplesPerSec；只有满足相应格式条件才可称物理半区。",
+        "worker处理的请求范围为[0,FAC150)及[FAC150,2*FAC150)，通知offset是0、FAC150、0xffffffff。若格式有效且字节率>=采样率，请求可落在分配buffer内；这是前提明确的几何推论，不是设备Lock分区返回实测。",
+        "50FA10在50FD10前发布FAB260=loopStartFrames*blockAlign；50FD10先发布FAC14C=实际mmioRead字节并等待worker ready，返回后50FBFD才覆盖为loopEndFrames*blockAlign，未加1。首填与后续补充不能都套用立即生效的同一loop-end。"
+      ]
+    },
+    {
+      "id": "MS-F8",
+      "file": {
+        "path": "build/analysis/midi-stream-contract-v1/specification.json",
+        "bytes": 42401,
+        "sha256": "0de9b320f8bdaea5a6f9d8963aec20098985178f62ee37300011ef41cb5c1f3c"
+      },
+      "pointer": "/facts/7",
+      "canonical_sha256": "1ca3860da5eac90832ee0f738b9324db643c7b4edee6e17947050fc19f3423b8",
+      "title": "填充体类型修正与异常分区边界明确保留",
+      "rules": [
+        "50F790337字节及三个实际CALL由worker定位；canonical resolve仍not_in_procedure。私有副本仅为Lock(+0x2C)8个x86word和Unlock(+0x4C)5个word补__stdcall callsite类型，原/typed指令与body逐字节相同。方法名由Microsoft头佐证，类型覆盖属分析者解释，未改canonical数据库或原文件。",
+        "Lock返回非0时直接return且cursor不变；成功按至多两块长度复制并更新cursor，各块至多一次从end边界绕回FAB260，之后Unlock。源不保证任意短循环重复填满，也没有把失败转成可观测ready失败。",
+        "第二Lock区域跨end的分支实际使用第一块目的地址，非跨end分支才使用第二块；该原分支保留，不按直觉修伪代码。正常生产者的对齐/范围前提、异常双分区/短loop及独立拒绝/补零/失败策略分开验收。"
+      ]
+    },
+    {
+      "id": "EF-F1",
+      "file": {
+        "path": "build/analysis/game-effect-consumers-v1/specification.json",
+        "bytes": 74844,
+        "sha256": "f2edfbec0c35366aae26ed8c7c6aeea6a62c54545e32c89ccad5d75350440b99"
+      },
+      "pointer": "/facts/0",
+      "canonical_sha256": "548a57b80e0bfcdbaa271f057cb6f15e41758f7fb7abdd8c2df5d565f10ffce5",
+      "title": "Xne五整数按三条实际消费者路径解释",
+      "rules": [
+        "4F4950将5个int32按原序委派4434C0。first>99先以first%100走442720；first<0走442CA0；其它0..99走普通对象路径。原receive包装是复用的旧派生体，不冒充新native观察。",
+        "普通first0直接返回；first4且存在未待删主对象时标删并返回；没有对象时可先分配/赋值后因非1/2/3标删。其它未支持的非零值也可在覆盖资源/上下文后标删，不把全部无效输入简化成前置no-op。",
+        "所选正向归属为G06图形/对象、G08音效与X02时钟/对象生命周期。旧G07/G08候选归属保留历史；这不删除G07原始文字/HUD范围或证明任意其它下游无文字。"
+      ]
+    },
+    {
+      "id": "EF-F2",
+      "file": {
+        "path": "build/analysis/game-effect-consumers-v1/specification.json",
+        "bytes": 74844,
+        "sha256": "f2edfbec0c35366aae26ed8c7c6aeea6a62c54545e32c89ccad5d75350440b99"
+      },
+      "pointer": "/facts/1",
+      "canonical_sha256": "5a7a41801ba360296c7ec9a147275869b09962f3eb6268dbdc6d95e3fafe3749",
+      "title": "对象唯一性、逻辑参数和真实数值容器分别建模",
+      "rules": [
+        "442280遍历58F6B0/58F6AC链，返回callback+8相同且+1C==0的首个对象；409E70分配/40A090标删沿已有graphics-lifetime合同复用。待删、摘链与回收分开，不能按callback地址当全部场景永久单例。",
+        "4032F0临时数值容器含vptr、logical XOR seed及读计数字节，构造调用原_rand；4034F0每次读取增加计数，正常计数超过20会再取rand并保持原逻辑值重新编码。403530是15字节setter，4034D0是5字节getter跳板，均按已有callee元数据冷解码，不新增native查询。",
+        "403330为==、403340为!=、4033A0为参数<=容器值、4033D0为容器值<=参数；403540真实读entryESP+4原值及entryESP+8容器指针后比较，原低置信度单参数伪代码不用于改写ABI。",
+        "原对象+1E0/+1F0/+200/+210是容器起点，其payload在+4/+8/+C；世界坐标+274/+278为float32，输入按64倍换算。旧AO-F10笼统fixed-point措辞由本批精确区分；临时构造/读带来的共享RNG消耗也不能从来源事实抹去。独立逻辑值表示与随机流兼容政策另列。"
+      ]
+    },
+    {
+      "id": "EF-F3",
+      "file": {
+        "path": "build/analysis/game-effect-consumers-v1/specification.json",
+        "bytes": 74844,
+        "sha256": "f2edfbec0c35366aae26ed8c7c6aeea6a62c54545e32c89ccad5d75350440b99"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "4da74b194cd88106c347c84da7dc24abbfe7104534c1e4cd0f5750307b6df5ef",
+      "title": "普通主对象创建和合资格回调有完整局部规则",
+      "rules": [
+        "普通对象使用资源ID0x382AA、callback4437C0、+15=3；452FE0映射资源、452E40取有符号原点资料供+2C8/+2CC，失败/实际文件读取沿现有资源合同处理。param3存期望场景，param4/5按64倍为位置；param2在此对象路径不作为网络位置使用。",
+        "phase1初始化逻辑终点为p4*64/p5*64，世界起点为(p4+10)*64/(p5-10)*64；phase2直接以p4*64/p5*64为世界位置；phase3逻辑与世界起点都减10再*64。新对象才清原offset/velocity等字段，复用对象保留未覆盖字段。",
+        "4437C0仅442150合资格、期望场景等于96BA10且本机对象F5E8DC非空时继续，否则标删。442150允许40000..41999及59000/59001/59100；不得把当前系统时间/Windows版本或实际联网场景当此静态门槛。",
+        "phase1每回调x-=0.75、y+=0.75，按源方向比较到达两个逻辑边界后从容器取终点并转phase2；phase3每回调x/y各减0.5。随后按463D70世界投影、偏移与截断得屏幕位置；独立初始化标记容器+1E0==0时置1并提前return，后续才调用443480加正弦Y偏移。原表64个signed32与按屏幕Y/phase/amplitude索引单独核验。"
+      ]
+    },
+    {
+      "id": "EF-F4",
+      "file": {
+        "path": "build/analysis/game-effect-consumers-v1/specification.json",
+        "bytes": 74844,
+        "sha256": "f2edfbec0c35366aae26ed8c7c6aeea6a62c54545e32c89ccad5d75350440b99"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "f8266f4316cf260bad5b272ff7ee2ca4b83c0ae87e4adaaf9b314fdc84d6327b",
+      "title": "跟随对象的两种动画状态可复用同一序列",
+      "rules": [
+        "443980只在无未待删跟随对象且有主对象时分配，分配参数来自主+14加1、+15来自主+15加1，callback4439D0。主/跟随是两个所有者，不能把主删除等同跟随立即物理释放。",
+        "4439D0找不到主对象或场景门槛失败则标删；否则主phase1选动画state0，其它选state1，调用443330(mode0)，然后复制主屏幕坐标。",
+        "mode0/state0和1均为资源0x38C54..0x38C63共16项，持续回调步数分别24与16，末项-2跳到index0。改变动画state会清原剩余计数/索引；原generic返回值在此caller未检查。只覆盖实际两状态，未声称全部generic动画表或实际像素接受。"
+      ]
+    },
+    {
+      "id": "EF-F5",
+      "file": {
+        "path": "build/analysis/game-effect-consumers-v1/specification.json",
+        "bytes": 74844,
+        "sha256": "f2edfbec0c35366aae26ed8c7c6aeea6a62c54545e32c89ccad5d75350440b99"
+      },
+      "pointer": "/facts/4",
+      "canonical_sha256": "d4156f62487617e11b13324f837ff99087b59f94c0e7d98222e112968ff21594",
+      "title": "两条特殊对象路径确有音效旁效与镜像运动",
+      "rules": [
+        "442720的非零分支要求main==9，使用callback442960/资源0x3937，原点额外(+86,-93)、+15=11；442CA0同样要求main9，从负first的百位商100/101选择0x3935/0x3936，原点分别(-189,+217)/(-215,-220)，callback442B00、+15=4。",
+        "负路低两位0早返；低两位4先查已有对象并标删，发生在资源商域验证前。通常有效数据是-10001..-10004与-10101..-10104；INT32_MIN/溢出和原无效返回不按JS无限精度猜算，独立边界策略分开。",
+        "phase1正路offsetX=870、offsetY=-121.8、speed1；负路镜像。phase2清X/speed但复用时未清Y；phase3立即依次请求0x1BC/0x1BB/0x194、清X/Y/speed并继续离开动画。音效调用按既有510000门槛、目录/冷却和物理声部处理，不等于设备播放成功。",
+        "回调先比较期望场景，失配标删。phase1按speed与X符号分段，每次合资格回调speed减float32约0.11，跨正到非正边界也依次请求上述三声；横向越过0则清X/Y/speed并phase++。phase3每回调speed加约0.002、上限1.5，Y按约0.2倍速度镜像；其它横纵比约0.14，全部按真实float32字面/源赋值顺序。"
+      ]
+    },
+    {
+      "id": "EF-F6",
+      "file": {
+        "path": "build/analysis/game-effect-consumers-v1/specification.json",
+        "bytes": 74844,
+        "sha256": "f2edfbec0c35366aae26ed8c7c6aeea6a62c54545e32c89ccad5d75350440b99"
+      },
+      "pointer": "/facts/5",
+      "canonical_sha256": "391fa8a38e4b8afb2be3c847ffe8e196f10d00bdbddf775cdf5ad98f9f59c9a1",
+      "title": "大编号余数0是全局效果计时发布而非对象创建",
+      "rules": [
+        "first>99且first%100==0时，无main门槛地写59A300=param2，5E2764=GetTickCount()-param3*1000，然后return。param2是该消费者的总时长系数，param3是已过秒数；signed32乘法/回绕与后续有符号判断分开描述。",
+        "已有442F20在本机对象非空时先4421A0再水面phase更新；4421A0仅main9、本机对象非空、场景59529时确保callback4422B0对象存在，写期望场景、矩形/标志初值。原型不同于普通主/跟随对象，不按最近地址猜职责。",
+        "4422B0要求main9；场景59529时跳过容器场景失配检查，其它场景按实际容器比较后可标删。读取当前GetTickCount与5E2764求elapsed、59A300求duration，按原有符号范围和取余条件推进；候选分段表见timer_rules。"
+      ]
+    },
+    {
+      "id": "EF-F7",
+      "file": {
+        "path": "build/analysis/game-effect-consumers-v1/specification.json",
+        "bytes": 74844,
+        "sha256": "f2edfbec0c35366aae26ed8c7c6aeea6a62c54545e32c89ccad5d75350440b99"
+      },
+      "pointer": "/facts/6",
+      "canonical_sha256": "9a3d5c3a179b5a16e0e863aa13a36b2324b0f45ba0cb275a553fb371023f549b",
+      "title": "计时回调的输出是偏移发布、声音与100条图块排队",
+      "rules": [
+        "各计时分段按elapsed%40/120精确余数发0x1C6/0x1C7；这不是保证每40/120毫秒触发一次，跨采样/重复采样仍受原逻辑更新和510000冷却语义约束。",
+        "活动分段从负路对象speed或自身幅度/cos/sin发布C07874/C07878；找不到负路对象时部分活动分支保留旧值，不能统一补零。非活动或间隙分支置0，幅度递增/衰减与float32存储顺序按timer_rules。",
+        "通过前置门槛后总会以X0..576步64、Y0..432步48排10×10次505BD0，资源0x3938、mode1、描述符来自对象+2F8。创建值含signed16[-320,340,64,48]与+304=1；505BD0拷贝完整16字节描述符、调整资源原点并排队，4096条满或ID不合格可返-2，caller未逐项检查。不把100次提交当100次实际绘制接受。"
+      ]
+    },
+    {
+      "id": "EF-F8",
+      "file": {
+        "path": "build/analysis/game-effect-consumers-v1/specification.json",
+        "bytes": 74844,
+        "sha256": "f2edfbec0c35366aae26ed8c7c6aeea6a62c54545e32c89ccad5d75350440b99"
+      },
+      "pointer": "/facts/7",
+      "canonical_sha256": "331b339ac6bbb2c1a49336523a2ec9e6c65c2338cf560f94003b460018ec6421",
+      "title": "偏移真正进入粒子更新，地址边界引用不能充当写者",
+      "rules": [
+        "4组typed refs共27处均核实际opcode；59A300/5E2764的实际读取集中在4422B0，写入在442720。440712虽引用数值地址5E2764，但opcode是与立即数作地址界比较，read/write均false，不是计时复位。",
+        "C07874/C07878实际读者为466100：main!=10时，与角度/幅度和465F30贡献组合，参与类型6/7/8记录的16.16位移、裁边及显示排队。因此此处不是直接写入463D70的相机投影参数。其它被枚举写点仍保留，不宣称全局别名/写时序穷尽。",
+        "466100完整1190字节已保留，本批语义覆盖所选偏移消费者与其类型6/7/8路径；配置/生成/完整退役及其它主状态调用时序属于后续G06/X02必要规则，不递归猜完所有callee或以完整字节覆盖替代全语义接受。"
+      ]
+    },
+    {
+      "id": "EF-F9",
+      "file": {
+        "path": "build/analysis/game-effect-consumers-v1/specification.json",
+        "bytes": 74844,
+        "sha256": "f2edfbec0c35366aae26ed8c7c6aeea6a62c54545e32c89ccad5d75350440b99"
+      },
+      "pointer": "/facts/8",
+      "canonical_sha256": "2c65602d238dbb189e6b56b9721cd32c788b5f509df0fccb0ce5af09e942cad4",
+      "title": "已证逻辑更新与资源/声部所有者继续共享",
+      "rules": [
+        "所选特效按合资格对象回调步进，毫秒计时支路另取GetTickCount，动画步数和毫秒取余不能合成一个render回调时钟。已有IC/CT公共时钟/对象退役、RP资源/队列及CA/AO音频owner复用。",
+        "资源目录ID、图形index、图块排队成功与实际显示/音效接受分层。Xne的新音效旁效已用21个静态直接调用点证明，不再保留这条链“是否有声音”的旧未知；完整三端实现仍待。"
+      ]
+    },
+    {
+      "id": "AF-L1",
+      "classification": "事实",
+      "file": {
+        "path": "analysis/game-legacy-audio-v1/source-check.json",
+        "bytes": 18930,
+        "sha256": "3e09ad7e4a4c0c870d8780c8b49a71b4b14bfc25f3a0cb67d1dd930a9e0d647b"
+      },
+      "pointers": [
+        "/cue",
+        "/music"
+      ],
+      "rules": [
+        "原音乐目录44行，track0..43；固定默认音频/返回提示及各track元数据按原表引用，不能用一条测试WAV代替全目录。",
+        "音乐路径、level、mode与loop字段逐track保留；源16.666…ms逻辑周期与物理音频sample clock分别处理。"
+      ],
+      "track_count": 44
+    },
+    {
+      "id": "AF-L2",
+      "classification": "事实",
+      "file": {
+        "path": "analysis/game-legacy-music-phases-v1/source-check.json",
+        "bytes": 10590,
+        "sha256": "82b2d6c00afae9cb9894b0969e99eb81b22aa27134376ca11f98035c2d49ab3f"
+      },
+      "pointers": [
+        "/lobby",
+        "/battle",
+        "/pending_scene_music"
+      ],
+      "rules": [
+        "main2选服音乐track17；选角/战斗/普通场景过渡按已绑定调用链保留淡出与请求的阶段。",
+        "战斗special/mode1/other六项选择及地图覆盖使用原表；S)B的请求准入、有效映射和stop项不归并成单一连续track范围。"
+      ],
+      "lobby": {
+        "main": 2,
+        "track": 17,
+        "character_selection_fade": "0x458f28"
+      },
+      "battle": {
+        "tag": ">HY",
+        "selection_main": 10,
+        "selection_phase": 0,
+        "tables": {
+          "special": {
+            "address": "0x438684",
+            "file_offset": 227972,
+            "targets": [
+              "0x437c47",
+              "0x437c91",
+              "0x437c91",
+              "0x437c47",
+              "0x437c4b",
+              "0x437c65"
+            ],
+            "tracks": [
+              34,
+              16,
+              16,
+              34,
+              35,
+              26
+            ]
+          },
+          "mode1": {
+            "address": "0x43869c",
+            "file_offset": 227996,
+            "targets": [
+              "0x437c61",
+              "0x437c91",
+              "0x437c91",
+              "0x437c61",
+              "0x437c65",
+              "0x437c65"
+            ],
+            "tracks": [
+              25,
+              16,
+              16,
+              25,
+              26,
+              26
+            ]
+          }
+        },
+        "other": [
+          13,
+          16,
+          16,
+          13,
+          14,
+          15
+        ],
+        "special_background": [
+          238607,
+          238618
+        ],
+        "map_override": [
+          1457,
+          1480
+        ],
+        "override_track": 16,
+        "mode_wire_field": 1,
+        "background_wire_field": 2,
+        "scene_mode_wire_field": 9,
+        "map_wire_field": 2,
+        "exit_phase": 7,
+        "return_main": 9,
+        "return_phase": 11,
+        "return_wait_frames": 30
+      },
+      "pending_scene_music": {
+        "tag": "S)B",
+        "accepted": [
+          200,
+          249
+        ],
+        "mapped": [
+          200,
+          244
+        ],
+        "stop": 218
+      }
+    },
+    {
+      "id": "AF-L3",
+      "classification": "事实",
+      "file": {
+        "path": "analysis/game-legacy-battle-audio-v1/implementation-spec.json",
+        "bytes": 4128,
+        "sha256": "bc882471a2ab5e5175466aee55848964a160329b3238b1d9437b67b69bef46e1"
+      },
+      "pointers": [
+        "/facts"
+      ],
+      "rules": [
+        "507dfa..50eb87 defines270 records,IDs1..468 with holes,260 distinct relative se/*.wav paths;70-byte rows andFFFF sentinel.4802 admitted data-copy instructions and188 static input ranges are rebound to PE bytes.",
+        "510000 validates0..500 and the loaded sound index,ignores an ID with nonzero cooldown,uses64 unprotected ring voices,restarts or replaces its slot,plays once,and assigns5 cooldown updates.",
+        "x/5 uses signed truncation and clamps0..127;disabled pan uses64;y is unused.50f5a0 writes mirrored logarithmic attenuation based on odd127..1,5000/log(100),then overwrites endpoints with-10000/+10000.",
+        "The existing source level table and default15/15 effect volume apply.All270 source pitch offsets are0,so this owner retains each wave's sample rate.",
+        "510b50 decrements each nonzero per-ID cooldown once per invocation.44fc72 calls510be0,which calls510b50."
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "AF-O01",
+      "title": "启动音频可用门槛",
+      "trigger_and_inputs": "配置位、实际能力探测/初始化结果与启动上下文",
+      "source_rules": [
+        "AO-F1",
+        "AO-F2",
+        "MS-F1",
+        "MS-F2"
+      ],
+      "ordered_behavior": "按原启动先WAV后MIDI；声音不可用门槛只由所证分支更新，父流程不因这两个返回自动统一回滚。",
+      "completion_boundary": "记录各阶段逻辑结果和资源存活；不是可闻输出回执。",
+      "failure_cancel_or_reentry": "设备/接口/PCM各失败点分开；宿主gesture阻塞不得改写源初始化位。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O02",
+      "title": "后端目录和缓冲初始化",
+      "trigger_and_inputs": "固定目录与逐项PCM供给",
+      "source_rules": [
+        "AO-F2",
+        "AO-F3",
+        "AF-L1",
+        "AF-L3"
+      ],
+      "ordered_behavior": "保留64声部、501 backing索引与实际loaded数量的不同域；目录ID不等于backing序号。",
+      "completion_boundary": "各已准备资源可用；未准备项保持不可用。",
+      "failure_cancel_or_reentry": "部分失败按源存活状态描述；目标完整清理归独立失败政策。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O03",
+      "title": "PCM资源准备",
+      "trigger_and_inputs": "WAVE字节、格式、frame loop与资源租约",
+      "source_rules": [
+        "AO-F3",
+        "MS-F7",
+        "AF-L1"
+      ],
+      "ordered_behavior": "原mmio读取/PCM限制和目标便携解析覆盖分别列明；以blockAlign换算frame/byte，不从浏览器decode成功推原格式相容。",
+      "completion_boundary": "解析/租约/宿主准备各有回执。",
+      "failure_cancel_or_reentry": "短读、格式、预算、过时租约分别失败；不凭重采样改变源loop。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O04",
+      "title": "普通单次音效请求",
+      "trigger_and_inputs": "目录ID与源坐标/音量/声像上下文",
+      "source_rules": [
+        "AF-L3",
+        "AR-F3"
+      ],
+      "ordered_behavior": "按源目录/loaded/声音门槛和per-ID冷却准入；请求使用原64声部cursor及保护资格。",
+      "completion_boundary": "逻辑请求结果与实际声部played分开。",
+      "failure_cancel_or_reentry": "非法/未加载/冷却拒绝不出声；复制或声部失败不能被视为业务成功。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O05",
+      "title": "返回/系统事件音效",
+      "trigger_and_inputs": "R]=整数与源主状态",
+      "source_rules": [
+        "AO-F6",
+        "AF-L3"
+      ],
+      "ordered_behavior": "仅所证924F30条件和值0..8映射九个目录ID，以(320,240)交同一音效owner。",
+      "completion_boundary": "仅为cue请求，没有线路ACK。",
+      "failure_cancel_or_reentry": "其它整数无请求；仍受普通音效门槛和冷却。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O06",
+      "title": "声音接收分路",
+      "trigger_and_inputs": "XR(三个int32",
+      "source_rules": [
+        "AO-F6",
+        "AO-F7"
+      ],
+      "ordered_behavior": "首值>999时转MIDI(first-1000,second)并忽略第三值；否则按原三值请求普通cue。",
+      "completion_boundary": "分路不扩张callee的有效ID域，也不是服务器操作完成。",
+      "failure_cancel_or_reentry": "未知MIDI ID/缺loader/声部失败保留实际结果，不构造成功。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O07",
+      "title": "声像与源增益",
+      "trigger_and_inputs": "源x、pan开关、目录level和音量上下文",
+      "source_rules": [
+        "CA-F5",
+        "AR-F2",
+        "AR-F3",
+        "AF-L3"
+      ],
+      "ordered_behavior": "signed x/5向零截断并夹0..127；关闭pan用64；沿源衰减/表/音量域，环境声已有pan每维护最多趋近2。",
+      "completion_boundary": "更新声部所需参数；不使用CSS/viewport坐标代替源坐标。",
+      "failure_cancel_or_reentry": "未取得所需源上下文返回needs-context；不填默认音量掩盖缺口。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O08",
+      "title": "合资格维护",
+      "trigger_and_inputs": "一次实际源逻辑更新及其上下文",
+      "source_rules": [
+        "AO-F4",
+        "CA-F5",
+        "CA-F6"
+      ],
+      "ordered_behavior": "保留网络后、主分派前的维护位置；门槛允许时冷却→ambient→music→fade；catch-up每合资格更新可再走，render不推进。",
+      "completion_boundary": "本次有序逻辑delta与audio intents发布。",
+      "failure_cancel_or_reentry": "后台/暂停/绘制省略与源逻辑准入分别建模，禁止墙钟补跳原阶段。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O09",
+      "title": "选服与选角音乐",
+      "trigger_and_inputs": "main2及选角/进入操作",
+      "source_rules": [
+        "AF-L2",
+        "CA-F6"
+      ],
+      "ordered_behavior": "选服请求track17，后续选择/进入按原音乐请求/淡出阶段处理。",
+      "completion_boundary": "完成所需状态阶段，物理载入另回执。",
+      "failure_cancel_or_reentry": "过时载入不覆盖新main/scene owner；关闭不等于完成播放。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O10",
+      "title": "普通场景音乐请求",
+      "trigger_and_inputs": "S)B值及场景已有请求",
+      "source_rules": [
+        "AF-L2",
+        "AR-F4",
+        "CA-F6"
+      ],
+      "ordered_behavior": "原准入200..249、映射200..244与stop218分别保留；track范围仍0..43，不把parser准入当有效track证明。",
+      "completion_boundary": "发布请求/停止意图，由同一music owner消费。",
+      "failure_cancel_or_reentry": "未映射或超出有效track按原分支；不得强行钳到最近歌曲。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O11",
+      "title": "战斗音乐选择与返回",
+      "trigger_and_inputs": "战斗mode/background/sceneMode/map及退出阶段",
+      "source_rules": [
+        "AF-L2",
+        "CA-F6"
+      ],
+      "ordered_behavior": "使用原special/mode1/other表与覆盖门槛；退出phase7→main9/phase11及30更新等待，与音乐淡出分开。",
+      "completion_boundary": "所选track和请求阶段明确，完整战斗流程由B组owner负责。",
+      "failure_cancel_or_reentry": "重复入场/返回不创建第二播放器；未取得来源上下文不猜曲目。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O12",
+      "title": "提交音乐请求",
+      "trigger_and_inputs": "requested track、bank、request flag",
+      "source_rules": [
+        "CA-F6",
+        "AR-F4"
+      ],
+      "ordered_behavior": "保留每次地图遍历先清请求、ground后object的顺序；请求标记和音乐当前track分别持有。",
+      "completion_boundary": "请求发布不是已播放。",
+      "failure_cancel_or_reentry": "遍历读取失败、mode/param资格和后备扫描分别处理。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O13",
+      "title": "音乐四阶段推进",
+      "trigger_and_inputs": "一个合资格维护",
+      "source_rules": [
+        "CA-F6",
+        "AO-F4"
+      ],
+      "ordered_behavior": "phase0仅有请求且不同track时进入1并调用原bank/准备，随后清请求；1捕获fade转2，2等flag清再3，3启动再0。",
+      "completion_boundary": "逐维护推进，不能原子selectMusic一次跳完。",
+      "failure_cancel_or_reentry": "同track、没有请求和fade条件分别早返；物理失败不伪造played。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O14",
+      "title": "淡出维护",
+      "trigger_and_inputs": "当前有效track、fade标志/量和接口存活",
+      "source_rules": [
+        "CA-F6"
+      ],
+      "ordered_behavior": "捕获待淡出量；每次维护按原量/接口门槛递减并更新，完成时停止并current=-1。",
+      "completion_boundary": "源fade标志完成与物理释放不同。",
+      "failure_cancel_or_reentry": "无接口/禁用/零量按各源分支结束，不沿墙钟补完。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O15",
+      "title": "启动/替换普通音乐",
+      "trigger_and_inputs": "track、force、source playback参数",
+      "source_rules": [
+        "AO-F3",
+        "AF-L1"
+      ],
+      "ordered_behavior": "先same-track且非force早返，再清force/检查总门槛/停止旧曲/-2哨兵/0..43/音乐门槛，之后选全缓冲或流式。",
+      "completion_boundary": "1/0/-1源返回与实际设备播放结果分层。",
+      "failure_cancel_or_reentry": "载入/格式/创建失败各自保留；不能把新曲失败回滚成未经源证实的旧曲恢复。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O16",
+      "title": "流式建立与首次就绪",
+      "trigger_and_inputs": "原格式结构、资料字节、loopStart",
+      "source_rules": [
+        "MS-F6",
+        "MS-F7",
+        "AO-F3"
+      ],
+      "ordered_behavior": "保持buffer几何与两个请求offset；先发布loopStart和实际读取长度，worker首填尝试后才置ready。",
+      "completion_boundary": "源ready只说明首填尝试后达到该点，不保证Lock/复制成功。",
+      "failure_cancel_or_reentry": "目标端必须单列准备失败，不用源ready吞掉I/O或Lock错误。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O17",
+      "title": "流式补充与循环边界",
+      "trigger_and_inputs": "worker事件、cursor、两个区域和已生效end",
+      "source_rules": [
+        "MS-F6",
+        "MS-F7",
+        "MS-F8"
+      ],
+      "ordered_behavior": "事件0/1按原offset补充；父在ready后才发布loopEnd。每区最多一次绕回，保留第二区跨end使用第一目的地址的源分支。",
+      "completion_boundary": "填充cursor/次数更新及真实物理缓冲回执分开。",
+      "failure_cancel_or_reentry": "Lock失败cursor不变；异常分区/短loop独立政策与原分支分栏，不能按直觉修原证据。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O18",
+      "title": "流式停止确认",
+      "trigger_and_inputs": "当前流式状态、buffer与worker终止回执",
+      "source_rules": [
+        "AO-F5",
+        "MS-F6"
+      ],
+      "ordered_behavior": "源Stop后等待FBA3D4确认再清状态/free；worker非补充wait结果写确认并退出，buffer空有提前返回。",
+      "completion_boundary": "确认、失效和物理drain三个边界。",
+      "failure_cancel_or_reentry": "目标有限等待/timeout/退役回执明确；不得把未知drain当已释放或复制原无界忙等。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O19",
+      "title": "地图音频primitive生产",
+      "trigger_and_inputs": "mode/param、ground/object的raw/resolved值和位置",
+      "source_rules": [
+        "AR-F4"
+      ],
+      "ordered_behavior": "200段请求音乐，250段请求ambient；ground用resolved，object资格用resolved而实参重新读raw；两mode完成遍历均后备扫描。",
+      "completion_boundary": "按源遍历顺序发布请求。",
+      "failure_cancel_or_reentry": "param0/特殊mode只改变相应生产资格，不能统一关闭后备表。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O20",
+      "title": "直接环境候选聚合",
+      "trigger_and_inputs": "code250..299与源整数x/y",
+      "source_rules": [
+        "AR-F1",
+        "AR-F2"
+      ],
+      "ordered_behavior": "按中心(320,240)算距离/缩放；每键首touch或严格更近才更新，相等先到者；touch计数与字段单位阶段保留。",
+      "completion_boundary": "候选记录被touch，不是物理播放成功。",
+      "failure_cancel_or_reentry": "越界距离/code不续touch；返回0不能当统一bool失败。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O21",
+      "title": "持续声部分配与撤回",
+      "trigger_and_inputs": "50行touch、已存voice、目录/loaded/保护域",
+      "source_rules": [
+        "CA-F5",
+        "AR-F3"
+      ],
+      "ordered_behavior": "按源分配/复用/样本变更/保护cursor及差异参数更新；维护末清touch；无touch才停止并清保护/voice。",
+      "completion_boundary": "逻辑行变化与Stop/Release/cache分层。",
+      "failure_cancel_or_reentry": "源外层忽略的失败仍作为目标物理失败回执；耗尽不擅自抢占受保护声部。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O22",
+      "title": "服务器环境登记",
+      "trigger_and_inputs": " ]bS三个int32和投影上下文",
+      "source_rules": [
+        "AL-F1",
+        "AL-F3",
+        "AL-F4",
+        "AL-F5"
+      ],
+      "ordered_behavior": "按原20字节表索引、float32投影后距离比较再存整数坐标；marker控制候选窗口，原包装没有ACK。",
+      "completion_boundary": "登记完成只改变表，不直接Play。",
+      "failure_cancel_or_reentry": "原无bounds检查不证明任意int32合法；目标边界政策显式区别于服务端已验域。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O23",
+      "title": "后备环境扫描",
+      "trigger_and_inputs": "50行旧坐标、ID和marker",
+      "source_rules": [
+        "AR-F5",
+        "AL-F4",
+        "AL-F5",
+        "AL-F6"
+      ],
+      "ordered_behavior": "先原点0预筛20..126，失败整函数return；合格行用ID+249提交后marker=1。row0→249被普通门槛拒绝、row49→298偏移保留。",
+      "completion_boundary": "扫描/touch窗口与声部结果分开。",
+      "failure_cancel_or_reentry": "不得把return改continue、把旧记录每帧清空或自动重新投影。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O24",
+      "title": "场景环境登记失效",
+      "trigger_and_inputs": "声音初始化或已证场景准备",
+      "source_rules": [
+        "AL-F2",
+        "AL-F6"
+      ],
+      "ordered_behavior": "reset50行仅marker=1及ID=-1；坐标保留，后续其它producer和maintenance决定物理声部去留。",
+      "completion_boundary": "逻辑登记失效，不是立即Stop全部声音。",
+      "failure_cancel_or_reentry": "scene epoch禁止晚到旧场景载入；source包本身没有新增epoch字段。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O25",
+      "title": "MIDI初始化与部分存活",
+      "trigger_and_inputs": "实际能力门槛、启动word、接口创建结果",
+      "source_rules": [
+        "MS-F1",
+        "MS-F2"
+      ],
+      "ordered_behavior": "先退役旧接口，再创建performance/core/loader/port/buffer/clock；保留源1..8返回及未检查的加载/AddPort分支。",
+      "completion_boundary": "每阶段存活状态可检查；return0不等于可播放。",
+      "failure_cancel_or_reentry": "独立host清理/重试明确，不能假定原初始化原子。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O26",
+      "title": "默认GM与乐器供给",
+      "trigger_and_inputs": "原默认集合descriptor或显式资料供给",
+      "source_rules": [
+        "MS-F3",
+        "MS-F5"
+      ],
+      "ordered_behavior": "正常来源请求默认集合，逐乐器枚举/下载；保留最后download引用与失败/枚举结束分支。",
+      "completion_boundary": "集合请求、乐器可用与音色接受三层。",
+      "failure_cancel_or_reentry": "没有实际可用GM资料时给unavailable；不把GUID当音色文件或用波形cue替代MIDI。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O27",
+      "title": "内嵌MIDI段与第二参数",
+      "trigger_and_inputs": "sourceId0/1、原第二word和loader结果",
+      "source_rules": [
+        "AO-F7",
+        "MS-F3"
+      ],
+      "ordered_behavior": "只按1204/16字节两个声明span请求加载；第二word由真实ABI传到段接口，不取伪代码错误局部。",
+      "completion_boundary": "loader/段控制/播放HRESULT分别处理，源忽略的返回保留。",
+      "failure_cancel_or_reentry": "16字节声明不足MTrk头只证明边界；不得扩大读取或预判原loader结果。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O28",
+      "title": "MIDI主音量与混响",
+      "trigger_and_inputs": "源音量输入、上下文/接口与FPU条件",
+      "source_rules": [
+        "AO-F8",
+        "MS-F4"
+      ],
+      "ordered_behavior": "保留(569ADC*input)/15后0..127索引、128项x87表及两个源控制调用参数；WAV level与该域不同。",
+      "completion_boundary": "提交参数与可闻音量/音色回执分层。",
+      "failure_cancel_or_reentry": "索引0/FPU异常与极值不能用BSS或JS log默认值代替；依X02上下文或明确needs-context。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O29",
+      "title": "MIDI播放/替换/段释放",
+      "trigger_and_inputs": "当前段、音量和performance接口",
+      "source_rules": [
+        "AO-F7",
+        "AO-F8",
+        "MS-F5"
+      ],
+      "ordered_behavior": "新段前按原停止/释放旧段；源播放先设置音量，保留HRESULT符号判断与父忽略情况；loader-only释放不同于Stop。",
+      "completion_boundary": "段逻辑存活与物理播放分别回执。",
+      "failure_cancel_or_reentry": "后台/重入/旧异步完成不能复活已退役段；失败按真实接口结果。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O30",
+      "title": "对象效果伴随音效",
+      "trigger_and_inputs": "Xne实际对象/场景/phase与合资格回调",
+      "source_rules": [
+        "EF-F1",
+        "EF-F2",
+        "EF-F3",
+        "EF-F4",
+        "EF-F5",
+        "AF-L3"
+      ],
+      "ordered_behavior": "在原场景资格和speed/phase边界依次请求0x1BC/0x1BB/0x194等已证cue，统一进入普通声音owner。",
+      "completion_boundary": "只有实际回调条件成立才产出音效请求。",
+      "failure_cancel_or_reentry": "标删/场景失配/资源失败不补造回调；对象运动仍归G06及共享生命周期。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O31",
+      "title": "计时效果音效",
+      "trigger_and_inputs": "源GetTickCount域、elapsed/duration/对象状态",
+      "source_rules": [
+        "EF-F6",
+        "EF-F7",
+        "EF-F8",
+        "EF-F9",
+        "AF-L3"
+      ],
+      "ordered_behavior": "原elapsed%40/120精确条件请求0x1C6/0x1C7；保持源输入/回调顺序与普通cue冷却。",
+      "completion_boundary": "相应采样点的请求，不保证每40/120ms必响。",
+      "failure_cancel_or_reentry": "跳采样不补发，重复采样仍受原冷却；渲染刷新和宿主音频时钟不代替源毫秒域。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O32",
+      "title": "进程与会话退役",
+      "trigger_and_inputs": "当前各接口/worker/声部/资源租约",
+      "source_rules": [
+        "AO-F5",
+        "MS-F5",
+        "CA-F7"
+      ],
+      "ordered_behavior": "进程结束先MIDI再WAV后MCI谓词；单曲停止、scene invalidation、会话失效与物理drain分别处理。",
+      "completion_boundary": "按存活接口逐项释放并产生目标drain回执。",
+      "failure_cancel_or_reentry": "不从CoUninitialize缺席或函数名推全部句柄已释放；stop timeout保持明确未drained。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O33",
+      "title": "宿主gesture/暂停/恢复",
+      "trigger_and_inputs": "实际host能力、用户手势和应用生命周期",
+      "source_rules": [
+        "AO-F1",
+        "AO-F4",
+        "AO-F11"
+      ],
+      "ordered_behavior": "UC-P13接有序intent，host suspended/blocked不改变原逻辑总门槛；恢复检查当前owner及能力后再准备。",
+      "completion_boundary": "prepared/played/blocked/failed/retired如实返回。",
+      "failure_cancel_or_reentry": "桌面Chrome所测只是所列原语；手机/微信/物理可闻仍需实际验收。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    },
+    {
+      "id": "AF-O34",
+      "title": "异步载入晚到与重新进入",
+      "trigger_and_inputs": "source resource identity、context owner、lease与预算",
+      "source_rules": [
+        "AO-F11",
+        "AR-F3",
+        "MS-F8",
+        "EF-F9"
+      ],
+      "ordered_behavior": "复用已有wanted/epoch/lease，旧请求失效与物理drain分开；同一资源/播放owner被各玩法引用。",
+      "completion_boundary": "当前owner可用后才接输出；失效结果不能覆盖新选择。",
+      "failure_cancel_or_reentry": "读失败、预算、后台、取消、重开各有错误/退役回执，不以空音频默默前进。",
+      "classification": {
+        "source_constraints": "事实，仅限所引固定来源及其参数条件",
+        "target_port_and_failure_policy": "推测，独立合同待实现和验证"
+      }
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "AF-D1",
+      "classification": "待验证",
+      "status": "not-implemented",
+      "title": "合并音频维护至既有合资格更新",
+      "shared_batch": "D0",
+      "existing_ports": [
+        "SharedUpdatePump",
+        "ClockDomains",
+        "SourceValueContext"
+      ],
+      "operations": [
+        "AF-O01",
+        "AF-O08",
+        "AF-O13",
+        "AF-O14",
+        "AF-O19",
+        "AF-O31"
+      ],
+      "need": "源逻辑计数/毫秒、RNG与host sample clock分开；一次更新顺序只由共同owner推进。"
+    },
+    {
+      "id": "AF-D2",
+      "classification": "待验证",
+      "status": "not-implemented",
+      "title": "统一音乐请求与四阶段切换",
+      "shared_batch": "D2",
+      "existing_ports": [
+        "ContextOwner",
+        "SharedUpdatePump",
+        "RenderAudioSurfaces"
+      ],
+      "operations": [
+        "AF-O09",
+        "AF-O10",
+        "AF-O11",
+        "AF-O12",
+        "AF-O13",
+        "AF-O14",
+        "AF-O15"
+      ],
+      "need": "复用44曲目录/战斗选择/异步wanted，补bank、request、phase、fade与force的源差异。"
+    },
+    {
+      "id": "AF-D3",
+      "classification": "待验证",
+      "status": "not-implemented",
+      "title": "共享普通cue与受保护声部",
+      "shared_batch": "D0",
+      "existing_ports": [
+        "RenderAudioSurfaces",
+        "BudgetAndLease"
+      ],
+      "operations": [
+        "AF-O04",
+        "AF-O05",
+        "AF-O06",
+        "AF-O07",
+        "AF-O21",
+        "AF-O30",
+        "AF-O31"
+      ],
+      "need": "复用270目录/WAV/冷却，接实际loaded索引、保护资格、样本复用与物理失败；不能新增第二套事件播放器。"
+    },
+    {
+      "id": "AF-D4",
+      "classification": "待验证",
+      "status": "not-implemented",
+      "title": "加入两张环境表及场景归属",
+      "shared_batch": "D2",
+      "existing_ports": [
+        "ContextOwner",
+        "SharedUpdatePump",
+        "SourceValueContext"
+      ],
+      "operations": [
+        "AF-O19",
+        "AF-O20",
+        "AF-O21",
+        "AF-O22",
+        "AF-O23",
+        "AF-O24"
+      ],
+      "need": "补raw/resolved生产、50行登记/50行touch、两距离原点/marker/ID偏移和reset；source边界与独立拒绝政策分开。"
+    },
+    {
+      "id": "AF-D5",
+      "classification": "待验证",
+      "status": "not-implemented",
+      "title": "MIDI/GM/段控制能力",
+      "shared_batch": "D5",
+      "existing_ports": [
+        "RenderAudioSurfaces",
+        "HostCapabilitiesAndLifecycle",
+        "StableRangeSource"
+      ],
+      "operations": [
+        "AF-O06",
+        "AF-O25",
+        "AF-O26",
+        "AF-O27",
+        "AF-O28",
+        "AF-O29"
+      ],
+      "need": "沿同一port实现SMF/段及乐器供给；默认GM请求不是已取得可分发音色，16字节载体按声明界限，FPU特殊域保持上下文条件。"
+    },
+    {
+      "id": "AF-D6",
+      "classification": "待验证",
+      "status": "not-implemented",
+      "title": "流式/停止的有限异步状态",
+      "shared_batch": "D5",
+      "existing_ports": [
+        "RenderAudioSurfaces",
+        "OwnerLifecycle",
+        "BudgetAndLease"
+      ],
+      "operations": [
+        "AF-O16",
+        "AF-O17",
+        "AF-O18",
+        "AF-O32"
+      ],
+      "need": "保留首填和loopEnd后发布、源填充失败/双区分支；目标停止有timeout和drain状态，不照搬原忙等。"
+    },
+    {
+      "id": "AF-D7",
+      "classification": "待验证",
+      "status": "not-implemented",
+      "title": "跨端载入/暂停/重入失败矩阵",
+      "shared_batch": "D0",
+      "existing_ports": [
+        "ContextOwner",
+        "BudgetAndLease",
+        "RenderAudioSurfaces",
+        "HostCapabilitiesAndLifecycle"
+      ],
+      "operations": [
+        "AF-O01",
+        "AF-O02",
+        "AF-O03",
+        "AF-O18",
+        "AF-O24",
+        "AF-O32",
+        "AF-O33",
+        "AF-O34"
+      ],
+      "need": "接已有lease/epoch/取消与真实物理回执，统一手机/微信薄适配；不得把逻辑接受当已出声。"
+    },
+    {
+      "id": "AF-D8",
+      "classification": "待验证",
+      "status": "not-implemented",
+      "title": "PCM数值和声像输出",
+      "shared_batch": "D5",
+      "existing_ports": [
+        "RenderAudioSurfaces",
+        "SourceValueContext"
+      ],
+      "operations": [
+        "AF-O03",
+        "AF-O07",
+        "AF-O15",
+        "AF-O28",
+        "AF-O33"
+      ],
+      "need": "复用现有PCM换算与AS实际手动AudioBuffer路径；严格保持采样/loop/gain域，浏览器decode重采样或不同归一化不替代源值。"
+    }
+  ],
+  "implementation_inputs": [
+    {
+      "path": "shared/legacy-game-audio.mjs",
+      "bytes": 5125,
+      "sha256": "2c09f3564b6f21fc53d00a3956528bf172fb424a3902fa094d9f26f4770a7d6e"
+    },
+    {
+      "path": "shared/legacy-game-battle-audio.mjs",
+      "bytes": 3019,
+      "sha256": "7aea846adb7ee3fff27e4e70b7ac6af83781102dcfc711174e6b1cbbdee6fc59"
+    },
+    {
+      "path": "shared/legacy-game-client.mjs",
+      "bytes": 38029,
+      "sha256": "414eb9a100b501d0b3397eb04723d8785881d3438776a9859f6c74f9f17b1338"
+    },
+    {
+      "path": "build/analysis/audio-runtime-ownership-v1/lookup-current-audio-code.json",
+      "bytes": 205205,
+      "sha256": "1dd20037fe35a3e13b30d38ba0379e15008c36c26364c24cca9f0819e1419627"
+    },
+    {
+      "path": "build/analysis/midi-stream-contract-v1/lookup-current-synth-capabilities.json",
+      "bytes": 520709,
+      "sha256": "b987e1d6da7aa25aa77a7308031904ef45c7a22896d1bef66e0b1b14780ccbf7"
+    }
+  ],
+  "source_rule_supersession": [
+    {
+      "historical": "CA-F4/CA-F5 producer/init ambiguity",
+      "effective": [
+        "AO-F1",
+        "AR-F1",
+        "AR-F2",
+        "AR-F3",
+        "AL-F1",
+        "AL-F2",
+        "AL-F6"
+      ]
+    },
+    {
+      "historical": "AR-F5 fallback registry origin open",
+      "effective": [
+        "AL-F1",
+        "AL-F2",
+        "AL-F3",
+        "AL-F4",
+        "AL-F5",
+        "AL-F6"
+      ]
+    },
+    {
+      "historical": "AO-F3 worker/stop source open",
+      "effective": [
+        "MS-F6",
+        "MS-F7",
+        "MS-F8"
+      ]
+    },
+    {
+      "historical": "AO-F8 table/init origin open",
+      "effective": [
+        "MS-F1",
+        "MS-F2",
+        "MS-F3",
+        "MS-F4",
+        "MS-F5"
+      ]
+    },
+    {
+      "historical": "AO-R1 Xne audio side effects open",
+      "effective": [
+        "EF-F1",
+        "EF-F2",
+        "EF-F3",
+        "EF-F4",
+        "EF-F5",
+        "EF-F6",
+        "EF-F7",
+        "EF-F8",
+        "EF-F9"
+      ]
+    }
+  ],
+  "required_behavior_readiness": [
+    {
+      "requirement": "地图/选服/战斗音乐",
+      "operations": [
+        "AF-O01",
+        "AF-O02",
+        "AF-O03",
+        "AF-O08",
+        "AF-O09",
+        "AF-O10",
+        "AF-O11",
+        "AF-O12",
+        "AF-O13",
+        "AF-O14",
+        "AF-O15",
+        "AF-O16",
+        "AF-O17",
+        "AF-O18",
+        "AF-O19",
+        "AF-O24",
+        "AF-O32",
+        "AF-O33",
+        "AF-O34"
+      ],
+      "fixed_source_functional_rules_composed": true
+    },
+    {
+      "requirement": "事件音效",
+      "operations": [
+        "AF-O04",
+        "AF-O05",
+        "AF-O06",
+        "AF-O07",
+        "AF-O08",
+        "AF-O19",
+        "AF-O20",
+        "AF-O21",
+        "AF-O22",
+        "AF-O23",
+        "AF-O24",
+        "AF-O25",
+        "AF-O26",
+        "AF-O27",
+        "AF-O28",
+        "AF-O29",
+        "AF-O30",
+        "AF-O31",
+        "AF-O33",
+        "AF-O34"
+      ],
+      "fixed_source_functional_rules_composed": true
+    },
+    {
+      "requirement": "停止/切换/重复",
+      "operations": [
+        "AF-O08",
+        "AF-O12",
+        "AF-O13",
+        "AF-O14",
+        "AF-O15",
+        "AF-O16",
+        "AF-O17",
+        "AF-O18",
+        "AF-O21",
+        "AF-O24",
+        "AF-O25",
+        "AF-O27",
+        "AF-O29",
+        "AF-O32",
+        "AF-O33",
+        "AF-O34"
+      ],
+      "fixed_source_functional_rules_composed": true
+    }
+  ],
+  "fixed_se_battle_frame_map_save_effect": "analysis/capability-first-v1/game-battle-functional-specification.json#/result_tuple_storage_lifecycle/rid_frame_266/callback_stack_reuse/audio_map_save",
+  "fixed_se_battle_entry_music_request": "analysis/capability-first-v1/game-battle-functional-specification.json#/result_tuple_storage_lifecycle/rid_frame_266/callback_stack_reuse/audio_map_save/ordinary_battle_entry",
+  "existing_shared_contract": {
+    "file": {
+      "path": "analysis/capability-first-v1/shared-target-contract.json",
+      "bytes": 68467,
+      "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+    },
+    "audio_port": "UC-P13 RenderAudioSurfaces",
+    "methods": [
+      "prepare",
+      "render",
+      "cue",
+      "retireAndDrain"
+    ],
+    "observed_voice_budget_and_retirement": "analysis/capability-first-v1/shared-update-host-design.json#/resource_budget_retirement/audio_voice_lifetime",
+    "wechat_sdk_voice_and_close": "analysis/capability-first-v1/shared-update-host-design.json#/resource_budget_retirement/audio_voice_lifetime/wechat_devtools",
+    "mobile_safari_activation_and_retirement": "analysis/capability-first-v1/shared-update-host-design.json#/resource_budget_retirement/audio_voice_lifetime/mobile_safari",
+    "new_port_or_duplicate_player_added": false
+  },
+  "browser_observation_inputs": [
+    {
+      "path": "analysis/capability-first-v1/browser-host-profile.json",
+      "bytes": 22336,
+      "sha256": "5f164e6a44945a89eff56426c51db7a542c23a6e53e83fcddf04708872e4b151"
+    },
+    {
+      "path": "analysis/capability-first-v1/browser-surface-profile.json",
+      "bytes": 24623,
+      "sha256": "a2875f581f8c51f50aef6ed1fb373beb1e5e6c1bb969c469a24bfea044ef8293"
+    }
+  ],
+  "remaining": [
+    {
+      "id": "AF-U1",
+      "kind": "required-shared-source-context",
+      "owner": "X02",
+      "need": "全局更新/RNG/clock/FPU及数值上下文实际origin仍按UC-U1审定；本域合同明确参数和needs-context，不据静态表填入零值。",
+      "blocks": "相关依赖整合与全项目统一门槛；本域固定来源操作规格可单独审定。"
+    },
+    {
+      "id": "AF-U2",
+      "kind": "implementation-and-resource-port",
+      "owner": "G08/X03",
+      "need": "AF-D1..D8未实现；原完整资源预算/跨端MIDI和实际GM供给、取消/失败/drain接线未完成。",
+      "blocks": "G08产品可玩和三端接受。"
+    },
+    {
+      "id": "AF-U3",
+      "kind": "native-and-real-output-acceptance",
+      "owner": "G08/X04/X05",
+      "need": "16字节载体实际loader结果、FPU特殊域/原数值bit一致、真实GM音色、可闻输出、移动/微信设备和后台恢复尚未验收。",
+      "blocks": "对应native/设备输出接受；不作为重复反编译已证helper的理由。"
+    },
+    {
+      "id": "AF-U4",
+      "kind": "current-version-and-full-project",
+      "owner": "X01/X07",
+      "need": "同版游戏消费者/正常交接、G02材料、G20最终关联及其余全部需求和真实官方接受仍未完成；无测试账号。",
+      "blocks": "原40能力/81登记/37历史要求/10消费者组/6来源的完整目标。"
+    }
+  ],
+  "proposed_acceptance_cases": [
+    {
+      "id": "AF-T01",
+      "status": "not-executed",
+      "need": "启动设备/格式/PCM各失败点和部分存活可检查；host suspended不改源FBA38C。"
+    },
+    {
+      "id": "AF-T02",
+      "status": "not-executed",
+      "need": "同一更新内coldown→ambient→music→fade→main顺序；catchup与render省略分别验证。"
+    },
+    {
+      "id": "AF-T03",
+      "status": "not-executed",
+      "need": "44曲、lobby17、battle三组6项及覆盖、S)B准入/映射/stop边界逐项核对。"
+    },
+    {
+      "id": "AF-T04",
+      "status": "not-executed",
+      "need": "普通cue/九事件映射/冷却/64声部与保护耗尽、同phase三cue顺序。"
+    },
+    {
+      "id": "AF-T05",
+      "status": "not-executed",
+      "need": "环境同距先到、raw/resolved、两个原点、row0/49偏移、预筛整段return和marker窗口。"
+    },
+    {
+      "id": "AF-T06",
+      "status": "not-executed",
+      "need": "场景reset不直接清物理声部，旧资源晚到不能覆盖新scene lease。"
+    },
+    {
+      "id": "AF-T07",
+      "status": "not-executed",
+      "need": "MIDI初始化1..8/部分失败、默认GM缺失、0/1段第二word与16字节声明边界分别验收。"
+    },
+    {
+      "id": "AF-T08",
+      "status": "not-executed",
+      "need": "MIDI1..127表与index0/FPU上下文分开；WAV/SMF音量、混响及真实声部不互代。"
+    },
+    {
+      "id": "AF-T09",
+      "status": "not-executed",
+      "need": "流式ready前后loop-end发布，首填失败与仍ready、两区跨end及短loop条件。"
+    },
+    {
+      "id": "AF-T10",
+      "status": "not-executed",
+      "need": "stop确认/timeout/取消/重入/物理drain不混为同一状态。"
+    },
+    {
+      "id": "AF-T11",
+      "status": "not-executed",
+      "need": "AS手动PCM映射/loop/gain复用，decode重采样与归一化差异不能覆盖源数值。"
+    },
+    {
+      "id": "AF-T12",
+      "status": "not-executed",
+      "need": "三端gesture、后台暂停/恢复、错误与可闻输出逐平台实测；同版/官方另外验收。"
+    }
+  ],
+  "upgrade_material_candidate": {
+    "path": "build/analysis/audio-functional-specification-v1/upgrade-candidate-disposition.json",
+    "bytes": 2649,
+    "sha256": "d086c4d5f9e4363b9a6fc0acb29d936597ac54fcf7c80188460531343bea55b1"
+  },
+  "scope_preserved": {
+    "capabilities": 40,
+    "registry_entries": 81,
+    "historical_requirements": 37,
+    "consumer_groups": 10,
+    "profiles": 6,
+    "G02_ready": false,
+    "G20_ready": false,
+    "G15_G17_ready": true
+  },
+  "stopping_rule": "原G08三组完整行为已有参数/源规则/操作/状态/时序/结束失败与独立端口差异。停止已有音频helper再取证；只对会改变必要规则的新正向来源补REA。",
+  "next_actions": [
+    "按原G04需求复用地图/碰撞/点击与移动、回包/位置修正及场景依赖成组审定；不逐按钮重建阶段。",
+    "X02具名共享上下文、G02正常材料origin与G20发送最终关联各保留原约束，只沿正向同源边推进。",
+    "统一A1..A4通过后按D0–D6只实现已列差异，完整目标和真实三端/同版验收不缩减。"
+  ],
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "product_tests_or_builds_run": false,
+  "new_native_queries": 0,
+  "original_VM_network_account_device_actions": false,
+  "local_G08_full_specification_ready": true,
+  "shared_dependencies_integrated": false,
+  "native_special_context_origins_all_proven": false,
+  "G08_product_or_full_acceptance_complete": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false
+}

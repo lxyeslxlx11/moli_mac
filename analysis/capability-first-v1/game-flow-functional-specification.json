@@ -1,0 +1,2520 @@
+{
+  "schema": "moli.game-flow-functional-specification.v1",
+  "classification": "fixed-source operations composed before grouped development",
+  "requirement": "First cover all required capabilities with retained REA evidence and implementation-depth specifications;then grouped shared development. Compose original G03 without adding product features.",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "original_G03": {
+    "id": "G03",
+    "title": "主流程、进入、换场与断开",
+    "requirement_scope": "初始主状态、普通地图、注销、服务端退出、回城与重建",
+    "existing_implementation_owners": [
+      "shared/legacy-game-client.mjs",
+      "shared/legacy-game-state.mjs",
+      "shared/legacy-game-city-return.mjs"
+    ],
+    "dependencies": [
+      "G01",
+      "G02",
+      "X02"
+    ],
+    "implementation_batch": "D2",
+    "source_profiles": [
+      "game-legacy-37c4"
+    ],
+    "registered_protocol_entries": [
+      "MSG-STATE-001",
+      "NET-RECOVERY-001",
+      "GAME-LEGACY-SCENE-STATE-001",
+      "GAME-LEGACY-CLIENT-LIFECYCLE-001",
+      "GAME-LEGACY-BATTLE-ORDINARY-RETURN-001"
+    ]
+  },
+  "fixed_se_scene_controller_route": {
+    "classification": "固定 SE 原指令事实、分支组合推导、stage306 本机对照与复刻规格",
+    "capabilities": ["G03", "G05", "X02"],
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "related_rules_and_cases": ["GF-F12", "GF-O31", "GF-D3", "GF-A10", "GF-A18", "GA-F13", "GA-F14", "GA-D2", "WT-A02"],
+    "ordinary_readiness": "/fixed_se_map_change_readiness",
+    "ordinary_fades": "/fixed_se_map_fade_presentation",
+    "actor_registry": "analysis/capability-first-v1/game-actor-functional-specification.json#/facts/13",
+    "window_lifecycle": "analysis/capability-first-v1/game-work-functional-specification.json#/se_classic_work_transition_retirement/classic_scene_and_window_queue",
+    "report": "reports/game-static.md#fixed-se-scene-controller-route",
+    "validation": "build/analysis/legacy-scene-controller-route-v1/validation.json",
+    "source_evidence": "build/analysis/legacy-scene-controller-route-v1/rea-evidence.json",
+    "facts": {
+      "callers": {
+        "anchors": ["0x461D69", "0x461D77", "0x461D86", "0x461D8B", "0x4EF884", "0x4EF896", "0x4EF8B0", "0x4EF8BA", "0x4EF8BF", "0x4EF8F7"],
+        "rule": "!DS 的已证调用在发送后写 200 并选路，再置 BFF328、BFF32C 和 BFF324。TfD 总先置 BFF324。在 922C4C 为零且主状态为 9 时，BFF328 为零才按需保存 C1DD94、写 200 并选路。BFF328 非零时保留已选状态，两条路径都继续 4FF430 退役本地身体并清 BFF328，再发布目标场景。若前两项准入失配，跳过该选路和身体退役段，继续目标场景发布。"
+      },
+      "registry_and_selection": {
+        "anchors": ["0x439C50", "0x439C67", "0x4FF574", "0x50281D", "0x50282A", "0x50283A", "0x50284F", "0x50285E", "0x50286B", "0x502876", "0x502882", "0x5011F0", "0x439C90", "0x40A098"],
+        "rule": "502810 先复制两个 16 位字 C0785A→C0785C、C07860→C07862。城市标志 C5EC18 为零时，从登记头 5E2774 按记录 +2C 遍历，逐一比较各控制器附属记录的五个 ID，第一次等于 F536A8 即返回控制器。命中且 F5F1B0 为零时写 250，先保存快照再递增；命中且计数非零时写 252 并按 32 位递增。未命中或城市标志非零则保留调用前子状态，计数清零。仅城市标志非零调用 5011F0 清本地次级字 F536B6 的 0x80 位。选路末尾一律先标记全链的非空子对象、再标记各控制器退役，随后清登记头。40A090 仅置对象 +1C，实际池回收沿原对象生命周期。"
+      },
+      "snapshot_and_staging": {
+        "anchors": ["0x43B826", "0x43B830", "0x43B83C", "0x43B84E", "0x43B854", "0x43B863", "0x43B873", "0x43B885", "0x43B897", "0x43B445", "0x43B455", "0x43B499", "0x43B4B3", "0x43B4D3", "0x43B588"],
+        "rule": "43B820 重查本地 ID，失败直接返回，先前快照保持。命中复制控制器 +2A8 和 +58，从 +170 的读取结果乘 60 后写 5E276C。五组 ID、资源各先置零，正 ID 才保存；有对应身体时复制其 +2A8。43B440 先申请过渡用控制器，失败直接返回。成功以快照资源和方向准备新对象，登记后逐槽尝试分配，正 ID 先写槽。空身体保留该 ID，成功分配时使用快照资源、方向、状态 3 和实际槽序号。新对象以 43B520 为帧回调，其中 5E276C 作为计数进度计算的除数。"
+      },
+      "dispatch": {
+        "anchors": ["0x501801", "0x501F59", "0x501F99", "0x501FD3", "0x501FE3", "0x501FE8", "0x43B8B0", "0x502007", "0x502017", "0x43B917", "0x43B951", "0x43B96E", "0x43B989", "0x502061", "0x502067", "0x5020B6", "0x502115", "0x502184"],
+        "rule": "9/250 先走 4EA1B0 的同步窗口分派，重置图形帧并暂写 204，再调用 502950 消费待选调色。43B8B0 尝试建立过渡对象并固定返回 37，供后续曲目请求。250 在同次更新写 251 并直落该行，暂写的 204 未进入普通淡入分派。251 从保存方向查 315/270/225/180/135/90/45/0，设两个方向状态字为 2、步进值为 6，调用 466100，随后向队列提交 100 次图号 14648 的铺片请求，步长 64×48，覆盖逻辑 640×480。本行未直接写下一状态。9/252 清过渡计数后重建窗口，做两次对象更新，按挂起标记发布音频，清城市标志并选 20，返回。9/20 在下一次分派重获场景画面，再同次进入 9/3。主状态 5 的已证复位也清过渡计数和旧登记头。"
+      }
+    },
+    "source_derived_expectations": [
+      "推测。250 尚未重建对象和 251 已有过渡对象时，连续场景回复可能依据不同登记选路。对应的触发顺序、条件及验收沿 completion_251。",
+      "推测。保存槽有正 ID 而原身体缺失时，过渡对象若成功分配，该槽资源仍为零。给定分配失败、图像缺失或帧中替换，目标用例应核对实际返回、活动场景及资源退役。实际原版像素、原版多次分派的正常事件来源和目标呈现仍待验。"
+    ],
+    "completion_251": {
+      "classification": "固定 SE 指令事实、带前提的事件次序推导及 stage306 本机对照",
+      "source_evidence": "build/analysis/legacy-scene-251-completion-v1/rea-evidence.json",
+      "validation": "build/analysis/legacy-scene-251-completion-v1/validation.json",
+      "receive_order": "analysis/capability-first-v1/game-communication-functional-specification.json#/receive_retirement_order",
+      "facts": {
+        "frame_order": {
+          "anchors": ["0x44FC66", "0x4EE04C", "0x4EE073", "0x4EE091", "0x4EE1AF", "0x44FC7A", "0x4FBD0D"],
+          "rule": "普通外层帧先调用接收分派，返回后才派发游戏状态。已就绪且成功消费一条完整记录时，接收入口调用业务分派，清解析区，再回到队列和就绪检测。缓冲里若已有下一条合资格 TfD，可在同一次接收调用里消费，期间外层的 250 尚未执行。"
+        },
+        "staging_owner": {
+          "anchors": ["0x502017", "0x502026", "0x502059", "0x40A024", "0x43B455", "0x43B499", "0x43B4C2", "0x43B4D1", "0x43B549", "0x43B588", "0x43B809", "0x43B810", "0x43B81A"],
+          "rule": "251 提交铺片，再由对象队列调用 43B520。该回调以附属记录 +28 的计数和保存的 5E276C 计算位置，提交父子对象后递增计数并返回。所查函数体没有按计数完成进行比较，也没有直接写场景子状态。250 的根对象分配成功即登记，正数参与者 ID 在该槽身体申请前写入，后续命中只看登记 ID。"
+        },
+        "scene_reply": {
+          "anchors": ["0x4EF896", "0x4EF8BA", "0x4EF8C4", "0x4FF4EE", "0x4EF92B", "0x440455", "0x44052D", "0x440563", "0x50284D", "0x50286B", "0x502882", "0x502895", "0x502184", "0x50248B"],
+          "rule": "已证的正常改路入口为合资格且无预选标记的 TfD。旧标记存在时只消费该标记、退役本地身体并继续场景发布，440450 处理普通远端单位槽，它的所查写入未改控制器登记头。城市标志为零且当前登记含本地 ID 时，非零计数选 252。登记失配或城市条件发生时按现有调用前值 200 返回。252 执行后落到 20，在下一次状态分派执行普通场景恢复。"
+        },
+        "other_inputs": {
+          "anchors": ["0x4F32BF", "0x4F32D5", "0x4F32E5", "0x4EF808", "0x4EF820", "0x4F202A", "0x4F203C", "0x43B22C", "0x439F5F", "0x43A9A3"],
+          "rule": "=xE 所查消费者清交互等待和相应状态字，=mJ 处理缓存与按条件清等待。两者所查路径未直接选 252。协同动作 81/82 通过接收准入并能找到触发身体时，各自工厂可登记控制器，参与者来源沿 GA-F13。触发身体缺失时动作被消费后提前返回。登记参与者会影响后续选路所见的链，当前场景子状态仍由场景入口决定。"
+        }
+      },
+      "conditional_orders": [
+        {"id": "before-staging", "given": "!DS 首轮已选 250，计数为 1、预选标记非零、原登记已退役。两条合资格 TfD 在 250 分派前依次到达，中间无其它控制器登记。", "expected": "第一条保留 250 并清标记，第二条找不到本地控制器，留下 200 并清计数。本轮不会执行原来等待的 250。"},
+        {"id": "registered-staging", "given": "250 已分配并登记带本地正 ID 的过渡根，当前计数仍非零、城市标志为零。之后收到无预选标记的合资格 TfD。", "expected": "即使本地过渡子身体申请失败或某个普通角色已经退役，登记 ID 仍可命中。回复选 252 并标记过渡对象退役，随该分派处理窗口及场景。"},
+        {"id": "missing-staging-root", "given": "根对象申请失败或当前链没有本地 ID，期间未登记匹配控制器。251 已推进任意所查合资格回调，再收到无预选标记的合资格 TfD。", "expected": "数量或经过时间不替代当前登记命中。该回复留下 200 并清计数。若先获准登记匹配的 81/82 控制器，仍按回复时的实际顺序与计数选路。"}
+      ],
+      "stage306": {
+        "probe": "build/analysis/legacy-scene-251-completion-v1/stage306-probe.json",
+        "rule": "同一个本机数据块内有两条合成 TfD。地图 401 的素材读取被挂起时，实际客户端只消费第一条。放开后准备 402，过时的 401 补片没有建立运行时，匹配 402 的补片才恢复 playing。",
+        "handoff": "D0/D2 复用现有场景身份与补片拒绝，由同一场景所有者先提交收到的逻辑事件，再按活动场景关联异步素材和呈现。只在已证的业务准入与帧边界触发后续副作用。D3 用同组事件核窗口退役、重建和重开。"
+      },
+      "acceptance": "GF-A18、GF-A10 和 WT-A02 用同一组回复核分派前合批、分派后登记、体与根申请失败、非预选门槛、重复回复、旧补片及实际窗口动作。独立核 251 中连续帧只提交过渡、正常输入直到对应回场阶段再恢复。",
+      "remaining": "固定样本已证客户端条件和分派先后。正常服务实际会发几条 TfD、相应角色回包顺序及呈现仍需匹配版本的运行记录。若出现新的通用状态写入或间接回调，沿其具名入口核对是否能在 251 中生效。"
+    },
+    "existing": {
+      "baseline": "stage306",
+      "owners": ["shared/legacy-game-actors.mjs", "shared/legacy-game-protocol.mjs", "shared/legacy-game-client.mjs"],
+      "probe": "build/analysis/legacy-scene-controller-route-v1/stage306-probe.json",
+      "reuse": "现有七字段协调动作解码、普通场景身份及补片、现有帧与窗口退役用例可复用。普通换图匹配补片后恢复 playing。合成协同动作 82 在已入场时可解码，客户端以 LEGACY_GAME_LOCAL_CONTEXT_STALE 结束。"
+    },
+    "implementation_handoff": {
+      "D0": "沿原帧与窗口端口处理同步退役、逐对象队列更新、活动场景的逐帧呈现和新旧素材归属。复用 WT-A02 的已发布窗、在途窗及工作上下文。",
+      "D2": "GF-D3 从普通交互及场景回复调用选路。沿 GA-D2 的同一登记链路提供本地 ID 匹配、保存和新对象的过渡生命周期，沿现有地图身份区分资料就绪、逻辑结束和帧呈现。",
+      "D3": "沿原业务窗口接实际退役、上下文解除及重新进入用例。"
+    },
+    "acceptance": {
+      "GF-A18": "同组夹具覆盖空链、链内非首槽及多个控制器、城市标志非零、计数 0／1／32 位回绕、五槽空或负 ID、缺身体及部分分配。先查复制和退役次序，再核 250 同帧进入 251、初次 TfD 保留已选状态，以及合资格后续选路进入 252 或 200、9/20 的首个普通帧。D/E 和默认分派沿 GF-A18 原条件。",
+      "GF-A10": "共用地图身份及旧帧拒绝用例。跨图期间核第一条回复与随后补片的发布、活动场景呈现以及恢复普通输入的先后。",
+      "WT-A02": "共用 250、252 的快照和场景输入，核同步窗口退役、重建、在途窗推进、占用释放和第二次普通输入。"
+    },
+    "remaining": "待验证。251 的已证客户端改路、素材释放与同帧顺序沿 completion_251。实际回复组合、过渡对象显示、分配失败可见结果、当前同版和三端产品组合按具名证据继续。",
+    "original_or_full_target_cases_executed": false
+  },
+  "fixed_se_map_fade_presentation": {
+    "classification": "固定 SE 原指令事实、条带计算推导、stage306 本机对照与三端接线规格",
+    "capabilities": ["G03", "G06", "X02"],
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "related_rules_and_cases": ["GF-F08", "GF-O17", "GF-O18", "GF-O19", "GF-D3", "GF-A10", "PR-A12"],
+    "background": "analysis/capability-first-v1/game-presentation-functional-specification.json#/legacy_transition_background",
+    "graphics_rebuild": "analysis/capability-first-v1/game-presentation-functional-specification.json#/legacy_transition_background/graphics_rebuild",
+    "window_transition": "analysis/capability-first-v1/game-work-functional-specification.json#/se_classic_work_transition_retirement/classic_scene_and_window_queue",
+    "report": "reports/game-static.md#fixed-se-ordinary-map-fades",
+    "validation": "build/analysis/legacy-map-fade-v1/validation.json",
+    "facts": {
+      "state_dispatch": "9/200 置过渡初始化字、沿 5029B0 捕获现有绘制面、记时并选 201，同次进入 201。C5EC18 恰为 1 时选择 14/8，否则选择 16/32，二者经 5029F0。所选 16 调用用正的加速度 2。返回 1 才写 202。9/202 等待 BFF32C 清零，转 205 后五次访问先计数，下一次绘制并捕获新图、置过渡初始化字、写 204，同次进入淡入。204 以同一城市字选择 15/8 或 17/32，二者经 503330，加速度同为 2。",
+      "exit_rows": "505030[16] 经 5050EC → 5029F0 分支 8。502F72 在初始化字被消费时从计数 0、本行原位置及零速度开始。每次更新 0 到旧计数减一的行。速度先加 2，目标行位置加 min(速度,100)，原速度保持累加。其后将计数加 32，最高 480。第 479 行目标位置严格大于 600 时标记完成。502F2A 先清绘制面，5031EA 沿来源行 479 至 1 降序尝试复制，终止于行 0 之前。最后才将完成值返回。",
+      "entry_rows": "505030[17] 经 5051A9 → 503330 分支 8。503A38 的首次准备将位置设为行号、速度设零。每次准备从第 479 行向上推进，覆盖 max(0,479-n) 至 479，n 为准备前计数。每次先减速度 2，再加 max(速度,-100) 到位置，计数加 32 并限制至 480，直到第 0 行位置小于 0。每次显示推进含首轮准备结束的同一次调用，以同一行范围先从位置减 max(速度,-100)，再加速度 2。第 0 行位置仍为负才把下一次计数减 32 并保底 0。第 479 行位置达到 479 即置完成。503BF2 清绘制面，503D46 至 503D8C 仍按来源行 0 至 479 升序尝试复制，之后返回。",
+      "compositor": "两支路用 FAB22C 的来源像素、X=0、宽 640 和单行高。44AB50 按当前填充值清绘制面，51B4A8 将位置向零截断，44CE40 以实际绘制面宽高裁剪和提交。重复目标行按原访问顺序覆盖。单行和清面调用结果没有参与上述行位置判定。",
+      "state_completion": "9/204 捕获已成、淡入结果返回 1 时，在仍处于 204 的 501EDE 调用 4EA1B0。其普通 204 分派通向 4EA209 → 467760，沿窗口规格。继而于 501EE5 更新时间 614888，501EF1 写 20，501EFB 清 C5EC18，再按已有标志处理音频与收尾。9/20 下一次进入 5028A0，再于 502490 写 3 并同次进入普通更新。普通子状态的 5024BF 才走所选 460C40 输入入口，入口还有自己的输入守卫。",
+      "host_delivery": "44FB60 在 44FC7A 调 5015A0 更新后，仍受绘制标记、时钟及追帧循环决定何时到达实际呈现。所选绘制分支先消费绘制队列，再于 44FE3B 调 446740。它可在所选呈现返回非零时写 61434C 恢复标记，同时翻转显示选择字段。201/204 的完成判断取自条带函数，状态写入发生在本轮外层呈现之前，局部路径没有按设备结果撤回。下一轮普通输入和下一次普通画面各按原调度观察，追帧下不把逻辑更新数视为成功显示数。"
+    },
+    "inference": "按固定 640×480、步长 32、加速度 2 的构造推导，16 的第 25 次第 479 行目标为 589，第 26 次为 611，首次报告完成。17 的首次调用内部准备 16 次，随后按 16 次显示更新到第 479 行复位，首次报告完成。第 0、1 来源行在终帧仍落到 −2、−1，填充后的目标行 445、446 没有条带覆盖。下一次普通图层提交仍有自己的帧。42 个可合成条带帧和 16 次内部准备为静态派生，真实显示次数取决于帧调度和设备返回。",
+    "derived_vectors": "build/analysis/legacy-map-fade-v1/synthetic-frames.json",
+    "existing": {
+      "owners": ["shared/legacy-game-client.mjs", "shared/legacy-game-city-return.mjs", "shared/legacy-game-battle-exit-fade.mjs", "shared/legacy-game-presentation.mjs", "web/legacy-game-canvas.mjs", "adapters/wechat/legacy-game-host.mjs"],
+      "probe": "build/analysis/legacy-map-fade-v1/stage306-probe.json",
+      "observed": "同一内存会话由旧图 B=40000 切至 B=40001，CUT 就绪后仍等对应补片。匹配补片到达后，原 runtime 已退役，新 runtime 修订为 2，状态为 playing，尚未绘制新图。主动挂住第一次新图资源读取，可计数端口仍只呈现旧图，现有 Canvas 已接受一次按下并设置运行时的 held 位。释放资源读取才出现第二次呈现，属于新图。已有城市淡入、战斗回场、帧调度和场景准备可在共用入口复用。"
+    },
+    "implementation_handoff": {
+      "D0": "在已有场景、帧和资源所有者上保留旧场景最后一次画面、新场景重建快照及活动代的呈现票据，退役时取消并排空迟到工作。复用 UC-P06 和 UC-P13，条带读取使用既有裁剪、帧时钟及画布接口。",
+      "D2": "由 GF-D3 从普通换图入口接 16/17 与现有 202/205 的条件，并沿固定顺序区分逻辑完成、外层呈现和下一轮普通输入。三端用活动代最后一张过渡画面的成功呈现回执开放下一次合资格普通更新及对应交互。首张完整普通画面仍有独立回执。这个异步准入是目标设计，原版设备返回仍按已查恢复路径处理。",
+      "D5": "三端用同一组条带、地图身份和失败回执案例。核追帧、临时挂起、旧画面呈现迟到、设备/画布失败、切换前退役和图层重试。复用城市和战斗回场的活动代校验。"
+    },
+    "acceptance_cases": [
+      {"extends": ["GF-A10", "PR-A12"], "check": "用有颜色区分的旧、新捕获，按 640×480 和较小实际视口分别核 16/17 的首帧、完成前一帧和完成帧，核覆盖顺序、越界裁剪、479 行判据和两条填充行。城市标志 1 仍走原 14/15，分别核准备帧和完成条件。"},
+      {"extends": ["GF-A10"], "check": "分别核匹配回复或补片、停留 202、五次计数、第六次重建与捕获、204 逻辑完成、窗口重建、实际呈现、9/20 和下一次普通更新。用呈现延迟、失败和新场景替换证明迟到回执无法打开普通输入。将首张完整普通画面与最后一张过渡画面的提交分开验收。"}
+    ],
+    "remaining": "不同宿主的实际显示、硬件填充值与调用失败、当前同版及三个产品宿主继续验收。所选绘制标记及追帧和图形恢复的组合沿现有普通帧和 PR-A10 规格。地图补片 BFF330 的置位仍沿原恢复条件。",
+    "original_or_full_target_cases_executed": false
+  },
+  "shared_scene_frame_handoff": {
+    "scene_palette_follow": "analysis/capability-first-v1/game-presentation-functional-specification.json#/fixed_se_scene_palette_follow",
+    "classification": "固定 SE 与固定 Item 的原指令事实、条件推导及 stage306 本机对照",
+    "capabilities": ["G03", "G05", "G09", "G18", "B04", "X02"],
+    "cases": ["GF-A10", "GF-A11", "GF-A18", "WT-A02", "WK-T23", "SC-T17"],
+    "report": "reports/game-static.md#fixed-se-shared-scene-frame",
+    "validation": "build/analysis/fixed-se-shared-scene-frame-v1/validation.json",
+    "source_evidence": "build/analysis/fixed-se-shared-scene-frame-v1/rea-evidence.json",
+    "source_profiles": {
+      "SE": {
+        "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+        "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+        "main9_entry": "0x501A50",
+        "return_ready_word": "0xF5F18C"
+      },
+      "Item": {
+        "path": "build/analysis/game-release-current-v1/legacy-members/cg_item_6000.exe",
+        "sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+        "main9_entry": "0x58CC52",
+        "return_ready_word": "0x11D4CC4"
+      }
+    },
+    "source_rules": {
+      "ordinary_capture_and_retirement": {
+        "anchors": ["0x501C8D", "0x501CAE", "0x4EA20E", "0x4EA213", "0x468E5E", "0x468E66", "0x468E83", "0x468EB6"],
+        "rule": "实际进入 9/200 时先取得旧画面，随后先保存窗口标记，再同步调用已登记实例的析构并清活动槽与池槽。共用析构可以在槽清除前调用业务收尾。扫描后清共用占用并重读工作上下文，仍启用时提交动作 62 并清上下文。最后工作持有者若已清上下文且其间无重新发布，末尾不再发 62。"
+      },
+      "pending_window_before_rebuild": {
+        "anchors": ["0x501D5B", "0x501D8B", "0x409FFE", "0x40A024", "0x46C537", "0x46C53D", "0x46C54F", "0x501E7E", "0x501ECE", "0x501EDE", "0x46776D", "0x467775", "0x467805"],
+        "rule": "普通 205 计数到 5 时先跑图形对象，之后捕获并进入 204。所选 45/46 过渡在允许的访问先检查退役，再按计数尝试创建、标记并清输出槽。已标记的过渡走实际回收，跳过创建和当次回调清槽。204 的淡入返回 1 后，重建首先清两个登记表，此处没有旧窗析构。默认窗口及保留标记的重开随后执行。",
+        "inference": "若在途请求在第六次 205 访问时已到期、成功创建、留在表中，并且同次或后来淡入完成前没有其他退役，则 204 清表会清掉该实例的登记，其析构不会由清表循环调用。若其仍排队且后续有效访问未标记退役，则以后按当时窗口组及活动槽处理。目标端 D0 依据当前场景和请求归属确认回收与输入资格。"
+      },
+      "map_completion_tail": {
+        "anchors": ["0x501ED8", "0x501EDE", "0x501EE5", "0x501EF1", "0x501F47", "0x4EA5C7", "0x4EA5CD", "0x4EA645", "0x4EAE6B", "0x4EAE73", "0x501F4F", "0x44FE3B", "0x446867"],
+        "rule": "所选 SE 的 204 完成帧先重建、采样恢复时间、发布 20，清城市标志并按需要处理音频，然后调用 4EA5B0(100)，紧接调用 4EA400。本轮依旧推进窗口和到期工作。呼叫 100 时先清另一套窗口的两个活动槽，旧副槽值等于 1 时直接返回。否则依据 7286B7 的 0x04 位可进入窗口 1 的恢复、再清恢复标记。两条活动槽的最终值以恢复出口为准。所选路径此时尚未执行普通 460C40。"
+      },
+      "battle_return": {
+        "SE_anchors": ["0x43838E", "0x438396", "0x502195", "0x50219F", "0x5021B8", "0x5021BF", "0x5021CE", "0x5021DD", "0x5021FD", "0x50220C", "0x5023D3", "0x5023DD", "0x5023E2", "0x5023E9", "0x502417", "0x502438", "0x502447"],
+        "Item_anchors": ["0x58D4CB", "0x58D4D5", "0x58D4EE", "0x58D505", "0x58D510", "0x58D547", "0x58D76F", "0x58D782", "0x58D7B1", "0x58D7DF", "0x58D7F6"],
+        "rule": "所选 10/8 淡出完成时，SE 发布 9/1 后标记图形对象退役。9/1 初始化计数及子状态 11 并返回。两版在 11 均等待计数低于 30 的 30 次更新，第 31 次进入重建并先写子状态 1。若重建后准备字等于 1，准备新画面和 13/15 类过渡并经尾部加一次，正常保持到 2。若准备字不等于 1，先写该字与第一次子状态加一，共用尾部再次读取并加一。在所查调用链保持子状态时，该轮写 1→2→3，下次普通分派直接走 3，未经过 2 的逐帧淡入或 20 的额外捕获。应验收实际读回值。"
+      },
+      "regular_input_and_presentation": {
+        "SE_anchors": ["0x50248B", "0x502490", "0x5024B5", "0x5024BF", "0x5024D0", "0x5024D5", "0x5024F8", "0x44FDAF", "0x44FE31", "0x44FE3B"],
+        "rule": "9/20 先取新普通画面再写 3，同次进入 9/3 的共用尾部。所选顺序为延后动作、普通操作、定时恢复、图形对象和经典窗更新。普通操作另验各守卫。外层的 446740 在逻辑更新后另行执行。追帧可先回到更新，所选图形失败登记恢复，未见在本返回点回写旧子状态。"
+      }
+    },
+    "implementation_handoff": {
+      "D0": "复用现有帧、窗口和图形资源所有者，保留同步析构、待退役整理、在途创建、登记重置及回执的各自时点。将异步操作与活动场景、窗口实例、准备代和呈现票据绑定。",
+      "D2_D4": "按实际场景身份、回复入口与准备字选择 200、250、252 或回场 1/11 路径。复用现有角色、地图、战斗退出及画面接口。D2 将普通换图的最后一张过渡画面回执沿 GF-A10 开放后续普通更新。回场直接进入 3 的路径由 D4 核当前场景及首张普通画面。呈现准入是目标宿主设计。",
+      "D3": "复用原工作、背包与窗口所有者，核析构时的最后持有者、是否向当前会话发解除、槽清除、后续配方及迟到请求，不在一般初始化时无条件发送。",
+      "D5": "三端沿同一回执用例验失效、失败恢复、重复提交、活动代切换和当前普通输入。"
+    },
+    "acceptance_extension": [
+      {"extends": ["GF-A10", "WT-A02", "SC-T17", "WK-T23"], "check": "覆盖 205 第六次更新前已退役、未到期、实际创建三种请求，记录窗口析构、两层槽、占用与工作解除。另核 204 结果不等于 1 及完成当帧的关闭、恢复、窗口更新。"},
+      {"extends": ["GF-A11", "GF-A18"], "check": "区分两版准备字 0 与 1、三十次等待、同轮写 2 再写 3、完整淡入及 20 的捕获。带结果动作或恢复标记时，记录活动代先后及第一条实际批准的普通操作。"},
+      {"extends": ["GF-A10", "GF-A11", "GF-A18"], "check": "最后过渡或第一张普通画面挂起时投递新场景，并测试旧回执迟到和新回执失败。逻辑状态、普通窗口动作、实际提交和业务输入各对其主人及回执。"}
+    ],
+    "local_comparison": {
+      "baseline": "stage306",
+      "map_canvas": "build/analysis/fixed-se-shared-scene-frame-v1/map-canvas.json",
+      "work_map": "build/analysis/fixed-se-shared-scene-frame-v1/work-map.json",
+      "battle_return": "build/analysis/fixed-se-shared-scene-frame-v1/battle-return.json",
+      "battle_window": "build/analysis/fixed-se-shared-scene-frame-v1/battle-window.json"
+    },
+    "remaining": "待原版同帧交错、实际资源和设备呈现、同版客户端及三端产品核验。第二套窗口表的正常业务回调继续沿 EA-U2/WK-U1，BFF330 的置位沿 GF-A10，所选回场帧核验不替代这些取证。",
+    "original_or_full_target_cases_executed": false,
+    "product_code_changed": false
+  },
+  "fixed_se_map_change_readiness": {
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "classification": "固定 SE 原件静态事实、本机基线实测和待验证条件",
+    "capabilities": ["X02", "G03", "G04"],
+    "related_rules_and_cases": ["GF-F08", "GF-O18", "GF-D3", "GF-A10", "WT-A02", "SC-T17"],
+    "flow_rule": "analysis/capability-first-v1/game-flow-functional-specification.json#/facts/7",
+    "window_rule": "analysis/capability-first-v1/game-work-functional-specification.json#/se_classic_work_transition_retirement/classic_scene_and_window_queue",
+    "map_cache_rules": "analysis/capability-first-v1/game-map-functional-specification.json",
+    "ordinary_movement_refresh": "analysis/capability-first-v1/game-map-functional-specification.json#/fixed_se_map_region_refresh",
+    "report": "reports/game-static.md#fixed-se-map-change-readiness",
+    "REA_evidence": "build/analysis/fixed-se-scene-readiness-v1/rea-evidence.json",
+    "validation": "build/analysis/fixed-se-scene-readiness-v1/validation.json",
+    "facts": {
+      "wait_production": {
+        "entry": "0x461D00",
+        "instructions": ["0x461D08", "0x461D2F", "0x461D36", "0x461D3D", "0x461D5A", "0x461D69", "0x461D77", "0x461D81", "0x461D86", "0x461D8B", "0x461D91", "0x461D97", "0x461D9D", "0x461DA7"],
+        "order": [
+          "若待用快照槽为空，先通过 4EA6F0(1) 获取，随后调用 45F170。将 BFF338 的低 16 位存入 957E74，置 9257F8 与 BFF33C。",
+          "调用 4F6530 发送 !DS，五个业务值依次是事件格值、递增前的 32 位序号、X、Y、-1。",
+          "写子状态 200，按 32 位更新序号并调用 502810 作进一步选路。回到调用点后置 BFF328、BFF32C 和 BFF324 为 1，清 BFF330 与 BFF334。",
+          "461E00 也走 !DS 和同一计数器，以低 16 位发布独立的 978A4C 及等待字 978A4E。该过程选择事件值 2，并在发送后另置 AE2B9C。所查函数体在这里未写 200 或 BFF32C。"
+        ]
+      },
+      "acknowledgement": {
+        "tag": "=xE",
+        "entry": "0x4F32A0",
+        "wire_fields": ["int32 sequence", "int32 status"],
+        "scope": "924F30 为零时处理。首字段与两个本地序号字各自符号扩展后的值比较，主序号优先。分支本身无需先检查当前子状态。",
+        "primary_status_zero": "清 9257F8，调用 460180 将两组范围容器设为 -1，再清 BFF324 与 BFF32C。",
+        "primary_status_nonzero": "清 9257F8。若 BFF330 为零则再清 BFF32C，BFF324 保持。",
+        "secondary": "主序号不同、次序号相同且 status 为零时，清 978A4E。",
+        "other": "所查分支中，门开启或两序号均不同直接返回。同一个匹配值到达两次会重复匹配。",
+        "signed_boundary_example": {"local_counter_before_send": 32768, "stored_word": 32768, "primary_match": -32768, "full_positive_value_matches_primary": false},
+        "retained_rule": "analysis/capability-first-v1/game-entry-review-contract.json#/receive_publication_review/entry_rules/0"
+      },
+      "scene_and_label": {
+        "scene": "4EF870 消费 TfD，先置 BFF324；922C4C 为零且主状态为 9 时根据 BFF328 选择是否捕获及启动 200，调用 4FF430 后清 BFF328。45F2A0 发布地图身份 A 到 9257FC，B 到 96BA10。",
+        "label": "4EF9D0 消费 Ta>。在 BFF32C 为 1 时，4EFAB6 将 BFF334 写为 1。202 所读的 BFF32C 保持。"
+      },
+      "notice_and_patch": {
+        "entry_guard": "4EF510 与 4EF580 均在 924F30 为零时进入所查消息处理。",
+        "notice": "=]M 先调用既有缓存校验 460240。返回非零后，消息 B 等于 96BA10 时清 BFF324。随后按 922C4C 的 bit 0 执行 460180 并清此位，此段处理独立于前一步的 B 比较。",
+        "patch_initialization": "=mJ 先解三平面、调 45F850。移动缺块等待 96B9D8 或 BFF324 非零且消息 B 等于当前 B 时，调用 460180 使上次重读所记中心失效，并清 BFF324。随后清 922C4C 的 bit 0。96B9D8 的普通移动消费由地图规格负责。",
+        "region_publication": "4EF78F..4EF7FF 核两段身份及以当前中心为基准的范围，符合时通过 4EF7F7 置 96BA30。比较及消费细节沿 ordinary_movement_refresh。全部范围结果最终汇入 4EF800。",
+        "patch_wait_release": "4EF800..4EF835 仅以 BFF330 等于 1 且消息 B 等于当前 96BA10 作为清 BFF32C、BFF330、BFF334 的条件。此前的身份 A、范围判断、文件写入结果均未用作这三个清零的条件。",
+        "scope": "B 不相等时终段三个字保持。对同 B 不同 A 的消息，只有 BFF330 已为 1 才走这段清零；当前补片写入、初始地图门、区域覆盖和 202 的等待仍是不同效果。"
+      },
+      "frame_consumer": {
+        "entry": "0x501D12",
+        "order": "9/202 读取 BFF32C。非零时将 727360 置零并执行 4EA400、451D60 后返回。为零时清等待字和帧计数，直接写 205。下一次分派按已有五次等待与重建规则推进。",
+        "city_return": "独立的 9/2 返回分支在其呈现完成后通过 502451 清 BFF32C。"
+      }
+    },
+    "inference": "序号低字回绕或相同身份补片的重复到达，仅靠所查值无法区分新旧消息。可接受的同号实际序列需要对应服务或原版运行证据。",
+    "remaining": [
+      "固定 PE 中 BFF330 落在 .data 的零填充区。所查 .text 的五处绝对地址引用，三个写入均为零。BFF330 置 1 的实际生产者、间接或重叠写入及所需触发条件仍待具名证据。",
+      "保留补片清零为条件分支。若取得能写 1 的生产者或适用原版状态记录，再核其在 202 的可达顺序及同 B 异 A、重复回复和回绕的实际结果。",
+      "原版运行、当前同版与网页、移动网页、微信小程序的完整组合用例仍待验。"
+    ],
+    "implementation_handoff": {
+      "batches": ["D0", "D2", "D3"],
+      "existing_owners": ["shared/legacy-game-local-movement.mjs", "shared/legacy-game-message.mjs", "shared/legacy-game-protocol.mjs", "shared/legacy-game-map.mjs", "shared/legacy-game-client.mjs"],
+      "reuse": "复用 !DS 组包、=xE 解码、地图身份对与补片检查、活动场景重整和旧工作退役。",
+      "delta": "D0 保留图形帧与等待状态的实际读取顺序。D2 按共享移动与场景所有者归并发送序号、回复分派、等待字、地图资料和区域发布。D3 复用旧工作选择失效及新场景重开用例。",
+      "local_comparison": "build/analysis/fixed-se-scene-readiness-v1/stage306-probe.json",
+      "local_observation": "stage306 所测三条 =xE 解码后无地图或就绪效果。地图只接受 A/B 均匹配的补片。目标格加载后，已有本机角色可用于恢复场景。",
+      "implementation_complete": false
+    },
+    "acceptance_additions": {
+      "GF-A10": "独立检验两个序号字、32767/32768、非零状态两侧、Ta>、B 不同及同 B 异 A。分开核对进入 205、区域公布与目标格就绪。同 B 异 A 的原版终段预期以 BFF330 已为 1 为前提。",
+      "WT-A02": "连续两次换图后，让上一地图补片及旧工作选择到达，保持新场景身份。只有新操作的资料进入业务选择。",
+      "SC-T17": "已退役的经典窗不因等待解除重开，下一轮仍走对应已证的窗口请求与资料流程。"
+    },
+    "paired_profile_specification": "/legacy_map_wait_patch_release",
+    "original_or_full_target_case_executed": false
+  },
+  "legacy_map_wait_patch_release": {
+    "classification": "两份固定历史样本的收发、状态及活动缓存规则，附 stage306 本机对照",
+    "capabilities": ["G03", "G04", "X02"],
+    "case": "GF-A10",
+    "source_review": {
+      "path": "build/analysis/legacy-map-wait-patch-release-v1/source-review.json",
+      "bytes": 29160,
+      "sha256": "c7b43be801df7725b6df2568d02cd19f1b74caa0d083ee40e21d3137f0d16173"
+    },
+    "local_comparison": {
+      "path": "build/analysis/legacy-map-wait-patch-release-v1/stage306-probe.json",
+      "bytes": 365,
+      "sha256": "79421c3587a872b4b19b4aa3da9b90bd3b6fd95b21ac9c63f7f295bfbfbf09a8"
+    },
+    "report": "reports/game-static.md#legacy-map-wait-patch-release",
+    "validation": "reports/validation.md#legacy-map-wait-patch-release-validation",
+    "profiles": {
+      "SE": {"request": "0x461D00", "ack": "0x4F32A0", "wait": "0xBFF32C", "patch_latch": "0xBFF330", "label_mark": "0xBFF334", "patch_tail": "0x4EF800", "frame_202": "0x501D12", "stage_stores_after_zero_wait": [205]},
+      "Item": {"request": "0x4A5AB9", "ack": "0x57897C", "wait": "0xC9C4B4", "patch_latch": "0xC9C4B8", "label_mark": "0xC9C4BC", "patch_tail": "0x572CCC", "frame_202": "0x58CF84", "stage_stores_after_zero_wait": [203, 205]}
+    },
+    "rules": [
+      "发送 !DS 前两版都保存原整型序号的低 16 位。发送后 Item 先将完整计数加一再写 200，SE 先写 200 再写回计数。两版选路返回后置普通等待并清补片开关和标签标志。",
+      "=xE 先检查活动门，再将首项与主、次序号的有符号扩展值比较。主序号优先，并先清短等待。主匹配及状态零执行地图重置和等待清除。主匹配且状态非零时检查开关为零才清等待。次序号匹配且状态零清次等待。",
+      "Item 的 TfD 初始置 C9C4AC。=]M 校验返回非零且 B 匹配时清该字，设置位所需地图重置另行处理。Ta> 的所选路径在 C9C4B4 等于 1 时将 C9C4BC 置 1。",
+      "两版补片尾部要求开关的完整值等于 1 且身份 B 匹配，再清等待、开关和标签标志。Item 的 A/B 双身份、坐标中心正负 10 格边界决定另一个区域重读字。所核不满足区域条件的分支汇入同一尾部。",
+      "两个开关从 PE 零填充。每份文件内该精确地址的五次出现均可归到两次直接读取或三次写零。置 1 的实际生产者仍待具名证据。",
+      "9/202 在等待字非零时继续等待，为零则同轮清计数并进入 205。Item 在这条路径上先写 203，随后直接写 205。SE 的这条路径写 205。"
+    ],
+    "handoff": "D0/D2 复用已有交互组包、标签、地图身份、缓存和场景入口。GF-A10 分别核两个序号的匹配、开关为 0 或 1 时的尾部、区域重读、清计数与首个普通帧。D5 沿已有真实宿主和同版验收。",
+    "local_observation": "stage306 等待时采纳标签。同 B 异 A 的补片遇现有身份对检查保持等待。配对补片使地图就绪，保留标签和原内存连接。",
+    "unresolved": ["开关置 1 的具名写入、共享写入或适用运行记录", "原版回包交错、实际同版与三端接受"],
+    "latch_writer_of_one_proven": false,
+    "original_execution": false,
+    "product_code_changed": false
+  },
+  "original_G03_snapshot": {
+    "file": {
+      "path": "build/analysis/game-flow-functional-specification-v1/before/analysis/capability-first-v1/capability-matrix.json",
+      "bytes": 894687,
+      "sha256": "109885a7743d7c3c4d51cadc954d1f8ba00a5fb9f32ef9b6bcd68bd66bc649cf"
+    },
+    "pointer": "/capabilities/10",
+    "role": "phase-start historical row;immutable scope fields are original_G03"
+  },
+  "source_authentication": {
+    "path": "build/analysis/game-flow-functional-specification-v1/source-authentication.json",
+    "bytes": 60086,
+    "sha256": "bb3aae258084763e8ab4c4863d497612488a590545a469da4b4cbf1e8856bb10"
+  },
+  "source_supplement": {
+    "path": "build/analysis/game-flow-functional-specification-v1/supplement-source-authentication.json",
+    "bytes": 470720,
+    "sha256": "79a4d3dad4c3b7efd0c5f1f07a82afbae7808876e4ff2b0464d9088522efb8d8"
+  },
+  "retained_rule_nodes": [
+    {
+      "file": {
+        "path": "build/analysis/context-transition-contract-v1/specification.json",
+        "bytes": 58295,
+        "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+      },
+      "pointer": "/facts",
+      "canonical_sha256": "ae7b60449947e1f411cfc122c62b8d0f7377f42a88a5c980fe5701ea2a5cd613"
+    },
+    {
+      "file": {
+        "path": "analysis/game-post-login-v1/implementation-spec.json",
+        "bytes": 16680,
+        "sha256": "3a65a06bc847fe174d540157c63379200dcccb1b569e0fc7e8b291928ad37cf0"
+      },
+      "pointer": "/entry",
+      "canonical_sha256": "31216495b010d9749aacf817ea272f98ae9f3aa3482acc50647a08842efa0d42"
+    },
+    {
+      "file": {
+        "path": "analysis/game-local-bootstrap-v1/implementation-spec.json",
+        "bytes": 12255,
+        "sha256": "a56fafe21b3caf5390079b9b1b62abfdc44e5f39dca7826eacc96457b6ca96b8"
+      },
+      "pointer": "/native_sequence",
+      "canonical_sha256": "7e492af32e1f153b7b604cbc1b02f959e4c1dd9498ebb8f75aa4986feb1e7e03"
+    },
+    {
+      "file": {
+        "path": "analysis/game-local-bootstrap-v1/implementation-spec.json",
+        "bytes": 12255,
+        "sha256": "a56fafe21b3caf5390079b9b1b62abfdc44e5f39dca7826eacc96457b6ca96b8"
+      },
+      "pointer": "/implementation",
+      "canonical_sha256": "75baf255f7271de095557c154759361f9434fb10cd0eae5e73a2473d902d4f22"
+    },
+    {
+      "file": {
+        "path": "analysis/game-legacy-city-return-v1/source-check.json",
+        "bytes": 14368,
+        "sha256": "84b45d0678b8eba06aaa43075afbc95fe5689aa98cbdb35346fc6f0b7d94ee6b"
+      },
+      "pointer": "/ordinary",
+      "canonical_sha256": "0359912dfcb2fc7f4dc4fec1b3653150815eba707c6fcaab86bf9b4116a038ac"
+    },
+    {
+      "file": {
+        "path": "analysis/game-legacy-battle-alternate-exit-v1/source-check.json",
+        "bytes": 15481,
+        "sha256": "b67994093033ab1ee91d4d2979fed5b054bef093009a48eee20d950f3871a729"
+      },
+      "pointer": "/server_return",
+      "canonical_sha256": "159108a71f3eaa24368e00ee9e9508b36a50470bdb6816564e904cef182148c3"
+    },
+    {
+      "file": {
+        "path": "analysis/game-legacy-battle-alternate-exit-v1/source-check.json",
+        "bytes": 15481,
+        "sha256": "b67994093033ab1ee91d4d2979fed5b054bef093009a48eee20d950f3871a729"
+      },
+      "pointer": "/city_return",
+      "canonical_sha256": "c2ad2a08ee454a9cc99a919769bdf3653177de837e3fbf8e05ccf0d0bde73bcd"
+    },
+    {
+      "file": {
+        "path": "analysis/capability-first-v1/game-communication-functional-specification.json",
+        "bytes": 73311,
+        "sha256": "58b2d3c86fe83159ba86e07dd0c74f3f4a6d647c57c192d2c498b4bdf19d0a7f"
+      },
+      "pointer": "/facts/11",
+      "canonical_sha256": "732a6ef967d5c741395afce5c7b33ac5158cf8c8b3a9d5d0f291d803c15998c7"
+    },
+    {
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports",
+      "canonical_sha256": "def2725fb4d7a7417b598afc0f7b0bb4bc377a01225fbb571d9786ed836741f9"
+    }
+  ],
+  "facts": [
+    {
+      "id": "GF-F01",
+      "title": "Initial state comes from the actual initializer",
+      "classification": "fact: fixed37c4 static source;independent policy explicitly separated",
+      "complete_native_entries": [
+        "0x45cc90",
+        "0x45cfd0",
+        "0x450250",
+        "0x44fb60"
+      ],
+      "clauses": [
+        "45CC90 calls45CFD0.45CFD0 finishes by explicitly writing main slotF5F17C=1,then4EDD80 with the parsed startup text. This closes the initial selector without interpreting loader virtual zeros as an observed running value.",
+        "450250 initializes the deferred slotF5F1A8=-1 after resource initialization and before its success return. Initial resource/API failures have their own source return0 paths;successful initialization is not game login or scene acceptance.",
+        "44FB60 calls450250 before its message loop;on45DD10 returning0 it calls4505F0 then4054F0 and returns. Each normal iteration calls4EDEF0 before5015A0;network events can therefore request a state consumed by that frame."
+      ],
+      "limits": [
+        "Startup text/Config.dat composition remains owned by the prior launcher/game startup contracts. No vendor shell,API or program was executed."
+      ]
+    },
+    {
+      "id": "GF-F02",
+      "title": "Immediate state,deferred state and dispatch are different operations",
+      "classification": "fact: fixed37c4 static source;independent policy explicitly separated",
+      "complete_native_entries": [
+        "0x5019f0",
+        "0x501a10",
+        "0x501a30",
+        "0x5015a0"
+      ],
+      "clauses": [
+        "5019F0 writes main and resets subphase0.501A10 writes main and the supplied subphase.501A30 writes a single deferred main slot and resets saved subphaseF5F19C=0.",
+        "5015A0 first updates the cursor policy,then if the signed deferred slot is nonnegative copies it to main,resets it to-1,and restores subphase fromF5F19C. It clearsBFF320 before dispatch.",
+        "Cursor inside test includes x=640 andy=480:0<=x<641 and0<=y<481. Win32 screen/client conversion and ShowCursor counter effects are source host effects,not a portable normalized-coordinate default.",
+        "Main1 chooses0/1→454110,2→453E40,3→456E70,4→45BE60 from925084;main2→457C30,3→458900,4→459F30,5→reset,6→456520,7→4567A0,9→501A50,10→437B30,B→its local end sequence,D→455F90 or459BC0 by925084<3,E→518CB0. The default branch clearsBFF320 and returns."
+      ],
+      "limits": []
+    },
+    {
+      "id": "GF-F03",
+      "title": "First two initial UI branches preserve source phase and result gates",
+      "classification": "fact: fixed37c4 static source;independent policy explicitly separated",
+      "complete_native_entries": [
+        "0x454110",
+        "0x453e40",
+        "0x4544e0"
+      ],
+      "clauses": [
+        "454110 phase0 recomputes925084 using4544E0,initializes454330,and chooses its sourced transition. Phases1/3/4/5 wait for6122F4 toclear;phase2 passes0 to454590,other ordinary phases initially pass2. Phase5 requests main2.",
+        "454590 result1 publishes the profile-specific material in its actual buffer order,plays sound53,and requests phase3. Result2 posts normal window-close message0x10. Negative result prepares100/101 error UI;after dismissal it returns tophase1. These results are UI operation returns,not invented wire status.",
+        "453E40 phase0 marks objects,clears924F48,initializes two source drawings and phase6. Phase6 polls454590(0);success publishes material and goes10,cancel posts close,negative goes8/9,and dismissed error returns6. Phase7 waits for its transition,phase10 requests main2 after6122F4 clears,then marks the pool.",
+        "4544E0 probes five graphic IDs with452FE0 in source order and returns4-index for the first present record,else-1. The observed generation selects the branch;it is not a supplied account or region identity."
+      ],
+      "limits": []
+    },
+    {
+      "id": "GF-F04",
+      "title": "Other initial resource modes are separate source branches",
+      "classification": "fact: fixed37c4 static source;independent policy explicitly separated",
+      "complete_native_entries": [
+        "0x456e70",
+        "0x45be60"
+      ],
+      "clauses": [
+        "456E70 has distinct intro phases0..5 with two allocated objects,position/opacity steps and a skip input gate;it reaches the6..10 input/error/transition sequence. Failure of the second allocation takesphase6;the later native phase3 does not independently guard a missing first allocation. The independent lease contract must not fabricate the missing object.",
+        "456E70 phase10 requires both sourced input buffers nonempty,publishes them in that branch-specific order,and completes the transition before main2. Its compiled conditional name branch can request desktop diagnostics and timed waits. These are retained source host effects;no diagnostic process,compiled name list or command string is reproduced in the public specification.",
+        "45BE60 phase0 directly selects4;phase1 is a separately reachable intro,2 prepares3,and3 handles45C420 result1/2/-1/-2. Success publishes values usingFC549C;phase4 applies source-local preferences and requests main2. Error branches5/6,7/8 and9/10 preserve the source directory/version decision and dismissal loops.",
+        "Input editing,draw primitives,music and local data are delegated to their existing owners. A main1 branch is not interchangeable with accepted main2 transport or with another resource mode."
+      ],
+      "limits": [
+        "The relevant source branch and its externally owned observations must remain explicit;no default generation,credential field or new wire field is introduced."
+      ]
+    },
+    {
+      "id": "GF-F05",
+      "title": "Character selection,reset,entry reply and world readiness have separate boundaries",
+      "classification": "fact: fixed37c4 static source;independent policy explicitly separated",
+      "complete_native_entries": [
+        "0x5015a0",
+        "0x458900",
+        "0x456520",
+        "0x456650",
+        "0x4ef060",
+        "0x4ef0c0",
+        "0x4ef130"
+      ],
+      "clauses": [
+        "Main3/4/D delegate the already specified roster/create/upgrade owners. Existing selection publishes its slot and goesmain5;empty-slot creation has a different bank-clearing path. G02 upgrade material origin remains unresolved and is not closed by this flow review.",
+        "Main5 performs the exact CT-F2 reset/cached restore order,including nonzero defaults and its limited28-byte clear,then5019F0(6). It does not proveC5E948 or all windows/resources cleared.507690 is aRET-only helper.",
+        "Main6 phase0 prepares its request owner and falls into polling phase1. Request0X@ uses source fields15,17,2 in that order.4EF0C0 tests connected before ACK/timeout;disconnected returns0,ACK2 then maps success1/rejection-2,before unsigned elapsed>=600001.",
+        "456520 success requests main9. Timeout/rejection instead prepare100/101 message UI and dismissal requests main2. Exact successful CString acceptance and main9 selection do not mean the scene,actor,presentation or official service is ready."
+      ],
+      "limits": []
+    },
+    {
+      "id": "GF-F06",
+      "title": "Main9 initial entry retains its data and presentation gates",
+      "classification": "fact: fixed37c4 static source;independent policy explicitly separated",
+      "complete_native_entries": [
+        "0x501a50",
+        "0x4ff160",
+        "0x4ff430"
+      ],
+      "clauses": [
+        "Sub0 initializes100,which materializes the local owner and runs its reset/window helpers before101.101 waits for922C4C==0;then goes104 with counter0. Sub102 also goes104.",
+        "104 waits while counter<=4,performing the source update/increment path. At counter>4 it executes the ordered ordinary-frame/capture/audio setup,performs an initial type15 step,and selects103.103 continues type15 until result1,records614888 and selects20.20 calls5028A0,sets3 and falls through into ordinary processing.",
+        "The local resource,appearance,identity,facing,speed and wrapped coordinates are separate sourced cells. Existing local-bootstrap rules retain map/unit wait bits and materialization order;the host also requires usable resource/map ownership. Those additional host requirements are not claimed as native ACK semantics."
+      ],
+      "limits": []
+    },
+    {
+      "id": "GF-F07",
+      "title": "Ordinary processing and battle handoff preserve source order",
+      "classification": "fact: fixed37c4 static source;independent policy explicitly separated",
+      "complete_native_entries": [
+        "0x501a50",
+        "0x4ef870"
+      ],
+      "clauses": [
+        "Sub3 executes its ordered ordinary update/helpers and setsF5F1AC=1. Only599E0C==1 enters the battle preparation tail,which retires ordinary objects/queues,prepares capture/audio and advances to4.4 captures and selects5;5 waits on type12 before requesting main10.",
+        "TfD always updates logical scene/cache/coordinates and remote-record state through its existing owner. Only922C4C==0 andmain9 enter its ordinary transition gate:ifBFF328==0 it ensures the window,selects200 and calls502810;it then removes the local object and clearsBFF328. Main10 can therefore receive scene data without selecting200.",
+        "TfD positive music value and auxiliary fields remain distinct context cells;map movement,full actor behavior,graphics/audio implementation and battle variants remain their original capability owners."
+      ],
+      "limits": []
+    },
+    {
+      "id": "GF-F08",
+      "title": "Ordinary map change is a complete finite sequence",
+      "classification": "fact: fixed37c4 static source;independent policy explicitly separated",
+      "complete_native_entries": [
+        "0x501a50",
+        "0x505030",
+        "0x5029b0"
+      ],
+      "clauses": [
+        "200 captures/records time/runs its shared transition helper and falls into201.201 chooses type14,step8 for city flag==1,otherwise type16,step32;completion selects202.",
+        "202 withBFF32C nonzero keeps display0 and services its limited UI path. Otherwise it clears the gate and falls through203,which sets counter0 andphase205.205 waits while counter<5,then performs the full specified ordinary rebuild/capture order and falls through204.",
+        "204 chooses type15,step8 for city flag==1,otherwise type17,step32. Only a completion result1 advances20,clears the city flag,updates614888,and handles pending music using its sourced order. A queued fade or logical phase change is not a presented frame."
+      ],
+      "ordinary_fades_and_presentation": "/fixed_se_map_fade_presentation",
+      "shared_scene_frame_handoff": "/shared_scene_frame_handoff",
+      "limits": []
+    },
+    {
+      "id": "GF-F09",
+      "title": "Battle return and city return use common scene components with route-specific state",
+      "classification": "fact: fixed37c4 static source;independent policy explicitly separated",
+      "complete_native_entries": [
+        "0x501a50",
+        "0x4f3430",
+        "0x4f67f0"
+      ],
+      "clauses": [
+        "Main9 sub1 resets the counter and selects 11. When the counter is at least 30, 11 rebuilds and tests F5F18C against 1. The ready path prepares the fade, then advances 1 to 2. The other path sets F5F18C and advances 1 to 2 before the shared tail advances 2 to 3, subject to the actual state reads. Only the 9/2 fade path uses its completion to select 20 and clears BFF32C and the city flag there.",
+        "The existing zero-field4}o city request setsC5EC18 through its actual menu branch. A main10 request also selects battle exit7. The early flagged>HY branch can request9/1 and emit$!~0 independently of the battle-exit boundary;both sends can occur in their actual source order.",
+        "A scene received while main10 is active supplies later9/1 rebuild data. A scene after reaching ordinary main9 can instead select200. The current client must retain these separate routes,its actual capture/presentation owners and the source map/actor prerequisites."
+      ],
+      "shared_scene_frame_handoff": "/shared_scene_frame_handoff/source_rules/battle_return",
+      "limits": [
+        "Server scheduling is unobserved. No invented route or request identity is attached to the original wire messages."
+      ]
+    },
+    {
+      "id": "GF-F10",
+      "title": "Manual return request and unsolicited return ACK have different meanings",
+      "classification": "fact: fixed37c4 static source;independent policy explicitly separated",
+      "complete_native_entries": [
+        "0x4ef1e0",
+        "0x4ef230",
+        "0x4ef290",
+        "0x456a70",
+        "0x4567a0",
+        "0x456bc0"
+      ],
+      "clauses": [
+        "Manual menu return selects main7;the battle alternative first exits through its ownsub9. Main7 captures/fades with456BC0,then follows its ordered clear/mark helpers and456A70 request/poll UI.",
+        "4EF1E0 clears the result and calls the zero-field 1^t sender. It then resets the counters, writes waiting state 1 and samples GetTickCount. Polling consumes ready state 2 before the timeout check. It maps result 1, 2 or another value to 1, 2 or -2. Without a ready result, unsigned elapsed greater than 600000 ms returns -1.",
+        "4EF290 in manual waiting1 first setsready2 and only exact successful CString sets result1. Outside that wait,exact successful sets result2,updates its numeric state and requests deferred main7. Other replies do not initiate that transition.",
+        "456A70 skips another request when result2 is already present. Main7 distinguishes success1,unsolicited2,timeout-1 andother negative-2 paths;each closes communications at its own source point and uses its own prompt/return branch. A single boolean closed cannot replace these results."
+      ],
+      "limits": []
+    },
+    {
+      "id": "GF-F11",
+      "title": "Forced game end,application exit and physical release are separate",
+      "classification": "fact: fixed37c4 static source;independent policy explicitly separated",
+      "complete_native_entries": [
+        "0x5015a0",
+        "0x4edef0",
+        "0x4ee2f0",
+        "0x4fc650",
+        "0x40a0c0",
+        "0x40a090",
+        "0x44fb60",
+        "0x4505f0"
+      ],
+      "clauses": [
+        "The communication pump can request mainB through the already specified error path. MainB sub0 clears/marks/captures and selects1;sub1 continues its fade until completion.44E800 is a separate end gate tested afterward;passing it triggers the ordered source finalization and returns to main2.",
+        "MainB finalization runs5053B0,4FF430,4403F0,4EE2F0,updates925084/presentation,then5019F0(2),40A0C0,andclearsD18E36. Source conditional desktop focus/key effects are retained as host differences,not silently equated to browser behavior.",
+        "40A0C0 calls464C70 then marks tracked nodes+1C=1;it does not synchronously free the generic list.4EE2F0 is gated by active,clears its flags and frees its buffers via4FC650,butdoes not null every pointer or supply an asynchronous I/O-drained receipt.",
+        "MainE calls518CB0;normal application message-loop return follows44FB60→4505F0→4054F0. The existing CE contract owns actual CRT/OS exit;it is distinct from a game logout,server ACK,map-return completion or lease-drained target shutdown."
+      ],
+      "limits": []
+    },
+    {
+      "id": "GF-F12",
+      "title": "Every source main9 case has an explicit disposition",
+      "classification": "fact: fixed37c4 static source;independent policy explicitly separated",
+      "complete_native_entries": [
+        "0x501a50",
+        "0x5015a0"
+      ],
+      "clauses": [
+        "The original main9 dispatcher has22 explicit cases. Ordinary,initial,map-change,battle-entry andreturn cases retain their exact fallthrough/return behavior.",
+        "The scene selector admits 250 or 252 using the controller registry and sequence counter. 250 prepares snapshot-based objects and audio, writes 251 and falls through; 251 dispatches the staging frame and helpers; 252 rebuilds the window, runs two object updates and selects 20.",
+        "MainD selects the original upgrade owner based on925084;unresolvedG02 material semantics are not filled by a guess. Default main/sub cases keep their actual no-transition behavior. Generic draw/input/CRT internals are not recursively reanalyzed."
+      ],
+      "scene_controller_route": "/fixed_se_scene_controller_route",
+      "limits": []
+    },
+    {
+      "id": "GF-F13",
+      "title": "Existing independent owner policy is reused with known deltas",
+      "classification": "fact: fixed37c4 static source;independent policy explicitly separated",
+      "complete_native_entries": [
+        "0x5015a0",
+        "0x501a50"
+      ],
+      "clauses": [
+        "The current character module emits native-entry-reset-boundary withfullNativeReset=unmodeled. Its successful reply,source poll completion and scene preparation are already distinct;the pure probe confirmed those existing boundaries.",
+        "The city controller retains one boundary frame,clears thirty waiting frames,andstarts its capture afterward. Its revision invalidates canceled captures;the focused pure probe confirmed old results are cleared and cannot replace the new context.",
+        "Client epoch,session generation,selected slot,resource generation,source main/sub/deferred state andsource city flag are different owners. Existing cancellation/revision guards remain;they do not correlate indistinguishable same-connection old source replies or prove physical resource release."
+      ],
+      "limits": [
+        "These are present-code/pure-fixture observations and independent design limits,not original native or target execution."
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "GF-O01",
+      "title": "Initialize source flow",
+      "source_rules": [
+        "GF-F01"
+      ],
+      "inputs": [
+        "startup text",
+        "resource/API results"
+      ],
+      "ordered_behavior": [
+        "45CC90→45CFD0 sets main1",
+        "450250 prepares resources and deferred=-1"
+      ],
+      "completion_failure_cancel": [
+        "initialization failure returns separately",
+        "no login/scene acceptance inferred"
+      ]
+    },
+    {
+      "id": "GF-O02",
+      "title": "Run frame ordering",
+      "source_rules": [
+        "GF-F01",
+        "GF-F02",
+        "GF-F11"
+      ],
+      "inputs": [
+        "message result",
+        "network events",
+        "clock"
+      ],
+      "ordered_behavior": [
+        "pump messages",
+        "communication pump",
+        "state dispatch",
+        "remaining ordered frame helpers"
+      ],
+      "completion_failure_cancel": [
+        "WM_QUIT invokes application cleanup",
+        "state requests can affect the same frame"
+      ]
+    },
+    {
+      "id": "GF-O03",
+      "title": "Apply immediate/deferred state",
+      "source_rules": [
+        "GF-F02"
+      ],
+      "inputs": [
+        "main",
+        "sub",
+        "deferred",
+        "saved sub"
+      ],
+      "ordered_behavior": [
+        "preserve distinct5019F0/501A10/501A30 operations",
+        "apply signed nonnegative deferred slot before dispatch"
+      ],
+      "completion_failure_cancel": [
+        "one deferred slot is not an event queue",
+        "no wire epoch inferred"
+      ]
+    },
+    {
+      "id": "GF-O04",
+      "title": "Select initial content mode",
+      "source_rules": [
+        "GF-F02",
+        "GF-F03",
+        "GF-F04"
+      ],
+      "inputs": [
+        "925084",
+        "graphic presence observations"
+      ],
+      "ordered_behavior": [
+        "select the actual main1 function",
+        "retain source0..4 selection and defaults"
+      ],
+      "completion_failure_cancel": [
+        "missing host observations remain unavailable",
+        "do not substitute main2 transport"
+      ]
+    },
+    {
+      "id": "GF-O05",
+      "title": "Advance initial modes0/1",
+      "source_rules": [
+        "GF-F03"
+      ],
+      "inputs": [
+        "subphase",
+        "6122F4",
+        "454590 result",
+        "profile material"
+      ],
+      "ordered_behavior": [
+        "preserve0..5 gates and argument2/0",
+        "publish source-order material on1",
+        "close intent on2",
+        "100/101 error dismissal"
+      ],
+      "completion_failure_cancel": [
+        "phase5 requests main2",
+        "error returns1",
+        "no authentication claim"
+      ]
+    },
+    {
+      "id": "GF-O06",
+      "title": "Advance initial mode2",
+      "source_rules": [
+        "GF-F03"
+      ],
+      "inputs": [
+        "subphase",
+        "6122F4",
+        "454590 result",
+        "skip input"
+      ],
+      "ordered_behavior": [
+        "preserve0/6 and7..10 states",
+        "success/close/error branches",
+        "mark only at its actual boundary"
+      ],
+      "completion_failure_cancel": [
+        "main2 only after source transition gate",
+        "error loops to6"
+      ]
+    },
+    {
+      "id": "GF-O07",
+      "title": "Advance initial mode3",
+      "source_rules": [
+        "GF-F04"
+      ],
+      "inputs": [
+        "intro objects",
+        "input observations",
+        "material",
+        "source host-effect observations"
+      ],
+      "ordered_behavior": [
+        "preserve intro/skip/allocation branches",
+        "retain6..10 error/material gates",
+        "classify desktop-only effects"
+      ],
+      "completion_failure_cancel": [
+        "no fabricated allocation success",
+        "no host shell execution is implied by source inspection"
+      ]
+    },
+    {
+      "id": "GF-O08",
+      "title": "Advance initial mode4",
+      "source_rules": [
+        "GF-F04"
+      ],
+      "inputs": [
+        "catalog index",
+        "directory/version state",
+        "local preference observations"
+      ],
+      "ordered_behavior": [
+        "preserve45BE60 phase0→4 and separately reachable1..3",
+        "publish source values",
+        "preserve5..10 error/version prompts"
+      ],
+      "completion_failure_cancel": [
+        "phase4 requests main2",
+        "no credential or directory index guessed"
+      ]
+    },
+    {
+      "id": "GF-O09",
+      "title": "Delegate connection and character owners",
+      "source_rules": [
+        "GF-F02",
+        "GF-F05"
+      ],
+      "inputs": [
+        "main2/3/4/D",
+        "G01/G02 contexts"
+      ],
+      "ordered_behavior": [
+        "route existing connection/roster/create/upgrade operations",
+        "retain original field/resource ownership"
+      ],
+      "completion_failure_cancel": [
+        "G01/G02 dependency acceptance remains independent",
+        "G02 upgrade origin not closed"
+      ]
+    },
+    {
+      "id": "GF-O10",
+      "title": "Execute main5 reset",
+      "source_rules": [
+        "GF-F05"
+      ],
+      "inputs": [
+        "selected slot",
+        "bank",
+        "CT reset context"
+      ],
+      "ordered_behavior": [
+        "run exact CT ordered reset and restore",
+        "preserve nonzero defaults and limited28-byte clear",
+        "request main6"
+      ],
+      "completion_failure_cancel": [
+        "no blanket memory/window reset",
+        "cache failures retain their sourced early return"
+      ]
+    },
+    {
+      "id": "GF-O11",
+      "title": "Request and poll character entry",
+      "source_rules": [
+        "GF-F05"
+      ],
+      "inputs": [
+        "fields15/17/2",
+        "connected",
+        "ACK",
+        "tick"
+      ],
+      "ordered_behavior": [
+        "prepare main6 owner",
+        "emit0X@",
+        "test connected before ACK/timeout",
+        "consume success/rejection"
+      ],
+      "completion_failure_cancel": [
+        "success requests main9",
+        "failure prompts100/101 thenmain2",
+        "scene readiness remains separate"
+      ]
+    },
+    {
+      "id": "GF-O12",
+      "title": "Prepare ordinary initial scene",
+      "source_rules": [
+        "GF-F06"
+      ],
+      "inputs": [
+        "local material",
+        "map/unit wait bits"
+      ],
+      "ordered_behavior": [
+        "sub0 falls through100",
+        "materialize local owner",
+        "sub101 waits922C4C==0"
+      ],
+      "completion_failure_cancel": [
+        "no actor fabricated from appearance",
+        "unavailable map/resource prevents target presentation"
+      ]
+    },
+    {
+      "id": "GF-O13",
+      "title": "Complete initial scene presentation",
+      "source_rules": [
+        "GF-F06"
+      ],
+      "inputs": [
+        "counter",
+        "music",
+        "capture",
+        "fade observations"
+      ],
+      "ordered_behavior": [
+        "104 waits through counter4",
+        "run ordered preparation and initialtype15 step",
+        "103 waits completion",
+        "20 falls through3"
+      ],
+      "completion_failure_cancel": [
+        "queued render is not presented",
+        "retain actual capture and owner completion"
+      ]
+    },
+    {
+      "id": "GF-O14",
+      "title": "Advance ordinary scene",
+      "source_rules": [
+        "GF-F07"
+      ],
+      "inputs": [
+        "main9/sub3",
+        "input/state/window observations"
+      ],
+      "ordered_behavior": [
+        "execute source ordinary helper order",
+        "publishF5F1AC=1",
+        "check599E0C after ordinary work"
+      ],
+      "completion_failure_cancel": [
+        "no battle transition without source flag",
+        "delegate map/actor/input algorithms"
+      ]
+    },
+    {
+      "id": "GF-O15",
+      "title": "Enter battle through4/5",
+      "source_rules": [
+        "GF-F07"
+      ],
+      "inputs": [
+        "battle source context",
+        "capture/fade result"
+      ],
+      "ordered_behavior": [
+        "perform ordinary-to-battle preparation",
+        "capture in4",
+        "type12 in5"
+      ],
+      "completion_failure_cancel": [
+        "only completion1 requests main10",
+        "B01..B04 own battle behavior"
+      ]
+    },
+    {
+      "id": "GF-O16",
+      "title": "Receive source scene change",
+      "source_rules": [
+        "GF-F07"
+      ],
+      "inputs": [
+        "TfD data",
+        "main",
+        "922C4C",
+        "BFF328"
+      ],
+      "ordered_behavior": [
+        "update scene data in every admitted state",
+        "apply exact main9 ready gate",
+        "select200 only whenBFF328==0",
+        "remove local owner and clearBFF328"
+      ],
+      "completion_failure_cancel": [
+        "main10 scene data does not itself select200",
+        "no new wire fields"
+      ]
+    },
+    {
+      "id": "GF-O17",
+      "title": "Leave ordinary map",
+      "source_rules": [
+        "GF-F08"
+      ],
+      "inputs": [
+        "city flag",
+        "capture",
+        "clock",
+        "fade"
+      ],
+      "ordered_behavior": [
+        "200 captures andfalls through201",
+        "select type14/8 or16/32"
+      ],
+      "completion_failure_cancel": [
+        "completion1 selects202",
+        "keep pending source effects"
+      ]
+    },
+    {
+      "id": "GF-O18",
+      "title": "Wait and rebuild changed map",
+      "source_rules": [
+        "GF-F08"
+      ],
+      "inputs": [
+        "BFF32C",
+        "counter",
+        "ordinary context"
+      ],
+      "ordered_behavior": [
+        "202 services gated UI or falls through203",
+        "set205 counter0",
+        "waitfive counts",
+        "run ordered rebuild/capture"
+      ],
+      "completion_failure_cancel": [
+        "missing owner data remains explicit",
+        "no timeout guessed for this counter"
+      ]
+    },
+    {
+      "id": "GF-O19",
+      "title": "Present changed map",
+      "source_rules": [
+        "GF-F08"
+      ],
+      "inputs": [
+        "city flag",
+        "fade",
+        "pending music"
+      ],
+      "ordered_behavior": [
+        "204 chooses15/8 or17/32",
+        "on1 select20,clear flag andupdate music/clock in source order"
+      ],
+      "completion_failure_cancel": [
+        "preserve presentation completion",
+        "no early input readiness"
+      ]
+    },
+    {
+      "id": "GF-O20",
+      "title": "Start ordinary return",
+      "source_rules": [
+        "GF-F09"
+      ],
+      "inputs": [
+        "9/1 boundary"
+      ],
+      "ordered_behavior": [
+        "setcounter0 and11",
+        "retain entry frame",
+        "service30 wait/increment frames"
+      ],
+      "completion_failure_cancel": [
+        "counter>29 admits rebuild",
+        "keepbattle/city origins distinct"
+      ]
+    },
+    {
+      "id": "GF-O21",
+      "title": "Rebuild and present ordinary return",
+      "source_rules": [
+        "GF-F09"
+      ],
+      "inputs": [
+        "F5F18C",
+        "actor/map data",
+        "capture/music",
+        "city flag"
+      ],
+      "ordered_behavior": [
+        "Run the phase 11 conditional rebuild and read the ready word.",
+        "On the ready path, prepare type 13 or 15, advance to 2, then advance to 20 once the fade reports 1.",
+        "On the other path, set the ready word and apply both source increments. When the intervening calls preserve substate, the next dispatch starts at 3."
+      ],
+      "completion_failure_cancel": [
+        "flag reset at sourced completion",
+        "stale asynchronous result cannot commit to new owner"
+      ]
+    },
+    {
+      "id": "GF-O22",
+      "title": "Request city return",
+      "source_rules": [
+        "GF-F09"
+      ],
+      "inputs": [
+        "menu origin",
+        "main",
+        "source city flag"
+      ],
+      "ordered_behavior": [
+        "emit existing zero-field4}o",
+        "setsource flag",
+        "main10 selects battle exit7"
+      ],
+      "completion_failure_cancel": [
+        "no automatic request replay",
+        "menu eligibility and source owner remain explicit"
+      ]
+    },
+    {
+      "id": "GF-O23",
+      "title": "Accept early city boundary",
+      "source_rules": [
+        "GF-F09"
+      ],
+      "inputs": [
+        "flagged>HY",
+        "current data"
+      ],
+      "ordered_behavior": [
+        "run actual flagged branch",
+        "request9/1",
+        "emit existing$!~0 at its source boundary"
+      ],
+      "completion_failure_cancel": [
+        "battle exit may separately emit another request",
+        "do not deduplicate distinct source sends"
+      ]
+    },
+    {
+      "id": "GF-O24",
+      "title": "Coordinate city scene and capture",
+      "source_rules": [
+        "GF-F08",
+        "GF-F09",
+        "GF-F13"
+      ],
+      "inputs": [
+        "TfD timing",
+        "current actor/map context",
+        "pending render"
+      ],
+      "ordered_behavior": [
+        "retain data received before9/1",
+        "later ordinary change may select200",
+        "replace/invalidate capture via existing owner revision"
+      ],
+      "completion_failure_cancel": [
+        "source scheduling remains unobserved",
+        "target must discard old capture"
+      ]
+    },
+    {
+      "id": "GF-O25",
+      "title": "Begin manual return to selection",
+      "source_rules": [
+        "GF-F10"
+      ],
+      "inputs": [
+        "ordinary/battle menu",
+        "owned pending writes"
+      ],
+      "ordered_behavior": [
+        "ordinary requests main7",
+        "battle uses its alternate exit9",
+        "retire gameplay writes through existing owner"
+      ],
+      "completion_failure_cancel": [
+        "no new request before sourced fade boundary",
+        "no same-wire reply identity invented"
+      ]
+    },
+    {
+      "id": "GF-O26",
+      "title": "Fade and request return",
+      "source_rules": [
+        "GF-F10"
+      ],
+      "inputs": [
+        "main7 phase",
+        "fade result",
+        "prior return result"
+      ],
+      "ordered_behavior": [
+        "run456BC0 andorderedclear/mark",
+        "456A70 sends1^t unless result2 already present"
+      ],
+      "completion_failure_cancel": [
+        "request/poll window has its own lifetime",
+        "already received unsolicited2 does not send again"
+      ]
+    },
+    {
+      "id": "GF-O27",
+      "title": "Process return ACK and timeout",
+      "source_rules": [
+        "GF-F10"
+      ],
+      "inputs": [
+        "waiting state",
+        "successful CString",
+        "unsigned tick delta"
+      ],
+      "ordered_behavior": [
+        "distinguish manual waiting1 from unsolicited reply",
+        "consume ready2 once",
+        "strict delta>600000",
+        "map1/2/other separately"
+      ],
+      "completion_failure_cancel": [
+        "manual fail is not unsolicited success",
+        "normal return andprompt branches staydistinct"
+      ]
+    },
+    {
+      "id": "GF-O28",
+      "title": "Complete main7 return",
+      "source_rules": [
+        "GF-F10",
+        "GF-F11"
+      ],
+      "inputs": [
+        "poll result",
+        "prompt dismissal"
+      ],
+      "ordered_behavior": [
+        "use exact1/2/-1/-2 source branch",
+        "close communication at branch-specific point",
+        "request main2 when permitted"
+      ],
+      "completion_failure_cancel": [
+        "close intent is not lease/IO drain",
+        "pending0 keeps waiting"
+      ]
+    },
+    {
+      "id": "GF-O29",
+      "title": "Advance forced game end",
+      "source_rules": [
+        "GF-F11"
+      ],
+      "inputs": [
+        "mainB subphase",
+        "fade",
+        "44E800"
+      ],
+      "ordered_behavior": [
+        "sub0 clear/mark/capture",
+        "sub1 fade",
+        "separately test end gate",
+        "run ordered finalization thenmain2"
+      ],
+      "completion_failure_cancel": [
+        "do not infer finalization solely from fade",
+        "desktop effects are platform differences"
+      ]
+    },
+    {
+      "id": "GF-O30",
+      "title": "Retire communication and logical objects",
+      "source_rules": [
+        "GF-F11"
+      ],
+      "inputs": [
+        "active flag",
+        "registered roots",
+        "leases"
+      ],
+      "ordered_behavior": [
+        "retain40A0C0 marking semantics",
+        "active-gated4EE2F0 then4FC650",
+        "route target asynchronous drain to OwnerLifecycle"
+      ],
+      "completion_failure_cancel": [
+        "no synchronous free claim from marking",
+        "no dangling native pointer model copied"
+      ]
+    },
+    {
+      "id": "GF-O31",
+      "title": "Dispatch special/default contexts",
+      "scene_controller_route": "/fixed_se_scene_controller_route",
+      "source_rules": [
+        "GF-F02",
+        "GF-F12"
+      ],
+      "inputs": [
+        "main/sub",
+        "source-valued special context"
+      ],
+      "ordered_behavior": [
+        "retain250/251/252 order andfallthrough",
+        "delegateD/E",
+        "preserve actualdefault return"
+      ],
+      "completion_failure_cancel": [
+        "no invented business names for numeric states",
+        "scene and actor owners supply the observed special-route inputs"
+      ]
+    },
+    {
+      "id": "GF-O32",
+      "title": "Exit application normally",
+      "source_rules": [
+        "GF-F01",
+        "GF-F11"
+      ],
+      "inputs": [
+        "message-pump end",
+        "application effect boundary"
+      ],
+      "ordered_behavior": [
+        "follow CE application cleanup/CRT path",
+        "distinguish it from game main7/B"
+      ],
+      "completion_failure_cancel": [
+        "platform host termination anddata drain need own receipt",
+        "no OS effect executed in review"
+      ]
+    },
+    {
+      "id": "GF-O33",
+      "title": "Cancel or replace target context",
+      "source_rules": [
+        "GF-F13"
+      ],
+      "inputs": [
+        "client epoch",
+        "session generation",
+        "render revision",
+        "leases"
+      ],
+      "ordered_behavior": [
+        "reuse existing cancel/late-result guards",
+        "discard andclear old results",
+        "settle owner operations before physical completion"
+      ],
+      "completion_failure_cancel": [
+        "independent design,not source wire correlation",
+        "full cross-owner drain remains unimplemented"
+      ]
+    }
+  ],
+  "required_behavior_readiness": [
+    {
+      "requirement": "初始主状态",
+      "operations": [
+        "GF-O01",
+        "GF-O02",
+        "GF-O03",
+        "GF-O04",
+        "GF-O05",
+        "GF-O06",
+        "GF-O07",
+        "GF-O08",
+        "GF-O09",
+        "GF-O31",
+        "GF-O32"
+      ],
+      "fixed_source_functional_rules_composed": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "requirement": "普通地图",
+      "operations": [
+        "GF-O10",
+        "GF-O11",
+        "GF-O12",
+        "GF-O13",
+        "GF-O14",
+        "GF-O15",
+        "GF-O16",
+        "GF-O17",
+        "GF-O18",
+        "GF-O19"
+      ],
+      "fixed_source_functional_rules_composed": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "requirement": "注销",
+      "operations": [
+        "GF-O25",
+        "GF-O26",
+        "GF-O27",
+        "GF-O28",
+        "GF-O30",
+        "GF-O32"
+      ],
+      "fixed_source_functional_rules_composed": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "requirement": "服务端退出",
+      "operations": [
+        "GF-O27",
+        "GF-O28",
+        "GF-O29",
+        "GF-O30",
+        "GF-O31",
+        "GF-O32",
+        "GF-O33"
+      ],
+      "fixed_source_functional_rules_composed": true,
+      "implementation_or_dependency_acceptance": false
+    },
+    {
+      "requirement": "回城与重建",
+      "operations": [
+        "GF-O20",
+        "GF-O21",
+        "GF-O22",
+        "GF-O23",
+        "GF-O24",
+        "GF-O30",
+        "GF-O33"
+      ],
+      "fixed_source_functional_rules_composed": true,
+      "implementation_or_dependency_acceptance": false
+    }
+  ],
+  "source_dispatch": {
+    "initial_main": 1,
+    "main_slot": "0xf5f17c",
+    "sub_slot": "0xf5f1a0",
+    "deferred_slot": "0xf5f1a8",
+    "saved_sub_slot": "0xf5f19c",
+    "main9_cases": [
+      0,
+      100,
+      101,
+      1,
+      2,
+      4,
+      5,
+      11,
+      20,
+      3,
+      102,
+      103,
+      104,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      250,
+      251,
+      252
+    ],
+    "main9_explicit_cases": 22,
+    "default_is_not_an_error_or_success": true
+  },
+  "source_context_contract": {
+    "required": [
+      "source identity andstartup observations",
+      "content generation andinitial UI action results",
+      "main/sub/deferred/saved-sub slots",
+      "selected bank andCT reset/cache observations",
+      "current map/actor/resource/wait-mask ownership",
+      "city,battle,ordinary andspecial source contexts",
+      "window/input/clock/music/capture/fade observations",
+      "transport active,ACK/result andowner retirement observations"
+    ],
+    "no_missing_source_value_defaulted_to_zero": true,
+    "no_new_wire_fields_or_epoch": true,
+    "delegated_owners": [
+      "original G01 connection operations",
+      "original G02 character/create/upgrade operations",
+      "CT reset andAB cache rules",
+      "G04 map andlocal bootstrap",
+      "G05 object/G06 graphics/G07 input/text/G08 audio",
+      "B01..B04 battle",
+      "X02/X03 shared owners andresource leases",
+      "CE application end"
+    ]
+  },
+  "selected_supersession": [
+    {
+      "previous": "G03 generic other-main/substate source gap",
+      "result": "All main9 cases andinitial main1 selector/branches are now enumerated withoriginal source;necessary dependent business/material/host contracts remain their owners."
+    },
+    {
+      "previous": "Initial phase might start atmain2 orbe inferred from virtual zeros",
+      "result": "45CFD0 explicitly writesmain1;450250 separately initializes deferred=-1. No current-game orrunning-memory inference."
+    },
+    {
+      "previous": "Historical main9/ordinary return unknown statements",
+      "result": "The current local main9/battle/city controllers andlater source contracts are reused;their partial acceptance limits are preserved."
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "GF-D1",
+      "batch": "D0/D2",
+      "existing_ports": [
+        "ContextOwner",
+        "SourceValueContext",
+        "SharedUpdatePump"
+      ],
+      "operations": [
+        "GF-O01",
+        "GF-O02",
+        "GF-O03",
+        "GF-O09",
+        "GF-O10",
+        "GF-O11"
+      ],
+      "change": "Compose one main/sub/deferred owner andexact CT reset/restore sequence;keep current character wire/preview core. The existing fullNativeReset=unmodeled boundary must not be relabeled complete.",
+      "implemented": false
+    },
+    {
+      "id": "GF-D2",
+      "batch": "D0/D2/D5",
+      "existing_ports": [
+        "InputAndTextFocus",
+        "SourceValueContext",
+        "RenderAudioSurfaces",
+        "HostCapabilitiesAndLifecycle"
+      ],
+      "operations": [
+        "GF-O04",
+        "GF-O05",
+        "GF-O06",
+        "GF-O07",
+        "GF-O08",
+        "GF-O31"
+      ],
+      "change": "Represent actual content-mode/intro/error/close observations with source-valued context andthin host effects. Reuse source material/catalog/text/graphics owners;do not substitute the normal network screen for all source branches.",
+      "implemented": false
+    },
+    {
+      "id": "GF-D3",
+      "batch": "D0/D2/D3",
+      "existing_ports": [
+        "ContextOwner",
+        "SharedUpdatePump",
+        "RenderAudioSurfaces",
+        "BudgetAndLease"
+      ],
+      "operations": [
+        "GF-O12",
+        "GF-O13",
+        "GF-O14",
+        "GF-O15",
+        "GF-O16",
+        "GF-O17",
+        "GF-O18",
+        "GF-O19",
+        "GF-O20",
+        "GF-O21",
+        "GF-O22",
+        "GF-O23",
+        "GF-O24"
+      ],
+      "change": "Compose the full main9 routes andsource wait/fallthrough order around existing local bootstrap,map,actor,fade andcity controllers. Keep source ACK,logical scene,capture andactual presentation separate;reuse the verified31-wait andlate-capture behavior.",
+      "transition_background": "analysis/capability-first-v1/game-presentation-functional-specification.json#/legacy_transition_background/implementation_handoff",
+      "ordinary_fade_presentation": "/fixed_se_map_fade_presentation/implementation_handoff",
+      "shared_scene_frame_handoff": "/shared_scene_frame_handoff/implementation_handoff",
+      "scene_controller_route": "/fixed_se_scene_controller_route/implementation_handoff",
+      "implemented": false
+    },
+    {
+      "id": "GF-D4",
+      "batch": "D0/D2/D5",
+      "existing_ports": [
+        "ContextOwner",
+        "SessionTransport",
+        "ClockDomains",
+        "OwnerLifecycle"
+      ],
+      "operations": [
+        "GF-O25",
+        "GF-O26",
+        "GF-O27",
+        "GF-O28",
+        "GF-O29"
+      ],
+      "change": "Unify manual,unsolicited andforced returns while retaining strict polling/result gates andbranch-specific retirement. Reuse existing bounded transport/close guards;do not add wire correlation or automatic replay.",
+      "implemented": false
+    },
+    {
+      "id": "GF-D5",
+      "batch": "D0/D2/D5",
+      "existing_ports": [
+        "OwnerLifecycle",
+        "BudgetAndLease",
+        "SnapshotStore",
+        "TextEncodingAndLocalStateStore"
+      ],
+      "operations": [
+        "GF-O10",
+        "GF-O24",
+        "GF-O30",
+        "GF-O32",
+        "GF-O33"
+      ],
+      "change": "Bind logical marking,window retirement,buffer ownership,cache failure andphysical asynchronous completion to the shared lease/lifecycle contract. Existing close does not prove full drain or durable persistence.",
+      "implemented": false
+    },
+    {
+      "id": "GF-D6",
+      "batch": "D5/D6",
+      "existing_ports": [
+        "HostCapabilitiesAndLifecycle",
+        "RenderAudioSurfaces",
+        "InputAndTextFocus"
+      ],
+      "operations": [
+        "GF-O07",
+        "GF-O29",
+        "GF-O31",
+        "GF-O32"
+      ],
+      "change": "Record andverify platform decisions for desktop-specific cursor/focus/diagnostic/process effects. Browser/mobile/WeChat user intent andeffect receipts must be explicit;no vendor shell command is run as a side effect of analysis.",
+      "implemented": false
+    }
+  ],
+  "proposed_acceptance_cases": [
+    {
+      "id": "GF-A01",
+      "case": "Initializer writes main1 anddeferred=-1 only at theiractualsource points;resource failure remains distinct.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A02",
+      "case": "Frame network event can affect same-frame deferred dispatch;immediate,explicit subphase andsingle deferred slot remain distinct.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A03",
+      "case": "Initial content modes0..4 preserve their own transitions,input result returns,error loops andclose intent.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A04",
+      "case": "Intro skip/allocation failures andunavailable source observations do not fabricate objects oraccepted material.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A05",
+      "case": "Main5 exact order/defaults/cache early-return and28-byte clear preserve the unrelated work counter.",
+      "item_reset_cases": "/launch_entry_recovery_composition/item_state5_reset/cases",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A06",
+      "case": "Character entry disconnected gate precedes ACK/timeout;successful ACK does not alone make the world playable.",
+      "composed_entry_case": "/launch_entry_recovery_composition/entry",
+      "item_case": "/launch_entry_recovery_composition/item_entry/cases/request_and_reply",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A07",
+      "case": "Main9 initial100/101 wait bits and104/103/20 presentation order.",
+      "item_case": "/launch_entry_recovery_composition/item_entry/cases/first_scene",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A08",
+      "case": "Ordinary sub3 helper order and599E0C gated4/5 battle handoff.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A09",
+      "case": "TfD whilemain10 updates data withoutordinary200;ordinary ready gate andBFF328 branch remain exact.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A10",
+      "case": "Map-change type16/17 versuscity14/15 and5-count wait plusBFF32C gate.",
+      "transition_background_case": "analysis/capability-first-v1/game-presentation-functional-specification.json#/legacy_transition_background/acceptance_cases/1",
+      "transition_rebuild_case": "analysis/capability-first-v1/game-presentation-functional-specification.json#/legacy_transition_background/graphics_rebuild/acceptance_cases/1",
+      "ordinary_fade_cases": "/fixed_se_map_fade_presentation/acceptance_cases",
+      "shared_scene_frame_cases": "/shared_scene_frame_handoff/acceptance_extension",
+      "scene_reply_order": "/fixed_se_scene_controller_route/completion_251/acceptance",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A11",
+      "case": "Return9/1 retains its entry frame then30 increments;conditional rebuild andtype13/15 remain separate.",
+      "shared_scene_frame_cases": "/shared_scene_frame_handoff/acceptance_extension",
+      "transition_background_case": "analysis/capability-first-v1/game-presentation-functional-specification.json#/legacy_transition_background/acceptance_cases/2",
+      "transition_rebuild_case": "analysis/capability-first-v1/game-presentation-functional-specification.json#/legacy_transition_background/graphics_rebuild/acceptance_cases/2",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A12",
+      "case": "Cityrequest andearly>HY boundary preserve possible two distinct$!~0 source sends.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A13",
+      "case": "Manual1^t request is skipped when unsolicited result2 already exists.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A14",
+      "case": "Return ready consumption,successful CString,strict600000/600001 andunsigned wrap boundaries.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A15",
+      "case": "Manualrejection,unsolicited success,timeout anderror prompts use different close points.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A16",
+      "case": "MainB end gate can be tested independently of its fade;normal application end follows CE.",
+      "confirmation_case": "/launch_entry_recovery_composition/fixed_se_prompt",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A17",
+      "case": "Marking allobjects does not synchronously free them;active communication cleanup is not universally reentrant.",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A18",
+      "case": "Special250/251/252 andD/E/default dispatch require explicit producer contexts andcorrect existing owners.",
+      "scene_controller_route": "/fixed_se_scene_controller_route/acceptance/GF-A18",
+      "scene_reply_order": "/fixed_se_scene_controller_route/completion_251/conditional_orders",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A19",
+      "case": "Canceled/replaced captures,late replies,queued writes andlease retirement preserve source/host distinctions.",
+      "receive_retirement_order": "analysis/capability-first-v1/game-communication-functional-specification.json#/receive_retirement_order/acceptance",
+      "composed_recovery_case": "/launch_entry_recovery_composition/recovery",
+      "status": "not-executed-as-full-native-or-target-case"
+    },
+    {
+      "id": "GF-A20",
+      "case": "Real desktop/mobile/WeChat lifecycle andsame-build normal handoff/official acceptance with appropriate test material.",
+      "status": "not-executed-as-full-native-or-target-case"
+    }
+  ],
+  "focused_probe": {
+    "path": "build/analysis/game-flow-functional-specification-v1/focused-probe.json",
+    "bytes": 1754,
+    "sha256": "6d34118d287943f2df7ae1043f036646ec9a096d1810e17611e4179585e69bb8"
+  },
+  "remaining": [
+    {
+      "id": "GF-R1",
+      "question": "Integrate original G01/G02/X02 dependencies andtheir necessary source-valued contexts;G02 upgrade origin,current-build consumer andglobal A1/A3/A4 remain unresolved."
+    },
+    {
+      "id": "GF-R2",
+      "question": "ImplementGF-D1..6 after unified gate,including exact CT reset,fullmain9 owner paths andphysical target retirement/persistence;reuse correct existing core behavior."
+    },
+    {
+      "id": "GF-R3",
+      "question": "Run full product andreal web/mobile/WeChat/current-build/account/server acceptance;the20 complete cases remain unexecuted."
+    }
+  ],
+  "stopping_rule": "Reuse these source operations;do not reopen known main/ACK/CRT/graphics helpers for counts. Only a named required behavior-changing positive source gap justifies another native query.",
+  "summary": {
+    "retained_complete_native_records": 63,
+    "new_native_queries": 3,
+    "complete_native_records_total": 66,
+    "native_body_bytes_total": 30961,
+    "new_native_body_bytes": 3761,
+    "independently_decoded_instructions": 1908,
+    "main9_explicit_cases": 22,
+    "fact_groups": 13,
+    "operations": 33,
+    "original_scope_groups": 5,
+    "implementation_deltas": 6,
+    "full_acceptance_cases_not_executed": 20,
+    "known_reset_boundary_still_unimplemented": true
+  },
+  "scope_preserved": true,
+  "local_G03_full_specification_ready": true,
+  "G03_dependencies_integrated": false,
+  "G03_product_compatible_with_all_source_edges": false,
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "focused_original_fixture_probe_run": true,
+  "full_product_test_suites_or_builds_run": false,
+  "original_VM_official_network_account_device_actions": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "item_logout_clock": {
+    "kind": "fixed-historical-Item-with-selected-SE-comparison",
+    "source_review": {
+      "path": "build/analysis/legacy-item-logout-clock-v1/source-review.json",
+      "bytes": 18169,
+      "sha256": "c24e45888a4951f19c981287c44d7cdd823b08bea4ae34fc563413ad30df6a01"
+    },
+    "report": "reports/game-static.md#legacy-item-logout-clock",
+    "capabilities": [
+      "G01",
+      "G03",
+      "X02",
+      "X06"
+    ],
+    "implementation_batches": [
+      "D0",
+      "D2"
+    ],
+    "request_order": {
+      "Item": [
+        "0x572760 clear result",
+        "0x57276f send",
+        "0x57278b waiting",
+        "0x57279b request clock"
+      ],
+      "SE": [
+        "0x4ef1ea clear result",
+        "0x4ef1f4 send",
+        "0x4ef210 waiting",
+        "0x4ef220 request clock"
+      ]
+    },
+    "clock_stamps": {
+      "Item": {
+        "slot": "0x7c516c",
+        "initialization_write": "0x49ef6b",
+        "main_2_selection_refresh": "0x4985a8",
+        "request_wait_clock_slot": "0xfd326c"
+      },
+      "SE": {
+        "slot": "0x728364",
+        "initialization_write": "0x45ce7e",
+        "selection_refresh": "0x458018",
+        "request_wait_clock_slot": "0xd5d78c"
+      }
+    },
+    "thresholds": {
+      "request_timeout_ms": 600000,
+      "immediate_return_max_session_age_ms": 15000000,
+      "confirmation_direct_max_session_age_ms": 1500000
+    },
+    "Item_result_order": {
+      "1": "Release and clear. At age <= 15000000 return to main 2, otherwise show subphase 101 and wait for confirmation.",
+      "2": "Clear result word after preparing the prompt. Subphase 201 retains the connection until confirmation, then releases and returns to main 2.",
+      "-1": "Release, show timeout prompt in subphase 101, return on confirmation.",
+      "-2": "Release, show failure prompt in subphase 101, return on confirmation."
+    },
+    "specified_cases": [
+      "预先收到结果 2 时等待页跳过发送。手动请求先清结果并调用发送，之后保存等待状态和请求时钟。",
+      "就绪回复先于超时检查被消费。没有就绪结果时，等于 600000 毫秒仍等待，下一毫秒才超时，覆盖 32 位回绕。",
+      "结果 1 先退役连接。以选服刷新后的时钟在 15000000 毫秒边界比较直接返回和确认提示。",
+      "结果 2 等确认再调用连接退役。超时和失败先调用退役再进入各自提示。",
+      "所选确认分支在 1500000 毫秒两侧均回主状态 2，按源记录 Windows 额外焦点及键事件调用。"
+    ],
+    "current_implementation_delta": "现有共用会话在手动 VKW 后直接结束，提交前保存等待时钟。D0/D2 沿既有所有者补按来源的发包与采样顺序、会话时长和结果确认阶段。",
+    "target_cases_executed": false,
+    "current_version_equivalence_proven": false,
+    "product_code_changed": false,
+    "category_7_upgrade_material_producer_resolved": false
+  },
+  "item_disconnect_recovery": {
+    "kind": "fixed-historical-Item-source-fact",
+    "capabilities": ["G01", "G03", "X02", "X06"],
+    "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+    "source_review": "build/analysis/legacy-item-disconnect-recovery-v1/source-review.json",
+    "paired_se_specification": "/launch_entry_recovery_composition/fixed_se_prompt",
+    "receive_retirement_order": "analysis/capability-first-v1/game-communication-functional-specification.json#/receive_retirement_order",
+    "entry": {
+      "error_flag": "0xF8E916",
+      "selected_error_writers": ["0x571027", "0x571285"],
+      "pump": "0x570E2A",
+      "admission": "在轮询入口，F4E901 和 F8E914 非零时消费断线标记 1，立即发布主状态 11、子阶段 0，再将标记写 2。该入口标记非零时跳过普通收包。轮询中刚写 1 的当次仍检查已有缓存。",
+      "dispatch": "普通帧先轮询再分派。独立待切换状态先应用。状态 11 从 58C9DC 进入子阶段准备，58CA85 调用提示。"
+    },
+    "prompt": {
+      "handler": "0x484AE3",
+      "owner_slot": "0x6B1694",
+      "first_frame": "指针为空时检查两活动槽，按既有 close(100) 合同关闭，再创建并保存指针。已有指针沿复用路径。",
+      "confirmation": "对象存在、406346 低字节非零、56C893 命中且 ED560C 位 0 置位。确认时将对象 +0x1C 标记 1，清指针并返回 1。其余所选路径返回 0。"
+    },
+    "return_to_selection": {
+      "retirement_calls": ["0x591A60", "0x58973B", "0x4689AB", "0x57132F"],
+      "transport": "F8E914 非零时先清 F8E918 和 F8E914 至 F8E916，再调用 WSOCK32 序号 3、116 及本地收尾。",
+      "publish": "继续准备选服。时钟比较两支均调用 58CBF8(2)，将子阶段置 0。"
+    },
+    "implementation": {
+      "batches": ["D0", "D2", "D5", "D6"],
+      "reuse": ["shared/legacy-game-client.mjs", "shared/legacy-game-state.mjs", "web/legacy-game-session.mjs"],
+      "difference": "现有网页会话在 peer-eof 路径终止。D0/D2 按证据划定的历史来源补等待确认及选服发布，并复用现有会话清理。D5/D6 逐项验证平台断线事件和同版适用性。"
+    },
+    "acceptance_cases": [
+      "合资格断线标记 1 只发布一次提示。标记 2 保持普通收包暂停。独立待切换状态按原顺序处理。",
+      "有活动槽且提示对象为空时先调用关闭再创建。分配失败继续等待，已有对象沿复用路径。",
+      "对象未就绪、未命中和缺少位 0 分别保持等待。确认点击只标记回收一次并清除提示指针。",
+      "分别覆盖连接活跃字节非零及为零时的清理、两个时钟分支和选服状态 2 的子阶段 0。"
+    ],
+    "target_cases_executed": false,
+    "current_version_equivalence_proven": false
+  },
+  "launch_entry_recovery_composition": {
+    "classification": "固定 F5A、SE 与 Item 的来源事实、stage306 原创夹具对照及实现依赖",
+    "capabilities": ["L07", "G01", "G02", "G03", "G04", "X02", "X03", "X06", "X07", "X08"],
+    "source_review": {
+      "path": "build/analysis/capability-launch-entry-recovery-v1/source-review.json",
+      "bytes": 17115,
+      "sha256": "fdd9a3bf96a49069741fbf750755fc77dbc7d471250b006ed4f9444cfbf3f950"
+    },
+    "local_probe": {
+      "path": "build/analysis/capability-launch-entry-recovery-v1/stage306-probe.json",
+      "bytes": 1922,
+      "sha256": "3489d699649db88a8df11c8dc5c3475b6595d398390264b504b4e0fd9acf7117"
+    },
+    "report": "reports/game-static.md#fixed-se-disconnect-recovery",
+    "validation": "reports/validation.md#capability-launch-entry-recovery-validation",
+    "handoff": {
+      "facts": "固定 F5A 的普通确认发布显式应用名、命令行和独立映射。所核三个同分发清单的游戏主程序原样复核均为 .text 文件字节为零。历史解析来源按固定版本绑定。",
+      "producer": "analysis/capability-first-v1/launcher-functional-specification.json#/current_game_process_producer/distribution_supplement/ordinary_handoff",
+      "historical_consumer": "reports/game-static.md#legacy-item-startup-handoff",
+      "decision": "D1 按来源复用候选、路径及命令与映射发布。UC-P04 的同版消费决策等到确证对应游戏把哪些启动输入交给哪个读取及后续业务所有者。L07/X07 的必要规格沿原恢复条件。"
+    },
+    "entry": {
+      "facts": "固定 SE 所查成功入场 ACK 触发主状态 9，之后继续场景准备。stage306 的原创夹具只到 ACK 时状态为 preparing-scene，运行层未建立。收到 EOF 后该实例结束，后送数据未改变旧状态。新实例收齐已知场景资料后可建立独立运行层并生成 320×240 的软件像素。",
+      "source": "/facts/4",
+      "decision": "GF-D1/GF-D3 将入场确认、场景及角色数据就绪、首次呈现回执绑定同一活动实例。现有共享客户和资源库继续负责输入准入、绘制准备及迟到结果归属。GF-A06/A07 沿两个固定来源的共同状态核原顺序和实际宿主首帧。",
+      "paired_item": "/launch_entry_recovery_composition/item_entry"
+    },
+    "item_entry": {
+      "classification": "固定历史 Item 静态事实，复用固定 SE 规格并附 stage306 本机回归",
+      "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+      "capabilities": ["G01", "G02", "G03", "G04", "X02"],
+      "source_review": {
+        "path": "build/analysis/legacy-item-world-entry-v1/source-review.json",
+        "bytes": 34171,
+        "sha256": "b06686714cc48c0dae3e2aafed45e2046d8818db893c5941c3969908e7a249d2"
+      },
+      "focused_regression": {
+        "path": "build/analysis/legacy-item-world-entry-v1/local-regression.log",
+        "bytes": 1519,
+        "sha256": "8068216d2165e50517be37d0b5dadc4b9d868ea77dfd8c2c201a8a566f9181a2",
+        "passed": 11
+      },
+      "report": "reports/game-static.md#fixed-item-world-entry",
+      "validation": "reports/validation.md#fixed-item-world-entry-validation",
+      "facts": {
+        "request": "状态 6 由 58C9AF 调 496065。4961AF 清等待窗子状态。4961BD 首次尝试创建登入中窗口，然后提交 5725EF。窗口创建结果独立于请求准入。有符号角色槽 11D4B80 按 148 字节步长选择记录。58B035、58B054、58AEA0 分别写字段 15、17、2 的槽内地址。5725EF 取当前记录的这三个值，经 57F212 发 0X@。发送调用后发布等待标记 1，再保存时钟。",
+        "reply": "V?S 经 582983 调 5726D8。仅等待标记 1 时发布 2，逐字节比较 successful 的 10 个字符及末尾 NUL。57265C 先看连接字节 F8E915，断开返回 0。连接成立时先消费标记 2 并清零，成功返回 1，其余返回 -2。没有待消费回复时，用无符号流逝量严格大于 600000 毫秒判 -1。",
+        "confirmation": "4961BD 见非零结果后标记现有等待对象回收并清指针。结果 1 经 4960AD 发布主状态 9。-1 选择登入逾时提示。-2 优先使用非空拒绝资料，缺少时使用默认提示。两种失败走 100 初始化、101 等待确认，再经 4961A1 发布主状态 2。",
+        "scene_readiness": "主状态 5 的 4A15BF 将等待字节 9BFA54 置 3。=]M 校验通过的所选分支清位 0，=mJ 的合资格补片尾部也清位 0。H#| 的合资格本机角色分支在对象处理后清位 1，5765C2 按当前本机身份匹配。主状态 9 的 101 测完整等待字节为零，仍有任何位时保持等待。",
+        "first_ordinary_state": "58CC52 的初始子状态 0/100 完成所查准备并进 101。就绪后经 102 清计数并写 104。104 从 0 开始经过 5 次计数未满的准备，再执行捕获与第一步类型 15 淡入并发布 103。103 的淡入返回 1 时发布 20。20 执行该次过渡收尾，写 3 并在同次调用落入普通帧。"
+      },
+      "cases": {
+        "request_and_reply": "GF-A06 共用字段 15、17、2 和 V?S。覆盖缺等待对象、成功、拒绝文字存在与默认、连接先断、已有回复跨截止、等于 600000 和下一毫秒及回绕。按已证顺序核发送、时钟和失败确认。",
+        "first_scene": "GF-A07 覆盖两个就绪位分别抵达、地图校验拒绝或合资格补片、非本机与本机 H#|、5 次准备、类型 15 的等待与完成、20 同帧落入 3。场景资料、输入开放和宿主首帧沿原实例核有效回执。"
+      },
+      "implementation": {
+        "batches": ["D0", "D2", "D5"],
+        "reuse": ["shared/legacy-game-characters.mjs", "shared/legacy-game-client.mjs", "web/legacy-game-session.mjs"],
+        "difference": "现有共享角色层在产出请求前保存时钟，使用一致的字段和值判断。失败进入 failed 后，当前网页会话结束。D0/D2 按已证顺序处理发送返回后的计时、等待窗退役及失败确认回选服，沿 GF-D1/D3 复用已知场景准备与输入所有者。D5 沿两版共用用例验当前活动场景的首次呈现和重开。"
+      },
+      "state5_reset_specification": "/launch_entry_recovery_composition/item_state5_reset",
+      "remaining": ["原提示实际交互和宿主复位效果", "完整场景与真实宿主首帧", "当前同版输入消费和真实会话"],
+      "original_execution": false,
+      "current_version_equivalence_proven": false,
+      "product_code_changed": false
+    },
+    "item_character_creation": {
+      "classification": "固定 Item 主状态 4 的静态事实、固定 SE 对照与 stage306 创建回归",
+      "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+      "capabilities": ["G01", "G02", "G03", "X02"],
+      "source_review": {
+        "path": "build/analysis/legacy-item-character-creation-v1/source-review.json",
+        "bytes": 39618,
+        "sha256": "122a4d2c8b8b3a5e59187c47368dd81cbadc1f9fb2370137c5764bb6728c0837"
+      },
+      "regression": {
+        "path": "build/analysis/legacy-item-character-creation-v1/local-regression.log",
+        "bytes": 1914,
+        "sha256": "501e88941d014c90b7193588209e0e7b31ae6d29bbd9a2fc50eeb910e19a881e",
+        "passed": 14
+      },
+      "se_reference": "analysis/game-character-lifecycle-v1/implementation-spec.json#/reply",
+      "report": "reports/game-static.md#fixed-item-character-creation",
+      "validation": "reports/validation.md#fixed-item-character-creation-validation",
+      "facts": {
+        "draft": "状态 4 经 58C85F 调 49B1A1。子阶段 1 用 49B381(1) 初始化外观，子阶段 2 用 (0) 恢复外观，均进入 3。外观确认进入资料页，取消回 3/10。资料页起始预算为 30 和 10，内容类别小于 5、小于 7 或其余分别将模式置 0、1、2。主状态 4 的确认路径将模式为零及非零映为待保存变体 0 和 1。资料页退回先写子阶段 2。",
+        "prepare": "确认返回 1 时写子阶段 30，并按有符号选中槽清该槽的 148 字节临时角色记录。495E4B 调 5AD400 初始化该槽的资料，再经 5AD653 尝试写所选配置目录下的 profile.dat。所查打开成功路径请求写 0x1050 字节。调用返回后进入阶段 31，进入等待流程。",
+        "submit": "495E6F 在所选首次子状态尝试创建等待窗，调用 5728C2 一次。57EFE0 的 /qW 依次编码槽号、名字、两项图形值、五项和四项分配值，共一串和十二个整型。发送调用返回后写等待 1 再采样时钟，随后所选阶段可在同一调用中检查回复。",
+        "reply": "U_s 经 582849 调 5729A7。等待为 1 时改为 2，精确比对 successful 加终止符。成功将返回整型写当前槽字段 15，并写本次变体到字段 17。所查回调用到结果文本和整型。572949 先消费等待 2 并清零，成功返回 1，拒绝返回 -2。无待消费回复时，按无符号流逝量严格大于 600000 毫秒返回 -1。",
+        "confirmation_and_refresh": "负结果经 495E6F 归到返回 2，主状态 4 以相同的重名文字进入 100/101 提示。确认发布主状态 3、子阶段 10。成功更新本机计数及刷新标志并发布 3/0。名单入口经 491D5D 请求 5720AC，清两个临时角色记录后发送 1?v。572107 消费名单结果，成功继续到 3/9。后续使用刷新后的记录重新选择。"
+      },
+      "conditional_order": "创建和名单共用等待标记 FD3268。若上轮 U_s 在名单等待为 1 时仍被同一个固定入口分派，5729A7 会按已证条件写共用标记及成功字段。真正同会话的回包顺序待适用证据。现有共享会话以当前操作过滤重复回复。",
+      "cases": [
+        "复用固定 SE 的草稿创建、分配、返回外观和取消用例。主状态 4 覆盖两种外观入口、模式 0/1/2 及两槽，核准备、资料写入结果、一次提交及发送后计时。",
+        "用相同输入核已有回复先于超时、等于 600000、下一毫秒以及 32 位回绕。分别核结果、提示文本、首次确认和 3/10。",
+        "成功校验字段 15/17、3/0、名单清两槽及实际刷新，再选新角色。用同一个会话测试迟到回复的适用范围。"
+      ],
+      "implementation": {
+        "batch": ["D0", "D2", "D5"],
+        "reuse": ["shared/legacy-game-characters.mjs", "shared/legacy-game-character-creation.mjs", "web/legacy-game-session.mjs"],
+        "difference": "当前共享层已复用 13 参数请求、确认和刷新。选定资料写入标为未建模，创建时钟在产出请求时采样。D0/D2 按固定来源接资料和时点，并按结果将提示交同一窗口所有者。D5 验实际页面、重开与同版适用性。"
+      },
+      "original_execution": false,
+      "host_creation_observed": false,
+      "current_version_equivalence_proven": false,
+      "product_code_changed": false
+    },
+    "item_character_roster": {
+      "classification": "固定 Item 主状态 3 的静态事实、固定 SE 对照与 stage306 名单回归",
+      "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+      "capabilities": [
+        "G01",
+        "G02",
+        "G03",
+        "X02"
+      ],
+      "source_review": {
+        "path": "build/analysis/legacy-item-character-roster-v1/source-review.json",
+        "bytes": 35560,
+        "sha256": "71652639f783ceb73b2428a8d632eb3d8212b88fd3f10861f9e8ca5204d9b539"
+      },
+      "regression": {
+        "path": "build/analysis/legacy-item-character-roster-v1/local-tests.log",
+        "bytes": 2985,
+        "sha256": "b6c059d491a69599c08b446aa52245469d661fa0ac3609d580bacfa7e3f320d4",
+        "passed": 24
+      },
+      "se_references": [
+        "analysis/game-post-login-v1/implementation-spec.json#/roster",
+        "analysis/game-post-login-v1/implementation-spec.json#/content",
+        "analysis/game-post-login-v1/implementation-spec.json#/preview"
+      ],
+      "report": "reports/game-static.md#fixed-item-character-roster",
+      "validation": "reports/validation.md#fixed-item-character-roster-validation",
+      "facts": {
+        "request": "主状态 3 以子状态 0 清类别和附加控件状态。3/1 从 491D5D 调 5720AC 清两个 148 字节槽及名单结果，再送一次无参数 1?v，返回后发布等待 1 并采样时钟。",
+        "reply": "57F79E 中的 582992 比对 VK0 加终止符。整数状态及字节串经 582A03 传到 5724CC。FD3268 为 1 才发布 2。状态为零记结果 1，再解析两组资料。非零时仅精确 OUTOFSERVICE 加终止符写结果 2。",
+        "records": "每组按多字节感知的 0x7C 分隔取名字和内层记录，序号 1/2、3/4，取段上限 1023 字节。58ADBE 用 5A2C49 解开内层后，字段 1 决定槽 0 或 1。合资格时清整槽再写。同槽以后组为准。尽管无有效名字或记录，状态为零的回复仍代表名单成功。",
+        "layout": "基址 11D4518，槽步长 148。至多 16 字节名字按原样保存，过长时写 ???。数字字段取 127 字节范围内十进制，空字段为 -1。字段 3 写 16 位，字段 9 至 12 有符号除以 10 向零截断，其余所选数字写 32 位。字段 16 从偏移 84 保存最多 63 字节。具体字段、写点和偏移沿来源核验。",
+        "result": "572107 优先消费等待 2 并清标记。结果 1 返回 1，结果 2 返回 -3，其余返回 -2。无可消费回复时，无符号流逝量超过 600000 毫秒返回 -1。3/1 的 1 到 3/9，-3 到 3/2 与 3/6 维护确认，-2 和 -1 到 3/4 与 3/5 资料读取失败确认，两种确认完成后进入主状态 2。表中预留 -4 到 3/7 与 3/8，所查等待返回值尚无 -4 的生产者。",
+        "content": "Wb^ 经 582C6D 调 57A574 写 9C1D48 的低字节。3/9 调 48D7BB 锁存内容代。复用 SE 固定素材 ID、正数索引和类别门限。类别 1 直接进入 3/10。其余类别拒绝进入 3/19，允许时写 3/10，并按已核组合设置附加操作。",
+        "preview": "3/10 在 4994BE 发布 11，依次调 498F0F(0) 与 (1)。该函数请求回收旧预览并清该槽指针，再用名字首字节判断是否存在。已有角色字段 2 小于 30000 时改为 33100。58BBDE → 58C152 的变换和字段 17 修正规则与已核固定 SE 相同。",
+        "input": "49922C 的每帧控制参数初始为 1，执行 3/11 的分支时改 0。共用帧读当前子状态并从 499903 调 49A25D。已有角色的普通按键须参数为 0，再查 496E25 返回位 0。空槽分支直接查位 0，最早可在 3/9 已发布 10 的共用帧检查命中。496E25 内查区域并读取 ED560C 位 0。已有角色动作 1 登记槽并进主状态 5，空槽动作 0 登记槽并进主状态 4。"
+      },
+      "cases": {
+        "reply_and_time": "两版共用一次请求、重复回复、等待已结束的回复、整型状态与精确文本。复用 600000 毫秒等值、下一毫秒和 32 位回绕用例，验证维护与读取失败确认后回到选服。",
+        "packed_records": "复用两组资料及两条记录。按实际字节测多字节分隔、缺字段、重复与越界槽、16 字节名字及过长替代、63 字节内段、空成功名单。",
+        "content_and_preview": "复用固定素材 ID 与索引 0 的对照。核类别低字节、允许与拒绝和附加选项，随后对两槽核空名、33100、规范编号及字段 17。这些数值用例与预览图像输出共用同一操作。",
+        "selection_and_refresh": "核 3/9 切 10 当帧、3/10 准备两槽及执行 3/11 时的实际空槽和已有角色命中。观察无命中、成功选区与刷新后重新选择，沿 GF-A05/A06 取本次槽和字段。D5 以实际提示、图像及输入回执验证。"
+      },
+      "implementation": {
+        "batch": [
+          "D0",
+          "D2",
+          "D5"
+        ],
+        "reuse": [
+          "shared/legacy-game-characters.mjs",
+          "shared/legacy-game-character-codes.mjs",
+          "web/legacy-game-character-picker.mjs"
+        ],
+        "difference": "现有共享会话在两个数值预览处理后统一置 armed。主状态 3 的确认、窗口命中与实际图像沿现有角色和宿主所有者接线，使用同一组版本用例核各自的空槽与已有角色条件。",
+        "implemented_in_this_review": false
+      },
+      "remaining": [
+        "原版实际输入和预览像素、维护提示与选服退役、同版和三端运行回执。",
+        "名单的 -4 出口、类别 7 升级材料的生产与归属、实际删除结果沿各自原需求核验。"
+      ],
+      "original_execution_observed": false,
+      "target_runtime_acceptance_observed": false,
+      "full_analysis_gate_passed": false
+    },
+    "item_character_appearance": {
+      "classification": "固定 Item 主状态 3 已有角色操作的静态事实、固定 SE 对照与 stage306 回归",
+      "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+      "capabilities": [
+        "G02",
+        "X02"
+      ],
+      "related_resource_capability": "G06",
+      "source_review": {
+        "path": "build/analysis/legacy-item-character-appearance-v1/source-review.json",
+        "bytes": 27365,
+        "sha256": "1678108c4ae99abf2faeab6e786be4898fd868e2b46a3386d490367af8bcabfe"
+      },
+      "regression": {
+        "path": "build/analysis/legacy-item-character-appearance-v1/local-tests.log",
+        "bytes": 2513,
+        "sha256": "0ff1621e31610c87bed58bf8f907c5b071b74be29e65222fe7f62bea0326e623",
+        "passed": 19
+      },
+      "se_operations": [
+        "build/analysis/character-operation-composition-v1/specification.json#/operations/12",
+        "build/analysis/character-operation-composition-v1/specification.json#/operations/13"
+      ],
+      "shared_acceptance_cases": [
+        "CH-T12",
+        "CH-T13",
+        "CH-T14"
+      ],
+      "report": "reports/game-static.md#fixed-item-character-appearance",
+      "validation": "reports/validation.md#fixed-item-character-appearance-validation",
+      "facts": {
+        "admission": "49A25D 检查已存在角色和类别低字节。类别至少 5，控制参数为零且控件命中位 0 时，字段 17 为 0 或 1 开放动作 3 至 6。类别至少 7 时，其他字段 17 值仍可产生 3/4。49A241 的动作 3/4 进 499B55，5/6 进 49A034。",
+        "classification": "3/4 对 33100 和 33101 直接走结束。已有外观在 30000 至 97999 写分类 0，在 202800 至 204199 写分类 1。类别至少 7 时，200000 至 202699 也写分类 1，240000 至 242800 写分类 2。未命中区间沿记录既存的偏移 36 分类。",
+        "conversion": "类别 5/6 的分类 0 调 58BBDE，分类 1 调 58BAF3。类别至少 7 的分类 0 先调 58BBDE，动作 3 再调 58C152。分类 1 遇动作 4 或 200000 至 202699 调 58C152，其他走 58BAF3。分类 2 走 58C0A2，动作 4 且原值 240000 至 241399 时再调 58BAF3。正常边界共用固定 SE 的对应变换。242800 在源分类 2 内，但逆向表算索引 14，已核表有 14 项。共享层以 LEGACY_CHARACTER_CODE_TABLE 拒绝，原版实际结果待证。",
+        "appearance_publication": "3/4 更新本槽字段 2 和临时分类 +36。直接调用含数值变换和反馈，字段 17 在此分支保留。共用帧在 49A69F 读取当前字段 2，已有预览对象继续经 49A845 推进。",
+        "variant_publication": "5/6 将字段 17 从 0 改 1 或从 1 改 0，并在 49A08F 把请求值写 9C1D40，然后走 498F0F。准备先请求退役旧指针再清槽，判名字存在并正规化外观，允许把最终字段 17 调成 2。分配返回空时预览指针为空，记录准备已经执行。",
+        "prepared_preview": "最终样式 0、1、其他分别用 Item 指针 5D20A4、5D20A0、5D208C 指向的三张表，表内容分别和 SE 对应的 56 字节一致。33100 和 33101 取 100900 和 100901。一般键按规范值减 240000 或 241400 后除以 100 的向零索引，再在表项上加 C 余数除以 25 的向零商乘 6。已核索引范围 0 至 13。对象初始偏移 +2B0 为 0，+2B8 为 5，坐标为 163+315×槽和 292。首次 49921F 调 586640，活动选择帧先写 +2B0 为 1 再在 49A845 调同一函数。",
+        "feedback_and_entry": "四个动作共同尝试反馈 5A0C0C(0x33,320,240)。后续已有角色的选角在 4999AD 写槽号、499A35 写外观，再进主状态 5。入场发送从同一槽读字段 15、17、2 后调 57F212。外观点击直接调用归数值、预览或反馈，实际请求以随后入场的槽读值为准。名单刷新沿已有两槽重取用例。"
+      },
+      "cases": {
+        "CH-T12": "共用现有类别、样式和两个槽的合资格用例。对于 3/4，核 33100、33101、临时分类、已核区间和逆向表上界，核字段 2、+36、字段 17 及已有预览引用。242800 记录原版结果边界和目标错误。",
+        "CH-T13": "复用 0→1 与 1→0 两向，按同一组用例核请求值、退役、分配、正规化可能产生的 2、反馈及最终入场字段。包含分配结果为空和重取名单。",
+        "CH-T14": "复用三张 14 项表和两个占位值。验证初始化及活跃帧调用顺序，沿真实资源读取、动画帧提交和设备输入回执完成呈现与反馈验收。"
+      },
+      "implementation": {
+        "batch": [
+          "D0",
+          "D2",
+          "D5"
+        ],
+        "reuse": [
+          "shared/legacy-game-character-options.mjs",
+          "shared/legacy-game-character-codes.mjs",
+          "shared/legacy-game-characters.mjs",
+          "web/legacy-game-character-picker.mjs"
+        ],
+        "difference": "当前共享模块变更精确的记录字段，保留 3/4 的已有预览数值，在 5/6 报请求值和准备后的值，入场发送读取所选槽。沿 D0/D2 接旧对象退役、真实预览及控件反馈。两版共用选择、边界和实际输出回执。",
+        "implemented_in_this_review": false
+      },
+      "remaining": [
+        "原版 242800 特殊边界、实际预览帧和控件反馈的运行结果。",
+        "同版及三端接受，G02 类别 7 材料和真实删除沿其原需求继续。"
+      ],
+      "original_execution_observed": false,
+      "target_runtime_acceptance_observed": false,
+      "full_analysis_gate_passed": false
+    },
+    "item_character_preview_frame": {
+      "classification": "固定 Item 的选角帧和读取静态事实、固定 SE 对照与留存素材软件帧",
+      "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+      "capabilities": [
+        "G02",
+        "G06",
+        "X02"
+      ],
+      "source_review": {
+        "path": "build/analysis/legacy-item-character-preview-frame-v1/source-review.json",
+        "bytes": 30751,
+        "sha256": "483da4da3fe7c74eb0da4e22776a9f27c1ebdb9b9d11061d65d87f8e6792201d"
+      },
+      "regression": {
+        "path": "build/analysis/legacy-item-character-preview-frame-v1/local-tests.log",
+        "bytes": 3303,
+        "sha256": "4186784f04ac4e82957216534ab34b3850139e678be4a414e47ab841c1ca1447",
+        "passed": 29
+      },
+      "material_observation": {
+        "path": "build/analysis/legacy-item-character-preview-frame-v1/preview-material-probe.json",
+        "bytes": 10111,
+        "sha256": "e9b3c4fc0c753154c26f3db4a5ca36aafb44b00f819ddf700a33b06f2fa8f0da",
+        "verified_full_members": 20,
+        "preview_keys": 5,
+        "software_frames": 10
+      },
+      "retained_SE": "analysis/game-legacy-animation-v1/implementation-spec.json",
+      "shared_acceptance_case": "CH-T14",
+      "report": "reports/game-static.md#fixed-item-character-preview-frame",
+      "validation": "reports/validation.md#fixed-item-character-preview-frame-validation",
+      "facts": {
+        "preparation_and_active_call": "498F0F(槽) 在已有角色且分配成功时设置方向 5、动作 0、坐标 163+315×槽 和 292，调用 586640(对象,100,0,0)。3/10 在 4994BE 写 11，调用两次准备后跳到 49989A。共用分派重读 11 并进入现有两槽，49A25D 对非空预览先写动作 1 再调 586640(对象,100,0,0)，可以与动作 0 同一次 49922C 调用。SE 的 4588F1 与 45980B 对应动作 0 和 1，调用 4FD0D0。",
+        "lookup": "586640 在可用动画编号区间按编号减 100000，经 48BB42/48BA89 搜活动表 36 字节记录，再通过 48BE4D 读取。逐条按物理顺序匹配 +0 方向与 +2 动作在 24 字节动作记录的首项。查无编号或动作返回 1，不写本次目标帧。586640 对 48BE4D 返回零给 -1。",
+        "lazy_load": "活动动作指针已存在时 48BD8D 重新链接缓存节点，48BE4D 返回 1。否则经 48BCB9 取节点，按记录组和偏移读素材。版本 1 的动作头为 20 字节，其余为 12 字节，十字节帧扩为 12 字节并加组图块基数。空节点、无动作、动作数组分配、10000 动作及 9999 帧上限与附属装载分别有检查或退出。所选失败路径走 48BBAB 回收。所核定位和读头、读帧返回值无直接成功长度分支。真实短读的原版结果待证。",
+        "clock": "对象 +2D4 等于 1 暂停。动画编号、方向或动作与上次不同时清帧号、计数与循环数。计数非零时每次调一次减一。基础计数为时长除以帧数乘 16 的分母再按最小 1 取值，选帧时将其与百分比相乘取低 32 位后无符号除以 100，再按最小 1。循环模式 0 到帧数末尾重置索引至 0 并加循环计数。发布帧后索引加一，计数减一。",
+        "frame_publication": "取 12 字节运行帧，图块索引写 +20，原点加有符号帧偏移写 +2C8/+2CC。对象保留调色选择、标志低八位和颜色。翻转需要 595DA3 提供几何尺寸，成功后按负宽高减偏移计算。AP 按图块首项加在帧相对偏移上并按轴翻转。帧事件 1 至 9999 走 5A0C0C，在主状态 9 用对象位限制。更大事件写 +2D0。"
+      },
+      "cases": {
+        "prepare_and_advance": "复用 CH-T14 的三张表和两个占位编号。两槽按实际准备成功条件执行 5/0 再 5/1，核同次 3/10 分派、首次动作切换清计数、剩余调用和循环；按实际队列消费判提交哪一帧。",
+        "resource_outcomes": "查无动画、查无动作、缓存命中及装载失败分别验返回和现有图块。真实图块读回用资源库错误码、无提交及同计划重试核验，原版短读按可得证据复核。",
+        "draw_and_input": "按已有资源规格核原点、翻转、附属位置、队列可见、帧事件和样式重建。桌面网页、移动网页和微信小程序复用五个素材键以及失败读回，验实际画面和对象退役。"
+      },
+      "implementation": {
+        "batch": [
+          "D0",
+          "D2",
+          "D5"
+        ],
+        "reuse": [
+          "shared/legacy-game-animation.mjs",
+          "shared/legacy-game-resource-library.mjs",
+          "shared/legacy-game-draw-plan.mjs",
+          "web/legacy-game-character-picker.mjs"
+        ],
+        "difference": "现有动画和资源模块能逐次推进与输出软件帧，选角会话须持有预览、按准备和普通调用顺序更新并提交实际画面。对照同一次分派、样式重建、帧事件和资源读失败回执。素材探针覆盖两个占位编号及三个表项，原版与三端画面沿 D5。",
+        "implemented_in_this_review": false
+      },
+      "remaining": [
+        "实际绘制队列对准备和活动帧的读取、旧对象退役及设备提交。",
+        "同版与实际三端的预览呈现、原版读失败及真实登录验收。"
+      ],
+      "original_execution_observed": false,
+      "target_runtime_acceptance_observed": false,
+      "full_analysis_gate_passed": false
+    },
+    "item_character_creation_preview": {
+      "classification": "固定 Item 的主状态 4 静态预览规格、固定 SE 对照及留存素材的软件预览层",
+      "capabilities": [
+        "G02",
+        "G06",
+        "X02"
+      ],
+      "source_review": {
+        "path": "build/analysis/legacy-item-character-creation-preview-v1/source-review.json",
+        "bytes": 26629,
+        "sha256": "2fc360786ff139b4c038992b36a691caa72cf6a86a3c344671c7be46160f9edb"
+      },
+      "regression": {
+        "path": "build/analysis/legacy-item-character-creation-preview-v1/local-tests.log",
+        "bytes": 2388,
+        "sha256": "fbb8ac277e6081d61184f725ccd2a4fd5dc4898479e1614ebc99e78ead9e532b",
+        "passed": 18
+      },
+      "material_observation": {
+        "path": "build/analysis/legacy-item-character-creation-preview-v1/creation-preview-probe.json",
+        "bytes": 2900,
+        "sha256": "ee82756e94d3d25fa82a847e645a70c02fb6311e03a6c74360781ea35ba44dac",
+        "verified_full_members": 20,
+        "software_frames": 4,
+        "draw_counts": {
+          "initial": 3,
+          "turned": 4,
+          "detailsTransition": 2,
+          "restored": 4
+        },
+        "preview_layers_only": true
+      },
+      "report": "reports/game-static.md#fixed-item-character-creation-preview",
+      "validation": "reports/validation.md#fixed-item-character-creation-preview-validation",
+      "reuse_acceptance": "复用 CH-T14 的资源读取、对象收集、绘制与实际提交。按以下建角条件补验收。",
+      "facts": {
+        "initial_and_return": "Item 49B1A1 在 4/1 调 49B381(1)，类别至少为 5 时选择族 1，否则族 0，序号与颜色清零。每次独立申请两个零初始化的类型 2 对象，锚点分别为 (517,243) 和 (517,396)，动作初值 0，方向 5。4/1 和 4/2 都在同轮进入 4/3。49BDD6 返回 2 后写 4/2，下一轮调 49B381(0)，沿用族、序号和颜色并重建两份方向 5 的预览。",
+        "resource_keys": "Item 5C39E8 和 SE 52D9B0 的四行各 14 项完全相同。行序为族 0 上、族 0 下、族 1 上、族 1 下，查值加 6 乘颜色。类别低于 5 时，上方按同一外观的 33100 或 33101 选择 100900 或 100901，仍加颜色偏移。下方保持下方表。",
+        "rotation": "Item 两处 XYWH 命中区为 (455,138,125,125) 与 (455,291,125,125)，对应 SE 字节相同。49D33A 用 X、Y、X+宽、Y+高和 -1 调 56C893。命中任一区且输入 ED560C 位 0 有效时，将每个存在的对象方向减 1 并将负值回到 7。位 1 随后加 1 并将大于 7 的值回到 0。两位同时有效时，合法方向回到原值。",
+        "animation": "49B447 先更新下方，再更新上方，各调 586640(对象,100,1,0)。上方调用返回非零时，49BC63 与 49BC7B 对存在的两对象调用 492BE7。按 16 行表累计复播次数，达到本行阈值后先切下一行，再写该行动作与图形偏移。每次执行均置前一次动作字段为 -1。该写入更新请求字段，当前图块 +20 保持已发布值。下一次 49B447 先从草稿选择重写请求图形，再尝试新动作。上方缺失时下方返回值不驱动这段脚本。",
+        "composition": "普通外观帧的上方对象总是尝试直接入队，下方对象只在类别至少为 5 且族为 0 时尝试。594639 使用优先级 10 和锚点加图块原点，写空对象引用。两对象另按已核 5947D5 的条件进入对象收集，位置含帧偏移。进入详情的同轮，49B447 先产生直接记录，49BCE5 随后标记两个对象并重置详情预算 30 和 10，49BDD6 可在同轮执行。后续 40F15E 与 5947D5 处理最新对象状态，当轮已写的直接记录仍在队列。"
+      },
+      "cases": {
+        "draft_and_turn": "对照类别低于 5 和至少为 5、两族、外观序号首尾和颜色 0 至 3。核上方占位回退以及下方选表。双命中区用两个方向动作核 0 与 7 回绕、两个输入位同时出现、无命中和仅分配一个对象。",
+        "animation_and_draw": "复用已有资源读与软件绘制用例，覆盖上方动作返回非零驱动脚本、脚本复播与下一行动作、下方先更新，以及两条路径的坐标和相同优先级的绘制顺序。现有素材对照覆盖类别 7、一次动作完成后的重启及两个方向的预览层，按适用原版和宿主核其余组合。",
+        "detail_round_trip": "进入详情当轮检查在先的直接记录和之后的对象回收。详情修改后返回，核族、序号、颜色保留且首次重建方向为 5。再次进入时核预算复位及实际宿主预览发布。"
+      },
+      "implementation": {
+        "batch": [
+          "D0",
+          "D2",
+          "D5"
+        ],
+        "reuse": [
+          "shared/legacy-game-character-creation.mjs",
+          "shared/legacy-game-animation.mjs",
+          "shared/legacy-game-resource-library.mjs",
+          "shared/legacy-game-draw-plan.mjs",
+          "web/legacy-game-character-creator.mjs"
+        ],
+        "difference": "沿原建角会话持有两份预览及方向。复用共享动画、图块与绘制计划，补编号选择、动作脚本、直接记录和对象收集顺序。三端接命中位置换算、详情往返和实际绘制回执。",
+        "implemented_in_this_review": false
+      },
+      "remaining": [
+        "详情控件、肖像模式及确认入口中影响实现的差异沿现有建角规格复核。",
+        "原版和实际三端的完整建角画面、图块读失败及当前同版会话沿原验收。"
+      ],
+      "original_execution_observed": false,
+      "target_runtime_acceptance_observed": false,
+      "full_analysis_gate_passed": false
+    },
+    "item_character_creation_details": {
+      "supersedes_allocation_rule": "analysis/game-character-lifecycle-v1/source-check.json#/wizard/allocation_four",
+      "classification": "固定 Item 和 SE 的详情控件与数值路径，固定 Item 的确认窗口和本机草稿对照",
+      "capabilities": [
+        "G02",
+        "G06",
+        "X02"
+      ],
+      "source_review": {
+        "path": "build/analysis/legacy-item-character-creation-details-v1/source-review.json",
+        "bytes": 32613,
+        "sha256": "40eea30177295e8316e233e87175f3137d464c9aa0ed5c68dc82c5a09855c063"
+      },
+      "regression": {
+        "path": "build/analysis/legacy-item-character-creation-details-v1/local-tests.log",
+        "bytes": 2386,
+        "sha256": "abc5498321345aa54db10d5589bf7647fb78a10c36ced6d0483c0960a9a8d568",
+        "passed": 18
+      },
+      "local_comparison": {
+        "path": "build/analysis/legacy-item-character-creation-details-v1/details-probe.json",
+        "bytes": 2382,
+        "sha256": "7a5b915344fa444eac6413949d22aa1a4767192ad039562cd935325b29ff1955",
+        "confirmation_projection_cases": 10,
+        "allocation_cases": 3,
+        "allocation_differences": 2,
+        "portrait_and_confirmation_cases": 4
+      },
+      "report": "reports/game-static.md#fixed-item-character-creation-details",
+      "validation": "reports/validation.md#fixed-item-character-creation-details-validation",
+      "facts": {
+        "input_phase": "主状态 4/12 进入 Item 49BDD6 和固定 SE 对应详情函数。内部为 1 时接收详情操作。两项肖像细节在 0 至 4 回绕。模式上界随实时类别取 0、1、2，外观族与上界相同则省略模式控件。族 0 跨 0 至上界，族 1 向下回绕的下限是 1。Item 详情箭头和数值步进消费 ED5610 位 0，按下事件可置此位，帧末按已证时钟产生后续重复。检查和返回消费 ED560C 的一次按下位。",
+        "rectangles": "两版详情 336 字节控件区及 28 个肖像基本编号相同。Item 49D33A 将矩形左上与右下界传给 56C893，左和上界含等号，右和下界排除等号。五项能力的减与增分别取横向 504 至 515、518 至 529，纵向从 199 至 210 按每行 14 增加。四项属性横向同上，纵向从 307 至 318 按每行 14 增加。两个细节的增减、模式切换、检查和返回共八个固定控件记录，每条含边界和三种图形。命中状态和数值条件先判断，随后按当前事件决定步进。",
+        "allocation": "两版五项能力初值 30 点，减少要求该项大于 0，增加要求有剩余且未达到初始总数的一半 15。四项属性初值 10 点。减少要求该项大于 0，增加要求该项低于 10 且对向为 0；对向为 0 又无剩余时，从首个其他正值槽转移 1。对向已有点数的行在绘制尾部省略增减图形，两版加点路径也跳过修改。",
+        "portrait": "28 个基本编号 240000 至 242700 以 100 为间隔，与族及序号一一对应。模式 0、1、2 复用已有两次、一次或零次编号换算及各自的颜色、细节偏移。Item 在 (500,126) 优先级 10 入队肖像。所选模式大于当前类别上界时显示占位编号，合法序号 0 至 13 对应 33100。选择未被强制修改，确认时仍按原选模式算出请求肖像、动画和 0/1 变体。固定 SE 具有同样回退和发布区分。",
+        "validation_and_return": "先核名字长度非零，再核两项剩余预算，随后检查两槽重名、空格及 8140、4097A5 的主过滤和 49426C 的双字节边界。Item 对应先进入 100、104、106、102、108、110，再清提示阶段并递增，提示确认回到内部状态 1。成功进入内部状态 10，在同轮可请求确认窗。详情页直接返回写主状态 4/2，下一轮按已有规则重建外观。",
+        "confirmation": "Item 492201 转给 491F54，请求居中 192×96 的确认窗。分配为空、状态未就绪、未命中或缺一次按下时返回 0。中心 (320,240) 时第一个矩形为 [247,251,382,268)，第二个为 [327,251,382,268)，同时命中时取第二个。接受返回 1，取消返回 2；两者都会标记退役并清确认指针。取消只回详情内部状态 1，保留草稿。接受写入动画、肖像、分配和变体并返回 1，外层同轮可经过 4/30 的资料保存到 4/31 的等待与发送入口。"
+      },
+      "cases": {
+        "input_and_allocation": "复用已有草稿和收包回归。核一次按下、按住重复与空闲时状态，命中边缘和模式隐藏。对向已有值时分别验预算未尽与耗尽的拒绝。对向为零且预算耗尽时验首个有效来源，以及最大值、减至零和视觉隐藏。",
+        "portrait_modes": "按源核三种模式、两个细节的回绕及颜色偏移。类别实时降低时核显示回退保留原选择，随后明确确认输出仍取所选模式。D5 核实际肖像、输入焦点及视觉状态。",
+        "confirm_and_return": "核验证顺序及各提示确认回编辑。用去重的一组矩形边界、确认分配待就绪、重复与一次按下验实际指针及响应。接受时沿前已证资料、一次发送和刷新用例，取消时保留草稿，详情后退沿两份外观预览重建用例。"
+      },
+      "implementation": {
+        "batch": [
+          "D0",
+          "D2",
+          "D5"
+        ],
+        "reuse": [
+          "shared/legacy-game-character-creation.mjs",
+          "shared/legacy-game-character-codes.mjs",
+          "shared/legacy-game-draw-plan.mjs",
+          "web/legacy-game-character-creator.mjs"
+        ],
+        "difference": "沿现有草稿统一属性加点准入，复用零预算时的有效转移。三端共用控制和显示规则并接各自的按下、重复、确认和取消。复用现有编号换算与提交，仅补肖像投影回退、提示阶段和相关呈现。",
+        "implemented_in_this_review": false
+      },
+      "remaining": [
+        "三端真实输入、肖像画面、分配失败与确认窗回执沿 D5 正式验收。",
+        "角色组其余必要规则沿 CH-U1 等原入口。当前同版会话仍需原验收材料。"
+      ],
+      "original_execution_observed": false,
+      "target_runtime_acceptance_observed": false,
+      "full_analysis_gate_passed": false
+    },
+    "item_character_preview_draw": {
+      "classification": "固定 Item 的静态收集和绘制消费、固定 SE 对照及留存素材本机组合",
+      "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+      "capabilities": [
+        "G02",
+        "G06",
+        "X02"
+      ],
+      "source_review": {
+        "path": "build/analysis/legacy-item-character-preview-draw-v1/source-review.json",
+        "bytes": 34804,
+        "sha256": "9028edb29f6cdd593b14fbe0b65c92e8bd6c507aab352ae464351cc6524417a0"
+      },
+      "regression": {
+        "path": "build/analysis/legacy-item-character-preview-draw-v1/local-tests.log",
+        "bytes": 7120,
+        "sha256": "d51b973a5ecfc3de1d082b0ddc8e3ef3135492ed3fa7b8a4d51dccd760644ffd",
+        "passed": 66
+      },
+      "material_observation": {
+        "path": "build/analysis/legacy-item-character-preview-draw-v1/preview-draw-probe.json",
+        "bytes": 2418,
+        "sha256": "63d0e6236a823479d9e74cf70dbba8e7b604fe4aadef547760161d63fe0a4f65",
+        "verified_full_members": 20,
+        "software_frames": 4,
+        "cancelled_in_flight_draw": 1
+      },
+      "shared_acceptance_case": "CH-T14",
+      "report": "reports/game-static.md#fixed-item-character-preview-draw",
+      "validation": "reports/validation.md#fixed-item-character-preview-draw-validation",
+      "facts": {
+        "owner": "Item 58C83C/58C841/58C846 依次调选角 49922C、遍历 40F15E、绘制收集 5947D5。SE 5016FC/501701/501706 同次调用顺序。Item 454E00 属于以 62C8CC 槽为输入的 454D72。该函数经 594F57 交绘制。正常选角预览的直接收集由 5947D5 遍历 62C4B8 对象列表。",
+        "first_and_toggle": "3/10 准备后在同次 49922C 执行共用帧，对已有对象尝试动作 1。因此首个收集读取当时 +20，动作 1 成功时取其帧。普通样式切换先推进旧对象，49A099 调 498F0F 标记旧对象、清槽和准备分配的新对象。返回后从 49A0B5 续后续槽，收集到新对象时，其 +20 来自这次的动作 0。后续调用才对该槽推进动作 1。",
+        "retirement": "40F289 将对象 +1C 置 1。遍历的特定慢速标志和计数可以延后摘链，收集始终排除该标记等于 1 的预览图块。分配返回空时旧对象仍保持回收标记，该槽不产生当前新对象。已有角色进入主状态 5 的路径在 499A67 请求标记对象池并清两个预览指针。",
+        "collection": "40EF57 在首个类型更大的对象之前插入，连续类型 2 按申请顺序遍历。5947D5 对图块 -1、回收为 1、隐藏位 2 置位的所选对象跳过图块收集，计数达到 4096 停止。优先级从 +15 入四字节排序记录，40 字节绘制记录含 +0 横坐标、+4 纵坐标、+8 图块，以及对象和样式。坐标为对象锚点加缩放后的帧偏移取整，准备分配时两轴缩放均为 1。普通预览帧优先级 10。",
+        "consumption": "普通帧先在 48748D 清队列计数再派发主状态。所查绘制准备分支在 4874CC 调 5926C0，尾部按 1204D3C 预留三或四项，再用 5950F9 对四字节条目排序，优先级小者先，同值时较大的入队序号先。到达 48769B 的实际绘制入口 593524 时，用排序序号取 40 字节记录。普通图块在类型 0 分支，经设备和图块准备成功以及裁剪后走相应比例绘制。一次逻辑收集是否到达绘制入口仍受时钟与设备状态影响。",
+        "creation_dispatch": "主状态 4 也在 58C85F 调 49B1A1 后依序调 40F15E 和 5947D5。建角自己的两份预览由 49B381 建立，在 49B447 改方向和推进。后续按已留存的建角源确定草稿与预览关系。"
+      },
+      "cases": {
+        "first_collection": "两槽各初始化动作 0，再令有效对象的共用帧执行动作 1。按来源顺序收集图块，覆盖动作 1 正常和缺失，核有效显示条件、位置及实际提交。",
+        "replace_and_clear": "切换样式时核原对象更新、标记、可能的延后摘链及当轮新对象动作 0。下一轮检查动作 1。分配为空、普通确认及关闭分别检测旧对象退出收集。相同优先级对照申请顺序与反向绘制顺序。",
+        "ports_and_present": "现有资源库试次包括四个素材软件帧。持有旧图块读再切换，核旧任务取消、新计划就绪及回执。D5 在实际三端记录当前对象集、焦点、预览序号和完成帧，区分本机软件帧与设备结果。"
+      },
+      "implementation": {
+        "batch": [
+          "D0",
+          "D2",
+          "D5"
+        ],
+        "reuse": [
+          "shared/legacy-game-animation.mjs",
+          "shared/legacy-game-resource-library.mjs",
+          "shared/legacy-game-draw-plan.mjs",
+          "web/legacy-game-character-picker.mjs"
+        ],
+        "difference": "现有模块已能组成正确的素材和排序计划，支持取消图块读。选角入口需持有每槽对象、申请顺序、生命周期和实际提交回执。按同次更新和退役后收集，切换时用新的快照和任务。消费顺序共用所证优先级和序号规则。",
+        "implemented_in_this_review": false
+      },
+      "remaining": [
+        "原版实际显示分支、物理分配效果、当前同版和三端真机提交。",
+        "建角预览的草稿显示、控件命中和详情往返保持其各自具名验收。"
+      ],
+      "original_execution_observed": false,
+      "target_runtime_acceptance_observed": false,
+      "full_analysis_gate_passed": false
+    },
+    "item_state5_reset": {
+      "classification": "固定 Item 的状态 5 静态来源、固定 SE 对照及 stage306 会话回归",
+      "source_sha256": "ce3fd80064d647e76bfc4cf2e34e148c6fff260f7d4b507941feb9f7673126a9",
+      "capabilities": ["G02", "G03", "G04", "X02"],
+      "source_review": {
+        "path": "build/analysis/legacy-item-entry-reset-v1/source-review.json",
+        "bytes": 34765,
+        "sha256": "977137cfdb4e8be7c1f3778d08713fdfc901841c130fb80724aa3ada1dca34d2"
+      },
+      "focused_regression": {
+        "path": "build/analysis/legacy-item-entry-reset-v1/local-regression.log",
+        "bytes": 2461,
+        "sha256": "64064ee95589f6d8231ef73c5850dc33f6a21da21320cff11c35fc5e64160543",
+        "passed": 20
+      },
+      "se_reference": "build/analysis/context-transition-contract-v1/specification.json#/facts/1",
+      "report": "reports/game-static.md#fixed-item-state5-reset",
+      "validation": "reports/validation.md#fixed-item-state5-reset-validation",
+      "facts": {
+        "entry": "58C6B0 的第 5 个表项进入 58C8BA。先置 11D4CE4 与 7C4168 为零，再走已核的 21 次直接调用。489C5B 取得当前键盘布局，经 ImmIsIME 比较返回为 1 时，把同一上下文先以 0 再以 1 交给 ImmSetOpenStatus。",
+        "scene_and_role": "4A15BF 将地图和本机角色等待位设为 3。589278 清六段内存，重建 5 项记录，恢复两个保存值，给 48 项记录的首字段写 -1，再初始化 15 项记录。11D4414 的旧本机角色指针位于已证清除范围。48 项按 28 字节步长，末端恰为 11D4B80 所在地址，角色槽自身及两个角色记录的 0X@ 字段在这些选择清除范围外。",
+        "other_runtime": "4689AB 更新远端用表的 1,000 项记录，所核字段分别写零与 -1。4848D9 给所核三处窗口字段写 1。4AB20C 按 68 字节一项重建 500 项链，56BAFE 清窗口 1 恢复字 CBAF5C。",
+        "cache_and_window": "58C920 和 58C925 清两份邮件后按顺序尝试读回。个人邮件打不开时先尝试写入当前缓冲，随后结束邮件载入。5880B9 的入口立即返回，587ACC 再读图鉴。56B866 此时仍读取主状态 5，按已有规格清部分恢复标记和两组 68 项窗口指针，依偏好创建默认窗口。",
+        "publication": "58C96F 调 58CBF8(6) 设置主状态 6、子阶段 0。随后调用 59FDC8，再从 ED41C0 起逐字节清 28 字节。该清除在同一次主状态 5 调用末尾结束。SE 的 CT-F2 也先发布主状态 6 再清自己的 28 字节，寄存位置和其它局部赋值沿各来源。"
+      },
+      "retained_cache_and_window_rules": [
+        "reports/game-static.md#legacy-item-album-mail-lifecycle",
+        "analysis/capability-first-v1/alternate-window-contract.json#/item_classic_window_reentry/rebuild_modes",
+        "analysis/capability-first-v1/game-map-functional-specification.json#/legacy_map_context_reentry"
+      ],
+      "cases": [
+        "共用 GF-A05 用不同的角色槽填入有效入场字段，另给旧本机角色、远端记录、对象和场景等待位填旧值。核选中身份、旧对象清理、两个保存值和默认值。",
+        "分别提供两份有效邮件、缺个人邮件和无效图鉴长度，核读回、提前结束和经典默认窗发生时的实际状态。地图目录继续按同实例及新实例的既有用例。",
+        "在 28 字节范围内外各放一个标记，核状态 6 已发布及尾部的准确边界。下一次状态 6 读取选中记录的三个入场字段。界面关窗、输入法与首次呈现以实际宿主结果验收。"
+      ],
+      "implementation": {
+        "batches": ["D0", "D2", "D5"],
+        "reuse": ["shared/legacy-game-characters.mjs", "shared/legacy-game-client.mjs", "web/legacy-game-session.mjs"],
+        "difference": "现有角色模块发出 native-entry-reset-boundary，网页会话只准首次空世界准备，遇已活动的世界投影拒绝切换。D0/D2 在同一角色、场景及窗口所有者下按来源执行复位和缓存恢复。D5 通过 UC-P03、UC-P09、UC-P13 核输入、实际资源退役和首帧。"
+      },
+      "original_execution": false,
+      "host_reset_observed": false,
+      "current_version_equivalence_proven": false,
+      "product_code_changed": false
+    },
+    "fixed_se_prompt": {
+      "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+      "state_gate": "主状态 11 经分派表进 501865。子阶段 0 准备捕获并推进。子阶段 1 淡出未完成仍到 5018E5 测 44E800。该调用返回零继续等待。",
+      "creation": "44E800 在 61488C 为空时查询两活动槽，已有占用则请求 close(100)，随后创建并保存提示。空返回退出本轮，非空对象通过对象 +0x170 的所查就绪比较才进入命中。",
+      "confirmation": "4EAC80 的按钮坐标判断为真且 C5FB2C 位 0 置位时，40A090 标记提示对象 +0x1C。随后清提示指针并返回 1。5018F2 起走原清理顺序，其中 501901 退役连接，50196D 经 5019F0(2) 发布主状态 2 和子阶段 0。",
+      "text": "58510C 为零选联机被切断和返回选服两行。非零选人数已满和尝试其它服务器。该字段位于零填充区，所核精确直接引用为 44E995 读取与 4EE727 清零。实际产生非零的路径待具名写入或适用运行证据。",
+      "case": "沿 GF-A16 核分配失败、对象未就绪、缺命中、缺按下及确认后退役。分别核淡出状态与真正通过提示的时点。人数已满及实际宿主错误映射按其生产证据接入。"
+    },
+    "recovery": {
+      "source_rules": [
+        "/item_disconnect_recovery",
+        "analysis/capability-first-v1/game-communication-functional-specification.json#/receive_retirement_order",
+        "analysis/capability-first-v1/game-map-functional-specification.json#/legacy_map_context_reentry"
+      ],
+      "facts": "原版已核两版缓存、断线确认与选服的先后。stage306 的另一次原创试次在 CUT 读挂起时，EOF 排在已经排队的资料之后。等待期间连接状态仍为 ready，读完成后先发布 playing，随后读取 EOF 并清运行层。该试次按受控串行读队列执行。",
+      "decision": "GF-D4 复用 UC-P03、UC-P09、UC-P11、UC-P14。连接结束以宿主实际提交的读结果和活动身份处理。断线提示按原版原因和状态准入，去重确认。选服发布及资源回收沿各自所有者。地图目录值按游戏实例持有，重开与新实例用 MF-T01/T02 复用原用例。",
+      "acceptance": "沿 GF-A06/A16/A19 在同一套输入覆盖缺场景时关闭、素材等待期间的读结束、真正收到结束时旧运行层失效、确认一次、重新入场，以及同版和三端实际呈现。"
+    },
+    "original_execution_observed": false,
+    "physical_host_presentation_observed": false,
+    "current_version_consumer_proven": false,
+    "implementation_gate_passed": false,
+    "product_code_changed": false
+  },
+  "execution_record": {
+    "path": "build/analysis/game-flow-functional-specification-v1/execution-record.json",
+    "bytes": 2082,
+    "sha256": "83807ce7f49b0dcb1bc778495eaae5c5b855520468bba40b67e6b7c8a406cbc0"
+  }
+}

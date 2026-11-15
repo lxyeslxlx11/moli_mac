@@ -1,0 +1,72 @@
+{
+  "schema": "moli.launcher-current-refresh-v1.implementation-spec.v1",
+  "recorded_utc": "2026-10-28T18:05:59.584Z",
+  "requirement": "reports/development-plan.md",
+  "established_before_product_edits": true,
+  "source": {
+    "packed_sha256": "6d459ddbdf80a86cf7a1e41b99ab7fb575b42842d7163522efb3c9fa6e6ac987",
+    "analysis_sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+    "rea": "6.7.0",
+    "provider": "Ghidra12.1.4",
+    "profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+    "evidence": "analysis/launcher-current-runtime-v4/static-audit.json",
+    "selected": [
+      {
+        "function": "0x406a00",
+        "fact": "self metadata; mismatch requests locator; matching branch requests marker then both catalogs and stages both"
+      },
+      {
+        "function": "0x40a320",
+        "fact": "validate staged pair; skip only when both raw files identical, else commit pair"
+      },
+      {
+        "function": "0x409150",
+        "fact": "Gamelist/Games and Regionlist/Regions containers"
+      },
+      {
+        "function": "0x406810",
+        "fact": "raw file size/chunk-byte comparison, EAX return checked against assembly"
+      },
+      {
+        "function": "0x40d720",
+        "fact": "backup existing pair, flush marker only when both originals exist, two ordered MoveFileExA flags9; failure attempts rollback"
+      },
+      {
+        "function": "0x40bcf0",
+        "fact": "marker recovery needs two backups, copies both, loads and validates containers before cleanup"
+      }
+    ]
+  },
+  "implementation": {
+    "file": "web/launcher-catalog-refresh.mjs",
+    "api": "createWin32LauncherCatalogRefresh({httpClient,store,cacheTick}).refresh({launcherBytes,endpoints,encoding,allowBareAmpersands,timeoutMs?,signal?})",
+    "platform": "browser ES modules over existing pure shared core; no Node/filesystem/process dependency",
+    "sequence": [
+      "Snapshot explicit own inputs before first await; one operation per controller; one bounded total deadline",
+      "Read and validate existing candidate-store revision/pair; pass cached raw bytes or null to current-profile bootstrap",
+      "Prepare metadata/package or both catalog candidates through current factory and existing complete parsers",
+      "Self-update candidate returns without any cache write or executable replacement",
+      "Identical catalog bytes and decoding settings: re-read revision; reject intervening writer, do not increment revision",
+      "Changed pair or explicit decoding settings: one existing commitPair expectedRevision transaction, never two independent writes",
+      "Cancellation before commit aborts without initiating commit; after commit begins await authoritative store settlement; a completed commit remains reported even if cancellation/deadline arrives too late",
+      "Any unexpected commit acknowledgement/failure reports unconfirmed state and requires readback; never claim rollback from an unknown provider result"
+    ],
+    "independent_policies": [
+      "Existing IndexedDB single pair record and optimistic revision replace Windows sequential file operations; no claim of Win32 journal/crash equivalence",
+      "1MiB/catalog,32MiB launcher/package,1..60000ms total, own data fields and nonshared attached byte input",
+      "Same raw bytes with changed encoding/compatibility choice may update browser cache metadata; this is explicit independent policy",
+      "No implicit page/default profile change, endpoint/origin grant, game/auth field or source authentication"
+    ],
+    "meaningful_validation": [
+      "Original loopback HTTP fixture request sequence and actual candidate parsing",
+      "Both/one/no changed catalog, empty cache, self-update, parse/network/digest failure, pre/late cancellation, total deadline across stages, cache conflict, unexpected commit settlement",
+      "Actual Chrome ESM + IndexedDB pair roundtrip/CAS/no-op/abort and current HTTP; full applicable Node regression after code changes"
+    ]
+  },
+  "not_implemented": [
+    "Win32 filesystem updater/journal, native recovery fault matrix, executable relaunch or event ACK",
+    "new embedded updater semantics",
+    "game consumer/framing/auth/movement/battle",
+    "WeChat/phone device or official compatibility"
+  ]
+}

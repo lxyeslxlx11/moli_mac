@@ -1,0 +1,49 @@
+{
+  "schema": "moli.normal-updated-source-bridge.v1",
+  "recorded_utc": "2026-10-30T11:57:36.149080+00:00",
+  "guest_runtime": "vc71-remediation-runtime-stage108.json",
+  "guest_parent_after_run": {
+    "bytes": 1666048,
+    "sha256": "6d459ddbdf80a86cf7a1e41b99ab7fb575b42842d7163522efb3c9fa6e6ac987"
+  },
+  "source_receipts": [
+    {
+      "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.observed-update.exe",
+      "bytes": 1666048,
+      "sha256": "6d459ddbdf80a86cf7a1e41b99ab7fb575b42842d7163522efb3c9fa6e6ac987",
+      "matches_prior_record": true
+    },
+    {
+      "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+      "bytes": 4111872,
+      "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+      "matches_prior_record": true
+    },
+    {
+      "path": "build/analysis/launcher-current-runtime-v4/rea-evidence-complete.json",
+      "bytes": 468408,
+      "sha256": "8041e6ad8186cc7a52bf34b52a40d2c9c53917f82aaa27d33b54b72e5c8b2041",
+      "matches_prior_record": true
+    },
+    {
+      "path": "build/analysis/launcher-current-runtime-v4/rea-snapshot.json",
+      "bytes": 480864,
+      "sha256": "cfc6c6c87a9e2edae4a1be5280e6d5b0902bbe12b92706a5e60246ff37148407",
+      "matches_prior_record": true
+    }
+  ],
+  "fact": "Fresh guest after-run full hash/size equals freshly rehashed retained public payload and its prior REA source identity. Prior selected function evidence may be reused for this exact version; no new REA record is implied.",
+  "prior_rea": "analysis/launcher-current-runtime-v4/static-audit.json",
+  "prior_records": 47,
+  "prior_source_anchors": 10,
+  "current_updater_on_disk": {
+    "bytes": 46080,
+    "sha256": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976"
+  },
+  "limits": [
+    "Actual runtime mapped image hash was not read",
+    "The on-disk updater is still the old46080B sample; do not equate it with this new launcher embedded814080B updater",
+    "HTTP, MD5 and hash equality are byte identity rather than publisher authentication or official compatibility",
+    "No game protocol or authentication unknown promoted"
+  ]
+}

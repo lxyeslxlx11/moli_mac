@@ -1,0 +1,67 @@
+<view class="page">
+  <view class="eyebrow">MOLI</view>
+  <view class="title">魔力登录</view>
+  <view class="status" role="status">{{status}}</view>
+  <view class="card">
+    <view class="section-title">连接配置</view>
+    <button wx:if="{{hasBootstrap}}" id="load-catalogs" disabled="{{!canLoadCatalogs}}" loading="{{loadingCatalogs}}" bindtap="onLoadCatalogs">选择本地登录器并加载目录</button>
+    <picker id="game" mode="selector" range="{{games}}" range-key="label" value="{{gameOrdinal < 0 ? 0 : gameOrdinal}}" disabled="{{busy || !games.length}}" bindchange="onGame"><view class="choice">{{gameName}}</view></picker>
+    <picker id="region" mode="selector" range="{{regions}}" range-key="label" value="{{referenceOrdinal < 0 ? 0 : referenceOrdinal}}" disabled="{{busy || !regions.length}}" bindchange="onRegion"><view class="choice">{{regionName}}</view></picker>
+    <picker wx:if="{{galaxies.length}}" id="galaxy" mode="selector" range="{{galaxies}}" range-key="label" value="{{galaxyOrdinal < 0 ? 0 : galaxyOrdinal}}" disabled="{{busy}}" bindchange="onGalaxy"><view class="choice">{{galaxyName}}</view></picker>
+  </view>
+  <view class="card" wx:if="{{cacheEnabled}}">
+    <view class="section-title">本机目录缓存</view>
+    <view class="hint">{{cacheStatus}}</view>
+    <button id="check-catalog-cache" disabled="{{!canCheckCatalogCache}}" bindtap="onCheckCatalogCache">检查目录缓存</button>
+    <button id="restore-catalog-cache" disabled="{{!canRestoreCatalogCache}}" bindtap="onRestoreCatalogCache">恢复所检查的目录</button>
+    <button id="save-catalog-cache" disabled="{{!canSaveCatalogCache}}" bindtap="onSaveCatalogCache">保存本次原始目录</button>
+  </view>
+  <view class="card" wx:if="{{patchEnabled}}">
+    <view class="section-title">资源候选</view>
+    <view class="hint">{{patchStatus}}</view>
+    <picker id="patch-source" mode="selector" range="{{patchPickerChoices}}" range-key="label" value="{{patchSourceIndex + 1}}" disabled="{{busy || !patchSources.length}}" bindchange="onPatchSource"><view class="choice">{{patchSourceName}}</view></picker>
+    <view class="hint">基础资源：{{baseFileCount}} 个 · {{baseBytes}} 字节</view>
+    <button id="import-resources" disabled="{{!canImportResources}}" bindtap="onImportResourceBase">导入本地资源 ZIP</button>
+    <button id="prepare-resources" disabled="{{!canPrepareResources}}" bindtap="onPrepareResources">准备资源候选</button>
+    <button id="clear-resources" disabled="{{!canClearResources}}" bindtap="onClearResources">清除本页资源</button>
+    <view wx:if="{{patchFileCount}}" class="hint">候选：{{patchFileCount}} 个文件 · {{patchBytes}} 字节</view>
+    <view wx:if="{{patchFileCount && !patchFromCache}}" class="hint">{{patchSkippedOperations}} 项未应用</view>
+    <view wx:if="{{patchFromCache}}" class="hint">来自本机缓存；未保存上次补丁操作明细。</view>
+    <button id="select-resources" disabled="{{!canSelectResources}}" bindtap="onSelectResources">选择本次资源候选</button>
+    <view wx:if="{{resourceCacheEnabled}}">
+      <view class="hint">{{resourceCacheStatus}}</view>
+      <button id="check-resource-cache" disabled="{{!canCheckResourceCache}}" bindtap="onCheckResourceCache">检查本机资源缓存</button>
+      <button id="restore-resource-cache" disabled="{{!canRestoreResourceCache}}" bindtap="onRestoreResourceCache">恢复所检查的资源候选</button>
+      <button id="save-resource-cache" disabled="{{!canSaveResourceCache}}" bindtap="onSaveResourceCache">保存已选择的资源</button>
+    </view>
+  </view>
+  <view class="card" hidden="{{reviewing}}">
+    <view class="section-title">本次会话输入</view>
+    <block wx:for="{{inputMounts}}" wx:key="*this">
+      <input id="username" class="field" placeholder="账号（编码后1–16字节）" maxlength="64" disabled="{{!canInput}}" bindinput="onUsername" />
+      <input id="password" class="field" placeholder="密码（编码后1–16字节）" maxlength="64" password="{{true}}" disabled="{{!canInput}}" bindinput="onPassword" />
+    </block>
+    <view class="hint">输入仅用于本次交换，不写入存储。隐藏页面后会清空。</view>
+    <button id="review" disabled="{{!canReview}}" bindtap="onReview">阅读所提供文本</button>
+    <button id="start" type="primary" disabled="{{!canLogin}}" loading="{{busy}}" bindtap="onStart">开始会话</button>
+    <button id="cancel" disabled="{{!busy}}" bindtap="onCancel">取消</button>
+  </view>
+  <view class="card" wx:if="{{reviewing}}">
+    <view class="section-title">第 {{pageOrdinal + 1}} 页 / 共 4 页</view>
+    <scroll-view class="review-text" scroll-y="{{true}}"><text>{{reviewText}}</text></scroll-view>
+    <button id="next" wx:if="{{!finalPage}}" type="primary" bindtap="onNext">下一页</button>
+    <button id="accept" wx:if="{{finalPage}}" type="primary" bindtap="onAccept">确认本次文本</button>
+    <button id="decline" bindtap="onDecline">不确认</button>
+  </view>
+  <view class="card" wx:if="{{rows.length}}">
+    <view class="section-title">候选项目</view>
+    <button class="profile" wx:for="{{rows}}" wx:key="ordinal" data-ordinal="{{item.ordinal}}" disabled="{{!item.selectable}}" bindtap="onProfile">{{item.label}}{{item.selectable ? '' : ' · 暂不可选'}}</button>
+    <view wx:if="{{selectedLabel}}" class="hint">已选择：{{selectedLabel}}</view>
+  </view>
+  <view class="card">
+    <view class="section-title">旧版游戏</view>
+    <view class="hint">打开游戏页后，选择本次会话的启动 JSON。已选资源可交给游戏页使用。</view>
+    <button id="open-game" disabled="{{busy}}" bindtap="onOpenGame">打开本地游戏页</button>
+  </view>
+  <view class="footer">连接与候选结果尚不代表官方认证或游戏可玩。</view>
+</view>

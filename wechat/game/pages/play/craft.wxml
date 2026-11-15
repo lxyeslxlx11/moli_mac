@@ -1,0 +1,75 @@
+<view class="craft-panel" wx:if="{{craft}}">
+  <view class="heading">生产技能</view>
+  <text class="line" wx:if="{{craft.contextMode === 1}}">精灵变身已启用 · 剩余 {{craft.contextSeconds}} 秒</text>
+  <block wx:if="{{craft.phase === 'skills'}}">
+    <text class="line">选择生产技能</text>
+    <view class="craft-grid"><button wx:for="{{craft.skills}}" wx:key="slot" disabled="{{craft.disabled}}" data-action="skill" data-value="{{item.slot}}" bindtap="onCraft">{{item.name}}</button></view>
+    <text class="line" wx:if="{{!craft.skills.length}}">当前没有可用的生产技能。</text>
+  </block>
+  <block wx:elif="{{craft.phase === 'levels'}}">
+    <text class="line">{{craft.skillName}} · 选择等级</text>
+    <view class="craft-grid"><button wx:for="{{craft.levels}}" wx:key="index" disabled="{{item.disabled}}" data-action="level" data-value="{{item.index}}" bindtap="onCraft">{{item.name}}</button></view>
+    <text class="line" wx:if="{{craft.directSkill}}">当前魔力 {{craft.mp}}</text>
+    <button wx:if="{{craft.canToggleContext}}" disabled="{{craft.disabled}}" data-action="context" bindtap="onCraft">{{craft.contextMode ? '解除精灵变身' : '进行精灵变身'}}</button>
+    <text class="line" wx:if="{{craft.directRequestSent}}">技能请求已发送，等待角色状态同步。</text>
+  </block>
+  <block wx:elif="{{craft.phase === 'recipes'}}">
+    <text class="line">{{craft.skillName}} · 选择配方</text>
+    <view class="craft-grid"><button wx:for="{{craft.recipes}}" wx:key="index" disabled="{{item.disabled}}" data-action="recipe" data-value="{{item.index}}" bindtap="onCraft">{{item.name}}</button></view>
+    <text class="line" wx:if="{{!craft.recipes.length || !craft.recipesCurrent}}">等待当前技能的配方资料。</text>
+    <button disabled="{{craft.disabled}}" data-action="levels-back" bindtap="onCraft">返回技能等级</button>
+  </block>
+  <block wx:else>
+    <text class="line">{{craft.recipeName || craft.skillName}}</text><text class="line">{{craft.description}}</text>
+    <text class="line">消耗魔力 {{craft.cost === null ? '选择物品后显示' : craft.cost}} · 当前 {{craft.mp}}</text>
+    <text class="line" wx:if="{{craft.phase === 'loading-people' || craft.phase === 'loading-subjects'}}">等待可用目标资料。</text>
+    <block wx:elif="{{craft.phase === 'people'}}">
+      <text class="line">选择角色</text>
+      <view class="craft-grid"><button wx:for="{{craft.people}}" wx:key="index" disabled="{{craft.disabled}}" data-action="person" data-value="{{item.index}}" bindtap="onCraft">{{item.name}}</button></view>
+      <text class="line" wx:if="{{!craft.people.length}}">当前没有可用的角色。</text>
+    </block>
+    <block wx:elif="{{craft.phase === 'subjects'}}">
+      <text class="line">选择角色或宠物</text>
+      <view class="craft-grid"><button wx:for="{{craft.subjects}}" wx:key="index" disabled="{{craft.disabled}}" data-action="subject" data-value="{{item.index}}" bindtap="onCraft">{{item.name}} · {{item.detail}}</button></view>
+      <text class="line" wx:if="{{!craft.subjects.length}}">当前没有可用的角色或宠物。</text>
+      <button disabled="{{craft.disabled}}" data-action="people-back" bindtap="onCraft">返回角色列表</button>
+    </block>
+    <block wx:elif="{{craft.phase === 'paused'}}"><text class="line">已暂停{{craft.label}}。</text><button disabled="{{!craft.canRetry}}" data-action="retry" bindtap="onCraft">继续{{craft.label}}</button></block>
+    <block wx:elif="{{craft.phase === 'materials'}}">
+      <block wx:if="{{craft.itemWork}}">
+        <text class="line">选择要{{craft.label}}的物品。</text>
+        <view class="craft-grid"><button wx:for="{{craft.items}}" wx:key="slot" disabled="{{item.disabled}}" data-action="target" data-slot="{{item.slot}}" data-revision="{{item.revision}}" bindtap="onCraft">{{item.name}}</button></view>
+        <block wx:if="{{craft.target}}"><text class="line">已选择：{{craft.target.name}}</text><button disabled="{{craft.disabled}}" data-action="remove-target" bindtap="onCraft">取消物品选择</button></block>
+        <form wx:if="{{craft.mode === 'engrave'}}" bindsubmit="onCraftMark">
+          <text class="line">刻印文字（编码后最多 16 字节）</text>
+          <input name="mark" value="{{craft.mark}}" maxlength="16" disabled="{{craft.disabled || !craft.target}}" />
+          <button form-type="submit" disabled="{{craft.disabled || !craft.target}}">确认刻印文字</button>
+          <text class="line">{{craft.target && craft.target.canClearMark ? '留空并确认可清除原有刻印。' : '确认有效文字后可以刻印。'}}</text>
+        </form>
+      </block>
+      <block wx:else>
+      <text class="line" wx:if="{{craft.mode === 'decorate'}}">选择一件可装饰的主体和一件附加品；消耗 100 魔力。</text>
+      <text class="line">所需材料</text>
+      <view wx:for="{{craft.materials}}" wx:key="index" class="line">{{item.fulfilled ? '✓' : '○'}} {{item.name}} × {{item.quantity}}</view>
+      <text class="line">先选材料位，再选背包物品。附加材料最多一件。</text>
+      <view class="craft-grid">
+        <view wx:for="{{craft.positions}}" wx:key="index" class="craft-position {{item.selected ? 'selected' : ''}}">
+          <button disabled="{{item.disabled}}" data-action="position" data-value="{{item.index}}" bindtap="onCraft">{{item.index + 1}} · {{item.name}} {{item.filled ? '× ' + item.quantity : ''}}</button>
+          <button wx:if="{{item.filled}}" disabled="{{craft.disabled}}" data-action="remove" data-value="{{item.index}}" bindtap="onCraft">移除材料 {{item.index + 1}}</button>
+          <button wx:if="{{item.canSwap}}" disabled="{{craft.disabled}}" data-action="swap" data-from="{{craft.position}}" data-to="{{item.index}}" bindtap="onCraft">交换至此位</button>
+        </view>
+      </view>
+      <text class="line">选择背包材料</text>
+      <view class="craft-grid"><button wx:for="{{craft.items}}" wx:key="slot" disabled="{{item.disabled}}" data-action="assign" data-slot="{{item.slot}}" data-revision="{{item.revision}}" bindtap="onCraft">{{item.name}} × {{item.quantity}}</button></view>
+      </block>
+      <button disabled="{{!craft.canBegin}}" data-action="begin" bindtap="onCraft">开始{{craft.label}}</button>
+    </block>
+    <text class="line" wx:elif="{{craft.phase === 'working'}}">正在{{craft.label}}… 剩余 {{craft.remainingSeconds}} 秒。</text>
+    <text class="line" wx:elif="{{craft.phase === 'awaiting'}}">请求已发送，等待结果。</text>
+    <block wx:elif="{{craft.result}}"><text class="line" wx:for="{{craft.result.lines}}" wx:key="index">{{item}}</text><button disabled="{{!craft.canRetry}}" data-action="retry" bindtap="onCraft">再次{{craft.label}}</button></block>
+    <text class="line" wx:if="{{craft.gatherContinuing && craft.phase === 'result'}}">稍后将继续{{craft.label}}，也可暂停。</text>
+    <button wx:if="{{craft.canPause}}" disabled="{{craft.disabled}}" data-action="pause" bindtap="onCraft">暂停{{craft.label}}</button>
+  </block>
+  <text class="line" wx:if="{{craft.notice}}">{{craft.notice}}</text>
+  <button disabled="{{craft.disabled}}" data-action="close" bindtap="onCraft">关闭生产技能</button>
+</view>

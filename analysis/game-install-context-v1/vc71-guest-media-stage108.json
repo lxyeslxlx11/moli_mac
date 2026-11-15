@@ -1,0 +1,62 @@
+{
+  "schema": "moli.vc71-guest-media.v1",
+  "recorded_utc": "2026-10-30T11:22:15.320303+00:00",
+  "evidence_class": "Actual native Parallels UI + Windows PowerShell displayed output; no guest command assumed from typeText alone",
+  "guest_drive": "D:",
+  "volume_label": "MOLIVC108, actual DVD notification at guest19:16",
+  "inventory": "Actual gci D: -force returned exactly four expected names and lengths at guest19:18; Get-FileHash full Path/Hash returned all4 and prompt at19:21",
+  "members": [
+    {
+      "name": "mfc71.dll",
+      "bytes": 1060864,
+      "sha256": "4da5efdc46d126b45daeee8bc69c0ba2aa243589046b7dfd12a7e21b9bee6a32",
+      "roundtrip_equal": true,
+      "guest_sha256_matches": true
+    },
+    {
+      "name": "msvcp71.dll",
+      "bytes": 499712,
+      "sha256": "df96156f6a548fd6fe5672918de5ae4509d3c810a57bffd2a91de45a3ed5b23b",
+      "roundtrip_equal": true,
+      "guest_sha256_matches": true
+    },
+    {
+      "name": "msvcr71.dll",
+      "bytes": 348160,
+      "sha256": "8094af5ee310714caebccaeee7769ffb08048503ba478b879edfef5f1a24fefe",
+      "roundtrip_equal": true,
+      "guest_sha256_matches": true
+    },
+    {
+      "name": "VMware_vc71_redists_x86.exe",
+      "bytes": 1636552,
+      "sha256": "a9cc35ecff05024546fa1af6e47bb4af7a0c8a69a70beb6449ed07a6d5995bff",
+      "roundtrip_equal": true,
+      "guest_sha256_matches": true
+    }
+  ],
+  "windows_bundle_signature": {
+    "command": "Get-AuthenticodeSignature 'd:\\VMware_vc71_redists_x86.exe' | fl status,statusmessage",
+    "status": "Valid",
+    "status_message": "签名已通过验证。",
+    "actual_returned_prompt": true,
+    "observation_guest_local": "2026-10-30 19:21",
+    "scope": "Outer official bundle only; not individual-DLL signatures or successful DLL loading",
+    "bundle_executed": false,
+    "trust_store_or_security_changes": false
+  },
+  "native_cd_metadata": {
+    "Enabled": "1",
+    "Connected": "1",
+    "EmulatedType": "1",
+    "SystemName": "/Users/lx/Documents/code/moli-mac/build/MoliVC71-stage108.iso",
+    "InterfaceType": "2",
+    "StackIndex": "1",
+    "source": "Read-only config.pvs metadata, actual matching mounted ISO"
+  },
+  "mount_route": "Normal native CD toolbar -> ConnectImage -> existing Open panel -> exact ISO -> Open. Initial toolbar click released guest mouse; fresh state then second click opened menu. No network menu, autoplay, installer or script execution.",
+  "old_media": "Prior D stage89 source ISO retained; E stage102 installation media not changed by this mount.",
+  "guest_dependency_destination_writes": false,
+  "additional_vendor_starts": 0,
+  "historical_receipt_scope": "This record describes media qualification before destination writes; subsequent app-local3 copy and test are recorded separately in vc71-remediation-runtime-stage108.json"
+}

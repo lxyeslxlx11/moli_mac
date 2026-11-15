@@ -1,0 +1,156 @@
+{
+  "schema": "moli.launcher-v12.validation.v1",
+  "recorded_utc": "2026-10-27T00:37:34.577089+00:00",
+  "scope": "Fixed-main-launcher upstream response text, raw-file MD5 comparison and normal-start metadata branches. Independent bounded offline bytes implementation only.",
+  "node": {
+    "version": "v26.9.0",
+    "tests": 245,
+    "pass": 245,
+    "fail": 0,
+    "skipped": 0,
+    "new_tests": 13,
+    "previous_tests": 232,
+    "log": "node-tests.log",
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs"
+  },
+  "static": {
+    "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "tools": {
+      "REA": "6.7.0",
+      "Ghidra": "12.1.4"
+    },
+    "snapshot_reused": "launcher-v10 main launcher; v11 updater is a different target",
+    "new_distinct_functions": 19,
+    "new_records": 24,
+    "scope_functions": 26,
+    "records": 216,
+    "spec": "static-spec.json",
+    "bindings": "manifest-bindings.json",
+    "session": "exported/snapshotted/closed"
+  },
+  "independent": {
+    "python_self_response_cases": 15,
+    "catalog_change_combinations": 4,
+    "oracle": "Python independent sequential singleton trim/cut/hashlib; Node crypto raw-file hash comparison",
+    "vectors": "original-manifest-vectors.json",
+    "historical_comparison": "local-metadata-comparison.json",
+    "historical_reconstruction_bytes": 66,
+    "historical_reconstruction_sha256": "11f2051c90d62c31a7b4f71a4c6eefbf52ba422c8c4a16cc704244de85ff7361",
+    "retained_historical_full_body_sha256_matches": true,
+    "local_fixed_file_refresh_order": [
+      "regionList"
+    ],
+    "limitation": "Synthetic local launcher MD5 response only selects XML branch. Historical two-digest body is hash-checked reconstruction; no new official observation."
+  },
+  "review": {
+    "scope": "Independent read-only raw stack/consumer binding audit and bounded module/test review",
+    "module_tests_passed": 13,
+    "reproducible_issues_found": 0,
+    "covered": "Intrinsic byte ownership and pre-copy budgets; proxy/subclass; branch precedence and unused getters; exact trim/cut versus XML token behavior; progress profile; no I/O",
+    "limitation": "Not a claim of complete native-runtime, locale, transport or update-transaction equivalence"
+  },
+  "browser": {
+    "checks": 6,
+    "requests": 46,
+    "errors": 0,
+    "all_loopback_get": true,
+    "browser": "155.0.8059.85",
+    "driver": "Existing Playwright1.62.1, independent temporary headless context",
+    "receipt": "browser-manifest-smoke.json",
+    "first_failure": "browser-first-failure.json",
+    "initial_failure_counted_as_success": false,
+    "initial_failure": "Disabled plan-button timeout; separate diagnosis saw4 ERR_CONNECTION_RESET/failed module import",
+    "final_result": "Fresh independent context passed all6 without source/assertion change or server restart",
+    "root_cause": "Initial local module transport reset cause undetermined",
+    "actual_scope": "15 original response cases,4 plans/precedence/locator, fixed local raw files and historical hash reconstruction, previous ZIP regression and two existing pages"
+  },
+  "syntax": {
+    "esm_files": 3,
+    "python_ast_files": 1,
+    "passed": true
+  },
+  "example": {
+    "path": "example-output.json",
+    "exit_code": 0,
+    "scope": "Original fixture disposition/refresh order/trust only"
+  },
+  "dependencies": {
+    "new_downloads": 0,
+    "installs": 0,
+    "lifecycle_scripts": 0,
+    "ordinary_capabilities": "Existing Node26.9.0, REA6.7.0/Ghidra12.1.4, Python stdlib, Playwright1.62.1/Chrome155 and bundled ESM vendors reused"
+  },
+  "sources": [
+    {
+      "path": "shared/launcher-manifest.mjs",
+      "bytes": 6545,
+      "sha256": "09d20815d0eebc030f49456407747598988ff28f6fa1e3968a5111f70751824e"
+    },
+    {
+      "path": "shared/index.mjs",
+      "bytes": 11005,
+      "sha256": "2dec76115e59d3aa6a31c929b49eb6018e2b4b37b2d2edc14613caa293e0ea49"
+    },
+    {
+      "path": "shared/tests/launcher-manifest.test.mjs",
+      "bytes": 9126,
+      "sha256": "1d313519ec0aa31654c10476cba2605865ee1d2098f5cdb3c788d44164596d16"
+    },
+    {
+      "path": "shared/examples/launcher-metadata.mjs",
+      "bytes": 887,
+      "sha256": "90e45257d97548e6ccd5ea9b4959aa3e5d0d2d7c6db7622540c0efbcd34eb61c"
+    },
+    {
+      "path": "analysis/launcher-v12/build_manifest_vectors.py",
+      "bytes": 3095,
+      "sha256": "bed5b6d31f97986132aaecabd9c2f3c8dced411cc7afd73bcbd7e141da010cee"
+    },
+    {
+      "path": "analysis/launcher-v12/original-manifest-vectors.json",
+      "bytes": 6641,
+      "sha256": "4e0246e3fb0962b1b4ef68d1dc279e66941cded22303702cdd828129b7c31a10"
+    }
+  ],
+  "not_verified": [
+    "Actual HTTP helper/locale/CString malformed-input behavior beyond bounded profile",
+    "Source authentication/signature/trust and current official server state",
+    "Actual download, file write/replace/rollback/restart and platform storage",
+    "Actual terms/account persistence, complete real session/transport and game/official compatibility",
+    "Safari/mobile/miniprogram, old real-file UI/narrow suite; unchanged Python/Swift resource suites not rerun"
+  ],
+  "preservation": {
+    "previous_delivery_files_verified_before_edits": 687,
+    "native_files": 17,
+    "all_native_match_stage56": true,
+    "fixed_six_input_hashes_match": true,
+    "private_bundle_snapshot_hashes_match": true,
+    "original_execution": false,
+    "vm_operations": false,
+    "account_reads": false,
+    "new_official_requests": false,
+    "official_file_update": false,
+    "git_repository": false
+  },
+  "documentation": {
+    "markdown_files": [
+      "README.md",
+      "shared/README.md",
+      "web/README.md",
+      "reports/development-plan.md",
+      "reports/launcher-static.md",
+      "reports/logic-protocol-spec.md",
+      "reports/architecture-and-milestones.md",
+      "reports/module-interfaces.md",
+      "reports/resource-formats.md",
+      "reports/validation.md",
+      "reports/known-issues.md",
+      "reports/analysis-methods.md"
+    ],
+    "relative_local_links_checked": 765,
+    "missing": [],
+    "matrix_revision": 5,
+    "matrix_entries_unique": 20,
+    "matrix_dependencies_evidence_paths_valid": true
+  }
+}

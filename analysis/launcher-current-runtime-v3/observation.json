@@ -1,0 +1,89 @@
+{
+  "schema": "moli.launcher-current-runtime-v3.observation.v1",
+  "recorded_utc": "2026-10-28T13:18:11.542299+00:00",
+  "previous_goal_turn": "progress:stage92 added3pure APIs/currentHTTP factory; full583Node/Chrome69GET passed and delivery1359readback passed",
+  "previous_manifest": {
+    "path": "analysis/delivery-manifest-stage92.json",
+    "bytes": 243350,
+    "sha256": "c1e1d370fbe4b59bc6309b7a643ab5e7b441f237e4a532664dc50e9de7974d5a",
+    "files_verified": 1359
+  },
+  "canonical_baselines": [
+    "README.md",
+    "reports/development-plan.md",
+    "reports/known-issues.md",
+    "reports/vm-environment.md",
+    "reports/validation.md",
+    "reports/game-static.md",
+    "reports/analysis-methods.md",
+    "reports/architecture-and-milestones.md",
+    "reports/logic-protocol-spec.md"
+  ],
+  "evidence_method": "Fresh CUA native app binding/screenshots and one fully visually checked short read-only PowerShell query; controlled metadata transcribed, no raw screen/account/log contents saved.",
+  "target": {
+    "app": "Parallels Desktop",
+    "window": "Windows 11",
+    "window_id": "{bac7348c-9220-4447-94e4-e49b00f44939}",
+    "directory": "C:\\MoliOffline\\launcher-probe"
+  },
+  "access": {
+    "mac_lock_error": false,
+    "desktop_readable": true,
+    "english_input_visible": true,
+    "ordinary_guest_input_responded": true
+  },
+  "query": {
+    "command": "Get-ExecutionPolicy",
+    "submissions": 1,
+    "result": "Restricted",
+    "returned_to_prompt": true,
+    "pending_input": false,
+    "guest_clock_minute": "2026-10-28 21:10 local; observed display, not an instrumented start/finish timestamp"
+  },
+  "prior_inference_replaced_by_observation": "stage90 had five Undefined scopes and inferred default Restricted; stage93 directly observed effective Restricted. No repeated script attempt was necessary.",
+  "prepared_host_material": [
+    {
+      "path": "analysis/launcher-current-runtime-v1/current.ps1",
+      "bytes": 11580,
+      "sha256": "313ccf1a9b78100f129aeed074d4b1d4821b4bbab54429525326a169a31d90f4",
+      "rechecked_host_only": true
+    },
+    {
+      "path": "build/analysis/launcher-current-runtime-v1/MoliCurrent-stage89.iso",
+      "bytes": 1574912,
+      "sha256": "5061fc63ff80d1bf98a2d4f546309369e39e179f7712065a8f0e02095be85eb4",
+      "rechecked_host_only": true
+    }
+  ],
+  "game_sample": {
+    "path": "build/analysis/diagnostic-material-20261026-_9d1ephh/source/app/cg_se_3000.exe",
+    "bytes": 2904064,
+    "sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+    "sections": [
+      {
+        "name": ".text",
+        "virtual_size": 1753452,
+        "rva": 4096,
+        "raw_size": 0,
+        "file_offset": 0
+      }
+    ],
+    "executed": false,
+    "stale_path": "/private/tmp/moli-analysis/crossgate/app/cg_se_3000.exe",
+    "stale_path_missing": true,
+    "recovery": "Found existing project-private cached source with rg, then rehashed and parsed PE header read-only; no re-extraction or original-file mutation.",
+    "limitation": "Zero file-backed original .text is a static boundary; helpers remain visible and this is not a global impossibility or runtime claim."
+  },
+  "new_operations": {
+    "readonly_guest_commands": 1,
+    "policy_changes": 0,
+    "blocked_script_retries": 0,
+    "install": 0,
+    "observe": 0,
+    "restore": 0,
+    "current_launcher_executions": 0,
+    "game_executions": 0,
+    "account_or_network_payload_reads": 0
+  },
+  "authorization": "Existing Windows/network/tool authorization retained. Specific process-only RemoteSigned question still unanswered; automatic goal continuation is not approval."
+}

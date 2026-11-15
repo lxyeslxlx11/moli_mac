@@ -1,0 +1,61 @@
+{
+  "schema": "moli.launcher-current-runtime-v1.run-plan.v1",
+  "requirement": "reports/development-plan.md",
+  "scope": "Prepare exact current packed launcher as data-only CD, with original project-owned Windows runtime helpers. No execution or VM mutation in preparation.",
+  "candidate": {
+    "file": "CURRENT.EXE",
+    "bytes": 1496576,
+    "sha256": "71180e5bdda771e7d57dd27d2b879beddee55d61b957dadf7a2da60c907cb69a",
+    "source": "stage87 public vendor update ZIP; stage88 pure candidate/Python comparison",
+    "analysis_unpacked_copy_used_for_execution": false
+  },
+  "target": {
+    "vm": "existing Parallels Windows11",
+    "runtime_root": "C:\\MoliOffline\\launcher-probe",
+    "exe": "POLCN_Launcher.exe",
+    "backup_root": "C:\\MoliOffline\\current-stage89",
+    "old_exe_sha256": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+    "win7": "Preserve exact existing exe path and user-confirmed compatibility state; do not reopen/rewrite settings."
+  },
+  "readiness": [
+    "Mac normally unlocked and a fresh existing Windows window observed.",
+    "Demonstrate ordinary guest input and read exact pending readonly log-prefix hash line before cancel/submit; no blind relaunch.",
+    "Attach only validated new readonly ISO through native optical-drive controls after fresh target read; no network/shared-folder/security changes.",
+    "Verify helper/media hash on guest and parse with Windows PowerShell parser; if execution policy blocks script, stop and report, do not change/bypass it.",
+    "Verify exact old launcher/updater/twoXML hashes, current CD candidate and no matching launcher/updater process."
+  ],
+  "modes": [
+    {
+      "mode": "Verify",
+      "entry": "verify.cmd",
+      "effects": "Read-only baseline/candidate/path/process checks; print controlled metadata. No target changes."
+    },
+    {
+      "mode": "Install",
+      "entry": "install.cmd",
+      "effects": "One unique owned backup directory; verified create-new backups of launcher/updater/twoXML and original attributes, staged current candidate, atomic replacement of only exact old EXE after clearing only its ReadOnly bit if needed. Preserve source originals/registry/mount policy. Failure preserves partial state and blocks blind reinstall."
+    },
+    {
+      "mode": "Observe",
+      "entry": "observe.cmd",
+      "effects": "Single recorded normal RunAs/UAC attempt of exact current runtime EXE, no arguments, working directory same; monitor returned process handle with monotonic90s deadline after Start-Process returns. Record submission/UAC-return/parent start/exit separately. No account input, window-title/argv/memory/network-payload capture, forced termination or credential operations. If still running, leave it and report live PID for normal UI handling; no child-lifecycle completeness claim."
+    },
+    {
+      "mode": "Restore",
+      "entry": "restore.cmd",
+      "effects": "After no matching process and exact whitelisted current/original hash, restore only the EXE this tool replaced and its original allowed attributes from verified backup. Other backed-up files are retained for review; no full VM/app-state rollback claim, no deletion/cleanup."
+    }
+  ],
+  "stops": [
+    "Wrong path/hash/source/process/readiness; missing/changed receipts or any reparse path; existing partial stage folder; unexpected current EXE hash.",
+    "Windows execution-policy/security denial: do not bypass or alter settings.",
+    "New legal agreement, account/credential gate or unexpected permission: stop at the displayed gate. Existing Windows/network/tool permission is not re-requested.",
+    "At observation90s, report running parent/known-name process metadata and use fresh UI before any close; no blind keys/forcekill."
+  ],
+  "verification": {
+    "host": "Official portable PowerShell parser and original synthetic filesystem fixtures; validates syntax and helpers on macOS only.",
+    "media": "Read-back exact expected member set/bytes/hashes from ISO; no autorun/network execution.",
+    "guest": "Not yet run. Host7.6 parsing does not prove Windows5.1, UAC, NTFS atomicity, lifecycle or actual dependency correctness."
+  },
+  "goal_complete": false
+}

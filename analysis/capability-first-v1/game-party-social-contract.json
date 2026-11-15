@@ -1,0 +1,717 @@
+{
+  "schema": "moli.capability.game-party-social-contract.v1",
+  "status": "ordinary-party-album-rules-bound-social-scope-retained",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+    "REA": "6.7.0",
+    "Ghidra": "12.1.4"
+  },
+  "capabilities": [
+    "G04",
+    "G05",
+    "G14",
+    "G19",
+    "B01",
+    "X01",
+    "X02"
+  ],
+  "plan": "analysis/capability-first-v1/game-party-social-plan.json",
+  "source_check": "analysis/capability-first-v1/game-party-social-source-check.json",
+  "facts": [
+    {
+      "id": "source-reuse-and-separate-authority",
+      "kind": "fact",
+      "source_entries": [],
+      "claims": [
+        "86个来源视图由79个既有规范REA入口与7个既有独立派生视图构成，合计35,989字节；1,581条派生指令、847处直接E8调用、153控件与两张现代窗口表行均匹配固定37c4原件。",
+        "80份完整旧规范记录逐份经现有REA工厂验收，461370两个不同观察均原样保留，正文统计只选一个；没有合并观察ID、改metadata或导入/验收整份原快照。",
+        "本轮没有新反编译或Ghidra导出；有界原文件读窗与PE虚拟零填充分开，静态零填充不称为实际运行内存值。来源体齐备不等于完整业务/全局调度完成。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "seven-existing-wire-bindings",
+      "kind": "fact",
+      "source_entries": [
+        "0x4f07d0",
+        "0x4f3310",
+        "0x4f48b0",
+        "0x4f48d0",
+        "0x4f6de0"
+      ],
+      "claims": [
+        "HFs(slot,bytes)、Kk0(mode,result)、@t-(revision,bytes)与B8S(15个int32、两个bytes)仍用既有接收表；*Cc、/Re各三个int32，'q=一个int32，仍用已有发送表。",
+        "本轮不增加协议登记、字段、认证或会话；协议标记只定位处理入口，实际业务归属由数据/界面/操作链决定。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "ordinary-party-toggle-request",
+      "kind": "fact",
+      "source_entries": [
+        "0x467060",
+        "0x43f2d0"
+      ],
+      "claims": [
+        "加入在party mode0要求面对八方向之一，按53d4d4偏移当前显示格寻找recordTypeFlags&0x28且primary0x400清的活动对象；本机leader0x100须清。离开路径不查邻格、朝向或本机leader条件。",
+        "两路仍须共同输入/移动/协调条件允许，并满足无符号now严格大于(614884+500 mod2^32)。发送*Cc的当前显示X/Y和加入1或离开0，再刷新共享tick；不乐观改变成员/队伍mode。",
+        "614884在PE虚拟零填充尾部，没有原文件字节映射；它与交易等快捷行为共享，不能当作本功能专属计时器。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "party-result-and-corrected-leave-ABI",
+      "kind": "fact",
+      "source_entries": [
+        "0x4f3310",
+        "0x4034d0",
+        "0x500500"
+      ],
+      "claims": [
+        "普通全局gate924f30==0时，Kk0的mode1/result1只设本机member0x200，不直接改变party mode；mode0/result1清member、置mode0并调用500500解散。",
+        "成功离开随后发送/Re(TargetX,TargetY,signExtend8(f536ac))。4f3358..4f3382的汇编按cdecl压入朝向、BF22D0读取值、BF22E0读取值和连接，再调用4f8340；坐标是目标格，不是加入请求的显示格。",
+        "这是复用旧party-actions已经闭合的三参数事实，纠正更早entry-review只按不完整伪代码登记的ABI缺口；不修改旧伪代码或重新展开数值存储内部。其他普通组合只清pending f5f16c；gate非0分支不清。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "five-party-rows-and-overlapping-update-mask",
+      "kind": "fact",
+      "source_entries": [
+        "0x4f07d0",
+        "0x4ff080"
+      ],
+      "claims": [
+        "原队伍是五槽、每行0x30字节的逻辑记录，含active、actorID、资料和body指针。正mask置party mode1并清pending；bit组0x3/0x5/0x9/0x11/0x21/0x41存在重叠，分别触发ID、四数值和16byte名称字段。",
+        "槽0控制leader/member，绑定已有本机/远端body；完整独立解码器另有限制slot0..4和字段长度，不能由该限制倒推原接收入口在所有输入都已作相同检查。",
+        "4ff080冷重置mode与五行；普通资料更新、冷重置和战斗body清理不是同一操作。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "party-remove-and-dissolve",
+      "kind": "fact",
+      "source_entries": [
+        "0x4f07d0",
+        "0x500500",
+        "0x4ffba0"
+      ],
+      "claims": [
+        "零mask移除旧active/body；远端移除会清其相关标志，并保留被移除者原目标以供后续队列转移。剩余active少于2时解散，否则沿后续active成员考虑转移。",
+        "500500按五个active行清成员标志/active/ID/body；本机队列会清，远端队列是否清还取决于本机leader条件，最后按既有force/leader规则恢复。不能用无条件清全部远端队列概括该源规则。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "leader-compaction-and-cascade",
+      "kind": "fact",
+      "source_entries": [
+        "0x4618f0",
+        "0x461500",
+        "0x461550",
+        "0x4618a0"
+      ],
+      "claims": [
+        "4618f0按原槽升序压紧active且body非空的成员索引，尾部填signed short -1；普通队长开始一步时把旧显示格入compact member1队列。",
+        "461550按本机速度启动compact1..4的已对齐排队成员，开始前按队列长度取1/1.2/1.6/2倍；在后继本次处理前传入前一成员旧显示格。4618a0随后按其已设速度推进，不再乘全局跟随倍率。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "follower-two-pass-and-queue-overflow",
+      "kind": "fact",
+      "source_entries": [
+        "0x4610f0",
+        "0x461370",
+        "0x43c540",
+        "0x43c1b0"
+      ],
+      "claims": [
+        "非队长4610f0先准备全部compact成员，再统一推进；远端43c540和本机461370使用compact头body的速度，不在启动处加队列倍率。头成员启动队列时更新共享float32倍率957e98，供本机/远端推进使用并保持至其他写者改变。",
+        "本机跟随更新目标、速度向量与朝向，不改变本机自身speed；碰撞可保留逻辑显示格，跟随驱动不额外发送普通寻路请求。member0x200抑制默认队列推进，动画仍运行，避免重复推进。",
+        "既有43c1b0队列容量10，第11次入队清队列并瞬移到所供格，保留其他运动/动画元数据。缺body、重复指针和复合模式的原生完整行为仍单列。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "removed-target-transfer-is-conditional",
+      "kind": "fact",
+      "source_entries": [
+        "0x461f40"
+      ],
+      "claims": [
+        "移除后转移先要求slot0有body、无待行队列并对齐目标；寻找最近的前序active且已绑定成员。前序与后继目标的环绕差两轴都<2时不转移。",
+        "需要转移时，从被移除者旧目标开始逐个入后续active/已绑定body队列，并向后传各自旧目标，重置全局倍率1；不按绝对世界坐标差替代源环绕运算。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "leader-badge-is-separate-owned-visual",
+      "kind": "fact",
+      "source_entries": [
+        "0x43d150"
+      ],
+      "claims": [
+        "aux04队长标志与其他主图标/瞬时图标不同；body2ec脏位由C0的旧body2e8与传入value16变化触发，不仅由mode15变化触发。分配、保留、移除和脏重建的各原条件继续复用。",
+        "新建帧不立即推进/提交该子体；保留帧复制父坐标后推进，再读取当前子体偏移和origin，按既有队列次序提交。不能把已有运行核心的普通可视效果提升为所有body生命周期已完成。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "party-battle-and-independent-domain",
+      "kind": "fact",
+      "source_entries": [
+        "0x4f3430",
+        "0x4ff080"
+      ],
+      "claims": [
+        "入战处理明确读取party mode和本机leader0x100来决定相应窗口条件；不能把逻辑名单、成员模式和普通场景body的退役/重建合为同一个reset。",
+        "现有actors.beginBattle释放普通body/解除绑定并保留逻辑globals/roster，prepareCharacterEntry另清队伍；validateParty明确拒绝stage250..252、重复body和特定spin/ride复合域。",
+        "这些是当前独立核心的受限实现/拒绝政策，完整原战斗与重建调度仍未闭合，本轮没有扩大可支持域。"
+      ],
+      "evidence": [
+        "shared/legacy-game-actors.mjs",
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "album-attribution-and-new-capability",
+      "kind": "fact",
+      "source_entries": [
+        "0x485780",
+        "0x4dc850",
+        "0x4dd2a0",
+        "0x4fdf40",
+        "0x4fdff0"
+      ],
+      "claims": [
+        "历史friend-roster/battle-friends所用的D5EA5C记录表直接连接图鉴界面：485780引用56392c“开启此魔物的图鉴窗口”，现代详情另引用“回到图鉴窗口”；静态同家族还有“打开此宠物的图鉴窗口”。",
+        "同一数据源经4fdf40/4fdff0读写data\\album.dat。图鉴身份由共享表、实际UI代码和静态提示共同确定，不仅由英文文件名推断。",
+        "因此新增G19魔物/宠物图鉴能力；G14完整好友/对方资料需求保持。旧名、旧API和原始证据全部保留作追溯，但不能继续以这一表证明完整好友社交已实现。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "two-bank-decoded-layout-and-cold-state",
+      "kind": "fact",
+      "source_entries": [
+        "0x450100",
+        "0x450250",
+        "0x4fe420",
+        "0x4fe3f0"
+      ],
+      "claims": [
+        "450100把容量C439AC初始化为320、现代页数C218F0初始化为21；4fe420清0x5003 DWORD并在D5EA50写CCA零结尾头。该解码态总长0x1400c=81,932字节。",
+        "偏移0为四字节头、+4/+8为两bank revision；+0xc开始两组320×0x80记录，D5EA5C为首行。F5F048选择当前bank，但其全部生产者/切换语义未查全，不能自动等同某个账号或角色身份。",
+        "4fe3f0只清当前bank revision与320行，再调用持久化；另一bank保持。所有写者未闭合，初始化21页不证明运行期页数永远为21。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "album-summary-revision-and-detail-requests",
+      "kind": "fact",
+      "source_entries": [
+        "0x4fe290",
+        "0x4f48b0",
+        "0x4f6de0"
+      ],
+      "claims": [
+        "@t-使用signed revision与pipe分隔十个十进制mask的正常320位摘要。缺位清active；置位且记录缺失或旧signed revision<新revision时，按一基升序发送'q=索引请求详情。",
+        "普通终止路径即使摘要字段提前结束也更新当前bank revision；不据此宣称原输入原子校验/完整拒绝。另bank不随此摘要更新。",
+        "4fe380是已保留4fe290体内CMP EAX,EDX，不是缺失的独立函数；不因精确入口查询未命中再造该函数。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "album-detail-record-map-and-discovery-byte",
+      "kind": "fact",
+      "source_entries": [
+        "0x4fe0d0",
+        "0x4f48d0"
+      ],
+      "claims": [
+        "B8S接受一基索引1..C439AC；当前bank行+0设active，+4存索引，+8存第二整数，+1/+2/+3存第3/4/5参数低byte。第6..15参数依次到+0xc..+0x30，其中第11..14的四字段位于+0x20/+0x24/+0x28/+0x2c。",
+        "第16字节字段经既有unescape后，用4e9e20向+0x45和+0x62生成两个0x1d缓冲/0x1c上限文本片段；第17字段是+0x34的零结尾名称，长度超过16byte用???替代。",
+        "行+0x7f由旧active==0生成新发现标志，接受的详情最后调用4fdf40。当前核心只保留名称与四个布尔字段，并未保存这些完整UI资料。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "album-cache-consumer-with-opaque-transform",
+      "kind": "fact",
+      "source_entries": [
+        "0x4fdf40",
+        "0x4fdff0",
+        "0x5015a0"
+      ],
+      "claims": [
+        "写路径以wb打开data\\album.dat，把81,932字节解码态交给5111c0(mode0、输出容量0x28018)，写其报告输出长度；所查关闭分支取决于写入数量达到该长度。没有原子替换/回滚证据。",
+        "读路径以rb打开，最多读0x28018；文件缺失转写回，状态bit0x20走错误关闭；511310(mode0)返回解码长度必须为0x1400c，否则转写回，成功复制回解码态。5015a0在5017f0实际调用加载器。",
+        "所查读体只检查解码长度，未见对CCA内容的比较；不能声称该读体验证签名。5111c0/511310内部作为opaque转换边界保留，不为独立缓存展开其内部。本轮未读写真实album.dat或账号数据。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "album-lookup-and-FE0-lowbit",
+      "kind": "fact",
+      "source_entries": [
+        "0x423500",
+        "0x4235f0",
+        "0x419840",
+        "0x433a10",
+        "0x433c40",
+        "0x433cd0"
+      ],
+      "claims": [
+        "423500在当前bank的320行按active、零结尾名称byte精确相同及四字段“是否非零”与body metadata匹配；这些布尔量不解释为四种好友权限。",
+        "4235f0先清FE0.lowbit，本机或配对槽设置该位，其他同侧不走表查询，仅对另一侧调用423500。C/MON/入场分别有明确分类检查点。",
+        "摘要/详情写入本体没有遍历所有已存在战斗body立即重新分类。此位的全部下游用途、晚到资料与其他命令仍待统一，不把名字match或bit0擅自扩大成社交好友/捕获资格。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "classic-album-list-and-detail-controls",
+      "kind": "fact",
+      "source_entries": [
+        "0x485780",
+        "0x485870",
+        "0x485b50",
+        "0x485b90",
+        "0x485bd0"
+      ],
+      "claims": [
+        "经典19窗口列表显示十行；控件58..67以C07A74+控件序号-58求原记录索引，仅当前bank存在的记录可选择，写C1FA90。详情缓存不存在时打开经典20窗口，否则更新选择并播放声音。",
+        "列表步进±1或±10把offset限制0..310；滚动条/滚轮回调沿同offset。详情按钮按−10/−1/+1/+10改变C1FA90，限制0..319；旋转C3B5D8按事件方向环绕0..7。",
+        "153控件与19/20描述符有身份字节证明；共用frame/关闭框架复用旧合同，外层实际入口和所有控件前置资格仍与可直接调用回调分开。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "modern-album-list-detail-and-close",
+      "kind": "fact",
+      "source_entries": [
+        "0x4dd2a0",
+        "0x4dc850"
+      ],
+      "claims": [
+        "现代23列表每页15行，页C081B0；只可点当前bank active行，选择C07F84=page*15+行后打开24，列表可显示+0x7f新发现提示。翻页按C218F0环绕，不能从初始化21页推定全部320行始终可达。",
+        "现代24详情按±1/±10并依据C439AC环绕索引，与经典夹紧不同。存在记录会清新发现byte，并按相同记录表生成图形/名称/枚举、数值条和两文本片段。",
+        "返回按钮置C21A54并打开23；共同框架返回2的关闭分支调用4fdf40并删除本窗口图形缓存C5EAB4。23↔24局部调用不证明现代业务表的外层激活/97 callback消费已关闭，不重复既有有限阴性搜索。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    },
+    {
+      "id": "independent-album-projection-and-lifecycle-policy",
+      "kind": "fact",
+      "source_entries": [],
+      "claims": [
+        "legacy-game-battle-friends.mjs当前只有一个320容量表和一份revision，详情只投影名称+四布尔，摘要请求已有索引；close清空该表。没有两bank、完整图鉴UI/新发现byte/原文件持久化。",
+        "legacy-game-protocol只在world启用时创建该投影、按既有两接收调用并在close清理；历史battle-friend effect/API名字保留。本轮只纠正能力索引，不改产品代码/API或静默重命名。",
+        "独立party使用frameKey/body所有权、严格槽域/重复body拒绝和受限复合域；与native全局指针/共享clock和文件持久化分开，后续统一规格后再确定需要的兼容差异。"
+      ],
+      "evidence": [
+        "shared/legacy-game-battle-friends.mjs",
+        "shared/legacy-game-actors.mjs",
+        "shared/legacy-game-party.mjs",
+        "shared/legacy-game-vitals.mjs",
+        "shared/legacy-game-protocol.mjs"
+      ]
+    },
+    {
+      "id": "scope-preserved-and-discovery-open",
+      "kind": "fact",
+      "source_entries": [],
+      "claims": [
+        "原38能力ID、81协议登记、37历史复合要求和10消费者组保留，并在当前层补G19使总域数为39；旧历史映射数组不改写，以显式纠正层解释图鉴归属。",
+        "G14完整好友能力继续待查实际好友资料/窗口/命令与取消重入；没有从图鉴表证明它已经实现。有限480旧派生体字面查询只发现3个图鉴表/持久化候选，兄弟控件沿既有窗口表复用；不构成全程序无其他入口的证明。",
+        "整体发现/A4门槛、其余业务与必要版本、完整调度、网页/移动网页/微信及同版接受仍未完成；函数和能力条目数量不换算全项目完成率。"
+      ],
+      "evidence": [
+        "analysis/capability-first-v1/game-party-social-source-check.json"
+      ]
+    }
+  ],
+  "remaining": [
+    {
+      "id": "actual-social-friend-feature",
+      "kind": "pending",
+      "capabilities": [
+        "G14",
+        "G15",
+        "X01"
+      ],
+      "need": "实际好友/对方资料、好友选择/命令及资料权限、黑名单/聊天关联、取消/关闭/晚到回复；图鉴证据不能代替。",
+      "next_evidence": "下一组复用G15聊天/过滤/公告和现有入口索引，沿实际UI提示/结构/协议生产消费定位真正社交链；不再按friend-roster旧名直接归为好友。"
+    },
+    {
+      "id": "album-bank-cache-and-pagecount-writers",
+      "kind": "pending",
+      "capabilities": [
+        "G19",
+        "B01",
+        "X02"
+      ],
+      "need": "所选正常选角0/1槽的三条word写、容量320/页数21初始化、当前bank清除/整份保存与main5邮件→图鉴加载次序已源绑定。仍需另一套实际激活和页游标初始化/恢复、完整配置/世界/晚到资料归属及必要间接作用；绝对字面量清单不代表别名闭合。",
+      "next_evidence": "复用album_bank_lifecycle已证规则；图鉴转换维持opaque。仅沿新正向激活或具体生命周期发布/消费边补剩余规则，不重查已证三个bank写/两个初值，也不重复97有限阴性。"
+    },
+    {
+      "id": "party-global-battle-and-compound-order",
+      "kind": "pending",
+      "capabilities": [
+        "G04",
+        "G05",
+        "G14",
+        "B01",
+        "X02"
+      ],
+      "need": "入战/退出/重建、stage250..252、重复/失效body、spin/ride复合与共享计时/迟到HFs/Kk0的完整调度；冷重置、body解绑和逻辑名单保留的组合。",
+      "next_evidence": "复用本轮普通队伍/target ABI/原body所有权和既有战斗退出合同，仅沿具体原始调用/状态发布新边补证；不把独立拒绝政策当原版全域行为。"
+    },
+    {
+      "id": "unified-discovery-and-platform-acceptance",
+      "kind": "pending",
+      "capabilities": [
+        "X01",
+        "X02",
+        "X04",
+        "X05",
+        "X07",
+        "X08"
+      ],
+      "need": "新增G19和其余全能力的规格/依赖复核，实际平台与必要版本/同版服务器接受；当前没有测试账号，不能完成真实登录和官服验收。",
+      "next_evidence": "继续统一分析，A4门槛通过后按共享批次开发；不反复索取账号、不新增无协议来源演示功能或将本地投影当官方接受。"
+    }
+  ],
+  "source_summary": {
+    "selected_source_views": 86,
+    "unique_reused_native_entries": 79,
+    "native_source_body_bytes": 30386,
+    "native_listing_boundaries": 8587,
+    "reused_derived_views": 7,
+    "reused_derived_body_bytes": 5603,
+    "reused_derived_instructions": 1581,
+    "new_native_or_derived_views": 0,
+    "declared_source_body_bytes": 35989,
+    "direct_E8_CALL_occurrences_verified": 847,
+    "unique_E8_CALL_sites_verified": 847,
+    "original_complete_native_records_factory_validated": 80,
+    "additional_same_entry_original_observations": 1,
+    "old_exact_ID_bindings_verified": 86,
+    "original_dossier_bindings_verified": 65,
+    "classic_descriptors": 2,
+    "classic_controls_identity_checked": 153,
+    "modern_table_rows": 2,
+    "old_bounded_file_read_windows_verified": 31,
+    "virtual_zero_fill_ranges": 2,
+    "old_encoded_call_sites_verified": 11,
+    "protocol_bindings": 7,
+    "static_literal_spans_verified": 10,
+    "new_REA_records": 0,
+    "new_Ghidra_analysis": false,
+    "runtime_features_changed": false,
+    "all_capability_analysis_complete": false
+  },
+  "question_answers": [
+    {
+      "question": 1,
+      "status": "ordinary-party-rules-and-old-leave-ABI-reused",
+      "facts": [
+        "ordinary-party-toggle-request",
+        "party-result-and-corrected-leave-ABI",
+        "five-party-rows-and-overlapping-update-mask",
+        "party-battle-and-independent-domain"
+      ],
+      "remaining": [
+        "party-global-battle-and-compound-order"
+      ]
+    },
+    {
+      "question": 2,
+      "status": "historical-friend-attribution-corrected-to-album-G19",
+      "facts": [
+        "album-attribution-and-new-capability",
+        "two-bank-decoded-layout-and-cold-state",
+        "classic-album-list-and-detail-controls",
+        "modern-album-list-detail-and-close"
+      ],
+      "remaining": [
+        "actual-social-friend-feature"
+      ]
+    },
+    {
+      "question": 3,
+      "status": "album-field-cache-classification-and-core-policy-separated",
+      "facts": [
+        "album-summary-revision-and-detail-requests",
+        "album-detail-record-map-and-discovery-byte",
+        "album-cache-consumer-with-opaque-transform",
+        "album-lookup-and-FE0-lowbit",
+        "independent-album-projection-and-lifecycle-policy"
+      ],
+      "remaining": [
+        "album-bank-cache-and-pagecount-writers"
+      ]
+    },
+    {
+      "question": 4,
+      "status": "G19-added-original-scope-preserved-dependencies-and-proposed-cases-recorded",
+      "facts": [
+        "source-reuse-and-separate-authority",
+        "scope-preserved-and-discovery-open"
+      ],
+      "remaining": [
+        "unified-discovery-and-platform-acceptance"
+      ]
+    }
+  ],
+  "supersedes_bounded_roles": [
+    {
+      "old": "analysis/game-battle-shared-storage-v1/friend-roster-source-check.json",
+      "correction": "Historical friend-roster is album table/classification evidence, not full social-friend implementation.",
+      "new_capability": "G19",
+      "full_G14_scope_preserved": true
+    },
+    {
+      "old": "analysis/capability-first-v1/game-entry-review-contract.json",
+      "correction": "4f3310 ->4f8340 three logical fields already proven by old party-actions assembly; old incomplete pseudocode ABI gap superseded.",
+      "original_records_unchanged": true
+    }
+  ],
+  "implementation_dependencies": [
+    {
+      "batch": "D0",
+      "kind": "inference",
+      "requirement": "统一逻辑名单与body代际绑定/共享时钟，另建图鉴两bank/完整行/新发现和持久化策略；不把角色身份、原bank或独立revision混为一值。"
+    },
+    {
+      "batch": "D3",
+      "kind": "inference",
+      "requirement": "复用普通组队/跟随链，补规格确认的域；G19实现完整图鉴资料/选择/分页，保留G14真实好友链待规格，历史API迁移需明确兼容。"
+    },
+    {
+      "batch": "D4",
+      "kind": "inference",
+      "requirement": "战斗只在源检查点用图鉴投影更新相关分类；完整party入退战/复合域及FE0下游必要用途先闭合，禁止把该bit自造为所有目标/好友资格。"
+    },
+    {
+      "batch": "D5",
+      "kind": "inference",
+      "requirement": "三端薄层共用业务状态，明确经典/现代分页夹紧与环绕政策差异、真实页面入口和关闭；实际平台分别验收。"
+    }
+  ],
+  "proposed_acceptance_cases": [
+    {
+      "id": "join-and-shared-clock",
+      "kind": "proposed-not-executed",
+      "expectation": "加入按八方向邻格/显示坐标及leader资格；500相等拒绝、严格大于通过、32位回绕和跨快捷行为共享tick分别验证。"
+    },
+    {
+      "id": "leave-target-and-facing",
+      "kind": "proposed-not-executed",
+      "expectation": "加入发送显示格；离开成功/Re发送目标格及有符号低byte朝向，不能混用坐标或把ABI缩为两字段。"
+    },
+    {
+      "id": "reply-gate-and-pending",
+      "kind": "proposed-not-executed",
+      "expectation": "gate非0与普通mode/result组合分别验证；成功加入不直接改party mode，成功离开才解散及发送。"
+    },
+    {
+      "id": "overlapping-mask-and-row-owner",
+      "kind": "proposed-not-executed",
+      "expectation": "HFs五槽和重叠mask、16byte名称、未绑定与被重建body的所有权；独立槽域/原条件分开断言。"
+    },
+    {
+      "id": "leader-follower-queue",
+      "kind": "proposed-not-executed",
+      "expectation": "升序压紧、两阶段跟随、队长各自倍率与全局倍率差异、member抑制默认推进及第11次入队瞬移。"
+    },
+    {
+      "id": "removed-target-transfer",
+      "kind": "proposed-not-executed",
+      "expectation": "slot0对齐/队列、前序距离两轴<2与环绕边界、后继队列级联和scale复位。"
+    },
+    {
+      "id": "party-battle-unsupported-domain",
+      "kind": "proposed-not-executed",
+      "expectation": "body退役与逻辑名单保留分开；受限battle/重复body/复合域必须报告当前不支持，不宣称完整恢复。"
+    },
+    {
+      "id": "album-versus-social-ownership",
+      "kind": "proposed-not-executed",
+      "expectation": "图鉴原表/提示/album.dat归G19，G14真实好友需求保持；旧API名不作为社交能力验收。"
+    },
+    {
+      "id": "album-two-banks-and-revision",
+      "kind": "proposed-not-executed",
+      "expectation": "两bank隔离、signed revision比较、缺位清active、缺失/新版按一基升序请求、截断摘要revision更新与独立拒绝政策。"
+    },
+    {
+      "id": "album-detail-and-new-marker",
+      "kind": "proposed-not-executed",
+      "expectation": "完整字段投影、低byte/16byte名称及两段文本；首次激活设新发现byte，详情查看清它。"
+    },
+    {
+      "id": "classic-page-and-rotation",
+      "kind": "proposed-not-executed",
+      "expectation": "列表十行offset0..310，详情0..319夹紧，旋转0..7环绕；实际控件事件/前置资格按经典框架。"
+    },
+    {
+      "id": "modern-page-and-detail-wrap",
+      "kind": "proposed-not-executed",
+      "expectation": "列表15行与运行页数，详情±1/10按容量环绕；初始化21页不等于全320行可达证明。"
+    },
+    {
+      "id": "cache-consumer-and-close",
+      "kind": "proposed-not-executed",
+      "expectation": "解码长度81932、路径/mode与opaque转换边界；不同关闭/缺文件/错误/长度不符分开，不编造CCA验证或原子保存。"
+    },
+    {
+      "id": "late-data-and-host-ports",
+      "kind": "proposed-not-executed",
+      "expectation": "角色切换/世界close/迟到表更新与分类检查点、真正好友链及三端薄层分别验收；当前未运行。"
+    }
+  ],
+  "original_execution": false,
+  "VM_operations": false,
+  "account_or_official_session_observed": false,
+  "runtime_features_changed": false,
+  "ordinary_party_and_album_source_bound": true,
+  "full_party_social_album_lifecycle_closed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "album_bank_lifecycle": {
+    "specification": {
+      "path": "build/analysis/album-bank-lifecycle-v1/specification.json",
+      "bytes": 106358,
+      "sha256": "9d6bdcbfc3afe8e8ade6bfed300439f8c84ab48f3e3c03f6b3a5fac8b9eb42a1"
+    },
+    "source_inputs": {
+      "path": "build/analysis/album-bank-lifecycle-v1/source-inputs.json",
+      "bytes": 7237,
+      "sha256": "75efe225ed5153f2eb92da137f39c73d2f3f4d06d9378a36301285d12f435db2"
+    },
+    "source_summary": {
+      "views": 14,
+      "reused_complete_native_views": 13,
+      "reused_derived_views": 1,
+      "body_ranges": 14,
+      "body_bytes": 7012,
+      "derived_instructions": 351,
+      "direct_E8_CALLs": 253,
+      "literal_instruction_sites": 157,
+      "new_native_function_queries": 0,
+      "new_targeted_xref_queries": 3,
+      "fact_groups": 9,
+      "explicit_bank_word_writes": 3,
+      "capacity_dword_writes": 1,
+      "pagecount_dword_writes": 1
+    },
+    "validation_record_path": "build/analysis/album-bank-lifecycle-v1/validation.json",
+    "contract": "analysis/capability-first-v1/game-entry-review-contract.json",
+    "source_check": "analysis/capability-first-v1/game-entry-review-source-check.json",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "fact_ids": [
+      "AB01",
+      "AB02",
+      "AB03",
+      "AB04",
+      "AB05",
+      "AB06",
+      "AB07",
+      "AB08",
+      "AB09"
+    ],
+    "remaining_required_groups": [
+      {
+        "id": "AB-R1",
+        "capabilities": [
+          "G19",
+          "X02"
+        ],
+        "need": "另一套实际激活、页游标初始化/恢复与全部详情资格；只有新正向注册/模块/调用证据才扩展旧调度分支。"
+      },
+      {
+        "id": "AB-R2",
+        "capabilities": [
+          "G19",
+          "G20",
+          "G04",
+          "X02"
+        ],
+        "need": "完整配置/选角/世界切换和晚到资料归属、必要间接副作用与共享状态组合；字面量清单不当作所有别名闭合。"
+      },
+      {
+        "id": "AB-R3",
+        "capabilities": [
+          "G19",
+          "G20",
+          "X03"
+        ],
+        "need": "若需求需原文件互操作，单列opaque格式与失败验收；未确定需要前不展开转换内部。"
+      },
+      {
+        "id": "AB-R4",
+        "capabilities": [
+          "G20",
+          "G15"
+        ],
+        "need": "发送者投递/拒绝/结果、完整资料权限/黑名单关联、产品入口；保持原邮件/聊天合同未决。"
+      },
+      {
+        "id": "AB-R5",
+        "capabilities": [
+          "X01",
+          "X04",
+          "X05",
+          "X07",
+          "X08"
+        ],
+        "need": "全能力必要规则复核、后续共享实现与实际平台/同版接受；没有测试账号，真实登录验收未完成。"
+      }
+    ]
+  }
+}

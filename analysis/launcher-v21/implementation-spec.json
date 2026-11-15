@@ -1,0 +1,52 @@
+{
+  "schema": "moli.launcher-v21.implementation-spec.v1",
+  "recorded_utc": "2026-10-27T05:23:22.598475+00:00",
+  "native": "static-spec.json",
+  "pure_core": {
+    "module": "shared/launcher-preferences.mjs",
+    "exports": [
+      "LAUNCHER_PREFERENCE_FORMAT",
+      "LauncherPreferenceError",
+      "encodeLauncherUserModePreference",
+      "decodeLauncherUserModePreference"
+    ],
+    "record": "Canonical exact JSON {schema:moli.launcher.preferences.v1,userMode:1|2}, fixed two keys/order and <=128UTF16 characters. Reject unknown version, extra/duplicate/escaped keys, whitespace/noncanonical representation, arrays, inherited/nonprimitive values and invalid modes without coercion or input echo.",
+    "environment": "No DOM,Node,fs,Buffer,wx,Storage,network or account/session access.",
+    "accepted_inputs": "Only explicit numeric mode1|2 or an own-format string; no username/password/checkbox/encoding/consent values."
+  },
+  "browser_adapter": {
+    "module": "web/launcher-preferences.mjs",
+    "provider": "Lazy same-origin localStorage; exact fixed owned key, stable method/receiver snapshots per operation.",
+    "read": "missing|loaded|invalid|unavailable; invalid/current unknown record retained, no auto write/delete or fallback.",
+    "write": "Explicit save only; exact canonical setItem then same-port getItem readback. saved only on exact equality; pre-provider failure unavailable/no write attempt; write invocation/verification failure unconfirmed/writeAttempted true. No raw errors or fallback copies.",
+    "conflict": "Ordinary Storage last write wins; not atomic compare-and-swap, rollback, native INI mapping or power-failure durability. User-initiated save may replace own invalid/future record; never automatic."
+  },
+  "UI": {
+    "load": "After valid local runtime descriptor, read only own non-secret mode. Missing/invalid/unavailable uses mode2 without auto write. Valid1/2 uses existing pure observed initialization defaults.",
+    "save": "Save input-mode control explicitly stores current numeric mode; inputs, retention checkboxes, account encoding, texts and consent are never passed to the store. Saving does not clear current fields/confirmation.",
+    "change": "Mode changes remain page-only until explicit save.2-to1 confirms; confirmed changes reset fields/consent/candidates. Cancel/Escape preserves fields and prior mode.",
+    "locking": "No save or mode changes during config/text IO, review, modal or actual exchange. Owned mode restored on invalid/locked synthetic changes; confirmation must own currently open pending dialog/current target/current mode. Stale/hidden confirmation ignored.",
+    "restore": "Reload restores numeric mode only; account fields empty, password checkbox false, username checkbox reset by mode defaults, account encodingASCII, configuration/text/consent not restored automatically."
+  },
+  "evidence": {
+    "Node_tests": 380,
+    "new_tests": 11,
+    "preferences_browser_checks": 12,
+    "preferences_browser_requests": 495,
+    "encoding_regression_checks": 9,
+    "encoding_regression_requests": 256,
+    "config_regression_scenarios": 17,
+    "measurement_records": 1,
+    "config_regression_requests": 462,
+    "deadline_ms": 10041,
+    "preload_delay_ms": 5500,
+    "expected_aborted_requests": 1,
+    "unexpected_browser_errors": 0,
+    "original_peer_scope": "One extra preferences flow request plus retained six encoding requests and five full config requests/one cancellation; independent Python original inputs/crypto only."
+  },
+  "remaining": [
+    "Whole-program actual account persistence and indirect field aliases; current direct26 offsets are a bounded inventory.",
+    "Actual ACP/IME/best-fit, service identity/opaque lifetime and real terms/accounts.",
+    "Official update trust/native transaction, game consumers/play, Safari/physical mobile/WeChat/official compatibility."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "observed_utc": "2026-10-25T15:01:32.280588+00:00",
+  "scope": "Minimal stage16 to stage17 constants/description migration; baseline16. Synthetic fixtures under /tmp only; fixed real CLI roots not accessed; no real preflight or apply; no VM/UI actions.",
+  "implementation_equivalence": "Full inverse migration reconstructed reviewed stage16 exactly; AST parsing passed.",
+  "tests": [
+    {
+      "mode": "normal",
+      "exit_code": 0,
+      "log": "/tmp/deliver-moli-stage17-tests-normal.log",
+      "tests": 21,
+      "passed": true
+    },
+    {
+      "mode": "optimized",
+      "exit_code": 0,
+      "log": "/tmp/deliver-moli-stage17-tests-optimized.log",
+      "tests": 21,
+      "passed": true
+    }
+  ],
+  "files": {
+    "/tmp/deliver_moli_stage17.py": "39a3166a1a369592b4136d8870ee4e85fad45076bd809f4b21217d86d96d1070",
+    "/tmp/test_deliver_moli_stage17.py": "8513b0c152e24db3200e0fc28409e8c94c9851cc3812bdda82df37e3c12c95db"
+  },
+  "limitations": "Inherited stage16 TOCTOU/metadata/partial-publication limits unchanged; no real-delivery or Autologon-environment acceptance claimed."
+}

@@ -1,0 +1,183 @@
+{
+  "schema": "moli.capability.game-chat-social-plan.v1",
+  "requirement": "先REA统一所有需求能力，再按共享依赖成组复刻；复用普通聊天/呈现证据，补实际好友/名片/邮件来源，避免按旧friend文件名错误归属。",
+  "capabilities": [
+    "G03",
+    "G05",
+    "G07",
+    "G14",
+    "G15",
+    "G16",
+    "G20",
+    "B01",
+    "X01",
+    "X02"
+  ],
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "baseline": "build/analysis/capability-game-party-social-v1/next-baseline.json",
+  "questions": [
+    "统一默认文字提交、颜色/范围/字号、普通与队伍模式及节流、设置回复与实际发送条件；Enter历史/清空不冒充发包或服务接受。",
+    "统一玩家/系统/小队/特殊前缀、名称精确过滤、黑名单本地持久化、512行日志、角色气泡和双路公告的所有者、边界、时钟与关闭。",
+    "沿实际UI/协议定位真正好友名片与邮件功能，查清资料选择/版本/请求回复/删除/权限和本地缓存；新的能力遗漏按证据纳入，不冻结39域。",
+    "区分源规则、现有单世界投影和独立拒绝/缓存政策，形成共享依赖及提案用例；保留原域/81登记/37历史要求/10组，完整分析、平台和同版接受分别验收。"
+  ],
+  "original_execution": false,
+  "VM_operations": false,
+  "account_or_official_session_observed": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "question_review": [
+    {
+      "question": 1,
+      "status": "ordinary-input-wire-rate-and-policy-differences-bound",
+      "facts": [
+        "input-entry-history-and-chat-call",
+        "ordinary-chat-fields-and-ABI",
+        "rate-state-party-bypass-and-core-initial-policy",
+        "shared-settings-bits-and-namecard-permission"
+      ],
+      "remaining": [
+        "chat-file-settings-and-timing-domain"
+      ]
+    },
+    {
+      "question": 2,
+      "status": "filter-log-speech-and-two-lanes-reused-source-owner-gaps-separated",
+      "facts": [
+        "player-message-filter-and-log-suppression",
+        "native-blacklist-array-and-persistence",
+        "chat-log-ring-and-optional-file",
+        "announcement-replacement-and-full-text-width",
+        "speech-expiry-and-display-gate"
+      ],
+      "remaining": [
+        "chat-file-settings-and-timing-domain"
+      ]
+    },
+    {
+      "question": 3,
+      "status": "actual-namecard-producers-and-mail-capability-discovered-data-chain-open",
+      "facts": [
+        "actual-namecard-and-mail-UI-attribution",
+        "namecard-exchange-request-and-display-coordinates",
+        "mail-senders-and-newly-defined-wire-roles",
+        "contact-deletion-is-not-mail-deletion",
+        "mail-record-bank-and-cache-frontier"
+      ],
+      "remaining": [
+        "namecard-mail-data-and-result-chain",
+        "UI-owner-activation-and-late-context"
+      ]
+    },
+    {
+      "question": 4,
+      "status": "scope40-dependencies-and-proposed-cases-recorded-unified-gate-open",
+      "facts": [
+        "source-reuse-projection-and-duplicate-boundary",
+        "independent-chat-and-session-policies",
+        "scope-discovery-and-completion-boundary"
+      ],
+      "remaining": [
+        "unified-capability-and-platform-gates"
+      ]
+    }
+  ],
+  "source_summary": {
+    "selected_source_views": 117,
+    "reused_native_entries": 99,
+    "new_native_entries": 2,
+    "native_source_body_bytes": 64149,
+    "native_listing_boundaries": 20179,
+    "reused_derived_views": 13,
+    "reused_derived_body_bytes": 12866,
+    "reused_derived_instructions": 3645,
+    "new_unique_derived_views": 3,
+    "new_derived_body_bytes": 322,
+    "new_derived_instructions": 96,
+    "redundant_new_derived_views": 1,
+    "redundant_derived_body_bytes": 107,
+    "redundant_derived_instructions": 33,
+    "declared_source_body_bytes": 77337,
+    "direct_E8_CALL_occurrences_verified": 2149,
+    "unique_E8_CALL_sites_verified": 2149,
+    "complete_original_native_records_factory_validated": 103,
+    "old_exact_helper_bindings_verified": 107,
+    "additional_same_entry_original_observations": 2,
+    "classic_descriptors": 5,
+    "classic_controls_identity_checked": 179,
+    "modern_table_rows": 5,
+    "old_bounded_file_read_windows_verified": 64,
+    "protocol_bindings": 9,
+    "newly_source_defined_serializers_not_added_to_product": 2,
+    "selected_static_literal_spans": 13,
+    "call_anchors_for_independent_views": 5,
+    "new_REA_records": 2,
+    "final_REA_export_records": 2,
+    "final_REA_snapshot_records": 2,
+    "runtime_features_changed": false,
+    "all_capability_analysis_complete": false
+  },
+  "remaining": [
+    {
+      "id": "namecard-mail-data-and-result-chain",
+      "kind": "pending",
+      "capabilities": [
+        "G14",
+        "G20",
+        "G16",
+        "X02"
+      ],
+      "need": "名片/邮件接收、三类view资料/排序映射、投递/拒绝/错误和发送整数的完整选择来源；本地记录、两bank/角色切换与缓存保存/加载、删除/失败及晚到回复的全过程。",
+      "next_evidence": "下一组沿4671b0/(e6、4d0950/498b00/(>#/:+(、4d2300/(R!追实际接收及选择写者；补493d60/495e50/4fe870/4fe9a0/4feaa0/4feae0/4fed30/4fe580等需求相关体，不重做已有包装和UI。"
+    },
+    {
+      "id": "chat-file-settings-and-timing-domain",
+      "kind": "pending",
+      "capabilities": [
+        "G03",
+        "G05",
+        "G07",
+        "G15",
+        "B01",
+        "X02"
+      ],
+      "need": "60ff18历史抑制、60ff20日志文件和534354气泡开关的完整生产/退役，blacklist ID/count加载与空行/错误顺序，首次tick、超长宽度/回绕、骑乘/复合/入退战和声音/资源/后端宿主。",
+      "next_evidence": "从已证写入/显示/源调用点关联全局所有者；单列原绝对deadline与独立elapsed、原全串宽度与独立截断宽度政策，按实际需求决定兼容差异。"
+    },
+    {
+      "id": "UI-owner-activation-and-late-context",
+      "kind": "pending",
+      "capabilities": [
+        "G14",
+        "G15",
+        "G20",
+        "X02"
+      ],
+      "need": "经典和现代两套业务的完整外层激活、focus/文本、选中索引/关闭/重开/模态和共享owner变化；读者/按钮调用不充当全部97callback调度证明。",
+      "next_evidence": "复用共用窗口/文字合同和本组具体CALL/表锚；只沿实际新边补证，不重复open99/97/type0有限阴性搜索或重建重复公共框架。"
+    },
+    {
+      "id": "unified-capability-and-platform-gates",
+      "kind": "pending",
+      "capabilities": [
+        "X01",
+        "X02",
+        "X04",
+        "X05",
+        "X07",
+        "X08"
+      ],
+      "need": "新G20和其余完整能力的规格与依赖复核、实际三端及必要版本/同版外部接受；初表40不是完整发现或全项目完成率。",
+      "next_evidence": "继续统一分析后按D0..D6分组实施；缺少账号继续做独立静态/规格，不扩大保护/认证内部分析或宣称已获真实会话接受。"
+    }
+  ],
+  "scope_change": {
+    "original_capabilities_preserved": 39,
+    "new_capability": "G20",
+    "current_capability_count": 40,
+    "reason": "Actual namecard/mail UI and sender chains expose mail beyond map chat."
+  }
+}

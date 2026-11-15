@@ -1,0 +1,9 @@
+/** Original numeric actor snapshots andcontrolled authored files,not shipped actors. */
+import {readFileSync} from 'node:fs';
+import {originalFiles} from '../game-resource-runtime-v1/original_files.mjs';
+const named=JSON.parse(readFileSync(new URL('../game-animation-palette-source-v1/original-vectors.json',import.meta.url)));
+export async function styleFixture(api){const files=originalFiles(named.assets),library=api.createLegacyGameResourceLibrary({plan:api.createLegacyGameResourcePlan(new Uint8Array()),files:files.port,paletteMode:'neutral'});await library.initialize();const frame=api.createLegacyGameBattleFrameController({graphics:library.catalogs().graphics});return{files,library,frame,close(){frame.close();library.close();files.close();}};}
+export function styleNode(input={},id=2,index=1600,geometry={width:4,height:1},screen=[2,3],scale=[1,1]){return {id,kind:'body',slot:id-1,deleted:false,drawPriority:id===1?1:10,actorFlags:input.actorFlags??0,screen,scale,depthKey:0,alternateY:0,drawFlagMask:input.drawFlagMask??0,drawFlagValue:input.drawFlagValue??0,
+ ...(input.drawColorOverride?{drawColorOverride:input.drawColorOverride}:{}),animation:{graphicIndex:index,drawOffsetX:0,drawOffsetY:0,geometry,drawFlags:input.drawFlags??0,color:input.color??0xffffffff,paletteSelector:input.paletteSelector??0}};}
+export const stylePlayback=nodes=>({status:'open',alternativeRenderer:true,passes:0,nodes});
+export function authoredAnimation(api,flags=0,color=0x80ffffff){const index=new Uint8Array(12),iv=new DataView(index.buffer),animation=new Uint8Array(40),v=new DataView(animation.buffer);iv.setUint32(0,100001,true);iv.setUint16(8,1,true);iv.setUint16(10,1,true);v.setUint32(4,32,true);v.setUint32(8,2,true);v.setUint16(12,320,true);v.setUint16(14,flags,true);v.setUint32(16,color,true);v.setUint32(20,1600,true);v.setUint32(30,1600,true);return api.createLegacyGameAnimationCatalog([{index,animation,graphicBase:0}]);}

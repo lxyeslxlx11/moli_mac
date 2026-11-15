@@ -1,0 +1,76 @@
+{
+  "schema": "moli.game-session-validation-stage165.v1",
+  "classification": "observed static source / derived independent implementation / controlled original loopback runtime",
+  "source": "source-check.json",
+  "contract": "implementation-spec.json",
+  "tests": "test-results.json",
+  "browser": "browser-validation.json",
+  "requirements": "../../reports/development-plan.md#stage165",
+  "passed": [
+    "source-artifact identity and30source mappings",
+    "25targeted/1133full Node",
+    "2neutral/7actual generated App/Page checks",
+    "3fresh WeChat App builds105inputs11outputs0external and standalone game API80inputs0external",
+    "original auth+scene TCP and WeChat-shaped TCP plus busy rejection",
+    "desktop/touch source auth→53pixel digests→2moves→correction→EOF→close",
+    "no console errors or external requests in passing browser run; screenshots inspected"
+  ],
+  "not_run": [
+    "original client execution/VM/WER/CDB",
+    "official authentication/account/server",
+    "actual WeChat IDE/device/domain/Canvas/file scheduling",
+    "persistent game page or complete native game-stage lifecycle",
+    "current9baa/6e2ff consumer equivalence",
+    "full playability/remaining business/battle/effects/party"
+  ],
+  "failures_and_corrections": [
+    {
+      "scope": "session lifecycle",
+      "receipt": "build/analysis/game-session-runtime-v1/session-targeted-initial.log",
+      "finding": "done resolved before borrowed async-callback packet bytes were zeroed",
+      "fix": "track activePacket and clear synchronously before settling terminal promises",
+      "product_change": true,
+      "final": "25targeted/1133full and browser paths pass"
+    },
+    {
+      "scope": "browser timer",
+      "receipt": "build/analysis/game-session-runtime-v1/browser-timer-failure-validation.json",
+      "finding": "Window timer was invoked with a synthetic options-object receiver, causing LEGACY_SESSION_TIMER before open",
+      "fix": "invoke port callbacks without receiver; browser defaults explicitly call global timer methods",
+      "product_change": true,
+      "final": "real Chrome WebSocket/Canvas paths pass"
+    },
+    {
+      "scope": "WeChat test endpoint",
+      "receipt": "build/analysis/game-session-runtime-v1/tcp-targeted-diagnostic.log",
+      "finding": "existing original native fixture accepts fixture.invalid:12345 only; test used a different logical endpoint",
+      "fix": "test uses the existing explicit fixture tuple; product restrictions unchanged",
+      "product_change": false
+    },
+    {
+      "scope": "neutral test",
+      "receipt": "build/analysis/game-session-runtime-v1/portable-initial.log",
+      "finding": "test named clearTimer without defining it",
+      "fix": "bind supplied test port to clearTimeout",
+      "product_change": false
+    },
+    {
+      "scope": "browser fixture",
+      "receipt": "build/analysis/game-session-runtime-v1/browser-initial-validation.json",
+      "finding": "replacing the live launcher DOM conflicted with its late handlers",
+      "fix": "dedicated original static test fixture document",
+      "product_change": false
+    },
+    {
+      "scope": "browser intercepted document",
+      "receipt": "build/analysis/game-session-runtime-v1/browser-intercept-LNA-validation.json",
+      "finding": "synthetically fulfilled document got ERR_BLOCKED_BY_LOCAL_NETWORK_ACCESS_CHECKS for loopback WebSocket",
+      "fix": "serve test document through normal local HTTP; keep browser security settings and flags",
+      "classification": "fact: observed error and passing normal-HTTP run; inference: interception/address-space association",
+      "product_change": false,
+      "reference": "https://developer.chrome.com/docs/modern-web-guidance/guides/security/local-network-access"
+    }
+  ],
+  "goal_status": "active",
+  "full_goal_complete": false
+}

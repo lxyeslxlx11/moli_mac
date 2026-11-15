@@ -1,0 +1,135 @@
+{
+  "schema": "moli.ifps-static.install-conditions.v1",
+  "recorded_utc": "2026-10-29T18:34:19.928951+00:00",
+  "sample": {
+    "installer": "CrossGate_Setup.exe",
+    "sha256": "e593e47fa09ac03e2213c7dc7bb80575e0295f0dc48a0e1edc73c4ac1982f983",
+    "compiled_bytes": 3778,
+    "compiled_sha256": "c9b7e7bbd40c6dcf8bfd8b50b712ac29940a95e226d132e27f537c596185bec1"
+  },
+  "reader": "binary-refinery0.11.3 IFPSFile.Parse, seven synthetic qualification methods passed; no new REA records or vendor script execution",
+  "raw_facts": {
+    "selected_contiguous_table_entries": [
+      {
+        "table_offset": 1418,
+        "tag": 2,
+        "raw_name": "GETLAUNCHERPATH",
+        "body_offset": 3416,
+        "body_bytes": 163,
+        "next_table_offset": 1456,
+        "body_sha256": "45ec3d5741d10db5f5e5dc417d951bdcff32274a94e9c1d09114a0db1d0e1742"
+      },
+      {
+        "table_offset": 1456,
+        "tag": 3,
+        "raw_name": "REGQUERYSTRINGVALUE",
+        "body_offset": null,
+        "body_bytes": null,
+        "next_table_offset": 1486
+      },
+      {
+        "table_offset": 1486,
+        "tag": 2,
+        "raw_name": "CHECKPOLCNSETUP",
+        "body_offset": 3579,
+        "body_bytes": 84,
+        "next_table_offset": 1520,
+        "body_sha256": "cf3d0d0879f5caba56a51262a15d0221b9502cfd96877822a1557902237cd1c0"
+      },
+      {
+        "table_offset": 1520,
+        "tag": 3,
+        "raw_name": "LENGTH",
+        "body_offset": null,
+        "body_bytes": null,
+        "next_table_offset": 1533
+      }
+    ],
+    "offset_basis": "All offsets below are relative to the decompressed IFPS blob, not the installer EXE or runtime VA. Function indices22..25 additionally use the complete upstream table parse.",
+    "anchors": [
+      {
+        "function": 22,
+        "relative_offset": 41,
+        "meaning": "UTF16LE value name InstallDir",
+        "characters": 10
+      },
+      {
+        "function": 22,
+        "relative_offset": 81,
+        "meaning": "UTF16LE subkey SOFTWARE\\SECN\\Launcher",
+        "characters": 22
+      },
+      {
+        "function": 22,
+        "relative_offset": 141,
+        "hex": "01000080",
+        "signed_i32": -2147483647,
+        "unsigned_u32": 2147483649
+      },
+      {
+        "function": 22,
+        "relative_offset": 151,
+        "hex": "0517000000",
+        "meaning": "direct Call index23"
+      },
+      {
+        "function": 24,
+        "relative_offset": 41,
+        "hex": "0516000000",
+        "meaning": "direct Call index22"
+      },
+      {
+        "function": 24,
+        "relative_offset": 54,
+        "hex": "0519000000",
+        "meaning": "direct Call index25"
+      },
+      {
+        "function": 24,
+        "relative_offset": 61,
+        "hex": "0c02",
+        "meaning": "Compare with GT operator"
+      },
+      {
+        "function": 24,
+        "relative_offset": 78,
+        "hex": "00000000",
+        "meaning": "comparison right immediate S32 zero"
+      }
+    ]
+  },
+  "static_interpretation": {
+    "classification": "Tool-supported inference corroborated by selected independent raw fields/opcodes; not runtime observation.",
+    "GetLauncherPath": "Returns the HKCU SOFTWARE\\SECN\\Launcher InstallDir string through RegQueryStringValue output; its Boolean success result is discarded. The selected complete body has one direct API call and no conditional jump or indirect call.",
+    "CheckPolCNSetup": "Calls GetLauncherPath with an empty argument, passes the returned string to Length, returns whether the length is greater than zero. The selected complete body calls only GetLauncherPath and Length.",
+    "presence_scope": "No file/directory existence, executable version/hash, account, authentication, or health check occurs in these two complete decoded bodies. This does not claim the rest of the installer lacks such checks."
+  },
+  "application_inference": {
+    "classification": "Inference, pending normal installer execution.",
+    "branch": "A missing/empty InstallDir supports the not CheckPolCNSetup branch at that evaluation; a nonempty stale value can satisfy this predicate without proving a launcher exists.",
+    "repeat_evaluation": "Official Check documentation allows repeated calls. Registry state and installer timing may change; two complementary entry expressions are not a captured runtime branch or proof that exactly one action ran.",
+    "query_failure": "Official RegQueryStringValue returns False without changing ResultStr; default result initialization and the actual installer result were not observed here."
+  },
+  "primary_references": [
+    {
+      "url": "https://jrsoftware.org/ishelp/topic_isxfunc_regquerystringvalue.htm",
+      "supports": "API output and False leaves ResultStr unmodified."
+    },
+    {
+      "url": "https://jrsoftware.org/ishelp/topic_scriptcheck.htm",
+      "supports": "Boolean entry selection; possible multiple calls."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/remobjects/pascalscript/master/Source/uPSUtils.pas",
+      "supports": "IFPS magic/version and opcode definitions; pinned reader independently reads selected fields."
+    }
+  ],
+  "remaining": [
+    "Unknown-source installer/UAC action-time question still unanswered; no execution implied by automatic goal continuation.",
+    "Actual registry view, user context after elevation, postinstall selection/evaluation, nested platform installation, cancellation of autostart, and final installed file/registry state require normal runtime evidence.",
+    "No protected game payload, protocol consumer, game frame/auth/state, or official compatibility recovered."
+  ],
+  "vendor_program_executions": 0,
+  "vendor_script_function_executions": 0,
+  "raw_code_and_disassembly_private": true
+}

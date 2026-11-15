@@ -1,0 +1,961 @@
+{
+  "schema": "moli.launcher-startup-recovery.contract.v1",
+  "classification": "事实/推测/待验证分别登记",
+  "capability": "L01",
+  "requirement": "在原全部能力先成规流程内补SS-U2旧版完整启动/异常/普通恢复及配置来源，不缩减原范围。",
+  "parent": {
+    "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+    "bytes": 77125,
+    "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+  },
+  "closed_C7_path_supplement": {
+    "path": "analysis/capability-first-v1/launcher-c7-path-context-contract.json",
+    "bytes": 47926,
+    "sha256": "18fc3ad84573ab556b491c5b3906a81815f890d82c35f2eccee66a4a68209b41"
+  },
+  "source": {
+    "path": "build/analysis/launcher-session-functional-specification-v1/legacy-material/POLCN_Launcher.analysis-only.exe",
+    "bytes": 1735168,
+    "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "profile": "launcher-legacy-601b"
+  },
+  "source_review": {
+    "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+    "bytes": 83664,
+    "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+  },
+  "scope_preserved": {
+    "full_scope": "40/81/37/10/6",
+    "original_groups": [
+      "配置读取",
+      "区域目录初始化",
+      "来源选择",
+      "首次配置",
+      "失效恢复"
+    ],
+    "original_profiles": [
+      "launcher-legacy-601b",
+      "launcher-updated-c82f",
+      "launcher-historical-c7ba"
+    ],
+    "owners": [
+      "shared/launcher-catalog.mjs",
+      "shared/launcher-first-config.mjs"
+    ],
+    "dependencies": [
+      "X01"
+    ],
+    "implementation_batch": "D1",
+    "registered_protocol_entries": [
+      "LCH-CATALOG-001",
+      "UPD-CATALOG-001",
+      "CFG-GAME-001"
+    ]
+  },
+  "facts": [
+    {
+      "id": "SR-F01",
+      "classification": "事实",
+      "claim": "本合同只补原L01 SS-U2的601b完整启动/EH、INI来源和普通恢复/退出；保留五组、三profile、两owner、X01/D1与三登记。先前同C7 SS-U1仍闭，未改变L03两profile或LS-U3。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/before/analysis/capability-first-v1/capability-matrix.json",
+            "bytes": 951204,
+            "sha256": "a416f377a8157c76ab7044b59204f1aec6f2f29ff4910f49c44bb406e5bce800"
+          },
+          "pointer": "/capabilities/0",
+          "canonical_sha256": "90c5bb828b34a01a3beee77246361a3f56d62b079423275ba47e58c6db995625"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+            "bytes": 77125,
+            "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+          },
+          "pointer": "/remaining/1",
+          "canonical_sha256": "23d4d5ea23df606611dfee735cd65c5500a06d9955645886ad8581db85c32a9a"
+        }
+      ]
+    },
+    {
+      "id": "SR-F02",
+      "classification": "事实",
+      "claim": "4015A0 provider void不是实际BOOL：base PreCreateWindow返回0时EAX=0直接走尾部；普通成功路径先把1存入parent frame，按顺序析构后才返回该值。析构异常仍可阻断普通return，不能把到达赋1等同成功返回。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "99acb6afc56b270cd519fa0250fe4271dde8ba2ce0871ad6eb13e080c5a266c7"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/ABI_view",
+          "canonical_sha256": "2f68a78357424d8893952fc37824c25c9cc87557e557c4d28dbbdd40a32f5fae"
+        }
+      ]
+    },
+    {
+      "id": "SR-F03",
+      "classification": "事实",
+      "claim": "401000构造CChildView：15个game对象stride0xA4、40个region对象stride0x1C8、15个路径CString；在this+6CA0构造CIniFile，this+6CA8另为启动namespace，UserMode+6C88初始化-1。这些不是C7/C82字段的地址差推断。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/0",
+          "canonical_sha256": "7e5d81319a247257fde3f5c2d455cdca293e5f21f9ac8d7e6db057628d5ee6de"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/8",
+          "canonical_sha256": "7ee5e51b11c27e6954eaa3236e8671b307ab1b8c5164c01fe4190ef3e7674988"
+        }
+      ]
+    },
+    {
+      "id": "SR-F04",
+      "classification": "事实",
+      "claim": "424A20调用4161E0读取AfxGetModuleState()+8作为GetModuleFileNameA的HMODULE，缓冲容量260。对所得C字符串从strlen索引向前找反斜杠，找到则在其后一byte写NUL，再追加PlayOnline.ini并保存CIniFile+4。正常可用module路径下是该framework module相邻文件，不是无条件HMODULE0。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/8",
+          "canonical_sha256": "7ee5e51b11c27e6954eaa3236e8671b307ab1b8c5164c01fe4190ef3e7674988"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/7",
+          "canonical_sha256": "056fdb66fab5d12c8d7f3254ade6ce0208bd61d14197fdb721f565f0c0f3f6ec"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/0",
+          "canonical_sha256": "7e5d81319a247257fde3f5c2d455cdca293e5f21f9ac8d7e6db057628d5ee6de"
+        }
+      ]
+    },
+    {
+      "id": "SR-F05",
+      "classification": "事实",
+      "claim": "上述INI构造caller未检查GetModuleFileNameA返回值；无分隔、返回0或截断情形没有由本体提供结构化恢复保证。不据通常主模块布局宣称所有模块/系统结果都正确；目标host必须显式处理其实际路径来源和失败。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/8",
+          "canonical_sha256": "7ee5e51b11c27e6954eaa3236e8671b307ab1b8c5164c01fe4190ef3e7674988"
+        }
+      ]
+    },
+    {
+      "id": "SR-F06",
+      "classification": "事实",
+      "claim": "4015A0经424D50读取this+6CA0的INI：AutoSelect/NoPrompt/NoMinHelper默认0，Game/Region/Galaxy/GameID/GameList/RegionList/GalaxyList/UserMode等默认-1；字段+6C70等是ordinal/模式状态，启动GAME:形成的+6CAC是代码语义。424B60/424D50分别把source section/key/default与INI+4传给PrivateProfile API；读写wrapper属于同601b。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "99acb6afc56b270cd519fa0250fe4271dde8ba2ce0871ad6eb13e080c5a266c7"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/9",
+          "canonical_sha256": "75763c515416ef2791cba45ad7e1095eb66943f403b461c52e2e55d109485d44"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/10",
+          "canonical_sha256": "e66938c31f45840610ae553e709db4d756ff71ae47c0cca00ea2eb01af153d70"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/11",
+          "canonical_sha256": "c225f7b6073f666d0b25b25a9e1e59705dc7c074d440bcbffce5b7493e3eac46"
+        }
+      ]
+    },
+    {
+      "id": "SR-F07",
+      "classification": "事实",
+      "claim": "UserMode不等于1/2才创建本版dialog并DoModal；modal结果等于1选择1，其他结果选择2，随后424F00以%d格式发WritePrivateProfileStringA保存请求并返回API BOOL，caller不分支该返回。取消/创建失败等非1结果并未在本段取消整个启动；40F800实际写dlgUserMode vtable、清两个child control再调CDialog析构，FID toolbar候选名不作业务身份。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "99acb6afc56b270cd519fa0250fe4271dde8ba2ce0871ad6eb13e080c5a266c7"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/6",
+          "canonical_sha256": "26c4bada8ab3d51c76f5158996ddf16f8b2e35bac6082307ce69c663a9b0769b"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/derived_windows/56",
+          "canonical_sha256": "cf0ae025a36a5cead65319e909aa9c0ae6290b054a86f62682579bfcabb51f4c"
+        }
+      ]
+    },
+    {
+      "id": "SR-F08",
+      "classification": "事实",
+      "claim": "自动选择要求AutoSelect==1、game和region均为有效ordinal、所选game路径就绪字节非0且其Code经44D564转换后存+1BF0的数值等于启动+6CAC；Code原文本另存+1B80，三者不混为一类。通过后复制本版名称/路径/更新/EXE/浏览器等上下文并设Main+0xA84状态3，调用既有405DA0和100ms timer；未通过则进普通区域选择。不能以Code替代ordinal或凭目录存在跳过其他gate。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "99acb6afc56b270cd519fa0250fe4271dde8ba2ce0871ad6eb13e080c5a266c7"
+        }
+      ]
+    },
+    {
+      "id": "SR-F09",
+      "classification": "事实",
+      "claim": "自动路径分支的404BE7调用strlen，404BEF直接push结果，404C09调用4096C0，再与反斜杠0x5C比较；4096C0检查index相对alloc length后直接取data[index]。没有减1，不能将其重写为检查最后字符；成立的源关系与目标规范化政策须分列。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "99acb6afc56b270cd519fa0250fe4271dde8ba2ce0871ad6eb13e080c5a266c7"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/3",
+          "canonical_sha256": "30b5998f9e8beb886373501e065e65620cbc959c1a9af7637d4601b41cabefc8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/auto_path_join_anchors",
+          "canonical_sha256": "bf3ee81165932b81d6f04472c5e522fe00d6e5301407e2051afb7bb06b2191da"
+        }
+      ]
+    },
+    {
+      "id": "SR-F10",
+      "classification": "事实",
+      "claim": "完整4015A0有9个显式44D88A/_exit调用：6处status-1、1处status0、2处status1；更新digest/URL/解出助手及两XML更新取回失败与XML LoadFile失败分别有源位置。它们不是base false普通return，也不是本帧throw/catch恢复。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "99acb6afc56b270cd519fa0250fe4271dde8ba2ce0871ad6eb13e080c5a266c7"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/explicit_exit_sites",
+          "canonical_sha256": "881f2062ff0a79b5d73e59e1b1ee8dcc2a838cfd63cb6d64e09567d035d0a043"
+        }
+      ]
+    },
+    {
+      "id": "SR-F11",
+      "classification": "事实",
+      "claim": "自更新不匹配时创建LauncherUpdater的CreateProcessA失败会报告，成功会记录，但两个分支汇合到401DC5的_exit(0)。status0不证明更新助手创建成功、更新完成或游戏接受；源普通caller没有在Create失败后继续目录初始化。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "99acb6afc56b270cd519fa0250fe4271dde8ba2ce0871ad6eb13e080c5a266c7"
+        }
+      ]
+    },
+    {
+      "id": "SR-F12",
+      "classification": "事实",
+      "claim": "原Game文件的Delete/Open3001/strlen Write/Close在Region HTTP之前；两更新之后才共同LoadFile。显式_exit不会自动执行本帧automatic-local析构，不能用后部普通cleanup或EH unwind表冒充这些退出边的回滚。实际磁盘结果仍有条件。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "99acb6afc56b270cd519fa0250fe4271dde8ba2ce0871ad6eb13e080c5a266c7"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/primary_references/1",
+          "canonical_sha256": "dc987aa36f2f5c6cad41b199c8c1daca265bf07f0bd8e9a714746be14f1465c6"
+        },
+        {
+          "file": {
+            "path": "analysis/launcher-v14/catalog-producer.json",
+            "bytes": 2207,
+            "sha256": "425b1c6ae58521cb3bb10ec8e206fa2c2ef84e39b4ccd352d3bd960cbfe9c0ce"
+          },
+          "pointer": "/facts",
+          "canonical_sha256": "84eed577340877b7631b1e67b805657d6e8a0beb7c1fd93fb254b2cf4d7fbfa6"
+        }
+      ]
+    },
+    {
+      "id": "SR-F13",
+      "classification": "事实",
+      "claim": "4015A5入帧push4AC361；该handler无Ghidra过程归属，仅读40B并按原PE派生：两次cookie检查后载入4C9F70 FuncInfo，再tail-jump44D195。address_name给出的CxxFrameHandler3身份与表magic/布局相符；未把派生handler标作新增完整native。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/derived_windows/0",
+          "canonical_sha256": "7fa75cc4cb22c391f5554bbf687052d10fd6ec95e3049e1df281339b2418d73d"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/FuncInfo",
+          "canonical_sha256": "ef88b531f885ead6528ae2bfc5f9352692e29efcbc3b9976f81b2c36b5fe20c8"
+        }
+      ]
+    },
+    {
+      "id": "SR-F14",
+      "classification": "事实",
+      "claim": "同原件4C9F70的x86 FuncInfo九word为magic19930522、maxstate57、unwind4C9F94、numTryBlocks0、tryMap0、IP计数/指针0、ESTypeList0、flags1；按LLVM官方源的x86布局核读。只证明本frame没有本地try/catch条目，不证明所有callee或外层caller都无handler。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/FuncInfo",
+          "canonical_sha256": "ef88b531f885ead6528ae2bfc5f9352692e29efcbc3b9976f81b2c36b5fe20c8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/primary_references/0",
+          "canonical_sha256": "1026025bbf447e5affd89177950339a239ba860522e932736d567735dbe38ae5"
+        }
+      ]
+    },
+    {
+      "id": "SR-F15",
+      "classification": "事实",
+      "claim": "57条state→前态均严格下降并终止-1；55个不同11B cleanup stub覆盖57状态（两组复用同一action）。每体是frame地址/指针加载后直接tail-jump，目标集合仅40BCD0/430DF6/40BE00/408F70/40F800。57条链的静态核读不是57个原程序测试。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/unwind_rows",
+          "canonical_sha256": "2e438645afbf1e66e413e4d86f75699b0ca142fc5a249815ffacd179c2bf077b"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/unwind_chains",
+          "canonical_sha256": "f173ac83ee247f025509cd96713e90b567fbf9dc338e91a20d021238b100f32f"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/derived_windows",
+          "canonical_sha256": "48e094f0e38c1383fea9ac501d77af21de7fda16c929c31dbcd74073eadc7fbe"
+        }
+      ]
+    },
+    {
+      "id": "SR-F16",
+      "classification": "事实",
+      "claim": "五个目标分别是CString包装、CFile析构包装、string释放包装、stream/vbase析构包装和上述dlgUserMode析构。局部stub没有业务回滚入口；430DF6在handle有效且close-on-delete时请求CFile::Close，它自身仍有独立异常/继续路径，不把parent零catch泛化到析构内部。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/4",
+          "canonical_sha256": "238d7a2facf1ba8e0943642547f296c0d0475e4d840360e6ae3a32cc62ca27b9"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/13",
+          "canonical_sha256": "1d5f210644a44a2c10b847c535fec0d26bc35b2d180cf99add9e17e0143a7f83"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/5",
+          "canonical_sha256": "fe0931a08c88a560bcf60c1712e016a5c32883223770c45f93971115ebd310c3"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/2",
+          "canonical_sha256": "8bb01ed0c5157c0690fb5c740dc6b9443760bde8f1e062d42355c2d0d540b31c"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/6",
+          "canonical_sha256": "26c4bada8ab3d51c76f5158996ddf16f8b2e35bac6082307ce69c663a9b0769b"
+        }
+      ]
+    },
+    {
+      "id": "SR-F17",
+      "classification": "事实",
+      "claim": "已保留430B4E/CFile::Close先CloseHandle，再清handle为-1、close-on-delete为0并Empty文件名，失败可ThrowOsError。parent清理可能因此不正常返回；这些源调用不构成已观察的磁盘durability或所有called helper rollback证明。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/12",
+          "canonical_sha256": "7343b463c6ab23139701b18866db91dd7b44931d83a2d2f373c479007ce2d0b6"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/bodies/13",
+          "canonical_sha256": "1d5f210644a44a2c10b847c535fec0d26bc35b2d180cf99add9e17e0143a7f83"
+        }
+      ]
+    },
+    {
+      "id": "SR-F18",
+      "classification": "事实",
+      "claim": "本轮9个新完整体1426B与5个旧完整体的14窗17241B/3719指令已核同601b原PE；handler、55stub和整数保存方法另有57个派生窗832B/175指令，4个REA读窗和54个旧目录锚点核原件。当前REA会话已导出352条并关闭，未运行原程序/VM/Config/SDK/账号或官方接受。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-startup-recovery-v1/source-review.json",
+            "bytes": 83664,
+            "sha256": "8a988c8a8d9bb10cf1077f1f1aebfe5794bb4e9fd6792e5244e022a7f0fd3e2e"
+          },
+          "pointer": "/summary",
+          "canonical_sha256": "c417bebcfa7f56cd857eb67633ddd189f1bb487c33ddd848d08d105ac92192e9"
+        }
+      ]
+    }
+  ],
+  "inferences": [
+    {
+      "id": "SR-I1",
+      "classification": "推测",
+      "premises": [
+        "SR-F9"
+      ],
+      "claim": "对有效且NUL结尾的原CString，data[strlen(data)]为NUL，所以这组比较不会因路径末尾已有反斜杠而进入“已有分隔”分支；其else拼接可保留重复分隔。尚未做原进程实际路径观测。",
+      "native_case_captured": false
+    },
+    {
+      "id": "SR-I2",
+      "classification": "推测",
+      "premises": [
+        "SR-F12",
+        "SR-F14",
+        "SR-F16",
+        "SR-F17"
+      ],
+      "claim": "若Game Write/Close的磁盘效果已成立且没有callee/外部另行恢复，随后Region HTTP显式_exit可留下新Game/旧Region；parent本地catch/cleanup不能充当自动pair恢复证明。未宣称实际出现过该磁盘状态。",
+      "native_case_captured": false
+    }
+  ],
+  "operations": [
+    {
+      "id": "SR-O01",
+      "profile": "launcher-legacy-601b",
+      "original_group": "配置读取",
+      "trigger": "创建CChildView及INI上下文",
+      "rule": "保留本版对象数组、MFC module handle和INI位置。",
+      "effect": "构造本版字段与namespace；不迁移偏移。",
+      "failure_and_recovery": "API失败/截断的源缺保护与目标显式失败分开。",
+      "fact_ids": [
+        "SR-F03",
+        "SR-F04",
+        "SR-F05"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "SR-O02",
+      "profile": "launcher-legacy-601b",
+      "original_group": "配置读取",
+      "trigger": "原启动读取source section及默认值",
+      "rule": "按PrivateProfile包装读取原ordinal/flag/mode。",
+      "effect": "保存selected context与mode；不以Code替代ordinal。",
+      "failure_and_recovery": "未观察实际INI存在、ACP或写入效果。",
+      "fact_ids": [
+        "SR-F06"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "SR-O03",
+      "profile": "launcher-legacy-601b",
+      "original_group": "首次配置",
+      "trigger": "UserMode不是1/2",
+      "rule": "进入实际dlgUserMode，返回1选1，否则2。",
+      "effect": "发保存请求并继续原启动。",
+      "failure_and_recovery": "非1结果不是本段启动cancel；目标取消政策须明确。",
+      "fact_ids": [
+        "SR-F07"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "SR-O04",
+      "profile": "launcher-legacy-601b",
+      "original_group": "来源选择",
+      "trigger": "AutoSelect及所有普通gate成立",
+      "rule": "按本版Code数值/原文本、ordinal、path-ready和捕获字段分别绑定。",
+      "effect": "状态3/目录EXE/参数和原timer请求。",
+      "failure_and_recovery": "任何gate不成立转原区域选择；路径strlen索引政策另保留。",
+      "fact_ids": [
+        "SR-F08",
+        "SR-F09"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "SR-O05",
+      "profile": "launcher-legacy-601b",
+      "original_group": "区域目录初始化",
+      "trigger": "原自更新与两catalog更新/解析",
+      "rule": "复用SS旧普通顺序、现有目录规则，补完整退出与异常边。",
+      "effect": "普通Game→Region写后再共同LoadFile。",
+      "failure_and_recovery": "HTTP、助手与LoadFile显式退出分列，不假设pair原子或回滚。",
+      "fact_ids": [
+        "SR-F10",
+        "SR-F11",
+        "SR-F12"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "SR-O06",
+      "profile": "launcher-legacy-601b",
+      "original_group": "失效恢复",
+      "trigger": "base false或普通初始化尾部",
+      "rule": "区分return0与普通cleanup后return1。",
+      "effect": "只有cleanup正常返回才发布BOOL1。",
+      "failure_and_recovery": "析构throw不等同已经成功返回。",
+      "fact_ids": [
+        "SR-F02",
+        "SR-F17"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "SR-O07",
+      "profile": "launcher-legacy-601b",
+      "original_group": "失效恢复",
+      "trigger": "达到九个显式退出请求之一",
+      "rule": "保存status与明确terminal reason。",
+      "effect": "更新助手成功/失败均可status0；不继续普通初始化。",
+      "failure_and_recovery": "不是automatic-local unwind；真实host映射走既有生命周期端口。",
+      "fact_ids": [
+        "SR-F10",
+        "SR-F11",
+        "SR-F12"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "SR-O08",
+      "profile": "launcher-legacy-601b",
+      "original_group": "失效恢复",
+      "trigger": "本frame中发生需要传播的C++异常",
+      "rule": "按57条状态清理，零local catch。",
+      "effect": "执行当前状态对应析构/退役，不重入普通业务初始化。",
+      "failure_and_recovery": "子析构/外层handler与真实文件恢复不在零catch结论内。",
+      "fact_ids": [
+        "SR-F13",
+        "SR-F14",
+        "SR-F15",
+        "SR-F16",
+        "SR-F17"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "SR-D1",
+      "merge_into": "SS-D1/SS-D5",
+      "change": "统一FlowOutcome同时表达terminal reason、source exit status、ordinary return和exception propagation；status0不替代助手/游戏成功。",
+      "implemented": false
+    },
+    {
+      "id": "SR-D2",
+      "merge_into": "SS-D3/LF-D3/LP-D1",
+      "change": "沿原SourceValueContext携带本版module/INI、ordinal与raw Code、默认值和路径原byte；不把strlen索引改成last character，也不全局修改共同路径规则。",
+      "implemented": false
+    },
+    {
+      "id": "SR-D3",
+      "merge_into": "SS-D4/SS-D5",
+      "change": "C++ EH表留作源分析，目标使用既有owner/clock/store/Host异步退役与实际效果readback；取消、失败持久化与回滚设计单独接受。",
+      "implemented": false
+    }
+  ],
+  "selected_supersession": {
+    "parent_pointer": "/remaining/1",
+    "parent_id": "SS-U2",
+    "selected_closed": [
+      "601b 4015A0 complete local EH table and ordinary return/explicit-exit paths",
+      "601b CChildView→CIniFile→MFC module handle/normal adjacent INI source",
+      "601b profile defaults/UserMode/automatic-entry actual local branches"
+    ],
+    "still_open": [
+      "原C82/C7及其他必要多版初始化/恢复/变体组合",
+      "LF-U4仅有条件的296/30721/30734和四菜单准入",
+      "called-helper/outer-handler/异常OS结果未观察的真实恢复效果",
+      "SS-U3真实host/Config效果与完整接受"
+    ],
+    "whole_SS_U2_source_closed": false,
+    "whole_L01_ready": false,
+    "C7_SS_U1_source_closed_preserved": true,
+    "does_not_close": [
+      "L03 LS-U3",
+      "L07 current same-version game consumer"
+    ]
+  },
+  "remaining": [
+    {
+      "id": "SR-U1",
+      "classification": "待验证",
+      "preserves": "SS-U2",
+      "need": "不再把已闭的601b本帧EH/普通结果/normal INI来源列作未知；仍须原C82/C7及其他必要多版初始化、恢复与变体合成。LF-U4条件入口只有正向owner/普通入口证据才扩展。"
+    },
+    {
+      "id": "SR-U2",
+      "classification": "待验证",
+      "preserves": "SS-U3",
+      "need": "目标host设计与真实Config、OS/ACP/MBCS、取消/关闭/后台/预算/IME/持久化及完整接受未验；SDK原设置请求未答复，不重发/绕过，无账号答复保留。"
+    },
+    {
+      "id": "SR-U3",
+      "classification": "待验证",
+      "need": "本帧零catch不关闭所有called helper/外层handler；native磁盘效果、durability、异常module/API输出和真正回滚另待实际证据，不能把源清理表当恢复成功。"
+    }
+  ],
+  "acceptance": {
+    "parent_cases_retained": 20,
+    "supplement_cases": [
+      {
+        "id": "SR-A01",
+        "context": "有效MFC module路径及实际HMODULE0不同的来源上下文",
+        "expected": "INI依据+8指向的framework module路径；不固定假设主EXE。",
+        "fact_ids": [
+          "SR-F03",
+          "SR-F04"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SR-A02",
+        "context": "GetModuleFileNameA返回0、截断或无分隔",
+        "expected": "源不具有已证结构化恢复；目标明确失败政策，不模拟未初始化内存。",
+        "fact_ids": [
+          "SR-F05"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SR-A03",
+        "context": "INI缺省与game/region ordinal和raw Code不同",
+        "expected": "按本版0/-1默认与字段身份准入。",
+        "fact_ids": [
+          "SR-F06",
+          "SR-F08"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SR-A04",
+        "context": "UserMode1/2与其他值，modal返回1/0/-1/其他",
+        "expected": "1/2不进入该dialog；非法mode进入后仅结果1选1，其他选2并请求保存。",
+        "fact_ids": [
+          "SR-F07"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SR-A05",
+        "context": "AutoSelect==1但任一ordinal/path-ready/code gate失败",
+        "expected": "转普通区域选择，无部分自动进入。",
+        "fact_ids": [
+          "SR-F08"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SR-A06",
+        "context": "有效NUL路径分别已带/未带反斜杠",
+        "expected": "读取strlen索引而非len-1；按条件SR-I1审定原字符串拼接，真实host效果另验。",
+        "fact_ids": [
+          "SR-F09"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SR-A07",
+        "context": "base PreCreateWindow返回0；正常body完成及最后析构throw",
+        "expected": "分别return0、cleanup后return1、异常外传，赋1不等于已return。",
+        "fact_ids": [
+          "SR-F02",
+          "SR-F17"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SR-A08",
+        "context": "六种显式负退出及两种XML LoadFile失败",
+        "expected": "保留各源位置reason及-1/1，均不当普通函数false。",
+        "fact_ids": [
+          "SR-F10",
+          "SR-F12"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SR-A09",
+        "context": "自更新需要助手但CreateProcess失败，或成功",
+        "expected": "两个分支status0；reason/创建结果保留，不以0当助手完成。",
+        "fact_ids": [
+          "SR-F11"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SR-A10",
+        "context": "Game写入后Region取回失败的给定host效果",
+        "expected": "不以本帧EH或普通尾部证明已回滚；实际pair/文件状态readback另验。",
+        "fact_ids": [
+          "SR-F12",
+          "SR-F14",
+          "SR-F16"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SR-A11",
+        "context": "57个有效EH state与重复action55个，任意不存在的state",
+        "expected": "有效state按原表降至-1；边界验证拒绝不存在的状态；这些表核对不是原程序测试。",
+        "fact_ids": [
+          "SR-F14",
+          "SR-F15"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SR-A12",
+        "context": "CFile Close失败、析构自身/外层有handler、平台取消/关闭",
+        "expected": "保留分层异常与实际副作用；parent numTryBlocks0不替代全宿主接受。",
+        "fact_ids": [
+          "SR-F14",
+          "SR-F16",
+          "SR-F17"
+        ],
+        "executed": false
+      }
+    ],
+    "supplement_cases_executed": 0
+  },
+  "primary_references": [
+    {
+      "url": "https://github.com/llvm/llvm-project/blob/llvmorg-20.1.8/llvm/lib/CodeGen/AsmPrinter/WinException.cpp",
+      "local_copy": {
+        "path": "build/analysis/launcher-startup-recovery-v1/LLVM-WinException-20.1.8.cpp",
+        "bytes": 53759,
+        "sha256": "671b9072e602e8d97cb455a8e150897059c84a30b3f7ae060e80d5c762ce78af"
+      },
+      "scope": "x86 nine-word FuncInfo and state/action table schema, not target runtime proof"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/exit-exit-exit?view=msvc-170",
+      "scope": "_exit nonreturn/automatic-local-destructor semantics; actual target calls independently source-bound"
+    }
+  ],
+  "summary": {
+    "new_complete_native_records": 9,
+    "new_native_body_bytes": 1426,
+    "reused_complete_native_records": 5,
+    "native_range_windows": 14,
+    "native_range_bytes": 17241,
+    "native_instruction_boundaries": 3719,
+    "derived_windows": 57,
+    "derived_bytes": 832,
+    "derived_instructions": 175,
+    "original_read_windows": 4,
+    "unwind_states": 57,
+    "unique_cleanup_funclets": 55,
+    "local_try_blocks": 0,
+    "unwind_chains_checked": 57,
+    "explicit_exit_sites": 9,
+    "reused_directory_anchors": 54,
+    "retained_REA_records": 352,
+    "unsuccessful_native_attempts": 1,
+    "new_target_tests": 0,
+    "facts": 18,
+    "conditional_inferences": 2,
+    "operations": 8,
+    "implementation_deltas": 3,
+    "supplement_acceptance_cases_not_executed": 12,
+    "selected_legacy_startup_EH_and_ordinary_result_source_closed": true,
+    "selected_legacy_INI_normal_source_bound": true,
+    "whole_SS_U2_source_closed": false,
+    "required_source_contexts_open": [
+      "SS-U2"
+    ],
+    "host_contexts_open": [
+      "SS-U3"
+    ]
+  },
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "whole_SS_U2_source_closed": false,
+  "whole_L01_specification_ready": false,
+  "source_capability_readiness_promoted": false,
+  "new_target_tests": 0,
+  "original_VM_SDK_program_setting_account_or_official_actions": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "stopping_rule": "本版4015A0/本帧EH/normal INI及已证路径停止重复查询；不扩编译器/框架全库存，沿原矩阵必要上下文推进。",
+  "validation_record_path": "build/analysis/launcher-startup-recovery-v1/validation.json",
+  "execution_record": {
+    "path": "build/analysis/launcher-startup-recovery-v1/execution-record.json",
+    "bytes": 2914,
+    "sha256": "e2eb5fdd2e1a1963788d550c3658bdbcf78ea372be52f059d1f89be1b5b2964c"
+  }
+}

@@ -1,0 +1,1786 @@
+{
+  "schema": "moli.shared-target.contract.v1",
+  "classification": "推测",
+  "status": "independent-required-interface-and-state-contract-reviewed-not-implemented",
+  "purpose": "One concrete shared owner/clock/input/resource/commit/restart contract for grouped D0-D6 development;not a vendor ABI or completed product.",
+  "scope_preserved": {
+    "capabilities": 40,
+    "registry_entries": 81,
+    "historical_composite_requirements": 37,
+    "consumer_groups": 10,
+    "profiles": 6
+  },
+  "source_profiles": {
+    "file": {
+      "path": "build/analysis/required-context-contract-v1/before/analysis/capability-first-v1/capability-matrix.json",
+      "bytes": 850153,
+      "sha256": "de8d8510eb2306688fff6750d0373498e3d03f9b934ca10655d3ffa00a41f5e1"
+    },
+    "pointer": "/profiles",
+    "canonical_sha256": "33e91b4894637c513fee56f78f65e53b47a5a421969ff1a3f47a20642c66e3ff"
+  },
+  "source_rule_inputs": [
+    {
+      "path": "build/analysis/resource-platform-contract-v1/specification.json",
+      "bytes": 25758,
+      "sha256": "5a82d4c657f027b7c83b9599140622b791ec7013e0867c1c222f3172a6c9514f"
+    },
+    {
+      "path": "build/analysis/context-transition-contract-v1/specification.json",
+      "bytes": 58295,
+      "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+    },
+    {
+      "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+      "bytes": 39736,
+      "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+    },
+    {
+      "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+      "bytes": 125938,
+      "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+    },
+    {
+      "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+      "bytes": 28641,
+      "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+    },
+    {
+      "path": "build/analysis/battle-preflight-boundaries-v1/specification.json",
+      "bytes": 24947,
+      "sha256": "5b9fa2c012f10e2b7e7b9cea867334982f3cf802f5ff975ac5c9029f0e8f5fae"
+    }
+  ],
+  "external_api_facts": [
+    {
+      "id": "UC-API1",
+      "classification": "事实",
+      "authority": "W3C Working Draft,30 October2026; normative design reference, not host test",
+      "url": "https://www.w3.org/TR/2026/WD-IndexedDB-3-20261030/",
+      "sections": [
+        "2.7",
+        "4.10",
+        "5.4"
+      ],
+      "paraphrase": "A request success can precede transaction failure; use the transaction complete event as its successful commit receipt. Durability is a user-agent hint and is not a device or power-loss test.",
+      "applied_to": [
+        "UC-P08",
+        "UC-P10"
+      ],
+      "actual_host_verified": false
+    },
+    {
+      "id": "UC-API2",
+      "classification": "待验证",
+      "authority": "Official WeChat documentation URLs could not be opened by this turn",
+      "urls": [
+        "https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.read.html",
+        "https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page-life-cycle.html"
+      ],
+      "result": "non-retryable retrieval error; no content/limit/lifecycle claim inferred",
+      "existing_typings_scope": "Only already retained declared shapes may guide adapters; file capacity,offsets,drain and device lifecycle require explicit capability evidence.",
+      "actual_host_verified": false
+    }
+  ],
+  "types": {
+    "SourceProfile": {
+      "fields": [
+        "existing_profile_id",
+        "artifact_sha256",
+        "layout_revision",
+        "encoding_authority",
+        "source_scope"
+      ],
+      "rule": "All wire/layout/ABI decisions bind an admitted existing profile;legacy and current handoff are not automatically paired."
+    },
+    "OperationContext": {
+      "fields": [
+        "internal_operation_id",
+        "owner_id",
+        "owner_epoch",
+        "snapshot_identity",
+        "connection_identity?",
+        "role_bank_context?",
+        "monotonic_deadline?",
+        "cancel_signal",
+        "phase_timer_policy"
+      ],
+      "rule": "Internal tokens are local ownership metadata and are never added to vendor packets. Deadlines,source phase timers and role/source identity remain distinct."
+    },
+    "Outcome": {
+      "variants": [
+        "ok(value)",
+        "unavailable(capability,required_scope)",
+        "rejected(reason,source_or_host_policy)",
+        "cancelled(no_authoritative_commit)",
+        "failed(stage,known_effects)",
+        "unknown(stage,inspection_key)"
+      ],
+      "rule": "No result infers a vendor ACK,physical release,commit or final delivery beyond its authority."
+    },
+    "CommitReceipt": {
+      "fields": [
+        "operation_id",
+        "candidate_identity",
+        "state:not_committed|committed|unknown",
+        "active_revision?",
+        "content_identity?",
+        "durability:volatile|api_acknowledged|reopen_verified|unknown",
+        "recovery_required",
+        "effects"
+      ],
+      "rule": "An API request success and a lost callback are not not_committed proof. After committed,late cancellation cannot change it to cancelled."
+    },
+    "DrainReceipt": {
+      "fields": [
+        "owner_id",
+        "new_work_admitted:false",
+        "logical_closed:true",
+        "physical_state:drained|draining|unknown",
+        "inflight_count?",
+        "unreleased_leases",
+        "last_backend_receipt?"
+      ],
+      "rule": "Only physical drained pluszero leases allows deletion/reuse;logical close may complete while backend callbacks remain."
+    },
+    "Lease": {
+      "fields": [
+        "root_id",
+        "allocation_identity",
+        "owner_id",
+        "kind",
+        "charged_bytes",
+        "pinned",
+        "inflight_references"
+      ],
+      "rule": "Charge unique backing allocations/handles once. Views retain the charge;copies add charges;transfer preserves it until physical completion."
+    },
+    "SourceContextValue": {
+      "variants": [
+        "known(value,profile,origin,revision)",
+        "missing(required_context)",
+        "conditional(unadmitted_edge)"
+      ],
+      "rule": "Raw tuple/RID words,scratch,boxed words,aliases and callback counters keep their representation. Missing source data is never synthesized aszero or replaced by another actor."
+    },
+    "HostCapabilityReceipt": {
+      "fields": [
+        "target",
+        "runtime_version",
+        "storage_mode",
+        "offset_domain",
+        "abortability",
+        "atomic_publish_scope",
+        "single_writer_scope",
+        "clock_domains",
+        "input_composition",
+        "render_audio_capabilities",
+        "evidence_level",
+        "acceptance_status"
+      ],
+      "rule": "Declared,type-checked,locally-tested,device-tested and externally-accepted evidence are distinct;unavailable host paths leave the full requirement open."
+    }
+  },
+  "ports": [
+    {
+      "id": "UC-P01",
+      "name": "ContextOwner",
+      "classification": "推测",
+      "status": "independent-contract-reviewed-not-implemented",
+      "methods": [
+        {
+          "name": "begin",
+          "arguments": "owner,sourceProfile,snapshotIdentity,operationPolicy",
+          "returns": "OperationContext"
+        },
+        {
+          "name": "checkpoint",
+          "arguments": "context,stage",
+          "returns": "Outcome<current context>"
+        },
+        {
+          "name": "retire",
+          "arguments": "owner,reason",
+          "returns": "DrainReceipt"
+        },
+        {
+          "name": "inspect",
+          "arguments": "operationId",
+          "returns": "authoritative known effects"
+        }
+      ],
+      "required_rules": [
+        "Give resource operations a single total deadline;do not extend it at each child await. Login candidate and accepted-request source timers separately restart as prescribed by LO-D02;an optional host total deadline is an explicit different policy.",
+        "Check context before asynchronous publication/commit. A source callback admitted under an InvocationLease may execute its documented tail after logical deletion;do not replace the tail with a blanket throw or immediate free.",
+        "Source source-count bytes/words,game state,local revisions,connection identity and resource leases remain separate. Every business owner declares its carry/reset/publication table."
+      ],
+      "failure_receipts": [
+        "expired/cancelled prior to commit stops new publication",
+        "retired UI owner cannot receive old callbacks as a new context",
+        "inflight known effects settle into the journal even after the old UI disappears"
+      ],
+      "source_constraints": [
+        {
+          "file": {
+            "path": "build/analysis/resource-platform-contract-v1/specification.json",
+            "bytes": 25758,
+            "sha256": "5a82d4c657f027b7c83b9599140622b791ec7013e0867c1c222f3172a6c9514f"
+          },
+          "pointer": "/independent_design/0",
+          "canonical_sha256": "1a7e27df82e07b4b62b9622257f847c0a1962b027e07c8219815916cb4f76c2b"
+        },
+        {
+          "file": {
+            "path": "build/analysis/context-transition-contract-v1/specification.json",
+            "bytes": 58295,
+            "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+          },
+          "pointer": "/independent_design",
+          "canonical_sha256": "e659539bfa8447574d2e6aef7c185e174026b3203de355aa0784cbe577e7162a"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/state_owners",
+          "canonical_sha256": "38597ae01c880b7547b06ff7d2a4493857387e455c7fa387142ab582b7c6f816"
+        }
+      ],
+      "implemented": false,
+      "host_accepted": false
+    },
+    {
+      "id": "UC-P02",
+      "name": "ClockDomains",
+      "classification": "推测",
+      "status": "independent-contract-reviewed-not-implemented",
+      "methods": [
+        {
+          "name": "sampleSourceTick32",
+          "arguments": "profile,origin",
+          "returns": "uint32 + origin receipt"
+        },
+        {
+          "name": "sampleMonotonic",
+          "arguments": "clockDomain",
+          "returns": "nondecreasing time"
+        },
+        {
+          "name": "sampleWall",
+          "arguments": "calendarOwner",
+          "returns": "source wall record"
+        },
+        {
+          "name": "stepSequence",
+          "arguments": "pump",
+          "returns": "logical update number"
+        }
+      ],
+      "required_rules": [
+        "Do not use one clock for unsigned source-tick differences,absolute speech deadlines,wall calendar and callback counters. Preserve source wrap/signed-width behavior per rule.",
+        "Keep source repeated sampling distinct from a host single-frame tick. Background resume must declare rebase/catchup and outstanding timer decisions before input resumes.",
+        "Every timer declares whether it countssource callbacks,absolute source time,per-phase timeout or whole-operation deadline;no universal60Hz or unlimitedcatchup equivalence is assumed."
+      ],
+      "failure_receipts": [
+        "missing time origin returns unavailable for an origin-dependent compatibility claim",
+        "nonmonotonic host clock is a host failure,not a silent source wall-calendar clamp"
+      ],
+      "source_constraints": [
+        {
+          "file": {
+            "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+            "bytes": 39736,
+            "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "291986f7268d045f386252670e687c5a272ad40e6d43d4f908ac3c107d61121e"
+        },
+        {
+          "file": {
+            "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+            "bytes": 39736,
+            "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+          },
+          "pointer": "/facts/3",
+          "canonical_sha256": "66a13abea36293cc9d469e59c4d515efb579f8f22a45326335cbb7c2b5c48cf8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+            "bytes": 39736,
+            "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+          },
+          "pointer": "/facts/4",
+          "canonical_sha256": "e106b2634aee1100933f00951907ac47af6cb4ce13e07588ddddadd398ae6f2e"
+        },
+        {
+          "file": {
+            "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+            "bytes": 39736,
+            "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+          },
+          "pointer": "/independent_design/0",
+          "canonical_sha256": "a64d49561fdb84a207be4179d03bee56ac150d9f5b35ac73f4ad8f863976afb9"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/implementation_deltas/1",
+          "canonical_sha256": "9f5b638b23b3960991634c770cee4caa7643070461aec7d4b78db954a01d4095"
+        }
+      ],
+      "implemented": false,
+      "host_accepted": false
+    },
+    {
+      "id": "UC-P03",
+      "name": "InputAndTextFocus",
+      "classification": "推测",
+      "status": "independent-contract-reviewed-not-implemented",
+      "methods": [
+        {
+          "name": "beginFrame",
+          "arguments": "logicalUpdate,held,edges,repeat,release",
+          "returns": "source-profile input batch"
+        },
+        {
+          "name": "routePointer",
+          "arguments": "devicePoint,viewportInverse,frameworkProfile",
+          "returns": "logical hit + source mask"
+        },
+        {
+          "name": "beginComposition",
+          "arguments": "focusLease,encodingProfile",
+          "returns": "compositionId"
+        },
+        {
+          "name": "commitComposition",
+          "arguments": "compositionId,focusLease,text",
+          "returns": "Outcome<owned source bytes>"
+        },
+        {
+          "name": "loseFocus",
+          "arguments": "focusLease,reason",
+          "returns": "released capture receipt"
+        }
+      ],
+      "required_rules": [
+        "Classic and alternate bit masks remain distinct. Convert DOM/touch/Page events in adapters;source key query/clear and business eligibility stay in shared core.",
+        "Keep physical/display/actor logical coordinates separate;render and hit testing share an explicitly invertible viewport transform. Pointer cancel ends the held capture and invalidates its gesture.",
+        "Focus/composition is bound to its owner/epoch;late composition cannot write a newly focused editor. Apply source Enter/history/CR rules per target rather than a universal submit."
+      ],
+      "failure_receipts": [
+        "unrepresentable text returns an explicit encoding result",
+        "background/owner loss retires stale input without undoing a previously committed business edit"
+      ],
+      "source_constraints": [
+        {
+          "file": {
+            "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+            "bytes": 39736,
+            "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+          },
+          "pointer": "/facts/0",
+          "canonical_sha256": "7739aae4f614f66dbf20759d3fc3d1ea3a940509a79d107aa490cbad3414e661"
+        },
+        {
+          "file": {
+            "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+            "bytes": 39736,
+            "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+          },
+          "pointer": "/facts/1",
+          "canonical_sha256": "25c6240680a1a419dd3f215d17ee8b767ee7dc1e868955b9a060472afb9bdb95"
+        },
+        {
+          "file": {
+            "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+            "bytes": 39736,
+            "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+          },
+          "pointer": "/independent_design/1",
+          "canonical_sha256": "b4ec45db3ab48368f73e75149d960e100b62cdc021a726d6a8b2c16bcf925880"
+        },
+        {
+          "file": {
+            "path": "build/analysis/context-transition-contract-v1/specification.json",
+            "bytes": 58295,
+            "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+          },
+          "pointer": "/independent_design",
+          "canonical_sha256": "e659539bfa8447574d2e6aef7c185e174026b3203de355aa0784cbe577e7162a"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/implementation_deltas/5",
+          "canonical_sha256": "8ed6034422ac5daed30902ba9a83a3ce0caf75019d6e2d9a932bfabbbd587f68"
+        }
+      ],
+      "implemented": false,
+      "host_accepted": false
+    },
+    {
+      "id": "UC-P04",
+      "name": "SourceValueContext",
+      "classification": "推测",
+      "status": "independent-contract-reviewed-not-implemented",
+      "methods": [
+        {
+          "name": "require",
+          "arguments": "kind,actorIdentity,sourceCursor,profile",
+          "returns": "SourceContextValue"
+        },
+        {
+          "name": "borrowRawCursor",
+          "arguments": "decoderOwnedStream,phase",
+          "returns": "cursor lease"
+        },
+        {
+          "name": "boxedWords",
+          "arguments": "valueOwner,field,profile",
+          "returns": "raw type_word,payload_word,revision"
+        },
+        {
+          "name": "recordInvocation",
+          "arguments": "source owner,callback,updateSequence",
+          "returns": "InvocationLease"
+        }
+      ],
+      "required_rules": [
+        "Do not normalize113/260 preparer/runtime read order;preserve decoder-owned rawnumeric tails,byte counters,forced pair and guard ownership. The source reader and runtime effect counters are different.",
+        "For107 keep the raw two-word formatting inputs and source format/ABI;vtable52D340 and payload are not logical current/max vitals. A portable representation must retain the profile type word and actual payload origin.",
+        "RID foreign words,uninitialized fourth scratch and source aliases must carry origin/availability. Never use self words or portablezero to certify missing native context.",
+        "98 assistantFF early return and other ITM raw-cursor continuation remain source state;current discard/complete or unavailable handlers are deltas,not proof of native normal completion."
+      ],
+      "failure_receipts": [
+        "missing required context leaves that original behavior open and returns needs-context",
+        "no dummy actor,syntheticACK or fake no-op completion"
+      ],
+      "source_constraints": [
+        {
+          "file": {
+            "path": "build/analysis/battle-preflight-boundaries-v1/specification.json",
+            "bytes": 24947,
+            "sha256": "5b9fa2c012f10e2b7e7b9cea867334982f3cf802f5ff975ac5c9029f0e8f5fae"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "6aacfeba6981d4ef1a06dbfc0b343d87ed74ef2135e88fd34f075af2101c4cb3"
+        },
+        {
+          "file": {
+            "path": "build/analysis/battle-preflight-boundaries-v1/specification.json",
+            "bytes": 24947,
+            "sha256": "5b9fa2c012f10e2b7e7b9cea867334982f3cf802f5ff975ac5c9029f0e8f5fae"
+          },
+          "pointer": "/facts/3",
+          "canonical_sha256": "55db9e9c2a91b00aa9d34e8621b79d3afdb90edb69009b98edc63136fcdaf370"
+        },
+        {
+          "file": {
+            "path": "build/analysis/battle-preflight-boundaries-v1/specification.json",
+            "bytes": 24947,
+            "sha256": "5b9fa2c012f10e2b7e7b9cea867334982f3cf802f5ff975ac5c9029f0e8f5fae"
+          },
+          "pointer": "/facts/4",
+          "canonical_sha256": "76eecf99ea4f25759cf1579f9edba7d4e26b40b891e8868f16448947470cf15c"
+        },
+        {
+          "file": {
+            "path": "build/analysis/battle-preflight-boundaries-v1/specification.json",
+            "bytes": 24947,
+            "sha256": "5b9fa2c012f10e2b7e7b9cea867334982f3cf802f5ff975ac5c9029f0e8f5fae"
+          },
+          "pointer": "/facts/5",
+          "canonical_sha256": "9a3703d1a65110cc2b0205053f53ab1babace682d316443f0d62b1ae698b6f73"
+        },
+        {
+          "file": {
+            "path": "build/analysis/battle-preflight-boundaries-v1/specification.json",
+            "bytes": 24947,
+            "sha256": "5b9fa2c012f10e2b7e7b9cea867334982f3cf802f5ff975ac5c9029f0e8f5fae"
+          },
+          "pointer": "/facts/6",
+          "canonical_sha256": "2eadc44e04e40bf51e8df841d651f37985521a267487f1921e39b1dc06d432f4"
+        }
+      ],
+      "implemented": false,
+      "host_accepted": false
+    },
+    {
+      "id": "UC-P05",
+      "name": "SharedUpdatePump",
+      "classification": "推测",
+      "status": "independent-contract-reviewed-not-implemented",
+      "methods": [
+        {
+          "name": "step",
+          "arguments": "accepted input,source timers,RNG context,scene owner",
+          "returns": "ordered state delta + render/audio intents"
+        },
+        {
+          "name": "present",
+          "arguments": "snapshot,viewport,host surfaces",
+          "returns": "presentation receipt"
+        },
+        {
+          "name": "suspend",
+          "arguments": "reason",
+          "returns": "paused admission receipt"
+        },
+        {
+          "name": "resume",
+          "arguments": "capability/context inspection",
+          "returns": "ready or recovery-required"
+        }
+      ],
+      "required_rules": [
+        "Separate source updates,presentation,waiting and catchup. Use one application owner for source RNG/audio maintenance/calendar;do not silently combine local boxed RNG with Math.random.",
+        "Preserve source constructor order,anonymous/registered ownership,parent deletion tails and source waits. Logical deletion flags and physical object-pool retirement are separate.",
+        "A resource/animation/signal failure is an explicit stage outcome;it cannot advance an action or round as if completion was observed."
+      ],
+      "failure_receipts": [
+        "missing source RNG/seed/cadence context remains explicit",
+        "presentation/audio blocked by host remains unaccepted for that capability"
+      ],
+      "source_constraints": [
+        {
+          "file": {
+            "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+            "bytes": 39736,
+            "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "291986f7268d045f386252670e687c5a272ad40e6d43d4f908ac3c107d61121e"
+        },
+        {
+          "file": {
+            "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+            "bytes": 39736,
+            "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+          },
+          "pointer": "/independent_design/3",
+          "canonical_sha256": "80a897d77d9acdc409dcedf90460392858dbf01b538704a49ddabcf06a4543ad"
+        },
+        {
+          "file": {
+            "path": "build/analysis/context-transition-contract-v1/specification.json",
+            "bytes": 58295,
+            "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+          },
+          "pointer": "/facts/5",
+          "canonical_sha256": "ce208a660b0b1b42d1a63526dde537a0b37595c5362e37b7103e9b604b614c62"
+        },
+        {
+          "file": {
+            "path": "build/analysis/battle-utility-consumers-v1/specification.json",
+            "bytes": 56544,
+            "sha256": "65ebe12c0bfe726c036eed85a93b710850217d8f9b4c93d6a99962192761b91a"
+          },
+          "pointer": "/facts/2",
+          "canonical_sha256": "8a77ddb6afbec770f658f1fc43ecba74a8f5de875e54632bbcd7c959122f28ae"
+        }
+      ],
+      "implemented": false,
+      "host_accepted": false
+    },
+    {
+      "id": "UC-P06",
+      "name": "BudgetAndLease",
+      "classification": "推测",
+      "status": "independent-contract-reviewed-not-implemented",
+      "methods": [
+        {
+          "name": "reserve",
+          "arguments": "root,kind,checkedBytes,operation",
+          "returns": "Outcome<Lease>"
+        },
+        {
+          "name": "retain",
+          "arguments": "lease,borrower",
+          "returns": "borrow reference"
+        },
+        {
+          "name": "transfer",
+          "arguments": "lease,newOwner",
+          "returns": "same allocation charge"
+        },
+        {
+          "name": "release",
+          "arguments": "lease,physicalCompletion",
+          "returns": "remaining charge receipt"
+        }
+      ],
+      "required_rules": [
+        "Validate arithmetic before allocation;charge input,scratch,decoded pixels/audio,metadata,pins and queued copies at the same root. Views share a backing allocation;copies do not.",
+        "BudgetProfile must cover the complete admitted resource manifest and actual concurrent lifetime. No unmeasured fixed32MiB limit is used to remove original resources.",
+        "When memory is insufficient,release unpinned caches or use the already specified range/chunk path. An inflight buffer remains charged until physical completion even after cancellation."
+      ],
+      "failure_receipts": [
+        "capacity refusal states required/available/stage without publishing partial state",
+        "host/system peaks and owned-lease accounting require separate measurements"
+      ],
+      "source_constraints": [
+        {
+          "file": {
+            "path": "build/analysis/resource-platform-contract-v1/specification.json",
+            "bytes": 25758,
+            "sha256": "5a82d4c657f027b7c83b9599140622b791ec7013e0867c1c222f3172a6c9514f"
+          },
+          "pointer": "/independent_design/1",
+          "canonical_sha256": "18ba89b525b635f5bb6fb0a2383fa3be7d6664f0c93edaef87fa5f4e6a308f77"
+        },
+        {
+          "file": {
+            "path": "build/analysis/resource-platform-contract-v1/specification.json",
+            "bytes": 25758,
+            "sha256": "5a82d4c657f027b7c83b9599140622b791ec7013e0867c1c222f3172a6c9514f"
+          },
+          "pointer": "/independent_design/6",
+          "canonical_sha256": "efe51245ac668be81eaaee2881ba3dcd2c0140c4261fda79c99e7c796579fc2f"
+        }
+      ],
+      "implemented": false,
+      "host_accepted": false
+    },
+    {
+      "id": "UC-P07",
+      "name": "StableRangeSource",
+      "classification": "推测",
+      "status": "independent-contract-reviewed-not-implemented",
+      "methods": [
+        {
+          "name": "open",
+          "arguments": "selected source,profile",
+          "returns": "sourceIdentity,size,capabilityReceipt"
+        },
+        {
+          "name": "stat",
+          "arguments": "sourceIdentity",
+          "returns": "stable-source receipt"
+        },
+        {
+          "name": "readInto",
+          "arguments": "context,offsetU64,length,callerBuffer",
+          "returns": "bytesRead + physical completion"
+        },
+        {
+          "name": "closeAndDrain",
+          "arguments": "sourceOwner",
+          "returns": "DrainReceipt"
+        }
+      ],
+      "required_rules": [
+        "Use exact checked ranges and stable content identity. ZIP64 offsets remain lossless;converting to a host numeric offset requires exact representability and advertised domain,including positions beyond2^32.",
+        "A short read is not successful requested data. Zero-length is handled in the adapter and never forwarded to an incompatible host call.",
+        "Callback-only I/O may be logically retired without physical abortion. Keep native writer/reader buffers leased until their callback/drain authority settles.",
+        "A moved/saved temporary path gets a new validated source binding;do not assume an active descriptor survives a move. Browser Blob selection has its own immutable session identity."
+      ],
+      "failure_receipts": [
+        "unsupported offset/large-file path stays an unmet full requirement",
+        "never substitute a whole-file read while claiming range/budget compliance"
+      ],
+      "source_constraints": [
+        {
+          "file": {
+            "path": "build/analysis/resource-platform-contract-v1/specification.json",
+            "bytes": 25758,
+            "sha256": "5a82d4c657f027b7c83b9599140622b791ec7013e0867c1c222f3172a6c9514f"
+          },
+          "pointer": "/independent_design/2",
+          "canonical_sha256": "b09d09468dba01a4ec4db11580ebbd5d52c7ba7576feec9bbf524bf78abfaa52"
+        },
+        {
+          "file": {
+            "path": "build/analysis/resource-platform-contract-v1/specification.json",
+            "bytes": 25758,
+            "sha256": "5a82d4c657f027b7c83b9599140622b791ec7013e0867c1c222f3172a6c9514f"
+          },
+          "pointer": "/facts/0",
+          "canonical_sha256": "defe022d0cf505ef77e8314e1d0e855cbcfea973528c1be2f5c25ebf4e6fb7e7"
+        },
+        {
+          "file": {
+            "path": "build/analysis/resource-platform-contract-v1/specification.json",
+            "bytes": 25758,
+            "sha256": "5a82d4c657f027b7c83b9599140622b791ec7013e0867c1c222f3172a6c9514f"
+          },
+          "pointer": "/facts/1",
+          "canonical_sha256": "a103e80af2f9d69e75c007fb712893b2c798348258d4b46a4d37e61933c5fdac"
+        },
+        {
+          "file": {
+            "path": "build/analysis/resource-platform-contract-v1/specification.json",
+            "bytes": 25758,
+            "sha256": "5a82d4c657f027b7c83b9599140622b791ec7013e0867c1c222f3172a6c9514f"
+          },
+          "pointer": "/facts/3",
+          "canonical_sha256": "ea2b7ccf5ba36d2d5a82ea8e8fec70e308d3cba2b44f7e6501b4674d5fba5bec"
+        }
+      ],
+      "implemented": false,
+      "host_accepted": false
+    },
+    {
+      "id": "UC-P08",
+      "name": "SnapshotStore",
+      "classification": "推测",
+      "status": "independent-contract-reviewed-not-implemented",
+      "methods": [
+        {
+          "name": "stage",
+          "arguments": "context,manifest,chunks",
+          "returns": "candidateIdentity"
+        },
+        {
+          "name": "prepare",
+          "arguments": "candidate,expectedRevision",
+          "returns": "verified candidate + complete marker"
+        },
+        {
+          "name": "publish",
+          "arguments": "candidate,expectedRevision",
+          "returns": "CommitReceipt"
+        },
+        {
+          "name": "inspectCommit",
+          "arguments": "inspectionKey",
+          "returns": "CommitReceipt"
+        },
+        {
+          "name": "recover",
+          "arguments": "storeIdentity",
+          "returns": "validated active revision or needs-selection"
+        },
+        {
+          "name": "acquire",
+          "arguments": "activeIdentity,readerOwner",
+          "returns": "snapshot lease"
+        },
+        {
+          "name": "collectOwnUnreferenced",
+          "arguments": "storeOwner,drained references",
+          "returns": "cleanup receipt"
+        }
+      ],
+      "required_rules": [
+        "Compute content checks before the final publication transaction. Stage blocks then verify complete metadata;the final active pointer/expected revision check is one backend-authoritative publication boundary.",
+        "For IndexedDB use a single overlapping readwrite transaction for comparison and pointer update;request success alone is not commit. Report actual durability/evidence rather than power-loss guarantees.",
+        "For WeChat declare the actual writer scope and a validated journal/manifest recovery protocol. Do not infer crash-atomic publication from rename/saveFile or an in-memory mutex.",
+        "Missing/broken candidates do not overwrite the last verified active snapshot. Unknown commit results require inspection before any replayed mutation.",
+        "Persistent-required and session-only modes return distinct receipts;resource content,config/mail state and transient account/session data have different owners and schemas."
+      ],
+      "failure_receipts": [
+        "quota/short-write/abort/version conflict retains previous active identity",
+        "no valid recovered commit returns needs-selection,not an empty successful resource root"
+      ],
+      "source_constraints": [
+        {
+          "file": {
+            "path": "build/analysis/resource-platform-contract-v1/specification.json",
+            "bytes": 25758,
+            "sha256": "5a82d4c657f027b7c83b9599140622b791ec7013e0867c1c222f3172a6c9514f"
+          },
+          "pointer": "/independent_design/3",
+          "canonical_sha256": "9fcfaefff8c2879517b4b474a79e4ff4d04460ecc9e76d0b1b54c0849a891373"
+        },
+        {
+          "file": {
+            "path": "build/analysis/resource-platform-contract-v1/specification.json",
+            "bytes": 25758,
+            "sha256": "5a82d4c657f027b7c83b9599140622b791ec7013e0867c1c222f3172a6c9514f"
+          },
+          "pointer": "/independent_design/4",
+          "canonical_sha256": "dd8cd032a440041238ba8794a19036006a279350ea538ab8ea51bc049c28d966"
+        },
+        {
+          "file": {
+            "path": "build/analysis/resource-platform-contract-v1/specification.json",
+            "bytes": 25758,
+            "sha256": "5a82d4c657f027b7c83b9599140622b791ec7013e0867c1c222f3172a6c9514f"
+          },
+          "pointer": "/independent_design/5",
+          "canonical_sha256": "d5f98744620a1c99596e0120f0ca19fa37d54374dc4de93739f5d442b448c551"
+        }
+      ],
+      "implemented": false,
+      "host_accepted": false
+    },
+    {
+      "id": "UC-P09",
+      "name": "OwnerLifecycle",
+      "classification": "推测",
+      "status": "independent-contract-reviewed-not-implemented",
+      "methods": [
+        {
+          "name": "acquireInvocation",
+          "arguments": "owner,sourceProfile,callback",
+          "returns": "InvocationLease"
+        },
+        {
+          "name": "markDeleted",
+          "arguments": "source object",
+          "returns": "logical flag receipt"
+        },
+        {
+          "name": "quiesce",
+          "arguments": "owner,reason",
+          "returns": "new work stopped + in-flight receipt"
+        },
+        {
+          "name": "closeAndDrain",
+          "arguments": "owner",
+          "returns": "DrainReceipt"
+        }
+      ],
+      "required_rules": [
+        "Resource,window,text,decoder,renderer,audio,connection and Page/App owners declare separate retirement boundaries. A dirty inactive callback,hidden mark and physical free are not one bool.",
+        "Admitted source callbacks may continue after marking themselves/parents deleted as their rule requires;lease retirement prevents future admission without cutting an already admitted tail.",
+        "Delete old data only after relevant I/O/decoder/render/audio consumers are physically drained and all snapshot references released. A zero source count byte is not a lease proof."
+      ],
+      "failure_receipts": [
+        "unknown backend completion retains leases and an explicit draining/unknown state",
+        "close user-visible state may settle before physical drain;acceptance records both"
+      ],
+      "source_constraints": [
+        {
+          "file": {
+            "path": "build/analysis/context-transition-contract-v1/specification.json",
+            "bytes": 58295,
+            "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+          },
+          "pointer": "/facts/5",
+          "canonical_sha256": "ce208a660b0b1b42d1a63526dde537a0b37595c5362e37b7103e9b604b614c62"
+        },
+        {
+          "file": {
+            "path": "build/analysis/context-transition-contract-v1/specification.json",
+            "bytes": 58295,
+            "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+          },
+          "pointer": "/facts/8",
+          "canonical_sha256": "4aa79aa098bd0987a14f0533fcb793733ab9560f83bc890c420d57db7b942688"
+        },
+        {
+          "file": {
+            "path": "build/analysis/context-transition-contract-v1/specification.json",
+            "bytes": 58295,
+            "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+          },
+          "pointer": "/facts/9",
+          "canonical_sha256": "8b6cb80487ebb1e3680f9a650e1cbb3cee8f38dfb3a88821be46eb3669349a1c"
+        },
+        {
+          "file": {
+            "path": "build/analysis/resource-platform-contract-v1/specification.json",
+            "bytes": 25758,
+            "sha256": "5a82d4c657f027b7c83b9599140622b791ec7013e0867c1c222f3172a6c9514f"
+          },
+          "pointer": "/independent_design/5",
+          "canonical_sha256": "d5f98744620a1c99596e0120f0ca19fa37d54374dc4de93739f5d442b448c551"
+        },
+        {
+          "file": {
+            "path": "build/analysis/game-application-exit-v1/specification.json",
+            "bytes": 45681,
+            "sha256": "f873c70aa732a1b22102b2c247f00b5703029962a94ab03e1bfa83f46cba8074"
+          },
+          "pointer": "/facts/7",
+          "canonical_sha256": "85978e7dff1f5c7559a17b27dbdd2137807e9e8e3ed24790ebc3f554c74b7401"
+        }
+      ],
+      "implemented": false,
+      "host_accepted": false
+    },
+    {
+      "id": "UC-P10",
+      "name": "UpdateTakeoverAndRestart",
+      "classification": "推测",
+      "status": "independent-contract-reviewed-not-implemented",
+      "methods": [
+        {
+          "name": "prepareUpdate",
+          "arguments": "profile,oldRoot,newContent,sourceEffectPlan",
+          "returns": "verified candidate + source effects ledger"
+        },
+        {
+          "name": "quiesceOld",
+          "arguments": "updateId,affectedOwners",
+          "returns": "DrainReceipt"
+        },
+        {
+          "name": "commitUpdate",
+          "arguments": "candidate,expectedRevision",
+          "returns": "CommitReceipt"
+        },
+        {
+          "name": "requestRestart",
+          "arguments": "committedIdentity,restartIntent",
+          "returns": "restart-pending receipt"
+        },
+        {
+          "name": "inspectRestart",
+          "arguments": "intentId,bootIdentity",
+          "returns": "started/active/unknown/failed"
+        },
+        {
+          "name": "bindNewBoot",
+          "arguments": "actual manifest/profile/active revision",
+          "returns": "new active root receipt"
+        }
+      ],
+      "required_rules": [
+        "Separate content update,application code reload and known native reference process launch. A browser reload request,patch exit or storage success alone is not the new game running.",
+        "Keep C82 Code.pat/module-directory preparation distinct from601b packagedSource. Source overwrite/copy/start failures and direct retry102 effects remain recorded;do not promise source rollback.",
+        "Portable snapshot publication follows its own declared transaction,then a nonsecret restart intent records expected content/profile/revision. Credentials and unproved handoff fields are never persisted or invented.",
+        "After committed report committed even if cancellation or restart fails;inspect an unknown publication before retry. New boot must verify its bound content/profile/revision and actual startup readiness.",
+        "Old readers remain pinned until retired/drained. L07/current paired consumer and real official startup stay unavailable until corresponding evidence exists."
+      ],
+      "failure_receipts": [
+        "failure before publication preserves old active root",
+        "copy/start/restart failure after real effects retains those effects in the receipt",
+        "new boot mismatch leaves update recovery-required rather than declaring active"
+      ],
+      "source_constraints": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/implementation_deltas/3",
+          "canonical_sha256": "eaf53df010ac2a0e8e1c6e124e48d441d0344659b8cf0c0e985f54c52390ad15"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/implementation_deltas/4",
+          "canonical_sha256": "6829da00f94d8af07a731db41c8f5c35c89d90e3e156b29a2a9a45ef8edffc55"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+            "bytes": 28641,
+            "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+          },
+          "pointer": "/facts",
+          "canonical_sha256": "eb894d41f50960600845076e947b177caa769e227b2073d485b16676a0f739cb"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+            "bytes": 28641,
+            "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+          },
+          "pointer": "/implementation_deltas",
+          "canonical_sha256": "9a363f1eff9245f9aaf256f43079168b96e8fdf51cbf403ab8750c0461857b16"
+        }
+      ],
+      "implemented": false,
+      "host_accepted": false
+    },
+    {
+      "id": "UC-P11",
+      "name": "SessionTransport",
+      "classification": "推测",
+      "status": "independent-contract-reviewed-not-implemented",
+      "methods": [
+        {
+          "name": "open",
+          "arguments": "declared source profile/endpoint,owner",
+          "returns": "connection receipt"
+        },
+        {
+          "name": "write",
+          "arguments": "owned bytes,connection lease",
+          "returns": "local queue/write result"
+        },
+        {
+          "name": "receive",
+          "arguments": "stream chunk,connection identity",
+          "returns": "serial decoder input"
+        },
+        {
+          "name": "closeAndDrain",
+          "arguments": "connection owner",
+          "returns": "DrainReceipt"
+        }
+      ],
+      "required_rules": [
+        "Reuse the serial byte stream;WebSocket frames/TCP chunks are not protocol packet boundaries. Encoding/profile and original fields stay fixed to their admitted source.",
+        "Login candidate/reply timers use their own source phase rules. Local send/write/history is not authenticated login,business acceptance or mail final delivery.",
+        "Network disconnect,role transition and Page background are different events;old connection callbacks cannot publish as a new connection. Same-connection source live-bank behavior and a target role guard are separately documented."
+      ],
+      "failure_receipts": [
+        "connection errors expose actual stage/known effects",
+        "no automatic fabricatedACK,credentials capture or current-profile handoff"
+      ],
+      "source_constraints": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/implementation_deltas/1",
+          "canonical_sha256": "9f5b638b23b3960991634c770cee4caa7643070461aec7d4b78db954a01d4095"
+        },
+        {
+          "file": {
+            "path": "build/analysis/context-transition-contract-v1/specification.json",
+            "bytes": 58295,
+            "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+          },
+          "pointer": "/facts/9",
+          "canonical_sha256": "8b6cb80487ebb1e3680f9a650e1cbb3cee8f38dfb3a88821be46eb3669349a1c"
+        },
+        {
+          "file": {
+            "path": "build/analysis/mail-operation-composition-v1/specification.json",
+            "bytes": 97494,
+            "sha256": "bfeb01857217c0b196d07e2c1bf7d5de329d264ddd5a6349930d5756280eaa6f"
+          },
+          "pointer": "/facts/7",
+          "canonical_sha256": "89378275db2cbeb2da940655bd62daf12c8026faa26358b6d28bf56e0e55a6ed"
+        }
+      ],
+      "implemented": false,
+      "host_accepted": false
+    },
+    {
+      "id": "UC-P12",
+      "name": "TextEncodingAndLocalStateStore",
+      "classification": "推测",
+      "status": "independent-contract-reviewed-not-implemented",
+      "methods": [
+        {
+          "name": "encode",
+          "arguments": "declared encoding profile,text",
+          "returns": "Outcome<owned source bytes>"
+        },
+        {
+          "name": "decodeForDisplay",
+          "arguments": "profile,sourceBytes",
+          "returns": "display bytes/glyph contract + evidence"
+        },
+        {
+          "name": "saveState",
+          "arguments": "stateOwner,nonsecret payload,expected revision",
+          "returns": "CommitReceipt"
+        },
+        {
+          "name": "loadState",
+          "arguments": "stateIdentity,profile",
+          "returns": "validated record or explicit missing/corrupt"
+        }
+      ],
+      "required_rules": [
+        "Source byte limits,NUL/whole-character/normal input domains and native MBCS comparisons remain explicit;Unicode character counts do not replace them.",
+        "Source UI edits may commit before an outer dialog cancels. Use each source edit/undo boundary;do not apply global cancel-implies-rollback.",
+        "Keep config-directory mapping,character bank,blacklist group,contact slot and actual wire IDs distinct;mail raw caches and source opaque config/album formats are not one serializer.",
+        "Do not store credentials/session secrets with resources,telemetry or restart metadata. Field values and private chat are not analysis fixtures."
+      ],
+      "failure_receipts": [
+        "unrepresentable/oversize values have explicit outcomes",
+        "file/memory copy success,store commit and verified reopen are separate receipts"
+      ],
+      "source_constraints": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/implementation_deltas/2",
+          "canonical_sha256": "161c77a21c803d6f59ffe8830be38c1e149d83de8157707040983a5e2ae6475e"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/implementation_deltas/3",
+          "canonical_sha256": "eaf53df010ac2a0e8e1c6e124e48d441d0344659b8cf0c0e985f54c52390ad15"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/implementation_deltas/5",
+          "canonical_sha256": "8ed6034422ac5daed30902ba9a83a3ce0caf75019d6e2d9a932bfabbbd587f68"
+        },
+        {
+          "file": {
+            "path": "build/analysis/mail-operation-composition-v1/specification.json",
+            "bytes": 97494,
+            "sha256": "bfeb01857217c0b196d07e2c1bf7d5de329d264ddd5a6349930d5756280eaa6f"
+          },
+          "pointer": "/facts/9",
+          "canonical_sha256": "01403b9d29cfa989d05f70b272b9077bbc50d989c864a9255d0d8878d6e2696b"
+        }
+      ],
+      "implemented": false,
+      "host_accepted": false
+    },
+    {
+      "id": "UC-P13",
+      "name": "RenderAudioSurfaces",
+      "classification": "推测",
+      "status": "independent-contract-reviewed-not-implemented",
+      "methods": [
+        {
+          "name": "prepare",
+          "arguments": "source resource identity,lease,budget",
+          "returns": "surface/audio readiness"
+        },
+        {
+          "name": "render",
+          "arguments": "source scene snapshot,viewport,frame owner",
+          "returns": "presentation receipt"
+        },
+        {
+          "name": "cue",
+          "arguments": "source sequence,sound owner",
+          "returns": "played/blocked/failed receipt"
+        },
+        {
+          "name": "retireAndDrain",
+          "arguments": "surface/audio owner",
+          "returns": "DrainReceipt"
+        }
+      ],
+      "required_rules": [
+        "Atlas/native layout,logical geometry,glyph/font selection,pixels and actual backend capabilities are evidence-scoped. Do not substitute simplified pixels and call complete native equivalence.",
+        "Keep effect/source RNG and audio-maintenance order with the shared pump. Host gesture/background restrictions report blocked until actual behavior is validated.",
+        "Logical deletion may leave an admitted animation/render tail;physical surface/buffer retirement follows the lease and drain contract."
+      ],
+      "failure_receipts": [
+        "decoder/font/audio/surface failure does not fake animation or round completion",
+        "actual phone/WeChat/legacy backend appearance remains required acceptance"
+      ],
+      "source_constraints": [
+        {
+          "file": {
+            "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+            "bytes": 39736,
+            "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+          },
+          "pointer": "/independent_design/3",
+          "canonical_sha256": "80a897d77d9acdc409dcedf90460392858dbf01b538704a49ddabcf06a4543ad"
+        },
+        {
+          "file": {
+            "path": "build/analysis/resource-platform-contract-v1/specification.json",
+            "bytes": 25758,
+            "sha256": "5a82d4c657f027b7c83b9599140622b791ec7013e0867c1c222f3172a6c9514f"
+          },
+          "pointer": "/independent_design/1",
+          "canonical_sha256": "18ba89b525b635f5bb6fb0a2383fa3be7d6664f0c93edaef87fa5f4e6a308f77"
+        },
+        {
+          "file": {
+            "path": "build/analysis/context-transition-contract-v1/specification.json",
+            "bytes": 58295,
+            "sha256": "2c90446a22d86ffb1f3ce2208c6da4726388727fc8220941247e2fea8b844d01"
+          },
+          "pointer": "/independent_design/3",
+          "canonical_sha256": "59d3a1f2c54b91ca09fc199abd42e2265c782e9e5eea2e08ea8f3135af179936"
+        }
+      ],
+      "implemented": false,
+      "host_accepted": false
+    },
+    {
+      "id": "UC-P14",
+      "name": "HostCapabilitiesAndLifecycle",
+      "classification": "推测",
+      "status": "independent-contract-reviewed-not-implemented",
+      "methods": [
+        {
+          "name": "describe",
+          "arguments": "target/runtime/backend",
+          "returns": "HostCapabilityReceipt"
+        },
+        {
+          "name": "background",
+          "arguments": "actual callback,event sequence",
+          "returns": "paused admission/context receipt"
+        },
+        {
+          "name": "foreground",
+          "arguments": "actual callback,capability/context recovery",
+          "returns": "ready or recovery-required"
+        },
+        {
+          "name": "unloadOrClose",
+          "arguments": "actual owner event",
+          "returns": "logical/physical close receipt"
+        }
+      ],
+      "required_rules": [
+        "Web/mobile-web share the same core;touch/viewport/IME differences are adapters. WeChat App resource roots and Page owners are explicit separate lifetimes.",
+        "onHide/visibility loss does not mean process termination or successful persistence. Resume inspects authoritative content/commit,connection identity,inflight work and source-clock policy before reenabling input.",
+        "Abrupt host termination cannot rely on a final callback;only previously confirmed commits are recovery candidates. No browser/WeChat fixed quota or device guarantee is inferred from a type declaration.",
+        "Capability insufficiency leaves the original target requirement open with a specific receipt;it is not silently redefined as an offline demo or smaller asset domain."
+      ],
+      "failure_receipts": [
+        "official WeChat docs unavailable this turn;retain declared-shape/runtime/device distinctions",
+        "real host/device/current-official acceptance stays false until its own evidence exists"
+      ],
+      "source_constraints": [
+        {
+          "file": {
+            "path": "build/analysis/resource-platform-contract-v1/specification.json",
+            "bytes": 25758,
+            "sha256": "5a82d4c657f027b7c83b9599140622b791ec7013e0867c1c222f3172a6c9514f"
+          },
+          "pointer": "/remaining_required_gaps",
+          "canonical_sha256": "4dbbb979bbdabbf9e998b617f8a94381aae4a6066f37f927d9f58a57dc5edf15"
+        },
+        {
+          "file": {
+            "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+            "bytes": 39736,
+            "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+          },
+          "pointer": "/remaining_required_gaps",
+          "canonical_sha256": "6d5991f3bf1323d4f1f5d6fd1ca43edaa373b94cc0bb6ef42997dd25307a49ce"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+            "bytes": 125938,
+            "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+          },
+          "pointer": "/necessary_unknowns_and_conditions/3",
+          "canonical_sha256": "1a83f8b96ea05b842e77fa69581feb8271ed254575985a1a3d297f67d8c2e4f0"
+        }
+      ],
+      "implemented": false,
+      "host_accepted": false
+    }
+  ],
+  "state_machines": {
+    "commit": {
+      "initial": "idle",
+      "states": [
+        "idle",
+        "preparing",
+        "prepared",
+        "pending",
+        "unknown",
+        "not_committed",
+        "committed",
+        "cancelled"
+      ],
+      "transitions": [
+        [
+          "idle",
+          "preparing",
+          "begin"
+        ],
+        [
+          "preparing",
+          "prepared",
+          "validated"
+        ],
+        [
+          "idle",
+          "cancelled",
+          "cancel before backend commit"
+        ],
+        [
+          "preparing",
+          "cancelled",
+          "cancel before backend commit"
+        ],
+        [
+          "prepared",
+          "cancelled",
+          "cancel before backend commit"
+        ],
+        [
+          "prepared",
+          "pending",
+          "begin backend publication"
+        ],
+        [
+          "pending",
+          "committed",
+          "authoritative commit"
+        ],
+        [
+          "pending",
+          "not_committed",
+          "authoritative abort/no publication"
+        ],
+        [
+          "pending",
+          "unknown",
+          "lost/ambiguous receipt"
+        ],
+        [
+          "unknown",
+          "committed",
+          "inspect proves commit"
+        ],
+        [
+          "unknown",
+          "not_committed",
+          "inspect proves no commit"
+        ],
+        [
+          "unknown",
+          "unknown",
+          "inspection unresolved"
+        ]
+      ],
+      "terminal": [
+        "not_committed",
+        "committed",
+        "cancelled"
+      ],
+      "invariant": "Cancellation after pending is a request;only the authoritative backend or inspection determines outcome. committed never becomes cancelled."
+    },
+    "snapshot_owner": {
+      "initial": "candidate",
+      "states": [
+        "candidate",
+        "verified",
+        "active",
+        "retiring",
+        "draining",
+        "retired"
+      ],
+      "transitions": [
+        [
+          "candidate",
+          "verified",
+          "manifest/content verified"
+        ],
+        [
+          "verified",
+          "active",
+          "committed identity bound"
+        ],
+        [
+          "candidate",
+          "retiring",
+          "cancel/failure"
+        ],
+        [
+          "verified",
+          "retiring",
+          "cancel/failure"
+        ],
+        [
+          "active",
+          "retiring",
+          "replacement/close"
+        ],
+        [
+          "retiring",
+          "draining",
+          "no new admission"
+        ],
+        [
+          "draining",
+          "retired",
+          "all I/O/decoder/render/audio leases drained"
+        ]
+      ],
+      "terminal": [
+        "retired"
+      ],
+      "invariant": "An old active reader retains its immutable snapshot until physical drain;replacement never redirects its bytes."
+    },
+    "host_lifecycle": {
+      "initial": "foreground",
+      "states": [
+        "foreground",
+        "background",
+        "resuming",
+        "closing",
+        "closed"
+      ],
+      "transitions": [
+        [
+          "foreground",
+          "background",
+          "actual hide callback"
+        ],
+        [
+          "background",
+          "resuming",
+          "actual show callback"
+        ],
+        [
+          "resuming",
+          "foreground",
+          "identity/timer/input/connection inspection passed"
+        ],
+        [
+          "resuming",
+          "background",
+          "recovery not ready"
+        ],
+        [
+          "foreground",
+          "closing",
+          "explicit close"
+        ],
+        [
+          "background",
+          "closing",
+          "explicit close"
+        ],
+        [
+          "resuming",
+          "closing",
+          "explicit close"
+        ],
+        [
+          "closing",
+          "closed",
+          "logical close;physical receipt separate"
+        ]
+      ],
+      "terminal": [
+        "closed"
+      ],
+      "invariant": "background is not application termination;abrupt termination can bypass every final callback."
+    }
+  },
+  "failure_matrix": [
+    {
+      "id": "UC-E01",
+      "trigger": "cancel-before-publication",
+      "required_result": "cancelled only if backend publication not started/proven absent",
+      "remaining_effect": "old active root remains"
+    },
+    {
+      "id": "UC-E02",
+      "trigger": "cancel-after-commit",
+      "required_result": "committed receipt remains authoritative",
+      "remaining_effect": "restart/retirement may still need recovery"
+    },
+    {
+      "id": "UC-E03",
+      "trigger": "commit-result-lost",
+      "required_result": "unknown plus inspection key",
+      "remaining_effect": "inspect before any repeated mutation"
+    },
+    {
+      "id": "UC-E04",
+      "trigger": "short-read-or-write",
+      "required_result": "stage failure with known bytes/effects",
+      "remaining_effect": "no partial candidate publication"
+    },
+    {
+      "id": "UC-E05",
+      "trigger": "quota-or-budget",
+      "required_result": "specific required/available stage outcome",
+      "remaining_effect": "keep whole original asset requirement open"
+    },
+    {
+      "id": "UC-E06",
+      "trigger": "inflight-I/O-after-close",
+      "required_result": "logical closed;draining/unknown",
+      "remaining_effect": "retain leases until actual completion"
+    },
+    {
+      "id": "UC-E07",
+      "trigger": "old-owner-callback",
+      "required_result": "settle only its own journal/drain",
+      "remaining_effect": "no publication into new context"
+    },
+    {
+      "id": "UC-E08",
+      "trigger": "input-composition-owner-lost",
+      "required_result": "retire that focus lease",
+      "remaining_effect": "late composition cannot modify replacement target"
+    },
+    {
+      "id": "UC-E09",
+      "trigger": "source-context-missing",
+      "required_result": "needs-context with exact requirement",
+      "remaining_effect": "no syntheticzero/dummy actor/success"
+    },
+    {
+      "id": "UC-E10",
+      "trigger": "restart-call-without-new-boot",
+      "required_result": "restart-pending/unknown",
+      "remaining_effect": "not active until actual new bound startup"
+    },
+    {
+      "id": "UC-E11",
+      "trigger": "source-copy-or-process-failure",
+      "required_result": "keep source effects ledger",
+      "remaining_effect": "do not invent rollback"
+    },
+    {
+      "id": "UC-E12",
+      "trigger": "background-then-resume",
+      "required_result": "recovery check before input",
+      "remaining_effect": "no implicit catchup or successful save"
+    },
+    {
+      "id": "UC-E13",
+      "trigger": "current-profile-not-paired",
+      "required_result": "explicit corresponding-source gap",
+      "remaining_effect": "no legacy/current splicing"
+    },
+    {
+      "id": "UC-E14",
+      "trigger": "real-device-unverified",
+      "required_result": "retain evidence level and incomplete acceptance",
+      "remaining_effect": "type/local/spec evidence is not a device result"
+    }
+  ],
+  "target_profiles": [
+    {
+      "target": "web",
+      "core": "same shared owners and byte rules",
+      "required_ports": [
+        "UC-P01",
+        "UC-P02",
+        "UC-P03",
+        "UC-P04",
+        "UC-P05",
+        "UC-P06",
+        "UC-P07",
+        "UC-P08",
+        "UC-P09",
+        "UC-P10",
+        "UC-P11",
+        "UC-P12",
+        "UC-P13",
+        "UC-P14"
+      ],
+      "adapter_focus": [
+        "browser file/Blob ranges",
+        "IndexedDB authoritative commit",
+        "DOM/IME/pointer",
+        "Canvas/audio",
+        "WebSocket bridge/stream",
+        "visibility/reload/new-boot receipt"
+      ],
+      "declared_policy_only": true,
+      "actual_host_accepted": false
+    },
+    {
+      "target": "mobile-web",
+      "core": "same shared owners and byte rules",
+      "required_ports": [
+        "UC-P01",
+        "UC-P02",
+        "UC-P03",
+        "UC-P04",
+        "UC-P05",
+        "UC-P06",
+        "UC-P07",
+        "UC-P08",
+        "UC-P09",
+        "UC-P10",
+        "UC-P11",
+        "UC-P12",
+        "UC-P13",
+        "UC-P14"
+      ],
+      "adapter_focus": [
+        "same web ports",
+        "actual touch inverse viewport/cancel",
+        "device IME/audio/foreground",
+        "large-file resource selection/storage"
+      ],
+      "declared_policy_only": true,
+      "actual_host_accepted": false
+    },
+    {
+      "target": "wechat-mini-program",
+      "core": "same shared owners and byte rules",
+      "required_ports": [
+        "UC-P01",
+        "UC-P02",
+        "UC-P03",
+        "UC-P04",
+        "UC-P05",
+        "UC-P06",
+        "UC-P07",
+        "UC-P08",
+        "UC-P09",
+        "UC-P10",
+        "UC-P11",
+        "UC-P12",
+        "UC-P13",
+        "UC-P14"
+      ],
+      "adapter_focus": [
+        "App root versus Page owner",
+        "fs descriptor exact positioned read/drain",
+        "serial journal/manifest publisher",
+        "Page/Canvas/font/audio/network adapters",
+        "onHide/show/unload event receipts",
+        "iOS/Android real file/clock/background tests"
+      ],
+      "declared_policy_only": true,
+      "actual_host_accepted": false
+    }
+  ],
+  "parameter_policy": {
+    "no_unmeasured_default_budget": true,
+    "required_profile_fields": [
+      "owned budget supporting complete manifest",
+      "decoded/pinned/concurrent-lifetime accounting",
+      "range/ZIP64 offset domain",
+      "source-clock origin/phase versus operation timers",
+      "storage mode/commit authority/durability/recovery",
+      "writer/concurrency scope",
+      "codec/font/surface/audio capabilities",
+      "actual runtime/version/evidence level"
+    ],
+    "host_profile_values_and_conformance_open": true
+  },
+  "development_order": [
+    "shared context/lease/clock/input/typed source-context contracts",
+    "range/budget/manifest store and authoritative commit/recovery",
+    "source owner carry/reset,callback tails and window/text/resource retirement",
+    "source login per-phase timers,portable content update takeover and real restart binding",
+    "business deltas in original D1..D4,thin D5 adapters and original full D6 acceptance"
+  ],
+  "proposed_acceptance_cases": [
+    {
+      "id": "UC-T01",
+      "kind": "required-not-executed",
+      "case": "source/host deadline separation including candidate and accepted-request10s timers"
+    },
+    {
+      "id": "UC-T02",
+      "kind": "required-not-executed",
+      "case": "cancel at every precommit/pending/committed race boundary"
+    },
+    {
+      "id": "UC-T03",
+      "kind": "required-not-executed",
+      "case": "two publisher expectedRevision conflict and lost final callback"
+    },
+    {
+      "id": "UC-T04",
+      "kind": "required-not-executed",
+      "case": "recover corrupt/incomplete candidate and last valid active manifest"
+    },
+    {
+      "id": "UC-T05",
+      "kind": "required-not-executed",
+      "case": "zero/short/out-of-range/over2^32 exact range reads without whole-file fallback"
+    },
+    {
+      "id": "UC-T06",
+      "kind": "required-not-executed",
+      "case": "copy/view/transfer/pin and inflight-after-cancel budget accounting"
+    },
+    {
+      "id": "UC-T07",
+      "kind": "required-not-executed",
+      "case": "active old reader while new snapshot commits"
+    },
+    {
+      "id": "UC-T08",
+      "kind": "required-not-executed",
+      "case": "logical delete callback tail versus future admission/physical pool removal"
+    },
+    {
+      "id": "UC-T09",
+      "kind": "required-not-executed",
+      "case": "classic/alternate masks,held/repeat/release and source clear points"
+    },
+    {
+      "id": "UC-T10",
+      "kind": "required-not-executed",
+      "case": "composition end after focus/epoch change and pointercancel inverse viewport"
+    },
+    {
+      "id": "UC-T11",
+      "kind": "required-not-executed",
+      "case": "source u32 wrap/absolute deadlines/wall clock and background rebase"
+    },
+    {
+      "id": "UC-T12",
+      "kind": "required-not-executed",
+      "case": "shared RNG/audio cadence versus independent local boxed stream"
+    },
+    {
+      "id": "UC-T13",
+      "kind": "required-not-executed",
+      "case": "113/260 raw dual-cursor order and source byte-counter wrap"
+    },
+    {
+      "id": "UC-T14",
+      "kind": "required-not-executed",
+      "case": "missing RID/foreign scratch versus known native context,never portablezero proof"
+    },
+    {
+      "id": "UC-T15",
+      "kind": "required-not-executed",
+      "case": "107 raw two-word text versus logical-vitals event"
+    },
+    {
+      "id": "UC-T16",
+      "kind": "required-not-executed",
+      "case": "98FF waiting/default ITM cursor versus fabricated normal completion"
+    },
+    {
+      "id": "UC-T17",
+      "kind": "required-not-executed",
+      "case": "sourcecopy/start/retry102 effects and portable snapshot publication distinction"
+    },
+    {
+      "id": "UC-T18",
+      "kind": "required-not-executed",
+      "case": "restart requested/committed/new boot bound/mismatch states"
+    },
+    {
+      "id": "UC-T19",
+      "kind": "required-not-executed",
+      "case": "Page hide/unload/App root drain and abrupt termination recovery"
+    },
+    {
+      "id": "UC-T20",
+      "kind": "required-not-executed",
+      "case": "browser/mobile and actual WeChat iOS/Android full resource/IME/audio/network flow"
+    },
+    {
+      "id": "UC-T21",
+      "kind": "required-not-executed",
+      "case": "current corresponding handoff/login/game business/disconnect with authorized account"
+    },
+    {
+      "id": "UC-T22",
+      "kind": "required-not-executed",
+      "case": "full original37/10 contexts and40 capabilities remain required"
+    }
+  ],
+  "reviewed": true,
+  "implemented": false,
+  "host_conformance_passed": false,
+  "source_discovery_gate_passed": false,
+  "all_required_capabilities_specified": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "product_baseline": "stage306",
+  "product_code_changed": false
+}

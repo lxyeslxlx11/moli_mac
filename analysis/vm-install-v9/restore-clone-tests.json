@@ -1,0 +1,50 @@
+{
+  "prepared_utc": "2026-10-25T13:55:20.414149+00:00",
+  "scope": "Synthetic temporary fixtures only. No real VM/guest/UI access, copy, lsof, qemu-img or chmod. No real preflight/apply or successful UI receipt was produced.",
+  "original_running_policy": "Original may run. Only config and filesystem metadata are inspected; mutable system/EFI/TPM contents are never read/copied/hashed or required unchanged. All baseline contents remain fixed-hash, no-open; all cross-bundle inode references rejected.",
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis/vm-install-v9",
+        "-p",
+        "test_restore_test_clone.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "test_methods": 25,
+      "log": "restore-clone-tests-normal.log"
+    },
+    {
+      "mode": "optimized",
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis/vm-install-v9",
+        "-p",
+        "test_restore_test_clone.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "test_methods": 25,
+      "log": "restore-clone-tests-optimized.log"
+    }
+  ],
+  "scripts": {
+    "create_restore_test_clone.py": "9599ee06c92b4527cec18cd13ed782cefddb5d74ffb5edfa58bd565c8c69662a",
+    "test_restore_test_clone.py": "ad5a293fb49fd32494b787cc9ddf53b7b815c94f726234ea50bec7b808fc0187"
+  },
+  "preserved_helpers": {
+    "v8_create_cold_baseline.py": "d730abf1d0a4d05a302eb0b3ad0774211894b6e6416b098842acd4a2ae7398a7",
+    "v7_fixed_policy.py": "b72b8234cd52625552a6df95afacffe9a011af233cd7cc1ae09014051bbfcc87"
+  }
+}

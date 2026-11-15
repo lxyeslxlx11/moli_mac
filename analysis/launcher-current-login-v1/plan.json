@@ -1,0 +1,33 @@
+{
+  "schema": "moli.current-launcher-login.analysis-plan.v1",
+  "recorded_utc": "2026-10-30T12:11:11.498121+00:00",
+  "requirement": "reports/development-plan.md#stage109",
+  "objective": "REA updated launcher login and game-start producers, then implement source-supported differences in shared core and thin adapters before game-consumer work",
+  "mode": "read-only shipped-artifact analysis and reversible original-source implementation",
+  "source": {
+    "installed_updated_sha256": "6d459ddbdf80a86cf7a1e41b99ab7fb575b42842d7163522efb3c9fa6e6ac987",
+    "analysis_copy_sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+    "analysis_bytes": 4111872,
+    "prior_snapshot": "build/analysis/launcher-current-runtime-v4/rea-snapshot.json",
+    "prior_config_evidence_records": 47
+  },
+  "first_seed": {
+    "literal": "CGSharedMem",
+    "address": "0x5d1a54",
+    "evidence_id": "ev_051a5616de8393869910aed525d7eb09bd047f2e3dd6ccf5087845bfcea73a96"
+  },
+  "requirements": [
+    "Trace updated login UI validation and request producer",
+    "Trace corresponding reply/profile and selected game-start/handoff producer",
+    "Compare with existing old-sample shared login/handoff contracts",
+    "Implement evidenced differences and meaningful synthetic tests",
+    "Keep game consumer, authentication acceptance and platform compatibility unverified without corresponding evidence"
+  ],
+  "limits": {
+    "vendor_execution": false,
+    "credentials_or_sessions": false,
+    "protection_or_authentication_bypass": false,
+    "original_artifact_mutation": false,
+    "full_goal_complete": false
+  }
+}

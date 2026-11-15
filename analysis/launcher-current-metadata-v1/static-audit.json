@@ -1,0 +1,103 @@
+{
+  "schema": "moli.launcher-current-metadata-v1.static-audit.v1",
+  "recorded_utc": "2026-10-28T12:53:03.953398+00:00",
+  "requirement": "reports/development-plan.md",
+  "source_check": "analysis/launcher-current-metadata-v1/source-check.json",
+  "target": {
+    "packed_sha256": "71180e5bdda771e7d57dd27d2b879beddee55d61b957dadf7a2da60c907cb69a",
+    "unpacked_sha256": "c7ba69f77809fe589fd5dcccc78fcd4f33d4b6f76325d00a27f37032bbb32384",
+    "provider": "Ghidra12.1.4",
+    "profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+  },
+  "retained_worker": {
+    "procedure": "0x4069b0",
+    "evidence_id": "ev_0632774e28cc35dee4128c4251df3975de861927e3a55c279f92a5197c77230e"
+  },
+  "new_query_operations": {
+    "analyze_function": 12,
+    "inspect_native_instruction": 8
+  },
+  "new_records": 20,
+  "retained_records": 31,
+  "total_records": 51,
+  "session_exported_and_closed": true,
+  "findings": [
+    {
+      "type": "fact",
+      "location": "retained worker0x406be7..0x406d4c; literal0x5cf398; new0x43a3d0/0x43fd40/0x43fde0/0x43fe00",
+      "claim": "Remote digest trims contiguous trailing then leading characters from setSP/CR/LF, cuts32bytes, and compares case-sensitively via __mbscmp with local lowercase32hex. Local file wrapper reads1024byte chunks and formats16byte digest; initial state is MD5 constants. CString-copy helper0x407680 is not the hash algorithm."
+    },
+    {
+      "type": "fact",
+      "location": "retained worker0x406f16..0x406f57; new0x406540,0x409c90,0x409ad0",
+      "claim": "First two stream tokens: URL1..255B and archive text1..31B at worker. Handoff builder requires decimal1..10digits, value1..268435456,32hex digest; URL HTTP/S prefix case-insensitive, rejectspipe/doublequote/control and requires first post-scheme character notslash/backslash/space. Remaining URI validity is delegated to transport. Locator text is preserved."
+    },
+    {
+      "type": "fact",
+      "location": "retained worker0x407045..0x407399; wrapper0x4335b0; transport0x431ee0",
+      "claim": "On current launcher, xml_md5.dat response goes to local temporary CString; success return gates GameList then RegionList GETs, bodies go to context+0xc/+0x10. Within full worker no catalog digest tokens or hash-based refresh selection are consumed. Subsequent staged files are validated/compared by stage91 callbacks."
+    },
+    {
+      "type": "fact",
+      "location": "wrapper0x4335d5..0x433645; transport0x431ee0",
+      "claim": "Wrapper passes cache-buster flag1,8MiB response budget and cancellation pointer. Transport appends?rtm=GetTickCount or&rtm=..., uses per-call15000ms checks and4000ms options, accepts queried status200..399. This is source behavior, not runtime/network proof."
+    }
+  ],
+  "role_corrections": [
+    "0x407680 copies CString data, not local MD5.",
+    "0x409aa0 checks existing updater-related handles/fields, not context initialization; original preflight question is superseded by these consumers."
+  ],
+  "independent_policies": [
+    "4096B metadata,1MiB/catalog,32MiB package; below observed native8MiB responses /256MiB updater size envelope.",
+    "ASCII/non-NUL/hex metadata subset; invalid remote hex is rejected before dependent requests instead of reproducing later native failure.",
+    "Existing complete catalog schema/encoding/XML subset is stricter than the native containers-only gate.",
+    "Existing explicit-origin/status2xx/no-redirect client and total10s default deadline retained; not full WinInet200..399/proxy/timing equivalence.",
+    "Browser cacheTick value is independent process monotonic32, not a claim to recover original Windows uptime."
+  ],
+  "implemented": [
+    {
+      "api": "parseWin32LauncherDigestResponse",
+      "file": "shared/launcher-manifest.mjs",
+      "behavior": "Explicit owned ASCII bytes, SP/CR/LF-set boundary trim,32bytecut, preserve comparisonText casing and expose canonical lowercase MD5. Same4096B metadata/non-NUL/hex input subset; legacy parser unchanged."
+    },
+    {
+      "api": "parseWin32LauncherUpdateLocatorResponse",
+      "file": "shared/launcher-manifest.mjs",
+      "behavior": "First2classicASCIIwhitespace tokens; HTTP/S native-prefix/character subset with255B URL,1..10decimal archive text and1..256MiB numeric range. Preserve text and ignored-token count; prefix check is not full URL validation."
+    },
+    {
+      "api": "createWin32LauncherMetadataPlan",
+      "file": "shared/launcher-manifest.mjs",
+      "behavior": "Own data inputs; lowercase local digest compared against raw remote comparisonText. Mismatch requires locator and yields size/MD5 plan; current yields full catalog request order. Pure bytes/data; no auth/process or I/O."
+    },
+    {
+      "api": "createWin32LauncherBootstrap",
+      "file": "web/launcher-bootstrap.mjs",
+      "behavior": "Explicit separate factory; old factory/default page unchanged. Reuse total deadline/cancellation/origin client. Main metadata/catalog requests get rtm from explicit cacheTick callback or independent browser monotonic32default; package URL is not given main-worker cachebuster. Mismatch uses strict stage88 Win32singleEXE/header/declared-length decoder. Current fetches marker body then both XMLs, checks containers and complete independent parsers, computes local integrity MD5 and raw pair comparison. No file publication/recovery."
+    }
+  ],
+  "inferences": [
+    {
+      "type": "inference",
+      "claim": "Remote canonical MD5 in uppercase can cause native update selection despite equal normalized digests; derived from lowercase producer and case-sensitive comparison, not observed in a live official update."
+    }
+  ],
+  "open_questions": [
+    {
+      "type": "pending",
+      "claim": "Full WinInet proxy/redirect/status/cancellation/file paths and updater transaction/recovery are not reproduced by the browser candidate adapter."
+    },
+    {
+      "type": "pending",
+      "claim": "Current original launcher execution and updater lifecycle remain unobserved; stage90 process-only RemoteSigned question unanswered."
+    },
+    {
+      "type": "pending",
+      "claim": "Game consumers/protocol, actual playability and target-platform/official compatibility acceptance remain incomplete."
+    }
+  ],
+  "windows_actions": 0,
+  "security_policy_changes": 0,
+  "game_actions": 0,
+  "goal_complete": false
+}

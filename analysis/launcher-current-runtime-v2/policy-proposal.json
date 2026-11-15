@@ -1,0 +1,26 @@
+{
+  "schema": "moli.launcher-current-runtime-v2.policy-proposal.v1",
+  "recorded_utc": "2026-10-28T11:40:17.261629+00:00",
+  "status": "prepared-not-authorized-or-executed",
+  "trigger": "Actual -File SecurityError with all five policy scopes Undefined; syntax and all9media hashes already passed.",
+  "source_rule": "analysis/launcher-current-runtime-v1/run-plan.json requires stop on policy denial; CUA policy requires action-time confirmation before weakening protections.",
+  "exact_script": {
+    "path": "D:\\current.ps1",
+    "bytes": 11580,
+    "sha256": "313ccf1a9b78100f129aeed074d4b1d4821b4bbab54429525326a169a31d90f4"
+  },
+  "proposal": "Use -ExecutionPolicy RemoteSigned only for each dedicated Windows PowerShell process running this fixed script in modes Verify, Install, Observe, Restore, in that prerequisite order. No persistent/user/machine/GPO change.",
+  "commands": {
+    "Verify": "powershell.exe -NoLogo -NoProfile -ExecutionPolicy RemoteSigned -File D:/current.ps1 -Mode Verify",
+    "Install": "powershell.exe -NoLogo -NoProfile -ExecutionPolicy RemoteSigned -File D:/current.ps1 -Mode Install",
+    "Observe": "powershell.exe -NoLogo -NoProfile -ExecutionPolicy RemoteSigned -File D:/current.ps1 -Mode Observe",
+    "Restore": "powershell.exe -NoLogo -NoProfile -ExecutionPolicy RemoteSigned -File D:/current.ps1 -Mode Restore"
+  },
+  "impact": "This permits unsigned local scripts within the dedicated PowerShell session and inherited child sessions; RemoteSigned is not an exact-script allowlist. We invoke only the hash-verified original project helper. Existing file/hash/path/process guards remain.",
+  "existing_effect_scope": "Verify is read-only; Install creates new verified4filebackup and replaces only fixed runtime EXE; Observe records one normal RunAs/noargument attempt with parent90s bound after UAC return; Restore restores only replaced EXE and allowed attributes after no matching process.",
+  "recovery": "Session policy is not stored in registry and ends when the process/child sessions exit. Preserve original4files backups. If any actual policy/security denial, hash/process mismatch, new legal/credential/unexpected permission gate occurs, stop again; no Bypass, Unrestricted, Unblock-File, inline equivalent or other workaround.",
+  "official_documentation": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-5.1",
+  "approval_required": true,
+  "approval_received": false,
+  "executed": false
+}

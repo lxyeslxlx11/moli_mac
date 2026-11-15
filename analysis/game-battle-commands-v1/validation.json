@@ -1,0 +1,52 @@
+{
+  "schema": "moli.battle-command-validation-stage182.v1",
+  "recorded_utc": "2026-11-04T06:57:45.589101+00:00",
+  "source": {
+    "path": "analysis/game-battle-commands-v1/source-check.json",
+    "bytes": 23812,
+    "sha256": "87a45ffeb9e78f18e413a92cb18a6c4a622a32b15b1cb2871d2aa33cbfb6ad48"
+  },
+  "tests": {
+    "path": "analysis/game-battle-commands-v1/test-results.json",
+    "bytes": 15400,
+    "sha256": "c2f96a92c3fbe72aaa6dc47b033258d3fd5c36ac9419c8aaa15bbc2c63092d2e"
+  },
+  "network": {
+    "path": "analysis/game-battle-commands-v1/network-validation.json",
+    "bytes": 2653,
+    "sha256": "e68d41b8abc72f0ab0cd5ebd4b4e7ae66b11d0fbf25d1973d14436930ee2acf1"
+  },
+  "observed": "Fixed37c4 source call-level queue state only; source/generated real loopback retains battle-pending, no automatic battle main10/render or source body callback execution",
+  "passed": {
+    "new_Node_tests": 21,
+    "full_Node_tests": 1495,
+    "builds": 4,
+    "neutral": 21,
+    "generated_App_Page": 7,
+    "new_actual_OS_TCP_flows": 6
+  },
+  "source_coverage": {
+    "records": 1756,
+    "new_records": 27,
+    "new_canonical": 10,
+    "known_reanalysis": 1,
+    "reused_dossiers": 25,
+    "canonical_total": 585,
+    "original_bytes_verified": 1109,
+    "cached_table_bytes": 520,
+    "derived_bytes_reverified": 55491,
+    "session_closed": true
+  },
+  "remaining": [
+    "main10 native entry/fade/scheduling and actual C loop",
+    "remaining16 command opcodes and all body graphic/motion/effect callbacks",
+    "complete battle render/input/exit/return",
+    "other complete gameplay",
+    "native WeChat gamePage/DevTools/device",
+    "current-version/official login-game acceptance; no test account"
+  ],
+  "no_new_VM_or_original_execution": true,
+  "phase_complete": false,
+  "full_goal_complete": false,
+  "goal_status": "active"
+}

@@ -1,0 +1,23 @@
+{
+  "stage": 300,
+  "objective": "以REA核对已实现注销回城/城市切换的本地对象、门槛、嵌套捕获和外层相位/位置顺序，补齐真实共享消费者及产品路径。",
+  "previous_goal_turn": "progress:正常战斗水面绑定，24函数/14881B，3731回归、1060整帧/1200状态及8产品路径完成。",
+  "baseline_files": 4487,
+  "authoritative_scope": [
+    "AGENTS.md",
+    "reports/development-plan.md#stage299-battle-water",
+    "analysis/game-battle-water-v1/goal-audit.json"
+  ],
+  "questions": [
+    "回城场景main9/1,2,11/类型14与正常战斗退出的调用顺序和9250c8/本地指针有何区别？",
+    "已有cityReturn.advance的等待、捕获、呈现阶段应在哪个实际边界推进水面相位与保存位置？",
+    "回城期间收到新own unit/新地图/重新进入战斗时，如何按来源更新而不重复回调或发明wire字段？"
+  ],
+  "execution": [
+    "复用固定37c4当前REA快照，核对来源后实现。",
+    "独立原创状态与完整像素、真实素材、源码/生成API/Page和完整回归。",
+    "保留37项需求/10组及旧证据，更新13份项目文档。"
+  ],
+  "goal_status": "active",
+  "full_goal_complete": false
+}

@@ -1,0 +1,171 @@
+{
+  "schema": "moli.launcher-v28.validation.v1",
+  "recorded_utc": "2026-10-27T09:25:13.621645+00:00",
+  "stage": 73,
+  "result": "Rendered explicit patch preparation/review/choice/cancel and candidate resource metadata integrated; original local actual exchanges pass. Full launcher/game/platform/official goal incomplete.",
+  "preflight": "preflight.json",
+  "native_evidence": {
+    "reuse": "evidence-reuse.json",
+    "new_queries": 0,
+    "new_native_facts": 0,
+    "REA_tools_at_original_analysis": "REA6.7.0/Ghidra12.1.4",
+    "last_saved_sessions_closed": true
+  },
+  "independent_reference": {
+    "oracle": "ui_patch_oracle.py",
+    "fixture": "original-ui-patch.json",
+    "source": "Original Pythonzipfile/zlib/hashlib; sequential create/append resource paths,58final bytes."
+  },
+  "node": {
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "tests": 491,
+    "passed": 491,
+    "new_tests": 13,
+    "failed": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "duration_ms": 11813.063667,
+    "log": "node-tests.log",
+    "focused_log": "patch-ui-tests.log",
+    "syntax": "syntax-checks.json"
+  },
+  "browser": {
+    "record": "ui-browser-verified.json",
+    "prior_records": [
+      "ui-browser.json",
+      "ui-browser-v2.json",
+      "ui-browser-final.json"
+    ],
+    "browser": "155.0.8059.85",
+    "driver": "Playwright1.62.1; Browser plugin not available",
+    "flows": 13,
+    "requests": 192,
+    "screenshots": 9,
+    "page_errors": [],
+    "unexpected_console": [],
+    "external_requests": 0,
+    "actual_successful_test_exchanges": 2,
+    "zero_connection_denial_verified": true,
+    "default_no_patch_Galaxy_regression": {
+      "record": "plain-regression-browser.json",
+      "flows": 6,
+      "requests": 112,
+      "actual_independently_verified_test_exchanges": 3
+    },
+    "six_checks": "visual-review.json",
+    "limits": "Synthetic local inputs and Chrome viewports only; no physicalmobile/Safari/WeChat/fullBFCache or official/game acceptance."
+  },
+  "example": {
+    "command": "node web/examples/launcher-browser-game-patch-local.mjs",
+    "url": "http://127.0.0.1:4174/",
+    "browser_record": "ui-example-browser.json",
+    "log": "ui-example.log",
+    "exit_code": 0,
+    "original_peer_verified": true,
+    "connections": 1,
+    "closed_normally": true
+  },
+  "implementation_contract": "implementation-spec.json",
+  "corrections": "review-corrections.json",
+  "dependencies": {
+    "new_acquisitions": 0,
+    "capabilities": "Existing Node/Python/PyCryptodome/Pako and Playwright/Chrome sufficient. No global security/VM changes or new assets."
+  },
+  "matrix": {
+    "revision": 21,
+    "ids": 20,
+    "status_changes": [],
+    "dependencies_changed": false,
+    "scope": "UPD-GAME and LCH-CATALOG evidence expanded only; source trust/native recovery/official acceptance remain incomplete."
+  },
+  "authorization": {
+    "original_EXE_or_VM_executions": 0,
+    "installed_client_files_modified": 0,
+    "real_accounts_or_sessions_read": 0,
+    "official_game_requests": 0,
+    "original_assets_added": false,
+    "global_configuration_changed": false
+  },
+  "requirement_index": "TalonBrain3000token experience/requirement-index lookup lacks requirement-index; current project development-plan remains truth. No global knowledge edit.",
+  "remaining": [
+    "Launcher native commit/recovery/source trust and remaining bounded spec/platform gaps",
+    "Real-account/service/opaque validity and official acceptance",
+    "Game REA/implementation after launcher gate, target physicalmobile/WeChat acceptance"
+  ],
+  "goal_complete": false,
+  "delivery_checks_passed": true,
+  "preservation": {
+    "previous_files": 1056,
+    "unchanged_previous_files": 1036,
+    "planned_baseline_files": 20,
+    "baseline_targets_only": true,
+    "unchanged_native_files": 17,
+    "unchanged_prior_shared_product_files": 83,
+    "previous_manifest_unchanged_sha256": "7b23cafba002af06e2a83315f1b7c69c3e92ade138514abf0247f47b63ddb4e0"
+  },
+  "documentation": {
+    "files": 44,
+    "local_links_checked": 1923,
+    "explicit_anchors_checked": 214,
+    "errors": []
+  },
+  "delivery_manifest": "../delivery-manifest-stage73.json",
+  "tested_product_files": [
+    {
+      "path": "web/launcher-patch-files.mjs",
+      "sha256": "33fe2679cca15f9c259c52cbcd17a8133e43849bccc82049e40b37ebd20f2550"
+    },
+    {
+      "path": "web/launcher-patch-state.mjs",
+      "sha256": "b546eca0d29e716c4b4835d504fd3a5127b3d26c2e9d98d536d395cbbdca6ff4"
+    },
+    {
+      "path": "web/launcher-patch-source.mjs",
+      "sha256": "a1b9158a6bd29f621e288c69f9d39d89c48453f38e1f7e4b338db3cddf7dd0b6"
+    },
+    {
+      "path": "web/login-patch.mjs",
+      "sha256": "745856eced29e77c693599bd5240d4f5e5c2a884e3acf7354ec6a14b6b5eb5ec"
+    },
+    {
+      "path": "web/login-app.mjs",
+      "sha256": "377eed684aa2cc11fa44d74d91dd0ef8f010d06cb8280e30ef9eda19c002c8a3"
+    },
+    {
+      "path": "web/login-catalog.mjs",
+      "sha256": "d1e76bee43c3138e54074e88ea7d185a86958eb1a3ecd04d0d6616dd5527e565"
+    },
+    {
+      "path": "web/login-launch.mjs",
+      "sha256": "b6d9fe72dd03d52a28a5c0a32df1168f2b4535ff334d233edff540dc9ba5e23b"
+    },
+    {
+      "path": "web/login.html",
+      "sha256": "b4ad6e3292eee0c4a0b87579865454826c42e7828b0a7d9ee0cd6ffbc4814fef"
+    },
+    {
+      "path": "web/login.css",
+      "sha256": "5b15dd4402869a05baa646ff04a230f7b3fe9920ced3e9d63b6f92d8596e9970"
+    },
+    {
+      "path": "adapters/node/launcher-patch-origins.mjs",
+      "sha256": "89dce94fa33874d7256f8131fce997fe5821d0eba0d17c487cffcd62f27f8c79"
+    },
+    {
+      "path": "adapters/node/launcher-loopback.mjs",
+      "sha256": "222fd1905ccd329d3bdd1c20d283e41046e60802c222c5325ea80ae342503e54"
+    },
+    {
+      "path": "web/tests/helpers/launcher-game-patch-fixture.mjs",
+      "sha256": "40459cfdc175ffa3c16744ff38a2354d98c539621d08b1f0f74438febdee21c1"
+    },
+    {
+      "path": "web/tests/helpers/launcher-patch-ui-fixture.mjs",
+      "sha256": "6c554d0a3f90a4c2e66db8a263f600e0a0abf7cf24a482c15fde7f35d461f95a"
+    },
+    {
+      "path": "web/examples/launcher-browser-game-patch-local.mjs",
+      "sha256": "ce7e82fd250266a78222cdbfc532f981d9ce82f07c64e8d8690509ffee1b7a65"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "moli.updater-startup-diagnostics.plan.v1",
+  "recorded_utc": "2026-10-30T10:48:12.097643+00:00",
+  "requirement": "reports/development-plan.md#stage108",
+  "question": "Does the already-observed updater2484 leave an explicit Windows loader/dependency error, without any new vendor launch?",
+  "mode": "Read-only existing Application/System events for2026-10-30 local18:19:00..18:21:00; target-name filter only, no event log clearing or audit changes.",
+  "output": "First matching event counts, EventID/provider/time; second exact selected XML Data field names and necessary DLL/exception data only. No raw message dumps/account identifiers/session/credentials.",
+  "guest_permissions": "Existing ordinary console only; no new privilege expansion. An access denial is recorded, not silently treated as empty.",
+  "vendor_starts_additional_maximum": 0,
+  "product_or_dependency_writes_maximum": 0,
+  "status": "Bounded query completed, NoMatchingEventsFound; scoped dependency presence and PATH counts actually read",
+  "runtime_record": "diagnostics-runtime-stage108.json",
+  "revision": 2,
+  "scope_extension": "After empty event result, read only three exact DLL names in platform/game/SysWOW64 and seven nonempty process PATH entries; output booleans/counts only. No dependency writes or new vendor start."
+}

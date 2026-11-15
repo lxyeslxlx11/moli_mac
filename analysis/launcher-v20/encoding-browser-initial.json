@@ -1,0 +1,57 @@
+{
+  "schema": "moli.launcher-v20.encoding-browser.v1",
+  "browser": "155.0.8059.85",
+  "tool": "Existing Playwright1.62.1; Browser plugin not available",
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 1100
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "locale": "zh-CN; default account profile still ASCII",
+  "checks": [
+    {
+      "name": "ASCII default regression with actual configured request and readable original names",
+      "passed": true
+    },
+    {
+      "name": "Chinese locale/XML UTF8 do not auto-select account code page; ASCII rejects Chinese before I/O",
+      "passed": true
+    },
+    {
+      "name": "Windows936 explicit selection resets inputs and enforces16-byte boundary without substitution",
+      "passed": true
+    },
+    {
+      "name": "XML cache stays UTF8 and stores neither selected credential profile nor account inputs",
+      "passed": true
+    }
+  ],
+  "errors": [
+    {
+      "type": "assertion",
+      "name": "AssertionError",
+      "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n+   '测试甲',\n    '中文甲',\n-   '中文乙'\n  ]\n",
+      "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n+   '测试甲',\n    '中文甲',\n-   '中文乙'\n  ]\n\n    at file:///private/tmp/moli-launcher-v20-browser-AtzJkZ/encoding-qa.mjs:70:12\n    at async pass (file:///private/tmp/moli-launcher-v20-browser-AtzJkZ/encoding-qa.mjs:33:30)\n    at async file:///private/tmp/moli-launcher-v20-browser-AtzJkZ/encoding-qa.mjs:64:4"
+    }
+  ],
+  "consoleLogs": [],
+  "requests": {
+    "total": 84,
+    "origins": [
+      "http://127.0.0.1:63899",
+      "http://127.0.0.1:63930"
+    ],
+    "methods": [
+      "GET"
+    ]
+  },
+  "screenshots": [
+    "/private/tmp/moli-launcher-v20-browser-AtzJkZ/windows936-ready.png"
+  ],
+  "scope": "Original Chinese text and synthetic accounts, actual HTTP/native browser WebSocket/owned TCP/Python independent gbk/utf8 and cryptography; no original EXE/VM/official service or real account."
+}

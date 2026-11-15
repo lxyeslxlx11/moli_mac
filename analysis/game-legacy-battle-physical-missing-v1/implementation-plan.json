@@ -1,0 +1,22 @@
+{
+  "stage": 249,
+  "previous_checkpoint": {
+    "path": "analysis/game-legacy-battle-family-missing-v1/checkpoint-audit.json",
+    "sha256": "036c27c2a5568c7c1594517c35e5d1dc1fbb1b9f81e22c47202218b486bd059e"
+  },
+  "baseline_files": 3987,
+  "requirement": "实现固定旧版物理技能有证据的缺席角色清理与续接，保留读取位置之前的副作用及清理后的各自尾部。",
+  "source": "analysis/game-legacy-battle-physical-missing-v1/source-check.json",
+  "scope": [
+    "分别验证 424310 配对的首攻击者、首目标、后续攻击者/目标及 260 链目标。",
+    "验证 73 和常规正变体的缺席列表目标与反射、保存自身结果的分支；独立标记空施法者和护卫的直接解引用。",
+    "用现有角色体清理、已解码的记录边界及命令所有者续接，核对留队列条件、收尾和本地产品入口。"
+  ],
+  "remaining": [
+    "无已证安全清理分支的空护卫、正变体空施法者、额外目标组合及原版异常游标",
+    "实际当前版本、设备与官方验收"
+  ],
+  "VM_actions": 0,
+  "original_execution": 0,
+  "official_sessions": 0
+}

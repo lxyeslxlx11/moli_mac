@@ -1,0 +1,31 @@
+{
+  "schema": "moli.normal-installed-launcher.postrun.v1",
+  "recorded_utc": "2026-10-30T10:28:33.664953+00:00",
+  "actual_hash_readback_guest_local_display": "2026-10-30 18:27",
+  "observation_method": "CUA normal guest PowerShell UI, command visually inspected before Return, four full Path/Hash results and prompt observed",
+  "hashes": {
+    "polcn_launcher.exe": "109b13382e7fbd96759f52e8cdb4bc269c379a613dbbf1ddd04a69a4a5c8ef0e",
+    "launcherupdater.exe": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+    "xml\\gamelist.xml": "be8f1213d77bd294fbb79b2fb51a5e7fecdc9aa3c0854db7a6d821fad20ef85a",
+    "xml\\regionlist.xml": "0c94ca78c40c1940f241940a97aabef7849e9ad3285310046f346b69128a8438"
+  },
+  "comparison": "All four equal the stage108 preflight values",
+  "actual_directory_inventory": {
+    "XML": "directory",
+    "LauncherUpdater.exe": 46080,
+    "Log.htm": 1078,
+    "POLCN_Launcher.exe": 599040,
+    "unins000.dat": 8590,
+    "unins000.exe": 3129349
+  },
+  "log_length_before": 1076,
+  "log_length_after": 1078,
+  "log_content": "Not read in this stage",
+  "file_state_limitation": "Pinned four files only; no complete installation diff, no successful update assertion",
+  "first_hash_command_failure": {
+    "command": "gfh abbreviation in a four-file pipeline",
+    "result": "CommandNotFoundException four times, returned prompt, no hashes produced",
+    "fix": "Use full built-in Get-FileHash, no profile or alias/config changes"
+  },
+  "input_selection_interruption": "First Return attempt returned external-change guard; fresh observation showed Select mode; Escape ended selection without losing pending read-only command; a fresh Return submitted that command."
+}

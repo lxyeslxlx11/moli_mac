@@ -1,0 +1,80 @@
+{
+  "schema": "moli.fixture-return-stage119.v1",
+  "stage": 119,
+  "classification": "fact",
+  "evidence_method": "CUA full command readback before Return, actual selected PowerShell output, host receiver events and file oracle; no raw screenshots or user-account prompt retained",
+  "guest_date_observed": "2026-11-01T15:34:02.4295461+08:00",
+  "input": {
+    "own_PowerShell_DBG_ended": true,
+    "ordinary_commands_and_outputs_observed": true,
+    "root_cause_or_general_reliability_proved": false,
+    "configuration_or_security_changed": false
+  },
+  "snapshot": {
+    "guest_path": "C:\\MoliOffline\\game-text-observer-stage115\\fixture-text.bin",
+    "length": 6624,
+    "attributes": "Archive",
+    "sha256": "13da500e013b8455352dd26985f04d8a9c853af45584b0f53ba99b1eb146a9d9",
+    "host_private_path": "build/analysis/game-text-observer-runtime-v1/stage118/fixture-text.bin",
+    "host_output_absent_before_receiver": true,
+    "source": "ReadAllBytes of the same existing guest snapshot; fixture and reader not rerun"
+  },
+  "network": {
+    "actual_guest_ipv4": [
+      "10.211.55.3",
+      "127.0.0.1"
+    ],
+    "actual_host_private_ipv4": "10.211.55.2",
+    "port": 65378,
+    "route": "/fixture-text.bin",
+    "listener_mode": "receive-fixture",
+    "ttl_seconds_best_effort": 600,
+    "expected_actual_fixture_base": "0x00da0000"
+  },
+  "guest_client": {
+    "buffer_bytes_output": 6624,
+    "proxy": null,
+    "proxy_scope": "this temporary WebClient only; no system proxy or policy change",
+    "post_submissions_observed": 1,
+    "response_length_output": 0,
+    "returned_to_normal_prompt": true,
+    "Dispose_executed_no_exception_and_new_prompt": true
+  },
+  "host_receiver": {
+    "source_sha256": "1d9f5b4e87381de59ca994e7ed1430fe4c38ee21fe75317fd093e42589b30f09",
+    "session_id": 50849,
+    "listening_events": [
+      {
+        "bind": "10.211.55.2",
+        "bytes": 6624,
+        "event": "listening",
+        "mode": "receive-fixture",
+        "peer": "10.211.55.3",
+        "port": 65378,
+        "sha256": "13da500e013b8455352dd26985f04d8a9c853af45584b0f53ba99b1eb146a9d9",
+        "ttl": 600
+      }
+    ],
+    "completion_events": [
+      {
+        "bytes": 6624,
+        "event": "original_fixture_received",
+        "sha256": "13da500e013b8455352dd26985f04d8a9c853af45584b0f53ba99b1eb146a9d9"
+      },
+      {
+        "event": "closed",
+        "success": true
+      }
+    ],
+    "exit_code": 0
+  },
+  "direct_oracle": "analysis/game-text-observer-runtime-v1/host-oracle-stage119.json",
+  "scope": {
+    "new_fixture_executions": 0,
+    "new_observer_process_reads": 0,
+    "new_game_executions": 0,
+    "new_vendor_memory_reads": 0,
+    "new_account_or_session_observation": false,
+    "full_goal_complete": false
+  }
+}

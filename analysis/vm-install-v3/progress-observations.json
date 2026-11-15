@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-25",
+  "observations": [
+    {
+      "order": 1,
+      "state": "At start of new turn UI already beyond EULA; Disk 0 unallocated 80.0GB visible.",
+      "scope": "No retry of previously denied acceptance performed; cannot attribute intervening advancement to a specific actor."
+    },
+    {
+      "order": 2,
+      "state": "Same project UUID and disk IDs; config hash f93fc4e4da000f9738212ef6cd1ba1ee5968bcea441fd273b81c8d2324231d16; no NIC/sharing."
+    },
+    {
+      "order": 3,
+      "state": "Ready to install page explicitly Windows 11 Home and keep nothing; only existing new blank project disk chosen."
+    },
+    {
+      "order": 4,
+      "state": "Install invoked; Windows 11 progress observed 11%. No account/key/network action."
+    },
+    {
+      "order": 5,
+      "state": "Progress reached 55%; no new input required."
+    },
+    {
+      "order": 6,
+      "state": "Observed firmware loading Windows Boot Manager from HD(1,GPT,...)/EFI/Microsoft/Boot/bootmgfw.efi, then restarted installation phase at 0%; screenshot system-first-boot.png captures this latter phase. No boot/CD inputs sent."
+    },
+    {
+      "order": 7,
+      "state": "System disk boot reached OOBE region selection. China and Microsoft Pinyin defaults confirmed; second keyboard skipped through ordinary UI."
+    },
+    {
+      "order": 8,
+      "state": "OOBE requires Internet to continue; Next disabled, no visible offline option. No NIC added, no network/account/credential action.",
+      "evidence": "oobe-network.png"
+    },
+    {
+      "order": 9,
+      "state": "Shift+F10 opened C:\\Windows\\system32\\cmd.exe; banner reports 10.0.26300.9457. This is installed-system OOBE evidence, distinct from historical WinPE 10.0.26100.9457.",
+      "evidence": "oobe-system-version.png"
+    },
+    {
+      "order": 10,
+      "state": "Command text attempts were not visibly entered or submitted; no claim that architecture query or shutdown command executed. Console closed; input capture released. A force-stop warning was cancelled."
+    },
+    {
+      "order": 11,
+      "state": "Used UTM Virtual Machine > Power > Request Power Down. Subsequently UTM showed Play/Start, Stop disabled, input capture 0; normal requested shutdown confirmed. No force stop/restart.",
+      "evidence": "stopped-after-oobe.png"
+    },
+    {
+      "order": 12,
+      "state": "After stop, unchanged fixed NVMe config audit passed 38/38; no NIC/sharing; same VM/disk identity.",
+      "evidence": "final-config-audit.json"
+    }
+  ],
+  "source_media": "Previously verified Microsoft ARM64 Simplified Chinese ISO; no download or change this turn",
+  "historical_license_status": "v2 first actual acceptance succeeded; later acceptance attempt denied. Current turn started already past license page, so no new acceptance submitted.",
+  "installation_status": "system disk booted to OOBE; blocked by Internet requirement; VM now stopped; usable desktop not accepted",
+  "observed_system_version": "10.0.26300.9457 (C:\\Windows\\system32\\cmd.exe banner at OOBE)",
+  "edition_evidence": "Windows 11 Home selected on Ready page; final desktop/activation not validated",
+  "current_blocker": {
+    "operation": "Enable VM Internet access to complete OOBE, then user-handled account steps if required",
+    "status": "not attempted; outside current authorization; no pending tool call",
+    "reason": "Actual OOBE requires Internet; current authorization requires Network=[] and no account/credential handling",
+    "scope_needed": "Specific authorization for temporary VM network and any necessary official driver, with host sharing kept disabled; account/credentials handled by user; no game servers"
+  },
+  "not_done": [
+    "OOBE completion",
+    "desktop usability",
+    "guest architecture query",
+    "activation/license entitlement validation",
+    "Secure Boot/TPM guest health",
+    "guest drivers and x86 sample",
+    "official game execution or network",
+    "restore boot test",
+    "new completed-OS baseline"
+  ]
+}

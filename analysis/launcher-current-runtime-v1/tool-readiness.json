@@ -1,0 +1,71 @@
+{
+  "schema": "moli.launcher-current-runtime-v1.powershell-acquisition.v1",
+  "recorded_utc": "2026-10-28T08:46:38.376609+00:00",
+  "source_doc": "https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-macos",
+  "release": "https://github.com/PowerShell/PowerShell/releases/tag/v7.6.6",
+  "version": "7.6.6",
+  "architecture": "macOS-arm64",
+  "downloaded": [
+    {
+      "name": "hashes.sha256",
+      "bytes": 6522,
+      "sha256": "388b105a0f329ef7ce9739166ca8e86d3fee6d31698137099e0558c9eb63c9f5"
+    },
+    {
+      "name": "powershell-7.6.6-osx-arm64.tar.gz",
+      "bytes": 70604356,
+      "sha256": "6df833d094ebac1c1a74340d7b3437f4aaf5e03ce640484a1c4359f3ce8b3db1"
+    }
+  ],
+  "vendor_hash_list_match": true,
+  "vendor_hash_list_encoding": "UTF16LE BOM",
+  "extracted_members": 613,
+  "expanded_bytes": 201084070,
+  "executable": {
+    "path": "/Users/lx/Documents/code/moli-mac/build/analysis/launcher-current-runtime-v1/powershell-7.6.6/pwsh",
+    "bytes": 158640,
+    "sha256": "86966ef5e53763c0d7cac9981b9b36c30245185dc347ca69ddfb815c665bf515"
+  },
+  "host_identity_checks": [
+    {
+      "command": [
+        "/usr/bin/file",
+        "pwsh"
+      ],
+      "returncode": 0,
+      "output": "/Users/lx/Documents/code/moli-mac/build/analysis/launcher-current-runtime-v1/powershell-7.6.6/pwsh: Mach-O 64-bit executable arm64\n"
+    },
+    {
+      "command": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--strict",
+        "--verbose=2",
+        "pwsh"
+      ],
+      "returncode": 0,
+      "output": "/Users/lx/Documents/code/moli-mac/build/analysis/launcher-current-runtime-v1/powershell-7.6.6/pwsh: valid on disk\n/Users/lx/Documents/code/moli-mac/build/analysis/launcher-current-runtime-v1/powershell-7.6.6/pwsh: satisfies its Designated Requirement\n"
+    },
+    {
+      "command": [
+        "/usr/bin/codesign",
+        "-d",
+        "--verbose=2",
+        "pwsh"
+      ],
+      "returncode": 0,
+      "output": "Executable=/Users/lx/Documents/code/moli-mac/build/analysis/launcher-current-runtime-v1/powershell-7.6.6/pwsh\nIdentifier=pwsh-55554944b32fe525a12d39ef84dc3ba334ac471e\nFormat=Mach-O thin (arm64)\nCodeDirectory v=20500 size=1369 flags=0x10000(runtime) hashes=31+7 location=embedded\nSignature size=9012\nAuthority=Developer ID Application: Microsoft Corporation (UBF8T346G9)\nAuthority=Developer ID Certification Authority\nAuthority=Apple Root CA\nTimestamp=Sep 3, 2026 at 04:23:23\nInfo.plist=not bound\nTeamIdentifier=UBF8T346G9\nRuntime Version=15.5.0\nSealed Resources=none\nInternal requirements count=1 size=208\nTotal signatures=1\nChosen signature=1\n"
+    }
+  ],
+  "global_install": false,
+  "system_configuration_changed": false,
+  "program_executed": true,
+  "attempt_note": "Initial UTF8 decoding of vendor hash list failed before extraction/receipt; checked FFFE BOM, rehashed downloads and correctly decoded UTF16, no redownload.",
+  "actual_version_probe": {
+    "Version": "7.6.6",
+    "Edition": "Core",
+    "Platform": "Unix",
+    "ParserType": "System.Management.Automation.Language.Parser"
+  },
+  "source_used_for": "Original script syntax/host synthetic tests only; no vendor target execution"
+}

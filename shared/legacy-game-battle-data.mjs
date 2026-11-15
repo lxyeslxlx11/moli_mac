@@ -1,0 +1,8 @@
+/** Source-bound numeric battle slot layout; no assets or executable code. */
+// PLV indexes the raw 533808 rows directly, before the ordinary slot permutation.
+export const LEGACY_GAME_BATTLE_ENTRY_ROW_SLOTS=Object.freeze([3,1,0,2,4,8,6,5,7,9,13,11,10,12,14,18,16,15,17,19]);
+export const LEGACY_GAME_BATTLE_ELEMENT_FOLLOWER_BASES=Object.freeze([0,0x1af5a,0x1af66,0x1af72,0x1af7e]);
+export function battleBodyFormation(body) {
+  return LEGACY_GAME_BATTLE_SLOT_LAYOUT[body.formationSlot ?? body.slot];
+}
+export const LEGACY_GAME_BATTLE_SLOT_LAYOUT=Object.freeze([{"slot":0,"entry":[780,660],"target":[480,360]},{"slot":1,"entry":[845,625],"target":[545,325]},{"slot":2,"entry":[715,695],"target":[415,395]},{"slot":3,"entry":[910,590],"target":[610,290]},{"slot":4,"entry":[650,730],"target":[350,430]},{"slot":5,"entry":[718,613],"target":[418,313]},{"slot":6,"entry":[781,576],"target":[481,276]},{"slot":7,"entry":[654,649],"target":[354,349]},{"slot":8,"entry":[845,540],"target":[545,240]},{"slot":9,"entry":[590,685],"target":[290,385]},{"slot":10,"entry":[-141,-121],"target":[158,178]},{"slot":11,"entry":[-77,-157],"target":[222,142]},{"slot":12,"entry":[-205,-85],"target":[94,214]},{"slot":13,"entry":[-14,-194],"target":[285,105]},{"slot":14,"entry":[-269,-49],"target":[30,250]},{"slot":15,"entry":[-81,-71],"target":[218,228]},{"slot":16,"entry":[-18,-107],"target":[281,192]},{"slot":17,"entry":[-145,-35],"target":[154,264]},{"slot":18,"entry":[45,-143],"target":[345,156]},{"slot":19,"entry":[-209,0],"target":[90,300]},{"slot":20,"entry":[768,663],"target":[418,313]},{"slot":21,"entry":[-131,-121],"target":[218,228]}].map(r=>Object.freeze({...r,entry:Object.freeze(r.entry),target:Object.freeze(r.target)})));

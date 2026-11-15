@@ -1,0 +1,18 @@
+{
+  "observed_utc": "2026-10-25T13:57:22.018379+00:00",
+  "physical_memory_bytes": 38654705664,
+  "physical_cpu_count": 12,
+  "memory_pressure_Q_free_percent": 61,
+  "configured_memory_per_vm_MiB": 8192,
+  "configured_two_vm_total_MiB": 16384,
+  "configured_cpus_per_vm": 4,
+  "free_disk_bytes_before_copy": 264601600000,
+  "full_copy_plus_reserve_bytes": 80977285053,
+  "decision": "Budget sufficient for brief offline clone boot alongside untouched original; stop at pre-login and normally close clone after observation. Memory metric is a current system sample, not a guaranteed capacity reservation.",
+  "commands": [
+    "sysctl hw.memsize hw.physicalcpu",
+    "vm_stat",
+    "memory_pressure -Q"
+  ],
+  "sandbox": "Initial sysctl unavailable in sandbox; read-only escalated query approved and succeeded. No host settings changed."
+}

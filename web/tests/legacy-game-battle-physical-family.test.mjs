@@ -1,0 +1,2 @@
+import test from'node:test';import * as api from'../../shared/index.mjs';import{createWeChatLegacyGameSession}from'../../adapters/wechat/legacy-game-session.mjs';import{physicalTCPModes,runPhysicalTCP}from'../../analysis/game-battle-physical-family-runtime-v1/tcp-flow.mjs';
+for(const mode of physicalTCPModes)test('actual physical family S/M/result/round/return OS TCP '+mode,{timeout:40000},async()=>console.log('physical-source-tcp '+JSON.stringify(await runPhysicalTCP({...api,createWeChatLegacyGameSession},mode))));

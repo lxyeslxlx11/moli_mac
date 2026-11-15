@@ -1,0 +1,45 @@
+{
+  "derived_summary": true,
+  "not_canonical_evidence": true,
+  "subject_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "upstream_evidence_id": "ev_4ea494bd8b8e5faa814b6cf1b3bee5baca6625e3e7de0fc364901b54a7ee8e17",
+  "upstream_json_sha256": "c31c584a2cdd52a1ce2f86d36044ef1685e30a8d64ccb87643f6847568e6508c",
+  "function": "FUN_004015a0 at 0x4015a0; Ghidra body 0x4015a0..0x405199",
+  "tools": ["REA 6.7.0 / Ghidra 12.1.4 existing dossier", "GNU objdump 2.47.20260726 direct read", "Python 3.9 structural anchor verification"],
+  "command_template": {"file_offset":"0xb0cd4","va":"0x4b1ad4","value":"LauncherUpdater.exe %d %s %s %s %s","reference":"0x401d0a","format_call":"0x401d16","process_call":"0x401d46"},
+  "slots": [
+    {"ordinal":1,"format":"%d","status":"observed","producer":"0x401be0 calls imported GetWindowThreadProcessId through 0x4b1670 with a null output-pointer argument; return saved at EBP-0x770 and pushed at 0x401d09","known_role":"API return value used as integer","unknown":"Consumer purpose and whether the updater treats it as a thread, process or other identifier; do not label account ID or PID from the format alone"},
+    {"ordinal":2,"format":"%s","status":"observed","producer":"First result of two consecutive FUN_0040af60 calls at 0x401c41/0x401c4a, from the launcher_url.dat result stream; local buffer EBP-0x60c is wrapped at 0x401c8f, then passes through FUN_00409050 at 0x401ccd with space and pipe literals; pointer pushed at 0x401d02","known_role":"First extracted locator-result token after text transformation","unknown":"Token grammar, URL versus path role, replacement algorithm and updater-side decoding not fully verified"},
+    {"ordinal":3,"format":"%s","status":"observed","producer":"Current module filename buffer is wrapped at 0x401ca5; passes through FUN_00409050 at 0x401ce2 with space and pipe literals; pointer pushed at 0x401cfb","known_role":"Local launcher module path after text transformation","unknown":"Consumer validation/normalization, long path and pipe escaping behavior"},
+    {"ordinal":4,"format":"%s","status":"observed","producer":"Second extraction destination EBP-0x724 is supplied before first extraction and consumed by call at 0x401c4a; its buffer address is pushed at 0x401cf4","known_role":"Second extracted locator-result token","unknown":"Meaning, required length, delimiter and updater consumer"},
+    {"ordinal":5,"format":"%s","status":"observed","producer":"Copy of processed launcher_md5.dat candidate stored via 0x401a7c at EBP-0x610; pointer pushed at 0x401ced","known_role":"Earlier self-update digest candidate text","unknown":"Exact digest algorithm and consumer-side full integrity/signature policy"}
+  ],
+  "self_update_branch": {
+    "status":"observed",
+    "anchors": [
+      {"va":"0x40187b","observation":"Current module CFile passes to FUN_004230a0; this helper loops over up-to-0x400-byte reads and invokes accumulation/finalization helpers in direct disassembly"},
+      {"va":"0x401991","observation":"FUN_0041ab70 called with launcher_md5.dat and configured host strings; zero return branches to error/exit"},
+      {"va":"0x4019d3..0x4019fe","observation":"Result passes to FUN_00409440 with space, LF and CR literals; exact trim semantics not yet asserted"},
+      {"va":"0x401a17..0x401a31","observation":"Length compared with 0x20; longer text passes 0x20 to FUN_004097a0; boundary helper semantics not fully independently tested"},
+      {"va":"0x401a3c,0x401a48,0x401a4e","observation":"Both candidates pass through same text helper before comparison helper"},
+      {"va":"0x401a5b..0x401a6f","observation":"Zero comparison result enters update branch; nonzero jumps toward XML phase at 0x401e15"},
+      {"va":"0x401aeb","observation":"Update branch references /Launcher/launcher_url.dat"},
+      {"va":"0x401b9d","observation":"Passes resource id0x8f and ./LauncherUpdater.exe to helper FUN_0041b610"},
+      {"va":"0x41b64d..0x41b6f5","observation":"Resource helper uses BIN_DATA, FindResourceA, LoadResource, SizeofResource, LockResource, CreateFileA and WriteFile"},
+      {"va":"0x401d46","observation":"CreateProcessA receives constructed command; return is tested; subsequent branch logs success or failure and reaches exit path"}
+    ],
+    "inference":"Self-file content fingerprint comparison decides update handoff versus continuation; MD5 naming and checksum class support but do not alone prove the full cryptographic policy"
+  },
+  "xml_update_branch": {
+    "status":"observed",
+    "anchors":[
+      {"va":"0x401ee8,0x401f85","observation":"Checks the two local XML paths independently before candidate digest calculation"},
+      {"va":"0x402042","observation":"References /Launcher/xml_md5.dat"},
+      {"va":"0x40213f,0x402148","observation":"Two successive extraction-helper calls produce separate comparison candidates"},
+      {"va":"0x402235,0x4023f1","observation":"Separate conditional replacement branches reference GameList.xml and RegionList.xml"},
+      {"va":"0x402569,0x4025b7","observation":"Local GameList/RegionList parser helper called after update checks; parser failure reaches exit(1) path"}
+    ],
+    "unknowns":["actual manifest bytes and formal delimiters", "full helper semantics and parse limits", "whether downloaded XML is rehashed in uninspected callees", "all update error/recovery behaviors"]
+  },
+  "limits":["This records static intended control/data flow, not execution success.","The integer role is deliberately not renamed PID; its producer API return is the verified fact.","This self-updater handoff is not the game-login or credential handoff.","Ghidra high-pcode operations are truncated to 3000 with at least one omitted; three unresolved calls are reported.","Decompiler FID_conflict and inferred types (including wide-string types on ASCII format data) are not treated as source declarations.","No real manifest was fetched, no target process run, no secret or session observed."]
+}

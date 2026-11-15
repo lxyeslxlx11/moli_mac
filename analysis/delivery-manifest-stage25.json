@@ -1,0 +1,2350 @@
+{
+  "description": "Stage25: one bounded offline client launch and fault evidence; launcher static context and privilege manifest increment; no product code change or retry.",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 320,
+      "sha256": "cc9be6bafa69c8ac6b3fe57c20a3c51d1de19382b111fbec46341fedd4133266"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 12041,
+      "sha256": "188c05654fea3bd2b657ec14cc858a7fe3c714c8e8087fb802e910af4ef6c7ff"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9570,
+      "sha256": "16bb6cf0109444950315e66558eb3c91532e0dcc4080128460265bb2e077d827"
+    },
+    {
+      "path": "analysis/audio-v2/riff-observations.json",
+      "bytes": 55415,
+      "sha256": "0c92996ed0477fa83089b5f3c90bf5689b1ef472d2c5642bd3f7d06d93ab039c"
+    },
+    {
+      "path": "analysis/crossgate-inventory.txt",
+      "bytes": 93133,
+      "sha256": "5cfee8c996bf7c0c98970a55fa5a8d440b2fba6e3eac458e16d3d6d3365dea67"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage10.json",
+      "bytes": 51018,
+      "sha256": "7fe3c52c97319be136a5dca91acd1eec03b0e44446f1cdfa809e97aaad75388a"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage11.json",
+      "bytes": 56121,
+      "sha256": "de8ffac4de86f67209c1e54e4f889e122c4874e8d5dedd71140397ad7f340ae9"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage12.json",
+      "bytes": 61044,
+      "sha256": "5312085a9f0b6a43354b86efd573a5339f7b00fc3bf61fc46b5166186af25f8e"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage13.json",
+      "bytes": 65823,
+      "sha256": "188bae6d3224b3dd1c98973ff15eb306d54758ba620262400fb1762a41ce0034"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage14.json",
+      "bytes": 66039,
+      "sha256": "ee25842c43b2e140610238b238085128c65c6271a5b3972592fe809af3710cf5"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage15.json",
+      "bytes": 66000,
+      "sha256": "4213b9d2f1f62de5c8eee7ccd02ccdae90947dc213b4c024b1b59693abf19b2e"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage16.json",
+      "bytes": 69384,
+      "sha256": "3db8899b02f9acc6ae9f721bcb2208db7b943f354e359bd734343a19d8704046"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage17.json",
+      "bytes": 71377,
+      "sha256": "bf481220dd9203e9f6b7f2b1ccc2c85709f2a387f6ab3c669e6ee60b4407f04e"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage18.json",
+      "bytes": 71988,
+      "sha256": "574548dd1eeb4b8c4ff298a35d85837e5d83b2061e37c98ec947ae6e53345786"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage19.json",
+      "bytes": 73225,
+      "sha256": "0170038debad27c7d75dafb3756dee7282e9fd8dbadf0fb0f2ada89be35e0cdf"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage2.json",
+      "bytes": 24840,
+      "sha256": "13a8307bc2a4ad2d8a6b8a24b0d221966f7678f2cfdf153887603e7cef47892c"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage20.json",
+      "bytes": 76746,
+      "sha256": "8a42387ef711eb2e3ad42ee79ee0747e40de8ff46a783b19ea742dec9ec17170"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage21.json",
+      "bytes": 77421,
+      "sha256": "6aa73e4d30983195184fb310b44deb8359e168e3719a575aa16d2943c900672c"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage22.json",
+      "bytes": 78383,
+      "sha256": "c44722bf7eccccda988ecf77ab5952529ff227c67d360856ab17c273b5ff2d0c"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage23.json",
+      "bytes": 79823,
+      "sha256": "61916ece4ecab791966bc9c4cfe5190a41cb2a4e0b44e67c45507be7009c1080"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage24.json",
+      "bytes": 81310,
+      "sha256": "8a05eb81026038c83d9ca895c5023f1fda6c8b7585fce20b6acd42b8f0d3600d"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage3.json",
+      "bytes": 32960,
+      "sha256": "d35d069f0edf3fc3804d32fcb83fb7e066ac5a0f07455d67cb66f1e4bd32182c"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage4.json",
+      "bytes": 35138,
+      "sha256": "13e1234f9b022fadb9166c963d128b37c1d0b812d38924633bb4cc5b67b6afc2"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage5.json",
+      "bytes": 37336,
+      "sha256": "7b411875f01ffb84d56e91542396bd63390ebb94d2d9368db18eb9596c45c4b0"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage6.json",
+      "bytes": 39662,
+      "sha256": "090d92f6ac608d0c8674ea88050598a6487bad04a8cb733cb1db377937b47bc5"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage7.json",
+      "bytes": 41716,
+      "sha256": "0685ece8c31c96e6cea7f8fbf02006616de3d0580c4630a14c5a7cf7d7ac5fae"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage8.json",
+      "bytes": 43699,
+      "sha256": "2b22cd6c95a271ae8122d71f214922a4c7692163d3fb296aa556a5caf4e68ecc"
+    },
+    {
+      "path": "analysis/delivery-manifest-stage9.json",
+      "bytes": 46450,
+      "sha256": "933301d7c75b48f24bad168002f8a7e9d53930f4bb12fd6b38877fc95f165b13"
+    },
+    {
+      "path": "analysis/delivery-manifest.json",
+      "bytes": 17216,
+      "sha256": "6fe9c16d084bcdcff378297c5870f03be734b5a02fa907f835d3a1a54a3d848a"
+    },
+    {
+      "path": "analysis/game/CG5Reg.exe.objdump.txt",
+      "bytes": 10974,
+      "sha256": "e45efe4c9391ad09653c6a53a9db2dbd666cadcf8791c33fbf89e5d142fda447"
+    },
+    {
+      "path": "analysis/game/CG5Reg.exe.strings.json",
+      "bytes": 451,
+      "sha256": "ee5a5e5cb53ba821e8ed7def7e92cbc001abfec87133cdde4dbb26fcf1be1133"
+    },
+    {
+      "path": "analysis/game/Config.exe.objdump.txt",
+      "bytes": 11217,
+      "sha256": "65ffad05274fc1dc754ae54ca00e496ff3ec1bb1b2da4d9e816dcbc7b7007f26"
+    },
+    {
+      "path": "analysis/game/Config.exe.strings.json",
+      "bytes": 450,
+      "sha256": "f03fda23f280c9c8acb1479b179bf41fa388c8f7476700022b85ce74d7c9ad19"
+    },
+    {
+      "path": "analysis/game/MFC71.dll.objdump.txt",
+      "bytes": 1587394,
+      "sha256": "f566a85ca8cce008064a4b22df639bd4a48b965177f4481d6e744245a38d1a89"
+    },
+    {
+      "path": "analysis/game/MFC71.dll.strings.json",
+      "bytes": 14627,
+      "sha256": "5184b0d4c13c84d32124be4c23565523f1b9f21091e141652d20392c9d13ac8b"
+    },
+    {
+      "path": "analysis/game/Patcher_PUK3.exe.objdump.txt",
+      "bytes": 338077,
+      "sha256": "3b22b5d366cbf39eee95e648bdfeb910701655321905cf2aa45d5b9505fca775"
+    },
+    {
+      "path": "analysis/game/Patcher_PUK3.exe.strings.json",
+      "bytes": 19845,
+      "sha256": "b02eec25dc8e55cc7e597eda8685b53cddb78768d8fcc46ff72beaf4092b56ad"
+    },
+    {
+      "path": "analysis/game/Patcher_PUK3.exe.wide-strings.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "analysis/game/cg_item_6000.exe.objdump.txt",
+      "bytes": 16206,
+      "sha256": "2e766a3997bb2ac607f575c22d23c0fd4dcd5d07fcfc0c40b605eb5cbce64bae"
+    },
+    {
+      "path": "analysis/game/cg_item_6000.exe.strings.json",
+      "bytes": 2941,
+      "sha256": "e2a372be352d5b3e70e94b2eb4dec351f8597f3e1a730c5068a911bc2ec79660"
+    },
+    {
+      "path": "analysis/game/cg_se_3000.exe.objdump.txt",
+      "bytes": 16742,
+      "sha256": "6fc559ef3456096c750b2a44ab4d235aac931c56388ccf3d317dd865504b0c3b"
+    },
+    {
+      "path": "analysis/game/cg_se_3000.exe.strings.json",
+      "bytes": 14844,
+      "sha256": "73e4521fe582271a68ef89c8c5f6752f99ba8f2b9aea805fe894f610e9fa5f02"
+    },
+    {
+      "path": "analysis/game/cg_se_6000.exe.objdump.txt",
+      "bytes": 13353,
+      "sha256": "1bf305c20bd0af7d7b91746f6b679f224b23b86d91e283949132c0c3c890aa0a"
+    },
+    {
+      "path": "analysis/game/cg_se_6000.exe.strings.json",
+      "bytes": 1690,
+      "sha256": "de3d997d3efe712a3338b9b836a3c9fe22cabc9ecfa6b2ce72dd1b9d2b3f4c54"
+    },
+    {
+      "path": "analysis/game/d3drm.dll.objdump.txt",
+      "bytes": 296106,
+      "sha256": "c290eb99cb97a3d60c50ec41b4924d16416e1cb7e139217cac9a70123d86ed03"
+    },
+    {
+      "path": "analysis/game/d3drm.dll.strings.json",
+      "bytes": 2090,
+      "sha256": "8598a8d5e559e7146cc6f8e02c0a935addde619cd08aab5c47dbfdc7340bb277"
+    },
+    {
+      "path": "analysis/game/d3dx9_43.dll.objdump.txt",
+      "bytes": 1038147,
+      "sha256": "2340b37259413da2bf2ba9ac91b75883f2b7fe850460bfae6a25a83fc8e31f5b"
+    },
+    {
+      "path": "analysis/game/d3dx9_43.dll.strings.json",
+      "bytes": 7473,
+      "sha256": "6589956a06b73d8135d48896954e2938c1df93ea13dda1f2c88d4964e5f7712e"
+    },
+    {
+      "path": "analysis/game/extraction-modules.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/game/extraction.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/game/graphic-index-observations.json",
+      "bytes": 622,
+      "sha256": "99acc49a968ef2e99275375a2ca113f1d231a3c0335a110d5ff39c9de0a1df46"
+    },
+    {
+      "path": "analysis/game/map-observations.json",
+      "bytes": 2550,
+      "sha256": "eae47c17b5cbe043beba513c9bf7ff62cf0caac0f18e8b5ec03e0aecf817b811"
+    },
+    {
+      "path": "analysis/game/modules.json",
+      "bytes": 3854,
+      "sha256": "e5b6d01024acc2e7bd8f61b1250468138dc223516aec2514732ad401521464d4"
+    },
+    {
+      "path": "analysis/game/msvcr71.dll.objdump.txt",
+      "bytes": 288529,
+      "sha256": "ef6109c97f90721d15ce1be04922ac71760b0a9bbfb5724272660149b28ee312"
+    },
+    {
+      "path": "analysis/game/msvcr71.dll.strings.json",
+      "bytes": 1324,
+      "sha256": "a4ca966e59fc9d7033c036827d51d95547dfeeb72075a893def1f9d23dfd0073"
+    },
+    {
+      "path": "analysis/game/patcher-update-strings.json",
+      "bytes": 1638,
+      "sha256": "cd939e39df6edc732404c9f8a545eeef54111f27177ace72455f32e8c43d98f5"
+    },
+    {
+      "path": "analysis/game/pe-sections.json",
+      "bytes": 8226,
+      "sha256": "9fd52b4dbb9ed9e9f04bed418354ae13620cb7b0f12c634c77ea3c6658fba4cf"
+    },
+    {
+      "path": "analysis/game/rea-CG5Reg.exe-resources.json",
+      "bytes": 5267,
+      "sha256": "fa1083ed4a577f9be0d11d00542f919929e3ea913c0ad8911bbd43d2b83576f6"
+    },
+    {
+      "path": "analysis/game/rea-Config.exe-resources.json",
+      "bytes": 5980,
+      "sha256": "d7262610c62568992b07d4ad2f1a205602508546f5f898ff4505c5da379ac618"
+    },
+    {
+      "path": "analysis/game/rea-capabilities.json",
+      "bytes": 51672,
+      "sha256": "4d05d9f28b7f31b4c7a11a0d967e01892426b4e3c3def4008306d70cfb9840f5"
+    },
+    {
+      "path": "analysis/game/rea-cg-se-3000-headers.json",
+      "bytes": 432,
+      "sha256": "365b6a68c7040a70c9225bcad2f9670dc2b500de4b5f2d492d1e19f050ef5eba"
+    },
+    {
+      "path": "analysis/game/rea-cg-se-3000-imports.json",
+      "bytes": 431,
+      "sha256": "036299089a9adc649d38872db2e208843e0ec392a980a951ab84505e46a1cab2"
+    },
+    {
+      "path": "analysis/game/rea-cg_item_6000.exe-resources.json",
+      "bytes": 9849,
+      "sha256": "ea2210f28c93c8a01af168d0b6d9f48716bd6256f3d7fdcfa0c560f69f8e969d"
+    },
+    {
+      "path": "analysis/game/rea-cg_se_3000.exe-resources.json",
+      "bytes": 10975,
+      "sha256": "1f17392fbb7f5f72d38a8b57f0117213c0464725e07391aa96df265081b0b390"
+    },
+    {
+      "path": "analysis/game/rea-cg_se_6000.exe-resources.json",
+      "bytes": 9809,
+      "sha256": "2234ae02db77ed2d309775d58d43d3fdd7e62a5fa8bf2f718a9ef9f750458e74"
+    },
+    {
+      "path": "analysis/game/rea-patcher-resources.json",
+      "bytes": 5337,
+      "sha256": "d52d0ebb5656483c81e40afcdb791c665004539dbdc3f40fd914b8053ce010f4"
+    },
+    {
+      "path": "analysis/game/resource-observations.json",
+      "bytes": 2704,
+      "sha256": "c0aea83f04fd89166cd98231eddbc0dc04c98b3bf740a147c4c502a515b1f0f6"
+    },
+    {
+      "path": "analysis/game/scan_game.py",
+      "bytes": 1717,
+      "sha256": "23724d3981c5e8ef5e2d15ae4263c80dd9683f72c8f60851992145a315ead1bb"
+    },
+    {
+      "path": "analysis/input-manifest.json",
+      "bytes": 1574,
+      "sha256": "a3903a8fc9d2212c70076d4e51a91402c12c0418c21499e4d3b3bfcec61a40fb"
+    },
+    {
+      "path": "analysis/launcher/call-site-summary.json",
+      "bytes": 662,
+      "sha256": "93ee817abadaeaa5e2d1aea24ea1de7fed3450077e64b333cffa3f64a81e10c7"
+    },
+    {
+      "path": "analysis/launcher/config-summary.json",
+      "bytes": 6773,
+      "sha256": "08a73910c46d948c58924b2dfe0267eb76b7b863ec9b872884b999a3519d1c38"
+    },
+    {
+      "path": "analysis/launcher/embedded-resource-summary.json",
+      "bytes": 2743,
+      "sha256": "edcc906e64ff623ad37fdd8cf8614dab6a96572ed11a3c7e0800ac33c78c7456"
+    },
+    {
+      "path": "analysis/launcher/embedded-updater-pe.txt",
+      "bytes": 9710,
+      "sha256": "27c941d18f3c1be54e606f6db5e46fa53345fe1c2a4625508d965915ada6cb42"
+    },
+    {
+      "path": "analysis/launcher/ghidra-updater-function-summary.json",
+      "bytes": 6443,
+      "sha256": "4d85be67a031ca671298d35707b0fc1d59d40ab48e76721bebaf0d6d3545983c"
+    },
+    {
+      "path": "analysis/launcher/objdump-pe.txt",
+      "bytes": 46340,
+      "sha256": "0ec06f5dd1cca017271fb078d4e43c3626bc51c1226c4fad9024368167f47485"
+    },
+    {
+      "path": "analysis/launcher/objdump-unpacked-pe.txt",
+      "bytes": 61628,
+      "sha256": "6243f8c59396a6c22c8d4d78a3a71bf21cced3f9a8ac22c5103f79e599e074fb"
+    },
+    {
+      "path": "analysis/launcher/rea-ghidra-analyze.json",
+      "bytes": 51911,
+      "sha256": "1a38637ac040a46bece60ea9d99eb8d9b7630f4ca7a95a79e5977c684d01fc1e"
+    },
+    {
+      "path": "analysis/launcher/rea-objdump-sections.json",
+      "bytes": 432,
+      "sha256": "365b6a68c7040a70c9225bcad2f9670dc2b500de4b5f2d492d1e19f050ef5eba"
+    },
+    {
+      "path": "analysis/launcher/rea-pe-resources.json",
+      "bytes": 385,
+      "sha256": "2139f0440431e7803dc0b518bdbd45afbfbc456abdd6dcea4581a6112127c95d"
+    },
+    {
+      "path": "analysis/launcher/rea-rizin-imports.json",
+      "bytes": 431,
+      "sha256": "036299089a9adc649d38872db2e208843e0ec392a980a951ab84505e46a1cab2"
+    },
+    {
+      "path": "analysis/launcher/rea-rizin-updater-xrefs.json",
+      "bytes": 431,
+      "sha256": "036299089a9adc649d38872db2e208843e0ec392a980a951ab84505e46a1cab2"
+    },
+    {
+      "path": "analysis/launcher/rea-unpacked-artifact.json",
+      "bytes": 6798,
+      "sha256": "e520389b40ad46b892530b2b1a7b134c52ccab3a609fa9f7b503e2dcc2046334"
+    },
+    {
+      "path": "analysis/launcher/rea-unpacked-pe-resources.json",
+      "bytes": 98846,
+      "sha256": "ae88ef6e75387ce01a1a37a0bf7365929b04bf912ec8424f4f7247cd5ff51b2a"
+    },
+    {
+      "path": "analysis/launcher/reproduced-audit.json",
+      "bytes": 29057,
+      "sha256": "f0eebfc464151f69744dd0cf274a6ed416fa3c2503bdba9100bab4c141fcf6b1"
+    },
+    {
+      "path": "analysis/launcher/rizin-imports.json",
+      "bytes": 49160,
+      "sha256": "b3d9569868b0b7095370118206e1e355fe2c2f70d418b9acf1e29615503aeb92"
+    },
+    {
+      "path": "analysis/launcher/rizin-updater-xrefs.json",
+      "bytes": 46,
+      "sha256": "5829051c189e866b818f3d28eded993c1b02230c3a090d685552d595fb13c3d7"
+    },
+    {
+      "path": "analysis/launcher/selected-strings.json",
+      "bytes": 17991,
+      "sha256": "79841cec140ae847f465b0cd519ca8ff40bd43e850f716166a3a3728b6d9c808"
+    },
+    {
+      "path": "analysis/launcher/updater-summary.json",
+      "bytes": 1712,
+      "sha256": "d90ccb1cf4f4199cc09b972d251a7e91e5ae8f803848213261b1149f5d3ee284"
+    },
+    {
+      "path": "analysis/launcher/updater-unpacked-pe.txt",
+      "bytes": 16951,
+      "sha256": "22c33b992be619241e058b2f530ca1b8b24b9ae1359dcf4fca414ecf8febda4f"
+    },
+    {
+      "path": "analysis/launcher-v4/launch-context-tests-initial-import-failure.log",
+      "bytes": 1571,
+      "sha256": "1221d762220022ecb873029de726089db68b7e6bcaf6bdc6cd194f527f85f352"
+    },
+    {
+      "path": "analysis/launcher-v4/launch-context-tests.log",
+      "bytes": 621,
+      "sha256": "50be50d27b52ea8a4b34b95af8368df77dc1f40d3c6d7764feb285bf17da675e"
+    },
+    {
+      "path": "analysis/launcher-v4/launch-context-validation.json",
+      "bytes": 5588,
+      "sha256": "19bf7605a1930be50a5aca8f6416596f6d73bdd1fb2a0c8f34f4e1a85269b9c7"
+    },
+    {
+      "path": "analysis/launcher-v4/launch-context.json",
+      "bytes": 9921,
+      "sha256": "8bec8572ab69a9b39e4351c78b7360f8e40b0edff3c1bbc8e1c834a7df31c7ea"
+    },
+    {
+      "path": "analysis/launcher-v4/launch-context.md",
+      "bytes": 6423,
+      "sha256": "017ab07cc9ffcae0b58c365ced58ad22183b5868f5cf94555ad4dbaa4b9bd548"
+    },
+    {
+      "path": "analysis/launcher-v4/manifest-context.json",
+      "bytes": 5552,
+      "sha256": "e84b6801a29f3c70f63b1165ef6ee53601e400e456cc41fd789ef778f91d1af2"
+    },
+    {
+      "path": "analysis/launcher-v4/test_launch_context.py",
+      "bytes": 2357,
+      "sha256": "0f3920d132413c67544189b7884369b5ae900872b4695cc11eee71e380f5d55e"
+    },
+    {
+      "path": "analysis/launcher-v4/verify-launch-context.py",
+      "bytes": 2693,
+      "sha256": "2cce13e6b4f7c855f364d8eed537549d5abb76687b085fd25abb50ffe92a9621"
+    },
+    {
+      "path": "analysis/launcher-v4/verify-manifest-context.py",
+      "bytes": 13324,
+      "sha256": "47fb31a6d8f4f74e94f16cf9d2e08cfcd16498618214925e53c9bfa7c0ec49e2"
+    },
+    {
+      "path": "analysis/polcn-inventory.txt",
+      "bytes": 247,
+      "sha256": "82c1930222b90255a6da007f4f55b22b88db8d6cc54333e06e4ad223e9cc939c"
+    },
+    {
+      "path": "analysis/protocol-v2/spec-matrix.json",
+      "bytes": 16349,
+      "sha256": "da21132f1f38b7681aa4631d021b04cc9044a132f5094e7f8231e6952a729ac9"
+    },
+    {
+      "path": "analysis/protocol-v2/updater-argument-provenance.json",
+      "bytes": 5990,
+      "sha256": "fee3c2b80cf7763ef235aad0909434956ebf8434f1a27e60453f570559be7ce5"
+    },
+    {
+      "path": "analysis/protocol-v2/validation.json",
+      "bytes": 997,
+      "sha256": "3f64b1ab495f87116e8b70ca523ed0f3aa066e3ab55b1e8672d6bd06e997a8cf"
+    },
+    {
+      "path": "analysis/protocol-v2/verified-anchors.json",
+      "bytes": 9074,
+      "sha256": "90386f90f56fb4e5991de98bffb7529352d3b684c16c49484703a28613b339f8"
+    },
+    {
+      "path": "analysis/protocol-v2/verify_anchors.py",
+      "bytes": 7211,
+      "sha256": "99f98827e2fe2b2e96309c4d6834f4c3c0e6c0f4c9e132ea77162a51c66d0916"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/Patcher_PUK3.exe.direct-control-edges-summary.json",
+      "bytes": 1191,
+      "sha256": "b8369e12636e88af44a72353ed8e97ef3fc539c2a6d7f8cc068c8f2b0c20343f"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/Patcher_PUK3.exe.network-imports.json",
+      "bytes": 90781,
+      "sha256": "e7e11d53196c03b9b62ad1e645e50760128de94faa0606279cf18a0915284f18"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/cg_item_6000.exe.direct-control-edges-summary.json",
+      "bytes": 1871,
+      "sha256": "8e205a9f3b2cd7580474e4e6aec4738da37a75bc323164be60a8973ab390e81c"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/cg_item_6000.exe.network-imports.json",
+      "bytes": 50008,
+      "sha256": "0c4971879afc139a46a46ddfb062b659aa70526b5654b5273675c99b557171b6"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/cg_se_3000.exe.direct-control-edges-summary.json",
+      "bytes": 635,
+      "sha256": "d37f5b0058df16ce8ab6aa57c944d4e1b9506adb40b6e383c7f4750f023e9ecd"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/cg_se_3000.exe.network-imports.json",
+      "bytes": 69280,
+      "sha256": "84c2b8510adfc94bdb8ae76a767ca2598d97baa0a9233c07279c433fb299645a"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/cg_se_6000.exe.direct-control-edges-summary.json",
+      "bytes": 1871,
+      "sha256": "e1232416d7c890dfdbbe201ebb41df752bec8d4f4a6aa6480651b7307f0fdeb3"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/cg_se_6000.exe.network-imports.json",
+      "bytes": 38921,
+      "sha256": "0485cec64d1aa4996cae61f9201838c953de73a440918f26489518517c85907f"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/notes-network.md",
+      "bytes": 9606,
+      "sha256": "271878f02497be4f3ae57deaba572b49c79adf5ad753f77d6b7ab824ee0abd62"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/packed-boundary.json",
+      "bytes": 353163,
+      "sha256": "06dc891fc6bd8d08f7f39f78f1dc140f39b30ebad4ea8a0153ab7f7a59604b14"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/packed-boundary.md",
+      "bytes": 8859,
+      "sha256": "9e195225205ba6c6a1452f4f954b04a75cdb1c4b2a21ebdac6b41d4881543230"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/patcher-anchors.json",
+      "bytes": 2950,
+      "sha256": "08ee854bdd2b8a033f1b47cb0b01ccf9828765e9f05824f3a53768eba1155878"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/patcher-http-function-summary.json",
+      "bytes": 7679,
+      "sha256": "1643073283856d7c0e19d1fcdff639dfbd9a34069ecdb792209e5670f818b26f"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/pe-helper-tests.log",
+      "bytes": 497,
+      "sha256": "dae83052f1ced6eab3ac40fb7132e4793b15b26f5479afe22fd542864528af84"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/rea-patcher-http-send-xrefs-unsandboxed.json",
+      "bytes": 3892,
+      "sha256": "ac3cc07706d1e2c12b0453f47102f0e36e632eeebb592600b6240cdb86fa2619"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/rea-patcher-http-send-xrefs.json",
+      "bytes": 51935,
+      "sha256": "3f7e5d817a17a3b03da5efa679bb065e4b3ad74ddcfdecddc92b917695eae2c0"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/rea-patcher-update-path-xrefs.json",
+      "bytes": 3870,
+      "sha256": "cf31f6fc2a6b67517aeeb824cd8210d7d745be4607049f5c509cec0c620ea50b"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/scan_network_static.py",
+      "bytes": 6743,
+      "sha256": "7b15248a6dc7002c4d9d359409ba8e5f7923de0c1b5afc5b663d11f8af1615e9"
+    },
+    {
+      "path": "analysis/protocol-v3/game-network/test_scan_network_static.py",
+      "bytes": 2919,
+      "sha256": "1684df587cd35bd314627b1f2822155ac8bb36c8b16d1292a7f5e4713d5ce85a"
+    },
+    {
+      "path": "analysis/protocol-v3/http-helper/initial-tool-failure.json",
+      "bytes": 1455,
+      "sha256": "707e6409c8e3126bb51424fe4364b60618da99b5f4c0cc1974e69878fe2a3946"
+    },
+    {
+      "path": "analysis/protocol-v3/http-helper/notes.md",
+      "bytes": 3488,
+      "sha256": "c27f65e85e25fc2e0fcf7dd607a0cb310a2c30fe127bed7be18781de884bc24b"
+    },
+    {
+      "path": "analysis/protocol-v3/http-helper/verified-http-chain.json",
+      "bytes": 4924,
+      "sha256": "1c10b31fcf353a510915b204417cfa96a852db4442a544be1b04715f07c7a9f7"
+    },
+    {
+      "path": "analysis/protocol-v3/http-helper/verify_http_helper.py",
+      "bytes": 5275,
+      "sha256": "59da131d8c53c50679ca999bee150f089c8dc7f6bc1ef484b79e4fbd9ddd2e68"
+    },
+    {
+      "path": "analysis/protocol-v3/launch/anchor-validation.json",
+      "bytes": 11065,
+      "sha256": "c4882b79d4272e0e3bc94f3830c59cb15b7fb19c921fed51a826530f8978b0b7"
+    },
+    {
+      "path": "analysis/protocol-v3/launch/launch-evidence.json",
+      "bytes": 12484,
+      "sha256": "74a38c9ae3cadfd40a25caad43e4950454be4c9d478dab9542f5acadf3122a04"
+    },
+    {
+      "path": "analysis/protocol-v3/launch/notes.md",
+      "bytes": 9213,
+      "sha256": "021a707d0d730c77ac73809f6c79aeeddabdfbd9d6ec62fd5498953f7c37ae70"
+    },
+    {
+      "path": "analysis/protocol-v3/launch/test_verify_launch.py",
+      "bytes": 3427,
+      "sha256": "0c1c480214c7919440b1406762da05e86be6989396d52aa7e42c93cf1a935c70"
+    },
+    {
+      "path": "analysis/protocol-v3/launch/tests.log",
+      "bytes": 715,
+      "sha256": "114bb0d71e73a86ef912d9b572ea79a7c9c1e984dca65d854f08dc937d410de6"
+    },
+    {
+      "path": "analysis/protocol-v3/launch/tool-status.json",
+      "bytes": 768,
+      "sha256": "aea8544739c483b5b5b6cd127398ccce7daf91138873400c15d8a5accbb0d925"
+    },
+    {
+      "path": "analysis/protocol-v3/launch/verify_launch.py",
+      "bytes": 6006,
+      "sha256": "e1d0bdbbeb9476d030164e7c1067e3dfb12dbbd5045e9016370999c81c24e6bc"
+    },
+    {
+      "path": "analysis/protocol-v3/updater/consumer-evidence.json",
+      "bytes": 19331,
+      "sha256": "b1fcee9318156fd69021770423f1c787b4fdaebec16814ccc150eea4cd3b750a"
+    },
+    {
+      "path": "analysis/protocol-v3/updater/findings.md",
+      "bytes": 8995,
+      "sha256": "c6e295c6dec3b23570c22ac5b5786759bfbc0f5b4a75194cb20af2ec883ac944"
+    },
+    {
+      "path": "analysis/protocol-v3/updater/lifecycle/lifecycle-evidence.json",
+      "bytes": 14428,
+      "sha256": "5a60f4373ab7f920df320f0af1068c210fc614c2fc723bf406007a258ab56375"
+    },
+    {
+      "path": "analysis/protocol-v3/updater/lifecycle/lifecycle-summary.md",
+      "bytes": 8028,
+      "sha256": "4094837d17b3b7cfa15f635e15a281677655a572352b88ee57270fedc851a73a"
+    },
+    {
+      "path": "analysis/protocol-v3/updater/lifecycle/test-results.json",
+      "bytes": 496,
+      "sha256": "76f4b6f4ea375c25fd181561cdd1f62d4309ae256b8839a138de126fbc314365"
+    },
+    {
+      "path": "analysis/protocol-v3/updater/lifecycle/verification-result.json",
+      "bytes": 3414,
+      "sha256": "5d70ee092a4d6f82df43568f0d813b887f412cd0fff00d88365dc752d7bfe48e"
+    },
+    {
+      "path": "analysis/protocol-v3/updater/lifecycle/verify_lifecycle.py",
+      "bytes": 5171,
+      "sha256": "f64a8b47ba1d44cf5b186a5edda418ad6d270f08c5ad1b0072c6dfd831ae00d4"
+    },
+    {
+      "path": "analysis/protocol-v3/updater/verification-result.json",
+      "bytes": 8896,
+      "sha256": "9e726b7e744e62f4388e605926e0649511b074f2c23460d1252f79e2ed590a6b"
+    },
+    {
+      "path": "analysis/protocol-v3/updater/verify_consumer.py",
+      "bytes": 3990,
+      "sha256": "5547bf60a6380be53cec88723468b96442bce5c8ad7eff8ff36c1b4778cee82d"
+    },
+    {
+      "path": "analysis/protocol-v3/validation.json",
+      "bytes": 1562,
+      "sha256": "405d6c2912ea2462e05b110bcf004a53be68ded79c4ee3e45cd8f993b220067e"
+    },
+    {
+      "path": "analysis/protocol-v3/verify_stage3.py",
+      "bytes": 4510,
+      "sha256": "88727ffcbefe4bef09de01d7373546c820664dfe0cfbf3ba2d0af2c4cd0ab853"
+    },
+    {
+      "path": "analysis/rea-crossgate-headers.json",
+      "bytes": 432,
+      "sha256": "365b6a68c7040a70c9225bcad2f9670dc2b500de4b5f2d492d1e19f050ef5eba"
+    },
+    {
+      "path": "analysis/rea-crossgate-installer.json",
+      "bytes": 6784,
+      "sha256": "f541022d31373359bc57c16bf810de242b3e1e4584d9629adde4fa135bedc39e"
+    },
+    {
+      "path": "analysis/rea-doctor-authorized.json",
+      "bytes": 11961,
+      "sha256": "a61571df07587bb3d38fd6705d2c0806207b31368bd445da22af853d3d1d9dbb"
+    },
+    {
+      "path": "analysis/rea-doctor.json",
+      "bytes": 2689,
+      "sha256": "ac5364d4450d7e6c5ef69572854bb55fc6d860a6bb3b7e8030fd2831dbd05a69"
+    },
+    {
+      "path": "analysis/rea-launcher-ghidra.json",
+      "bytes": 5394,
+      "sha256": "150bfcf6f8826a077097a326e9eca4b44aaa7eab0384f5dcafb87722e6f682e0"
+    },
+    {
+      "path": "analysis/rea-polcn-headers.json",
+      "bytes": 432,
+      "sha256": "365b6a68c7040a70c9225bcad2f9670dc2b500de4b5f2d492d1e19f050ef5eba"
+    },
+    {
+      "path": "analysis/rea-polcn-installer.json",
+      "bytes": 6762,
+      "sha256": "337de99235a4e2af678045830af2d26f5c19c0765f0a6421cd5492c416a61483"
+    },
+    {
+      "path": "analysis/reproduced-input-manifest.json",
+      "bytes": 1337,
+      "sha256": "8fc3ec13f888088ac33d4a0c308ae450d5a51a5a121a0ae0fc314bc16f7b7b85"
+    },
+    {
+      "path": "analysis/resources-v2/extraction.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/resources-v2/graphics-probe-results.json",
+      "bytes": 77134,
+      "sha256": "ac69c732c26f7bc6880c660ddff2dbf659b10c9d5643ba3a3e7542bd1a70a18d"
+    },
+    {
+      "path": "analysis/resources-v2/independent-check.md",
+      "bytes": 7161,
+      "sha256": "fd45e69969464a26cb6609df5132dfd30a445d7c6b3f3e1ec8cf5888c7f60bf0"
+    },
+    {
+      "path": "analysis/resources-v2/index-candidates.json",
+      "bytes": 4696,
+      "sha256": "88672f4679fc765c03efea7a4bb6c4a9317095f6d8a196fdc63e0e41d9429768"
+    },
+    {
+      "path": "analysis/resources-v2/notes-graphics.md",
+      "bytes": 7609,
+      "sha256": "78fc00ebee65773b25cb90eb9b65830c1a0cd6ae5bb5cc5443eb2baa0d2938d7"
+    },
+    {
+      "path": "analysis/resources-v2/probe_graphics.py",
+      "bytes": 6685,
+      "sha256": "a55608d2143adf2bb323b8bd5e6096068e272897b03d128a6515593e050914fa"
+    },
+    {
+      "path": "analysis/resources-v2/raw-oracle-joy.json",
+      "bytes": 4487,
+      "sha256": "42bed070e366a0eac1a6235568e04ac21ebc5f85e677c35b5900df4fd701ce65"
+    },
+    {
+      "path": "analysis/resources-v2/raw-oracle-tests.log",
+      "bytes": 745,
+      "sha256": "c27db6c1e5f824fb9c0499983a637b7b43107c80c2aaa027688efc563f2d1ee0"
+    },
+    {
+      "path": "analysis/resources-v2/raw-oracle-v3.json",
+      "bytes": 37517,
+      "sha256": "1b8416ab4a6a84357b04bbe0cc661741e280877a8c63a7ace686ad1e2b648577"
+    },
+    {
+      "path": "analysis/resources-v2/raw-v0-observations.json",
+      "bytes": 2975,
+      "sha256": "59a2c3a6d2bc0ffb6e1e98d5f44918cddcfaafa53e4725d20bd09eb9bd7f176e"
+    },
+    {
+      "path": "analysis/resources-v2/raw_graphic_oracle.py",
+      "bytes": 6392,
+      "sha256": "0b6bc43f5ae422228fd18401057690d32f4627c427639772df126abe45a3e9c6"
+    },
+    {
+      "path": "analysis/resources-v2/test_raw_graphic_oracle.py",
+      "bytes": 3404,
+      "sha256": "0dcdb40fc3ee1a56b7eaccf864165ae41195b642e08fcb353246d5e20b98c375"
+    },
+    {
+      "path": "analysis/terms-quote-verification.json",
+      "bytes": 8133,
+      "sha256": "5bb91e7c9a16a2ed32af5dbb47f1e89703fa9007bf81d3f2168b6f65b02a630a"
+    },
+    {
+      "path": "analysis/vm-install-v1/before-install.json",
+      "bytes": 781,
+      "sha256": "2032bf20e64559a556e9b7b598b54d4db42ab53804dbcd620c47e1f49cc4a749"
+    },
+    {
+      "path": "analysis/vm-install-v1/installation-boundary.json",
+      "bytes": 1380,
+      "sha256": "8fd899bb9a1a217579682fd613eac7b8fe1ffcd7bada8c933c3a723fc68e09a8"
+    },
+    {
+      "path": "analysis/vm-install-v1/license-boundary.png",
+      "bytes": 272913,
+      "sha256": "f2297fb79b89f9ae32577482f2c5baf0a5ac37cda29f4aa619f299ba188da604"
+    },
+    {
+      "path": "analysis/vm-install-v1/licensing-research.md",
+      "bytes": 5281,
+      "sha256": "74dfb8ed23d2767f6626ea71e09ee1cd4a6356e7a2e05342ebabe20f3fc92c92"
+    },
+    {
+      "path": "analysis/vm-install-v1/media-config-tests.log",
+      "bytes": 546,
+      "sha256": "fdb21adae5378009b2bd51bc5323b5ecf9342b87f778db3f996ca94dece16389"
+    },
+    {
+      "path": "analysis/vm-install-v1/media-config-verification.json",
+      "bytes": 3188,
+      "sha256": "f573747794f76bede6d4403d5525c4124f80bc7cb43a64252f180a21bfb6f96d"
+    },
+    {
+      "path": "analysis/vm-install-v1/media-validation.json",
+      "bytes": 937,
+      "sha256": "3875827f1a91f2b2fc61e1d5d23f8dd152332123f06f52ed45642928e8d09018"
+    },
+    {
+      "path": "analysis/vm-install-v1/stage-validation.json",
+      "bytes": 1097,
+      "sha256": "23965f77cf2e07c7576f36373b9481f3b8bd58e2b80ba380987bb777c9f54933"
+    },
+    {
+      "path": "analysis/vm-install-v1/test_verify_media_config.py",
+      "bytes": 5225,
+      "sha256": "8ac79c2593152e83ed9a9be3ecf1e866c4a244558da79072164915260a8a3f4f"
+    },
+    {
+      "path": "analysis/vm-install-v1/ui-validation.json",
+      "bytes": 2531,
+      "sha256": "cb8674efb8538e64ccc5ae25950195860acf101f2db15db365e2292fecff30d0"
+    },
+    {
+      "path": "analysis/vm-install-v1/verify_media_config.py",
+      "bytes": 7982,
+      "sha256": "c21871c98dbf2c867712b0f3177879da1db057b20d28aa8984af0ed4260d0207"
+    },
+    {
+      "path": "analysis/vm-install-v10/autologon-proposal.md",
+      "bytes": 10866,
+      "sha256": "5537a1373b08c30a616ef3819b22ca29b1421387604bb17650b7f8a4a0f9a386"
+    },
+    {
+      "path": "analysis/vm-install-v10/before-validation.json",
+      "bytes": 4367,
+      "sha256": "b1158e4646353e18e2c81cb1f574c02b52a497cb8bfcf87f7d98c6c1466fc625"
+    },
+    {
+      "path": "analysis/vm-install-v10/deliver_moli_stage16.py",
+      "bytes": 10180,
+      "sha256": "e9ce4a6c8821f91ee0133286c8d21246c5368403f62ad545faed274fbb71654c"
+    },
+    {
+      "path": "analysis/vm-install-v10/delivery-guard-tests.json",
+      "bytes": 1351,
+      "sha256": "00ed9995e0564850f99e38a8642c9b34474f4714a07e9a6f22418c690fc402c7"
+    },
+    {
+      "path": "analysis/vm-install-v10/device-problems-query.png",
+      "bytes": 381977,
+      "sha256": "b93f311bced55abb04c3b7be1f356e90e5f29335643444b5ed2c5b4f251f691f"
+    },
+    {
+      "path": "analysis/vm-install-v10/documentation-links.json",
+      "bytes": 41041,
+      "sha256": "81360705731f03014a65bb2ea5158002bc85371f8c2924cd1b9b4187a6bbf13b"
+    },
+    {
+      "path": "analysis/vm-install-v10/elevation-blocker.json",
+      "bytes": 1157,
+      "sha256": "702f27852d350d78eaa4165ddf92420e863f8737c31c99acfa73b90c468a49ec"
+    },
+    {
+      "path": "analysis/vm-install-v10/guest-observations.json",
+      "bytes": 4120,
+      "sha256": "b5f840fc6e3d8f87b3ba98b308ddd19b787da74a0efdb996cf31f1d8a1d57e90"
+    },
+    {
+      "path": "analysis/vm-install-v10/host-isolation-check.json",
+      "bytes": 2092,
+      "sha256": "6904d7527ae53d050ea5bd4a68b865bb4bc6834419bfccdfde641568ea1ef547"
+    },
+    {
+      "path": "analysis/vm-install-v10/input-observations.json",
+      "bytes": 1709,
+      "sha256": "f4266e722677c1f043b268ddda1fb53f2a36a1b637c29fa1caad5e2fb1058d94"
+    },
+    {
+      "path": "analysis/vm-install-v10/login-result.json",
+      "bytes": 595,
+      "sha256": "3a264c706b7c04b2baa1f0a110500efdc74cd9e9dfaa292062e4dbfc22580ddc"
+    },
+    {
+      "path": "analysis/vm-install-v10/os-query.png",
+      "bytes": 349304,
+      "sha256": "87f0dfc94380f3708c5400e7f0f2002ddb94def50229256526f5b2ed4acb1377"
+    },
+    {
+      "path": "analysis/vm-install-v10/restored-driver-query.png",
+      "bytes": 431018,
+      "sha256": "21ddacf90a137cbe324340042d9221563cbc238230336d05835d7bcb3260bc2d"
+    },
+    {
+      "path": "analysis/vm-install-v10/security-pnp-query.png",
+      "bytes": 480195,
+      "sha256": "6c7fb0047266e58519b94a76ef88c6bd55c28326e0e4bd6d89397dd3409d8d81"
+    },
+    {
+      "path": "analysis/vm-install-v10/stage-validation.json",
+      "bytes": 1268,
+      "sha256": "0585ef6b1de5fc1629ebf1e80a4678bc944e2dc13dc140a7f53d35eb43b3cb01"
+    },
+    {
+      "path": "analysis/vm-install-v10/tbs-query.png",
+      "bytes": 403281,
+      "sha256": "e49438e3ff0f22151448c73b56ddb5ea43aa9b218d55cd76c65b74f8283ec25c"
+    },
+    {
+      "path": "analysis/vm-install-v10/test_deliver_moli_stage16.py",
+      "bytes": 11845,
+      "sha256": "063c1ad8f808b9c7772fb11b7424bf015a2626cd069978e6ede30a66987f2a19"
+    },
+    {
+      "path": "analysis/vm-install-v10/tpmtool-query.png",
+      "bytes": 327979,
+      "sha256": "b8df97de5de522bd07de8aca74b04cfe2f440f6f11a2b648ce23023154c01ef6"
+    },
+    {
+      "path": "analysis/vm-install-v11/authorization-and-actions.json",
+      "bytes": 1699,
+      "sha256": "fe6362695ef40fdd5e2cfd9bdc790cc1ea662e8ab91998d69bd3ca3791c7d265"
+    },
+    {
+      "path": "analysis/vm-install-v11/deliver_moli_stage17.py",
+      "bytes": 10172,
+      "sha256": "39a3166a1a369592b4136d8870ee4e85fad45076bd809f4b21217d86d96d1070"
+    },
+    {
+      "path": "analysis/vm-install-v11/delivery-guard-tests.json",
+      "bytes": 1101,
+      "sha256": "a5dfd5199b2a9daff8b03a2be670264b4615f2ad0d09584440203b2259366c3f"
+    },
+    {
+      "path": "analysis/vm-install-v11/documentation-links.json",
+      "bytes": 43947,
+      "sha256": "27035e6af9e1e31927ed1abf6dd7ae1f14ed8c62c638c0a2e213f72c293927e2"
+    },
+    {
+      "path": "analysis/vm-install-v11/download.json",
+      "bytes": 1334,
+      "sha256": "6fd2e613b3b77a3915a9b2f6147b1dc2f462d379d2fc2c2fa90ef23277d7fd30"
+    },
+    {
+      "path": "analysis/vm-install-v11/host-preservation.json",
+      "bytes": 2330,
+      "sha256": "45bcdb47128773ea3af79e42af9373b744ae1bcb9df57d42346df1ac94f0291c"
+    },
+    {
+      "path": "analysis/vm-install-v11/media-validation.json",
+      "bytes": 2154,
+      "sha256": "5a44c228bc73c2c23991dd110cdb7a84617961b6e9a3df7284793119291a74a7"
+    },
+    {
+      "path": "analysis/vm-install-v11/stage-validation.json",
+      "bytes": 1356,
+      "sha256": "f54301c0a0528761718d12732cdbe56dd9b657fa847cc8b620b8dfd59fd0169e"
+    },
+    {
+      "path": "analysis/vm-install-v11/test_deliver_moli_stage17.py",
+      "bytes": 11845,
+      "sha256": "8513b0c152e24db3200e0fc28409e8c94c9851cc3812bdda82df37e3c12c95db"
+    },
+    {
+      "path": "analysis/vm-install-v11/tool-static-metadata.json",
+      "bytes": 8735,
+      "sha256": "aa6332983c0e9690aedb16dd5e4b5ecad16b3247428bb8893bd9b956b7f379c2"
+    },
+    {
+      "path": "analysis/vm-install-v12/deliver_moli_stage18.py",
+      "bytes": 10009,
+      "sha256": "4a7101efd8cb299a64e752d87fa048c6414838988ecff3824a43316271ea6d9d"
+    },
+    {
+      "path": "analysis/vm-install-v12/media-mount-blocker.json",
+      "bytes": 6010,
+      "sha256": "f8377c4bbb47aafaa178217631f96720eb1500f455b5fca17670480417af29af"
+    },
+    {
+      "path": "analysis/vm-install-v12/stage-validation.json",
+      "bytes": 534,
+      "sha256": "f4d5e168a4b62b07b36a1d42b9d35dc47e0e87b0be0f55d8326edace75af7d9e"
+    },
+    {
+      "path": "analysis/vm-install-v13/deliver_moli_stage19.py",
+      "bytes": 9985,
+      "sha256": "ddd491c0db891e7637ca194d669ea26e802ba5c9cc67076054110ba8dc0990fc"
+    },
+    {
+      "path": "analysis/vm-install-v13/parallels-inventory.json",
+      "bytes": 3554,
+      "sha256": "b9c59492d1ef021f41d8ce3324eb7d5a6aecfd63dd2a475ec36de48b96335969"
+    },
+    {
+      "path": "analysis/vm-install-v13/stage-validation.json",
+      "bytes": 506,
+      "sha256": "7e108414bb423aaf9cb8616189258d5c469151bd56267b9b5b0070ae032bbba8"
+    },
+    {
+      "path": "analysis/vm-install-v14/dependency-check.json",
+      "bytes": 22920,
+      "sha256": "8df3e08fdff6d8fc816c3fe8c5550d6677ad97b5aaa7a745deb4fcee0778d705"
+    },
+    {
+      "path": "analysis/vm-install-v14/removal-inventory.json",
+      "bytes": 31436,
+      "sha256": "c577ab5a9593f32cc5d896c7efa26a29dd17ff79b22d54a4d4e299b47b05b10e"
+    },
+    {
+      "path": "analysis/vm-install-v14/stage-validation.json",
+      "bytes": 1091,
+      "sha256": "8a39e7f708f682eb72e2f3a9a2ca8f0a5cebf28a4dd2c0104dfe1fad7c350a6a"
+    },
+    {
+      "path": "analysis/vm-install-v15/additional-visible-remnants.json",
+      "bytes": 8418,
+      "sha256": "3d11fbd5d4cf1cbfcecb732b1615c6dcae3a21788bf05828d1fa59495f1e2980"
+    },
+    {
+      "path": "analysis/vm-install-v15/deliver_moli_stage20.py",
+      "bytes": 9994,
+      "sha256": "cb5f3d4e751660d3d8e63d64157da8f11de7e6fd301b0fb0dc775f06ef1c4082"
+    },
+    {
+      "path": "analysis/vm-install-v15/empty-build-parents.json",
+      "bytes": 1862,
+      "sha256": "7ce4b55d7acbb0c3f685aaca3f69f4856735f82facc51471f4f2dcb3f37d551c"
+    },
+    {
+      "path": "analysis/vm-install-v15/final-removal-verification.json",
+      "bytes": 6955,
+      "sha256": "fe12f22ba18a413db4a7baff0739f7e64b33304ce3c8f5f11da1c28e16339b0f"
+    },
+    {
+      "path": "analysis/vm-install-v15/gatekeeper-action-and-pause.json",
+      "bytes": 1168,
+      "sha256": "ba2978893fd153469024f826f2f207f14145bcd6d7043405eb5c007c46db0e7a"
+    },
+    {
+      "path": "analysis/vm-install-v15/nine-removal-result.json",
+      "bytes": 3614,
+      "sha256": "f4a8c349727b406ba4c2d58931d65e54e33c5d76a4f813db0eef2167268f2117"
+    },
+    {
+      "path": "analysis/vm-install-v15/old-netkvm-content-check.json",
+      "bytes": 2098,
+      "sha256": "ac284c3645f5156b83cbe1541a442e6ab7f7cb07217db66489777f3f6a92c1b7"
+    },
+    {
+      "path": "analysis/vm-install-v15/parallels-current-app.json",
+      "bytes": 2314,
+      "sha256": "03a23aaa890523c9c1408be3b5c785221c78d4103d9cd2f0f51ac594907f8bf9"
+    },
+    {
+      "path": "analysis/vm-install-v15/parallels-current-flags.json",
+      "bytes": 8625,
+      "sha256": "3d7f117be641923974af503df5caaecb50bf1260de828bc08bb26970e04a171c"
+    },
+    {
+      "path": "analysis/vm-install-v15/parallels-launch-blocker.json",
+      "bytes": 1664,
+      "sha256": "fe5dcac0413a4b1d38b47912eac83c6525935e87314bb74679880882d7c4ed2b"
+    },
+    {
+      "path": "analysis/vm-install-v15/parallels-running-observation.json",
+      "bytes": 1458,
+      "sha256": "43c4e3dfce363a00b5eea03db706f3d8989fe8a954540244242eb0eff1d99237"
+    },
+    {
+      "path": "analysis/vm-install-v15/parallels-vm-inventory.json",
+      "bytes": 2156,
+      "sha256": "ceb70a22141667fdbcea841ae75eb8c9d66c130d0ba39e706caddb9aec3d2af6"
+    },
+    {
+      "path": "analysis/vm-install-v15/post-stall-recheck.json",
+      "bytes": 1291,
+      "sha256": "6fd2a8def945109ea7bb206522bc15e61e1ca7d96d0e27df06402419e6a35b00"
+    },
+    {
+      "path": "analysis/vm-install-v15/pre-removal.json",
+      "bytes": 13092,
+      "sha256": "174fb036f5c42373f35e8de690a9310a592bc22e67df6f3202e44381abe6327d"
+    },
+    {
+      "path": "analysis/vm-install-v15/remnants-inventory.json",
+      "bytes": 21781,
+      "sha256": "7ea0a1e421b7cc37f8ed98eb0dd8148f46126cca710ebd711884eae9f4767afe"
+    },
+    {
+      "path": "analysis/vm-install-v15/stage-validation.json",
+      "bytes": 725,
+      "sha256": "4da1b11b7991a1f219f7472061feadaefdea923c23c5807a5e7ce46bfcdc28e8"
+    },
+    {
+      "path": "analysis/vm-install-v15/temporary-removal-result.json",
+      "bytes": 1355,
+      "sha256": "65985d923b8a814ad1426fb7af2eaa75647cf479f4ffaca797c01f20f47bfd0d"
+    },
+    {
+      "path": "analysis/vm-install-v15/temporary-use-check.json",
+      "bytes": 312,
+      "sha256": "deb4749f5fb0c0332cc04b10236bde3d6000757c368441a240f59985acaabdf0"
+    },
+    {
+      "path": "analysis/vm-install-v16/deliver_moli_stage21.py",
+      "bytes": 9936,
+      "sha256": "b37580cb7a66d4544f9d046a6609835e0512a7160bf77d7d59932f4410145f07"
+    },
+    {
+      "path": "analysis/vm-install-v16/stage-validation.json",
+      "bytes": 261,
+      "sha256": "23b81f12c6b548c1798e78cf67e18a84cb77257f5d62ce5bb3c4a7e9e0bee907"
+    },
+    {
+      "path": "analysis/vm-install-v16/startup-and-isolation-observation.json",
+      "bytes": 4895,
+      "sha256": "796ac1f77bc6147e4ba4b86699d9f4de824067b1884f529a31d7fe5812dd6ca4"
+    },
+    {
+      "path": "analysis/vm-install-v17/deliver_moli_stage22.py",
+      "bytes": 9980,
+      "sha256": "b226bf9c9259b28dc8c52f48f9110a274f76b89ad509a71599e901f81733d62d"
+    },
+    {
+      "path": "analysis/vm-install-v17/desktop-and-isolation-observation.json",
+      "bytes": 2811,
+      "sha256": "70962040754c3ef5f1485ae78da682f66e790d2813a174f85d9c3c645431ad08"
+    },
+    {
+      "path": "analysis/vm-install-v17/fixed-sample-recheck.json",
+      "bytes": 1093,
+      "sha256": "81f4176eec2ca8dd59a2249ffefc9cf55aebbf79dc60ec2ae56a26b56fa50260"
+    },
+    {
+      "path": "analysis/vm-install-v17/stage-validation.json",
+      "bytes": 403,
+      "sha256": "6c2a1139a4a9b7666c5e33fc0daba042b0f3f24744e16a1d9aaf1f5928be6aab"
+    },
+    {
+      "path": "analysis/vm-install-v18/deliver_moli_stage23.py",
+      "bytes": 9982,
+      "sha256": "9c53d5716a001d763ff4e7c937c4b19502ab0fa728541211e3f3482c29fb55fa"
+    },
+    {
+      "path": "analysis/vm-install-v18/execution-state.json",
+      "bytes": 1635,
+      "sha256": "c79591f444646b0faef8d8e81aba40efe8ade9dccf05758340c163b18aac9556"
+    },
+    {
+      "path": "analysis/vm-install-v18/media-validation.json",
+      "bytes": 2271,
+      "sha256": "f0a25720001c7116bbcf84bee975e2bb6b17b2f4577afda6ab54d08303cb40aa"
+    },
+    {
+      "path": "analysis/vm-install-v18/prepare_media_v18.py",
+      "bytes": 5063,
+      "sha256": "efaeb7b2494668feaedc18e086aff082504d5e5031804cbec00b4fac01473f1f"
+    },
+    {
+      "path": "analysis/vm-install-v18/prepare_media_v18_1.py",
+      "bytes": 5079,
+      "sha256": "f023b201ec820e492c71aa55083dae3c02d6740b59c187726e10582a87184af1"
+    },
+    {
+      "path": "analysis/vm-install-v18/recovery-preflight.json",
+      "bytes": 2090,
+      "sha256": "a9f30b2de6493476fb8193ee1c0c5ca2997177d011cfc8a3b8146d470315def9"
+    },
+    {
+      "path": "analysis/vm-install-v18/stage-validation.json",
+      "bytes": 716,
+      "sha256": "282ef62b2515d31bfed6463eef5e132d6f391b65ce334c4c775d23d3c1cfaaa9"
+    },
+    {
+      "path": "analysis/vm-install-v19/cold-copy-failure.json",
+      "bytes": 7018,
+      "sha256": "18c086feaf4c43932828818eaa94d90eddbc3f82b5166139d4a98085f569b275"
+    },
+    {
+      "path": "analysis/vm-install-v19/deliver_moli_stage24.py",
+      "bytes": 10014,
+      "sha256": "6007329eb7ce5c66d03f4458e5cdc73ab6e4876fcf01d5de8ad289a792ebf858"
+    },
+    {
+      "path": "analysis/vm-install-v19/execution-state.json",
+      "bytes": 2009,
+      "sha256": "2368d9f986b65dbbb7874784c23f57230ce44b33f52542b45a0465730d64a285"
+    },
+    {
+      "path": "analysis/vm-install-v19/isolation-and-media.json",
+      "bytes": 1330,
+      "sha256": "78ab7c2751fc26002abdd9247b08d4fb6c792752446e5ed7318200de3e1727b9"
+    },
+    {
+      "path": "analysis/vm-install-v19/native-snapshot-verification.json",
+      "bytes": 2603,
+      "sha256": "887a0df66ad4a6e75d296d9834d4f40d211dec56afd77b4b64658064bfec9e09"
+    },
+    {
+      "path": "analysis/vm-install-v19/stage-validation.json",
+      "bytes": 572,
+      "sha256": "379696db636db2fc6111730a97fb5fb353a227b00cbd0a82e02b6d24c319b72c"
+    },
+    {
+      "path": "analysis/vm-install-v19/verify_native_snapshot.py",
+      "bytes": 3424,
+      "sha256": "1cc69038d29fbd6dfe38365538dcab93b0bd4b764c21a2587f0fae6d691e56a9"
+    },
+    {
+      "path": "analysis/vm-install-v2/before-interface.json",
+      "bytes": 2257,
+      "sha256": "60731369544f3d7e46387696037427d62cbfab1434ff300b82ba287654a82359"
+    },
+    {
+      "path": "analysis/vm-install-v2/license-action-blocked.png",
+      "bytes": 273033,
+      "sha256": "afcad7103270cdff2ac0743e4ffed5ff80a44db92650a50cdd751383770d0438"
+    },
+    {
+      "path": "analysis/vm-install-v2/nvme-config-tests.log",
+      "bytes": 569,
+      "sha256": "65c6aa70ea0321d246e87f24f8690271274f65b220183056664704e166baad05"
+    },
+    {
+      "path": "analysis/vm-install-v2/nvme-config-verification.json",
+      "bytes": 4370,
+      "sha256": "5efed46452577b25f974f6f33b303a91109dc8d742c5769cf5c770e106c0ec6d"
+    },
+    {
+      "path": "analysis/vm-install-v2/nvme-config.json",
+      "bytes": 2362,
+      "sha256": "22eefb89469f932eb938e11f2c70ffad956e3734b2cbe394a28434f4be0705cf"
+    },
+    {
+      "path": "analysis/vm-install-v2/stage-validation.json",
+      "bytes": 575,
+      "sha256": "bae4ca4638da35222329e676e8f68699a496b433b6d64dbe46efa879fe5d958b"
+    },
+    {
+      "path": "analysis/vm-install-v2/storage-research.json",
+      "bytes": 1202,
+      "sha256": "55853a22da066b85d4d8485f154334f13b9944a98477bc64673cd211d6a51281"
+    },
+    {
+      "path": "analysis/vm-install-v2/test_verify_nvme_config.py",
+      "bytes": 6572,
+      "sha256": "96b6fed6ad5c4dac6900ea9e751b6a5c7013ca260d70b6d20b22179915200771"
+    },
+    {
+      "path": "analysis/vm-install-v2/ui-validation.json",
+      "bytes": 2745,
+      "sha256": "2721d81467bed5529a8831f76dc35b1c988d07faefca9b66b1e40df7ef7daad0"
+    },
+    {
+      "path": "analysis/vm-install-v2/verify_nvme_config.py",
+      "bytes": 6544,
+      "sha256": "54e757f490c7ba671b3f31ef496dba8e264c8fc6435525daaa94bb0d20b71055"
+    },
+    {
+      "path": "analysis/vm-install-v2/virtio-list-disk.png",
+      "bytes": 180881,
+      "sha256": "d002498338dacf0625965bf03b79737131acc7748125384ec90cb6b95f67aaac"
+    },
+    {
+      "path": "analysis/vm-install-v2/virtio-no-disk.png",
+      "bytes": 170878,
+      "sha256": "6ff446f3c21ca3d35eb246d1abfec497bfca19e941a113bd83185d296f0c5ea2"
+    },
+    {
+      "path": "analysis/vm-install-v20/commands-observed.json",
+      "bytes": 1515,
+      "sha256": "31aee7b1041bdc2740bfb0fcd7c4310855ce70dd9af45d199b4fb1820bea50c0"
+    },
+    {
+      "path": "analysis/vm-install-v20/deliver_moli_stage25.py",
+      "bytes": 9971,
+      "sha256": "6b121d6d2c1d47e1c883412532191e6467138430b8988e7ce3dfce511c21222d"
+    },
+    {
+      "path": "analysis/vm-install-v20/guest-files.json",
+      "bytes": 2126,
+      "sha256": "8f15da03233669647a05aa857a47f9c43c9f9206140090482c58abd4bf0a5fd5"
+    },
+    {
+      "path": "analysis/vm-install-v20/isolation-final.json",
+      "bytes": 1008,
+      "sha256": "b82817d087b47ab34300b8e7b33f14de66dff226785e71de70bfaf3e5ab81618"
+    },
+    {
+      "path": "analysis/vm-install-v20/run-observation.json",
+      "bytes": 3153,
+      "sha256": "fe78a890d03df53575a2cf9ee807ee58af7f0b09a7d20ee9240643c0283539e0"
+    },
+    {
+      "path": "analysis/vm-install-v20/stage-validation.json",
+      "bytes": 833,
+      "sha256": "e738c05763ad31ef70734ca011fb9167566c399cf6338f4e9eeb0f87e76543f1"
+    },
+    {
+      "path": "analysis/vm-install-v3/final-config-audit.json",
+      "bytes": 4380,
+      "sha256": "e45200bb182a126c1b5da699510d7b337d62ac296c940daebe774d4b01b34f66"
+    },
+    {
+      "path": "analysis/vm-install-v3/install-ready-home.png",
+      "bytes": 189469,
+      "sha256": "afe5b99c0df6e3756fb60e8475cd48430c57055fff24b9d0078a36fc95ef2ee1"
+    },
+    {
+      "path": "analysis/vm-install-v3/nvme-disk-visible.png",
+      "bytes": 174373,
+      "sha256": "3296df296f6136688e19c076763bb4cf5d2a768ec49bf82cf21a61df272fae00"
+    },
+    {
+      "path": "analysis/vm-install-v3/oobe-network.png",
+      "bytes": 169384,
+      "sha256": "2652dcf10fe0340fb55d12134d7b627e7b06fe8c2fcc090b2f68cdc0044e9f33"
+    },
+    {
+      "path": "analysis/vm-install-v3/oobe-requirements.json",
+      "bytes": 760,
+      "sha256": "a781a901f76009cc709c651893f474be8eb6cf3482b3aacfd3b03b007dee3f80"
+    },
+    {
+      "path": "analysis/vm-install-v3/oobe-system-version.png",
+      "bytes": 118011,
+      "sha256": "51dad11396140ae39a6d5c92dfbd9951d24f6db514dc9ef475ec86800f3c38e8"
+    },
+    {
+      "path": "analysis/vm-install-v3/progress-observations.json",
+      "bytes": 4013,
+      "sha256": "81f2911704073b3eec1e3c050e0585f68cd7ebfaae108a06f1f80b0186731b2e"
+    },
+    {
+      "path": "analysis/vm-install-v3/stage-validation.json",
+      "bytes": 2721,
+      "sha256": "cc0e5e3938397fccce2d95fb5ea984a4712208308d0a69639bfe4c486abbae3d"
+    },
+    {
+      "path": "analysis/vm-install-v3/stopped-after-oobe.png",
+      "bytes": 234656,
+      "sha256": "d1600b3e4e1f6968f8386ede73e08289afc02fe40684d6a08e98084fa838913c"
+    },
+    {
+      "path": "analysis/vm-install-v3/system-first-boot.png",
+      "bytes": 71424,
+      "sha256": "903b3061db1494c7fc32a3dbb1d6fa9838dc22d672066f94f0958bd99685e59e"
+    },
+    {
+      "path": "analysis/vm-install-v4/before-network.json",
+      "bytes": 2154,
+      "sha256": "f9345bad4c39b6276dd709bd06fa31591bed25a5d3751ff09f45e08cd15a93a5"
+    },
+    {
+      "path": "analysis/vm-install-v4/cleanup-candidates.md",
+      "bytes": 1708,
+      "sha256": "df8687302cc72303653b97b84210b3012cf1e061d4055bad9b0c0aff92b9ae8c"
+    },
+    {
+      "path": "analysis/vm-install-v4/cleanup-inventory.json",
+      "bytes": 13267,
+      "sha256": "c22eebf0a7e0e1354dc900c20149d35410865bb612c83ad49d94a00d8224bf8a"
+    },
+    {
+      "path": "analysis/vm-install-v4/device-menu-blocked.png",
+      "bytes": 132460,
+      "sha256": "5f699b1bb7f23acb5dcb2c3ab828fb4163e66045975b598d5538632f145d59e4"
+    },
+    {
+      "path": "analysis/vm-install-v4/driver-media.json",
+      "bytes": 1095,
+      "sha256": "6cbf30e83aa88aea1c1aa290e3b0f6c2ceb6bec429cd21d4bd2ee5e0c5a4b612"
+    },
+    {
+      "path": "analysis/vm-install-v4/final-config-audit.json",
+      "bytes": 4380,
+      "sha256": "adcf260c1a8f4b8f074f58b12c9f26822db8a8e6844b23cd6a0ed44ea3388510"
+    },
+    {
+      "path": "analysis/vm-install-v4/netkvm-package.json",
+      "bytes": 4682,
+      "sha256": "2d02a10f11b0abe8b244927cae2d195a5237c886cf153b2cfe33649e59198fe9"
+    },
+    {
+      "path": "analysis/vm-install-v4/network-driver-research.md",
+      "bytes": 10276,
+      "sha256": "873a7d82e8bd5151e0c30a324293e3fb4bd9b86457ebbc8e292a762371e85960"
+    },
+    {
+      "path": "analysis/vm-install-v4/stage-validation.json",
+      "bytes": 2562,
+      "sha256": "a414461fbb8b81bbbdf68fb3089a53eb801a94cfd44b19948c80729d405051a8"
+    },
+    {
+      "path": "analysis/vm-install-v4/ui-validation.json",
+      "bytes": 1809,
+      "sha256": "2da19c73e85d2076e05a80c434cd89311ae5a9cbf78bf08fa4841b784ec9889e"
+    },
+    {
+      "path": "analysis/vm-install-v5/account-handoff-config.json",
+      "bytes": 1618,
+      "sha256": "1adbfa77786affa0140e9634e364f22641877b7d8520731ad2f168cbfd6f37ef"
+    },
+    {
+      "path": "analysis/vm-install-v5/arm-client-compatibility.json",
+      "bytes": 13945,
+      "sha256": "06f4805e7ede751cd0e0a118017c194cd42ace2cd6aaa61082dc4b78c4adf3fc"
+    },
+    {
+      "path": "analysis/vm-install-v5/arm-client-compatibility.md",
+      "bytes": 9895,
+      "sha256": "7f52fe46c2be3e9012dc420f1217d642020037980293d36f80f912f7dd766ad8"
+    },
+    {
+      "path": "analysis/vm-install-v5/before-network.json",
+      "bytes": 2198,
+      "sha256": "f0550f3b3806ea321baa23a94104ee30bd3340060cb96f3ce00a9e854871f033"
+    },
+    {
+      "path": "analysis/vm-install-v5/driver-cd-config.json",
+      "bytes": 3015,
+      "sha256": "abfdc73edeb33ec68790c1c806915e1a6b02db6dd1b853934fd6611890d978d3"
+    },
+    {
+      "path": "analysis/vm-install-v5/nat-config.json",
+      "bytes": 2361,
+      "sha256": "a9448294aace106ddb69e66b15550ce4ab95055dd3f3853077a82b0e65565820"
+    },
+    {
+      "path": "analysis/vm-install-v5/nat-settings.png",
+      "bytes": 89789,
+      "sha256": "3993d6cca6d186de3e37716e638641533a0e8c47b13e8aaaac9c657748c5ff5d"
+    },
+    {
+      "path": "analysis/vm-install-v5/oobe-network-connected.png",
+      "bytes": 162794,
+      "sha256": "b2c346275f78754a12da8cafb931f9706fd7ccecefbb86d0cedf5f8638fcdc28"
+    },
+    {
+      "path": "analysis/vm-install-v5/oobe-normal-defer-update.png",
+      "bytes": 147601,
+      "sha256": "8d8fd1899dad3a1426ec450c86531b5bd0904c90062f0daa5e865c8b3245f559"
+    },
+    {
+      "path": "analysis/vm-install-v5/oobe-restart.png",
+      "bytes": 111445,
+      "sha256": "1588abf88a962e3d2308d82057de216302786346711547bf98cb491665101c8b"
+    },
+    {
+      "path": "analysis/vm-install-v5/post-interruption-config.json",
+      "bytes": 900,
+      "sha256": "6c3719e615c83b0acaccfab932d9800f5fa57ddef491a47ad66821f48b805a3c"
+    },
+    {
+      "path": "analysis/vm-install-v5/stage-validation.json",
+      "bytes": 3677,
+      "sha256": "0a8285a8f4278736c99104a8a7c45ffae2433ca23713b2cac18b4a7435246ea6"
+    },
+    {
+      "path": "analysis/vm-install-v5/ui-validation.json",
+      "bytes": 3344,
+      "sha256": "781176422354bd5b20abedb9874ff95c1f62d0596e0cb4ce15e3d96d30bdde68"
+    },
+    {
+      "path": "analysis/vm-install-v5/user-ui-interruption.png",
+      "bytes": 182582,
+      "sha256": "7c10adb182ec51e47f1683866ef3cd2ba0a043c39225ee0c6315b67a455d1f08"
+    },
+    {
+      "path": "analysis/vm-install-v6/base-drivers-media.json",
+      "bytes": 11440,
+      "sha256": "ec86fadc5499bad0c888b207b1ebb8d376b66a95c2c63738ff1c2c3ebb251ac6"
+    },
+    {
+      "path": "analysis/vm-install-v6/before-system-validation.json",
+      "bytes": 2861,
+      "sha256": "c1062f6fd0a7e2f9b173bbc5f86270b3bd2cdfb091c75aeed9b7d6730fcb5663"
+    },
+    {
+      "path": "analysis/vm-install-v6/client-experiment-plan.md",
+      "bytes": 17744,
+      "sha256": "bb015f87d02368f3cd6f470a06f4c177df86e388523d8fe7d7eafd5611fa7bf3"
+    },
+    {
+      "path": "analysis/vm-install-v6/current-config-negative-audit.json",
+      "bytes": 3642,
+      "sha256": "3bdfed4d13c48dcd480d979991c4997deaee584271bc5d56a384a647586df27e"
+    },
+    {
+      "path": "analysis/vm-install-v6/device-driver-candidates.md",
+      "bytes": 11839,
+      "sha256": "8b7c6b353568b70d82b9dd324c729f4012c6f704fefdf2e536183096224698ac"
+    },
+    {
+      "path": "analysis/vm-install-v6/device-error-count.png",
+      "bytes": 140086,
+      "sha256": "7f54a1333885fa065140ac7c885eb9d44fd36900539836e98f325de66457e516"
+    },
+    {
+      "path": "analysis/vm-install-v6/device-id-group.png",
+      "bytes": 149346,
+      "sha256": "720f0271fd99ec401a9e9233f64eb4af3e9ff863ea20f7178abd99baa0a0380f"
+    },
+    {
+      "path": "analysis/vm-install-v6/device-pci-details.png",
+      "bytes": 248537,
+      "sha256": "da560822ca71216d66116800aee5640a61a7b0548f3617976f99e3eb606837d2"
+    },
+    {
+      "path": "analysis/vm-install-v6/doc-review.md",
+      "bytes": 5289,
+      "sha256": "83648399490eedd0c3014c77485329e9e0e2c2fe578d35ae4b4ed73f639b79f0"
+    },
+    {
+      "path": "analysis/vm-install-v6/during-update-config.json",
+      "bytes": 692,
+      "sha256": "63fbe8f8c6f5d6d799b1eca233e3591f55127f66fc636dab317caf32e35f7136"
+    },
+    {
+      "path": "analysis/vm-install-v6/guest-observations.json",
+      "bytes": 5842,
+      "sha256": "1f571c12ab96c80439e543569b0522173219b98cde3d7f8f4c513a304ec3d16e"
+    },
+    {
+      "path": "analysis/vm-install-v6/netkvm-version.png",
+      "bytes": 202690,
+      "sha256": "dd2bce6048b1c7d389557d61fa51ab6cc713f9c162af3388bda858d4099626f2"
+    },
+    {
+      "path": "analysis/vm-install-v6/netkvm-windows-signature.png",
+      "bytes": 149225,
+      "sha256": "e1f25e305e7ad63d2f3730f747d6e3ddd0cb3e73c55791becc193cf4f0f3727e"
+    },
+    {
+      "path": "analysis/vm-install-v6/offline-config-review.md",
+      "bytes": 2989,
+      "sha256": "22a39dc37b64280e6719eb900483be0ca7b632d44e87220e46e842434fd42135"
+    },
+    {
+      "path": "analysis/vm-install-v6/offline-config-tests.log",
+      "bytes": 1140,
+      "sha256": "3d8ce6c84766bbe5f5530a8111d25d1b9df702a0e13e3a2721f15d69ccc3f90f"
+    },
+    {
+      "path": "analysis/vm-install-v6/offline-config-validation.json",
+      "bytes": 833,
+      "sha256": "b02180cce9a64ac50a18c28abb8e260830467da0ca34d8494fc2452ce08ea0ab"
+    },
+    {
+      "path": "analysis/vm-install-v6/pnp-error-tail.png",
+      "bytes": 182129,
+      "sha256": "0e790e15b33ee56ed8babdaf32f3d9e894717e83b264f3b56f6408d2b3cf999e"
+    },
+    {
+      "path": "analysis/vm-install-v6/stage-validation.json",
+      "bytes": 5787,
+      "sha256": "f7352147eec0dd08b40eba71c1b1c4d13b7a9e17057a72ad8efb0e9a9b59bbf3"
+    },
+    {
+      "path": "analysis/vm-install-v6/test_offline_config.py",
+      "bytes": 8866,
+      "sha256": "b9eedba00a02c2e72bfe9445db0b88be97c1cfa33043a4af99fc801f60ef5a97"
+    },
+    {
+      "path": "analysis/vm-install-v6/verify_offline_config.py",
+      "bytes": 8578,
+      "sha256": "cffbd08e6ca1fbb9dbce0cc0e42085453b8b2c54e1fcd3b8643e12058ba37d10"
+    },
+    {
+      "path": "analysis/vm-install-v6/windows-edition-architecture.png",
+      "bytes": 152569,
+      "sha256": "ea64849ad8f9b6824f4d4f0505d1ef7c9a6da8cc47e84a570c1181cf69df99ba"
+    },
+    {
+      "path": "analysis/vm-install-v6/windows-full-build.png",
+      "bytes": 140932,
+      "sha256": "b0e05335b2895ff99b2cd1103f7482e433b38fec0affec4e6c91e4ed32da29dd"
+    },
+    {
+      "path": "analysis/vm-install-v6/windows-update-27.png",
+      "bytes": 111210,
+      "sha256": "d563eb85625cf752ab4595c4b9284a8f06520e2e0813ef14e828f42f95429386"
+    },
+    {
+      "path": "analysis/vm-install-v7/before-validation.json",
+      "bytes": 2659,
+      "sha256": "5c1cf343329d57b91f0950ea81218618a5d640120e869d2f0890c9e187e8a527"
+    },
+    {
+      "path": "analysis/vm-install-v7/cold-baseline-four-drive-tests-normal.log",
+      "bytes": 1834,
+      "sha256": "61ea96c85533b7595a1b5bacb0c0f85cf3379ad87404cbf40e6aa069b62ce6c1"
+    },
+    {
+      "path": "analysis/vm-install-v7/cold-baseline-four-drive-tests-optimized.log",
+      "bytes": 1834,
+      "sha256": "5aae0c1ae8399368ab86086d3231eb24a9eb66c5698810dd253891093c4e0b9c"
+    },
+    {
+      "path": "analysis/vm-install-v7/cold-baseline-review.md",
+      "bytes": 8999,
+      "sha256": "600c2a28ac8e1717f82f07de993365f8c5f8393b535dce6bcb9fa7796088685d"
+    },
+    {
+      "path": "analysis/vm-install-v7/cold-baseline-static-review.json",
+      "bytes": 814,
+      "sha256": "21e0b132d3802b637d67316fcf4fb0b5b4c0da7a3510de3d6cb771a247b38a87"
+    },
+    {
+      "path": "analysis/vm-install-v7/cold-baseline-tests-normal.log",
+      "bytes": 1617,
+      "sha256": "d4084b1305569bbcdab10c21ddd7463444c79cd0b00fe30f6356dcb2cd522926"
+    },
+    {
+      "path": "analysis/vm-install-v7/cold-baseline-tests-optimized.log",
+      "bytes": 1617,
+      "sha256": "e4caf3eb0632375025b5f04ae1241b3d1d2a15b657d4c6a5f568337f964c211e"
+    },
+    {
+      "path": "analysis/vm-install-v7/cold-baseline-tests-three-drive-preparation.json",
+      "bytes": 1378,
+      "sha256": "8892b8e458da52ec239888f195648b14517576a1755fbd8b7e27895a81179135"
+    },
+    {
+      "path": "analysis/vm-install-v7/cold-baseline-tests.json",
+      "bytes": 3037,
+      "sha256": "fc81228617eb662b8fff1d01ff937b918974a5e2c5f0dda2c5c57c9171cfd153"
+    },
+    {
+      "path": "analysis/vm-install-v7/create_cold_baseline.py",
+      "bytes": 14285,
+      "sha256": "eedb424823b60c094811239977dd71f29c641b91cf93c68be9c65bff6c68b731"
+    },
+    {
+      "path": "analysis/vm-install-v7/four-drive-config-audit.json",
+      "bytes": 3932,
+      "sha256": "014929dffea7ffafc6eb7febd1145578b854045e9594b7cb439707fedf64ca46"
+    },
+    {
+      "path": "analysis/vm-install-v7/four-drive-policy-four-drive-tests-normal.log",
+      "bytes": 1437,
+      "sha256": "c763d6a0897ad88308c72be55c564ee011496e6b1d2c46c405d07d53fe453444"
+    },
+    {
+      "path": "analysis/vm-install-v7/four-drive-policy-four-drive-tests-optimized.log",
+      "bytes": 1437,
+      "sha256": "97ac91fa12d3e0a2b4705c955cfb81c0c98b0772d55c7732859fe1a2deda9c57"
+    },
+    {
+      "path": "analysis/vm-install-v7/guest-observations.json",
+      "bytes": 2568,
+      "sha256": "e29412d1a138105a5f9e9f0dfb42aa4bfee923095a183e435283fc7606ca2021"
+    },
+    {
+      "path": "analysis/vm-install-v7/media-and-backing-check.json",
+      "bytes": 6089,
+      "sha256": "a3b0e3e090b14fe64cae3005a69457bae1da106fa1dadf8eca6660b4a79eef1d"
+    },
+    {
+      "path": "analysis/vm-install-v7/offline-driver-cd-config.json",
+      "bytes": 3024,
+      "sha256": "bb2e3f6819f67e98673c486254a586eac5b9339e9e188cb1682aaf1391492364"
+    },
+    {
+      "path": "analysis/vm-install-v7/offline-login-handoff.json",
+      "bytes": 1566,
+      "sha256": "a5bc3de9ca0dbb4be24857c7e648f21bc6d0ed0cc994dfe1b6a8f1d841c98723"
+    },
+    {
+      "path": "analysis/vm-install-v7/post-update-build.png",
+      "bytes": 158360,
+      "sha256": "138c1515d7fe551d13f2db31f6df4433e9a583f048c1883c451068d7465c5d1f"
+    },
+    {
+      "path": "analysis/vm-install-v7/post-update-device-count.png",
+      "bytes": 145590,
+      "sha256": "e52c361a6dc91e3bd613210d4a87e56be71b95b398f5325fb85c75a50d36c32c"
+    },
+    {
+      "path": "analysis/vm-install-v7/post-update-device-ids.png",
+      "bytes": 309430,
+      "sha256": "f790a30334a83df21e85c6edb43904ffed1df8fb2d1d191a4025b34ab7337023"
+    },
+    {
+      "path": "analysis/vm-install-v7/root-tests.log",
+      "bytes": 3172,
+      "sha256": "a97bc9fe89257f620f10aa6bf07db2b4728b722394813d8c6ef561b823911c3e"
+    },
+    {
+      "path": "analysis/vm-install-v7/stage-validation.json",
+      "bytes": 6143,
+      "sha256": "e78d7958ea6a94552203cd7741d270a7e6be545b17915302bb04ebeae78a3fc5"
+    },
+    {
+      "path": "analysis/vm-install-v7/stage10-delivery-readonly-review.json",
+      "bytes": 542,
+      "sha256": "5eef2d636b804ad994d1a245ff21edcf26cd806da758b6bd385fc29071dd0d00"
+    },
+    {
+      "path": "analysis/vm-install-v7/stopped-before-media.png",
+      "bytes": 154303,
+      "sha256": "27467091fa4eb523513f59492b390d34df444967255eca21c151bff530b94295"
+    },
+    {
+      "path": "analysis/vm-install-v7/test_cold_baseline.py",
+      "bytes": 13534,
+      "sha256": "bf03f19a6dd340ec20fdca32497598285a54e1fea37c963132a218ea98224633"
+    },
+    {
+      "path": "analysis/vm-install-v7/test_offline_four_drive.py",
+      "bytes": 9811,
+      "sha256": "d0403b2ec6d35eb3b45adbec569c88c51d9d9f2f894d917276b98a54e1d7f1f8"
+    },
+    {
+      "path": "analysis/vm-install-v7/verify_offline_four_drive.py",
+      "bytes": 8954,
+      "sha256": "b72b8234cd52625552a6df95afacffe9a011af233cd7cc1ae09014051bbfcc87"
+    },
+    {
+      "path": "analysis/vm-install-v8/cd-labels.png",
+      "bytes": 150368,
+      "sha256": "251487d9ca4771359de45ab8b259364a6748bfd8e651ea33429c7cac65839d13"
+    },
+    {
+      "path": "analysis/vm-install-v8/cold-baseline-tests-normal.log",
+      "bytes": 2051,
+      "sha256": "f5dd208a8f9bc901241fc4ce8c5d9bbfa187a96d77c7c28d34a04178432f27b5"
+    },
+    {
+      "path": "analysis/vm-install-v8/cold-baseline-tests-optimized.log",
+      "bytes": 2051,
+      "sha256": "89cb32679e0b876111e524c4dc689ca0fd9e4e5cb495e5cbe15b7ef5e1ff0971"
+    },
+    {
+      "path": "analysis/vm-install-v8/cold-baseline-tests.json",
+      "bytes": 2380,
+      "sha256": "ac89179bd5977822101ee31c0503746b897582d664cd3e5367b875d0900e51db"
+    },
+    {
+      "path": "analysis/vm-install-v8/create_cold_baseline.py",
+      "bytes": 14290,
+      "sha256": "d730abf1d0a4d05a302eb0b3ad0774211894b6e6416b098842acd4a2ae7398a7"
+    },
+    {
+      "path": "analysis/vm-install-v8/device-errors.png",
+      "bytes": 139113,
+      "sha256": "1e1e50b91c1dddf2eddf8ff8d44d3d8a164c7445ea4414934eea9601d5a1abcc"
+    },
+    {
+      "path": "analysis/vm-install-v8/disk-backing-check.json",
+      "bytes": 834,
+      "sha256": "0ce00d83b4b7fb3c3ecbad1e50bb38cc428ba1da1986081f9c1d3ee77d1c4cd9"
+    },
+    {
+      "path": "analysis/vm-install-v8/driver-signatures.png",
+      "bytes": 201776,
+      "sha256": "c25fc3ff090e8a9d3c34f31cc0ee3ee2f08848caecde53414e8ceece3e9f232b"
+    },
+    {
+      "path": "analysis/vm-install-v8/final-ui-state.json",
+      "bytes": 507,
+      "sha256": "862116147f343562c314ac305ecf557b979c29005e2988b79091a624b522b115"
+    },
+    {
+      "path": "analysis/vm-install-v8/four-drive-config-audit.json",
+      "bytes": 3450,
+      "sha256": "dc9bbaefabcf1b32039ef0c1f313558c5ca79fe01d038e8758f03f75aa66d855"
+    },
+    {
+      "path": "analysis/vm-install-v8/guest-observations.json",
+      "bytes": 2856,
+      "sha256": "729ca1bb131e6448337b1500d0589b70d35a9e9b30fa54bb2cf912142855e782"
+    },
+    {
+      "path": "analysis/vm-install-v8/input-observations.json",
+      "bytes": 569,
+      "sha256": "dcb51bba842fa3af717917351fee91c0edbcc801487bc3ebf45fbf6cceae694c"
+    },
+    {
+      "path": "analysis/vm-install-v8/installed-device-status.png",
+      "bytes": 148265,
+      "sha256": "1713c16f5e2b0172d0597a5991ee8d689eb9c1c7bc0ffd1454d9f4fdc93c39d0"
+    },
+    {
+      "path": "analysis/vm-install-v8/present-device-errors.png",
+      "bytes": 169819,
+      "sha256": "1b0d9773ed858cc2b1a0415ad0b2df5f3675c85fca011208bed598b0ef47dd84"
+    },
+    {
+      "path": "analysis/vm-install-v8/remaining-device-families.png",
+      "bytes": 214298,
+      "sha256": "f85c6a7057aa97b7fd07e1d62b829826cc602a898dc34c8eee741a64485accd1"
+    },
+    {
+      "path": "analysis/vm-install-v8/remaining-device-research.md",
+      "bytes": 5762,
+      "sha256": "ed64207eafeda71e99e73e45a4f8979501c1c6f683a6055643aa61335efa07e4"
+    },
+    {
+      "path": "analysis/vm-install-v8/root-tests.json",
+      "bytes": 460,
+      "sha256": "21476e7ec218d3129dfa91469011c7fa65105ba0bc89be3bc3b9549b0df931d3"
+    },
+    {
+      "path": "analysis/vm-install-v8/secureboot-state.png",
+      "bytes": 215464,
+      "sha256": "e3784f4244977ff8d17d3f76e2fe289fd23c5fea55b91ad86453502b1842b5b2"
+    },
+    {
+      "path": "analysis/vm-install-v8/stage-validation.json",
+      "bytes": 1553,
+      "sha256": "15ba7cc6d6c800b18baa11d14c3e0308ac951ffd62df522d41fae5770c8ffb1d"
+    },
+    {
+      "path": "analysis/vm-install-v8/stopped-before-baseline.png",
+      "bytes": 105163,
+      "sha256": "fb2b8e591e45062d6eed41cdcc7e69ac81809d9f0a8505ae2b008a5e7dd4d55a"
+    },
+    {
+      "path": "analysis/vm-install-v8/test_cold_baseline.py",
+      "bytes": 15056,
+      "sha256": "fbaedf80ed2ab7ab12cd4c857e686f9d5fc904f648c53db2ed06dd9977ba0b32"
+    },
+    {
+      "path": "analysis/vm-install-v8/tpm-query-error.png",
+      "bytes": 206439,
+      "sha256": "dff8e37c7cf8f9c20348ae1d5b9a64a731ee73847747d5095b9230a8b3750fdf"
+    },
+    {
+      "path": "analysis/vm-install-v8/viogpudo-installed.png",
+      "bytes": 554702,
+      "sha256": "d0758230cee1d53633b12ae06af870e63213ef31154c9aec776a41efd2c51521"
+    },
+    {
+      "path": "analysis/vm-install-v8/viorng-installed.png",
+      "bytes": 248740,
+      "sha256": "9303a830e3fe664aa4415cdebdb5982b6c4c784656fe751895571b71044b4f14"
+    },
+    {
+      "path": "analysis/vm-install-v8/windows-cold-baseline.json",
+      "bytes": 8555,
+      "sha256": "538dcae59e03380184c438c723142ff85177e22511dd245c79bd2381d0e4d475"
+    },
+    {
+      "path": "analysis/vm-install-v9/before-validation.json",
+      "bytes": 4202,
+      "sha256": "87ce0eabd484526bcc6a7baa0e6101692af51d9aaf75dc34287b08c30d701100"
+    },
+    {
+      "path": "analysis/vm-install-v9/client-candidate-recheck.json",
+      "bytes": 1242,
+      "sha256": "61885181ee21dc0dbc8eeb6fe470c99cdde2e8e61843f5c40aeadd381b8e6a85"
+    },
+    {
+      "path": "analysis/vm-install-v9/clone-apply.log",
+      "bytes": 7352,
+      "sha256": "d6790be255fd683b56ec0cb516556312142a3101a7e1d123c20e9d2811b69f22"
+    },
+    {
+      "path": "analysis/vm-install-v9/connection-recheck.json",
+      "bytes": 1180,
+      "sha256": "e176c0404cd9d3e130d07b41fa094a4ad52d6720810dfd3497557b7a1f7bec28"
+    },
+    {
+      "path": "analysis/vm-install-v9/copy-process-result.json",
+      "bytes": 355,
+      "sha256": "80e54cfa35ca3b23cc4ec6e09eef379f022c149b48cf9e80129dc78bc20d41ad"
+    },
+    {
+      "path": "analysis/vm-install-v9/create_restore_test_clone.py",
+      "bytes": 19377,
+      "sha256": "9599ee06c92b4527cec18cd13ed782cefddb5d74ffb5edfa58bd565c8c69662a"
+    },
+    {
+      "path": "analysis/vm-install-v9/current-protected-configs.json",
+      "bytes": 8245,
+      "sha256": "1d44ec3109b4965ce6c124e9cd93e071c708621cb0ffd702ae4fcb206cb5fa26"
+    },
+    {
+      "path": "analysis/vm-install-v9/host-lock-blocker.json",
+      "bytes": 1266,
+      "sha256": "71d08da450ba7af4923b626a43dbc7d17e60550d56e11a4db208f0d576e4ca03"
+    },
+    {
+      "path": "analysis/vm-install-v9/host-resource-budget.json",
+      "bytes": 839,
+      "sha256": "e6c7ec861cd5c23bd0c289aacbebb71e7b4add857a245010a7673a78667569ac"
+    },
+    {
+      "path": "analysis/vm-install-v9/input-focus-followup.json",
+      "bytes": 2001,
+      "sha256": "6b663da87b7e92fd2f5196565c39e5dedbe6ab58446c2d9f7db84331ae816169"
+    },
+    {
+      "path": "analysis/vm-install-v9/login-access-blocker.json",
+      "bytes": 2792,
+      "sha256": "484b0875cfa18b1add157df1aa9f4cea0fb414ccb7ad6fb516d24a3bf5bc7186"
+    },
+    {
+      "path": "analysis/vm-install-v9/next-actions.md",
+      "bytes": 3595,
+      "sha256": "d228c1a2fc8679e8d66f16243292c14b7916d96357514b246600d30825888a7e"
+    },
+    {
+      "path": "analysis/vm-install-v9/restore-boot-observations.json",
+      "bytes": 2129,
+      "sha256": "b7c2af0874bf164530f0322da36eb03f61432e5f03c9f2e43f96e9e897b7f7a1"
+    },
+    {
+      "path": "analysis/vm-install-v9/restore-clone-tests-normal.log",
+      "bytes": 2702,
+      "sha256": "ed80e19a9b12123a037c15098e9e572a9c3003a8a5030837cbd65ac9aab7c2c3"
+    },
+    {
+      "path": "analysis/vm-install-v9/restore-clone-tests-optimized.log",
+      "bytes": 2702,
+      "sha256": "8dd41417a115767c22121bf7a7de76bfb1c989e6d95cb90d302dd5db11f60aa4"
+    },
+    {
+      "path": "analysis/vm-install-v9/restore-clone-tests.json",
+      "bytes": 1785,
+      "sha256": "a82f301eab6751197e5a753449a9f40d0d27d140fa20a2fd7afa72fb2c362a08"
+    },
+    {
+      "path": "analysis/vm-install-v9/restore-clone.json",
+      "bytes": 7352,
+      "sha256": "d6790be255fd683b56ec0cb516556312142a3101a7e1d123c20e9d2811b69f22"
+    },
+    {
+      "path": "analysis/vm-install-v9/restore-lock-screen.png",
+      "bytes": 212393,
+      "sha256": "c4c031cdbc283434f600e8fe30bfc9d67367148aa664fb76c98c728269ff60ad"
+    },
+    {
+      "path": "analysis/vm-install-v9/restore-preflight-ui.json",
+      "bytes": 866,
+      "sha256": "405cf1cfeb4a977a91c46c2c7105b70df8d864786b3962952965718863ad63e6"
+    },
+    {
+      "path": "analysis/vm-install-v9/restore-stopped.png",
+      "bytes": 85387,
+      "sha256": "58f8c2e1961891189bc927a95055899a60a5c57f18fa49440944c8daa77f43af"
+    },
+    {
+      "path": "analysis/vm-install-v9/root-tests.log",
+      "bytes": 2702,
+      "sha256": "8bad2bca1851d2f69976c017fbdba6312c5ba5f5d9525c9133d1f1c2f93294a4"
+    },
+    {
+      "path": "analysis/vm-install-v9/stage-validation.json",
+      "bytes": 2290,
+      "sha256": "71bfafe6e16e159dee2946ddd5109f0c7ac2bc41cd3c04268cc765d564a82ad8"
+    },
+    {
+      "path": "analysis/vm-install-v9/test_restore_test_clone.py",
+      "bytes": 17483,
+      "sha256": "ad5a293fb49fd32494b787cc9ddf53b7b815c94f726234ea50bec7b808fc0187"
+    },
+    {
+      "path": "analysis/vm-install-v9/tpm-and-device-investigation.md",
+      "bytes": 10771,
+      "sha256": "a8ca317f1e5cf0e47f17ceae3de2420095086ce3f3793899c64362507a63dda4"
+    },
+    {
+      "path": "analysis/vm-install-v9/tpm-research-evidence.json",
+      "bytes": 3677,
+      "sha256": "10dca7ae469b419156f427ae3124d69bd4687199272b683395bf6472c825f072"
+    },
+    {
+      "path": "analysis/vm-install-v9/utm-local-version.json",
+      "bytes": 784,
+      "sha256": "443b6e60c8c5c21305a94970b32a29c72e59c02df9e995cbc462a746ad090327"
+    },
+    {
+      "path": "analysis/vm-preparation-v1/cold-baseline.json",
+      "bytes": 1037,
+      "sha256": "aa88918c4d5550e9838f257aaa1353b5d914db85532403d85f3005e08d477739"
+    },
+    {
+      "path": "analysis/vm-preparation-v1/disk-check.json",
+      "bytes": 664,
+      "sha256": "40ca4ee4fc0d9d92d6185c8d2f97c7cfcf214393f69c9c7162baa62df02d2d8c"
+    },
+    {
+      "path": "analysis/vm-preparation-v1/host-inventory.json",
+      "bytes": 3245,
+      "sha256": "035abf557aedf4299fdc68093442a78e73ed23d3ad3ca7a8f077fec48e3ec249"
+    },
+    {
+      "path": "analysis/vm-preparation-v1/isolation-tests.log",
+      "bytes": 842,
+      "sha256": "d06abd46f83ca170fbbc252be0f187a5028cb55437bae91057fb9581bafe65ed"
+    },
+    {
+      "path": "analysis/vm-preparation-v1/official-research.md",
+      "bytes": 8512,
+      "sha256": "fd53acd902f69600d8ca635ace6d7f9514b3279a3c09f98ab89a3f93ca049367"
+    },
+    {
+      "path": "analysis/vm-preparation-v1/test_check_vm_isolation.py",
+      "bytes": 7634,
+      "sha256": "543dd60bfb10fb4761e0a3bae4daf73227ce9ec365a8508bf7ca4016d2da677e"
+    },
+    {
+      "path": "analysis/vm-preparation-v1/ui-validation.json",
+      "bytes": 919,
+      "sha256": "7bac79f4fe790c496f460733428c892d9f478c7b8d100a85a123256b8125a2df"
+    },
+    {
+      "path": "analysis/vm-preparation-v1/vm-isolation-audit.json",
+      "bytes": 6185,
+      "sha256": "2eef59865b6ecc7b570d0012062cac518b1dd30f2405a258aaace2ed61cf1b18"
+    },
+    {
+      "path": "analysis/vm-preparation-v1/windows-iso.json",
+      "bytes": 1187,
+      "sha256": "4fa9dc62a60e3b0591cab8ebef6ff49895fa7511902bae177f59e8bf85d00f52"
+    },
+    {
+      "path": "native/.gitignore",
+      "bytes": 28,
+      "sha256": "0127b47d29f25aa72765aeae42b027a0ef39344d8917cebcc56ffcc8494076b3"
+    },
+    {
+      "path": "native/Package.swift",
+      "bytes": 632,
+      "sha256": "f63ef376c66e775556e32d067826ad4ef9fcdc12048e27714304ed462da0c45b"
+    },
+    {
+      "path": "native/README.md",
+      "bytes": 5682,
+      "sha256": "ee3439200400045d2812e657003edf7d47a601172dd551981b9209d97cc9da7c"
+    },
+    {
+      "path": "native/Sources/MoliCore/BinaryReader.swift",
+      "bytes": 2112,
+      "sha256": "37071447d3d282a530d0ff3970c899ac99ee284c674101f0bce7f0aba25dac96"
+    },
+    {
+      "path": "native/Sources/MoliCore/GraphicIndex40.swift",
+      "bytes": 3049,
+      "sha256": "4ba8a76fb013ecf86e780c1355b55b78e08701fce54482bff5a9e1914ef02e02"
+    },
+    {
+      "path": "native/Sources/MoliCore/OfflineWorld.swift",
+      "bytes": 1240,
+      "sha256": "dc6df8ac06103ac0d3274be79295f0d40780b110063728f4eab66fd9bbbfcad8"
+    },
+    {
+      "path": "native/Sources/MoliCore/PEInspector.swift",
+      "bytes": 6317,
+      "sha256": "4aa7bd4af8733922a6d6390f238e597e3a26a24a29c0cccbd394da9d7cc477d0"
+    },
+    {
+      "path": "native/Sources/MoliInspect/main.swift",
+      "bytes": 1662,
+      "sha256": "00f5dee7db69263cd2b088439e7cb0eed9814179ddff67acaa98c7f94dc8d0be"
+    },
+    {
+      "path": "native/Sources/MoliOffline/MoliOfflineApp.swift",
+      "bytes": 9576,
+      "sha256": "e1d8e7e6e9c6fb2383aeb59a662881acf31e6d86685b5bf5424917402c67f353"
+    },
+    {
+      "path": "native/Tests/MoliCoreTests/MoliCoreTests.swift",
+      "bytes": 7920,
+      "sha256": "2eeae0210fabfa77768a9074024e9daa6f6c11d8f3f426d810defc7ea330ca1b"
+    },
+    {
+      "path": "native/evidence/graphic-index-joy.json",
+      "bytes": 182,
+      "sha256": "b1f0f4ab86851de3f6be45926897ff2f567cabaefcb10e0ee281e61881f23fff"
+    },
+    {
+      "path": "native/evidence/graphic-index-v3.json",
+      "bytes": 180,
+      "sha256": "ede345f2e895c6aeff752a2dc2dffe52451d32981514ad06a82e94acdb5384f9"
+    },
+    {
+      "path": "native/evidence/installer-identities.json",
+      "bytes": 3476,
+      "sha256": "a8ce3f923bbc5dd8f69aa213110f8b44a013a9b9c5b94cf7be54046c385bba7f"
+    },
+    {
+      "path": "native/evidence/swift-build.log",
+      "bytes": 1601,
+      "sha256": "2604de5ad62b9ebb5972251543b988a7d09b6f38e85ed9e17f29e437f5f157d8"
+    },
+    {
+      "path": "native/evidence/swift-regression-web-transition.log",
+      "bytes": 4724,
+      "sha256": "55afa30bd6fe07cc14d8bb352015380b67d8a252a3808564212c7a438431c8a8"
+    },
+    {
+      "path": "native/evidence/swift-test.log",
+      "bytes": 5056,
+      "sha256": "b36ca2805818001745a91bb05f6daa0d74feefbde00143a23349c9ea7ac9adf0"
+    },
+    {
+      "path": "native/scripts/make-dev-app.sh",
+      "bytes": 863,
+      "sha256": "608b8eaba54d2a19225ae9bbe490b77485a1fbfa135bfd7bc67c946be12ca50e"
+    },
+    {
+      "path": "reports/analysis-methods.md",
+      "bytes": 25178,
+      "sha256": "c04368bac2c711dce9ef8e27fac293144db70327e9e8fc138e583d03ccfa9d7c"
+    },
+    {
+      "path": "reports/architecture-and-milestones.md",
+      "bytes": 15333,
+      "sha256": "385665403958a110d1ef98af9b365dcaee6ac10f53e78052121cc6f7db862777"
+    },
+    {
+      "path": "reports/game-static.md",
+      "bytes": 14576,
+      "sha256": "78d47203f732131dc64cec3ac4917befebf976b05e0948367cfe101fa150e95d"
+    },
+    {
+      "path": "reports/known-issues.md",
+      "bytes": 36324,
+      "sha256": "67e189d484645c62596b381461ca0253905d4d8c3070cfe0e814662a83520174"
+    },
+    {
+      "path": "reports/launcher-static.md",
+      "bytes": 14504,
+      "sha256": "aebfc7991ed522e5e52f0c6df605838145da63fe0fda63068d14d6e194b51e30"
+    },
+    {
+      "path": "reports/logic-protocol-spec.md",
+      "bytes": 24378,
+      "sha256": "1c84e7c41f4e8ef8a7ca218bdc37acb5fdf3eec3837542bdb6ed74fcd3daf8eb"
+    },
+    {
+      "path": "reports/module-interfaces.md",
+      "bytes": 18872,
+      "sha256": "cff06db406c4679724f4599eb2be19ad0d6f41cc5de71e86793c26935ed9c2a7"
+    },
+    {
+      "path": "reports/network-portability.md",
+      "bytes": 11125,
+      "sha256": "ec87891e3fa9be95698504fbaddfc2b45adfabf351fe96bd34a6a5c9af929c27"
+    },
+    {
+      "path": "reports/official-terms.md",
+      "bytes": 23282,
+      "sha256": "6187957ce1dca0c09d54bd5a4325601a1af44970e10028278e6bf1819628caa2"
+    },
+    {
+      "path": "reports/resource-formats.md",
+      "bytes": 6620,
+      "sha256": "d82d55a15038401ccf64d7f81febc74c7fbd31e7e914228b1c0d6c00d411b4d9"
+    },
+    {
+      "path": "reports/validation.md",
+      "bytes": 52058,
+      "sha256": "2a6bcdcf74aac0f0ad6599c2acd803730990e18b01aff42da765e9c3d016efe4"
+    },
+    {
+      "path": "reports/vm-environment.md",
+      "bytes": 97304,
+      "sha256": "6fbf4ed89df96eb0f6f9a99fce88db33d14cac4bb199b98396f201465dc55da1"
+    },
+    {
+      "path": "scripts/analyze_launcher.py",
+      "bytes": 4504,
+      "sha256": "6c66b9316c0bb33b3b37dc948c5566c6e0423436f67d7dff62c594e521435080"
+    },
+    {
+      "path": "scripts/check_vm_isolation.py",
+      "bytes": 9890,
+      "sha256": "396924e72bcacfe17808de146b77072875a44a71e401c0acd3c0295cf3e72975"
+    },
+    {
+      "path": "scripts/inventory-installers.py",
+      "bytes": 2954,
+      "sha256": "3574fcb58054a54b684453ff1c01529c0b5829182cecef4c534df67c9a9ba505"
+    },
+    {
+      "path": "scripts/serve_web.py",
+      "bytes": 2099,
+      "sha256": "3d0e7227602483ed4b8775ec4ba3d74bbacd8c15d6049c6bc656ad9edbfbf9dd"
+    },
+    {
+      "path": "shared/README.md",
+      "bytes": 7561,
+      "sha256": "f4661fb366a46aedd44ddcd6641a0222a52911a1a51106a4485adabc72acf396"
+    },
+    {
+      "path": "shared/evidence/node-test.log",
+      "bytes": 1489,
+      "sha256": "d667db71c0dd3c8f8daebac2cacac8e9110c0f5d76421167508ea1fc823aa53f"
+    },
+    {
+      "path": "shared/evidence/real-joy-comparison.json",
+      "bytes": 2628,
+      "sha256": "7329a7724c449995a48955f7bae2bf1e492d11bf9c799781ef1f62ca2a153e5c"
+    },
+    {
+      "path": "shared/evidence/real-v3-comparison.json",
+      "bytes": 19636,
+      "sha256": "29861e5f2f4c99212a2db0fdb59831faaf8bd7dc09d95c00be35ad31b53c08b0"
+    },
+    {
+      "path": "shared/index.mjs",
+      "bytes": 9151,
+      "sha256": "8c4cfb3a0adcd6934da56e929401258a3c2630aac81543c3655d0cb5d07ab2cc"
+    },
+    {
+      "path": "shared/tests/resources.test.mjs",
+      "bytes": 9399,
+      "sha256": "bd8faf50dc642aeed46a8d738cfda49a170cb31565b3d677abc6b570d33da87f"
+    },
+    {
+      "path": "shared/tests/validate-local-samples.mjs",
+      "bytes": 3173,
+      "sha256": "27fce100ccabeef99e8283997681561667e9fee2ba72766e0bcf411b3bf946ed"
+    },
+    {
+      "path": "web/README.md",
+      "bytes": 3426,
+      "sha256": "32bf2adcf3448266339f0f2800345166c8a5b180063ea7e7daf78b4d3f6f49f7"
+    },
+    {
+      "path": "web/app.mjs",
+      "bytes": 7359,
+      "sha256": "feeaac450c1c59101bdf99971f81061205c56fd388f58a6312b1afc2e9a12f0a"
+    },
+    {
+      "path": "web/evidence/browser-qa.json",
+      "bytes": 746,
+      "sha256": "6e255b1bb9ebd8c89ca38e3febf85b35bc31448b8c4b7ec3c564b0496ee619bb"
+    },
+    {
+      "path": "web/evidence/desktop-synthetic.jpg",
+      "bytes": 89119,
+      "sha256": "c0c8c975fbf580e4bb035be6b4c5dbfd0f68ee65a5896ca4814568966f63a0e7"
+    },
+    {
+      "path": "web/evidence/file-io-tests.log",
+      "bytes": 612,
+      "sha256": "0f74b63aeaa11ecda9a4d80708091e204b836d57d96d36b549f2942eb9e67fd7"
+    },
+    {
+      "path": "web/evidence/integrated-node-tests.log",
+      "bytes": 1979,
+      "sha256": "adc204a190de764b80c3dad47d387400b35837eb97b803d2025af75655709f68"
+    },
+    {
+      "path": "web/evidence/narrow-synthetic.jpg",
+      "bytes": 75769,
+      "sha256": "a6cd4a53090dc61105f86279f2dd56f7554430bff627e290b5e5ca4dcef7e220"
+    },
+    {
+      "path": "web/evidence/server-path-checks.json",
+      "bytes": 479,
+      "sha256": "c581f72c4e5ee93b37bb550fc0d22a077760cd6aa88a531220bfdcf57d33aabd"
+    },
+    {
+      "path": "web/file-io.mjs",
+      "bytes": 1671,
+      "sha256": "a9431ae05075e57c36c2489961452ec60444386f7ed20317eadaa018b6c4525b"
+    },
+    {
+      "path": "web/fixture.mjs",
+      "bytes": 1184,
+      "sha256": "09b47773cf1d6fb4bf1baff4da58c4bef1ca8a8c1bd0302400c0ab39a0560648"
+    },
+    {
+      "path": "web/index.html",
+      "bytes": 6109,
+      "sha256": "7029c78bacf225b03021ffec5a9810011f503d487f36b47ce108783d3f1efef1"
+    },
+    {
+      "path": "web/pixel-view.mjs",
+      "bytes": 2914,
+      "sha256": "1cb5987a90cf34d1876c0aa6e848ba6e95a1ba4cefa67b7ebf906830c4cd0acf"
+    },
+    {
+      "path": "web/styles.css",
+      "bytes": 8699,
+      "sha256": "17711050e5845df08ba8e7ce8ec28346307c9e16f24269befb87d9239ff61bd9"
+    },
+    {
+      "path": "web/tests/file-io.test.mjs",
+      "bytes": 3347,
+      "sha256": "645ff1b763aa5ebb46674c08b87b3f61d76464a7cb0697580f643eca802ad13d"
+    }
+  ]
+}

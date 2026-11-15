@@ -1,0 +1,1706 @@
+{
+  "schema": "moli.launcher-selection-context.contract.v1",
+  "classification": "source-bound-static-functional-supplement",
+  "capability": "L01",
+  "requirement": "全部需求能力先REA成规；补原普通来源选择/目录/准备和恢复决策的必要上下文，保留原范围后合并共享实现。",
+  "parent_selection_entry": {
+    "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+    "bytes": 69965,
+    "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+  },
+  "parent_startup_specification": {
+    "path": "analysis/capability-first-v1/launcher-startup-functional-specification.json",
+    "bytes": 77125,
+    "sha256": "3c6e2c121373b52adab0a773b11bb741bf22657b5ce5c3268791d50308e24633"
+  },
+  "source_review": {
+    "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+    "bytes": 63870,
+    "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+  },
+  "scope_preserved": {
+    "capabilities": 40,
+    "registry_entries": 81,
+    "historical_requirements": 37,
+    "consumer_groups": 10,
+    "source_profiles": 6,
+    "original_scope": "配置读取、区域目录初始化、来源选择、首次配置与失效恢复",
+    "required_groups": [
+      "配置读取",
+      "区域目录初始化",
+      "来源选择",
+      "首次配置",
+      "失效恢复"
+    ],
+    "L01_profiles": [
+      "launcher-legacy-601b",
+      "launcher-updated-c82f",
+      "launcher-historical-c7ba"
+    ],
+    "original_owners": [
+      "shared/launcher-catalog.mjs",
+      "shared/launcher-first-config.mjs"
+    ],
+    "original_dependencies": [
+      "X01"
+    ],
+    "original_batch": "D1",
+    "registered_protocol_entries": [
+      "LCH-CATALOG-001",
+      "UPD-CATALOG-001",
+      "CFG-GAME-001"
+    ]
+  },
+  "native_sources_examined": {
+    "C7": {
+      "path": "build/analysis/launcher-update-recovery-v1/old-source/POLCN_Launcher.analysis-only.exe",
+      "bytes": 4105728,
+      "sha256": "c7ba69f77809fe589fd5dcccc78fcd4f33d4b6f76325d00a27f37032bbb32384"
+    },
+    "legacy": {
+      "path": "build/analysis/launcher-session-functional-specification-v1/legacy-material/POLCN_Launcher.analysis-only.exe",
+      "bytes": 1735168,
+      "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31"
+    }
+  },
+  "facts": [
+    {
+      "id": "SX-F01",
+      "classification": "事实",
+      "claim": "本补充沿SE-U1/U2的实际caller处理普通选择、目录和准备/提示组合；保留原L01五组×三profile15格、两owner、X01/D1及三登记，原40/81/37/10/6不变。C82来源只复用原合同，不把同地址或相似代码作为本轮C7/601b证据。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+            "bytes": 69965,
+            "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+          },
+          "pointer": "/remaining",
+          "canonical_sha256": "31bc803bf30d6e4e37639f2baa525001b26455c9cbed95e390c187697dbf3e4c"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+            "bytes": 69965,
+            "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+          },
+          "pointer": "/scope_preserved",
+          "canonical_sha256": "191658244c093bae256ab0709a69bc185a4c4cc08af5464000566fa68779aa47"
+        }
+      ]
+    },
+    {
+      "id": "SX-F02",
+      "classification": "事实",
+      "claim": "C7 42D4B0与42C910是Main显示/接续包装，分别重取Frame+120的Child调用40E3D0与40DEA0；它们的UI调用不等于游戏/认证已完成。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/7",
+          "canonical_sha256": "45d834f710bb0c7361c32daa480a9f74462817b0c54dae50c50d254e84d59543"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/3",
+          "canonical_sha256": "9cbf5d7f5b5a028f59914ed9584eed73b85bfaa15af68f28bd65043db5036f38"
+        }
+      ]
+    },
+    {
+      "id": "SX-F03",
+      "classification": "事实",
+      "claim": "40E3D0按当前game名称以MBCS逐行搜索，采用第一个匹配，写本版game保存请求和活动raw ordinal。null名称走throw；搜索走到末尾无匹配时，本体没有通用越界恢复。普通Next先从所选原行复制名称的既有前提保持。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/0",
+          "canonical_sha256": "6e7934b5350fb14a5f7bc765417cae0b06aa8654c38fb36e053568d640e04794"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/21",
+          "canonical_sha256": "82458ae5566774ccac36f058695fc41b3c9949822341e4a4c3bc88b7f800307e"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+            "bytes": 69965,
+            "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+          },
+          "pointer": "/facts/8",
+          "canonical_sha256": "26371e2d0712314be339ecfb9c7ebe221cb84a6122b1d43f7bdb4935c69d59cf"
+        }
+      ]
+    },
+    {
+      "id": "SX-F04",
+      "classification": "事实",
+      "claim": "40E3D0规范该game已存路径，并将row+4的EXE相对项通过既有434CA0 gate；失败清该行installed字节并调用既有40D8D0局部reset。成功后枚举该game的region链接，仅合法raw region加入控件，再以保存RegionList请求选择；范围比较取原链接数，未比较过滤后的实际可见条数。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/0",
+          "canonical_sha256": "6e7934b5350fb14a5f7bc765417cae0b06aa8654c38fb36e053568d640e04794"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+            "bytes": 69965,
+            "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+          },
+          "pointer": "/facts/18",
+          "canonical_sha256": "e0f0a47a615da5228a97c124630b0b8b739d8b38935aed89a1c5dfe2cf9d02dc"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-startup-scope-review.json",
+            "bytes": 89620,
+            "sha256": "9f121b289ddfe63a3a068936c491c59d918f854fa4e12583a241f3d9cb9ee20e"
+          },
+          "pointer": "/facts",
+          "canonical_sha256": "68f99c8b7e1dbbc283fbd609d605a483653678202078eb648a18ae42b379fa27"
+        }
+      ]
+    },
+    {
+      "id": "SX-F05",
+      "classification": "事实",
+      "claim": "40E3D0以同版row+98的字段写Child+75EC（Frame+770C），并复制本版选中game的准备字段。40DEA0按该值筛region内Galaxy行，最多遍历15个12B项目；实际控件raw映射与保存GalaxyList分开，选择范围比较仍取region原总数。不能用过滤后显示位置代替raw ordinal或数字Code。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/0",
+          "canonical_sha256": "6e7934b5350fb14a5f7bc765417cae0b06aa8654c38fb36e053568d640e04794"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/11",
+          "canonical_sha256": "0464b07d9ef5f5a104017c42af1ad966929a333dd878a50be6936f2bc0544428"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+            "bytes": 69965,
+            "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+          },
+          "pointer": "/facts/6",
+          "canonical_sha256": "70e741eb576873533051b23ded3dcd5d4c299d8fd64525f0933ac46797194b7a"
+        }
+      ]
+    },
+    {
+      "id": "SX-F06",
+      "classification": "事实",
+      "claim": "旧601b 410DF0的未安装提示结果4进入412310；412310的step0先清自身+1648的260B缓冲，打开资源295，仅modal返回1且缓冲非空才调用已留存406F50。step3/4是按现有字段请求ShellExecute的其它动作，不能把每个step都解释为选目录。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/29",
+          "canonical_sha256": "1b4a972a14e396d25773be9d019266d84ed89f7391d73bddc46a813c1ff9896c"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/20",
+          "canonical_sha256": "ca176671f8e273b9da90c044924814c81e812cfa0add929d922369a026a226f7"
+        }
+      ]
+    },
+    {
+      "id": "SX-F07",
+      "classification": "事实",
+      "claim": "旧DirInfo40E9C0使用资源295和string成员+74；实际vtable+FC的40EB30把1030绑定+74，原消息map的OK1到40ED00、browse1009到40EBE0。布局/slot与C7分别绑定，不跨版本套用。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/16",
+          "canonical_sha256": "974eb123f9dedccd98c87dd0b493ddf7180ec095b73c40b580c03af21a1d99f9"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/19",
+          "canonical_sha256": "a3e4819ae3ff176b4ed2ddc7dcc5bfb6e7eaba5e10b4f132806d5b5b93e45607"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/legacy_DirInfo",
+          "canonical_sha256": "6270d94a24aba3e6de1ddb1ad758377e2c730ad40e3f25bd69e4b5122f55b4c6"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/derived_code/0",
+          "canonical_sha256": "f3ea53734bbfeb058a67a3e291f6783064739b23f31c25495ab71d92bf12dd04"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/derived_code/1",
+          "canonical_sha256": "d542976521b1b61f33926f914393e469462cc8753122204cd92c81adf6bbd634"
+        }
+      ]
+    },
+    {
+      "id": "SX-F08",
+      "classification": "事实",
+      "claim": "旧40ED00调用UpdateData(1)后不检查BOOL，将+74字符串以两实参交给44DC00写Frame+1764，再调用实际virtual+158。44DC00原native metadata仅7B入口，它跳入44DC75..44DCF7的共享copy tail；该原码按NUL终止复制，入口未传目标长度。它不是C7 lstrcpynA(max260)的截断政策，也不证明任意长输入的运行结果。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/17",
+          "canonical_sha256": "3dec1d0109b06328ee878b51d746cf69570f926b4f0f742af7756b56afb33a8f"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/derived_code/2",
+          "canonical_sha256": "6ccc11cb764eebc42e908a3f1fd364687b7c9ac3ecebc3e925b5dfd2b1578625"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/derived_code/3",
+          "canonical_sha256": "9582edc9073fe4c8d4ab59b575f988ea37a8a28b877470643b2a902919198476"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+            "bytes": 69965,
+            "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+          },
+          "pointer": "/facts/14",
+          "canonical_sha256": "f514e54bf8f4a83215222284abf76c02c6fd2c7f23923f11e534922a217a48c8"
+        }
+      ]
+    },
+    {
+      "id": "SX-F09",
+      "classification": "事实",
+      "claim": "旧40EBE0使用browse flags0，非空PIDL后不检查SHGetPathFromIDListA的BOOL即赋输入并UpdateData(0)；其样式恢复位于SHGetMalloc成功分支。C7 412520使用flags1和预清零260B，且转换成功才赋dialog+A8/UpdateData(0)，样式恢复不依赖SHGetMalloc成功。取消、转换失败、分配器失败须分别说明。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/18",
+          "canonical_sha256": "cc1708fe5240783c2634af1112d974f6169b72cb4bbe6c1950bb6a64805c7aa3"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/14",
+          "canonical_sha256": "d7baf78aa4548842c9f717206f867b41e1a972a2c2257ce18ba3218d400a2ced"
+        }
+      ]
+    },
+    {
+      "id": "SX-F10",
+      "classification": "事实",
+      "claim": "复用旧406F50：原指令先把字符串指针减1再交_strlen，其结果作为字符getter索引，与反斜杠比较决定是否追加；不能改述为普通strlen(text)-1末字符判断。逐game命中先置found，INI/注册表写结果未门控内存发布；新安装取上述本地字符串，覆盖取原输入，覆盖非6停止剩余扫描并保留此前效果。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/30",
+          "canonical_sha256": "5c360c7c19d8266f3b70228f95b9faef72acebddadf47e362d45280f7825c528"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+            "bytes": 69965,
+            "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+          },
+          "pointer": "/facts/16",
+          "canonical_sha256": "0945b94435191f53c570eb8444e29b78c9babe8e70fd76569c2258bcb6878673"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+            "bytes": 69965,
+            "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+          },
+          "pointer": "/facts/17",
+          "canonical_sha256": "991ae313970a6f88a13a0c52cbc5908206bb5b37980cc5a13974c5c033c3d742"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/precision_corrections",
+          "canonical_sha256": "2af0c9aa75569513d0124d1c1b70213268098501136c3545c6e542a6b211e38d"
+        }
+      ]
+    },
+    {
+      "id": "SX-F11",
+      "classification": "事实",
+      "claim": "C7 40F310先看Child+2B3C/+2B40/+2B48三个process slot；已有任一时返回2-(firstSlot!=0)。434360在这里是日志函数，未据此规定新的GetLastError。无busy时准备列表/字段后，源row+9D置位或准备EXE字段为空则返回0。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/9",
+          "canonical_sha256": "9bd86ca11a85cf3ea583502facd81f62ebf9e2ed4387a8d4c15f6b0651aebded"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/ABI_corrections",
+          "canonical_sha256": "d97bef095008006bec4d7ea593dc9ef763eaca4372629589bd7022d61cb2076a"
+        }
+      ]
+    },
+    {
+      "id": "SX-F12",
+      "classification": "事实",
+      "claim": "40F310将准备EXE与当前目录作既有相对/后代路径检查。目的不存在时，复用同版433180取得module目录，按原game Code拼.pat为来源并请求CopyFileA(...,FALSE)。已存在目的跳过来源准备；成功复制与后续backup/process成功是不同效果。来源缺失或复制失败返回2，不能声称此前未写文件。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/9",
+          "canonical_sha256": "9bd86ca11a85cf3ea583502facd81f62ebf9e2ed4387a8d4c15f6b0651aebded"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/27",
+          "canonical_sha256": "b6fa1f79cb95cee7ceb1ff364f687b9f15670c70c940d1f6fff7168155a4e309"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/technical_strings/0",
+          "canonical_sha256": "1bae222107c24911a7fddb688864473753c73f5c65c4d8bdf1c51fea7f304ae8"
+        }
+      ]
+    },
+    {
+      "id": "SX-F13",
+      "classification": "事实",
+      "claim": "进入40EB00前，40F310清Child+2B68计数，并对Child+2B6C调用40A0B0及原替换规则。40A0B0调用的case helper有FID conflict，原分支使用0x200映射及locale表，不能按provider下小写名称定规则；替换常量实际是.EXE与.BAK.EXE。它不负责启动任务或清计数。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/9",
+          "canonical_sha256": "9bd86ca11a85cf3ea583502facd81f62ebf9e2ed4387a8d4c15f6b0651aebded"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/6",
+          "canonical_sha256": "fb61703c1c3b84833e64e332760043bff3346bd9746a41b9e56cc59f20b78609"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/technical_strings/1",
+          "canonical_sha256": "5119e81e713075b9f8331a4d95a7407e6ba2ea0853569f3f2ef566535dacfdfe"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/technical_strings/2",
+          "canonical_sha256": "cf57b1442aedba1aa2e076ff72f552f3e197e64bf051fc67e3655810b81f7d6a"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/derived_code/5",
+          "canonical_sha256": "7126491f94d5c54dc618d02a01e4ee18ff668086533eea15b105b25d482fd8e5"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/derived_code/6",
+          "canonical_sha256": "2bd4ddb2fcd446c058dad04870cf647de694d734fcaea435c9cce550977bd170"
+        }
+      ]
+    },
+    {
+      "id": "SX-F14",
+      "classification": "事实",
+      "claim": "40EB00对已有第一process slot明确XOR AL,AL返回；普通路径要求两条规范路径以及409B90/409C20字段谓词通过，否则置13。前者长度1..255、字符集只A-Z/a-z/0-9/.-:[]；后者1..5个ASCII十进制字节、数值1..65535，前导零仍受长度限制。字符谓词不提供DNS、IPv6或网络可达性证明。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "e93f0e2bbe207434de2533b582d6fdec7048e65ab823a1b0770a1c8c3d778beb"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/5",
+          "canonical_sha256": "d9175767497c9c8441441cf60c0f0bd3220ee6fc93c312a889a91b542d12ece2"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/12",
+          "canonical_sha256": "0006cc3d6222b6c2254d6f8d19ea43f2dcbe74c6688e494cd0a2a2cc76521309"
+        }
+      ]
+    },
+    {
+      "id": "SX-F15",
+      "classification": "事实",
+      "claim": "40EB00先检查backup属性；不存在错误2/3可继续，已有则先DeleteFile。随后CopyFileA(...,TRUE)并请求隐藏属性，再用既有quote规则合成参数。backup创建与原exe复制是两次不同操作；部分文件效果发生于后续timer/process失败前。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "e93f0e2bbe207434de2533b582d6fdec7048e65ab823a1b0770a1c8c3d778beb"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/28",
+          "canonical_sha256": "c5c654526c58b4ffe6fc08fbdbe8b8a31a058ea6aab9f83aba2acd5d31aa81d2"
+        }
+      ]
+    },
+    {
+      "id": "SX-F16",
+      "classification": "事实",
+      "claim": "40EB00在Child HWND注册timer2329、周期250ms后请求CreateProcessA，明确applicationName=backup路径并传当前游戏目录。timer失败尝试删backup且最终置8；CreateProcess失败保留该错误、KillTimer并尝试删backup。成功关闭thread handle、保存process handle及tick/flag并返回AL1；它是启动回执。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/1",
+          "canonical_sha256": "e93f0e2bbe207434de2533b582d6fdec7048e65ab823a1b0770a1c8c3d778beb"
+        }
+      ]
+    },
+    {
+      "id": "SX-F17",
+      "classification": "事实",
+      "claim": "40F310把40EB00的普通AL结果映为1/2。Main42D010将region名称空或准备结果0走可继续界面并返回1；结果2先记录41BEB0给出的恢复step，处理原flag、恢复选择界面并调用428840，再返回0；结果1置Main+1A2E=1、写step=1或2等pending字段后返回0。准备pending不是登录/游戏成功。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/9",
+          "canonical_sha256": "9bd86ca11a85cf3ea583502facd81f62ebf9e2ed4387a8d4c15f6b0651aebded"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/4",
+          "canonical_sha256": "2d32d4e218d798257c1a0e8e13842cee04f9069a8534c32cd6719553b1f10725"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/8",
+          "canonical_sha256": "a914979e727b8afc6b628f79e0cbd68fd4856a1f75f557b0c36a95d47e2f1636"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/24",
+          "canonical_sha256": "3881f99d9ceb53f6d4713e7e34bbd3a28e6d990cbc23bf84720e004a9991679f"
+        }
+      ]
+    },
+    {
+      "id": "SX-F18",
+      "classification": "事实",
+      "claim": "41BEB0只在活动region有效、group字段<=14且对应计数>0时返回2，其余返回1。42D010实际调用的426A20清pending：game ordinal无效或当前名称与行名不同则step0；有效且保存hint2、当前谓词仍2则step2；否则step1。它分别转现有游戏/region/Galaxy列表包装，再刷新，null名称走throw。172B原码作为派生视图单列。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/8",
+          "canonical_sha256": "a914979e727b8afc6b628f79e0cbd68fd4856a1f75f557b0c36a95d47e2f1636"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/4",
+          "canonical_sha256": "2d32d4e218d798257c1a0e8e13842cee04f9069a8534c32cd6719553b1f10725"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/derived_code/4",
+          "canonical_sha256": "eec73bb2f9376eb3756a6dceadaa5748242a63d848550c996ab0481b85ec5255"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/7",
+          "canonical_sha256": "45d834f710bb0c7361c32daa480a9f74462817b0c54dae50c50d254e84d59543"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/3",
+          "canonical_sha256": "9cbf5d7f5b5a028f59914ed9584eed73b85bfaa15af68f28bd65043db5036f38"
+        }
+      ]
+    },
+    {
+      "id": "SX-F19",
+      "classification": "事实",
+      "claim": "4279D0使用Main+1969独立防重入，busy路径实际XOR AL,AL。普通路径生成日志/详情并以error模式构造415730窗口；param4只决定是否创建ID68额外按钮，不等于完整队列身份或目录接受。普通结束先清busy，再处理窗口/对象清理；异常全路径未因此闭合。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/2",
+          "canonical_sha256": "0dd537923e298fb5f58e3be3f4598a3014bb7b4ccdda5ebdeb0347e0f4fbe0ce"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/10",
+          "canonical_sha256": "1daa8d410f4bf085601f04686f7e3cf4ea933afadedc697a3bd0102df79e39ce"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/ABI_corrections",
+          "canonical_sha256": "d97bef095008006bec4d7ea593dc9ef763eaca4372629589bd7022d61cb2076a"
+        }
+      ]
+    },
+    {
+      "id": "SX-F20",
+      "classification": "事实",
+      "claim": "415730把结果byte初始化0，注册actual WndProc4253A0。该proc在WM_COMMAND低16位68且error-mode时置结果1并DestroyWindow；关闭67/WM_CLOSE在error-mode仅销毁，不置1。普通update-mode关闭只按允许flag设置原atomic取消字段。copy65/open-log66不设置目录恢复结果；本轮未执行这些动作。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/10",
+          "canonical_sha256": "1daa8d410f4bf085601f04686f7e3cf4ea933afadedc697a3bd0102df79e39ce"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/15",
+          "canonical_sha256": "4e2d61ddb9ebf0518c3650b6623dfe0681722582fb30b60104fa9c886bf81d10"
+        }
+      ]
+    },
+    {
+      "id": "SX-F21",
+      "classification": "事实",
+      "claim": "4279D0在窗口有效且GetMessageW>0时运行对话消息泵；owner控制helper以0/1成对请求并在退出后请求前台，普通尾部返回窗口结果AL，未观察这些OS请求的实际效果。busy与普通return的原指令补正provider void视图。已知420260/428840仅AL真才425550，后者Post8241捕获game/step，422F00先清标志再比较双值，符合时进入指定game目录mode1。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/2",
+          "canonical_sha256": "0dd537923e298fb5f58e3be3f4598a3014bb7b4ccdda5ebdeb0347e0f4fbe0ce"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/23",
+          "canonical_sha256": "5827954dbd67eece6efa354b55642fdd8150dfdb498306b5a887799692b0c070"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/24",
+          "canonical_sha256": "3881f99d9ceb53f6d4713e7e34bbd3a28e6d990cbc23bf84720e004a9991679f"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/25",
+          "canonical_sha256": "c9db9e7a10fd2eb92418eabb4b0f0247fb3889274f505e214ae2abea406ac084"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/bodies/26",
+          "canonical_sha256": "fd3b09302e6475156ce63327208ec3e087a05f34b5c33b34db4bbffd341ba884"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/ABI_corrections",
+          "canonical_sha256": "d97bef095008006bec4d7ea593dc9ef763eaca4372629589bd7022d61cb2076a"
+        }
+      ]
+    },
+    {
+      "id": "SX-F22",
+      "classification": "事实",
+      "claim": "本组21新完整体中434360的175B日志体只作角色诊断，不计需求覆盖；复用10完整体，5原件派生视图不冒充新native。旧/当前样本分别保留subject hash，C7159与旧357记录均导出并保存快照，结束状态open=false/cleanup=false。新增产品测试/运行/SDK/账号/官服动作0。",
+      "source_refs": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/summary",
+          "canonical_sha256": "70b2a8125006fa513099836b59e87c60cd95415894ed8481bc93a730e18da2fa"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+            "bytes": 63870,
+            "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+          },
+          "pointer": "/session_closure",
+          "canonical_sha256": "c1cd8d074a09a930ef2f8b7432b728935ac8d65360b4b367bec7d531937ccf74"
+        }
+      ]
+    }
+  ],
+  "inferences": [
+    {
+      "id": "SX-I01",
+      "classification": "推测",
+      "claim": "名字重复、无效链接或按group过滤后，恢复保存显示位置可能与raw身份不同；具体可见效果需满足源前提并在实际宿主验证。",
+      "based_on": [
+        "SX-F03",
+        "SX-F04",
+        "SX-F05"
+      ],
+      "observed": false
+    },
+    {
+      "id": "SX-I02",
+      "classification": "推测",
+      "claim": "旧固定scratch、NUL复制和C7有界复制对长输入的结果不能统一；实际ACP、控件约束和缓冲别名/OS效果属于原宿主边界，不从本体推出任意输入的确定运行结果。",
+      "based_on": [
+        "SX-F06",
+        "SX-F08",
+        "SX-F09"
+      ],
+      "observed": false
+    },
+    {
+      "id": "SX-I03",
+      "classification": "推测",
+      "claim": "成功准备EXE复制或backup创建后再失败，可能留下部分文件效果；真实文件系统/回滚不能由静态成功分支代验。",
+      "based_on": [
+        "SX-F12",
+        "SX-F15",
+        "SX-F16"
+      ],
+      "observed": false
+    },
+    {
+      "id": "SX-I04",
+      "classification": "推测",
+      "claim": "恢复提示的结果与捕获game/step只提供局部准入，真实modal重入、owner结束和晚到消息仍需完整所有者组合接受。",
+      "based_on": [
+        "SX-F18",
+        "SX-F19",
+        "SX-F20",
+        "SX-F21"
+      ],
+      "observed": false
+    },
+    {
+      "id": "SX-I05",
+      "classification": "推测",
+      "claim": "原转换分支的0x200与微软公开常量相符，支持upper-case请求的解释；实际locale/mbctype字节输出未观测，不据FID名称声称lower-case。",
+      "based_on": [
+        "SX-F13"
+      ],
+      "primary_reference": {
+        "file": {
+          "path": "build/analysis/launcher-selection-context-v1/source-review.json",
+          "bytes": 63870,
+          "sha256": "48c15c9b1ebfcce2e10214570417f8bcb50df79a78f490356fc1d0b3a6bd3770"
+        },
+        "pointer": "/primary_case_reference",
+        "canonical_sha256": "add501c50a2cc34ce3794ae7104a9fb8334fe8a9a74be651a374ffc99d0fe50d"
+      },
+      "observed": false
+    }
+  ],
+  "operations": [
+    {
+      "id": "SX-O01",
+      "profile": "C7",
+      "original_group": "来源选择",
+      "trigger": "installed game Next",
+      "rule": "名称首匹配→活动game与目录gate→region链接列表；raw/显示/Code分开",
+      "failure_and_recovery": "无效路径按已证局部reset；null/无匹配边界保留源前提",
+      "fact_ids": [
+        "SX-F02",
+        "SX-F03",
+        "SX-F04"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "SX-O02",
+      "profile": "C7",
+      "original_group": "来源选择",
+      "trigger": "region Next且未跳过Galaxy",
+      "rule": "按source group过滤最多15项目，并以原保存位置请求选择",
+      "failure_and_recovery": "过滤/保存位置不替换raw，UI实际失败未观测",
+      "fact_ids": [
+        "SX-F05"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "SX-O03",
+      "profile": "legacy",
+      "original_group": "来源选择",
+      "trigger": "未安装提示4或普通目录动作",
+      "rule": "step0清260B、modal1且非空才发现；其它step按源链接动作",
+      "failure_and_recovery": "取消不执行bulk；ShellExecute返回不当安装证明",
+      "fact_ids": [
+        "SX-F06",
+        "SX-F07"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "SX-O04",
+      "profile": "legacy/C7",
+      "original_group": "来源选择",
+      "trigger": "browse或OK",
+      "rule": "各版flags/转换检查/字符串成员/复制与delegate分别处理",
+      "failure_and_recovery": "取消、转换或allocator失败不套同一政策",
+      "fact_ids": [
+        "SX-F07",
+        "SX-F08",
+        "SX-F09"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "SX-O05",
+      "profile": "legacy/C7",
+      "original_group": "来源选择",
+      "trigger": "bulk发现目录",
+      "rule": "按来源保留匹配、INI/registry、路径文本与部分发布政策",
+      "failure_and_recovery": "覆盖非6停止剩余；已发生效果保留",
+      "fact_ids": [
+        "SX-F10"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "SX-O06",
+      "profile": "C7",
+      "original_group": "首次配置",
+      "trigger": "进入准备前检",
+      "rule": "三process slot、skip条件、相对路径与来源.pat复制分别决定0/1/2",
+      "failure_and_recovery": "缺文件/复制失败2；0只是此组件无需准备",
+      "fact_ids": [
+        "SX-F11",
+        "SX-F12",
+        "SX-F13"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "SX-O07",
+      "profile": "C7",
+      "original_group": "首次配置",
+      "trigger": "启动准备job",
+      "rule": "host/port谓词→backup→timer→CreateProcess；AL为启动回执",
+      "failure_and_recovery": "13/8/原process错误与部分文件效果分列",
+      "fact_ids": [
+        "SX-F14",
+        "SX-F15",
+        "SX-F16"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "SX-O08",
+      "profile": "C7",
+      "original_group": "失效恢复",
+      "trigger": "准备0/1/2返回",
+      "rule": "可继续、pending、失败三个Main路径；失败按当前身份恢复step0/1/2",
+      "failure_and_recovery": "必要异步完成/退役继续按原组件范围对账",
+      "fact_ids": [
+        "SX-F17",
+        "SX-F18"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "SX-O09",
+      "profile": "C7",
+      "original_group": "失效恢复",
+      "trigger": "展示错误详情/恢复选择意图",
+      "rule": "独立busy、可选68、结果byte和actual WndProc决定普通bool结果",
+      "failure_and_recovery": "busy false；普通close非接受；异常/owner-loss另核",
+      "fact_ids": [
+        "SX-F19",
+        "SX-F20"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    },
+    {
+      "id": "SX-O10",
+      "profile": "C7",
+      "original_group": "失效恢复",
+      "trigger": "prompt true后的队列投递",
+      "rule": "已证发布/接收保持captured game/step，再走mode1目录提交",
+      "failure_and_recovery": "Post失败/晚到/selection变化依原SE；不宣称generation安全",
+      "fact_ids": [
+        "SX-F21"
+      ],
+      "implemented_in_product": false,
+      "actual_host_acceptance": false
+    }
+  ],
+  "original_profile_group_crosswalk": [
+    {
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "配置读取",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+          "bytes": 69965,
+          "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+        },
+        "pointer": "/original_profile_group_crosswalk/0",
+        "canonical_sha256": "f9cce78deb9e44154a33a9dc3807305fff4ebbf4799e4d16cea2986ef022591a"
+      },
+      "selected_additional_fact_ids": [
+        "SX-F01",
+        "SX-F22"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "区域目录初始化",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+          "bytes": 69965,
+          "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+        },
+        "pointer": "/original_profile_group_crosswalk/1",
+        "canonical_sha256": "f2cee7911d9eed4e7551d84bacd4909fd25c4d029f7f79051e015a7a0bb4edb2"
+      },
+      "selected_additional_fact_ids": [
+        "SX-F01",
+        "SX-F22"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "来源选择",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+          "bytes": 69965,
+          "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+        },
+        "pointer": "/original_profile_group_crosswalk/2",
+        "canonical_sha256": "03746c0c814d35950cbd582cc84141cd60fe8b134fa4866400f13f0e5e48a6fd"
+      },
+      "selected_additional_fact_ids": [
+        "SX-F01",
+        "SX-F06",
+        "SX-F07",
+        "SX-F08",
+        "SX-F09",
+        "SX-F10",
+        "SX-F22"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "首次配置",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+          "bytes": 69965,
+          "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+        },
+        "pointer": "/original_profile_group_crosswalk/3",
+        "canonical_sha256": "5384275052430161174c7274832627512d4b242677d43d715519ee36ed8bd2ca"
+      },
+      "selected_additional_fact_ids": [
+        "SX-F01",
+        "SX-F22"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-legacy-601b",
+      "requirement_group": "失效恢复",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+          "bytes": 69965,
+          "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+        },
+        "pointer": "/original_profile_group_crosswalk/4",
+        "canonical_sha256": "966bba27d6dd6a4dcdbfa0fcf9607a9113a978067df4b41414d57f3d625eaedc"
+      },
+      "selected_additional_fact_ids": [
+        "SX-F01",
+        "SX-F06",
+        "SX-F08",
+        "SX-F09",
+        "SX-F10",
+        "SX-F22"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "配置读取",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+          "bytes": 69965,
+          "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+        },
+        "pointer": "/original_profile_group_crosswalk/5",
+        "canonical_sha256": "ec9679404469a35b1c300d158c70a12a483ee00e27c944abf68d56268050c882"
+      },
+      "selected_additional_fact_ids": [
+        "SX-F01",
+        "SX-F22"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "区域目录初始化",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+          "bytes": 69965,
+          "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+        },
+        "pointer": "/original_profile_group_crosswalk/6",
+        "canonical_sha256": "9e823d9e3235cea88bfa2d6fc96571bdd94b0da5af28a156246b72da379a60c3"
+      },
+      "selected_additional_fact_ids": [
+        "SX-F01",
+        "SX-F22"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "来源选择",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+          "bytes": 69965,
+          "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+        },
+        "pointer": "/original_profile_group_crosswalk/7",
+        "canonical_sha256": "6f13a460c1a0f63286cb261fdd26d9834efca3dc656d0b9f11af320b692cb87b"
+      },
+      "selected_additional_fact_ids": [
+        "SX-F01",
+        "SX-F22"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "首次配置",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+          "bytes": 69965,
+          "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+        },
+        "pointer": "/original_profile_group_crosswalk/8",
+        "canonical_sha256": "c5380db2efbb75e053cc3f82c487abc2e131f6bdb57dda496eff8574440823a6"
+      },
+      "selected_additional_fact_ids": [
+        "SX-F01",
+        "SX-F22"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-updated-c82f",
+      "requirement_group": "失效恢复",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+          "bytes": 69965,
+          "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+        },
+        "pointer": "/original_profile_group_crosswalk/9",
+        "canonical_sha256": "6614388449c0e10109617aa91660fcc0d7ce19dbf17682986c7f9810cb5d1b78"
+      },
+      "selected_additional_fact_ids": [
+        "SX-F01",
+        "SX-F22"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "配置读取",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+          "bytes": 69965,
+          "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+        },
+        "pointer": "/original_profile_group_crosswalk/10",
+        "canonical_sha256": "115eba65b914bb9292e7271212d32d419d90b34b2b45a515d8bedf42ab057451"
+      },
+      "selected_additional_fact_ids": [
+        "SX-F01",
+        "SX-F22"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "区域目录初始化",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+          "bytes": 69965,
+          "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+        },
+        "pointer": "/original_profile_group_crosswalk/11",
+        "canonical_sha256": "60579a0081cb8cc673c2b7f3af33d0c794d2758101a00547e9208013143692fb"
+      },
+      "selected_additional_fact_ids": [
+        "SX-F01",
+        "SX-F22"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "来源选择",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+          "bytes": 69965,
+          "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+        },
+        "pointer": "/original_profile_group_crosswalk/12",
+        "canonical_sha256": "121a8a386cc9e2617bfbf4efb91f967b2fa59893cbd93fd281646c3025099f94"
+      },
+      "selected_additional_fact_ids": [
+        "SX-F01",
+        "SX-F02",
+        "SX-F03",
+        "SX-F04",
+        "SX-F05",
+        "SX-F09",
+        "SX-F22"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "首次配置",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+          "bytes": 69965,
+          "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+        },
+        "pointer": "/original_profile_group_crosswalk/13",
+        "canonical_sha256": "93c970003203923cff360278ea7b37f3ec022163637516aad12b2121e5ae7c96"
+      },
+      "selected_additional_fact_ids": [
+        "SX-F01",
+        "SX-F11",
+        "SX-F12",
+        "SX-F13",
+        "SX-F14",
+        "SX-F15",
+        "SX-F16",
+        "SX-F17",
+        "SX-F22"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    },
+    {
+      "profile": "launcher-historical-c7ba",
+      "requirement_group": "失效恢复",
+      "original_cell": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-selection-entry-contract.json",
+          "bytes": 69965,
+          "sha256": "4982c7094535fcd279fc2a28e48741fb540b91407edb45550edcb1eeb3064841"
+        },
+        "pointer": "/original_profile_group_crosswalk/14",
+        "canonical_sha256": "9303d55efebcfa90a81f95b214b94a91c011b458970586ae2c14db98310bcff1"
+      },
+      "selected_additional_fact_ids": [
+        "SX-F01",
+        "SX-F09",
+        "SX-F17",
+        "SX-F18",
+        "SX-F19",
+        "SX-F20",
+        "SX-F21",
+        "SX-F22"
+      ],
+      "whole_original_group_promoted": false,
+      "actual_acceptance": false
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "SX-D1",
+      "batch": "D0/D1",
+      "owner": "original catalog and selection owners",
+      "change": "沿原选择模型保存名称首匹配、raw ordinal、source group和显示位置；过滤链接与保存位置范围分开。",
+      "fact_ids": [
+        "SX-F03",
+        "SX-F04",
+        "SX-F05"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "SX-D2",
+      "batch": "D0/D1/D5",
+      "owner": "original dialog/input/host ports",
+      "change": "按profile保留browse检查、scratch/完整文本和复制边界；复用输入端口，长字节输入与旧复制前提制定明确目标政策。",
+      "fact_ids": [
+        "SX-F06",
+        "SX-F07",
+        "SX-F08",
+        "SX-F09"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "SX-D3",
+      "batch": "D1",
+      "owner": "original store and directory owners",
+      "change": "指定/批量及旧INI/registry采用有来源的保存与部分发布策略，不将全部改成统一事务。",
+      "fact_ids": [
+        "SX-F10"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "SX-D4",
+      "batch": "D0/D1",
+      "owner": "original preparation/process/file owners",
+      "change": "0/1/2、文件准备、backup、timer/process启动与后续完成分开；复用quote/path/错误端口并记录失败前效果。",
+      "fact_ids": [
+        "SX-F11",
+        "SX-F12",
+        "SX-F13",
+        "SX-F14",
+        "SX-F15",
+        "SX-F16",
+        "SX-F17"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "SX-D5",
+      "batch": "D0/D1",
+      "owner": "ContextOwner/Clock/HostCapabilitiesAndLifecycle",
+      "change": "复用独立busy/窗口结果、恢复step与捕获消息；正常取消、owner结束和异常分别退役。",
+      "fact_ids": [
+        "SX-F18",
+        "SX-F19",
+        "SX-F20",
+        "SX-F21"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "SX-D6",
+      "batch": "D5/D6",
+      "owner": "original capability acceptance owners",
+      "change": "把16个补充边界并原15格/既有案例；实际三端及同版接受单列，既有正确核心继续复用。",
+      "fact_ids": [
+        "SX-F01",
+        "SX-F22"
+      ],
+      "implemented": false
+    }
+  ],
+  "remaining": [
+    {
+      "id": "SX-U1",
+      "classification": "待验证",
+      "preserves": [
+        "SS-U2",
+        "SE-U1",
+        "SE-U2"
+      ],
+      "kind": "original-multiversion-operation-and-pending-completion-composition",
+      "need": "所选普通选择/目录与准备入场、实际失败step和prompt决策源已绑定；原三profile完整组合及必要异步完成/退役仍逐项对账，不能由本组入口结果关闭整个SS-U2。",
+      "next_positive_context": "C7 40EB00将process handle写Child+2B3C并在Child HWND注册timer2329/250ms；先复用同版原timer消费/完成/停止证据，再只补原需求必要缺口。另两profile用原15格既有合同复核，不重做已证root。"
+    },
+    {
+      "id": "SX-U2",
+      "classification": "待验证",
+      "preserves": [
+        "LF-U4",
+        "SE-U3"
+      ],
+      "kind": "conditional-entry-and-current-source-boundaries",
+      "need": "条件296/30721/30734、四非App菜单及import/export仍须正向业务owner；L03 LS-U3与L07当前同版game consumer材料缺口保持，不以本组旧版证据代替。"
+    },
+    {
+      "id": "SX-U3",
+      "classification": "待验证",
+      "preserves": [
+        "SS-U3",
+        "SE-U4"
+      ],
+      "kind": "required-host-design-and-actual-acceptance",
+      "need": "Host字段/预算/ACP/输入限制/路径、存储实际回执、modal与owner退役的设计和真实平台结果分开。旧Frame+1764与caller自身+1648的实际布局/输入前提保留；没有用数学差值或本地模拟替代运行接受。SDK原设置请求pending，无测试账号；实际三端和当前同版Config/官方接受未验。"
+    }
+  ],
+  "selected_supersession": {
+    "parent_remaining_ids": [
+      "SE-U1",
+      "SE-U2",
+      "SS-U2"
+    ],
+    "selected_closed": [
+      "C7 actual game/region/Galaxy list source and failure-step composition",
+      "legacy step0 directory action with original bulk/save source",
+      "legacy and C7 actual browse/OK/copy policies",
+      "C7 preparation0/1/2 and file/backup/process admission",
+      "actual recovery-window result,WndProc and captured8241 composition"
+    ],
+    "selected_ordinary_choice_directory_preparation_and_prompt_rules_bound": true,
+    "whole_SE_U1_U2_closed": false,
+    "whole_SS_U2_source_closed": false,
+    "whole_L01_specification_ready": false,
+    "preserved": [
+      "SS/CP/SR/MS/SC/SE immutable contracts",
+      "original15cells",
+      "L03 LS-U3",
+      "L07 current consumer"
+    ]
+  },
+  "acceptance": {
+    "previous_cases_reused_not_reexecuted": [
+      "SS20",
+      "CP14",
+      "SR12",
+      "MS22",
+      "SC8",
+      "SE12"
+    ],
+    "supplement_cases": [
+      {
+        "id": "SX-A01",
+        "context": "game名称重复/null/无匹配",
+        "expected": "保留普通caller前提、首匹配与原错误边界，不凭Code替换。",
+        "fact_ids": [
+          "SX-F03"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SX-A02",
+        "context": "region链接含非法raw行，保存位置落在原计数内",
+        "expected": "仅合法行加入；保存位置gate与实际可见项数分开。",
+        "fact_ids": [
+          "SX-F04"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SX-A03",
+        "context": "多group Galaxy及原计数超过15/保存位置",
+        "expected": "按group与15项目上限；display/raw/原计数不合并。",
+        "fact_ids": [
+          "SX-F05"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SX-A04",
+        "context": "已保存game路径或EXE相对项失败",
+        "expected": "清installed并执行原局部reset，不臆造全region/Galaxy清理。",
+        "fact_ids": [
+          "SX-F04"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SX-A05",
+        "context": "两版browse取消、路径转换/SHGetMalloc失败",
+        "expected": "按各版转换检查、输入发布和样式恢复处理。",
+        "fact_ids": [
+          "SX-F09"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SX-A06",
+        "context": "旧OK验证返回、长输入与C7 max260",
+        "expected": "复制先于最终delegate；不把旧NUL copy写成新有界截断。",
+        "fact_ids": [
+          "SX-F08"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SX-A07",
+        "context": "bulk新安装/覆盖与INI/registry失败",
+        "expected": "保留原路径文本、未检查写回执和非6停止后的部分效果。",
+        "fact_ids": [
+          "SX-F10"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SX-A08",
+        "context": "旧普通动作step3/4及step0 modal非1",
+        "expected": "分开链接动作与目录发现，不把shell请求当安装完成。",
+        "fact_ids": [
+          "SX-F06"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SX-A09",
+        "context": "准备skip标志或空准备EXE",
+        "expected": "结果0仅供本组件继续路径，不作登录/官服成功。",
+        "fact_ids": [
+          "SX-F11",
+          "SX-F17"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SX-A10",
+        "context": "三个process slot各自非0",
+        "expected": "按2-(firstSlot!=0)分结果；日志调用不虚构LastError。",
+        "fact_ids": [
+          "SX-F11"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SX-A11",
+        "context": "准备EXE存在/不存在、.pat复制失败/成功",
+        "expected": "现有目的跳过源准备；复制成功后其它失败保留已发生效果。",
+        "fact_ids": [
+          "SX-F12",
+          "SX-F13"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SX-A12",
+        "context": "host非法字符/边界长度和端口0/65535/65536/前导零",
+        "expected": "按两个字节谓词，不外推DNS或网络成功。",
+        "fact_ids": [
+          "SX-F14"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SX-A13",
+        "context": "backup属性/删除/复制、timer或CreateProcess失败",
+        "expected": "按2/3、fail-if-exists、8、原process错误及cleanup请求分列。",
+        "fact_ids": [
+          "SX-F15",
+          "SX-F16"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SX-A14",
+        "context": "准备结果0/1/2",
+        "expected": "分别处理可继续/pending/失败；启动成功不当完成。",
+        "fact_ids": [
+          "SX-F17"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SX-A15",
+        "context": "错误恢复时game/名字/hint/group变化",
+        "expected": "按actual426A20选择step0/1/2并重建对应列表。",
+        "fact_ids": [
+          "SX-F18"
+        ],
+        "executed": false
+      },
+      {
+        "id": "SX-A16",
+        "context": "prompt busy、额外按钮68、关闭和消息泵停止",
+        "expected": "busy false、普通close false、68意图及后续双捕获gate分开；完整owner/quit接受另验。",
+        "fact_ids": [
+          "SX-F19",
+          "SX-F20",
+          "SX-F21"
+        ],
+        "executed": false
+      }
+    ],
+    "supplement_cases_executed": 0
+  },
+  "summary": {
+    "new_complete_native_records": 21,
+    "new_native_body_bytes": 11532,
+    "new_required_native_records": 20,
+    "new_required_native_body_bytes": 11357,
+    "diagnostic_records_excluded_from_requirement_coverage": 1,
+    "diagnostic_bytes": 175,
+    "reused_complete_native_records": 10,
+    "native_range_windows": 31,
+    "native_range_bytes": 19831,
+    "native_instruction_boundaries": 5467,
+    "derived_code_windows": 7,
+    "derived_code_bytes": 463,
+    "derived_code_instructions": 160,
+    "legacy_DirInfo_message_rows": 4,
+    "C7_retained_REA_records": 159,
+    "legacy_retained_REA_records": 357,
+    "new_original_byte_or_resource_queries": 0,
+    "new_target_tests": 0,
+    "facts": 22,
+    "conditional_inferences": 5,
+    "operations": 10,
+    "original_profile_group_cells_preserved": 15,
+    "implementation_deltas": 6,
+    "supplement_acceptance_cases_not_executed": 16,
+    "source_capability_readiness_promoted": 0
+  },
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "new_target_tests": 0,
+  "whole_SS_U2_source_closed": false,
+  "whole_L01_specification_ready": false,
+  "source_capability_readiness_promoted": false,
+  "original_VM_SDK_program_setting_account_or_official_actions": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "stopping_rule": "所选21新体/10复用体及path/quote/copy/browse/prompt规则停止重复；仅原15格仍未回答的必要完成/退役/条件owner允许补证。",
+  "validation_record_path": "build/analysis/launcher-selection-context-v1/validation.json",
+  "execution_record": {
+    "path": "build/analysis/launcher-selection-context-v1/execution-record.json",
+    "bytes": 2697,
+    "sha256": "abffc5dc0e2a30ac0dc76db5b2b4af07595ad3c4605b30a388de01429c9fe593"
+  }
+}

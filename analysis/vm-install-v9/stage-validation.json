@@ -1,0 +1,50 @@
+{
+  "verified_utc": "2026-10-25T14:02:58.420022+00:00",
+  "prior_delivery_files": 339,
+  "product_files_preserved": 38,
+  "historical_analysis_files_preserved": 282,
+  "pre_os_files_hash_matched": 4,
+  "local_doc_links_checked": 396,
+  "missing_links": [],
+  "source_baseline_full_hashes_verified_at_copy": 7,
+  "baseline_metadata_still_matches_v8_hash_receipt": true,
+  "baseline_payload_closed": true,
+  "clone_payload_closed": true,
+  "clone_normal_shutdown_confirmed": true,
+  "clone_boot_stage": "Windows lock screen; no login or desktop verification",
+  "original_current_config_policy_checks": 22,
+  "original_running_mutable_metadata_changed_paths": [
+    "Data/3CDE64AC-478C-4853-85AF-77DE92D646AB.qcow2",
+    "Data/efi_vars.fd",
+    "Data/tpmdata"
+  ],
+  "original_vm_actions": "No start, shutdown, guest input or disk write in this phase; original observed already running",
+  "independent_payload_inodes": 21,
+  "config_changes_vs_baseline": [
+    "Information.Name",
+    "Information.UUID"
+  ],
+  "network_and_host_shares_disabled_config": true,
+  "tests": {
+    "clone_normal": 25,
+    "clone_optimized": 25,
+    "root_rerun": 25,
+    "failed": 0,
+    "product_tests": "not rerun; unchanged historical result only"
+  },
+  "remaining_failures": [
+    "historical Get-Tpm 0x80284001",
+    "historical34 problem-code28 devices; functional necessity not fully established"
+  ],
+  "not_run": [
+    "restore desktop login/acceptance",
+    "new TBS/PnP/tpmtool/WMI guest queries",
+    "game/client execution or network",
+    "activation/license validation",
+    "real-browser resource import"
+  ],
+  "blocking_next_step": "User must personally log into designated test clone to continue desktop-only read-only diagnosis; prior one-time login permission not reused",
+  "approval_state": "No pending/denied clone or UI action. Sandbox-only sysctl restriction resolved through approved read-only escalation. Earlier tool locked state resolved by fresh connection.",
+  "receipt_limitation": "Late receipt flush/fsync failure could leave success-shaped JSON; this run independently confirmed exit0 and actual file metadata/config/inode/closed state, not status alone.",
+  "scope": "Documentation and metadata only; VM/ISO/drivers remain private under build and excluded from delivery."
+}

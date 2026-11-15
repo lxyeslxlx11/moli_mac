@@ -1,0 +1,65 @@
+{
+  "schema": "moli.current-page-tests.v1",
+  "recorded_utc": "2026-11-03T05:48:37.129504+00:00",
+  "before": {
+    "command": "node --test web/tests/launcher-page-profile.test.mjs",
+    "exit_code": 1,
+    "tests": 5,
+    "pass": 1,
+    "fail": 4,
+    "private_receipt": "build/analysis/launcher-current-page-v1/regression-before.json",
+    "sha256": "6fae86172f02f1fa81c598e306990d0b1eb7d9b0edf2650cadb9d8d99f390c4c"
+  },
+  "targeted_after": {
+    "tests": 8,
+    "pass": 8,
+    "exit_code": 0,
+    "scope": "5bridge/metadata/profile cases plus current/legacy actualWS/TCP and wrong-group independent Python oracle"
+  },
+  "full_after": {
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "exit_code": 0,
+    "counts": {
+      "tests": 650,
+      "pass": 650,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "private_log": "build/analysis/launcher-current-page-v1/node-tests-final.log",
+    "sha256": "4931c6e30343a04898a7d801c8fea9a77550974054f47d6f650ed9677b5f6c00",
+    "duration_ms": 12007.832
+  },
+  "browser": {
+    "cases": 6,
+    "passed": 6,
+    "receipt": "analysis/launcher-current-page-v1/browser-results.json"
+  },
+  "official_or_game_acceptance": false,
+  "post_full_test_change": {
+    "path": "analysis/launcher-current-page-v1/original_peer.py",
+    "scope": "Original fixture signal handling only; product JS unchanged after650full tests/browser6cases",
+    "cause": "TTY foreground Ctrl+C also reaches Python child; original helper default KeyboardInterrupt caused example exit1",
+    "fix": "Original child treats SIGINT/SIGTERM as its bounded stop event",
+    "affected_regression_rerun": {
+      "tests": 8,
+      "pass": 8,
+      "exit_code": 0
+    },
+    "actual_CLI_start_and_CtrlC_stop": {
+      "first_exit_code": 1,
+      "final_exit_code": 0,
+      "stopped": true,
+      "no_login_oracle_exchange_performed_in_stop_check": true
+    },
+    "private_tool_receipt": "build/analysis/launcher-current-page-v1/cli-teardown-results.json",
+    "sha256": "644bc2ebe3961bb2bf0ac8f84a11a209110af735f92ca221f1ec5a7af84aca8f",
+    "full_suite_or_browser_not_repeated_after_fixture_only_change": true
+  },
+  "oracle_environment": {
+    "Python": "3.9.6",
+    "PyCryptodome": "3.23.0",
+    "independent_of_JS_crypto_implementation": true
+  }
+}

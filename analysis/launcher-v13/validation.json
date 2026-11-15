@@ -1,0 +1,175 @@
+{
+  "schema": "moli.launcher-v13.validation.v1",
+  "recorded_utc": "2026-10-27T00:57:08.815847+00:00",
+  "scope": "Fixed main launcher HTTP read/status/normal cleanup static chain and bounded Fetch GET adapter. Actual I/O only to original owned loopback fixtures; no official request, native target execution or file update.",
+  "node": {
+    "version": "v26.9.0",
+    "tests": 263,
+    "pass": 263,
+    "fail": 0,
+    "skipped": 0,
+    "new_tests": 18,
+    "previous_tests": 245,
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "log": "node-tests.log"
+  },
+  "static": {
+    "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "tools": {
+      "REA": "6.7.0",
+      "Ghidra": "12.1.4"
+    },
+    "restored_snapshot": "launcher-v12 main launcher",
+    "added_function_dossiers_to_snapshot": 14,
+    "read_byte_observations": 3,
+    "records": 233,
+    "note": "Includes prior stage3 HTTP helper re-observation; not all globally new functions.",
+    "new_fixed_anchors": 14,
+    "old_fixed_anchors_rechecked": 17,
+    "identity_negatives_rejected": [
+      "modified",
+      "truncated",
+      "empty"
+    ],
+    "spec": "static-spec.json",
+    "bindings": "http-bindings.json",
+    "old_recheck": "old-http-anchors-recheck.json",
+    "session": "exported/snapshotted/closed"
+  },
+  "io": {
+    "fixture": "web/tests/helpers/launcher-http-fixture.mjs",
+    "metadata": "Actual original HTTP GETs compose with raw-file digest plan and candidate RegionList bytes",
+    "package": "Actual original372B ZIP GET to existing256B CRC/MD5 candidate decoder; trust unverified/replacement not-performed",
+    "negative_scope": "Declared/decoded/read budgets, compression, NUL/high bytes/empty, status/redirect/truncation/disconnect, headers/body timeout, cancellation, late success/rejection, byte ownership, independent requests",
+    "example": "example-output.json",
+    "example_exit_code": 0,
+    "example_gets": 3,
+    "example_file_writes": 0
+  },
+  "review": {
+    "independent_read_only": true,
+    "issue_themes_found": 2,
+    "deadline": "Timer-only allowed late success; follow-up rejected fetch also needed absolute check. Monotonic deadline covers fetch/read/final copy and catch.",
+    "origin_snapshot": "Own getter appended17th origin after initial16-item gate; validated initial length now fixed.",
+    "independent_confirmation": "Exact30ms/1ms late success and late throw give HTTP_TIMEOUT; late body cancelled;16+1 extra origin rejected before fetch; original16th works. Final selected deadline1/1 passes.",
+    "regressions": "HTTP tests17/18",
+    "corrections": "test-review-corrections.json"
+  },
+  "browser": {
+    "browser": "155.0.8059.85",
+    "driver": "Existing Playwright1.62.1; independent temporary headless context",
+    "checks": 6,
+    "requests": 36,
+    "all_loopback_get": true,
+    "positive_console_errors": 0,
+    "positive_request_failures": 0,
+    "expected_negative_console_messages": 4,
+    "expected_negative_request_failures": 9,
+    "receipt": "browser-http-smoke.json",
+    "native_adapter_diagnostic_cases": 18,
+    "diagnostic_failures": 0,
+    "diagnostic": "browser-transport-diagnostic.json",
+    "initial_failed_smokes": 2,
+    "initial_failures_counted_as_pass": false,
+    "initial_failure_record": "browser-smoke-investigation.json",
+    "root_cause": "Initial CDP ERR_ABORTED undetermined; final networkidle-observed success and separate18-case comparison do not prove a root-cause fix.",
+    "scope": "Original test harness, no production UI wiring; native browser cookie/referrer/auth omission checked"
+  },
+  "syntax": {
+    "esm_files": 4,
+    "python_ast_files": 1,
+    "passed": true
+  },
+  "dependencies": {
+    "new_installs": 0,
+    "new_package_downloads": 0,
+    "lifecycle_scripts": 0,
+    "reused": "Node26.9.0, Python stdlib, REA6.7.0/Ghidra12.1.4, Playwright1.62.1, Chrome155 and existing core/vendors",
+    "standards_consulted": [
+      "https://fetch.spec.whatwg.org/#fetch-method",
+      "https://fetch.spec.whatwg.org/#concept-request-credentials-mode",
+      "https://fetch.spec.whatwg.org/#concept-request-redirect-mode",
+      "https://streams.spec.whatwg.org/#default-reader-cancel"
+    ]
+  },
+  "sources": [
+    {
+      "path": "web/launcher-http.mjs",
+      "bytes": 8593,
+      "sha256": "913dfa154054d1e478f3679b6c0beda3a8d84c1bc5a17f16c79c6dfb96b3c415"
+    },
+    {
+      "path": "web/tests/launcher-http.test.mjs",
+      "bytes": 12313,
+      "sha256": "7e985ad115474f500728cc52543466f813a84ec604f29a1358a17ad72b3415f0"
+    },
+    {
+      "path": "web/tests/helpers/launcher-http-fixture.mjs",
+      "bytes": 5512,
+      "sha256": "076b4d386609783924489068654e35cf5371d31eb717476b766cead4bcca4ff1"
+    },
+    {
+      "path": "web/examples/launcher-http-local.mjs",
+      "bytes": 1479,
+      "sha256": "e3b4600624f9c5223446a7a8e6cde485b3bba54a747001b8f4d2fb3df487a8f4"
+    },
+    {
+      "path": "analysis/launcher-v13/verify_http_bindings.py",
+      "bytes": 3424,
+      "sha256": "d64f00c5c06134389f4e3f149305f6c120673218e91d4643192917a053f6cdc4"
+    }
+  ],
+  "not_verified": [
+    "Official HTTP/CORS/source authentication and current server state",
+    "Complete original EH/parent object/locale/rtm/cache/redirect/runtime equivalence",
+    "Production UI wiring (viewer keeps connect-src none)",
+    "Actual storage/write/atomic replace/rollback/restart, real terms/account/session and game/official compatibility",
+    "Safari/mobile/miniprogram, old page/real-file/narrow suites; unchanged Python/Swift resource tests not rerun",
+    "Cancellation cannot preempt JS or prove peer closed"
+  ],
+  "preservation": {
+    "previous_delivery_files_verified_before_edits": 702,
+    "native_files": 17,
+    "all_native_match_stage57": true,
+    "shared_core_and_vendors_unchanged_files": 62,
+    "all_shared_code_match_stage57": true,
+    "existing_ui_and_server_hashes_match": [
+      "scripts/serve_web.py",
+      "web/launcher.html",
+      "web/launcher-app.mjs",
+      "web/index.html",
+      "web/app.mjs"
+    ],
+    "fixed_source_hash_matches": true,
+    "private_bundle_snapshot_hashes_match": true,
+    "original_execution": false,
+    "official_requests": false,
+    "vm_operations": false,
+    "account_reads": false,
+    "official_file_update": false,
+    "git_repository": false
+  },
+  "documentation": {
+    "markdown_files": [
+      "README.md",
+      "shared/README.md",
+      "web/README.md",
+      "reports/development-plan.md",
+      "reports/launcher-static.md",
+      "reports/logic-protocol-spec.md",
+      "reports/architecture-and-milestones.md",
+      "reports/module-interfaces.md",
+      "reports/resource-formats.md",
+      "reports/validation.md",
+      "reports/known-issues.md",
+      "reports/analysis-methods.md",
+      "reports/network-portability.md",
+      "analysis/protocol-v3/http-helper/notes.md"
+    ],
+    "relative_local_links_checked": 816,
+    "missing": [],
+    "matrix_revision": 6,
+    "matrix_entries_unique": 20,
+    "matrix_dependencies_evidence_paths_valid": true
+  }
+}

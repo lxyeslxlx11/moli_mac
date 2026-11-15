@@ -1,0 +1,73 @@
+{
+  "schema": "moli.launcher-current-updater-v1.implementation-spec.v1",
+  "requirement": "reports/development-plan.md: original REA launcher -> independent launcher -> REA game -> independent game sequence; cross-platform byte core",
+  "target": {
+    "updater_sha256": "22d56137a48d3c95f4a779c5c68ba85b3ea4fe2439e3e561159d003c697ce479",
+    "bytes": 814080,
+    "provider": "Ghidra 12.1.4"
+  },
+  "source_contracts": [
+    {
+      "kind": "fact",
+      "procedure": "0x405c40",
+      "body_end": "0x4061f7",
+      "evidence_id": "ev_ed2cd5ce906114b7d26e0d2e84dca5a7c1f1f141b672299c6e5b07d78749faec",
+      "observed": "Exactly one regular ZIP entry; uncompressed 1..64MiB, compressed not above declared archive bytes; when compressed>0 output <=200*compressed+1MiB; streamed MD5 equality; MZ and PE header profile."
+    },
+    {
+      "kind": "fact",
+      "procedure": "0x405ab0",
+      "body_end": "0x405c38",
+      "evidence_id": "ev_08f0e780002679088f70fb2b8f8565c76705346c3b0bc93b3b0327b31717f3b6",
+      "observed": "Entry name nonempty, not dot/dotdot, excludes slash/backslash/colon; length>=4; case-insensitive .exe suffix. AL boolean at405bd1..405c0d corrects decompiler void signature."
+    },
+    {
+      "kind": "fact",
+      "procedure": "0x405c40",
+      "addresses": [
+        "0x4060a6",
+        "0x4060b3",
+        "0x4060cb",
+        "0x406103",
+        "0x40610f",
+        "0x40611b",
+        "0x406129",
+        "0x406137"
+      ],
+      "observed": "Read64-byte DOS header, e_lfanew unsigned range64..1048575, read248-byte NT header, signature4550, machine14c, optional magic10b, subsystem2. This is header-only checking, not full PE/loader validation."
+    },
+    {
+      "kind": "fact",
+      "procedure": "0x40dd30",
+      "evidence_id": "ev_e9ba7d1c856d0ae9ac6d7ba00e467d5434f7d9d013f9ca5e270231be2b7beacf",
+      "observed": "Five arguments after executable: PID URL launcherPath archiveSize launcherMD5; archiveSize1..256MiB. This parser and native filesystem executor are not implemented in the browser core."
+    }
+  ],
+  "implementation": {
+    "file": "shared/launcher-update.mjs",
+    "export": "decodeWin32LauncherUpdatePackage",
+    "input": "Explicit owned Uint8Array/ArrayBuffer archive and own data options expectedMd5 plus expectedArchiveBytes.",
+    "output": "Existing owned candidate/CRC/MD5/trust/replacement fields plus profile and bounded executable header metadata.",
+    "policies": [
+      "Keep existing decodeLauncherUpdatePackage first-central-entry behavior unchanged.",
+      "Reuse current bounded ZIP parser:32MiB archive and total output; native larger limits are unsupported.",
+      "Restrict new entry names to printable ASCII as an explicit independent narrower policy; all names remain metadata, no paths used or files executed.",
+      "Compare actual archive byte length with explicit expectedArchiveBytes.",
+      "Require exactly one regular entry; .exe suffix case-insensitive and no slash/backslash/colon.",
+      "Reject zero payload and expansion above native observed 200*compressed+1MiB before decode.",
+      "Apply CRC and supplied MD5 then DOS/NT header-profile checks; wipe owned failed output; no source authentication inference.",
+      "Pure bytes only: no download, native transaction, event, termination, filesystem replacement or execution."
+    ]
+  },
+  "validation_plan": [
+    "Original Python zipfile/struct/hashlib vectors for valid stored/deflated PE-header cases and isolated invalid count/name/digest/header/size/expansion cases.",
+    "Node parser tests covering header boundaries, byte ownership, unsafe input objects, exact size, and old decoder behavior.",
+    "Independent Python header/ZIP identity comparison against already acquired distinct current real ZIP without delivering its bytes.",
+    "Appropriate full Node suite once after changes; no VM or game/official interoperability claim."
+  ],
+  "unresolved": [
+    "Current normal GUI startup is waiting for Mac unlock and demonstrated guest input.",
+    "No full PE structure/signature, running dependencies or startup ACK observation verified.",
+    "No new game consumer/credential/network packet contracts recovered."
+  ]
+}

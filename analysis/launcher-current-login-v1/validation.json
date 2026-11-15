@@ -1,0 +1,93 @@
+{
+  "schema": "moli.stage109.closure-validation.v1",
+  "recorded_utc": "2026-10-30T12:36:01.443800+00:00",
+  "passed": true,
+  "scope": "Source-bound state projection fix and targeted Node regression; complete launcher/game objective remains active",
+  "prior_manifest": "analysis/delivery-manifest-stage108.json",
+  "prior_manifest_sha256": "468628f4454868d8a7490f4cd25e461ba22b1b285762ebac88df98cb7d99fabe",
+  "baseline_files": 1540,
+  "unchanged_baseline_files": 1521,
+  "changed_baseline_files": [
+    "README.md",
+    "reports/analysis-methods.md",
+    "reports/architecture-and-milestones.md",
+    "reports/development-plan.md",
+    "reports/game-static.md",
+    "reports/known-issues.md",
+    "reports/launcher-static.md",
+    "reports/logic-protocol-spec.md",
+    "reports/module-interfaces.md",
+    "reports/network-portability.md",
+    "reports/official-terms.md",
+    "reports/resource-formats.md",
+    "reports/validation.md",
+    "reports/vm-environment.md",
+    "shared/README.md",
+    "shared/launcher-handoff.mjs",
+    "shared/launcher-login.mjs",
+    "shared/tests/launcher-handoff.test.mjs",
+    "shared/tests/launcher-login.test.mjs"
+  ],
+  "only_expected_changes": true,
+  "strict_json_records_before_this_report": 7,
+  "python_analysis_scripts_ast_passed": 2,
+  "canonical_documents_with_unique_stage109_anchor": 14,
+  "shared_readme_unique_stage109_anchor": true,
+  "link_check": {
+    "existing_targets_passed": 50,
+    "closure_targets_checked_after_generation": [
+      {
+        "document": "README.md",
+        "target": "analysis/delivery-manifest-stage109.json"
+      },
+      {
+        "document": "reports/validation.md",
+        "target": "../analysis/launcher-current-login-v1/validation.json"
+      },
+      {
+        "document": "reports/validation.md",
+        "target": "../analysis/delivery-manifest-stage109.json"
+      }
+    ],
+    "note": "Final readback checks these generated targets separately, after manifest generation."
+  },
+  "source_evidence": {
+    "new_records": 59,
+    "prior_records": 47,
+    "total_records": 106,
+    "distinct_successful_procedures_queried": 43,
+    "unsuccessful_selector_count": 1,
+    "selected_original_byte_anchors_passed": 5,
+    "wrong_identity_rejected": true,
+    "private_artifact_hashes_rechecked": 4,
+    "provider_closed_with_new_snapshot": true
+  },
+  "implementation": {
+    "product_modules_changed": [
+      "shared/launcher-login.mjs",
+      "shared/launcher-handoff.mjs"
+    ],
+    "public_api_changes": false,
+    "test_files_changed": [
+      "shared/tests/launcher-login.test.mjs",
+      "shared/tests/launcher-handoff.test.mjs"
+    ],
+    "new_test_file": "shared/tests/launcher-current-login.test.mjs",
+    "independent_synthetic_vectors": 48,
+    "before_fix_regression_exit_code": 1,
+    "after_fix_node_tests": 78,
+    "after_fix_failed_skipped_cancelled": 0,
+    "post_test_product_edits": "Comment correction only; behavior unchanged after passing run."
+  },
+  "protocol_matrix_sha256": "cefe12157e39339fa938a9be5e28d4397616939a204697a785cd2f0ad09b7b62",
+  "protocol_matrix_unchanged": true,
+  "not_run_or_unverified": [
+    "Full product build or all test suites",
+    "Browser and target devices",
+    "VM or vendor execution in this phase",
+    "Account authentication and official-server compatibility",
+    "Game consumer, communication and playability",
+    "Restore-point boot/restore"
+  ],
+  "full_goal_complete": false
+}

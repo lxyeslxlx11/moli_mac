@@ -1,0 +1,20 @@
+{
+  "utc": "2026-10-25T18:51:30.032306+00:00",
+  "macos": "27.0.1",
+  "before_status": "assessments enabled",
+  "manual_source": "Local macOS 27.0 spctl(8), --global-disable reveals Anywhere option in Privacy & Security; it is not proof of disabled assessment.",
+  "official_background": "https://support.apple.com/en-us/102445",
+  "disable_status_query": {
+    "exit_code": 1,
+    "output": "Encountered error when querying the status of the option to globally disable the assessment system."
+  },
+  "authorized_command": {
+    "command": "/usr/sbin/spctl --global-disable",
+    "exit_code": 1,
+    "output": "Globally disabling the assessment system needs to be confirmed in System Settings."
+  },
+  "ui": "System Settings opened after 343.906s tool delay; still General pane. No Privacy & Security confirmation, admin authentication or toggle executed.",
+  "latest_scope": "Parent/user reported Parallels already running; paused all further Gatekeeper changes.",
+  "after_status": "assessments enabled",
+  "result": "Gatekeeper not disabled. Availability of Anywhere option not independently verified. No SIP/FileVault/XProtect/TCC/quarantine/signature changes."
+}

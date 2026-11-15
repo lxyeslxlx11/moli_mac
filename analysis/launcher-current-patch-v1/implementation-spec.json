@@ -1,0 +1,305 @@
+{
+  "schema": "moli.current-patch-caller.v1",
+  "requirement": "reports/development-plan.md#stage147",
+  "created_before_product_code": true,
+  "status": "implemented-source-bound-and-local-JS-verified",
+  "current_source_sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+  "legacy_source_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+  "patcher_source_sha256": "195f3afda41f342147b0616a4c005a4cb308ae6869b52c4a558fded5f5d9aaa8",
+  "existing_source": "analysis/launcher-current-entry-v1/rea-audit.json",
+  "questions": [
+    "Current timer polling/exit/retry policy differs from legacy synchronous plan?",
+    "Which current command bytes can reuse the independently implemented ASCII transform?",
+    "Bind Web current page and WeChat to current caller profile without changing HTTP retry policy or resource cache identity?"
+  ],
+  "planned_implementation": "Separate pure current caller plan and bounded exit bookkeeping, preserve legacy defaults and byte contracts; no executor or process handles.",
+  "no_vm_or_target_execution": true,
+  "no_credentials_or_official_connection": true,
+  "full_goal_complete": false,
+  "facts": [
+    {
+      "kind": "fact",
+      "functions": [
+        "0x40f430",
+        "0x40ec40"
+      ],
+      "claim": "Backup ASCII uppercase/.EXE replacement can be reused. Current command prefix is NOT old raw text:0x40ec40 calls0x435a10->0x431f90, always wraps backup path in double quotes, doubles pending backslashes before a quote (2n+1) or closing delimiter(2n), appends unquoted original address/port, and passes explicit backup applicationName."
+    },
+    {
+      "kind": "fact",
+      "functions": [
+        "0x40b010:0x40b1cc..0x40b332"
+      ],
+      "claim": "GetExitCodeProcess query failure retains state. STILL_ACTIVE259 polls; unsigned DWORD elapsed >=1800000 raises one warning then continues. Exit kills timer/closes handle/clears slot and dispatches actual exit code."
+    },
+    {
+      "kind": "fact",
+      "functions": [
+        "0x408460:0x408501..0x4085cc"
+      ],
+      "claim": "Delete derived backup,100 marks game only for valid selection (otherwise error0x585);102 retries attempts1/2 then exhausts3;101 source failure; others unexpected."
+    },
+    {
+      "kind": "fact",
+      "functions": [
+        "0x435a10",
+        "0x431f90",
+        "0x432510"
+      ],
+      "claim": "The selected current command formatter always quotes even paths without spaces; embedded quotes and trailing backslashes have byte-defined escaping. This differs from601b raw command metadata."
+    },
+    {
+      "kind": "fact",
+      "functions": [
+        "0x435ad0",
+        "0x409ce0",
+        "0x409d70"
+      ],
+      "claim": "Current path helper validates directory/relative input, adds separator only when needed, calls GetFullPathNameA with260B buffer and containment checks. Address1..255 chars of ASCII alnum/dot/hyphen/colon/brackets; port1..5decimal chars and numeric1..65535. Full locale/FS conditions are separate."
+    }
+  ],
+  "contract": {
+    "module": "shared/launcher-patch-current.mjs",
+    "callerProfile": "win32-current",
+    "legacyDefaultPreserved": true,
+    "plan": "Owned byte fields using retained Code0..14 independent budget, current uppercase backup name, explicit applicationName, quoted command and timer metadata. Narrower canonical ASCII drive-directory + basename only, joined original/backup paths <=259B, root separator once. No native filesystem validation or fallback.",
+    "poll": "Exact own scalar record; UInt32 modular tick subtraction; absent/query-failure/running/exited action data; warning is not termination.",
+    "exit": "Exact exitCode/attempt/selectionValid data; no authentication or integrity claim; no actual automatic retries.",
+    "binding": "Caller profile affects process-plan metadata only; fixed patcher resource interpretation and cache byte/binding stay unchanged.",
+    "web": "Public optional callerProfile defaultlegacy; current page supplies existing runtime profile; preparer snapshots at creation.",
+    "wechat": "Always current at plan and preparer ports; no new configuration option.",
+    "formatter": "encodeWin32LauncherPatchCommand exact own backupPathBytes/addressBytes/portBytes; byte escaping of arbitrary non-NUL bytes is separate from actual native pathname/endpoint acceptance.",
+    "endpoint": "Current plan checks observed1..255 allowed ASCII char subset and1..5decimal port1..65535; preserves port text including leading zeroes. No DNS, origin permission or authentication implied.",
+    "exports": [
+      "WIN32_LAUNCHER_PATCH_PROFILE",
+      "Win32LauncherPatchError",
+      "encodeWin32LauncherPatchCommand",
+      "createWin32LauncherPatchPlan",
+      "interpretWin32LauncherPatchPoll",
+      "interpretWin32LauncherPatchExit"
+    ],
+    "compatibility_metadata": "Product packagedSourceRelativeBytes and packagedSourceStatus still describe the retained legacy-derived Code\\PatchEXE metadata. Fixed-C82 source is now specified as module-directory\\raw-Code.pat by launcher-missing-patcher-v1; MP-D1 remains unimplemented and the old product field is not a current source path."
+  },
+  "source_followup": "Reopened matched owned snapshot only to resolve previously unqueried0x435a10 command-prefix helper; no duplicate producer query or target execution.",
+  "actual_results": {
+    "new_REA_records": 30,
+    "instruction_checks": 14,
+    "source_maps": 4,
+    "new_Node_tests": 10,
+    "full_Node_passed": 802,
+    "generated_checks": 5,
+    "three_builds": [
+      {
+        "directory": "build/wechat-app-stage147",
+        "report": {
+          "path": "build/wechat-app-stage147/build-report.json",
+          "bytes": 12771,
+          "sha256": "cf0211d7a58a087114ebb2b7ab5e169b1b5e09dbe06ba0f122365636f65a5265"
+        },
+        "inputs": 65,
+        "outputs": 11,
+        "bytes": 649437,
+        "external_imports": 0
+      },
+      {
+        "directory": "build/wechat-app-local-stage147",
+        "report": {
+          "path": "build/wechat-app-local-stage147/build-report.json",
+          "bytes": 12812,
+          "sha256": "7370bf61c72afa4ef570c2bc14242aa57149d95002344d55def293d0cc99ebd3"
+        },
+        "inputs": 65,
+        "outputs": 11,
+        "bytes": 650695,
+        "external_imports": 0
+      },
+      {
+        "directory": "build/wechat-app-resources-stage147",
+        "report": {
+          "path": "build/wechat-app-resources-stage147/build-report.json",
+          "bytes": 12820,
+          "sha256": "93d4bdc555a584d244a5838d7702c4e044fb6ff956be85d719477cf00658987f"
+        },
+        "inputs": 65,
+        "outputs": 11,
+        "bytes": 650608,
+        "external_imports": 0
+      }
+    ]
+  },
+  "remaining": [
+    "Full native path predicates, MBCS/noncanonical/nested paths and actual filesystem/Windows execution",
+    "Actual Web rendered current binding and native WeChat/device/AppID/HTTPS acceptance",
+    "Resource persistence and official authenticated game consumers/gameplay",
+    "Fixed-C82 missing-patcher source preparation is now specified in launcher-missing-patcher-v1. Its portable implementation, full native path/OS effects and actual filesystem acceptance remain incomplete."
+  ],
+  "launcher_missing_patcher": {
+    "schema": "moli.launcher-missing-patcher.layer.v1",
+    "plan": {
+      "path": "build/analysis/launcher-missing-patcher-v1/implementation-plan.json",
+      "bytes": 2830,
+      "sha256": "98b52174a6753d4b282966b33c6846310f23f1c356cd502f1f6f8bad03233451"
+    },
+    "specification": {
+      "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+      "bytes": 28641,
+      "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+    },
+    "sources": {
+      "path": "build/analysis/launcher-missing-patcher-v1/source-views.json",
+      "bytes": 32625,
+      "sha256": "7324d202c32e2ae07a829967c131b859b038e3400e666fe8df9d46b680f0129c"
+    },
+    "validation_path": "build/analysis/launcher-missing-patcher-v1/validation.json",
+    "summary": {
+      "new_native_dossiers": 8,
+      "reused_composed_roots": 1,
+      "reused_complete_root_primitive_records": 2,
+      "reused_complete_batch_parents": 1,
+      "complete_REA_records_for_factory_check": 11,
+      "source_body_bytes": 2548,
+      "new_native_body_bytes": 1197,
+      "cold_instructions": 855,
+      "direct_E8_CALLs": 87,
+      "short_strings": 5,
+      "direct_import_bindings": 3,
+      "prior_retained_records": 924,
+      "retained_records_after": 932,
+      "repeated_root_decompilations": 0,
+      "fact_groups": 6,
+      "questions_answered": 4,
+      "unexecuted_cases": 12,
+      "implementation_deltas": 2
+    },
+    "selected_supersession": {
+      "parent_ref": {
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/necessary_unknowns_and_conditions/0",
+        "canonical_sha256": "36e03223efd69a9d03e8c59bb92e1df37168bbc64a2d73cc6401ab9893d83c32"
+      },
+      "covered_child_id": "LO-U1",
+      "selected_current_missing_patcher_source_closed": true,
+      "whole_P02_or_parent_requirement_closed": false
+    },
+    "implementation_deltas": [
+      {
+        "id": "MP-D1",
+        "merge_into": "LO-D5 / D0-D1 update-resource preparation",
+        "capabilities": [
+          "L01",
+          "L06",
+          "L08"
+        ],
+        "source_rule_unknown": false,
+        "implementation_done": false,
+        "behavior": "current profile应以显式module source context和raw Code形成Code.pat相对/完整source，保持legacy Code\\PatchEXE字段只在legacy profile。产品仍是旧metadata，不得据source已证声称已修复。",
+        "source_facts": [
+          "MP-F2",
+          "MP-F3",
+          "MP-F4",
+          "MP-F6"
+        ],
+        "current_refs": [
+          {
+            "file": {
+              "path": "shared/launcher-patch-current.mjs",
+              "bytes": 8826,
+              "sha256": "86a22afb67ae5007f21ea6e3425996af94e9d4ac2182ed8dc7e70219e4ef7bbc"
+            },
+            "first_line_1": 60,
+            "last_line_1": 92,
+            "start_byte_0": 3378,
+            "end_byte_0_exclusive": 6192,
+            "sha256": "10b41d979e4eb9a5182d2076c641f09aae7f63714c9cbd8e78f673d58873d057"
+          },
+          {
+            "file": {
+              "path": "shared/launcher-patch.mjs",
+              "bytes": 5338,
+              "sha256": "f695998d08e325bd3ffeb3d152033b91a56ce3fc208dc9e7899b86f0689605df"
+            },
+            "first_line_1": 36,
+            "last_line_1": 49,
+            "start_byte_0": 2647,
+            "end_byte_0_exclusive": 4269,
+            "sha256": "1d35d77c7380d611af4917dfbb961a5052c44524dd7e0985bb907ed86b0f0f33"
+          }
+        ]
+      },
+      {
+        "id": "MP-D2",
+        "merge_into": "LO-D4/LO-D5 / D0-D1 owner and commit boundaries",
+        "capabilities": [
+          "L06",
+          "L08"
+        ],
+        "source_rule_unknown": false,
+        "implementation_done": false,
+        "behavior": "保留三态返回、不同busy owner、目的exists/缺失、CopyFile允许覆盖/失败及启动失败后已复制文件；初次准备和直接backup/start重试分开，沿已有poll/exit/422E20恢复。",
+        "source_facts": [
+          "MP-F1",
+          "MP-F4",
+          "MP-F5"
+        ],
+        "current_refs": [
+          {
+            "file": {
+              "path": "shared/launcher-patch-current.mjs",
+              "bytes": 8826,
+              "sha256": "86a22afb67ae5007f21ea6e3425996af94e9d4ac2182ed8dc7e70219e4ef7bbc"
+            },
+            "first_line_1": 83,
+            "last_line_1": 92,
+            "start_byte_0": 5262,
+            "end_byte_0_exclusive": 6192,
+            "sha256": "77d12aab81c0e6a4605876fe23693351ab3bbb0dc583495ab012a2b25452bc23"
+          },
+          {
+            "file": {
+              "path": "shared/launcher-patch-current.mjs",
+              "bytes": 8826,
+              "sha256": "86a22afb67ae5007f21ea6e3425996af94e9d4ac2182ed8dc7e70219e4ef7bbc"
+            },
+            "first_line_1": 113,
+            "last_line_1": 126,
+            "start_byte_0": 7649,
+            "end_byte_0_exclusive": 8826,
+            "sha256": "11fd4c894435e4a7d0726cc08ba3bea5ea44cbe105d2aac96c9006c9c33256a7"
+          }
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "id": "MP-R1",
+        "kind": "global-capability-review",
+        "need": "返回原12packet/40能力统一必要规格/架构复核。LO-U1缺文件准备不再作为缺源驱动，P02其它条件重入/发现与现行交接仍按正向准入保留。"
+      },
+      {
+        "id": "MP-R2",
+        "kind": "implementation",
+        "need": "MP-D1/2并入既有D0/D1差异批次；统一门槛通过后实现并跑受影响资源/更新/流程测试。当前未改产品。"
+      },
+      {
+        "id": "MP-R3",
+        "kind": "external-acceptance",
+        "need": "真实OS/ACP/path/File API结果、三端设备和相应同版联合接受另验；无测试账号的事实保留，不反复索取。"
+      }
+    ],
+    "stopping_rule": "LO-U1的目录/Code.pat/CopyFile/返回与后续启动已可实现；停止CString/CRT/helper扩张。只在全40能力复核发现具名必要未知时补源。",
+    "scope_preserved": {
+      "capabilities": 40,
+      "registry_entries": 81,
+      "historical_composite_requirements": 37,
+      "consumer_groups": 10,
+      "profiles": 6
+    },
+    "source_gate_passed": false,
+    "product_code_changed": false,
+    "full_goal_complete": false
+  }
+}

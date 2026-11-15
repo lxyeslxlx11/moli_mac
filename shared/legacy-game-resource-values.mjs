@@ -1,0 +1,13 @@
+/** Strict local resource contracts. No I/O or platform globals. */
+export class LegacyGameResourceError extends Error{constructor(code){super('Game resource input, ownership or local read is outside the supported profile.');this.name='LegacyGameResourceError';this.code=code;}}
+export const assetFail=code=>{throw new LegacyGameResourceError(code);};
+export function assetInteger(n,lo=0,hi=0xffffffff){if(!Number.isInteger(n)||n<lo||n>hi)assetFail('LEGACY_ASSET_INTEGER');return n===0?0:n;}
+export function assetFields(value,required,optional=[]){let d;try{d=Object.getOwnPropertyDescriptors(value);}catch{assetFail('LEGACY_ASSET_FIELDS');}
+ const allowed=[...required,...optional];if(Reflect.ownKeys(d).some(k=>!allowed.includes(k))||required.some(k=>!Object.hasOwn(d[k]??{},'value'))||Object.values(d).some(p=>!Object.hasOwn(p,'value')))assetFail('LEGACY_ASSET_FIELDS');return Object.fromEntries(Object.entries(d).map(([k,p])=>[k,p.value]));}
+export function assetList(value,max=4096){if(!Array.isArray(value))assetFail('LEGACY_ASSET_LIST');let d;try{d=Object.getOwnPropertyDescriptors(value);}catch{assetFail('LEGACY_ASSET_LIST');}const n=assetInteger(d.length?.value,0,max);
+ if(Reflect.ownKeys(d).length!==n+1)assetFail('LEGACY_ASSET_LIST');return Array.from({length:n},(_,i)=>{if(!Object.hasOwn(d[i]??{},'value'))assetFail('LEGACY_ASSET_LIST');return d[i].value;});}
+const typed=Object.getPrototypeOf(Uint8Array.prototype),bufferOf=Object.getOwnPropertyDescriptor(typed,'buffer').get,lengthOf=Object.getOwnPropertyDescriptor(typed,'length').get,
+ offsetOf=Object.getOwnPropertyDescriptor(typed,'byteOffset').get,bufferLength=Object.getOwnPropertyDescriptor(ArrayBuffer.prototype,'byteLength').get;
+export function assetBytes(value,max){try{let buffer,length,offset=0;if(value instanceof ArrayBuffer){buffer=value;length=Reflect.apply(bufferLength,buffer,[]);}else{if(!(value instanceof Uint8Array))assetFail('LEGACY_ASSET_BYTES');buffer=Reflect.apply(bufferOf,value,[]);Reflect.apply(bufferLength,buffer,[]);length=Reflect.apply(lengthOf,value,[]);offset=Reflect.apply(offsetOf,value,[]);}if(length>max)assetFail('LEGACY_ASSET_BYTE_BUDGET');return new Uint8Array(new Uint8Array(buffer,offset,length));}catch(e){if(e instanceof LegacyGameResourceError)throw e;assetFail('LEGACY_ASSET_BYTES');}}
+export function assetPath(value){if(typeof value!=='string'||value.length<1||value.length>255||/[^\x20-\x7e]/.test(value)||/[:*?"<>|]/.test(value))assetFail('LEGACY_ASSET_PATH');const result=value.replace(/\\/g,'/');if(result.split('/').some(p=>p===''||p==='.'||p==='..'||/[. ]$/.test(p)))assetFail('LEGACY_ASSET_PATH');return result;}
+export const assetKey=value=>assetPath(value).toLowerCase();

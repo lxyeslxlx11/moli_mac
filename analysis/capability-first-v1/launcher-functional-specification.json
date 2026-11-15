@@ -1,0 +1,3885 @@
+{
+  "schema": "moli.launcher-functional-specification.v1",
+  "classification": "fixed-source specification supplement and original-scope audit;not whole L01-L08 readiness",
+  "requirement": "先REA分析全部需求能力，复用已证来源，只补会改变实现的证据；统一A1–A4后按D0–D6共享能力成组复刻。",
+  "source": {
+    "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+    "bytes": 4111872,
+    "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+  },
+  "native_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "source_authentication": {
+    "path": "build/analysis/launcher-functional-specification-v1/source-authentication.json",
+    "bytes": 811143,
+    "sha256": "14c56e6e2d022c6337c142d51cc14400e8045c1c7ea8996c1c6330d96d6122e2"
+  },
+  "path_ABI_view": {
+    "path": "build/analysis/launcher-functional-specification-v1/path-abi-view.json",
+    "bytes": 1376,
+    "sha256": "5109dbab8fc34ba4d0e858998a290f2e97862569669cbf2a890bfd9a02d55a2b"
+  },
+  "source_profiles_preserved": [
+    {
+      "id": "launcher-legacy-601b",
+      "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+      "identity_record": "analysis/launcher-v7/preflight.json",
+      "scope": "固定旧版登录器；不等同更新版"
+    },
+    {
+      "id": "launcher-updated-c82f",
+      "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+      "identity_record": "analysis/launcher-current-login-v1/source-verification.json",
+      "scope": "已留存更新后分析样本；不声称此刻仍为官方最新"
+    },
+    {
+      "id": "game-legacy-37c4",
+      "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+      "identity_record": "analysis/game-release-current-v1/source-check.json",
+      "scope": "固定可读旧版cg_se_6000；不与现行3000互换"
+    },
+    {
+      "id": "game-current-unclosed",
+      "identity_record": "reports/game-static.md",
+      "scope": "现行游戏业务消费者和同版接受尚未闭合；不能由旧版证明"
+    },
+    {
+      "id": "platform",
+      "identity_record": "reports/architecture-and-milestones.md",
+      "scope": "新宿主/适配能力；REA还原原版行为，目标平台合同及实际设备另验"
+    },
+    {
+      "id": "launcher-historical-c7ba",
+      "sha256": "c7ba69f77809fe589fd5dcccc78fcd4f33d4b6f76325d00a27f37032bbb32384",
+      "identity_record": "analysis/launcher-current-catalog-v1/source-check.json",
+      "scope": "历史current-catalog/current-metadata规格的实际样本；不同于c82f，不因文件名或地址相似合并"
+    }
+  ],
+  "version_boundary": {
+    "current_analysis_image_sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+    "observed_packed_update_sha256": "6d459ddbdf80a86cf7a1e41b99ab7fb575b42842d7163522efb3c9fa6e6ac987",
+    "C82_is_verified_current_official_latest": false,
+    "associated_updater_22d_7eb_and_patcher_195f": "Retain exact identities in LO-O17/O19 and MP;not new primary profile or interchangeable whole launcher."
+  },
+  "retained_operation_rows": [
+    {
+      "id": "LO-O01",
+      "title": "App/Frame创建与唯一目录任务",
+      "capabilities": [
+        "L01",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "retained_rule": {
+        "id": "LO-O01",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/0",
+        "canonical_sha256": "efbb4d820d7f9fefdc501ab7788dbdbb0f4f9a6d8d1c9b5c8d3a6a58adfc5ae6"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O02",
+      "title": "双目录加载、字节XML与发布门槛",
+      "capabilities": [
+        "L01",
+        "L02",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "retained_rule": {
+        "id": "LO-O02",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/1",
+        "canonical_sha256": "8605463fd92a61fdc716c53097736405b154ee237ba1a3f424d4f8802d822bec"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O03",
+      "title": "目录刷新与存储恢复",
+      "capabilities": [
+        "L01",
+        "L05",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "retained_rule": {
+        "id": "LO-O03",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/2",
+        "canonical_sha256": "5f315ac02b5652b360ebedd4be3c43a142b7763823c66022e1827d6e72e64fb4"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O04",
+      "title": "游戏/区域/Galaxy和安装来源选择",
+      "capabilities": [
+        "L01",
+        "L02"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "retained_rule": {
+        "id": "LO-O04",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/3",
+        "canonical_sha256": "32ee6703a96a95cd84b51bfcc776ce8ffd8324aef333a251bcb2858e5f6f9bc2"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O05",
+      "title": "手动路径接受、失败和取消",
+      "capabilities": [
+        "L01",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "retained_rule": {
+        "id": "LO-O05",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/4",
+        "canonical_sha256": "6d81f7ba6f2d9c0a9a6725d4427fb033f8141a9cd270f0df8bb9edc19345861f"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O06",
+      "title": "预设列表编辑、持久化、单次撤销",
+      "capabilities": [
+        "L04",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "retained_rule": {
+        "id": "LO-O06",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/5",
+        "canonical_sha256": "20e7c2584c7387de08ba377c391474dc25c52c18aad5dbcf2185b4f6f0cadf1d"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O07",
+      "title": "预设应用与准备分支",
+      "capabilities": [
+        "L02",
+        "L03",
+        "L04",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "retained_rule": {
+        "id": "LO-O07",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/6",
+        "canonical_sha256": "dd9146ceeeb96810d6198500f49d36714461ef6c13d7647cd20b33f5efa6db8e"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O08",
+      "title": "普通输入与提交准入",
+      "capabilities": [
+        "L03",
+        "L04",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "retained_rule": {
+        "id": "LO-O08",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/7",
+        "canonical_sha256": "6b5cd56632d58381bf39969174b6c39a94d2df5361e5093a2e050711f51c743b"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O09",
+      "title": "DNS与候选重试的两个期限",
+      "capabilities": [
+        "L02",
+        "L03"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "retained_rule": {
+        "id": "LO-O09",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/8",
+        "canonical_sha256": "9beb6f7a249bc9c8e3d7601dd44a9ad39a32acd41e9a84fefaf987255053005b"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O10",
+      "title": "记录流、type11与UI发布",
+      "capabilities": [
+        "L03",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "retained_rule": {
+        "id": "LO-O10",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/9",
+        "canonical_sha256": "f3a039c24782dfdbca36b98dc38a06f0d3471c4ec4d580c7bf962819a6e4ebe1"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O11",
+      "title": "ID显示、筛选、分组与选择恢复",
+      "capabilities": [
+        "L02",
+        "L04",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "retained_rule": {
+        "id": "LO-O11",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/10",
+        "canonical_sha256": "599e1117ecd3b164fdd6a95d555ca900ad32a1163b980d3c21e03425ef3ed7cb"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O12",
+      "title": "预设ID单次消费与普通交接边界",
+      "capabilities": [
+        "L02",
+        "L03",
+        "L07",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "retained_rule": {
+        "id": "LO-O12",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/11",
+        "canonical_sha256": "d40759b87494383f3ba8480fb469e5175c534902593fa6e4afe94c1faaec2cb9"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O13",
+      "title": "备注、置顶、排序、reset/undo写入失败",
+      "capabilities": [
+        "L02",
+        "L04",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "retained_rule": {
+        "id": "LO-O13",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/12",
+        "canonical_sha256": "d11693d13f27cb76193fbdb7f88b5b86ae535844ad3e8687f0be2dfedbed8a34"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O14",
+      "title": "普通Stop、Frame关闭与旧DNS结果",
+      "capabilities": [
+        "L03",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "retained_rule": {
+        "id": "LO-O14",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/13",
+        "canonical_sha256": "66070fc8af0a248b46a6be71cb49983a2a9e5b6ec6c4c39b02610886750b1976"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O15",
+      "title": "modal期间timer、Stop与已持有callback",
+      "capabilities": [
+        "L03",
+        "L04",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "retained_rule": {
+        "id": "LO-O15",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/14",
+        "canonical_sha256": "2c95401fc2e9a4a9b1d52b66f8c84052a10217ec31e1fa63ec68f56f411576b3"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O16",
+      "title": "当前补丁进程准备、poll、exit与准备回调",
+      "capabilities": [
+        "L01",
+        "L06",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "retained_rule": {
+        "id": "LO-O16",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/15",
+        "canonical_sha256": "e64f7ede36fc57d0b45f815ebcc7806cb70963493c49070c50722c0907c450b5"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O17",
+      "title": "自更新候选、参数、journal和ACK",
+      "capabilities": [
+        "L05",
+        "L08"
+      ],
+      "source_profile": "C82 producer; associated updater22d/7eb identities, not whole-profile interchange",
+      "retained_rule": {
+        "id": "LO-O17",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/16",
+        "canonical_sha256": "c3fa9a9fde0e3b3ca99503f509beccf8505f1b23057bda4176fa0099f94701f8"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O18",
+      "title": "legacy首次Config与交接前准备",
+      "capabilities": [
+        "L01",
+        "L04",
+        "L07",
+        "L08"
+      ],
+      "source_profile": "launcher-legacy-601b only",
+      "retained_rule": {
+        "id": "LO-O18",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/17",
+        "canonical_sha256": "a2b39bd91edba0f2940a041f4eb8987c6149cd404c8bd370425256d1144e960a"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    },
+    {
+      "id": "LO-O19",
+      "title": "PUK3清单、包和create/append/replaceto候选",
+      "capabilities": [
+        "L06",
+        "L08"
+      ],
+      "source_profile": "associated patcher195f; legacy601b/currentC82 caller separately",
+      "retained_rule": {
+        "id": "LO-O19",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/operation_rows/18",
+        "canonical_sha256": "9da974bfccc1d37ff45fdd5d6e0c515ce61ed25261a08b6b98823e54cdbd8069"
+      },
+      "status": "retained selected operation; original limits and conditions still apply"
+    }
+  ],
+  "retained_source_rules": {
+    "file": {
+      "path": "build/analysis/launcher-operation-composition-v1/source-rules.json",
+      "bytes": 207079,
+      "sha256": "4148d612db3822c2dff705ef94b798bff10b71b493fa1a9404b16c17a81e6554"
+    },
+    "rules": 118,
+    "frozen_contracts": 10,
+    "source_checks": 10,
+    "authority": "previously-composed-selected-rules; file identity revalidated, not a new complete-Evidence factory pass"
+  },
+  "retained_shared_and_source_nodes": [
+    {
+      "id": "LO-O01",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/0",
+      "canonical_sha256": "efbb4d820d7f9fefdc501ab7788dbdbb0f4f9a6d8d1c9b5c8d3a6a58adfc5ae6"
+    },
+    {
+      "id": "LO-O02",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/1",
+      "canonical_sha256": "8605463fd92a61fdc716c53097736405b154ee237ba1a3f424d4f8802d822bec"
+    },
+    {
+      "id": "LO-O03",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/2",
+      "canonical_sha256": "5f315ac02b5652b360ebedd4be3c43a142b7763823c66022e1827d6e72e64fb4"
+    },
+    {
+      "id": "LO-O04",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/3",
+      "canonical_sha256": "32ee6703a96a95cd84b51bfcc776ce8ffd8324aef333a251bcb2858e5f6f9bc2"
+    },
+    {
+      "id": "LO-O05",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/4",
+      "canonical_sha256": "6d81f7ba6f2d9c0a9a6725d4427fb033f8141a9cd270f0df8bb9edc19345861f"
+    },
+    {
+      "id": "LO-O06",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/5",
+      "canonical_sha256": "20e7c2584c7387de08ba377c391474dc25c52c18aad5dbcf2185b4f6f0cadf1d"
+    },
+    {
+      "id": "LO-O07",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/6",
+      "canonical_sha256": "dd9146ceeeb96810d6198500f49d36714461ef6c13d7647cd20b33f5efa6db8e"
+    },
+    {
+      "id": "LO-O08",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/7",
+      "canonical_sha256": "6b5cd56632d58381bf39969174b6c39a94d2df5361e5093a2e050711f51c743b"
+    },
+    {
+      "id": "LO-O09",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/8",
+      "canonical_sha256": "9beb6f7a249bc9c8e3d7601dd44a9ad39a32acd41e9a84fefaf987255053005b"
+    },
+    {
+      "id": "LO-O10",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/9",
+      "canonical_sha256": "f3a039c24782dfdbca36b98dc38a06f0d3471c4ec4d580c7bf962819a6e4ebe1"
+    },
+    {
+      "id": "LO-O11",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/10",
+      "canonical_sha256": "599e1117ecd3b164fdd6a95d555ca900ad32a1163b980d3c21e03425ef3ed7cb"
+    },
+    {
+      "id": "LO-O12",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/11",
+      "canonical_sha256": "d40759b87494383f3ba8480fb469e5175c534902593fa6e4afe94c1faaec2cb9"
+    },
+    {
+      "id": "LO-O13",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/12",
+      "canonical_sha256": "d11693d13f27cb76193fbdb7f88b5b86ae535844ad3e8687f0be2dfedbed8a34"
+    },
+    {
+      "id": "LO-O14",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/13",
+      "canonical_sha256": "66070fc8af0a248b46a6be71cb49983a2a9e5b6ec6c4c39b02610886750b1976"
+    },
+    {
+      "id": "LO-O15",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/14",
+      "canonical_sha256": "2c95401fc2e9a4a9b1d52b66f8c84052a10217ec31e1fa63ec68f56f411576b3"
+    },
+    {
+      "id": "LO-O16",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/15",
+      "canonical_sha256": "e64f7ede36fc57d0b45f815ebcc7806cb70963493c49070c50722c0907c450b5"
+    },
+    {
+      "id": "LO-O17",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/16",
+      "canonical_sha256": "c3fa9a9fde0e3b3ca99503f509beccf8505f1b23057bda4176fa0099f94701f8"
+    },
+    {
+      "id": "LO-O18",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/17",
+      "canonical_sha256": "a2b39bd91edba0f2940a041f4eb8987c6149cd404c8bd370425256d1144e960a"
+    },
+    {
+      "id": "LO-O19",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/operation_rows/18",
+      "canonical_sha256": "9da974bfccc1d37ff45fdd5d6e0c515ce61ed25261a08b6b98823e54cdbd8069"
+    },
+    {
+      "id": "LO-U1",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/necessary_unknowns_and_conditions/0",
+      "canonical_sha256": "36e03223efd69a9d03e8c59bb92e1df37168bbc64a2d73cc6401ab9893d83c32"
+    },
+    {
+      "id": "LO-U2",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/necessary_unknowns_and_conditions/1",
+      "canonical_sha256": "9fd51e20a7ea19ad94a2911809aa208ff17b7465a61612b43656f3a220d7057a"
+    },
+    {
+      "id": "LO-U3",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/necessary_unknowns_and_conditions/2",
+      "canonical_sha256": "7f426d361733529be4e3300202818a6f85a5cb12814e4f8f709ed45e8c34764a"
+    },
+    {
+      "id": "LO-U4",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/necessary_unknowns_and_conditions/3",
+      "canonical_sha256": "1a83f8b96ea05b842e77fa69581feb8271ed254575985a1a3d297f67d8c2e4f0"
+    },
+    {
+      "id": "LO-D01",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/implementation_deltas/0",
+      "canonical_sha256": "7d92acb082d947e98c4bb0804da259ed790345e7ea3293fabfdc4b0e3d03a3fc"
+    },
+    {
+      "id": "LO-D02",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/implementation_deltas/1",
+      "canonical_sha256": "9f5b638b23b3960991634c770cee4caa7643070461aec7d4b78db954a01d4095"
+    },
+    {
+      "id": "LO-D03",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/implementation_deltas/2",
+      "canonical_sha256": "161c77a21c803d6f59ffe8830be38c1e149d83de8157707040983a5e2ae6475e"
+    },
+    {
+      "id": "LO-D04",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/implementation_deltas/3",
+      "canonical_sha256": "eaf53df010ac2a0e8e1c6e124e48d441d0344659b8cf0c0e985f54c52390ad15"
+    },
+    {
+      "id": "LO-D05",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/implementation_deltas/4",
+      "canonical_sha256": "6829da00f94d8af07a731db41c8f5c35c89d90e3e156b29a2a9a45ef8edffc55"
+    },
+    {
+      "id": "LO-D06",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/implementation_deltas/5",
+      "canonical_sha256": "8ed6034422ac5daed30902ba9a83a3ce0caf75019d6e2d9a932bfabbbd587f68"
+    },
+    {
+      "id": "MP-F1",
+      "file": {
+        "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+        "bytes": 28641,
+        "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+      },
+      "pointer": "/facts/0",
+      "canonical_sha256": "8c62b37802772c1141a6fc9d43ae4ec2a557e7decf1435bcf9582b451cd2a0d1"
+    },
+    {
+      "id": "MP-F2",
+      "file": {
+        "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+        "bytes": 28641,
+        "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+      },
+      "pointer": "/facts/1",
+      "canonical_sha256": "bf51a0de8715ce8701036967b093325d39b30bdca198063c4822241440ecf34b"
+    },
+    {
+      "id": "MP-F3",
+      "file": {
+        "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+        "bytes": 28641,
+        "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "d977baa9c9303a9bd2a1419abc05f80f3d50ec71442241a7a0efe923c906f614"
+    },
+    {
+      "id": "MP-F4",
+      "file": {
+        "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+        "bytes": 28641,
+        "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "3f955ec92aeddde14718147fcd2488db57aef79dede0f8b8f92623e9e5d92341"
+    },
+    {
+      "id": "MP-F5",
+      "file": {
+        "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+        "bytes": 28641,
+        "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+      },
+      "pointer": "/facts/4",
+      "canonical_sha256": "14db0a1960b05776f0eb32480e0ddef33b25ab969549a6db6740e129feca4e32"
+    },
+    {
+      "id": "MP-F6",
+      "file": {
+        "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+        "bytes": 28641,
+        "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+      },
+      "pointer": "/facts/5",
+      "canonical_sha256": "81ff5674fa4176968aed742ace80f973f5881fa370cbe5069e1c2c7a13a12403"
+    },
+    {
+      "id": "game-row-fields",
+      "file": {
+        "path": "analysis/capability-first-v1/launcher-catalog-install-contract.json",
+        "bytes": 17714,
+        "sha256": "6aff5238454eb3eccc611698efd2ee478b85c7e6005645fc52fb633fd0dc342c"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "23dca3e42242889f35264905879d26ea19d800a5431082fbf71c93e08172e8cd"
+    },
+    {
+      "id": "game-admission",
+      "file": {
+        "path": "analysis/capability-first-v1/launcher-catalog-install-contract.json",
+        "bytes": 17714,
+        "sha256": "6aff5238454eb3eccc611698efd2ee478b85c7e6005645fc52fb633fd0dc342c"
+      },
+      "pointer": "/facts/6",
+      "canonical_sha256": "7663b9c5b7d50e93deeeb4e18f8c70f5288469b8c135de5c320eee5048e81953"
+    },
+    {
+      "id": "filename-path-rules",
+      "file": {
+        "path": "analysis/capability-first-v1/launcher-catalog-install-contract.json",
+        "bytes": 17714,
+        "sha256": "6aff5238454eb3eccc611698efd2ee478b85c7e6005645fc52fb633fd0dc342c"
+      },
+      "pointer": "/facts/7",
+      "canonical_sha256": "b33de1e479ef8160290165f280b96bdfb7cbaa6de872ea57a1fcbeb3382a8b1e"
+    },
+    {
+      "id": "profile-path-fallback",
+      "file": {
+        "path": "analysis/capability-first-v1/launcher-catalog-install-contract.json",
+        "bytes": 17714,
+        "sha256": "6aff5238454eb3eccc611698efd2ee478b85c7e6005645fc52fb633fd0dc342c"
+      },
+      "pointer": "/facts/10",
+      "canonical_sha256": "657812b28dbda8223c12b583800b57c227d23f85384bdef59e5f370f8632929f"
+    },
+    {
+      "id": "Frame-ownership",
+      "file": {
+        "path": "analysis/capability-first-v1/launcher-catalog-install-contract.json",
+        "bytes": 17714,
+        "sha256": "6aff5238454eb3eccc611698efd2ee478b85c7e6005645fc52fb633fd0dc342c"
+      },
+      "pointer": "/facts/16",
+      "canonical_sha256": "94f77d830fec38da61303ee6268cc498957522efae399a3fe30e767b8997cad7"
+    },
+    {
+      "id": "CChildView-destruction",
+      "file": {
+        "path": "analysis/capability-first-v1/launcher-catalog-install-contract.json",
+        "bytes": 17714,
+        "sha256": "6aff5238454eb3eccc611698efd2ee478b85c7e6005645fc52fb633fd0dc342c"
+      },
+      "pointer": "/facts/20",
+      "canonical_sha256": "e1ec3ecd9730d83a02190f8d97c1bf8d380f28acacf1b6dd4f2283f240bb4368"
+    },
+    {
+      "id": "dot-components",
+      "file": {
+        "path": "analysis/capability-first-v1/launcher-host-routing-contract.json",
+        "bytes": 8438,
+        "sha256": "aca0fbfe061e58bdf31747798bf13b20be3b9ac153210c11c8485a9026a6de98"
+      },
+      "pointer": "/facts/0",
+      "canonical_sha256": "2dcd8339d7b1c3519498d592264145741dbd8984868a6b071d3c971b8df7b8b9"
+    },
+    {
+      "id": "absolute-root",
+      "file": {
+        "path": "analysis/capability-first-v1/launcher-host-routing-contract.json",
+        "bytes": 8438,
+        "sha256": "aca0fbfe061e58bdf31747798bf13b20be3b9ac153210c11c8485a9026a6de98"
+      },
+      "pointer": "/facts/1",
+      "canonical_sha256": "1300a6ecd1388bc45f08ecf094446236adb8d2f03a1bc365e0b889c87e436f52"
+    },
+    {
+      "id": "classifier-identity",
+      "file": {
+        "path": "analysis/capability-first-v1/launcher-host-routing-contract.json",
+        "bytes": 8438,
+        "sha256": "aca0fbfe061e58bdf31747798bf13b20be3b9ac153210c11c8485a9026a6de98"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "637956e19478994c8c0a00b421f970f3d519ccf815385aa30fb7b118a61e9cba"
+    },
+    {
+      "id": "UNC-root",
+      "file": {
+        "path": "analysis/capability-first-v1/launcher-host-routing-contract.json",
+        "bytes": 8438,
+        "sha256": "aca0fbfe061e58bdf31747798bf13b20be3b9ac153210c11c8485a9026a6de98"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "01729221c542b2673fb894246e3a4d9421987bfc2d20fdae7bf01380ac56b4d1"
+    },
+    {
+      "id": "process-busy",
+      "file": {
+        "path": "analysis/capability-first-v1/launcher-host-routing-contract.json",
+        "bytes": 8438,
+        "sha256": "aca0fbfe061e58bdf31747798bf13b20be3b9ac153210c11c8485a9026a6de98"
+      },
+      "pointer": "/facts/9",
+      "canonical_sha256": "c8870c70bfc289e5649ad010de4a7db1c4698736d0f165b30e398380780df73e"
+    },
+    {
+      "id": "UC-P01",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/0",
+      "canonical_sha256": "8c1fc7f885a3a5941cc291406f1cdd9b9b767f1146eb33e5b1b226b4c5c38ce1"
+    },
+    {
+      "id": "UC-P02",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/1",
+      "canonical_sha256": "1f06da196fce8b1610e7fe4f90b9b2b719298a39211cfa6cb3053abc3ca83d69"
+    },
+    {
+      "id": "UC-P03",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/2",
+      "canonical_sha256": "217584c9073387274f934c70ab03be194b10e8418cebfb2d6397a565dfc5d728"
+    },
+    {
+      "id": "UC-P04",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/3",
+      "canonical_sha256": "a317bf87973e44de60f6bddedcc319d633b4c3012990aa053773495643f9c611"
+    },
+    {
+      "id": "UC-P05",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/4",
+      "canonical_sha256": "ea1c70b65abd3ac28e347b4764053547ecd9d0d9c415d854da3f39d377978bfa"
+    },
+    {
+      "id": "UC-P06",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/5",
+      "canonical_sha256": "8342259d1383465a762f42cf6200db7e4dd7be5c6cc4a21e9861d297e51d1476"
+    },
+    {
+      "id": "UC-P07",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/6",
+      "canonical_sha256": "36d338871684c70c29b93fdfe2a974291a65a594e15dd3f15ec75afcafae8a9c"
+    },
+    {
+      "id": "UC-P08",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/7",
+      "canonical_sha256": "03ca38dcec6ffac078cb22f3348fb4c282391b9310abee9fd39866b5227d5056"
+    },
+    {
+      "id": "UC-P09",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/8",
+      "canonical_sha256": "49ef7de7d8b7341ccd1c6b2af011c15e246b5e8e311aeb74aad619265c3b9524"
+    },
+    {
+      "id": "UC-P10",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/9",
+      "canonical_sha256": "45881f3478da0036bf1579725ce67fc1d9aac78cacd7c19f780dbdcfdd40c4d2"
+    },
+    {
+      "id": "UC-P11",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/10",
+      "canonical_sha256": "35dc86b5f7a8137e63d9df12af2bb4e376453ebc140c00377927c253fd8fa0a3"
+    },
+    {
+      "id": "UC-P12",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/11",
+      "canonical_sha256": "b6011186d82f5db47eb080c00a4640fd64cab6aba34a159532d5fd176878117a"
+    },
+    {
+      "id": "UC-P13",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/12",
+      "canonical_sha256": "c27b3982f214a5076a7964d3ae467f1e874d1d17e23d853867402e7ad333d29f"
+    },
+    {
+      "id": "UC-P14",
+      "file": {
+        "path": "analysis/capability-first-v1/shared-target-contract.json",
+        "bytes": 68467,
+        "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+      },
+      "pointer": "/ports/13",
+      "canonical_sha256": "58db970d73b36a3e1cd6fdebc8c87fee1fa0ad45212ea4ac71b65f2f5cab8f44"
+    },
+    {
+      "id": "AH-F1",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-host-profile.json",
+        "bytes": 22336,
+        "sha256": "5f164e6a44945a89eff56426c51db7a542c23a6e53e83fcddf04708872e4b151"
+      },
+      "pointer": "/facts/0",
+      "canonical_sha256": "99b09aacd75479ca208e470399b9fa1196b02bf4020e3b429c8e796a2b603f58"
+    },
+    {
+      "id": "AH-F2",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-host-profile.json",
+        "bytes": 22336,
+        "sha256": "5f164e6a44945a89eff56426c51db7a542c23a6e53e83fcddf04708872e4b151"
+      },
+      "pointer": "/facts/1",
+      "canonical_sha256": "d11c88ef3259419c3ac776cb2db13b29d24caa02f46323ffa9973625e3da6dca"
+    },
+    {
+      "id": "AH-F3",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-host-profile.json",
+        "bytes": 22336,
+        "sha256": "5f164e6a44945a89eff56426c51db7a542c23a6e53e83fcddf04708872e4b151"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "6b2ee98e315d838210dda296d383fdee506408ad1a8fd30ce8af06e50f44f9ff"
+    },
+    {
+      "id": "AH-F4",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-host-profile.json",
+        "bytes": 22336,
+        "sha256": "5f164e6a44945a89eff56426c51db7a542c23a6e53e83fcddf04708872e4b151"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "514ee759aa3dfab2dbf04fec86691f1be4526021d81743bc53b73fa2f6502cc5"
+    },
+    {
+      "id": "AH-F5",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-host-profile.json",
+        "bytes": 22336,
+        "sha256": "5f164e6a44945a89eff56426c51db7a542c23a6e53e83fcddf04708872e4b151"
+      },
+      "pointer": "/facts/4",
+      "canonical_sha256": "b56d1cb8074e2ed7b7569aadea37433ce76c200fa932aac159f8e4c9d35f7f0d"
+    },
+    {
+      "id": "AH-F6",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-host-profile.json",
+        "bytes": 22336,
+        "sha256": "5f164e6a44945a89eff56426c51db7a542c23a6e53e83fcddf04708872e4b151"
+      },
+      "pointer": "/facts/5",
+      "canonical_sha256": "e1043f817132a66aee158e27e27fd7cce8dcd6714fba096bec6149ac5164a537"
+    },
+    {
+      "id": "AH-F7",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-host-profile.json",
+        "bytes": 22336,
+        "sha256": "5f164e6a44945a89eff56426c51db7a542c23a6e53e83fcddf04708872e4b151"
+      },
+      "pointer": "/facts/6",
+      "canonical_sha256": "9824c44269f2015a9e9c442d0b495f250038ece1406ea1fe66ec95394f3dc0cd"
+    },
+    {
+      "id": "AH-F8",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-host-profile.json",
+        "bytes": 22336,
+        "sha256": "5f164e6a44945a89eff56426c51db7a542c23a6e53e83fcddf04708872e4b151"
+      },
+      "pointer": "/facts/7",
+      "canonical_sha256": "505dd64e2b0c65c09ac3c9f95a35bc5dcbb0e1147d6054f347bd2e4231f31b36"
+    },
+    {
+      "id": "AH-F9",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-host-profile.json",
+        "bytes": 22336,
+        "sha256": "5f164e6a44945a89eff56426c51db7a542c23a6e53e83fcddf04708872e4b151"
+      },
+      "pointer": "/facts/8",
+      "canonical_sha256": "33053fd7ebd0d0301fa2e37e1f93012462a2c817671347ad3b102f9ec35dd86e"
+    },
+    {
+      "id": "AH-F10",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-host-profile.json",
+        "bytes": 22336,
+        "sha256": "5f164e6a44945a89eff56426c51db7a542c23a6e53e83fcddf04708872e4b151"
+      },
+      "pointer": "/facts/9",
+      "canonical_sha256": "3a0602d63433b545dc84f262142b63a69b75253fd3c32ab7c2fd34fd0821f32c"
+    },
+    {
+      "id": "AS-F1",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-surface-profile.json",
+        "bytes": 24623,
+        "sha256": "a2875f581f8c51f50aef6ed1fb373beb1e5e6c1bb969c469a24bfea044ef8293"
+      },
+      "pointer": "/facts/0",
+      "canonical_sha256": "82aaaa4358d88357c461b42bdedbd9bda1a8ad6939df45a2f4c5b0c2ecd11c25"
+    },
+    {
+      "id": "AS-F2",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-surface-profile.json",
+        "bytes": 24623,
+        "sha256": "a2875f581f8c51f50aef6ed1fb373beb1e5e6c1bb969c469a24bfea044ef8293"
+      },
+      "pointer": "/facts/1",
+      "canonical_sha256": "7490ca3270c7f8838376309f058feae6fe4bad98ddac213b944aab74e0a45975"
+    },
+    {
+      "id": "AS-F3",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-surface-profile.json",
+        "bytes": 24623,
+        "sha256": "a2875f581f8c51f50aef6ed1fb373beb1e5e6c1bb969c469a24bfea044ef8293"
+      },
+      "pointer": "/facts/2",
+      "canonical_sha256": "66e953bfacaf7e789114e6a38d7da2dadccba9fa37122d8094156fede73168bf"
+    },
+    {
+      "id": "AS-F4",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-surface-profile.json",
+        "bytes": 24623,
+        "sha256": "a2875f581f8c51f50aef6ed1fb373beb1e5e6c1bb969c469a24bfea044ef8293"
+      },
+      "pointer": "/facts/3",
+      "canonical_sha256": "4f5877ffeea54b0b59325a7efac3469969937e59b4fe95dfd5348ff42f5ce603"
+    },
+    {
+      "id": "AS-F5",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-surface-profile.json",
+        "bytes": 24623,
+        "sha256": "a2875f581f8c51f50aef6ed1fb373beb1e5e6c1bb969c469a24bfea044ef8293"
+      },
+      "pointer": "/facts/4",
+      "canonical_sha256": "0329d8d4f936b6659f4ad53adc3e423e8d3f6cb7f2d12b6ae0d275281257fcb0"
+    },
+    {
+      "id": "AS-F6",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-surface-profile.json",
+        "bytes": 24623,
+        "sha256": "a2875f581f8c51f50aef6ed1fb373beb1e5e6c1bb969c469a24bfea044ef8293"
+      },
+      "pointer": "/facts/5",
+      "canonical_sha256": "31c76b262d9b11c1cb548bf49e91149ab20750182d34b2f4220a6c8fa4865c52"
+    },
+    {
+      "id": "AS-F7",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-surface-profile.json",
+        "bytes": 24623,
+        "sha256": "a2875f581f8c51f50aef6ed1fb373beb1e5e6c1bb969c469a24bfea044ef8293"
+      },
+      "pointer": "/facts/6",
+      "canonical_sha256": "9bcdbd3e26f05bb8404ac3df76db1012ee57cf1dcfbddc53ef3bd0bf5f6139f8"
+    },
+    {
+      "id": "AS-F8",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-surface-profile.json",
+        "bytes": 24623,
+        "sha256": "a2875f581f8c51f50aef6ed1fb373beb1e5e6c1bb969c469a24bfea044ef8293"
+      },
+      "pointer": "/facts/7",
+      "canonical_sha256": "4cd15e072e7139e9b914cfc61e70f437fc245dcbaefdec1fdf0d9a8d5b709f94"
+    },
+    {
+      "id": "AS-F9",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-surface-profile.json",
+        "bytes": 24623,
+        "sha256": "a2875f581f8c51f50aef6ed1fb373beb1e5e6c1bb969c469a24bfea044ef8293"
+      },
+      "pointer": "/facts/8",
+      "canonical_sha256": "0ad178a1c56ecd20f04cb282a72669b0893ad1fe8bf78fe4f22d6704a5958a49"
+    },
+    {
+      "id": "AS-F10",
+      "file": {
+        "path": "analysis/capability-first-v1/browser-surface-profile.json",
+        "bytes": 24623,
+        "sha256": "a2875f581f8c51f50aef6ed1fb373beb1e5e6c1bb969c469a24bfea044ef8293"
+      },
+      "pointer": "/facts/9",
+      "canonical_sha256": "2a4e9f656900596a4462373bc923d51eaf87f1c2bf5b7fc48d6a5ff80e4ce1f1"
+    }
+  ],
+  "missing_patcher_supersession": {
+    "old_condition": {
+      "id": "LO-U1",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/necessary_unknowns_and_conditions/0",
+      "canonical_sha256": "36e03223efd69a9d03e8c59bb92e1df37168bbc64a2d73cc6401ab9893d83c32"
+    },
+    "effective_facts": [
+      {
+        "id": "MP-F1",
+        "file": {
+          "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+          "bytes": 28641,
+          "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+        },
+        "pointer": "/facts/0",
+        "canonical_sha256": "8c62b37802772c1141a6fc9d43ae4ec2a557e7decf1435bcf9582b451cd2a0d1"
+      },
+      {
+        "id": "MP-F2",
+        "file": {
+          "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+          "bytes": 28641,
+          "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+        },
+        "pointer": "/facts/1",
+        "canonical_sha256": "bf51a0de8715ce8701036967b093325d39b30bdca198063c4822241440ecf34b"
+      },
+      {
+        "id": "MP-F3",
+        "file": {
+          "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+          "bytes": 28641,
+          "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+        },
+        "pointer": "/facts/2",
+        "canonical_sha256": "d977baa9c9303a9bd2a1419abc05f80f3d50ec71442241a7a0efe923c906f614"
+      },
+      {
+        "id": "MP-F4",
+        "file": {
+          "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+          "bytes": 28641,
+          "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+        },
+        "pointer": "/facts/3",
+        "canonical_sha256": "3f955ec92aeddde14718147fcd2488db57aef79dede0f8b8f92623e9e5d92341"
+      },
+      {
+        "id": "MP-F5",
+        "file": {
+          "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+          "bytes": 28641,
+          "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+        },
+        "pointer": "/facts/4",
+        "canonical_sha256": "14db0a1960b05776f0eb32480e0ddef33b25ab969549a6db6740e129feca4e32"
+      },
+      {
+        "id": "MP-F6",
+        "file": {
+          "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+          "bytes": 28641,
+          "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+        },
+        "pointer": "/facts/5",
+        "canonical_sha256": "81ff5674fa4176968aed742ace80f973f5881fa370cbe5069e1c2c7a13a12403"
+      }
+    ],
+    "selected_source_gap_resolved": true,
+    "entire_L06_ready": false
+  },
+  "facts": [
+    {
+      "id": "LF-F01",
+      "classification": "fact: fixed-C82 static source; composition subject to explicit entry context",
+      "title": "对象别名、账号section与原Code key",
+      "complete_native_entries": [
+        "0x410c00",
+        "0x42d830",
+        "0x43b390",
+        "0x43bc90"
+      ],
+      "claim": {
+        "objects": [
+          "Frame global63C8D4",
+          "controller=CChildView=Frame+0x120",
+          "Main=controller+0x1A8"
+        ],
+        "section": "MD5 of caller-owned username raw bytes (Frame+0x24C4), via43B390; not a password/authentication flag",
+        "key": "compiled Game + selected game row Code_attribute_raw + compiled _Config; game row base controller+0x2BD8,stride0xA4,Code offset40 => controller+0x2C00+index*0xA4",
+        "profile": "43BC90 defaults1 through controller+0x7638 profile owner",
+        "seen_key": "controller+0x2B98/+0x2B9C/+0x2BA0 vector compares the key using source MBCS comparison; the section/account is not part of that comparison"
+      },
+      "limits": [
+        "Offset alias and raw-Code identity are joined through the retained same-C82 game-row-fields and Frame-ownership rules, not a numeric Code/row-index equivalence.",
+        "Source MBCS/ACP/profile API effects require explicit host context."
+      ]
+    },
+    {
+      "id": "LF-F02",
+      "classification": "fact: fixed-C82 static source; composition subject to explicit entry context",
+      "title": "普通入口与配置延后",
+      "complete_native_entries": [
+        "0x410c00",
+        "0x42d830"
+      ],
+      "claim": {
+        "admission": "Any retained process at controller+2B84/+2B88/+2B90 blocks this entry; selected raw game index must be in range.",
+        "config_condition": "After ordinary base preparation and UI notification: call argument low byte==0,profile integer!=0,no matching seen key,and ConfigEXE nonempty.",
+        "defer": "40E900 true defers normal game-launch block. A false result falls through to that block with all its remaining ordinary source checks; it is not a universal launch-denial result.",
+        "bridge": "42D830 forwards the low-byte argument to410C00 only when Main step>=5; it can return tostep3 when the ordinary recovery predicates allow."
+      },
+      "limits": [
+        "Game producer execution and successful game consumption/acceptance are separate."
+      ]
+    },
+    {
+      "id": "LF-F03",
+      "classification": "fact: fixed-C82 static source; composition subject to explicit entry context",
+      "title": "配置路径的真实ABI与显式谓词",
+      "complete_native_entries": [
+        "0x4329b0",
+        "0x4355f0",
+        "0x434ed0"
+      ],
+      "claim": {
+        "arguments": [
+          "directory reference",
+          "ConfigEXE reference",
+          "output resolved-path reference"
+        ],
+        "ordered_checks": [
+          "clear output",
+          "4355F0 normalizes and checks existing directory",
+          "filename length>0 and<245",
+          "434ED0 filename predicate",
+          "source MBCS final-separator test; append backslash when needed",
+          "joined length<260",
+          "GetFullPathNameA return>0 and<260",
+          "434610(resolved,directory,0) and4349B0(directory,resolved) must both succeed",
+          "assign output; return1,otherwise normal return0"
+        ],
+        "ABI": "Provider pseudocode incorrectly shows void/two arguments. Independent bounded file decoding proves EBP+0x10 output,EDI success1/failure0,MOV EAX,EDI,and an EAX-preserving normal cookie return."
+      },
+      "limits": [
+        "Canonical Evidence and provider pseudocode remain unchanged. The correction is an analyst static ABI view.",
+        "434610 and4349B0 remain named child predicates; their complete internal algorithms have not been admitted by this phase. Do not replace them with guessed containment or filesystem semantics."
+      ]
+    },
+    {
+      "id": "LF-F04",
+      "classification": "fact: fixed-C82 static source; composition subject to explicit entry context",
+      "title": "先定时再创建，成功捕获独立上下文",
+      "complete_native_entries": [
+        "0x40e900",
+        "0x435a10"
+      ],
+      "claim": {
+        "precondition": "40F980(0,1,description,error) must succeed; source notification return is not a user decision gate.",
+        "path_failure": "4329B0 false reports0xA1 and returnsfalse.",
+        "process_plan": {
+          "applicationName": "resolved Config path",
+          "commandLine": "435A10 source quoted path",
+          "workingDirectory": "controller+0x2B44 directory",
+          "inheritHandles": false,
+          "creationFlags": 0,
+          "environment": "inherit"
+        },
+        "order": [
+          "SetTimer(hwnd,0x232A,250ms,null)",
+          "CreateProcessA",
+          "close hThread",
+          "retain hProcess at+0x2B88",
+          "source window-style update",
+          "capture GetTickCount at+0x2BA8;warning byte+0x2BAD=0",
+          "copy passed section to+0x2BB8 and selected raw Code key to+0x2BBC",
+          "returntrue"
+        ],
+        "timer_failure": "No process creation; source reports8 and returnsfalse.",
+        "create_failure": "Capture GetLastError,KillTimer0x232A,report and returnfalse."
+      },
+      "limits": [
+        "No synchronous infinite process wait occurs in this Config creator.",
+        "Do not reproduce misleading FID_conflict_MessageBoxW names or malformed wide-text arguments from pseudocode."
+      ]
+    },
+    {
+      "id": "LF-F05",
+      "classification": "fact: fixed-C82 static source; composition subject to explicit entry context",
+      "title": "Config轮询的15分钟是一次提醒",
+      "complete_native_entries": [
+        "0x40b010"
+      ],
+      "claim": {
+        "timer_id": 9002,
+        "timer_hex": "0x232A",
+        "interval_ms": 250,
+        "process_slot": "controller+0x2B88",
+        "start_tick_slot": "+0x2BA8",
+        "warning_slot": "+0x2BAD",
+        "running_exit_code": 259,
+        "warning_after_ms": 900000,
+        "missing_handle": "Kill this timer and return.",
+        "query_failure": "Log and keep handle/timer pending.",
+        "running": "For259,only when warning byte is0 and uint32(now-start)>=900000,set it to1 and notify; retain handle/timer."
+      },
+      "limits": [
+        "Not a timeout/termination/completion rule. Patch timer0x2329 uses a different process slot and1800000ms threshold."
+      ]
+    },
+    {
+      "id": "LF-F06",
+      "classification": "fact: fixed-C82 static source; composition subject to explicit entry context",
+      "title": "退出码、缓存、写入顺序与失败",
+      "complete_native_entries": [
+        "0x40b010",
+        "0x43be30"
+      ],
+      "claim": {
+        "exit_order": [
+          "KillTimer0x232A",
+          "CloseHandle",
+          "clear controller+0x2B88"
+        ],
+        "special_exit_codes": [
+          "0xC0000135",
+          "0xC000007B",
+          "0xC0000142"
+        ],
+        "special_exit": "Set failure byte1; do not append seen key and do not clear profile integer.",
+        "other_exit": "Set failure byte0; append captured+0x2BBC key to the seen-key vector before43BE30(captured+0x2BB8 section,captured key,0).",
+        "write_failure": "43BE30 formats decimal integer and callsWritePrivateProfileStringA; failed BOOL logs a warning but does not undo the already appended seen key."
+      },
+      "limits": [
+        "All other exited DWORDs enter the ordinary branch,including exits that do not prove configuration success.",
+        "Do not re-read current username/selected row as a substitute for the captured section/key."
+      ]
+    },
+    {
+      "id": "LF-F07",
+      "classification": "fact: fixed-C82 static source; composition subject to explicit entry context",
+      "title": "先清捕获字段再按低字节恢复",
+      "complete_native_entries": [
+        "0x40b010",
+        "0x42d830",
+        "0x410c00"
+      ],
+      "claim": {
+        "completion": "After optional write,source clears captured section/key,restores style and invalidates Main; special exits notify the ordinary error helper.",
+        "resume": "40B4A0 pushes the local word,40B4A3 computes controller+0x1A8,and40B4A9 calls42D830. Only its low failure byte is meaningful to410C00.",
+        "effect": "A special failure can skip the optional Config request when the existing Main-step and normal-entry gates still admit the call. It does not itself prove a game process was launched or accepted."
+      },
+      "limits": [
+        "No full-word boolean or new unconditional success state is inferred from unspecified local high bytes."
+      ]
+    },
+    {
+      "id": "LF-F08",
+      "classification": "fact: fixed-C82 static source; composition subject to explicit entry context",
+      "title": "销毁只释放本进程的观察所有权",
+      "complete_native_entries": [
+        "0x404410"
+      ],
+      "claim": {
+        "destruction_order": "CChildView destructor kills0x2329/0x232A/0x232B timers; closes retained+0x2B88 Config process handle when nonzero; later destroys its seen-key vector and captured CStrings.",
+        "termination": "This selected Config cleanup closes the handle; it does not call a Config process termination or wait operation.",
+        "separate_job": "The destructor's5000ms wait belongs to the catalog-job handle,+0x2BC4,not the Config process."
+      },
+      "limits": [
+        "This is the observed destruction branch,not a proof of every message/callback order or actual external process exit."
+      ]
+    },
+    {
+      "id": "LF-F09",
+      "classification": "fact: fixed-C82 static source; composition subject to explicit entry context",
+      "title": "三个不同策略保持来源分离",
+      "complete_native_entries": [
+        "0x40e900",
+        "0x40b010"
+      ],
+      "claim": {
+        "legacy_601b": "LO-O18 and shared/launcher-first-config.mjs: applicationName null,raw unquoted command,infinite synchronous wait; any returned wait requests profile0 without checking wait/exit/write.",
+        "current_C82_Config": "Explicit applicationName,quoted command,timer0x232A/250ms,15min warning,captured namespace and three special exits.",
+        "current_C82_patch": "LO-O16 and existing shared launcher-patch-current: timer0x2329,30min warning,100/101/102 preparation policy and retries.",
+        "historical_C7BA": "Historical catalog source only as admitted by its own contracts; no C82 first-Config proof."
+      },
+      "limits": [
+        "Shared polling mechanics may be parameterized during D0/D1,but the three policies are not interchangeable."
+      ]
+    }
+  ],
+  "current_Config_operations": [
+    {
+      "id": "LF-C01",
+      "title": "普通交接入口、key及首次配置准入",
+      "capabilities": [
+        "L01",
+        "L04",
+        "L07",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "source_rules": [
+        "LF-F01",
+        "LF-F02"
+      ],
+      "inputs": [
+        "owner aliases",
+        "raw username bytes",
+        "selected raw Code/row",
+        "profile integer",
+        "seen keys",
+        "call low byte",
+        "process slots"
+      ],
+      "ordered_behavior": [
+        "Validate process/selection gates",
+        "derive section/key and read flag default1",
+        "apply seen-key and optional Config gates",
+        "run ordinary preparation and dispatch creator or normal launch block"
+      ],
+      "completion_failure_cancel": [
+        "Creator true defers;false/skip only continues the remaining source path",
+        "normal game-consumer acceptance staysopen"
+      ],
+      "status": "source-bound selected operation; no runtime execution"
+    },
+    {
+      "id": "LF-C02",
+      "title": "解析ConfigEXE并验证ABI",
+      "capabilities": [
+        "L01",
+        "L07"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "source_rules": [
+        "LF-F03"
+      ],
+      "inputs": [
+        "directory",
+        "ConfigEXE",
+        "explicit source path/locale/OS predicate results"
+      ],
+      "ordered_behavior": [
+        "clear candidate",
+        "check named directory/filename/length/full-path/subpredicate stages",
+        "publish resolved candidate only on all successful stages"
+      ],
+      "completion_failure_cancel": [
+        "Normal return1 only with assigned output",
+        "normal failure0; preserve named unresolved subpredicate internals"
+      ],
+      "status": "source-bound selected operation; no runtime execution"
+    },
+    {
+      "id": "LF-C03",
+      "title": "创建Config并捕获轮询上下文",
+      "capabilities": [
+        "L01",
+        "L07",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "source_rules": [
+        "LF-F04"
+      ],
+      "inputs": [
+        "base-preparation result",
+        "resolved path",
+        "SetTimer result",
+        "CreateProcess result",
+        "account section",
+        "selected raw Code"
+      ],
+      "ordered_behavior": [
+        "quoted process plan",
+        "arm250ms timer before CreateProcess",
+        "on success retain handle/start tick and capture section/key"
+      ],
+      "completion_failure_cancel": [
+        "Preflight/path/timer/create failures returnfalse at distinct stages",
+        "timer cleanup on create failure",
+        "no infinite wait"
+      ],
+      "status": "source-bound selected operation; no runtime execution"
+    },
+    {
+      "id": "LF-C04",
+      "title": "pending、query失败与一次15分钟提醒",
+      "capabilities": [
+        "L01",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "source_rules": [
+        "LF-F05"
+      ],
+      "inputs": [
+        "retained Config handle",
+        "query result",
+        "exit DWORD",
+        "uint32 ticks",
+        "warned byte"
+      ],
+      "ordered_behavior": [
+        "missing handle kills timer",
+        "query failure remains pending",
+        "259 keeps polling and may emit one warning after900000ms"
+      ],
+      "completion_failure_cancel": [
+        "No process termination or false completion at warning",
+        "patch30min policy kept distinct"
+      ],
+      "status": "source-bound selected operation; no runtime execution"
+    },
+    {
+      "id": "LF-C05",
+      "title": "Config退出、缓存先行与profile写入",
+      "capabilities": [
+        "L01",
+        "L04",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "source_rules": [
+        "LF-F06"
+      ],
+      "inputs": [
+        "exit DWORD!=259",
+        "captured section/key",
+        "seen-key vector",
+        "profile write BOOL"
+      ],
+      "ordered_behavior": [
+        "kill timer/close handle/clear slot",
+        "branch exactly on three special exits",
+        "ordinary branch appends captured key then writes0"
+      ],
+      "completion_failure_cancel": [
+        "Special exits leave key absent and flag unchanged",
+        "ordinary write failure retains seen key",
+        "no actual configuration-success assertion"
+      ],
+      "status": "source-bound selected operation; no runtime execution"
+    },
+    {
+      "id": "LF-C06",
+      "title": "完成后恢复普通Main流程",
+      "capabilities": [
+        "L07",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "source_rules": [
+        "LF-F07",
+        "LF-F02"
+      ],
+      "inputs": [
+        "failure low byte",
+        "current Main step",
+        "current ordinary busy/selection state"
+      ],
+      "ordered_behavior": [
+        "clear captured CStrings",
+        "restore source UI effects",
+        "resume42D830 with low byte",
+        "only admitted step>=5 reenters410C00"
+      ],
+      "completion_failure_cancel": [
+        "Special byte may suppress another Config request",
+        "game process/consumer result not implied"
+      ],
+      "status": "source-bound selected operation; no runtime execution"
+    },
+    {
+      "id": "LF-C07",
+      "title": "关闭时释放配置观察所有权",
+      "capabilities": [
+        "L01",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "source_rules": [
+        "LF-F08"
+      ],
+      "inputs": [
+        "CChildView destruction",
+        "retained Config handle/timer/context"
+      ],
+      "ordered_behavior": [
+        "kill controller timers",
+        "close retained Config handle",
+        "destroy cache/captured strings"
+      ],
+      "completion_failure_cancel": [
+        "External Config may still exist",
+        "catalog5sec wait is a different owner",
+        "no termination policy added"
+      ],
+      "status": "source-bound selected operation; no runtime execution"
+    },
+    {
+      "id": "LF-C08",
+      "title": "按来源选择first-config/patch策略",
+      "capabilities": [
+        "L01",
+        "L05",
+        "L06",
+        "L07",
+        "L08"
+      ],
+      "source_profile": "launcher-updated-c82f",
+      "source_rules": [
+        "LF-F09"
+      ],
+      "inputs": [
+        "explicit601b/C82/C7BA identity",
+        "operation kind",
+        "original scope"
+      ],
+      "ordered_behavior": [
+        "reuse legacy module only under601b",
+        "keep C82 Config250ms/15min/exit/capture policy separate",
+        "reuse patch mechanics only with explicit patch30min policy"
+      ],
+      "completion_failure_cancel": [
+        "No cross-profile source substitution",
+        "new shared policy integration waits for unified gates"
+      ],
+      "status": "source-bound selected operation; no runtime execution"
+    }
+  ],
+  "original_capability_reviews": [
+    {
+      "id": "L01",
+      "title": "启动配置、目录及版本选择",
+      "original_scope": "配置读取、区域目录初始化、来源选择、首次配置与失效恢复",
+      "original_owners": [
+        "shared/launcher-catalog.mjs",
+        "shared/launcher-first-config.mjs"
+      ],
+      "original_dependencies": [
+        "X01"
+      ],
+      "original_batch": "D1",
+      "original_source_profiles": [
+        "launcher-legacy-601b",
+        "launcher-updated-c82f",
+        "launcher-historical-c7ba"
+      ],
+      "original_scope_preserved": true,
+      "scope_crosswalk": [
+        {
+          "requirement": "配置读取",
+          "operations": [
+            "LO-O01",
+            "LO-O02",
+            "LO-O03"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "区域目录初始化",
+          "operations": [
+            "LO-O01",
+            "LO-O02"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "来源选择",
+          "operations": [
+            "LO-O04",
+            "LO-O05"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "首次配置",
+          "operations": [
+            "LO-O18",
+            "LF-C01",
+            "LF-C02",
+            "LF-C03",
+            "LF-C04",
+            "LF-C05",
+            "LF-C07",
+            "LF-C08"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "失效恢复",
+          "operations": [
+            "LO-O03",
+            "LO-O05",
+            "LO-O16",
+            "LF-C06"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        }
+      ],
+      "per_profile_coverage": [
+        {
+          "profile": "launcher-legacy-601b",
+          "identity": {
+            "id": "launcher-legacy-601b",
+            "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+            "identity_record": "analysis/launcher-v7/preflight.json",
+            "scope": "固定旧版登录器；不等同更新版"
+          },
+          "status": "retained profile-specific protocol/preparation/first-Config/handoff evidence;not re-audited as a complete original L01-L08 operation set here",
+          "whole_original_scope_closed": false
+        },
+        {
+          "profile": "launcher-updated-c82f",
+          "identity": {
+            "id": "launcher-updated-c82f",
+            "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+            "identity_record": "analysis/launcher-current-login-v1/source-verification.json",
+            "scope": "已留存更新后分析样本；不声称此刻仍为官方最新"
+          },
+          "status": "selected normal operations composed;current first-Config added;whole original scope/reentry/path predicates remain incomplete",
+          "whole_original_scope_closed": false
+        },
+        {
+          "profile": "launcher-historical-c7ba",
+          "identity": {
+            "id": "launcher-historical-c7ba",
+            "sha256": "c7ba69f77809fe589fd5dcccc78fcd4f33d4b6f76325d00a27f37032bbb32384",
+            "identity_record": "analysis/launcher-current-catalog-v1/source-check.json",
+            "scope": "历史current-catalog/current-metadata规格的实际样本；不同于c82f，不因文件名或地址相似合并"
+          },
+          "status": "historical catalog/metadata contract only;no transfer to C82 or whole capability closure",
+          "whole_original_scope_closed": false
+        }
+      ],
+      "whole_original_specification_ready": false
+    },
+    {
+      "id": "L02",
+      "title": "区域、服务器与认证候选选择",
+      "original_scope": "区域/行选择、排序、关联列、状态/期限限制、刷新候选",
+      "original_owners": [
+        "shared/launcher-channel.mjs",
+        "shared/launcher-replies.mjs"
+      ],
+      "original_dependencies": [
+        "L01"
+      ],
+      "original_batch": "D1",
+      "original_source_profiles": [
+        "launcher-legacy-601b",
+        "launcher-updated-c82f",
+        "launcher-historical-c7ba"
+      ],
+      "original_scope_preserved": true,
+      "scope_crosswalk": [
+        {
+          "requirement": "区域/行选择",
+          "operations": [
+            "LO-O02",
+            "LO-O04",
+            "LO-O07",
+            "LO-O11"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "排序",
+          "operations": [
+            "LO-O11",
+            "LO-O13"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "关联列",
+          "operations": [
+            "LO-O02",
+            "LO-O11",
+            "LO-O12"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "状态/期限限制",
+          "operations": [
+            "LO-O09",
+            "LO-O11",
+            "LO-O12"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "刷新候选",
+          "operations": [
+            "LO-O03",
+            "LO-O09"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        }
+      ],
+      "per_profile_coverage": [
+        {
+          "profile": "launcher-legacy-601b",
+          "identity": {
+            "id": "launcher-legacy-601b",
+            "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+            "identity_record": "analysis/launcher-v7/preflight.json",
+            "scope": "固定旧版登录器；不等同更新版"
+          },
+          "status": "retained profile-specific protocol/preparation/first-Config/handoff evidence;not re-audited as a complete original L01-L08 operation set here",
+          "whole_original_scope_closed": false
+        },
+        {
+          "profile": "launcher-updated-c82f",
+          "identity": {
+            "id": "launcher-updated-c82f",
+            "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+            "identity_record": "analysis/launcher-current-login-v1/source-verification.json",
+            "scope": "已留存更新后分析样本；不声称此刻仍为官方最新"
+          },
+          "status": "selected normal operations composed;current first-Config added;whole original scope/reentry/path predicates remain incomplete",
+          "whole_original_scope_closed": false
+        },
+        {
+          "profile": "launcher-historical-c7ba",
+          "identity": {
+            "id": "launcher-historical-c7ba",
+            "sha256": "c7ba69f77809fe589fd5dcccc78fcd4f33d4b6f76325d00a27f37032bbb32384",
+            "identity_record": "analysis/launcher-current-catalog-v1/source-check.json",
+            "scope": "历史current-catalog/current-metadata规格的实际样本；不同于c82f，不因文件名或地址相似合并"
+          },
+          "status": "historical catalog/metadata contract only;no transfer to C82 or whole capability closure",
+          "whole_original_scope_closed": false
+        }
+      ],
+      "whole_original_specification_ready": false
+    },
+    {
+      "id": "L03",
+      "title": "登录交换、记录流与认证回复",
+      "original_scope": "连接、挑战、提交、记录/消息分片、回复、取消、超时、错误",
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "original_dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "original_batch": "D1",
+      "original_source_profiles": [
+        "launcher-legacy-601b",
+        "launcher-updated-c82f"
+      ],
+      "original_scope_preserved": true,
+      "scope_crosswalk": [
+        {
+          "requirement": "连接",
+          "operations": [
+            "LO-O08",
+            "LO-O09"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "挑战",
+          "operations": [
+            "LO-O10"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "提交",
+          "operations": [
+            "LO-O08",
+            "LO-O10"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "记录/消息分片",
+          "operations": [
+            "LO-O10"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "回复",
+          "operations": [
+            "LO-O10",
+            "LO-O11",
+            "LO-O12"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "取消",
+          "operations": [
+            "LO-O14",
+            "LO-O15"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "超时",
+          "operations": [
+            "LO-O09"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "错误",
+          "operations": [
+            "LO-O09",
+            "LO-O10",
+            "LO-O14",
+            "LO-O15"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        }
+      ],
+      "per_profile_coverage": [
+        {
+          "profile": "launcher-legacy-601b",
+          "identity": {
+            "id": "launcher-legacy-601b",
+            "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+            "identity_record": "analysis/launcher-v7/preflight.json",
+            "scope": "固定旧版登录器；不等同更新版"
+          },
+          "status": "retained profile-specific protocol/preparation/first-Config/handoff evidence;not re-audited as a complete original L01-L08 operation set here",
+          "whole_original_scope_closed": false
+        },
+        {
+          "profile": "launcher-updated-c82f",
+          "identity": {
+            "id": "launcher-updated-c82f",
+            "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+            "identity_record": "analysis/launcher-current-login-v1/source-verification.json",
+            "scope": "已留存更新后分析样本；不声称此刻仍为官方最新"
+          },
+          "status": "selected normal operations composed;current first-Config added;whole original scope/reentry/path predicates remain incomplete",
+          "whole_original_scope_closed": false
+        }
+      ],
+      "whole_original_specification_ready": false
+    },
+    {
+      "id": "L04",
+      "title": "输入编码、偏好与本地决定",
+      "original_scope": "账号输入的编码/长度、模式/取消/清理、非秘密偏好与条款决定",
+      "original_owners": [
+        "shared/launcher-text.mjs",
+        "shared/launcher-preferences.mjs",
+        "shared/launcher-local.mjs"
+      ],
+      "original_dependencies": [
+        "L01"
+      ],
+      "original_batch": "D1",
+      "original_source_profiles": [
+        "launcher-legacy-601b",
+        "launcher-updated-c82f"
+      ],
+      "original_scope_preserved": true,
+      "scope_crosswalk": [
+        {
+          "requirement": "账号输入的编码/长度",
+          "operations": [
+            "LO-O08",
+            "LO-O10"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "模式/取消/清理",
+          "operations": [
+            "LO-O06",
+            "LO-O07",
+            "LO-O08",
+            "LO-O14",
+            "LO-O15"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "非秘密偏好",
+          "operations": [
+            "LO-O06",
+            "LO-O11",
+            "LO-O13",
+            "LF-C01",
+            "LF-C05"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "条款决定",
+          "operations": [
+            "LO-O15"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        }
+      ],
+      "per_profile_coverage": [
+        {
+          "profile": "launcher-legacy-601b",
+          "identity": {
+            "id": "launcher-legacy-601b",
+            "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+            "identity_record": "analysis/launcher-v7/preflight.json",
+            "scope": "固定旧版登录器；不等同更新版"
+          },
+          "status": "retained profile-specific protocol/preparation/first-Config/handoff evidence;not re-audited as a complete original L01-L08 operation set here",
+          "whole_original_scope_closed": false
+        },
+        {
+          "profile": "launcher-updated-c82f",
+          "identity": {
+            "id": "launcher-updated-c82f",
+            "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+            "identity_record": "analysis/launcher-current-login-v1/source-verification.json",
+            "scope": "已留存更新后分析样本；不声称此刻仍为官方最新"
+          },
+          "status": "selected normal operations composed;current first-Config added;whole original scope/reentry/path predicates remain incomplete",
+          "whole_original_scope_closed": false
+        }
+      ],
+      "whole_original_specification_ready": false
+    },
+    {
+      "id": "L05",
+      "title": "自更新与目录刷新",
+      "original_scope": "摘要、清单、下载候选、更新器参数、接管与重新启动",
+      "original_owners": [
+        "shared/launcher-update.mjs",
+        "shared/launcher-update-arguments.mjs",
+        "shared/launcher-update-journal.mjs"
+      ],
+      "original_dependencies": [
+        "L01"
+      ],
+      "original_batch": "D1",
+      "original_source_profiles": [
+        "launcher-legacy-601b",
+        "launcher-updated-c82f",
+        "launcher-historical-c7ba"
+      ],
+      "original_scope_preserved": true,
+      "scope_crosswalk": [
+        {
+          "requirement": "摘要",
+          "operations": [
+            "LO-O17"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "清单",
+          "operations": [
+            "LO-O02",
+            "LO-O17"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "下载候选",
+          "operations": [
+            "LO-O03",
+            "LO-O17"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "更新器参数",
+          "operations": [
+            "LO-O17"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "接管",
+          "operations": [
+            "LO-O17"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "重新启动",
+          "operations": [
+            "LO-O17"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        }
+      ],
+      "per_profile_coverage": [
+        {
+          "profile": "launcher-legacy-601b",
+          "identity": {
+            "id": "launcher-legacy-601b",
+            "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+            "identity_record": "analysis/launcher-v7/preflight.json",
+            "scope": "固定旧版登录器；不等同更新版"
+          },
+          "status": "retained profile-specific protocol/preparation/first-Config/handoff evidence;not re-audited as a complete original L01-L08 operation set here",
+          "whole_original_scope_closed": false
+        },
+        {
+          "profile": "launcher-updated-c82f",
+          "identity": {
+            "id": "launcher-updated-c82f",
+            "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+            "identity_record": "analysis/launcher-current-login-v1/source-verification.json",
+            "scope": "已留存更新后分析样本；不声称此刻仍为官方最新"
+          },
+          "status": "selected normal operations composed;current first-Config added;whole original scope/reentry/path predicates remain incomplete",
+          "whole_original_scope_closed": false
+        },
+        {
+          "profile": "launcher-historical-c7ba",
+          "identity": {
+            "id": "launcher-historical-c7ba",
+            "sha256": "c7ba69f77809fe589fd5dcccc78fcd4f33d4b6f76325d00a27f37032bbb32384",
+            "identity_record": "analysis/launcher-current-catalog-v1/source-check.json",
+            "scope": "历史current-catalog/current-metadata规格的实际样本；不同于c82f，不因文件名或地址相似合并"
+          },
+          "status": "historical catalog/metadata contract only;no transfer to C82 or whole capability closure",
+          "whole_original_scope_closed": false
+        }
+      ],
+      "whole_original_specification_ready": false
+    },
+    {
+      "id": "L06",
+      "title": "游戏补丁与文件恢复",
+      "original_scope": "补丁操作、候选校验、事务提交、中断和恢复",
+      "original_owners": [
+        "shared/launcher-game-patch.mjs",
+        "shared/launcher-patch-current.mjs",
+        "shared/game-patch.mjs"
+      ],
+      "original_dependencies": [
+        "L01",
+        "L05",
+        "X03"
+      ],
+      "original_batch": "D1",
+      "original_source_profiles": [
+        "launcher-legacy-601b",
+        "launcher-updated-c82f"
+      ],
+      "original_scope_preserved": true,
+      "scope_crosswalk": [
+        {
+          "requirement": "补丁操作",
+          "operations": [
+            "LO-O16",
+            "LO-O19"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "候选校验",
+          "operations": [
+            "LO-O16",
+            "LO-O19"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "事务提交",
+          "operations": [
+            "LO-O19"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "中断",
+          "operations": [
+            "LO-O14",
+            "LO-O16",
+            "LO-O19"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "恢复",
+          "operations": [
+            "LO-O16",
+            "LO-O19"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        }
+      ],
+      "per_profile_coverage": [
+        {
+          "profile": "launcher-legacy-601b",
+          "identity": {
+            "id": "launcher-legacy-601b",
+            "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+            "identity_record": "analysis/launcher-v7/preflight.json",
+            "scope": "固定旧版登录器；不等同更新版"
+          },
+          "status": "retained profile-specific protocol/preparation/first-Config/handoff evidence;not re-audited as a complete original L01-L08 operation set here",
+          "whole_original_scope_closed": false
+        },
+        {
+          "profile": "launcher-updated-c82f",
+          "identity": {
+            "id": "launcher-updated-c82f",
+            "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+            "identity_record": "analysis/launcher-current-login-v1/source-verification.json",
+            "scope": "已留存更新后分析样本；不声称此刻仍为官方最新"
+          },
+          "status": "selected normal operations composed;current first-Config added;whole original scope/reentry/path predicates remain incomplete",
+          "whole_original_scope_closed": false
+        }
+      ],
+      "whole_original_specification_ready": false
+    },
+    {
+      "id": "L07",
+      "title": "登录器到游戏的正常交接",
+      "original_scope": "参数、资源路径、映射生产与消费、游戏接受、启动错误",
+      "original_owners": [
+        "shared/launcher-handoff.mjs",
+        "shared/launcher-launch.mjs",
+        "shared/legacy-game-login.mjs"
+      ],
+      "original_dependencies": [
+        "L02",
+        "L03",
+        "L06"
+      ],
+      "original_batch": "D1",
+      "original_source_profiles": [
+        "launcher-legacy-601b",
+        "launcher-updated-c82f",
+        "game-legacy-37c4",
+        "game-current-unclosed"
+      ],
+      "original_scope_preserved": true,
+      "scope_crosswalk": [
+        {
+          "requirement": "参数",
+          "operations": [
+            "LO-O12",
+            "LO-O18",
+            "LF-C01",
+            "LF-C06"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "资源路径",
+          "operations": [
+            "LO-O04",
+            "LO-O05",
+            "LO-O12",
+            "LF-C02",
+            "LF-C03"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "映射生产与消费",
+          "operations": [
+            "LO-O12"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "游戏接受",
+          "operations": [
+            "LO-O12"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "启动错误",
+          "operations": [
+            "LO-O12",
+            "LF-C01",
+            "LF-C03",
+            "LF-C05",
+            "LF-C06"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        }
+      ],
+      "per_profile_coverage": [
+        {
+          "profile": "launcher-legacy-601b",
+          "identity": {
+            "id": "launcher-legacy-601b",
+            "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+            "identity_record": "analysis/launcher-v7/preflight.json",
+            "scope": "固定旧版登录器；不等同更新版"
+          },
+          "status": "retained profile-specific protocol/preparation/first-Config/handoff evidence;not re-audited as a complete original L01-L08 operation set here",
+          "whole_original_scope_closed": false
+        },
+        {
+          "profile": "launcher-updated-c82f",
+          "identity": {
+            "id": "launcher-updated-c82f",
+            "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+            "identity_record": "analysis/launcher-current-login-v1/source-verification.json",
+            "scope": "已留存更新后分析样本；不声称此刻仍为官方最新"
+          },
+          "status": "selected normal operations composed;current first-Config added;whole original scope/reentry/path predicates remain incomplete",
+          "whole_original_scope_closed": false
+        },
+        {
+          "profile": "game-legacy-37c4",
+          "identity": {
+            "id": "game-legacy-37c4",
+            "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+            "identity_record": "analysis/game-release-current-v1/source-check.json",
+            "scope": "固定可读旧版cg_se_6000；不与现行3000互换"
+          },
+          "status": "retained legacy game consumer only;not paired with C82 current producer",
+          "whole_original_scope_closed": false
+        },
+        {
+          "profile": "game-current-unclosed",
+          "identity": {
+            "id": "game-current-unclosed",
+            "identity_record": "reports/game-static.md",
+            "scope": "现行游戏业务消费者和同版接受尚未闭合；不能由旧版证明"
+          },
+          "status": "required same-version game consumer/acceptance missing",
+          "whole_original_scope_closed": false
+        }
+      ],
+      "whole_original_specification_ready": false,
+      "required_same_version_consumer_missing": true,
+      "current_game_process_producer_pointer": "/current_game_process_producer"
+    },
+    {
+      "id": "L08",
+      "title": "登录器产品流程与宿主状态",
+      "original_scope": "配置→检查/更新→输入→候选→交接及关闭/取消/恢复",
+      "original_owners": [
+        "web/launcher-app.mjs",
+        "wechat/pages/launcher/index.js"
+      ],
+      "original_dependencies": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "X03"
+      ],
+      "original_batch": "D5",
+      "original_source_profiles": [
+        "launcher-legacy-601b",
+        "launcher-updated-c82f",
+        "platform"
+      ],
+      "original_scope_preserved": true,
+      "scope_crosswalk": [
+        {
+          "requirement": "配置→检查/更新→输入→候选→交接",
+          "operations": [
+            "LO-O01",
+            "LO-O02",
+            "LO-O03",
+            "LO-O04",
+            "LO-O07",
+            "LO-O08",
+            "LO-O09",
+            "LO-O10",
+            "LO-O11",
+            "LO-O12",
+            "LO-O16",
+            "LO-O17",
+            "LO-O18",
+            "LO-O19",
+            "LF-C01",
+            "LF-C02",
+            "LF-C03",
+            "LF-C04",
+            "LF-C05",
+            "LF-C06",
+            "LF-C08"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        },
+        {
+          "requirement": "关闭/取消/恢复",
+          "operations": [
+            "LO-O05",
+            "LO-O06",
+            "LO-O13",
+            "LO-O14",
+            "LO-O15",
+            "LF-C07"
+          ],
+          "association_kind": "selected rules relevant to this requirement; not full closure"
+        }
+      ],
+      "per_profile_coverage": [
+        {
+          "profile": "launcher-legacy-601b",
+          "identity": {
+            "id": "launcher-legacy-601b",
+            "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+            "identity_record": "analysis/launcher-v7/preflight.json",
+            "scope": "固定旧版登录器；不等同更新版"
+          },
+          "status": "retained profile-specific protocol/preparation/first-Config/handoff evidence;not re-audited as a complete original L01-L08 operation set here",
+          "whole_original_scope_closed": false
+        },
+        {
+          "profile": "launcher-updated-c82f",
+          "identity": {
+            "id": "launcher-updated-c82f",
+            "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152",
+            "identity_record": "analysis/launcher-current-login-v1/source-verification.json",
+            "scope": "已留存更新后分析样本；不声称此刻仍为官方最新"
+          },
+          "status": "selected normal operations composed;current first-Config added;whole original scope/reentry/path predicates remain incomplete",
+          "whole_original_scope_closed": false
+        },
+        {
+          "profile": "platform",
+          "identity": {
+            "id": "platform",
+            "identity_record": "reports/architecture-and-milestones.md",
+            "scope": "新宿主/适配能力；REA还原原版行为，目标平台合同及实际设备另验"
+          },
+          "status": "shared14-port contract and browser observations partial;mobile/WeChat/actual resource flows not accepted",
+          "whole_original_scope_closed": false
+        }
+      ],
+      "whole_original_specification_ready": false,
+      "current_game_process_producer_pointer": "/current_game_process_producer"
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "LF-D1",
+      "merge_into": "LO-D5 / D0-D1",
+      "operations": [
+        "LF-C03",
+        "LF-C04",
+        "LF-C05",
+        "LF-C06",
+        "LF-C08"
+      ],
+      "change": "Add explicit current-C82 Config policy:250ms asynchronous polling,15min once-only warning,three special exits and low-byte continuation. Reuse portable polling primitives with independent policies;keep legacy601b synchronous module.",
+      "existing_ports": [
+        "ClockDomains",
+        "OwnerLifecycle",
+        "ContextOwner",
+        "UpdateTakeoverAndRestart"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "LF-D2",
+      "merge_into": "LO-D2/LO-D4 / D0-D1",
+      "operations": [
+        "LF-C01",
+        "LF-C05",
+        "LF-C06",
+        "LF-C07"
+      ],
+      "change": "Capture section/key at creation,keep source key-only seen cache separate from account-scoped profile state,and preserve append-before-write-failure effects plus handle-only destruction. Actual product namespace/store and callback leases must be explicit.",
+      "existing_ports": [
+        "TextEncodingAndLocalStateStore",
+        "SnapshotStore",
+        "OwnerLifecycle",
+        "ContextOwner"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "LF-D3",
+      "merge_into": "LO-D1 / D0-D1",
+      "operations": [
+        "LF-C02",
+        "LF-C03"
+      ],
+      "change": "Use actual three-argument/boolean path ABI and source stages,not the decompiler void/two-argument projection;require explicit path predicate and OS/locale context without guessed values.",
+      "existing_ports": [
+        "HostCapabilitiesAndLifecycle",
+        "SourceValueContext",
+        "TextEncodingAndLocalStateStore"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "LF-D4",
+      "merge_into": "LO-D6 / D5-D6",
+      "operations": [
+        "LF-C01",
+        "LF-C02",
+        "LF-C03",
+        "LF-C04",
+        "LF-C05",
+        "LF-C06",
+        "LF-C07",
+        "LF-C08"
+      ],
+      "change": "After unified analysis gates,compose first-Config with the full launcher owner flow once in shared core;web/mobile/WeChat add thin effects and independent acceptance. Do not launch Windows EXEs from web as a substitute for portable configuration.",
+      "existing_ports": [
+        "ContextOwner",
+        "HostCapabilitiesAndLifecycle",
+        "OwnerLifecycle"
+      ],
+      "implemented": false
+    }
+  ],
+  "existing_deltas_retained": [
+    {
+      "id": "LO-D01",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/implementation_deltas/0",
+      "canonical_sha256": "7d92acb082d947e98c4bb0804da259ed790345e7ea3293fabfdc4b0e3d03a3fc"
+    },
+    {
+      "id": "LO-D02",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/implementation_deltas/1",
+      "canonical_sha256": "9f5b638b23b3960991634c770cee4caa7643070461aec7d4b78db954a01d4095"
+    },
+    {
+      "id": "LO-D03",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/implementation_deltas/2",
+      "canonical_sha256": "161c77a21c803d6f59ffe8830be38c1e149d83de8157707040983a5e2ae6475e"
+    },
+    {
+      "id": "LO-D04",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/implementation_deltas/3",
+      "canonical_sha256": "eaf53df010ac2a0e8e1c6e124e48d441d0344659b8cf0c0e985f54c52390ad15"
+    },
+    {
+      "id": "LO-D05",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/implementation_deltas/4",
+      "canonical_sha256": "6829da00f94d8af07a731db41c8f5c35c89d90e3e156b29a2a9a45ef8edffc55"
+    },
+    {
+      "id": "LO-D06",
+      "file": {
+        "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+        "bytes": 125938,
+        "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+      },
+      "pointer": "/implementation_deltas/5",
+      "canonical_sha256": "8ed6034422ac5daed30902ba9a83a3ce0caf75019d6e2d9a932bfabbbd587f68"
+    }
+  ],
+  "f5a_first_config": {
+    "path_preflight": "analysis/capability-first-v1/launcher-functional-specification.json#/current_game_process_producer/distribution_supplement/path_preflight",
+    "source_sha256": "f5abc77a1d6c7b1875bae8cdea948469424a8e683d72939e2118d1a38de06842",
+    "source_review": "build/analysis/launcher-f5a-first-config-v1/source-review.json",
+    "report": "reports/launcher-static.md#f5a-first-config",
+    "capabilities": ["L01", "L04", "L07", "L08", "X01"],
+    "implementation_batches": ["D0", "D1", "D5"],
+    "lookup": {"section": "MD5 of account bytes as 32 lowercase hexadecimal characters", "key": "Game<raw Code>_Config", "default": 1, "memory_key": "<section>:<key>", "comparison_c82_memory_key": "<key>"},
+    "admission": "有效选中行且进程槽为空。配置值非零、内存键未命中、配置器非空、跳过参数为零时尝试首次配置。配置器来自选中目录的 ConfigEXE 字段。",
+    "process": "先准备安装目录和配置器显式路径，再申请定时器 9002。进程创建失败撤定时器并返回普通创建检查。创建成功保存观察句柄、开始时钟和捕获的配置节与键，普通创建等待该次配置收尾。",
+    "timer": {"id": 9002, "requested_interval_ms": 250, "reminder_after_ms": 900000, "still_active_exit_value": 259},
+    "loader_failure_codes": ["0xc0000135", "0xc000007b", "0xc0000142"],
+    "terminal": "撤定时器、关句柄、清槽。三个加载失败值带跳过首次配置参数恢复主窗步骤。其余退出先追加捕获的内存键，再尝试向捕获的配置对写十进制 0。写失败时保留内存项。清捕获字段后恢复步骤。",
+    "target_delta": "复用现有配置字节、目录和进程所有者，按来源版本处理组合缓存键、异步观察、加载失败和持久化回执。",
+    "directory_and_host_settings": {
+      "classification": "固定启动器静态事实、本机对照及目标端设计",
+      "capabilities": ["L01", "L08", "X03", "X04", "X05"],
+      "implementation_batches": ["D0", "D1", "D5"],
+      "report": "reports/launcher-static.md#first-config-directory-composition",
+      "validation": "build/analysis/launcher-first-config-directory-composition-v1/validation.json",
+      "REA_evidence": "build/analysis/launcher-first-config-directory-composition-v1/rea-slot-guard.json",
+      "directory": "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_directory_recovery/host_selection_and_readback",
+      "current_preflight": "analysis/capability-first-v1/launcher-functional-specification.json#/current_game_process_producer/distribution_supplement/path_preflight",
+      "c82_path_predicates": "analysis/capability-first-v1/launcher-config-path-contract.json",
+      "local_state_port": "analysis/capability-first-v1/shared-target-contract.json#/ports/11",
+      "source_facts": {
+        "shared_admission": "固定 F5A 的 42E770 先检查条目、主窗登录忙、补丁等待和操作标记，再调用 408280。它与 40E8D0 的普通启动入口检查启动所有者的同一组三个进程槽 +2CDC、+2CE0、+2CE8。分别覆盖补丁备份、首次配置进程和启动器更新相关进程。40D220 发布首次配置句柄，4099E9 在终止分支清该槽；查询失败或 259 时仍保有槽，普通目录选择和启动保持原准入。",
+        "selection_boundary": "目录手动成功继续刷新列表和选择，失败恢复成功写阶段 3 并续接准备。普通创建按当时有效行读取 ConfigEXE 及目录前检。F5A 的捕获配置节来自该次调用账号字节，成功创建后以所选行原始 Code 构造写入键，终止后消费保存的配置对。重新进入普通准备会再读取当前行与阶段。",
+        "independent_keys": "目录设置使用 Path/Game<原始 Code>，配置完成标记使用本节 lookup 所列配置节与 Game<原始 Code>_Config。同一 Code 可共用原设置键，当前行和文件角色仍分别取值。F5A 内存完成键含配置节，C82 内存列表只按配置键。固定配置器的 Config.dat 按当次工作目录读取或写入。",
+        "cold_and_abnormal": "普通配置终止先清观察槽，再按捕获键追加内存记录与请求写 0。写失败保留该进程内的记录，后续冷启动以实际持久值及默认 1 为准。三个加载失败返回码跳过追加与写入，沿本节 terminal 续接。目录补救仍走自己的手动或阶段 3 入口。"
+      },
+      "target_design": {
+        "binding_and_restore": "D0 复用已配置的来源版本，与已确认目录根、目录快照、原条目和本次准备身份绑定。重开先读目录设置及匹配的资源快照，再核所需文件和可以继续读取的材料。目录设置缺失时进入原初选或恢复流程。候选读失败、文件暂时不可用和旧操作迟到时保持各自回执。资源快照与目录设置使用既有绑定和修订接口。",
+        "config_open_and_commit": "D1 沿固定版本选择配置行为。读取成功并取得已保存值时沿现有解码。已明确缺文件时按来源产生默认初始化和回执。读取失败保持单独结果，允许用户沿现有恢复操作重试或明确确认默认值。两类正常写入和窗口取消沿 dialog_outcomes。启动完成标记、内存记录、文件实际可读值和配置环节结束各有自己的回执。",
+        "resume_and_reopen": "D0/D1 让等待配置和目录替换沿同一准备所有者。保存或读回未知时用原操作及现有修订通道核对，匹配当前身份后发布。重新打开设置时，从对应活动根读取实际设置。不同目录的设置各读自己的 Config.dat。采用来源兼容规则比较首次配置标记，避免用缓存绑定变化自动推定新标记。",
+        "reuse": ["shared/game-config.mjs", "shared/launcher-first-config.mjs", "shared/launcher-resources.mjs", "shared/launcher-source-profile.mjs", "web/login-launch.mjs", "web/launcher-launch-data.mjs", "web/login-catalog.mjs", "adapters/wechat/launcher-host.mjs", "adapters/wechat/launcher-resources.mjs"],
+        "host_handoff": "D5 将网页、移动网页和微信已有文件读取与资源保存回执接入同一个配置流程。按实际目录身份、写入进度、读回和重开补适配。各端设置与产品续接待实现和验收。"
+      },
+      "existing_evidence": {
+        "current_probe": "build/analysis/launcher-first-config-directory-composition-v1/stage306-probe.json",
+        "prior_browser_receipt": "build/analysis/launcher-directory-host-handoff-v1/browser.json",
+        "prior_wechat_receipt": "build/analysis/launcher-directory-host-handoff-v1/wechat.json",
+        "observed": "两个合成 Code 11 行及目录改变分别产生独立资源绑定，沿用同一个首次配置键。现有计划即使入口已有 win32-current 配置，单独配置计划仍只提供旧同步语义；阶段 306 没有把该计划接入登录器宿主的首次配置结果。微信本机宿主显式恢复目录后按原行号重选，操作未写额外设置。"
+      },
+      "acceptance": {
+        "existing_cases": ["SS-A19", "SS-A20", "PR-A10", "LP-A09", "LP-A10", "LP-A11", "LP-A12", "UC-P12"],
+        "additional_expectations": [
+          "首次配置跟踪期间尝试目录选择或普通启动。原版源规则保持观察槽，查询失败或 259 后仍等待。收尾清槽后按当时阶段继续。",
+          "在两个同 Code 的条目之间切换，并更换已确认目录。核对三个设置归属、实际文件角色及重开读回。目录或配置写入失败、取消与结果未知沿各自提交回执。",
+          "用明确缺文件、读取失败、加载异常、正常终止和配置标记写入失败核各自续接。保留冷重开和同进程重试的差别，并核三端按来源和活动目录取值。"
+        ],
+        "actual_original_or_full_target_cases_executed": false
+      },
+      "remaining": [
+        "F5A 安装时实际使用的 Config.exe 与库版本，以及退出、文件结果和同版游戏读到的实际值继续沿 L07。",
+        "三端原生选择、已提交设置和真实重开按 D5 实测。原多版本及条件入口继续沿 LF-U3 与 LF-U4。"
+      ],
+      "whole_L01_or_L08_ready": false,
+      "implementation_complete": false
+    },
+    "dialog_outcomes": {
+      "classification": "fixed-source-facts-and-conditional-cross-profile-comparison",
+      "source_review": "build/analysis/first-config-outcome-v1/source-review.json",
+      "report": "reports/launcher-static.md#first-config-dialog-outcomes",
+      "capabilities": ["L01", "L04", "L07", "L08", "G06", "X01"],
+      "helper_profile": "config-exe-9389add9-v1",
+      "init": "401480 读取当前工作目录的 Config.dat。PathFileExistsA 返回零时，先尝试写入 12 字节默认值，再更新档位和四个开关。",
+      "reset": "按钮 1008 进 401140。同步默认档和四个开关到窗口，无文件请求。",
+      "cancel": "按钮 2 继承 MFC 的 WM_COMMAND 处理，经虚表 +0x158 到 7C1AE800，请求 EndDialog(2)。初始化已写入的默认文件可以保留。",
+      "confirm": "按钮 1 进 401180。更新数据、编码、请求删除、打开、写入、关闭。正常返回后显示保存提示，再经虚表 +0x154 调 MFC OnOK。其 UpdateData(1) 通过时请求 EndDialog(1)。",
+      "file_errors": "删除与打开的返回值在所选应用路径未分支。MFC 可在写入失败、实际短写或关闭失败时抛文件异常。若删除失败且后续 OPEN_ALWAYS 成功，较短写入可能留下旧文件尾部。",
+      "window_and_launcher_completion": "401090 丢弃 DoModal 返回值并从 InitInstance 返回零。实际进程码待验。F5A 观察进程，按本节 terminal 处理缓存标记及续接。所选普通终止分支不读取 Config.dat 或窗口返回值。",
+      "implementation": {
+        "shared_reuse": ["shared/game-config.mjs", "shared/launcher-first-config.mjs"],
+        "D0": "沿现有资源根及设置字节接口交付已保存输入。",
+        "D1": "现有首次配置所有者处理临时编辑、初始化与确认的提交意图、配置步骤结束和按版本观察后的续接。保持文件结果、窗口结果及启动标记三项状态独立。",
+        "D5": "沿现有宿主端口提交保存、关闭和退役回执。目标持久化策略与原文件异常用例对照。"
+      },
+      "acceptance": {
+        "existing_cases": ["SS-A19", "SS-A20", "PR-A10"],
+        "scenarios": [
+          "有文件时取消。保留文件字节。",
+          "不存在时初始化正常写入后取消。默认文件仍在。",
+          "恢复默认后取消或确认。分别核对窗口数据、文件提交及提示。",
+          "确认后写入返回、提示返回及基类同步失败。核对文件内容、窗口结果和是否继续等待。",
+          "删除失败后旧文件更长、打开失败、写入失败、短写和关闭失败。分别核文件结果和异常呈现。",
+          "以实际进程码进入 F5A 观察器，覆盖活动、加载失败、普通终止与标记写失败。核对缓存、写入和续接顺序。"
+        ],
+        "status": "not-executed-as-full-native-or-target-case"
+      },
+      "current_helper_version_match_proven": false,
+      "actual_native_process_exit_values_observed": false,
+      "current_paired_game_consumer_proven": false,
+      "product_code_changed": false
+    },
+    "source_derived_cases_verified": true,
+    "actual_windows_schedule_verified": false,
+    "current_paired_game_consumer_proven": false,
+    "source_capability_readiness_promoted": false
+  },
+  "remaining": [
+    {
+      "id": "LF-U1",
+      "kind": "necessary same-version source",
+      "capabilities": [
+        "L07",
+        "L08"
+      ],
+      "need": "C82 handoff producer still lacks its corresponding current-game consumer and ordinary acceptance chain. Preserve legacy601b→37c4 and current-unclosed as separate profiles;do not fabricate a decoder or infer official acceptance.",
+      "new_queries_without_positive_material": false
+    },
+    {
+      "id": "LF-U2",
+      "kind": "named source predicates",
+      "capabilities": [
+        "L01",
+        "L07"
+      ],
+      "need": "4329B0 explicitly requires434610(resolved,directory,0) and4349B0(directory,resolved). Their complete algorithms are not supplied by a generic host containment check or a callee name. Check admitted existing path material first;query only a necessary behavior-changing child edge.",
+      "closed_by_parent_ABI_or_host_profile": false
+    },
+    {
+      "id": "LF-U3",
+      "kind": "original multi-profile functional review",
+      "capabilities": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L08"
+      ],
+      "need": "The19 retained operations and current Config supplement do not cover every original profile/variant. The exact original scopes,owners,dependencies,batches and profile rows above remain;selected facts are not blanket readiness. Conditional cross-owner callback tails require an admitted ordinary sequence before further expansion.",
+      "legacy_condition_ref": {
+        "id": "LO-U2",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/necessary_unknowns_and_conditions/1",
+        "canonical_sha256": "9fd51e20a7ea19ad94a2911809aa208ff17b7465a61612b43656f3a220d7057a"
+      },
+      "arbitrary_all_interleavings_required": false
+    },
+    {
+      "id": "LF-U4",
+      "kind": "conditional entry admission",
+      "capabilities": [
+        "L01",
+        "L04",
+        "L08"
+      ],
+      "need": "Retain296/30721/30734,four non-App menus and unadmitted import/export only as conditional entries;use required-entry-admission positive ownership/normal-entry evidence. A resource/name or empty indexed search does not add/remove a requirement.",
+      "legacy_condition_ref": {
+        "id": "LO-U3",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/necessary_unknowns_and_conditions/2",
+        "canonical_sha256": "7f426d361733529be4e3300202818a6f85a5cb12814e4f8f709ed45e8c34764a"
+      }
+    },
+    {
+      "id": "LF-U5",
+      "kind": "explicit host contract and independent acceptance",
+      "capabilities": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08"
+      ],
+      "need": "Reuse shared14 ports and measured browser file/store/codec/font/canvas/audio subsets. Source MBCS/profile semantics,unimplemented ports,full-resource limits,actual mobile/WeChat/IME/hidden-resume/transaction recovery and game acceptance retain distinct conditions. No repeated test-account request.",
+      "legacy_condition_ref": {
+        "id": "LO-U4",
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/necessary_unknowns_and_conditions/3",
+        "canonical_sha256": "1a83f8b96ea05b842e77fa69581feb8271ed254575985a1a3d297f67d8c2e4f0"
+      },
+      "all_platform_acceptance_complete": false
+    }
+  ],
+  "proposed_acceptance_cases": [
+    {
+      "id": "LF-A01",
+      "case": "Busy/invalid selected raw row preserves ordinary entry rejection;no Config side effect.",
+      "status": "not-executed"
+    },
+    {
+      "id": "LF-A02",
+      "case": "Profile0,seen key,emptyConfigEXE or nonzero call byte skips optional Config;normal downstream gates remain.",
+      "status": "not-executed"
+    },
+    {
+      "id": "LF-A03",
+      "case": "Base/path/timer/create failures use distinct reports;timer-before-create and create-failure timer cleanup preserved.",
+      "status": "not-executed"
+    },
+    {
+      "id": "LF-A04",
+      "case": "Create success captures namespace/handle/tick,closes thread handle and defers normal game block.",
+      "status": "not-executed"
+    },
+    {
+      "id": "LF-A05",
+      "case": "No handle kills timer;GetExitCodeProcess failure keeps pending;259 keeps polling.",
+      "status": "not-executed"
+    },
+    {
+      "id": "LF-A06",
+      "case": "899999/900000ms,already-warned and uint32 wrap distinguish15min Config from30min patch without termination.",
+      "status": "not-executed"
+    },
+    {
+      "id": "LF-A07",
+      "case": "Three exact special DWORD exits skip cache/write and forward low failure byte.",
+      "status": "not-executed"
+    },
+    {
+      "id": "LF-A08",
+      "case": "Ordinary exits including0,1,100,101,102,C0000005 append cache before profile0;writefalse does not undo.",
+      "status": "not-executed"
+    },
+    {
+      "id": "LF-A09",
+      "case": "Changing selected row/account while pending does not replace captured section/key;seen-cache identity remains key-only.",
+      "status": "not-executed"
+    },
+    {
+      "id": "LF-A10",
+      "case": "Completion clears captured strings then resumes current Main step;no unconditional game-success assertion.",
+      "status": "not-executed"
+    },
+    {
+      "id": "LF-A11",
+      "case": "Destruction killsConfig timer/closeshandle;catalog5sec wait and external-child termination not conflated.",
+      "status": "not-executed"
+    },
+    {
+      "id": "LF-A12",
+      "case": "Version-specific source/capability coverage and actual three targets validated independently after implementation.",
+      "status": "not-executed"
+    }
+  ],
+  "focused_probe_scope": "Only original synthetic inputs execute existing pure legacy Config and current patch functions to demonstrate source-policy differences;not a C82 implementation,source-program execution or complete acceptance.",
+  "workflow_and_stopping_rule": {
+    "sequence": [
+      "A1 original40/81/37/10/6 scope and positive entry admission",
+      "A2 per-profile byte/protocol/state/owner/failure/cancel specifications",
+      "A3 operation and variant composition with explicit readiness/unknowns",
+      "A4 target contracts,concrete limits and measurable acceptance conditions",
+      "D0-D6 dependency groups,shared core first,then thin target effects",
+      "source-bound fixtures and actual target/official acceptance as independently available"
+    ],
+    "stop_source_expansion": "An existing complete Evidence/body contract answers the question =>reuse it. New query requires a named missing producer/consumer/predicate that changes a required operation. Do not chase every library/helper or arbitrary callback schedule.",
+    "time_claim": "Expected reduction is duplicate source work and shared-owner/platform rework. No measured total saving percentage or reliable full-project remaining duration is asserted.",
+    "no_new_product_features_before_unified_gate": true
+  },
+  "summary": {
+    "complete_native_records": 13,
+    "reused_complete_native_records": 11,
+    "new_native_queries": 2,
+    "source_body_bytes": 9849,
+    "new_native_body_bytes": 1610,
+    "independently_decoded_instructions": 3161,
+    "byte_ranges": 14,
+    "retained_operation_rows": 19,
+    "retained_rule_fields": 118,
+    "rule_or_port_nodes": 80,
+    "retained_operations": 19,
+    "new_current_Config_operations": 8,
+    "total_operation_rows": 27,
+    "new_fact_groups": 9,
+    "original_capability_rows": 8,
+    "new_implementation_deltas": 4,
+    "proposed_acceptance_cases_not_executed": 12
+  },
+  "scope_preserved": {
+    "capabilities": 40,
+    "registry_entries": 81,
+    "historical_requirements": 37,
+    "consumer_groups": 10,
+    "primary_profiles": 6,
+    "owners_dependencies_batches": true
+  },
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "focused_original_fixture_probe_run": true,
+  "full_product_test_suites_or_builds_run": false,
+  "whole_launcher_functional_specification_ready": false,
+  "L07_same_version_consumer_closed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "original_VM_official_network_account_device_actions": false,
+  "full_goal_complete": false,
+  "focused_probe": {
+    "path": "build/analysis/launcher-functional-specification-v1/focused-probe.json",
+    "bytes": 2837,
+    "sha256": "a786ab27a5e1333d0405f74b8ef55e3ddedaf4d9b6c90986ae1334515f477f73"
+  },
+  "execution_record": {
+    "path": "build/analysis/launcher-functional-specification-v1/execution-record.json",
+    "bytes": 2089,
+    "sha256": "4326a9bb7cef01306287e402e32f5835229887023396cc6878b071ac03ae79d2"
+  },
+  "current_game_process_producer": {
+    "classification": "固定 C82 分析映像的普通生产端事实与目标差异",
+    "source": {
+      "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+      "bytes": 4111872,
+      "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+    },
+    "source_review": {
+      "path": "build/analysis/launcher-current-game-process-v1/source-review.json",
+      "bytes": 26805,
+      "sha256": "b3be140877ef74b05bce9e53eadfef122ac1adb026b6215ed1bf8033a6849639"
+    },
+    "existing_legacy_probe": {
+      "path": "build/analysis/launcher-current-game-process-v1/focused-probe.json",
+      "bytes": 720,
+      "sha256": "57c17ffb9279ea0c7cf38113df30cceb43458e4a40a738942aab24b3d89f0bba"
+    },
+    "requirements": [
+      "L07",
+      "L08"
+    ],
+    "source_rules": [
+      "42D830 调用 410C00。游戏代码 0、1、2、4、11 在仅刷新值非零时锁存跳过创建的标志。410E88 仍检查选中行，以该标志的反值作为第一字节条件，第二条件为 0。",
+      "40F980 的普通路径校验选中行、规范化目录，解析并检查前提文件及 EXE。所选成功路径在 40FAEF 和 40FAFE 先后把目录、EXE 发布到控制器 +2B44、+2B48。首次 Config 开始时，沿既有异步规则延期。",
+      "410F67 经 435A10 引用已发布的 EXE 路径，追加一个空格和基本参数，随后追加非空的区域与区服参数。基本参数从全局指针 63C8D4 的 +2CA0 序号与 +2D00+序号×A4 读取，预检使用控制器 +7610 的序号。",
+      "CG 游戏代码且实时仅刷新值为 0 时，以已发布目录按原顺序调用 4088C0 生成七组资源参数。搜索、当前记录与末行处理见本节资源参数规则。",
+      "非空交接名称进入 40B750。写入失败先提示。锁存的仅刷新跳过标志非零时返回失败分支，为零时继续检查进程创建。进程调用点再次读取实时仅刷新值，结合游戏类别决定是否调用。",
+      "411615 的 CreateProcessA 传显式 applicationName=控制器+2B48、命令缓冲、工作目录=控制器+2B44 和 68 字节 STARTUPINFOA。安全属性、继承句柄、创建 flags 与环境参数均为 0。",
+      "创建失败后读取 GetLastError，0 取 31。名称非空时调用 407AE0，用不区分大小写的名称定位首个 32 字节记录，按先解除视图再关闭映射句柄的顺序退役并移除记录，随后显示并记录错误。",
+      "创建成功或锁存的仅刷新分支走共用界面返回。非空线程、进程句柄按该顺序关闭。419AC0 清局部状态，42D940 尝试托盘登记。已有登记或添加成功时请求隐藏界面，添加失败时请求恢复可见并提示。此处取得的是 Win32 创建返回和启动器界面结果。"
+    ],
+    "implementation_differences": [
+      "既有共享 launcher-process 是旧版原始命令和空 applicationName 计划。D1 的 C82 计划需使用已发布目录、显式 EXE 路径及现有当前版本的字节引用规则。",
+      "D1 复用七组有序快照和网页长名筛选。C82 生产端按资源参数规则处理原搜索模式及标题边界，实际宿主的枚举结果仍按各自证据确定。",
+      "创建请求、映射退役、句柄关闭、托盘返回和游戏消费者接受由现有生命周期与宿主所有者承接。共享主线保留 L07 和 L08 原有完整验收。"
+    ],
+    "proposed_acceptance": [
+      "带空格的已解析 EXE 路径、基本参数为空及区域或区服为空时的有序构造。",
+      "实际选中行、目录与 EXE 发布，以及仅刷新时的前检和创建准入。",
+      "映射写入失败、创建错误码为 0、名称存在或缺失，以及句柄关闭次序。",
+      "托盘已存在、添加成功、添加失败与同版游戏实际接收。"
+    ],
+    "parent_selected_process_path_source_bound": true,
+    "current_same_version_consumer_proven": false,
+    "original_execution": false,
+    "implementation_added": false,
+    "whole_L07_specification_ready": false,
+    "resource_arguments": {
+      "classification": "固定 C82 文件搜索静态规则、安装包长名核验及旧共享入口对照",
+      "source_review": {
+        "path": "build/analysis/launcher-resource-arguments-v1/source-review.json",
+        "bytes": 24661,
+        "sha256": "5d3b3a10b90af5cfa37c81122f5408906cafa0898f09a5cba9b81a8b4a1797cd"
+      },
+      "existing_web_and_shared_probe": {
+        "path": "build/analysis/launcher-resource-arguments-v1/focused-probe.json",
+        "bytes": 822,
+        "sha256": "820c44d8cc039f990d1accf4684082b1a67fa985fa95bf45004ea10901d8cb65"
+      },
+      "source_facts": [
+        "4088C0 的局部 CFileFind 由 44482A 将 +18 置零。444AA6 在七个非空模式的正常分支使用 FindFirstFileA。模式 ANSI 字节长度达到 260 时返回 0。初次搜索失败或完整路径解析失败时返回 0，4088C0 为该组返回空串。",
+        "初次搜索成功后，444C5F 将预取记录从 +8 推到当前 +4，再把 FindNextFileA 的返回保留给上层。4088C0 在检查该返回前处理当前行，所以返回 0 的迭代仍处理缓冲的最后一行。此后释放搜索记录与有效搜索句柄。",
+        "先跳过目录标记下的点名和双点名，再取标题。444E00 经虚槽 +0C 读取当前记录的 cFileName，通过 _splitpath_s 提取 256 字节缓冲中的标题。随后通过虚槽 +38 检查 0x10 并排除目录。",
+        "对普通标题调用多字节小写函数，末个下划线可在索引 0 并替换为冒号。按 info、graphic、anime、coordinate 的顺序选首个命中族，再由 40D4F0 替换该族全部命中。每条前置一个空格，按同组枚举顺序追加。"
+      ],
+      "supplied_distribution": {
+        "installer": {
+          "path": "moli/CrossGate_Setup.exe",
+          "bytes": 1104268439,
+          "sha256": "e593e47fa09ac03e2213c7dc7bb80575e0295f0dc48a0e1edc73c4ac1982f983"
+        },
+        "app_metadata_paths": 2367,
+        "ordered_group_ids": [
+          "bin-anime",
+          "bin-graphic",
+          "puk2-anime",
+          "puk2-graphic",
+          "puk3-anime",
+          "puk3-graphic",
+          "bin-coordinate"
+        ],
+        "long_name_candidate_counts": [
+          10,
+          8,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "candidate_bytes_verified": 2073632867,
+        "projected_argument_bytes": 480,
+        "comparison": "同一安装包的 28 个普通 ASCII 长名称均与现有网页适配和旧共享参数变换相符。全目录正向和逆向输入均保留各自组内顺序。"
+      },
+      "implementation_deltas": [
+        "D1 继续使用现有七组快照、长名分类和共享标题变换。给 C82 所选路径保留索引 0 替换规则，旧版 >0 规则继续由旧版规格承接。",
+        "C82 搜索边界作用于完整模式的 ANSI 字节。后续 Win32 兼容适配应保留初次失败输出空组与推进结束时处理末行的区别。",
+        "网页快照以调用者所给长名顺序为输入。若当前游戏消费对顺序、短名或安装更新内容敏感，沿实际同版搜索与消费者补证后定对应宿主策略。"
+      ],
+      "additional_acceptance_cases": [
+        "非空模式 259 与 260 字节、初次搜索失败、单行后结束以及中途推进返回 0。",
+        "点目录、普通目录、空组和未排序的常规文件记录。",
+        "索引 0 下划线的显式快照、关键字优先级及固定七组的实际同版枚举和接收。"
+      ],
+      "original_windows_enumeration_observed": false,
+      "current_same_version_consumer_proven": false,
+      "whole_L07_ready": false,
+      "product_code_changed": false,
+      "legacy_game_resource_projection": {
+        "path": "analysis/capability-first-v1/shared-update-host-design.json",
+        "pointer": "/desktop_browser_resource_working_set",
+        "runtime": {
+          "path": "build/analysis/legacy-resource-handoff-v1/runtime.json",
+          "bytes": 13379,
+          "sha256": "e649c75ef2ed427dc791fc02820a83f93169f273988622efa00d56596fd198ee"
+        },
+        "full_host_conformance_passed": false
+      }
+    },
+    "distribution_supplement": {
+      "path_preflight": {
+        "classification": "固定 F5A 的静态来源规则及现有本机接口对照",
+        "report": "reports/launcher-static.md#f5a-path-preflight",
+        "source": {
+          "path": "build/analysis/current-official-launcher-package-v1/POLCN_Launcher.analysis-only.exe",
+          "bytes": 4176896,
+          "sha256": "f5abc77a1d6c7b1875bae8cdea948469424a8e683d72939e2118d1a38de06842"
+        },
+        "source_review": {
+          "path": "build/analysis/launcher-f5a-path-preflight-v1/source-review.json",
+          "bytes": 43838,
+          "sha256": "0e8bf3fd25e402c5da8282b810f78245c0c4566673d784d320816352f61a75fe"
+        },
+        "static_cases": {
+          "path": "build/analysis/launcher-f5a-path-preflight-v1/preflight-branch-cases.json",
+          "bytes": 5419,
+          "sha256": "0148ae12943f80ab64c3dc99436284fc999cf830969538524bb98cdac05fc988"
+        },
+        "existing_api_comparison": {
+          "path": "build/analysis/launcher-f5a-path-preflight-v1/local-plan-comparison.json",
+          "bytes": 5501,
+          "sha256": "5e1f98c35eae8e2de8e56f83edd971748077605a8db51a69b8afeff7c61d0d65"
+        },
+        "regression_log": {
+          "path": "build/analysis/launcher-f5a-path-preflight-v1/local-regression.log",
+          "bytes": 9844,
+          "sha256": "3c770ee25b339580a2f6ebb258cfc79b6d28338ce31b75fc09600ca37e76b560"
+        },
+        "affected_capabilities": [
+          "L01",
+          "L06",
+          "L07",
+          "L08"
+        ],
+        "implementation_batches": [
+          "D0",
+          "D1",
+          "D5"
+        ],
+        "catalog_binding": {
+          "catalog": {
+            "path": "build/analysis/current-official-launcher-package-v1/extracted/app/XML/GameList.xml",
+            "bytes": 4377,
+            "sha256": "be8f1213d77bd294fbb79b2fb51a5e7fecdc9aa3c0854db7a6d821fad20ef85a",
+            "totalRows": 5,
+            "cgRows": [
+              {
+                "ordinal": 1,
+                "code": "4",
+                "client": "cg_item_6000.exe",
+                "patcher": "Patcher_PUK3.exe",
+                "configuration": "Config.exe",
+                "special": "Patcher_PUK3.exe"
+              },
+              {
+                "ordinal": 2,
+                "code": "1",
+                "client": "cg_se_6000.exe",
+                "patcher": "Patcher_PUK3.exe",
+                "configuration": "Config.exe",
+                "special": "Patcher_PUK3.exe"
+              },
+              {
+                "ordinal": 3,
+                "code": "11",
+                "client": "cg_se_3000.exe",
+                "patcher": "Patcher_PUK3.exe",
+                "configuration": "Config.exe",
+                "special": "CG5Reg.exe"
+              },
+              {
+                "ordinal": 4,
+                "code": "11",
+                "client": "cg_se_3000.exe",
+                "patcher": "Patcher_PUK3.exe",
+                "configuration": "Config.exe",
+                "special": "CG5Reg.exe"
+              }
+            ]
+          },
+          "row_base": "owner + 0x2D30 + ordinal * 164",
+          "owner_selected_ordinal": "0x7768",
+          "owner_game_count": "0x2C88",
+          "row_fields": [
+            {
+              "xml": "EXE",
+              "row_offset": "0x04",
+              "assignment_call": "0x40AFE4"
+            },
+            {
+              "xml": "SpeFile",
+              "row_offset": "0x1C",
+              "assignment_call": "0x40B128"
+            },
+            {
+              "xml": "PatchEXE",
+              "row_offset": "0x2C",
+              "assignment_call": "0x40B15E",
+              "selected_text": "owner+0x2CC4"
+            },
+            {
+              "xml": "ConfigEXE",
+              "row_offset": "0x30",
+              "assignment_call": "0x40B194",
+              "selected_text": "owner+0x2CC8"
+            }
+          ],
+          "row_eligibility_byte": {
+            "row_offset": "0xA1",
+            "source": "0x40B69F",
+            "test": "0x40E12B"
+          },
+          "same_code_rows": [
+            3,
+            4
+          ],
+          "publication_slots": {
+            "normalized_install_directory": "owner+0x2C9C",
+            "lexical_game_path": "owner+0x2CA0"
+          }
+        },
+        "preflight": {
+          "entry": "0x40E0D0",
+          "outputs_initialization": "0x40E0FD 清空诊断文本，0x40E105 清零错误值。",
+          "selection_rule": "按有符号值核对所选序号在 [0, count) 且该行 +0xA1 非零。失败写 13。",
+          "observed_call_modes": [
+            {
+              "operation": "ordinary-game",
+              "call": "0x40EB58",
+              "flags": [
+                1,
+                0
+              ],
+              "sequence": [
+                "目录",
+                "SpeFile 路径",
+                "SpeFile 存在",
+                "EXE 路径",
+                "EXE 存在",
+                "发布目录",
+                "发布 EXE"
+              ]
+            },
+            {
+              "operation": "only-refresh",
+              "call": "0x40EB58",
+              "flags": [
+                0,
+                0
+              ],
+              "sequence": [
+                "有效选中行后直接成功"
+              ],
+              "path_io_or_publication": false
+            },
+            {
+              "operation": "first-configuration",
+              "call": "0x40D0C4",
+              "flags": [
+                0,
+                1
+              ],
+              "sequence": [
+                "目录",
+                "SpeFile 路径",
+                "SpeFile 存在",
+                "ConfigEXE 路径",
+                "ConfigEXE 存在"
+              ],
+              "publishes_game_slots": false
+            }
+          ],
+          "refresh_selector": "普通 CG 分支的第一个参数为 1 XOR 仅刷新锁存值，第二个参数恒为 0。",
+          "result_rules": [
+            {
+              "code": 13,
+              "condition": "选择为负、超界或行资格失败",
+              "diagnostic": "0x5DF65C"
+            },
+            {
+              "code": 3,
+              "condition": "目录无效、SpeFile 路径无效或存在查询返回假",
+              "diagnostic": "0x5DF674"
+            },
+            {
+              "code": 2,
+              "condition": "EXE 路径无效或存在查询返回假",
+              "diagnostic": "0x5DF6A0"
+            },
+            {
+              "code": 2,
+              "condition": "ConfigEXE 路径无效或存在查询返回假",
+              "diagnostic": "0x5DF6C4"
+            }
+          ],
+          "effects": "第一标志的文件检查通过后，0x40E23F 和 0x40E24E 依次发布目录与词法 EXE。此函数先后执行两个标志，假设两者同时打开，后续配置拒绝时保留前两项发布。已核的普通调用仅使用上列三种组合。"
+        },
+        "path_resolution": {
+          "classification": "所选普通返回路径",
+          "directory": "4432C0 先清空输出。GetFullPathNameA 返回 1–259，所选目录属性有效且位 0x10 置位后，发布规范目录。",
+          "relative_path": "443860 先清空输出。目录通过后，443020 在本调用中拒绝空串，最多剥去一个首斜杠，拒绝仅一个斜杠及双首斜杠。按 ANSI 多字节步长查分隔符，由 442BA0 检查每个组件。组合结果和 GetFullPathNameA 返回受 260 字节上限约束。",
+          "lexical_relation": "4422E0 以 MBCS 不区分大小写比较。候选与根相等时返回第三参数，本调用传 0。其余候选必须比带末尾分隔符的根更长，并匹配根的同长度字节前缀。",
+          "filesystem_relation": {
+            "entry": "0x442680",
+            "availability": "GetModuleHandleA(kernel32.dll) 后取 GetFinalPathNameByHandleA。",
+            "unavailable": "441960 先查根，再查候选的前缀。观察到属性位 0x400 时拒绝。单次属性查询返回 INVALID_FILE_ATTRIBUTES 时继续该扫描。",
+            "available": "分别解析根与候选，再作严格后代比较。解析失败结束该分支。",
+            "final_path": "441DD0 以访问 0、共享 7、OPEN_EXISTING 和 FILE_FLAG_BACKUP_SEMANTICS 打开路径。最终路径 API 的缓冲为 32768 字节，先关句柄，再按 1–32767 的返回长度和 444430 的规范化结果决定成功。规范化处理已识别的设备路径和 UNC 前缀、尾分隔符及绝对根形状。",
+            "missing_candidate": "443BA0 可回退到首个已有祖先，解析后拼回缺失后缀。后续存在查询决定完整文件是否存在。"
+          },
+          "publication": "两项关系通过才由 443860 返回词法完整路径。最终路径比较所用的字符串为临时值。普通运行再由调用方检查各角色是否存在。",
+          "first_config_filename": "40D136 用已选目录和 ConfigEXE 走 440650，要求 1–244 字节的单组件名。词法与最终路径检查通过后才进入定时器 9002 和显式应用路径创建。失败在 40D14A 传入 161，沿已有首次配置返回路径继续普通创建检查。",
+          "abi_notes": {
+            "443860": "Three stack arguments including output. Normal EAX return from 443B59; source callers test it.",
+            "441DD0": "Two stack arguments. Selected success forwards 444430 EAX across the cookie check. Failure zeros EAX.",
+            "444430": "Tail 444770 forwards 4428A0 root classification through the normal epilogue."
+          }
+        },
+        "adjacent_consumers": {
+          "directory_recovery": {
+            "specification": "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_directory_recovery",
+            "entry": "0x401CB0",
+            "rule": "依次解析目录、SpeFile 与 EXE，再依次查 SpeFile、EXE 存在。所选路径拒绝设置 161。INI 写入成功后更新条目目录及 +0x9C 的字，只有仍选中该条目才更新活动目录和 EXE 缓存。"
+          },
+          "patch_preparation": {
+            "specification": "analysis/capability-first-v1/launcher-game-patch-functional-specification.json#/f5a_patch_fallback",
+            "entry": "0x40DB40",
+            "rule": "0x40DDC0 用所选根和 PatchEXE 解析目标，路径拒绝写 161。路径有效才调用 PathFileExistsA，返回假进入既有 .pat 回退。0x40D3A0 独立解析补丁器目标及备份路径，再进入既有属性、复制和启动分支。"
+          }
+        },
+        "implementation": {
+          "D0": "沿 LP-D1 至 LP-D2 复用原字节、代码页与逻辑资源根。按现有端口分别接收主机路径观察、目录属性与文件存在结果。",
+          "D1": "由同一目录及启动所有者处理刷新、普通启动、首次配置、目录恢复和补丁准备。依操作执行检查、选择诊断并按其回执发布。沿现有目录、首次配置与命令规划入口补 F5A 差异。",
+          "D5": "三端使用各自资源根与回执完成分支用例。旧 Win32 的最终路径、属性及文件存在效果按固定来源另行验收。进程或游戏的后续接受沿原交接用例。",
+          "existing_ports": [
+            "UC-P04",
+            "UC-P07",
+            "UC-P12",
+            "UC-P14"
+          ],
+          "existing_modules": [
+            "shared/launcher.mjs",
+            "shared/install-inventory.mjs",
+            "shared/launcher-first-config.mjs",
+            "shared/launcher-process.mjs",
+            "shared/launcher-patch-current.mjs"
+          ]
+        },
+        "acceptance_crosswalk": {
+          "path_contract": "analysis/capability-first-v1/launcher-config-path-contract.json",
+          "path_case_ids": [
+            "LP-A02",
+            "LP-A04",
+            "LP-A06",
+            "LP-A09",
+            "LP-A10",
+            "LP-A11",
+            "LP-A12"
+          ],
+          "first_configuration_case_id": "PR-A10",
+          "patch_target_case_id": "GP-T03",
+          "directory_recovery": "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_directory_recovery/acceptance_cases",
+          "reused_cases": [
+            "同目录缺少主程序、配置器、识别文件或补丁器时，按所选操作核对错误和值的发布顺序。",
+            "API 不可用、API 存在但失败、已有祖先与不存在叶文件各取对应观察。",
+            "首次配置先通过通用路径与存在检查，再拒绝不符合单组件要求的 ConfigEXE。",
+            "目录或文件验证失败后保留既有活动值。目录重选写入失败时不发布，成功后按选中条目决定当前缓存。",
+            "补丁路径无效时报告 161，路径有效但缺少目标时进入既有回退。"
+          ],
+          "formal_cases_executed": false
+        },
+        "remaining": [
+          "所选路径的实际 Windows 代码页、属性与文件回执，以及三端产品接线和验收。",
+          "GP-U01 的实际 .pat 制品、补丁子进程身份和观察。",
+          "L07/X07 的当前同版游戏读取及实际官方兼容验收。"
+        ],
+        "validation_record_path": "build/analysis/launcher-f5a-path-preflight-v1/validation.json",
+        "source_capability_readiness_promoted": false,
+        "implementation_gate_passed": false,
+        "product_code_changed": false
+      },
+      "profile": "launcher-distribution-f5a",
+      "source_review": "build/analysis/current-official-launcher-package-v1/source-review.json",
+      "ordinary_handoff": {
+        "classification": "固定 F5A 的普通选服确认到启动器交接发布，含所选仅刷新及失败分支",
+        "source_review": {"path": "build/analysis/launcher-f5a-ordinary-handoff-v1/source-review.json", "bytes": 35461, "sha256": "dcad039cccdc60c051c74276a42c74beceee76e4e9032f64da69e7a4fc880846"},
+        "source_cases": "build/analysis/launcher-f5a-ordinary-handoff-v1/source-cases.json",
+        "local_comparison": {"path": "build/analysis/launcher-f5a-ordinary-handoff-v1/local-comparison.json", "bytes": 625, "sha256": "cfbdb12395ee45c279e7a01c4a4de10f57ce15683b52982d76f4957a4eaa7026"},
+        "report": "reports/launcher-static.md#f5a-ordinary-handoff",
+        "validation": "reports/validation.md#f5a-ordinary-handoff-validation",
+        "capabilities": ["L01", "L02", "L03", "L04", "L07", "L08", "X01", "X07"],
+        "ordered_rules": [
+          {
+            "operation": "合资格的普通回复与候选更新",
+            "existing_rule": "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_result_selection",
+            "result": "原阶段 3 的状态 0 合资格回复先推进到 4。空列表消费预设且跳过数字写入。非空路径先发布上下文字节并重建列表，再写调整后的本次交接数字，之后检查预设。原阶段 4 的有条件入口可先分派启动，实际正常触发仍待 LS-U3。"
+          },
+          {
+            "operation": "手动或预设确认",
+            "existing_rule": "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_result_selection/profile_list_projection",
+            "result": "重读显示行、候选数及状态。阶段 4 的有效分支从候选名表经 lstrcpynA(…,41) 写主窗 +0x1211，再把排序后的候选索引写 Frame+0x7894 并用 %d 请求保存 GameID。设置节由 Frame+0x78B8 的字符串与 Settings 拼接。正常返回的写入结果未参与分支，随后递增阶段并同步分派。保存失败与进程结果独立。"
+          },
+          {
+            "operation": "前检与首次配置",
+            "existing_rule": "analysis/capability-first-v1/launcher-functional-specification.json#/current_game_process_producer/distribution_supplement/path_preflight",
+            "result": "启动控制器读取自己的目录条目索引 +0x7768。合资格 CG 的早期仅刷新值决定本轮前检文件标志。前检失败先进入 425490，置主窗启动错误标记并按错误码决定目录重选。前检成功清该标记。首次配置成功发起时延后本轮后续交接，失败返回则继续命令和映射。该配置检查同样位于所选仅刷新路径。"
+          },
+          {
+            "operation": "命令、映射与进程请求",
+            "existing_rule": "analysis/capability-first-v1/launcher-functional-specification.json#/current_game_process_producer/distribution_supplement/process",
+            "result": "在同一 Frame 与主窗条件下，主窗 +0x1211 名称和 +0x11F0 上下文分别供映射 gid 与 glt 使用。当前交接数字沿 +0x1884 读取。资源枚举、进程调用各自重读当时的仅刷新值。映射失败且早期仅刷新为真时进入启动错误，早期值为假时继续进程门槛。进程成功或早期仅刷新为真进入共用返回。"
+          },
+          {
+            "operation": "启动错误、退役与返回",
+            "existing_rule": "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_start_return",
+            "result": "进程门槛未调用或创建失败且早期仅刷新为假时进入错误路径，系统错误为零归 31，映射名非空时先按名称退役再提示。共用返回按线程、进程顺序关闭非零句柄，已登记映射留给原所有者，随后处理托盘。主窗启动错误已清且三个任务槽皆空时，在调用准备和请求重绘后写阶段 3。"
+          }
+        ],
+        "implementation": {
+          "D1": "沿现有登录、目录及启动所有者接入 F5A 的显示行确认、独立保存回执、原地确认字段、前检、首次配置及启动状态。复用已有字节比较、路径引号处理和交接格式。以 40 和 41 个 ASCII 字节分别核对回复候选名和确认后名称，尾段调整只做一次。",
+          "D5": "沿现有宿主回执核对设置失败、目录重选、映射结果、创建结果和托盘返回。共享业务按三个读取时点处理仅刷新，宿主提供各自输入和可观察结果。",
+          "D6": "继续核同版游戏实际读取命令和映射、正常启动及联合接受。",
+          "existing_owners": ["shared/launcher-replies.mjs", "shared/launcher-login.mjs", "shared/launcher-flow.mjs", "shared/launcher-catalog.mjs", "shared/launcher-first-config.mjs", "shared/launcher-process.mjs", "shared/launcher-handoff.mjs", "shared/launcher-launch.mjs"]
+        },
+        "case_reuse": {
+          "session": ["LS-T15", "LS-T17", "LS-T20"],
+          "path": ["LP-A02", "LP-A04", "LP-A06", "LP-A09", "LP-A10", "LP-A11", "LP-A12"],
+          "full_original_or_target_cases_executed": false
+        },
+        "remaining": ["原版 ANSI 多字节边界与回执、仅刷新在各读取点变化的实际触发、目录提示期间的投递和重绑。", "当前同版游戏的消费及联合验收，沿 L07/X07。"],
+        "launcher_producer_static_scope_reviewed": true,
+        "actual_windows_runtime_verified": false,
+        "current_same_version_game_consumer_proven": false,
+        "implementation_gate_passed": false,
+        "product_code_changed": false
+      },
+      "process": {
+        "caller_site": "0x43a330",
+        "producer": "0x40e8d0",
+        "preflight": "0x40e0d0",
+        "cwd_assignment_site": "0x40e23f",
+        "exe_assignment_site": "0x40e24e",
+        "application_name": "controller+0x2ca0",
+        "working_directory": "controller+0x2c9c",
+        "command_quote_call": "0x40ec37",
+        "command_quote_helper": "0x4436e0",
+        "api_site": "0x40f2e5",
+        "startup_info_bytes": 68,
+        "explicit_zero_api_fields": [
+          "process_security",
+          "thread_security",
+          "inherit_handles",
+          "creation_flags",
+          "environment"
+        ],
+        "CG_mapping_name_site": "0x40eeb5",
+        "mapping_helper_call": "0x40f225",
+        "mapping_create_site": "0x409eeb",
+        "mapping_request_bytes": 256,
+        "handoff_fields": {
+          "source_review": "build/analysis/launcher-f5a-handoff-fields-v1/source-review.json",
+          "report": "reports/launcher-static.md#f5a-handoff-fields",
+          "command_buffer": "frame-0x44",
+          "mapping_payload_buffer": "frame-0x54",
+          "ordered_command_parts": [
+            {"source": "controller+0x2ca0", "rule": "quote via 4436E0"},
+            {"literal": " "},
+            {"source": "[0x64c8b4]+0x2e58+0xa4*index", "index": "[0x64c8b4]+0x2df8"},
+            {"source": "controller+0x2ccc", "rule": "one leading space and bytes if the CString is nonempty"},
+            {"source": "controller+0x2cd0", "rule": "one leading space and bytes if the CString is nonempty"},
+            {"source": "seven resource groups", "rule": "CG group and live refresh word zero"}
+          ],
+          "quote_rule": {
+            "helper": "0x4436e0",
+            "outer_double_quotes": true,
+            "slashes_before_quote": "2*n+1",
+            "slashes_at_end": "2*n",
+            "other_slashes": "n"
+          },
+          "ordered_mapping_parts": [
+            {"literal": "gid:"},
+            {"source": "[0x64c8b4]+0x14d9", "rule": "C string prefix"},
+            {"literal": " glt:"},
+            {"source": "[0x64c8b4]+0x14b8", "rule": "C string prefix"},
+            {"literal": ":"},
+            {"source": "controller+0x1764", "rule": "unsigned dword, radix 32, lowercase digits, zero as one digit"},
+            {"literal": " "}
+          ],
+          "reuse": [
+            "Use the existing launcher path-quoting byte rule for the selected F5A call.",
+            "Reuse raw-byte and radix formatting. Apply the 32-bit adjustment once when the input is the admitted reply argument. Format the stored word directly.",
+            "Pass the F5A explicit application name and directory separately. Preserve the historical process profile."
+          ],
+          "projection": "build/analysis/launcher-f5a-handoff-fields-v1/projection.json",
+          "native_scalar_writer_proven": true,
+          "selected_numeric_source": {
+            "source_review": {
+              "path": "build/analysis/launcher-f5a-handoff-number-origin-v1/source-review.json",
+              "bytes": 10531,
+              "sha256": "986f975ccb679de62e38794e5e61061a26ba1547c87850e12a7fd0e422f5b11c"
+            },
+            "report": "reports/launcher-static.md#f5a-handoff-number-origin",
+            "root_pointer": "0x64c8b4",
+            "controller_offset": "0x120",
+            "reply_owner_offset": "0x2c8",
+            "root_field_offset": "0x1884",
+            "constructor_site": "0x414ec7",
+            "constructor_word": 0,
+            "reply_dispatch": "0x43f900",
+            "selected_reply_status": 0,
+            "reply_admission_contract": "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_callback_retirement/status_zero_admission",
+            "reply_call_site": "0x43fa09",
+            "reply_stack_argument": 15,
+            "handler_stack_argument": 8,
+            "write_site": "0x42a9d4",
+            "adjustment": "(callback word + 0x80000000) modulo 2^32",
+            "format_site": "0x40ecdd",
+            "projection": "build/analysis/launcher-f5a-handoff-number-origin-v1/projection.json",
+            "actual_callback_execution_verified": false
+          },
+          "current_paired_game_consumer_proven": false,
+          "product_code_changed": false
+        },
+        "mapping_lifecycle": {
+          "classification": "fixed-F5A-selected-publication-and-retirement",
+          "source_review": {
+            "path": "build/analysis/launcher-f5a-mapping-lifecycle-v1/source-review.json",
+            "bytes": 14445,
+            "sha256": "2d1da6bcccdb15a9c1b56e91e9227044f230a4419a57da7ef77ce561de295b36"
+          },
+          "report": "reports/launcher-static.md#f5a-mapping-lifecycle",
+          "owner": "controller+0x2d24",
+          "record_bytes": 32,
+          "rules": [
+            "409DF0 initializes the optional error output to zero. Null or empty name and null payload report 87. Payload length excluding NUL must be at most 255. The first case-insensitive record match copies length+1 bytes to the registered view.",
+            "With no match, try OpenFileMappingA first, then CreateFileMappingA if needed. Map exactly 256 bytes. The new view is admitted when VirtualQuery returns 28, state is 0x1000, protection mask 0x101 is clear and at least 256 bytes remain in the region from the view start. Append the record before copying length+1 bytes.",
+            "Creation and view API failures use the selected system error. Failed view validation unmaps then closes and reports 122. Compiler state 1 has a separate handler at 40A071, which unmaps then closes, stores error 8 if an output is present, and returns failure through 40A096.",
+            "The creation-failure caller invokes 406150 for a nonempty mapping name. It unmaps then closes the first match and removes one record. The ordinary controller destructor 403510 calls 403910 on the owner. It unmaps each nonzero view and closes its nonzero handle before retiring the records.",
+            "The selected common return closes nonzero thread and process handles, clears byte +0x1AA7, and calls the tray return 43A3F0. The registered mapping remains owned by the controller on this path."
+          ],
+          "refresh_policy": {
+            "cg_codes": [0, 1, 2, 4, 11],
+            "latch": "CG and early refresh nonzero",
+            "mapping_failure": "log; return before process gate if latched",
+            "call_create_process": "non-CG or live refresh zero",
+            "common_return": "creation succeeded or early refresh latched"
+          },
+          "actual_windows_event_order_verified": false,
+          "current_paired_game_acceptance_verified": false
+        },
+        "resource_patterns": [
+          {
+            "site": "0x40eef8",
+            "pattern": "%s\\Bin\\anime*.bin"
+          },
+          {
+            "site": "0x40ef64",
+            "pattern": "%s\\Bin\\graphic*.bin"
+          },
+          {
+            "site": "0x40efd0",
+            "pattern": "%s\\Bin\\Puk2\\anime*.bin"
+          },
+          {
+            "site": "0x40f03c",
+            "pattern": "%s\\Bin\\Puk2\\graphic*.bin"
+          },
+          {
+            "site": "0x40f0a8",
+            "pattern": "%s\\Bin\\Puk3\\anime*.bin"
+          },
+          {
+            "site": "0x40f114",
+            "pattern": "%s\\Bin\\Puk3\\graphic*.bin"
+          },
+          {
+            "site": "0x40f180",
+            "pattern": "%s\\Bin\\coordinate*.bin"
+          }
+        ],
+        "thread_handle_close": "0x40f34f",
+        "process_handle_close": "0x40f366",
+        "mapping_retire_on_create_failure": "0x40f318",
+        "error_zero_fallback": 31,
+        "return_helper_call": "0x40f37a",
+        "return_and_prepare_contract": "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_start_return"
+      },
+      "ordinary_producer_source_bound": true,
+      "C82_other_behavior_revalidated": false,
+      "same_version_game_consumer_proven": false,
+      "whole_L07_specification_ready": false,
+      "runtime_and_joint_acceptance_proven": false,
+      "resource_enumeration": {
+        "source_review": "build/analysis/launcher-f5a-resource-arguments-v1/source-review.json",
+        "source_sha256": "f5abc77a1d6c7b1875bae8cdea948469424a8e683d72939e2118d1a38de06842",
+        "group_count": 7,
+        "source_rules": {
+          "normal_search": {
+            "start": "0x406f87",
+            "find_first": "0x45145d",
+            "pattern_maximum_bytes": 259,
+            "initial_find_or_full_path_failure": "empty group"
+          },
+          "iteration": {
+            "publish_prefetch": "0x4515c0",
+            "find_next": "0x4515c6",
+            "save_boolean": "0x4070a3",
+            "consume_current_before_testing_advance": "0x4073f4",
+            "close": "0x407401",
+            "ordered_as_returned": true
+          },
+          "title": {
+            "skip_directory_dot_names": "0x4070a6",
+            "title_call": "0x4070ba",
+            "long_name_getter": "0x451647",
+            "record_name_offset": 44,
+            "ordinary_directory_check_after_title": "0x40713d",
+            "attribute_mask_reader": "0x4519d7",
+            "directory_mask": 16,
+            "lowercase_before_replacement": true,
+            "last_underscore_includes_zero": true,
+            "mutation": "0x4071d7",
+            "family_priority": [
+              "info",
+              "graphic",
+              "anime",
+              "coordinate"
+            ],
+            "replace_all_matches_in_selected_family": "0x407295",
+            "space_before_each_argument": true
+          },
+          "Windows_API": {
+            "search_considers_long_and_short_names": true,
+            "enumeration_order_filesystem_dependent": true,
+            "native_windows_fixture_executed": false,
+            "documents": {
+              "FindFirstFileA": "https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-findfirstfilea",
+              "FindNextFileA": "https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-findnextfilea"
+            }
+          }
+        },
+        "target_comparison": {
+          "probe": "build/analysis/launcher-f5a-resource-arguments-v1/focused-probe.json",
+          "regression": "build/analysis/launcher-f5a-resource-arguments-v1/focused-regression.log",
+          "passed": 14,
+          "leading_underscore_uses_legacy_rule": true,
+          "ordinary_long_name_rows": 28,
+          "source_order_preserved_for_provided_paths": true,
+          "synthetic_alias": {
+            "longName": "AnimeLongAlternate.bink",
+            "shortName": "ANIME~1.BIN",
+            "browserMatches": 0,
+            "argumentWhenAdmittedByHost": " animebinlongalternate",
+            "generatedByWindows": false
+          }
+        },
+        "implementation_batch": "D1",
+        "implementation_differences": [
+          "Use the existing ordered resource entries with the matched record attributes and long filename bytes. Keep the current row if the next lookup returns false.",
+          "Bind the selected F5A title rule to the last underscore at index zero as well as later indexes. Use the existing family replacement and per-row space prefix.",
+          "Treat an initially failed or unresolvable search as an empty group and validate the 259/260 ANSI-byte boundary.",
+          "Preserve the observed Windows order, including each last row. Use the returned long name for title processing and retain alternate names in enumeration evidence. Exercise a real short-name-only case when an applicable matching record is available."
+        ],
+        "title_byte_normalization": {
+          "source_review": "build/analysis/launcher-f5a-title-bytes-v1/source-review.json",
+          "startup_and_family_search_source": "build/analysis/launcher-f5a-code-page-v1/source-review.json",
+          "lowercase_binding": "0x407175 -> 0x5A6B11 -> 0x5A6B28 with null locale",
+          "delimiter_binding": "0x4071B0 and 0x4071D7 compare and overwrite one byte at a time",
+          "implementation_difference": "On the ordinary path preserve the raw post-lowercase 0x5F to 0x3A mutation, including index zero and a matching trailing byte. Bind the verified runtime locale for non-ASCII input.",
+          "acceptance_case": "In a synthetic post-lowercase buffer a final 81 5F pair changes to 81 3A. A later independent 5F instead takes precedence.",
+          "native_runtime_locale_verified": false
+        },
+        "cases": [
+          {
+            "input": "Search returns two rows then stops at the second row",
+            "expected": "Both admitted rows emit arguments in provided order"
+          },
+          {
+            "input": "Host admits only by short name and supplies original long name",
+            "expected": "Title comes from long name"
+          },
+          {
+            "input": "One admitted file title starts with its only underscore",
+            "expected": "Convert index zero to colon before family replacement"
+          },
+          {
+            "input": "Initial find or full-path resolution fails",
+            "expected": "Emit no argument for the group"
+          }
+        ],
+        "windows_resource_enumeration_proven": true,
+        "windows_resource_enumeration_scope": {
+          "source_review": "build/analysis/windows-resource-enumeration-v1/source-review.json",
+          "installed_game_sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+          "method": "Controlled FindFirstFileA and FindNextFileA query of seven F5A masks in the installed resource directory",
+          "rows": 28,
+          "nonempty_short_names": 26,
+          "host_get_acp": 936,
+          "groups_with_different_casefolded_sort_order": 6,
+          "current_shared_tail_bytes": 480,
+          "historical_projected_paths_checked": 42,
+          "real_short_name_only_match_observed": false,
+          "launcher_process_runtime_observed": false
+        },
+        "same_version_game_consumer_proven": false,
+        "whole_L07_specification_ready": false
+      }
+    }
+  },
+  "f5a_startup_code_page": {
+    "normal_startup_locale_selection": {
+      "classification": "固定 F5A 的启动表、代码页选择与标题消费静态事实",
+      "source": {
+        "path": "build/analysis/current-official-launcher-package-v1/POLCN_Launcher.analysis-only.exe",
+        "bytes": 4176896,
+        "sha256": "f5abc77a1d6c7b1875bae8cdea948469424a8e683d72939e2118d1a38de06842"
+      },
+      "capabilities": [
+        "L04",
+        "L07",
+        "X01"
+      ],
+      "source_review": "build/analysis/launcher-f5a-startup-locale-selection-v1/source-review.json",
+      "source_evidence": "build/analysis/launcher-f5a-startup-locale-selection-v1/rea-evidence.json",
+      "report": "reports/launcher-static.md#f5a-normal-startup-locale-selection",
+      "validation_report": "reports/validation.md#f5a-normal-startup-locale-selection-validation",
+      "validation": "build/analysis/launcher-f5a-startup-locale-selection-v1/validation.json",
+      "ordinary_startup": "592AD8 正常分支先按 C 表执行 592A13，再按 C++ 表执行 401C7E。C 表所查调用向 5B5F85 传 0，只取当前线程模式。C++ 表经 5DDBCC 请求 _setmbcp(-3)，包装 5C0DA0 传非初始化标记 0，库继续以 GetACP 解析 -3。",
+      "repeat_and_failure": "分配前先刷新适用的线程表。代码页已相同则返回 0。分配或建表失败时保留该轮选中的原表。非初始化分支改变并成功建表时，经 5B5D89 置 locale 变更标记，再发布线程表。允许共享时同步 6478F0。6471E4 的发布来自初始化标记分支。",
+      "title_consumer": "两个空 locale 的标题消费者沿 5A6315。标记为零用 6471E4。变更时先取线程表，只有指针与 6478F0 不同且线程状态和全局掩码交集为零时刷新。登录表单仍沿 Win32 ANSI 控件保存的字节做各自长度校验。",
+      "implementation": "D1 复用显式 ANSI 编码和资源快照。按这次标题操作实际提供的表处理小写与词族搜索。用同一组已写明的选表条件核冷启成功、再次解析、失败回退和线程表保留。D5/D6 沿实际资源标题及原版交接验收。",
+      "acceptance_case_inputs": [
+        "ordinary successful startup and matching repeat",
+        "failed startup then successful repeat",
+        "both table builds fail",
+        "changed mismatched thread without pin",
+        "changed mismatched pinned thread"
+      ],
+      "ordinary_selection_source_resolved": true,
+      "launcher_own_effective_locale_observed": false,
+      "other_dynamic_locale_producers_proven": false,
+      "same_version_game_consumer_proven": false
+    },
+    "source_review": "build/analysis/launcher-f5a-code-page-v1/source-review.json",
+    "report": "reports/launcher-static.md#f5a-startup-code-page",
+    "affected_capabilities": ["L04", "L07", "X01"],
+    "source_profile": "launcher-distribution-f5a",
+    "implementation_batch": "D1",
+    "startup": "The normal CRT initializer row at 0x6184D0 invokes 0x5C0CE0. It selects -3, resolved by GetACP, and on the successful shared startup path writes the default multibyte pointer at 0x6471E4. Failure retains the old pointer and the initializer still sets its one-time flag.",
+    "resource_title": "Lowercase with the selected multibyte state, replace the last raw 0x5F byte with 0x3A, and scan for family matches from candidate starts using the selected lead-byte table. With no locale change the default pointer is used, and the changed path refreshes thread state.",
+    "cp936_search": "The compiled CP936 entry classifies 0x81 through 0xFE as lead bytes. The selected multibyte search skips a lead-byte pair before testing a new candidate.",
+    "form": "Template 133 controls 1013 and 1014 use GetWindowTextLengthA and GetWindowTextA to save CString<char> values, each validated at 16 stored bytes.",
+    "launcher_own_effective_locale_observed": false,
+    "product_code_changed": false,
+    "same_version_game_consumer_proven": false
+  },
+  "f5a_login_owner": {
+    "source_review": "build/analysis/launcher-f5a-login-owner-v1/source-review.json",
+    "report": "reports/launcher-static.md#f5a-login-owner",
+    "contract": "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_posted_submit",
+    "source_profile": "launcher-distribution-f5a",
+    "affected_capabilities": [
+      "L03",
+      "L08",
+      "X01"
+    ],
+    "normal_and_posted_submit_source_bound": true,
+    "selected_error_restore_source_bound": true,
+    "status_zero_admission_contract": "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_callback_retirement/status_zero_admission",
+    "actual_modal_dispatch_or_retirement_proven": false,
+    "product_code_changed": false,
+    "callback_retirement": {
+      "source_review": "build/analysis/launcher-f5a-callback-retirement-v1/source-review.json",
+      "report": "reports/launcher-static.md#f5a-disconnect-retry",
+      "contract": "analysis/capability-first-v1/launcher-callback-reentry-contract.json#/f5a_callback_retirement",
+      "source_profile": "launcher-distribution-f5a",
+      "affected_capabilities": [
+        "L03",
+        "L08",
+        "X01"
+      ],
+      "implementation_batch": "D1",
+      "selected_close_and_receive_paths_source_bound": true,
+      "actual_modal_dispatch_and_rebinding_verified": false,
+      "source_capability_readiness_promoted": false,
+      "product_code_changed": false
+    }
+  }
+}

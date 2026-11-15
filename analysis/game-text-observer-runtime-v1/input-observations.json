@@ -1,0 +1,69 @@
+{
+  "schema": "moli.stage118.input-observations.v1",
+  "updated_utc": "2026-11-01T07:20:57.570102+00:00",
+  "observations": [
+    {
+      "local_minute": "2026-11-01 14:36 +08",
+      "intended": "$f118.StartInfo.WorkingDirectory=Split-Path $fx118; $f118.StartInfo.UseShellExecute=$false",
+      "visible_difference": "WorkingDirectory assignment operator absent; Split-Path rendering also did not match intended characters",
+      "submitted": false,
+      "action": "SingleCtrlC only after visible command mismatch; observed ^C and new empty prompt",
+      "result": "No fixture/observer launch. Switch to shorter assignments and retain complete visual readback before each Return."
+    },
+    {
+      "local_minute": "2026-11-01 14:39 +08",
+      "intended": "$si118 | fl FileName,WorkingDirectory,UseShellExecute,RedirectStandardOutput,CreateNoWindow",
+      "visible_difference": "WorkingDirectory rendered as WorkingDy in complete unsubmitted line",
+      "submitted": false,
+      "action": "SingleCtrlC; ^C and empty prompt observed",
+      "result": "No target launch; replace with shorter two-field readback."
+    },
+    {
+      "local_minute": "2026-11-01 14:40-14:42 +08",
+      "event": "App-change interruption then one noWindowsAvailable on click",
+      "action": "Normal getState -> rebind same already-running Parallels bundle -> read current Start menu -> one Escape -> new screenshot confirms menuclosed and empty PowerShell prompt",
+      "result": "NormalUI restored without security/policy/sharing changes; no fixture or observer launch."
+    },
+    {
+      "local_minute": "2026-11-01 after 14:47 +08",
+      "event": "Snapshot metadata query lost characters; complete displayed line differed from intended query",
+      "submitted": false,
+      "result": "No guest metadata-query result or snapshot upload claimed. Original fixture had already naturally exited0; no replay."
+    },
+    {
+      "event": "Ordinary Ctrl+C/Escape and guest clicks/characters did not provide confirmed cancellation/input",
+      "action": "Existing native Ctrl+Break selected once",
+      "result": "Actual PowerShell own [DBG] prompt appeared; not game/native debugger attach. q attempted but never visibly present or submitted. Ctrl+Break is not a general Ctrl+C replacement."
+    },
+    {
+      "event": "Config AX and screenshot transiently described different surfaces",
+      "action": "Fresh full AX/state and normal window Raise used before following actions",
+      "result": "Fresh indices/surface needed; initial unchanged state is not independent proof that a window command was not delivered."
+    },
+    {
+      "event": "Existing native keyboard Ctrl+Alt and Win+Q used without editing shortcut definitions",
+      "result": "Win+Q visibly opened Windows Search; ordinary typeText(osk) and physical o still not visible. Native menu success is not ordinary-input success."
+    },
+    {
+      "event": "Bounded input-mode selection not applied",
+      "evidence": "analysis/game-text-observer-runtime-v1/input-mode-experiment.json",
+      "result": "setValue notsettable; normal combo clicks/Space/target text yielded no selected-value change. Last actual mouse and keyboard Auto-detect. No configuration backend or disabled-control workaround."
+    },
+    {
+      "event": "Final config closure",
+      "action": "File > Close Window",
+      "result": "Existing running VM/Search and PowerShell own empty DBG prompt visible. No VM pause/shutdown/restart or new fixture/game execution."
+    }
+  ],
+  "root_cause": "unverified; neither loss of focus nor tool buffering alone proved",
+  "manual_user_interaction_requested": false,
+  "policy_or_sharing_changes": false,
+  "current_status": "ordinary_guest_input_unresolved_after_successful_original_fixture_run",
+  "final_guest_state": {
+    "search_panel": "open; test text not visible",
+    "powershell": "own [DBG] prompt empty; exit not proved",
+    "original_fixture": "retained process exited0; no new execution",
+    "snapshot_upload": "not started",
+    "new_manual_request": false
+  }
+}

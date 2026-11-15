@@ -1,0 +1,37 @@
+{
+  "schema": "moli.stage113.variant-static-input-plan.v1",
+  "id": "stage113-cg-se-6000-static-input-once",
+  "recorded_utc": "2026-10-30T14:43:33.282519+00:00",
+  "purpose": "Obtain a distinct manifest-declared game variant as static REA input; determine whether it exposes game consumer bytes without executing it",
+  "authority": "Existing user source-analysis and network-test scope; download and static parsing only",
+  "source_manifest_sha256": "586f70c1e21b5c3793a7ca1b4b908f67fa27abd90ca0165f798ab52296a62bc2",
+  "manifest_operation": {
+    "blockOrdinal": 374,
+    "operation": "create",
+    "fields": {
+      "name": "cg_se_6000.exe",
+      "size": "1757184",
+      "md5": "580251052e71d1e24dc620e5ac84b20a"
+    }
+  },
+  "selected_current_game": "cg_se_3000.exe",
+  "selected_current_game_already_matches_manifest": true,
+  "do_not_assume_same_build_or_protocol": true,
+  "expected_name": "cg_se_6000.exe",
+  "expected_bytes": 1757184,
+  "expected_md5": "580251052e71d1e24dc620e5ac84b20a",
+  "url": "http://221.122.108.10/cg50//cg_se_6000.exe.bz2?time=1793371413",
+  "url_format_evidence": "Patcher 195f3afd... 0x4123b0; existing web/launcher-game-patch.mjs raw empty-directory concatenation",
+  "maximum_requests": 1,
+  "maximum_archive_bytes": 4194304,
+  "deadline_ms": 15000,
+  "redirects_or_retries": false,
+  "cookies_or_auth": false,
+  "private_output": "build/analysis/launcher-current-entry-v1/variant6000/cg_se_6000.observed-update.exe",
+  "extract_policy": "Existing pure ZIP/CRC decoder; require one non-directory exact-name entry and exact declared payload length/MD5; output to fixed private filename",
+  "execution": false,
+  "install_writes": false,
+  "protection_bypass": false,
+  "publisher_authentication": "unverified",
+  "full_goal_complete": false
+}

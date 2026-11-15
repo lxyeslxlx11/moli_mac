@@ -1,0 +1,1185 @@
+{
+  "schema": "moli.legacy-actors-contract-stage157.v1",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "tools": {
+    "rea": "6.7.0",
+    "ghidra": "12.1.4",
+    "analysis_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+    "GNU_objdump": "2.47.20260726"
+  },
+  "scope": "fixed37c4 actor lifecycle, ordinary remote movement interpolation/projection, resource-ID compatibility and sourced movement serialization; full game incomplete",
+  "facts": {
+    "operations": [
+      {
+        "kind": "context",
+        "id": "receive-00567d80",
+        "tag": "@Qu",
+        "consumer": "0x4f2bb0",
+        "evidence_id": "ev_e88924a9cfb01a4598e5fea55aae59f5f0c5203d8d9e5b23d4af5ae4a4952e31"
+      },
+      {
+        "kind": "units",
+        "id": "receive-00567cf0",
+        "tag": "H#|",
+        "consumer": "0x4f16d0",
+        "evidence_id": "ev_50c72c1f5e21230f7b2021d1c7d11541250d40ef914723a5ad50a3d5e6d9e1b8"
+      },
+      {
+        "kind": "actions",
+        "id": "receive-00567ce4",
+        "tag": "Hx!",
+        "consumer": "0x4f2010",
+        "evidence_id": "ev_6de0edaa2f644599966243daef389f58d564066b1da4c990c594341620e2c743"
+      },
+      {
+        "kind": "remove",
+        "id": "receive-00567ce0",
+        "tag": "IZL",
+        "consumer": "0x4f2260",
+        "evidence_id": "ev_34cc0858d61c0ff94de039c2863c630902ff2abd2d2f3bf51d6952df93ea24c9"
+      }
+    ],
+    "catalog": "analysis/game-legacy-actors-v1/actor-catalog.json",
+    "character_columns": [
+      "category(decimal missing-1)",
+      "id(base62)",
+      "x(decimal0)",
+      "y(decimal0)",
+      "facing(decimal0)",
+      "rawResourceId(decimal0)",
+      "value7(decimal0)",
+      "value8(decimal missing-1)",
+      "label0(inner)",
+      "composite(inner then pipe+inner labels)",
+      "flag11(decimal0)",
+      "flag12(decimal0)",
+      "unused13(decimal0)",
+      "label4(inner)",
+      "mode15(decimal0)",
+      "value16(decimal0)",
+      "attachment17(raw unmodeled)"
+    ],
+    "selection": "field11 nonempty ->character, else field6 nonempty ->graphic object, else field4 nonempty ->numeric value object, else no-op; tab records use original whole source with2047-byte returned prefix",
+    "lifecycle": "Own ID comes from4f2bb0 field0 via4ff570; local actor separate from1000 remote registry; duplicate IDs update, comma removal stops at base62-1/empty; scene unconditionally clears remote registry via440450.",
+    "source_native_gaps": "Local scene destruction depends922c4c/f5f17c; full guards/party/ride/attachments/local prediction/collision and rendering not emulated.",
+    "motion": "4f2010 comma record: id,x,y,action(column4),facing(column5),parameter1,2,3. Remote action1 queues target, speed=parameter1; action50 queues only filtered targets without speed replacement;0 clears queue and sets idle,51 teleports/resets. Coordinated81/82 not ordinary actions.",
+    "interpolation": "43c360/43c700/43c6b0; queue<=10, overflow clears and teleports; queue length factors1/1.2f/1.6f/2, speed percent*source0.01f, normalized vector*4, float32 stores, squared-distance snap, trunc display grid; idle follows one tick after snap.",
+    "callback": "43ba10 GNU range bytes verified; calls43c700 only for remote non-0x200 entities, then463d70 projection; other frame/scene gates remain unknown.",
+    "direction": "4668a0 interpolates65 double degree table with source float32 spills/quadrants;463d30 adds112.5f, normalizes360 and multiplies source1/45f before trunc.",
+    "projection": "463d70: x=((worldX-cameraX)+(worldY-cameraY))/64*32+centerX; y=((worldY-cameraY)-(worldX-cameraX))/64*24+centerY, outputfloat32; native default center320,240 does not prescribe host viewport.",
+    "resources": "500a70/500b00/500c40, explicit mode context; ordered range classification/holes and remapping, grade3 subtract5000. No asset pixels or current entitlement/encoding assumptions.",
+    "movement_command": "461b70 reads path short bytes,462c80 adds0x61 modulo256,4f2c10 sends current grid origin+byte directions+scene field11 via send-004f6470; empty path produces no request. Collision/path construction and local prediction remain unknown.",
+    "local_animation": "4ff720 requests animation1 with resetPhase0; other requested animations use resetPhase1. Fixed PE globals for initial local speed not established; expose unknown until observed."
+  },
+  "independent_policy": {
+    "bytes": "ownedUint8Array/ArrayBuffer,32760; source firstNUL/pair scanning and bounded field prefixes preserved",
+    "registry": "Explicit unknown own-ID until context, remote1000 cap; validate batch before mutation, source allocation failure/unsafe NULL dereference replaced by bounded rejection.",
+    "coordinate_math": "Modeled motion accepts signed grid coordinates with nonoverflowing <<6,[-33554432,33554431]; decoder retains all source int32 fields. Finite float32 operations, host one-step scheduling explicit; no claim of native x87 bit identity.",
+    "scene": "Remote clear is sourced. Local conditional scene reset is exposed as unmodeled; host may explicitly remove/recreate, world projection does not pretend complete native UI state.",
+    "resource_context": "Unconfigured resolution remains null with raw ID retained; public resolver requires explicit unsigned code, no guessed runtime mode.",
+    "unsupported_actions": "Preserve source records and label unknown/coordinated or attachment-dependent actions unmodeled; ordinary unmounted movement only. Unknown native default action leaves actor unchanged.",
+    "globals": "Source local unit values update state-A field15/29/30; action1 own speed updates state-B field18 with source-1->100 behavior. Observed masked globals seed new local actor; no guessed other attribute names. Initial local source speed remains null until an observed source write; internal dormant local motion is never advanced by remote tick.",
+    "lifecycle": "Owned state and temporary buffers, transactional parse/budget errors; protocol next failures/EOF/close clear actor/key/map/world state; raw protocol remains byte/catalog mode.",
+    "flags": "Known set bits40/80 and ordinary mode2 set100 projected; conditional clear100/native byte guard and other attachment/party flags remain unmodeled."
+  },
+  "api": {
+    "actors": [
+      "LEGACY_GAME_ACTOR_PROFILE",
+      "LegacyGameActorError",
+      "decodeLegacyGameActorList",
+      "decodeLegacyGameActorActions",
+      "decodeLegacyGameActorRemovals",
+      "createLegacyGameActors"
+    ],
+    "motion": [
+      "LEGACY_GAME_MOTION_PROFILE",
+      "LegacyGameMotionError",
+      "legacyGameFacingCode",
+      "projectLegacyGamePosition",
+      "classifyLegacyGameActorResource",
+      "resolveLegacyGameActorResource",
+      "createLegacyGameActorMotion",
+      "encodeLegacyGameStepDirections",
+      "createLegacyGameMovementCommand"
+    ],
+    "protocol": [
+      "world actor context/unit/action/removal effects",
+      "advanceActors()",
+      "configureActorResources(code)",
+      "encodeMovement(origin,codes)",
+      "copyGameState().actors"
+    ],
+    "state": [
+      "applyActorGlobals(value15,label0,label1,speed) internal source bridge"
+    ]
+  },
+  "unknown": [
+    "Local input collision/pathfinding/prediction and native guard lifecycle",
+    "Compound party/ride/attachment/action effects",
+    "Resource availability/palette/animation/pixel renderer and host integration",
+    "Other business consumers/full control/authentication",
+    "Current version and actual native/official playable acceptance"
+  ],
+  "functions": [
+    {
+      "id": "ev_0289b26f5a819d8ced0fd966aa7baf4c2831fe677073834ce13d6c623157d2c5",
+      "requested": "0x4ff560",
+      "entry": "0x4ff510",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4ff568",
+            "start": "0x4ff510"
+          }
+        ],
+        "span_bytes": 89,
+        "total_bytes": 89
+      },
+      "assembly_rows": 22,
+      "pseudocode_characters": 474,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_05a7e3b7a2264895f5c06ac0965a06b16f157f7ae120dcdc2b3b965b566f3436",
+      "requested": "0x43f070",
+      "entry": "0x43f070",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x43f0f3",
+            "start": "0x43f070"
+          }
+        ],
+        "span_bytes": 132,
+        "total_bytes": 132
+      },
+      "assembly_rows": 51,
+      "pseudocode_characters": 905,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_100070ef688a9747010435452f785f9d5b3d04d48e9cf104e6573b3137790af2",
+      "requested": "0x43f380",
+      "entry": "0x43f380",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x43fa09",
+            "start": "0x43f380"
+          }
+        ],
+        "span_bytes": 1674,
+        "total_bytes": 1674
+      },
+      "assembly_rows": 507,
+      "pseudocode_characters": 14185,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_1bd1fa10270b74e5484a537657bc057496b6ebdce7679da7eb9b9b069c6b3a9a",
+      "requested": "0x4ff750",
+      "entry": "0x4ff750",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4ffa97",
+            "start": "0x4ff750"
+          }
+        ],
+        "span_bytes": 840,
+        "total_bytes": 840
+      },
+      "assembly_rows": 274,
+      "pseudocode_characters": 7989,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_1ef212ef00141a9464f7c59b0c653bf014113ebf5e1c7e21247126f351445694",
+      "requested": "0x409e70",
+      "entry": "0x409e70",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x409fd1",
+            "start": "0x409e70"
+          }
+        ],
+        "span_bytes": 354,
+        "total_bytes": 354
+      },
+      "assembly_rows": 118,
+      "pseudocode_characters": 1987,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_22ff9ebb90affa80c5d42d213ae308fa651e0f21b88a434a8d3c1a34cf998d06",
+      "requested": "0x43cd00",
+      "entry": "0x43cd00",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x43ce18",
+            "start": "0x43cd00"
+          }
+        ],
+        "span_bytes": 281,
+        "total_bytes": 281
+      },
+      "assembly_rows": 66,
+      "pseudocode_characters": 1127,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_2ae7af2f30a53492c1e999dd32533ebd0cbbba2a12b5206975876243838cf45b",
+      "requested": "0x43c700",
+      "entry": "0x43c700",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x43c97c",
+            "start": "0x43c700"
+          }
+        ],
+        "span_bytes": 637,
+        "total_bytes": 637
+      },
+      "assembly_rows": 168,
+      "pseudocode_characters": 2741,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_2cf7d039789d0dccdbf3369a0c2844f98782c93dde0256dd9ce8899d1cad74ca",
+      "requested": "0x43c210",
+      "entry": "0x43c210",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x43c356",
+            "start": "0x43c210"
+          }
+        ],
+        "span_bytes": 327,
+        "total_bytes": 327
+      },
+      "assembly_rows": 114,
+      "pseudocode_characters": 1946,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_2ec084ab1c262806c152059396466d5ea5c582f21ad614dd30af78fa184c7f66",
+      "requested": "0x440180",
+      "entry": "0x440180",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4401a2",
+            "start": "0x440180"
+          }
+        ],
+        "span_bytes": 35,
+        "total_bytes": 35
+      },
+      "assembly_rows": 13,
+      "pseudocode_characters": 190,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_34cc0858d61c0ff94de039c2863c630902ff2abd2d2f3bf51d6952df93ea24c9",
+      "requested": "0x4f2260",
+      "entry": "0x4f2260",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4f22d7",
+            "start": "0x4f2260"
+          }
+        ],
+        "span_bytes": 120,
+        "total_bytes": 120
+      },
+      "assembly_rows": 46,
+      "pseudocode_characters": 640,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_3952facaca83d178b3b2a47d7bedd4488cd9f213165e8f61eeb70e7ab31ca9d4",
+      "requested": "0x4668a0",
+      "entry": "0x4668a0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4669fe",
+            "start": "0x4668a0"
+          }
+        ],
+        "span_bytes": 351,
+        "total_bytes": 351
+      },
+      "assembly_rows": 114,
+      "pseudocode_characters": 1279,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_3f90da34bbd3c34e89deaaef2ab9d832690c7b89270abab7a5c0bc9476711861",
+      "requested": "0x4ff570",
+      "entry": "0x4ff570",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4ff579",
+            "start": "0x4ff570"
+          }
+        ],
+        "span_bytes": 10,
+        "total_bytes": 10
+      },
+      "assembly_rows": 3,
+      "pseudocode_characters": 81,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_42faa4bebc5fc295c3987f42de14b0cfcb882558d54df19f1fb24343b5512f91",
+      "requested": "0x466820",
+      "entry": "0x466820",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x46685a",
+            "start": "0x466820"
+          }
+        ],
+        "span_bytes": 59,
+        "total_bytes": 59
+      },
+      "assembly_rows": 20,
+      "pseudocode_characters": 211,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_4731598eaf7fb715aab5ef25cfec3a183f08f9e0edc8ef47e1a3d1f15ee987fe",
+      "requested": "0x43fcd0",
+      "entry": "0x43fcd0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x43fee9",
+            "start": "0x43fcd0"
+          }
+        ],
+        "span_bytes": 538,
+        "total_bytes": 538
+      },
+      "assembly_rows": 158,
+      "pseudocode_characters": 4260,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_47bb1e8d35384afc10629f64d07081ecb243eb8bede8a4fd3fa5cd8a18d14983",
+      "requested": "0x440280",
+      "entry": "0x440280",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4403ea",
+            "start": "0x440280"
+          }
+        ],
+        "span_bytes": 363,
+        "total_bytes": 363
+      },
+      "assembly_rows": 120,
+      "pseudocode_characters": 2202,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_50c72c1f5e21230f7b2021d1c7d11541250d40ef914723a5ad50a3d5e6d9e1b8",
+      "requested": "0x4f16d0",
+      "entry": "0x4f16d0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4f200f",
+            "start": "0x4f16d0"
+          }
+        ],
+        "span_bytes": 2368,
+        "total_bytes": 2368
+      },
+      "assembly_rows": 708,
+      "pseudocode_characters": 7520,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_5330c53d1e9af85bda48ca19a097d5d5408f571d140fd704a2c1c0d09f63eecd",
+      "requested": "0x4ff510",
+      "entry": "0x4ff510",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4ff568",
+            "start": "0x4ff510"
+          }
+        ],
+        "span_bytes": 89,
+        "total_bytes": 89
+      },
+      "assembly_rows": 22,
+      "pseudocode_characters": 474,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_54d87a9a18d47e75aef6204b48127968ac4d4d6693b14225716a3189ab0f6d86",
+      "requested": "0x440250",
+      "entry": "0x440250",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x440271",
+            "start": "0x440250"
+          }
+        ],
+        "span_bytes": 34,
+        "total_bytes": 34
+      },
+      "assembly_rows": 12,
+      "pseudocode_characters": 177,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_5e8f037546e1d24af359f27738deea5e3fc26674e64bafbdab317f9803746e26",
+      "requested": "0x466ab0",
+      "entry": "0x466ab0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x466ace",
+            "start": "0x466ab0"
+          }
+        ],
+        "span_bytes": 31,
+        "total_bytes": 31
+      },
+      "assembly_rows": 12,
+      "pseudocode_characters": 262,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_6454b7827925c295505d6a4c527976396d161158505ac5d86cbcaf1b1576125f",
+      "requested": "0x440450",
+      "entry": "0x440450",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x44056c",
+            "start": "0x440450"
+          }
+        ],
+        "span_bytes": 285,
+        "total_bytes": 285
+      },
+      "assembly_rows": 88,
+      "pseudocode_characters": 1805,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_6a9d4b8f0bd7fb32659905a3a5a270a2b5ad6ecac5b6a78c81903ce23f973d63",
+      "requested": "0x500a70",
+      "entry": "0x500a70",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x500afd",
+            "start": "0x500a70"
+          }
+        ],
+        "span_bytes": 142,
+        "total_bytes": 142
+      },
+      "assembly_rows": 56,
+      "pseudocode_characters": 741,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_6cc89791ee741db32b17713b90554d485f603b66a7073fd959e8329c05205f76",
+      "requested": "0x43c000",
+      "entry": "0x43c000",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x43c1a2",
+            "start": "0x43c000"
+          }
+        ],
+        "span_bytes": 419,
+        "total_bytes": 419
+      },
+      "assembly_rows": 109,
+      "pseudocode_characters": 1736,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_6de0edaa2f644599966243daef389f58d564066b1da4c990c594341620e2c743",
+      "requested": "0x4f2010",
+      "entry": "0x4f2010",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4f2251",
+            "start": "0x4f2010"
+          }
+        ],
+        "span_bytes": 578,
+        "total_bytes": 578
+      },
+      "assembly_rows": 193,
+      "pseudocode_characters": 2162,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_877cd5be32c6ee77fc66b2405c893c77c7b96a454b722a3e66c0eea75d17a1ea",
+      "requested": "0x4f2c10",
+      "entry": "0x4f2c10",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4f2c34",
+            "start": "0x4f2c10"
+          }
+        ],
+        "span_bytes": 37,
+        "total_bytes": 37
+      },
+      "assembly_rows": 13,
+      "pseudocode_characters": 160,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_892597faadb3779b70fd58832e36dedd197b76be20150c3673f5b5ed1e05d82e",
+      "requested": "0x4ffaa0",
+      "entry": "0x4ffaa0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4ffb8c",
+            "start": "0x4ffaa0"
+          }
+        ],
+        "span_bytes": 237,
+        "total_bytes": 237
+      },
+      "assembly_rows": 72,
+      "pseudocode_characters": 2452,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_91c78088008f4e5bf31c70a08c662da12ea3809ee26e1d648d823318b53b935c",
+      "requested": "0x43fef0",
+      "entry": "0x43fef0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4400d9",
+            "start": "0x43fef0"
+          }
+        ],
+        "span_bytes": 490,
+        "total_bytes": 490
+      },
+      "assembly_rows": 148,
+      "pseudocode_characters": 4034,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_9537c19c88adadd792666c91d97e24b697791032ce4ce2c6f5412af68c0c8e9b",
+      "requested": "0x43b420",
+      "entry": "0x43b420",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x43b43b",
+            "start": "0x43b420"
+          }
+        ],
+        "span_bytes": 28,
+        "total_bytes": 28
+      },
+      "assembly_rows": 9,
+      "pseudocode_characters": 123,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_ae4122b6e387c9012cfb5506b789418abab745ddf8f83a39157022a53046be6a",
+      "requested": "0x4ff430",
+      "entry": "0x4ff430",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4ff50d",
+            "start": "0x4ff430"
+          }
+        ],
+        "span_bytes": 222,
+        "total_bytes": 222
+      },
+      "assembly_rows": 78,
+      "pseudocode_characters": 1342,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_b862e42213b352b02be1546e803a82452efe422e8ee8326bc4b4a93888e2705f",
+      "requested": "0x4ff3b0",
+      "entry": "0x4ff3b0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4ff421",
+            "start": "0x4ff3b0"
+          }
+        ],
+        "span_bytes": 114,
+        "total_bytes": 114
+      },
+      "assembly_rows": 34,
+      "pseudocode_characters": 522,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_bb7565d1186a741c7bff7fe9100ad17de95937a3b1bde72a1fda05522f818ca0",
+      "requested": "0x4400e0",
+      "entry": "0x4400e0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x44017e",
+            "start": "0x4400e0"
+          }
+        ],
+        "span_bytes": 159,
+        "total_bytes": 159
+      },
+      "assembly_rows": 48,
+      "pseudocode_characters": 926,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_c00b112f6644a9962b8908f9396ec37f5c6aae5a24bbd891c1110c206a46686e",
+      "requested": "0x443a80",
+      "entry": "0x443a80",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x443aa9",
+            "start": "0x443a80"
+          }
+        ],
+        "span_bytes": 42,
+        "total_bytes": 42
+      },
+      "assembly_rows": 13,
+      "pseudocode_characters": 265,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_c191ba59eaeff743db71bdfa829a9c3ecde8fad4934d77fe4e247ef0f602be1e",
+      "requested": "0x43b1f0",
+      "entry": "0x43b1f0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x43b411",
+            "start": "0x43b1f0"
+          }
+        ],
+        "span_bytes": 546,
+        "total_bytes": 546
+      },
+      "assembly_rows": 186,
+      "pseudocode_characters": 2623,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_c5c99d3bd059be9cd2c53028fcda20fcd9f69efd1003319cb998511593616316",
+      "requested": "0x500b00",
+      "entry": "0x500b00",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x500c3e",
+            "start": "0x500b00"
+          }
+        ],
+        "span_bytes": 319,
+        "total_bytes": 319
+      },
+      "assembly_rows": 95,
+      "pseudocode_characters": 1233,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_c673b8425db87f3fb743eee5c4d151081efa2bb8cf615b7022787193ef4f26f8",
+      "requested": "0x463d70",
+      "entry": "0x463d70",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x463dbc",
+            "start": "0x463d70"
+          }
+        ],
+        "span_bytes": 77,
+        "total_bytes": 77
+      },
+      "assembly_rows": 19,
+      "pseudocode_characters": 429,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_c8e60b0c76b41423a3fa2367cec7ed7b8dff71b5f4dd115ba17c4ea8edf880ba",
+      "requested": "0x4401b0",
+      "entry": "0x4401b0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4401e6",
+            "start": "0x4401b0"
+          }
+        ],
+        "span_bytes": 55,
+        "total_bytes": 55
+      },
+      "assembly_rows": 17,
+      "pseudocode_characters": 237,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_cac0caa0ceddf1c1eb66592eb719e766db4616c75499e0d703634df47f081e7b",
+      "requested": "0x43c1b0",
+      "entry": "0x43c1b0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x43c209",
+            "start": "0x43c1b0"
+          }
+        ],
+        "span_bytes": 90,
+        "total_bytes": 90
+      },
+      "assembly_rows": 23,
+      "pseudocode_characters": 507,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_ce2a14f9411f6af98c623b804c4d283cd36acbbd1cdd6e5a543e563d8d118814",
+      "requested": "0x500c40",
+      "entry": "0x500c40",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x500d37",
+            "start": "0x500c40"
+          }
+        ],
+        "span_bytes": 248,
+        "total_bytes": 248
+      },
+      "assembly_rows": 75,
+      "pseudocode_characters": 977,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_d2565fa133750dbc119c9f3b3a2fb3d761361fbcfc9edc8f1e74e4f7a5c764ce",
+      "requested": "0x43d150",
+      "entry": "0x43d150",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x43e20a",
+            "start": "0x43d150"
+          }
+        ],
+        "span_bytes": 4283,
+        "total_bytes": 4283
+      },
+      "assembly_rows": 1244,
+      "pseudocode_characters": 19630,
+      "value_flow_truncated": true
+    },
+    {
+      "id": "ev_d4fb9626c72da516491a4575210fb6ebbe416f808026ab7d6ecf4955058e8ca5",
+      "requested": "0x443a50",
+      "entry": "0x443a50",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x443a7b",
+            "start": "0x443a50"
+          }
+        ],
+        "span_bytes": 44,
+        "total_bytes": 44
+      },
+      "assembly_rows": 13,
+      "pseudocode_characters": 284,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_d75a581cd5e56918ad0160a34f570fe30623d0a1945a69d19e3f3cd553b97987",
+      "requested": "0x461b70",
+      "entry": "0x461b70",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x461bec",
+            "start": "0x461b70"
+          }
+        ],
+        "span_bytes": 125,
+        "total_bytes": 125
+      },
+      "assembly_rows": 38,
+      "pseudocode_characters": 763,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_dbcd240f41332b0a3452f47f3133af9dbd4f6c7e884db5ce3bac4873f138938b",
+      "requested": "0x43e610",
+      "entry": "0x43e610",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x43ef6b",
+            "start": "0x43e610"
+          }
+        ],
+        "span_bytes": 2396,
+        "total_bytes": 2396
+      },
+      "assembly_rows": 841,
+      "pseudocode_characters": 10967,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_dc502d1f5ee3cd00e2b884c1b95f7bd5d8440758a2d18b85799763cf00cfee7e",
+      "requested": "0x439a70",
+      "entry": "0x439a70",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x439bab",
+            "start": "0x439a70"
+          }
+        ],
+        "span_bytes": 316,
+        "total_bytes": 316
+      },
+      "assembly_rows": 71,
+      "pseudocode_characters": 1792,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_e3bf0641e0c4b991f5196e91956a10ee8a15953eac057a4c8256f5894d9fcf04",
+      "requested": "0x43c360",
+      "entry": "0x43c360",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x43c531",
+            "start": "0x43c360"
+          }
+        ],
+        "span_bytes": 466,
+        "total_bytes": 466
+      },
+      "assembly_rows": 126,
+      "pseudocode_characters": 1678,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_e88924a9cfb01a4598e5fea55aae59f5f0c5203d8d9e5b23d4af5ae4a4952e31",
+      "requested": "0x4f2bb0",
+      "entry": "0x4f2bb0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4f2c07",
+            "start": "0x4f2bb0"
+          }
+        ],
+        "span_bytes": 88,
+        "total_bytes": 88
+      },
+      "assembly_rows": 22,
+      "pseudocode_characters": 395,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_f1c77fa6a451fbf4c28f3746be5268f06a31a071a38f57b5e2621643ddf029c7",
+      "requested": "0x462c80",
+      "entry": "0x462c80",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x462c91",
+            "start": "0x462c80"
+          }
+        ],
+        "span_bytes": 18,
+        "total_bytes": 18
+      },
+      "assembly_rows": 8,
+      "pseudocode_characters": 127,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_f991b723a334c8f1d9867f73be6952eb142a29947558f46032b762322792dc91",
+      "requested": "0x4ff720",
+      "entry": "0x4ff720",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x4ff74b",
+            "start": "0x4ff720"
+          }
+        ],
+        "span_bytes": 44,
+        "total_bytes": 44
+      },
+      "assembly_rows": 18,
+      "pseudocode_characters": 203,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_fdf798ccb0288478d40c7d7a1deb981511ad0d5a6d6040494e011d2b888ccf88",
+      "requested": "0x43c6b0",
+      "entry": "0x43c6b0",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x43c6f9",
+            "start": "0x43c6b0"
+          }
+        ],
+        "span_bytes": 74,
+        "total_bytes": 74
+      },
+      "assembly_rows": 24,
+      "pseudocode_characters": 526,
+      "value_flow_truncated": false
+    },
+    {
+      "id": "ev_ff7b5634615bb91d7d417e88e96796c67a81feb930cfa79642be34342bd5789b",
+      "requested": "0x4ffe10",
+      "entry": "0x4ffe10",
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x5003f0",
+            "start": "0x4ffe10"
+          }
+        ],
+        "span_bytes": 1505,
+        "total_bytes": 1505
+      },
+      "assembly_rows": 549,
+      "pseudocode_characters": 5961,
+      "value_flow_truncated": false
+    }
+  ]
+}

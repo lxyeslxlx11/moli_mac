@@ -1,0 +1,228 @@
+{
+  "schema": "moli.launcher-v14.validation.v1",
+  "recorded_utc": "2026-10-27T01:19:54.818637+00:00",
+  "scope": "Fixed native catalog-write/error/parse static boundary plus independent explicit-endpoint initialization and browser candidate-pair store. Original loopback and owned temporary IDB only.",
+  "node": {
+    "version": "v26.9.0",
+    "tests": 285,
+    "pass": 285,
+    "fail": 0,
+    "skipped": 0,
+    "previous_tests": 263,
+    "new_tests": 22,
+    "new_groups": {
+      "raw_digest": 3,
+      "catalog_pair": 3,
+      "bootstrap": 16
+    },
+    "command": "node --test shared/tests/*.test.mjs web/tests/*.test.mjs",
+    "log": "node-tests.log"
+  },
+  "static": {
+    "sample_sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "tools": {
+      "REA": "6.7.0",
+      "Ghidra": "12.1.4"
+    },
+    "restored_snapshot": "launcher-v13 main launcher",
+    "added_function_dossiers": 6,
+    "records": 239,
+    "fixed_anchors": 31,
+    "negative_identities_rejected": [
+      "modified",
+      "truncated",
+      "empty"
+    ],
+    "spec": "static-spec.json",
+    "producer": "catalog-producer.json",
+    "audit": "catalog-write-audit.json",
+    "session": "exported/snapshotted/closed",
+    "limits": "Native write helpers can throw; producer no explicit return check is not no error handling. Scoped half-update reachability is not a disk execution/global rollback absence proof."
+  },
+  "bootstrap": {
+    "actual_loopback": true,
+    "four_change_combinations": true,
+    "order": "self/locator/package candidate before XML; otherwise GameList then RegionList only when hashes differ",
+    "validation": "raw digest, explicit UTF8/GB18030 and whole XML pair before returning candidate",
+    "covered_failures": "bad metadata/digest/XML/encoding, HTTP failure, total delayed-timer deadline, ignored abort/provider rejection, mutation snapshots and independent cancellation",
+    "automatic_cache_commit": false,
+    "authentication": "unverified",
+    "execution": "not-performed"
+  },
+  "candidate_cache": {
+    "platform": "Native Chrome IndexedDB in independent temporary context",
+    "unit": "One pair record, explicit profile/schema and revision CAS",
+    "verified": [
+      "empty/read/commit",
+      "injected put failure",
+      "native transaction abort after put preserves old pair",
+      "valid pair commit/read ownership",
+      "native complete-event late cancellation reports committed",
+      "concurrent expected-revision conflict",
+      "candidate and expected-revision input mutation",
+      "pre/mid cancellation and invalid candidate",
+      "corrupt record and unknown schema refusal",
+      "failed later download leaves committed pair",
+      "self-update candidate does not commit",
+      "page reload recovers revision5"
+    ],
+    "power_loss_or_native_file_transaction_verified": false
+  },
+  "browser": {
+    "browser": "155.0.8059.85",
+    "driver": "Existing Playwright1.62.1; independent temporary headless context",
+    "checks": 12,
+    "requests": 51,
+    "all_loopback_get": true,
+    "positive_console_errors": 0,
+    "positive_request_failures": 0,
+    "expected_negative_console_messages": 1,
+    "expected_negative_request_failures": 1,
+    "receipt": "browser-bootstrap-smoke.json",
+    "committed_reload_revision": 5,
+    "scope": "Original test harness, original catalogs/ZIP and explicit owned IDB profiles. Test hooks restored in finally; not production UI."
+  },
+  "review": {
+    "independent_read_only": true,
+    "node_tests_executed": 19,
+    "pass": 19,
+    "reproducible_defects_found": 0,
+    "scope": "bootstrap16 and catalog-data3; ownership, branch order/deadline, pair validation, store CAS/complete/abort statically reviewed",
+    "limitation": "Reviewer did not independently run IDB; native browser evidence above is parent-run"
+  },
+  "syntax": {
+    "esm_files": 10,
+    "python_ast_files": 1,
+    "passed": true
+  },
+  "example": {
+    "path": "example-output.json",
+    "exit_code": 0,
+    "requests": 4,
+    "games": 2,
+    "regions": 3,
+    "cache_committed": false,
+    "original_files_written": 0
+  },
+  "dependencies": {
+    "new_installs": 0,
+    "new_package_downloads": 0,
+    "lifecycle_scripts": 0,
+    "fake_indexeddb_used": false,
+    "reused": "Existing Node26.9.0, Python stdlib, REA6.7.0/Ghidra12.1.4, Playwright1.62.1 and Chrome155",
+    "primary_sources": [
+      "https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea",
+      "https://w3c.github.io/IndexedDB/#transaction-lifetime",
+      "https://w3c.github.io/IndexedDB/#dom-idbtransaction-abort",
+      "https://w3c.github.io/IndexedDB/#transaction-commit"
+    ]
+  },
+  "sources": [
+    {
+      "path": "shared/launcher-manifest.mjs",
+      "bytes": 6696,
+      "sha256": "486ea3b05c9158a907992d231b8a40cdc49511096d63e89aa7653d8de0268d0b"
+    },
+    {
+      "path": "shared/index.mjs",
+      "bytes": 11029,
+      "sha256": "90bcb74cce3c9fe7e437db3f351881c2b618d1d233d3fb03d5a96b060cf8aa69"
+    },
+    {
+      "path": "web/launcher-bootstrap.mjs",
+      "bytes": 7451,
+      "sha256": "9013d7c22067a44163d4e68a7f8b3c43f0df5a7b991faf7fa81a5fb5db3b9647"
+    },
+    {
+      "path": "web/launcher-catalog-data.mjs",
+      "bytes": 2962,
+      "sha256": "76b062b9ecd70e2d43958720b791b6cddf257745d381a9d8997d29978aed4eca"
+    },
+    {
+      "path": "web/launcher-candidate-store.mjs",
+      "bytes": 7475,
+      "sha256": "5e0e4e24d83e6d2895efd084ec7c183e9e187308e07e3c204c76f6a744a8eca3"
+    },
+    {
+      "path": "shared/tests/launcher-file-digest.test.mjs",
+      "bytes": 1605,
+      "sha256": "f41c9f0d000e7c19d0e1db3f06efefc68d42700dd0dba3b0c24b284ba148b5f7"
+    },
+    {
+      "path": "web/tests/launcher-catalog-data.test.mjs",
+      "bytes": 1976,
+      "sha256": "bac2b7de7c036aab07add8cfd901b924ba956bcc812c390d83def93fd1b520f8"
+    },
+    {
+      "path": "web/tests/launcher-bootstrap.test.mjs",
+      "bytes": 10456,
+      "sha256": "950829c51b422dbc73e033b004168a242fb80c3a5e4b506f836685abf9c13d2c"
+    },
+    {
+      "path": "web/tests/helpers/launcher-bootstrap-fixture.mjs",
+      "bytes": 4499,
+      "sha256": "636d9ad23a447ebcf722ea62966b4e28052d69f7dd4cd614a7583c27d939df5e"
+    },
+    {
+      "path": "web/examples/launcher-bootstrap-local.mjs",
+      "bytes": 1232,
+      "sha256": "ebbc137990199ab357c3091d918641034ad7282b5ef04f70ac4591d8d506e337"
+    },
+    {
+      "path": "analysis/launcher-v14/verify_catalog_write.py",
+      "bytes": 3921,
+      "sha256": "5d07f909002252eaf31451acc358ec29aeb0fb68a90c4dcf01cdbaf471a5ec05"
+    }
+  ],
+  "not_verified": [
+    "Official endpoints/CORS/source trust/current metadata",
+    "Complete native EH/rollback and real file replacement/restart/durability",
+    "All IDB blocked/crash/power-loss and other browsers",
+    "Actual UI wiring, real terms/account/session, TCP platform/game and official interoperability",
+    "Safari/mobile/miniprogram, unchanged old page real-file/narrow and Python/Swift resource suites not rerun"
+  ],
+  "preservation": {
+    "previous_delivery_files_verified_before_edits": 719,
+    "native_files": 17,
+    "all_native_match_stage58": true,
+    "untouched_shared_files": 60,
+    "all_other_shared_match_stage58": true,
+    "existing_ui_http_server_hashes_match": [
+      "scripts/serve_web.py",
+      "web/launcher-http.mjs",
+      "web/launcher.html",
+      "web/launcher-app.mjs",
+      "web/index.html",
+      "web/app.mjs"
+    ],
+    "private_bundle_snapshot_hashes_match": true,
+    "fixed_source_hash_matches": true,
+    "original_execution": false,
+    "official_requests": false,
+    "vm_operations": false,
+    "account_reads": false,
+    "original_file_update": false,
+    "git_repository": false
+  },
+  "documentation": {
+    "markdown_files": [
+      "README.md",
+      "shared/README.md",
+      "web/README.md",
+      "reports/development-plan.md",
+      "reports/launcher-static.md",
+      "reports/logic-protocol-spec.md",
+      "reports/architecture-and-milestones.md",
+      "reports/module-interfaces.md",
+      "reports/resource-formats.md",
+      "reports/validation.md",
+      "reports/known-issues.md",
+      "reports/analysis-methods.md"
+    ],
+    "relative_local_links_checked": 841,
+    "missing": [],
+    "matrix_revision": 7,
+    "matrix_entries_unique": 20,
+    "matrix_dependencies_evidence_paths_valid": true
+  }
+}

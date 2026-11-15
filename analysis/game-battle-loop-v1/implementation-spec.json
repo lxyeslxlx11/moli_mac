@@ -1,0 +1,24 @@
+{
+  "schema": "moli.battle-loop-spec-stage187.v1",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "classification": "source-derived contract before implementation; local scope only",
+  "full_requirement": "Retain original launcher/game and web/mobile-web/WeChat goal, all battle actions, native input/UI/resources, exit7/8/9/ordinary return and platform/current/official acceptance.",
+  "source_contracts": [
+    {"fact": "437b30 case5 calls409fe0 then419930/506e80 before reading exactly one four-slot M; case6 only callbacks/frame, no M read. The switch branch remains the branch selected before callbacks change the global substate.", "sources": ["0x437b30", "0x4379d0"]},
+    {"fact": "Derived4365d0 waits for actual command mask and434b90 body readiness at EOF, increments599d2c modulo2^32, requests substate2. END instead requests7 without incrementing the round.", "sources": ["derived:0x4365d0", "derived:0x4260b0", "0x434b90"]},
+    {"fact": "Source receipt A marks actor flags40 only for the current599d2c; the automatic callback owner must synchronize its private round counter before the next incoming A.", "sources": ["0x437b30", "derived:0x4365d0", "analysis/game-battle-input-v1/source-check.json"]},
+    {"fact": "Exit7 clears command mask, stops callbacks, drains CHT/BST, clears22 pointers and captures the current framebuffer before falling through8. Exit8 fades using type12 or14, calls501a10(9,1), marks/deprojects actors and emits4f67f0(0). Exit9 requests7 via501a30 and is distinct.", "sources": ["0x437b30", "0x436cf0", "0x5029b0", "0x505030", "0x5029f0", "0x440570", "0x4f67f0", "0x501a10", "0x501a30"]},
+    {"fact": "5015a0 main9 calls501a50; its case1 requests11, then waits and rebuilds ordinary runtime before further entry fade. 44f3e0 queues text, not an ordinary-map readiness proof.", "sources": ["0x5015a0", "0x501a50", "0x44f3e0", "0x439c80"]}
+  ],
+  "intended_implementation": [
+    "Explicit owned loop configuration after entry; real phase5/6 frame/callback/M order, without caller-injected phases/readiness/handles",
+    "Actual supported command/body callbacks feeding substate2/7 and synchronized round/ACK ownership; unsupported handler/body outcomes remain explicit",
+    "Actual source/generated client render retries reuse the computed frame without another M dequeue or callback pass; reentry clears old loop state",
+    "Independent synthetic source scheduling/round vectors plus real startup and multi-round OS loopback TCP through source/generated API",
+    "Canonical docs, parent phase progress, requirement index and cumulative delivery kept current"
+  ],
+  "required_remaining": ["SKL and other15 command handlers, all body/actions/effects", "Exit7/8/9 and actual main9 ordinary-return consumers", "Full native input/menu/audio/hit and product web/touch/WeChat controls", "Other full gameplay, native WeChat gamePage/DevTools/device, current/official compatibility"],
+  "phase_complete": false,
+  "full_goal_complete": false,
+  "goal_status": "active"
+}

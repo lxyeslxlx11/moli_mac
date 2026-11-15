@@ -1,0 +1,1068 @@
+{
+  "schema": "moli.launcher-legacy-failure-contract.v1",
+  "classification": "原L03旧版具名失败frame与typed EH规则；静态闭合和有限纯目标对照",
+  "requirement": "先全需求REA成规，再按能力集中复刻；补LS-U1，不缩减原八组/两profile/40能力。",
+  "parent": {
+    "path": "analysis/capability-first-v1/launcher-session-functional-specification.json",
+    "bytes": 77719,
+    "sha256": "3fb04e1f227938110d1f141e9fedf4da02339e4a80f49cddf78ca10283fef010"
+  },
+  "source_profile": {
+    "id": "launcher-legacy-601b",
+    "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31",
+    "identity_record": "analysis/launcher-v7/preflight.json",
+    "scope": "固定旧版登录器；不等同更新版"
+  },
+  "source_review": {
+    "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+    "bytes": 68315,
+    "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+  },
+  "focused_probe": {
+    "path": "build/analysis/launcher-legacy-failure-v1/focused-probe.json",
+    "bytes": 335843,
+    "sha256": "808c17b4b0fd310233bafc5f809db8f84a78fa877423c2437a3c639ff6573954"
+  },
+  "selected_supersession": [
+    {
+      "id": "LS-U1",
+      "source": {
+        "file": {
+          "path": "analysis/capability-first-v1/launcher-session-functional-specification.json",
+          "bytes": 77719,
+          "sha256": "3fb04e1f227938110d1f141e9fedf4da02339e4a80f49cddf78ca10283fef010"
+        },
+        "pointer": "/remaining/0",
+        "canonical_sha256": "5d868d385ae6697b8aa3d7ab4378e0d37bc8836020ebf56c6be70c415b6ef29c"
+      },
+      "status": "selected-login-frame-source-rules-closed",
+      "scope": "Typed protected frame, valid-candidate ordinary retry/termination,source close/error predicates and explicit conditional boundaries; no original runtime acceptance."
+    }
+  ],
+  "external_primary_references": [
+    {
+      "url": "https://raw.githubusercontent.com/llvm/llvm-project/release/21.x/llvm/lib/CodeGen/AsmPrinter/WinException.cpp",
+      "bytes": 53767,
+      "sha256": "28753b54756460fb44deb3639db5156d93f4fa9d89f4f512595c4307fda3af17",
+      "purpose": "Primary LLVM emission layout reference for actual sample MSVC32 FuncInfo/TryBlockMap/HandlerType; no target execution.",
+      "local_copy": {
+        "path": "build/analysis/launcher-legacy-failure-v1/llvm-WinException.cpp",
+        "bytes": 53767,
+        "sha256": "28753b54756460fb44deb3639db5156d93f4fa9d89f4f512595c4307fda3af17"
+      }
+    },
+    {
+      "url": "https://raw.githubusercontent.com/llvm/llvm-project/release/21.x/clang/lib/CodeGen/MicrosoftCXXABI.cpp",
+      "bytes": 186598,
+      "sha256": "49e0a386d07db4f6b58816c023b21cc1ef6ee0459fc64cad57ad67e5369f206f",
+      "purpose": "Primary compiler source for ThrowInfo/CatchableTypeArray/TypeDescriptor layout; not game protocol evidence.",
+      "local_copy": {
+        "path": "build/analysis/launcher-legacy-failure-v1/llvm-MicrosoftCXXABI.cpp",
+        "bytes": 186598,
+        "sha256": "49e0a386d07db4f6b58816c023b21cc1ef6ee0459fc64cad57ad67e5369f206f"
+      }
+    }
+  ],
+  "facts": [
+    {
+      "id": "LE-F01",
+      "classification": "事实：固定601b样本静态规则",
+      "rule": "本合同仅补原L03旧版601b登录frame；c82f的独立规则、已闭DM材料以及原八组/两profile保持。只新增414e90/4693c0完整native和Exp构造器直接caller查询，其他完整源复用；父函数、catch和69字节非连续tail各按实际body留存。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/source_image",
+          "canonical_sha256": "2e66f47ca7f15d9d881fbe4dd9d69278aecb40b837d2308238abd633bffbf81b"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/summary",
+          "canonical_sha256": "8c96d99dd89729c7c1830a180373bf5ffd67ac765855c2fb58d17e79a239d43e"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-session-functional-specification.json",
+            "bytes": 77719,
+            "sha256": "3fb04e1f227938110d1f141e9fedf4da02339e4a80f49cddf78ca10283fef010"
+          },
+          "pointer": "/original_capability_review",
+          "canonical_sha256": "63ebd1b33bb26fa882d864924865debd899c8be6e01510c55e786ad367176d05"
+        }
+      ]
+    },
+    {
+      "id": "LE-F02",
+      "classification": "事实：固定601b样本静态规则",
+      "rule": "410df0 prologue使用4ad349分派veneer，其中立即数绑定FuncInfo4cb018。实际magic19930522、22unwind状态，唯一try为[11,11]、catchHigh12，handler41195e的类型descriptor4d34ec名为.?AVExp@cdll@@，adjectives原值8。本合同不把该处理器当catch-all或重解释未需要的flag位。布局按primary compiler reference核，业务结论来自原PE。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/EH",
+          "canonical_sha256": "df7b4f511ec275b62e2a49ffad710325b8d0f314f6cefd2641ab3177eaf41a6b"
+        }
+      ]
+    },
+    {
+      "id": "LE-F03",
+      "classification": "事实：固定601b样本静态规则",
+      "rule": "原ThrowInfo4cff90指向两个catchable项，第一项TypeDescriptor与该handler相同，第二项为cdll::Thr。已解析的Exp构造器静态直接caller只有4690c0、4693c0、46cbe0；三者所示throw均传4cff90。普通连接创建失败和同一frame内到达的context创建失败可按该类型关系进入state11处理器；其他类型或别的frame不能据此自动归类。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/EH/throw_info",
+          "canonical_sha256": "b6d3bb4cd841dc1e8538a4e0bb0ff6d73aa382028854d5eff13d06bef22aa11d"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/constructor_direct_callers",
+          "canonical_sha256": "4d30d941bb8765c16e367630258fbcce631b885226650538f3d20b4896622009"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/6",
+          "canonical_sha256": "6d30c3ce0cba9a50666bfc0e9d072eb0c6bed0277ac75b0266673cd8f537b8a2"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/17",
+          "canonical_sha256": "4e1627010452009f106cf93bb4f027452669906a7942d7dd00e703421822184e"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/10",
+          "canonical_sha256": "7a19329d035087e88124b2a40376f6a4b75855c0cb3e2221c30ae5c3e25bd9b4"
+        }
+      ]
+    },
+    {
+      "id": "LE-F04",
+      "classification": "事实：固定601b样本静态规则",
+      "rule": "原case3在非空输入/本地prelogin决定后设UI+1186=0，申请timer100/10000并保存返回值；41171b写parent EHstate11，随后禁用原控件并调用Connect46cbe0、wait46cf90和虚拟request10 sender。未通过前置不据此创建成功登录，SetTimer调用也不证明实际调度。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/0",
+          "canonical_sha256": "c7062f1026d0afd8f2d79d5614e30bd60a174f140220b2a8a13fc43bf2314197"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/3",
+          "canonical_sha256": "29980f320d2abbee8628100843225e7e63c3a0236bbea67fc616545529052a06"
+        }
+      ]
+    },
+    {
+      "id": "LE-F05",
+      "classification": "事实：固定601b样本静态规则",
+      "rule": "实际parent槽是initial EBP-5d8、wrappedLast EBP-5d4、current EBP-5cc、retry byte EBP-5cd和UI owner EBP-818。Ghidra Stack local命名与EBP偏移有4字节坐标差，不能把first/previous/current合并或将它们当request generation。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/frame_slots",
+          "canonical_sha256": "13523231f954aa204b718fdaaeda7ad86b307a084eaa9a5eb8568130acaa39f7"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/0",
+          "canonical_sha256": "c7062f1026d0afd8f2d79d5614e30bd60a174f140220b2a8a13fc43bf2314197"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/1",
+          "canonical_sha256": "5ca8a3466e13251e1e057617e34b6158d5463f744506fb8fadbbe5c554e0744e"
+        }
+      ]
+    },
+    {
+      "id": "LE-F06",
+      "classification": "事实：固定601b样本静态规则",
+      "rule": "处理匹配异常时，只有current!=wrappedLast且UI完成flag为0才推进(current+1)%count、拷原endpoint/port，置retry byte1，然后Close当前channel。该Close成功返回是所选正常retry序列条件；不将数字send错误或任意异常都映射为这个catch。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/1",
+          "canonical_sha256": "5ca8a3466e13251e1e057617e34b6158d5463f744506fb8fadbbe5c554e0744e"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/9",
+          "canonical_sha256": "d27dc3efa9217390804c41b1ff7a693f425331d31d0a9f7862b7058dafaced8d"
+        }
+      ]
+    },
+    {
+      "id": "LE-F07",
+      "classification": "事实：固定601b样本静态规则",
+      "rule": "当current==wrappedLast或完成flag非0，catch不再推进候选；但其局部清理块还要求current==initial-1这一未wrapped比较。valid initial>0的最终候选满足它，initial0的最终候选count-1不满足-1，所以该catch跳过这组timer/等待项/Close/控件恢复。不能据此报告必现崩溃或墙钟挂起。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/1",
+          "canonical_sha256": "5ca8a3466e13251e1e057617e34b6158d5463f744506fb8fadbbe5c554e0744e"
+        }
+      ]
+    },
+    {
+      "id": "LE-F08",
+      "classification": "事实：固定601b样本静态规则",
+      "rule": "普通sender返回走411bb9先改EHstate-1；catch末尾也改-1，但返回的续执行地址是411bc0。两路在retry byte处汇合，411bc9直接JNZ41171b；retry0则去412021公共UI尾。69字节tail跨两段body，源是同parent-frame跳转，不是伪代码显示的递归调用链。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/0",
+          "canonical_sha256": "c7062f1026d0afd8f2d79d5614e30bd60a174f140220b2a8a13fc43bf2314197"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/1",
+          "canonical_sha256": "5ca8a3466e13251e1e057617e34b6158d5463f744506fb8fadbbe5c554e0744e"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/2",
+          "canonical_sha256": "549c918f2e92ef0b391759ceddb651b02950038322f34d646de3afa00f141553"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/continuations",
+          "canonical_sha256": "f3d4dec21f212683fb13f0cf4a0aa82ecca29e582aff686b79c80287cbbf5761"
+        }
+      ]
+    },
+    {
+      "id": "LE-F09",
+      "classification": "事实：固定601b样本静态规则",
+      "rule": "新增414e90只按wizard stage调整+12c0控件、0x36a键盘提示timer，stage4可改bitmap，并隐藏提示/清1444。它不杀登录timer100/保存的12b8，不Close channel，也不补恢复74/dc那组输入。因此initial0最终catch跳过的即时清理没有被这个直接返回helper补上；其他稍后消息效果另列。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/16",
+          "canonical_sha256": "ec72d8c38db880c832dffa70590fd5cd3a7805940c03b9e4f6942f58467b2608"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/2",
+          "canonical_sha256": "549c918f2e92ef0b391759ceddb651b02950038322f34d646de3afa00f141553"
+        }
+      ]
+    },
+    {
+      "id": "LE-F10",
+      "classification": "事实：固定601b样本静态规则",
+      "rule": "46cf90对容量<=0持续service/Sleep1，无该局部的deadline、UI完成flag或取消退出。469200只是进入4738b0服务；所查直接体不把每个负容量值变成Exp。4729b0返回invalid handle/-44容量不足/-45长度等numeric结果，46d810/46cf30这条sender链没有所示Exp throw；wrapper低返回值作diagnostic，不能据send失败即启动typed retry。间接callback异常和真实调度未被排除。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/12",
+          "canonical_sha256": "75f2dd568bda5324dc9a140351b6f43581a712990536199ff1091e9ff8126e7e"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/7",
+          "canonical_sha256": "fe6b1e9dc45caa9c0aab3b0bce73ce8b469226eb2f94af25f5193e68ca8955a3"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/8",
+          "canonical_sha256": "e2992b68381f68e0986515a8bed93d631fa17407c9c9cded86e80dc1914550a9"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/15",
+          "canonical_sha256": "7919c586a610a8e2aa88e04aae9f99e516805c51563575d192e02c0813019ccb"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/13",
+          "canonical_sha256": "736524105f7e8ddd113d8cec47069ae20a65074570cd2ae52fc4a04b51e10780"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/11",
+          "canonical_sha256": "f2a5a7c4434dbd7bad2ac618ddba9184e5081266475456696ee2f535d21e143e"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/14",
+          "canonical_sha256": "9eeaf5692081c7f17bc378f0d49086f8a994d7e83ff233df5a077f410863597c"
+        }
+      ]
+    },
+    {
+      "id": "LE-F11",
+      "classification": "事实：固定601b样本静态规则",
+      "rule": "成功回调412060、失败回调4121a0和timer100处理414a00分别有自身timer/等待项/完成flag/通道清理次序；成功另推进wizard。catch读取的是实际已写flag，不是纯时钟参数。未证明Windows timer交付、关闭完毕、后台时延或整体服务回调同步保证。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/4",
+          "canonical_sha256": "843f7023c4255715c6f652ff335475205474f9621c0a4d568fc70d15108b3be8"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/5",
+          "canonical_sha256": "29a75e6b26dcc1073020e6544767ea0b322e37530292783b1fa871eb35287324"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/3",
+          "canonical_sha256": "29980f320d2abbee8628100843225e7e63c3a0236bbea67fc616545529052a06"
+        }
+      ]
+    },
+    {
+      "id": "LE-F12",
+      "classification": "事实：固定601b样本静态规则",
+      "rule": "Close46cad0在有效性谓词为真时先4693c0移除manager项，再请求底层关闭/通知，最后清pointer与serial。4693c0找不到预期项时会抛同Exp，发生在这些后续清理之前。catch内的Close不能被包装为必定成功的retry步骤；未准入的重入/坏registry序列及上层异常处置仍属条件边界。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/9",
+          "canonical_sha256": "d27dc3efa9217390804c41b1ff7a693f425331d31d0a9f7862b7058dafaced8d"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/17",
+          "canonical_sha256": "4e1627010452009f106cf93bb4f027452669906a7942d7dd00e703421822184e"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/EH/try_map",
+          "canonical_sha256": "e49789bc4259ae0d0b4676d8b437813247d0495f6fe832cf23dbe4ea03d1194a"
+        }
+      ]
+    },
+    {
+      "id": "LE-F13",
+      "classification": "事实与限定推导：源literal/指令及条件算术边界",
+      "rule": "原初始ordinal算术有rand/32767.0再乘count；若raw结果为32767，该式可到count，而不落在0..count-1。这里只记录实际literal和数学边界，没有观察原RNG或执行越界数组访问。目标明确拒绝first==count，属于独立输入政策，不能默称同于原随机边界。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/random_scaling_literal",
+          "canonical_sha256": "4f20d23691eeec5e5a189238fed61208938431bc5d564ec5b3970c000c2a487d"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/source-review.json",
+            "bytes": 68315,
+            "sha256": "1c14b345609af53a80aebf9d6d0cfe2550f72a2dcda266a813aa61c55cb568ec"
+          },
+          "pointer": "/native_records/0",
+          "canonical_sha256": "c7062f1026d0afd8f2d79d5614e30bd60a174f140220b2a8a13fc43bf2314197"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/focused-probe.json",
+            "bytes": 335843,
+            "sha256": "808c17b4b0fd310233bafc5f809db8f84a78fa877423c2437a3c639ff6573954"
+          },
+          "pointer": "/targetRows",
+          "canonical_sha256": "ce9d4a03cad0f2d7071329af99c26ced615568051804d52669a0bcd755bff7b7"
+        }
+      ]
+    },
+    {
+      "id": "LE-F14",
+      "classification": "事实：现有纯目标实测；源分支为静态标量解释",
+      "rule": "129项原创目标执行覆盖55候选顺序、54取消退役、10时钟边界和10无效首ordinal。55顺序相符；其中10组initial0时目标立即exhaust/Close而源局部catch不做该清理。另770元组只是静态分支解释，不是770原程序或目标运行测试。",
+      "sources": [
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/focused-probe.json",
+            "bytes": 335843,
+            "sha256": "808c17b4b0fd310233bafc5f809db8f84a78fa877423c2437a3c639ff6573954"
+          },
+          "pointer": "/summary",
+          "canonical_sha256": "c0eeb063e848e322cdddcf7a1ca19b731746c289cf5566987e90b03a89efc565"
+        },
+        {
+          "file": {
+            "path": "build/analysis/launcher-legacy-failure-v1/focused-probe.json",
+            "bytes": 335843,
+            "sha256": "808c17b4b0fd310233bafc5f809db8f84a78fa877423c2437a3c639ff6573954"
+          },
+          "pointer": "/targetRows",
+          "canonical_sha256": "ce9d4a03cad0f2d7071329af99c26ced615568051804d52669a0bcd755bff7b7"
+        }
+      ]
+    },
+    {
+      "id": "LE-F15",
+      "classification": "事实：固定601b样本静态规则",
+      "rule": "LS-U1的具名登录frame、typed throw入口、stack/续体和所选普通失败/停止规则已收敛；不扩为任意异常/任意线程/任意caller保证。c82f LS-U3的已获borrow跨modal/替换、完整SDK/三端、同版游戏及账号官方接受仍未完成；L03整项不提升，已闭LS-U2正常材料规则保持。",
+      "sources": [
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-session-functional-specification.json",
+            "bytes": 77719,
+            "sha256": "3fb04e1f227938110d1f141e9fedf4da02339e4a80f49cddf78ca10283fef010"
+          },
+          "pointer": "/remaining",
+          "canonical_sha256": "3f625353442370816b999725972d30aae0f13ab3554a06ed4d379cbc7d75d90b"
+        },
+        {
+          "file": {
+            "path": "analysis/capability-first-v1/launcher-derived-material-contract.json",
+            "bytes": 31942,
+            "sha256": "d69517a1ac87e01c8f954e74fb6def583ec3f2bba336c161a5651af8ac0c1b02"
+          },
+          "pointer": "/selected_supersession",
+          "canonical_sha256": "75b398fb5e3cb8075eeccd83ea1a22593e32b38ca0b0ff39e169f25fa06b0bc5"
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "LE-O01",
+      "title": "原输入/本地准入到state11",
+      "admission": "case3前置通过且明确候选数据可用",
+      "state_failure_cancel_and_outputs": "清完成flag、申请源timer、进入实际受保护的Connect/wait/send frame",
+      "facts": [
+        "LE-F03",
+        "LE-F04",
+        "LE-F05"
+      ],
+      "source_profile": "launcher-legacy-601b",
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "original_dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "original_batch": "D1",
+      "original_or_full_acceptance_executed": false
+    },
+    {
+      "id": "LE-O02",
+      "title": "匹配Exp的普通连接失败",
+      "admission": "匹配throw类型且当前parent state为11",
+      "state_failure_cancel_and_outputs": "按实际typed catch资格进入41195e；类型或frame不同不假定同一重试",
+      "facts": [
+        "LE-F02",
+        "LE-F03",
+        "LE-F04"
+      ],
+      "source_profile": "launcher-legacy-601b",
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "original_dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "original_batch": "D1",
+      "original_or_full_acceptance_executed": false
+    },
+    {
+      "id": "LE-O03",
+      "title": "有下一候选时retry",
+      "admission": "current非wrappedLast、完成flag0、正常Close可返回",
+      "state_failure_cancel_and_outputs": "推进并重绑endpoint/port、置retry byte、Close后由411bc0跳回41171b；不递归增栈",
+      "facts": [
+        "LE-F05",
+        "LE-F06",
+        "LE-F08"
+      ],
+      "source_profile": "launcher-legacy-601b",
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "original_dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "original_batch": "D1",
+      "original_or_full_acceptance_executed": false
+    },
+    {
+      "id": "LE-O04",
+      "title": "最终候选与完成flag终止",
+      "admission": "current为wrappedLast或完成flag非0",
+      "state_failure_cancel_and_outputs": "不推进；按未wrapped initial-1二级谓词决定是否做本catch清理，然后到公共返回尾",
+      "facts": [
+        "LE-F07",
+        "LE-F08",
+        "LE-F11"
+      ],
+      "source_profile": "launcher-legacy-601b",
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "original_dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "original_batch": "D1",
+      "original_or_full_acceptance_executed": false
+    },
+    {
+      "id": "LE-O05",
+      "title": "initial0最终失败的局部清理差异",
+      "admission": "valid initial0、最后候选、匹配Exp、flag0",
+      "state_failure_cancel_and_outputs": "结束重试但不执行该即时清理块；414e90刷新不补登录timer/Close；稍后消息效果需真实运行",
+      "facts": [
+        "LE-F07",
+        "LE-F09"
+      ],
+      "source_profile": "launcher-legacy-601b",
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "original_dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "original_batch": "D1",
+      "original_or_full_acceptance_executed": false
+    },
+    {
+      "id": "LE-O06",
+      "title": "已交付完成/错误/超时",
+      "admission": "各原回调或timer实际到达并写flag",
+      "state_failure_cancel_and_outputs": "各自按源次序清理并影响随后catch资格；不把源调用阈值当实测墙钟期限",
+      "facts": [
+        "LE-F04",
+        "LE-F11"
+      ],
+      "source_profile": "launcher-legacy-601b",
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "original_dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "original_batch": "D1",
+      "original_or_full_acceptance_executed": false
+    },
+    {
+      "id": "LE-O07",
+      "title": "容量与send numeric失败",
+      "admission": "原容量查询或消息framing返回非正值",
+      "state_failure_cancel_and_outputs": "保留无局部退出的wait及send numeric/diagnostic行为；目标异步取消/期限按明确政策接合，不伪造typed exception",
+      "facts": [
+        "LE-F10"
+      ],
+      "source_profile": "launcher-legacy-601b",
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "original_dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "original_batch": "D1",
+      "original_or_full_acceptance_executed": false
+    },
+    {
+      "id": "LE-O08",
+      "title": "Close中的registry异常边界",
+      "admission": "Close有效性为真但manager没有该owner",
+      "state_failure_cancel_and_outputs": "源先抛Exp而未执行后续clear；若在catch体内发生，不假定同一state11流程再次保障retry；只在具名普通准入后继续上层路径",
+      "facts": [
+        "LE-F02",
+        "LE-F06",
+        "LE-F12"
+      ],
+      "source_profile": "launcher-legacy-601b",
+      "original_owners": [
+        "shared/launcher-login.mjs",
+        "shared/launcher-flow.mjs"
+      ],
+      "original_dependencies": [
+        "L01",
+        "L02",
+        "L04",
+        "X06"
+      ],
+      "original_batch": "D1",
+      "original_or_full_acceptance_executed": false
+    }
+  ],
+  "implementation_deltas": [
+    {
+      "id": "LE-D1",
+      "batches": [
+        "D0",
+        "D1"
+      ],
+      "work": "在明确来源的flow/adapter失败接口区分可重试连接错误、数字send/容量状态、取消及内部生命周期失败；不将任意host异常一律当native typed retry。"
+    },
+    {
+      "id": "LE-D2",
+      "batches": [
+        "D1",
+        "D5"
+      ],
+      "work": "保留已测正确候选顺序，显式记录initial0即时清理差异和旧timer/目标clock政策；源行为、目标清理决定和完整接受分列，不以统一exhaust成功吞掉来源差异。"
+    },
+    {
+      "id": "LE-D3",
+      "batches": [
+        "D0",
+        "D1"
+      ],
+      "work": "复用目标local attempt退役/输入有效ordinal，记录源随机端点与不保证Close成功的条件；不复制native无局部退出忙等为跨端阻塞。"
+    },
+    {
+      "id": "LE-D4",
+      "batches": [
+        "D0",
+        "D1",
+        "D5",
+        "D6"
+      ],
+      "work": "沿原owner组合LS-U3/c82f模态与callback，复用DM材料和14端口；统一A1..A4后再开发，原完整平台/同版账号接受继续。"
+    }
+  ],
+  "EH_contract": {
+    "classification": "actual fixed-sample data; structure prefix interpreted using primary LLVM MSVC32 emission layout",
+    "function_info": {
+      "address": "0x4cb018",
+      "raw_words": [
+        "0x19930522",
+        "0x16",
+        "0x4cb03c",
+        "0x1",
+        "0x4cb004",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x1"
+      ],
+      "window": {
+        "address": "0x4cb018",
+        "bytes": 36,
+        "file_offset": 827928,
+        "sha256": "0981e57ac88dd45e9fd6626a5a0daede0848e0d92708d0376b6a274b70b26965"
+      }
+    },
+    "try_map": {
+      "try_low": 11,
+      "try_high": 11,
+      "catch_high": 12,
+      "count": 1,
+      "window": {
+        "address": "0x4cb004",
+        "bytes": 20,
+        "file_offset": 827908,
+        "sha256": "24fbad65f3f3a9523168ed6bc2c8e8f216420df2a5480ae7b7d6c94e77f38f29"
+      }
+    },
+    "handler": {
+      "adjectives_raw": 8,
+      "type_descriptor": "0x4d34ec",
+      "type_name": ".?AVExp@cdll@@",
+      "catch_object_EBP_offset": -1500,
+      "handler": "0x41195e",
+      "window": {
+        "address": "0x4caff4",
+        "bytes": 16,
+        "file_offset": 827892,
+        "sha256": "91d6ca23a9db969fe6402fdf6ea483e4b49ceac6c7f6cbadc6593d5f071a2643"
+      },
+      "raw_adjective_bits_not_reinterpreted": true
+    },
+    "throw_info": {
+      "address": "0x4cff90",
+      "window": {
+        "address": "0x4cff90",
+        "bytes": 16,
+        "file_offset": 848272,
+        "sha256": "57cc2452e6aae0c06c717aac862aa052785662473dd581a5e075769bf1b97820"
+      },
+      "catchable_count": 2,
+      "array_window": {
+        "address": "0x4cffa0",
+        "bytes": 12,
+        "file_offset": 848288,
+        "sha256": "8a13ed84e60f3e00043f089170009358d7e8eee29b11e0eea5a8a19a64663f3f"
+      },
+      "catchables": [
+        {
+          "address": "0x4cffac",
+          "raw_words": [
+            "0x0",
+            "0x4d34ec",
+            "0x0",
+            "0xffffffff",
+            "0x0",
+            "0x8",
+            "0x4695a0"
+          ],
+          "type_descriptor": "0x4d34ec",
+          "type_name": ".?AVExp@cdll@@",
+          "window": {
+            "address": "0x4cffac",
+            "bytes": 28,
+            "file_offset": 848300,
+            "sha256": "619f57a5a6e1e7873d72d3d6b213b3e39cfa20c28cc9d2be798cc7f9ffaea671"
+          }
+        },
+        {
+          "address": "0x4cffc8",
+          "raw_words": [
+            "0x0",
+            "0x4d65c8",
+            "0x0",
+            "0xffffffff",
+            "0x0",
+            "0x8",
+            "0x4ab640"
+          ],
+          "type_descriptor": "0x4d65c8",
+          "type_name": ".?AVThr@cdll@@",
+          "window": {
+            "address": "0x4cffc8",
+            "bytes": 28,
+            "file_offset": 848328,
+            "sha256": "5ec798356647806ce54c3c6fdae9d78e6a605ca0ccfc87e695eda7de14b4b609"
+          }
+        }
+      ]
+    },
+    "unwind_map": {
+      "count": 22,
+      "window": {
+        "address": "0x4cb03c",
+        "bytes": 176,
+        "file_offset": 827964,
+        "sha256": "7186f1d397704a0035b26560135a11568f3fb7f4feed5af5250b7373ab1d896c"
+      }
+    },
+    "actual_type_match": true,
+    "is_catch_all": false,
+    "limit": "Metadata and protected state prove this typed relation, not live OS exception delivery or treatment of unrelated exception classes.",
+    "dispatch_veneer": {
+      "address": "0x4ad349",
+      "bytes": 30,
+      "file_offset": 706377,
+      "sha256": "82cbf48ff5f83e03b18bd758ca99e8c3615c18d6029682f4f60cc66600f58792",
+      "selected_parent_prologue_handler": "0x4ad349",
+      "FuncInfo_immediate": "0x4cb018",
+      "assembly_path": "build/analysis/launcher-legacy-failure-v1/EH-dispatch-veneer.asm"
+    }
+  },
+  "frame_slots": {
+    "owner_EBP": "-0x818",
+    "initial_EBP": "-0x5d8",
+    "wrapped_last_EBP": "-0x5d4",
+    "current_EBP": "-0x5cc",
+    "retry_byte_EBP": "-0x5cd",
+    "EH_state_EBP": "-0x4"
+  },
+  "continuations": {
+    "normal_send_exit": "0x411bb9",
+    "caught_typed_exception_resume": "0x411bc0",
+    "retry_jump": {
+      "source": "0x411bc9",
+      "destination": "0x41171b"
+    },
+    "normal_final_UI_tail": "0x412021",
+    "native_recursion_proven": false,
+    "claim": "Shared parent-frame control transfer, not recursive stack growth."
+  },
+  "original_25_acceptance_cases": {
+    "file": {
+      "path": "analysis/capability-first-v1/launcher-session-functional-specification.json",
+      "bytes": 77719,
+      "sha256": "3fb04e1f227938110d1f141e9fedf4da02339e4a80f49cddf78ca10283fef010"
+    },
+    "pointer": "/proposed_acceptance_cases",
+    "canonical_sha256": "c229fdf56cdecb52e75505ac2ca26e88c2045498df08bbfff4c7c688a6d6b5ab"
+  },
+  "supplementary_acceptance_cases": [
+    {
+      "id": "LE-T01",
+      "case": "实际匹配cdll::Exp的连接/context创建失败在state11被本handler接收",
+      "status": "required-not-executed"
+    },
+    {
+      "id": "LE-T02",
+      "case": "不同异常类型或同型发生于其他frame时的真实外层处置；不预设catch-all",
+      "status": "required-not-executed"
+    },
+    {
+      "id": "LE-T03",
+      "case": "各valid initial/count的原连接失败顺序和handler返回/parent-frame复用",
+      "status": "required-not-executed"
+    },
+    {
+      "id": "LE-T04",
+      "case": "initial0最终失败时局部未清理与实际后续timer/UI交付",
+      "status": "required-not-executed"
+    },
+    {
+      "id": "LE-T05",
+      "case": "initial>0最终失败时timer/等待项/Close/输入恢复及消息先后",
+      "status": "required-not-executed"
+    },
+    {
+      "id": "LE-T06",
+      "case": "完成flag已到达而current非最终时不继续候选",
+      "status": "required-not-executed"
+    },
+    {
+      "id": "LE-T07",
+      "case": "实际timer建立失败/延迟投递、容量wait的真实消息与关闭顺序",
+      "status": "required-not-executed"
+    },
+    {
+      "id": "LE-T08",
+      "case": "send数字失败、诊断与等待回复/超时的真实原路径",
+      "status": "required-not-executed"
+    },
+    {
+      "id": "LE-T09",
+      "case": "registry缺失导致Close抛Exp的具名准入条件及handler/外层边界",
+      "status": "required-not-executed"
+    },
+    {
+      "id": "LE-T10",
+      "case": "原随机raw结果边界与真实table取值，目标有效ordinal政策的接受",
+      "status": "required-not-executed"
+    },
+    {
+      "id": "LE-T11",
+      "case": "原正常取消/Frame关闭与L04/L08共同状态的完整用户序列",
+      "status": "required-not-executed"
+    },
+    {
+      "id": "LE-T12",
+      "case": "旧版与当前三端、SDK、同版游戏和账号官方接受，保留原25完整案例",
+      "status": "required-not-executed"
+    }
+  ],
+  "remaining": [
+    {
+      "id": "LE-U1",
+      "kind": "original-conditional-entry-admission",
+      "original_id": "LS-U3",
+      "need": "c82f已经取得borrow的callback跨modal/替换后尾部unregister，继续按原普通入口准入补证；不要求任意全交错。"
+    },
+    {
+      "id": "LE-U2",
+      "kind": "explicit-source-boundaries",
+      "need": "源内部registry不变量破坏、其他异常类型/上层runtime、无效原随机ordinal及真实timer交付均不由所选普通flow接受证明；有具名需求入口再补相应owner，不当作全局安全或必现故障。"
+    },
+    {
+      "id": "LE-U3",
+      "kind": "implementation-and-independent-real-acceptance",
+      "original_id": "LS-U4",
+      "need": "LE/LS/DM原差异、统一接口和实际三端/SDK/当前同版游戏/账号官方接受仍待；不重发SDK授权或重复索取测试账号。"
+    }
+  ],
+  "summary": {
+    "canonical_native_records": 18,
+    "new_native_records": 2,
+    "new_native_body_bytes": 509,
+    "reused_native_records": 16,
+    "range_windows": 19,
+    "independent_decoded_instructions": 1800,
+    "new_direct_caller_queries": 1,
+    "EH_try_entries": 1,
+    "EH_handler_entries": 1,
+    "EH_catchable_types": 2,
+    "shared_tail_body_bytes": 69,
+    "original_program_executed": false,
+    "actualTargetCases": 129,
+    "endpointOrderCases": 55,
+    "cancellationCases": 54,
+    "deadlineCases": 10,
+    "invalidOrdinalCases": 10,
+    "staticSourceControlTuples": 770,
+    "finalCatchCleanupDifferences": 10,
+    "facts": 15,
+    "operations": 8,
+    "implementation_deltas": 4,
+    "original_parent_full_cases_retained": 25,
+    "supplementary_full_cases_not_executed": 12
+  },
+  "original_scope_40_81_37_10_6_preserved": true,
+  "original_owners_dependencies_batches_preserved": true,
+  "selected_LS_U1_source_rules_closed": true,
+  "whole_L03_specification_ready": false,
+  "source_capability_readiness_promoted": false,
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "full_product_suites_or_builds_run": false,
+  "original_VM_SDK_program_account_or_official_actions": false,
+  "global_tool_or_approval_settings_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false,
+  "execution_record": {
+    "path": "build/analysis/launcher-legacy-failure-v1/execution-record.json",
+    "bytes": 1506,
+    "sha256": "f8a5e58e022f7927e7b251818914003a7c6c481bf1bbf1d7b6ddc0feeadc10db"
+  },
+  "validation_record_path": "build/analysis/launcher-legacy-failure-v1/validation.json"
+}

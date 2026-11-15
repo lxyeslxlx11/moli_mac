@@ -1,0 +1,124 @@
+{
+  "schema": "moli.own-fixture-transfer-host.stage101.r2.v1",
+  "source_sha256": "9894ef2f0b7b87aa064a24735b1a6b15d875eb671ccc5a38e5ab0eb165b04540",
+  "pin_set": {
+    "entry-fixture.exe": [
+      129968,
+      "cf8bd654d9daf5c222f5a8ee565085013cf284ee74165a25558c5bbe0cf41c2a"
+    ],
+    "callback-probe.exe": [
+      143326,
+      "f3632249024e59515c323cd621af5d3ff9b733b8c92321e85be1adc91593e140"
+    ]
+  },
+  "checks": [
+    {
+      "name": "loopback_head_entry-fixture.exe",
+      "pass": true
+    },
+    {
+      "name": "loopback_head_callback-probe.exe",
+      "pass": true
+    },
+    {
+      "name": "loopback_exact_path_/",
+      "pass": true
+    },
+    {
+      "name": "loopback_exact_path_/missing.exe",
+      "pass": true
+    },
+    {
+      "name": "loopback_exact_path_/../entry-fixture.exe",
+      "pass": true
+    },
+    {
+      "name": "loopback_exact_path_/entry-fixture.exe?x=1",
+      "pass": true
+    },
+    {
+      "name": "loopback_post_denied",
+      "pass": true
+    },
+    {
+      "name": "loopback_range_denied",
+      "pass": true
+    },
+    {
+      "name": "loopback_nonempty_body_denied",
+      "pass": true
+    },
+    {
+      "name": "loopback_get_entry-fixture.exe",
+      "pass": true
+    },
+    {
+      "name": "loopback_duplicate_denied",
+      "pass": true
+    },
+    {
+      "name": "loopback_get_callback-probe.exe",
+      "pass": true
+    },
+    {
+      "name": "loopback_natural_close",
+      "pass": true
+    },
+    {
+      "name": "loopback_listener_refused",
+      "pass": true
+    },
+    {
+      "name": "nat_host_head_entry-fixture.exe",
+      "pass": true
+    },
+    {
+      "name": "nat_host_head_callback-probe.exe",
+      "pass": true
+    },
+    {
+      "name": "nat_host_get_denied",
+      "pass": true
+    },
+    {
+      "name": "nat_natural_ttl_close",
+      "pass": true
+    },
+    {
+      "name": "nat_listener_refused",
+      "pass": true
+    }
+  ],
+  "pass": 19,
+  "fail": 0,
+  "server_events": [
+    {
+      "bytes": 129968,
+      "event": "response_sent",
+      "name": "entry-fixture.exe",
+      "sha256": "cf8bd654d9daf5c222f5a8ee565085013cf284ee74165a25558c5bbe0cf41c2a"
+    },
+    {
+      "bytes": 143326,
+      "event": "response_sent",
+      "name": "callback-probe.exe",
+      "sha256": "f3632249024e59515c323cd621af5d3ff9b733b8c92321e85be1adc91593e140"
+    },
+    {
+      "event": "closed",
+      "guest_hashes_and_execution_verified": false,
+      "reason": "two_responses_sent",
+      "response_count": 2
+    },
+    {
+      "event": "closed",
+      "guest_hashes_and_execution_verified": false,
+      "reason": "stopped_or_expired",
+      "response_count": 0
+    }
+  ],
+  "actual_guest_transfer_for_r2": "not performed by host validation",
+  "original_game_or_vendor_files_served": false,
+  "host_validation_snapshot_only": true,
+  "later_actual_guest_results": "analysis/game-entry-runtime-v1/windows-observer-stage101.json"
+}

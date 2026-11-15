@@ -1,0 +1,1506 @@
+{
+  "stage": 280,
+  "recorded_utc": "2026-11-07T07:41:08.650713+00:00",
+  "source": {
+    "path": "analysis/game-legacy-battle-reentry-v1/source-check.json",
+    "bytes": 7393,
+    "sha256": "eb1727f6e20be256ae15af17470cec1720d537ce2957cc5083ae1fcc8ff408e8"
+  },
+  "regression": {
+    "counts": {
+      "tests": 3280,
+      "pass": 3280,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "log": {
+      "path": "build/analysis/game-legacy-battle-reentry-v1/regression.log",
+      "bytes": 1640839,
+      "sha256": "8651acb28ddf8804086153de5b6f17701aa6668c787346482a5751e3e05d5ec0"
+    },
+    "receipt": {
+      "path": "build/analysis/game-legacy-battle-reentry-v1/regression-receipt.json",
+      "bytes": 13248,
+      "sha256": "bc66d20b0c3f2ccd716ffb917181214b400c9297b8eeda77ea4277eecf8681ef"
+    },
+    "inputs": {
+      "path": "build/analysis/game-legacy-battle-reentry-v1/regression-inputs.json",
+      "bytes": 183994,
+      "sha256": "3a84fa152e4b88c31baa4cd5036e4d6fd23cc37f75a2526df1bbd8fcd6c698a4"
+    },
+    "input_files": 1541,
+    "frozen_inputs_unchanged": true,
+    "test_files": 243
+  },
+  "tcp_entries": {
+    "tcp-charge-web": {
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-charge-web.log",
+        "bytes": 1972,
+        "sha256": "744b87fea220e41eefb415aad19eaf359880137d1945101eda0ee213395fb724"
+      },
+      "receipt": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-charge-web-receipt.json",
+        "bytes": 481,
+        "sha256": "b8c5b4b7a4d81f63cc5d09830ac3fa03ff33ecf5ad5a318832c78ec36e1dead5"
+      },
+      "first": [
+        {
+          "surface": "desktop-web",
+          "statusVariant": "physical-self-control-charge",
+          "targetHP": 70,
+          "localSlot": 0,
+          "casterHP": 58,
+          "actors": [
+            [
+              0,
+              58,
+              100,
+              5,
+              10
+            ],
+            [
+              10,
+              70,
+              100,
+              10,
+              10
+            ]
+          ],
+          "completedRound": 1,
+          "casterMP": 5,
+          "resumedMovement": true
+        },
+        {
+          "surface": "mobile-web",
+          "statusVariant": "physical-self-control-charge",
+          "targetHP": 70,
+          "localSlot": 0,
+          "casterHP": 58,
+          "actors": [
+            [
+              0,
+              58,
+              100,
+              5,
+              10
+            ],
+            [
+              10,
+              70,
+              100,
+              10,
+              10
+            ]
+          ],
+          "completedRound": 1,
+          "casterMP": 5,
+          "resumedMovement": true
+        }
+      ],
+      "second": [
+        {
+          "secondBattleTCP": true,
+          "surface": "desktop-web",
+          "firstRound": 1,
+          "roundBefore": 0,
+          "roundAfter": 1,
+          "generations": [
+            1,
+            2
+          ],
+          "initial": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                9,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                80,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "result": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                4,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                68,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "resumedMovement": true
+        },
+        {
+          "secondBattleTCP": true,
+          "surface": "mobile-web",
+          "firstRound": 1,
+          "roundBefore": 0,
+          "roundAfter": 1,
+          "generations": [
+            1,
+            2
+          ],
+          "initial": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                9,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                80,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "result": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                4,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                68,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "resumedMovement": true
+        }
+      ],
+      "requests": [
+        {
+          "selfPairTCP": true,
+          "requests": 17,
+          "keepalives": 4,
+          "guards": 2,
+          "exit": true,
+          "movement": 4,
+          "official": false
+        },
+        {
+          "selfPairTCP": true,
+          "requests": 17,
+          "keepalives": 4,
+          "guards": 2,
+          "exit": true,
+          "movement": 4,
+          "official": false
+        }
+      ],
+      "native_exit_before_finish": []
+    },
+    "tcp-charge-page-source": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-charge-page-source.log",
+        "bytes": 1029,
+        "sha256": "c6645bf362508e44a9705454653a34be695642ccce02447833a5b4ca70a840ed"
+      },
+      "receipt": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-charge-page-source-receipt.json",
+        "bytes": 484,
+        "sha256": "5f5c6bf751a635128cf392d95430612d2dfe744b3d8bfdcf015356adca828cc9"
+      },
+      "first": [
+        {
+          "surface": "wechat-page",
+          "statusVariant": "physical-self-control-charge",
+          "targetHP": 70,
+          "localSlot": 0,
+          "casterHP": 58,
+          "actors": [
+            [
+              0,
+              58,
+              100,
+              5,
+              10
+            ],
+            [
+              10,
+              70,
+              100,
+              10,
+              10
+            ]
+          ],
+          "completedRound": 1,
+          "casterMP": 5,
+          "resumedMovement": true
+        }
+      ],
+      "second": [
+        {
+          "secondBattleTCP": true,
+          "surface": "wechat-page",
+          "firstRound": 1,
+          "roundBefore": 0,
+          "roundAfter": 1,
+          "initial": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                9,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                80,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "result": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                4,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                68,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "resumedMovement": true
+        }
+      ],
+      "requests": [
+        {
+          "selfPairTCP": true,
+          "requests": 17,
+          "keepalives": 4,
+          "guards": 2,
+          "exit": true,
+          "movement": 4,
+          "official": false
+        }
+      ],
+      "native_exit_before_finish": []
+    },
+    "tcp-charge-page-generated": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-charge-page-generated.log",
+        "bytes": 1029,
+        "sha256": "648edbf6ff19c9f810afbb961b79240e037d9a6b1b3945a3ec66e2cace2240fb"
+      },
+      "receipt": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-charge-page-generated-receipt.json",
+        "bytes": 487,
+        "sha256": "8a07321be63b7173b7c41dd62b63a5b3026dbf89083d903d2b68d4f9d8bc5ba7"
+      },
+      "first": [
+        {
+          "surface": "wechat-page",
+          "statusVariant": "physical-self-control-charge",
+          "targetHP": 70,
+          "localSlot": 0,
+          "casterHP": 58,
+          "actors": [
+            [
+              0,
+              58,
+              100,
+              5,
+              10
+            ],
+            [
+              10,
+              70,
+              100,
+              10,
+              10
+            ]
+          ],
+          "completedRound": 1,
+          "casterMP": 5,
+          "resumedMovement": true
+        }
+      ],
+      "second": [
+        {
+          "secondBattleTCP": true,
+          "surface": "wechat-page",
+          "firstRound": 1,
+          "roundBefore": 0,
+          "roundAfter": 1,
+          "initial": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                9,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                80,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "result": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                4,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                68,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "resumedMovement": true
+        }
+      ],
+      "requests": [
+        {
+          "selfPairTCP": true,
+          "requests": 17,
+          "keepalives": 4,
+          "guards": 2,
+          "exit": true,
+          "movement": 4,
+          "official": false
+        }
+      ],
+      "native_exit_before_finish": []
+    },
+    "tcp-reflect-web": {
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-reflect-web.log",
+        "bytes": 2023,
+        "sha256": "8e6bcdb0909243c65476ffa637b1c31c36cf26f08763e97d924e6743fa836860"
+      },
+      "receipt": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-reflect-web-receipt.json",
+        "bytes": 489,
+        "sha256": "efbdcbb398db7579e365259dbb64d576b9b431a970101f7b1ceddb737eceec7a"
+      },
+      "first": [
+        {
+          "surface": "desktop-web",
+          "statusVariant": "physical-self-control-charged-reflect",
+          "targetHP": 70,
+          "localSlot": 0,
+          "casterHP": 58,
+          "actors": [
+            [
+              0,
+              58,
+              100,
+              5,
+              10
+            ],
+            [
+              10,
+              70,
+              100,
+              10,
+              10
+            ]
+          ],
+          "completedRound": 1,
+          "casterMP": 5,
+          "resumedMovement": true
+        },
+        {
+          "surface": "mobile-web",
+          "statusVariant": "physical-self-control-charged-reflect",
+          "targetHP": 70,
+          "localSlot": 0,
+          "casterHP": 58,
+          "actors": [
+            [
+              0,
+              58,
+              100,
+              5,
+              10
+            ],
+            [
+              10,
+              70,
+              100,
+              10,
+              10
+            ]
+          ],
+          "completedRound": 1,
+          "casterMP": 5,
+          "resumedMovement": true
+        }
+      ],
+      "second": [
+        {
+          "secondBattleTCP": true,
+          "surface": "desktop-web",
+          "firstRound": 1,
+          "roundBefore": 0,
+          "roundAfter": 1,
+          "generations": [
+            1,
+            2
+          ],
+          "initial": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                9,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                80,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "result": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                4,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                68,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "resumedMovement": true
+        },
+        {
+          "secondBattleTCP": true,
+          "surface": "mobile-web",
+          "firstRound": 1,
+          "roundBefore": 0,
+          "roundAfter": 1,
+          "generations": [
+            1,
+            2
+          ],
+          "initial": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                9,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                80,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "result": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                4,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                68,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "resumedMovement": true
+        }
+      ],
+      "requests": [
+        {
+          "selfPairTCP": true,
+          "requests": 13,
+          "keepalives": 0,
+          "guards": 2,
+          "exit": true,
+          "movement": 4,
+          "official": false
+        },
+        {
+          "selfPairTCP": true,
+          "requests": 13,
+          "keepalives": 0,
+          "guards": 2,
+          "exit": true,
+          "movement": 4,
+          "official": false
+        }
+      ],
+      "native_exit_before_finish": []
+    },
+    "tcp-reflect-page-source": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-reflect-page-source.log",
+        "bytes": 1048,
+        "sha256": "69285d8311d73d6b178c6e8036f71c640ffc46de57c31ab1a0cac9159fc30c9f"
+      },
+      "receipt": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-reflect-page-source-receipt.json",
+        "bytes": 492,
+        "sha256": "edcba1743787e198162f86b9f0978e67df88f277a62c989b01def6a19b3b6824"
+      },
+      "first": [
+        {
+          "surface": "wechat-page",
+          "statusVariant": "physical-self-control-charged-reflect",
+          "targetHP": 70,
+          "localSlot": 0,
+          "casterHP": 58,
+          "actors": [
+            [
+              0,
+              58,
+              100,
+              5,
+              10
+            ],
+            [
+              10,
+              70,
+              100,
+              10,
+              10
+            ]
+          ],
+          "completedRound": 1,
+          "casterMP": 5,
+          "resumedMovement": true
+        }
+      ],
+      "second": [
+        {
+          "secondBattleTCP": true,
+          "surface": "wechat-page",
+          "firstRound": 1,
+          "roundBefore": 0,
+          "roundAfter": 1,
+          "initial": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                9,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                80,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "result": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                4,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                68,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "resumedMovement": true
+        }
+      ],
+      "requests": [
+        {
+          "selfPairTCP": true,
+          "requests": 13,
+          "keepalives": 0,
+          "guards": 2,
+          "exit": true,
+          "movement": 4,
+          "official": false
+        }
+      ],
+      "native_exit_before_finish": []
+    },
+    "tcp-reflect-page-generated": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-reflect-page-generated.log",
+        "bytes": 1051,
+        "sha256": "1135dc76a97d401d139811aaa1a06ab2be3b1f014409f3207c8b3cbc3822aacf"
+      },
+      "receipt": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-reflect-page-generated-receipt.json",
+        "bytes": 494,
+        "sha256": "656954b8770d7ca745e81ee6c82188fdfe73cc3a7519740d23c88af275716ab3"
+      },
+      "first": [
+        {
+          "surface": "wechat-page",
+          "statusVariant": "physical-self-control-charged-reflect",
+          "targetHP": 70,
+          "localSlot": 0,
+          "casterHP": 58,
+          "actors": [
+            [
+              0,
+              58,
+              100,
+              5,
+              10
+            ],
+            [
+              10,
+              70,
+              100,
+              10,
+              10
+            ]
+          ],
+          "completedRound": 1,
+          "casterMP": 5,
+          "resumedMovement": true
+        }
+      ],
+      "second": [
+        {
+          "secondBattleTCP": true,
+          "surface": "wechat-page",
+          "firstRound": 1,
+          "roundBefore": 0,
+          "roundAfter": 1,
+          "initial": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                9,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                80,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "result": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                4,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                68,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "resumedMovement": true
+        }
+      ],
+      "requests": [
+        {
+          "selfPairTCP": true,
+          "requests": 13,
+          "keepalives": 0,
+          "guards": 2,
+          "exit": true,
+          "movement": 4,
+          "official": false
+        }
+      ],
+      "native_exit_before_finish": []
+    },
+    "tcp-stop-web": {
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-stop-web.log",
+        "bytes": 2173,
+        "sha256": "5c87f3931ee6e3f57536061d757d8fb0a1d6acdbcf50b2b76f32493c2130aa34"
+      },
+      "receipt": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-stop-web-receipt.json",
+        "bytes": 486,
+        "sha256": "d76201601aefff639419255c90b4455ef23dc5137ab1a5ede4d9c23beb169e7d"
+      },
+      "first": [
+        {
+          "surface": "desktop-web",
+          "statusVariant": "physical-self-control-scatter-stop",
+          "targetHP": 70,
+          "localSlot": 0,
+          "casterHP": 58,
+          "actors": [
+            [
+              0,
+              58,
+              100,
+              7,
+              10
+            ],
+            [
+              10,
+              70,
+              100,
+              10,
+              10
+            ]
+          ],
+          "completedRound": 0,
+          "automaticStopExit": true,
+          "casterMP": 7,
+          "resumedMovement": true
+        },
+        {
+          "surface": "mobile-web",
+          "statusVariant": "physical-self-control-scatter-stop",
+          "targetHP": 70,
+          "localSlot": 0,
+          "casterHP": 58,
+          "actors": [
+            [
+              0,
+              58,
+              100,
+              7,
+              10
+            ],
+            [
+              10,
+              70,
+              100,
+              10,
+              10
+            ]
+          ],
+          "completedRound": 0,
+          "automaticStopExit": true,
+          "casterMP": 7,
+          "resumedMovement": true
+        }
+      ],
+      "second": [
+        {
+          "secondBattleTCP": true,
+          "surface": "desktop-web",
+          "firstRound": 0,
+          "roundBefore": 0,
+          "roundAfter": 1,
+          "generations": [
+            1,
+            2
+          ],
+          "initial": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                9,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                80,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "result": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                4,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                68,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "resumedMovement": true
+        },
+        {
+          "secondBattleTCP": true,
+          "surface": "mobile-web",
+          "firstRound": 0,
+          "roundBefore": 0,
+          "roundAfter": 1,
+          "generations": [
+            1,
+            2
+          ],
+          "initial": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                9,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                80,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "result": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                4,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                68,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "resumedMovement": true
+        }
+      ],
+      "requests": [
+        {
+          "selfPairTCP": true,
+          "requests": 13,
+          "keepalives": 0,
+          "guards": 2,
+          "exit": true,
+          "movement": 4,
+          "official": false
+        },
+        {
+          "selfPairTCP": true,
+          "requests": 13,
+          "keepalives": 0,
+          "guards": 2,
+          "exit": true,
+          "movement": 4,
+          "official": false
+        }
+      ],
+      "native_exit_before_finish": [
+        {
+          "nativeStopTCP": true,
+          "exitBeforeFinish": true,
+          "round": 0
+        },
+        {
+          "nativeStopTCP": true,
+          "exitBeforeFinish": true,
+          "round": 0
+        }
+      ]
+    },
+    "tcp-stop-page-source": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-stop-page-source.log",
+        "bytes": 1129,
+        "sha256": "dc556e9debf0177eda25426f5a661be103b8ff74d121ec62ee723bc3dafd6e1d"
+      },
+      "receipt": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-stop-page-source-receipt.json",
+        "bytes": 489,
+        "sha256": "b412bd468f3104d784aa71da735bc53801dea99f8eed9722f2e8068c5be1618e"
+      },
+      "first": [
+        {
+          "surface": "wechat-page",
+          "statusVariant": "physical-self-control-scatter-stop",
+          "targetHP": 70,
+          "localSlot": 0,
+          "casterHP": 58,
+          "actors": [
+            [
+              0,
+              58,
+              100,
+              7,
+              10
+            ],
+            [
+              10,
+              70,
+              100,
+              10,
+              10
+            ]
+          ],
+          "completedRound": 0,
+          "automaticStopExit": true,
+          "casterMP": 7,
+          "resumedMovement": true
+        }
+      ],
+      "second": [
+        {
+          "secondBattleTCP": true,
+          "surface": "wechat-page",
+          "firstRound": 0,
+          "roundBefore": 0,
+          "roundAfter": 1,
+          "initial": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                9,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                80,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "result": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                4,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                68,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "resumedMovement": true
+        }
+      ],
+      "requests": [
+        {
+          "selfPairTCP": true,
+          "requests": 13,
+          "keepalives": 0,
+          "guards": 2,
+          "exit": true,
+          "movement": 4,
+          "official": false
+        }
+      ],
+      "native_exit_before_finish": [
+        {
+          "nativeStopTCP": true,
+          "exitBeforeFinish": true,
+          "round": 0
+        }
+      ]
+    },
+    "tcp-stop-page-generated": {
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-stop-page-generated.log",
+        "bytes": 1126,
+        "sha256": "e46046cbf7a807e861b596d517aa1dd271d72e54d861927eab4b61bbac7acfa2"
+      },
+      "receipt": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/tcp-stop-page-generated-receipt.json",
+        "bytes": 492,
+        "sha256": "8baa69ab8975563d180d5cb6252c04c42116e3cda7a2119481cd7c2f39b8e421"
+      },
+      "first": [
+        {
+          "surface": "wechat-page",
+          "statusVariant": "physical-self-control-scatter-stop",
+          "targetHP": 70,
+          "localSlot": 0,
+          "casterHP": 58,
+          "actors": [
+            [
+              0,
+              58,
+              100,
+              7,
+              10
+            ],
+            [
+              10,
+              70,
+              100,
+              10,
+              10
+            ]
+          ],
+          "completedRound": 0,
+          "automaticStopExit": true,
+          "casterMP": 7,
+          "resumedMovement": true
+        }
+      ],
+      "second": [
+        {
+          "secondBattleTCP": true,
+          "surface": "wechat-page",
+          "firstRound": 0,
+          "roundBefore": 0,
+          "roundAfter": 1,
+          "initial": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                9,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                80,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "result": [
+            [
+              0,
+              "SecondLocal",
+              [
+                90,
+                100,
+                4,
+                10
+              ]
+            ],
+            [
+              10,
+              "SecondTarget",
+              [
+                68,
+                100,
+                8,
+                10
+              ]
+            ]
+          ],
+          "resumedMovement": true
+        }
+      ],
+      "requests": [
+        {
+          "selfPairTCP": true,
+          "requests": 13,
+          "keepalives": 0,
+          "guards": 2,
+          "exit": true,
+          "movement": 4,
+          "official": false
+        }
+      ],
+      "native_exit_before_finish": [
+        {
+          "nativeStopTCP": true,
+          "exitBeforeFinish": true,
+          "round": 0
+        }
+      ]
+    }
+  },
+  "actual_product_second_battle_TCP_flows": 12,
+  "fixture": {
+    "path": "analysis/game-legacy-battle-reentry-v1/original-fixture.json",
+    "bytes": 1044,
+    "sha256": "73c6ea1f273048de57cb5ae79cb14dbe1ef9c629768616c564c5352d9324027e"
+  },
+  "same_connection_receipt_contract": {
+    "battles": 2,
+    "accepted_connections": 1,
+    "guard_requests": 2,
+    "exit_requests": 2,
+    "movement_requests": 4,
+    "test": {
+      "path": "analysis/game-legacy-ordinary-context-v1/entry-test.mjs",
+      "bytes": 62042,
+      "sha256": "c01719834d0d963d6a1681464e12bc903c80b7acbc13ab8d421d2858e814be81"
+    },
+    "peer": {
+      "path": "analysis/game-browser-owner-v1/original_peer.py",
+      "bytes": 37269,
+      "sha256": "729893abd759a1fb97914428d4d6e7d638699d4ba9480979e3edef5c93c45158"
+    }
+  },
+  "movement_oracle_diagnostics": {
+    "before-movement-oracle-tcp-stop-page-source": {
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/before-movement-oracle-tcp-stop-page-source.log",
+        "bytes": 1210,
+        "sha256": "f8d024a668c40390f20f503a382b18ae8cb2ac2cae99543fc4a73126787a05ae"
+      },
+      "receipt": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/before-movement-oracle-tcp-stop-page-source-receipt.json",
+        "bytes": 488,
+        "sha256": "cbb2bd7bc9288463f2348582bccefc88d77b83ba152ef5a31b58002ef74fccb9"
+      }
+    },
+    "confirmed-movement-oracle-tcp-stop-page-source": {
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/confirmed-movement-oracle-tcp-stop-page-source.log",
+        "bytes": 1576,
+        "sha256": "adda9e4eb29dee3d9f9dfd05259aabbc0ef7a66d5c32bca84e7548b7d5bfbb93"
+      },
+      "receipt": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/confirmed-movement-oracle-tcp-stop-page-source-receipt.json",
+        "bytes": 489,
+        "sha256": "c4bae994c16f726b5bdbdd60aad0cee6609c00d042e16940714e43b07583d535"
+      }
+    }
+  },
+  "movement_oracle_fix": "Wait64 rendered updates after first click; independently derive second path from actual retained camera/origin5,3 to8,3.",
+  "builds": {
+    "api": {
+      "report": {
+        "path": "build/wechat-game-stage280-api-final/build-report.json",
+        "bytes": 30990,
+        "sha256": "5b3d0cf1656f3e26c6e1e81626749d11ca9933d86e3d51a635ef5843606b41d6"
+      },
+      "previous": {
+        "path": "build/wechat-game-stage279-api-final/build-report.json",
+        "bytes": 30990,
+        "sha256": "e4f93c599ef61b76dd6c54084645e6c1c88a191de188261c70ca223d2750a300"
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/build-api.log",
+        "bytes": 369,
+        "sha256": "03aa91ab39c20c7787fd27da8ba60fff367cc99cd75aaa0b34bb8bb27e5c51c2"
+      },
+      "inputs": 179,
+      "unchanged_inputs": 179,
+      "external_imports": 0
+    },
+    "page": {
+      "report": {
+        "path": "build/wechat-app-stage280-page-final/build-report.json",
+        "bytes": 44991,
+        "sha256": "854bf5bd6e97634e63fd7e67e192345e46c3b79f45d897c136d469a1a89f9868"
+      },
+      "previous": {
+        "path": "build/wechat-app-stage279-page-final/build-report.json",
+        "bytes": 44991,
+        "sha256": "535d4f1fb52c60718ba600f1c24347d5c1eb47e36d0a0896cfdc496928635348"
+      },
+      "log": {
+        "path": "build/analysis/game-legacy-battle-reentry-v1/build-page.log",
+        "bytes": 184,
+        "sha256": "24f5580f36879c5f6addd5c1f5be6ae7c3a1829374cf893ac270663d60c3ee26"
+      },
+      "inputs": 236,
+      "unchanged_inputs": 236,
+      "external_imports": 0
+    }
+  },
+  "changed_runtime": [],
+  "changed_test_helpers": [
+    "analysis/game-browser-owner-v1/original_peer.py",
+    "analysis/game-legacy-ordinary-context-v1/entry-test.mjs",
+    "web/tests/helpers/legacy-game-client-tcp-fixture.mjs"
+  ],
+  "previous_component_reentry": {
+    "path": "analysis/game-legacy-battle-self-control-v1/validation.json",
+    "bytes": 683281,
+    "sha256": "f8a711344c94a6af9d3d42a9b7635e41eed764430e9f83392ac1320ef063c614"
+  },
+  "product_second_battle_TCP_verified": true,
+  "local_reentry_slice_verified": true,
+  "native_original_runtime_verified": false,
+  "native_wechat_runtime_verified": false,
+  "physical_devices_verified": false,
+  "original_execution": 0,
+  "VM_actions": 0,
+  "official_sessions": 0,
+  "phase_complete": false,
+  "full_goal_complete": false
+}

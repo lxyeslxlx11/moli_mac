@@ -1,0 +1,150 @@
+{
+  "schema": "moli.game-events-stage126.v1",
+  "classification": "fact",
+  "scope": "Stored Application events from stage125 precise process time window; no new query/start/read.",
+  "game_runtime": "analysis/game-text-observer-runtime-v1/game-runtime-stage125.json",
+  "count": 4,
+  "events_metadata": [
+    {
+      "id": 1001,
+      "record_id": 2162,
+      "time_local_display": "2026/11/1 17:36:57"
+    },
+    {
+      "id": 1000,
+      "record_id": 2161,
+      "time_local_display": "2026/11/1 17:36:53",
+      "time_created_iso": "2026-11-01T17:36:53.5436468+08:00"
+    },
+    {
+      "id": 1001,
+      "record_id": 2160,
+      "time_local_display": "2026/11/1 17:36:53"
+    },
+    {
+      "id": 1000,
+      "record_id": 2159,
+      "time_local_display": "2026/11/1 17:36:48",
+      "time_created_iso": "2026-11-01T17:36:48.4586914+08:00"
+    }
+  ],
+  "time_zone": "Asia/Shanghai (+08:00)",
+  "target_attribution": "Both Error1000 message records name cg_se_3000.exe 3.0.0.1988, installed path, PID0x1410/5136 and same creation FILETIME0x1DD69E48403089D; exact creation time matches the stage125 retained process object.",
+  "application_path": "C:\\Program Files (x86)\\PlayOnline\\魔力宝贝\\cg_se_3000.exe",
+  "application_version": "3.0.0.1988",
+  "application_coff_timestamp_hex": "0x66271894",
+  "pid_hex": "0x1410",
+  "pid": 5136,
+  "process_creation_filetime_hex": "0x1DD69E48403089D",
+  "process_creation_utc": "2026-11-01T09:36:47.9234205Z",
+  "error_details": [
+    {
+      "id": 1000,
+      "record_id": 2161,
+      "time_local_display": "2026/11/1 17:36:53",
+      "exception_code": "0xc0000005",
+      "module_name": "unknown",
+      "module_version": "0.0.0.0",
+      "module_timestamp": "0x00000000",
+      "fault_offset_raw": "0x0b7e8152",
+      "time_created_iso": "2026-11-01T17:36:53.5436468+08:00"
+    },
+    {
+      "id": 1000,
+      "record_id": 2159,
+      "time_local_display": "2026/11/1 17:36:48",
+      "exception_code": "0xc00001a5",
+      "module_name": "unknown",
+      "module_version": "0.0.0.0",
+      "module_timestamp": "0x00000000",
+      "fault_offset_raw": "0x0b88db30",
+      "time_created_iso": "2026-11-01T17:36:48.4586914+08:00"
+    }
+  ],
+  "error_record_correlation": "Stored descending record metadata followed by the same ordered pipeline filtered to Id1000, displaying the two messages. No sorting or re-query.",
+  "wer1001": {
+    "classification": "fact: selected diagnostic fields; association described separately",
+    "method": "Same stored $ev125 filtered to Id1001; XML parsed in guest memory, field names observed, then only EventName and P1..P8 displayed. Index0 then index1, no sorting or re-query.",
+    "field_names_observed": [
+      "Bucket",
+      "BucketType",
+      "EventName",
+      "Response",
+      "CabId",
+      "P1",
+      "P2",
+      "P3",
+      "P4",
+      "P5",
+      "P6",
+      "P7",
+      "P8",
+      "P9",
+      "P10",
+      "AttachedFiles",
+      "StorePath",
+      "AnalysisSymbol",
+      "Rechecking",
+      "ReportId",
+      "ReportStatus",
+      "HashedBucket",
+      "CabGuid"
+    ],
+    "selected_reports": [
+      {
+        "stored_index": 0,
+        "record_id": 2162,
+        "EventName": "APPCRASH",
+        "P1": "cg_se_3000.exe",
+        "P2": "3.0.0.1988",
+        "P3": "66271894",
+        "P4": "StackHash_7ad3",
+        "P5": "0.0.0.0",
+        "P6": "00000000",
+        "P7": "c0000005",
+        "P8": "PCH_7B_FROM_unknown+0x00000000"
+      },
+      {
+        "stored_index": 1,
+        "record_id": 2160,
+        "EventName": "APPCRASH",
+        "P1": "cg_se_3000.exe",
+        "P2": "3.0.0.1988",
+        "P3": "66271894",
+        "P4": "StackHash_eb44",
+        "P5": "0.0.0.0",
+        "P6": "00000000",
+        "P7": "c00001a5",
+        "P8": "PCH_12_FROM_unknown+0x00000000"
+      }
+    ],
+    "association": "Input ordering preserves the stored metadata record order. Same time window and matching app name/version/COFF/status; selected1001 fields do not contain a PID or creation FILETIME. Exact PID/creation binding is from the two1000 records.",
+    "limits": [
+      "StackHash/PCH strings are preserved as opaque report values, not library names, addresses, cause or proof of a mitigation.",
+      "No P9/P10 values, report IDs, attached-file paths, StorePath values, dump contents or full XML were displayed/exported.",
+      "No stack or additional module mapping obtained."
+    ],
+    "ordinary_empty_prompt_observed": true,
+    "guest_local_clock_display": "2026-11-01 18:03"
+  },
+  "excluded": "No full log export, raw screenshot, account/session identifier, systemwide log scan, crash dump, call stack or live module map.",
+  "fault_address_limit": "The event labels the value FaultOffset and module unknown; it is not a proved image RVA or absolute VA. See independent layout check.",
+  "iso_time_acquisition": "Same stored $ev125, filtered to Id1000, TimeCreated.ToString(o); complete two ISO outputs and empty ordinary prompt read back. No re-query.",
+  "timeline_derivation": {
+    "classification": "derived, conditional on recorded guest wall-clock chronology and the reviewed script order",
+    "process_start_time": "2026-11-01T17:36:47.9234205+08:00",
+    "first_error_record": 2159,
+    "first_error_time_created": "2026-11-01T17:36:48.4586914+08:00",
+    "first_error_after_process_creation_seconds": "0.5352709",
+    "script_source": "analysis/game-text-observer-runtime-v1/game-startup-commands-stage119.txt:17",
+    "wait_before_reader_milliseconds": 1500,
+    "earliest_possible_reader_invocation": "2026-11-01T17:36:49.4234205+08:00",
+    "first_error_record_precedes_earliest_reader_seconds": "0.9647291",
+    "interpretation": "The first Error1000 record creation predates the earliest possible fixed-reader invocation in this run. This is a timestamp/order inference, not an instruction trace.",
+    "limits": [
+      "No reader invocation timestamp was printed.",
+      "No loaded module map, faulting instruction or exception stack was captured.",
+      "This does not identify the crash cause or establish what influenced the later access violation."
+    ]
+  }
+}

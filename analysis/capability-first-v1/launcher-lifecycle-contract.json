@@ -1,0 +1,1001 @@
+{
+  "schema": "moli.capability.launcher-lifecycle-contract.v1",
+  "source": {
+    "path": "build/analysis/launcher-current-runtime-v4/POLCN_Launcher.analysis-only.exe",
+    "bytes": 4111872,
+    "sha256": "c82fc98d3d274beadee91254e3343974d7c7fdaf2b2a32bc21cc81b76e85c152"
+  },
+  "source_check": "analysis/capability-first-v1/launcher-lifecycle-source-check.json",
+  "capabilities": [
+    "L01",
+    "L03",
+    "L05",
+    "L06",
+    "L08"
+  ],
+  "facts": [
+    {
+      "id": "App-defaults",
+      "procedures": [
+        "0x584fb4",
+        "0x584e38",
+        "0x5a8ac8",
+        "0x5ce480",
+        "0x430ce0"
+      ],
+      "claim": "The PE entry reaches the CRT routine that conditionally walks [5cfb58,5cfe38). Three actual pointer targets bind the independently decoded message initializers and App constructor view. App63c800 gets vptr5d6710 and explicit zero stores to +cc/+d0/+d4/+d8, then registers5ce480 for normal atexit cleanup. This proves selected source startup/default stores, not that startup or normal cleanup occurred in a running process.",
+      "kind": "fact"
+    },
+    {
+      "id": "message-identity",
+      "procedures": [],
+      "claim": "CRT entries401000/401020 register commctrl_DragListMsg and TaskbarCreated into63c7e0/63c7dc. Main registered-message rows bind41fe80/4238b0 respectively. They are drag-list/tray recreation messages, separate from App activation and the AAChannel reply adapter; no login generation identity follows from their registration.",
+      "kind": "fact"
+    },
+    {
+      "id": "ordinary-attempt",
+      "procedures": [
+        "0x41e420",
+        "0x4291d0"
+      ],
+      "claim": "Ordinary submit initializes next candidate index main+1a7c from rand modulo count and remaining attempts+1a80 from count, sets busy+1a74 and stores the returned100ms timer in+1ff8. Each attempt decrements remaining, advances index modulo count, copies host/port into the Frame, stops the channel, clears request-sent+1a76, sets GetTickCount+10000 and starts the job in+1a78, recording its start result in+1a77. Failed starts immediately advance candidates. Neither+1a7c nor+1a80 is a request-generation field.",
+      "kind": "fact"
+    },
+    {
+      "id": "DNS-job-ownership",
+      "procedures": [
+        "0x418a10",
+        "0x417aa0",
+        "0x4260e0"
+      ],
+      "claim": "The job factory first clears/releases the output slot. Its shared counted admission allows at most4 outstanding counted resolver tasks. A normally allocated64-byte job starts with refs2/done0, owns a hostname string, a result buffer at+20, default status11001 at+38 and resolver pointer+3c. Successful thread creation closes its handle and publishes the job pointer; this does not join or stop the thread. Cap rejection and normal thread-start failure reduce the counter. Allocation-null and exceptional paths are not claimed fully handled.",
+      "kind": "fact"
+    },
+    {
+      "id": "DNS-worker",
+      "procedures": [
+        "0x426a30",
+        "0x429fb0",
+        "0x42a015",
+        "0x4260e0"
+      ],
+      "claim": "The supplied426a30 function performs IPv4 stream getaddrinfo, uses the first result and formats an IPv4 address. The worker invokes that resolver with its owned host,job+20 and length22, stores status+38, then the normal cleanup publishes done atomically, reduces the counter and releases the worker reference. The selected normal worker route writes its private job, with no Main/window callback. Normal owner detachment therefore permits a late resolver to finish without publishing through an old Main-owned slot; it does not interrupt getaddrinfo.",
+      "kind": "fact"
+    },
+    {
+      "id": "timer-deadlines",
+      "procedures": [
+        "0x424cf0",
+        "0x4291d0"
+      ],
+      "claim": "The DNS timer checks signed32(GetTickCount-deadline) before completion. At expiry it detaches/releases the current job and advances candidates. A completed job is copied locally, its status read, then detached/released and DNS phase cleared. Assembly restores decompiler-removed status0/nonempty-address checks and Connect(address,low16(port)). DNS resolution and channel readiness share the first10s deadline; an accepted login submission sets request-sent and starts another10s deadline. This is a source threshold, not measured wall-clock behavior.",
+      "kind": "fact"
+    },
+    {
+      "id": "stop-close-destroy",
+      "procedures": [
+        "0x41b690",
+        "0x41a020",
+        "0x42e260",
+        "0x41fa60"
+      ],
+      "claim": "Stop clears/releases the current job, clears pending/request-sent/busy and remaining attempts, kills the stored timer or fallback100, and stops the channel. A pending close request is consumed and Frame WM_CLOSE posted. Frame close first defers through Main while busy; Main destruction also detaches/releases its job. These paths release owner references; no synchronous DNS termination follows from them.",
+      "kind": "fact"
+    },
+    {
+      "id": "reply-gate",
+      "procedures": [
+        "0x4316c0",
+        "0x422b80",
+        "0x422cb0",
+        "0x423c30",
+        "0x587340",
+        "0x5875e0"
+      ],
+      "claim": "The reply adapter keeps the existing16-argument stack ABI proof and calls the success gate before the UI consumer. The gate requires Main busy and Stop returning no deferred close; otherwise it returnsfalse. The retry error helper also checks busy. Connect creates an internal channel and callback registration; Stop delegates internal teardown. The selected Main gates do not carry a candidate generation or prove that a reply from a superseded channel cannot reach a newly busy attempt. Full internal draining/dispatch ownership remains open.",
+      "kind": "fact"
+    },
+    {
+      "id": "separate-task-owners",
+      "procedures": [],
+      "claim": "Prior same-source contracts retain separate catalog task fields+2bc4/+2bc8, process busy handles+2b84/+2b88/+2b90, preparation/patch state and modal editing ownership. The DNS slot+1a78 and busy+1a74 do not replace these gates; inherited contracts and their remaining boundaries remain applicable.",
+      "kind": "fact"
+    }
+  ],
+  "scope_refinement": [
+    "Same C82 source; older catalog/metadata source versions are not merged.",
+    "CRT-derived views, canonical dossiers and retained-pseudocode compositions are separate.",
+    "Selected normal job ownership is bound; the whole owner/exception/reentry graph is not closed."
+  ],
+  "inferences": [
+    {
+      "kind": "inference",
+      "implementation_added": false,
+      "claim": "D1 should keep candidate budget, owned resolver job, login busy/request phase, catalog work and process ownership separate. A shared attempt owner can preserve cancellation and selected deadline behavior while platform DNS/timer/channel adapters provide explicit late-event semantics. Any new generation token is an independent implementation mechanism, not a recovered wire field or proven native counter."
+    }
+  ],
+  "requirement_answers": [
+    {
+      "question": 1,
+      "status": "answered-bounded-source",
+      "result": "Actual CRT entry traversal binds the App defaults and registered normal destructor, despite canonical401040 query failure."
+    },
+    {
+      "question": 2,
+      "status": "partially-answered",
+      "result": "Candidate,owned DNS job,normal completion,deadline,stop/close and busy reply gate bound; internal channel drain/late reply/reopen remains."
+    },
+    {
+      "question": 3,
+      "status": "partially-answered",
+      "result": "Prior startup/catalog/patch/modal owner rules reused with independent boundaries; no whole lifecycle completion claim."
+    },
+    {
+      "question": 4,
+      "status": "answered-bounded-source",
+      "result": "Independent owner/state implications and remaining platform/lifecycle conditions recorded without new product code."
+    }
+  ],
+  "remaining": [
+    "Underlying channel callback dispatch,Stop/cleanup synchronization,already queued replies and new-attempt identity; busy alone is not full late-result protection.",
+    "All modal/async close/reopen and exception/allocation/thread-start combinations, explicit XML clear/remove and caller recovery, plus dynamic menu targets and three resource uses.",
+    "Game actual alternate callback dispatch,graphics/input/shared-state ownership and remaining full capability conditions.",
+    "Shared implementation and actual platform/device/account/official acceptance remain outside this static package."
+  ],
+  "original_execution": false,
+  "account_or_session_observed": false,
+  "runtime_features_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "official_acceptance": false,
+  "full_goal_complete": false,
+  "launcher_operation_composition": {
+    "schema": "moli.launcher-operation-composition.layer.v1",
+    "plan": {
+      "path": "build/analysis/launcher-operation-composition-v1/implementation-plan.json",
+      "bytes": 3804,
+      "sha256": "c46c956e220e0e081ae31e79810da5eed10a8d50cea8366f1001be83fd3180dd"
+    },
+    "specification": {
+      "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+      "bytes": 125938,
+      "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+    },
+    "sources": {
+      "path": "build/analysis/launcher-operation-composition-v1/source-rules.json",
+      "bytes": 207079,
+      "sha256": "4148d612db3822c2dff705ef94b798bff10b71b493fa1a9404b16c17a81e6554"
+    },
+    "validation_path": "build/analysis/launcher-operation-composition-v1/validation.json",
+    "summary": {
+      "frozen_contracts": 10,
+      "retained_fact_fields": 118,
+      "frozen_source_checks": 10,
+      "additional_source_specs": 24,
+      "selected_previous_body_declarations": 22,
+      "selected_reported_ranges": 25,
+      "selected_reported_bytes": 15203,
+      "new_REA_queries": 0,
+      "new_decompilations": 0,
+      "complete_Evidence_factory_revalidations": 0,
+      "operation_rows": 19,
+      "state_owner_groups": 9,
+      "selected_supersession_edges": 9,
+      "implementation_deltas": 6,
+      "condition_groups": 4,
+      "primary_capability_rows": 7
+    },
+    "P02_review": {
+      "original_packet_ref": {
+        "file": {
+          "path": "build/analysis/capability-source-reconciliation-v1/reconciliation.json",
+          "bytes": 322481,
+          "sha256": "b277e26dc5fc10ab334cd5d88999e8e1561b732ba6a6011deacbebc0f0405eca"
+        },
+        "pointer": "/review_packets/1",
+        "canonical_sha256": "ba662a88de282e479ae272928ba9886b6080f24e11948b184551efa656574909"
+      },
+      "selected_normal_operation_composition_done": true,
+      "whole_P02_or_all_capabilities_complete": false,
+      "effective_next": "LO-U1正向文件缺失边；LO-U2/3条件准入；LO-D1..6待统一规格门槛后开发，旧XML/App/channel选定未决不再驱动新查询。",
+      "effective_followup": {
+        "specification": {
+          "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+          "bytes": 28641,
+          "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+        },
+        "selected_source_child_closed": "LO-U1",
+        "source_rule": "module directory + raw Code + .pat; direct CopyFileA to game PatchEXE, then existing backup/start",
+        "next": "原12packet/40能力必要规格/架构复核；MP-D1/2并入既有D0/D1，条件LO-U2/3及外部接受保持",
+        "whole_parent_or_global_gate_closed": false
+      }
+    },
+    "capability_coverage": [
+      {
+        "id": "L01",
+        "operation_ids": [
+          "LO-O01",
+          "LO-O02",
+          "LO-O03",
+          "LO-O04",
+          "LO-O05",
+          "LO-O16",
+          "LO-O18"
+        ],
+        "implementation_delta_ids": [
+          "LO-D01",
+          "LO-D04",
+          "LO-D06"
+        ],
+        "original_requirement_scope": "配置读取、区域目录初始化、来源选择、首次配置与失效恢复",
+        "whole_capability_complete": false,
+        "source_gate_promoted": false
+      },
+      {
+        "id": "L02",
+        "operation_ids": [
+          "LO-O02",
+          "LO-O04",
+          "LO-O07",
+          "LO-O09",
+          "LO-O11",
+          "LO-O12",
+          "LO-O13"
+        ],
+        "implementation_delta_ids": [
+          "LO-D01",
+          "LO-D02",
+          "LO-D03"
+        ],
+        "original_requirement_scope": "区域/行选择、排序、关联列、状态/期限限制、刷新候选",
+        "whole_capability_complete": false,
+        "source_gate_promoted": false
+      },
+      {
+        "id": "L03",
+        "operation_ids": [
+          "LO-O07",
+          "LO-O08",
+          "LO-O09",
+          "LO-O10",
+          "LO-O12",
+          "LO-O14",
+          "LO-O15"
+        ],
+        "implementation_delta_ids": [
+          "LO-D02",
+          "LO-D04"
+        ],
+        "original_requirement_scope": "连接、挑战、提交、记录/消息分片、回复、取消、超时、错误",
+        "whole_capability_complete": false,
+        "source_gate_promoted": false
+      },
+      {
+        "id": "L04",
+        "operation_ids": [
+          "LO-O06",
+          "LO-O07",
+          "LO-O08",
+          "LO-O11",
+          "LO-O13",
+          "LO-O15",
+          "LO-O18"
+        ],
+        "implementation_delta_ids": [
+          "LO-D03",
+          "LO-D04",
+          "LO-D06"
+        ],
+        "original_requirement_scope": "账号输入的编码/长度、模式/取消/清理、非秘密偏好与条款决定",
+        "whole_capability_complete": false,
+        "source_gate_promoted": false
+      },
+      {
+        "id": "L05",
+        "operation_ids": [
+          "LO-O03",
+          "LO-O17"
+        ],
+        "implementation_delta_ids": [
+          "LO-D05"
+        ],
+        "original_requirement_scope": "摘要、清单、下载候选、更新器参数、接管与重新启动",
+        "whole_capability_complete": false,
+        "source_gate_promoted": false
+      },
+      {
+        "id": "L06",
+        "operation_ids": [
+          "LO-O16",
+          "LO-O19"
+        ],
+        "implementation_delta_ids": [
+          "LO-D05"
+        ],
+        "original_requirement_scope": "补丁操作、候选校验、事务提交、中断和恢复",
+        "whole_capability_complete": false,
+        "source_gate_promoted": false
+      },
+      {
+        "id": "L08",
+        "operation_ids": [
+          "LO-O01",
+          "LO-O02",
+          "LO-O03",
+          "LO-O05",
+          "LO-O06",
+          "LO-O07",
+          "LO-O08",
+          "LO-O10",
+          "LO-O11",
+          "LO-O12",
+          "LO-O13",
+          "LO-O14",
+          "LO-O15",
+          "LO-O16",
+          "LO-O17",
+          "LO-O18",
+          "LO-O19"
+        ],
+        "implementation_delta_ids": [
+          "LO-D03",
+          "LO-D04",
+          "LO-D05",
+          "LO-D06"
+        ],
+        "original_requirement_scope": "配置→检查/更新→输入→候选→交接及关闭/取消/恢复",
+        "whole_capability_complete": false,
+        "source_gate_promoted": false
+      }
+    ],
+    "boundary_capability_coverage": [
+      {
+        "id": "L07",
+        "operation_ids": [
+          "LO-O12",
+          "LO-O18"
+        ],
+        "role": "normal producer/first-config version boundary only; current game consumption and acceptance still unclosed",
+        "whole_capability_complete": false,
+        "source_gate_promoted": false
+      }
+    ],
+    "implementation_deltas": [
+      {
+        "id": "LO-D01",
+        "title": "按来源字节XML与目录发布替换字符串假设",
+        "capabilities": [
+          "L01",
+          "L02"
+        ],
+        "implementation_batch": "D0/D1",
+        "operation_ids": [
+          "LO-O02",
+          "LO-O03"
+        ],
+        "classification": "事实：已证源合同与当前代码的具名差异",
+        "actual_current_refs": [
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/capability-first-v1/launcher-xml-contract.json",
+              "bytes": 11434,
+              "sha256": "3b579d3865a82f26b9503317a782d67350cc1ec0091c931a94b7ae52aad606e2"
+            },
+            "pointer": "/facts/14",
+            "canonical_sha256": "b3a3ec045ec205fc3fd9f12fb454e94e64b02e429619e3ec937c973256809b1d"
+          }
+        ],
+        "behavior": "沿已登记24项选定差异和catalog caps/default/field规则修改纯byte parser；候选/store commit与源原位填充分层，不重复取证。",
+        "source_rule_unknown": false,
+        "implementation_done": false,
+        "platform_or_same_version_accepted": false
+      },
+      {
+        "id": "LO-D02",
+        "title": "普通登录候选与请求后期限",
+        "capabilities": [
+          "L02",
+          "L03"
+        ],
+        "implementation_batch": "D0/D1",
+        "operation_ids": [
+          "LO-O08",
+          "LO-O09",
+          "LO-O10"
+        ],
+        "classification": "事实：已证源合同与当前代码的具名差异",
+        "actual_current_refs": [
+          {
+            "file": {
+              "path": "shared/launcher-flow.mjs",
+              "bytes": 11893,
+              "sha256": "550dbdeced62e3461dbcceeeff30eacf5a64ded4e0838ce189da8d93357b724e"
+            },
+            "first_line_1": 107,
+            "last_line_1": 128,
+            "start_byte_0": 6808,
+            "end_byte_0_exclusive": 7894,
+            "sha256": "2c54d0c893a2c78815566002eb6d5e4e9fade900ea5735ec15e8c0535839e363"
+          },
+          {
+            "file": {
+              "path": "shared/launcher-flow.mjs",
+              "bytes": 11893,
+              "sha256": "550dbdeced62e3461dbcceeeff30eacf5a64ded4e0838ce189da8d93357b724e"
+            },
+            "first_line_1": 158,
+            "last_line_1": 176,
+            "start_byte_0": 9845,
+            "end_byte_0_exclusive": 10779,
+            "sha256": "ca957d5e9ff671c56ac1bafb81ad88063191813adcd89caa0da161e3c0f29d5e"
+          },
+          {
+            "file": {
+              "path": "web/launcher-session.mjs",
+              "bytes": 12139,
+              "sha256": "af7bda090a5e997d5f9af3b83d88dda37d869e0ba72d5fc243a3f3f147e88f42"
+            },
+            "first_line_1": 42,
+            "last_line_1": 50,
+            "start_byte_0": 2651,
+            "end_byte_0_exclusive": 3252,
+            "sha256": "02b2b2427011a962934312476ea74d40af07a812f32421243b4ca382755443d2"
+          },
+          {
+            "file": {
+              "path": "web/launcher-session.mjs",
+              "bytes": 12139,
+              "sha256": "af7bda090a5e997d5f9af3b83d88dda37d869e0ba72d5fc243a3f3f147e88f42"
+            },
+            "first_line_1": 94,
+            "last_line_1": 118,
+            "start_byte_0": 5368,
+            "end_byte_0_exclusive": 6289,
+            "sha256": "34465d45753057da94ef5260d39b54b490e6e3f6b337a2917f9643f7471074dc"
+          }
+        ],
+        "behavior": "当前start只设一次deadline，openFailed所有候选共用原deadline，answerChallenge进入awaiting-reply未重置；current协调层需保留每次候选10s和accepted request后另10s，DNS/connection各阶段结果及Stop资格。generic既有策略不要混作同版源规则。",
+        "source_rule_unknown": false,
+        "implementation_done": false,
+        "platform_or_same_version_accepted": false
+      },
+      {
+        "id": "LO-D03",
+        "title": "预设/ID元数据与普通产品owner统一",
+        "capabilities": [
+          "L02",
+          "L04",
+          "L08"
+        ],
+        "implementation_batch": "D0/D1",
+        "operation_ids": [
+          "LO-O05",
+          "LO-O06",
+          "LO-O07",
+          "LO-O11",
+          "LO-O12",
+          "LO-O13"
+        ],
+        "classification": "实现整合待办：当前明确模块边界与已证操作；未凭限定文件名零结果断言全仓无实现",
+        "actual_current_refs": [
+          {
+            "file": {
+              "path": "shared/launcher-preferences.mjs",
+              "bytes": 1815,
+              "sha256": "f48f1c4ac1f011f02bcbcd8633735fa0f5b06853bc5e889294f9e6550ff7c8d0"
+            },
+            "first_line_1": 1,
+            "last_line_1": 34,
+            "start_byte_0": 0,
+            "end_byte_0_exclusive": 1815,
+            "sha256": "f48f1c4ac1f011f02bcbcd8633735fa0f5b06853bc5e889294f9e6550ff7c8d0"
+          },
+          {
+            "file": {
+              "path": "web/login-catalog.mjs",
+              "bytes": 16135,
+              "sha256": "9f4b02cc8c8ce0da2ae03b6ff82b3b3627868d0772ac073d7714164590666206"
+            },
+            "first_line_1": 19,
+            "last_line_1": 62,
+            "start_byte_0": 1654,
+            "end_byte_0_exclusive": 4622,
+            "sha256": "845bc249b7415ab66ee29d06f82dda4b0c9bb20a0f3cd020d4326625ff52d275"
+          }
+        ],
+        "behavior": "现有UserMode preference及目录generation不是C82预设、单撤销、raw/visible ID、备注/pin/order存储合同；按源规则把这些能力接同一上下文和明确store结果，复用当前已有选择/持久化端口。",
+        "source_rule_unknown": false,
+        "implementation_done": false,
+        "platform_or_same_version_accepted": false
+      },
+      {
+        "id": "LO-D04",
+        "title": "取消/重开保留各自提交边界",
+        "capabilities": [
+          "L01",
+          "L03",
+          "L04",
+          "L08"
+        ],
+        "implementation_batch": "D0/D1",
+        "operation_ids": [
+          "LO-O03",
+          "LO-O06",
+          "LO-O14",
+          "LO-O15"
+        ],
+        "classification": "事实：已证源合同与当前代码的具名差异",
+        "actual_current_refs": [
+          {
+            "file": {
+              "path": "shared/launcher-flow.mjs",
+              "bytes": 11893,
+              "sha256": "550dbdeced62e3461dbcceeeff30eacf5a64ded4e0838ce189da8d93357b724e"
+            },
+            "first_line_1": 97,
+            "last_line_1": 105,
+            "start_byte_0": 6228,
+            "end_byte_0_exclusive": 6804,
+            "sha256": "0a7d794d4a22fc700812fe9a287b5c43d4c9be0cceea7518daa27c4bea65e18c"
+          },
+          {
+            "file": {
+              "path": "shared/launcher-flow.mjs",
+              "bytes": 11893,
+              "sha256": "550dbdeced62e3461dbcceeeff30eacf5a64ded4e0838ce189da8d93357b724e"
+            },
+            "first_line_1": 188,
+            "last_line_1": 195,
+            "start_byte_0": 11432,
+            "end_byte_0_exclusive": 11885,
+            "sha256": "f0d2263326c6610d471cfaa98cdbff4ec66c04fc9fba9a8fb9c5b1dca759fdc6"
+          },
+          {
+            "file": {
+              "path": "web/login-catalog.mjs",
+              "bytes": 16135,
+              "sha256": "9f4b02cc8c8ce0da2ae03b6ff82b3b3627868d0772ac073d7714164590666206"
+            },
+            "first_line_1": 46,
+            "last_line_1": 65,
+            "start_byte_0": 3690,
+            "end_byte_0_exclusive": 4830,
+            "sha256": "2a4dcca49ad31a545d744f7f775b0d77953e4ab8a08b0205e53092fb209af038"
+          }
+        ],
+        "behavior": "区分closed owner/operation/context与真实commit settlement。pending flag、request generation、source pointer+serial和portable token各自建模；预设外层cancel保留已提交编辑，晚commit按权威结果恢复。不能复用一个通用取消即回滚。",
+        "source_rule_unknown": false,
+        "implementation_done": false,
+        "platform_or_same_version_accepted": false
+      },
+      {
+        "id": "LO-D05",
+        "title": "更新/补丁候选接共享资源提交恢复",
+        "capabilities": [
+          "L05",
+          "L06",
+          "L08"
+        ],
+        "implementation_batch": "D0/D1",
+        "operation_ids": [
+          "LO-O03",
+          "LO-O16",
+          "LO-O17",
+          "LO-O19"
+        ],
+        "classification": "事实：已证源合同与当前代码的具名差异",
+        "actual_current_refs": [
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/launcher-current-refresh-v1/implementation-spec.json",
+              "bytes": 4304,
+              "sha256": "5dc1fa34e580d2eea5877b193ce5f91a84bb0b642ee951b0dafb4f4388c2131b"
+            },
+            "pointer": "/implementation",
+            "canonical_sha256": "7425459f7b65b913a101598c542326d820292dd2e4814b625f0795972b0442eb"
+          },
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/launcher-current-updater-v1/implementation-spec.json",
+              "bytes": 4181,
+              "sha256": "9ca64458a21a0ff2bc7c2caac2a19e4c5fa6068ccae8a9a0e30fd4c588d94d28"
+            },
+            "pointer": "/implementation",
+            "canonical_sha256": "339e10fffa9677bdc2934af2186c09f57c5a2d35d4af768e42758d045d1df46f"
+          },
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/launcher-v26/implementation-spec.json",
+              "bytes": 4178,
+              "sha256": "65d4098ddda3bbf2f98358b886dc72154732702b5ad15cf3c541560d914c1d1e"
+            },
+            "pointer": "/independent_policies",
+            "canonical_sha256": "d4073bf97b0925728fd6523703e16b0a9c06132116462a267d9a7655ed1a7d01"
+          },
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/launcher-current-patch-v1/implementation-spec.json",
+              "bytes": 7049,
+              "sha256": "52573dbd4e5a97bf6522b1a26de04f31dd0903e08d893f998c865f84ce5c0754"
+            },
+            "pointer": "/contract",
+            "canonical_sha256": "5beddcbcac4c4bfa2771efab01c98055d76d5751edea197cefae8151dae35096"
+          }
+        ],
+        "behavior": "已实现候选解析/命令/exit bookkeeping继续复用。组合资源版本/存储commit与恢复、大小/路径支持边界、重试政策及宿主能力；Windows native EXE/ACK/真实文件恢复不因纯字节API算完成。",
+        "source_rule_unknown": false,
+        "implementation_done": false,
+        "platform_or_same_version_accepted": false
+      },
+      {
+        "id": "LO-D06",
+        "title": "编码/长度/首次Config保持profile与宿主边界",
+        "capabilities": [
+          "L01",
+          "L04",
+          "L07",
+          "L08"
+        ],
+        "implementation_batch": "D0/D1/D5",
+        "operation_ids": [
+          "LO-O04",
+          "LO-O05",
+          "LO-O06",
+          "LO-O08",
+          "LO-O18"
+        ],
+        "classification": "事实：已证源合同与当前代码的具名差异",
+        "actual_current_refs": [
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/launcher-v30/implementation-spec.json",
+              "bytes": 5118,
+              "sha256": "955f7029755f7f596d6ec56dd3a7fa042d946dac30999ae146682ea8aa5c9ceb"
+            },
+            "pointer": "/first_config",
+            "canonical_sha256": "36252764fa69d422c8ee373f55a83c5a5e95e411c8175a3c5b9b02e0813d2e9c"
+          },
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/launcher-update-arguments-v1/implementation-spec.json",
+              "bytes": 3307,
+              "sha256": "1336dba0c262b39ace189fe43dc130a8ece0db2943b9bea41ecec9656372b165"
+            },
+            "pointer": "/policy_boundaries",
+            "canonical_sha256": "fb5e48770873e242678d5c25fdf8b016d0124867093d9c3ecdaa97ae0d256dd0"
+          }
+        ],
+        "behavior": "显式原始bytes/转换结果、MBCS比较和写入结果，不以Unicode字符数代替源byte上限。601b首次Config保持该profile，C82/现行游戏配对仍单独；真实IME/OS/设备接受另验。",
+        "source_rule_unknown": false,
+        "implementation_done": false,
+        "platform_or_same_version_accepted": false
+      }
+    ],
+    "necessary_unknowns_and_conditions": [
+      {
+        "id": "LO-U1",
+        "kind": "necessary-positive-edge-review",
+        "scope": "C82 current missing-PatchEXE preparation inside40F430",
+        "need": "stage147明确保留此准备边；必须先定位已有40F430完整体/原资料中“文件不存在”分支和实际包来源，不能复用601b packagedSourceRelativeBytes当current事实。",
+        "source_refs": [
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/launcher-current-patch-v1/implementation-spec.json",
+              "bytes": 7049,
+              "sha256": "52573dbd4e5a97bf6522b1a26de04f31dd0903e08d893f998c865f84ce5c0754"
+            },
+            "pointer": "/contract/compatibility_metadata",
+            "canonical_sha256": "063977579f47b5f8a2e6fa80e2ade18b1595cb103320a75ee5bbce09127ada11"
+          },
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/launcher-current-patch-v1/implementation-spec.json",
+              "bytes": 7049,
+              "sha256": "52573dbd4e5a97bf6522b1a26de04f31dd0903e08d893f998c865f84ce5c0754"
+            },
+            "pointer": "/remaining/3",
+            "canonical_sha256": "284995b549d7522abc2a2bb32850d60f90a4452defc1c56c6cd81212d49ce894"
+          }
+        ],
+        "new_REA_query_automatically_approved": false
+      },
+      {
+        "id": "LO-U2",
+        "kind": "conditional-scheduling-frontier",
+        "scope": "已获callback lease跨modal/替换的尾部unregister；catalog/preparation旧结果对新owner",
+        "need": "lookup/serial/Stop/普通同栈pump规则已足够复用。仅当具名正常用户序列要求跨旧/新owner时追实际producer/准入边；不把任意线程/异常组合列为永不结束的全量任务。",
+        "source_refs": [
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/capability-first-v1/launcher-channel-contract.json",
+              "bytes": 9456,
+              "sha256": "2340ce0df67f1951a0a411ed8547c3f1bce563e8f0605f1a19459243a6432f36"
+            },
+            "pointer": "/facts/7",
+            "canonical_sha256": "0f1037c84db45b638b012cc00a3fa9da5b720d0ec0701135d0e3f85686292df8"
+          },
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/capability-first-v1/launcher-modal-recovery-contract.json",
+              "bytes": 11481,
+              "sha256": "12153aa0718e5ea50a0216b39d0d7d66bbb66b674de97ef1581172dcde87b326"
+            },
+            "pointer": "/facts/3",
+            "canonical_sha256": "182c92c76b7c05976b5a419cd6c65dc13bcb8f60c6b3f29df79043ebaeb4dc7a"
+          },
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/capability-first-v1/launcher-host-routing-contract.json",
+              "bytes": 8438,
+              "sha256": "aca0fbfe061e58bdf31747798bf13b20be3b9ac153210c11c8485a9026a6de98"
+            },
+            "pointer": "/facts/8",
+            "canonical_sha256": "1473c831d13783a5f05ff065f0a9dac03c995cbe789a8aa467a84e6673b81298"
+          },
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/capability-first-v1/launcher-catalog-state-contract.json",
+              "bytes": 11153,
+              "sha256": "d509dfe7c6cf3cc85b16303a97fd3b3bae7c71ae049612ab64d3f2d8eb3b8da1"
+            },
+            "pointer": "/facts/preparation",
+            "canonical_sha256": "4c06644ad111697ee4b899173960439287e916ab0d792abbbf5052cf007660f0"
+          }
+        ],
+        "new_REA_query_automatically_approved": false
+      },
+      {
+        "id": "LO-U3",
+        "kind": "conditional-discovery-and-version",
+        "scope": "296/30721/30734、四非App菜单、未准入import/export与C7BA/current handoff",
+        "need": "继续P01正向注册/调用/用户入口准入，原范围不删；资源/字符串存在和bounded零结果不单独造能力。L07现行配对仍不能由601b→37c4或C7BA目录拼接。",
+        "source_refs": [
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/capability-first-v1/launcher-host-routing-contract.json",
+              "bytes": 8438,
+              "sha256": "aca0fbfe061e58bdf31747798bf13b20be3b9ac153210c11c8485a9026a6de98"
+            },
+            "pointer": "/facts/6",
+            "canonical_sha256": "bc7161bd6f31d2a1cab03a1cc2a3d4314591157d0e1d76e4a3d277aa37e919a8"
+          },
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/capability-first-v1/launcher-id-metadata-contract.json",
+              "bytes": 12485,
+              "sha256": "a78e6638d2f39f38dac16ab4a45bfb77920ba668844f3b0ab1d20bd3ddbec93c"
+            },
+            "pointer": "/facts/order_commands",
+            "canonical_sha256": "9c69fcaf098b807b7ddf7ec926f9a5b7aa038b95a2f0e05d34cf75c9e1d777f2"
+          },
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/capability-first-v1/launcher-apply-contract.json",
+              "bytes": 11656,
+              "sha256": "0ab805c57cfa28e2e8a4bdfe6b4bde53f3f3e540e96ab06a807790cc5d3ed8c8"
+            },
+            "pointer": "/facts/normal_handoff_boundary",
+            "canonical_sha256": "9c20021d477c7f5f1034d1281adb6fcf10b04eeffd2cb25777061ae2a6d5b349"
+          }
+        ],
+        "new_REA_query_automatically_approved": false
+      },
+      {
+        "id": "LO-U4",
+        "kind": "host-contract-and-external-acceptance",
+        "scope": "声明encoding/MBCS端口、存储、输入/IME与资源更新/重开；实际平台/同版接受",
+        "need": "具体平台能力用显式宿主合同及运行验收，不反复离线查同一CRT等设备结果。源假定与当前独立严格政策分栏，账号暂缺不反复询问。",
+        "source_refs": [
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/capability-first-v1/launcher-id-metadata-contract.json",
+              "bytes": 12485,
+              "sha256": "a78e6638d2f39f38dac16ab4a45bfb77920ba668844f3b0ab1d20bd3ddbec93c"
+            },
+            "pointer": "/facts/storage",
+            "canonical_sha256": "689421f37ae5edfce4c18aae476aa997aa94633d004c95a662582d5ed7a84796"
+          },
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/capability-first-v1/launcher-presets-contract.json",
+              "bytes": 12757,
+              "sha256": "e416ebe282e8dae1fe30530a8ba6c1107a5de986777a7ad7e1e54e76f9704402"
+            },
+            "pointer": "/facts/editor",
+            "canonical_sha256": "30a89842bd0f9a4736abc491426eb5cc21ef855e91f144687d61f279d70ae38c"
+          },
+          {
+            "file": {
+              "path": "build/analysis/launcher-operation-composition-v1/frozen-inputs/analysis/launcher-current-refresh-v1/implementation-spec.json",
+              "bytes": 4304,
+              "sha256": "5dc1fa34e580d2eea5877b193ce5f91a84bb0b642ee951b0dafb4f4388c2131b"
+            },
+            "pointer": "/not_implemented",
+            "canonical_sha256": "e1e90e13763030306e5378f5db13199db082bed963c1e394225edc65264e5139"
+          }
+        ],
+        "new_REA_query_automatically_approved": false
+      }
+    ],
+    "stopping_rule": "所选操作都有门槛/owner/发布/失败/取消关闭/晚到/重开与引用即停止重复原语；只对LO-U1或经正向准入的具名必要边补源。原40域统一A1..A4保持未通过。",
+    "scope_preserved": {
+      "capabilities": 40,
+      "registry_entries": 81,
+      "historical_composite_requirements": 37,
+      "consumer_groups": 10,
+      "profiles": 6
+    },
+    "source_gate_passed": false,
+    "product_code_changed": false,
+    "full_goal_complete": false
+  },
+  "launcher_missing_patcher": {
+    "schema": "moli.launcher-missing-patcher.layer.v1",
+    "plan": {
+      "path": "build/analysis/launcher-missing-patcher-v1/implementation-plan.json",
+      "bytes": 2830,
+      "sha256": "98b52174a6753d4b282966b33c6846310f23f1c356cd502f1f6f8bad03233451"
+    },
+    "specification": {
+      "path": "build/analysis/launcher-missing-patcher-v1/specification.json",
+      "bytes": 28641,
+      "sha256": "3c7b8c2cc701a1810c2a047355944f0c6825ec8903ed5e32e1b1dddb5f889b22"
+    },
+    "sources": {
+      "path": "build/analysis/launcher-missing-patcher-v1/source-views.json",
+      "bytes": 32625,
+      "sha256": "7324d202c32e2ae07a829967c131b859b038e3400e666fe8df9d46b680f0129c"
+    },
+    "validation_path": "build/analysis/launcher-missing-patcher-v1/validation.json",
+    "summary": {
+      "new_native_dossiers": 8,
+      "reused_composed_roots": 1,
+      "reused_complete_root_primitive_records": 2,
+      "reused_complete_batch_parents": 1,
+      "complete_REA_records_for_factory_check": 11,
+      "source_body_bytes": 2548,
+      "new_native_body_bytes": 1197,
+      "cold_instructions": 855,
+      "direct_E8_CALLs": 87,
+      "short_strings": 5,
+      "direct_import_bindings": 3,
+      "prior_retained_records": 924,
+      "retained_records_after": 932,
+      "repeated_root_decompilations": 0,
+      "fact_groups": 6,
+      "questions_answered": 4,
+      "unexecuted_cases": 12,
+      "implementation_deltas": 2
+    },
+    "selected_supersession": {
+      "parent_ref": {
+        "file": {
+          "path": "build/analysis/launcher-operation-composition-v1/specification.json",
+          "bytes": 125938,
+          "sha256": "7deb9d0f4fda97f65e97440137dd3950244f149469c1240b3a030c6acadcfaa6"
+        },
+        "pointer": "/necessary_unknowns_and_conditions/0",
+        "canonical_sha256": "36e03223efd69a9d03e8c59bb92e1df37168bbc64a2d73cc6401ab9893d83c32"
+      },
+      "covered_child_id": "LO-U1",
+      "selected_current_missing_patcher_source_closed": true,
+      "whole_P02_or_parent_requirement_closed": false
+    },
+    "implementation_deltas": [
+      {
+        "id": "MP-D1",
+        "merge_into": "LO-D5 / D0-D1 update-resource preparation",
+        "capabilities": [
+          "L01",
+          "L06",
+          "L08"
+        ],
+        "source_rule_unknown": false,
+        "implementation_done": false,
+        "behavior": "current profile应以显式module source context和raw Code形成Code.pat相对/完整source，保持legacy Code\\PatchEXE字段只在legacy profile。产品仍是旧metadata，不得据source已证声称已修复。",
+        "source_facts": [
+          "MP-F2",
+          "MP-F3",
+          "MP-F4",
+          "MP-F6"
+        ],
+        "current_refs": [
+          {
+            "file": {
+              "path": "shared/launcher-patch-current.mjs",
+              "bytes": 8826,
+              "sha256": "86a22afb67ae5007f21ea6e3425996af94e9d4ac2182ed8dc7e70219e4ef7bbc"
+            },
+            "first_line_1": 60,
+            "last_line_1": 92,
+            "start_byte_0": 3378,
+            "end_byte_0_exclusive": 6192,
+            "sha256": "10b41d979e4eb9a5182d2076c641f09aae7f63714c9cbd8e78f673d58873d057"
+          },
+          {
+            "file": {
+              "path": "shared/launcher-patch.mjs",
+              "bytes": 5338,
+              "sha256": "f695998d08e325bd3ffeb3d152033b91a56ce3fc208dc9e7899b86f0689605df"
+            },
+            "first_line_1": 36,
+            "last_line_1": 49,
+            "start_byte_0": 2647,
+            "end_byte_0_exclusive": 4269,
+            "sha256": "1d35d77c7380d611af4917dfbb961a5052c44524dd7e0985bb907ed86b0f0f33"
+          }
+        ]
+      },
+      {
+        "id": "MP-D2",
+        "merge_into": "LO-D4/LO-D5 / D0-D1 owner and commit boundaries",
+        "capabilities": [
+          "L06",
+          "L08"
+        ],
+        "source_rule_unknown": false,
+        "implementation_done": false,
+        "behavior": "保留三态返回、不同busy owner、目的exists/缺失、CopyFile允许覆盖/失败及启动失败后已复制文件；初次准备和直接backup/start重试分开，沿已有poll/exit/422E20恢复。",
+        "source_facts": [
+          "MP-F1",
+          "MP-F4",
+          "MP-F5"
+        ],
+        "current_refs": [
+          {
+            "file": {
+              "path": "shared/launcher-patch-current.mjs",
+              "bytes": 8826,
+              "sha256": "86a22afb67ae5007f21ea6e3425996af94e9d4ac2182ed8dc7e70219e4ef7bbc"
+            },
+            "first_line_1": 83,
+            "last_line_1": 92,
+            "start_byte_0": 5262,
+            "end_byte_0_exclusive": 6192,
+            "sha256": "77d12aab81c0e6a4605876fe23693351ab3bbb0dc583495ab012a2b25452bc23"
+          },
+          {
+            "file": {
+              "path": "shared/launcher-patch-current.mjs",
+              "bytes": 8826,
+              "sha256": "86a22afb67ae5007f21ea6e3425996af94e9d4ac2182ed8dc7e70219e4ef7bbc"
+            },
+            "first_line_1": 113,
+            "last_line_1": 126,
+            "start_byte_0": 7649,
+            "end_byte_0_exclusive": 8826,
+            "sha256": "11fd4c894435e4a7d0726cc08ba3bea5ea44cbe105d2aac96c9006c9c33256a7"
+          }
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "id": "MP-R1",
+        "kind": "global-capability-review",
+        "need": "返回原12packet/40能力统一必要规格/架构复核。LO-U1缺文件准备不再作为缺源驱动，P02其它条件重入/发现与现行交接仍按正向准入保留。"
+      },
+      {
+        "id": "MP-R2",
+        "kind": "implementation",
+        "need": "MP-D1/2并入既有D0/D1差异批次；统一门槛通过后实现并跑受影响资源/更新/流程测试。当前未改产品。"
+      },
+      {
+        "id": "MP-R3",
+        "kind": "external-acceptance",
+        "need": "真实OS/ACP/path/File API结果、三端设备和相应同版联合接受另验；无测试账号的事实保留，不反复索取。"
+      }
+    ],
+    "stopping_rule": "LO-U1的目录/Code.pat/CopyFile/返回与后续启动已可实现；停止CString/CRT/helper扩张。只在全40能力复核发现具名必要未知时补源。",
+    "scope_preserved": {
+      "capabilities": 40,
+      "registry_entries": 81,
+      "historical_composite_requirements": 37,
+      "consumer_groups": 10,
+      "profiles": 6
+    },
+    "source_gate_passed": false,
+    "product_code_changed": false,
+    "full_goal_complete": false
+  }
+}

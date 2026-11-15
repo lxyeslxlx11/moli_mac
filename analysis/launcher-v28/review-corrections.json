@@ -1,0 +1,17 @@
+{
+  "schema": "moli.launcher-v28.review-corrections.v1",
+  "product_defects_reproduced_during_QA": [],
+  "harness_corrections": [
+    {
+      "initial_record": "ui-browser.json",
+      "issue": "Playwright isDisabled(fieldset) does not report its own DOM disabled flag. Repeated prior-stage harness assumption; actual DOM fields were disabled.",
+      "fix": "Inspect fieldset.disabled and actual user flow instead; ui-browser-v2.json9checks pass. Preserve initial failed receipt."
+    },
+    {
+      "initial_record": "ui-browser-final.json",
+      "issue": "New append-without-base correctly returned skipped; helper incorrectly waited for the successful ready text and timed out after30seconds.",
+      "fix": "Wait for explicit skipped status and disabled choose; then provide real base file and require successful58B candidate. ui-browser-verified.json13checks pass. No product policy changed."
+    }
+  ],
+  "artifact_preservation": "All initial/v2/final/verified records and screenshots use separate names/directories. No prior-stage receipt or pixels overwritten this phase. stage65 historical overwrite remains disclosed."
+}

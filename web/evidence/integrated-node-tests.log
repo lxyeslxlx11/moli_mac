@@ -1,0 +1,33 @@
+✔ v0 returns exact raw indices and preserves opaque header word (1.072208ms)
+✔ v2 accepts all observed palette lengths as opaque bytes (0.173583ms)
+✔ ArrayBuffer and nonzero-offset Uint8Array inputs are supported (0.33125ms)
+✔ returned pixels and opaque bytes are owned copies (0.082834ms)
+✔ Uint8Array subclasses cannot turn returned copies into shared views (0.087ms)
+✔ ordinal selection retains repeated IDs instead of deduplicating (0.075125ms)
+✔ frameRange produces exclusive byte range and validates paired size (0.233ms)
+✔ index range addition does not wrap at UInt32 (0.075125ms)
+✔ overlap gaps zero lengths and maximum nested end remain observations (0.091667ms)
+✔ record dimensions and byte length must agree with RD payload (0.290917ms)
+✔ invalid input types and ordinals fail explicitly (0.349125ms)
+✔ empty truncated and over-budget indices are rejected (0.188792ms)
+✔ frame headers validate magic and truncate safely (0.3675ms)
+✔ compressed and unknown RD versions are never silently decoded (0.159459ms)
+✔ zero enormous and multiplication-unsafe dimensions are rejected before allocation (0.179125ms)
+✔ v0 and v2 reject truncation and trailing bytes (0.154916ms)
+✔ v2 invalid palette layouts are rejected without inferring colors (0.132ms)
+✔ frame and caller-supplied record budgets fail before reads (0.932833ms)
+✔ index file uses one bounded slice and preserves exact bytes (1.205833ms)
+✔ index empty, partial, oversized, and unsafe sizes reject before IO (0.228167ms)
+✔ short index read is rejected (0.140208ms)
+✔ large graphic file reads only the selected frame range (0.14775ms)
+✔ invalid or overflowing frame ranges reject before IO (0.183625ms)
+✔ short selected frame read is rejected (0.076166ms)
+✔ original UI fixture roundtrips through shared parser without official assets (0.398875ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 114.921833

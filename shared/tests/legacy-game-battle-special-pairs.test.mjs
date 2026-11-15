@@ -1,0 +1,12 @@
+import test from'node:test';
+import{readFileSync}from'node:fs';
+import*as api from'../index.mjs';
+import{verifySpecialPairsModel}from'../../analysis/game-battle-special-pairs-v1/verify_model.mjs';
+import{verifySpecialPairsCallbacks,verifySpecialPairsDash,verifySpecialPairsRID,verifySpecialPairsAtomic,verifySpecialPairsManagers}from'../../analysis/game-battle-special-pairs-v1/verify_routes.mjs';
+const vectors=()=>JSON.parse(readFileSync(new URL('../../analysis/game-battle-special-pairs-v1/original-vectors.json',import.meta.url)));
+test('94/257/262 independent queues,owned storage,all states and complete RGBA',async()=>console.log('special-pairs-model '+JSON.stringify(await verifySpecialPairsModel(api,vectors()))));
+test('94 signal and end impacts,condition recipients and257/262 effect facing',async()=>console.log('special-pairs-callbacks '+JSON.stringify(await verifySpecialPairsCallbacks(api,vectors()))));
+test('262 actual205 producer owns one random choice per callback',async()=>console.log('special-pairs-dash '+JSON.stringify(await verifySpecialPairsDash(api,vectors()))));
+test('94/257/262 guard RID preserves recipient and stale fourth word',async()=>console.log('special-pairs-RID '+JSON.stringify(await verifySpecialPairsRID(api,vectors()))));
+test('94/257/262 reject invalid fields,capacity and absent tile before mutation',async()=>console.log('special-pairs-atomic '+JSON.stringify(await verifySpecialPairsAtomic(api,vectors()))));
+test('94/257/262 actual managers separate natural rounds,recovery and244 exit',async()=>console.log('special-pairs-managers '+JSON.stringify(await verifySpecialPairsManagers(api,vectors()))));

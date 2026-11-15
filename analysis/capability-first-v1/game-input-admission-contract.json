@@ -1,0 +1,266 @@
+{
+  "schema": "moli.capability.game-input-admission-contract.v1",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "source_check": "analysis/capability-first-v1/game-input-admission-source-check.json",
+  "capabilities": [
+    "G05",
+    "G10",
+    "X01",
+    "X02"
+  ],
+  "facts": [
+    {
+      "id": "source-authority",
+      "kind": "fact",
+      "entries": [
+        "0x46b530",
+        "0x46de10"
+      ],
+      "claim": "默认REA FunctionManager无这两个过程，入口Listing也未解码，不代表文件缺字节。已沿47e160的直接CALL在独立副本恢复；六个本组派生体都核原PE，未改规范函数元数据，不冒充新规范dossier。"
+    },
+    {
+      "id": "numeric-action-order",
+      "kind": "fact",
+      "entries": [
+        "0x46b530",
+        "0x46de10",
+        "0x452420"
+      ],
+      "claim": "两数字盘有0..9、退格10、清空12和提交13，普通盘另有最大值11；鼠标使用源矩形/事件位。flag2时按数字升序查主键区和数字键区，首个命中覆盖鼠标选择；最后退格键优先。452420只读72869c[key]&4，不清位；退格查询在flag2检查之外。"
+    },
+    {
+      "id": "ordinary-number",
+      "kind": "fact",
+      "entries": [
+        "0x46b530"
+      ],
+      "claim": "数字动作按32位值×10+digit，再以有符号比较限至param4；退格向零整除10，最大值动作置param4，清空置0。普通确认按钮的正常资格为当前值>0，flag1可改变按钮选择资格；选中提交动作返回3，无动作返回0，其余处理返回1。本层不查询键13。"
+    },
+    {
+      "id": "masked-number",
+      "kind": "fact",
+      "entries": [
+        "0x46de10"
+      ],
+      "claim": "掩码盘独立记录c08090位数：不足6位才追加并增位数，超出时发错误声；值仍受param4限制。退格除10并减位数，位数不低于0；清空同时清值/位数，不显示普通盘的最大值动作。最终提交必须位数==6才返回3，包括六个0；flag1不放宽最终六位检查。"
+    },
+    {
+      "id": "focus-and-cancel",
+      "kind": "fact",
+      "entries": [
+        "0x445220",
+        "0x49fdd0"
+      ],
+      "claim": "445220立即把参数写入60ff08。窗口42的关闭按钮49fdd0在事件bit2时只置当前窗口8000并发39声，不调用提交回调、不发送协议，也不直接清c10f90或60ff08。它不是物理销毁或自动焦点恢复的证明。"
+    },
+    {
+      "id": "descriptor-dispatch",
+      "kind": "fact",
+      "entries": [
+        "0x46cf90"
+      ],
+      "claim": "46cf90以描述符首字为准，0或高字节非0返回0；mode0调用443ab0，mode1调用455290并继续更新+130/+134坐标，mode2只更新坐标，mode3调用4552d0。它不等于焦点setter或请求代次管理器。"
+    },
+    {
+      "id": "end-frame-F-slots",
+      "kind": "fact",
+      "entries": [
+        "0x46ab90",
+        "0x445230"
+      ],
+      "claim": "46ab90在控件循环后调用445230。后者扫描键槽70..77，按7286ac/7286ad的bit2选16/8/0槽组，多个命中保留较大索引，再将5e2780+slot*15c交443f20处理并发声；这不是焦点复位。本组未展开452430和443f20全部语义。"
+    },
+    {
+      "id": "classic-pet-admission",
+      "kind": "fact",
+      "entries": [
+        "0x4810f0",
+        "0x483bf0"
+      ],
+      "claim": "经典加点位于window17，481a30对应控件5..13，其中9..13发送五项属性。正常帧初始化回调4810f0调用483bf0；后者先把五项参与标志清0，在存在字非零、剩余点signed>0且属性<signed32(五属性+剩余之和)/2时分别置1。共同窗口先cb30再按participation==1分发，回调自身不重复该检查。"
+    },
+    {
+      "id": "source-context-difference",
+      "kind": "fact",
+      "entries": [
+        "0x483bf0",
+        "0x4df420"
+      ],
+      "claim": "参与字段位于runtimeControl+18，步长24（均十六进制），对应sidecar的15c/180/1a4/1c8/1ec。另一套4df420直接门槛为剩余!=0，不能与经典signed>0无条件合并；也不向另一套局部分支补猜测的存在检查。两者仍共用原宠物索引/属性索引报文。"
+    }
+  ],
+  "inferences": [
+    {
+      "kind": "inference",
+      "claim": "数字动作、焦点和共享键槽由D0集中管理；宠物命令复用同一字段定义，资格保留来源上下文。可避免按页面重复实现，但尚未量出总工期节省。"
+    }
+  ],
+  "numeric_action_contract": {
+    "source_modes": [
+      "normal-46b530",
+      "masked-46de10"
+    ],
+    "action_ids": {
+      "0..9": "digit",
+      "10": "backspace",
+      "11": "maximum-normal-only",
+      "12": "clear",
+      "13": "submit"
+    },
+    "source_result_masks": {
+      "0": "no action",
+      "1": "handled/edit path",
+      "3": "handled and submit"
+    },
+    "digit_arbitration": "先鼠标动作，再在flag2时按0..9扫描主键区/数字键区，最低数字命中覆盖鼠标；最后Backspace键查询优先于已选动作。",
+    "ordinary_known_prompt_maximum": 999999,
+    "masked_count_independent_of_numeric_value": true,
+    "examples": [
+      {
+        "input": "六个0",
+        "mode": "masked",
+        "value": 0,
+        "count": 6,
+        "normal_submit_eligible": true
+      },
+      {
+        "input": "未输入",
+        "mode": "masked",
+        "value": 0,
+        "count": 0,
+        "normal_submit_eligible": false
+      }
+    ],
+    "examples_are_source_derived_not_runtime_tests": true,
+    "source_32bit_arithmetic_and_signed_comparisons_preserved": true
+  },
+  "pet_gate_comparison": [
+    {
+      "context": "classic-window17",
+      "source": "0x483bf0→participation→0x481a30",
+      "exists_word_required": true,
+      "remaining": "signed >0",
+      "half_cap": "attribute < signed32 total/2 (truncation toward zero)",
+      "event_mask": 2,
+      "selected_slot": "c218e4 read at dispatch"
+    },
+    {
+      "context": "alternate-pet-subview",
+      "source": "0x4df420 direct branch",
+      "exists_word_required": "not asserted bythis localbranch",
+      "remaining": "!=0",
+      "half_cap": "attribute < signed32 total/2 (truncation toward zero)",
+      "event_mask": 1,
+      "selected_slot": "c5e934 snapshot before controls"
+    }
+  ],
+  "module_contract_proposal": {
+    "status": "not-implemented",
+    "D0": "共用数字动作、输入值/已输入位数、键槽查询、焦点指针及隐藏状态；不把查询实现为消费事件。",
+    "D3": "复用宠物属性请求；经典窗口先更新参与标志再回调，另一套按直接门槛处理。保持服务端状态发布及共享源顺序。",
+    "D5": "手动鼠标/触摸/键盘适配；本层没有自由文本或IME解析，不据此宣布全客户端IME已完成。"
+  },
+  "requirement_answers": [
+    {
+      "question": 1,
+      "status": "answered-with-scope-limit",
+      "answer": "两数字盘的动作、数值/位数、键盘条件、返回掩码与提交差异已成规；全客户端键盘/IME生产者与平台验证另列。"
+    },
+    {
+      "question": 2,
+      "status": "partially-answered",
+      "answer": "正常关闭按钮只置隐藏位并发声，不发协议、不清回调或焦点；焦点setter立即写入，末帧445230实际是F键槽服务。所有者丢失/全局焦点恢复仍待证。"
+    },
+    {
+      "question": 3,
+      "status": "answered-with-scope-limit",
+      "answer": "经典row17的4810f0→483bf0→五项参与标志→481a30已有来源；与另一套!=0相比，经典为signed>0。整项宠物功能/服务端接受未提升。"
+    },
+    {
+      "question": 4,
+      "status": "answered-with-scope-limit",
+      "answer": "仅增加统一规则覆盖，38/81/37/10不变；产品代码和全局规格/实现/官方验收门槛保持。"
+    }
+  ],
+  "remaining": [
+    {
+      "id": "shared-input-and-focus",
+      "capabilities": [
+        "X02"
+      ],
+      "question": "452430重复触发、443F20插入及445230的F键槽选择已由输入生命周期合同核源；剩余为其它关闭/丢失/重入和别名归属。603限定零结果仍不重复，按真实正向边补证。"
+    },
+    {
+      "id": "pet-state-publication",
+      "capabilities": [
+        "G05"
+      ],
+      "question": "继续完整服务端宠物状态发布/生命周期及其他宠物操作，保留控件资格与请求字段、发送与成功回执的边界。"
+    },
+    {
+      "id": "global-capability-frontiers",
+      "capabilities": [
+        "X01",
+        "X02"
+      ],
+      "question": "邻接/菜单/资料mode0/手动选数、97业务回调分发、物理时间/资源/模态/版本与实际平台/官方接受仍保留；已证数字盘、取消按钮和经典加点资格不重做。"
+    }
+  ],
+  "original_execution": false,
+  "account_or_session_observed": false,
+  "runtime_features_changed": false,
+  "module_interfaces_changed": false,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "official_acceptance": false,
+  "full_goal_complete": false,
+  "shared_clock_input_review": {
+    "specification": {
+      "path": "build/analysis/shared-clock-input-review-v1/specification.json",
+      "bytes": 39736,
+      "sha256": "b02f6dc7a65466634d64a2253a1a6b99fff82aec39e8b1631d22c1c6546981d8"
+    },
+    "source_inputs": {
+      "path": "build/analysis/shared-clock-input-review-v1/source-inputs.json",
+      "bytes": 4173,
+      "sha256": "a4736ed0e2a48266f6b187b091571609393987fd2a0ab28881a02ad2d03e9148"
+    },
+    "validation_record_path": "build/analysis/shared-clock-input-review-v1/validation.json",
+    "source_summary": {
+      "views": 19,
+      "reused_complete_native_views": 16,
+      "new_complete_native_views": 0,
+      "reused_derived_views": 3,
+      "body_ranges": 19,
+      "body_bytes": 6799,
+      "derived_instructions": 1163,
+      "direct_E8_CALLs": 147,
+      "new_native_queries": 0,
+      "native_views": 16,
+      "derived_views": 3,
+      "cold_instructions": 2060,
+      "extra_cold_helper_bytes": 220,
+      "extra_cold_helper_instructions": 75,
+      "literal_bytes": 20,
+      "calendar_division_domain": 2592000,
+      "source_fact_groups": 10,
+      "architecture_inferences": 2,
+      "independent_design_groups": 4,
+      "stale_prior_repeat_topics_resolved": 3,
+      "current_code_inputs": 10,
+      "proposed_not_executed_cases": 10
+    },
+    "scope": "Selected same37c4 shared keyboard/numeric/calendar/frame/audio rules, current code deltas and finite remaining categories",
+    "product_baseline": "stage306",
+    "product_code_changed": false,
+    "all_capability_analysis_complete": false,
+    "implementation_gate_passed": false,
+    "full_goal_complete": false,
+    "shared_reference": "analysis/capability-first-v1/game-entry-review-contract.json#/shared_clock_input_review",
+    "all_input_lifetimes_or_global_timing_closed": false
+  }
+}

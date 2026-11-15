@@ -1,0 +1,169 @@
+{
+  "schema": "moli.game-browser-owner-contract-stage169.v1",
+  "phase": 169,
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "tools": {
+    "rea": "6.7.0",
+    "ghidra": "12.1.4",
+    "profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb"
+  },
+  "classification": "facts:retained/focused native consumers; derived:explicit portableclient/page lifecycle; unverified:fullnative UI/default context/current/official",
+  "functions": [
+    {
+      "entry": "0x44e7e0",
+      "id": "ev_280ae3e2b4ddb09bbef75b01b51577e5924aef0ce960372b2f598e41bb2344da",
+      "requested": "0x44e7e0"
+    },
+    {
+      "entry": "0x44e7d0",
+      "id": "ev_28b01b69fbbbf99d51c82e405cfe8d930e111dd1f57de91a43515a92df8dcc35",
+      "requested": "0x44e7d0"
+    },
+    {
+      "entry": "0x4ff160",
+      "id": "ev_3c017d6b7d39cea40d003d050125c09b29b9ec88956b72cbc1ba1bb3d0366f33",
+      "requested": "0x4ff160"
+    },
+    {
+      "entry": "0x4405a0",
+      "id": "ev_af193d899977a71cace507f517bd6708a410bc1a6f5824985bbb7d174e24d5ad",
+      "requested": "0x4405a0"
+    },
+    {
+      "entry": "0x4fe580",
+      "id": "ev_d5bc66ff63e8b06b2225b37802bf7c42c1c4ad681804ded1e81a8e6a223cca41",
+      "requested": "0x4fe580"
+    },
+    {
+      "entry": "0x5028a0",
+      "id": "ev_f127bf71887678c38ab28b9c5c8e1c57932a9603739926862ba7581dc97ef915",
+      "requested": "0x5028a0"
+    }
+  ],
+  "reused_functions": [
+    {
+      "entry": "0x44fb60",
+      "id": "ev_6dab36a3217a0c24e69512d29674193261af2e2e0b087a9dd9ac1509221fc245"
+    },
+    {
+      "entry": "0x4ef0c0",
+      "id": "ev_881295fa17a1ca43854bf895c16f4e5bbe435ba9eef7050279aea3737722a6cf"
+    },
+    {
+      "entry": "0x4ff080",
+      "id": "ev_7324c177e6f9d26a60a0ffa71d47052f578b52e4ae49273ee0258b4c65e7f214"
+    },
+    {
+      "entry": "0x4ff3b0",
+      "id": "ev_b862e42213b352b02be1546e803a82452efe422e8ee8326bc4b4a93888e2705f"
+    },
+    {
+      "entry": "0x4ff750",
+      "id": "ev_1bd1fa10270b74e5484a537657bc057496b6ebdce7679da7eb9b9b069c6b3a9a"
+    },
+    {
+      "entry": "0x5015a0",
+      "id": "ev_62e7544fa25ad153cc695a31e8ce0f254a994c9d0ed12111f2ef0940c273aec0"
+    },
+    {
+      "entry": "0x501a50",
+      "id": "ev_630871844eb6a7c6a4f6b443a125a9e0826e46ed4f8d50c86e6f9a47ec09803d"
+    }
+  ],
+  "new_records": 42,
+  "new_operations": {
+    "inspect_native_instruction": 18,
+    "address_to_file_offset": 18,
+    "analyze_function": 6
+  },
+  "native_main9": {
+    "entry": "5015a0 case9 calls501a50; pending native phase isdistinctfrom host state",
+    "initial": "main9sub0 sets100,initial flags;100 calls4ff160/44e7d0/4405a0/4b9a10/4ea1b0/439c80/4fe580/445220 then101;101 waits922c4c before104",
+    "ordinary": "native main9case20->5028a0 setsphase3; ordinary3 handlescontext/UI/logic then draw-queue path; other modal/battle phases are not represented by a guessedzero",
+    "local_materialization": "4ff160 reuses source state4f0000 fields through4ff3b0/4ff750 andparty slots; previousselected character field15 isnot inferred as worldactorID; native complete context remains unresolved",
+    "side_effects": "4405a0 materializes state-record-backed remoteobjects/labels;4fe580 scansstored record/status;44e7d0 clears614888;44e7e0 clears614628/6145e8 andcalls466a80;5028a0 performsdraw/reset andwritesclock728368",
+    "limits": "Read-only static facts do not prove native execution or complete UI/global state. No source wait/mode is replaced by a hiddenzero default."
+  },
+  "owner": {
+    "scope": "Portable owning client around existing validated protocol/resources/runtime, with explicit source context ports",
+    "ownership": "client owns world/library/session/runtime/CUT handles; range files portborrowed. Browser wrapper owns selectedFileadapter/Canvas/picker and page lifecycle.",
+    "start": "initialize source resource library -> configure world from explicit context -> create sameidentity session -> source auth/list/control/entry -> prepareCUT/scene -> material readiness without packet count -> runtime/Canvas",
+    "context": "Every movement/runtime/actor/input value is explicit and schema-validated, not inferred from fixture shape. Persistent page imports a local bounded startup file carrying supported fixed profile/context/known handoff bytes. Unknown native producers/fullUI remain inoriginal goal.",
+    "readiness": "SourceCharacterEntered plus source scene/map/local actor/known speed and current local tile loaded bit0x4000; bounded world metadata API reads actual map cell, not update count. No fixed testpacket count; missing map data keeps preparing. Other nativeUI synchronization remains unmodeled.",
+    "scene_change": "invalidate presentation/input immediately; cancel/stall old async rendering, read new sourceCUT via library, replace scenecontroller andclear oldownedCUT only aftercorrectgeneration; resume only whenreadyandnotuserpaused",
+    "pause": "Host pause stops presentation/input only; network remains owned/alive. Resume resets sourceclock toexplicit tick so hidden page orpause doesnotreplay stalledcatchup.",
+    "close": "Anyclose/failure/EOF invalidates async generations, settlespending operations, stopsCanvas/timers/listeners andclosesowned world/library/runtime/session/CUT; borrowed files andoutside ports handled bybrowser wrapper. Reconnect createsfreshowners, neverreusesclosedworld.",
+    "readiness_lost": "If local actor/map-cell/speed readiness is lost, invalidate Canvas/input and close old runtime immediately; fresh actual records can prepare a new runtime without reconnecting or fabricating state."
+  },
+  "page": {
+    "path": "web/game.html",
+    "purpose": "Persistent project entry usingactual productmodules, not testdocument/evaluated injected scene logic",
+    "inputs": "Explicit selected resourcefolder andbounded local startupJSON; endpoint selected onlyfrom existing sameorigin loopbackruntime; bytes not stored/logged/uploaded",
+    "profile": "fixedlegacy37c4 only; startupsourcehash required, no current-launcher ticket conversion",
+    "controls": "prepare/connect, actual picker/creation/options/upgrade, Canvas, pause/resume/disconnect; hide/pageexit cleanup andexplicit restart",
+    "security": "no added externaladdresses, demoassets, serviceworker/storage/authfabrication orbrowsersecurityflags",
+    "limits": "Currentbrowserbridge remains original-onlyloopback; page isnot official login/currentcompatibility proof. production startup/digest/text/context producers remainunverified.",
+    "bridge": "The original loopback developer bridge remains limited to10s/4MiB perconnection. Full ordered runtime endpoint list is preserved so endpointOrdinal remains correct across second-target reconnect; no address/security-rule expansion."
+  },
+  "startup_schema": {
+    "schema": "moli.legacy-game-startup.v1",
+    "required": [
+      "schema",
+      "sourceProfile",
+      "sourceSha256",
+      "mappingHex",
+      "moduleDigestHex",
+      "resourceParametersHex",
+      "context"
+    ],
+    "context_required": [
+      "movement",
+      "runtime",
+      "actor",
+      "input",
+      "display"
+    ],
+    "display_required": [
+      "width",
+      "height",
+      "center",
+      "initialCamera",
+      "graphicsMode",
+      "forceRender"
+    ],
+    "limits": "JSON file<=65536B; mapping1..256B includingNUL; digest0or32lowerhexASCIIbytes; resourceparameter0..32767ASCIIbytes; exactobjects/no extra keys; explicitfullcontext, no implicitmode",
+    "identity_limit": "sourceSha256 is an explicit caller profile declaration, not attestation of selected file version, official origin or entitlement. This derived JSON schema is not a recovered vendor startup file."
+  },
+  "remaining": [
+    "Complete native main5/main9/context/UI/preview andlocal materialization binding beyond current source packetprojection",
+    "Category7upgrade material producer/deletion/production game textencoder andfullauth module digest",
+    "NativeWeChatCanvas/file/scheduler andpersistent gamePage fornativeWeChat",
+    "Party/battle/effects/remainingbusiness,current9baa/6e2ff,physicaldevices andofficialacceptance"
+  ],
+  "goal_status": "active",
+  "full_goal_complete": false,
+  "prior_source_contracts": [
+    "../game-legacy-world-v1/source-check.json",
+    "../game-legacy-world-v1/test-results.json",
+    "../game-input-runtime-v1/implementation-spec.json",
+    "../game-resource-runtime-v1/implementation-spec.json",
+    "../game-character-options-v1/source-check.json"
+  ],
+  "interfaces": {
+    "context": "snapshotLegacyGameClientContext exact movement/runtime/actor/input/display; validates full explicit gates andsupportedordinaryflags; immutable copies, no absentzero defaults",
+    "startup": "createLegacyGameStartup exact derived schema/source-profile declaration, boundedlowerhex byte fields; copy returnsownedmapping/digest/parameters; closeclearsinternalbytes; noI/O/storage",
+    "client": "createLegacyGameClient({plan,files,context,createSession,clock,onState,onInvalidate}); owns world/library/session/runtime/CUT; filesborrowed; start/auth-first Promise, ready material-ready Promise anddone terminal Promise; result snapshot islive state, not officialproof",
+    "inspection": "inspect metadata only; copyWorldState returnsownedbytes forcaller disposal; runtime/library/session are borrowed handles, do nottake ownership",
+    "lifecycle": "pause stopsinput/presentation; resume resetsclock; close/fail invalidateasync epoch anddispose independentowners evenifclosehookfails; cleanupErrors counted; reconnect isnewclient,notreuseclosedworld",
+    "world": "copyLocalSceneReadiness reads actualscene/map/localactor/knownmotion/currenttile0x4000 marker into boundedmetadata; no names or inventednativeUIphase",
+    "browser": "createBrowserLegacyGameClient owns selectedFiles/picker/Canvas around portableclient, consumesstartup copy andclearscredential bytes aftersessionconstruction; sameordered endpoint allowlist forwarded; oldsingleendpointdefault retained",
+    "page": "web/game.html normalmodule/Fileinputs; prepare/connect/picker/Canvas/pause/resume/disconnect, real pagehideclose, hidden-documentpause; setupcollapseswhileconnected; no fixtures/runtime state injected by page",
+    "run": "node web/examples/legacy-game-browser-local.mjs --endpoint 127.0.0.1:<explicit-original-peer-port>; servesfixedpage, no peer default or automaticconnection"
+  },
+  "validation": "test-results.json",
+  "phase_status": "bounded nativeinit/portableowningclient/persistentwebgamepage phasecomplete;full gameplay/current/nativeWeChat/official remainactive"
+}

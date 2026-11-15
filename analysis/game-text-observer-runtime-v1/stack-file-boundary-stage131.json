@@ -1,0 +1,106 @@
+{
+  "schema": "moli.stack-file-boundary-stage131.v1",
+  "classification": "fact: fresh independent PE32 header parsing and arithmetic from allowlisted CDB return values; semantic attribution remains unknown",
+  "sample_sha256": "9baa0d2660f96c6699ccf42ad46bd918717b98ccb228f4edde2d92afb89d3126",
+  "sample_bytes": 2904064,
+  "parser": "Python 3 standard library struct, original bytes read only",
+  "runtime_image_base": "0x00400000",
+  "runtime_image_end_exclusive": "0x0143b000",
+  "primary_return_values_in_main_image": [
+    {
+      "return_va": "0x011bcd11",
+      "rva": "0xdbcd11",
+      "section": ".text1",
+      "section_offset": "0x43d11",
+      "file_offset_if_same_layout": "0x6dd11"
+    },
+    {
+      "return_va": "0x01195a45",
+      "rva": "0xd95a45",
+      "section": ".text1",
+      "section_offset": "0x1ca45",
+      "file_offset_if_same_layout": "0x46a45"
+    },
+    {
+      "return_va": "0x01197009",
+      "rva": "0xd97009",
+      "section": ".text1",
+      "section_offset": "0x1e009",
+      "file_offset_if_same_layout": "0x48009"
+    },
+    {
+      "return_va": "0x011970f8",
+      "rva": "0xd970f8",
+      "section": ".text1",
+      "section_offset": "0x1e0f8",
+      "file_offset_if_same_layout": "0x480f8"
+    },
+    {
+      "return_va": "0x0117907c",
+      "rva": "0xd7907c",
+      "section": ".text1",
+      "section_offset": "0x7c",
+      "file_offset_if_same_layout": "0x2a07c"
+    },
+    {
+      "return_va": "0x011e6ccb",
+      "rva": "0xde6ccb",
+      "section": ".text1",
+      "section_offset": "0x6dccb",
+      "file_offset_if_same_layout": "0x97ccb"
+    }
+  ],
+  "original_text": {
+    "name": ".text",
+    "rva": 4096,
+    "virtual_size": 1753452,
+    "raw_size": 0,
+    "raw_offset": 0
+  },
+  "limitation": "All mapped return values select .text1, not original .text. Static layout correspondence does not verify runtime byte equality, function boundaries, genuine unwind, call edges, cause, or game protocol consumers. No memory page extraction, disassembly, or protection alteration performed.",
+  "secondary_return_values_in_main_image": [
+    {
+      "return_va": "0x011bcd11",
+      "rva": "0xdbcd11",
+      "section": ".text1",
+      "section_offset": "0x43d11",
+      "file_offset_if_same_layout": "0x6dd11"
+    },
+    {
+      "return_va": "0x01195a45",
+      "rva": "0xd95a45",
+      "section": ".text1",
+      "section_offset": "0x1ca45",
+      "file_offset_if_same_layout": "0x46a45"
+    },
+    {
+      "return_va": "0x01197009",
+      "rva": "0xd97009",
+      "section": ".text1",
+      "section_offset": "0x1e009",
+      "file_offset_if_same_layout": "0x48009"
+    },
+    {
+      "return_va": "0x011970f8",
+      "rva": "0xd970f8",
+      "section": ".text1",
+      "section_offset": "0x1e0f8",
+      "file_offset_if_same_layout": "0x480f8"
+    },
+    {
+      "return_va": "0x0117907c",
+      "rva": "0xd7907c",
+      "section": ".text1",
+      "section_offset": "0x7c",
+      "file_offset_if_same_layout": "0x2a07c"
+    },
+    {
+      "return_va": "0x011e6ccb",
+      "rva": "0xde6ccb",
+      "section": ".text1",
+      "section_offset": "0x6dccb",
+      "file_offset_if_same_layout": "0x97ccb"
+    }
+  ],
+  "secondary_note": "The eight numeric stack rows project exactly primary rows 2-9; six main-image return values and their layout arithmetic are the same. This does not validate a real call chain."
+}

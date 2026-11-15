@@ -1,0 +1,138 @@
+{
+  "schema": "moli.capability-batch-readiness-validation.v1",
+  "capability_scope": {
+    "all": 40,
+    "fixed_source_local_specification_ready": 19,
+    "grouped_remaining": 21
+  },
+  "groups": [
+    {
+      "name": "三端共用底座",
+      "capabilities": [
+        "X03",
+        "X04",
+        "X05",
+        "X06"
+      ],
+      "reconciled_sources": [
+        "analysis/capability-first-v1/shared-update-host-design.json#/independent_design/remaining",
+        "reports/network-portability.md#target-game-page-lifecycle",
+        "reports/architecture-and-milestones.md#wechat-sdk-segment-process-reopen"
+      ]
+    },
+    {
+      "name": "窗口、输入与业务恢复",
+      "capabilities": [
+        "X02",
+        "G12",
+        "G18",
+        "G19"
+      ],
+      "reconciled_sources": [
+        "analysis/capability-first-v1/alternate-window-contract.json#/alternate_window_selection_and_cleanup/item_dispatch_candidates",
+        "reports/game-static.md#legacy-item-double-window-frame",
+        "reports/game-static.md#item-alternate-dispatch-candidates"
+      ]
+    },
+    {
+      "name": "版本、登录与游戏交接",
+      "capabilities": [
+        "X01",
+        "L01",
+        "L03",
+        "L06",
+        "L07",
+        "L08",
+        "X07"
+      ],
+      "reconciled_sources": [
+        "analysis/capability-first-v1/launcher-game-patch-functional-specification.json#/remaining",
+        "reports/launcher-static.md#f5a-update-handoff-and-ack",
+        "reports/known-issues.md#current-game-handoff-evidence",
+        "reports/game-static.md#fixed-se-receive-operation-admission"
+      ]
+    },
+    {
+      "name": "资源与战斗",
+      "capabilities": [
+        "G06",
+        "B02",
+        "B03"
+      ],
+      "reconciled_sources": [
+        "reports/game-static.md#legacy-render-startup-tier-input",
+        "reports/game-static.md#battle-266-guard-slot-consumption"
+      ]
+    },
+    {
+      "name": "角色与邮件",
+      "capabilities": [
+        "G02",
+        "G20"
+      ],
+      "reconciled_sources": [
+        "reports/game-static.md#legacy-upgrade-empty-material",
+        "reports/game-static.md#fixed-se-classic-mail-compose-controls"
+      ]
+    },
+    {
+      "name": "全量复核",
+      "capabilities": [
+        "X08"
+      ],
+      "reconciled_sources": [
+        "analysis/capability-first-v1/capability-matrix.json#/analysis_queue",
+        "reports/development-plan.md#capability-first-workflow"
+      ]
+    }
+  ],
+  "shared_alternate_dispatch_evidence": [
+    "OS-U1",
+    "WK-U1",
+    "SF-U1"
+  ],
+  "source_review": {
+    "path": "build/analysis/capability-batch-readiness-v1/guard-source-review.json",
+    "bytes": 6378,
+    "sha256": "995560de4435b6f21cc6ee1bac1c159b79960e0d68714fd8a5497960d8fd71ef"
+  },
+  "rea_bundle": {
+    "path": "build/analysis/capability-batch-readiness-v1/rea-evidence.json",
+    "bytes": 11521,
+    "sha256": "818a1e45b5384f8dbc9b7905e9d964521ab05f72270a64892470ff3252da0532"
+  },
+  "rea_session_after_close": {
+    "open": false,
+    "cleanup_pending": false
+  },
+  "tested_guard_scenarios": {
+    "path": "build/analysis/capability-batch-readiness-v1/guard-local-comparison.json",
+    "bytes": 1234,
+    "sha256": "12f21293d499b4b2b0f6bffd9591c9eed417986b3e5681ec304d8d60b43da9f6"
+  },
+  "guard_scenario_count": 6,
+  "guard_regression": {
+    "path": "build/analysis/capability-batch-readiness-v1/guard-regression.log",
+    "bytes": 27754,
+    "sha256": "0f0f5cdf5fcd1e0a74f231820112cd4489f1d12a01a0767ea8d59e0da9d3c0ca"
+  },
+  "existing_regression_passed": 67,
+  "baseline_paths_checked": 4858,
+  "product_paths_checked": 713,
+  "changed_paths": [
+    "README.md",
+    "analysis/capability-first-v1/game-battle-functional-specification.json",
+    "analysis/capability-first-v1/implementation-plan.json",
+    "reports/development-plan.md",
+    "reports/game-static.md",
+    "reports/known-issues.md",
+    "reports/module-interfaces.md",
+    "reports/requirements-index.md",
+    "reports/validation.md"
+  ],
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "original_executed": false,
+  "implementation_gate_passed": false,
+  "full_goal_complete": false
+}

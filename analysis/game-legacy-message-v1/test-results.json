@@ -1,0 +1,218 @@
+{
+  "schema": "moli.legacy-message-tests-stage154.v1",
+  "new_Node_cases": 17,
+  "targeted": {
+    "tests": 17,
+    "pass": 17,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "exit_code": 0
+  },
+  "full": {
+    "tests": 883,
+    "pass": 883,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "exit_code": 0
+  },
+  "portable_checks": {
+    "tests": 2,
+    "pass": 2,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "exit_code": 0
+  },
+  "generated_project_checks": {
+    "tests": 7,
+    "pass": 7,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "exit_code": 0
+  },
+  "original_vector_counts": {
+    "integerWrites": 113,
+    "integerReads": 265,
+    "fields": 1030,
+    "unescape": 8,
+    "incoming": 104,
+    "outgoing": 60,
+    "binary": 4,
+    "bootstrap": 2
+  },
+  "incoming_branches": 104,
+  "outgoing_serializers": 60,
+  "noop_branches": 7,
+  "business_dispatch_branches": 96,
+  "implemented_business_projection": "One network-position intent; other95 business branches and binary consumers unimplemented.",
+  "final_standalone_original_Python_TCP_passes": 2,
+  "responses_verified_per_pass": 62,
+  "peer_private_game_material_required": false,
+  "peer_standalone_files": [
+    "original_peer.py",
+    "generate_vectors.py",
+    "original-vectors.json",
+    "dispatch-catalog.json"
+  ],
+  "boundary_cases": [
+    "base62 signed/wrapping/invalid0; unsafe INT32_MIN writer rejects",
+    "1030 ASCII/high-byte/firstNUL/lossy fields",
+    "space-only starts and CRLF ends; empty/missing/extra fields",
+    "60 serializers/104 branches and canonical extra terminator",
+    "signed binary lengths and ignored tails",
+    "112B binary-before-bootstrap;112B ready normal cipher",
+    "reset retains old key; pending normal/output; valid rekey replaces/wipes",
+    "float32-times64 position intent and raw facing candidate",
+    "input/key/queue/snapshot ownership and terminal cleanup",
+    "reentrant close during command input snapshot",
+    "malformed prefix/EOF/limits; platform-free bundle"
+  ],
+  "builds": [
+    {
+      "path": "build/wechat-app-stage154",
+      "report": {
+        "path": "build/wechat-app-stage154/build-report.json",
+        "bytes": 15843,
+        "sha256": "5425cb5e4f842c18c8dccd4e6e2e3412c5d96430f5dff8b50e76c5c6f67964ca"
+      },
+      "inputs": 83,
+      "outputs": 11,
+      "external_imports": 0,
+      "output_bytes": 706671
+    },
+    {
+      "path": "build/wechat-app-local-stage154",
+      "report": {
+        "path": "build/wechat-app-local-stage154/build-report.json",
+        "bytes": 15882,
+        "sha256": "511d21521c7afc54a76598c445cd5e04493b0e1f50e21a481892bac861f10b27"
+      },
+      "inputs": 83,
+      "outputs": 11,
+      "external_imports": 0,
+      "output_bytes": 707929
+    },
+    {
+      "path": "build/wechat-app-resources-stage154",
+      "report": {
+        "path": "build/wechat-app-resources-stage154/build-report.json",
+        "bytes": 15890,
+        "sha256": "d318702ee799f38ed01de596dda9a0e75f0df2f5dcf629320e024760e2bc4ee7"
+      },
+      "inputs": 83,
+      "outputs": 11,
+      "external_imports": 0,
+      "output_bytes": 707928
+    }
+  ],
+  "logs": [
+    {
+      "path": "build/analysis/game-legacy-message-v1/targeted.log",
+      "bytes": 1922,
+      "sha256": "096a885ae976fd1b4807d269a151336b1a079af35c59f82cfb103bed51fc1dae"
+    },
+    {
+      "path": "build/analysis/game-legacy-message-v1/node-full.log",
+      "bytes": 87829,
+      "sha256": "1e4654c4786b8e3fb3bc7746fea10fa1227445c069286ca76523f984aefa7e01"
+    },
+    {
+      "path": "build/analysis/game-legacy-message-v1/portable.log",
+      "bytes": 340,
+      "sha256": "5bb8ac8daa1335a1453e875df686df9424fa989313cc0eb76f9ce3b9724b9fa4"
+    },
+    {
+      "path": "build/analysis/game-legacy-message-v1/bundle.log",
+      "bytes": 891,
+      "sha256": "9d37dcab4d37ff23552f78e7f1b6e363cb27439e04f5ae469b42a219dcb10d0e"
+    },
+    {
+      "path": "build/analysis/game-legacy-message-v1/build-default.log",
+      "bytes": 119,
+      "sha256": "abaeeabdcc12f2b604bc4c51c1e9fb9b347b4124bf0b3fbf0cba22c197820b9d"
+    },
+    {
+      "path": "build/analysis/game-legacy-message-v1/build-local.log",
+      "bytes": 124,
+      "sha256": "30b85e08a32cc2022dba0704bf79cd57409c354836b319662582596650633097"
+    },
+    {
+      "path": "build/analysis/game-legacy-message-v1/build-resources.log",
+      "bytes": 128,
+      "sha256": "5cab66930bfde316e1a0190123ff0b1f63701470a556a108f6a9399f979e3772"
+    }
+  ],
+  "receipts": [
+    {
+      "path": "build/analysis/game-legacy-message-v1/targeted-receipt.json",
+      "bytes": 316,
+      "sha256": "84353246fcd51b993dba2025228f0604d78711992090588e2d4c382f5aabdd7e"
+    },
+    {
+      "path": "build/analysis/game-legacy-message-v1/node-full-receipt.json",
+      "bytes": 4091,
+      "sha256": "2cbf0ba96e5c210bdde37b110128e7ae9bd83627931b438ef2c604a4eb3bddc3"
+    },
+    {
+      "path": "build/analysis/game-legacy-message-v1/portable-receipt.json",
+      "bytes": 331,
+      "sha256": "3f887cc13a335f4ed6b18554810193820f123d65892261b3830c2d04e2dd94ec"
+    },
+    {
+      "path": "build/analysis/game-legacy-message-v1/bundle-receipt.json",
+      "bytes": 320,
+      "sha256": "12323a3a72fe7fd3b406904019ba8d2a642d3f3774fbacdd4170fea90dd4db8c"
+    },
+    {
+      "path": "build/analysis/game-legacy-message-v1/build-default-receipt.json",
+      "bytes": 341,
+      "sha256": "efb9cbca387e5ef86509d84992af3f01335df28b5472753f389a35bfa6ceb4f3"
+    },
+    {
+      "path": "build/analysis/game-legacy-message-v1/build-local-receipt.json",
+      "bytes": 432,
+      "sha256": "b584c7d973958e2318d516a297b39dd6f8859c409ca6b373e2708e8efa5b62a7"
+    },
+    {
+      "path": "build/analysis/game-legacy-message-v1/build-resources-receipt.json",
+      "bytes": 436,
+      "sha256": "4b49c7266ab02a6161ea89749cb4fe585c3267b4d0a0a171a76f419eca89af6a"
+    }
+  ],
+  "initial_failed_check": {
+    "phase": "portable script module load",
+    "product_cases_executed": 0,
+    "cause": "Extra closing parenthesis in test JSON normalization assertion; corrected test only and reran portable check.",
+    "log": {
+      "path": "build/analysis/game-legacy-message-v1/portable-initial-failed.log",
+      "bytes": 1563,
+      "sha256": "a1f362fbcc3fc64f0282898026605c18f4f65ef79d434a594c47238228ac7ee0"
+    },
+    "receipt": {
+      "path": "build/analysis/game-legacy-message-v1/portable-initial-failed-receipt.json",
+      "bytes": 324,
+      "sha256": "29b913e63801e9b9555c05e3b98cf4dfcbd1afc115012e13cb5df806e7d9f6ec"
+    },
+    "receipt_log_path_is_historical_location": true
+  },
+  "corrections": {
+    "path": "build/analysis/game-legacy-message-v1/corrections.json",
+    "bytes": 525,
+    "sha256": "2f948576c621e149dd4a862ce621bf1092473d94f7ff2d0b18632ed8e168dc84"
+  },
+  "new_dependencies": 0,
+  "existing_crypto_dependencies_reused": true,
+  "source_program_execution": false,
+  "native_WeChat_execution": false,
+  "current_version_equivalence": false,
+  "official_server_acceptance": false,
+  "real_credentials_or_sessions": false,
+  "performance_scope": "Bootstrap remains bounded synchronous8192 rounds; host scheduling/cancel and actual device performance remain unaccepted."
+}

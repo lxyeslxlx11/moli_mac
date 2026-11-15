@@ -1,0 +1,89 @@
+{
+  "schema": "moli.launcher-update-recovery-v1.implementation-spec.v1",
+  "recorded_utc": "2026-10-29T03:53:31.838Z",
+  "requirement": "reports/development-plan.md",
+  "created_before_product_code": true,
+  "source": "analysis/launcher-update-recovery-v1/static-audit.json",
+  "observed": {
+    "target_sha256": "7eb173b0b2c298d1ad12c5ebebefa37df81f8dc6d1dcecd256a1caf7e90c0fe1",
+    "reader": "0x40ebd0",
+    "writer": "0x40e7d0",
+    "recovery": "0x40ee10",
+    "read16": "0x40ed6c..0x40ed88",
+    "magic": "0x40ed8e",
+    "version": "0x40ed97",
+    "xor": "0x40eda2",
+    "stage_range": "0x40edac..0x40edb2",
+    "AL_return": "0x40edb9/0x40eddc",
+    "layout": [
+      {
+        "offset": 0,
+        "bytes": 4,
+        "kind": "uint32le",
+        "equals": 1431064400
+      },
+      {
+        "offset": 4,
+        "bytes": 4,
+        "kind": "uint32le",
+        "equals": 1
+      },
+      {
+        "offset": 8,
+        "bytes": 4,
+        "kind": "uint32le",
+        "range": [
+          1,
+          5
+        ]
+      },
+      {
+        "offset": 12,
+        "bytes": 4,
+        "kind": "uint32le",
+        "formula": "(stage xor0xf016ea0b) unsigned32"
+      }
+    ]
+  },
+  "API": {
+    "file": "shared/launcher-update-journal.mjs",
+    "name": "parseWin32LauncherUpdateJournalHeader",
+    "input": "One attached nonshared Uint8Array view or ArrayBuffer of exactly16bytes, own copied header; no coercion, filesystem, network or process dependency",
+    "output": "Frozen scalar metadata: version, recordedStage, recordedPhase, xor consistency; authentication unverified; file state/ACK not inspected/proven; recovery not performed",
+    "recorded_phases": {
+      "1": "before-replacement",
+      "2": "backup-moved",
+      "3": "replacement-installed",
+      "4": "awaiting-startup-ack",
+      "5": "commit-recorded"
+    },
+    "phase_evidence": {
+      "1": "0x406200 writes1 before ReplaceFileW",
+      "2": "0x406200 writes2 after target-to-backup fallback move",
+      "3": "0x406200 writes3 after replacement/fallback installation",
+      "4": "0x406920 writes4 before child launch/ACK wait",
+      "5": "0x406eb0 writes5 before cleanup"
+    },
+    "errors": [
+      "JOURNAL_INPUT",
+      "JOURNAL_HEADER_LENGTH",
+      "JOURNAL_MAGIC",
+      "JOURNAL_VERSION",
+      "JOURNAL_CHECKSUM",
+      "JOURNAL_STAGE"
+    ]
+  },
+  "independent_policy": [
+    "This parses an exact header, not the entire native file. Reject longer input; native selected reader only consumes first16bytes and can ignore a tail.",
+    "No stage0/absent-file inference from null, empty input or a failed read",
+    "No recovery planner/executor, cleanup, file trust, publisher identity or completed-update claim",
+    "Each recorded phase is a historical marker, not the actual current filesystem, startup acknowledgement or successful rollback"
+  ],
+  "validation": [
+    "Independent Python struct producer/native-header predicate with explicit tail difference; original synthetic vectors only",
+    "All5stages, invalid marker/version/stage/xor, truncation, endian/tail boundaries",
+    "Input view/ArrayBuffer ownership; shared/detached/proxy/type/getter boundaries and frozen/no-I/O semantics",
+    "Actual browser ESM checks and full applicable Node regression after product changes"
+  ],
+  "goal_preserved": "Full launcher analysis/implementation then game consumer analysis and playable cross-platform implementation; this header helper does not complete the full objective"
+}

@@ -1,0 +1,60 @@
+{
+  "schema": "moli.legacy-updater-startup.rea.v1",
+  "recorded_utc": "2026-10-30T11:11:19.095822+00:00",
+  "question": "Which startup/argument paths and runtime dependencies can account for the already-observed child2484 disappearing?",
+  "packed_sha256": "4c46fced55e7734ddc7c7ac15f2a56d20ba4cfefce43920b7f5e79b529284976",
+  "ordinary_offline_upx_version": "5.2.1",
+  "unpacked_bytes": 86016,
+  "unpacked_sha256": "62dbd66e6eac296862e214a2d92e5332b87cd811bb4f555dd5d49fe8e426b0a4",
+  "matches_historical_fixed_updater": true,
+  "provider": {
+    "id": "ghidra",
+    "version": "12.1.4"
+  },
+  "REA_version": "6.7.0",
+  "function_evidence": "ev_988be202ecc54c4446d36073d06e9a0042596f414d2c9fb3531a79ec87f5f86f",
+  "procedure": "0x401180",
+  "inclusive_body_ranges": [
+    [
+      "0x401180",
+      "0x401788"
+    ],
+    [
+      "0x401790",
+      "0x401a06"
+    ]
+  ],
+  "body_bytes": 2176,
+  "xrefs_evidence": "ev_6e27f87a98b42d70b4092e0bcbc35859a9ee3186b5d649520d3b37654a9413c6",
+  "argument_text_global": "0x411410",
+  "xrefs_to_global": [
+    "0x401210"
+  ],
+  "facts": [
+    "Selected function first tests CWnd::PreCreateWindow; five stream extractions/atoi/nonempty checks precede wait/network/file work.",
+    "Runtime calls include MSVCP71 stream construction/extraction, MSVCR71 atoi, and MFC71 window/network methods. Static library dependencies are actual PE imports, not a proven missing-library exit.",
+    "The selected xref query supplies only the global read at401210; no complete framework assignment or OS argv grammar was recovered."
+  ],
+  "anchor_verification": "rea-updater-anchors-stage108.json",
+  "anchor_count": 88,
+  "range_hash_count": 8,
+  "coverage_limits": [
+    "Function dossier has noncontiguous provider body and finite value-flow budget; not complete program/exception coverage",
+    "DLL load occurs outside this selected function; no missing-DLL cause or child image identity proven by this static dossier",
+    "No new network, target execution, memory or credential capture through REA"
+  ],
+  "private_evidence": [
+    {
+      "path": "build/analysis/game-install-context-v1/stage108/rea-updater-evidence.json",
+      "bytes": 3601138,
+      "sha256": "306f56e24498352e60e2f64930eeaa8c926f212285ba11393d71bb1d0f3ece2a"
+    },
+    {
+      "path": "build/analysis/game-install-context-v1/stage108/rea-updater-snapshot.json",
+      "bytes": 7198489,
+      "sha256": "6667a0972dea8907f94c26a0e84dea58b8a5a531835a6aa7037a34f52564106d"
+    }
+  ],
+  "export_records": 2,
+  "session_closed_with_snapshot": true
+}

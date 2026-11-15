@@ -1,0 +1,67 @@
+{
+  "schema": "moli.launcher-v29.implementation-spec.v1",
+  "source": "evidence-reuse.json",
+  "modules": {
+    "shared/launcher-resources.mjs": "Pure owned resource snapshot and strict read, path/tree/byte budgets and per-file MD5; bounded canonical non-secret binding identity.",
+    "shared/index.mjs": "Export resource format/error/binding/owned snapshot APIs without platform dependencies.",
+    "web/launcher-resource-store.mjs": "One whole-snapshot native IndexedDB record, CAS revisions and completed-transaction flags; no installed-client filesystem.",
+    "web/launcher-patch-state.mjs": "copySelectedResources and explicit review-only exact-binding restore; owned payloads and reset invalidation.",
+    "web/login-patch-cache.mjs": "Explicit check/save/restore/cancel, matching current configuration, controlled errors, generation/deadline lifecycle.",
+    "web/login-patch.mjs": "Compose cache controls and patch state; aggregate busy state; cache restoration still needs choice.",
+    "web/login-app.mjs": "Cache-aware busy status and no process preparation while cache is busy.",
+    "web/login.html": "Collapsed own-cache controls with explicit byte persistence/replacement/source-trust disclosure."
+  },
+  "classification": "Entire cache format/storage/atomicity/readiness is independent implementation policy; no claim of original Windows storage/rollback behavior.",
+  "format": {
+    "api": [
+      "snapshotLauncherResourceBinding",
+      "launcherResourceBindingKey",
+      "createLauncherResourceSnapshot",
+      "readLauncherResourceSnapshot"
+    ],
+    "model": "{schema:moli.launcher.resources.v1,binding,files:[{path,bytes:Uint8Array,md5}],trust:unverified}; no production JSON encoding of payloads.",
+    "binding": "Exact gameListMd5/regionListMd5, original game/reference/region ordinals, original numeric Code text, canonical Windows-directory snapshot, explicit pathEncoding, optional original Galaxy ordinal. Only these fields picked from catalog plan; extra account/display fields never copied.",
+    "canonical": "Lowercase full32hex catalog MD5; own finite integer ordinals0..signed32max; Code digits <=4096 chars with numeric0..14; localDirectoryPath and explicit ascii/windows-936/utf-8. Stored records must already be canonical and have exact keys; explicit undefinedGalaxy rejected.",
+    "files": "Existing strict relativeASCII paths/casealiases/tree conflicts reused;1024files,32MiB each,64MiB total. True attached Uint8Array/ArrayBuffer; SharedArrayBuffer/DataView/getters/proxies unsupported; empty files/snapshots supported.",
+    "verification": "Fresh owned copies and computed MD5 on creation; strict root/binding/file shape/path/tree/budget and all stored MD5 rechecked on read. Digests are corruption checks only, never source authentication.",
+    "identity": "JSON.stringify of fixed-order selected binding fields; not an official format or protocol field.",
+    "errors": [
+      "RESOURCE_INPUT",
+      "RESOURCE_FORMAT",
+      "RESOURCE_BINDING",
+      "RESOURCE_BUDGET",
+      "RESOURCE_FILES",
+      "RESOURCE_DIGEST"
+    ]
+  },
+  "store": {
+    "api": "createLauncherResourceStore({profile,indexedDB?}) -> databaseName/read(options)/commitResources(snapshot,options)",
+    "namespace": "moli-mac.launcher.resources.<explicit safe profile>; DBversion1; sole snapshots store, keyPath key, no autoIncrement/indexes; singleton key selected.",
+    "record": "{key:selected,schema:1,revision:positive safe integer,resources:own-format snapshot}. Empty read returns revision0/resourcesnull. No timestamps/accounts/consent/auth state.",
+    "commit": "Snapshot all input bytes before asynchronous open; read/verify existing record, CAS expectedRevision and one complete-record put in a single readwrite transaction. Completion event required before committed=true.",
+    "abort": "Before native completion, abort preserves old record. Once completion is irreversible, report committed with cancellationTooLate/deadlineExceededAfterCommit rather than claim rollback. UI cancellation resets local operation but does not promise reversal.",
+    "bounded": "One monotonic default10s/max60s deadline includes validation/open/transaction; actual AbortSignal; late successful open closes DB. Captured factory.open ignores later replacement.",
+    "refusal": "Corrupt/unknown schema/future DB/version/foreign store shape/conflicts are retained and refused; no automatic delete/migration/overwrite. IO messages controlled.",
+    "limits": "IndexedDB get materializes a structured clone before own validation. No quota reservation, power-failure durability, browser eviction protection, streaming/large-install coverage or native filesystem rollback."
+  },
+  "UI": {
+    "profile": "login-patch-local on current browser origin; no automatic cache read/write or restore.",
+    "save": "Requires explicitly selected complete candidate and a checked revision; recheck current binding; replace only expected stored version. One binding snapshot per profile, not a full installation database.",
+    "restore": "Check current configuration/directory/encoding, load all-file validated snapshot, exact binding match then explicitly read into review-only candidate. Choice required again; file paths feed existing resources and owned bytes remain available through resource APIs.",
+    "changed": "Configuration/region/Galaxy/XML restore, directory/path encoding/base files/pagehide invalidate local cache references, cancel current operation and prevent late revival. Persisted record retained.",
+    "metadata_only_DOM": "Counts/relative names/version/status only; resource payloads go to IndexedDB, not DOM/Storage strings/network/account fields.",
+    "locks": "Cache activity shares patch busy gate. Failures preserve a valid in-page choice where applicable; no invisible downgrade to another target.",
+    "capability": "No new network source, runtime descriptor, original process or installed write; opt-in patch origin policy fromv28 unchanged."
+  },
+  "state": {
+    "copySelectedResources": "Requires selected candidate, returns owned verified-format snapshot, no aliases into private candidate.",
+    "restore": "Resets previous state first, validates stored format/digests and explicit expected binding, clones candidate files and enters ready/cache; never selected automatically; failure leaves no old readiness."
+  },
+  "not_implemented": [
+    "Native installation transaction/Win32 recovery and original source authenticity",
+    "Full-install size/streaming/cross-catalog migration of cached bases",
+    "Official service/accounts/opaque/game consumer and game implementation",
+    "Safari/physicalmobile/WeChat and full BFCache acceptance"
+  ],
+  "run": "node web/examples/launcher-browser-game-patch-local.mjs; save/check/restore before the one original exchange closes the example."
+}

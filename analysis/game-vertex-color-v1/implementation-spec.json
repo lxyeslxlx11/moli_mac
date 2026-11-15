@@ -1,0 +1,34 @@
+{
+  "stage": 294,
+  "source": "Fixed37c4,REA6.7.0/Ghidra12.1.4;9functions/12101originalbytes;see source-check.json.",
+  "facts": [
+    "Action/state/ordinaryqueue preserves32-bit ARGB;ordinary/scaled D3D quad vertices share thatdiffuseword.",
+    "Explicit texturealpha MODULATE(TEXTURE,DIFFUSE);source flags8 ONE+ONE precedesalphaFF ONE/ZERO andotheralpha SRCALPHA/INVSRCALPHA.",
+    "Selected material physical rows contain25non-default ARGB actions/112frames;allhavewhiteRGB,sevenalpha levels,includingoneflags8action."
+  ],
+  "inferences": [
+    "RGB component modulation follows documentedstage0 defaults in the examined source path;alternateindirect statewriters andnativehardwarepixelidentity remainunverified."
+  ],
+  "independent_implementation": [
+    "Preparedcommand optionalcolor isuint32ARGB,defaultFFFFFFFF;imagequery.color propagates withoutmutation of preparedpixels orpalettecache identity.",
+    "Component modulation m=floor((textureChannel*vertexChannel+127)/255);sourceindex0mask ischeckedbeforemodulation,so opaqueRGBzero remainsopaque.",
+    "Normal effectivealpha=floor((portableopacity*vertexAlpha+127)/255),thenexistingstraight-alphaover;additive ignoresbothalphaandsuppliedopacity butusesmodulatedRGB andsaturates8-bitRGB.",
+    "High-priority sprites compose againstthe already-rendered textframe toavoid intermediate-layer rounding/lossofframe-dependentmixing.",
+    "AllowARGB onordinaryscene/directpreparedanimation/deferredanimation/resourceplans;namedpreparedspritebindingandunknownstylebits remainexplicit checks.",
+    "Battle specialobject-opacity binding remainsa separate consumer;do not silentlyapplynewordinarysemantics toits historicaltranslation."
+  ],
+  "acceptance": [
+    "Independent PythonfullRGBA equations andall8-bit alpha/tint combinations,selectedmixedcompositions,crop/flip/scale/priority/ties/textlayers.",
+    "Promote historicalalpha-only rejectedframes usingindependent newdigests whilekeepingoldfixtures unchanged.",
+    "Complete112actualframes withnamedcarriers,normalalphaandflags8precedence;source/generated equality;desktop/touchwebandsource/generatedPage actualmaterialflows.",
+    "Targetedandfullappropriate regression,freshbuilds,13canonicaldocuments,wholegoalrequirementsunchanged."
+  ],
+  "limits": [
+    "Hardwarefilter/edge/rounding/DDRAW/nativealpha remainunverified;transparentRGBAcoverage isanindependentpresentationpolicy.",
+    "Actualselectedactionscoveralpha-onlywhiteRGB;arbitraryRGBusesoriginalsyntheticvectors.",
+    "Battlebindings,remainingconsumers/fullgame/currenthandoff/nativeplatform/officialacceptanceremainincomplete."
+  ],
+  "full_goal_complete": false,
+  "goal_status": "active",
+  "partial_palette_scope": "5076a0 prefix copying,nonempty complete BGR triples<=768,known-color checks reject every unavailable entry;actual113305645B/10frames usesindices<=213."
+}

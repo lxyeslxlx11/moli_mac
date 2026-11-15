@@ -1,0 +1,363 @@
+{
+  "prepared_utc": "2026-10-25T04:26:57.491130+00:00",
+  "source_iso": "/Users/lx/Documents/code/moli-mac/build/drivers/utm-guest-tools-0.1.274.iso",
+  "source_sha256": "ab6add47a4ed992f5920f14e96f68d60566e6f731e2cf816c3d38ab2b78f407a",
+  "temporary_source_directory": "/tmp/moli-base-drivers-w11-arm64-0.1.274",
+  "scope": "Only w11/ARM64 viorng, non-experimental viogpudo and original license; not a decision to install",
+  "files": [
+    {
+      "path": "viorng/viorng.cat",
+      "bytes": 12518,
+      "sha256": "855424ff1afe172626a40724b43fde8d599d146ed892d749f6e821ee3fe489e1",
+      "source_iso_path": "Drivers/viorng/w11/ARM64/viorng.cat"
+    },
+    {
+      "path": "viorng/viorng.inf",
+      "bytes": 3721,
+      "sha256": "5227b59991b17917435f0e9f59a38cb1a9affa4f247334454dbc35578caf86f8",
+      "source_iso_path": "Drivers/viorng/w11/ARM64/viorng.inf"
+    },
+    {
+      "path": "viorng/viorng.sys",
+      "bytes": 61632,
+      "sha256": "2a9a17043d41a80c2a2c680bab65d7b6e66f772a66ae889136469e8d1b80045e",
+      "source_iso_path": "Drivers/viorng/w11/ARM64/viorng.sys",
+      "pe_machine": "0xaa64"
+    },
+    {
+      "path": "viorng/viorngum.dll",
+      "bytes": 115368,
+      "sha256": "117266d5dbd1c014494d7e5d72176d53f2951dda8033c045556e79573d780e73",
+      "source_iso_path": "Drivers/viorng/w11/ARM64/viorngum.dll",
+      "pe_machine": "0xaa64"
+    },
+    {
+      "path": "viogpudo/viogpudo.cat",
+      "bytes": 12039,
+      "sha256": "9bee682e4caec6ab701a8ff4e637d292885e7bec11a3f45f609946daa7d9e988",
+      "source_iso_path": "Drivers/viogpudo/w11/ARM64/viogpudo.cat"
+    },
+    {
+      "path": "viogpudo/viogpudo.inf",
+      "bytes": 2493,
+      "sha256": "56d941110dac9675543c4174d65de7164f5f70127812ffecc6c7bf98a0c1b8ec",
+      "source_iso_path": "Drivers/viogpudo/w11/ARM64/viogpudo.inf"
+    },
+    {
+      "path": "viogpudo/viogpudo.sys",
+      "bytes": 115728,
+      "sha256": "674113d577141914008bbe2b71bd4bf34de1d0b5d65f18edc2daecc962b4dcd5",
+      "source_iso_path": "Drivers/viogpudo/w11/ARM64/viogpudo.sys",
+      "pe_machine": "0xaa64"
+    },
+    {
+      "path": "virtio-win_license.txt",
+      "bytes": 1598,
+      "sha256": "accd84cb35eff899d619ff40e6fea8074305cdf0e7191db71a5d9c3a015e3b02",
+      "source_iso_path": "virtio-win_license.txt"
+    }
+  ],
+  "inf_observations": [
+    {
+      "directory": "viorng",
+      "inf": "viorng.inf",
+      "selected_lines": [
+        {
+          "line": 19,
+          "text": "Class           = System"
+        },
+        {
+          "line": 20,
+          "text": "ClassGuid       = {4d36e97d-e325-11ce-bfc1-08002be10318}"
+        },
+        {
+          "line": 21,
+          "text": "Provider        = %VENDOR%"
+        },
+        {
+          "line": 22,
+          "text": "CatalogFile     = viorng.cat"
+        },
+        {
+          "line": 24,
+          "text": "DriverVer = 01/13/2025,100.100.104.27100"
+        },
+        {
+          "line": 29,
+          "text": "; before moving VirtRng_Provider_CopyFiles destination"
+        },
+        {
+          "line": 36,
+          "text": "VirtRng_Provider_CopyFiles = 11"
+        },
+        {
+          "line": 50,
+          "text": "%VENDOR% = Standard,NTARM64.10.0...16299"
+        },
+        {
+          "line": 52,
+          "text": "[Standard.NTARM64.10.0...16299]"
+        },
+        {
+          "line": 53,
+          "text": "%VirtRng.DeviceDesc% = VirtRng_Device, PCI\\VEN_1AF4&DEV_1005&SUBSYS_00041AF4&REV_00, PCI\\VEN_1AF4&DEV_1005"
+        },
+        {
+          "line": 54,
+          "text": "%VirtRng.DeviceDesc% = VirtRng_Device, PCI\\VEN_1AF4&DEV_1044&SUBSYS_11001AF4&REV_01, PCI\\VEN_1AF4&DEV_1044"
+        },
+        {
+          "line": 57,
+          "text": "CopyFiles = VirtRng_CopyFiles"
+        },
+        {
+          "line": 58,
+          "text": "CopyFiles = VirtRng_Provider_CopyFiles"
+        },
+        {
+          "line": 64,
+          "text": "[VirtRng_CopyFiles]"
+        },
+        {
+          "line": 78,
+          "text": "AddService = VirtRng,0x00000002,VirtRng_Service_Install"
+        },
+        {
+          "line": 85,
+          "text": "ServiceBinary  = %13%\\viorng.sys"
+        },
+        {
+          "line": 96,
+          "text": "[VirtRng_Provider_CopyFiles]"
+        },
+        {
+          "line": 115,
+          "text": "VirtRng.DeviceDesc  = \"VirtIO RNG Device\""
+        },
+        {
+          "line": 120,
+          "text": "PROVIDER_NAME       = \"QEMU VirtIO RNG Provider\""
+        }
+      ]
+    },
+    {
+      "directory": "viogpudo",
+      "inf": "viogpudo.inf",
+      "selected_lines": [
+        {
+          "line": 8,
+          "text": "Class=Display"
+        },
+        {
+          "line": 9,
+          "text": "ClassGUID={4d36e968-e325-11ce-bfc1-08002be10318}"
+        },
+        {
+          "line": 10,
+          "text": "Provider=%RHEL%"
+        },
+        {
+          "line": 11,
+          "text": "DriverVer = 04/18/2025,22.7.38.43"
+        },
+        {
+          "line": 12,
+          "text": "CatalogFile=viogpudo.cat"
+        },
+        {
+          "line": 27,
+          "text": "%RHEL%=RHEL,NTARM64"
+        },
+        {
+          "line": 29,
+          "text": "[RHEL.NTARM64]"
+        },
+        {
+          "line": 30,
+          "text": "%VioGpuDod.DeviceDesc% = VioGpuDod_Inst, PCI\\VEN_1AF4&DEV_1050&SUBSYS_11001AF4&REV_01"
+        },
+        {
+          "line": 36,
+          "text": "Include=msdv.inf"
+        },
+        {
+          "line": 38,
+          "text": "CopyFiles=VioGpuDod_Files_Driver"
+        },
+        {
+          "line": 43,
+          "text": "AddService = VioGpuDod,0x00000002,VioGpuDod_Service_Inst, VioGpuDod_EventLog_Inst"
+        },
+        {
+          "line": 53,
+          "text": "ServiceBinary = %12%\\viogpudo.sys"
+        },
+        {
+          "line": 78,
+          "text": "VioGpuDod.DeviceDesc = \"Red Hat VirtIO GPU DOD controller\""
+        }
+      ]
+    }
+  ],
+  "catalog_observations": [
+    {
+      "file": "viorng/viorng.cat",
+      "parse_exit": 0,
+      "parser": "LibreSSL 3.3.6 pkcs7",
+      "certificate_subject_issuer_lines": [
+        "subject=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Windows Hardware Compatibility Publisher",
+        "issuer=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Windows Third Party Component CA 2014",
+        "",
+        "subject=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Windows Third Party Component CA 2014",
+        "issuer=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Root Certificate Authority 2010"
+      ],
+      "windows_trust_timestamp_revocation_and_catalog_membership": "not verified; retain normal Windows enforcement"
+    },
+    {
+      "file": "viogpudo/viogpudo.cat",
+      "parse_exit": 0,
+      "parser": "LibreSSL 3.3.6 pkcs7",
+      "certificate_subject_issuer_lines": [
+        "subject=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Windows Hardware Compatibility Publisher",
+        "issuer=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Windows Third Party Component CA 2014",
+        "",
+        "subject=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Windows Third Party Component CA 2014",
+        "issuer=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Root Certificate Authority 2010"
+      ],
+      "windows_trust_timestamp_revocation_and_catalog_membership": "not verified; retain normal Windows enforcement"
+    }
+  ],
+  "tools": {
+    "python": "3.9.6",
+    "catalog_parser": "LibreSSL 3.3.6"
+  },
+  "not_included": [
+    "vioserial",
+    "SPICE agents",
+    "viogpu3d",
+    "autorun",
+    "Autounattend",
+    "installer executable",
+    "boot image"
+  ],
+  "guest_mounted": false,
+  "installed": false,
+  "new_license_accepted": false,
+  "security_settings_changed": false,
+  "media": {
+    "temporary_iso_path": "/tmp/moli-base-drivers-w11-arm64-0.1.274.iso",
+    "bytes": 921600,
+    "sha256": "fc1c1b35f8fc5f9fac36f5119f16de6170044bc6f06a8ff7eabce4f4169bc3c6",
+    "mode_octal": "0o444",
+    "volume_label": "MOLI_BASEDRV",
+    "format": "ISO9660 plus Joliet data image",
+    "build_command": "hdiutil makehybrid -iso -joliet -default-volume-name MOLI_BASEDRV -o /tmp/moli-base-drivers-w11-arm64-0.1.274.iso /tmp/moli-base-drivers-w11-arm64-0.1.274",
+    "build_exit": 0,
+    "volume_descriptors": [
+      {
+        "sector": 16,
+        "type": 1,
+        "identifier": "CD001"
+      },
+      {
+        "sector": 17,
+        "type": 2,
+        "identifier": "CD001"
+      },
+      {
+        "sector": 18,
+        "type": 255,
+        "identifier": "CD001"
+      }
+    ],
+    "boot_record_descriptor_present": false,
+    "autorun_or_unattend_members": false,
+    "exact_archive_members": [
+      ".",
+      "viogpudo",
+      "viorng",
+      "virtio-win_license.txt",
+      "viogpudo/viogpudo.inf",
+      "viogpudo/viogpudo.sys",
+      "viogpudo/viogpudo.cat",
+      "viorng/viorngum.dll",
+      "viorng/viorng.inf",
+      "viorng/viorng.sys",
+      "viorng/viorng.cat"
+    ],
+    "member_readback": [
+      {
+        "path": "viorng/viorng.cat",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "viorng/viorng.inf",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "viorng/viorng.sys",
+        "bytes_match": true,
+        "sha256_match": true,
+        "pe_machine": "0xaa64"
+      },
+      {
+        "path": "viorng/viorngum.dll",
+        "bytes_match": true,
+        "sha256_match": true,
+        "pe_machine": "0xaa64"
+      },
+      {
+        "path": "viogpudo/viogpudo.cat",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "viogpudo/viogpudo.inf",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "viogpudo/viogpudo.sys",
+        "bytes_match": true,
+        "sha256_match": true,
+        "pe_machine": "0xaa64"
+      },
+      {
+        "path": "virtio-win_license.txt",
+        "bytes_match": true,
+        "sha256_match": true
+      }
+    ],
+    "readback_passed": 8,
+    "guest_mount_or_install_performed": false,
+    "copied_to_project_build": false,
+    "primary_volume_label_verified": "MOLI_BASEDRV",
+    "primary_volume_label_padding_note": "Initial space-only trim assertion rejected hdiutil NUL padding; corrected metadata parser to strip trailing NUL/space, then assertion passed. ISO unchanged."
+  },
+  "hardware_id_matches": [
+    {
+      "hardware_id": "PCI\\VEN_1AF4&DEV_1005&SUBSYS_00041AF4&REV_00",
+      "inf": "viorng/viorng.inf",
+      "line": 53
+    },
+    {
+      "hardware_id": "PCI\\VEN_1AF4&DEV_1050&SUBSYS_11001AF4&REV_01",
+      "inf": "viogpudo/viogpudo.inf",
+      "line": 30
+    }
+  ],
+  "mount_lifecycle": {
+    "host_source_attach_readonly": true,
+    "host_source_attach_exit": 0,
+    "device": "/dev/disk4",
+    "host_source_detach_exit": 0,
+    "host_source_detach_result": "disk4 ejected",
+    "output_iso_host_mounted": false,
+    "output_iso_readback": "bsdtar archive reads only"
+  },
+  "decision_gate": "Windows Update is running under the parent task. Re-check each actual device ID/problem after update/restart before deciding whether either package is needed. This medium does not authorize installation or install vioserial/experimental 3D.",
+  "verified_utc": "2026-10-25T04:27:55.391353+00:00",
+  "source_iso_hash_unchanged_after_mount": true
+}

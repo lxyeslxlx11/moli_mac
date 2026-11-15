@@ -1,0 +1,2644 @@
+{
+  "schema": "moli.shared-storage-spec-checkpoint-stage221.v1",
+  "status": "in-progress;not stage acceptance",
+  "source": {
+    "path": "build/analysis/game-release-current-v1/legacy-members/cg_se_6000.exe",
+    "bytes": 1569280,
+    "sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd"
+  },
+  "source_check": "analysis/game-battle-shared-storage-v1/source-check.json",
+  "facts": [
+    {
+      "id": "ordinary135",
+      "authority": "fact",
+      "source": "40a120/4121d9:actor+10,not body+105c",
+      "result": "SKL19..31 chant uses actual actor10 pointer while RID may retain105c;405 branch remains separate and unported"
+    },
+    {
+      "id": "source-common-cells",
+      "authority": "fact",
+      "source": "40a120 states150151152170171213214215219220221222;4236d0 and main opcode22",
+      "result": "One logical shared105c actor reference and actual current13b4 rider reference;common actor state/alpha fields reused without separate per-feature pointer maps;native addresses are not fabricated"
+    },
+    {
+      "id": "source-rng",
+      "authority": "fact",
+      "source": "41a240,437b30,151 and52d3c0..52d3db",
+      "result": "Two srand resets from32-bit strlen(full M before NUL)*ordinary20 body count*(slot+tuple.slot);slots20/21 do not contribute to count;sourcefloat10,.1,.01 retained"
+    },
+    {
+      "id": "standalone-rid",
+      "authority": "fact",
+      "source": "4260b0 opcode22;body219220",
+      "result": "0 split,nonzero+80000 merge,other nonzero return;distinct allocation/queue ordering from following RID0/221;all nonzero variants retained"
+    },
+    {
+      "id": "159-cells",
+      "authority": "fact",
+      "source": "40a120 state159 and413297",
+      "result": "FD4 is attackFinishCounter,FF0 is return state;resource13a8 preserved including0;4 child pointers cleared;fade7,element sound/resources,1/2 teardown branches source-ported"
+    },
+    {
+      "id": "shape-copy",
+      "authority": "fact",
+      "source": "41f740/41f7a0;213214215",
+      "result": "Own copies of source body arrays and animation cursor,shared child references;copied scheduling byte does not reorder existing pool position;backup resource and13ac retain source semantics"
+    },
+    {
+      "id": "field-lifetime",
+      "authority": "fact",
+      "source": "422080 and separately seeded421f90/219B",
+      "result": "170 assigns shared field actor,171 requests fade2 and clears105c;effect remains separately scheduled until deletion;GMN producer not yet connected"
+    },
+    {
+      "id": "portable-opacity",
+      "authority": "implementation-policy",
+      "source": "308/30f actor presentation versus305/300 animation style",
+      "result": "Explicit white-RGB object opacity0..255,straight-alpha source-over rounded nearest and point sampling;native GPU/driver pixel identity remains unverified"
+    },
+    {
+      "scope": "GMN21 and SKL404",
+      "evidence": [
+        "producer-source-check.json",
+        "producer-plan.json"
+      ],
+      "result": "Observed fixed37c4 dispatch, GMN source 169 palette request, 419dd0 x87 angle delta, actual 222 ownership, 227 result routing and 41a000 registry scan."
+    },
+    {
+      "scope": "GMN palette and name window",
+      "evidence": [
+        "presentation-source-check.json",
+        "presentation-plan.json"
+      ],
+      "result": "44fb60 samples 44a430 after actor passes. 44aaa0 projects default RGB and 447b10 tints embedded palette unless flag4 selects neutral. Derived 4ea9b0 opens for eleven callbacks before the 422280 notice gate yields lane2 text."
+    },
+    {
+      "scope": "SKL404 recovery and SKL405",
+      "evidence": [
+        "recovery-source-check.json",
+        "validation.json"
+      ],
+      "result": "SKL404 and SKL405 use the units digit. 434b90 enqueues 11 and 38 on the 7201st busy check. Class405 callback135 transforms live registry targets at a cast signal. The 421f90 field hands off to the main10 background refresh."
+    },
+    {
+      "scope": "SKL400–402 dispatch and SKL402 runtime",
+      "evidence": [
+        "formation-source-check.json",
+        "validation.json"
+      ],
+      "result": "The three branches share phase2. SKL402 queues occupied registry cells on the selected side and starts them from action135 natural completion. SKL401 actions206/207 drive weather and target effects. SKL400 has a separately derived homing callback."
+    },
+    {
+      "scope": "SKL400 producer, 211 and derived pursuit lifecycle",
+      "evidence": [
+        "pursuit-source-check.json",
+        "validation.json"
+      ],
+      "result": "430954 emits 241/24/53/38/211/62. The true intermediate signal uses 41a240 reseeding per target and the 41dc00 type31 factory with a callback pointer to 422500. The callback activates a notice, dodge, carry or departure using the received flags. 241 uses the current tuple third word as movement speed times 0.01."
+    },
+    {
+      "scope": "SKL401 producer, type-one weather and result207",
+      "evidence": [
+        "weather-source-check.json",
+        "validation.json"
+      ],
+      "result": "430cac emits 24/53/38/211/206/62/35/206. The signal moves past the 255 terminator. Mode 3 enters the type-one pool. The default draw uses four pixels at priority 20 and the active palette index 143. Action 207 produces 30 short effects for a flagged target."
+    },
+    {
+      "scope": "CHT/BST and phase 7",
+      "evidence": [
+        "side-effects-source-check.json",
+        "validation.json"
+      ],
+      "result": "Indices 14 and 20 log or queue body action 161. Fixed-sample Xz@ supplies the countdown, distinct from input selection. Phase 7 resolves current and remaining raw CHT/BST effects before pointer release."
+    },
+    {
+      "scope": "423500 friend roster and live C/MON and casting feedback",
+      "evidence": [
+        "friend-roster-source-check.json",
+        "validation.json"
+      ],
+      "result": "@t- owns roster revision and 320 bitmap slots. B8S writes one row; 4235f0 compares exact name and four boolean attributes for opposite slots. The same flag enables the locally verified casting feedback."
+    },
+    {
+      "scope": "REB element rebind and PLV actor departure",
+      "evidence": [
+        "actor-transitions-source-check.json",
+        "validation.json"
+      ],
+      "result": "REB queues state 158 for bind or clear. PLV chooses independent X and Y entry rows and retires the actor through action 49."
+    },
+    {
+      "scope": "CFP and ITM0/7",
+      "evidence": [
+        "mp-items-source-check.json",
+        "validation.json"
+      ],
+      "result": "CFP updates current MP directly. ITM0 releases recipients at action 69 and applies their HP after the recovery callback. ITM7 plays action 16 and the timed hold."
+    },
+    {
+      "scope": "Battle item inventory, use and equip input",
+      "evidence": [
+        "item-input-source-check.json",
+        "validation.json"
+      ],
+      "result": "?l) updates owned slots, @Y) swaps them, and the battle item input sends the witnessed I or Q form through $T5."
+    },
+    {
+      "scope": "Ordinary item use and moves, battle category correction",
+      "evidence": [
+        "ordinary-items-source-check.json",
+        "validation.json"
+      ],
+      "result": "The ready scene sends $fa at the current logical tile and uses the local slot move form for equipment, whole moves and quantity selection. Category comes from field 12."
+    },
+    {
+      "scope": "Ordinary targeted item use and drop, battle weapon removal",
+      "evidence": [
+        "item-targets-source-check.json",
+        "validation.json"
+      ],
+      "result": "The ordinary item target is a separate eligible bag slot. Drop uses the current logical tile. Battle removal checks hand categories and available bag space, then commits one Q action."
+    },
+    {
+      "scope": "Ordinary ground item and money pickup",
+      "evidence": [
+        "ground-pickup-source-check.json",
+        "validation.json"
+      ],
+      "result": "The right press may turn locally, then emit a numeric-direction pickup using the current logical grid. Received object and inventory messages own the updates."
+    },
+    {
+      "scope": "Ordinary actor right press and plain map dialogs",
+      "evidence": [
+        "actor-interaction-source-check.json",
+        "validation.json"
+      ],
+      "result": "Actor selection and server dialog handling share the ordinary map session. Native button and menu choices echo the received context."
+    },
+    {
+      "scope": "Ordinary map purchase and sale",
+      "evidence": [
+        "map-shop-source-check.json",
+        "validation.json"
+      ],
+      "result": "Ordinary shop context, source order and live bag and gold checks share the map dialog and /1I route."
+    },
+    {
+      "scope": "Ordinary appraisal, repair and inbound item descriptions",
+      "evidence": [
+        "shop-service-source-check.json",
+        "validation.json"
+      ],
+      "result": "Appraisal and repair reuse the ordinary shop, with one choice per slot and a slot-only confirmation. The inventory shows its latest received description."
+    },
+    {
+      "scope": "Item-currency exchange",
+      "evidence": [
+        "shop-exchange-source-check.json",
+        "validation.json"
+      ],
+      "result": "The ordinary shop handles item fees, payment capacity and confirmation against the latest authoritative item state."
+    },
+    {
+      "scope": "Single-item conversion",
+      "evidence": [
+        "shop-conversion-source-check.json",
+        "validation.json"
+      ],
+      "result": "Mode 0x1f applies the two quantity branches, accepts one quantity with a literal one prefix, and uses authoritative item and gold updates."
+    },
+    {
+      "scope": "Map message board",
+      "evidence": [
+        "message-board-source-check.json",
+        "validation.json"
+      ],
+      "result": "Mode 0x15 refreshes the active board from the server and sends the original paging, posting and source-row deletion actions."
+    },
+    {
+      "scope": "Ordinary player trade",
+      "evidence": [
+        "player-trade-source-check.json",
+        "validation.json"
+      ],
+      "result": "Five source producers and nine consumers implement candidate selection, trade offers, phase changes, withdrawals and close. Ordinary game records own item, pet and gold state."
+    },
+    {
+      "scope": "NPC treatment and illustrated map dialogue",
+      "evidence": [
+        "map-dialog-services-source-check.json",
+        "validation.json"
+      ],
+      "result": "Q?m mode 0x13 has six source rows and a separate aggregate treatment choice. Normal dialogue compacts and resolves graphic directives before rendering text and sending the existing reply."
+    },
+    {
+      "scope": "Merchant, exchange and ordinary player skill NPC windows",
+      "evidence": [
+        "npc-services-source-check.json",
+        "validation.json"
+      ],
+      "result": "Q?m modes 05, 10 and 1b use dedicated menus with button 0 and decimal choices. Mode 11 offers a skill and mode 12 maps the sorted owned roster to compact source positions."
+    },
+    {
+      "scope": "Pet trainer offer, pet eligibility and selected slot",
+      "evidence": [
+        "pet-training-source-check.json",
+        "validation.json"
+      ],
+      "result": "Q?m 18/2a, 19/2b and 1a/2c have separate zero-based choices for offer, compact occupied pet and physical skill slot. Confirmation and cancellation use /1I."
+    },
+    {
+      "scope": "Map handoff, paired text, appearance editor and illustrated confirmation",
+      "evidence": [
+        "map-special-dialogs-source-check.json",
+        "validation.json"
+      ],
+      "result": "Q?m 0x1e, 0x23, 0x24 and 0x25 have distinct native parsing and reply owners sharing /1I."
+    },
+    {
+      "scope": "Bank and storage window 0x29 in Q?m modes 0x17 and 0x21",
+      "evidence": [
+        "bank-storage-source-check.json",
+        "validation.json"
+      ],
+      "result": "Common A/I/P/G parser and item, pet, gold and destructor replies share the opening context."
+    },
+    {
+      "scope": "Family pet information, permissions, feed and rename, and feed box storage",
+      "evidence": [
+        "family-pet-source-check.json",
+        "validation.json"
+      ],
+      "result": "Y&3 owns permission bits. Q?m modes 0x20 and 0x22 have distinct reply escaping and close paths."
+    },
+    {
+      "scope": "Family profile, role definitions, member roster and editor commands",
+      "evidence": [
+        "family-management-source-check.json",
+        "validation.json"
+      ],
+      "result": "Y&3, Y0[, [qD, ]^M, ZCY and Zi8 feed the local family state. 7nu and 80i are the profile and role edit producers."
+    },
+    {
+      "scope": "Family invite, ordinary member removal and member role assignment",
+      "evidence": [
+        "family-members-source-check.json",
+        "validation.json"
+      ],
+      "result": "8^J sends the current tile, 8u6 sends the member ID, and 8MV sends the member ID and role slot in the ordinary roster flow."
+    },
+    {
+      "scope": "Ordinary map chat, party flag and received history",
+      "evidence": [
+        "ordinary-chat-source-check.json",
+        "validation.json"
+      ],
+      "result": "The input control passes a P-prefixed text through )bX. K0c and *(2 own the party flag; Cz> and the ordinary DMK branch feed the map history."
+    },
+    {
+      "scope": "Chat blacklist, actor speech and two announcement lanes",
+      "evidence": [
+        "chat-presentation-source-check.json",
+        "validation.json"
+      ],
+      "result": "Cz> uses an exact sender-name blacklist and separate live body speech. DMK distinguishes history and two independent announcement lanes."
+    }
+  ],
+  "implemented_runtime_states": [
+    36,
+    56,
+    69,
+    134,
+    146,
+    150,
+    151,
+    152,
+    158,
+    159,
+    170,
+    171,
+    200,
+    208,
+    209,
+    210,
+    213,
+    214,
+    215,
+    219,
+    220,
+    221,
+    222
+  ],
+  "producer_acceptance": {
+    "standalone_RID22": "finite local checks",
+    "ITM6": "finite local checks",
+    "SKL263": "finite local checks",
+    "GMN21": "Modes 0/1/2, shared field, formation, opacity, particles, name bytes and phase release verified locally. The owned battle frame consumes CGP0/13 and produces the gated name window.",
+    "SKL404": "Source geometry, hidden pair, source allocation order, actual 222 and 225–230, typed results and attached RID verified with bounded authored input.",
+    "field170171": "Reached from real GMN birth and dismiss, including shared105c ownership and separate fade disposal.",
+    "RID222": "SKL404 registers both replacements. Same-slot busy recovery and a subsequent round were observed locally.",
+    "SKL405": "Source tuples, animation-gated transformations, owned links and background takeover verified locally.",
+    "SKL402": "Both side selectors run through M, action135 completion, per-target 212/157 and phase2 release in local verification.",
+    "SKL400": "Ordinary M drives pursuit, default-buffer trails, normal target return, miss, local stop and remote paired removal. The normal world roster consumes the removal event.",
+    "SKL401": "The normal M route drives signal-gated target release, timed mode 3 and mode 0, 30 target effects and rain through default battle and ordinary rendering."
+  },
+  "boundaries": [
+    "The battle frame owns CGP0/13 interpolation and the notice gate. Font0 pixels are supplied by the existing platform glyph port.",
+    "The portable renderer records source palette revisions and projects per-frame RGB. Native cache throttles, other animation styles and graphics-backend parity remain pending.",
+    "Missing rider,invalid shared data layout,removed object and unavailable resources remain explicit",
+    "Existing rider plus resource13a8=0 retains the actual geometry boundary;no guessed fallback",
+    "Native roster persistence and bank switching, native pool aliases/RNG/x87/scheduling,current samples,official login and all original ten groups remain incomplete",
+    "GMN uses portable initial palette0. SKL404 uses portable0 for the unread fourth word before the first RID resource tuple.",
+    "The verified same-slot recovery runs the source busy threshold. Other alias contexts and native actor-pool identity remain pending.",
+    "SKL402 empty selected side and unsupported geometry or resources are rejected before queuing effects or taking MP.",
+    "SKL400 explicitly rejects absent target records, repeated slots and linked-result 0x800000 before queue or MP mutation. Missing casters use the source early release.",
+    "SKL401 reports absent targets and self or duplicate repeated-effect aliases before queue or cost mutation."
+  ],
+  "source_investigation_complete": false,
+  "runtime_implementation_complete": false,
+  "phase_complete": false,
+  "full_goal_complete": false,
+  "goal_status": "active",
+  "producer_source_check": "producer-source-check.json",
+  "gmn_presentation": {
+    "source": "presentation-source-check.json",
+    "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+    "palette": {
+      "frame_order": "44fb60 after actor update, before 506030 rendering",
+      "targets": [
+        0,
+        13
+      ],
+      "steps": 40,
+      "snap": 41,
+      "colors": [
+        16,
+        239
+      ],
+      "fixed_black": 168,
+      "tint": [
+        128,
+        96
+      ],
+      "embedded": "(channel * tint) >> 7",
+      "rounding": "f32 accumulation; blue FST retains the sum on ST0 for truncation",
+      "flag4": "neutral palette / no tint",
+      "optional_variant_absent": "retain base projection with resourceAvailable false"
+    },
+    "window": {
+      "layout": "center640x480, max byte-width +80, font0 height18 and source multiline padding",
+      "openings": 11,
+      "first_text_pass_from_creation": 12,
+      "text_callbacks": 101,
+      "window_priority": 212,
+      "text_priority": 216,
+      "text_font": 0,
+      "shared_line_anchor": "+40,+40",
+      "tiles": [
+        245300,
+        245308
+      ],
+      "normal_center_alpha": 255,
+      "textured_center_alpha": 128,
+      "window_callback_authority": "derived 720 bytes at 4ea9b0, not canonical"
+    },
+    "browser_glyph": "18px host Canvas for font0; font1 stays 14px; cache includes font",
+    "platform_status": [
+      "Complete independent GMN and SKL400–402/404/405 state, queues, lifecycle, RGBA and remaining alias contexts",
+      "Native palette cache and graphics backend, glyph pixels, object pool, full RNG and scheduler equivalence",
+      "Same-release binding between retained CGP/RD installation materials and the fixed executable",
+      "Physical mobile, WeChat DevTools and native gamePage/device",
+      "Current release compatibility and official account session"
+    ]
+  },
+  "skill405": {
+    "wire": "skill, cost, caster, field, (slot, value1d0, body, mount, attachment)*, 255",
+    "queue": [
+      24,
+      53,
+      38,
+      135,
+      62
+    ],
+    "tuple_layout": [
+      "caster,0,0,field",
+      "slot,0,value1d0,body",
+      "slot,0,body,mount",
+      "slot,0,attachment,0",
+      "-1,0,0,0"
+    ],
+    "mount_rule": "Only an existing rider with a nonzero mount parameter calls 422d60. Negative mount removes the existing rider.",
+    "background": "Fixed step 1 to alpha 255, then promote at next main10 pass in substate2–6. Reset on battle entry.",
+    "background_asset_domain": "Local graphic resource IDs at least 1000 and the -1 clear sentinel.",
+    "remaining": "Native backend pixels, other platform/device and current release compatibility."
+  },
+  "skill402": {
+    "wire": [
+      "skill",
+      "cost",
+      "opaque setup word",
+      "caster",
+      "selector"
+    ],
+    "caster_slot_remap": {
+      "50": 20,
+      "51": 21
+    },
+    "level": "units digit",
+    "selector_zero_slots": [
+      0,
+      9
+    ],
+    "selector_nonzero_slots": [
+      10,
+      19
+    ],
+    "registry": "Reserve ten selected cells. Queue registered bodies including downed actors. Slots 20 and 21 only act as casters in this route.",
+    "queue": [
+      24,
+      53,
+      38,
+      135,
+      62
+    ],
+    "target_queue": [
+      212
+    ],
+    "caster_target_tuples": [
+      "slot",
+      0,
+      0,
+      "preserved fourth cell"
+    ],
+    "end_sentinel": -1,
+    "launch": "135 animation natural completion activates target queues",
+    "effect": {
+      "resource": "0x1af8a",
+      "callback": "0x41b640",
+      "rng": "shared CRT with signed parent geometry bounds",
+      "wait_action": 157,
+      "selector_mask": 4,
+      "selector_value": 4,
+      "default_flags": "0x48000",
+      "alternative_flags": "0x140000"
+    },
+    "release": "427a0c directly waits in 434b90, then releases via 436930",
+    "empty_side": "explicit unsupported boundary before playable mutation",
+    "setup_word": "consumed without portable behavior. The observed producer stores it in a scratch field."
+  },
+  "skill400": {
+    "wire": [
+      "skill",
+      "cost",
+      "caster",
+      "(slot,flags)*",
+      255
+    ],
+    "caster_slot_remap": {
+      "50": 20,
+      "51": 21
+    },
+    "level": "units digit",
+    "queue": [
+      241,
+      24,
+      53,
+      38,
+      211,
+      62
+    ],
+    "caster_tuple": [
+      "caster",
+      0,
+      400,
+      0
+    ],
+    "caster_result_tuple": [
+      "slot",
+      "flags",
+      0,
+      0
+    ],
+    "end_tuple": [
+      255,
+      0,
+      0,
+      0
+    ],
+    "other_queue_prefix": [
+      0,
+      0,
+      241
+    ],
+    "other_tuple": [
+      "slot",
+      0,
+      400,
+      0
+    ],
+    "self_queue_prefix": [
+      0
+    ],
+    "queue_selection": [
+      "Bit 8 or 0x100 appends 11, followed by 74 if 0x100 is set.",
+      "Otherwise 0x10000000 keeps only the existing prefix.",
+      "Otherwise 0x80000 appends local 244 or remote 50,49.",
+      "The remaining result appends 11."
+    ],
+    "seed": "strlen(M) × registered slots 0–19 × (caster + target), with 32-bit arithmetic before each type31 factory",
+    "launch": {
+      "resource": "0x1addc+tier",
+      "center": [
+        320,
+        260
+      ],
+      "delay": [
+        0,
+        30
+      ],
+      "speed": [
+        4,
+        8
+      ],
+      "angle_jitter": [
+        -90,
+        90
+      ]
+    },
+    "carry": {
+      "collision_distance_lt": 9,
+      "turn_step": 0.1,
+      "bounds_x": [
+        -200,
+        840
+      ],
+      "bounds_y": [
+        -200,
+        680
+      ],
+      "vertical_offset": 35,
+      "rise": "low five bits of decremented delay, with two quadratic halves",
+      "action": 8,
+      "facing": "one step modulo 8",
+      "hp_changed": false
+    },
+    "cleanup": "Source release waits through the existing phase2 and busy scan. Remote 49 detaches the actor and publishes roster removal. Local 244 uses the common stop. No signal holds the target until ordinary recovery.",
+    "limitations": [
+      "linked result bit 0x800000",
+      "repeated target slots",
+      "missing target before production",
+      "native alternate renderer and complete pointer alias parity"
+    ]
+  },
+  "skill401": {
+    "wire": [
+      "skill",
+      "cost",
+      "caster",
+      "(slot,flags)*",
+      255
+    ],
+    "level": "units digit",
+    "slot_remap": {
+      "50": 20,
+      "51": 21
+    },
+    "queue": [
+      24,
+      53,
+      38,
+      211,
+      206,
+      62,
+      35,
+      206
+    ],
+    "result_queue": [
+      0,
+      35,
+      207
+    ],
+    "result_flag": "0x80000",
+    "cast_resource": "0x1ae01+tier",
+    "cast_sound": "0x105",
+    "overlay": [
+      28889,
+      28896
+    ],
+    "tuples": {
+      "target": [
+        "slot",
+        "flags",
+        0,
+        0
+      ],
+      "terminator": [
+        255,
+        0,
+        0,
+        0
+      ],
+      "mode_on": [
+        0,
+        1,
+        3
+      ],
+      "mode_off": [
+        0,
+        1,
+        0
+      ],
+      "repeated_impact": [
+        110074,
+        30,
+        0,
+        23
+      ]
+    },
+    "rain": {
+      "type": 1,
+      "max_drops": 500,
+      "per_active_pass": 4,
+      "crt_spawn": [
+        "rand%840-200",
+        "rand%2+2"
+      ],
+      "step": [
+        "speedX+windX",
+        "9+windY"
+      ],
+      "retire_at": [
+        640,
+        480
+      ],
+      "shape_clip_exclusive": [
+        636,
+        468
+      ],
+      "palette_index": 143,
+      "priority": 20
+    },
+    "release": "Phase2 uses the common ready scan. The signal activates noncaster target queues and advances beyond 255. Without a signal, action 206 uses the existing tuples.",
+    "exit": "Active mode is cleared and drained on exit. Mode-zero drops resume on ordinary deferred map frames. A new battle clears the portable pool.",
+    "limits": [
+      "self target with repeated-effect tuple",
+      "duplicate slot involving a repeated-effect tuple",
+      "ordinary ambient weather types and alternate graphics backend",
+      "immediate reentry with native residual pool parity"
+    ]
+  },
+  "chat_and_time": {
+    "chat": {
+      "fields": [
+        "speaker_slot",
+        "channel",
+        "style",
+        "duration",
+        "decoded_text"
+      ],
+      "slot_remap": {
+        "50": 20,
+        "51": 21
+      },
+      "byte_limit": 255,
+      "session_ring": 512,
+      "icon": {
+        "resource": 22335,
+        "offset": [
+          "-30",
+          "-height"
+        ],
+        "priority": 204
+      },
+      "cue": {
+        "default": 74,
+        "screen": [
+          320,
+          240
+        ]
+      },
+      "normal_release": "decrement signed duration each pass"
+    },
+    "time": {
+      "fields": [
+        "slot",
+        "seconds"
+      ],
+      "body_queue": 161,
+      "wait_for_idle": true,
+      "local_only_deduction": true,
+      "clock_packet": "Xz@",
+      "signed_remaining_ms": true,
+      "enabled_mode_preserved": true,
+      "main10_phases": [
+        4,
+        5,
+        6
+      ],
+      "glyphs": {
+        "format": "%s%d:%02d",
+        "spacing": 11,
+        "center_width": 9,
+        "priority": 207,
+        "delay": "2*i"
+      }
+    },
+    "exit": {
+      "active_phase_zero": true,
+      "active_remaining_scan": "423660",
+      "global_scan": "434770",
+      "local_and_global_readers_distinct": true,
+      "spawn_new_feedback": false
+    },
+    "boundaries": [
+      "Negative chat channel or style is discarded by the bounded implementation.",
+      "Malformed raw side-effect operands fail before command mask, ring or pointers change.",
+      "The browser presents session chat and received remaining time with its own layout. Native timer display gates, persistent text file and audio are outside this checkpoint.",
+      "BST normal playback requires resolved glyph geometry. Alternate renderer and other exit branches remain open."
+    ]
+  },
+  "friend_roster": {
+    "summary": {
+      "tag": "@t-",
+      "revision": "signed int32",
+      "bitmap_words": 10,
+      "word_input": "decimal prefix, 127 bytes",
+      "rows": 320,
+      "unset": "deactivate",
+      "set": "request when absent or stored revision is older",
+      "request": "'q="
+    },
+    "detail": {
+      "tag": "B8S",
+      "fields": [
+        "int32",
+        "int32",
+        "int32",
+        "int32",
+        "int32",
+        "int32",
+        "int32",
+        "int32",
+        "int32",
+        "int32",
+        "int32",
+        "int32",
+        "int32",
+        "int32",
+        "int32",
+        "bytes",
+        "bytes"
+      ],
+      "one_based_row": 1,
+      "nonzero_values_at_1_based": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "name_field": 17,
+      "max_name_bytes": 16,
+      "long_name_fallback": "???"
+    },
+    "battle": {
+      "local_and_paired": 1,
+      "same_side_other": 0,
+      "opposite": "strcmp bytes and four boolean tests",
+      "friend_flag": "body+0xfe0 bit0",
+      "C": true,
+      "MON": true,
+      "example_effect": "0x57ba"
+    },
+    "scope": "one cold session-owned table. Native disk cache and selecting a different character bank remain separate."
+  },
+  "actor_transitions": {
+    "rebind": {
+      "producer": "0x432bd2",
+      "consumer": "0x412bed",
+      "queue": [
+        24,
+        38,
+        158,
+        62
+      ],
+      "tuple": [
+        "selector or unused",
+        "flags",
+        0,
+        "normalized resource"
+      ],
+      "bind_flag": "0x80000",
+      "bind_backup": "write current resource only when changing and without attachment override",
+      "clear": "remove element children, clear draw mask and fade in by seven",
+      "owner": "shared element-transition callback and four existing followers"
+    },
+    "departure": {
+      "producer": "0x428c2e",
+      "queue": [
+        12,
+        66,
+        78,
+        13,
+        49
+      ],
+      "message": "0x5734",
+      "effect": "0xd3",
+      "table": "0x533808",
+      "draws": "two CRT ranges 0 to 19 after seeding with mapped slot",
+      "example": {
+        "slot": 10,
+        "target": [
+          -77,
+          0
+        ]
+      }
+    },
+    "boundary": "Default portable renderer and the verified receive path. Native alternate rendering, pointer aliases and timing remain open."
+  },
+  "mp_items": {
+    "CFP": {
+      "producer": "0x4289bc",
+      "fields": [
+        "mapped slot",
+        "signed amount"
+      ],
+      "current_MP": "actor+0x1b0",
+      "operation": "signed subtract with zero floor"
+    },
+    "ITM0": {
+      "producer": "0x432a35",
+      "fields": [
+        "variant",
+        "mapped user",
+        "ignored number",
+        "target/amount pairs",
+        "FF"
+      ],
+      "actor_queue": [
+        24,
+        38,
+        134,
+        69
+      ],
+      "target_queue": [
+        146,
+        155
+      ],
+      "effect": "0x1ae08",
+      "style": 5,
+      "HP": "signed add capped at maximum"
+    },
+    "ITM7": {
+      "producer": "0x43269d",
+      "fields": [
+        "variant",
+        "mapped actor"
+      ],
+      "queue": [
+        78,
+        200,
+        36,
+        35
+      ],
+      "cue": "0x1b6",
+      "animation": 16,
+      "hold_passes": 120
+    },
+    "boundary": "Fixed receive branches. Item input, native obfuscation RNG cadence, missing-target release and platform acceptance remain open."
+  },
+  "item_input": {
+    "records": {
+      "update": "0x4f25a0",
+      "swap": "0x4f2c40",
+      "slots": 28,
+      "bag_slots": [
+        8,
+        27
+      ],
+      "source_record_bytes": 1628,
+      "fields": {
+        "name": 2,
+        "category": 12,
+        "flags": 7,
+        "target_mask": 8,
+        "code": 5,
+        "ordinary_use_flags": 6,
+        "quantity": 13,
+        "qualification": 10
+      },
+      "qualification": "Raw unsigned 16-bit field 10. Existing battle item use/equip tests nonzero. Special target checks bits 8, 9 and 10."
+    },
+    "use": {
+      "selection": "0x48d454",
+      "local_send": "0x48d4ca",
+      "target_send": "0x48bd2d",
+      "format": "I|%X|%X"
+    },
+    "equip": {
+      "bag_send": "0x48d3af",
+      "format": "Q|%X|",
+      "categories": [
+        0,
+        7
+      ],
+      "full_bag_flag": "raw grid row +64e bit 3"
+    },
+    "boundary": "Semantic browser controls and shared generated core. Native item visual and pointer parity and platform acceptance remain open.",
+    "field_layout_correction": {
+      "field_5": "item code",
+      "field_12": "category",
+      "source": "ordinary-items-source-check.json",
+      "supersedes": "item-input-source-check.json facts.fields",
+      "previous_fixture_used_incorrect_layout": true,
+      "corrected_battle_tcp_cases": 8,
+      "corrected_battle_browser_cases": 8
+    },
+    "weapon_removal": {
+      "producer": "0x4f88f0",
+      "tag": "$T5",
+      "command": "Q|FF|",
+      "hand_slots": [
+        2,
+        3
+      ],
+      "excluded_category": 7,
+      "free_bag_slots_at_least_weapon_count": true,
+      "primary_actions_consumed": 1,
+      "checks_revision": true
+    }
+  },
+  "ordinary_items": {
+    "update": "0x4f25a0",
+    "swap": "0x4f2c40",
+    "slots": 28,
+    "equipment": [
+      0,
+      7
+    ],
+    "bag": [
+      8,
+      27
+    ],
+    "use": {
+      "producer": "0x4f68b0",
+      "tag": "$fa",
+      "arguments": [
+        "logical X",
+        "logical Y",
+        "slot",
+        0
+      ],
+      "gate": "present, field 6 bit 0, code differs from 0x67c9, ordinary ready state, secondary bit 7 clear"
+    },
+    "move": {
+      "producer": "0x4f6c70",
+      "tag": "'#Q",
+      "arguments": [
+        "source slot",
+        "destination slot",
+        "quantity"
+      ],
+      "whole": -1,
+      "positive": "1 through field 13 for bag to empty bag slot"
+    },
+    "ownership": "Validate per-slot revisions before submission. Only ?l) and @Y) change inventory.",
+    "targeted_use": {
+      "producer": "0x4f7ae0",
+      "tag": "6=L",
+      "arguments": [
+        "target slot",
+        "source slot"
+      ],
+      "source_code": 26569,
+      "target_slots": [
+        8,
+        27
+      ],
+      "target_category_excluded": 47,
+      "target_quantity_max": 0,
+      "qualification": "unsigned field 10; bit 8 clear, and bit 10 set if bit 9 is set",
+      "validates_both_revisions": true,
+      "server_authoritative": true
+    },
+    "drop": {
+      "producer": "0x4f6ac0",
+      "tag": "&E1",
+      "arguments": [
+        "logical X",
+        "logical Y",
+        "source slot"
+      ],
+      "slots": [
+        0,
+        27
+      ],
+      "require_ready_ordinary": true,
+      "secondary_bit_7_clear": true,
+      "requires_separate_confirmation_in_web": true
+    },
+    "ground_pickup": {
+      "turn": {
+        "producer": "0x4f6470",
+        "tag": "!0b",
+        "native_entry": "0x4622d0",
+        "arguments": [
+          "current logical X",
+          "current logical Y",
+          "uppercase direction byte",
+          "scene field 11"
+        ],
+        "requires_distinct_tile": true,
+        "requires_stationary": true,
+        "guards": [
+          "0x614882",
+          "0xbff33c"
+        ],
+        "cooldown_cell": "0xbff354",
+        "cooldown_ms": 500,
+        "comparison": "unsigned last + 500 < tick",
+        "separate_native_final_turn_cooldown": "0xbff358"
+      },
+      "pickup": {
+        "producer": "0x4f6a30",
+        "tag": "&?S",
+        "native_entry": "0x500860",
+        "arguments": [
+          "current logical X",
+          "current logical Y",
+          "numeric direction to clicked tile"
+        ],
+        "maximum_absolute_delta_per_axis": 1,
+        "record_mask": 7,
+        "requires_live_body": true,
+        "own_gate_mask": 128,
+        "native_mode_gate": "0x55e4d4 == -1",
+        "cooldown_cell": "0xf5f174",
+        "cooldown_ms": 500,
+        "comparison": "unsigned last + 500 < tick",
+        "graphic_record_flag": 2,
+        "value_record_flag": 4,
+        "server_authoritative": true,
+        "may_pick_up_while_moving": true
+      },
+      "actor_updates": "H#| and IZL",
+      "inventory_updates": "?l)",
+      "input": "Ordinary runtime right press. Desktop physical right button and explicit touch mode use the same projection.",
+      "pending": [
+        "Native pointer and modal fidelity, separate mask 8 actor interaction and shop branches",
+        "Remaining shared consumers, mobile devices, native WeChat game page, current release and official acceptance"
+      ]
+    }
+  },
+  "ordinary_actor_interaction": {
+    "actor": {
+      "lookup": "0x43f190",
+      "mask": 8,
+      "active_body": true,
+      "first_source_slot": true,
+      "producer": "0x4f74e0",
+      "tag": ";JE",
+      "arguments": [
+        "3",
+        "actor ID"
+      ],
+      "sequence": "after turn and ground pickup",
+      "new_press": true,
+      "additional_range_limit": false,
+      "additional_cooldown": false
+    },
+    "dialog": {
+      "incoming": {
+        "tag": "Q?m",
+        "consumer": "0x4f4410",
+        "fields": [
+          "mode",
+          "button mask",
+          "sequence",
+          "actor ID",
+          "inner text bytes"
+        ]
+      },
+      "ordinary_modes": [
+        0,
+        1,
+        2,
+        10,
+        11
+      ],
+      "input_modes": [
+        1,
+        11
+      ],
+      "menu_mode": 2,
+      "revision_required": true,
+      "close": {
+        "button_mask": -1,
+        "match": [
+          "mode",
+          "actor ID"
+        ],
+        "local_dismissal_sends_reply": false
+      },
+      "reply": {
+        "tag": "/1I",
+        "producer": "0x4f8240",
+        "fields": [
+          "current logical X",
+          "current logical Y",
+          "sequence",
+          "actor ID",
+          "button",
+          "inner reply bytes"
+        ]
+      },
+      "button_bits": {
+        "1": "OK",
+        "2": "Cancel",
+        "4": "Yes",
+        "8": "No",
+        "16": "Back",
+        "32": "Next"
+      },
+      "menu_result": "button 0 and one-based decimal choice after header; window buttons return decimal negative header count",
+      "columns": [
+        46,
+        60
+      ],
+      "input_max_escaped_bytes": 254,
+      "source_has_inline_graphic_path": true,
+      "incoming_independent_of_actor_request": true,
+      "official_request_reply_causality": "unverified"
+    },
+    "pending": [
+      "Original dialog graphics and other window modes, character-facing side effects and shop consumers",
+      "Remaining consumers, mobile devices, native WeChat game page, current release and official acceptance"
+    ]
+  },
+  "ordinary_map_shop": {
+    "incoming": {
+      "tag": "Q?m",
+      "consumer": "0x4f4410",
+      "dispatch": "0x48fce0",
+      "fields": [
+        "mode",
+        "button mask",
+        "sequence",
+        "actor ID",
+        "inner text bytes"
+      ]
+    },
+    "buy": {
+      "mode": 6,
+      "parser": "0x4a8fd0",
+      "header": [
+        "graphic resource",
+        "title",
+        "explanation one",
+        "explanation two",
+        "explanation three"
+      ],
+      "row": [
+        "name",
+        "graphic resource",
+        "unit price",
+        "description",
+        "equipment eligibility byte",
+        "stack size"
+      ],
+      "max_per_row": 20,
+      "free_space": "sum of ceil(quantity / stack size), with a fallback stack size of 2",
+      "zero_eligibility": "Shows the current equipment restriction. The ordinary purchase quantity path remains available.",
+      "wire_key": "zero-based source row"
+    },
+    "sale": {
+      "mode": 7,
+      "parser": "0x4a92a0",
+      "header": [
+        "graphic resource",
+        "title",
+        "explanation"
+      ],
+      "row": [
+        "name",
+        "display count",
+        "graphic resource",
+        "unit price",
+        "absolute bag slot",
+        "flags",
+        "alternate label",
+        "description",
+        "availability and quote quantity byte",
+        "auxiliary display value"
+      ],
+      "slot_range": [
+        8,
+        27
+      ],
+      "first_quote_per_slot": true,
+      "maximum_gold": 1000000,
+      "wire_key": "absolute bag slot",
+      "portable_slot_revision_guard": true,
+      "limit_to_current_stack": true
+    },
+    "gold": {
+      "tag": "E(9",
+      "mask": "0x08000001",
+      "state_field": "field-27",
+      "storage": "0xf53624"
+    },
+    "row_limit": 20,
+    "reply": {
+      "tag": "/1I",
+      "producer": "0x4f8240",
+      "fields": [
+        "current logical X",
+        "current logical Y",
+        "sequence",
+        "actor ID",
+        "button",
+        "inner reply bytes"
+      ],
+      "confirm_button": 0,
+      "confirm_payload": "nonzero selections in source order as decimal key and quantity pairs, separated by inner escaped pipe",
+      "cancel_button": 2,
+      "cancel_bytes": 0
+    },
+    "close": {
+      "button_mask": -1,
+      "match": [
+        "mode",
+        "actor ID"
+      ]
+    },
+    "authoritative_inventory": [
+      "?l)",
+      "@Y)"
+    ],
+    "optimistic_gold_or_inventory": false,
+    "official_request_reply_causality": "unverified",
+    "pending": [
+      "Other shop and trade modes, original shop art and other dialog presentation",
+      "Remaining consumers, physical mobile, native WeChat game page and device, current release and official acceptance"
+    ]
+  },
+  "ordinary_shop_services": {
+    "incoming": {
+      "tag": "Q?m",
+      "consumer": "0x4f4410",
+      "dispatch": "0x48fce0"
+    },
+    "modes": [
+      {
+        "mode": 20,
+        "internal_mode": 4,
+        "direction": "appraise",
+        "parser": "0x4a9c80"
+      },
+      {
+        "mode": 22,
+        "internal_mode": 5,
+        "direction": "repair",
+        "parser": "0x4aa0b0"
+      }
+    ],
+    "header": [
+      "window graphic",
+      "title"
+    ],
+    "row": [
+      "name",
+      "graphic",
+      "fee",
+      "absolute bag slot",
+      "flags",
+      "alternate label",
+      "description"
+    ],
+    "row_limit": 20,
+    "bag_slots": [
+      8,
+      27
+    ],
+    "first_quote_per_slot": true,
+    "selected_amount_per_slot": 1,
+    "fee": {
+      "confirmation": "0x4ac90f",
+      "gold_tag": "E(9",
+      "gold_field": "field-27",
+      "rule": "sum of selected fees at most current gold"
+    },
+    "reply": {
+      "tag": "/1I",
+      "producer": "0x4f8240",
+      "confirm_button": 0,
+      "confirm_payload": "absolute decimal slot list in source row order, with the existing inner pipe escaping",
+      "cancel_button": 2,
+      "cancel_bytes": 0
+    },
+    "item_description": {
+      "tag": "?l)",
+      "consumer": "0x4f25a0",
+      "field": 4,
+      "raw_limit": 767,
+      "inner_unescape": "0x5111a0",
+      "native_store": "0x4fee90",
+      "native_lines": 16,
+      "native_line_bytes": 32,
+      "portable_view": "owned bytes and browser wrapping"
+    },
+    "binds_quote_to_bag_revision": true,
+    "optimistic_inventory_or_gold": false,
+    "pending": [
+      "Other shop and trade modes, original shop art and other dialog presentation",
+      "Remaining consumers, physical mobile, native WeChat game page and device, current release and official acceptance"
+    ]
+  },
+  "item_currency_exchange": {
+    "incoming": {
+      "tag": "Q?m",
+      "mode": 28,
+      "internal_mode": 2,
+      "consumer": "0x4f4410",
+      "parser": "0x4a96b0"
+    },
+    "header": [
+      "window graphic",
+      "title",
+      "explanation one",
+      "explanation two",
+      "explanation three",
+      "currency code",
+      "currency label"
+    ],
+    "row": [
+      "name",
+      "graphic",
+      "unit fee",
+      "stack size",
+      "description"
+    ],
+    "row_limit": 20,
+    "currency_label_bytes": 28,
+    "nonpositive_stack_size": 1,
+    "item_records": {
+      "tag": "?l)",
+      "consumer": "0x4f25a0",
+      "currency_field": 11,
+      "quantity_field": 13,
+      "currency_storage": "0xf53d0c",
+      "quantity_storage": "0xf53d10"
+    },
+    "balance": {
+      "slots": [
+        0,
+        27
+      ],
+      "rule": "sum positive quantities of occupied matching records"
+    },
+    "capacity": {
+      "bag_slots": [
+        8,
+        27
+      ],
+      "required": "sum of ceil(selected amount / stack size)",
+      "available": "empty slots plus fully paid matching bag stacks in ascending slot order, stopping at the first partial stack"
+    },
+    "reply": {
+      "tag": "/1I",
+      "producer": "0x4f8240",
+      "confirm_button": 0,
+      "confirm_payload": "zero-based source row and quantity pairs in original row order with inner pipe escaping",
+      "cancel_button": 2,
+      "cancel_bytes": 0
+    },
+    "revalidates_live_slots": true,
+    "optimistic_inventory": false,
+    "pending": [
+      "Other shop and player trade modes, native shop art and UI shortcuts",
+      "Live currency deductions and stock replies, physical mobile, native WeChat game page and device, current release and official acceptance"
+    ]
+  },
+  "single_item_conversion": {
+    "incoming": {
+      "tag": "Q?m",
+      "mode": 31,
+      "internal_mode": 3,
+      "consumer": "0x4f4410",
+      "parser": "0x4a99b0"
+    },
+    "fields": [
+      "portrait",
+      "title",
+      "branch flag",
+      "normal message",
+      "second message",
+      "third message",
+      "fourth message",
+      "conversion rate",
+      "matching item code",
+      "item name",
+      "description",
+      "count limit",
+      "confirmation graphic",
+      "zero-flag quota ceiling",
+      "branch-specific quota count"
+    ],
+    "zero_flag": {
+      "maximum": "min(999, field12, max(0, field14 - field15))",
+      "displayed_quantity": "field12"
+    },
+    "nonzero_flag": {
+      "maximum": "min(999, field12, field15, ceil(gold / rate)) for positive gold and rate",
+      "requires_matching_positive_item_quantity": true,
+      "item_slots": [
+        0,
+        27
+      ],
+      "item_record_tag": "?l)",
+      "matching_field": 11,
+      "quantity_field": 13,
+      "gold_tag": "E(9",
+      "gold_mask": "0x08000001",
+      "gold_storage": "0xf53624",
+      "zero_rate": "no extra quantity cap when gold is positive"
+    },
+    "value": {
+      "rule": "field8 times selected count",
+      "nonnegative_signed_int32": true,
+      "projects_only": true
+    },
+    "reply": {
+      "tag": "/1I",
+      "producer": "0x4f8240",
+      "confirm_button": 0,
+      "confirm_payload": "1|%d with inner pipe escaping",
+      "cancel_button": 2,
+      "cancel_bytes": 0
+    },
+    "revalidates_live_slots_and_gold": true,
+    "optimistic_inventory_or_gold": false,
+    "pending": [
+      "Other shop and player trade modes, native shop art and UI shortcuts",
+      "Actual server settlement, physical mobile, native WeChat game page and device, current release and official acceptance"
+    ]
+  },
+  "message_board": {
+    "incoming": {
+      "tag": "Q?m",
+      "mode": 21,
+      "window": 50,
+      "consumer": "0x4f4410",
+      "parser": "0x4a8b40",
+      "refresh": "same mode installs new server sequence, actor, flags and entries",
+      "close": "mask -1 for matching mode and actor"
+    },
+    "grammar": {
+      "title_bytes": 16,
+      "row_limit": 4,
+      "row_fields": [
+        "graphic selector",
+        "epoch seconds",
+        "delete flag",
+        "author",
+        "message"
+      ],
+      "inner_escapes": "decode the whole payload before field split, then decode each author and message",
+      "author_bytes": 16,
+      "body_bytes": 140,
+      "body_columns": 70,
+      "body_rows": 3
+    },
+    "compose": {
+      "rows": 2,
+      "columns": 70,
+      "browser_newlines": "CR",
+      "reject_unrepresentable_or_overlong": true
+    },
+    "reply": {
+      "tag": "/1I",
+      "producer": "0x4f8240",
+      "post": {
+        "button": 1,
+        "payload": "inner escaped message"
+      },
+      "delete": {
+        "button": 64,
+        "payload": "zero-based source row in decimal",
+        "requires_nonzero_row_flag": true
+      },
+      "previous": {
+        "button": 16,
+        "payload_bytes": 0
+      },
+      "next": {
+        "button": 32,
+        "payload_bytes": 0
+      },
+      "local_close_bytes": 0
+    },
+    "revision_bound": true,
+    "optimistic_board_mutations": false,
+    "pending": [
+      "Player trade offer and settlement protocol, original board portraits and edit behavior, server-side permissions",
+      "Physical mobile, native WeChat game page and device, current release and official acceptance"
+    ]
+  },
+  "player_trade": {
+    "incoming": [
+      {
+        "tag": "LsH",
+        "fields": [
+          "bytes"
+        ],
+        "call": "0x4fb14c",
+        "consumer": "0x4f46c0"
+      },
+      {
+        "tag": "M6c",
+        "fields": [
+          "bytes",
+          "int32"
+        ],
+        "call": "0x4fb1da",
+        "consumer": "0x4f46f0"
+      },
+      {
+        "tag": "MP?",
+        "fields": [],
+        "call": "0x4fb231",
+        "consumer": "0x4f4740"
+      },
+      {
+        "tag": "Mlt",
+        "fields": [
+          "bytes"
+        ],
+        "call": "0x4fb2ad",
+        "consumer": "0x4f47a0"
+      },
+      {
+        "tag": "Mv@",
+        "fields": [
+          "int32"
+        ],
+        "call": "0x4fb313",
+        "consumer": "0x4f4770"
+      },
+      {
+        "tag": "N)u",
+        "fields": [
+          "int32",
+          "bytes"
+        ],
+        "call": "0x4fb3a2",
+        "consumer": "0x4f47d0"
+      },
+      {
+        "tag": "N4(",
+        "fields": [
+          "int32",
+          "bytes"
+        ],
+        "call": "0x4fb431",
+        "consumer": "0x4f4800"
+      },
+      {
+        "tag": "O#3",
+        "fields": [],
+        "call": "0x4fb488",
+        "consumer": "0x4f4830"
+      },
+      {
+        "tag": "Ofl",
+        "fields": [
+          "int32"
+        ],
+        "call": "0x4fb4ee",
+        "consumer": "0x4f4870"
+      }
+    ],
+    "outgoing": [
+      {
+        "tag": "+BQ",
+        "fields": [],
+        "producer": "0x4f7d30",
+        "callers": [
+          "0x46738b"
+        ]
+      },
+      {
+        "tag": "+i@",
+        "fields": [
+          "int32"
+        ],
+        "producer": "0x4f7d70",
+        "callers": [
+          "0x4cb66c"
+        ]
+      },
+      {
+        "tag": "+oj",
+        "fields": [
+          "bytes",
+          "bytes",
+          "int32"
+        ],
+        "producer": "0x4f7dc0",
+        "callers": [
+          "0x4a2f09"
+        ]
+      },
+      {
+        "tag": ",3K",
+        "fields": [],
+        "producer": "0x4f7e50",
+        "callers": [
+          "0x4a2fe8",
+          "0x4a312f",
+          "0x4ccc9a"
+        ]
+      },
+      {
+        "tag": ",ua",
+        "fields": [
+          "int32"
+        ],
+        "producer": "0x4f7e90",
+        "callers": [
+          "0x4a30eb",
+          "0x4ccd2f",
+          "0x4a24da",
+          "0x4f470a"
+        ]
+      }
+    ],
+    "candidate_window": {
+      "id": 44,
+      "row_limit": 10,
+      "name_bytes": 16,
+      "requires_terminal_delimiter": true
+    },
+    "offer_window": {
+      "id": 43,
+      "item_rows": 20,
+      "pet_rows": 5,
+      "peer_skills_per_pet": 10
+    },
+    "offered_records": {
+      "owned_items": "slots 8–27 with bit 0 of field 10",
+      "owned_pets": "present FBY roster slots 0–4",
+      "gold": "ordinary E(9 balance field 27",
+      "pair_order": [
+        "owned slot",
+        "offer position"
+      ]
+    },
+    "phases": {
+      "local": {
+        "0": "editing",
+        "1": "published",
+        "2": "confirmed"
+      },
+      "peer": {
+        "0": "editing",
+        "1": "published",
+        "2": "confirmed"
+      },
+      "confirm_interval_ms": 500,
+      "peer_withdrawal": "clear peer data and set local 2 to 1",
+      "local_withdrawal": "set local 0 and set peer 2 to 1",
+      "server_close": "Ofl 0 or 2, both close without a reply"
+    },
+    "version_bound": true,
+    "optimistic_settlement": false,
+    "portable_choices": [
+      "Use the facing-actor branch for outgoing invitations and the server-list index for selection.",
+      "Pack offer positions densely in selection order. Invalidate item selections per slot and pet selections on any roster version change.",
+      "Retain the remote pet numeric fields in source order. Display the named fields and skill list and keep settlement record updates separate from the close result."
+    ],
+    "pending": [
+      "Original party-mode shortcut, item and pet detail rendering, original board portraits and editing, server settlement and result semantics",
+      "Physical mobile, native WeChat game page and device, current release and official acceptance"
+    ]
+  },
+  "map_dialog_services": {
+    "treatment": {
+      "mode": 19,
+      "dispatch": "0x490db0",
+      "renderer": "0x490b80",
+      "fields": [
+        "level",
+        "injury",
+        "name",
+        "fee"
+      ],
+      "row_limit": 6,
+      "display_rows": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "all_display_row": 8,
+      "choices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "negative_level_terminates": true,
+      "zero_level_is_blank": true,
+      "name_bytes": 16,
+      "injury_boundaries": [
+        0,
+        26,
+        51,
+        76
+      ],
+      "cancel_button": 2,
+      "gold_source": "E(9 field 27",
+      "reply_producer": "0x4f8240",
+      "optimistic_healing_or_spending": false
+    },
+    "illustration": {
+      "modes": [
+        0,
+        1,
+        2,
+        10,
+        11
+      ],
+      "parser": "0x490760",
+      "setter": "0x48efb0",
+      "resource_limit": 10,
+      "normal_size": [
+        448,
+        240
+      ],
+      "wide_size": [
+        576,
+        432
+      ],
+      "default_anchor": "window center",
+      "facing_bits": 8,
+      "coordinate_bits": 16,
+      "same_original_text_reply": true,
+      "available_resource_rendering": [
+        "static",
+        "idle animation"
+      ],
+      "canvas": "separate dialog illustration"
+    },
+    "portable_choices": [
+      "Render the source anchors on a separate responsive illustration canvas and keep HTML text, controls and treatment injury grades accessible.",
+      "Parse bounded decimal graphics fields within the directive terminator. Advance the idle animation once per ordinary presentation step, and keep the text dialog available if a graphic is unavailable.",
+      "Keep the treatment balance live from the ordinary gold record and send the source selection without applying local healing or spending."
+    ],
+    "pending": [
+      "Original treatment icon pixels and native dialog composition, remaining special map dialogs, exact official treatment and trade settlement",
+      "Physical mobile, native WeChat game page and device, current release and official acceptance"
+    ]
+  },
+  "npc_services": {
+    "entry": {
+      "modes": {
+        "0x05": "merchant",
+        "0x10": "ordinary skill trainer",
+        "0x1b": "exchange"
+      },
+      "parser_header": [
+        "graphic resource",
+        "title",
+        "prompt"
+      ],
+      "button": 0,
+      "merchant_flags": {
+        "buy": 1,
+        "sell": 2
+      },
+      "merchant_leave_choice": 3,
+      "merchant_leave_sends_if_visible_service_choices_less_than": 2,
+      "trainer_reply_choices": {
+        "learn": 1,
+        "forget": 2
+      },
+      "exchange_reply_choice": 1
+    },
+    "learn": {
+      "mode": "0x11",
+      "parser": "0x4af7d0",
+      "required_slot_units_source": "0xc20f08",
+      "fee_source": "0xc3b610",
+      "learn": 1,
+      "back": 2,
+      "button": 0,
+      "capacity": "F8% field-17",
+      "gold": "E(9 field-27",
+      "used_units": "J<= signed byte at +0x19 of each occupied row",
+      "optimistic_updates": false
+    },
+    "forget": {
+      "mode": "0x12",
+      "parser": "0x4af910",
+      "click": "0x4b2bc0",
+      "back": 99,
+      "maximum_rows": 15,
+      "fields": [
+        "name",
+        "first source numeric value",
+        "second source numeric value"
+      ],
+      "id": "occupied raw skill-slot ordinal (one based), displayed in existing skill order",
+      "negative_first_value_hides_row": true,
+      "roster": "J<="
+    },
+    "portable_choices": [
+      "Web presents an explicit forget confirmation with a local cancel.",
+      "A changed occupied skill header invalidates an existing forget list, including during confirmation.",
+      "The original graphic IDs and unnamed forget numeric fields are available in the model. Web uses text controls.",
+      "Incomplete or negative learn costs are rejected by the bounded portable parser."
+    ],
+    "pending": [
+      "Original window graphic layout, meaning of two forget columns, pet training and remaining specialized map windows",
+      "Real server settlement, native WeChat game page and host, physical mobile and current official acceptance"
+    ]
+  },
+  "pet_training": {
+    "offer": {
+      "modes": [
+        "0x18",
+        "0x2a"
+      ],
+      "parsers": [
+        "0x4afaa0",
+        "0x4afd60"
+      ],
+      "click": "0x4b2f60",
+      "row_limit": 16,
+      "row": [
+        "name",
+        "source numeric value",
+        "fee",
+        "description"
+      ],
+      "choice": "zero-based offered row",
+      "requires_enough_gold": true,
+      "requires_any_owned_pet": true,
+      "close": "local"
+    },
+    "pet": {
+      "modes": [
+        "0x19",
+        "0x2b"
+      ],
+      "parsers": [
+        "0x4b0020",
+        "0x4b0200"
+      ],
+      "click": "0x4b2d00",
+      "row_limit": 5,
+      "ordinary_row": [
+        "name",
+        "threshold comparison value",
+        "slot capacity"
+      ],
+      "extended_suffix": [
+        "type",
+        "hint byte"
+      ],
+      "choice": "zero-based ordinal among occupied raw pet slots",
+      "extended_requires_type_if_nonnegative": true,
+      "cancel_button": 2,
+      "cancel_body": ""
+    },
+    "slot": {
+      "modes": [
+        "0x1a",
+        "0x2c"
+      ],
+      "parser": "0x4b0490",
+      "preview": "0x4b2ea0",
+      "confirm": "0x4b31d0",
+      "maximum": 10,
+      "row": [
+        "name",
+        "source numeric value",
+        "description"
+      ],
+      "choice": "zero-based physical slot",
+      "empty_slots_selectable": true,
+      "cancel_button": 2,
+      "cancel_body": ""
+    },
+    "producer": "0x4f8240",
+    "choice_button": 0,
+    "gold": "E(9 field-27",
+    "authoritative_pets": [
+      "FBY",
+      "G:w",
+      "J_J"
+    ],
+    "portable_choices": [
+      "Keep the preceding lesson and pet selection in a same-actor, step-bound continuation.",
+      "The browser presents replacement and empty-slot confirmation, with a local return to the slot list.",
+      "Invalidate an open chooser on ownership changes, or an open slot confirmation on relevant pet or skill identity changes.",
+      "Bound source capacities to ten and exclude incomplete/negative offers and anonymous rows from actions.",
+      "The model retains the graphic ID and source values. The webpage renders text and controls."
+    ],
+    "pending": [
+      "Native graphic composition and auxiliary trainer messages and remaining special map window consumers",
+      "Official server eligibility and settlement, native WeChat game page and host, physical mobile and current acceptance"
+    ]
+  },
+  "map_special_dialogs": {
+    "handoff": {
+      "mode": "0x1e",
+      "parser": "0x492f60",
+      "reply": "0x492cd0",
+      "fields": [
+        "portrait",
+        "title",
+        "give or receive flag",
+        "body"
+      ],
+      "choice_button": 0,
+      "actions": [
+        "give or receive sends decimal 1",
+        "decline sends decimal 2",
+        "close is local"
+      ]
+    },
+    "pair": {
+      "mode": "0x23",
+      "parser": "0x4908e0",
+      "reply": "0x4903e0",
+      "field_bytes": 46,
+      "reply_bytes": 254,
+      "confirm": "Both fields meaningful under source byte rules, with no standalone comma, pipe or backslash",
+      "cancel": "Escapes and sends both current fields, including the empty pair",
+      "body": "Escape both fields, join with literal pipe, escape again, then apply the common outer transport field encoding"
+    },
+    "appearance": {
+      "mode": "0x24",
+      "parser": "0x4b3780",
+      "owner": "window 0x38",
+      "field": "F8% field-16",
+      "labels": [
+        "Face",
+        "Eyes",
+        "Mouth"
+      ],
+      "arrow_widget_indices": [
+        [
+          3,
+          5
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          9,
+          11
+        ]
+      ],
+      "reply": "0x4b3be0",
+      "confirm_button": 1,
+      "body": "decimal appearance code",
+      "adjusted_locally": true,
+      "local_close": true,
+      "normalized_range": [
+        240000,
+        242799
+      ]
+    },
+    "illustrated": {
+      "mode": "0x25",
+      "parser": "0x4b4010",
+      "reply": "0x4b3f30",
+      "resource": [
+        448,
+        240,
+        86,
+        98,
+        0
+      ],
+      "body": "decimal graphic resource for each displayed button",
+      "close": "local"
+    },
+    "producer": "0x4f8240",
+    "portable_choices": [
+      "Use a responsive text layout and authored localized control labels from the fixed PE Face/Eyes/Mouth roles.",
+      "Use the existing graphic library for available direct legacy sprites and NPC art. Show the draft code for every supported appearance variant.",
+      "Keep the appearance and dialog drafts local until the current revision is submitted. Authoritative character records retain their original owner.",
+      "Use the canonical REA Evidence bundle after the cumulative snapshot save failed validation. Keep complete provider payloads in local build storage."
+    ],
+    "pending": [
+      "Composite appearance rendering, other Q?m consumers and the distinct bank transaction owners",
+      "Official server settlement, native WeChat game page and host, physical mobile and current-version acceptance"
+    ]
+  },
+  "bank_storage": {
+    "modes": {
+      "0x17": "bank",
+      "0x21": "variant 1 of window 0x29, shown as storage"
+    },
+    "dispatch": "0x49026c",
+    "parser": "0x49aad0",
+    "constructor": "0x49dfb0",
+    "snapshot": {
+      "operation": "A",
+      "item_slots": 20,
+      "item_fields": 6,
+      "pet_slots": 5,
+      "pet_fields": 33,
+      "balance_field_one_based": 287,
+      "replaces_storage_projection": true
+    },
+    "updates": {
+      "I": "slot followed by 6 item fields",
+      "P": "slot followed by 33 pet fields",
+      "G": "balance in field 2"
+    },
+    "requests": {
+      "item": {
+        "body": "I|source|destination|quantity",
+        "helper": "0x47b7e0",
+        "own_slots": [
+          8,
+          27
+        ],
+        "storage_slots": [
+          100,
+          119
+        ],
+        "whole_group": -1,
+        "partial_requires_empty_target": true,
+        "own_item_disallow_mask": "0x60"
+      },
+      "pet": {
+        "body": "P|source|destination",
+        "helpers": [
+          "0x47f330",
+          "0x49da64"
+        ],
+        "own_slots": [
+          0,
+          4
+        ],
+        "storage_slots": [
+          100,
+          104
+        ]
+      },
+      "deposit": "G|amount",
+      "withdraw": "D|amount",
+      "wallet_and_storage_gold_limit": 1000000,
+      "close": {
+        "body": "C",
+        "destructor": "0x49aa00",
+        "inbound_close_mask": -1
+      },
+      "reply": {
+        "opcode": "/1I",
+        "button": 0,
+        "producer": "0x4f8240",
+        "context": "Opening sequence and actor with current coordinates",
+        "encoding": "Inner text escaped before the common outer field encoding"
+      }
+    },
+    "portable_choices": [
+      "Expose the actionable projection of storage records. Use explicit source and destination selects in desktop and touch webpages.",
+      "Label mode 0x21 storage. The variant parameter confirms its common window; the exact service identity remains open.",
+      "Bind deltas and close to the matching mode and actor. Keep the opening sequence for replies.",
+      "Accept only bounded complete row changes. Await the affected storage update or a replacement snapshot before another transfer. Inventory, pets and wallet remain inbound-owned."
+    ],
+    "pending": [
+      "Window 0x26 and its distinct 0x22 action path, the six-digit prompt, remaining storage record fields and native controls",
+      "Real settlement, native WeChat game page and host, physical mobile and current-version and official acceptance"
+    ]
+  },
+  "family_pet": {
+    "permissions": {
+      "tag": "Y&3",
+      "consumer": "0x4f4af0",
+      "store": "0xfbb064",
+      "mask": "base62",
+      "field_selector": "0x101",
+      "flags": "decimal",
+      "feed_bit": 4,
+      "rename_bit": 128
+    },
+    "info": {
+      "mode": 32,
+      "window": 51,
+      "initial": "0x49f380",
+      "refresh": "0x49f670",
+      "fields": [
+        "title",
+        "body"
+      ],
+      "field_limit": 1023,
+      "wrap_bytes": 30,
+      "visible_rows": 9,
+      "name_bytes": 16,
+      "feed_category_exception": 53,
+      "feed_body": "I|slot",
+      "rename_body": "N|name",
+      "destructor": "0x49f980",
+      "close_body": "C"
+    },
+    "feed_box": {
+      "mode": 34,
+      "window": 38,
+      "parser": "0x49aad0",
+      "slots": 20,
+      "owned_deposit_disallow_categories": [
+        38,
+        52
+      ],
+      "owned_deposit_disallow_mask": "0x60",
+      "item_body": "I|source|destination|quantity",
+      "destructor": "0x49e1b0",
+      "close_body": null
+    },
+    "portable_choices": [
+      "Use a scrollable region for the title and body and an explicit backpack slot for feed.",
+      "Apply Y&3 masked updates as received. Invalid selected permission values clear actions, and omitted permission fields preserve the prior projection.",
+      "Keep the opening actor and sequence. Check the current slot revision and wait for the corresponding inventory or family pet update.",
+      "Reuse storage item records for the feed box with the separate item guards and local close. The webpage uses explicit slot selects."
+    ],
+    "pending": [
+      "Native proximity closure, drag and discard paths, quick storage, family pet graphics and the remaining family and other window consumers",
+      "Account-related numeric prompt, original runtime, real settlement, native WeChat and host, physical mobile, current version and official acceptance"
+    ]
+  },
+  "family_management": {
+    "profile": {
+      "window": "0x30",
+      "descriptor": "0x52e718",
+      "open_call": "0x49530c",
+      "consumer": "0x4f4af0",
+      "mask_encoding": "base62",
+      "name_mask": 4,
+      "hall_mask": 8,
+      "own_role_mask": 16,
+      "role_admin_bit": 128,
+      "family_name_input_bytes": 24,
+      "hall_input_bytes": 24
+    },
+    "roles": {
+      "consumer": "0x4f4de0",
+      "capacity": 32,
+      "stride": 48,
+      "fields": [
+        "slot",
+        "flags",
+        "title"
+      ],
+      "incoming_title_bytes": 40,
+      "editor_bytes": 16,
+      "permission_bits": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "admin_bit": 128
+    },
+    "roster": {
+      "window": "0x15",
+      "capacity": 200,
+      "stride": 124,
+      "snapshot": "0x4f4ef0",
+      "upsert": "0x4f5150",
+      "remove": "0x4f53d0",
+      "reset": "0x4f5520",
+      "member_fields": 8,
+      "name_bytes": 16,
+      "title_slot_field": 8
+    },
+    "incoming": {
+      "Y&3": {
+        "consumer": "0x4f4af0",
+        "fields": [
+          "bytes"
+        ],
+        "call": "0x4f9b29"
+      },
+      "Y0[": {
+        "consumer": "0x4f4de0",
+        "fields": [
+          "bytes"
+        ],
+        "call": "0x4f9ba5"
+      },
+      "[qD": {
+        "consumer": "0x4f4ef0",
+        "fields": [
+          "bytes"
+        ],
+        "call": "0x4f9c21"
+      },
+      "]^M": {
+        "consumer": "0x4f5150",
+        "fields": [
+          "int32",
+          "bytes"
+        ],
+        "call": "0x4f9cb0"
+      },
+      "ZCY": {
+        "consumer": "0x4f53d0",
+        "fields": [
+          "int32"
+        ],
+        "call": "0x4f9d16"
+      },
+      "Zi8": {
+        "consumer": "0x4f5520",
+        "fields": [
+          "int32"
+        ],
+        "call": "0x4f9e1d"
+      }
+    },
+    "outgoing": {
+      "7nu": {
+        "producer": "0x4f6fd0",
+        "fields": [
+          "int32",
+          "bytes"
+        ],
+        "name_action": 2,
+        "hall_action": 3
+      },
+      "80i": {
+        "producer": "0x4f7040",
+        "fields": [
+          "int32",
+          "int32",
+          "bytes"
+        ],
+        "meaning": [
+          "title slot",
+          "permission mask",
+          "title"
+        ]
+      }
+    },
+    "portable_choices": [
+      "Expose profile and roster together from a local game HUD dialog; opening and dismissing it send no message.",
+      "Keep the roster and roles authoritative and scope management to a known family and the latest received own-role administrative bit.",
+      "Preserve omitted pet permission fields in Y&3. Clear the profile, role and roster projection on a confirmed family change before accepting new records.",
+      "Permit one profile or title edit in flight. The corresponding valid field or role delta releases it; a valid delta is a state update, not a confirmed server result.",
+      "Retain unknown role flag bits and the source-protected role flags. A flags-only edit reuses the exact stored title bytes."
+    ],
+    "pending": [
+      "Joining and recruitment, invitations, member removal and assignment commands, remaining family and other window consumers",
+      "No proved rejection message for profile or role updates. Unanswered edits remain gated until a related delta or a family/session reset.",
+      "Real settlement, account flow, original runtime, current version, physical mobile, native WeChat and official acceptance"
+    ]
+  },
+  "family_members": {
+    "invite": {
+      "callback": "0x4673e0",
+      "call": "0x4674a2",
+      "producer": "0x4f7140",
+      "tag": "8^J",
+      "arguments": [
+        "local tile X",
+        "local tile Y"
+      ],
+      "permission": 1,
+      "neighbor_type_mask": 8,
+      "strict_cooldown_ms": 500,
+      "shared_shortcut_tick": "0x614884",
+      "other_checks": [
+        "0x467144",
+        "0x467375"
+      ]
+    },
+    "remove": {
+      "control": "0x4959b0",
+      "confirmation": "0x495b50",
+      "confirmed_call": "0x495d4a",
+      "producer": "0x4f71b0",
+      "tag": "8u6",
+      "arguments": [
+        "member ID"
+      ],
+      "permission": 2,
+      "target_protection": 128,
+      "self_branch": "0x493ad6"
+    },
+    "assign_role": {
+      "control": "0x494c00",
+      "select_member": "0x495f90",
+      "title_window": "0x37",
+      "confirmed_call": "0x496ab7",
+      "producer": "0x4f70d0",
+      "tag": "8MV",
+      "arguments": [
+        "member ID",
+        "role slot"
+      ],
+      "slots": [
+        1,
+        31
+      ],
+      "own_permission": 128,
+      "target_protection": 128
+    },
+    "roster_inputs": [
+      "[qD",
+      "]^M",
+      "ZCY",
+      "Zi8"
+    ],
+    "portable_choices": [
+      "Use the existing family modal for a facing-player invite and an explicit member and role picker.",
+      "Project the same member-specific permission checks in the UI and again when building the command.",
+      "Use an inline confirmation that also works with touch input for removal and leaving the family.",
+      "Keep the confirmed roster until a corresponding snapshot, update, removal or family reset.",
+      "Send invitations at the current displayed tile. The transport receipt indicates submission. An invitation has no inferred acceptance state."
+    ],
+    "pending": [
+      "Separate inbound invitation, response and admission flow, title removal in the alternate native layout and the remaining ordinary consumers",
+      "Unanswered title and removal commands remain gated until the corresponding roster update, family change or session end",
+      "Real settlement, account flow, original runtime, current version, physical mobile, native WeChat and official acceptance"
+    ]
+  },
+  "ordinary_chat": {
+    "send": {
+      "producer": "0x4f7680",
+      "tag": ")bX",
+      "input_bytes": 76,
+      "body_prefix": "P|",
+      "arguments": [
+        "local X",
+        "local Y",
+        "prefixed inner-escaped text",
+        "color",
+        "range",
+        "font size"
+      ],
+      "color": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "range": [
+        1,
+        5
+      ],
+      "size": [
+        0,
+        2
+      ],
+      "ordinary_interval_ms": 1000,
+      "muted_until_elapsed_gt": 180000
+    },
+    "party_setting": {
+      "incoming": "K0c",
+      "producer": "0x4f7780",
+      "outgoing": "*(2",
+      "receive_mask": 65533,
+      "party_bit": 8,
+      "source_party_mode": "0xf5f170"
+    },
+    "receive": {
+      "player": "Cz>",
+      "system": "DMK",
+      "native_log_capacity": 512,
+      "native_record_stride": 308,
+      "text_storage_bytes": 292,
+      "native_player_prefix": "P",
+      "native_bubble_calls": [
+        "0x4f307f",
+        "0x4f30af"
+      ],
+      "system_excludes": [
+        "[公告]",
+        "prefix [玩家公告]"
+      ]
+    },
+    "invite_followup": {
+      "candidate": "_&`",
+      "callee": "0x4902a0",
+      "modes": [
+        38,
+        39,
+        40
+      ],
+      "result": "The examined modes consume record tables. No invite-response binding was proved."
+    },
+    "portable_choices": [
+      "Keep independent in-session map and battle history projections. The map history uses the fixed 512 entry capacity.",
+      "Wait for server text before adding a player line. Record only the ordinary DMK history branch.",
+      "Use default color 0, range 1 and size 0 and expose the verified controls in the ordinary game page.",
+      "Wait for a received settings word before toggling its party bit. Preserve the other received bits and update the selected preference on submission as in the native control.",
+      "Measure the source ordinary interval from the first observed send attempt on the portable clock. Actual group mode requires party membership plus the party chat flag."
+    ],
+    "pending": [
+      "Native chat-history suppression toggle, exact native bubble art, sound, mounted and special bodies, and announcements during battle",
+      "Inbound invitation and response, other game consumers, real service, physical phone and native WeChat acceptance"
+    ]
+  },
+  "chat_presentation": {
+    "blacklist": {
+      "capacity": 100,
+      "entry_bytes": 17,
+      "comparison": "exact bytes after known channel prefix",
+      "per_server_path": "data\\blacklist_%d.txt",
+      "portable_name_limit": 16,
+      "browser_key": "origin and target address and port"
+    },
+    "speech": {
+      "duration_ms": 1000,
+      "first_line_bytes": 40,
+      "glyph_height_source": "0x538918",
+      "body_mask": "0x180",
+      "display_icon": "0x573f",
+      "display_box": "0x3be84",
+      "heights": [
+        -78,
+        -88,
+        -88,
+        -81,
+        -88,
+        -90,
+        -99,
+        -88,
+        -88,
+        -88,
+        -79,
+        -86,
+        -88,
+        -85,
+        -88,
+        -88,
+        -96,
+        -78,
+        -88,
+        -86,
+        -88,
+        -88,
+        -81,
+        -88,
+        -90,
+        -99,
+        -79,
+        -85,
+        -88,
+        -88,
+        -96,
+        -99,
+        -88,
+        -88,
+        -88,
+        -88,
+        -88,
+        -88,
+        -88,
+        -88
+      ],
+      "metrics": [
+        [
+          9,
+          18,
+          18,
+          18
+        ],
+        [
+          7,
+          14,
+          14,
+          14
+        ],
+        [
+          11,
+          21,
+          21,
+          21
+        ],
+        [
+          9,
+          17,
+          17,
+          17
+        ],
+        [
+          8,
+          15,
+          15,
+          15
+        ],
+        [
+          11,
+          21,
+          21,
+          21
+        ],
+        [
+          11,
+          21,
+          21,
+          21
+        ],
+        [
+          11,
+          21,
+          21,
+          21
+        ],
+        [
+          6,
+          12,
+          12,
+          12
+        ],
+        [
+          6,
+          12,
+          12,
+          12
+        ],
+        [
+          8,
+          16,
+          16,
+          16
+        ],
+        [
+          10,
+          20,
+          20,
+          20
+        ],
+        [
+          6,
+          12,
+          12,
+          12
+        ],
+        [
+          7,
+          13,
+          13,
+          13
+        ]
+      ],
+      "local": "0x4ffc90",
+      "remote": "0x43cfd0",
+      "frame": "0x43d150"
+    },
+    "announcements": {
+      "source_text_bytes": 287,
+      "origin_x": 640,
+      "strict_interval_ms": 10,
+      "lanes": [
+        {
+          "y": 60,
+          "color": 4,
+          "passes": 4
+        },
+        {
+          "y": 76,
+          "color": 5,
+          "passes": 3
+        }
+      ],
+      "consumer": "DMK",
+      "operator_substrings": [
+        "[GM",
+        "[gm"
+      ],
+      "player_prefix": "[玩家公告]"
+    },
+    "portable_choices": [
+      "Keep filtering in the ordinary chat receiver and give a bubble to a currently bound actor with matching sender bytes.",
+      "Use an explicit receive clock and an unsigned elapsed interval. A world without a receive clock establishes the bubble clock on its first frame.",
+      "Keep name-less legacy history lines and render ordinary actor frames. Portable bounds and complete double-byte characters guard each rendered line.",
+      "Use browser-origin storage keyed by the configured endpoint. Add and remove through local controls with a 16-byte name bound.",
+      "Use the source text metrics and lifetimes. Scale the fixed 640 by 480 announcement coordinates and fit the bubble inside the browser viewport."
+    ],
+    "pending": [
+      "Native chat-history suppression toggle, exact native bubble art, sound, mounted and special bodies, and announcements during battle",
+      "Inbound invitation and response, other game consumers, real service, physical phone and native WeChat acceptance"
+    ]
+  }
+}

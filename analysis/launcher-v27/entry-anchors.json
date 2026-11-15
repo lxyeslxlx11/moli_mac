@@ -1,0 +1,205 @@
+{
+  "sample": {
+    "sha256": "601b79565e4ac4c71605744a5087bb24582dde164f417514c74190cd4cdc6e31"
+  },
+  "anchors": [
+    {
+      "id": "backup-extension",
+      "kind": "literal_reference",
+      "va": "0x406654",
+      "target": "0x4b259c",
+      "literal": ".BAK.EXE"
+    },
+    {
+      "id": "replace-extension",
+      "kind": "literal_reference",
+      "va": "0x406659",
+      "target": "0x4b25a8",
+      "literal": ".EXE"
+    },
+    {
+      "id": "port-space",
+      "kind": "literal_reference",
+      "va": "0x406673",
+      "target": "0x4b25b0",
+      "literal": " "
+    },
+    {
+      "id": "host-space",
+      "kind": "literal_reference",
+      "va": "0x406684",
+      "target": "0x4b25b4",
+      "literal": " "
+    },
+    {
+      "id": "command-separator",
+      "kind": "literal_reference",
+      "va": "0x40668d",
+      "target": "0x4b25b8",
+      "literal": "\\"
+    },
+    {
+      "id": "copy-separator",
+      "kind": "literal_reference",
+      "va": "0x4067d8",
+      "target": "0x4b25bc",
+      "literal": "\\"
+    },
+    {
+      "id": "patch-call",
+      "kind": "direct_call",
+      "va": "0x412b42",
+      "target": "0x406110"
+    },
+    {
+      "id": "copy-current-patcher",
+      "kind": "direct_call",
+      "va": "0x406640",
+      "target": "0x40bc30"
+    },
+    {
+      "id": "uppercase",
+      "kind": "direct_call",
+      "va": "0x40664f",
+      "target": "0x4093a0"
+    },
+    {
+      "id": "replace-all",
+      "kind": "direct_call",
+      "va": "0x406661",
+      "target": "0x409050"
+    },
+    {
+      "id": "prefix-directory",
+      "kind": "direct_call",
+      "va": "0x4066a6",
+      "target": "0x409520"
+    },
+    {
+      "id": "append-patcher",
+      "kind": "direct_call",
+      "va": "0x4066d2",
+      "target": "0x409470"
+    },
+    {
+      "id": "space-after-program",
+      "kind": "direct_call",
+      "va": "0x4066fe",
+      "target": "0x409520"
+    },
+    {
+      "id": "append-host",
+      "kind": "direct_call",
+      "va": "0x40672a",
+      "target": "0x409470"
+    },
+    {
+      "id": "space-after-host",
+      "kind": "direct_call",
+      "va": "0x406756",
+      "target": "0x409520"
+    },
+    {
+      "id": "append-port",
+      "kind": "direct_call",
+      "va": "0x40677f",
+      "target": "0x409470"
+    },
+    {
+      "id": "uppercase-helper",
+      "kind": "direct_call",
+      "va": "0x4093ce",
+      "target": "0x40a5a0"
+    },
+    {
+      "id": "uppercase-map",
+      "kind": "direct_call",
+      "va": "0x44e0d5",
+      "target": "0x45b42c"
+    },
+    {
+      "id": "game-Code-copy",
+      "kind": "direct_call",
+      "va": "0x4030d4",
+      "target": "0x40bd10"
+    },
+    {
+      "id": "PIP-copy",
+      "kind": "direct_call",
+      "va": "0x402971",
+      "target": "0x40bd10"
+    },
+    {
+      "id": "PPort-copy",
+      "kind": "direct_call",
+      "va": "0x4029f5",
+      "target": "0x40bd10"
+    },
+    {
+      "id": "completion-read",
+      "kind": "instruction_bytes",
+      "va": "0x40636e",
+      "expected_hex": "0fb6840af51b0000"
+    },
+    {
+      "id": "completion-write",
+      "kind": "instruction_bytes",
+      "va": "0x406be9",
+      "expected_hex": "c68401f51b000001"
+    },
+    {
+      "id": "exit100",
+      "kind": "instruction_bytes",
+      "va": "0x406bbe",
+      "expected_hex": "837de864"
+    },
+    {
+      "id": "exit101",
+      "kind": "instruction_bytes",
+      "va": "0x406c16",
+      "expected_hex": "837de865"
+    },
+    {
+      "id": "exit102",
+      "kind": "instruction_bytes",
+      "va": "0x406d05",
+      "expected_hex": "837de866"
+    },
+    {
+      "id": "attempt-limit",
+      "kind": "instruction_bytes",
+      "va": "0x406e59",
+      "expected_hex": "837dd4030f8c"
+    },
+    {
+      "id": "port-field",
+      "kind": "instruction_bytes",
+      "va": "0x40666c",
+      "expected_hex": "81c2381b0000"
+    },
+    {
+      "id": "host-field",
+      "kind": "instruction_bytes",
+      "va": "0x40667e",
+      "expected_hex": "05341b0000"
+    },
+    {
+      "id": "directory-field",
+      "kind": "instruction_bytes",
+      "va": "0x406698",
+      "expected_hex": "81c2181b0000"
+    },
+    {
+      "id": "Code-field",
+      "kind": "instruction_bytes",
+      "va": "0x4030cd",
+      "expected_hex": "8d8c01801b0000"
+    },
+    {
+      "id": "uppercase-flag",
+      "kind": "instruction_bytes",
+      "va": "0x44e0c9",
+      "expected_hex": "6800020000"
+    }
+  ]
+}

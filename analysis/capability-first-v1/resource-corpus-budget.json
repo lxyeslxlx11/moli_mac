@@ -1,0 +1,404 @@
+{
+  "schema": "moli.resource-corpus-budget.v1",
+  "requirement": "G06 图像、地图物件、动画与调色板；X03 跨端资源包、读取、缓存与预算；关联B03烟雾动画绘制",
+  "inputs": {
+    "measurement": {
+      "path": "build/analysis/resource-corpus-budget-v1/measurement.json",
+      "bytes": 11998,
+      "sha256": "091b1caced0feb5f2350eb80c5392a6a54d62f27337a39666d682dfb62dd9409"
+    },
+    "material_references": {
+      "path": "build/analysis/resource-corpus-budget-v1/signed-rd-material-references.json",
+      "bytes": 2602,
+      "sha256": "1b118fba42872cd1e2ea7c09f8ac196abb750d664445314ae320debd0b8d780c"
+    },
+    "native_source_review": {
+      "path": "build/analysis/resource-corpus-budget-v1/signed-rd-native-source-review.json",
+      "bytes": 9677,
+      "sha256": "f8e4f037ef92dd8e9cc338ec94e02385dece4597e326df155d42190a1db5e439"
+    },
+    "presentation_specification": {
+      "path": "analysis/capability-first-v1/game-presentation-functional-specification.json",
+      "bytes": 83172,
+      "sha256": "f589519af5910f785906dd4d0140afe4e6f9fb07a503d83a1f647b805c3506a5"
+    },
+    "host_update_design": {
+      "path": "analysis/capability-first-v1/shared-update-host-design.json",
+      "bytes": 49890,
+      "sha256": "5a063be1a03c404ffd1704810798d04159b8fec8a4ff1037c4891db2e82c762d"
+    },
+    "target_contract": {
+      "path": "analysis/capability-first-v1/shared-target-contract.json",
+      "bytes": 68467,
+      "sha256": "81496d8362f304e1a72df5c2a5b1e03babd10fb8e4c6da5b3929708594978fef"
+    }
+  },
+  "installer": {
+    "path": "moli/CrossGate_Setup.exe",
+    "bytes": 1104268439,
+    "sha256": "e593e47fa09ac03e2213c7dc7bb80575e0295f0dc48a0e1edc73c4ac1982f983"
+  },
+  "code_evidence": [
+    {
+      "file": {
+        "path": "shared/legacy-game-resource-library.mjs",
+        "bytes": 17652,
+        "sha256": "42426a1c2ea10730ec9d44f52a395025a2f9ee649598ba21931234200ccd1ce5"
+      },
+      "line": 23,
+      "anchor": "minimapColors=new Uint8Array(65536)"
+    },
+    {
+      "file": {
+        "path": "shared/legacy-game-resource-library.mjs",
+        "bytes": 17652,
+        "sha256": "42426a1c2ea10730ec9d44f52a395025a2f9ee649598ba21931234200ccd1ce5"
+      },
+      "line": 36,
+      "anchor": "const buffers=[],groupInfo=[],groupAnimations=[]"
+    },
+    {
+      "file": {
+        "path": "shared/legacy-game-resource-library.mjs",
+        "bytes": 17652,
+        "sha256": "42426a1c2ea10730ec9d44f52a395025a2f9ee649598ba21931234200ccd1ce5"
+      },
+      "line": 45,
+      "anchor": "animations=createLegacyGameAnimationCatalog"
+    },
+    {
+      "file": {
+        "path": "shared/legacy-game-graphics.mjs",
+        "bytes": 6942,
+        "sha256": "09dd4490f70650a6c213b59f285ed574b08e3f798da4ce6b0891c9f7ddd7042f"
+      },
+      "line": 34,
+      "anchor": "images:includeImages?new Uint32Array(capacity*5)"
+    },
+    {
+      "file": {
+        "path": "shared/legacy-game-animation.mjs",
+        "bytes": 16089,
+        "sha256": "98d2b04e26b8c48834f7016679915491d04a647d0c2c3483f2249012914721b6"
+      },
+      "line": 96,
+      "anchor": "attachmentData = bytes(g.attachmentData"
+    },
+    {
+      "file": {
+        "path": "shared/legacy-game-animation.mjs",
+        "bytes": 16089,
+        "sha256": "98d2b04e26b8c48834f7016679915491d04a647d0c2c3483f2249012914721b6"
+      },
+      "line": 99,
+      "anchor": "s.groups.push({animation,attachmentData"
+    },
+    {
+      "file": {
+        "path": "shared/legacy-game-resource-archive.mjs",
+        "bytes": 17683,
+        "sha256": "7058d904ac3a68ed20a53ab4817bcac55a8b60aad57d8aa8ee76ed9208707ae2"
+      },
+      "line": 235,
+      "anchor": "row.size <= L.inflateCacheBytes"
+    },
+    {
+      "file": {
+        "path": "shared/legacy-game-resource-archive.mjs",
+        "bytes": 17683,
+        "sha256": "7058d904ac3a68ed20a53ab4817bcac55a8b60aad57d8aa8ee76ed9208707ae2"
+      },
+      "line": 249,
+      "anchor": "while (consumed < row.compressed)"
+    },
+    {
+      "file": {
+        "path": "shared/legacy-game-render.mjs",
+        "bytes": 22065,
+        "sha256": "c81ac7ddda65be0e69b1f5870164bed0e1e5746f5b34d8d8352ec84f058ad1ad"
+      },
+      "line": 212,
+      "anchor": "LEGACY_RENDER_STRIDE_UNPROVEN"
+    }
+  ],
+  "facts": [
+    {
+      "classification": "事实",
+      "topic": "安装包应用文件身份",
+      "claim": "安装器清单含2368项，app树2367项的实际文件长度和SHA-1全部相符。剩余tmp/POLCN_Setup.exe只有清单元数据。app文件另记录SHA-256，已有27份选用素材的完整摘要全部匹配。",
+      "app_files": 2367,
+      "app_bytes": 2626083970,
+      "bin_map_files": 2355,
+      "bin_map_bytes": 2613885785
+    },
+    {
+      "classification": "事实",
+      "topic": "实际档案规模",
+      "claim": "bin和map中的8个文件超过32 MiB。GraphicEx_4.bin为943552437字节，必要0组的Graphic_20.bin为639556680字节。已选六档的最大单条图形记录为456644字节。",
+      "files_over_32_MiB": [
+        {
+          "path": "bin/GraphicEx_4.bin",
+          "bytes": 943552437
+        },
+        {
+          "path": "bin/Graphic_20.bin",
+          "bytes": 639556680
+        },
+        {
+          "path": "bin/Puk2/Graphic_PUK2_2.bin",
+          "bytes": 251130346
+        },
+        {
+          "path": "bin/sec/Graphic_SEC2_1.bin",
+          "bytes": 89238549
+        },
+        {
+          "path": "bin/GraphicV3_18.bin",
+          "bytes": 68321498
+        },
+        {
+          "path": "bin/Puk3/Graphic_PUK3_1.bin",
+          "bytes": 48504488
+        },
+        {
+          "path": "bin/Graphic_Joy_22.bin",
+          "bytes": 47168682
+        },
+        {
+          "path": "bin/sec/Graphic_SEC_1.bin",
+          "bytes": 38835908
+        }
+      ]
+    },
+    {
+      "classification": "事实",
+      "topic": "实际RD宽度范围",
+      "claim": "固定素材配置的六个已存在图形档共641666条物理记录，其中641664条正尺寸记录的RD头、声明范围和元数据尺寸一致，宽度均为4的倍数。三个额外SEC档共22498条正尺寸记录也满足对齐。素材配置中可选V2组为空。",
+      "selected_positive_headers": 641664,
+      "extra_positive_headers": 22498,
+      "nonpositive_selected_headers": 2,
+      "non_four_aligned_positive_headers": 0
+    },
+    {
+      "classification": "事实",
+      "topic": "实际烟雾帧引用",
+      "claim": "两条仅含头的RLE记录宽4，高分别为-15和-26。所选最终图形槽分别为16681和619676。动画110004即0x1ADB4的方向0、动作0、首帧引用16681，动作持续字段256、总计4帧。",
+      "selected_cases": [
+        {
+          "ordinal": 16681,
+          "source_index": 16681,
+          "offset": 58762562,
+          "record_bytes": 16,
+          "width": 4,
+          "height": -15,
+          "flags": 1,
+          "resource_id": 29028,
+          "metadata_row_sha256": "8f6de51886dbf94bd3f4ba21c68f05fab49eeaac93800aabb492d28f705a5f34",
+          "RD_header_sha256": "e883969992511b192f7915158f7cb95da4e3efadcdfeac20bf0229bc6f2f769a",
+          "group": 0,
+          "index_file": "bin/GraphicInfo_20.bin",
+          "archive": "bin/Graphic_20.bin",
+          "catalog_slot": 16681,
+          "compressed_payload_bytes": 0,
+          "RLE_end_from_header": 16,
+          "source_dimension_product": -60
+        },
+        {
+          "ordinal": 1948,
+          "source_index": 1948,
+          "offset": 189578336,
+          "record_bytes": 16,
+          "width": 4,
+          "height": -26,
+          "flags": 1,
+          "resource_id": 0,
+          "metadata_row_sha256": "7526784be5d191d18c00c047ed0c62689b0cecf2f547d3b8f80d100906b5f2fb",
+          "RD_header_sha256": "c02eec9911f72b96cd214fa410de1c2679f494ff8fda922a6efa362284b69cb1",
+          "group": 4,
+          "index_file": "bin/Puk2/GraphicInfo_PUK2_2.bin",
+          "archive": "bin/Puk2/Graphic_PUK2_2.bin",
+          "catalog_slot": 619676,
+          "compressed_payload_bytes": 0,
+          "RLE_end_from_header": 16,
+          "source_dimension_product": -104
+        }
+      ],
+      "animation_reference": {
+        "type": "frame",
+        "resource": 110004,
+        "group": 0,
+        "action_ordinal": 0,
+        "action": 0,
+        "direction": 0,
+        "frame_ordinal": 0,
+        "action_duration": 256,
+        "action_frame_count": 4,
+        "x": 0,
+        "y": 0,
+        "event": 0,
+        "source_frame_offset": 27802768,
+        "catalog_slot": 16681
+      },
+      "reference_scan_counts": {
+        "final_animation_definitions": 2520,
+        "actions": 235377,
+        "frame_rows": 1699203,
+        "attachment_rows": 639484
+      }
+    },
+    {
+      "classification": "事实",
+      "topic": "固定37c4的所选原生处理",
+      "claim": "成功读取这些记录时，511470在RLE起点等于终点处返回scratch地址并发布原有符号尺寸，像素命令写入0字节。453030因此返回成功。5074D0的冷路径保存低16位尺寸，507230用有符号商及非零余数计算块数，两例在有可用缓存槽时各申请一个块。505D70以有符号高度裁剪，所证分支请求清面。4497C0及449A10的8、16、24、32位逐行循环都在行数非正时跳过。",
+      "case_derivations": [
+        {
+          "catalog_slot": 16681,
+          "width": 4,
+          "height": -15,
+          "bytes_written_by_RLE_commands": 0,
+          "width_times_height_signed": -60,
+          "cold_cache_blocks_requested": 1,
+          "row_copy_iterations_on_selected_upload_path": 0
+        },
+        {
+          "catalog_slot": 619676,
+          "width": 4,
+          "height": -26,
+          "bytes_written_by_RLE_commands": 0,
+          "width_times_height_signed": -104,
+          "cold_cache_blocks_requested": 1,
+          "row_copy_iterations_on_selected_upload_path": 0
+        }
+      ],
+      "source_conditions": [
+        "Successful archive read and nonnull scratch destination precede the RLE branch.",
+        "One block is requested on the ordinary cold path. Actual allocation requires an eligible cache slot.",
+        "Selected upload computes the clipped signed height and requests surface clearing before copying. The 8/16/24/32 row loops in both palette branches require a positive count.",
+        "Rendered output, other draw paths and timing on an actual driver remain acceptance work."
+      ]
+    },
+    {
+      "classification": "事实",
+      "topic": "当前共享代码的可复核内存下界",
+      "claim": "根据实际文件长度和初始化的数组生存期，创建动画目录前的已知同时持有字节为102135145，创建后为199137631。coordinatev3_2.bin的7991056字节在各组独立持有共7份。新目录初始化与一个旧目录共存时，所计数组下界为323471189字节。",
+      "static_lower_bounds": {
+        "stage": "initialization before palette reads and before releasing raw input arrays",
+        "selected_input_arrays": [
+          "bin/Anime_3.bin",
+          "bin/Anime_Joy_13.bin",
+          "bin/AnimeEx_1.Bin",
+          "bin/AnimeInfo_3.bin",
+          "bin/AnimeInfo_Joy_13.bin",
+          "bin/AnimeInfoEx_1.Bin",
+          "bin/AnimeInfoV3_7.bin",
+          "bin/AnimeV3_7.bin",
+          "bin/coordinateinfov3_2.bin",
+          "bin/coordinatev3_2.bin",
+          "bin/GraphicInfo_20.bin",
+          "bin/GraphicInfo_Joy_22.bin",
+          "bin/GraphicInfoEx_4.bin",
+          "bin/GraphicInfoV3_18.bin",
+          "bin/Puk2/Anime_PUK2_4.bin",
+          "bin/Puk2/AnimeInfo_PUK2_4.Bin",
+          "bin/Puk2/GraphicInfo_PUK2_2.bin",
+          "bin/Puk3/Anime_PUK3_2.bin",
+          "bin/Puk3/AnimeInfo_PUK3_2.bin",
+          "bin/Puk3/GraphicInfo_PUK3_1.bin"
+        ],
+        "unique_input_bytes": 74804073,
+        "graphics_catalog_array_bytes": 27200000,
+        "minimap_array_bytes": 131072,
+        "known_bytes_before_animation_catalog": 102135145,
+        "owned_animation_data_bytes": 41065094,
+        "owned_attachment_data_bytes": 55937392,
+        "attachment_data_copy_counts": {
+          "bin/coordinatev3_2.bin": 7
+        },
+        "known_bytes_after_animation_catalog": 199137631,
+        "known_steady_catalog_array_bytes": 124333558,
+        "known_bytes_new_initialized_and_one_old_catalog": 323471189,
+        "scope": "Static lower bounds from simultaneous typed arrays and exact input lengths. These exclude other temporary copies, JS object heap, decoder/renderer/audio, surfaces and actual host memory limits."
+      }
+    },
+    {
+      "classification": "事实",
+      "topic": "范围读取与压缩档工作量",
+      "claim": "现行档案模块的32 MiB范围和缓存边界按请求及缓存计。大DEFLATE条目在缓存未命中时流式展开整项并完成CRC校验。按已核素材长度，GraphicEx_4.bin采用该路径时一次成功读取会展开943552437字节。"
+    }
+  ],
+  "scope_decisions": [
+    {
+      "classification": "事实",
+      "rule": "本包正尺寸记录满足冷行步长align4(width)与热行步长width相等的条件。原PR-U1的非对齐尾部问题在后续有对应实际素材时按其来源处理。原RD格式及五组图形能力范围继续适用。"
+    },
+    {
+      "classification": "推测",
+      "rule": "两条无像素命令的实物记录可由复刻端分别表达帧状态与像素面。烟雾首帧按原帧序和时序推进，绘制处理依所证非正行数分支，并保留实际宿主呈现验收。"
+    },
+    {
+      "classification": "推测",
+      "rule": "按同尺寸双版本、原始字节存储且无内容去重计算，bin和map共需5227771570字节载荷。分块、租约及发布设计还需计入元数据、暂存、读取、解码与退役阶段。"
+    }
+  ],
+  "development_inputs": [
+    "依原D0资源接口按实际文件长度校验范围和总预算，固定资源根允许大档案的直接范围读取或有界分块。",
+    "同一资源根下按已核文件身份共享只读坐标数据，保留每组自己的graphicBase和动作解析。若七份坐标副本合并为一份，所计同库数组可少47946336字节。",
+    "烟雾动画的仅头部记录保留原尺寸与帧推进。补齐现有正高度几何与解码入口的显式处理，按原D0/D4验证绘制与动画组合。"
+  ],
+  "pending": [
+    "其它素材版本的必要非对齐上下文按实际输入核对。",
+    "完整图像展开、帧呈现及硬件输出验收。",
+    "宿主实际存储配额、并发解码/音频/绘制开销及旧读者退役、发布恢复验收。"
+  ],
+  "summary": {
+    "verified_app_files": 2367,
+    "verified_app_bytes": 2626083970,
+    "bin_map_bytes": 2613885785,
+    "two_root_payload_bytes": 5227771570,
+    "known_initialization_array_bytes": 199137631,
+    "known_old_and_new_array_bytes": 323471189,
+    "graphics_rows_checked": 664164,
+    "header_only_signed_height_records": 2,
+    "matched_animation_frame_references": 1,
+    "retained_complete_native_bodies": 8,
+    "bytes_checked": 3434,
+    "instructions_checked": 1124,
+    "new_REA_queries": 0,
+    "original_execution": false
+  },
+  "smoke_animation_playback": {
+    "capabilities": ["G06", "B03"],
+    "source_review": {
+      "path": "build/analysis/smoke-animation-clip-v1/source-review.json",
+      "bytes": 11897,
+      "sha256": "ce3c388b14245fc0d99df358362c01d3db9679d2c6fdd8e166471c7aa4b84078"
+    },
+    "focused_probe": {
+      "path": "build/analysis/smoke-animation-clip-v1/focused-probe.json",
+      "bytes": 649,
+      "sha256": "bcbbe73f665e051d071c68c7ee70f23658dbc8b89dc1ea9e917d22390a0c8c95"
+    },
+    "facts": [
+      "固定37c4战斗109的41105B循环请求40次41F1A0(actor,110004)。成功创建后挂41F160，按已证顺序取speedPercent、角度、速度；该回调推进运动并调用4FD5F0(mode=1)，返回1时调用40A090。",
+      "已选材料中110004有四条物理定义，最后一条在AnimeInfo_3.bin的序号2996。Anime_3.bin偏移27802756为方向0动作0，duration=256，四帧16681/16676/16677/16678，偏移及事件均0。",
+      "4533C0加载该动作的源周期为4、palette selector与旗标为0、颜色为FFFFFFFF。4FD5F0更新当前帧时只通过452E40读取原点，按帧偏移与附件规则更新状态并推进计数。旗标0跳过翻转所需的尺寸查询。",
+      "506E80对普通可见对象按旗标、删除状态、图形索引和容量决定入队，所证入口无高度检查。506030的type 0/1先调用507B20和5074D0，再用有符号矩形裁剪。"
+    ],
+    "deductions": [
+      "type 0从0,0取缓存尺寸，首帧宽4、高-15导致50614E的signed底边检查退出。另一条高度-26的记录若进入该路径也会退出。",
+      "type 1若通过506179的源Y上界检查，Y必须为负。5061A6将Y归零，随后高度不超过缓存的负高度，最迟5061F5退出。两类均先于505D70与普通像素提交。此前505D70的逐行规则只描述调用已发生的条件路径。",
+      "固定速度100、未冻结、方向0动作0、mode=1时，第1/5/9/13次调用发布四帧，第17次返回1、delay=255、cycles=1。这里的间隔是调用次数。"
+    ],
+    "implementation_delta": "D0/D4保留有符号几何和正常帧推进，按普通绘制的源条件裁掉该帧。现有目录的无符号投影65521和原值-15都会使现有动画入口在状态推进前拒绝。",
+    "acceptance_pending": ["组合动画时序与缓存、绘制裁剪", "对应宿主实际画面", "原G06/B03全范围"],
+    "reused_complete_native_bodies": 9,
+    "new_REA_queries": 0
+  },
+  "source_local_ready_capabilities": 19,
+  "all_capability_analysis_complete": false,
+  "implementation_gate_passed": false,
+  "product_baseline": "stage306",
+  "product_code_changed": false,
+  "full_goal_complete": false,
+  "validation": "build/analysis/resource-corpus-budget-v1/validation.json"
+}

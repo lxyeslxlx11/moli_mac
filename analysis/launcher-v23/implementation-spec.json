@@ -1,0 +1,77 @@
+{
+  "schema": "moli.launcher-v23.implementation-spec.v1",
+  "exports": [
+    "LAUNCHER_PROCESS_LIMITS",
+    "LAUNCHER_RESOURCE_GROUPS",
+    "LauncherProcessError",
+    "createLauncherResourceArguments",
+    "createLauncherProcessPlan"
+  ],
+  "source": "static-spec.json",
+  "module": "../../shared/launcher-process.mjs",
+  "profile": "Explicit ASCII/C file-titlecase behavior; not evidence of actual native locale/ACP. Raw resolved fieldbytes stay unchanged.",
+  "resource_input": {
+    "caseProfile": "ascii,required even find-failed",
+    "state": "find-failed|enumerated; first returns empty without readingentries",
+    "entries": "ordered own-data array of{attributes:uint32,fileNameBytes:nonsharedU8|ArrayBuffer,1..259B,printableASCIIbasename}; only enumerated",
+    "title": "last extensionremoved; title<=255 before directoryskip exceptdotdirs",
+    "transform": "directoryattribute10h skip; lowerASCII; lastunderscore index>0→colon; priorityinfo/graphic/anime/coordinate withallselected-family occurrences replaced; eachprefixspace; order/duplicates/finalrowpreserved",
+    "output": "ownedbytes, frozenrows/sourceOrdinal/fileName/argument, entriesSeen/skippedDirectories/orderprovided/sourceCompletionunverified"
+  },
+  "process_input": {
+    "gameCode": "integer0..14",
+    "onlyRefreshWord": "uint32",
+    "raw_required_fields": [
+      "directoryBytes",
+      "executablePathBytes",
+      "argsLineBytes",
+      "regionArgsBytes",
+      "galaxyArgsBytes"
+    ],
+    "field_shape": "own nonsharedU8/ArrayBuffer,emptyallowed,max4096,nonNUL. Already-resolved current native CString bytes, no source encoding/pathresolution invention.",
+    "resource_branch": "Code0/1/2/4/11 andrefresh==0 needs explicitcaseProfile andexact7orderedid/state/entrysnapshots. Otherbranchesneverreadresourcefields.",
+    "order": [
+      "bin-anime",
+      "bin-graphic",
+      "puk2-anime",
+      "puk2-graphic",
+      "puk3-anime",
+      "puk3-graphic",
+      "bin-coordinate"
+    ]
+  },
+  "process_output": {
+    "command": "rawEXE+space+base+[space+nonemptyregion]+[space+nonemptygalaxy]+sevenresourceaccumulators+NUL; noextraquoting,trim,escaping,argvtokenization",
+    "cwd": "rawdir+Code3\\Bin\\/Code5\\GBrowser\\/otherwiseempty+NUL; no slashnormalization",
+    "pattern": "rawdir+groupnativebackslashsuffix+NUL",
+    "clientCreationRequested": "localnativebranch; falseexactlywhenCode0/1/2/4/11 andrefreshnonzero",
+    "CreateProcess_context": {
+      "applicationName": null,
+      "inheritHandles": false,
+      "creationFlags": 0,
+      "environment": "inherit"
+    },
+    "unverified": [
+      "upstreamReady",
+      "authentication",
+      "gameAcceptance"
+    ],
+    "execution": "not-performed"
+  },
+  "independent_limits": {
+    "fieldBytes": 4096,
+    "commandBytesIncludingNul": 32767,
+    "entriesPerGroup": 4096,
+    "fileNameBytes": 259,
+    "fileTitleBytes": 255,
+    "gameCodeMax": 14
+  },
+  "ownership": "Copy actualbyteviews ignoring subclassmetadata; rejectsharedbacking; wipeownedtemporaryfieldcopies in finally; callerinputunchanged. Outputbytes are callerowned andmutable; frozenmetadata doesnot freezebytes or promiseentireJSheap erasure.",
+  "non_goals": [
+    "No filesystemaccess,Win32wildcard/8.3/providerorder/path-error/CRTexceptionemulation",
+    "No processcreation,nativesharedmapping,gameconsumer,realcredentialorofficialnetwork",
+    "No rawXMLstring→ACPguess,quotefix,trim,normalizationorregion/Galaxyinvention",
+    "No newUI orthinOS/gameadaptation thisphase"
+  ],
+  "verification": "validation.json"
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "moli.launcher-v30.implementation-spec.v1",
+  "source": "static-spec.json",
+  "modules": {
+    "shared/launcher-first-config.mjs": "Pure raw first-Config lookup/command/cwd producer and explicit created/wait-returned outcome interpretation; no profile/file/process action.",
+    "shared/launcher.mjs": "Keep declared ConfigEXE body in configurerText beside existing canonical files.configuration.",
+    "shared/index.mjs": "Export new first-Config limits/error/producer/outcome APIs.",
+    "web/launcher-launch-data.mjs": "Optional own onlyRefreshWord default0; unused resource snapshots not read for refreshCG branch; selected catalog first-Config producer binding.",
+    "web/login-launch.mjs": "Owned checkbox state, lock guard, invalidation, skip directory resource enumeration while checked, no missing-directory mapping fallback, reset/pagehide clears.",
+    "web/login-app.mjs": "Different feedback from authoritative lease.clientCreationRequested; no refresh word inserted into login wire/auth.",
+    "web/login.html": "Explicit only-refresh control and effect/verification disclosure."
+  },
+  "first_config": {
+    "input": "own usernameBytes/codeTextBytes/directoryBytes/configurerBytes and explicit uint32 firstConfigWord. Actual attached nonshared U8/AB; caller-provided synthetic/authorized snapshots only.",
+    "limits": "username0..16bytes, other raw fields0..4096bytes, Code digits1..10 with numeric0..14, no NUL, builtstringsNULinclusive<=32767bytes. No inferred ACP/path normalization/quoting.",
+    "lookup": "section=lowercase32hex MD5(exactusernamebytes)+NUL; key=Game+originalCodeText+_Config+NUL; native default1. Account-derived metadata, not anonymous/authentication and not stored/displayed by UI.",
+    "condition": "firstConfigWord==0 ->flag-clear; else rawConfigEXE length0 ->no-configuration-program; else configuration-requested. Whitespace/slashes/edge spaces of declared body preserved.",
+    "command": "rawDirectory+backslash+rawConfigEXE+NUL; cwd rawDirectory+NUL. No Argsline or quoting; skip yields no config command/cwd. applicationName null/inheritHandlesfalse/flags0/environmentinherit.",
+    "outcome": "not-requested continues without write; CreateProcess failure continues without write; created and wait not yet returned reports waiting/no continuation; after wait returns requests profile integer0 under same lookup and continuation. Native ignores wait code/process exit/write result in observed branch.",
+    "observations": "processCreated/waitReturned are explicit caller timing snapshots, not invented protocol fields. Interpreter never performs wait or writes. All configurationVerified/authentication remain unverified.",
+    "ownership": "Inputs copied, owned temporary buffers wiped on exit; output owned including account-derived identity. Caller handles output/copies privately; no full JS heap-erasure claim.",
+    "errors": [
+      "FIRST_CONFIG_INPUT",
+      "FIRST_CONFIG_BUDGET",
+      "FIRST_CONFIG_NUL",
+      "FIRST_CONFIG_STATE"
+    ]
+  },
+  "catalog": {
+    "configurerText": "decoded ConfigEXE leaf body without trim, alongside unchanged validated files.configuration metadata.",
+    "createLauncherCatalogFirstConfigPlan": "Reparse/hashvalidate pair, validate current game/reference/optionalGalaxy ordinal, explicit directory/pathprofile and account/flag snapshots; rawConfigEXE/currentCode enter pure producer. Binding contains no username or lookup identity.",
+    "onlyRefreshWord": "Optional own uint32 defaults0 for existing callers. CGCodes0/1/2/4/11 need resourceGroups only when word0; nonzero never reads the resource property. Other branches retain native clientCreationRequested semantics."
+  },
+  "UI": {
+    "control": "launch-only-refresh defaultfalse and not persisted; own bool model, disabled/fake locked changes restored. Exposed value0/1 only to process plan.",
+    "preparation": "Changing clears old handoff and requires new preparation; selected patch/cache resources remain because content/binding unchanged. Checked skips FileList/candidate-name enumeration and still requires explicit valid directory; no silent mapping-only fallback.",
+    "feedback": "clientCreationRequested false ->only-refresh handoff,0resources,mapping length and explicit no game request. true ->existing fullcontext message. Neither authenticates, executes or refreshes a real official ticket.",
+    "lifecycle": "Config/region/Galaxy changes and pagehide reset choice. Account/text review locks the field; schema/resourcecache unchanged."
+  },
+  "not_implemented": [
+    "Actual native Config utility/process/Profile access or settings compatibility",
+    "Real account persistence/actualACP/EH, official peer/source identity and opaque lifetime",
+    "Game argv/CGSharedMem consumers and gameplay, fullsize/native storage recovery and targetdevice/WeChat acceptance"
+  ],
+  "ordered_goal": "The audited launcher-own observed contract is accepted only within declared profiles. Full launcher/game/official target incomplete; next safe work is version-bound game consumer static joint validation under existing project step2 rule."
+}

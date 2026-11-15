@@ -1,0 +1,136 @@
+{
+  "schema": "moli.own-observer-windows.stage101.v1",
+  "state": "selected own-fixture Windows cases accepted; original game profile not used",
+  "recorded_utc": "2026-10-29T17:00:37.041602+00:00",
+  "r1": {
+    "fixture_sha256": "77878c9ac7ce086b2f4d8c6c189cabf765da2c36751d62fb9ce27b2a4493edd3",
+    "observer_sha256": "417595a96f0189353d47e8f1f86776e95ad4e0054d3123b3892b305e10dc6699",
+    "guest_full_hashes_verified": true,
+    "cases": [
+      {
+        "args": [],
+        "stdout_code": "INPUT",
+        "exit_code": 1
+      },
+      {
+        "args": [
+          "fixture",
+          "0"
+        ],
+        "stdout_code": "INPUT",
+        "exit_code": 1
+      },
+      {
+        "args": [
+          "unknown",
+          "1"
+        ],
+        "stdout_code": "PROFILE_OR_PID",
+        "exit_code": 1
+      },
+      {
+        "args": [
+          "fixture",
+          "current-owned-PowerShell-PID"
+        ],
+        "stdout_code": "IMAGE_PATH",
+        "exit_code": 1
+      }
+    ],
+    "observer_invocations": 4,
+    "fixture_creation_attempts": 1,
+    "fixture_creation_error": "Start-Process: %1 is not a valid Win32 application",
+    "native_error_number_captured": false,
+    "fixture_PID_or_ready_observed": false,
+    "positive_observations": 0
+  },
+  "r2": {
+    "build": "../game-entry-v1/observer-build-stage101.json",
+    "host_layout_regression": "../game-entry-v1/layout-validation-stage101.json",
+    "Windows_transfer_or_execution": true,
+    "guest_hashes_lengths_attributes_match": true,
+    "legacy_backups_full_hashes_match": true,
+    "creation_mode": "CreateNew with FileShare.None; no overwrites",
+    "effective_execution_policy": "Restricted",
+    "own_process_count_before": 0,
+    "observer_invocations": 1,
+    "positive_observations": 1,
+    "positive": {
+      "profile": "fixture",
+      "pid": 8524,
+      "image_base": "004b0000",
+      "image_bytes": "00e82000",
+      "read_bytes": 8,
+      "elapsed_ms_reported": 0,
+      "exit_code": 0,
+      "slots": [
+        {
+          "index": 0,
+          "value": "004b14c0",
+          "inside_image": 1,
+          "rva": "000014c0",
+          "region_valid": 1,
+          "state": "00001000",
+          "protect": "00000020",
+          "type": "01000000",
+          "allocation_base": "004b0000",
+          "region_base": "004b1000",
+          "region_bytes": "00002000"
+        },
+        {
+          "index": 1,
+          "value": "004b14b0",
+          "inside_image": 1,
+          "rva": "000014b0",
+          "region_valid": 1,
+          "state": "00001000",
+          "protect": "00000020",
+          "type": "01000000",
+          "allocation_base": "004b0000",
+          "region_base": "004b1000",
+          "region_bytes": "00002000"
+        }
+      ]
+    },
+    "first_fixture": {
+      "pid": 8524,
+      "ready": 1,
+      "wait_ms_reported": 30000,
+      "WaitForExit_35000_return": true,
+      "ExitCode_readback": "blank, not assumed zero"
+    },
+    "supplemental_fixture": {
+      "pid": 1508,
+      "ready": 1,
+      "wait_ms_reported": 30000,
+      "synchronous_invocation": true,
+      "callback_memory_read_repeated": false,
+      "exit_code": 0,
+      "own_process_count_after": 0
+    },
+    "NAT_transfer": {
+      "bind": "10.211.55.2",
+      "port": 62468,
+      "allowed_get_peer": "10.211.55.3",
+      "two_responses_sent": true,
+      "natural_server_exit": 0,
+      "closed_reason": "two_responses_sent",
+      "independent_socket_refused": true,
+      "connect_ex": 61,
+      "listener_active": false
+    },
+    "fixture_actual_starts": 2,
+    "owned_WebClient_Process_and_buffer_cleanup": "Dispose methods and Remove-Variable submitted; returned idle prompt without exception"
+  },
+  "original_launcher_updater_game_starts_this_stage": 0,
+  "current_ps1_or_Restore_replays": 0,
+  "new_execution_policy_changes": 0,
+  "full_goal_complete": false,
+  "limitations": [
+    "Four negative CLI/path cases belong to R1 identity, not re-run on R2. R2 full .text equals R1; fixture profile data changed.",
+    "First observed PID8524 WaitForExit returned True but its ExitCode printed blank; no zero inferred. Separate synchronous PID1508 returned actual exit0.",
+    "Only one own-fixture observation reported read_bytes8; two pointer RVAs/page metadata do not establish execution of callbacks.",
+    "No original game consumer, protected code, IPC, credentials, session, frame/auth/state/official compatibility observed.",
+    "ASLR relocation observed once at004b0000; no all-guard, concurrency, fault or hard-global-timeout acceptance."
+  ]
+}

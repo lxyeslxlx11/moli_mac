@@ -1,0 +1,21 @@
+{
+  "stage": 247,
+  "previous_checkpoint": {
+    "path": "analysis/game-legacy-battle-status-assist-v1/checkpoint-audit.json",
+    "sha256": "76039ae38d7f8dae655fc4bd1f0e8ffddec42a491f9b45119bb907af0d705c5f"
+  },
+  "baseline_files": 3973,
+  "requirement": "实现固定旧版 SKL98 的缺席参与角色清理、保留已发生的注册表交换，并让后续完整战斗记录继续处理。",
+  "source": "analysis/game-legacy-battle-missing-v1/source-check.json",
+  "scope": [
+    "核对缺席施法者、协作者和目标的路由，以及 436930 与 4347e0 对队列、状态、游标的写入。",
+    "按原顺序提交缺席之前的变化、重置依赖队列、处理缺席分支尾部，复用原忙碌等待。通过验证过的记录边界继续，隔离原版提前扫描和阶段覆写。",
+    "用原创记录验证合并与独立后续、变体 7 部分换位、超 7200 次等待恢复和正常产品 TCP 入口。"
+  ],
+  "remaining": [
+    "其他技能族缺席分支、异常游标下的原版续接、更多附带 RID 组合、完整游戏、真机、现行版交接与官服"
+  ],
+  "VM_actions": 0,
+  "original_execution": 0,
+  "official_sessions": 0
+}

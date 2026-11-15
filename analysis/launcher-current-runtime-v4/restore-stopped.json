@@ -1,0 +1,32 @@
+{
+  "schema": "moli.launcher-current-runtime-v4.restore-stopped.v1",
+  "client_date": "2026-10-29",
+  "recorded_host_utc": "2026-10-28T17:50:13.777265+00:00",
+  "command": "powershell.exe -NoLogo -NoProfile -ExecutionPolicy RemoteSigned -File D:/current.ps1 -Mode Restore",
+  "submissions": 1,
+  "output": {
+    "Status": "stopped",
+    "Mode": "Restore",
+    "ErrorType": "System.Management.Automation.RuntimeException",
+    "HResult": -2146233087,
+    "ControlledCode": "MOLI_UNRECOGNIZED_CURRENT_EXE"
+  },
+  "prompt_returned": true,
+  "exe_restored": false,
+  "restored_receipt_written": false,
+  "reason": "Guard reached current EXE hash check and found neither installed71180... nor original109b...; stop before staging or replacement. Earlier named-process and saved-backup/receipt guards passed.",
+  "next": "Readonly exact target hash/size/source and process/policy readback only; do not weaken guard, retry Restore, replace unknown bytes or claim full rollback.",
+  "full_vm_rollback": false,
+  "original_backups": "retained C:/MoliOffline/current-stage89, no removal",
+  "final_followup": {
+    "command_exit_code": 1,
+    "current_exe_bytes": 1666048,
+    "current_exe_sha256": "6d459ddbdf80a86cf7a1e41b99ab7fb575b42842d7163522efb3c9fa6e6ac987",
+    "matches_new_public_payload": true,
+    "guard_weakened_or_retried": false,
+    "exe_restored": false,
+    "backups_retained": true,
+    "effective_policy": "Restricted",
+    "policy_evidence": "analysis/launcher-current-runtime-v4/policy-after.json"
+  }
+}

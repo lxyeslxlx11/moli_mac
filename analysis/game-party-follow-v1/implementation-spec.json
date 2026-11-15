@@ -1,0 +1,30 @@
+{
+  "schema": "moli.party-follow-contract-stage178.v1",
+  "source_sha256": "37c4dfd29efaa665eeb7bdc95486b3f704452ad50ff024f48812cad2f74013bd",
+  "source_bytes": 1569280,
+  "analysis_profile": "7810ea9437da59780820ec6fedb47ce47390841a95d527ddb6c3b3700fe180cb",
+  "tool": "REA6.7.0/Ghidra12.1.4",
+  "facts": [
+    "4ff080 initializes native party word f5f170 to0; positive HFs4f07d0 sets1, dissolve sets0. Local primary word f536b2 stores leader100/member200; actual460c40 pointer gate allows mode0 or leader100, then selects4610f0 for nonleader party and460f20 for ordinary/leader.",
+    "4618f0 compacts ascending active slots with nonnull owned bodies into five signed-short row indices, missing tail=-1.461500 enqueues current local display into compact member1 after ordinary step start.",
+    "Leader461550 starts aligned queued compact members1..4 with global local speed via43c360, queue-count factor1/1.2/1.6/2 before popping; cascades old displayed tile into the next compact member before its turn.4618a0 then advances those members unscaled through43c980.",
+    "Nonleader4610f0 first prepares all compact members, then advances them. Remote start43c540 and local461370 both use compact leader body speed without queue-rate factors. When compact member0 starts a queue, global957e98 becomes1/1.2/1.6/2 by its pre-pop length; this persists until a source writer changes it.43cb40 and local461660 advance base velocities multiplied by this float32 scale.",
+    "Local follower461370 sets globals target/velocity/facing without changing local own speed; collision-aware4ff5a0 keeps logical display if blocked. No outbound ordinary path command is issued for follower-driven steps. Other nonparty guards do not suppress4610f0; ownGate128 returns before either branch.",
+    "Raw callback43ba98 tests primary200 at record+59a34b bit2 and skips43c700 while still executing animation. Same underlying source word maps to recordMotionFlags02000000 in the independent source descriptor; ignoring membership would double-advance or consume queues.",
+    "HFs removal4f07d0 snapshots removed target+200/+210.461f40 requires slot0 body with queue<=0 aligned to target, checks closest preceding active/bound target distance with wrapped subtraction4034a0 (not absolute world coordinates), suppresses transfer if both axes<2. Otherwise it enqueues the removed target into next and cascades each former target across later active/bound slots, resetting global scale1.",
+    "Existing queue43c1b0 capacity10: an eleventh enqueue clears queue and teleports to supplied tile, preserving source animation/moving metadata. Unknown missing body and duplicate-pointer native memory hazards are explicit unsupported ordinary runtime domains."
+  ],
+  "independent_boundaries": [
+    "Party globals become authoritative after observed source entry initialization or actual HFs; low-level explicit initial context is retained before either observation",
+    "Safe ordinary frame rejects duplicate bound body references, party battle or active compound transition; wire records remain stored and inspectable",
+    "Source display/target, global queue scale, queue ownership and actual client/runtime input must share owned state; no invented wire commands"
+  ],
+  "unknowns": [
+    "Full party join/leave request UI and4f3310 response side effects, battle250..252, aux04 leader/mode badges and pet-shadow values",
+    "Native x87 bit identity and invalid native body aliases/null-pointer failure behavior; use safe bounded logical projection",
+    "Other UI/Chinese gameplay, full correction/input/reset/production startup, native WeChat gamePage/Canvas/font/clock/devices, current/official acceptance"
+  ],
+  "phase_complete": true,
+  "full_goal_complete": false,
+  "goal_status": "active"
+}
